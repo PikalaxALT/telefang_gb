@@ -163,6 +163,7 @@ Func_0425: ; 425 (0:0425)
 	ld [hli], a
 	ret
 
+ClearMemory:
 .asm_0431
 	xor a
 	ld [hli], a

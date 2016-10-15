@@ -102,6 +102,7 @@ SECTION "bank 1F", ROMX, BANK [$1f]
 	dr $7c000, $80000
 
 SECTION "bank 20", ROMX, BANK [$20]
+UpdateSound20::
 	dr $80000, $84000
 
 SECTION "bank 21", ROMX, BANK [$21]

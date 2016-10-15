@@ -900,7 +900,7 @@ wc41f:: ds 1
 wc420:: ds 1
 wc421:: ds 1
 wc422:: ds 1
-wc423:: ds 1
+wPrevROMBank:: ds 1
 wc424:: ds 1
 wROMBank:: ds 1 ; c425
 wc426:: ds 1
@@ -3929,7 +3929,7 @@ wcff4:: ds 1
 wcff5:: ds 1
 wcff6:: ds 1
 wcff7:: ds 1
-wcff8:: ds 1
+wMusicBank:: ds 1
 wcff9:: ds 1
 wcffa:: ds 1
 wcffb:: ds 1

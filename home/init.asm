@@ -105,3 +105,33 @@ Start::
 	ld [hVBlankOccurred], a
 	ld [wc3c1], a
 	jp .loop
+
+Func_0234: ; 234 (0:0234)
+	ld a, [wdc05]
+	or a
+	ret z
+	ld a, [wdc01]
+	or a
+	jr z, .asm_252
+	ld a, [wdc2e]
+	cp $ff
+	jr nz, .asm_252
+	ld a, [wdc59]
+	cp $10
+	jr nc, .asm_263
+	inc a
+	ld [wdc59], a
+	ret
+
+.asm_252
+	ld a, [wdc07]
+	cp $10
+	jp nc, .asm_263
+	inc a
+	ld [wdc07], a
+	xor a
+	ld [wdc59], a
+	ret
+
+.asm_263
+	jp InitSerialData

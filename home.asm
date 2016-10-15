@@ -8,36 +8,6 @@ SECTION "Header", HOME [$0104]
 SECTION "Start", HOME [$0150]
 INCLUDE "home/init.asm"
 
-Func_0234: ; 234 (0:0234)
-	ld a, [wdc05]
-	or a
-	ret z
-	ld a, [wdc01]
-	or a
-	jr z, .asm_252
-	ld a, [wdc2e]
-	cp $ff
-	jr nz, .asm_252
-	ld a, [wdc59]
-	cp $10
-	jr nc, .asm_263
-	inc a
-	ld [wdc59], a
-	ret
-
-.asm_252
-	ld a, [wdc07]
-	cp $10
-	jp nc, .asm_263
-	inc a
-	ld [wdc07], a
-	xor a
-	ld [wdc59], a
-	ret
-
-.asm_263
-	jp InitSerialData
-
 Func_0266::
 	ld a, [wc46c]
 	or a
@@ -112,14 +82,60 @@ Func_02d0: ; 2d0 (0:02d0)
 INCLUDE "home/vblank.asm"
 INCLUDE "home/lcd.asm"
 
-InitSoundData::
-	dr $0439, $0464
+InitSoundData: ; 439 (0:0439)
+	ld hl, wce00
+	ld bc, $200
+	call ClearMemory
+	ld hl, hFFA0
+	ld bc, $8
+	call ClearMemory
+	ld a, $ff
+	ld [rNR51], a
+	ld [wcf95], a
+	ld a, $8f
+	ld [rNR52], a
+	xor a
+	ld [rNR12], a
+	ld [rNR22], a
+	ld [rNR32], a
+	ld [rNR42], a
+	ld a, $77
+	ld [rNR50], a
+	ret
 
-Func_0464::
-	dr $0464, $0476
+UpdateSound: ; 464 (0:0464)
+	ld a, [wMusicBank]
+	add AUDIO_00
+	ld [MBC3RomBank], a
+	call UpdateSound20
+	ld a, [wROMBank]
+	ld [MBC3RomBank], a
+	ret
 
-Func_0476::
-	dr $0476, $049e
+FarCall_HL::
+	di
+	ld [wPrevROMBank], a
+	ld a, [wROMBank]
+	push af
+	ld a, [wPrevROMBank]
+	ld [MBC3RomBank], a
+	ld [wROMBank], a
+	ei
+	call _hl_
+	di
+	pop af
+	ld [MBC3RomBank], a
+	ld [wROMBank], a
+	ei
+	ret
+
+FarJump_HL::
+	di
+	ld [MBC3RomBank], a
+	ld [wROMBank], a
+	ei
+_hl_:: ; 49d (0:049d)
+	jp [hl]
 
 BankSwitch::
 	di

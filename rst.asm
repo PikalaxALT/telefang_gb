@@ -14,12 +14,12 @@ SECTION "RST_10", HOME [Bankswitch]
 	jp BankSwitch ; 049e
 
 SECTION "RST_18", HOME [MemBankswitch]
-	ld a, [wc423]
+	ld a, [wPrevROMBank]
 	rst Bankswitch
 	ret
 
 SECTION "RST_20", HOME [$0020]
-	jp Func_0476
+	jp FarCall_HL
 
 SECTION "RST_28", HOME [$0028]
 	

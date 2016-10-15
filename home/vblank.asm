@@ -19,7 +19,7 @@ VBlank: ; 2e7 (0:02e7)
 	ld a, $1
 	ld [hVBlankOccurred], a
 	ei
-	call Func_0464
+	call UpdateSound
 	call Func_3442
 	ld a, [wcb3f]
 	or a
