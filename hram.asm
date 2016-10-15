@@ -4,10 +4,9 @@ hFF8A EQU $ff8a
 hFF8B EQU $ff8b
 hJoyLast EQU $ff8c
 hJoyNew EQU $ff8d
-hFF8E EQU $ff8e
-hFF8F EQU $ff8f
-hFF90 EQU $ff90
-hFF91 EQU $ff91
+hBGMapYPixel EQU $ff8e
+hBGMapXPixel EQU $ff8f
+hBGMapAddr EQU $ff90
 hVBlankOccurred EQU $ff92
 hFF93 EQU $ff93
 hFF94 EQU $ff94

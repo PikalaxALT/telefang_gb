@@ -1,5 +1,6 @@
 SECTION "WRAM 0", WRAM0
 wOAMBuffer:: ds 4 * 40
+wOAMBufferEnd::
 
 wc0a0:: ds 1
 wc0a1:: ds 1

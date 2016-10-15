@@ -115,8 +115,56 @@ UpdateSound: ; 464 (0:0464)
 INCLUDE "home/farcall.asm"
 INCLUDE "home/joypad.asm"
 
-LoadPushOAM::
-	dr $079a, $07df
+LoadPushOAM: ; 79a (0:079a)
+	ld c, hPushOAM % $100
+	ld b, PushOAMEnd - PushOAM
+	ld hl, PushOAM
+.load
+	ld a, [hli]
+	ld [$ff00+c], a
+	inc c
+	dec b
+	jr nz, .load
+	ret
+
+PushOAM::
+	ld a, wOAMBuffer / $100
+	ld [rDMA], a
+	; Wait until DMA is finished doing its thing (1 cycle per byte)
+	ld a, (wOAMBufferEnd - wOAMBuffer) / 4
+.wait_dma
+	dec a
+	jr nz, .wait_dma
+	ret
+PushOAMEnd::
+
+Func_07b2::
+	ld a, [hBGMapYPixel]
+	sub $10
+	srl a
+	srl a
+	srl a
+	ld de, $0000
+	ld e, a
+	ld hl, VBGMap
+	ld b, BG_MAP_WIDTH
+.asm_07c5
+	add hl, de
+	dec b
+	jr nz, .asm_07c5
+	ld a, [hBGMapXPixel]
+	sub $8
+	srl a
+	srl a
+	srl a
+	ld de, $0000
+	ld e, a
+	add hl, de
+	ld a, h
+	ld [hBGMapAddr], a
+	ld a, l
+	ld [hBGMapAddr + 1], a
+	ret
 
 Func_07df::
 	dr $07df, $0807

@@ -1,4 +1,9 @@
 ; Graciously aped from http://nocash.emubase.de/pandocs.htm .
+VTilesOB EQU $8000
+VTilesShared EQU $8800
+VTilesBG EQU $9000
+VBGMap EQU $9800
+VWindow EQU $9c00
 
 ; MBC3
 MBC3SRamEnable EQU $0000
