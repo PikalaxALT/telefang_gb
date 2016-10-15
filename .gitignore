@@ -22,6 +22,10 @@
 *.map
 *.sym
 
+# compiled graphics
+*.1bpp
+*.2bpp
+
 # compare.sh
 baserom.txt
 pokecrystal.txt
