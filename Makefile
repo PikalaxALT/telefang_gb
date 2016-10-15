@@ -26,7 +26,7 @@ speed: telespeed.gbc
 clean:
 	rm -f $(roms) $(telepower_obj) $(telespeed_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
-compare: telepower.gbc
+compare: $(roms)
 	@$(MD5) roms.md5
 
 %.asm: ;

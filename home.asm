@@ -114,11 +114,106 @@ Start::
 	ld [wc3c1], a
 	jp .loop
 
-Func_0234::
-	dr $0234, $02d0
+Func_0234: ; 234 (0:0234)
+	ld a, [wdc05]
+	or a
+	ret z
+	ld a, [wdc01]
+	or a
+	jr z, .asm_252
+	ld a, [wdc2e]
+	cp $ff
+	jr nz, .asm_252
+	ld a, [wdc59]
+	cp $10
+	jr nc, .asm_263
+	inc a
+	ld [wdc59], a
+	ret
 
-Func_02d0::
-	dr $02d0, $02e7
+.asm_252
+	ld a, [wdc07]
+	cp $10
+	jp nc, .asm_263
+	inc a
+	ld [wdc07], a
+	xor a
+	ld [wdc59], a
+	ret
+
+.asm_263
+	jp InitSerialData
+
+Func_0266::
+	ld a, [wc46c]
+	or a
+	jr nz, .asm_26e
+	jr .asm_26e
+
+.asm_26e
+	ld a, [wc3c2]
+	ld [rSCX], a
+	ld a, [wc3c3]
+	ld [rSCY], a
+	ld a, [wc3c4]
+	ld [rWX], a
+	ld a, [wc3c5]
+	ld [rWY], a
+	ld a, [wBGP]
+	ld [rBGP], a
+	ld a, [wOBP1]
+	ld [rOBP0], a
+	ld a, [wOBP2]
+	ld [rOBP1], a
+	ld a, [wLCDC]
+	ld [rLCDC], a
+	ld a, [wc3ca]
+	ld [rLYC], a
+	ld b, $0
+	ld hl, wc464
+	ld de, wc460
+	ld a, [de]
+	add b
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hl], a
+	ld a, [wc46c]
+	ld [wc469], a
+	ld a, $0
+	ld [wcac1], a
+	ld a, [wc46d]
+	cp $2
+	jr c, .asm_2cf
+	ld a, $2
+	ld [wc46d], a
+	ld a, [wc957]
+	xor $1
+	ld [wc957], a
+	ret
+
+.asm_2cf
+	ret
+
+Func_02d0: ; 2d0 (0:02d0)
+	ld a, [hFF8C]
+	and $f
+	cp $f
+	ret nz
+	ld a, [wc3e0]
+	cp $0
+	ret z
+	xor a
+	ld [wc3e0], a
+	ld a, $2a
+	ld [wc3e1], a
+	ret
 
 VBlank::
 	dr $02e7, $0324
