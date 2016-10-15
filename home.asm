@@ -166,23 +166,78 @@ Func_07b2::
 	ld [hBGMapAddr + 1], a
 	ret
 
-Func_07df::
-	dr $07df, $0807
+Func_07df: ; 7df (0:07df)
+	ld a, [rIE]
+	ld [hFF93], a
+	res 0, a
+.asm_07e5
+	ld a, [rLY]
+	cp $91
+	jr nz, .asm_07e5
+	ld a, [wLCDC]
+	and $7f
+	ld [rLCDC], a
+	ld a, [hFF93]
+	ld [rIE], a
+	ret
 
-ClearVBGMap::
-	dr $0807, $0824
+EnableLCD::
+	ld a, [rLCDC]
+	or $80
+	ld [rLCDC], a
+	ret
 
-Func_0824::
-	dr $0824, $0968
+ClearMemory2::
+.loop
+	ld a, $0
+	ld [hli], a
+	dec bc
+	ld a, c
+	or b
+	jr nz, .loop
+	ret
 
-ClearVTiles::
-	dr $0968, $0971
+ClearVBGMap: ; 807 (0:0807)
+	ld hl, VWindow - 1
+	ld bc, VWindow - VBGMap
+.asm_080d
+	ld a, $0
+	ld [hld], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_080d
+	ret
+
+Func_0816::
+.asm_0816
+	ld a, [hli]
+	di
+	call Func_09aa
+	ld [de], a
+	ei
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_0816
+	ret
+
+INCLUDE "home/oam_animations.asm"
+
+ClearVTiles: ; 968 (0:0968)
+	ld hl, $8000
+	ld bc, $1800
+	jp ClearMemory3
 
 ClearOAMBuffer::
 	dr $0971, $097c
 
 ClearWRAM0::
-	dr $097c, $0a2a
+	dr $097c, $09aa
+
+Func_09aa::
+	dr $09aa, $0a2a
 
 Func_0a2a::
 	dr $0a2a, $0a34
@@ -221,7 +276,10 @@ Func_122d::
 	dr $122d, $1248
 
 Func_1248::
-	dr $1248, $1620
+	dr $1248, $159f
+
+ClearMemory3::
+	dr $159f, $1620
 
 Func_1620::
 	dr $1620, $16c2

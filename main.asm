@@ -57,6 +57,7 @@ SECTION "bank 09", ROMX, BANK [$09]
 	dr $24000, $28000
 
 SECTION "bank 0A", ROMX, BANK [$0a]
+Pointers_28000::
 	dr $28000, $2c000
 
 SECTION "bank 0B", ROMX, BANK [$0b]
@@ -84,7 +85,10 @@ SECTION "bank 0D", ROMX, BANK [$0d]
 	dr $34000, $38000
 
 SECTION "bank 0E", ROMX, BANK [$0e]
-	dr $38000, $3c000
+	dr $38000, $38120
+
+Pointers_38120::
+	dr $38120, $3c000
 
 SECTION "bank 0F", ROMX, BANK [$0f]
 	dr $3c000, $40000
@@ -99,24 +103,31 @@ SECTION "bank 12", ROMX, BANK [$12]
 	dr $48000, $4c000
 
 SECTION "bank 13", ROMX, BANK [$13]
+Pointers_4c000::
 	dr $4c000, $50000
 
 SECTION "bank 14", ROMX, BANK [$14]
+Pointers_50000::
 	dr $50000, $54000
 
 SECTION "bank 15", ROMX, BANK [$15]
+Pointers_54000::
 	dr $54000, $58000
 
 SECTION "bank 16", ROMX, BANK [$16]
+Pointers_58000::
 	dr $58000, $5c000
 
 SECTION "bank 17", ROMX, BANK [$17]
+Pointers_5c000::
 	dr $5c000, $60000
 
 SECTION "bank 18", ROMX, BANK [$18]
+Pointers_60000::
 	dr $60000, $64000
 
 SECTION "bank 19", ROMX, BANK [$19]
+Pointers_64000::
 	dr $64000, $68000
 
 SECTION "bank 1A", ROMX, BANK [$1a]

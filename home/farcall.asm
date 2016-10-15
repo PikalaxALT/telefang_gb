@@ -457,7 +457,7 @@ Func_0691::
 	ld a, $27
 	rst Bankswitch
 	call Func_3e68
-	ld hl, wc0a0
+	ld hl, wOAMAnimations
 	rst MemBankswitch
 	ret
 

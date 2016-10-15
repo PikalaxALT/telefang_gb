@@ -132,11 +132,11 @@ asm_0383
 
 Func_0402: ; 402 (0:0402)
 	push hl
-	ld hl, wc140
+	ld hl, wOAMAnimation06
 	ld a, [wc957]
 	or a
 	jr nz, .asm_040f
-	ld hl, wc0a0
+	ld hl, wOAMAnimation01
 .asm_040f
 	ld a, [wc46d]
 	add l
