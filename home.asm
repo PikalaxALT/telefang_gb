@@ -549,7 +549,7 @@ asm_0b4b
 	pop af
 	push hl
 	push de
-	ld hl, $c34
+	ld hl, Data_0c34
 	ld d, $0
 	ld e, a
 	add hl, de
@@ -582,7 +582,7 @@ asm_0b4b
 	add hl, de
 	pop de
 	push hl
-	ld hl, $4000
+	ld hl, Pointers_20000 ; Pointers_24000
 	ld d, $0
 	sla e
 	rl d
@@ -707,8 +707,235 @@ Func_0c30::
 	ld [rVBK], a
 	ret
 
-Func_0c36::
-	dr $0c36, $0d97
+Data_0c34::
+	db BANK(Pointers_20000)
+	db BANK(Pointers_24000)
+
+Func_0c36: ; c36 (0:0c36)
+	ld a, BANK(Data_18000)
+	rst Bankswitch
+	push bc
+	pop de
+	ld hl, Data_18000
+	sla e
+	rl d
+	sla e
+	rl d
+	add hl, de
+	ld a, [hli]
+	ld [wc44e], a
+	ld a, [hli]
+	ld [wc450], a
+	ld a, [hl]
+	ld [wc451], a
+	ld a, [wc44e]
+	rst Bankswitch
+	ld hl, Pointers_1de1
+	sla c
+	rl b
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	pop de
+	ld a, [wc451]
+	ld h, a
+	ld a, [wc450]
+	ld l, a
+	ld a, [de]
+	inc de
+	jp Func_0c71
+
+Func_0c71: ; c71 (0:0c71)
+	cp $0
+	jp z, Func_0d33
+	ld a, h
+	ld [wc406], a
+	ld a, l
+	ld [wc407], a
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+Func_0c84: ; c84 (0:0c84)
+	ld a, b
+	or c
+	jp z, Func_0d4d
+	ld a, [de]
+	ld [wc405], a
+	inc de
+	ld a, [de]
+	ld [wc404], a
+	inc de
+	ld a, $11
+	ld [wc403], a
+Func_0c98: ; c98 (0:0c98)
+	ld a, b
+	or c
+	jp z, Func_0d4d
+	ld a, [wc403]
+	dec a
+	jp z, Func_0c84
+	ld [wc403], a
+	push de
+	ld a, [wc404]
+	ld d, a
+	ld a, [wc405]
+	ld e, a
+	srl d
+	ld a, d
+	ld [wc404], a
+	rr e
+	ld a, e
+	ld [wc405], a
+	jp c, Func_0cdf
+	pop de
+	ld a, [wc406]
+	ld h, a
+	ld a, [wc407]
+	ld l, a
+	di
+	call Func_09aa
+	ld a, [de]
+	call Func_09aa
+	ld [hli], a
+	ei
+	ld a, h
+	ld [wc406], a
+	ld a, l
+	ld [wc407], a
+	dec bc
+	inc de
+	jp Func_0c98
+
+Func_0cdf: ; cdf (0:0cdf)
+	pop de
+	push de
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	and $7
+	ld h, a
+	ld a, [de]
+	srl a
+	srl a
+	srl a
+	and $1f
+	add $3
+	ld [wc402], a
+	ld a, h
+	cpl
+	ld d, a
+	ld a, l
+	cpl
+	ld e, a
+	ld a, [wc406]
+	ld h, a
+	ld a, [wc407]
+	ld l, a
+	add hl, de
+	push hl
+	pop de
+	ld a, [wc406]
+	ld h, a
+	ld a, [wc407]
+	ld l, a
+Func_0d0f: ; d0f (0:0d0f)
+	di
+	call Func_09aa
+	ld a, [de]
+	call Func_09aa
+	ld [hli], a
+	ei
+	dec bc
+	inc de
+	ld a, [wc402]
+	dec a
+	ld [wc402], a
+	jp nz, Func_0d0f
+	ld a, h
+	ld [wc406], a
+	ld a, l
+	ld [wc407], a
+	pop de
+	inc de
+	inc de
+	jp Func_0c98
+
+Func_0d33: ; d33 (0:0d33)
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+Func_0d39: ; d39 (0:0d39)
+	ld a, b
+	or c
+	jp z, Func_0d4d
+	di
+	call Func_09aa
+	ld a, [de]
+	call Func_09aa
+	ld [hli], a
+	ei
+	inc de
+	dec bc
+	jp Func_0d39
+
+Func_0d4d: ; d4d (0:0d4d)
+	ret
+
+Func_0d4e::
+	ld a, [wc470]
+	cp $2
+	jp z, Func_0d7d
+	push hl
+	push bc
+	ld a, [wc41f]
+	ld h, a
+	ld a, [wc420]
+	ld l, a
+	ld a, [wc3c0]
+	ld b, a
+	swap a
+	inc a
+	srl a
+	add $87
+	ld c, a
+	add hl, bc
+	ld a, l
+	ld [wc41f], a
+	ld a, h
+	xor l
+	ld [wc420], a
+	add l
+	ld [wc400], a
+	pop bc
+	pop hl
+	ret
+
+Func_0d7d: ; d7d (0:0d7d)
+	push hl
+	push bc
+	ld a, BANK(Data_2c000)
+	rst Bankswitch
+	ld a, [wc471]
+	inc a
+	ld [wc471], a
+	ld hl, Data_2c000
+	ld b, $0
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	ld [wc400], a
+	pop bc
+	pop hl
+	ret
 
 Func_0d97::
 	dr $0d97, $0df7
@@ -807,7 +1034,10 @@ Func_1d66::
 	dr $1d66, $1dbc
 
 Func_1dbc::
-	dr $1dbc, $1f08
+	dr $1dbc, $1de1
+
+Pointers_1de1:
+	dr $1de1, $1f08
 
 Func_1f08::
 	dr $1f08, $3171

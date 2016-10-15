@@ -45,15 +45,18 @@ SECTION "bank 05", ROMX, BANK [$05]
 	dr $14000, $18000
 
 SECTION "bank 06", ROMX, BANK [$06]
+Data_18000::
 	dr $18000, $1c000
 
 SECTION "bank 07", ROMX, BANK [$07]
 	dr $1c000, $20000
 
 SECTION "bank 08", ROMX, BANK [$08]
+Pointers_20000::
 	dr $20000, $24000
 
 SECTION "bank 09", ROMX, BANK [$09]
+Pointers_24000::
 	dr $24000, $28000
 
 SECTION "bank 0A", ROMX, BANK [$0a]
@@ -61,6 +64,7 @@ Pointers_28000::
 	dr $28000, $2c000
 
 SECTION "bank 0B", ROMX, BANK [$0b]
+Data_2c000::
 	dr $2c000, $2c100
 
 Func_2c100::
