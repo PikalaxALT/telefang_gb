@@ -230,14 +230,125 @@ ClearVTiles: ; 968 (0:0968)
 	ld bc, $1800
 	jp ClearMemory3
 
-ClearOAMBuffer::
-	dr $0971, $097c
+ClearOAMBuffer: ; 971 (0:0971)
+	ld b, wOAMBufferEnd - wOAMBuffer
+	xor a
+	ld hl, wOAMBuffer
+.asm_0977
+	ld [hli], a
+	dec b
+	jr nz, .asm_0977
+	ret
 
-ClearWRAM0::
-	dr $097c, $09aa
+ClearWRAM0: ; 97c (0:097c)
+	ld bc, $1e60
+	ld hl, wOAMAnimations
+	jp ClearMemory3
+	ld a, $1
+	ld [wc430], a
+	ld bc, $300
+	ld hl, wOAMAnimation01
+	call ClearMemory3
+	ld bc, $40
+	ld hl, wc480
+	jp ClearMemory3
 
-Func_09aa::
-	dr $09aa, $0a2a
+Func_099c::
+	ld b, $20
+	xor a
+.asm_099f
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_099f
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Func_09aa: ; 9aa (0:09aa)
+	push af
+.asm_09ab
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_09ab
+	pop af
+	ret
+
+Func_09b3: ; 9b3 (0:09b3)
+	di
+	push af
+.asm_09b5
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_09b5
+	pop af
+	ld [hli], a
+	ei
+	ret
+
+ClearBGMapAndAttrs::
+	ld bc, $400
+	ld hl, VBGMap
+.asm_09c5
+	xor a
+	call Func_09b3
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_09c5
+	ld bc, $400
+	ld hl, VBGMap
+	ld a, $1
+	ld [rVBK], a
+.asm_09d8
+	xor a
+	call Func_09b3
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_09d8
+	xor a
+	ld [rVBK], a
+	ret
+
+ClearBGWindowAndAttrs::
+	ld bc, $400
+	ld hl, VWindow
+.asm_09eb
+	xor a
+	call Func_09b3
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_09eb
+	ld bc, $400
+	ld hl, VWindow
+	ld a, $1
+	ld [rVBK], a
+.asm_09fe
+	xor a
+	call Func_09b3
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_09fe
+	xor a
+	ld [rVBK], a
+	ret
+
+Func_0a0b::
+	xor a
+	ld [wc3c2], a
+	ld [wc3c3], a
+	ld [wc3f7], a
+	ld [wc3c4], a
+	ld [wc3c5], a
+	ld [wc3ca], a
+	ld [wc3cb], a
+	ld [wc3cc], a
+	ld a, $c3
+	ld [wLCDC], a
+	ret
 
 Func_0a2a::
 	dr $0a2a, $0a34
