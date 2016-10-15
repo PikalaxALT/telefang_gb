@@ -1922,7 +1922,7 @@ wcafe:: ds 1
 wcaff:: ds 1
 wcb00:: ds 1
 wcb01:: ds 1
-wcb02:: ds 1
+wSFXBank:: ds 1
 wcb03:: ds 1
 wcb04:: ds 1
 wcb05:: ds 1

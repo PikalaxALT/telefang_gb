@@ -116,7 +116,7 @@ Func_050f::
 	ret
 
 Func_0516::
-	call Func_1620
+	call GetSFXBank
 	rst MemBankswitch
 	ret
 

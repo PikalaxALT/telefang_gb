@@ -105,7 +105,7 @@ InitSoundData: ; 439 (0:0439)
 
 UpdateSound: ; 464 (0:0464)
 	ld a, [wMusicBank]
-	add AUDIO_00
+	add MUSIC_00
 	ld [MBC3RomBank], a
 	call UpdateSound20
 	ld a, [wROMBank]
@@ -1689,17 +1689,279 @@ Func_14b1::
 	pop hl
 	ret
 
-ClearMemory3::
-	dr $159f, $1620
+ClearMemory3: ; 159f (0:159f)
+	xor a
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, ClearMemory3
+	ret
 
-Func_1620::
-	dr $1620, $16c2
+FillMemoryWithFF::
+.asm_15a7
+	ld a, $ff
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_15a7
+	ret
 
-Func_16c2::
-	dr $16c2, $1705
+Func_15b0::
+	ld a, d
+	or a
+	jr z, .asm_15bd
+	dec d
+	ret z
+	ld b, h
+	ld c, l
+.asm_15b8
+	add hl, bc
+	dec d
+	jr nz, .asm_15b8
+	ret
+
+.asm_15bd
+	ld hl, 0
+	ret
+
+.asm_15c1
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .asm_15c1
+	ret
+
+Func_15ca::
+	ld [wc44f], a
+	ld a, [wCGB]
+	cp $11
+	ret nz
+	ld a, $1
+	ld [rVBK], a
+	ld a, b
+	ld [wc44e], a
+.asm_15db
+	push hl
+	ld a, [wc44e]
+	ld b, a
+.asm_15e0
+	ld a, [wc44f]
+	call WaitStatAndLoad
+	dec b
+	jr nz, .asm_15e0
+	pop hl
+	ld de, $20
+	add hl, de
+	dec c
+	jr nz, .asm_15db
+	xor a
+	ld [rVBK], a
+	ret
+
+GetMusicBank::
+	cp $10
+	jr nc, .asm_15fe
+	push af
+	xor a
+	jp Func_161b
+
+.asm_15fe
+	cp $20
+	jr nc, .asm_160a
+	sub $f
+	push af
+	ld a, MUSIC_01 - MUSIC_00
+	jp Func_161b
+
+.asm_160a
+	cp $30
+	jr nc, .asm_1616
+	sub $1f
+	push af
+	ld a, MUSIC_02 - MUSIC_00
+	jp Func_161b
+
+.asm_1616
+	sub $2f
+	push af
+	ld a, MUSIC_03 - MUSIC_00
+Func_161b: ; 161b (0:161b)
+	ld [wMusicBank], a
+	pop af
+	ret
+
+GetSFXBank: ; 1620 (0:1620)
+	push de
+	cp $12
+	jp nc, Func_162c
+	push af
+	ld a, SFX_00
+	jp Func_1699
+
+Func_162c: ; 162c (0:162c)
+	cp $24
+	jp nc, Func_1639
+	sub $12
+	push af
+	ld a, SFX_01
+	jp Func_1699
+
+Func_1639: ; 1639 (0:1639)
+	cp $36
+	jp nc, Func_1646
+	sub $24
+	push af
+	ld a, SFX_02
+	jp Func_1699
+
+Func_1646: ; 1646 (0:1646)
+	cp $48
+	jp nc, Func_1653
+	sub $36
+	push af
+	ld a, SFX_03
+	jp Func_1699
+
+Func_1653: ; 1653 (0:1653)
+	cp $5a
+	jp nc, Func_1660
+	sub $48
+	push af
+	ld a, SFX_04
+	jp Func_1699
+
+Func_1660: ; 1660 (0:1660)
+	cp $6c
+	jp nc, Func_166d
+	sub $5a
+	push af
+	ld a, SFX_05
+	jp Func_1699
+
+Func_166d: ; 166d (0:166d)
+	cp $7e
+	jp nc, Func_167a
+	sub $6c
+	push af
+	ld a, SFX_06
+	jp Func_1699
+
+Func_167a: ; 167a (0:167a)
+	cp $90
+	jp nc, Func_1687
+	sub $7e
+	push af
+	ld a, SFX_07
+	jp Func_1699
+
+Func_1687: ; 1687 (0:1687)
+	cp $a2
+	jp nc, Func_1694
+	sub $90
+	push af
+	ld a, SFX_08
+	jp Func_1699
+
+Func_1694: ; 1694 (0:1694)
+	sub $a2
+	push af
+	ld a, SFX_09
+Func_1699: ; 1699 (0:1699)
+	ld [wSFXBank], a
+	pop af
+	ld hl, SFXPointers
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wSFXBank]
+	rst Bankswitch
+	pop de
+	ld a, c
+	cp $1
+	jp z, Func_16bc
+	ld bc, SFX_6B_4380 - SFX_6B_4000
+	jp Func_1705
+
+Func_16bc: ; 16bc (0:16bc)
+	ld bc, SFX_6B_4380 - SFX_6B_4000
+	jp Func_1721
+
+Func_16c2: ; 16c2 (0:16c2)
+	push de
+	cp $12
+	jp nc, Func_16d0
+	ld [wcb2d], a
+	ld a, SFX_10
+	jp Func_16e6
+
+Func_16d0: ; 16d0 (0:16d0)
+	cp $24
+	jp nc, Func_16df
+	sub $12
+	ld [wcb2d], a
+	ld a, SFX_11
+	jp Func_16e6
+
+Func_16df: ; 16df (0:16df)
+	sub $24
+	ld [wcb2d], a
+	ld a, SFX_12
+Func_16e6: ; 16e6 (0:16e6)
+	ld [wcb2e], a
+	ld a, [wcb2d]
+	ld hl, SFXPointers
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcb2e]
+	rst Bankswitch
+	pop de
+	ld bc, SFX_7E_4380 - SFX_7E_4000
+	jp Func_1705
 
 Func_1705::
-	dr $1705, $1887
+	dr $1705, $1721
+
+Func_1721::
+	dr $1721, $1732
+
+SFXPointers::
+	dw SFX_6B_4000
+	dw SFX_6B_4380
+	dw SFX_6B_4700
+	dw SFX_6B_4a80
+	dw SFX_6B_4e00
+	dw SFX_6B_5180
+	dw SFX_6B_5500
+	dw SFX_6B_5880
+	dw SFX_6B_5c00
+	dw SFX_6B_5f80
+	dw SFX_6B_6300
+	dw SFX_6B_6680
+	dw SFX_6B_6a00
+	dw SFX_6B_6d80
+	dw SFX_6B_7100
+	dw SFX_6B_7480
+	dw SFX_6B_7800
+	dw SFX_6B_7b80
+
+Func_1756::
+	dr $1756, $1887
 
 Func_1887::
 	dr $1887, $18e6

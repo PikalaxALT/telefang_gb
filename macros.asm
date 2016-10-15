@@ -25,3 +25,7 @@ jpba: MACRO
 ENDM
 
 palettes EQUS "* 8"
+
+lb: MACRO
+	ld \1, (\2 << 8) | \3
+ENDM

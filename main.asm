@@ -433,34 +433,554 @@ SECTION "bank 6A", ROMX, BANK [$6a]
 	dr $1a8000, $1ac000
 
 SECTION "bank 6B", ROMX, BANK [$6b]
-	dr $1ac000, $1b0000
+SFX_6B_4000::
+	dr $1ac000, $1ac380
+
+SFX_6B_4380::
+	dr $1ac380, $1ac700
+
+SFX_6B_4700::
+	dr $1ac700, $1aca80
+
+SFX_6B_4a80::
+	dr $1aca80, $1ace00
+
+SFX_6B_4e00::
+	dr $1ace00, $1ad180
+
+SFX_6B_5180::
+	dr $1ad180, $1ad500
+
+SFX_6B_5500::
+	dr $1ad500, $1ad880
+
+SFX_6B_5880::
+	dr $1ad880, $1adc00
+
+SFX_6B_5c00::
+	dr $1adc00, $1adf80
+
+SFX_6B_5f80::
+	dr $1adf80, $1ae300
+
+SFX_6B_6300::
+	dr $1ae300, $1ae680
+
+SFX_6B_6680::
+	dr $1ae680, $1aea00
+
+SFX_6B_6a00::
+	dr $1aea00, $1aed80
+
+SFX_6B_6d80::
+	dr $1aed80, $1af100
+
+SFX_6B_7100::
+	dr $1af100, $1af480
+
+SFX_6B_7480::
+	dr $1af480, $1af800
+
+SFX_6B_7800::
+	dr $1af800, $1afb80
+
+SFX_6B_7b80::
+	dr $1afb80, $1aff00
 
 SECTION "bank 6C", ROMX, BANK [$6c]
-	dr $1b0000, $1b4000
+SFX_6C_4000::
+	dr $1b0000, $1b0380
+
+SFX_6C_4380::
+	dr $1b0380, $1b0700
+
+SFX_6C_4700::
+	dr $1b0700, $1b0a80
+
+SFX_6C_4a80::
+	dr $1b0a80, $1b0e00
+
+SFX_6C_4e00::
+	dr $1b0e00, $1b1180
+
+SFX_6C_5180::
+	dr $1b1180, $1b1500
+
+SFX_6C_5500::
+	dr $1b1500, $1b1880
+
+SFX_6C_5880::
+	dr $1b1880, $1b1c00
+
+SFX_6C_5c00::
+	dr $1b1c00, $1b1f80
+
+SFX_6C_5f80::
+	dr $1b1f80, $1b2300
+
+SFX_6C_6300::
+	dr $1b2300, $1b2680
+
+SFX_6C_6680::
+	dr $1b2680, $1b2a00
+
+SFX_6C_6a00::
+	dr $1b2a00, $1b2d80
+
+SFX_6C_6d80::
+	dr $1b2d80, $1b3100
+
+SFX_6C_7100::
+	dr $1b3100, $1b3480
+
+SFX_6C_7480::
+	dr $1b3480, $1b3800
+
+SFX_6C_7800::
+	dr $1b3800, $1b3b80
+
+SFX_6C_7b80::
+	dr $1b3b80, $1b3f00
 
 SECTION "bank 6D", ROMX, BANK [$6d]
-	dr $1b4000, $1b8000
+SFX_6D_4000::
+	dr $1b4000, $1b4380
+
+SFX_6D_4380::
+	dr $1b4380, $1b4700
+
+SFX_6D_4700::
+	dr $1b4700, $1b4a80
+
+SFX_6D_4a80::
+	dr $1b4a80, $1b4e00
+
+SFX_6D_4e00::
+	dr $1b4e00, $1b5180
+
+SFX_6D_5180::
+	dr $1b5180, $1b5500
+
+SFX_6D_5500::
+	dr $1b5500, $1b5880
+
+SFX_6D_5880::
+	dr $1b5880, $1b5c00
+
+SFX_6D_5c00::
+	dr $1b5c00, $1b5f80
+
+SFX_6D_5f80::
+	dr $1b5f80, $1b6300
+
+SFX_6D_6300::
+	dr $1b6300, $1b6680
+
+SFX_6D_6680::
+	dr $1b6680, $1b6a00
+
+SFX_6D_6a00::
+	dr $1b6a00, $1b6d80
+
+SFX_6D_6d80::
+	dr $1b6d80, $1b7100
+
+SFX_6D_7100::
+	dr $1b7100, $1b7480
+
+SFX_6D_7480::
+	dr $1b7480, $1b7800
+
+SFX_6D_7800::
+	dr $1b7800, $1b7b80
+
+SFX_6D_7b80::
+	dr $1b7b80, $1b7f00
 
 SECTION "bank 6E", ROMX, BANK [$6e]
-	dr $1b8000, $1bc000
+SFX_6E_4000::
+	dr $1b8000, $1b8380
+
+SFX_6E_4380::
+	dr $1b8380, $1b8700
+
+SFX_6E_4700::
+	dr $1b8700, $1b8a80
+
+SFX_6E_4a80::
+	dr $1b8a80, $1b8e00
+
+SFX_6E_4e00::
+	dr $1b8e00, $1b9180
+
+SFX_6E_5180::
+	dr $1b9180, $1b9500
+
+SFX_6E_5500::
+	dr $1b9500, $1b9880
+
+SFX_6E_5880::
+	dr $1b9880, $1b9c00
+
+SFX_6E_5c00::
+	dr $1b9c00, $1b9f80
+
+SFX_6E_5f80::
+	dr $1b9f80, $1ba300
+
+SFX_6E_6300::
+	dr $1ba300, $1ba680
+
+SFX_6E_6680::
+	dr $1ba680, $1baa00
+
+SFX_6E_6a00::
+	dr $1baa00, $1bad80
+
+SFX_6E_6d80::
+	dr $1bad80, $1bb100
+
+SFX_6E_7100::
+	dr $1bb100, $1bb480
+
+SFX_6E_7480::
+	dr $1bb480, $1bb800
+
+SFX_6E_7800::
+	dr $1bb800, $1bbb80
+
+SFX_6E_7b80::
+	dr $1bbb80, $1bbf00
 
 SECTION "bank 6F", ROMX, BANK [$6f]
-	dr $1bc000, $1c0000
+SFX_6F_4000::
+	dr $1bc000, $1bc380
+
+SFX_6F_4380::
+	dr $1bc380, $1bc700
+
+SFX_6F_4700::
+	dr $1bc700, $1bca80
+
+SFX_6F_4a80::
+	dr $1bca80, $1bce00
+
+SFX_6F_4e00::
+	dr $1bce00, $1bd180
+
+SFX_6F_5180::
+	dr $1bd180, $1bd500
+
+SFX_6F_5500::
+	dr $1bd500, $1bd880
+
+SFX_6F_5880::
+	dr $1bd880, $1bdc00
+
+SFX_6F_5c00::
+	dr $1bdc00, $1bdf80
+
+SFX_6F_5f80::
+	dr $1bdf80, $1be300
+
+SFX_6F_6300::
+	dr $1be300, $1be680
+
+SFX_6F_6680::
+	dr $1be680, $1bea00
+
+SFX_6F_6a00::
+	dr $1bea00, $1bed80
+
+SFX_6F_6d80::
+	dr $1bed80, $1bf100
+
+SFX_6F_7100::
+	dr $1bf100, $1bf480
+
+SFX_6F_7480::
+	dr $1bf480, $1bf800
+
+SFX_6F_7800::
+	dr $1bf800, $1bfb80
+
+SFX_6F_7b80::
+	dr $1bfb80, $1bff00
 
 SECTION "bank 70", ROMX, BANK [$70]
-	dr $1c0000, $1c4000
+SFX_70_4000::
+	dr $1c0000, $1c0380
+
+SFX_70_4380::
+	dr $1c0380, $1c0700
+
+SFX_70_4700::
+	dr $1c0700, $1c0a80
+
+SFX_70_4a80::
+	dr $1c0a80, $1c0e00
+
+SFX_70_4e00::
+	dr $1c0e00, $1c1180
+
+SFX_70_5180::
+	dr $1c1180, $1c1500
+
+SFX_70_5500::
+	dr $1c1500, $1c1880
+
+SFX_70_5880::
+	dr $1c1880, $1c1c00
+
+SFX_70_5c00::
+	dr $1c1c00, $1c1f80
+
+SFX_70_5f80::
+	dr $1c1f80, $1c2300
+
+SFX_70_6300::
+	dr $1c2300, $1c2680
+
+SFX_70_6680::
+	dr $1c2680, $1c2a00
+
+SFX_70_6a00::
+	dr $1c2a00, $1c2d80
+
+SFX_70_6d80::
+	dr $1c2d80, $1c3100
+
+SFX_70_7100::
+	dr $1c3100, $1c3480
+
+SFX_70_7480::
+	dr $1c3480, $1c3800
+
+SFX_70_7800::
+	dr $1c3800, $1c3b80
+
+SFX_70_7b80::
+	dr $1c3b80, $1c3f00
 
 SECTION "bank 71", ROMX, BANK [$71]
-	dr $1c4000, $1c8000
+SFX_71_4000::
+	dr $1c4000, $1c4380
+
+SFX_71_4380::
+	dr $1c4380, $1c4700
+
+SFX_71_4700::
+	dr $1c4700, $1c4a80
+
+SFX_71_4a80::
+	dr $1c4a80, $1c4e00
+
+SFX_71_4e00::
+	dr $1c4e00, $1c5180
+
+SFX_71_5180::
+	dr $1c5180, $1c5500
+
+SFX_71_5500::
+	dr $1c5500, $1c5880
+
+SFX_71_5880::
+	dr $1c5880, $1c5c00
+
+SFX_71_5c00::
+	dr $1c5c00, $1c5f80
+
+SFX_71_5f80::
+	dr $1c5f80, $1c6300
+
+SFX_71_6300::
+	dr $1c6300, $1c6680
+
+SFX_71_6680::
+	dr $1c6680, $1c6a00
+
+SFX_71_6a00::
+	dr $1c6a00, $1c6d80
+
+SFX_71_6d80::
+	dr $1c6d80, $1c7100
+
+SFX_71_7100::
+	dr $1c7100, $1c7480
+
+SFX_71_7480::
+	dr $1c7480, $1c7800
+
+SFX_71_7800::
+	dr $1c7800, $1c7b80
+
+SFX_71_7b80::
+	dr $1c7b80, $1c7f00
 
 SECTION "bank 72", ROMX, BANK [$72]
-	dr $1c8000, $1cc000
+SFX_72_4000::
+	dr $1c8000, $1c8380
+
+SFX_72_4380::
+	dr $1c8380, $1c8700
+
+SFX_72_4700::
+	dr $1c8700, $1c8a80
+
+SFX_72_4a80::
+	dr $1c8a80, $1c8e00
+
+SFX_72_4e00::
+	dr $1c8e00, $1c9180
+
+SFX_72_5180::
+	dr $1c9180, $1c9500
+
+SFX_72_5500::
+	dr $1c9500, $1c9880
+
+SFX_72_5880::
+	dr $1c9880, $1c9c00
+
+SFX_72_5c00::
+	dr $1c9c00, $1c9f80
+
+SFX_72_5f80::
+	dr $1c9f80, $1ca300
+
+SFX_72_6300::
+	dr $1ca300, $1ca680
+
+SFX_72_6680::
+	dr $1ca680, $1caa00
+
+SFX_72_6a00::
+	dr $1caa00, $1cad80
+
+SFX_72_6d80::
+	dr $1cad80, $1cb100
+
+SFX_72_7100::
+	dr $1cb100, $1cb480
+
+SFX_72_7480::
+	dr $1cb480, $1cb800
+
+SFX_72_7800::
+	dr $1cb800, $1cbb80
+
+SFX_72_7b80::
+	dr $1cbb80, $1cbf00
 
 SECTION "bank 73", ROMX, BANK [$73]
-	dr $1cc000, $1d0000
+SFX_73_4000::
+	dr $1cc000, $1cc380
+
+SFX_73_4380::
+	dr $1cc380, $1cc700
+
+SFX_73_4700::
+	dr $1cc700, $1cca80
+
+SFX_73_4a80::
+	dr $1cca80, $1cce00
+
+SFX_73_4e00::
+	dr $1cce00, $1cd180
+
+SFX_73_5180::
+	dr $1cd180, $1cd500
+
+SFX_73_5500::
+	dr $1cd500, $1cd880
+
+SFX_73_5880::
+	dr $1cd880, $1cdc00
+
+SFX_73_5c00::
+	dr $1cdc00, $1cdf80
+
+SFX_73_5f80::
+	dr $1cdf80, $1ce300
+
+SFX_73_6300::
+	dr $1ce300, $1ce680
+
+SFX_73_6680::
+	dr $1ce680, $1cea00
+
+SFX_73_6a00::
+	dr $1cea00, $1ced80
+
+SFX_73_6d80::
+	dr $1ced80, $1cf100
+
+SFX_73_7100::
+	dr $1cf100, $1cf480
+
+SFX_73_7480::
+	dr $1cf480, $1cf800
+
+SFX_73_7800::
+	dr $1cf800, $1cfb80
+
+SFX_73_7b80::
+	dr $1cfb80, $1cff00
 
 SECTION "bank 74", ROMX, BANK [$74]
-	dr $1d0000, $1d4000
+SFX_74_4000::
+	dr $1d0000, $1d0380
+
+SFX_74_4380::
+	dr $1d0380, $1d0700
+
+SFX_74_4700::
+	dr $1d0700, $1d0a80
+
+SFX_74_4a80::
+	dr $1d0a80, $1d0e00
+
+SFX_74_4e00::
+	dr $1d0e00, $1d1180
+
+SFX_74_5180::
+	dr $1d1180, $1d1500
+
+SFX_74_5500::
+	dr $1d1500, $1d1880
+
+SFX_74_5880::
+	dr $1d1880, $1d1c00
+
+SFX_74_5c00::
+	dr $1d1c00, $1d1f80
+
+SFX_74_5f80::
+	dr $1d1f80, $1d2300
+
+SFX_74_6300::
+	dr $1d2300, $1d2680
+
+SFX_74_6680::
+	dr $1d2680, $1d2a00
+
+SFX_74_6a00::
+	dr $1d2a00, $1d2d80
+
+SFX_74_6d80::
+	dr $1d2d80, $1d3100
+
+SFX_74_7100::
+	dr $1d3100, $1d3480
+
+SFX_74_7480::
+	dr $1d3480, $1d3800
+
+SFX_74_7800::
+	dr $1d3800, $1d3b80
+
+SFX_74_7b80::
+	dr $1d3b80, $1d3f00
 
 SECTION "bank 75", ROMX, BANK [$75]
 	dr $1d4000, $1d8000
@@ -487,10 +1007,166 @@ SECTION "bank 7C", ROMX, BANK [$7c]
 	dr $1f0000, $1f4000
 
 SECTION "bank 7D", ROMX, BANK [$7d]
-	dr $1f4000, $1f8000
+SFX_7D_4000::
+	dr $1f4000, $1f4380
+
+SFX_7D_4380::
+	dr $1f4380, $1f4700
+
+SFX_7D_4700::
+	dr $1f4700, $1f4a80
+
+SFX_7D_4a80::
+	dr $1f4a80, $1f4e00
+
+SFX_7D_4e00::
+	dr $1f4e00, $1f5180
+
+SFX_7D_5180::
+	dr $1f5180, $1f5500
+
+SFX_7D_5500::
+	dr $1f5500, $1f5880
+
+SFX_7D_5880::
+	dr $1f5880, $1f5c00
+
+SFX_7D_5c00::
+	dr $1f5c00, $1f5f80
+
+SFX_7D_5f80::
+	dr $1f5f80, $1f6300
+
+SFX_7D_6300::
+	dr $1f6300, $1f6680
+
+SFX_7D_6680::
+	dr $1f6680, $1f6a00
+
+SFX_7D_6a00::
+	dr $1f6a00, $1f6d80
+
+SFX_7D_6d80::
+	dr $1f6d80, $1f7100
+
+SFX_7D_7100::
+	dr $1f7100, $1f7480
+
+SFX_7D_7480::
+	dr $1f7480, $1f7800
+
+SFX_7D_7800::
+	dr $1f7800, $1f7b80
+
+SFX_7D_7b80::
+	dr $1f7b80, $1f7f00
 
 SECTION "bank 7E", ROMX, BANK [$7e]
-	dr $1f8000, $1fc000
+SFX_7E_4000::
+	dr $1f8000, $1f8380
+
+SFX_7E_4380::
+	dr $1f8380, $1f8700
+
+SFX_7E_4700::
+	dr $1f8700, $1f8a80
+
+SFX_7E_4a80::
+	dr $1f8a80, $1f8e00
+
+SFX_7E_4e00::
+	dr $1f8e00, $1f9180
+
+SFX_7E_5180::
+	dr $1f9180, $1f9500
+
+SFX_7E_5500::
+	dr $1f9500, $1f9880
+
+SFX_7E_5880::
+	dr $1f9880, $1f9c00
+
+SFX_7E_5c00::
+	dr $1f9c00, $1f9f80
+
+SFX_7E_5f80::
+	dr $1f9f80, $1fa300
+
+SFX_7E_6300::
+	dr $1fa300, $1fa680
+
+SFX_7E_6680::
+	dr $1fa680, $1faa00
+
+SFX_7E_6a00::
+	dr $1faa00, $1fad80
+
+SFX_7E_6d80::
+	dr $1fad80, $1fb100
+
+SFX_7E_7100::
+	dr $1fb100, $1fb480
+
+SFX_7E_7480::
+	dr $1fb480, $1fb800
+
+SFX_7E_7800::
+	dr $1fb800, $1fbb80
+
+SFX_7E_7b80::
+	dr $1fbb80, $1fbf00
 
 SECTION "bank 7F", ROMX, BANK [$7f]
-	dr $1fc000, $200000
+SFX_7F_4000::
+	dr $1fc000, $1fc380
+
+SFX_7F_4380::
+	dr $1fc380, $1fc700
+
+SFX_7F_4700::
+	dr $1fc700, $1fca80
+
+SFX_7F_4a80::
+	dr $1fca80, $1fce00
+
+SFX_7F_4e00::
+	dr $1fce00, $1fd180
+
+SFX_7F_5180::
+	dr $1fd180, $1fd500
+
+SFX_7F_5500::
+	dr $1fd500, $1fd880
+
+SFX_7F_5880::
+	dr $1fd880, $1fdc00
+
+SFX_7F_5c00::
+	dr $1fdc00, $1fdf80
+
+SFX_7F_5f80::
+	dr $1fdf80, $1fe300
+
+SFX_7F_6300::
+	dr $1fe300, $1fe680
+
+SFX_7F_6680::
+	dr $1fe680, $1fea00
+
+SFX_7F_6a00::
+	dr $1fea00, $1fed80
+
+SFX_7F_6d80::
+	dr $1fed80, $1ff100
+
+SFX_7F_7100::
+	dr $1ff100, $1ff480
+
+SFX_7F_7480::
+	dr $1ff480, $1ff800
+
+SFX_7F_7800::
+	dr $1ff800, $1ffb80
+
+SFX_7F_7b80::
+	dr $1ffb80, $1fff00
