@@ -44,5 +44,3 @@ TFanger_038:: INCBIN "gfx/pics/tfanger_038.w64.2bpp"
 TFanger_039:: INCBIN "gfx/pics/tfanger_039.w64.2bpp"
 TFanger_040:: INCBIN "gfx/pics/tfanger_040.w64.2bpp"
 TFanger_041:: INCBIN "gfx/pics/tfanger_041.w64.2bpp"
-
-	dr $1f5180, $1f8000

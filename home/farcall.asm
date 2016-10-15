@@ -251,13 +251,13 @@ Func_059f::
 	rst MemBankswitch
 	ret
 
-Func_05a7::
-	call Func_18e6
+LoadKanji_::
+	call LoadKanji
 	rst MemBankswitch
 	ret
 
 Func_05ac::
-	call Func_190b
+	call LoadButtonGFX
 	rst MemBankswitch
 	ret
 
