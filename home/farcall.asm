@@ -377,14 +377,14 @@ Func_0630::
 	ret
 
 Func_0638::
-	ld a, $1a
+	ld a, BANK(Func_68000)
 	rst Bankswitch
 	call Func_1939
 	rst MemBankswitch
 	ret
 
 Func_0640::
-	ld a, $1b
+	ld a, BANK(Func_6c000)
 	rst Bankswitch
 	call Func_19b9
 	rst MemBankswitch

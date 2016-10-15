@@ -144,10 +144,264 @@ Pointers_64000::
 	dr $64000, $68000
 
 SECTION "bank 1A", ROMX, BANK [$1a]
-	dr $68000, $6c000
+Func_68000::
+	dr $68000, $6804c
+
+Func_6804c::
+	dr $6804c, $68103
+
+Func_68103::
+	dr $68103, $681d7
+
+Func_681d7::
+	dr $681d7, $68290
+
+Func_68290::
+	dr $68290, $6839c
+
+Func_6839c::
+	dr $6839c, $683f0
+
+Func_683f0::
+	dr $683f0, $68444
+
+Func_68444::
+	dr $68444, $68497
+
+Func_68497::
+	dr $68497, $68598
+
+Func_68598::
+	dr $68598, $686f2
+
+Func_686f2::
+	dr $686f2, $6877a
+
+Func_6877a::
+	dr $6877a, $687e1
+
+Func_687e1::
+	dr $687e1, $68829
+
+Func_68829::
+	dr $68829, $688c9
+
+Func_688c9::
+	dr $688c9, $6890e
+
+Func_6890e::
+	dr $6890e, $68a2d
+
+Func_68a2d::
+	dr $68a2d, $68bc7
+
+Func_68bc7::
+	dr $68bc7, $68d43
+
+Func_68d43::
+	dr $68d43, $68e59
+
+Func_68e59::
+	dr $68e59, $68ebf
+
+Func_68ebf::
+	dr $68ebf, $68f25
+
+Func_68f25::
+	dr $68f25, $68f8b
+
+Func_68f8b::
+	dr $68f8b, $68fdc
+
+Func_68fdc::
+	dr $68fdc, $69042
+
+Func_69042::
+	dr $69042, $690a8
+
+Func_690a8::
+	dr $690a8, $69133
+
+Func_69133::
+	dr $69133, $6921d
+
+Func_6921d::
+	dr $6921d, $692eb
+
+Func_692eb::
+	dr $692eb, $693cd
+
+Func_693cd::
+	dr $693cd, $694af
+
+Func_694af::
+	dr $694af, $695c7
+
+Func_695c7::
+	dr $695c7, $696c8
+
+Func_696c8::
+	dr $696c8, $6974c
+
+Func_6974c::
+	dr $6974c, $69828
+
+Func_69828::
+	dr $69828, $69913
+
+Func_69913::
+	dr $69913, $69961
+
+Func_69961::
+	dr $69961, $699e5
+
+Func_699e5::
+	dr $699e5, $69a69
+
+Func_69a69::
+	dr $69a69, $69acb
+
+Func_69acb::
+	dr $69acb, $69cd0
+
+Func_69cd0::
+	dr $69cd0, $69f99
+
+Func_69f99::
+	dr $69f99, $6a15a
+
+Func_6a15a::
+	dr $6a15a, $6a35e
+
+Func_6a35e::
+	dr $6a35e, $6a401
+
+Func_6a401::
+	dr $6a401, $6a618
+
+Func_6a618::
+	dr $6a618, $6a774
+
+Func_6a774::
+	dr $6a774, $6a954
+
+Func_6a954::
+	dr $6a954, $6ab1e
+
+Func_6ab1e::
+	dr $6ab1e, $6ab5e
+
+Func_6ab5e::
+	dr $6ab5e, $6ac98
+
+Func_6ac98::
+	dr $6ac98, $6ad72
+
+Func_6ad72::
+	dr $6ad72, $6aea7
+
+Func_6aea7::
+	dr $6aea7, $6afdc
+
+Func_6afdc::
+	dr $6afdc, $6b1ad
+
+Func_6b1ad::
+	dr $6b1ad, $6c000
 
 SECTION "bank 1B", ROMX, BANK [$1b]
-	dr $6c000, $70000
+Func_6c000::
+	dr $6c000, $6c082
+
+Func_6c082::
+	dr $6c082, $6c11b
+
+Func_6c11b::
+	dr $6c11b, $6c1b4
+
+Func_6c1b4::
+	dr $6c1b4, $6c21d
+
+Func_6c21d::
+	dr $6c21d, $6c27e
+
+Func_6c27e::
+	dr $6c27e, $6c556
+
+Func_6c556::
+	dr $6c556, $6c676
+
+Func_6c676::
+	dr $6c676, $6c6d4
+
+Func_6c6d4::
+	dr $6c6d4, $6c732
+
+Func_6c732::
+	dr $6c732, $6c790
+
+Func_6c790::
+	dr $6c790, $6c8f7
+
+Func_6c8f7::
+	dr $6c8f7, $6ca8c
+
+Func_6ca8c::
+	dr $6ca8c, $6cc6a
+
+Func_6cc6a::
+	dr $6cc6a, $6ce90
+
+Func_6ce90::
+	dr $6ce90, $6d0d3
+
+Func_6d0d3::
+	dr $6d0d3, $6d30d
+
+Func_6d30d::
+	dr $6d30d, $6d462
+
+Func_6d462::
+	dr $6d462, $6d5aa
+
+Func_6d5aa::
+	dr $6d5aa, $6d6ff
+
+Func_6d6ff::
+	dr $6d6ff, $6dc84
+
+Func_6dc84::
+	dr $6dc84, $6dd4b
+
+Func_6dd4b::
+	dr $6dd4b, $6e0f1
+
+Func_6e0f1::
+	dr $6e0f1, $6e304
+
+Func_6e304::
+	dr $6e304, $6e457
+
+Func_6e457::
+	dr $6e457, $6e5af
+
+Func_6e5af::
+	dr $6e5af, $6e733
+
+Func_6e733::
+	dr $6e733, $6e853
+
+Func_6e853::
+	dr $6e853, $6e94a
+
+Func_6e94a::
+	dr $6e94a, $6ec18
+
+Func_6ec18::
+	dr $6ec18, $6eec0
+
+Func_6eec0::
+	dr $6eec0, $70000
 
 SECTION "bank 1C", ROMX, BANK [$1c]
 	dr $70000, $74000

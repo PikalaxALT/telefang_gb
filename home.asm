@@ -1116,7 +1116,7 @@ Func_0e7f: ; e7f (0:0e7f)
 	ld [hl], a
 	ret
 
-Func_0e97::
+JumpTable::
 	ld b, $0
 	ld c, a
 	sla c
@@ -2105,14 +2105,131 @@ LoadButtonGFX: ; 190b (0:190b)
 	ld bc, Button_002 - Button_001
 	jp WaitStatCopy
 
-Func_192a::
-	dr $192a, $1939
+Func_192a: ; 192a (0:192a)
+	ld e, a
+	ld d, $0
+	ld hl, Func_02d0
+	add hl, de
+	push hl
+	pop bc
+	ld a, $1
+	call Func_10ee
+	ret
 
-Func_1939::
-	dr $1939, $19b9
+Func_1939: ; 1939 (0:1939)
+	ld a, [wd4fc]
+	ld hl, Pointers_1943
+	call JumpTable
+	jp [hl]
 
-Func_19b9::
-	dr $19b9, $1ac6
+Pointers_1943::
+	dw Func_19b3
+	dw Func_68000
+	dw Func_6804c
+	dw Func_68103
+	dw Func_681d7
+	dw Func_68290
+	dw Func_6839c
+	dw Func_683f0
+	dw Func_68444
+	dw Func_68497
+	dw Func_68598
+	dw Func_686f2
+	dw Func_6877a
+	dw Func_687e1
+	dw Func_68829
+	dw Func_688c9
+	dw Func_6890e
+	dw Func_68a2d
+	dw Func_68bc7
+	dw Func_68d43
+	dw Func_68e59
+	dw Func_68ebf
+	dw Func_68f25
+	dw Func_68f8b
+	dw Func_68fdc
+	dw Func_69042
+	dw Func_690a8
+	dw Func_69133
+	dw Func_6921d
+	dw Func_692eb
+	dw Func_693cd
+	dw Func_694af
+	dw Func_695c7
+	dw Func_696c8
+	dw Func_6974c
+	dw Func_69828
+	dw Func_69913
+	dw Func_69961
+	dw Func_699e5
+	dw Func_69a69
+	dw Func_69acb
+	dw Func_69cd0
+	dw Func_69f99
+	dw Func_6a15a
+	dw Func_6a35e
+	dw Func_6a401
+	dw Func_6a618
+	dw Func_6a774
+	dw Func_6a954
+	dw Func_6ab1e
+	dw Func_6ab5e
+	dw Func_6ac98
+	dw Func_6ad72
+	dw Func_6aea7
+	dw Func_6afdc
+	dw Func_6b1ad
+
+Func_19b3::
+	ld a, $17
+	ld [wd401], a
+	ret
+
+Func_19b9: ; 1939 (0:1939)
+	ld a, [wd4fc]
+	ld hl, Pointers_19c3
+	call JumpTable
+	jp [hl]
+
+Pointers_19c3::
+	dw Func_6c000
+	dw Func_6c082
+	dw Func_6c11b
+	dw Func_6c1b4
+	dw Func_6c21d
+	dw Func_6c27e
+	dw Func_6c27e
+	dw Func_6c556
+	dw Func_6c676
+	dw Func_6c6d4
+	dw Func_6c732
+	dw Func_6c790
+	dw Func_6c8f7
+	dw Func_6ca8c
+	dw Func_6cc6a
+	dw Func_6ce90
+	dw Func_6d0d3
+	dw Func_6d30d
+	dw Func_6d462
+	dw Func_6d5aa
+	dw Func_6d6ff
+	dw Func_6d6ff
+	dw Func_6dc84
+	dw Func_6dd4b
+	dw Func_6e0f1
+	dw Func_6e304
+	dw Func_6e457
+	dw Func_6e5af
+	dw Func_6e733
+	dw Func_6e853
+	dw Func_6e94a
+	dw Func_6ec18
+	dw Func_6eec0
+	dw Func_6c082
+	dw Func_6c082
+
+Func_1a09::
+	dr $1a09, $1ac6
 
 Func_1ac6::
 	dr $1ac6, $1acb
