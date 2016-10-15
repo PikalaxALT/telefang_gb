@@ -12,6 +12,7 @@ includes  := $(PYTHON) scan_includes.py
 
 telefang_obj := \
 wram.o \
+sram.o \
 main.o
 
 telepower_obj := $(telefang_obj:.o=_power.o)

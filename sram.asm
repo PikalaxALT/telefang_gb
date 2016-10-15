@@ -1,20 +1,8 @@
 SECTION "SRAM 0", SRAM, BANK [0]
-s0_a000:: ds 1
-s0_a001:: ds 1
-s0_a002:: ds 1
-s0_a003:: ds 1
-s0_a004:: ds 1
-s0_a005:: ds 1
-s0_a006:: ds 1
-s0_a007:: ds 1
-s0_a008:: ds 1
-s0_a009:: ds 1
-s0_a00a:: ds 1
-s0_a00b:: ds 1
-s0_a00c:: ds 1
-s0_a00d:: ds 1
-s0_a00e:: ds 1
-s0_a00f:: ds 1
+sSaveFile::
+sROMName::
+	ds $10
+
 s0_a010:: ds 1
 s0_a011:: ds 1
 s0_a012:: ds 1
@@ -8175,6 +8163,8 @@ s0_bfec:: ds 1
 s0_bfed:: ds 1
 s0_bfee:: ds 1
 s0_bfef:: ds 1
+sSaveFileEnd::
+
 s0_bff0:: ds 1
 s0_bff1:: ds 1
 s0_bff2:: ds 1
@@ -8189,6 +8179,8 @@ s0_bffa:: ds 1
 s0_bffb:: ds 1
 s0_bffc:: ds 1
 s0_bffd:: ds 1
+
+sChecksum::
 s0_bffe:: ds 1
 s0_bfff:: ds 1
 

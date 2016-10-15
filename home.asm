@@ -1139,11 +1139,116 @@ Func_0eab::
 	ld [wc3e2], a
 	ret
 
-Func_0eb3::
-	dr $0eb3, $0f29
+Func_0eb3: ; eb3 (0:0eb3)
+	push af
+	push bc
+	push de
+	call Func_0f29
+	ld d, h
+	ld e, l
+	ld bc, $6800
+	or a
+	jr z, .asm_0ec4
+	ld bc, $6400
+.asm_0ec4
+	add hl, bc
+	srl l
+	jr c, .asm_0edb
+	srl l
+	jr c, .asm_0edb
+	srl l
+	jr c, .asm_0edb
+	srl l
+	jr c, .asm_0edb
+	srl l
+	jr c, .asm_0edb
+	jr .asm_0ee1
 
-Func_0f29::
-	dr $0f29, $1043
+.asm_0edb
+	ld h, d
+	ld l, e
+	pop de
+	pop bc
+	pop af
+	ret
+
+.asm_0ee1
+	ld h, d
+	ld l, e
+	ld bc, hFFE0
+	add hl, bc
+	call Func_0f29
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_0eee::
+	push af
+	push bc
+	push de
+	call Func_0f29
+	ld d, h
+	ld e, l
+	ld bc, $6800
+	or a
+	jr z, .asm_0eff
+	ld bc, $6400
+.asm_0eff
+	add hl, bc
+	srl l
+	jr nc, .asm_0f16
+	srl l
+	jr nc, .asm_0f16
+	srl l
+	jr nc, .asm_0f16
+	srl l
+	jr nc, .asm_0f16
+	srl l
+	jr nc, .asm_0f16
+	jr .asm_0f1c
+
+.asm_0f16
+	ld h, d
+	ld l, e
+	pop de
+	pop bc
+	pop af
+	ret
+
+.asm_0f1c
+	ld h, d
+	ld l, e
+	ld bc, $20
+	add hl, bc
+	call Func_0f29
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_0f29: ; f29 (0:0f29)
+	push af
+	or a
+	jr nz, .window
+	ld a, h
+	and $3
+	ld h, VBGMap / $100
+	or h
+	ld h, a
+	pop af
+	ret
+
+.window
+	ld a, h
+	and $f
+	ld h, VWindow / $100
+	or h
+	ld h, a
+	pop af
+	ret
+
+INCLUDE "home/sram.asm"
 
 ClearDMGPalBuffers::
 	dr $1043, $106a
