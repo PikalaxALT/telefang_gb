@@ -215,14 +215,52 @@ Func_02d0: ; 2d0 (0:02d0)
 	ld [wc3e1], a
 	ret
 
-VBlank::
-	dr $02e7, $0324
+VBlank: ; 2e7 (0:02e7)
+	push af
+	push bc
+	push de
+	push hl
+	call Func_0266
+	ld a, [hVBlankOccurred]
+	or a
+	jr nz, .asm_0306
+	ld a, [wc437]
+	or a
+	jr z, .asm_0306
+	call hPushOAM
+	call Func_3171
+	xor a
+	ld [wc430], a
+	ld [wc437], a
+.asm_0306
+	ld a, $1
+	ld [hVBlankOccurred], a
+	ei
+	call Func_0464
+	call Func_3442
+	ld a, [wcb3f]
+	or a
+	jr nz, .asm_031c
+	call Func_1f08
+	jr .asm_031f
+
+.asm_031c
+	call Func_1c9b
+.asm_031f
+	pop hl
+	pop de
+	pop bc
+	pop af
+	reti
 
 LCD::
 	dr $0324, $0439
 
 InitSoundData::
-	dr $0439, $0476
+	dr $0439, $0464
+
+Func_0464::
+	dr $0464, $0476
 
 Func_0476::
 	dr $0476, $049e
@@ -273,7 +311,10 @@ GetCGB_OBLayout::
 	dr $1145, $1be2
 
 Func_1be2::
-	dr $1be2, $1cb4
+	dr $1be2, $1c9b
+
+Func_1c9b::
+	dr $1c9b, $1cb4
 
 Serial::
 	dr $1cb4, $1d23
@@ -288,7 +329,16 @@ Func_1d66::
 	dr $1d66, $1dbc
 
 Func_1dbc::
-	dr $1dbc, $3869
+	dr $1dbc, $1f08
+
+Func_1f08::
+	dr $1f08, $3171
+
+Func_3171::
+	dr $3171, $3442
+
+Func_3442::
+	dr $3442, $3869
 
 Func_3869::
 	dr $3869, $4000
