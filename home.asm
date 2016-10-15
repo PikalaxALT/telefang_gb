@@ -1795,12 +1795,12 @@ Func_161b: ; 161b (0:161b)
 	pop af
 	ret
 
-GetSFXBank: ; 1620 (0:1620)
+GetDenjuuPicPointer: ; 1620 (0:1620)
 	push de
 	cp $12
 	jp nc, Func_162c
 	push af
-	ld a, SFX_00
+	ld a, DENJUU_00
 	jp Func_1699
 
 Func_162c: ; 162c (0:162c)
@@ -1808,7 +1808,7 @@ Func_162c: ; 162c (0:162c)
 	jp nc, Func_1639
 	sub $12
 	push af
-	ld a, SFX_01
+	ld a, DENJUU_01
 	jp Func_1699
 
 Func_1639: ; 1639 (0:1639)
@@ -1816,7 +1816,7 @@ Func_1639: ; 1639 (0:1639)
 	jp nc, Func_1646
 	sub $24
 	push af
-	ld a, SFX_02
+	ld a, DENJUU_02
 	jp Func_1699
 
 Func_1646: ; 1646 (0:1646)
@@ -1824,7 +1824,7 @@ Func_1646: ; 1646 (0:1646)
 	jp nc, Func_1653
 	sub $36
 	push af
-	ld a, SFX_03
+	ld a, DENJUU_03
 	jp Func_1699
 
 Func_1653: ; 1653 (0:1653)
@@ -1832,7 +1832,7 @@ Func_1653: ; 1653 (0:1653)
 	jp nc, Func_1660
 	sub $48
 	push af
-	ld a, SFX_04
+	ld a, DENJUU_04
 	jp Func_1699
 
 Func_1660: ; 1660 (0:1660)
@@ -1840,7 +1840,7 @@ Func_1660: ; 1660 (0:1660)
 	jp nc, Func_166d
 	sub $5a
 	push af
-	ld a, SFX_05
+	ld a, DENJUU_05
 	jp Func_1699
 
 Func_166d: ; 166d (0:166d)
@@ -1848,7 +1848,7 @@ Func_166d: ; 166d (0:166d)
 	jp nc, Func_167a
 	sub $6c
 	push af
-	ld a, SFX_06
+	ld a, DENJUU_06
 	jp Func_1699
 
 Func_167a: ; 167a (0:167a)
@@ -1856,7 +1856,7 @@ Func_167a: ; 167a (0:167a)
 	jp nc, Func_1687
 	sub $7e
 	push af
-	ld a, SFX_07
+	ld a, DENJUU_07
 	jp Func_1699
 
 Func_1687: ; 1687 (0:1687)
@@ -1864,17 +1864,17 @@ Func_1687: ; 1687 (0:1687)
 	jp nc, Func_1694
 	sub $90
 	push af
-	ld a, SFX_08
+	ld a, DENJUU_08
 	jp Func_1699
 
 Func_1694: ; 1694 (0:1694)
 	sub $a2
 	push af
-	ld a, SFX_09
+	ld a, DENJUU_09
 Func_1699: ; 1699 (0:1699)
-	ld [wSFXBank], a
+	ld [wDenjuuPicBank], a
 	pop af
-	ld hl, SFXPointers
+	ld hl, DenjuuAndTFangerPicPointers
 	ld d, $0
 	ld e, a
 	sla e
@@ -1883,43 +1883,43 @@ Func_1699: ; 1699 (0:1699)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wSFXBank]
+	ld a, [wDenjuuPicBank]
 	rst Bankswitch
 	pop de
 	ld a, c
 	cp $1
 	jp z, Func_16bc
-	ld bc, SFX_6B_4380 - SFX_6B_4000
-	jp Func_1705
+	ld bc, (7 * 8) tiles
+	jp WaitStatCopy
 
 Func_16bc: ; 16bc (0:16bc)
-	ld bc, SFX_6B_4380 - SFX_6B_4000
-	jp Func_1721
+	ld bc, (7 * 8) tiles
+	jp WaitStatCopyInverted
 
-Func_16c2: ; 16c2 (0:16c2)
+GetTFangerPicPointer: ; 16c2 (0:16c2)
 	push de
 	cp $12
 	jp nc, Func_16d0
-	ld [wcb2d], a
-	ld a, SFX_10
+	ld [wTFangerPicIndexOffset], a
+	ld a, TFANGER_00
 	jp Func_16e6
 
 Func_16d0: ; 16d0 (0:16d0)
 	cp $24
 	jp nc, Func_16df
 	sub $12
-	ld [wcb2d], a
-	ld a, SFX_11
+	ld [wTFangerPicIndexOffset], a
+	ld a, TFANGER_01
 	jp Func_16e6
 
 Func_16df: ; 16df (0:16df)
 	sub $24
-	ld [wcb2d], a
-	ld a, SFX_12
+	ld [wTFangerPicIndexOffset], a
+	ld a, TFANGER_02
 Func_16e6: ; 16e6 (0:16e6)
-	ld [wcb2e], a
-	ld a, [wcb2d]
-	ld hl, SFXPointers
+	ld [wTFangerPicBank], a
+	ld a, [wTFangerPicIndexOffset]
+	ld hl, DenjuuAndTFangerPicPointers
 	ld d, $0
 	ld e, a
 	sla e
@@ -1928,43 +1928,340 @@ Func_16e6: ; 16e6 (0:16e6)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wcb2e]
+	ld a, [wTFangerPicBank]
 	rst Bankswitch
 	pop de
-	ld bc, SFX_7E_4380 - SFX_7E_4000
-	jp Func_1705
+	ld bc, (7 * 8) tiles
+	jp WaitStatCopy
 
-Func_1705::
-	dr $1705, $1721
+WaitStatCopy: ; 1705 (0:1705)
+	ld a, [hli]
+	di
+	call WaitStat
+	ld [de], a
+	ei
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, WaitStatCopy
+	ret
 
-Func_1721::
-	dr $1721, $1732
+WaitStatCopy2::
+.asm_1713
+	di
+	call WaitStat
+	ld a, [hli]
+	ld [de], a
+	ei
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_1713
+	ret
 
-SFXPointers::
-	dw SFX_6B_4000
-	dw SFX_6B_4380
-	dw SFX_6B_4700
-	dw SFX_6B_4a80
-	dw SFX_6B_4e00
-	dw SFX_6B_5180
-	dw SFX_6B_5500
-	dw SFX_6B_5880
-	dw SFX_6B_5c00
-	dw SFX_6B_5f80
-	dw SFX_6B_6300
-	dw SFX_6B_6680
-	dw SFX_6B_6a00
-	dw SFX_6B_6d80
-	dw SFX_6B_7100
-	dw SFX_6B_7480
-	dw SFX_6B_7800
-	dw SFX_6B_7b80
+WaitStatCopyInverted: ; 1721 (0:1721)
+	ld a, [hli]
+	call InvertBits
+	di
+	call WaitStat
+	ld [de], a
+	ei
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, WaitStatCopyInverted
+	ret
 
-Func_1756::
-	dr $1756, $1887
+DenjuuAndTFangerPicPointers::
+	dw Denjuu_001
+	dw Denjuu_002
+	dw Denjuu_003
+	dw Denjuu_004
+	dw Denjuu_005
+	dw Denjuu_006
+	dw Denjuu_007
+	dw Denjuu_008
+	dw Denjuu_009
+	dw Denjuu_010
+	dw Denjuu_011
+	dw Denjuu_012
+	dw Denjuu_013
+	dw Denjuu_014
+	dw Denjuu_015
+	dw Denjuu_016
+	dw Denjuu_017
+	dw Denjuu_018
 
-Func_1887::
-	dr $1887, $18e6
+Func_1756: ; 1756 (0:1756)
+	ld b, $7
+	push bc
+	ld hl, $1b0
+	jp Func_176a
+
+Func_175f::
+	ld b, $6
+	jp Func_1766
+
+Func_1764::
+	ld b, $7
+Func_1766: ; 1766 (0:1766)
+	push bc
+	ld hl, $100
+Func_176a: ; 176a (0:176a)
+	ld d, $0
+	ld e, a
+	add hl, de
+	pop bc
+	ld a, b
+	ld b, h
+	ld c, l
+	jp Func_10ee
+
+Func_1775::
+	push bc
+	ld hl, $100
+	ld d, $0
+	ld e, a
+	add hl, de
+	pop bc
+	ld a, b
+	ld b, h
+	ld c, l
+	jp Func_1196
+
+InvertBits: ; 1784 (0:1784)
+	push de
+	push bc
+	ld b, $8
+	ld d, $0
+	ld e, a
+.asm_178b
+	srl e
+	rl d
+	dec b
+	jr nz, .asm_178b
+	ld a, d
+	pop bc
+	pop de
+	ret
+
+Func_1796::
+	push hl
+	pop de
+	di
+	call WaitStat
+	ld a, [hli]
+	ld [wcb20], a
+	ei
+	di
+	call WaitStat
+	ld a, [hli]
+	ld [wcb21], a
+	ei
+	ld b, $6
+.asm_17ac
+	di
+	call WaitStat
+	ld a, [hli]
+	ld [de], a
+	inc de
+	call WaitStat
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ei
+	dec b
+	jr nz, .asm_17ac
+	di
+	ld a, [wcb20]
+	call WaitStat
+	ld [de], a
+	inc de
+	ld a, [wcb21]
+	call WaitStat
+	ld [de], a
+	ei
+	ret
+
+Func_17cf::
+	ld b, $10
+.asm_17d1
+	di
+	call WaitStat
+	ld a, [hl]
+	rrc a
+	ld [hl], a
+	ei
+	inc hl
+	dec b
+	jr nz, .asm_17d1
+	ret
+
+Func_17df::
+	ld b, $10
+.asm_17e1
+	di
+	call WaitStat
+	ld a, [hl]
+	rlc a
+	ld [hl], a
+	ei
+	inc hl
+	dec b
+	jr nz, .asm_17e1
+	ret
+
+Func_17ef::
+	push hl
+	ld de, wcb80
+	ld bc, $40
+	call WaitStatCopy2
+	ld de, wcb80
+	ld hl, wcb90
+	ld b, $2
+Func_1801: ; 1801 (0:1801)
+	push bc
+	push hl
+	push de
+	ld b, $10
+Func_1806: ; 1806 (0:1806)
+	call Func_18d3
+	dec b
+	jp nz, Func_1806
+	ld bc, $20
+	pop hl
+	add hl, bc
+	push hl
+	pop de
+	pop hl
+	add hl, bc
+	pop bc
+	dec b
+	jp nz, Func_1801
+	ld de, wcb80
+	ld hl, wcbc0
+	call Func_18cc
+	ld de, wcb90
+	call Func_18cc
+	ld de, wcba0
+	call Func_18cc
+	ld de, wcbb0
+	call Func_18cc
+	ld hl, wcb82
+	ld de, wcb80
+	ld b, $4
+Func_183e: ; 183e (0:183e)
+	push bc
+	ld b, $e
+Func_1841: ; 1841 (0:1841)
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jp nz, Func_1841
+	inc hl
+	inc hl
+	inc de
+	inc de
+	pop bc
+	dec b
+	jp nz, Func_183e
+	ld de, wcbc0
+	ld hl, wcbae
+	call Func_18cc
+	ld hl, wcbbe
+	call Func_18cc
+	ld hl, wcb8e
+	call Func_18cc
+	ld hl, wcb9e
+	call Func_18cc
+	pop de
+	ld hl, wcb80
+	ld bc, $40
+	call WaitStatCopy
+	ret
+
+Func_1877::
+	ld b, $8
+.asm_1879
+	di
+	call WaitStat
+	ld a, [hl]
+	rlc a
+	ld [hli], a
+	ei
+	inc hl
+	dec b
+	jr nz, .asm_1879
+	ret
+
+Func_1887: ; 1887 (0:1887)
+	dec a
+	push af
+	ld [wcb20], a
+	cp $40
+	jr c, .asm_1899
+	sub $40
+	ld [wcb20], a
+	ld a, GFX_01
+	jr .asm_189b
+
+.asm_1899
+	ld a, GFX_00
+.asm_189b
+	rst Bankswitch
+	ld a, [wcb20]
+	ld d, a
+	ld e, $0
+	ld hl, UnknGFX_000
+	add hl, de
+	ld de, VTilesOB + $40 tiles
+	ld bc, $10 tiles
+	call WaitStatCopy
+	pop af
+	ld hl, $80
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, $0
+	ld b, h
+	ld c, l
+	call Func_1196
+	ld a, $1
+	ld bc, $da
+	call Func_1196
+	ld a, $1
+	ld [wOBPalUpdate], a
+	ret
+
+Func_18cc: ; 18cc (0:18cc)
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ret
+
+Func_18d3: ; 18d3 (0:18d3)
+	push de
+	ld a, [de]
+	srl a
+	ld [de], a
+	ld a, [hl]
+	rr a
+	ld [hli], a
+	pop de
+	jp nc, Func_18e4
+	ld a, [de]
+	or $80
+	ld [de], a
+Func_18e4: ; 18e4 (0:18e4)
+	inc de
+	ret
 
 Func_18e6::
 	dr $18e6, $190b

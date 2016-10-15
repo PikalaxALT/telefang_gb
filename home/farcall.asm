@@ -116,12 +116,12 @@ Func_050f::
 	ret
 
 Func_0516::
-	call GetSFXBank
+	call GetDenjuuPicPointer
 	rst MemBankswitch
 	ret
 
-Func_051b::
-	call Func_16c2
+GetTFangerPicPointer_::
+	call GetTFangerPicPointer
 	rst MemBankswitch
 	ret
 
@@ -148,7 +148,7 @@ Func_0530::
 
 Func_0538::
 	rst Bankswitch
-	call Func_1705
+	call WaitStatCopy
 	rst MemBankswitch
 	ret
 

@@ -13,7 +13,8 @@ includes  := $(PYTHON) scan_includes.py
 telefang_obj := \
 wram.o \
 sram.o \
-main.o
+main.o \
+gfx.o
 
 telepower_obj := $(telefang_obj:.o=_power.o)
 telespeed_obj := $(telefang_obj:.o=_speed.o)
@@ -55,7 +56,6 @@ telespeed.gbc: $(telespeed_obj)
 %.png: ;
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
-%.lz: % ; $(gfx) lz $<
 
 %.pal: %.2bpp ;
 gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp ;

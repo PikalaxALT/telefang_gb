@@ -25,7 +25,8 @@ jpba: MACRO
 ENDM
 
 palettes EQUS "* 8"
+tiles EQUS "* $10"
 
 lb: MACRO
-	ld \1, (\2 << 8) | \3
+	ld \1, ((\2 & $ff) << 8) | (\3 & $ff)
 ENDM

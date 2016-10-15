@@ -1922,7 +1922,7 @@ wcafe:: ds 1
 wcaff:: ds 1
 wcb00:: ds 1
 wcb01:: ds 1
-wSFXBank:: ds 1
+wDenjuuPicBank:: ds 1
 wcb03:: ds 1
 wcb04:: ds 1
 wcb05:: ds 1
@@ -1965,8 +1965,8 @@ wcb29:: ds 1
 wcb2a:: ds 1
 wcb2b:: ds 1
 wcb2c:: ds 1
-wcb2d:: ds 1
-wcb2e:: ds 1
+wTFangerPicIndexOffset:: ds 1
+wTFangerPicBank:: ds 1
 wcb2f:: ds 1
 wcb30:: ds 1
 wcb31:: ds 1
