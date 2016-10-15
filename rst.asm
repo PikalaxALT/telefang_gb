@@ -18,7 +18,7 @@ SECTION "RST_18", HOME [MemBankswitch]
 	rst Bankswitch
 	ret
 
-SECTION "RST_20", HOME [$0020]
+SECTION "RST_20", HOME [FarCall]
 	jp FarCall_HL
 
 SECTION "RST_28", HOME [$0028]

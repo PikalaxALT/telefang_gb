@@ -112,39 +112,7 @@ UpdateSound: ; 464 (0:0464)
 	ld [MBC3RomBank], a
 	ret
 
-FarCall_HL::
-	di
-	ld [wPrevROMBank], a
-	ld a, [wROMBank]
-	push af
-	ld a, [wPrevROMBank]
-	ld [MBC3RomBank], a
-	ld [wROMBank], a
-	ei
-	call _hl_
-	di
-	pop af
-	ld [MBC3RomBank], a
-	ld [wROMBank], a
-	ei
-	ret
-
-FarJump_HL::
-	di
-	ld [MBC3RomBank], a
-	ld [wROMBank], a
-	ei
-_hl_:: ; 49d (0:049d)
-	jp [hl]
-
-BankSwitch::
-	di
-	ld [MBC3RomBank], a
-	ld [wROMBank], a
-	ei
-	ret
-
-	dr $04a7, $0766
+INCLUDE "home/farcall.asm"
 
 Func_0766::
 	dr $0766, $079a
@@ -168,7 +136,28 @@ ClearOAMBuffer::
 	dr $0971, $097c
 
 ClearWRAM0::
-	dr $097c, $1043
+	dr $097c, $0a2a
+
+Func_0a2a::
+	dr $0a2a, $0a34
+
+Func_0a34::
+	dr $0a34, $0b1a
+
+Func_0b1a::
+	dr $0b1a, $0b33
+
+Func_0b33::
+	dr $0b33, $0c36
+
+Func_0c36::
+	dr $0c36, $0d97
+
+Func_0d97::
+	dr $0d97, $0df7
+
+Func_0df7::
+	dr $0df7, $1043
 
 ClearDMGPalBuffers::
 	dr $1043, $106a
@@ -180,7 +169,58 @@ GetCGB_BGLayout::
 	dr $109d, $1145
 
 GetCGB_OBLayout::
-	dr $1145, $1be2
+	dr $1145, $122d
+
+Func_122d::
+	dr $122d, $1248
+
+Func_1248::
+	dr $1248, $1620
+
+Func_1620::
+	dr $1620, $16c2
+
+Func_16c2::
+	dr $16c2, $1705
+
+Func_1705::
+	dr $1705, $1887
+
+Func_1887::
+	dr $1887, $18e6
+
+Func_18e6::
+	dr $18e6, $190b
+
+Func_190b::
+	dr $190b, $192a
+
+Func_192a::
+	dr $192a, $1939
+
+Func_1939::
+	dr $1939, $19b9
+
+Func_19b9::
+	dr $19b9, $1ac6
+
+Func_1ac6::
+	dr $1ac6, $1acb
+
+Func_1acb::
+	dr $1acb, $1b4d
+
+Func_1b4d::
+	dr $1b4d, $1b9c
+
+Func_1b9c::
+	dr $1b9c, $1bb3
+
+Func_1bb3::
+	dr $1bb3, $1bb8
+
+Func_1bb8::
+	dr $1bb8, $1be2
 
 Func_1be2::
 	dr $1be2, $1c9b
@@ -213,4 +253,64 @@ Func_3442::
 	dr $3442, $3869
 
 Func_3869::
-	dr $3869, $4000
+	dr $3869, $3882
+
+Func_3882::
+	dr $3882, $39ec
+
+Func_39ec::
+	dr $39ec, $3a01
+
+Func_3a01::
+	dr $3a01, $3a1d
+
+Func_3a1d::
+	dr $3a1d, $3a35
+
+Func_3a35::
+	dr $3a35, $3a91
+
+Func_3a91::
+	dr $3a91, $3ac3
+
+Func_3ac3::
+	dr $3ac3, $3b09
+
+Func_3b09::
+	dr $3b09, $3b22
+
+Func_3b22::
+	dr $3b22, $3b36
+
+Func_3b36::
+	dr $3b36, $3b3f
+
+Func_3b3f::
+	dr $3b3f, $3b4e
+
+Func_3b4e::
+	dr $3b4e, $3b74
+
+Func_3b74::
+	dr $3b74, $3ba9
+
+Func_3ba9::
+	dr $3ba9, $3bc1
+
+Func_3bc1::
+	dr $3bc1, $3c57
+
+Func_3c57::
+	dr $3c57, $3c8b
+
+Func_3c8b::
+	dr $3c8b, $3e00
+
+Func_3e00::
+	dr $3e00, $3e45
+
+Func_3e45::
+	dr $3e45, $3e68
+
+Func_3e68::
+	dr $3e68, $4000

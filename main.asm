@@ -8,14 +8,35 @@ SECTION "bank 01", ROMX, BANK [$01]
 	dr $4000, $8000
 
 SECTION "bank 02", ROMX, BANK [$02]
-	dr $8000, $c000
+	dr $8000, $8648
+
+Func_8648::
+	dr $8648, $872e
+
+Func_872e::
+	dr $872e, $8b8b
+
+Func_8b8b::
+	dr $8b8b, $c000
 
 SECTION "bank 03", ROMX, BANK [$03]
 Func_c000::
 	dr $c000, $c1af
 
 Func_c1af::
-	dr $c1af, $10000
+	dr $c1af, $c320
+
+Func_c320::
+	dr $c320, $f682
+
+Func_f682::
+	dr $f682, $fb3e
+
+Func_fb3e::
+	dr $fb3e, $fb8d
+
+Func_fb8d::
+	dr $fb8d, $10000
 
 SECTION "bank 04", ROMX, BANK [$04]
 	dr $10000, $14000
@@ -39,7 +60,22 @@ SECTION "bank 0A", ROMX, BANK [$0a]
 	dr $28000, $2c000
 
 SECTION "bank 0B", ROMX, BANK [$0b]
-	dr $2c000, $30000
+	dr $2c000, $2c100
+
+Func_2c100::
+	dr $2c100, $2c766
+
+Func_2c766::
+	dr $2c766, $2c7ed
+
+Func_2c7ed::
+	dr $2c7ed, $2d99b
+
+Func_2d99b::
+	dr $2d99b, $2ded9
+
+Func_2ded9::
+	dr $2ded9, $30000
 
 SECTION "bank 0C", ROMX, BANK [$0c]
 	dr $30000, $34000
@@ -93,13 +129,25 @@ SECTION "bank 1C", ROMX, BANK [$1c]
 	dr $70000, $74000
 
 SECTION "bank 1D", ROMX, BANK [$1d]
-	dr $74000, $78000
+	dr $74000, $74ff2
+
+Func_74ff2::
+	dr $74ff2, $753f8
+
+Func_753f8::
+	dr $753f8, $758f8
+
+Func_758f8::
+	dr $758f8, $78000
 
 SECTION "bank 1E", ROMX, BANK [$1e]
 	dr $78000, $7c000
 
 SECTION "bank 1F", ROMX, BANK [$1f]
-	dr $7c000, $80000
+	dr $7c000, $7c61b
+
+Func_7c61b::
+	dr $7c61b, $80000
 
 SECTION "bank 20", ROMX, BANK [$20]
 UpdateSound20::
@@ -130,10 +178,41 @@ SECTION "bank 28", ROMX, BANK [$28]
 	dr $a0000, $a4000
 
 SECTION "bank 29", ROMX, BANK [$29]
-	dr $a4000, $a8000
+Func_a4000::
+	dr $a4000, $a40ef
+
+Func_a40ef::
+	dr $a40ef, $a42a3
+
+Func_a42a3::
+	dr $a42a3, $a42e5
+
+Func_a42e5::
+	dr $a42e5, $a4c9b
+
+Func_a4c9b::
+	dr $a4c9b, $a4e02
+
+Func_a4e02::
+	dr $a4e02, $a4e12
+
+Func_a4e12::
+	dr $a4e12, $a5418
+
+Func_a5418::
+	dr $a5418, $a5525
+
+Func_a5525::
+	dr $a5525, $a8000
 
 SECTION "bank 2A", ROMX, BANK [$2a]
-	dr $a8000, $ac000
+	dr $a8000, $a8539
+
+Func_a8539::
+	dr $a8539, $a8d20
+
+Func_a8d20::
+	dr $a8d20, $ac000
 
 SECTION "bank 2B", ROMX, BANK [$2b]
 	dr $ac000, $b0000
