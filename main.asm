@@ -283,9 +283,11 @@ SECTION "bank 3D", ROMX, BANK [$3d]
 	dr $f4000, $f8000
 
 SECTION "bank 3E", ROMX, BANK [$3e]
+Pointers_f8000::
 	dr $f8000, $fc000
 
 SECTION "bank 3F", ROMX, BANK [$3f]
+Pointers_fc000::
 	dr $fc000, $100000
 
 SECTION "bank 40", ROMX, BANK [$40]

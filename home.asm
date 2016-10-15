@@ -350,17 +350,362 @@ Func_0a0b::
 	ld [wLCDC], a
 	ret
 
-Func_0a2a::
-	dr $0a2a, $0a34
+Func_0a2a: ; a2a (0:0a2a)
+	push af
+	ld hl, VBGMap
+	xor a
+	ld [wc41e], a
+	jr asm_0a3d
 
-Func_0a34::
-	dr $0a34, $0b1a
+Func_0a34: ; a34 (0:0a34)
+	push af
+	ld hl, VWindow
+	ld a, $1
+	ld [wc41e], a
+asm_0a3d
+	pop af
+	push hl
+	push de
+	ld hl, Data_0b18
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	rst Bankswitch
+	pop de
+	pop hl
+	push de
+	ld a, b
+	and $1f
+	ld b, a
+	ld a, c
+	and $1f
+	ld c, a
+	ld d, $0
+	ld e, c
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	ld c, b
+	ld b, $0
+	add hl, bc
+	add hl, de
+	pop de
+	push hl
+	ld hl, Pointers_f8000 ; Pointers_fc000
+	ld d, $0
+	sla e
+	rl d
+	add hl, de
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	pop hl
+	ld b, h
+	ld c, l
+	ld a, [de]
+	cp $ff
+	ret z
+	and $3
+	jr z, .asm_0a8c
+	jr asm_0ab2
 
-Func_0b1a::
-	dr $0b1a, $0b33
+.asm_0a8c
+	inc de
+	ld a, [de]
+	cp $ff
+	ret z
+	cp $fe
+	jr z, .asm_0aa0
+	call Func_09b3
+	ld a, [wc41e]
+	call Func_0eb3
+	jr .asm_0a8c
 
-Func_0b33::
-	dr $0b33, $0c36
+.asm_0aa0
+	push de
+	ld de, $20
+	ld h, b
+	ld l, c
+	add hl, de
+	ld a, [wc41e]
+	call Func_0f29
+	ld b, h
+	ld c, l
+	pop de
+	jr .asm_0a8c
+
+asm_0ab2
+	inc de
+	ld a, [de]
+	cp $ff
+	ret z
+	ld a, [de]
+	and $c0
+	cp $c0
+	jp z, Func_0b03
+	cp $80
+	jp z, Func_0aee
+	cp $40
+	jp z, Func_0ada
+	push bc
+	ld a, [de]
+	inc a
+	ld b, a
+Func_0acd: ; acd (0:0acd)
+	inc de
+	ld a, [de]
+	call Func_09b3
+	dec b
+	jp nz, Func_0acd
+	pop bc
+	jp asm_0ab2
+
+Func_0ada: ; ada (0:0ada)
+	push bc
+	ld a, [de]
+	and $3f
+	add $2
+	ld b, a
+	inc de
+	ld a, [de]
+Func_0ae3: ; ae3 (0:0ae3)
+	call Func_09b3
+	dec b
+	jp nz, Func_0ae3
+	pop bc
+	jp asm_0ab2
+
+Func_0aee: ; aee (0:0aee)
+	push bc
+	ld a, [de]
+	and $3f
+	add $2
+	ld b, a
+	inc de
+	ld a, [de]
+Func_0af7: ; af7 (0:0af7)
+	call Func_09b3
+	inc a
+	dec b
+	jp nz, Func_0af7
+	pop bc
+	jp asm_0ab2
+
+Func_0b03: ; b03 (0:0b03)
+	push bc
+	ld a, [de]
+	and $3f
+	add $2
+	ld b, a
+	inc de
+	ld a, [de]
+Func_0b0c: ; b0c (0:0b0c)
+	call Func_09b3
+	dec a
+	dec b
+	jp nz, Func_0b0c
+	pop bc
+	jp asm_0ab2
+
+Data_0b18::
+	db BANK(Pointers_f8000)
+	db BANK(Pointers_fc000)
+
+Func_0b1a: ; b1a (0:0b1a)
+	push af
+	ld a, [wdd06]
+	or a
+	jp z, Func_0b9e
+	ld a, [wCGB]
+	cp $11
+	jp nz, Func_0b9e
+	ld hl, VBGMap
+	xor a
+	ld [wc41e], a
+	jr asm_0b4b
+
+Func_0b33: ; b33 (0:0b33)
+	push af
+	ld a, [wdd06]
+	or a
+	jp z, Func_0b9e
+	ld a, [wCGB]
+	cp $11
+	jp nz, Func_0b9e
+	ld hl, VWindow
+	ld a, $1
+	ld [wc41e], a
+asm_0b4b
+	ld a, $1
+	ld [rVBK], a
+	pop af
+	push hl
+	push de
+	ld hl, $c34
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	rst Bankswitch
+	pop de
+	pop hl
+	push de
+	ld a, b
+	and $1f
+	ld b, a
+	ld a, c
+	and $1f
+	ld c, a
+	ld d, $0
+	ld e, c
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	ld c, b
+	ld b, $0
+	add hl, bc
+	add hl, de
+	pop de
+	push hl
+	ld hl, $4000
+	ld d, $0
+	sla e
+	rl d
+	add hl, de
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	pop hl
+	ld b, h
+	ld c, l
+	ld a, [de]
+	cp $ff
+	ret z
+	and $3
+	jr z, asm_0ba0
+	jr asm_0bc8
+
+Func_0b9e: ; b9e (0:0b9e)
+	pop af
+	ret
+
+asm_0ba0
+	inc de
+	ld a, [de]
+	cp $ff
+	jp z, Func_0c30
+	cp $fe
+	jr z, .asm_0bb6
+	call Func_09b3
+	ld a, [wc41e]
+	call Func_0eb3
+	jr asm_0ba0
+
+.asm_0bb6
+	push de
+	ld de, $20
+	ld h, b
+	ld l, c
+	add hl, de
+	ld a, [wc41e]
+	call Func_0f29
+	ld b, h
+	ld c, l
+	pop de
+	jr asm_0ba0
+
+asm_0bc8: ; bc8 (0:0bc8)
+	inc de
+	ld a, [de]
+	cp $ff
+	jp z, Func_0c30
+	ld a, [de]
+	and $c0
+	cp $c0
+	jp z, Func_0c1b
+	cp $80
+	jp z, Func_0c06
+	cp $40
+	jp z, Func_0bf2
+	push bc
+	ld a, [de]
+	inc a
+	ld b, a
+Func_0be5: ; be5 (0:0be5)
+	inc de
+	ld a, [de]
+	call Func_09b3
+	dec b
+	jp nz, Func_0be5
+	pop bc
+	jp asm_0bc8
+
+Func_0bf2: ; bf2 (0:0bf2)
+	push bc
+	ld a, [de]
+	and $3f
+	add $2
+	ld b, a
+	inc de
+	ld a, [de]
+Func_0bfb: ; bfb (0:0bfb)
+	call Func_09b3
+	dec b
+	jp nz, Func_0bfb
+	pop bc
+	jp asm_0bc8
+
+Func_0c06: ; c06 (0:0c06)
+	push bc
+	ld a, [de]
+	and $3f
+	add $2
+	ld b, a
+	inc de
+	ld a, [de]
+Func_0c0f: ; c0f (0:0c0f)
+	call Func_09b3
+	inc a
+	dec b
+	jp nz, Func_0c0f
+	pop bc
+	jp asm_0bc8
+
+Func_0c1b: ; c1b (0:0c1b)
+	push bc
+	ld a, [de]
+	and $3f
+	add $2
+	ld b, a
+	inc de
+	ld a, [de]
+Func_0c24: ; c24 (0:0c24)
+	call Func_09b3
+	dec a
+	dec b
+	jp nz, Func_0c24
+	pop bc
+	jp asm_0bc8
+
+Func_0c30::
+	xor a
+	ld [rVBK], a
+	ret
 
 Func_0c36::
 	dr $0c36, $0d97
@@ -369,7 +714,13 @@ Func_0d97::
 	dr $0d97, $0df7
 
 Func_0df7::
-	dr $0df7, $1043
+	dr $0df7, $0eb3
+
+Func_0eb3::
+	dr $0eb3, $0f29
+
+Func_0f29::
+	dr $0f29, $1043
 
 ClearDMGPalBuffers::
 	dr $1043, $106a
