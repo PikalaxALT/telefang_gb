@@ -83,7 +83,10 @@ Func_2ded9::
 	dr $2ded9, $30000
 
 SECTION "bank 0C", ROMX, BANK [$0c]
-	dr $30000, $34000
+	dr $30000, $33ac4
+
+Pointers_33ac4::
+	dr $33ac4, $34000
 
 SECTION "bank 0D", ROMX, BANK [$0d]
 	dr $34000, $38000
