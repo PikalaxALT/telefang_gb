@@ -1,3 +1,5 @@
+INCLUDE "includes.asm"
+
 SECTION "WRAM 0", WRAM0
 wOAMBuffer:: ds 4 * 40 ; c000
 wOAMBufferEnd::
@@ -6528,9 +6530,11 @@ wdcfc:: ds 1
 wdcfd:: ds 1
 wdcfe:: ds 1
 wdcff:: ds 1
-wdd00:: ds 1
+
+SECTION "CGB Palettes", WRAMX, BANK [1]
+wBGPalUpdate:: ds 1
 wCGB_BGLayoutIndex:: ds 2 ; bigdw
-wdd03:: ds 1
+wOBPalUpdate:: ds 1
 wCGB_OBLayoutIndex:: ds 2 ; bigdw
 wdd06:: ds 1
 wdd07:: ds 1
@@ -6544,9 +6548,10 @@ wdd0e:: ds 1
 wdd0f:: ds 1
 
 wCGB_BGPalsBuffer::
-	ds 8 * 8
+	ds 8 palettes
 wCGB_OBPalsBuffer::
-	ds 8 * 8
+	ds 8 palettes
+
 wdd90:: ds 1
 wdd91:: ds 1
 wdd92:: ds 1

@@ -23,3 +23,5 @@ jpba: MACRO
 	ld hl, \1
 	jp FarJump_HL
 ENDM
+
+palettes EQUS "* 8"

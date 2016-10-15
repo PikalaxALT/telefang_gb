@@ -49,6 +49,7 @@ Data_18000::
 	dr $18000, $1c000
 
 SECTION "bank 07", ROMX, BANK [$07]
+PalPackets_1c000::
 	dr $1c000, $20000
 
 SECTION "bank 08", ROMX, BANK [$08]
@@ -89,9 +90,14 @@ Pointers_33ac4::
 	dr $33ac4, $34000
 
 SECTION "bank 0D", ROMX, BANK [$0d]
-	dr $34000, $38000
+Palettes_34000::
+	dr $34000, $35d80
+
+Palettes_35d80::
+	dr $35d80, $38000
 
 SECTION "bank 0E", ROMX, BANK [$0e]
+PalPackets_38000::
 	dr $38000, $38120
 
 Pointers_38120::

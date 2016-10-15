@@ -213,7 +213,7 @@ Func_0816::
 .asm_0816
 	ld a, [hli]
 	di
-	call Func_09aa
+	call WaitStat
 	ld [de], a
 	ei
 	inc de
@@ -265,7 +265,7 @@ Func_099c::
 	ld [wc430], a
 	ret
 
-Func_09aa: ; 9aa (0:09aa)
+WaitStat: ; 9aa (0:09aa)
 	push af
 .asm_09ab
 	ld a, [rSTAT]
@@ -274,7 +274,7 @@ Func_09aa: ; 9aa (0:09aa)
 	pop af
 	ret
 
-Func_09b3: ; 9b3 (0:09b3)
+WaitStatAndLoad: ; 9b3 (0:09b3)
 	di
 	push af
 .asm_09b5
@@ -291,7 +291,7 @@ ClearBGMapAndAttrs::
 	ld hl, VBGMap
 .asm_09c5
 	xor a
-	call Func_09b3
+	call WaitStatAndLoad
 	dec bc
 	ld a, b
 	or c
@@ -302,7 +302,7 @@ ClearBGMapAndAttrs::
 	ld [rVBK], a
 .asm_09d8
 	xor a
-	call Func_09b3
+	call WaitStatAndLoad
 	dec bc
 	ld a, b
 	or c
@@ -316,7 +316,7 @@ ClearBGWindowAndAttrs::
 	ld hl, VWindow
 .asm_09eb
 	xor a
-	call Func_09b3
+	call WaitStatAndLoad
 	dec bc
 	ld a, b
 	or c
@@ -327,7 +327,7 @@ ClearBGWindowAndAttrs::
 	ld [rVBK], a
 .asm_09fe
 	xor a
-	call Func_09b3
+	call WaitStatAndLoad
 	dec bc
 	ld a, b
 	or c
@@ -424,7 +424,7 @@ asm_0a3d
 	ret z
 	cp $fe
 	jr z, .asm_0aa0
-	call Func_09b3
+	call WaitStatAndLoad
 	ld a, [wc41e]
 	call Func_0eb3
 	jr .asm_0a8c
@@ -462,7 +462,7 @@ asm_0ab2
 Func_0acd: ; acd (0:0acd)
 	inc de
 	ld a, [de]
-	call Func_09b3
+	call WaitStatAndLoad
 	dec b
 	jp nz, Func_0acd
 	pop bc
@@ -477,7 +477,7 @@ Func_0ada: ; ada (0:0ada)
 	inc de
 	ld a, [de]
 Func_0ae3: ; ae3 (0:0ae3)
-	call Func_09b3
+	call WaitStatAndLoad
 	dec b
 	jp nz, Func_0ae3
 	pop bc
@@ -492,7 +492,7 @@ Func_0aee: ; aee (0:0aee)
 	inc de
 	ld a, [de]
 Func_0af7: ; af7 (0:0af7)
-	call Func_09b3
+	call WaitStatAndLoad
 	inc a
 	dec b
 	jp nz, Func_0af7
@@ -508,7 +508,7 @@ Func_0b03: ; b03 (0:0b03)
 	inc de
 	ld a, [de]
 Func_0b0c: ; b0c (0:0b0c)
-	call Func_09b3
+	call WaitStatAndLoad
 	dec a
 	dec b
 	jp nz, Func_0b0c
@@ -611,7 +611,7 @@ asm_0ba0
 	jp z, Func_0c30
 	cp $fe
 	jr z, .asm_0bb6
-	call Func_09b3
+	call WaitStatAndLoad
 	ld a, [wc41e]
 	call Func_0eb3
 	jr asm_0ba0
@@ -649,7 +649,7 @@ asm_0bc8: ; bc8 (0:0bc8)
 Func_0be5: ; be5 (0:0be5)
 	inc de
 	ld a, [de]
-	call Func_09b3
+	call WaitStatAndLoad
 	dec b
 	jp nz, Func_0be5
 	pop bc
@@ -664,7 +664,7 @@ Func_0bf2: ; bf2 (0:0bf2)
 	inc de
 	ld a, [de]
 Func_0bfb: ; bfb (0:0bfb)
-	call Func_09b3
+	call WaitStatAndLoad
 	dec b
 	jp nz, Func_0bfb
 	pop bc
@@ -679,7 +679,7 @@ Func_0c06: ; c06 (0:0c06)
 	inc de
 	ld a, [de]
 Func_0c0f: ; c0f (0:0c0f)
-	call Func_09b3
+	call WaitStatAndLoad
 	inc a
 	dec b
 	jp nz, Func_0c0f
@@ -695,7 +695,7 @@ Func_0c1b: ; c1b (0:0c1b)
 	inc de
 	ld a, [de]
 Func_0c24: ; c24 (0:0c24)
-	call Func_09b3
+	call WaitStatAndLoad
 	dec a
 	dec b
 	jp nz, Func_0c24
@@ -798,9 +798,9 @@ Func_0c98: ; c98 (0:0c98)
 	ld a, [wc407]
 	ld l, a
 	di
-	call Func_09aa
+	call WaitStat
 	ld a, [de]
-	call Func_09aa
+	call WaitStat
 	ld [hli], a
 	ei
 	ld a, h
@@ -846,9 +846,9 @@ Func_0cdf: ; cdf (0:0cdf)
 	ld l, a
 Func_0d0f: ; d0f (0:0d0f)
 	di
-	call Func_09aa
+	call WaitStat
 	ld a, [de]
-	call Func_09aa
+	call WaitStat
 	ld [hli], a
 	ei
 	dec bc
@@ -878,9 +878,9 @@ Func_0d39: ; d39 (0:0d39)
 	or c
 	jp z, Func_0d4d
 	di
-	call Func_09aa
+	call WaitStat
 	ld a, [de]
-	call Func_09aa
+	call WaitStat
 	ld [hli], a
 	ei
 	inc de
@@ -1249,24 +1249,445 @@ Func_0f29: ; f29 (0:0f29)
 	ret
 
 INCLUDE "home/sram.asm"
+INCLUDE "home/palettes.asm"
 
-ClearDMGPalBuffers::
-	dr $1043, $106a
+Func_12fb: ; 12fb (0:12fb)
+	push de
+	push bc
+	push hl
+	push af
+	xor a
+	ld [wc44e], a
+	ld [wc44f], a
+	ld de, 0
+	pop af
+	ld b, $64
+.asm_130c
+	ld c, a
+	sub b
+	jr c, .asm_1313
+	inc d
+	jr .asm_130c
 
-Func_106a::
-	dr $106a, $109d
+.asm_1313
+	ld a, c
+	ld b, $a
+.asm_1316
+	ld c, a
+	sub b
+	jr c, .asm_1322
+	push af
+	ld a, e
+	add $10
+	ld e, a
+	pop af
+	jr .asm_1316
 
-GetCGB_BGLayout::
-	dr $109d, $1145
+.asm_1322
+	ld a, c
+	ld b, $1
+.asm_1325
+	ld c, a
+	sub b
+	jr c, .asm_132c
+	inc e
+	jr .asm_1325
 
-GetCGB_OBLayout::
-	dr $1145, $122d
+.asm_132c
+	ld a, d
+	ld [wc44e], a
+	ld a, e
+	ld [wc44f], a
+	pop hl
+	pop bc
+	pop de
+	ret
 
-Func_122d::
-	dr $122d, $1248
+Func_1338: ; 1338 (0:1338)
+	xor a
+	ld [wc44e], a
+	ld [wc44f], a
+	ld a, b
+	or a
+	jr nz, .asm_1346
+	ld a, c
+	or a
+	ret z
+.asm_1346
+	ld a, h
+	ld [wc440], a
+	ld a, l
+	ld [wc441], a
+	ld d, b
+	ld a, h
+	sub d
+	ret c
+	jr nz, .asm_1358
+	ld d, c
+	ld a, l
+	sub d
+	ret c
+.asm_1358
+	ld a, [wc441]
+	sub c
+	ld l, a
+	ld a, [wc440]
+	sbc b
+	ld h, a
+	ld a, [wc44e]
+	add $1
+	ld [wc44e], a
+	ld a, $0
+	adc $0
+	ld d, a
+	ld a, [wc44f]
+	add d
+	ld [wc44f], a
+	jr .asm_1346
 
-Func_1248::
-	dr $1248, $159f
+Func_1378::
+	push hl
+	push de
+	push bc
+	push bc
+	push hl
+	call Func_12fb
+	pop hl
+	xor a
+	ld [wc450], a
+	pop bc
+	ld a, c
+	cp $1
+	jp nz, Func_1394
+	ld a, $1
+	ld [wc450], a
+	jp Func_13aa
+
+Func_1394: ; 1394 (0:1394)
+	ld a, [wc44e]
+	and $f
+	or a
+	jr nz, .asm_139d
+	xor a
+.asm_139d
+	add $f0
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	ld a, $1
+	ld [wc450], a
+Func_13aa: ; 13aa (0:13aa)
+	inc hl
+	ld a, [wc44f]
+	and $f0
+	or a
+	jr nz, .asm_13bb
+	ld b, a
+	ld a, [wc450]
+	or a
+	jr z, .asm_13c5
+	ld a, b
+.asm_13bb
+	swap a
+	add $f0
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+.asm_13c5
+	inc hl
+	ld a, [wc44f]
+	and $f
+	add $f0
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Func_13d7::
+	push hl
+	push de
+	push bc
+	push hl
+	call Func_12fb
+	pop hl
+	xor a
+	ld [wc450], a
+	ld a, [wc44f]
+	and $f0
+	or a
+	jr nz, .asm_13ec
+	ld a, b
+.asm_13ec
+	add $e0
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	inc a
+	push hl
+	ld de, $20
+	add hl, de
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	pop hl
+	ld a, $1
+	ld [wc450], a
+	inc hl
+	ld a, [wc44f]
+	and $f
+	or a
+	jr nz, .asm_1417
+	ld b, a
+	ld a, [wc450]
+	or a
+	jr z, .asm_142c
+	ld a, b
+.asm_1417
+	swap a
+	add $e0
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	inc a
+	ld de, $20
+	add hl, de
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+.asm_142c
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Func_1430::
+	push hl
+	push de
+	push bc
+	push bc
+	push hl
+	call Func_12fb
+	pop hl
+	xor a
+	ld [wc450], a
+	pop bc
+	ld a, c
+	cp $1
+	jp nz, Func_144c
+	ld a, $1
+	ld [wc450], a
+	jp Func_146d
+
+Func_144c: ; 144c (0:144c)
+	ld a, [wc44e]
+	and $f
+	or a
+	jr nz, .asm_145c
+	ld b, a
+	ld a, [wc450]
+	or a
+	jr z, .asm_1468
+	ld a, b
+.asm_145c
+	add $f0
+	call WaitStatAndLoad
+	ld a, $1
+	ld [wc450], a
+	jr Func_146d
+
+.asm_1468
+	ld a, $ff
+	call WaitStatAndLoad
+Func_146d: ; 146d (0:146d)
+	ld a, [wc44f]
+	and $f0
+	or a
+	jr nz, .asm_147d
+	ld b, a
+	ld a, [wc450]
+	or a
+	jr z, .asm_1486
+	ld a, b
+.asm_147d
+	swap a
+	add $f0
+	call WaitStatAndLoad
+	jr .asm_148b
+
+.asm_1486
+	ld a, $ff
+	call WaitStatAndLoad
+.asm_148b
+	ld a, [wc44f]
+	and $f
+	add $f0
+	call WaitStatAndLoad
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Func_1499::
+	push hl
+	push de
+	push bc
+	push bc
+	push hl
+	call Func_12fb
+	pop hl
+	pop bc
+	ld a, [wc44f]
+	and $f
+	add $f0
+	call WaitStatAndLoad
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Func_14b1::
+	push hl
+	push de
+	push bc
+	xor a
+	ld [wc450], a
+	ld a, b
+	ld [wc442], a
+	ld a, c
+	ld [wc443], a
+	ld bc, $3e8
+	call Func_1338
+	ld a, [wc44e]
+	or a
+	jr nz, .asm_14d4
+	ld b, a
+	ld a, [wc450]
+	or a
+	jr z, .asm_14eb
+	ld a, b
+.asm_14d4
+	add $f0
+	push af
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	pop af
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	ld a, $1
+	ld [wc450], a
+.asm_14eb
+	ld a, [wc440]
+	ld h, a
+	ld a, [wc441]
+	ld l, a
+	ld bc, $64
+	call Func_1338
+	ld a, [wc44e]
+	or a
+	jr nz, .asm_1505
+	ld b, a
+	ld a, [wc450]
+	or a
+	ld a, b
+.asm_1505
+	add $f0
+	push af
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $1
+	add hl, bc
+	xor a
+	call Func_0eb3
+	pop af
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	ld a, $1
+	ld [wc450], a
+	ld a, [wc440]
+	ld h, a
+	ld a, [wc441]
+	ld l, a
+	ld bc, $a
+	call Func_1338
+	ld a, [wc44e]
+	or a
+	jr nz, .asm_153e
+	ld b, a
+	ld a, [wc450]
+	or a
+	ld a, b
+.asm_153e
+	add $f0
+	push af
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $1
+	add hl, bc
+	xor a
+	call Func_0eb3
+	ld bc, $1
+	add hl, bc
+	xor a
+	call Func_0eb3
+	pop af
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	ld a, [wc440]
+	ld h, a
+	ld a, [wc441]
+	ld l, a
+	ld bc, $1
+	call Func_1338
+	ld a, [wc44e]
+	add $f0
+	push af
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $1
+	add hl, bc
+	xor a
+	call Func_0eb3
+	ld bc, $1
+	add hl, bc
+	xor a
+	call Func_0eb3
+	ld bc, $1
+	add hl, bc
+	xor a
+	call Func_0eb3
+	pop af
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	pop bc
+	pop de
+	pop hl
+	ret
 
 ClearMemory3::
 	dr $159f, $1620

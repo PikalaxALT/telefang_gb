@@ -1,3 +1,5 @@
+INCLUDE "includes.asm"
+
 SECTION "SRAM 0", SRAM, BANK [0]
 sSaveFile::
 sROMName::

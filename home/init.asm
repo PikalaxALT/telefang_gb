@@ -42,7 +42,7 @@ Start::
 	call InitSoundData ; 0439
 	ld a, 1
 	ld [wc430], a
-	call ClearDMGPalBuffers ; 1043
+	call WhiteDMGPals ; 1043
 	ld a, $83
 	ld [wLCDC], a
 	ld [rLCDC], a
@@ -57,8 +57,8 @@ Start::
 	xor a
 	ld [wcb3f], a
 	ld a, $1
-	ld [wdd00], a
-	ld [wdd03], a
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
 	xor a
 	call GetCGB_BGLayout ; 109d
 	call GetCGB_OBLayout ; 1145
@@ -90,7 +90,7 @@ Start::
 	call Func_1d46
 .skip2
 	call Func_0234
-	call Func_106a
+	call UpdatePalsCGB
 	call Func_3869
 	call ReadJoypad
 	call Func_1be2
