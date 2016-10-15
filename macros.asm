@@ -1,3 +1,5 @@
+INCLUDE "macros/enum.asm"
+
 Bankswitch    EQU $10
 MemBankswitch EQU $18
 FarCall       EQU $20

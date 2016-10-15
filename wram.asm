@@ -980,8 +980,8 @@ wc46f:: ds 1
 wc470:: ds 1
 wc471:: ds 1
 wc472:: ds 1
-wc473:: ds 1
-wc474:: ds 1
+wJoyNew:: ds 1
+wMenuScrollDelay:: ds 1
 wc475:: ds 1
 wc476:: ds 1
 wc477:: ds 1

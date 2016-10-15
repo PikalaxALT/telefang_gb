@@ -2,8 +2,8 @@ hPushOAM EQU $ff80
 
 hFF8A EQU $ff8a
 hFF8B EQU $ff8b
-hFF8C EQU $ff8c
-hFF8D EQU $ff8d
+hJoyLast EQU $ff8c
+hJoyNew EQU $ff8d
 hFF8E EQU $ff8e
 hFF8F EQU $ff8f
 hFF90 EQU $ff90

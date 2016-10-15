@@ -92,7 +92,7 @@ Start::
 	call Func_0234
 	call Func_106a
 	call Func_3869
-	call Func_0766
+	call ReadJoypad
 	call Func_1be2
 	call Func_0824
 	ld a, 1

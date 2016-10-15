@@ -66,7 +66,7 @@ Func_0266::
 	ret
 
 Func_02d0: ; 2d0 (0:02d0)
-	ld a, [hFF8C]
+	ld a, [hJoyLast]
 	and $f
 	cp $f
 	ret nz
@@ -113,9 +113,7 @@ UpdateSound: ; 464 (0:0464)
 	ret
 
 INCLUDE "home/farcall.asm"
-
-Func_0766::
-	dr $0766, $079a
+INCLUDE "home/joypad.asm"
 
 LoadPushOAM::
 	dr $079a, $07df

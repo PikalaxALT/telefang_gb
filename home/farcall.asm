@@ -578,32 +578,3 @@ Func_072f::
 	call Func_872e
 	rst MemBankswitch
 	ret
-
-Func_0737::
-	ld a, [hFF8D]
-	ld [wc473], a
-	and $f0
-	jr z, .asm_0745
-	ld a, $10
-	ld [wc474], a
-.asm_0745
-	ld a, [hFF8C]
-	and $f0
-	ret z
-	ld a, [wc474]
-	or a
-	jr z, .asm_0755
-	dec a
-	ld [wc474], a
-	ret
-
-.asm_0755
-	ld a, $2
-	ld [wc474], a
-	ld a, [hFF8C]
-	and $f0
-	ld b, a
-	ld a, [hFF8D]
-	or b
-	ld [wc473], a
-	ret
