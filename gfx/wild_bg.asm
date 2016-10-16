@@ -6,6 +6,8 @@ WildBG_004:: INCBIN "gfx/wild_bg/wild_bg_004.2bpp"
 WildBG_005:: INCBIN "gfx/wild_bg/wild_bg_005.2bpp"
 WildBG_006:: INCBIN "gfx/wild_bg/wild_bg_006.2bpp"
 WildBG_007:: INCBIN "gfx/wild_bg/wild_bg_007.2bpp"
+
+SECTION "Wild BG 2", ROMX, BANK [WILD_BG_GFX]
 WildBG_008:: INCBIN "gfx/wild_bg/wild_bg_008.2bpp"
 WildBG_009:: INCBIN "gfx/wild_bg/wild_bg_009.2bpp"
 WildBG_010:: INCBIN "gfx/wild_bg/wild_bg_010.2bpp"

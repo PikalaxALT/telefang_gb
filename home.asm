@@ -2491,13 +2491,156 @@ Func_1b9c: ; 1b9c (0:1b9c)
 	jp WaitStatCopy
 
 Func_1bb3::
-	dr $1bb3, $1bb8
+	ld de, VTilesShared
+	jr asm_1bbb
 
 Func_1bb8::
-	dr $1bb8, $1be2
+	ld de, VTilesBG tile $20
+asm_1bbb
+	push de
+	ld d, a
+	ld a, BANK(WildBG_008)
+	rst Bankswitch
+	ld e, $0
+	sla e
+	rl d
+	ld hl, WildBG_008
+	add hl, de
+	pop de
+	ld bc, WildBG_009 - WildBG_008
+	jp WaitStatCopy
 
-Func_1be2::
-	dr $1be2, $1c9b
+Func_1bd1::
+	xor a
+	ld [hFFA2], a
+	ld [wcfc0], a
+	ld [rNR12], a
+	ld a, $ff
+	ld [rNR13], a
+	ld a, $87
+	ld [rNR14], a
+	ret
+
+Func_1be2: ; 1be2 (0:1be2)
+	ld a, [wc3e0]
+	ld hl, Pointers_1bf4
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_1bf4::
+	dw Func_1c14
+	dw Func_1c1d
+	dw Func_1c26
+	dw Func_1c2f
+	dw Func_1c38
+	dw Func_1c41
+	dw Func_1c4a
+	dw Func_1c53
+	dw Func_1c5c
+	dw Func_1c65
+	dw Func_1c6e
+	dw Func_1c77
+	dw Func_1c77
+	dw Func_1c80
+	dw Func_1c89
+	dw Func_1c92
+
+Func_1c14::
+	ld a, BANK(Func_9300)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_9300
+
+Func_1c1d::
+	ld a, BANK(Func_893f)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_893f
+
+Func_1c26::
+	ld a, BANK(Func_8000)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_8000
+
+Func_1c2f::
+	ld a, BANK(Func_10000)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_10000
+
+Func_1c38::
+	ld a, BANK(Func_80bf)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_80bf
+
+Func_1c41::
+	ld a, $b
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_1ea1
+
+Func_1c4a::
+	ld a, BANK(Func_70000)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_70000
+
+Func_1c53::
+	ld a, BANK(Func_1441b)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_1441b
+
+Func_1c5c::
+	ld a, BANK(Func_74000)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_74000
+
+Func_1c65::
+	ld a, BANK(Func_8b8b)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_8b8b
+
+Func_1c6e::
+	ld a, BANK(Func_8b24)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_8824
+
+Func_1c77::
+	ld a, BANK(Func_105c0)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_105c0
+
+Func_1c80::
+	ld a, BANK(Func_84cf)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_84cf
+
+Func_1c89::
+	ld a, BANK(Func_858e)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_858e
+
+Func_1c92::
+	ld a, BANK(Func_7c000)
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	jp Func_7c000
 
 Func_1c9b::
 	dr $1c9b, $1cb4
@@ -2518,7 +2661,10 @@ Func_1dbc::
 	dr $1dbc, $1de1
 
 Pointers_1de1:
-	dr $1de1, $1f08
+	dr $1de1, $1ea1
+
+Func_1ea1::
+	dr $1ea1, $1f08
 
 Func_1f08::
 	dr $1f08, $3171

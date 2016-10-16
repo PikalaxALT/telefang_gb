@@ -8,16 +8,38 @@ SECTION "bank 01", ROMX, BANK [$01]
 	dr $4000, $8000
 
 SECTION "bank 02", ROMX, BANK [$02]
-	dr $8000, $8648
+Func_8000::
+	dr $8000, $80bf
+
+Func_80bf::
+	dr $80bf, $84cf
+
+Func_84cf::
+	dr $84cf, $858e
+
+Func_858e::
+	dr $858e, $8648
 
 Func_8648::
 	dr $8648, $872e
 
 Func_872e::
-	dr $872e, $8b8b
+	dr $872e, $8824
+
+Func_8824::
+	dr $8824, $893f
+
+Func_893f::
+	dr $893f, $8b24
+
+Func_8b24::
+	dr $8b24, $8b8b
 
 Func_8b8b::
-	dr $8b8b, $c000
+	dr $8b8b, $9300
+
+Func_9300::
+	dr $9300, $c000
 
 SECTION "bank 03", ROMX, BANK [$03]
 Func_c000::
@@ -39,10 +61,17 @@ Func_fb8d::
 	dr $fb8d, $10000
 
 SECTION "bank 04", ROMX, BANK [$04]
-	dr $10000, $14000
+Func_10000::
+	dr $10000, $105c0
+
+Func_105c0::
+	dr $105c0, $14000
 
 SECTION "bank 05", ROMX, BANK [$05]
-	dr $14000, $18000
+	dr $14000, $1441b
+
+Func_1441b::
+	dr $1441b, $18000
 
 SECTION "bank 06", ROMX, BANK [$06]
 Data_18000::
@@ -407,9 +436,11 @@ Func_6eec0::
 	dr $6eec0, $70000
 
 SECTION "bank 1C", ROMX, BANK [$1c]
+Func_70000::
 	dr $70000, $74000
 
 SECTION "bank 1D", ROMX, BANK [$1d]
+Func_74000::
 	dr $74000, $74ff2
 
 Func_74ff2::
@@ -425,6 +456,7 @@ SECTION "bank 1E", ROMX, BANK [$1e]
 	dr $78000, $7c000
 
 SECTION "bank 1F", ROMX, BANK [$1f]
+Func_7c000::
 	dr $7c000, $7c61b
 
 Func_7c61b::
