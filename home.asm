@@ -3047,20 +3047,220 @@ ELSE
 	dw $0000
 ENDC
 
-Func_1ea1::
-	dr $1ea1, $1f08
+Func_1ea1: ; 1ea1 (0:1ea1)
+	ld a, [wc3e1]
+	cp $0
+	jr z, .asm_1ee2
+	cp $a
+	jr z, .asm_1ee2
+	cp $2e
+	jp z, Func_1f6a
+	ld a, [wc98e]
+	or a
+	jr nz, .asm_1ee2
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_a5060)
+	rst Bankswitch
+	call Func_a5060
+	call Func_a50be
+	call Func_a4e47
+	call Func_a4ba4
+	call Func_a5245
+	call Func_a54a2
+	pop af
+	rst Bankswitch
+	callba_norst Func_2c904
+	callba_norst Func_2e4b2
+.asm_1ee2
+	call Func_1f24
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2e064)
+	rst Bankswitch
+	call Func_2e064
+	pop af
+	rst Bankswitch
+	ld a, [wc98e]
+	or a
+	ret nz
+	ld a, [rLY]
+	cp $64
+	call c, Func_34dc
+	ld a, [wc3e1]
+	cp $4
+	jr z, .asm_1f07
+	cp $5
+	ret nz
+.asm_1f07
+	ret
 
-Func_1f08::
-	dr $1f08, $3171
+Func_1f08: ; 1f08 (0:1f08)
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_a4fcd)
+	rst Bankswitch
+	ld a, $1
+	ld [wc936], a
+	ld a, [wc938]
+	inc a
+	ld [wc938], a
+	call Func_a4fcd
+	call Func_a4fe5
+	pop af
+	rst Bankswitch
+	ret
+
+Func_1f24: ; 1f24 (0:1f24)
+	ld a, [wc918]
+	or a
+	jr z, .asm_1f36
+	dec a
+	ld [wc918], a
+	xor a
+	ld [hJoyLast], a
+	ld [hJoyNew], a
+	ld [wJoyNew], a
+.asm_1f36
+	call Func_3880
+	call Func_200a
+	call Func_2021
+	call Func_1f80
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_3c000)
+	rst Bankswitch
+	call Func_3c000
+	pop af
+	rst Bankswitch
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2ddd9)
+	rst Bankswitch
+	call Func_2ddd9
+	pop af
+	rst Bankswitch
+	ld a, [wc984]
+	inc a
+	ld [wc984], a
+	jr nz, Func_1f6a
+	ld a, [wca6f]
+	inc a
+	ld [wca6f], a
+
+Func_1f6a: ; 1f6a (0:1f6a)
+	callba_norst Func_2e589
+	ld a, [wPrevROMBank]
+	rst Bankswitch
+	ld h, d
+	ld l, e
+	jp [hl]
+.asm_1f79
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_1f79
+	ret
+
+Func_1f80: ; 1f80 (0:1f80)
+	call Func_2107
+	ret nz
+	ld a, [wc49a]
+	cp $0
+	ret nz
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_a501e)
+	rst Bankswitch
+	call Func_a501e
+	pop af
+	rst Bankswitch
+	ld a, [hJoyNew]
+	and $8
+	cp $8
+	jp nz, Func_1fca
+	ld a, [wc9de]
+	or a
+	jr nz, Func_1fca
+	xor a
+	ld [wca5d], a
+	call Func_2411
+	ld b, $c
+	ld a, [wc904]
+	cp $a
+	jr c, .asm_1fbe
+	ld a, [wc904]
+	cp $b
+	jr z, .asm_1fbe
+	ld b, $12
+.asm_1fbe
+	call Func_1fff
+	ld a, b
+	ld [wc3e1], a
+	ld a, $4
+	jp Func_122d
+
+Func_1fca: ; 1fca (0:1fca)
+	ld a, [hJoyNew]
+	and $4
+	jr z, .asm_1ffe
+	ld a, [wc935]
+	or a
+	jr nz, .asm_1ffe
+	ld a, [wc904]
+	ld [wc926], a
+	ld a, [wc906]
+	ld [wc927], a
+	callba_norst Func_c97d2
+	call Func_20f6
+	call Func_1fff
+	ld a, $17
+	ld [wc3e1], a
+	xor a
+	ld [wca5d], a
+	ld a, $4
+	jp Func_122d
+
+.asm_1ffe
+	ret
+
+Func_1fff: ; 1fff (0:1fff)
+	ld a, $0
+	ld [wc94f], a
+	ld [wcad0], a
+	jp Func_342a
+
+Func_200a::
+	dr $200a, $2021
+
+Func_2021::
+	dr $2021, $20f6
+
+Func_20f6::
+	dr $20f6, $2107
+
+Func_2107::
+	dr $2107, $2411
+
+Func_2411::
+	dr $2411, $3171
 
 Func_3171::
-	dr $3171, $3442
+	dr $3171, $342a
+
+Func_342a::
+	dr $342a, $3442
 
 Func_3442::
-	dr $3442, $3869
+	dr $3442, $34dc
+
+Func_34dc::
+	dr $34dc, $3869
 
 Func_3869::
-	dr $3869, $3882
+	dr $3869, $3880
+
+Func_3880::
+	dr $3880, $3882
 
 Func_3882::
 	dr $3882, $39ec

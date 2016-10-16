@@ -18,6 +18,12 @@ callba: MACRO
 	rst FarCall
 ENDM
 
+callba_norst: MACRO
+	ld a, BANK(\1)
+	ld hl, \1
+	call FarCall_HL
+ENDM
+
 jpba: MACRO
 	ld a, BANK(\1)
 	ld hl, \1
