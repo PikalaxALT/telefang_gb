@@ -2,10 +2,16 @@
 # Compares baserom-power.gbc and telepower.gbc
 
 # create baserom.txt if necessary
-if [ ! -f baserom.txt ]; then
-	hexdump -C baserom-power.gbc > baserom.txt
+if ! [ -n "$1" ]; then
+	rom=power
+else
+	rom=$1
 fi
 
-hexdump -C telepower.gbc > telepower.txt
+if [ ! -f baserom-${rom}.txt ]; then
+	hexdump -C baserom-${rom}.gbc > baserom-${rom}.txt
+fi
 
-diff -u baserom.txt telepower.txt | less
+hexdump -C tele${rom}.gbc > tele${rom}.txt
+
+diff -u baserom-${rom}.txt tele${rom}.txt | less

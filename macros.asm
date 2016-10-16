@@ -31,3 +31,12 @@ tile EQUS "+ $10 *"
 lb: MACRO
 	ld \1, ((\2 & $ff) << 8) | (\3 & $ff)
 ENDM
+
+dbw: MACRO
+	db \1
+	dw \2
+ENDM
+
+dba: MACRO
+	dbw BANK(\1), \1
+ENDM

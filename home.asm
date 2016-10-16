@@ -2642,26 +2642,410 @@ Func_1c92::
 	rst Bankswitch
 	jp Func_7c000
 
-Func_1c9b::
-	dr $1c9b, $1cb4
+Func_1c9b: ; 1c9b (0:1c9b)
+	ld a, [wdc05]
+	and a
+	ret z
+	ld a, [wdc04]
+	and a
+	ret nz
+	ld a, [wdc00]
+	and a
+	ret z
+	ld a, [wdc04]
+	and a
+	ret nz
+	ld a, $81
+	ld [rSC], a
+	ret
 
-Serial::
-	dr $1cb4, $1d23
+Serial: ; 1cb4 (0:1cb4)
+	push af
+	push bc
+	push de
+	push hl
+	xor a
+	ld [wdc07], a
+	ld a, [wdc05]
+	cp $2
+	jr z, .asm_1cfb
+	ld a, [rSB]
+	cp $b2
+	jr z, .asm_1cdc
+	cp $fd
+	jr z, .asm_1ce8
+	xor a
+	ld [wdc00], a
+	ld a, $ff
+	ld [rSB], a
+	ld a, $80
+	ld [rSC], a
+	jp Func_1d1e
 
-InitSerialData::
-	dr $1d23, $1d46
+.asm_1cdc
+	ld a, $2
+	ld [wdc05], a
+	ld a, $1
+	ld [wdc00], a
+	jr .asm_1cf1
 
-Func_1d46::
-	dr $1d46, $1d66
+.asm_1ce8
+	ld a, $2
+	ld [wdc05], a
+	xor a
+	ld [wdc00], a
+.asm_1cf1
+	xor a
+	ld [rSB], a
+	ld a, $80
+	ld [rSC], a
+	jp Func_1d1e
 
-Func_1d66::
-	dr $1d66, $1dbc
+.asm_1cfb
+	ld a, $1
+	ld [wdc04], a
+	ld a, [rSB]
+	ld [wdc11], a
+	ld a, [wdc27]
+	ld [rSB], a
+	ld bc, $20
+	call Func_1d57
+	ld a, $80
+	ld [rSC], a
+	xor a
+	ld [wdc04], a
+	call Func_1da5
+	call Func_1d84
+Func_1d1e: ; 1d1e (0:1d1e)
+	pop hl
+	pop de
+	pop bc
+	pop af
+	reti
 
-Func_1dbc::
-	dr $1dbc, $1de1
+InitSerialData: ; 1d23 (0:1d23)
+	ld hl, wda00
+	ld bc, $300
+	call ClearMemory3
+	ld a, $ff
+	ld [rSB], a
+	ld [wdc06], a
+	ld a, $80
+	ld [rSC], a
+	ret
+
+Func_1d38::
+	ld a, $1
+	ld [wdc01], a
+	ld a, $fd
+	ld [rSB], a
+	ld a, $81
+	ld [rSC], a
+	ret
+
+Func_1d46: ; 1d46 (0:1d46)
+	ld a, [wdc05]
+	and a
+	ret nz
+	ld a, $b2
+	ld [rSB], a
+	ld [wdc06], a
+	ld a, $80
+	ld [rSC], a
+	ret
+
+Func_1d57::
+.asm_1d57
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_1d57
+	ret
+	ld hl, wdb00
+	ld bc, $100
+	jp ClearMemory3
+
+Func_1d66: ; 1d66 (0:1d66)
+	di
+	ld a, $1
+	ld [wdc3e], a
+	ld a, [wdc3a]
+	ld l, a
+	ld h, $da
+	ld a, [wdc34]
+	ld [hl], a
+	inc l
+	or a
+	jr z, .asm_1d82
+	ld a, l
+	ld [wdc3a], a
+	xor a
+	ld [wdc34], a
+.asm_1d82
+	ei
+	ret
+
+Func_1d84::
+	ld a, [wdc3e]
+	and a
+	jr z, .asm_1da0
+	xor a
+	ld [wdc3e], a
+	ld a, [wdc3c]
+	ld l, a
+	ld h, $da
+	ld a, [hl]
+	inc l
+	ld [wdc27], a
+	or a
+	ret z
+	ld a, l
+	ld [wdc3c], a
+	ret
+
+.asm_1da0
+	xor a
+	ld [wdc27], a
+	ret
+
+Func_1da5::
+	ld a, $1
+	ld [wdc43], a
+	ld a, [wdc3f]
+	ld l, a
+	ld h, $db
+	ld a, [wdc11]
+	ld [hl], a
+	inc l
+	or a
+	ret z
+	ld a, l
+	ld [wdc3f], a
+	ret
+
+Func_1dbc: ; 1dbc (0:1dbc)
+	di
+	ld a, [wdc43]
+	and a
+	jr z, .asm_1ddb
+	xor a
+	ld [wdc43], a
+	ld a, [wdc41]
+	ld l, a
+	ld h, $db
+	ld a, [hl]
+	inc l
+	ld [wdc2e], a
+	or a
+	jr z, .asm_1dd9
+	ld a, l
+	ld [wdc41], a
+.asm_1dd9
+	ei
+	ret
+
+.asm_1ddb
+	xor a
+	ld [wdc2e], a
+	ei
+	ret
 
 Pointers_1de1:
-	dr $1de1, $1ea1
+IF DEF(POWER)
+	dw $0000
+	dw $41ee
+	dw $60a9
+	dw $4000
+	dw $45b0
+	dw $5512
+	dw $5973
+	dw $47d9
+	dw $4e1d
+	dw $4f2f
+	dw $4e55
+	dw $53cc
+	dw $43ed
+	dw $5b75
+	dw $5c36
+	dw $4a92
+	dw $4cea
+	dw $4000
+	dw $5c34
+	dw $52ac
+	dw $617f
+	dw $627d
+	dw $5190
+	dw $5c8e
+	dw $63ff
+	dw $5649
+	dw $57bc
+	dw $5a48
+	dw $0000
+	dw $65c9
+	dw $622e
+	dw $648d
+	dw $4000
+	dw $4606
+	dw $4b7c
+	dw $5180
+	dw $55ce
+	dw $5b16
+	dw $6144
+	dw $6807
+	dw $6e50
+	dw $741b
+	dw $784a
+	dw $6d29
+	dw $719a
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $4000
+	dw $45ad
+	dw $4600
+	dw $4c16
+	dw $5229
+	dw $5901
+	dw $5a04
+	dw $5fb6
+	dw $65b6
+	dw $6b78
+	dw $4000
+	dw $4309
+	dw $44ce
+	dw $455c
+	dw $47cb
+	dw $4887
+	dw $4a01
+	dw $4e17
+	dw $4fbd
+	dw $5460
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $5ce2
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $6c7f
+	dw $736f
+	dw $7928
+	dw $0000
+	dw $439d
+	dw $4629
+	dw $4753
+	dw $488f
+	dw $48e8
+	dw $4267
+	dw $4000
+	dw $4996
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+ELSE
+	dw $0000
+	dw $41ee
+	dw $615c
+	dw $4000
+	dw $45b0
+	dw $5512
+	dw $5a26
+	dw $47d9
+	dw $4e1d
+	dw $4f2f
+	dw $4e55
+	dw $5416
+	dw $43ed
+	dw $5b75
+	dw $5ce9
+	dw $4a92
+	dw $4cea
+	dw $4000
+	dw $5c34
+	dw $52ac
+	dw $6232
+	dw $6330
+	dw $5190
+	dw $5c8e
+	dw $64b2
+	dw $5649
+	dw $57bc
+	dw $5a48
+	dw $0000
+	dw $65c9
+	dw $622e
+	dw $648d
+	dw $4000
+	dw $4606
+	dw $4b7c
+	dw $5180
+	dw $55ce
+	dw $5b16
+	dw $6144
+	dw $6807
+	dw $6e50
+	dw $741b
+	dw $784a
+	dw $6d29
+	dw $719a
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $4000
+	dw $45e1
+	dw $4658
+	dw $4c6e
+	dw $5281
+	dw $59bd
+	dw $5a27
+	dw $600a
+	dw $6629
+	dw $6c1d
+	dw $4000
+	dw $4309
+	dw $44ce
+	dw $455c
+	dw $47b3
+	dw $486f
+	dw $49e9
+	dw $4dff
+	dw $4fa5
+	dw $546b
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $5ce2
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $6d07
+	dw $73f7
+	dw $79b0
+	dw $0000
+	dw $439d
+	dw $4629
+	dw $4753
+	dw $488f
+	dw $48e8
+	dw $4267
+	dw $4000
+	dw $4996
+	dw $0000
+	dw $0000
+	dw $0000
+	dw $0000
+ENDC
 
 Func_1ea1::
 	dr $1ea1, $1f08
