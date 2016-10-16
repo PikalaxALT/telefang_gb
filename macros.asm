@@ -59,3 +59,25 @@ ENDR
 	pop af
 	rst Bankswitch
 ENDM
+
+homecall_memret: MACRO
+	ld a, BANK(\1)
+	rst Bankswitch
+REPT _NARG
+	call \1
+	shift
+ENDR
+	rst MemBankswitch
+ENDM
+
+homecall_memret_passa: MACRO
+	push af
+	ld a, BANK(\1)
+	rst Bankswitch
+	pop af
+REPT _NARG
+	call \1
+	shift
+ENDR
+	rst MemBankswitch
+ENDM

@@ -244,6 +244,8 @@ ClearWRAM0: ; 97c (0:097c)
 	ld bc, $1e60
 	ld hl, wOAMAnimations
 	jp ClearMemory3
+
+Func_0985::
 	ld a, $1
 	ld [wc430], a
 	ld bc, $300
@@ -3318,29 +3320,403 @@ Func_20f6: ; 20f6 (0:20f6)
 	rst Bankswitch
 	ret
 
-Func_2107::
-	dr $2107, $2411
+Func_2107: ; 2107 (0:2107)
+	ld a, [wcd00]
+	or a
+	jr nz, .asm_2121
+	ld a, [wc3e1]
+	cp $4
+	jr nz, .asm_2121
+	ld a, [wc98e]
+	or a
+	jr nz, .asm_2121
+	ld a, [wc900]
+	cp $1
+	jr nz, .asm_2121
+.asm_2121
+	ret
+
+Func_2122::
+	ld hl, $8000
+	ld de, Func_1ea1
+	ld bc, $1800
+	call Func_3801
+	ld a, $a
+	ld [wc3e1], a
+	ret
+
+Func_2134::
+	ld bc, $180
+	ld hl, wc980
+.asm_213a
+	xor a
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_213a
+	ld a, $0
+	ld [wcd20], a
+	ld a, $0
+	ld [wca5d], a
+	ld a, $0
+	ld [wcd21], a
+	ld a, [wc92a]
+	ld b, a
+	ld a, [wc92b]
+	ld c, a
+	ld a, [wc3c0]
+	ld b, a
+	ld a, [wc922]
+	add b
+	ld [wc922], a
+	ld a, [wc923]
+	add b
+	ld [wc923], a
+	homecall Func_a52b2
+	ld a, $0
+	ld [wcdb1], a
+	call Func_24f6
+	call Func_2264
+	call Func_3252
+	call Func_0985
+	homecall Func_c96ba
+	callba_norst Func_3d00e
+	ld a, $c
+	ld [wPrevROMBank], a
+	ld a, BANK(Func_3394e)
+	rst Bankswitch
+	call Func_3394e
+	call Func_3395
+	call Func_225b
+	ld a, $4
+	ld [wc3e1], a
+	ld b, $3
+.asm_21b3
+	push bc
+	homecall Func_3c00c
+	call Func_236c
+	homecall Func_30000
+	pop bc
+	dec b
+	jr nz, .asm_21b3
+	ld a, $0
+	ld [wc3e1], a
+	jp Func_0ea3
+
+Func_21db::
+	ld a, $0
+	ld [wc947], a
+	ld [wcd20], a
+	ld [wca5d], a
+	call Func_2264
+	call Func_3255
+	call Func_241e
+	ld a, $0
+	ld [wc9cf], a
+	ld [wc956], a
+	ld [wcd21], a
+	ld a, [wc900]
+	cp $3
+	jr nz, .asm_2213
+	ld a, $0
+	ld [wc496], a
+	ld [wc495], a
+	ld a, $10
+	ld [wc49a], a
+	ld a, $1
+	ld [wc900], a
+.asm_2213
+	cp $8
+	jr nz, .asm_221c
+	ld a, $0
+	ld [wc4ba], a
+.asm_221c
+	call Func_3395
+	call Func_225b
+	ld a, $ff
+	ld [wc9f5], a
+	call Func_31c5
+	ld a, BANK(Func_30240)
+	rst Bankswitch
+	ld a, $ff
+	ld [wca51], a
+	call Func_30240
+	ld a, $4
+	ld [wc3e1], a
+	call Func_236c
+	homecall Func_30000
+	ld a, $1
+	ld [wc3e1], a
+	homecall Func_3c00c
+	ret
+
+Func_225b: ; 225b (0:225b)
+	xor a
+	ld [hJoyLast], a
+	ld [hJoyNew], a
+	ld [wJoyNew], a
+	ret
+
+Func_2264: ; 2264 (0:2264)
+	call Func_2793
+	ld a, $5e
+	ld [wc9ee], a
+	callba_norst Func_2e0d2
+	call Func_3388
+	call Func_37d5
+	ld a, $0
+	ld [wc9de], a
+	ld [wc935], a
+	ld [wc91a], a
+	ld a, [wc904]
+	cp $b
+	jr nz, .asm_2296
+	ld a, $1
+	ld [wc9de], a
+	ld a, $1
+	ld [wc935], a
+.asm_2296
+	ld a, [wc904]
+	cp $32
+	jr nc, .asm_22a6
+	cp $2b
+	jr c, .asm_22a6
+	ld a, $1
+	ld [wc9de], a
+.asm_22a6
+	call Func_35e0
+	homecall Func_a4f6f, Func_a502a
+	ld a, $0
+	ld [wcad0], a
+	ld a, $c
+	ld [wPrevROMBank], a
+	rst Bankswitch
+	ld a, [wcd00]
+	or a
+	jp nz, Func_22d2
+	ld hl, wcd00
+	ld b, $20
+	call Func_2f76
+Func_22d2: ; 22d2 (0:22d2)
+	call Func_32ff
+	ld a, $e3
+	ld [wLCDC], a
+	ld a, $7
+	ld [wc3c4], a
+	ld a, $80
+	ld [wc3c5], a
+	ld a, $0
+	ld [wc95a], a
+	ld a, [wc912]
+	ld [wd409], a
+	call Func_05d1
+	ld a, [wd409]
+	ld [wc9db], a
+	xor a
+	ld [wc952], a
+	ld c, $8
+	ld hl, wca48
+.asm_2301
+	ld [hli], a
+	dec c
+	jr nz, .asm_2301
+	ld a, [wc905]
+	cp $4
+	jr nz, .asm_231a
+	ld bc, $448
+	call Func_2c4d
+	ret z
+	ld bc, $210
+	call Func_2c4d
+	ret nz
+.asm_231a
+	call Func_3435
+	ret
+
+Func_231e::
+	call Func_33a2
+	ld a, $1
+	ld [wc430], a
+	jp Func_0ea3
+
+Func_2329::
+	ld a, $e0
+	ld [wc91e], a
+	call Func_3566
+	ld a, $1
+	ld [wcd20], a
+	ld a, [wc958]
+	or a
+	jr z, .asm_234b
+	ld a, [wc904]
+	ld [wca69], a
+	callba_norst Func_c99ac
+	ret
+
+.asm_234b
+	ld a, $5
+	call Func_122d
+	jp Func_0ea3
+
+Func_2353::
+	ld a, $1
+	ld [wc430], a
+	ld a, $0
+	call Func_1248
+	or a
+	ret z
+	ld a, [wc9cf]
+	or a
+	jp z, Func_0ea3
+	ld a, $5
+	ld [wc3e1], a
+	ret
+
+Func_236c: ; 236c (0:236c)
+	ld a, BANK(Func_38f8d)
+	ld [wPrevROMBank], a
+	ld a, [wc49b]
+	ld b, a
+	ld a, [wc483]
+	sub b
+	ld [wc483], a
+	ld a, [wc49c]
+	ld b, a
+	ld a, [wc484]
+	sub b
+	ld [wc484], a
+	homecall Func_38f8d
+	ld a, [wc3e1]
+	cp $4
+	jr nz, .asm_23bc
+	ld a, [wc49b]
+	ld b, a
+	ld a, [wc483]
+	add b
+	ld [wc483], a
+	ld a, [wc49c]
+	ld b, a
+	ld a, [wc484]
+	add b
+	ld [wc484], a
+	homecall Func_30000
+.asm_23bc
+	rst MemBankswitch
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Func_23c3::
+	call Func_23e2
+	ld a, $6
+	ld [wc3e0], a
+	ld a, $0
+	ld [wc3e1], a
+	ret
+
+Func_23d1::
+	call Func_2411
+	call Func_23e2
+	ld a, $c
+	ld [wc3e0], a
+	ld a, $0
+	ld [wc3e1], a
+	ret
+
+Func_23e2: ; 23e2 (0:23e2)
+	ld a, [wc483]
+	ld [wc901], a
+	ld a, [wc484]
+	ld [wc902], a
+	ld a, $7
+	ld [wc3c4], a
+	ld a, $90
+	ld [wc3c5], a
+	ld hl, wc9fc
+	ld a, $0
+	ld [hli], a
+	ld a, $98
+	ld [hl], a
+	ld a, $0
+	ld [wc3c2], a
+	ld a, $0
+	ld [wc3c3], a
+	ld a, $1
+	ld [wc430], a
+	ret
 
 Func_2411::
-	dr $2411, $30a7
+	dr $2411, $241e
+
+Func_241e::
+	dr $241e, $24f6
+
+Func_24f6::
+	dr $24f6, $2793
+
+Func_2793::
+	dr $2793, $2c4d
+
+Func_2c4d::
+	dr $2c4d, $2f76
+
+Func_2f76::
+	dr $2f76, $30a7
 
 Func_30a7::
 	dr $30a7, $3171
 
 Func_3171::
-	dr $3171, $33c9
+	dr $3171, $31c5
+
+Func_31c5::
+	dr $31c5, $3252
+
+Func_3252::
+	dr $3252, $3255
+
+Func_3255::
+	dr $3255, $32ff
+
+Func_32ff::
+	dr $32ff, $3388
+
+Func_3388::
+	dr $3388, $3395
+
+Func_3395::
+	dr $3395, $33a2
+
+Func_33a2::
+	dr $33a2, $33c9
 
 Func_33c9::
 	dr $33c9, $342a
 
 Func_342a::
-	dr $342a, $3442
+	dr $342a, $3435
+
+Func_3435::
+	dr $3435, $3442
 
 Func_3442::
 	dr $3442, $34dc
 
 Func_34dc::
-	dr $34dc, $3869
+	dr $34dc, $3566
+
+Func_3566::
+	dr $3566, $35e0
+
+Func_35e0::
+	dr $35e0, $37d5
+
+Func_37d5::
+	dr $37d5, $3801
+
+Func_3801::
+	dr $3801, $3869
 
 Func_3869::
 	dr $3869, $3880

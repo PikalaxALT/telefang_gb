@@ -55,12 +55,7 @@ GetCGB_OBLayout_::
 	ret
 
 Func_04c0::
-	push af
-	ld a, BANK(Func_c320)
-	rst Bankswitch
-	pop af
-	call Func_c320
-	rst MemBankswitch
+	homecall_memret_passa Func_c320
 	ret
 
 Func_04ca::
@@ -126,24 +121,15 @@ GetTFangerPicPointer_::
 	ret
 
 Func_0520::
-	ld a, BANK(Func_2c766)
-	rst Bankswitch
-	call Func_2c766
-	rst MemBankswitch
+	homecall_memret Func_2c766
 	ret
 
 Func_0528::
-	ld a, BANK(Func_2c7ed)
-	rst Bankswitch
-	call Func_2c7ed
-	rst MemBankswitch
+	homecall_memret Func_2c7ed
 	ret
 
 Func_0530::
-	ld a, BANK(Func_2c100)
-	rst Bankswitch
-	call Func_2c100
-	rst MemBankswitch
+	homecall_memret Func_2c100
 	ret
 
 Func_0538::
@@ -275,17 +261,11 @@ Func_05b6::
 	ret
 
 Func_05c1::
-	ld a, BANK(Func_fb8d)
-	rst Bankswitch
-	call Func_fb8d
-	rst MemBankswitch
+	homecall_memret Func_fb8d
 	ret
 
 Func_05c9::
-	ld a, BANK(Func_fb3e)
-	rst Bankswitch
-	call Func_fb3e
-	rst MemBankswitch
+	homecall_memret Func_fb3e
 	ret
 
 Func_05d1::
@@ -363,17 +343,11 @@ Func_0620::
 	ret
 
 Func_0628::
-	ld a, BANK(Func_2d99b)
-	rst Bankswitch
-	call Func_2d99b
-	rst MemBankswitch
+	homecall_memret Func_2d99b
 	ret
 
 Func_0630::
-	ld a, BANK(Func_a8d20)
-	rst Bankswitch
-	call Func_a8d20
-	rst MemBankswitch
+	homecall_memret Func_a8d20
 	ret
 
 Func_0638::
@@ -391,52 +365,27 @@ Func_0640::
 	ret
 
 Func_0648::
-	ld a, BANK(Func_a4000)
-	rst Bankswitch
-	call Func_a4000
-	rst MemBankswitch
+	homecall_memret Func_a4000
 	ret
 
 Func_0650::
-	push af
-	ld a, BANK(Func_a42a3)
-	rst Bankswitch
-	pop af
-	call Func_a42a3
-	rst MemBankswitch
+	homecall_memret_passa Func_a42a3
 	ret
 
 Func_065a::
-	ld a, [wROMBank]
-	push af
-	ld a, BANK(Func_a4e12)
-	rst Bankswitch
-	call Func_a4e12
-	pop af
-	rst Bankswitch
+	homecall Func_a4e12
 	ret
 
 Func_0667::
-	push af
-	ld a, BANK(Func_a42e5)
-	rst Bankswitch
-	pop af
-	call Func_a42e5
-	rst MemBankswitch
+	homecall_memret_passa Func_a42e5
 	ret
 
 Func_0671::
-	ld a, BANK(Func_a8539)
-	rst Bankswitch
-	call Func_a8539
-	rst MemBankswitch
+	homecall_memret Func_a8539
 	ret
 
 Func_0679::
-	ld a, BANK(Func_2ded9)
-	rst Bankswitch
-	call Func_2ded9
-	rst MemBankswitch
+	homecall_memret Func_2ded9
 	ret
 
 Func_0681::
@@ -462,17 +411,11 @@ Func_0691::
 	ret
 
 Func_069c::
-	ld a, BANK(Func_a4e02)
-	rst Bankswitch
-	call Func_a4e02
-	rst MemBankswitch
+	homecall_memret Func_a4e02
 	ret
 
 Func_06a4::
-	ld a, BANK(Func_a5418)
-	rst Bankswitch
-	call Func_a5418
-	rst MemBankswitch
+	homecall_memret Func_a5418
 	ret
 
 Func_06ac::
@@ -483,31 +426,19 @@ Func_06ac::
 	ret
 
 Func_06b4::
-	ld a, BANK(Func_7c61b)
-	rst Bankswitch
-	call Func_7c61b
-	rst MemBankswitch
+	homecall_memret Func_7c61b
 	ret
 
 Func_06bc::
-	ld a, BANK(Func_74ff2)
-	rst Bankswitch
-	call Func_74ff2
-	rst MemBankswitch
+	homecall_memret Func_74ff2
 	ret
 
 Func_06c4::
-	ld a, BANK(Func_758f8)
-	rst Bankswitch
-	call Func_758f8
-	rst MemBankswitch
+	homecall_memret Func_758f8
 	ret
 
 Func_06cc::
-	ld a, BANK(Func_a40ef)
-	rst Bankswitch
-	call Func_a40ef
-	rst MemBankswitch
+	homecall_memret Func_a40ef
 	ret
 
 Func_06d4::
@@ -543,10 +474,7 @@ Func_06e4::
 	ret
 
 Func_0704::
-	ld a, BANK(Func_753f8)
-	rst Bankswitch
-	call Func_753f8
-	rst MemBankswitch
+	homecall_memret Func_753f8
 	ret
 
 Func_070c::
@@ -573,8 +501,5 @@ Func_071c::
 	ret
 
 Func_072f::
-	ld a, BANK(Func_872e)
-	rst Bankswitch
-	call Func_872e
-	rst MemBankswitch
+	homecall_memret Func_872e
 	ret
