@@ -2414,11 +2414,81 @@ Func_1afc::
 	call CopyData
 	ret
 
-Func_1b4d::
-	dr $1b4d, $1b9c
+Func_1b4d: ; 1b4d (0:1b4d)
+	xor a
+	ld [wcb20], a
+	ld hl, Data_a6b69
+	ld b, $e
+.asm_1b56
+	push bc
+	push hl
+	call Func_1b77
+	cp $0
+	jr z, .asm_1b72
+	ld a, [wcb20]
+	inc a
+	ld [wcb20], a
+	pop hl
+	ld de, $e
+	add hl, de
+	pop bc
+	dec b
+	jr nz, .asm_1b56
+	ld c, $1
+	ret
 
-Func_1b9c::
-	dr $1b9c, $1bb3
+.asm_1b72
+	pop hl
+	pop bc
+	ld c, $0
+	ret
+
+Func_1b77: ; 1b77 (0:1b77)
+	ld b, $e
+	ld de, wd200
+.asm_1b7c
+	push bc
+	ld a, [hli]
+	ld b, a
+	ld a, [de]
+	inc de
+	cp b
+	jr nz, .asm_1b8b
+	pop bc
+	dec b
+	jr nz, .asm_1b7c
+	ld a, $0
+	ret
+
+.asm_1b8b
+	pop bc
+	ld a, $1
+	ret
+
+Func_1b8f::
+	ld a, $1
+	jr asm_1b95
+
+Func_1b93::
+	ld a, $0
+asm_1b95
+	ld [rSB], a
+	ld a, $81
+	ld [rSC], a
+	ret
+
+Func_1b9c: ; 1b9c (0:1b9c)
+	ld d, a
+	ld a, WILD_BG_GFX
+	rst Bankswitch
+	ld e, $0
+	sla e
+	rl d
+	ld hl, WildBG_001
+	add hl, de
+	ld de, VTilesBG tile $e
+	ld bc, WildBG_002 - WildBG_001
+	jp WaitStatCopy
 
 Func_1bb3::
 	dr $1bb3, $1bb8

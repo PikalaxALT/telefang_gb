@@ -26,6 +26,7 @@ ENDM
 
 palettes EQUS "* 8"
 tiles EQUS "* $10"
+tile EQUS "+ $10 *"
 
 lb: MACRO
 	ld \1, ((\2 & $ff) << 8) | (\3 & $ff)

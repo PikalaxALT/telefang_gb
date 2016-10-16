@@ -476,7 +476,7 @@ Func_06a4::
 	ret
 
 Func_06ac::
-	ld a, $29
+	ld a, BANK(Data_a6b69)
 	rst Bankswitch
 	call Func_1b4d
 	rst MemBankswitch

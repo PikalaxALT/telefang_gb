@@ -484,7 +484,10 @@ Func_a5418::
 	dr $a5418, $a5525
 
 Func_a5525::
-	dr $a5525, $a8000
+	dr $a5525, $a6b69
+
+Data_a6b69::
+	dr $a6b69, $a8000
 
 SECTION "bank 2A", ROMX, BANK [$2a]
 	dr $a8000, $a8539
@@ -690,9 +693,6 @@ SECTION "bank 6A", ROMX, BANK [$6a]
 
 SECTION "bank 75", ROMX, BANK [$75]
 	dr $1d4000, $1d8000
-
-SECTION "bank 76", ROMX, BANK [$76]
-	dr $1d8000, $1dc000
 
 SECTION "bank 77", ROMX, BANK [$77]
 	dr $1dc000, $1e0000
