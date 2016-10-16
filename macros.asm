@@ -46,3 +46,16 @@ ENDM
 dba: MACRO
 	dbw BANK(\1), \1
 ENDM
+
+homecall: MACRO
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(\1)
+	rst Bankswitch
+REPT _NARG
+	call \1
+	shift
+ENDR
+	pop af
+	rst Bankswitch
+ENDM

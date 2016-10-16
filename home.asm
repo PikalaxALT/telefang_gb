@@ -3058,29 +3058,12 @@ Func_1ea1: ; 1ea1 (0:1ea1)
 	ld a, [wc98e]
 	or a
 	jr nz, .asm_1ee2
-	ld a, [wROMBank]
-	push af
-	ld a, BANK(Func_a5060)
-	rst Bankswitch
-	call Func_a5060
-	call Func_a50be
-	call Func_a4e47
-	call Func_a4ba4
-	call Func_a5245
-	call Func_a54a2
-	pop af
-	rst Bankswitch
+	homecall Func_a5060, Func_a50be, Func_a4e47, Func_a4ba4, Func_a5245, Func_a54a2
 	callba_norst Func_2c904
 	callba_norst Func_2e4b2
 .asm_1ee2
 	call Func_1f24
-	ld a, [wROMBank]
-	push af
-	ld a, BANK(Func_2e064)
-	rst Bankswitch
-	call Func_2e064
-	pop af
-	rst Bankswitch
+	homecall Func_2e064
 	ld a, [wc98e]
 	or a
 	ret nz
@@ -3126,20 +3109,8 @@ Func_1f24: ; 1f24 (0:1f24)
 	call Func_200a
 	call Func_2021
 	call Func_1f80
-	ld a, [wROMBank]
-	push af
-	ld a, BANK(Func_3c000)
-	rst Bankswitch
-	call Func_3c000
-	pop af
-	rst Bankswitch
-	ld a, [wROMBank]
-	push af
-	ld a, BANK(Func_2ddd9)
-	rst Bankswitch
-	call Func_2ddd9
-	pop af
-	rst Bankswitch
+	homecall Func_3c000
+	homecall Func_2ddd9
 	ld a, [wc984]
 	inc a
 	ld [wc984], a
@@ -3167,13 +3138,7 @@ Func_1f80: ; 1f80 (0:1f80)
 	ld a, [wc49a]
 	cp $0
 	ret nz
-	ld a, [wROMBank]
-	push af
-	ld a, BANK(Func_a501e)
-	rst Bankswitch
-	call Func_a501e
-	pop af
-	rst Bankswitch
+	homecall Func_a501e
 	ld a, [hJoyNew]
 	and $8
 	cp $8
@@ -3229,23 +3194,144 @@ Func_1fff: ; 1fff (0:1fff)
 	ld [wcad0], a
 	jp Func_342a
 
-Func_200a::
-	dr $200a, $2021
+Func_200a: ; 200a (0:200a)
+	call Func_2107
+	ret nz
+	ld a, [wcdb6]
+	or a
+	ret z
+	add $a1
+	ld c, a
+	ld b, $0
+	call Func_33c9
+	ld a, $0
+	ld [wcdb6], a
+	ret
 
-Func_2021::
-	dr $2021, $20f6
+Func_2021: ; 2021 (0:2021)
+	ld a, [wc91d]
+	or a
+	jp nz, Func_20b1
+	ld a, [wc904]
+	cp $b
+	ret z
+	cp $32
+	jr nc, .asm_2041
+	cp $2b
+	ret nc
+	ld a, [wc905]
+	cp $2
+	ret z
+	cp $4
+	ret z
+	cp $c
+	ret nc
+.asm_2041
+	ld a, [wc94f]
+	or a
+	ret nz
+	call Func_2107
+	ret nz
+	ld a, [wc49a]
+	or a
+	ret nz
+	ld a, [wc98f]
+	or a
+	ret z
+	ld a, [wcdb2]
+	or a
+	ret nz
+	homecall Func_a8788
+	ld a, b
+	or a
+	ret nz
+	ld a, [wc951]
+	ld h, a
+	ld a, [wc950]
+	ld l, a
+	ld bc, $1
+	ld a, [hJoyLast]
+	and $2
+	jr z, .asm_207c
+	ld bc, $2
+.asm_207c
+	add hl, bc
+	ld a, [wca5e]
+	cp $1
+	jr nz, .asm_2087
+	add hl, bc
+	add hl, bc
+	add hl, bc
+.asm_2087
+	ld a, h
+	ld [wc951], a
+	ld a, l
+	ld [wc950], a
+	ld bc, -$320
+	add hl, bc
+	bit 7, h
+	jr nz, asm_20f5
+	homecall Func_a85e5
+	ld a, b
+	ld [wd402], a
+	ld a, $0
+	ld [wd406], a
+	ld a, $0
+	ld [wd403], a
+Func_20b1: ; 20b1 (0:20b1)
+	call Func_20f6
+	ld a, [wc3e1]
+	cp $5
+	ret z
+	call Func_30a7
+	and $3
+	ld b, a
+	homecall Func_c9868
+	ld a, $0
+	ld [wc9d9], a
+	ld [wc91d], a
+	ld a, $6
+	ld [wc3e1], a
+	ld a, $1
+	ld [wc917], a
+	call GetMusicBank
+	ld [hFFA0], a
+	ld a, $0
+	ld [wca5d], a
+	ld a, $0
+	ld [wc950], a
+	ld [wc951], a
+	call Func_2411
+	add sp, $2
+asm_20f5
+	ret
 
-Func_20f6::
-	dr $20f6, $2107
+Func_20f6: ; 20f6 (0:20f6)
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_a8663)
+	rst Bankswitch
+	call Func_a8663
+	ld a, b
+	ld [wc9da], a
+	pop af
+	rst Bankswitch
+	ret
 
 Func_2107::
 	dr $2107, $2411
 
 Func_2411::
-	dr $2411, $3171
+	dr $2411, $30a7
+
+Func_30a7::
+	dr $30a7, $3171
 
 Func_3171::
-	dr $3171, $342a
+	dr $3171, $33c9
+
+Func_33c9::
+	dr $33c9, $342a
 
 Func_342a::
 	dr $342a, $3442

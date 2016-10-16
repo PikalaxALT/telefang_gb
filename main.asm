@@ -670,7 +670,16 @@ SECTION "bank 2A", ROMX, BANK [$2a]
 	dr $a8000, $a8539
 
 Func_a8539::
-	dr $a8539, $a8d20
+	dr $a8539, $a85e5
+
+Func_a85e5::
+	dr $a85e5, $a8663
+
+Func_a8663::
+	dr $a8663, $a8788
+
+Func_a8788::
+	dr $a8788, $a8d20
 
 Func_a8d20::
 	dr $a8d20, $ac000
@@ -700,7 +709,10 @@ SECTION "bank 32", ROMX, BANK [$32]
 	dr $c8000, $c97d2
 
 Func_c97d2::
-	dr $c97d2, $cc000
+	dr $c97d2, $c9868
+
+Func_c9868::
+	dr $c9868, $cc000
 
 SECTION "bank 33", ROMX, BANK [$33]
 	dr $cc000, $d0000
