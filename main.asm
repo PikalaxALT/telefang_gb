@@ -81,7 +81,10 @@ Func_2d99b::
 	dr $2d99b, $2ded9
 
 Func_2ded9::
-	dr $2ded9, $30000
+	dr $2ded9, $2e8fa
+
+Data_2e8fa::
+	dr $2e8fa, $30000
 
 SECTION "bank 0C", ROMX, BANK [$0c]
 	dr $30000, $33ac4
@@ -529,7 +532,12 @@ SECTION "bank 36", ROMX, BANK [$36]
 	dr $d8000, $dc000
 
 SECTION "bank 37", ROMX, BANK [$37]
-	dr $dc000, $e0000
+	dr $dc000, $ddd5f
+
+Phone1GFX:: INCBIN "gfx/phone/phone1.2bpp"
+Phone2GFX:: INCBIN "gfx/phone/phone2.2bpp"
+Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
+	dr $de95f, $e0000
 
 SECTION "bank 38", ROMX, BANK [$38]
 	dr $e0000, $e4000

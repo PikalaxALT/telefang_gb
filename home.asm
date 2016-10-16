@@ -1726,6 +1726,7 @@ Func_15b0::
 	ld hl, 0
 	ret
 
+CopyData::
 .asm_15c1
 	ld a, [hli]
 	ld [de], a
@@ -2228,14 +2229,190 @@ Pointers_19c3::
 	dw Func_6c082
 	dw Func_6c082
 
-Func_1a09::
-	dr $1a09, $1ac6
+Func_1a09: ; 1a09 (0:1a09)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s1_a000)
+	ld [MBC3SRamBank], a
+	ld hl, s1_a000
+	ld bc, s1_b000 - s1_a000
+.asm_1a19
+	ld a, $fe
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_1a19
+	ld de, s1_a000
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	ld de, s1_a200
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	ld de, s1_a400
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	ld de, s1_a600
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	ld de, s1_a800
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	ld de, s1_aa00
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	ld de, s1_ac00
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	ld de, s1_ae00
+	ld hl, Data_1a86
+	ld bc, $8
+	call CopyData
+	xor a
+	ld [MBC3SRamEnable], a
+	ret
+
+Data_1a86::
+	db $01
+	db $00
+	db $01
+	db $02
+	db $21
+	db $02
+	db $41
+	db $02
+
+Func_1a8e::
+	sla c
+	rl b
+	sla c
+	rl b
+	ld hl, Data_2e8fa
+	add hl, bc
+	ld de, wc9e1
+	ld c, $4
+.asm_1a9f
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Data_2e8fa)
+	rst Bankswitch
+	ld b, [hl]
+	pop af
+	rst Bankswitch
+	ld a, b
+	ld [de], a
+	inc hl
+	inc de
+	dec c
+	jr nz, .asm_1a9f
+	ld a, $e0
+	ld [de], a
+	ld hl, VTilesBG + $40 tiles
+	ld b, $4
+	call $5a06
+	ld de, wc9e1
+	ld b, $4
+	ld hl, VTilesBG + $40 tiles
+	jp Func_0560
 
 Func_1ac6::
-	dr $1ac6, $1acb
+	ld de, VTilesBG + $40 tiles
+	jr asm_1ace
 
 Func_1acb::
-	dr $1acb, $1b4d
+	ld de, VTilesBG
+asm_1ace
+	push de
+	ld a, PHONE_GFX
+	rst Bankswitch
+	ld a, [wCurPhoneGFX]
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	ld hl, Pointers_1aea
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop de
+	ld bc, $20 tiles
+	jp WaitStatCopy
+
+Pointers_1aea::
+	dw Phone1GFX
+	dw Phone1GFX
+	dw Phone1GFX
+	dw Phone2GFX
+	dw Phone2GFX
+	dw Phone2GFX
+	dw Phone3GFX
+	dw Phone3GFX
+	dw Phone3GFX
+
+Func_1afc::
+	ld c, a
+	ld hl, wcd70
+	ld b, $8
+.asm_1b02
+	ld a, [hl]
+	cp c
+	jr z, .asm_1b0f
+	ld de, $4
+	add hl, de
+	dec b
+	jr nz, .asm_1b02
+	jr .asm_1b25
+
+.asm_1b0f
+	ld a, b
+	dec a
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	push hl
+	ld de, $4
+	add hl, de
+	pop de
+	call CopyData
+.asm_1b25
+	ld hl, wcd90
+	ld b, $8
+.asm_1b2a
+	ld a, [hl]
+	cp c
+	jr z, .asm_1b36
+	ld de, $4
+	add hl, de
+	dec b
+	jr nz, .asm_1b2a
+	ret
+
+.asm_1b36
+	ld a, b
+	dec a
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	push hl
+	ld de, $4
+	add hl, de
+	pop de
+	call CopyData
+	ret
 
 Func_1b4d::
 	dr $1b4d, $1b9c

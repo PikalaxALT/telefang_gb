@@ -2613,7 +2613,7 @@ wcdb1:: ds 1
 wcdb2:: ds 1
 wcdb3:: ds 1
 wcdb4:: ds 1
-wcdb5:: ds 1
+wCurPhoneGFX:: ds 1
 wcdb6:: ds 1
 wcdb7:: ds 1
 wcdb8:: ds 1
