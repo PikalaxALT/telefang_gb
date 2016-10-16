@@ -209,7 +209,10 @@ Func_2c7ed::
 	dr $2c7ed, $2c904
 
 Func_2c904::
-	dr $2c904, $2d99b
+	dr $2c904, $2ccb9
+
+Func_2ccb9::
+	dr $2ccb9, $2d99b
 
 Func_2d99b::
 	dr $2d99b, $2ddd9
@@ -218,7 +221,13 @@ Func_2ddd9::
 	dr $2ddd9, $2ded9
 
 Func_2ded9::
-	dr $2ded9, $2e064
+	dr $2ded9, $2df1e
+
+Func_2df1e::
+	dr $2df1e, $2df55
+
+Func_2df55::
+	dr $2df55, $2e064
 
 Func_2e064::
 	dr $2e064, $2e0d2
@@ -740,10 +749,16 @@ Func_c96ba::
 	dr $c96ba, $c97d2
 
 Func_c97d2::
-	dr $c97d2, $c9868
+	dr $c97d2, $c981a
+
+Func_c981a::
+	dr $c981a, $c9868
 
 Func_c9868::
-	dr $c9868, $c99ac
+	dr $c9868, $c9875
+
+Func_c9875::
+	dr $c9875, $c99ac
 
 Func_c99ac::
 	dr $c99ac, $cc000

@@ -3646,11 +3646,102 @@ Func_23e2: ; 23e2 (0:23e2)
 	ld [wc430], a
 	ret
 
-Func_2411::
-	dr $2411, $241e
+Func_2411: ; 2411 (0:2411)
+	homecall Func_2df1e
+	ret
 
-Func_241e::
-	dr $241e, $24f6
+Func_241e: ; 241e (0:241e)
+	homecall Func_2df55
+	ret
+
+Func_242b::
+	homecall Func_2c100
+	ld a, [wc9c9]
+	cp $9
+	jr nz, .asm_2464
+	ld a, $4
+	ld [wc3e1], a
+	ld a, [wc900]
+	cp $4
+	jr nz, .asm_2464
+	ld a, $2
+	ld [wcad0], a
+	callba_norst Func_2ccb9
+	call Func_2411
+	ld a, $24
+	ld [wc3e1], a
+	ld a, $4
+	jp Func_122d
+
+.asm_2464
+	ret
+
+Func_2465::
+	homecall Func_c9875
+	ld a, $1
+	ld [wc430], a
+	ld a, [wca6b]
+	cp $1
+	jr nz, .asm_2481
+	ld a, $50
+	ld [hFFA1], a
+.asm_2481
+	cp $ff
+	ret nz
+	ld a, [wca69]
+	or a
+	jr nz, .asm_24a5
+	ld bc, $1
+	call GetCGB_BGLayout_
+	ld bc, $f
+	call GetCGB_OBLayout_
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
+	ld [wca69], a
+	call BlackDMGPals
+	ret
+
+.asm_24a5
+	ld a, $0
+	ld [wc917], a
+	jp Func_23c3
+
+Func_24ad::
+	ld a, $1
+	call Func_1248
+	or a
+	ret z
+	call Func_2793
+	homecall Func_c981a
+	ld a, $0
+	ld [wc3e1], a
+	ret
+
+Func_24c9::
+	ld a, $1
+	call Func_1248
+	or a
+	ret z
+	ld a, $0
+	ld [wc917], a
+	jp Func_23d1
+
+Func_24d8::
+	ld a, $1
+	call Func_1248
+	or a
+	ret z
+	ld a, $b
+	ld [wc3e0], a
+	xor a
+	ld [wc3e1], a
+	ld a, [wLCDC]
+	res 5, a
+	ld [wLCDC], a
+	ld a, $0
+	ld [wc917], a
+	ret
 
 Func_24f6::
 	dr $24f6, $2793
