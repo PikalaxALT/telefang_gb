@@ -972,7 +972,12 @@ SECTION "bank 4C", ROMX, BANK [$4c]
 	dr $130000, $134000
 
 SECTION "bank 4D", ROMX, BANK [$4d]
-	dr $134000, $138000
+Data_134000::
+	dr $134000, $13622e
+
+UnknownTZFile30:: INCBIN "gfx/tzfiles/tz_30.2bpp.tz"
+UnknownTZFile31:: INCBIN "gfx/tzfiles/tz_31.2bpp.tz"
+UnknownTZFile29:: INCBIN "gfx/tzfiles/tz_29.2bpp.tz"
 
 SECTION "bank 4E", ROMX, BANK [$4e]
 	dr $138000, $13c000
@@ -1008,7 +1013,17 @@ SECTION "bank 58", ROMX, BANK [$58]
 	dr $160000, $164000
 
 SECTION "bank 59", ROMX, BANK [$59]
-	dr $164000, $168000
+UnknownTZFile32:: INCBIN "gfx/tzfiles/tz_32.2bpp.tz"
+UnknownTZFile33:: INCBIN "gfx/tzfiles/tz_33.2bpp.tz"
+UnknownTZFile34:: INCBIN "gfx/tzfiles/tz_34.2bpp.tz"
+UnknownTZFile35:: INCBIN "gfx/tzfiles/tz_35.2bpp.tz"
+UnknownTZFile36:: INCBIN "gfx/tzfiles/tz_36.2bpp.tz"
+UnknownTZFile37:: INCBIN "gfx/tzfiles/tz_37.2bpp.tz"
+UnknownTZFile38:: INCBIN "gfx/tzfiles/tz_38.2bpp.tz"
+UnknownTZFile39:: INCBIN "gfx/tzfiles/tz_39.2bpp.tz"
+UnknownTZFile40:: INCBIN "gfx/tzfiles/tz_40.2bpp.tz"
+UnknownTZFile41:: INCBIN "gfx/tzfiles/tz_41.2bpp.tz"
+UnknownTZFile42:: INCBIN "gfx/tzfiles/tz_42.2bpp.tz"
 
 SECTION "bank 5A", ROMX, BANK [$5a]
 	dr $168000, $16c000
