@@ -3979,13 +3979,13 @@ Data_2760::
 Func_2793: ; 2793 (0:2793)
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_19c000)
+	ld a, BANK(Pointers_19c000)
 	rst Bankswitch
 	ld a, [wc904]
 	ld b, a
 	add a
 	add b
-	ld hl, Data_19c000
+	ld hl, Pointers_19c000
 	add l
 	ld l, a
 	ld a, $0
@@ -4058,7 +4058,7 @@ Func_27c7: ; 27c7 (0:27c7)
 Func_2809: ; 2809 (0:2809)
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_19c000)
+	ld a, BANK(Pointers_19c000)
 	rst Bankswitch
 	ld a, [wc9c3]
 	ld [wc915], a
@@ -4340,7 +4340,7 @@ Func_2928::
 .asm_29a4
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_19c000)
+	ld a, BANK(Pointers_19c000)
 	rst Bankswitch
 	push bc
 	push hl
@@ -4392,7 +4392,7 @@ Func_2928::
 Func_29ed::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_19c000)
+	ld a, BANK(Pointers_19c000)
 	rst Bankswitch
 	call Func_2a68
 	jp z, Func_2a65
@@ -4456,7 +4456,7 @@ Func_2a68: ; 2a68 (0:2a68)
 	ld b, a
 	add a
 	add b
-	ld hl, Data_19c000
+	ld hl, Pointers_19c000
 	add l
 	ld l, a
 	ld a, $0
