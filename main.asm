@@ -872,7 +872,33 @@ SECTION "bank 38", ROMX, BANK [$38]
 	dr $e0000, $e4000
 
 SECTION "bank 39", ROMX, BANK [$39]
-	dr $e4000, $e8000
+IF DEF(POWER)
+UnknownTZFile48:: INCBIN "gfx/tzfiles/tz_48_power.2bpp.tz"
+UnknownTZFile49:: INCBIN "gfx/tzfiles/tz_49_power.2bpp.tz"
+ELSE
+UnknownTZFile48:: INCBIN "gfx/tzfiles/tz_48_speed.2bpp.tz"
+UnknownTZFile49:: INCBIN "gfx/tzfiles/tz_49_speed.2bpp.tz"
+ENDC
+UnknownTZFile50:: INCBIN "gfx/tzfiles/tz_50.2bpp.tz"
+UnknownTZFile51:: INCBIN "gfx/tzfiles/tz_51.2bpp.tz"
+IF DEF(POWER)
+UnknownTZFile52:: INCBIN "gfx/tzfiles/tz_52_power.2bpp.tz"
+UnknownTZFile53:: INCBIN "gfx/tzfiles/tz_53_power.2bpp.tz"
+UnknownTZFile54:: INCBIN "gfx/tzfiles/tz_54_power.2bpp.tz"
+UnknownTZFile55:: INCBIN "gfx/tzfiles/tz_55_power.2bpp.tz"
+UnknownTZFile56:: INCBIN "gfx/tzfiles/tz_56_power.2bpp.tz"
+UnknownTZFile57:: INCBIN "gfx/tzfiles/tz_57_power.2bpp.tz"
+ELSE
+UnknownTZFile52:: INCBIN "gfx/tzfiles/tz_52_speed.2bpp.tz"
+UnknownTZFile53:: INCBIN "gfx/tzfiles/tz_53_speed.2bpp.tz"
+UnknownTZFile54:: INCBIN "gfx/tzfiles/tz_54_speed.2bpp.tz"
+UnknownTZFile55:: INCBIN "gfx/tzfiles/tz_55_speed.2bpp.tz"
+UnknownTZFile56:: INCBIN "gfx/tzfiles/tz_56_speed.2bpp.tz"
+UnknownTZFile57:: INCBIN "gfx/tzfiles/tz_57_speed.2bpp.tz"
+ENDC
+UnknownTZFile80:: INCBIN "gfx/tzfiles/tz_80.2bpp.tz"
+UnknownTZFile81:: INCBIN "gfx/tzfiles/tz_81.2bpp.tz"
+UnknownTZFile82:: INCBIN "gfx/tzfiles/tz_82.2bpp.tz"
 
 SECTION "bank 3A", ROMX, BANK [$3a]
 	dr $e8000, $ec000
