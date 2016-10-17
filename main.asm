@@ -200,7 +200,10 @@ Data_2c000::
 	dr $2c000, $2c100
 
 Func_2c100::
-	dr $2c100, $2c766
+	dr $2c100, $2c63b
+
+Func_2c63b::
+	dr $2c63b, $2c766
 
 Func_2c766::
 	dr $2c766, $2c7ed
@@ -215,7 +218,31 @@ Func_2ccb9::
 	dr $2ccb9, $2d99b
 
 Func_2d99b::
-	dr $2d99b, $2ddd9
+	dr $2d99b, $2da20
+
+Func_2da20::
+	dr $2da20, $2dd28
+
+Func_2dd28::
+	dr $2dd28, $2dd41
+
+Func_2dd41::
+	dr $2dd41, $2dd5a
+
+Func_2dd5a::
+	dr $2dd5a, $2dd89
+
+Func_2dd89::
+	dr $2dd89, $2dd9d
+
+Func_2dd9d::
+	dr $2dd9d, $2ddb1
+
+Func_2ddb1::
+	dr $2ddb1, $2ddc5
+
+Func_2ddc5::
+	dr $2ddc5, $2ddd9
 
 Func_2ddd9::
 	dr $2ddd9, $2ded9
@@ -261,7 +288,10 @@ Func_31843::
 	dr $31843, $31e97
 
 Func_31e97::
-	dr $31e97, $320e1
+	dr $31e97, $32079
+
+Func_32079::
+	dr $32079, $320e1
 
 Func_320e1::
 	dr $320e1, $3394e
@@ -765,7 +795,19 @@ SECTION "bank 31", ROMX, BANK [$31]
 
 SECTION "bank 32", ROMX, BANK [$32]
 Func_c8000::
-	dr $c8000, $c9538
+	dr $c8000, $c8243
+
+Func_c8243::
+	dr $c8243, $c8268
+
+Func_c8268::
+	dr $c8268, $c8293
+
+Func_c8293::
+	dr $c8293, $c82df
+
+Func_c82df::
+	dr $c82df, $c9538
 
 Func_c9538::
 	dr $c9538, $c96ba
@@ -1023,7 +1065,14 @@ SECTION "bank 5D", ROMX, BANK [$5d]
 	dr $174000, $178000
 
 SECTION "bank 5E", ROMX, BANK [$5e]
-	dr $178000, $17c000
+Data_178000::
+	dr $178000, $178022
+
+Data_178022::
+	dr $178022, $178044
+
+Data_178044::
+	dr $178044, $17c000
 
 SECTION "bank 5F", ROMX, BANK [$5f]
 	dr $17c000, $180000
@@ -1050,7 +1099,11 @@ SECTION "bank 66", ROMX, BANK [$66]
 	dr $198000, $19c000
 
 SECTION "bank 67", ROMX, BANK [$67]
-	dr $19c000, $1a0000
+Data_19c000::
+	dr $19c000, $19e8ed
+
+Data_19e8ed::
+	dr $19e8ed, $1a0000
 
 SECTION "bank 68", ROMX, BANK [$68]
 	dr $1a0000, $1a4000
