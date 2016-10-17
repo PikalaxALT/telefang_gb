@@ -3424,10 +3424,10 @@ Func_22d2: ; 22d2 (0:22d2)
 	cp $4
 	jr nz, .asm_231a
 	ld bc, $448
-	call Func_2c4d
+	call CheckEventFlag
 	ret z
 	ld bc, $210
-	call Func_2c4d
+	call CheckEventFlag
 	ret nz
 .asm_231a
 	call Func_3435
@@ -3724,7 +3724,7 @@ Func_256e::
 	jr nz, .asm_260e
 .asm_259a
 	ld bc, $1de
-	call Func_2c4d
+	call CheckEventFlag
 	jp z, Func_2691
 	callba Func_31843
 	ld a, b
@@ -3880,7 +3880,7 @@ Func_26b1: ; 26b1 (0:26b1)
 	cp $1c
 	jr c, Func_2690
 	ld bc, $1df
-	call Func_2c4d
+	call CheckEventFlag
 	jr z, .asm_26f6
 	callba Func_31e97
 	callba Func_c97d2
@@ -3900,7 +3900,7 @@ Func_26b1: ; 26b1 (0:26b1)
 Func_26ff: ; 26ff (0:26ff)
 	ld a, [wcadb]
 	or a
-	jr nz, .asm_272e
+	jr nz, asm_272e
 	ld hl, Data_2698
 	ld a, [wc497]
 	add l
@@ -3918,12 +3918,14 @@ Func_26ff: ; 26ff (0:26ff)
 	ld [wc493], a
 	ld a, $68
 	ld [hFFA1], a
+Func_2726::
 	ld a, [wc499]
 	res 2, a
 	ld [wc499], a
-.asm_272e
+asm_272e
 	ret
 
+Func_272f::
 	ld a, [wc905]
 	ld hl, Data_2760
 	ld b, a
@@ -4083,7 +4085,7 @@ Func_2809: ; 2809 (0:2809)
 	cp $ff
 	jr z, .asm_2894
 .asm_2839
-	call Func_2c4d
+	call CheckEventFlag
 	jr nz, .asm_287e
 	ld a, [wc904]
 	cp $a
@@ -4107,7 +4109,7 @@ Func_2809: ; 2809 (0:2809)
 	jr z, .asm_2894
 	dec a
 	ld [wcdec], a
-	call Func_2c57
+	call SetEventFlag
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_2c63b)
@@ -4225,7 +4227,7 @@ Func_28ee: ; 28ee (0:28ee)
 	srl a
 	srl a
 	srl a
-	ld de, wc500
+	ld de, wEventFlags
 	add e
 	ld e, a
 	ld a, $0
@@ -4373,7 +4375,7 @@ Func_2928::
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
-	call Func_2c4d
+	call CheckEventFlag
 	jr z, .asm_29e6
 	pop hl
 	ld a, [hl]
@@ -4573,14 +4575,214 @@ Multiply_DE_by_BC: ; 2b44 (0:2b44)
 	ld e, l
 	ret
 
-Func_2b5c::
-	dr $2b5c, $2c4d
+Multiply_C_by_E: ; 2b5c (0:2b5c)
+	ld b, $0
+	ld d, $0
+	jp Multiply_DE_by_BC
 
-Func_2c4d::
-	dr $2c4d, $2c57
+Multiple_C_by_E_signed:
+	xor a
+	ld b, a
+	ld d, a
+	bit 7, c
+	jr z, .asm_2b6b
+	dec b
+.asm_2b6b
+	bit 7, e
+	jr z, Multiply_DE_by_BC
+	dec d
+	jr Multiply_DE_by_BC
 
-Func_2c57::
-	dr $2c57, $2f76
+Func_2b72::
+	call Func_272f
+	ld a, [wROMBank]
+	push af
+	ld a, [wc9ec]
+	rst Bankswitch
+	ld de, wca70
+	ld b, $50
+.asm_2b82
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_2b82
+	pop af
+	rst Bankswitch
+	call Func_32ff
+	ld a, $0
+	ld [wc953], a
+	ld [wc94c], a
+	jp Func_2928
+
+Func_2b98::
+	ld b, $c
+	ld hl, wOAMAnimation01
+	ld de, $20
+	xor a
+.asm_2ba1
+	ld [hl], a
+	add hl, de
+	dec b
+	jr nz, .asm_2ba1
+	jp Func_2726
+
+Func_2ba9::
+	ld a, [wc9ca]
+	srl a
+	ld c, a
+	ld e, $a
+	call Multiply_C_by_E
+	ld hl, wca70
+	add hl, de
+	ld d, h
+	ld e, l
+	ld a, [wc9ca]
+	ld c, $0
+	srl a
+	srl a
+	rr c
+	srl a
+	rr c
+	ld b, a
+	jp Func_2bdc
+
+Func_2bcd::
+	ld bc, $0000
+	ld de, wca70
+	jp Func_2bdc
+
+Func_2bd6::
+	ld bc, $0100
+	ld de, wca98
+Func_2bdc: ; 2bdc (0:2bdc)
+	ld a, [wc9fc]
+	ld l, a
+	ld a, [wc9fd]
+	ld h, a
+	add hl, bc
+	call Func_32f7
+	ld b, $4
+.asm_2bea
+	push bc
+	push hl
+	homecall Func_c82a9
+	pop hl
+	ld bc, $40
+	add hl, bc
+	call Func_32f7
+	pop bc
+	dec b
+	jr nz, .asm_2bea
+	ret
+
+Func_2c05::
+	ld a, [wROMBank]
+	ld [wca52], a
+	ld a, [wc9ee]
+	rst Bankswitch
+	ld a, [de]
+	cp $3
+	jr nz, asm_2c22
+	push bc
+	ld bc, $1d8
+	call CheckEventFlag
+	pop bc
+	ld a, $3
+	jr nz, asm_2c22
+	ld a, $10
+asm_2c22
+	push af
+	ld a, [wca52]
+	rst Bankswitch
+	pop af
+	ret
+
+Func_2c29::
+	ld a, [wROMBank]
+	ld [wca52], a
+	ld a, [wc9ee]
+	rst Bankswitch
+	ld a, [hl]
+	cp $3
+	jr nz, asm_2c22
+	push bc
+	ld bc, $1d8
+	call CheckEventFlag
+	pop bc
+	ld a, $3
+	jr nz, .asm_2c46
+	ld a, $10
+.asm_2c46
+	push af
+	ld a, [wca52]
+	rst Bankswitch
+	pop af
+	ret
+
+CheckEventFlag: ; 2c4d (0:2c4d)
+	push bc
+	push hl
+	call GetEventFlagAddressAndBit
+	ld a, [hl]
+	and c
+	pop hl
+	pop bc
+	ret
+
+SetEventFlag: ; 2c57 (0:2c57)
+	push bc
+	push hl
+	call GetEventFlagAddressAndBit
+	ld a, [hl]
+	or c
+asm_2c5e
+	ld [hl], a
+	pop hl
+	pop bc
+	ret
+
+ToggleEventFlag::
+	push bc
+	push hl
+	call GetEventFlagAddressAndBit
+	ld a, [hl]
+	xor c
+	jr asm_2c5e
+
+ResetEventFlag::
+	push bc
+	push hl
+	call GetEventFlagAddressAndBit
+	ld a, c
+	cpl
+	ld c, a
+	ld a, [hl]
+	and c
+	jr asm_2c5e
+
+GetEventFlagAddressAndBit: ; 2c77 (0:2c77)
+	ld a, c
+	srl b
+	rr c
+	srl b
+	rr c
+	srl b
+	rr c
+	ld hl, wEventFlags
+	add hl, bc
+	ld c, $1
+	and $7
+	jr z, .asm_2c93
+.asm_2c8e
+	sla c
+	dec a
+	jr nz, .asm_2c8e
+.asm_2c93
+	ret
+
+Func_2c94::
+	dr $2c94, $2f76
 
 Func_2f76::
 	dr $2f76, $30a7

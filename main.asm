@@ -804,7 +804,10 @@ Func_c8268::
 	dr $c8268, $c8293
 
 Func_c8293::
-	dr $c8293, $c82df
+	dr $c8293, $c82a9
+
+Func_c82a9::
+	dr $c82a9, $c82df
 
 Func_c82df::
 	dr $c82df, $c9538

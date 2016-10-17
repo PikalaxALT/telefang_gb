@@ -385,7 +385,7 @@ wc4fc:: ds 1
 wc4fd:: ds 1
 wc4fe:: ds 1
 wc4ff:: ds 1
-wc500:: ds 1
+wEventFlags:: ds 1
 wc501:: ds 1
 wc502:: ds 1
 wc503:: ds 1
