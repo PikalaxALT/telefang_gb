@@ -80,102 +80,102 @@ macro_18000: MACRO
 ENDM
 
 Data_18000::
-	macro_18000 $0, $8000
-	macro_18000 $37, $8100
-	macro_18000 $36, $8cd0
-	macro_18000 $36, $9000
-	macro_18000 $36, $8800
-	macro_18000 $37, $9400
-	macro_18000 $36, $8000
-	macro_18000 $37, $9000
-	macro_18000 $37, $8800
-	macro_18000 $37, $8b80
-	macro_18000 $36, $9000
-	macro_18000 $36, $8800
-	macro_18000 $37, $9000
-	macro_18000 $37, $8e00
-	macro_18000 $36, $9000
-	macro_18000 $36, $9000
-	macro_18000 $36, $9000
-	macro_18000 $37, $8000
-	macro_18000 $37, $8f00
-	macro_18000 $37, $9400
-	macro_18000 $36, $9000
-	macro_18000 $36, $9000
-	macro_18000 $37, $9000
-	macro_18000 $37, $8e00
-	macro_18000 $36, $9600
-	macro_18000 $37, $8b80
-	macro_18000 $37, $9400
-	macro_18000 $37, $8e00
-	macro_18000 $36, $9000
-	macro_18000 $4d, $9000
-	macro_18000 $4d, $9000
-	macro_18000 $4d, $9400
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $59, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $39, $9000
-	macro_18000 $39, $8800
-	macro_18000 $39, $9000
-	macro_18000 $39, $9000
-	macro_18000 $39, $9000
-	macro_18000 $39, $8800
-	macro_18000 $39, $9000
-	macro_18000 $39, $8800
-	macro_18000 $39, $9000
-	macro_18000 $39, $8800
-	macro_18000 $3a, $8000
-	macro_18000 $3a, $8000
-	macro_18000 $3a, $8000
-	macro_18000 $3a, $8000
-	macro_18000 $3a, $8000
-	macro_18000 $3a, $8000
-	macro_18000 $3a, $9000
-	macro_18000 $3a, $8800
-	macro_18000 $3a, $9000
-	macro_18000 $3a, $8800
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $37, $8f00
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $39, $9000
-	macro_18000 $39, $9000
-	macro_18000 $39, $9000
-	macro_18000 $37, $9000
-	macro_18000 $35, $9400
-	macro_18000 $35, $8e00
-	macro_18000 $35, $8e00
-	macro_18000 $35, $8f00
-	macro_18000 $35, $8e00
-	macro_18000 $35, $9400
-	macro_18000 $35, $9400
-	macro_18000 $35, $8f00
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
-	macro_18000 $29, $9000
+	macro_18000 $00,                   VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile01), VTilesOB tile $10
+	macro_18000 BANK(UnknownTZFile02), VTilesShared tile $4d
+	macro_18000 BANK(UnknownTZFile03), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile04), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile05), VTilesBG tile $40
+	macro_18000 BANK(UnknownTZFile06), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile07), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile08), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile09), VTilesShared tile $38
+	macro_18000 BANK(UnknownTZFile10), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile11), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile12), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile13), VTilesShared tile $60
+	macro_18000 BANK(UnknownTZFile14), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile15), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile16), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile17), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile18), VTilesShared tile $70
+	macro_18000 BANK(UnknownTZFile19), VTilesBG tile $40
+	macro_18000 BANK(UnknownTZFile20), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile21), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile22), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile23), VTilesShared tile $60
+	macro_18000 BANK(UnknownTZFile24), VTilesBG tile $60
+	macro_18000 BANK(UnknownTZFile25), VTilesShared tile $38
+	macro_18000 BANK(UnknownTZFile26), VTilesBG tile $40
+	macro_18000 BANK(UnknownTZFile27), VTilesShared tile $60
+	macro_18000 $36,                   VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile29), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile30), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile31), VTilesBG tile $40
+	macro_18000 BANK(UnknownTZFile32), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile33), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile34), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile35), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile36), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile37), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile38), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile39), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile40), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile41), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile42), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile43), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile44), VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile48), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile49), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile50), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile51), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile52), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile53), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile54), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile55), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile56), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile57), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile58), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile59), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile60), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile61), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile62), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile63), VTilesOB tile $00
+	macro_18000 BANK(UnknownTZFile64), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile65), VTilesShared tile $00
+	macro_18000 BANK(UnknownTZFile66), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile67), VTilesShared tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile72), VTilesShared tile $70
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile80), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile81), VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile82), VTilesBG tile $00
+	macro_18000 $37,                   VTilesBG tile $00
+	macro_18000 BANK(UnknownTZFile84), VTilesBG tile $40
+	macro_18000 BANK(UnknownTZFile85), VTilesShared tile $60
+	macro_18000 BANK(UnknownTZFile86), VTilesShared tile $60
+	macro_18000 BANK(UnknownTZFile87), VTilesShared tile $70
+	macro_18000 BANK(UnknownTZFile88), VTilesShared tile $60
+	macro_18000 BANK(UnknownTZFile89), VTilesBG tile $40
+	macro_18000 BANK(UnknownTZFile90), VTilesBG tile $40
+	macro_18000 BANK(UnknownTZFile91), VTilesShared tile $70
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
+	macro_18000 $29,                   VTilesBG tile $00
 
 	dr $18180, $1c000
 
@@ -718,8 +718,8 @@ Func_a5525::
 Data_a6b69::
 	dr $a6b69, $a6d29
 
-Data_0a6d29:: INCBIN "gfx/tzfiles/tz_43.2bpp.tz"
-Data_0a719a:: INCBIN "gfx/tzfiles/tz_44.2bpp.tz"
+UnknownTZFile43:: INCBIN "gfx/tzfiles/tz_43.2bpp.tz"
+UnknownTZFile44:: INCBIN "gfx/tzfiles/tz_44.2bpp.tz"
 
 Data_a7869::
 	dr $a7869, $a8000
@@ -795,29 +795,14 @@ SECTION "bank 34", ROMX, BANK [$34]
 	dr $d0000, $d4000
 
 SECTION "bank 35", ROMX, BANK [$35]
-Data_d4000::
-	dr $d4000, $d4267
-
-Data_d4267::
-	dr $d4267, $d439d
-
-Data_d439d::
-	dr $d439d, $d4629
-
-Data_d4629::
-	dr $d4629, $d4753
-
-Data_d4753::
-	dr $d4753, $d488f
-
-Data_d488f::
-	dr $d488f, $d48e8
-
-Data_d48e8::
-	dr $d48e8, $d4996
-
-Data_d4996::
-	dr $d4996, $d8000
+UnknownTZFile90:: INCBIN "gfx/tzfiles/tz_90.2bpp.tz"
+UnknownTZFile89:: INCBIN "gfx/tzfiles/tz_89.2bpp.tz"
+UnknownTZFile84:: INCBIN "gfx/tzfiles/tz_84.2bpp.tz"
+UnknownTZFile85:: INCBIN "gfx/tzfiles/tz_85.2bpp.tz"
+UnknownTZFile86:: INCBIN "gfx/tzfiles/tz_86.2bpp.tz"
+UnknownTZFile87:: INCBIN "gfx/tzfiles/tz_87.2bpp.tz"
+UnknownTZFile88:: INCBIN "gfx/tzfiles/tz_88.2bpp.tz"
+UnknownTZFile91:: INCBIN "gfx/tzfiles/tz_91.2bpp.tz"
 
 SECTION "bank 36", ROMX, BANK [$36]
 UnknownTZFile03:: INCBIN "gfx/tzfiles/tz_3.2bpp.tz"

@@ -2851,177 +2851,79 @@ Func_1dbc: ; 1dbc (0:1dbc)
 	ret
 
 Pointers_1de1:
-IF DEF(POWER)
 	dw $0000
-	dw $41ee
-	dw $60a9
-	dw $4000
-	dw $45b0
-	dw $5512
-	dw $5973
-	dw $47d9
-	dw $4e1d
-	dw $4f2f
-	dw $4e55
-	dw $53cc
-	dw $43ed
-	dw $5b75
-	dw $5c36
-	dw $4a92
-	dw $4cea
-	dw $4000
-	dw $5c34
-	dw $52ac
-	dw $617f
-	dw $627d
-	dw $5190
-	dw $5c8e
-	dw $63ff
-	dw $5649
-	dw $57bc
-	dw $5a48
+	dw UnknownTZFile01
+	dw UnknownTZFile02
+	dw UnknownTZFile03
+	dw UnknownTZFile04
+	dw UnknownTZFile05
+	dw UnknownTZFile06
+	dw UnknownTZFile07
+	dw UnknownTZFile08
+	dw UnknownTZFile09
+	dw UnknownTZFile10
+	dw UnknownTZFile11
+	dw UnknownTZFile12
+	dw UnknownTZFile13
+	dw UnknownTZFile14
+	dw UnknownTZFile15
+	dw UnknownTZFile16
+	dw UnknownTZFile17
+	dw UnknownTZFile18
+	dw UnknownTZFile19
+	dw UnknownTZFile20
+	dw UnknownTZFile21
+	dw UnknownTZFile22
+	dw UnknownTZFile23
+	dw UnknownTZFile24
+	dw UnknownTZFile25
+	dw UnknownTZFile26
+	dw UnknownTZFile27
 	dw $0000
-	dw $65c9
-	dw $622e
-	dw $648d
-	dw $4000
-	dw $4606
-	dw $4b7c
-	dw $5180
-	dw $55ce
-	dw $5b16
-	dw $6144
-	dw $6807
-	dw $6e50
-	dw $741b
-	dw $784a
-	dw $6d29
-	dw $719a
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $4000
-	dw $45ad
-	dw $4600
-	dw $4c16
-	dw $5229
-	dw $5901
-	dw $5a04
-	dw $5fb6
-	dw $65b6
-	dw $6b78
-	dw $4000
-	dw $4309
-	dw $44ce
-	dw $455c
-	dw $47cb
-	dw $4887
-	dw $4a01
-	dw $4e17
-	dw $4fbd
-	dw $5460
+	dw UnknownTZFile29
+	dw UnknownTZFile30
+	dw UnknownTZFile31
+	dw UnknownTZFile32
+	dw UnknownTZFile33
+	dw UnknownTZFile34
+	dw UnknownTZFile35
+	dw UnknownTZFile36
+	dw UnknownTZFile37
+	dw UnknownTZFile38
+	dw UnknownTZFile39
+	dw UnknownTZFile40
+	dw UnknownTZFile41
+	dw UnknownTZFile42
+	dw UnknownTZFile43
+	dw UnknownTZFile44
 	dw $0000
 	dw $0000
 	dw $0000
-	dw $0000
-	dw $5ce2
+	dw UnknownTZFile48
+	dw UnknownTZFile49
+	dw UnknownTZFile50
+	dw UnknownTZFile51
+	dw UnknownTZFile52
+	dw UnknownTZFile53
+	dw UnknownTZFile54
+	dw UnknownTZFile55
+	dw UnknownTZFile56
+	dw UnknownTZFile57
+	dw UnknownTZFile58
+	dw UnknownTZFile59
+	dw UnknownTZFile60
+	dw UnknownTZFile61
+	dw UnknownTZFile62
+	dw UnknownTZFile63
+	dw UnknownTZFile64
+	dw UnknownTZFile65
+	dw UnknownTZFile66
+	dw UnknownTZFile67
 	dw $0000
 	dw $0000
 	dw $0000
 	dw $0000
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $6c7f
-	dw $736f
-	dw $7928
-	dw $0000
-	dw $439d
-	dw $4629
-	dw $4753
-	dw $488f
-	dw $48e8
-	dw $4267
-	dw $4000
-	dw $4996
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $0000
-ELSE
-	dw $0000
-	dw $41ee
-	dw $615c
-	dw $4000
-	dw $45b0
-	dw $5512
-	dw $5a26
-	dw $47d9
-	dw $4e1d
-	dw $4f2f
-	dw $4e55
-	dw $5416
-	dw $43ed
-	dw $5b75
-	dw $5ce9
-	dw $4a92
-	dw $4cea
-	dw $4000
-	dw $5c34
-	dw $52ac
-	dw $6232
-	dw $6330
-	dw $5190
-	dw $5c8e
-	dw $64b2
-	dw $5649
-	dw $57bc
-	dw $5a48
-	dw $0000
-	dw $65c9
-	dw $622e
-	dw $648d
-	dw $4000
-	dw $4606
-	dw $4b7c
-	dw $5180
-	dw $55ce
-	dw $5b16
-	dw $6144
-	dw $6807
-	dw $6e50
-	dw $741b
-	dw $784a
-	dw $6d29
-	dw $719a
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $4000
-	dw $45e1
-	dw $4658
-	dw $4c6e
-	dw $5281
-	dw $59bd
-	dw $5a27
-	dw $600a
-	dw $6629
-	dw $6c1d
-	dw $4000
-	dw $4309
-	dw $44ce
-	dw $455c
-	dw $47b3
-	dw $486f
-	dw $49e9
-	dw $4dff
-	dw $4fa5
-	dw $546b
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $5ce2
+	dw UnknownTZFile72
 	dw $0000
 	dw $0000
 	dw $0000
@@ -3029,23 +2931,22 @@ ELSE
 	dw $0000
 	dw $0000
 	dw $0000
-	dw $6d07
-	dw $73f7
-	dw $79b0
+	dw UnknownTZFile80
+	dw UnknownTZFile81
+	dw UnknownTZFile82
 	dw $0000
-	dw $439d
-	dw $4629
-	dw $4753
-	dw $488f
-	dw $48e8
-	dw $4267
-	dw $4000
-	dw $4996
-	dw $0000
-	dw $0000
+	dw UnknownTZFile84
+	dw UnknownTZFile85
+	dw UnknownTZFile86
+	dw UnknownTZFile87
+	dw UnknownTZFile88
+	dw UnknownTZFile89
+	dw UnknownTZFile90
+	dw UnknownTZFile91
 	dw $0000
 	dw $0000
-ENDC
+	dw $0000
+	dw $0000
 
 Func_1ea1: ; 1ea1 (0:1ea1)
 	ld a, [wc3e1]
