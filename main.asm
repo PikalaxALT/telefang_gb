@@ -177,7 +177,11 @@ Data_18000::
 	macro_18000 $29,                   VTilesBG tile $00
 	macro_18000 $29,                   VTilesBG tile $00
 
-	dr $18180, $1c000
+Data_18180::
+	dr $18180, $18ba1
+
+Data_18ba1::
+	dr $18ba1, $1c000
 
 SECTION "bank 07", ROMX, BANK [$7]
 PalPackets_1c000::
@@ -203,25 +207,76 @@ Func_2c100::
 	dr $2c100, $2c63b
 
 Func_2c63b::
-	dr $2c63b, $2c766
+	dr $2c63b, $2c711
+
+Func_2c711::
+	dr $2c711, $2c766
 
 Func_2c766::
 	dr $2c766, $2c7ed
 
 Func_2c7ed::
-	dr $2c7ed, $2c904
+	dr $2c7ed, $2c831
+
+Func_2c831::
+	dr $2c831, $2c84d
+
+Func_2c84d::
+	dr $2c84d, $2c904
 
 Func_2c904::
-	dr $2c904, $2ccb9
+	dr $2c904, $2c92e
+
+Func_2c92e::
+	dr $2c92e, $2ccb9
 
 Func_2ccb9::
-	dr $2ccb9, $2d99b
+	dr $2ccb9, $2ce29
+
+Func_2ce29::
+	dr $2ce29, $2d92b
+
+Func_2d92b::
+	dr $2d92b, $2d95f
+
+Func_2d95f::
+	dr $2d95f, $2d99b
 
 Func_2d99b::
 	dr $2d99b, $2da20
 
 Func_2da20::
-	dr $2da20, $2dd28
+	dr $2da20, $2da27
+
+Func_2da27::
+	dr $2da27, $2da3a
+
+Func_2da3a::
+	dr $2da3a, $2da47
+
+Func_2da47::
+	dr $2da47, $2da54
+
+Func_2da54::
+	dr $2da54, $2da69
+
+Func_2da69::
+	dr $2da69, $2da7e
+
+Func_2da7e::
+	dr $2da7e, $2db1c
+
+Func_2db1c::
+	dr $2db1c, $2db55
+
+Func_2db55::
+	dr $2db55, $2db90
+
+Func_2db90::
+	dr $2db90, $2dc6d
+
+Func_2dc6d::
+	dr $2dc6d, $2dd28
 
 Func_2dd28::
 	dr $2dd28, $2dd41
@@ -276,7 +331,19 @@ Func_30000::
 	dr $30000, $30240
 
 Func_30240::
-	dr $30240, $31600
+	dr $30240, $3024f
+
+Func_3024f::
+	dr $3024f, $302a8
+
+Func_302a8::
+	dr $302a8, $30b4e
+
+Func_30b4e::
+	dr $30b4e, $3102a
+
+Func_3102a::
+	dr $3102a, $31600
 
 Func_31600::
 	dr $31600, $3162e
@@ -294,10 +361,22 @@ Func_32079::
 	dr $32079, $320e1
 
 Func_320e1::
-	dr $320e1, $3394e
+	dr $320e1, $3226b
+
+Func_3226b::
+	dr $3226b, $33846
+
+Func_33846::
+	dr $33846, $3385b
+
+Func_3385b::
+	dr $3385b, $3394e
 
 Func_3394e::
-	dr $3394e, $33ac4
+	dr $3394e, $33a62
+
+Func_33a62::
+	dr $33a62, $33ac4
 
 Pointers_33ac4::
 	dr $33ac4, $34000
@@ -324,7 +403,10 @@ Func_3c000::
 	dr $3c000, $3c00c
 
 Func_3c00c::
-	dr $3c00c, $3d00e
+	dr $3c00c, $3c91b
+
+Func_3c91b::
+	dr $3c91b, $3d00e
 
 Func_3d00e::
 	dr $3d00e, $40000
@@ -899,7 +981,13 @@ Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
 	dr $de95f, $e0000
 
 SECTION "bank 38", ROMX, BANK [$38]
-	dr $e0000, $e4000
+	dr $e0000, $e2c54
+
+Data_e2c54::
+	dr $e2c54, $e2d14
+
+Data_e2d14::
+	dr $e2d14, $e4000
 
 SECTION "bank 39", ROMX, BANK [$39]
 IF DEF(POWER)
@@ -1025,7 +1113,10 @@ SECTION "bank 52", ROMX, BANK [$52]
 	dr $148000, $14c000
 
 SECTION "bank 53", ROMX, BANK [$53]
-	dr $14c000, $150000
+	dr $14c000, $14c668
+
+Data_14c668::
+	dr $14c668, $150000
 
 SECTION "bank 54", ROMX, BANK [$54]
 	dr $150000, $154000

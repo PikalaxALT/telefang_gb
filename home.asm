@@ -4762,6 +4762,8 @@ ResetEventFlag::
 	jr asm_2c5e
 
 GetEventFlagAddressAndBit: ; 2c77 (0:2c77)
+; input: event flag ID in bc
+; returns: event flag address in hl, single-bit mask in c
 	ld a, c
 	srl b
 	rr c
@@ -4782,10 +4784,685 @@ GetEventFlagAddressAndBit: ; 2c77 (0:2c77)
 	ret
 
 Func_2c94::
-	dr $2c94, $2f76
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_302a8)
+	rst Bankswitch
+	ld hl, wc98a
+	ld a, wc4a0 % $100
+	ld [hli], a
+	ld a, wc4a0 / $100
+	ld [hl], a
+	call Func_302a8
+	pop af
+	rst Bankswitch
+	ret
 
-Func_2f76::
-	dr $2f76, $30a7
+Func_2caa::
+	homecall Func_3024f
+	ret
+
+Func_2cb7::
+	homecall Func_3102a
+	ret
+
+Func_2cc4::
+	homecall Func_2c100
+	ret
+
+Func_2cd1::
+	homecall Func_2c831
+	ret
+
+Func_2cde::
+	homecall Func_2c84d
+	ret
+
+Func_2ceb::
+	homecall Func_2c711, Func_2c100, Func_2c100
+	ld a, $0
+	ld [wc9cf], a
+	ret
+
+Func_2d03::
+	homecall Func_3c91b
+	ret
+
+Func_2d10::
+	homecall Func_2c92e, Func_2c100, Func_2c100, Func_2c100
+	ld a, $0
+	ld [wc9cf], a
+	ret
+
+Func_2d2b::
+	ld a, [wROMBank]
+	push af
+	ld a, [wc9c8]
+	rst Bankswitch
+	ld a, [hli]
+	ld c, a
+	pop af
+	rst Bankswitch
+	ld a, c
+	ret
+
+Func_2d39::
+	ld a, [wROMBank]
+	push af
+	ld a, [wc9c8]
+	rst Bankswitch
+	ld a, [hli]
+	ld [wc9c6], a
+	ld a, [hl]
+	ld [wc9c7], a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2d4c::
+	homecall Func_33a62
+	ret
+
+Func_2d59::
+	call Func_2ddb
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld hl, Data_18000
+	ld a, [wc905]
+	cp $3
+	jr c, .asm_2da2
+	cp $4
+	jr z, .asm_2da2
+	ld hl, Data_2e09
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push bc
+	ld bc, $20b
+	call CheckEventFlag
+	pop bc
+	jr z, .asm_2d91
+	ld a, [wc905]
+	cp $6
+	jr nz, .asm_2d91
+	ld hl, Data_18ba1
+.asm_2d91
+	ld a, [wc903]
+.asm_2d94
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	add hl, bc
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	pop af
+	rst Bankswitch
+	ret
+
+.asm_2da2
+	ld a, [wc905]
+	cp $0
+	jr z, .asm_2db2
+	cp $2
+	jr z, .asm_2db2
+	ld hl, Data_e2d14
+	jr .asm_2db5
+
+.asm_2db2
+	ld hl, Data_e2c54
+.asm_2db5
+	ld a, [wc903]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Data_e2c54)
+	rst Bankswitch
+	ld b, [hl]
+	pop af
+	rst Bankswitch
+	ld hl, Data_18000
+	push bc
+	ld bc, $20b
+	call CheckEventFlag
+	pop bc
+	jr z, .asm_2dd8
+	ld hl, Data_18180
+.asm_2dd8
+	ld a, b
+	jr .asm_2d94
+
+Func_2ddb: ; 2ddb (0:2ddb)
+	push bc
+	ld bc, $20b
+	call CheckEventFlag
+	pop bc
+	jr nz, .asm_2df5
+.asm_2de5
+	ld b, $52
+	ld a, [wc905]
+	cp $6
+	jr z, .asm_2df2
+	cp $b
+	jr c, .asm_2df4
+.asm_2df2
+	ld b, $53
+.asm_2df4
+	ret
+
+.asm_2df5
+	ld a, [wc905]
+	cp $3
+	jr c, .asm_2e06
+	cp $4
+	jr z, .asm_2e06
+	cp $6
+	jr z, .asm_2e06
+	jr .asm_2de5
+
+.asm_2e06
+	ld b, BANK(Data_18ba1) ; $6
+	ret
+
+Data_2e09::
+	dw $4000 ; bank 6 if EVENT_20B else bank 52
+	dw $4000 ; bank 6 if EVENT_20B else bank 52
+	dw $4000 ; bank 6 if EVENT_20B else bank 52
+	dw $556e ; bank 52
+	dw $4000 ; bank 6 if EVENT_20B else bank 52
+	dw $556e ; bank 52
+	dw Data_14c668
+	dw $5dfc ; bank 52
+	dw $5dfc ; bank 52
+	dw $697c ; bank 52
+	dw $70f8 ; bank 52
+	dw Data_14c668
+	dw Data_14c668
+	dw Data_14c668
+	dw Data_14c668
+	dw Data_14c668
+	dw $5472 ; bank 53
+
+Func_2e2b::
+	call Func_2ddb
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld hl, wca00
+	ld b, $8
+.asm_2e39
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec b
+	jr nz, .asm_2e39
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2e42::
+	call Func_2ddb
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	inc de
+	ld a, [de]
+	ld [wca6c], a
+	inc de
+	ld a, [de]
+	ld [wca6d], a
+	inc de
+	ld a, [de]
+	ld [wca6b], a
+	inc de
+	ld a, c
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [de]
+	ld b, a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2e67::
+	ld c, a
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_33846)
+	rst Bankswitch
+	ld a, c
+	call Func_33846
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2e76::
+	ld c, a
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_3385b)
+	rst Bankswitch
+	ld a, c
+	call Func_3385b
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2e85::
+	homecall Func_3226b
+	ret
+
+Func_2e92::
+	call Func_2ddb
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld a, [de]
+	ld b, a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2ea0::
+	push hl
+	call Func_2ddb
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	ld h, a
+	push hl
+	ld a, c
+	ld e, c
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	cp $ff
+	jr nz, .asm_2ec3
+	ld e, $0
+	pop hl
+	ld a, [hli]
+	jr .asm_2ec7
+
+.asm_2ec3
+	inc e
+	inc e
+	add sp, $2
+.asm_2ec7
+	ld d, a
+	and $80
+	jr z, .asm_2ed0
+	inc e
+	inc e
+	inc e
+	inc e
+.asm_2ed0
+	ld a, d
+	and $3f
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, $1
+	ld [wd403], a
+	ld a, [hli]
+	ld [wc9dc], a
+	ld a, [hli]
+	ld [wc9dd], a
+	ld a, [hli]
+	ld [wd402], a
+	ld a, [hl]
+	ld [wd406], a
+	or a
+	jr nz, .asm_2ef3
+	ld a, $2
+	ld [wd403], a
+.asm_2ef3
+	ld l, a
+	ld a, [wd406]
+	or l
+	jr nz, .asm_2f01
+	ld a, $0
+	ld [wc91d], a
+	jr .asm_2f06
+
+.asm_2f01
+	ld a, $1
+	ld [wc91d], a
+.asm_2f06
+	pop af
+	rst Bankswitch
+	pop hl
+	ret
+
+Func_2f0a::
+	push hl
+	call Func_2ddb
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	ld h, a
+	ld a, c
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	dec de
+	ld b, a
+	pop af
+	rst Bankswitch
+	pop hl
+	ret
+
+Func_2f27::
+	homecall Func_30b4e
+	ret
+
+Func_2f34::
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld b, a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2f43::
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld a, [wcd02]
+	ld e, a
+	ld a, [wcd03]
+	ld d, a
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcd07]
+	ld d, a
+	ld a, [wcd06]
+	ld e, a
+	add hl, de
+	ld de, wcd08
+	ld b, $8
+	call CopyData_8Bits
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2f6a::
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2f76: ; 2f76 (0:2f76)
+	push bc
+.asm_2f77
+	ld [hli], a
+	dec b
+	jr nz, .asm_2f77
+	pop bc
+	ret
+	ld a, [wROMBank]
+	push af
+	ld a, c
+	rst Bankswitch
+	call CopyData_8Bits
+	pop af
+	rst Bankswitch
+	ret
+
+CopyData_8Bits: ; 2f89 (0:2f89)
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, CopyData_8Bits
+	ret
+
+Func_2f90::
+	ld a, [wROMBank]
+	push af
+	ld a, $26
+	rst Bankswitch
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld e, a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2fa0::
+	push af
+	push hl
+	ld hl, wcdbc
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	cp 100
+	jr nc, .asm_2fb1
+	inc [hl]
+.asm_2fb1
+	pop hl
+	pop af
+	ret
+
+Func_2fb4::
+	push af
+	push hl
+	ld hl, wcdbc
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	or a
+	jr z, .asm_2fc4
+	dec [hl]
+.asm_2fc4
+	pop hl
+	pop af
+	ret
+
+Func_2fc7::
+	push af
+	ld a, [wROMBank]
+	ld [wca52], a
+	ld a, BANK(Func_2ce29)
+	rst Bankswitch
+	pop af
+	call Func_2ce29
+	ld a, [wca52]
+	rst Bankswitch
+	ret
+
+Func_2fda::
+	ld a, [wROMBank]
+	push af
+	ld a, b
+	rst Bankswitch
+	ld b, [hl]
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2fe4::
+	ld a, [wROMBank]
+	push af
+	ld a, $29
+	rst Bankswitch
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	inc hl
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_2ff5::
+	homecall Func_2da7e
+	ret
+
+Data_3002::
+	db $20, $20, $28, $20
+
+Func_3006::
+	homecall Func_2d92b
+	ret
+
+Func_3013::
+	homecall Func_2d95f
+	ret
+
+Func_3020::
+	homecall Func_2db1c
+	ret
+
+Func_302d::
+	homecall Func_2db55
+	ret
+
+Func_303a::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2db90)
+	rst Bankswitch
+	call Func_2db90
+	ld d, a
+	pop af
+	rst Bankswitch
+	ld a, d
+	ret
+
+Func_3049::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2dc6d)
+	rst Bankswitch
+	call Func_2dc6d
+	ld d, a
+	pop af
+	rst Bankswitch
+	ld a, d
+	ret
+
+Func_3058::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2da3a)
+	rst Bankswitch
+	ld a, d
+	call Func_2da3a
+	ld d, a
+	pop af
+	rst Bankswitch
+	ld a, d
+	ret
+
+Func_3068::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2da47)
+	rst Bankswitch
+	ld a, d
+	call Func_2da47
+	ld d, a
+	pop af
+	rst Bankswitch
+	ld a, d
+	ret
+
+Func_3078::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2da54)
+	rst Bankswitch
+	ld a, d
+	call Func_2da54
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3086::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2da69)
+	rst Bankswitch
+	ld a, d
+	call Func_2da69
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3094::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2da27)
+	rst Bankswitch
+	call Func_2da27
+	ld [wca6a], a
+	pop af
+	rst Bankswitch
+	ld a, [wca6a]
+	ret
 
 Func_30a7::
 	dr $30a7, $3171
