@@ -4,9 +4,6 @@ INCLUDE "interrupts.asm"
 
 INCLUDE "home.asm"
 
-SECTION "bank 01", ROMX, BANK [$1]
-	dr $4000, $8000
-
 SECTION "bank 02", ROMX, BANK [$2]
 Func_8000::
 	dr $8000, $80bf
@@ -725,9 +722,6 @@ Func_753f8::
 Func_758f8::
 	dr $758f8, $78000
 
-SECTION "bank 1E", ROMX, BANK [$1e]
-	dr $78000, $7c000
-
 SECTION "bank 1F", ROMX, BANK [$1f]
 Func_7c000::
 	dr $7c000, $7c61b
@@ -750,9 +744,6 @@ SECTION "bank 23", ROMX, BANK [$23]
 
 SECTION "bank 24", ROMX, BANK [$24]
 	dr $90000, $94000
-
-SECTION "bank 25", ROMX, BANK [$25]
-	dr $94000, $98000
 
 SECTION "bank 26", ROMX, BANK [$26]
 	dr $98000, $9c000
@@ -860,9 +851,6 @@ SECTION "bank 2B", ROMX, BANK [$2b]
 SECTION "bank 2C", ROMX, BANK [$2c]
 	dr $b0000, $b4000
 
-SECTION "bank 2D", ROMX, BANK [$2d]
-	dr $b4000, $b8000
-
 SECTION "bank 2E", ROMX, BANK [$2e]
 	dr $b8000, $bc000
 
@@ -917,9 +905,6 @@ Func_c99ac::
 
 SECTION "bank 33", ROMX, BANK [$33]
 	dr $cc000, $d0000
-
-SECTION "bank 34", ROMX, BANK [$34]
-	dr $d0000, $d4000
 
 SECTION "bank 35", ROMX, BANK [$35]
 UnknownTZFile90:: INCBIN "gfx/tzfiles/tz_90.2bpp.tz"
@@ -1039,15 +1024,6 @@ UnknownTZFile66:: INCBIN "gfx/tzfiles/tz_66_speed.2bpp.tz"
 UnknownTZFile67:: INCBIN "gfx/tzfiles/tz_67_speed.2bpp.tz"
 ENDC
 
-SECTION "bank 3B", ROMX, BANK [$3b]
-	dr $ec000, $f0000
-
-SECTION "bank 3C", ROMX, BANK [$3c]
-	dr $f0000, $f4000
-
-SECTION "bank 3D", ROMX, BANK [$3d]
-	dr $f4000, $f8000
-
 SECTION "bank 3E", ROMX, BANK [$3e]
 Pointers_f8000::
 	dr $f8000, $fc000
@@ -1058,12 +1034,6 @@ Pointers_fc000::
 
 SECTION "bank 40", ROMX, BANK [$40]
 	dr $100000, $104000
-
-SECTION "bank 43", ROMX, BANK [$43]
-	dr $10c000, $110000
-
-SECTION "bank 44", ROMX, BANK [$44]
-	dr $110000, $114000
 
 SECTION "bank 45", ROMX, BANK [$45]
 	dr $114000, $118000
@@ -1130,9 +1100,6 @@ SECTION "bank 56", ROMX, BANK [$56]
 SECTION "bank 57", ROMX, BANK [$57]
 	dr $15c000, $160000
 
-SECTION "bank 58", ROMX, BANK [$58]
-	dr $160000, $164000
-
 SECTION "bank 59", ROMX, BANK [$59]
 UnknownTZFile32:: INCBIN "gfx/tzfiles/tz_32.2bpp.tz"
 UnknownTZFile33:: INCBIN "gfx/tzfiles/tz_33.2bpp.tz"
@@ -1145,18 +1112,6 @@ UnknownTZFile39:: INCBIN "gfx/tzfiles/tz_39.2bpp.tz"
 UnknownTZFile40:: INCBIN "gfx/tzfiles/tz_40.2bpp.tz"
 UnknownTZFile41:: INCBIN "gfx/tzfiles/tz_41.2bpp.tz"
 UnknownTZFile42:: INCBIN "gfx/tzfiles/tz_42.2bpp.tz"
-
-SECTION "bank 5A", ROMX, BANK [$5a]
-	dr $168000, $16c000
-
-SECTION "bank 5B", ROMX, BANK [$5b]
-	dr $16c000, $170000
-
-SECTION "bank 5C", ROMX, BANK [$5c]
-	dr $170000, $174000
-
-SECTION "bank 5D", ROMX, BANK [$5d]
-	dr $174000, $178000
 
 SECTION "bank 5E", ROMX, BANK [$5e]
 Data_178000::
@@ -1173,12 +1128,6 @@ SECTION "bank 5F", ROMX, BANK [$5f]
 
 SECTION "bank 60", ROMX, BANK [$60]
 	dr $180000, $184000
-
-SECTION "bank 61", ROMX, BANK [$61]
-	dr $184000, $188000
-
-SECTION "bank 62", ROMX, BANK [$62]
-	dr $188000, $18c000
 
 SECTION "bank 63", ROMX, BANK [$63]
 	dr $18c000, $190000
@@ -1209,12 +1158,6 @@ SECTION "bank 6A", ROMX, BANK [$6a]
 
 SECTION "bank 75", ROMX, BANK [$75]
 	dr $1d4000, $1d8000
-
-SECTION "bank 77", ROMX, BANK [$77]
-	dr $1dc000, $1e0000
-
-SECTION "bank 78", ROMX, BANK [$78]
-	dr $1e0000, $1e4000
 
 SECTION "bank 79", ROMX, BANK [$79]
 	dr $1e4000, $1e8000
