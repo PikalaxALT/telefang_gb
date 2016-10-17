@@ -676,7 +676,10 @@ Func_6d5aa::
 	dr $6d5aa, $6d6ff
 
 Func_6d6ff::
-	dr $6d6ff, $6dc84
+	dr $6d6ff, $6db13
+
+Func_6db13::
+	dr $6db13, $6dc84
 
 Func_6dc84::
 	dr $6dc84, $6dd4b

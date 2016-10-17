@@ -1772,9 +1772,8 @@ wca67:: ds 1
 wca68:: ds 1
 wca69:: ds 1
 wca6a:: ds 1
-wca6b:: ds 1
-wca6c:: ds 1
-wca6d:: ds 1
+wCustomSpriteDest:: ds 2
+wSpriteDestIsCustom:: ds 1
 wca6e:: ds 1
 wca6f:: ds 1
 wca70:: ds 1
