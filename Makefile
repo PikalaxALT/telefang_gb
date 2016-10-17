@@ -1,4 +1,5 @@
 PYTHON := python
+PYTHON3 := python3
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
@@ -8,7 +9,7 @@ MD5 := md5sum -c --quiet
 
 gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) scan_includes.py
-
+tzcomp    := $(PYTHON3) tz.py
 
 telefang_obj := \
 wram.o \
@@ -56,6 +57,7 @@ telespeed.gbc: $(telespeed_obj)
 %.png: ;
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
+%.tz: ; # %.2bpp; $(tzcomp) compress $<
 
 %.pal: %.2bpp ;
 gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp ;

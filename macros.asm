@@ -12,13 +12,13 @@ INCBIN "baserom-speed.gbc", \1, \2 - \1
 ENDC
 ENDM
 
-callba: MACRO
+callba_rst: MACRO
 	ld a, BANK(\1)
 	ld hl, \1
 	rst FarCall
 ENDM
 
-callba_norst: MACRO
+callba: MACRO
 	ld a, BANK(\1)
 	ld hl, \1
 	call FarCall_HL

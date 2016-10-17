@@ -184,8 +184,8 @@ Func_056a::
 	rst MemBankswitch
 	ret
 
-Func_056f::
-	call Func_1b9c
+LoadWildBattleBackgroundGFX::
+	call LoadWildBattleBackgroundGFX_
 	rst MemBankswitch
 	ret
 

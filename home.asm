@@ -725,12 +725,12 @@ Func_0c36: ; c36 (0:0c36)
 	rl d
 	add hl, de
 	ld a, [hli]
-	ld [wc44e], a
+	ld [wFontSourceBank], a
 	ld a, [hli]
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	ld a, [hl]
-	ld [wc451], a
-	ld a, [wc44e]
+	ld [wFontSourceAddr + 1], a
+	ld a, [wFontSourceBank]
 	rst Bankswitch
 	ld hl, Pointers_1de1
 	sla c
@@ -741,63 +741,61 @@ Func_0c36: ; c36 (0:0c36)
 	ld l, a
 	push hl
 	pop de
-	ld a, [wc451]
+	ld a, [wFontSourceAddr + 1]
 	ld h, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	ld l, a
 	ld a, [de]
 	inc de
-	jp Func_0c71
-
-Func_0c71: ; c71 (0:0c71)
+	jp @ + 2 ; basically a huge nop
 	cp $0
-	jp z, Func_0d33
+	jp z, .single_blocks
 	ld a, h
-	ld [wc406], a
+	ld [wFontDestAddr], a
 	ld a, l
-	ld [wc407], a
+	ld [wFontDestAddr + 1], a
 	ld a, [de]
 	ld c, a
 	inc de
 	ld a, [de]
 	ld b, a
 	inc de
-Func_0c84: ; c84 (0:0c84)
+.loop
 	ld a, b
 	or c
-	jp z, Func_0d4d
+	jp z, .exit
 	ld a, [de]
-	ld [wc405], a
+	ld [wFontBlockFlags + 1], a
 	inc de
 	ld a, [de]
-	ld [wc404], a
+	ld [wFontBlockFlags], a
 	inc de
-	ld a, $11
-	ld [wc403], a
-Func_0c98: ; c98 (0:0c98)
+	ld a, $10 + 1
+	ld [wFontNumBlocks], a
+.loop2
 	ld a, b
 	or c
-	jp z, Func_0d4d
-	ld a, [wc403]
+	jp z, .exit
+	ld a, [wFontNumBlocks]
 	dec a
-	jp z, Func_0c84
-	ld [wc403], a
+	jp z, .loop
+	ld [wFontNumBlocks], a
 	push de
-	ld a, [wc404]
+	ld a, [wFontBlockFlags]
 	ld d, a
-	ld a, [wc405]
+	ld a, [wFontBlockFlags + 1]
 	ld e, a
 	srl d
 	ld a, d
-	ld [wc404], a
+	ld [wFontBlockFlags], a
 	rr e
 	ld a, e
-	ld [wc405], a
-	jp c, Func_0cdf
+	ld [wFontBlockFlags + 1], a
+	jp c, .carry
 	pop de
-	ld a, [wc406]
+	ld a, [wFontDestAddr]
 	ld h, a
-	ld a, [wc407]
+	ld a, [wFontDestAddr + 1]
 	ld l, a
 	di
 	call WaitStat
@@ -806,14 +804,14 @@ Func_0c98: ; c98 (0:0c98)
 	ld [hli], a
 	ei
 	ld a, h
-	ld [wc406], a
+	ld [wFontDestAddr], a
 	ld a, l
-	ld [wc407], a
+	ld [wFontDestAddr + 1], a
 	dec bc
 	inc de
-	jp Func_0c98
+	jp .loop2
 
-Func_0cdf: ; cdf (0:0cdf)
+.carry
 	pop de
 	push de
 	ld a, [de]
@@ -835,18 +833,18 @@ Func_0cdf: ; cdf (0:0cdf)
 	ld a, l
 	cpl
 	ld e, a
-	ld a, [wc406]
+	ld a, [wFontDestAddr]
 	ld h, a
-	ld a, [wc407]
+	ld a, [wFontDestAddr + 1]
 	ld l, a
 	add hl, de
 	push hl
 	pop de
-	ld a, [wc406]
+	ld a, [wFontDestAddr]
 	ld h, a
-	ld a, [wc407]
+	ld a, [wFontDestAddr + 1]
 	ld l, a
-Func_0d0f: ; d0f (0:0d0f)
+.loop3
 	di
 	call WaitStat
 	ld a, [de]
@@ -858,27 +856,27 @@ Func_0d0f: ; d0f (0:0d0f)
 	ld a, [wc402]
 	dec a
 	ld [wc402], a
-	jp nz, Func_0d0f
+	jp nz, .loop3
 	ld a, h
-	ld [wc406], a
+	ld [wFontDestAddr], a
 	ld a, l
-	ld [wc407], a
+	ld [wFontDestAddr + 1], a
 	pop de
 	inc de
 	inc de
-	jp Func_0c98
+	jp .loop2
 
-Func_0d33: ; d33 (0:0d33)
+.single_blocks
 	ld a, [de]
 	ld c, a
 	inc de
 	ld a, [de]
 	ld b, a
 	inc de
-Func_0d39: ; d39 (0:0d39)
+.loop4
 	ld a, b
 	or c
-	jp z, Func_0d4d
+	jp z, .exit
 	di
 	call WaitStat
 	ld a, [de]
@@ -887,9 +885,9 @@ Func_0d39: ; d39 (0:0d39)
 	ei
 	inc de
 	dec bc
-	jp Func_0d39
+	jp .loop4
 
-Func_0d4d: ; d4d (0:0d4d)
+.exit
 	ret
 
 Func_0d4e::
@@ -1259,7 +1257,7 @@ Func_12fb: ; 12fb (0:12fb)
 	push hl
 	push af
 	xor a
-	ld [wc44e], a
+	ld [wFontSourceBank], a
 	ld [wc44f], a
 	ld de, 0
 	pop af
@@ -1297,7 +1295,7 @@ Func_12fb: ; 12fb (0:12fb)
 
 .asm_132c
 	ld a, d
-	ld [wc44e], a
+	ld [wFontSourceBank], a
 	ld a, e
 	ld [wc44f], a
 	pop hl
@@ -1307,7 +1305,7 @@ Func_12fb: ; 12fb (0:12fb)
 
 Func_1338: ; 1338 (0:1338)
 	xor a
-	ld [wc44e], a
+	ld [wFontSourceBank], a
 	ld [wc44f], a
 	ld a, b
 	or a
@@ -1336,9 +1334,9 @@ Func_1338: ; 1338 (0:1338)
 	ld a, [wc440]
 	sbc b
 	ld h, a
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	add $1
-	ld [wc44e], a
+	ld [wFontSourceBank], a
 	ld a, $0
 	adc $0
 	ld d, a
@@ -1356,17 +1354,17 @@ Func_1378::
 	call Func_12fb
 	pop hl
 	xor a
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	pop bc
 	ld a, c
 	cp $1
 	jp nz, Func_1394
 	ld a, $1
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	jp Func_13aa
 
 Func_1394: ; 1394 (0:1394)
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	and $f
 	or a
 	jr nz, .asm_139d
@@ -1378,7 +1376,7 @@ Func_1394: ; 1394 (0:1394)
 	ld [hl], a
 	ei
 	ld a, $1
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 Func_13aa: ; 13aa (0:13aa)
 	inc hl
 	ld a, [wc44f]
@@ -1386,7 +1384,7 @@ Func_13aa: ; 13aa (0:13aa)
 	or a
 	jr nz, .asm_13bb
 	ld b, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	or a
 	jr z, .asm_13c5
 	ld a, b
@@ -1419,7 +1417,7 @@ Func_13d7::
 	call Func_12fb
 	pop hl
 	xor a
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	ld a, [wc44f]
 	and $f0
 	or a
@@ -1441,14 +1439,14 @@ Func_13d7::
 	ei
 	pop hl
 	ld a, $1
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	inc hl
 	ld a, [wc44f]
 	and $f
 	or a
 	jr nz, .asm_1417
 	ld b, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	or a
 	jr z, .asm_142c
 	ld a, b
@@ -1481,22 +1479,22 @@ Func_1430::
 	call Func_12fb
 	pop hl
 	xor a
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	pop bc
 	ld a, c
 	cp $1
 	jp nz, Func_144c
 	ld a, $1
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	jp Func_146d
 
 Func_144c: ; 144c (0:144c)
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	and $f
 	or a
 	jr nz, .asm_145c
 	ld b, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	or a
 	jr z, .asm_1468
 	ld a, b
@@ -1504,7 +1502,7 @@ Func_144c: ; 144c (0:144c)
 	add $f0
 	call WaitStatAndLoad
 	ld a, $1
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	jr Func_146d
 
 .asm_1468
@@ -1516,7 +1514,7 @@ Func_146d: ; 146d (0:146d)
 	or a
 	jr nz, .asm_147d
 	ld b, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	or a
 	jr z, .asm_1486
 	ld a, b
@@ -1562,18 +1560,18 @@ Func_14b1::
 	push de
 	push bc
 	xor a
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	ld a, b
 	ld [wc442], a
 	ld a, c
 	ld [wc443], a
 	ld bc, $3e8
 	call Func_1338
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	or a
 	jr nz, .asm_14d4
 	ld b, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	or a
 	jr z, .asm_14eb
 	ld a, b
@@ -1590,7 +1588,7 @@ Func_14b1::
 	ld [hl], a
 	ei
 	ld a, $1
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 .asm_14eb
 	ld a, [wc440]
 	ld h, a
@@ -1598,11 +1596,11 @@ Func_14b1::
 	ld l, a
 	ld bc, $64
 	call Func_1338
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	or a
 	jr nz, .asm_1505
 	ld b, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	or a
 	ld a, b
 .asm_1505
@@ -1622,18 +1620,18 @@ Func_14b1::
 	ld [hl], a
 	ei
 	ld a, $1
-	ld [wc450], a
+	ld [wFontSourceAddr], a
 	ld a, [wc440]
 	ld h, a
 	ld a, [wc441]
 	ld l, a
 	ld bc, $a
 	call Func_1338
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	or a
 	jr nz, .asm_153e
 	ld b, a
-	ld a, [wc450]
+	ld a, [wFontSourceAddr]
 	or a
 	ld a, b
 .asm_153e
@@ -1662,7 +1660,7 @@ Func_14b1::
 	ld l, a
 	ld bc, $1
 	call Func_1338
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	add $f0
 	push af
 	ld a, [wc442]
@@ -1747,10 +1745,10 @@ Func_15ca::
 	ld a, $1
 	ld [rVBK], a
 	ld a, b
-	ld [wc44e], a
+	ld [wFontSourceBank], a
 .asm_15db
 	push hl
-	ld a, [wc44e]
+	ld a, [wFontSourceBank]
 	ld b, a
 .asm_15e0
 	ld a, [wc44f]
@@ -2479,7 +2477,7 @@ asm_1b95
 	ld [rSC], a
 	ret
 
-Func_1b9c: ; 1b9c (0:1b9c)
+LoadWildBattleBackgroundGFX_: ; 1b9c (0:1b9c)
 	ld d, a
 	ld a, WILD_BG_GFX
 	rst Bankswitch
@@ -3061,8 +3059,8 @@ Func_1ea1: ; 1ea1 (0:1ea1)
 	or a
 	jr nz, .asm_1ee2
 	homecall Func_a5060, Func_a50be, Func_a4e47, Func_a4ba4, Func_a5245, Func_a54a2
-	callba_norst Func_2c904
-	callba_norst Func_2e4b2
+	callba Func_2c904
+	callba Func_2e4b2
 .asm_1ee2
 	call Func_1f24
 	homecall Func_2e064
@@ -3122,7 +3120,7 @@ Func_1f24: ; 1f24 (0:1f24)
 	ld [wca6f], a
 
 Func_1f6a: ; 1f6a (0:1f6a)
-	callba_norst Func_2e589
+	callba Func_2e589
 	ld a, [wPrevROMBank]
 	rst Bankswitch
 	ld h, d
@@ -3177,7 +3175,7 @@ Func_1fca: ; 1fca (0:1fca)
 	ld [wc926], a
 	ld a, [wc906]
 	ld [wc927], a
-	callba_norst Func_c97d2
+	callba Func_c97d2
 	call Func_20f6
 	call Func_1fff
 	ld a, $17
@@ -3381,7 +3379,7 @@ Func_2134::
 	call Func_3252
 	call Func_0985
 	homecall Func_c96ba
-	callba_norst Func_3d00e
+	callba Func_3d00e
 	ld a, $c
 	ld [wPrevROMBank], a
 	ld a, BANK(Func_3394e)
@@ -3462,7 +3460,7 @@ Func_2264: ; 2264 (0:2264)
 	call Func_2793
 	ld a, $5e
 	ld [wc9ee], a
-	callba_norst Func_2e0d2
+	callba Func_2e0d2
 	call Func_3388
 	call Func_37d5
 	ld a, $0
@@ -3551,7 +3549,7 @@ Func_2329::
 	jr z, .asm_234b
 	ld a, [wc904]
 	ld [wca69], a
-	callba_norst Func_c99ac
+	callba Func_c99ac
 	ret
 
 .asm_234b
@@ -3666,7 +3664,7 @@ Func_242b::
 	jr nz, .asm_2464
 	ld a, $2
 	ld [wcad0], a
-	callba_norst Func_2ccb9
+	callba Func_2ccb9
 	call Func_2411
 	ld a, $24
 	ld [wc3e1], a
@@ -3743,11 +3741,372 @@ Func_24d8::
 	ld [wc917], a
 	ret
 
-Func_24f6::
-	dr $24f6, $2793
+Func_24f6: ; 24f6 (0:24f6)
+	homecall Func_c9538
+	ret
+
+Func_2503::
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Func_2509::
+	homecall Func_c8000
+	ret
+
+Data_2516::
+x = 0
+REPT 10
+	dw x
+x = x + 10
+ENDR
+
+Func_252a: ; 252a (0:252a)
+	push af
+	ld a, c
+	ld hl, Data_255a
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	sla e
+	rl d
+	ld a, [wc9fc]
+	ld l, a
+	ld a, [wc9fd]
+	ld h, a
+	add hl, de
+	call Func_32f7
+	ld a, l
+	sla b
+	add b
+	and $1f
+	ld b, a
+	ld a, l
+	and $e0
+	or b
+	ld l, a
+	pop af
+	call Func_328d
+	ret
+
+Data_255a::
+x = 0
+REPT 10
+	dw x
+x = x + $20
+ENDR
+
+Func_256e::
+	ld a, [wc49a]
+	cp $0
+	jp nz, Func_2690
+	call Func_26b1
+	ld a, [hJoyNew]
+	and $1
+	jp z, Func_2690
+	ld a, [wc499]
+	bit 2, a
+	jp nz, Func_26ff
+	ld a, [wc9c1]
+	or a
+	jp z, Func_2690
+	ld a, [wc9c2]
+	cp $14
+	jr z, .asm_259a
+	cp $11
+	jr nz, .asm_260e
+.asm_259a
+	ld bc, $1de
+	call Func_2c4d
+	jp z, Func_2691
+	callba Func_31843
+	ld a, b
+	or a
+	jp z, Func_2690
+	ld a, $0
+	ld [wc9c1], a
+	ld a, [wc499]
+	set 2, a
+	ld [wc499], a
+	callba Func_31600
+	callba Func_3162e
+	ld a, $9
+	ld [wc49a], a
+	ld a, $0
+	ld [wc493], a
+	ld hl, Data_2698
+	ld a, [wc497]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	ld [wc9f4], a
+	call Func_30a7
+	cp $40
+	jr nc, .asm_25fe
+	ld a, [wc9c3]
+	ld b, a
+	ld a, [wc9c4]
+	ld c, a
+	callba Func_320e1
+.asm_25fe
+	callba Func_c97d2
+	ld a, $1
+	ld [wc953], a
+	jp Func_2690
+
+.asm_260e
+	ld a, [wc9c2]
+	cp $13
+	jr nz, .asm_2665
+	call Func_1fff
+	ld a, $13
+	ld [hFFA1], a
+	ld a, [wc9c3]
+	ld b, a
+	ld a, [wc9c4]
+	ld c, a
+	ld a, [wc9c0]
+	ld l, a
+	ld a, [wc9c1]
+	ld h, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	call Func_252a
+	ld a, $0
+	ld [wc9c1], a
+	ld a, [wc9c3]
+	ld b, a
+	ld a, [wc9c4]
+	ld c, a
+	call Func_28a9
+	jr nz, .asm_264f
+	ld a, $b
+	ld [wc49a], a
+	ld a, $20
+	ld [wc493], a
+	ret
+
+.asm_264f
+	ld a, $b
+	ld [wc49a], a
+	ld a, $b8
+	ld [wc493], a
+	ld a, [wcd00]
+	or a
+	jr z, .asm_2664
+	ld a, $8
+	ld [wc493], a
+.asm_2664
+	ret
+
+.asm_2665
+	cp $15
+	jr nz, Func_2690
+	call Func_2809
+	jr nz, Func_2690
+	ld a, [wc9c0]
+	ld l, a
+	ld a, [wc9c1]
+	ld h, a
+	ld a, [hl]
+	or $1
+	ld [hl], a
+	push af
+	ld a, [wc9c3]
+	ld b, a
+	ld a, [wc9c4]
+	ld c, a
+	pop af
+	call Func_252a
+	ld a, $0
+	ld [wc9c1], a
+	ld a, $13
+	ld [hFFA1], a
+Func_2690: ; 2690 (0:2690)
+	ret
+
+Func_2691: ; 2691 (0:2691)
+	ld b, $0
+	ld c, $9b
+	jp Func_33c9
+
+Data_2698::
+	db $2c
+	db $29
+	db $2c
+	db $26
+	db $fa
+	db $c3
+	db $c9
+	db $47
+
+Func_26a0::
+	ld a, [wc9c4]
+	ld c, a
+	ld a, [wc9c0]
+	ld l, a
+	ld a, [wc9c1]
+	ld h, a
+	ld a, d
+	ld [hl], a
+	jp Func_252a
+
+Func_26b1: ; 26b1 (0:26b1)
+	ld a, [wc98f]
+	or a
+	jr z, .asm_26f1
+	ld a, [wc9c1]
+	or a
+	jr z, .asm_26f1
+	ld a, [wc9c2]
+	cp $12
+	jr nz, .asm_26f1
+	ld a, $1c
+	ld [wcdb2], a
+	ld a, [wc9fe]
+	inc a
+	ld [wc9fe], a
+	cp $1c
+	jr c, Func_2690
+	ld bc, $1df
+	call Func_2c4d
+	jr z, .asm_26f6
+	callba Func_31e97
+	callba Func_c97d2
+	ld a, $1
+	ld [wc953], a
+.asm_26f1
+	xor a
+	ld [wc9fe], a
+	ret
+
+.asm_26f6
+	ld b, $0
+	ld c, $9a
+	call Func_33c9
+	jr .asm_26f1
+
+Func_26ff: ; 26ff (0:26ff)
+	ld a, [wcadb]
+	or a
+	jr nz, .asm_272e
+	ld hl, Data_2698
+	ld a, [wc497]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	sub $2
+	ld a, a
+	ld [wc9f4], a
+	ld a, $11
+	ld [wc49a], a
+	ld a, $c
+	ld [wc493], a
+	ld a, $68
+	ld [hFFA1], a
+	ld a, [wc499]
+	res 2, a
+	ld [wc499], a
+.asm_272e
+	ret
+
+	ld a, [wc905]
+	ld hl, Data_2760
+	ld b, a
+	add a
+	add b
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld [wc9ec], a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wROMBank]
+	push af
+	ld a, $67
+	rst Bankswitch
+	push de
+	ld a, [wc903]
+	ld b, $0
+	ld c, a
+	ld de, $50
+	push hl
+	call Multiply_DE_by_BC
+	pop hl
+	add hl, de
+	pop de
+	pop af
+	rst Bankswitch
+	ret
+
+Data_2760::
+	dbw $68, $4000
+	dbw $69, $4000
+	dbw $68, $4000
+	dbw $69, $4000
+	dbw $69, $4000
+	dbw $69, $4000
+	dbw $64, $4000
+	dbw $6a, $4000
+	dbw $6a, $4000
+	dbw $66, $4000
+	dbw $65, $4000
+	dbw $64, $4000
+	dbw $64, $4000
+	dbw $64, $4000
+	dbw $64, $4000
+	dbw $64, $4000
+	dbw $63, $4000
 
 Func_2793::
-	dr $2793, $2c4d
+	dr $2793, $2809
+
+Func_2809::
+	dr $2809, $28a9
+
+Func_28a9::
+	dr $28a9, $2b44
+
+Multiply_DE_by_BC: ; 2b44 (0:2b44)
+; de *= bc
+	ld hl, 0
+	ld a, $f
+.loop
+	sla e
+	rl d
+	jr nc, .next
+	add hl, bc
+.next
+	add hl, hl
+	dec a
+	jr nz, .loop
+	bit 7, d
+	jr z, .done
+	add hl, bc
+.done
+	ld d, h
+	ld e, l
+	ret
+
+Func_2b5c::
+	dr $2b5c, $2c4d
 
 Func_2c4d::
 	dr $2c4d, $2f76
@@ -3768,7 +4127,13 @@ Func_3252::
 	dr $3252, $3255
 
 Func_3255::
-	dr $3255, $32ff
+	dr $3255, $328d
+
+Func_328d::
+	dr $328d, $32f7
+
+Func_32f7::
+	dr $32f7, $32ff
 
 Func_32ff::
 	dr $32ff, $3388

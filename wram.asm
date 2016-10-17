@@ -131,11 +131,11 @@ wc3ff:: ds 1
 wc400:: ds 1
 wc401:: ds 1
 wc402:: ds 1
-wc403:: ds 1
-wc404:: ds 1
-wc405:: ds 1
-wc406:: ds 1
-wc407:: ds 1
+
+wFontNumBlocks:: ds 1
+wFontBlockFlags:: dw
+wFontDestAddr:: dw
+
 wc408:: ds 1
 wc409:: ds 1
 wc40a:: ds 1
@@ -206,10 +206,11 @@ wc44a:: ds 1
 wc44b:: ds 1
 wc44c:: ds 1
 wc44d:: ds 1
-wc44e:: ds 1
+
+wFontSourceBank:: ds 1 ; c44e
 wc44f:: ds 1
-wc450:: ds 1
-wc451:: ds 1
+wFontSourceAddr:: dw ; c450
+
 wc452:: ds 1
 wc453:: ds 1
 wc454:: ds 1

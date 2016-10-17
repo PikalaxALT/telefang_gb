@@ -4,10 +4,10 @@ INCLUDE "interrupts.asm"
 
 INCLUDE "home.asm"
 
-SECTION "bank 01", ROMX, BANK [$01]
+SECTION "bank 01", ROMX, BANK [$1]
 	dr $4000, $8000
 
-SECTION "bank 02", ROMX, BANK [$02]
+SECTION "bank 02", ROMX, BANK [$2]
 Func_8000::
 	dr $8000, $80bf
 
@@ -41,7 +41,7 @@ Func_8b8b::
 Func_9300::
 	dr $9300, $c000
 
-SECTION "bank 03", ROMX, BANK [$03]
+SECTION "bank 03", ROMX, BANK [$3]
 Func_c000::
 	dr $c000, $c1af
 
@@ -60,27 +60,27 @@ Func_fb3e::
 Func_fb8d::
 	dr $fb8d, $10000
 
-SECTION "bank 04", ROMX, BANK [$04]
+SECTION "bank 04", ROMX, BANK [$4]
 Func_10000::
 	dr $10000, $105c0
 
 Func_105c0::
 	dr $105c0, $14000
 
-SECTION "bank 05", ROMX, BANK [$05]
+SECTION "bank 05", ROMX, BANK [$5]
 	dr $14000, $1441b
 
 Func_1441b::
 	dr $1441b, $18000
 
-SECTION "bank 06", ROMX, BANK [$06]
+SECTION "bank 06", ROMX, BANK [$6]
 macro_18000: MACRO
 	dbw \1, \2 ; bank, VRAM dest
 	db 0
 ENDM
 
 Data_18000::
-	macro_18000 $00, $8000
+	macro_18000 $0, $8000
 	macro_18000 $37, $8100
 	macro_18000 $36, $8cd0
 	macro_18000 $36, $9000
@@ -179,23 +179,23 @@ Data_18000::
 
 	dr $18180, $1c000
 
-SECTION "bank 07", ROMX, BANK [$07]
+SECTION "bank 07", ROMX, BANK [$7]
 PalPackets_1c000::
 	dr $1c000, $20000
 
-SECTION "bank 08", ROMX, BANK [$08]
+SECTION "bank 08", ROMX, BANK [$8]
 Pointers_20000::
 	dr $20000, $24000
 
-SECTION "bank 09", ROMX, BANK [$09]
+SECTION "bank 09", ROMX, BANK [$9]
 Pointers_24000::
 	dr $24000, $28000
 
-SECTION "bank 0A", ROMX, BANK [$0a]
+SECTION "bank 0A", ROMX, BANK [$a]
 Pointers_28000::
 	dr $28000, $2c000
 
-SECTION "bank 0B", ROMX, BANK [$0b]
+SECTION "bank 0B", ROMX, BANK [$b]
 Data_2c000::
 	dr $2c000, $2c100
 
@@ -244,12 +244,27 @@ Func_2e589::
 Data_2e8fa::
 	dr $2e8fa, $30000
 
-SECTION "bank 0C", ROMX, BANK [$0c]
+SECTION "bank 0C", ROMX, BANK [$c]
 Func_30000::
 	dr $30000, $30240
 
 Func_30240::
-	dr $30240, $3394e
+	dr $30240, $31600
+
+Func_31600::
+	dr $31600, $3162e
+
+Func_3162e::
+	dr $3162e, $31843
+
+Func_31843::
+	dr $31843, $31e97
+
+Func_31e97::
+	dr $31e97, $320e1
+
+Func_320e1::
+	dr $320e1, $3394e
 
 Func_3394e::
 	dr $3394e, $33ac4
@@ -257,14 +272,14 @@ Func_3394e::
 Pointers_33ac4::
 	dr $33ac4, $34000
 
-SECTION "bank 0D", ROMX, BANK [$0d]
+SECTION "bank 0D", ROMX, BANK [$d]
 Palettes_34000::
 	dr $34000, $35d80
 
 Palettes_35d80::
 	dr $35d80, $38000
 
-SECTION "bank 0E", ROMX, BANK [$0e]
+SECTION "bank 0E", ROMX, BANK [$e]
 PalPackets_38000::
 	dr $38000, $38120
 
@@ -274,7 +289,7 @@ Pointers_38120::
 Func_38f8d::
 	dr $38f8d, $3c000
 
-SECTION "bank 0F", ROMX, BANK [$0f]
+SECTION "bank 0F", ROMX, BANK [$f]
 Func_3c000::
 	dr $3c000, $3c00c
 
@@ -701,7 +716,13 @@ Func_a5525::
 	dr $a5525, $a6b69
 
 Data_a6b69::
-	dr $a6b69, $a8000
+	dr $a6b69, $a6d29
+
+Data_0a6d29:: INCBIN "gfx/tzfiles/tz_43.2bpp.tz"
+Data_0a719a:: INCBIN "gfx/tzfiles/tz_44.2bpp.tz"
+
+Data_a7869::
+	dr $a7869, $a8000
 
 SECTION "bank 2A", ROMX, BANK [$2a]
 	dr $a8000, $a8539
@@ -743,7 +764,11 @@ SECTION "bank 31", ROMX, BANK [$31]
 	dr $c4000, $c8000
 
 SECTION "bank 32", ROMX, BANK [$32]
-	dr $c8000, $c96ba
+Func_c8000::
+	dr $c8000, $c9538
+
+Func_c9538::
+	dr $c9538, $c96ba
 
 Func_c96ba::
 	dr $c96ba, $c97d2
@@ -770,13 +795,73 @@ SECTION "bank 34", ROMX, BANK [$34]
 	dr $d0000, $d4000
 
 SECTION "bank 35", ROMX, BANK [$35]
-	dr $d4000, $d8000
+Data_d4000::
+	dr $d4000, $d4267
+
+Data_d4267::
+	dr $d4267, $d439d
+
+Data_d439d::
+	dr $d439d, $d4629
+
+Data_d4629::
+	dr $d4629, $d4753
+
+Data_d4753::
+	dr $d4753, $d488f
+
+Data_d488f::
+	dr $d488f, $d48e8
+
+Data_d48e8::
+	dr $d48e8, $d4996
+
+Data_d4996::
+	dr $d4996, $d8000
 
 SECTION "bank 36", ROMX, BANK [$36]
-	dr $d8000, $dc000
+UnknownTZFile03:: INCBIN "gfx/tzfiles/tz_3.2bpp.tz"
+UnknownTZFile04:: INCBIN "gfx/tzfiles/tz_4.2bpp.tz"
+UnknownTZFile15:: INCBIN "gfx/tzfiles/tz_15.2bpp.tz"
+UnknownTZFile16:: INCBIN "gfx/tzfiles/tz_16.2bpp.tz"
+IF DEF(POWER)
+UnknownTZFile10:: INCBIN "gfx/tzfiles/tz_10_power.2bpp.tz"
+UnknownTZFile11:: INCBIN "gfx/tzfiles/tz_11_power.2bpp.tz"
+ELSE
+UnknownTZFile10:: INCBIN "gfx/tzfiles/tz_10_speed.2bpp.tz"
+UnknownTZFile11:: INCBIN "gfx/tzfiles/tz_11_speed.2bpp.tz"
+ENDC
+UnknownTZFile06:: INCBIN "gfx/tzfiles/tz_6.2bpp.tz"
+UnknownTZFile14:: INCBIN "gfx/tzfiles/tz_14.2bpp.tz"
+UnknownTZFile02:: INCBIN "gfx/tzfiles/tz_2.2bpp.tz"
+UnknownTZFile20:: INCBIN "gfx/tzfiles/tz_20.2bpp.tz"
+UnknownTZFile21:: INCBIN "gfx/tzfiles/tz_21.2bpp.tz"
+UnknownTZFile24:: INCBIN "gfx/tzfiles/tz_24.2bpp.tz"
+
+Data_da4f9::
+IF DEF(POWER)
+	dr $da4f9, $dc000
+ELSE
+	dr $da5ac, $dc000
+ENDC
 
 SECTION "bank 37", ROMX, BANK [$37]
-	dr $dc000, $ddd5f
+UnknownTZFile17:: INCBIN "gfx/tzfiles/tz_17.2bpp.tz"
+UnknownTZFile01:: INCBIN "gfx/tzfiles/tz_1.2bpp.tz"
+UnknownTZFile12:: INCBIN "gfx/tzfiles/tz_12.2bpp.tz"
+UnknownTZFile07:: INCBIN "gfx/tzfiles/tz_7.2bpp.tz"
+UnknownTZFile08:: INCBIN "gfx/tzfiles/tz_8.2bpp.tz"
+UnknownTZFile09:: INCBIN "gfx/tzfiles/tz_9.2bpp.tz"
+UnknownTZFile22:: INCBIN "gfx/tzfiles/tz_22.2bpp.tz"
+UnknownTZFile19:: INCBIN "gfx/tzfiles/tz_19.2bpp.tz"
+UnknownTZFile05:: INCBIN "gfx/tzfiles/tz_5.2bpp.tz"
+UnknownTZFile25:: INCBIN "gfx/tzfiles/tz_25.2bpp.tz"
+UnknownTZFile26:: INCBIN "gfx/tzfiles/tz_26.2bpp.tz"
+UnknownTZFile27:: INCBIN "gfx/tzfiles/tz_27.2bpp.tz"
+UnknownTZFile13:: INCBIN "gfx/tzfiles/tz_13.2bpp.tz"
+UnknownTZFile18:: INCBIN "gfx/tzfiles/tz_18.2bpp.tz"
+UnknownTZFile23:: INCBIN "gfx/tzfiles/tz_23.2bpp.tz"
+UnknownTZFile72:: INCBIN "gfx/tzfiles/tz_72.2bpp.tz"
 
 Phone1GFX:: INCBIN "gfx/phone/phone1.2bpp"
 Phone2GFX:: INCBIN "gfx/phone/phone2.2bpp"
