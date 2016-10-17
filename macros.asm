@@ -38,6 +38,14 @@ lb: MACRO
 	ld \1, ((\2 & $ff) << 8) | (\3 & $ff)
 ENDM
 
+dn: MACRO
+	db ((\1 & $f) << 4) | (\2 & $f)
+ENDM
+
+ln: MACRO
+	ld \1, ((\2 & $f) << 4) | (\3 & $f)
+ENDM
+
 dbw: MACRO
 	db \1
 	dw \2

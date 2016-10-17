@@ -4073,9 +4073,9 @@ Func_2809: ; 2809 (0:2809)
 	ld c, a
 	ld b, [hl]
 	push hl
-	ld hl, -$400
+	ld hl, $fc00
 	add hl, bc
-	pop hl ; wtf
+	pop hl
 	jr c, .asm_2882
 	cp $ff
 	jr nz, .asm_2839
@@ -4472,15 +4472,15 @@ Func_2a68: ; 2a68 (0:2a68)
 	ld a, $0
 	adc h
 	ld h, a
-.asm_2a83
+.loop
 	ld de, $6
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_2ab2
+	jr z, .done
 	ld b, a
 	ld a, [wc903]
 	cp b
-	jr nz, .asm_2aaf
+	jr nz, .next
 	ld de, $5
 	ld a, [hli]
 	ld b, a
@@ -4489,21 +4489,21 @@ Func_2a68: ; 2a68 (0:2a68)
 	ld c, a
 	ld a, [wc915]
 	cp c
-	jr nz, .asm_2aaf
+	jr nz, .next
 	ld a, b
 	and $f
 	ld c, a
 	ld a, [wc916]
 	cp c
-	jr nz, .asm_2aaf
+	jr nz, .next
 	or $1
 	ret
 
-.asm_2aaf
+.next
 	add hl, de
-	jr .asm_2a83
+	jr .loop
 
-.asm_2ab2
+.done
 	ret
 
 Func_2ab3::
