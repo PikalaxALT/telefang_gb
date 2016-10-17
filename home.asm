@@ -5464,8 +5464,135 @@ Func_3094::
 	ld a, [wca6a]
 	ret
 
-Func_30a7::
-	dr $30a7, $3171
+Func_30a7: ; 30a7 (0:30a7)
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_2d8c1)
+	rst Bankswitch
+	call Func_2d8c1
+	ld d, a
+	pop af
+	rst Bankswitch
+	ld a, d
+	ret
+
+Func_30b6::
+	homecall Func_2d8df
+	ret
+
+Func_30c3::
+	push af
+	ld a, $1
+	ld [wca6d], a
+	ld a, h
+	ld [wca6b], a
+	ld a, l
+	ld [wca6c], a
+	ld b, $0
+	jr asm_30db
+
+GetOverworldSprite::
+	push af
+	ld a, $0
+	ld [wca6d], a
+asm_30db
+	pop af
+	push bc
+	ld c, $0
+	cp $1c
+	jr c, .asm_30f4
+	inc c
+	sub $1c
+	cp $1c
+	jr c, .asm_30f4
+	inc c
+	sub $1c
+	cp $1c
+	jr c, .asm_30f4
+	inc c
+	sub $1c
+.asm_30f4
+	push af
+	ld a, [wROMBank]
+	ld [wca52], a
+	ld a, SPRITES_01
+	add c
+	rst Bankswitch
+	pop af
+	ld d, $0
+	ld e, a
+	ld bc, $240
+	call Multiply_DE_by_BC
+	ld hl, OverworldSprite001
+	add hl, de
+	ld d, h
+	ld e, l
+	pop bc
+	ld a, b
+	or a
+	jr nz, .asm_3119
+	ld hl, VTilesOB tile $04
+	jr .asm_3139
+
+.asm_3119
+	cp $1
+	jr nz, .asm_3122
+	ld hl, VTilesOB tile $08
+	jr .asm_3139
+
+.asm_3122
+	cp $2
+	jr nz, .asm_312b
+	ld hl, VTilesOB tile $2c
+	jr .asm_3139
+
+.asm_312b
+	cp $3
+	jr nz, .asm_3134
+	ld hl, VTilesOB tile $50
+	jr .asm_3157
+
+.asm_3134
+	ld hl, VTilesOB tile $5c
+	jr .asm_3157
+
+.asm_3139
+	ld a, [wca6d]
+	or a
+	jr nz, .asm_3144
+	ld bc, $240
+	jr .asm_314f
+
+.asm_3144
+	ld a, [wca6b]
+	ld h, a
+	ld a, [wca6c]
+	ld l, a
+	ld bc, $c0
+.asm_314f
+	call Func_3801
+	ld a, [wca52]
+	rst Bankswitch
+	ret
+
+.asm_3157
+	ld b, $3
+.asm_3159
+	push bc
+	ld bc, $40
+	call Func_3801
+	ld a, $80
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	pop bc
+	dec b
+	jr nz, .asm_3159
+	ld a, [wca52]
+	rst Bankswitch
+	ret
 
 Func_3171::
 	dr $3171, $31c5

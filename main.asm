@@ -231,7 +231,13 @@ Func_2ccb9::
 	dr $2ccb9, $2ce29
 
 Func_2ce29::
-	dr $2ce29, $2d92b
+	dr $2ce29, $2d8c1
+
+Func_2d8c1::
+	dr $2d8c1, $2d8df
+
+Func_2d8df::
+	dr $2d8df, $2d92b
 
 Func_2d92b::
 	dr $2d92b, $2d95f
@@ -850,18 +856,6 @@ SECTION "bank 2B", ROMX, BANK [$2b]
 
 SECTION "bank 2C", ROMX, BANK [$2c]
 	dr $b0000, $b4000
-
-SECTION "bank 2E", ROMX, BANK [$2e]
-	dr $b8000, $bc000
-
-SECTION "bank 2F", ROMX, BANK [$2f]
-	dr $bc000, $c0000
-
-SECTION "bank 30", ROMX, BANK [$30]
-	dr $c0000, $c4000
-
-SECTION "bank 31", ROMX, BANK [$31]
-	dr $c4000, $c8000
 
 SECTION "bank 32", ROMX, BANK [$32]
 Func_c8000::
