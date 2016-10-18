@@ -7262,8 +7262,23 @@ Func_3b74: ; 3b74 (0:3b74)
 	ld [wd4ec], a
 	ret
 
-Func_3ba9::
-	dr $3ba9, $3bc1
+Func_3ba9: ; 3ba9 (0:3ba9)
+	ld hl, Data_9c715
+	ld de, 6
+	cp $0
+	jr z, .asm_3bb7
+.asm_3bb3
+	add hl, de
+	dec a
+	jr nz, .asm_3bb3
+.asm_3bb7
+	ld d, $0
+	ld a, b
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wd494], a
+	ret
 
 Func_3bc1::
 	dr $3bc1, $3c57

@@ -286,7 +286,7 @@ Func_05d9::
 
 Func_05e3::
 	push af
-	ld a, $27
+	ld a, BANK(Data_9c4a4)
 	rst Bankswitch
 	pop af
 	call Func_3b74
@@ -295,7 +295,7 @@ Func_05e3::
 
 Func_05ed::
 	push af
-	ld a, $27
+	ld a, BANK(Data_9c715)
 	rst Bankswitch
 	pop af
 	call Func_3ba9
