@@ -2536,7 +2536,7 @@ Pointers_1bf4::
 	dw Func_1c1d
 	dw Func_1c26
 	dw Func_1c2f
-	dw Func_1c38
+	dw PlayIntroMovie_
 	dw Func_1c41
 	dw Func_1c4a
 	dw Func_1c53
@@ -2573,11 +2573,11 @@ Func_1c2f::
 	rst Bankswitch
 	jp Func_10000
 
-Func_1c38::
-	ld a, BANK(Func_80bf)
+PlayIntroMovie_::
+	ld a, BANK(PlayIntroMovie)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_80bf
+	jp PlayIntroMovie
 
 Func_1c41::
 	ld a, $b
