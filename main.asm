@@ -345,7 +345,10 @@ Func_2e48d::
 	dr $2e48d, $2e4b2
 
 Func_2e4b2::
-	dr $2e4b2, $2e589
+	dr $2e4b2, $2e562
+
+Func_2e562::
+	dr $2e562, $2e589
 
 Func_2e589::
 	dr $2e589, $2e8fa
@@ -1008,7 +1011,10 @@ Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
 	dr $de95f, $e0000
 
 SECTION "bank 38", ROMX, BANK [$38]
-	dr $e0000, $e03a0
+GFX_e0000:: INCBIN "gfx/misc/e0000.2bpp"
+GFX_e00c0:: INCBIN "gfx/misc/e00c0.2bpp"
+GFX_e01f0:: INCBIN "gfx/misc/e01f0.2bpp"
+	dr $e0320, $e03a0
 
 TileMap_e03a0:: INCBIN "gfx/misc/e03a0.tilemap"
 TileMap_e03c8:: INCBIN "gfx/misc/e03c8.tilemap"
@@ -1242,4 +1248,5 @@ SECTION "bank 7B", ROMX, BANK [$7b]
 	dr $1ec000, $1f0000
 
 SECTION "bank 7C", ROMX, BANK [$7c]
-	dr $1f0000, $1f4000
+PCM_1f0000:: INCBIN "audio/pcm/title.pcm"
+PCM_1f0000End::

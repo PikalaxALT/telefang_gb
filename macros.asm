@@ -101,3 +101,8 @@ ENDM
 hlbgcoord EQUS "bgcoord hl,"
 debgcoord EQUS "bgcoord de,"
 bcbgcoord EQUS "bgcoord bc,"
+
+check_cgb: MACRO
+	ld a, [wCGB]
+	cp $11
+ENDM

@@ -22,8 +22,7 @@ NormalDMGPals::
 	ret
 
 UpdatePalsCGB: ; 106a (0:106a)
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	ret nz
 	ld a, [wBGPalUpdate]
 	or a
@@ -335,8 +334,7 @@ Func_122d: ; 122d (0:122d)
 	ld [wc3da], a
 	ld a, $1
 	ld [wc3df], a
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	ret nz
 	push de
 	call Func_11d1
@@ -358,8 +356,7 @@ Func_1248: ; 1248 (0:1248)
 	jr z, .asm_12a8
 	ld a, [wc3d9]
 	ld [wc3d8], a
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	jp z, Func_04a7
 	ld a, [wcb27]
 	ld d, $0
