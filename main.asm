@@ -318,7 +318,10 @@ Func_2e064::
 	dr $2e064, $2e0d2
 
 Func_2e0d2::
-	dr $2e0d2, $2e4b2
+	dr $2e0d2, $2e3dc
+
+Func_2e3dc::
+	dr $2e3dc, $2e4b2
 
 Func_2e4b2::
 	dr $2e4b2, $2e589
@@ -399,7 +402,10 @@ Pointers_38120::
 	dr $38120, $38f8d
 
 Func_38f8d::
-	dr $38f8d, $3c000
+	dr $38f8d, $39fab
+
+Func_39fab::
+	dr $39fab, $3c000
 
 SECTION "bank 0F", ROMX, BANK [$f]
 Func_3c000::
@@ -963,7 +969,10 @@ Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
 	dr $de95f, $e0000
 
 SECTION "bank 38", ROMX, BANK [$38]
-	dr $e0000, $e2c54
+	dr $e0000, $e1038
+
+TileMap_e1038::
+	dr $e1038, $e2c54
 
 Data_e2c54::
 	dr $e2c54, $e2d14
@@ -1080,7 +1089,7 @@ SECTION "bank 52", ROMX, BANK [$52]
 	dr $148000, $14c000
 
 SECTION "bank 53", ROMX, BANK [$53]
-	dr $14c000, $14c668
+Data_14c000:: INCLUDE "data/unknown_14c000.asm"
 
 Data_14c668::
 	dr $14c668, $150000

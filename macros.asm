@@ -89,3 +89,15 @@ REPT _NARG
 ENDR
 	rst MemBankswitch
 ENDM
+
+bgcoord: MACRO
+IF _NARG > 4
+	ld \1, (\3 * BG_MAP_WIDTH) + \2 + \4
+ELSE
+	ld \1, (\3 * BG_MAP_WIDTH) + \2 + VBGMap
+ENDC
+ENDM
+
+hlbgcoord EQUS "bgcoord hl,"
+debgcoord EQUS "bgcoord de,"
+bcbgcoord EQUS "bgcoord bc,"

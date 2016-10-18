@@ -3682,7 +3682,7 @@ Func_252a: ; 252a (0:252a)
 	ld a, [wc9fd]
 	ld h, a
 	add hl, de
-	call Func_32f7
+	call WrapAroundBGMapPointer
 	ld a, l
 	sla b
 	add b
@@ -4661,7 +4661,7 @@ Func_2bdc: ; 2bdc (0:2bdc)
 	ld a, [wc9fd]
 	ld h, a
 	add hl, bc
-	call Func_32f7
+	call WrapAroundBGMapPointer
 	ld b, $4
 .asm_2bea
 	push bc
@@ -4670,7 +4670,7 @@ Func_2bdc: ; 2bdc (0:2bdc)
 	pop hl
 	ld bc, $40
 	add hl, bc
-	call Func_32f7
+	call WrapAroundBGMapPointer
 	pop bc
 	dec b
 	jr nz, .asm_2bea
@@ -5671,29 +5671,268 @@ ENDR
 	add hl, de
 	ret
 
-Func_320b::
-	dr $320b, $3238
+Func_320b: ; 320b (0:320b)
+	ld a, [wca64]
+	ld h, a
+	or a
+	jr z, .asm_3237
+	ld a, [wROMBank]
+	push af
+	ld a, [wca62]
+	rst Bankswitch
+	ld a, [wca63]
+	ld l, a
+	ld de, VTilesOB tile $4
+	ld bc, $20
+.asm_3224
+	di
+.asm_3225
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_3225
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ei
+	inc de
+	dec c
+	jr nz, .asm_3224
+	pop af
+	rst Bankswitch
+.asm_3237
+	ret
 
-Func_3238::
-	dr $3238, $3252
+Func_3238: ; 3238 (0:3238)
+	ld a, $0
+	ld [wc9d9], a
+	ld [wc46c], a
+	ld [wc46d], a
+	ld a, BANK(TileMap_e1038)
+	hlbgcoord 0, 5
+	ld de, TileMap_e1038
+	ld bc, $e0
+	call Func_372d
+	ret
 
-Func_3252::
-	dr $3252, $3255
+Func_3252: ; 3252 (0:3252)
+	call Func_2b72
+Func_3255: ; 3255 (0:3255)
+	ld de, wca70
+	ld hl, VBGMap
+	ld b, $8
+.asm_325d
+	ld c, $a
+.asm_325f
+	push bc
+	push hl
+	ld a, [de]
+	inc de
+	push de
+	call Func_328d
+	pop de
+	pop hl
+	pop bc
+	inc hl
+	inc hl
+	dec c
+	jr nz, .asm_325f
+	ld a, $0
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	push de
+	ld de, 44
+	add hl, de
+	pop de
+	dec b
+	jr nz, .asm_325d
+	homecall Func_39fab
+	ret
 
-Func_3255::
-	dr $3255, $328d
+Func_328d: ; 328d (0:328d)
+	ld c, a
+	ld a, [wROMBank]
+	push af
+	ld a, [wc9ee]
+	rst Bankswitch
+	ld a, [wc9f7]
+	ld d, a
+	ld a, [wc9f6]
+	ld e, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	push hl
+	push bc
+	ld a, c
+	add e
+	ld e, a
+	ld a, b
+	adc d
+	ld d, a
+	ld bc, BG_MAP_WIDTH - 1
+	call Func_32dc
+	ld a, [wc9f9]
+	ld h, a
+	ld a, [wc9f8]
+	ld l, a
+	pop bc
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, [wCGB]
+	cp $11
+	jr nz, .asm_32d9
+	ld bc, BG_MAP_WIDTH - 1
+	ld a, $1
+	di
+	ld [rVBK], a
+	call Func_32dd
+	xor a
+	ld [rVBK], a
+	ei
+.asm_32d9
+	pop af
+	rst Bankswitch
+	ret
 
-Func_328d::
-	dr $328d, $32f7
+Func_32dc: ; 32dc (0:32dc)
+	di
+Func_32dd: ; 32dd (0:32dd)
+	ld a, [rSTAT]
+	and $2
+	jr nz, Func_32dd
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hl], a
+	add hl, bc
+.asm_32ea
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_32ea
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	ld [hl], a
+	ret
 
-Func_32f7::
-	dr $32f7, $32ff
+Func_32f6::
+	ret
 
-Func_32ff::
-	dr $32ff, $3388
+WrapAroundBGMapPointer: ; 32f7 (0:32f7)
+	ld a, h
+	cp VWindow >> 8
+	jr c, .asm_32fe
+	ld h, VBGMap >> 8
+.asm_32fe
+	ret
 
-Func_3388::
-	dr $3388, $3395
+Func_32ff: ; 32ff (0:32ff)
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Data_14c000)
+	rst Bankswitch
+	ld a, $ff
+	ld [wca68], a
+	ld hl, wca69
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld hl, Data_14c000
+	ld bc, $148
+	ld a, [wc904]
+	ld d, a
+	ld a, [wc906]
+	ld e, a
+.loop
+	ld a, [hli]
+	cp d
+	jr nz, .inc_next
+	ld a, [hli]
+	cp e
+	jr nz, .next
+	call Func_3363
+	jr .next
+
+.inc_next
+	inc hl
+.next
+	inc hl
+	inc hl
+	inc hl
+	ld a, [wca69]
+	inc a
+	ld [wca69], a
+	jr nz, .no_overflow
+	ld a, [wca6a]
+	inc a
+	ld [wca6a], a
+.no_overflow
+	dec bc
+	ld a, b
+	or c
+	jr nz, .loop
+	ld a, [wca68]
+	inc a
+	ld [wca68], a
+asm_334f
+	ld de, wcd50
+	add a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, $ff
+	ld [de], a
+	inc de
+	ld a, $ff
+	ld [de], a
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3363: ; 3363 (0:3363)
+	push de
+	ld a, [wca68]
+	inc a
+	ld [wca68], a
+	cp $f
+	jr nc, .break
+	ld de, wcd50
+	add a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [wca69]
+	ld [de], a
+	inc de
+	ld a, [wca6a]
+	ld [de], a
+	pop de
+	ret
+
+.break
+	add sp, $4
+	jr asm_334f
+
+Func_3388: ; 3388 (0:3388)
+	homecall Func_2e3dc
+	ret
 
 Func_3395::
 	dr $3395, $33a2
@@ -5720,7 +5959,10 @@ Func_3566::
 	dr $3566, $35e0
 
 Func_35e0::
-	dr $35e0, $37d5
+	dr $35e0, $372d
+
+Func_372d::
+	dr $372d, $37d5
 
 Func_37d5::
 	dr $37d5, $3801
