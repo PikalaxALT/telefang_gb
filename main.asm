@@ -798,7 +798,10 @@ Func_a4000::
 	dr $a4000, $a40ef
 
 Func_a40ef::
-	dr $a40ef, $a42a3
+	dr $a40ef, $a4187
+
+Func_a4187::
+	dr $a4187, $a42a3
 
 Func_a42a3::
 	dr $a42a3, $a42e5
@@ -840,7 +843,10 @@ Func_a5060::
 	dr $a5060, $a50be
 
 Func_a50be::
-	dr $a50be, $a5245
+	dr $a50be, $a50cd
+
+Func_a50cd::
+	dr $a50cd, $a5245
 
 Func_a5245::
 	dr $a5245, $a52b2
@@ -1002,7 +1008,24 @@ Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
 	dr $de95f, $e0000
 
 SECTION "bank 38", ROMX, BANK [$38]
-	dr $e0000, $e0b38
+	dr $e0000, $e03a0
+
+TileMap_e03a0:: INCBIN "gfx/misc/e03a0.tilemap"
+TileMap_e03c8:: INCBIN "gfx/misc/e03c8.tilemap"
+TileMap_e03f0:: INCBIN "gfx/misc/e03f0.tilemap"
+
+GFX_e0418:: INCBIN "gfx/misc/e0418.w24.2bpp"
+GFX_e0478:: INCBIN "gfx/misc/e0478.w24.2bpp"
+	dr $e04d8, $e06b8
+
+GFX_e06b8:: INCBIN "gfx/misc/e06b8.2bpp"
+GFX_e0778:: INCBIN "gfx/misc/e0778.w24.2bpp"
+GFX_e0898:: INCBIN "gfx/misc/e0898.w16.2bpp"
+GFX_e0918:: INCBIN "gfx/misc/e0918.w24.2bpp"
+GFX_e0978:: INCBIN "gfx/misc/e0978.w24.2bpp"
+
+GFX_e09d8:: INCBIN "gfx/misc/e09d8.2bpp"
+	dr $e0b08, $e0b38
 
 GFX_e0b38:: INCBIN "gfx/misc/e0b38.1bpp"
 GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"

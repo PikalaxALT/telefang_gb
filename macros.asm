@@ -91,7 +91,7 @@ ENDR
 ENDM
 
 bgcoord: MACRO
-IF _NARG > 4
+IF _NARG >= 4
 	ld \1, (\3 * BG_MAP_WIDTH) + \2 + \4
 ELSE
 	ld \1, (\3 * BG_MAP_WIDTH) + \2 + VBGMap

@@ -3027,7 +3027,7 @@ Func_1f6a: ; 1f6a (0:1f6a)
 	ld h, d
 	ld l, e
 	jp [hl]
-Func_1f79::
+WaitStat_1f79::
 .asm_1f79
 	ld a, [rSTAT]
 	and $2
@@ -6162,13 +6162,13 @@ Func_3514::
 	inc b
 .asm_351c
 	di
-	call Func_1f79
+	call WaitStat_1f79
 	ld [hl], b
 	ei
 	ld a, $1
 	ld [rVBK], a
 	di
-	call Func_1f79
+	call WaitStat_1f79
 	ld a, $4
 	ld [hl], a
 	ei
@@ -6304,8 +6304,179 @@ Func_35c2: ; 35c2 (0:35c2)
 	ld h, a
 	ret
 
-Func_35e0::
-	dr $35e0, $372d
+Func_35e0: ; 35e0 (0:35e0)
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(GFX_e09d8)
+	rst Bankswitch
+	ld a, [wc95b]
+	or a
+	jr nz, .asm_360b
+	ld hl, VTilesShared tile $14
+	ld de, GFX_e09d8
+	ld bc, $130
+	call Func_3801
+	ld de, TileMap_e03a0
+	hlbgcoord 0, 0, VWindow
+	call Func_3694
+	hlbgcoord 0, 1, VWindow
+	call Func_3694
+	pop af
+	rst Bankswitch
+	ret
+
+.asm_360b
+	ld hl, VTilesShared tile $14
+	ld de, GFX_e0418
+	ld bc, $60
+	call Func_3801
+	ld hl, VTilesShared tile $36
+	ld bc, $60
+	call Func_3801
+	ld hl, VTilesShared tile $20
+	ld de, GFX_e06b8
+	ld bc, $c0
+	call Func_3801
+	ld a, [wc9de]
+	or a
+	jr z, .asm_363e
+	ld de, GFX_e0918
+	ld hl, VTilesShared tile $26
+	ld bc, $60
+	call Func_3801
+.asm_363e
+	ld a, [wc935]
+	or a
+	jr z, .asm_3650
+	ld de, GFX_e0978
+	ld hl, VTilesShared tile $20
+	ld bc, $60
+	call Func_3801
+.asm_3650
+	ld a, [wc93e]
+	or a
+	jr nz, .asm_3659
+	call Func_36cf
+.asm_3659
+	ld a, $ff
+	ld [wc9ea], a
+	ld [wc9eb], a
+	ld [wc9ed], a
+	homecall Func_a50cd
+	pop af
+	rst Bankswitch
+	ld de, TileMap_e03f0
+	ld a, [wc93e]
+	or a
+	jr nz, .asm_367e
+	ld de, TileMap_e03c8
+.asm_367e
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(TileMap_e03c8)
+	rst Bankswitch
+	hlbgcoord 0, 0, VWindow
+	call Func_3694
+	hlbgcoord 0, 1, VWindow
+	call Func_3694
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3694: ; 3694 (0:3694)
+	ld bc, $14
+	ld a, [wCGB]
+	cp $11
+	jr nz, .asm_36bc
+.asm_369e
+	di
+	call WaitStat_1f79
+	ld a, [de]
+	add $94
+	ld [hl], a
+	ld a, $1
+	ld [rVBK], a
+	call WaitStat_1f79
+	ld a, PRIORITY | $6
+	ld [hli], a
+	ld a, $0
+	ld [rVBK], a
+	ei
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_369e
+	ret
+
+.asm_36bc
+	di
+.asm_36bd
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_36bd
+	ld a, [de]
+	add $94
+	ld [hli], a
+	ei
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_36bc
+	ret
+
+Func_36cf: ; 36cf (0:36cf)
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(GFX_e0898)
+	rst Bankswitch
+	ld de, GFX_e0898
+	ld a, [wc90a]
+	swap a
+	sla a
+	sla a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld hl, VTilesShared tile $2c
+	ld bc, $40
+	call Func_3801
+	pop af
+	rst Bankswitch
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(GFX_e0778)
+	rst Bankswitch
+	ld de, GFX_e0778
+	ld a, [wc90b]
+	swap a
+	sla a
+	ld b, a
+	sla a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, b
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld hl, VTilesShared tile $30
+	ld bc, $60
+	call Func_3801
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3720::
+	homecall Func_a4187
+	ret
 
 Func_372d::
 	dr $372d, $37d5
