@@ -312,7 +312,7 @@ Func_05f7::
 	ret
 
 Func_0601::
-	ld a, $75
+	ld a, BANK(Data_1d56ee)
 	rst Bankswitch
 	call Func_3c57
 	rst MemBankswitch

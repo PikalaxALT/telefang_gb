@@ -6,7 +6,104 @@ INCLUDE "home.asm"
 
 SECTION "bank 02", ROMX, BANK [$2]
 Func_8000::
-	dr $8000, $80bf
+	ld a, [wc3e1]
+	ld hl, Pointers_800a
+	call GetHalfwordFromTable
+	jp [hl]
+
+Pointers_800a::
+	dw Func_801a
+	dw Func_8032
+	dw Func_8061
+	dw Func_8069
+	dw Func_807c
+	dw Func_808e
+	dw Func_80a0
+	dw Func_80b5
+
+Func_801a::
+	call ClearBGMapAndAttrs
+	call ClearBGWindowAndAttrs
+	call Func_0985
+	ld bc, $7
+	call Func_04b1
+	ld bc, $8
+	call Func_04b1
+	jp Func_0ea3
+
+Func_8032::
+	ld bc, $0
+	ld e, $3f
+	ld a, $0
+	call Func_04ca
+	ld bc, $0
+	ld e, $3f
+	ld a, $0
+	call Func_04da
+	ld bc, $f
+	call GetCGB_BGLayout_
+	ld a, $f0
+	ld [wc91e], a
+	call Func_3566
+	ld a, $85
+	ld [wca65], a
+	ld a, $a0
+	ld [wc91f], a
+	jp Func_0ea3
+
+Func_8061::
+	ld a, $4
+	call Func_050a
+	jp Func_0ea3
+
+Func_8069::
+	ld a, $2
+	call Func_050f
+	or a
+	ret z
+	ld c, $2
+	ld b, $0
+	ld d, $c
+	call Func_0520
+	jp Func_0ea3
+
+Func_807c::
+	ld a, [hJoyNew]
+	and $8
+	jr nz, .asm_808b
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+.asm_808b
+	jp Func_0ea3
+
+Func_808e::
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	jp Func_0ea3
+
+Func_80a0::
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	ld bc, $0
+	call GetCGB_BGLayout_
+	ld a, $1
+	ld [wBGPalUpdate], a
+	jp Func_0ea3
+
+Func_80b5::
+	ld a, $5
+	ld [wc3e0], a
+	xor a
+	ld [wc3e1], a
+	ret
 
 Func_80bf::
 	dr $80bf, $84cf
@@ -36,7 +133,7 @@ Func_8b8b::
 	dr $8b8b, $9300
 
 Func_9300::
-	dr $9300, $c000
+	dr $9300, $95e0
 
 SECTION "bank 03", ROMX, BANK [$3]
 Func_c000::
@@ -55,20 +152,20 @@ Func_fb3e::
 	dr $fb3e, $fb8d
 
 Func_fb8d::
-	dr $fb8d, $10000
+	dr $fb8d, $fc03
 
 SECTION "bank 04", ROMX, BANK [$4]
 Func_10000::
 	dr $10000, $105c0
 
 Func_105c0::
-	dr $105c0, $14000
+	dr $105c0, $13ff0
 
 SECTION "bank 05", ROMX, BANK [$5]
 	dr $14000, $1441b
 
 Func_1441b::
-	dr $1441b, $18000
+	dr $1441b, $17ff8
 
 SECTION "bank 06", ROMX, BANK [$6]
 macro_18000: MACRO
@@ -178,11 +275,11 @@ Data_18180::
 	dr $18180, $18ba1
 
 Data_18ba1::
-	dr $18ba1, $1c000
+	dr $18ba1, $196f4
 
 SECTION "bank 07", ROMX, BANK [$7]
 PalPackets_1c000::
-	dr $1c000, $20000
+	dr $1c000, $1c680
 
 SECTION "bank 08", ROMX, BANK [$8]
 Pointers_20000::
@@ -1282,7 +1379,10 @@ Data_1d5628::
 	dr $1d5628, $1d5640
 
 Data_1d5640::
-	dr $1d5640, $1d7988
+	dr $1d5640, $1d56ee
+
+Data_1d56ee::
+	dr $1d56ee, $1d7988
 
 Data_1d7988::
 	dr $1d7988, $1d8000

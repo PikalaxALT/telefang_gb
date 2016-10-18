@@ -1114,7 +1114,7 @@ Func_0e7f: ; e7f (0:0e7f)
 	ld [hl], a
 	ret
 
-JumpTable::
+GetHalfwordFromTable::
 	ld b, $0
 	ld c, a
 	sla c
@@ -2117,7 +2117,7 @@ Func_192a: ; 192a (0:192a)
 Func_1939: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_1943
-	call JumpTable
+	call GetHalfwordFromTable
 	jp [hl]
 
 Pointers_1943::
@@ -2186,7 +2186,7 @@ Func_19b3::
 Func_19b9: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_19c3
-	call JumpTable
+	call GetHalfwordFromTable
 	jp [hl]
 
 Pointers_19c3::
@@ -7325,7 +7325,7 @@ ENDR
 	ret
 
 Func_3c57: ; 3c57 (0:3c57)
-	ld hl, $56ee
+	ld hl, Data_1d56ee
 	ld de, $5
 	ld a, [wd402]
 	addntimes_hl_de
@@ -7361,14 +7361,10 @@ Func_3c8b: ; 3c8b (0:3c8b)
 	jr z, .asm_3ca6
 	ld e, a
 	ld d, $0
+REPT 4
 	sla e
 	rl d
-	sla e
-	rl d
-	sla e
-	rl d
-	sla e
-	rl d
+ENDR
 	add hl, de
 .asm_3ca6
 	ld bc, $f

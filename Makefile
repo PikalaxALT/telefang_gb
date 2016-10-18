@@ -13,6 +13,7 @@ tzcomp    := $(PYTHON3) tz.py
 pcm       := $(PYTHON) pcm.py pcm
 
 telefang_obj := \
+hramsec.o \
 wram.o \
 sram.o \
 main.o \
