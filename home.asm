@@ -2532,8 +2532,8 @@ Func_1be2: ; 1be2 (0:1be2)
 	jp [hl]
 
 Pointers_1bf4::
-	dw Func_1c14
-	dw Func_1c1d
+	dw OpeningLogos_
+	dw TitleScreen_
 	dw Func_1c26
 	dw Func_1c2f
 	dw PlayIntroMovie_
@@ -2549,17 +2549,17 @@ Pointers_1bf4::
 	dw Func_1c89
 	dw Func_1c92
 
-Func_1c14::
-	ld a, BANK(Func_9300)
+OpeningLogos_::
+	ld a, BANK(OpeningLogos)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_9300
+	jp OpeningLogos
 
-Func_1c1d::
-	ld a, BANK(Func_893f)
+TitleScreen_::
+	ld a, BANK(TitleScreen)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_893f
+	jp TitleScreen
 
 Func_1c26::
 	ld a, BANK(Func_8000)
