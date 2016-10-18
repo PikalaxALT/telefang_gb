@@ -7200,13 +7200,7 @@ Func_3b3f: ; 3b3f (0:3b3f)
 Func_3b4e: ; 3b4e (0:3b4e)
 	ld hl, Data_9c000
 	ld de, $c6
-	cp $0
-	jr z, .asm_3b5c
-.asm_3b58
-	add hl, de
-	dec a
-	jr nz, .asm_3b58
-.asm_3b5c
+	addntimes_hl_de
 	dec b
 	ld d, $0
 	ld a, b
@@ -7228,13 +7222,7 @@ Data_3b6b::
 Func_3b74: ; 3b74 (0:3b74)
 	ld hl, Data_9c4a4
 	ld de, 25
-	cp $0
-	jr z, .skip_addntimes
-.asm_3b7e
-	add hl, de
-	dec a
-	jr nz, .asm_3b7e
-.skip_addntimes
+	addntimes_hl_de
 	ld d, $0
 	ld a, b
 	ld e, a
@@ -7265,13 +7253,7 @@ Func_3b74: ; 3b74 (0:3b74)
 Func_3ba9: ; 3ba9 (0:3ba9)
 	ld hl, Data_9c715
 	ld de, 6
-	cp $0
-	jr z, .asm_3bb7
-.asm_3bb3
-	add hl, de
-	dec a
-	jr nz, .asm_3bb3
-.asm_3bb7
+	addntimes_hl_de
 	ld d, $0
 	ld a, b
 	ld e, a
@@ -7280,11 +7262,97 @@ Func_3ba9: ; 3ba9 (0:3ba9)
 	ld [wd494], a
 	ret
 
-Func_3bc1::
-	dr $3bc1, $3c57
+Func_3bc1: ; 3bc1 (0:3bc1)
+	ld hl, Data_9cb29
+	dec a
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	call Func_0d4e
+	and $3
+	add b
+	ld [wd495], a
+	ret
 
-Func_3c57::
-	dr $3c57, $3c8b
+PrintNumHL::
+; Print a 16-bit number in hl to [wd448]
+get_digit: MACRO
+IF \1 == 1
+	ld a, l
+ELSE
+	push de
+	ld c, 0
+	ld de, -\1
+.loop\@
+	inc c
+	add hl, de
+	jr c, .loop\@
+	ld de, \1
+	add hl, de
+	pop de
+	ld a, c
+	dec a
+IF \2 == 1
+	bit 0, b
+	jr nz, .add\@
+ENDC
+	or a
+	jr z, .skip\@
+.add\@
+ENDC
+	add "0"
+	ld [de], a
+	inc de
+IF \1 > 1
+	ld b, $1
+.skip\@
+ENDC
+ENDM
+
+	ld de, wd448
+	ld b, $0
+x = 10000
+y = 0
+REPT 5
+	get_digit x, y
+x = x / 10
+y = 1
+ENDR
+	ld a, $e0
+	ld [de], a
+	ret
+
+Func_3c57: ; 3c57 (0:3c57)
+	ld hl, $56ee
+	ld de, $5
+	ld a, [wd402]
+	addntimes_hl_de
+	push hl
+	call Func_0d4e
+	cp $19
+	jr c, .asm_3c7a
+	cp $4c
+	jr c, .asm_3c7b
+	cp $99
+	jr c, .asm_3c7c
+	jr .asm_3c7d
+.asm_3c7a
+	inc hl
+.asm_3c7b
+	inc hl
+.asm_3c7c
+	inc hl
+.asm_3c7d
+	ld a, [hl]
+	ld [wd4e0], a
+	pop hl
+	ld de, $4
+	add hl, de
+	ld a, [hl]
+	ld [wd49c], a
+	ret
 
 Func_3c8b::
 	dr $3c8b, $3d5c

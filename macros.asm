@@ -106,3 +106,13 @@ check_cgb: MACRO
 	ld a, [wCGB]
 	cp $11
 ENDM
+
+addntimes_hl_de: MACRO
+	cp $0
+	jr z, .skip\@
+.loop\@
+	add hl, de
+	dec a
+	jr nz, .loop\@
+.skip\@
+ENDM

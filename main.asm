@@ -798,7 +798,10 @@ Data_9c4a4::
 	dr $9c4a4, $9c715
 
 Data_9c715::
-	dr $9c715, $a0000
+	dr $9c715, $9cb29
+
+Data_9cb29::
+	dr $9cb29, $a0000
 
 SECTION "bank 28", ROMX, BANK [$28]
 	dr $a0000, $a4000

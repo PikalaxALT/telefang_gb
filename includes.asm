@@ -1,3 +1,4 @@
+INCLUDE "charmap.asm"
 INCLUDE "macros.asm"
 INCLUDE "gbhw.asm"
 INCLUDE "hram.asm"
