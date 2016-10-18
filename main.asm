@@ -749,7 +749,22 @@ Func_6eec0::
 
 SECTION "bank 1C", ROMX, BANK [$1c]
 Func_70000::
-	dr $70000, $74000
+	dr $70000, $703c4
+
+Func_703c4::
+	dr $703c4, $703e3
+
+Func_703e3::
+	dr $703e3, $7048c
+
+Func_7048c::
+	dr $7048c, $70a99
+
+Func_70a99::
+	dr $70a99, $7122c
+
+Func_7122c::
+	dr $7122c, $74000
 
 SECTION "bank 1D", ROMX, BANK [$1d]
 Func_74000::
@@ -769,7 +784,10 @@ Func_7c000::
 	dr $7c000, $7c61b
 
 Func_7c61b::
-	dr $7c61b, $80000
+	dr $7c61b, $7d2c3
+
+Func_7d2c3::
+	dr $7d2c3, $80000
 
 SECTION "bank 20", ROMX, BANK [$20]
 UpdateSound20::
@@ -801,7 +819,16 @@ Data_9c715::
 	dr $9c715, $9cb29
 
 Data_9cb29::
-	dr $9cb29, $a0000
+	dr $9cb29, $9cbb2
+
+Data_9cbb2::
+	dr $9cbb2, $9cbfa
+
+Data_9cbfa::
+	dr $9cbfa, $9ce9d
+
+Data_9ce9d::
+	dr $9ce9d, $a0000
 
 SECTION "bank 28", ROMX, BANK [$28]
 	dr $a0000, $a4000

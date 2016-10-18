@@ -389,21 +389,21 @@ Func_0679::
 	ret
 
 Func_0681::
-	ld a, $27
+	ld a, BANK(Data_9cbb2)
 	rst Bankswitch
 	call Func_3e00
 	rst MemBankswitch
 	ret
 
 Func_0689::
-	ld a, $27
+	ld a, BANK(Data_9cbfa)
 	rst Bankswitch
 	call Func_3e45
 	rst MemBankswitch
 	ret
 
 Func_0691::
-	ld a, $27
+	ld a, BANK(Data_9ce9d)
 	rst Bankswitch
 	call Func_3e68
 	ld hl, wOAMAnimations

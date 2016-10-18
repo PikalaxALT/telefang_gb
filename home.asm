@@ -7500,7 +7500,7 @@ OpenSRAMBank2::
 	push af
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ld a, $2
+	ld a, BANK(s2_a006)
 	ld [MBC3SRamBank], a
 	pop af
 	ret
@@ -7608,11 +7608,280 @@ Func_3d95::
 .asm_3dfd
 	jp LoadKanji_
 
-Func_3e00::
-	dr $3e00, $3e45
+Func_3e00: ; 3e00 (0:3e00)
+	ld hl, Data_9cbb2
+	ld de, $c
+	ld a, b
+	addntimes_hl_de
+	ld d, $0
+	ld a, c
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wd43d], a
+	ret
 
-Func_3e45::
-	dr $3e45, $3e68
+Func_3e19::
+	push hl
+	push af
+	call OpenSRAMBank2
+	pop af
+	ld hl, s2_a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	call OpenSRAMBank2
+	call Func_3d7f
+	call CloseSRAM
+	ld hl, wd460
+	ld de, wOAMAnimationsEnd
+	call Func_33e3
+	ld de, wOAMAnimationsEnd
+	ld b, $8
+	pop hl
+	jp Func_0560
 
-Func_3e68::
-	dr $3e68, $3ff1
+Func_3e45: ; 3e45 (0:3e45)
+	ld hl, Data_9cbfa
+	ld de, $5
+	ld a, [wd402]
+	addntimes_hl_de
+	ld a, [hli]
+	ld [wd542], a
+	ld a, [hli]
+	ld [wd543], a
+	ld a, [hli]
+	ld [wd54c], a
+	inc hl
+	ld a, [hl]
+	ld [wd54e], a
+	ret
+
+Func_3e68: ; 3e68 (0:3e68)
+	ld hl, Data_9ce9d
+	ld de, $12
+	ld a, [wd402]
+	addntimes_hl_de
+	ld a, [hli]
+	ld [wd542], a
+	ld a, [hli]
+	ld [wd543], a
+	ld a, [hli]
+	ld [wd54a], a
+	ld a, [hli]
+	ld [wd54c], a
+	inc hl
+	ld a, [hli]
+	ld [wd54e], a
+	ld a, [hli]
+	ld [wd558], a
+	ld a, [hli]
+	ld [wd559], a
+	ld a, [hli]
+	ld [wd560], a
+	ld a, [hli]
+	ld [wd562], a
+	inc hl
+	ld a, [hli]
+	ld [wd564], a
+	ld a, [hli]
+	ld [wd56e], a
+	ld a, [hli]
+	ld [wd56f], a
+	ld a, [hli]
+	ld [wd576], a
+	ld a, [hli]
+	ld [wd578], a
+	inc hl
+	ld a, [hl]
+	ld [wd57a], a
+	ret
+
+Func_3eb9
+	ld hl, wCGB_BGPalsBuffer
+	ld b, $0
+	ld c, a
+	add hl, bc
+	ld a, [wcdb3]
+	cp $1
+	jr z, .asm_3ed7
+	cp $2
+	jr z, .asm_3edf
+	cp $3
+	jr z, .asm_3ee7
+	ld a, $ff
+	ld [hli], a
+	ld a, $3
+	ld [hl], a
+	jr .asm_3eed
+
+.asm_3ed7
+	ld a, $0
+	ld [hli], a
+	ld a, $7f
+	ld [hl], a
+	jr .asm_3eed
+
+.asm_3edf
+	ld a, $1f
+	ld [hli], a
+	ld a, $7e
+	ld [hl], a
+	jr .asm_3eed
+
+.asm_3ee7
+	ld a, $e6
+	ld [hli], a
+	ld a, $1b
+	ld [hl], a
+.asm_3eed
+	ret
+
+Func_3eee::
+	ld hl, wdb00
+	ld d, $0
+	ld a, [wdc45]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ret
+
+Func_3efa::
+	homecall_memret Func_7122c
+	ret
+
+Func_3f02::
+	homecall_memret Func_703c4
+	ret
+
+Func_3f0a::
+	homecall_memret Func_70a99
+	ret
+
+Func_3f12::
+	homecall_memret Func_7d2c3
+	ret
+
+Func_3f1a::
+	homecall_memret Func_703e3
+	ret
+
+Func_3f22::
+	homecall_memret Func_7048c
+	ret
+
+Func_3f2a::
+	ld a, [wd586]
+	cp $0
+	jr z, .asm_3f4a
+	ld a, [wd58b]
+	cp $1
+	jr z, .asm_3f47
+	cp $4
+	jr z, .asm_3f47
+	cp $3
+	jr z, .asm_3f44
+	cp $5
+	jr nz, .asm_3f4a
+.asm_3f44
+	ld a, $2
+	ret
+
+.asm_3f47
+	ld a, $1
+	ret
+
+.asm_3f4a
+	ld a, $0
+	ret
+
+Func_3f4d::
+	ld [wFontSourceBank], sp
+	ld a, [wcae8]
+	ld [MBC3RomBank], a
+	ld a, $1
+	ld [rVBK], a
+	ld hl, wcae5
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $100
+	add hl, de
+	ld sp, hl
+	ld a, $80
+	ld hl, rBGPI
+	ld [hl], a
+	ld hl, rLY
+	ld a, $6
+.asm_3f70
+	cp [hl]
+	jr nz, .asm_3f70
+.asm_3f73
+	pop de
+	ld l, rSTAT & $ff
+.asm_3f76
+	bit 1, [hl]
+	jr nz, .asm_3f76
+	ld l, rBGPD & $ff
+REPT 15
+	ld [hl], e
+	ld [hl], d
+	pop de
+ENDR
+	ld [hl], e
+	ld [hl], d
+	ld a, [rLY]
+	cp $88
+	jr nz, .asm_3f73
+	ld a, $29
+	ld [MBC3RomBank], a
+	ld hl, wFontSourceBank
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	ret
+
+Func_3fbe::
+	ld d, a
+	ld a, [wROMBank]
+	push af
+	ld a, d
+	rst Bankswitch
+	ld a, $12
+.asm_3fc7
+	ld e, $14
+	push af
+.asm_3fca
+	ld a, [bc]
+	inc bc
+	ld [hli], a
+	dec e
+	jr nz, .asm_3fca
+	ld de, $c
+	add hl, de
+	pop af
+	dec a
+	jr nz, .asm_3fc7
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3fdb::
+	ld [wFontSourceBank], a
+	ld a, [wROMBank]
+	push af
+	ld a, [wFontSourceBank]
+	rst Bankswitch
+.asm_3fe6
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_3fe6
+	pop af
+	rst Bankswitch
+	ret
