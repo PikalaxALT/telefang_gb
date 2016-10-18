@@ -3027,6 +3027,7 @@ Func_1f6a: ; 1f6a (0:1f6a)
 	ld h, d
 	ld l, e
 	jp [hl]
+Func_1f79::
 .asm_1f79
 	ld a, [rSTAT]
 	and $2
@@ -5934,29 +5935,374 @@ Func_3388: ; 3388 (0:3388)
 	homecall Func_2e3dc
 	ret
 
-Func_3395::
-	dr $3395, $33a2
+Func_3395: ; 3395 (0:3395)
+	homecall Func_2e3ff
+	ret
 
-Func_33a2::
-	dr $33a2, $33c9
+Func_33a2: ; 33a2 (0:33a2)
+	homecall Func_2e466
+	ret
 
-Func_33c9::
-	dr $33c9, $342a
+Func_33af::
+	homecall Func_2e48d
+	ret
 
-Func_342a::
-	dr $342a, $3435
+Func_33bc::
+	homecall Func_2c6e2
+	ret
 
-Func_3435::
-	dr $3435, $3442
+Func_33c9: ; 33c9 (0:33c9)
+	homecall Func_2c63f
+	ret
 
-Func_3442::
-	dr $3442, $34dc
+Func_33d6::
+	homecall Func_2c7ed
+	ret
 
-Func_34dc::
-	dr $34dc, $3566
+Func_33e3::
+	homecall Func_a85ae
+	ret
 
-Func_3566::
-	dr $3566, $35e0
+Func_33f0::
+	homecall Func_33a90
+	ret
+
+Func_33fd::
+	ld [wca68], a
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Func_a8c50)
+	rst Bankswitch
+	ld a, [wca68]
+	call Func_a8c50
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3410::
+	homecall Func_a8c86
+	ret
+
+Func_341d::
+	homecall Func_2de18
+	ret
+
+Func_342a: ; 342a (0:342a)
+	ld a, [wcafe]
+	or a
+	ret z
+	ld a, $3
+	ld [wcafe], a
+	ret
+
+Func_3435: ; 3435 (0:3435)
+	homecall Func_2e33e
+	ret
+
+Func_3442: ; 3442 (0:3442)
+	ld a, [wc3e0]
+	cp $5
+	ret nz
+	ld a, [wc3e1]
+	cp $5
+	jr z, .asm_3452
+	cp $4
+	ret nz
+.asm_3452
+	ld a, [wc98e]
+	or a
+	ret nz
+	ld a, [wc952]
+	inc a
+	ld [wc952], a
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(Pointers_e1690)
+	rst Bankswitch
+	ld a, [wc905]
+	ld hl, Pointers_e1690
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	ld b, a
+	or a
+	jr nz, .asm_347d
+	pop af
+	rst Bankswitch
+	ret
+
+.asm_347d
+	ld de, wca48
+.asm_3480
+	push bc
+	push hl
+	push de
+	ld a, [wc952]
+	ld c, a
+	ld a, [hli]
+	and c
+	cp b
+	jr nz, .asm_34a8
+	ld a, [de]
+	inc a
+	ld [de], a
+	ld c, a
+	ld a, [hli]
+	add c
+	and $3
+	ld c, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, c
+	swap a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	call CopyTile
+.asm_34a8
+	pop de
+	inc de
+	pop hl
+	pop bc
+	ld a, $6
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	dec b
+	jr nz, .asm_3480
+	pop af
+	rst Bankswitch
+	ret
+
+CopyTile: ; 34ba (0:34ba)
+	ld b, $4
+.asm_34bc
+	di
+.asm_34bd
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_34bd
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	ei
+	inc de
+	di
+.asm_34cb
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_34cb
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	ei
+	inc de
+	dec b
+	jr nz, .asm_34bc
+	ret
+
+Func_34dc: ; 34dc (0:34dc)
+	ld b, a
+	ld a, [wc923]
+	add b
+	ld [wc923], a
+	ld a, [wc945]
+	or a
+	ret z
+	ld a, [wc984]
+	sub $1
+	ld b, a
+	and $3
+	ret nz
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(GFX_e197c)
+	rst Bankswitch
+	ld a, b
+	srl a
+	srl a
+	and $7
+	swap a
+	ld de, GFX_e197c
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld hl, VTilesOB tile $7b
+	call CopyTile
+	pop af
+	rst Bankswitch
+	ret
+
+Func_3514::
+	call CheckEventFlag
+	ld b, $f0
+	jr z, .asm_351c
+	inc b
+.asm_351c
+	di
+	call Func_1f79
+	ld [hl], b
+	ei
+	ld a, $1
+	ld [rVBK], a
+	di
+	call Func_1f79
+	ld a, $4
+	ld [hl], a
+	ei
+	ld a, $0
+	ld [rVBK], a
+	ret
+
+Func_3533::
+	push bc
+	ld a, b
+	call Func_353b
+	pop bc
+	inc hl
+	ld a, c
+Func_353b: ; 353b (0:353b)
+	ld b, a
+	swap a
+	and $f
+	add $f0
+	di
+	ld c, a
+.asm_3544
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_3544
+	ld a, c
+	ld [hli], a
+	ld a, b
+	and $f
+	add $f0
+	ld [hl], a
+.asm_3552
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_3552
+	ld a, $1
+	ld [rVBK], a
+	ld [hl], $4
+	dec hl
+	ld [hl], $4
+	xor a
+	ld [rVBK], a
+	ei
+	ret
+
+Func_3566: ; 3566 (0:3566)
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(GFX_e0b38)
+	rst Bankswitch
+	ld a, [wc91e]
+	call Func_35c2
+	ld de, GFX_e0b38
+	ld b, $80
+asm_3578
+	di
+	ld a, [wcdb1]
+	cp $2
+	jr z, .inverted
+.wait_stat
+	ld a, [rSTAT]
+	and $2
+	jr nz, .wait_stat
+	ld a, [de]
+	ld [hli], a
+	ld [hli], a
+	ei
+	inc de
+	dec b
+	jr nz, asm_3578
+	pop af
+	rst Bankswitch
+	ret
+
+.inverted
+.wait_stat_inverted
+	ld a, [rSTAT]
+	and $2
+	jr nz, .wait_stat_inverted
+	ld a, [de]
+	cpl
+	ld [hli], a
+	ld [hli], a
+	ei
+	inc de
+	dec b
+	jr nz, asm_3578
+	pop af
+	rst Bankswitch
+	ret
+
+Func_35a3::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(GFX_e0bb8)
+	rst Bankswitch
+	ld a, $f0
+asm_35ac
+	call Func_35c2
+	ld de, GFX_e0bb8
+	ld b, $80
+	jp asm_3578
+
+Func_35b7::
+	ld a, [wROMBank]
+	push af
+	ld a, BANK(GFX_e0bb8)
+	rst Bankswitch
+	ld a, $b0
+	jr asm_35ac
+
+Func_35c2: ; 35c2 (0:35c2)
+	cp $80
+	jr c, .low_bg
+	swap a
+	ld h, a
+	and $f0
+	ld l, a
+	ld a, h
+	and $f
+	or (VTilesShared & $f000) >> 8
+	ld h, a
+	ret
+
+.low_bg
+	swap a
+	ld h, a
+	and $f0
+	ld l, a
+	ld a, h
+	and $f
+	or (VTilesBG & $f000) >> 8
+	ld h, a
+	ret
 
 Func_35e0::
 	dr $35e0, $372d

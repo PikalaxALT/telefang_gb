@@ -204,7 +204,13 @@ Func_2c100::
 	dr $2c100, $2c63b
 
 Func_2c63b::
-	dr $2c63b, $2c711
+	dr $2c63b, $2c63f
+
+Func_2c63f::
+	dr $2c63f, $2c6e2
+
+Func_2c6e2::
+	dr $2c6e2, $2c711
 
 Func_2c711::
 	dr $2c711, $2c766
@@ -303,7 +309,10 @@ Func_2ddc5::
 	dr $2ddc5, $2ddd9
 
 Func_2ddd9::
-	dr $2ddd9, $2ded9
+	dr $2ddd9, $2de18
+
+Func_2de18::
+	dr $2de18, $2ded9
 
 Func_2ded9::
 	dr $2ded9, $2df1e
@@ -318,10 +327,22 @@ Func_2e064::
 	dr $2e064, $2e0d2
 
 Func_2e0d2::
-	dr $2e0d2, $2e3dc
+	dr $2e0d2, $2e33e
+
+Func_2e33e::
+	dr $2e33e, $2e3dc
 
 Func_2e3dc::
-	dr $2e3dc, $2e4b2
+	dr $2e3dc, $2e3ff
+
+Func_2e3ff::
+	dr $2e3ff, $2e466
+
+Func_2e466::
+	dr $2e466, $2e48d
+
+Func_2e48d::
+	dr $2e48d, $2e4b2
 
 Func_2e4b2::
 	dr $2e4b2, $2e589
@@ -382,7 +403,10 @@ Func_3394e::
 	dr $3394e, $33a62
 
 Func_33a62::
-	dr $33a62, $33ac4
+	dr $33a62, $33a90
+
+Func_33a90::
+	dr $33a90, $33ac4
 
 Pointers_33ac4::
 	dr $33ac4, $34000
@@ -846,7 +870,10 @@ SECTION "bank 2A", ROMX, BANK [$2a]
 	dr $a8000, $a8539
 
 Func_a8539::
-	dr $a8539, $a85e5
+	dr $a8539, $a85ae
+
+Func_a85ae::
+	dr $a85ae, $a85e5
 
 Func_a85e5::
 	dr $a85e5, $a8663
@@ -855,7 +882,13 @@ Func_a8663::
 	dr $a8663, $a8788
 
 Func_a8788::
-	dr $a8788, $a8d20
+	dr $a8788, $a8c50
+
+Func_a8c50::
+	dr $a8c50, $a8c86
+
+Func_a8c86::
+	dr $a8c86, $a8d20
 
 Func_a8d20::
 	dr $a8d20, $ac000
@@ -969,10 +1002,21 @@ Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
 	dr $de95f, $e0000
 
 SECTION "bank 38", ROMX, BANK [$38]
-	dr $e0000, $e1038
+	dr $e0000, $e0b38
 
-TileMap_e1038::
-	dr $e1038, $e2c54
+GFX_e0b38:: INCBIN "gfx/misc/e0b38.1bpp"
+GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"
+	dr $e0c38, $e1038
+
+TileMap_e1038:: INCBIN "data/e1038.tilemap"
+	dr $e1118, $e1690
+
+Pointers_e1690::
+	dr $e1690, $e197c
+
+GFX_e197c:: INCBIN "gfx/misc/e197c.2bpp"
+Data_e19fc::
+	dr $e19fc, $e2c54
 
 Data_e2c54::
 	dr $e2c54, $e2d14
