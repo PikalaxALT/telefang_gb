@@ -6772,7 +6772,7 @@ GetPCMBlockAndLength: ; 38b8 (0:38b8)
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld de, PCM_1f0000
+	ld de, TitleScreenPCM
 	ld a, l
 	ld [wcf8b], a
 	ld a, h
@@ -6869,8 +6869,8 @@ Pointer_3951::
 
 Pointer_3953::
 	db 1
-	db BANK(PCM_1f0000)
-	dw (PCM_1f0000End - PCM_1f0000) * 2 - 1
+	db BANK(TitleScreenPCM)
+	dw (TitleScreenPCMEnd - TitleScreenPCM) * 2 - 1
 
 Func_3957::
 	ld b, $6
@@ -6972,41 +6972,295 @@ Data_39da::
 Data_39e3::
 	db $3e, $37, $38, $39, $3a, $3b, $3c, $3d, $3f
 
-Func_39ec::
-	dr $39ec, $3a01
+Func_39ec: ; 39ec (0:39ec)
+	push af
+	ld a, BANK(UnknGFX_090)
+	rst Bankswitch
+	pop af
+	ld d, a
+	ld e, $0
+	ld hl, UnknGFX_090
+	add hl, de
+	ld de, VTilesOB tile $30
+	ld bc, $10 tiles
+	jp WaitStatCopy
 
-Func_3a01::
-	dr $3a01, $3a1d
+Func_3a01: ; 3a01 (0:3a01)
+	ld d, $0
+	ld a, [wd435]
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	add hl, de
+	ld bc, $8
+	ld de, wd440
+	jp CopyData
 
-Func_3a1d::
-	dr $3a1d, $3a35
+Func_3a1d: ; 3a1d (0:3a1d)
+	ld d, $0
+	ld a, [wd435]
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	add hl, de
+	ld bc, $4
+	ld de, wd440
+	jp CopyData
 
-Func_3a35::
-	dr $3a35, $3a91
+Func_3a35: ; 3a35 (0:3a35)
+; [wd45f] = Data_1d4b48 + ($10 * a) + c
+	ld hl, Data_1d4b48
+	ld [wd497], a
+	cp $0
+	jr z, .first_row
+	ld d, $0
+	ld a, $10
+	ld e, a
+	ld a, [wd497]
+.row
+	add hl, de
+	dec a
+	jr nz, .row
+.first_row
+	ld d, $0
+	ld a, c
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wd45f], a
+; if (c >= 6) or (b < 2): return
+	ld a, c
+	cp $6
+	ret nc
+	ld a, b
+	cp $2
+	ret c
+	dec b
+	ld d, $0
+	ld a, b
+	ld e, a
+	push de
+	ld a, c
+	ld b, a
+	ld a, [wd497]
+	call Func_05ed
+	pop de
+	ld a, e
+	cp $1
+	jr nz, .asm_3a7b
+	ld a, [wd494]
+	cp $1
+	jr nz, .asm_3a7b
+	ld e, $1
+	jr .asm_3a88
 
-Func_3a91::
-	dr $3a91, $3ac3
+.asm_3a7b
+	ld b, $0
+	ld a, [wd494]
+	ld c, a
+	call Multiply_DE_by_BC
+	sra d
+	rr e
+.asm_3a88
+	ld a, [wd45f]
+	ld a, a
+	add e
+	ld [wd45f], a
+	ret
 
-Func_3ac3::
-	dr $3ac3, $3b09
+Func_3a91: ; 3a91 (0:3a91)
+	xor a
+	ld [wcb2f], a
+Func_3a95: ; 3a95 (0:3a95)
+	push bc
+	push de
+	push hl
+	ld a, [de]
+	cp $e0
+	jp z, Func_3ab7
+	pop hl
+	push hl
+	call Func_2fc7
+	pop hl
+	ld bc, $10
+	add hl, bc
+	pop de
+	inc de
+	ld a, [wcb2f]
+	inc a
+	ld [wcb2f], a
+	pop bc
+	dec b
+	jp nz, Func_3a95
+	ret
 
-Func_3b09::
-	dr $3b09, $3b22
+Func_3ab7: ; 3ab7 (0:3ab7)
+	pop hl
+	pop de
+	pop bc
+	ret
 
-Func_3b22::
-	dr $3b22, $3b36
+Func_3abb::
+	di
+	call WaitStat
+	ld [hl], c
+	ei
+	ret
 
-Func_3b36::
-	dr $3b36, $3b3f
+; 3ac2
+	nop
 
-Func_3b3f::
-	dr $3b3f, $3b4e
+Func_3ac3: ; 3ac3 (0:3ac3)
+	ld [wd435], a
+	push bc
+	push de
+	pop hl
+	call Func_0548
+	pop hl
+	push hl
+	ld a, $8
+	call Func_3d5c
+	pop hl
+	ld de, wd440
+	ld b, $8
+	jp Func_0560
 
-Func_3b4e::
-	dr $3b4e, $3b74
+Func_3adc::
+	ld [wd435], a
+	push bc
+	push de
+	ld hl, wc3a0
+	ld b, $9
+.asm_3ae6
+	ld a, $e0
+	ld [hli], a
+	dec b
+	jr nz, .asm_3ae6
+	pop hl
+	call Func_0548
+	pop hl
+	push hl
+	ld a, $8
+	call Func_3d5c
+	ld hl, wd440
+	ld de, wc3a0
+	call Func_33e3
+	ld de, wc3a0
+	pop hl
+	ld b, $8
+	jp Func_0560
 
-Func_3b74::
-	dr $3b74, $3ba9
+Func_3b09: ; 3b09 (0:3b09)
+	ld [wd435], a
+	push bc
+	push de
+	pop hl
+	call Func_0558
+	pop hl
+	push hl
+	ld a, $4
+	call Func_3d5c
+	pop hl
+	ld de, wd440
+	ld b, $4
+	jp Func_0560
+
+Func_3b22: ; 3b22 (0:3b22)
+	ld a, [wd497]
+	ld c, $d
+	call Func_058d
+	ld a, [wd45f]
+	ld de, Data_1d5628
+	ld bc, VTilesBG tile $38
+	jp Func_3b09
+
+Func_3b36: ; 3b36 (0:3b36)
+	push hl
+	ld a, b
+	ld de, Data_1d7988
+	pop bc
+	jp Func_3b09
+
+Func_3b3f: ; 3b3f (0:3b3f)
+	ld hl, Data_1d5640
+	ld d, $0
+	ld a, [wd409]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wd409], a
+	ret
+
+Func_3b4e: ; 3b4e (0:3b4e)
+	ld hl, Data_9c000
+	ld de, $c6
+	cp $0
+	jr z, .asm_3b5c
+.asm_3b58
+	add hl, de
+	dec a
+	jr nz, .asm_3b58
+.asm_3b5c
+	dec b
+	ld d, $0
+	ld a, b
+	ld e, a
+	sla e
+	rl d
+	add hl, de
+	ld c, [hl]
+	inc hl
+	ld a, [hl]
+	ld b, a
+	ret
+
+Data_3b6b::
+	db 0, 2, 4
+	db 0, 2, 4
+	db 0, 2, 4
+
+Func_3b74: ; 3b74 (0:3b74)
+	ld hl, Data_9c4a4
+	ld de, 25
+	cp $0
+	jr z, .skip_addntimes
+.asm_3b7e
+	add hl, de
+	dec a
+	jr nz, .asm_3b7e
+.skip_addntimes
+	ld d, $0
+	ld a, b
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wd4ec], a
+	ld hl, Data_3b6b
+	ld d, $0
+	ld a, [wCurPhoneGFX]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	ld a, [wd4ec]
+	cp b
+	jr z, .minimum
+	cp b
+	jr c, .minimum
+	sub b
+	jr .load
+
+.minimum
+	ld a, $1
+.load
+	ld [wd4ec], a
+	ret
 
 Func_3ba9::
 	dr $3ba9, $3bc1
@@ -7018,7 +7272,10 @@ Func_3c57::
 	dr $3c57, $3c8b
 
 Func_3c8b::
-	dr $3c8b, $3e00
+	dr $3c8b, $3d5c
+
+Func_3d5c::
+	dr $3d5c, $3e00
 
 Func_3e00::
 	dr $3e00, $3e45
@@ -7027,4 +7284,4 @@ Func_3e45::
 	dr $3e45, $3e68
 
 Func_3e68::
-	dr $3e68, $4000
+	dr $3e68, $3ff1

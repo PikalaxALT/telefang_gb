@@ -216,7 +216,7 @@ Func_0588::
 
 Func_058d::
 	push af
-	ld a, $75
+	ld a, BANK(Data_1d4b48)
 	rst Bankswitch
 	pop af
 	call Func_3a35
@@ -224,14 +224,14 @@ Func_058d::
 	ret
 
 Func_0597::
-	ld a, $75
+	ld a, BANK(Data_1d5628)
 	rst Bankswitch
 	call Func_3b22
 	rst MemBankswitch
 	ret
 
 Func_059f::
-	ld a, $75
+	ld a, BANK(Data_1d7988)
 	rst Bankswitch
 	call Func_3b36
 	rst MemBankswitch
@@ -269,7 +269,7 @@ Func_05c9::
 	ret
 
 Func_05d1::
-	ld a, $75
+	ld a, BANK(Data_1d5640)
 	rst Bankswitch
 	call Func_3b3f
 	rst MemBankswitch
@@ -277,7 +277,7 @@ Func_05d1::
 
 Func_05d9::
 	push af
-	ld a, $27
+	ld a, BANK(Data_9c000)
 	rst Bankswitch
 	pop af
 	call Func_3b4e

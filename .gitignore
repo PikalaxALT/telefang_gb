@@ -26,6 +26,9 @@
 *.1bpp
 *.2bpp
 
+# compiled audio
+*.pcm
+
 # compare.sh
 baserom.txt
 pokecrystal.txt

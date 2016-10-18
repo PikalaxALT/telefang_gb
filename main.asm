@@ -791,7 +791,11 @@ SECTION "bank 26", ROMX, BANK [$26]
 	dr $98000, $9c000
 
 SECTION "bank 27", ROMX, BANK [$27]
-	dr $9c000, $a0000
+Data_9c000::
+	dr $9c000, $9c4a4
+
+Data_9c4a4::
+	dr $9c4a4, $a0000
 
 SECTION "bank 28", ROMX, BANK [$28]
 	dr $a0000, $a4000
@@ -1236,7 +1240,19 @@ SECTION "bank 6A", ROMX, BANK [$6a]
 	dr $1a8000, $1ac000
 
 SECTION "bank 75", ROMX, BANK [$75]
-	dr $1d4000, $1d8000
+	dr $1d4000, $1d4b48
+
+Data_1d4b48::
+	dr $1d4b48, $1d5628
+
+Data_1d5628::
+	dr $1d5628, $1d5640
+
+Data_1d5640::
+	dr $1d5640, $1d7988
+
+Data_1d7988::
+	dr $1d7988, $1d8000
 
 SECTION "bank 79", ROMX, BANK [$79]
 	dr $1e4000, $1e8000
@@ -1248,5 +1264,5 @@ SECTION "bank 7B", ROMX, BANK [$7b]
 	dr $1ec000, $1f0000
 
 SECTION "bank 7C", ROMX, BANK [$7c]
-PCM_1f0000:: INCBIN "audio/pcm/title.pcm"
-PCM_1f0000End::
+TitleScreenPCM:: INCBIN "audio/pcm/title.pcm"
+TitleScreenPCMEnd::
