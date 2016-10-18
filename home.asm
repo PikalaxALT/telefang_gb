@@ -7113,8 +7113,8 @@ Func_3abb::
 	ei
 	ret
 
-; 3ac2
-	nop
+Data_3ac2::
+	db $0
 
 Func_3ac3: ; 3ac3 (0:3ac3)
 	ld [wd435], a
@@ -7338,6 +7338,7 @@ Func_3c57: ; 3c57 (0:3c57)
 	cp $99
 	jr c, .asm_3c7c
 	jr .asm_3c7d
+
 .asm_3c7a
 	inc hl
 .asm_3c7b
@@ -7354,11 +7355,258 @@ Func_3c57: ; 3c57 (0:3c57)
 	ld [wd49c], a
 	ret
 
-Func_3c8b::
-	dr $3c8b, $3d5c
+Func_3c8b: ; 3c8b (0:3c8b)
+	ld a, [wd435]
+	cp $0
+	jr z, .asm_3ca6
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	add hl, de
+.asm_3ca6
+	ld bc, $f
+	ld de, wd4d0
+	call CopyData
+	ld a, $e0
+	ld [wd4e0], a
+	ret
 
-Func_3d5c::
-	dr $3d5c, $3e00
+Func_3cb5::
+	push af
+	call Func_3d18
+	ld hl, wOAMAnimations
+	ld de, $20
+	ld a, [wd43e]
+.asm_3cc2
+	cp $0
+	jr z, .asm_3cca
+	add hl, de
+	dec a
+	jr .asm_3cc2
+
+.asm_3cca
+	push hl
+	pop de
+	pop af
+	jp Func_0609
+
+Func_3cd0::
+	ld hl, wOAMAnimations
+	ld de, $20
+	ld a, [wd43e]
+.asm_3cd9
+	cp $0
+	jr z, .asm_3ce1
+	add hl, de
+	dec a
+	jr .asm_3cd9
+
+.asm_3ce1
+	push hl
+	pop de
+	push de
+	call Func_0616
+	ld a, $1
+	ld [wc430], a
+	ld hl, $6
+	pop de
+	add hl, de
+	ld a, [hl]
+	cp $0
+	ret nz
+	jp Func_3cfd
+
+Func_3cf8::
+	ld hl, wd400
+	inc [hl]
+	ret
+
+Func_3cfd: ; 3cfd (0:3cfd)
+	ld hl, wd41f
+	inc [hl]
+	ret
+
+Func_3d02::
+	ld b, $0
+	ld d, $c
+	ld a, $60
+	ld [wc91f], a
+	jp Func_0520
+
+Func_3d0e::
+	push hl
+	ld c, a
+	ld e, $10
+	call Multiply_C_by_E
+	pop hl
+	add hl, de
+	ret
+
+Func_3d18: ; 3d18 (0:3d18)
+	ld hl, wOAMAnimations
+	ld de, $20
+	ld a, [wd43e]
+	addntimes_hl_de
+	push hl
+	ld hl, wd4f0
+	ld d, $0
+	ld a, [wd43e]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	ld hl, wd4f6
+	ld d, $0
+	ld a, [wd43e]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	pop hl
+	ld de, 0
+	add hl, de
+	ld a, $1
+	ld [hli], a
+	ld a, [wd4ee]
+	ld [hli], a
+	ld a, [wd41d]
+	ld [hli], a
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Func_3d5c: ; 3d5c (0:3d5c)
+	push af
+	ld de, Data_3ac2
+	ld b, $1
+	call Func_0560
+	pop af
+	dec a
+	jr nz, Func_3d5c
+	ret
+
+OpenSRAMBank2::
+	push af
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, $2
+	ld [MBC3SRamBank], a
+	pop af
+	ret
+
+CloseSRAM::
+	push af
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	pop af
+	ret
+
+Func_3d7f::
+	ld hl, wd460
+	ld a, $9
+	push hl
+.asm_3d85
+	ld [hl], $0
+	inc hl
+	dec a
+	jr nz, .asm_3d85
+	ld bc, $7
+	pop de
+	ld hl, wc9e1
+	jp CopyData
+
+Func_3d95::
+	cp $14
+	jr c, .asm_3dcb
+	cp $23
+	jr c, .asm_3dcf
+	cp $37
+	jr c, .asm_3dd3
+	cp $4b
+	jr c, .asm_3dd7
+	cp $5a
+	jr c, .asm_3ddb
+	cp $6e
+	jr c, .asm_3ddf
+	cp $78
+	jr c, .asm_3de3
+	cp $87
+	jr c, .asm_3de7
+	cp $96
+	jr c, .asm_3deb
+	cp $9b
+	jr c, .asm_3def
+	cp $a0
+	jr c, .asm_3df3
+	cp $a9
+	jr c, .asm_3df7
+	cp $ac
+	jr c, .asm_3dfb
+	jr .asm_3deb
+
+.asm_3dcb
+	ld a, $0
+	jr .asm_3dfd
+
+.asm_3dcf
+	ld a, $1
+	jr .asm_3dfd
+
+.asm_3dd3
+	ld a, $4
+	jr .asm_3dfd
+
+.asm_3dd7
+	ld a, $2
+	jr .asm_3dfd
+
+.asm_3ddb
+	ld a, $3
+	jr .asm_3dfd
+
+.asm_3ddf
+	ld a, $5
+	jr .asm_3dfd
+
+.asm_3de3
+	ld a, $8
+	jr .asm_3dfd
+
+.asm_3de7
+	ld a, $6
+	jr .asm_3dfd
+
+.asm_3deb
+	ld a, $7
+	jr .asm_3dfd
+
+.asm_3def
+	ld a, $9
+	jr .asm_3dfd
+
+.asm_3df3
+	ld a, $a
+	jr .asm_3dfd
+
+.asm_3df7
+	ld a, $b
+	jr .asm_3dfd
+
+.asm_3dfb
+	ld a, $c
+.asm_3dfd
+	jp LoadKanji_
 
 Func_3e00::
 	dr $3e00, $3e45
