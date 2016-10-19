@@ -1639,62 +1639,62 @@ INCLUDE "engine/opening_logos.asm"
 SECTION "bank 03", ROMX, BANK [$3]
 Func_c000:
 	ld bc, $20
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c290
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c2a0
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c2b0
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c2c0
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c2d0
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c2e0
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c2f0
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c300
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c310
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
-	ld hl, Data_ebc8
+	call Wait17500TimesBCCycles
+	ld hl, GFX_e368 + $86 tiles
 	ld de, Data_c230
-	call Func_c169
-	ld hl, Data_eed8
+	call CopyToVRAMAndSendToSGB
+	ld hl, GFX_e368 + $b7 tiles
 	ld de, Data_c270
-	call Func_c169
-	ld hl, Data_c368
+	call CopyToVRAMAndSendToSGB
+	ld hl, GFX_c368
 	ld de, Data_c240
-	call Func_c169
-	ld hl, Data_d368
+	call CopyToVRAMAndSendToSGB
+	ld hl, GFX_d368
 	ld de, Data_c250
-	call Func_c169
-	ld hl, Data_e368
+	call CopyToVRAMAndSendToSGB
+	ld hl, GFX_e368
 	ld de, Data_c260
-	call Func_c169
+	call CopyToVRAMAndSendToSGB
 	ld hl, Data_c280
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $40
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld b, $0
 	ld c, $0
 	ld d, $0
@@ -1704,40 +1704,40 @@ Func_c000:
 
 Func_c0b8:
 	ld hl, Data_c290
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
-	ld hl, Data_c368
+	call Wait17500TimesBCCycles
+	ld hl, GFX_c368
 	ld de, Data_c240
-	call Func_c169
-	ld hl, Data_d368
+	call CopyToVRAMAndSendToSGB
+	ld hl, GFX_d368
 	ld de, Data_c250
-	call Func_c169
-	ld hl, Data_e368
+	call CopyToVRAMAndSendToSGB
+	ld hl, GFX_e368
 	ld de, Data_c260
-	call Func_c169
+	call CopyToVRAMAndSendToSGB
 	ld hl, Data_c280
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $20
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ret
 
 Func_c0ec:
 	ld hl, Data_c290
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ld hl, Data_c112
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $4
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ret
 
 Func_c105:
 	ld hl, wcc00
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $3
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ret
 
 Data_c112:
@@ -1746,7 +1746,7 @@ Data_c112:
 	db     $00, $c2, $00, $00
 	db     $00, $00, $00, $00
 
-Func_c122: ; c122 (3:4122)
+Wait17500TimesBCCycles: ; c122 (3:4122)
 	ld de, 1750
 .asm_c125
 	nop
@@ -1759,40 +1759,40 @@ Func_c122: ; c122 (3:4122)
 	dec bc
 	ld a, b
 	or c
-	jr nz, Func_c122
+	jr nz, Wait17500TimesBCCycles
 	ret
 
-Func_c133: ; c133 (3:4133)
+SendViaJoypadRegister: ; c133 (3:4133)
 	ld a, [hl]
 	and $7
 	ret z
 	ld b, a
 	ld c, rJOYP % $100
-.asm_c13a
+.loop
 	push bc
 	ld a, $0
 	ld [$ff00+c], a
 	ld a, $30
 	ld [$ff00+c], a
 	ld b, $10
-.asm_c143
+.loop_byte
 	ld e, $8
 	ld a, [hli]
 	ld d, a
-.asm_c147
+.loop_bit
 	bit 0, d
 	ld a, R_BUTTONS
-	jr nz, .asm_c14f
+	jr nz, .got_value
 	ld a, R_DPAD
-.asm_c14f
+.got_value
 	ld [$ff00+c], a
 	ld a, $30
 	ld [$ff00+c], a
 	rr d
 	dec e
-	jr nz, .asm_c147
+	jr nz, .loop_bit
 	dec b
-	jr nz, .asm_c143
+	jr nz, .loop_byte
 	ld a, R_DPAD
 	ld [$ff00+c], a
 	ld a, $30
@@ -1800,57 +1800,57 @@ Func_c133: ; c133 (3:4133)
 	pop bc
 	dec b
 	ret z
-	call Func_c224
-	jr .asm_c13a
+	call Wait70000Cycles
+	jr .loop
 
-Func_c169: ; c169 (3:4169)
+CopyToVRAMAndSendToSGB: ; c169 (3:4169)
 	di
 	push de
 	call DisableLCD
 	ld a, $e4
 	ld [rBGP], a
 	ld de, VTilesShared
-	ld bc, $1000
-	call Func_c1a6
+	ld bc, $100 tiles
+	call .CopyData
 	ld hl, VBGMap
-	ld de, $c
+	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	ld a, $80
-	ld c, $d
-.asm_c185
-	ld b, $14
-.asm_c187
+	ld c, 13
+.row
+	ld b, SCREEN_WIDTH
+.column
 	ld [hli], a
 	inc a
 	dec b
-	jr nz, .asm_c187
+	jr nz, .column
 	add hl, de
 	dec c
-	jr nz, .asm_c185
+	jr nz, .row
 	ld a, $81
 	ld [rLCDC], a
 	ld bc, $5
-	call Func_c122
+	call Wait17500TimesBCCycles
 	pop hl
-	call Func_c133
+	call SendViaJoypadRegister
 	ld bc, $6
-	call Func_c122
+	call Wait17500TimesBCCycles
 	ei
 	ret
 
-Func_c1a6: ; c1a6 (3:41a6)
+.CopyData: ; c1a6 (3:41a6)
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, Func_c1a6
+	jr nz, .CopyData
 	ret
 
 Func_c1af: ; c1af (3:41af)
 	ld hl, Data_c214
-	call Func_c133
-	call Func_c224
+	call SendViaJoypadRegister
+	call Wait70000Cycles
 	ld a, [rJOYP]
 	and A_BUTTON | B_BUTTON
 	cp  A_BUTTON | B_BUTTON
@@ -1879,15 +1879,15 @@ Func_c1af: ; c1af (3:41af)
 	cp  A_BUTTON | B_BUTTON
 	jr nz, .finish_return_carry
 	ld hl, Data_c204
-	call Func_c133
-	call Func_c224
+	call SendViaJoypadRegister
+	call Wait70000Cycles
 	sub a
 	ret
 
 .finish_return_carry
 	ld hl, Data_c204
-	call Func_c133
-	call Func_c224
+	call SendViaJoypadRegister
+	call Wait70000Cycles
 	scf
 	ret
 
@@ -1903,7 +1903,7 @@ Data_c214:
 	db     $00, $00, $00, $00
 	db     $00, $00, $00, $00
 
-Func_c224: ; c224 (3:4224)
+Wait70000Cycles: ; c224 (3:4224)
 	ld de, 7000
 .asm_c227
 	nop
@@ -2005,23 +2005,58 @@ Data_c310:
 	db     $ea, $ea, $ea, $ea
 	db     $ea, $60, $ea, $ea
 
-Func_c320:
-	dr $c320, $c368
+Func_c320: ; c320 (3:4320)
+	push af
+	ld a, [wc40a]
+	or a
+	jp nz, Func_c32a
+	pop af
+	ret
 
-Data_c368:
-	dr $c368, $d368
+Func_c32a: ; c32a (3:432a)
+	pop af
+	add $c0
+	ld [wcc09], a
+	ld a, b
+	ld [wcc01], a
+	ld a, c
+	ld [wcc03], a
+	ld a, d
+	ld [wcc05], a
+	ld a, e
+	ld [wcc07], a
+	ld a, $51
+	ld [wcc00], a
+	xor a
+	ld [wcc02], a
+	ld [wcc04], a
+	ld [wcc06], a
+	ld [wcc08], a
+	xor a
+	ld [wcc0a], a
+	ld [wcc0b], a
+	ld [wcc0c], a
+	ld [wcc0d], a
+	ld [wcc0e], a
+	ld [wcc0f], a
+	jp Func_c105
 
-Data_d368:
-	dr $d368, $e368
+IF DEF(POWER)
+GFX_c368: INCBIN "gfx/misc/c368.power.2bpp"
+GFX_d368: INCBIN "gfx/misc/d368.power.2bpp"
+GFX_e368: INCBIN "gfx/misc/e368.power.2bpp"
+ELSE
+GFX_c368: INCBIN "gfx/misc/c368.speed.2bpp"
+GFX_d368: INCBIN "gfx/misc/d368.speed.2bpp"
+GFX_e368: INCBIN "gfx/misc/e368.speed.2bpp"
+ENDC
 
-Data_e368:
-	dr $e368, $ebc8
+REPT $1e
+	db $0
+ENDR
 
-Data_ebc8:
-	dr $ebc8, $eed8
-
-Data_eed8:
-	dr $eed8, $f682
+Func_f586:
+	dr $f586, $f682
 
 Func_f682::
 	dr $f682, $fb3e
