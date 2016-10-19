@@ -2228,7 +2228,7 @@ CopyDEC0ToBGPalBuffer: ; f6c3 (3:76c3)
 	ret
 
 Data_f6de:
-x = VTilesOB >> 8
+x = $80
 REPT 8
 	db x
 x = x + $08
@@ -2255,14 +2255,270 @@ CopyDEC0ToOBPalBuffer: ; f6e6 (3:76e6)
 	jp nz, .pal
 	ret
 
-Func_f701:
-	dr $f701, $f763
+Func_f701: ; f701 (3:7701)
+	push de
+	push bc
+	ld a, b
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	ld h, d
+	ld l, e
+	sla e
+	rl d
+	add hl, de
+	ld de, wde00
+	add hl, de
+	ld a, c
+	ld [wc44f], a
+	ld de, wdec0
+	ld a, d
+	ld [wc454], a
+	ld a, e
+	ld [wc455], a
+	ld a, [wcb27]
+	call Func_f7bd
+	pop bc
+	ld a, b
+	ld hl, Data_f75b
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [rBGPI], a
+	ld hl, wdec0
+	ld a, c
+	add a
+	add a
+	add a
+	ld b, a
+Func_f743: ; f743 (3:7743)
+	push bc
+	di
+	call WaitStat
+	ld a, [hli]
+	ld [rBGPD], a
+	ei
+	pop bc
+	dec b
+	jp nz, Func_f743
+	ld a, [wc3da]
+	inc a
+	ld [wc3da], a
+	pop de
+	xor a
+	ret
 
-Func_f763:
-	dr $f763, $f873
+Data_f75b:
+x = $80
+REPT 8
+	db x
+x = x + $08
+ENDR
+
+Func_f763: ; f763 (3:7763)
+	push de
+	push bc
+	ld a, b
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	ld h, d
+	ld l, e
+	sla e
+	rl d
+	add hl, de
+	ld de, wde60
+	add hl, de
+	ld a, c
+	ld [wc44f], a
+	ld de, wdec0
+	ld a, d
+	ld [wc454], a
+	ld a, e
+	ld [wc455], a
+	ld a, [wcb27]
+	call Func_f7bd
+	pop bc
+	ld a, b
+	ld hl, Data_f75b
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [rOBPI], a
+	ld hl, wdec0
+	ld a, c
+	add a
+	add a
+	add a
+	ld b, a
+Func_f7a5: ; f7a5 (3:77a5)
+	push bc
+	di
+	call WaitStat
+	ld a, [hli]
+	ld [rOBPD], a
+	ei
+	pop bc
+	dec b
+	jp nz, Func_f7a5
+	ld a, [wc3da]
+	inc a
+	ld [wc3da], a
+	pop de
+	xor a
+	ret
+
+Func_f7bd: ; f7bd (3:77bd)
+	ld b, h
+	ld c, l
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, Pointers_f7d2
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_f7d2:
+	dw Func_f7e3
+	dw Func_f7e2
+	dw Func_f806
+	dw Func_f7e2
+	dw Func_f82b
+	dw Func_f7e2
+	dw Func_f84e
+	dw Func_f7e2
+
+Func_f7e2:
+	ret
+
+Func_f7e3:
+	ld h, b
+	ld l, c
+	ld a, [wc44f]
+	ld b, a
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	ld c, a
+	ld a, $20
+	sub c
+	ld c, a
+Func_f7f6: ; f7f6 (3:77f6)
+	push bc
+	push hl
+	call Func_f921
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f7f6
+	ret
+
+Func_f806:
+	ld h, b
+	ld l, c
+	ld a, [wc44f]
+	ld b, a
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	sub $1
+	ld c, a
+	ld a, $0
+	add c
+	ld c, a
+Func_f81b: ; f81b (3:781b)
+	push bc
+	push hl
+	call Func_f921
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f81b
+	ret
+
+Func_f82b:
+	ld h, b
+	ld l, c
+	ld a, [wc44f]
+	ld b, a
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	ld c, a
+	ld a, $0
+	add c
+	ld c, a
+Func_f83e: ; f83e (3:783e)
+	push bc
+	push hl
+	call Func_f953
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f83e
+	ret
+
+Func_f84e:
+	ld h, b
+	ld l, c
+	ld a, [wc44f]
+	ld b, a
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	sub $1
+	ld c, a
+	ld a, $1f
+	sub c
+	ld c, a
+Func_f863: ; f863 (3:7863)
+	push bc
+	push hl
+	call Func_f953
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f863
+	ret
 
 Func_f873:
-	dr $f873, $fb3e
+	dr $f873, $f921
+
+Func_f921:
+	dr $f921, $f953
+
+Func_f953:
+	dr $f953, $fb3e
 
 Func_fb3e::
 	dr $fb3e, $fb8d
