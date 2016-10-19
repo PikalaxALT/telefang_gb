@@ -1,24 +1,24 @@
 WhiteDMGPals::
 	xor a ; `0000
 	ld [wBGP], a
+	ld [wOBP0], a
 	ld [wOBP1], a
-	ld [wOBP2], a
 	ret
 
 BlackDMGPals::
 	ld a, $ff ; `3333
 	ld [wBGP], a
+	ld [wOBP0], a
 	ld [wOBP1], a
-	ld [wOBP2], a
 	ret
 
 NormalDMGPals::
 	ld a, $e4 ; `3210
 	ld [wBGP], a
 	ld a, $e4 ; `3210
-	ld [wOBP1], a
+	ld [wOBP0], a
 	ld a, $d0 ; `3100
-	ld [wOBP2], a
+	ld [wOBP1], a
 	ret
 
 UpdatePalsCGB: ; 106a (0:106a)
@@ -380,12 +380,12 @@ Func_1248: ; 1248 (0:1248)
 	ld e, $5
 	add hl, de
 	ld a, [hl]
-	ld [wOBP1], a
+	ld [wOBP0], a
 	ld d, $0
 	ld e, $5
 	add hl, de
 	ld a, [hl]
-	ld [wOBP2], a
+	ld [wOBP1], a
 	ld a, [wc3da]
 	inc a
 	ld [wc3da], a

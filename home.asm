@@ -8,30 +8,30 @@ SECTION "Header", HOME [$0104]
 SECTION "Start", HOME [$0150]
 INCLUDE "home/init.asm"
 
-Func_0266::
+PushGFXRegisters::
 	ld a, [wc46c]
 	or a
-	jr nz, .asm_26e
-	jr .asm_26e
+	jr nz, .go
+	jr .go
 
-.asm_26e
-	ld a, [wc3c2]
+.go
+	ld a, [wSCX]
 	ld [rSCX], a
-	ld a, [wc3c3]
+	ld a, [wSCY]
 	ld [rSCY], a
-	ld a, [wc3c4]
+	ld a, [wWX]
 	ld [rWX], a
-	ld a, [wc3c5]
+	ld a, [wWY]
 	ld [rWY], a
 	ld a, [wBGP]
 	ld [rBGP], a
-	ld a, [wOBP1]
+	ld a, [wOBP0]
 	ld [rOBP0], a
-	ld a, [wOBP2]
+	ld a, [wOBP1]
 	ld [rOBP1], a
 	ld a, [wLCDC]
 	ld [rLCDC], a
-	ld a, [wc3ca]
+	ld a, [wLYC]
 	ld [rLYC], a
 	ld b, $0
 	ld hl, wc464
@@ -54,7 +54,7 @@ Func_0266::
 	ld [wcac1], a
 	ld a, [wc46d]
 	cp $2
-	jr c, .asm_2cf
+	jr c, .skip
 	ld a, $2
 	ld [wc46d], a
 	ld a, [wc957]
@@ -62,7 +62,7 @@ Func_0266::
 	ld [wc957], a
 	ret
 
-.asm_2cf
+.skip
 	ret
 
 Func_02d0: ; 2d0 (0:02d0)
@@ -70,11 +70,11 @@ Func_02d0: ; 2d0 (0:02d0)
 	and $f
 	cp $f
 	ret nz
-	ld a, [wc3e0]
+	ld a, [wGameRoutine]
 	cp $0
 	ret z
 	xor a
-	ld [wc3e0], a
+	ld [wGameRoutine], a
 	ld a, $2a
 	ld [wc3e1], a
 	ret
@@ -82,11 +82,21 @@ Func_02d0: ; 2d0 (0:02d0)
 INCLUDE "home/vblank.asm"
 INCLUDE "home/lcd.asm"
 
+ClearMemory:
+.asm_0431
+	xor a
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_0431
+	ret
+
 InitSoundData: ; 439 (0:0439)
 	ld hl, wce00
 	ld bc, $200
 	call ClearMemory
-	ld hl, hFFA0
+	ld hl, hMusicID
 	ld bc, $8
 	call ClearMemory
 	ld a, $ff
@@ -166,7 +176,7 @@ Func_07b2::
 	ld [hBGMapAddr + 1], a
 	ret
 
-Func_07df: ; 7df (0:07df)
+DisableLCD: ; 7df (0:07df)
 	ld a, [rIE]
 	ld [hFF93], a
 	res 0, a
@@ -340,12 +350,12 @@ ClearBGWindowAndAttrs::
 
 Func_0a0b::
 	xor a
-	ld [wc3c2], a
-	ld [wc3c3], a
+	ld [wSCX], a
+	ld [wSCY], a
 	ld [wc3f7], a
-	ld [wc3c4], a
-	ld [wc3c5], a
-	ld [wc3ca], a
+	ld [wWX], a
+	ld [wWY], a
+	ld [wLYC], a
 	ld [wc3cb], a
 	ld [wc3cc], a
 	ld a, $c3
@@ -2513,126 +2523,7 @@ Func_1bd1::
 	ld [rNR14], a
 	ret
 
-Func_1be2: ; 1be2 (0:1be2)
-	ld a, [wc3e0]
-	ld hl, Pointers_1bf4
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-Pointers_1bf4::
-	dw OpeningLogos_
-	dw TitleScreen_
-	dw Func_1c26
-	dw Func_1c2f
-	dw PlayIntroMovie_
-	dw Func_1c41
-	dw Func_1c4a
-	dw Func_1c53
-	dw Func_1c5c
-	dw Func_1c65
-	dw Func_1c6e
-	dw Func_1c77
-	dw Func_1c77
-	dw Func_1c80
-	dw Func_1c89
-	dw Func_1c92
-
-OpeningLogos_::
-	ld a, BANK(OpeningLogos)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp OpeningLogos
-
-TitleScreen_::
-	ld a, BANK(TitleScreen)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp TitleScreen
-
-Func_1c26::
-	ld a, BANK(Func_8000)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_8000
-
-Func_1c2f::
-	ld a, BANK(Func_10000)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_10000
-
-PlayIntroMovie_::
-	ld a, BANK(PlayIntroMovie)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp PlayIntroMovie
-
-Func_1c41::
-	ld a, $b
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_1ea1
-
-Func_1c4a::
-	ld a, BANK(Func_70000)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_70000
-
-Func_1c53::
-	ld a, BANK(Func_1441b)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_1441b
-
-Func_1c5c::
-	ld a, BANK(Func_74000)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_74000
-
-Func_1c65::
-	ld a, BANK(Func_8b8b)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_8b8b
-
-Func_1c6e::
-	ld a, BANK(Func_8b24)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_8824
-
-Func_1c77::
-	ld a, BANK(Func_105c0)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_105c0
-
-Func_1c80::
-	ld a, BANK(Func_84cf)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_84cf
-
-Func_1c89::
-	ld a, BANK(Func_858e)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_858e
-
-Func_1c92::
-	ld a, BANK(Func_7c000)
-	ld [wPrevROMBank], a
-	rst Bankswitch
-	jp Func_7c000
+INCLUDE "home/game_routine.asm"
 
 Func_1c9b: ; 1c9b (0:1c9b)
 	ld a, [wdc05]
@@ -3189,7 +3080,7 @@ Func_20b1: ; 20b1 (0:20b1)
 	ld a, $1
 	ld [wc917], a
 	call GetMusicBank
-	ld [hFFA0], a
+	ld [hMusicID], a
 	ld a, $0
 	ld [wca5d], a
 	ld a, $0
@@ -3395,9 +3286,9 @@ Func_22d2: ; 22d2 (0:22d2)
 	ld a, $e3
 	ld [wLCDC], a
 	ld a, $7
-	ld [wc3c4], a
+	ld [wWX], a
 	ld a, $80
-	ld [wc3c5], a
+	ld [wWY], a
 	ld a, $0
 	ld [wc95a], a
 	ld a, [wc912]
@@ -3502,7 +3393,7 @@ Func_236c: ; 236c (0:236c)
 Func_23c3::
 	call Func_23e2
 	ld a, $6
-	ld [wc3e0], a
+	ld [wGameRoutine], a
 	ld a, $0
 	ld [wc3e1], a
 	ret
@@ -3511,7 +3402,7 @@ Func_23d1::
 	call Func_2411
 	call Func_23e2
 	ld a, $c
-	ld [wc3e0], a
+	ld [wGameRoutine], a
 	ld a, $0
 	ld [wc3e1], a
 	ret
@@ -3522,18 +3413,18 @@ Func_23e2: ; 23e2 (0:23e2)
 	ld a, [wc484]
 	ld [wc902], a
 	ld a, $7
-	ld [wc3c4], a
+	ld [wWX], a
 	ld a, $90
-	ld [wc3c5], a
+	ld [wWY], a
 	ld hl, wc9fc
 	ld a, $0
 	ld [hli], a
 	ld a, $98
 	ld [hl], a
 	ld a, $0
-	ld [wc3c2], a
+	ld [wSCX], a
 	ld a, $0
-	ld [wc3c3], a
+	ld [wSCY], a
 	ld a, $1
 	ld [wc430], a
 	ret
@@ -3625,7 +3516,7 @@ Func_24d8::
 	or a
 	ret z
 	ld a, $b
-	ld [wc3e0], a
+	ld [wGameRoutine], a
 	xor a
 	ld [wc3e1], a
 	ld a, [wLCDC]
@@ -5587,8 +5478,8 @@ asm_30db
 	rst Bankswitch
 	ret
 
-Func_3171: ; 3171 (0:3171)
-	ld a, [wc3e0]
+ServeSpecialGFXRequest: ; 3171 (0:3171)
+	ld a, [wGameRoutine]
 	cp $7
 	jr nz, .asm_318b
 	ld a, [wc9d9]
@@ -5990,16 +5881,16 @@ Func_3435: ; 3435 (0:3435)
 	homecall Func_2e33e
 	ret
 
-Func_3442: ; 3442 (0:3442)
-	ld a, [wc3e0]
+HandleOverworldGFX: ; 3442 (0:3442)
+	ld a, [wGameRoutine]
 	cp $5
 	ret nz
 	ld a, [wc3e1]
 	cp $5
-	jr z, .asm_3452
+	jr z, .go
 	cp $4
 	ret nz
-.asm_3452
+.go
 	ld a, [wc98e]
 	or a
 	ret nz
@@ -6024,14 +5915,14 @@ Func_3442: ; 3442 (0:3442)
 	ld a, [hli]
 	ld b, a
 	or a
-	jr nz, .asm_347d
+	jr nz, .stuff_to_copy
 	pop af
 	rst Bankswitch
 	ret
 
-.asm_347d
+.stuff_to_copy
 	ld de, wca48
-.asm_3480
+.loop
 	push bc
 	push hl
 	push de
@@ -6040,7 +5931,7 @@ Func_3442: ; 3442 (0:3442)
 	ld a, [hli]
 	and c
 	cp b
-	jr nz, .asm_34a8
+	jr nz, .next
 	ld a, [de]
 	inc a
 	ld [de], a
@@ -6064,7 +5955,7 @@ Func_3442: ; 3442 (0:3442)
 	adc d
 	ld d, a
 	call CopyTile
-.asm_34a8
+.next
 	pop de
 	inc de
 	pop hl
@@ -6076,7 +5967,7 @@ Func_3442: ; 3442 (0:3442)
 	adc h
 	ld h, a
 	dec b
-	jr nz, .asm_3480
+	jr nz, .loop
 	pop af
 	rst Bankswitch
 	ret

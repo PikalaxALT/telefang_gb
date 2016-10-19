@@ -1,4 +1,4 @@
-Func_0824: ; 824 (0:0824)
+UpdateSprites: ; 824 (0:0824)
 	ld a, [wc430]
 	or a
 	ret z
@@ -6,102 +6,102 @@ Func_0824: ; 824 (0:0824)
 	ld [wc431], a
 	ld hl, wOAMAnimations
 	ld bc, wOAMBuffer
-	ld a, $c
-.asm_0835
+	ld a, 12
+.loop1
 	push af
 	ld a, [hl]
 	and $1
-	call nz, Func_089c
+	call nz, UpdateCurrentSprite
 	ld de, wOAMAnimation02 - wOAMAnimation01
 	add hl, de
 	pop af
 	dec a
-	jr nz, .asm_0835
+	jr nz, .loop1
 	ld hl, wOAMAnimation17
-	ld a, $8
-.asm_0849
+	ld a, 8
+.loop2
 	push af
 	ld a, [hl]
 	and $81
 	cp $81
-	call z, Func_089c
+	call z, UpdateCurrentSprite
 	ld de, wOAMAnimation02 - wOAMAnimation01
 	add hl, de
 	pop af
 	dec a
-	jr nz, .asm_0849
+	jr nz, .loop2
 	ld hl, wOAMAnimation13
-	ld a, $c
+	ld a, 12
 	ld [wc40b], a
-.asm_0862
+.loop3
 	ld a, [hl]
 	and $81
 	cp $81
-	jr z, .asm_086e
+	jr z, .skip3
 	and $1
-	call nz, Func_089c
-.asm_086e
+	call nz, UpdateCurrentSprite
+.skip3
 	ld de, wOAMAnimation02 - wOAMAnimation01
 	add hl, de
 	ld a, [wc40b]
 	dec a
 	ld [wc40b], a
-	jr nz, .asm_0862
+	jr nz, .loop3
 	ld a, [wc432]
 	ld h, a
 	ld a, [wc431]
 	ld [wc432], a
 	sub h
-	jr nc, .asm_0896
+	jr nc, .finish
 	xor $ff
 	inc a
 	ld h, b
 	ld l, c
 	ld b, a
 	xor a
-.asm_088f
+.clear_loop
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	dec b
-	jr nz, .asm_088f
-.asm_0896
+	jr nz, .clear_loop
+.finish
 	ld a, $1
-	ld [wc437], a
+	ld [wOAMUpdate], a
 	ret
 
-Func_089c: ; 89c (0:089c)
+UpdateCurrentSprite: ; 89c (0:089c)
 	push hl
 	ld a, [hli]
-	ld [wc419], a
+	ld [wCurSpriteOAMFlags], a
 	ld a, [hli]
-	ld [wc418], a
+	ld [wCurSpriteTemplateBank], a
 	ld a, [hli]
-	ld [wc41a], a
+	ld [wCurSpriteTemplateIdx], a
 	ld a, [hli]
 	add $8
-	ld [wc41c], a
+	ld [wCurSpriteXCoord], a
 	ld a, [hli]
 	add $10
-	ld [wc41b], a
+	ld [wCurSpriteYCoord], a
 	ld a, [hli]
-	ld [wc41d], a
+	ld [wCurSpritePalette], a
 	push bc
-	ld a, [wc418]
+	ld a, [wCurSpriteTemplateBank]
 	and $f0
 	swap a
-	ld hl, Data_094d
+	ld hl, OAMTemplateBanks
 	ld b, $0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
 	rst Bankswitch
 	pop bc
-	ld a, [wc418]
+	ld a, [wCurSpriteTemplateBank]
 	and $f0
 	swap a
-	ld hl, Data_0956
+	ld hl, OAMTemplateAddrs
 	ld d, $0
 	ld e, a
 	sla e
@@ -110,7 +110,7 @@ Func_089c: ; 89c (0:089c)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wc41a]
+	ld a, [wCurSpriteTemplateIdx]
 	ld d, $0
 	ld e, a
 	sla e
@@ -129,14 +129,14 @@ Func_089c: ; 89c (0:089c)
 	cp $29
 	jp z, .Full
 	ld [wc431], a
-	ld a, [wc41b]
+	ld a, [wCurSpriteYCoord]
 	ld h, a
 	ld a, [de]
 	add h
 	ld [bc], a
 	inc bc
 	inc de
-	ld a, [wc41c]
+	ld a, [wCurSpriteXCoord]
 	ld h, a
 	ld a, [de]
 	add h
@@ -149,12 +149,12 @@ Func_089c: ; 89c (0:089c)
 	inc de
 	ld a, [de]
 	or a
-	jr nz, .asm_092a
-	ld a, [wc419]
+	jr nz, .fixed_flags
+	ld a, [wCurSpriteOAMFlags]
 	and $f0
 	push bc
 	ld b, a
-	ld a, [wc41d]
+	ld a, [wCurSpritePalette]
 	and $7
 	or b
 	pop bc
@@ -162,21 +162,21 @@ Func_089c: ; 89c (0:089c)
 	inc de
 	jr .next
 
-.asm_092a
+.fixed_flags
 	cp $1
-	jr nz, .custom_flags
+	jr nz, .custom_palette
 	inc de
 	ld a, [de]
 	ld [bc], a
 	jr .next
 
-.custom_flags
+.custom_palette
 	inc de
 	ld a, [de]
 	and $f0
 	push bc
 	ld b, a
-	ld a, [wc41d]
+	ld a, [wCurSpritePalette]
 	and $7
 	or b
 	pop bc
@@ -195,24 +195,24 @@ Func_089c: ; 89c (0:089c)
 	pop hl
 	ret
 
-Data_094d:
-	db BANK(Pointers_28000)
-	db BANK(Pointers_38120)
-	db BANK(Pointers_4c000)
-	db BANK(Pointers_50000)
-	db BANK(Pointers_54000)
-	db BANK(Pointers_58000)
-	db BANK(Pointers_5c000)
-	db BANK(Pointers_60000)
-	db BANK(Pointers_64000)
+OAMTemplateBanks:
+	db OAM_TEMPLATES_00
+	db OAM_TEMPLATES_01
+	db OAM_TEMPLATES_02
+	db OAM_TEMPLATES_03
+	db OAM_TEMPLATES_04
+	db OAM_TEMPLATES_05
+	db OAM_TEMPLATES_06
+	db OAM_TEMPLATES_07
+	db OAM_TEMPLATES_08
 
-Data_0956:
-	dw Pointers_28000
-	dw Pointers_38120
-	dw Pointers_4c000
-	dw Pointers_50000
-	dw Pointers_54000
-	dw Pointers_58000
-	dw Pointers_5c000
-	dw Pointers_60000
-	dw Pointers_64000
+OAMTemplateAddrs:
+	dw OAMTemplates00
+	dw OAMTemplates01
+	dw OAMTemplates02
+	dw OAMTemplates03
+	dw OAMTemplates04
+	dw OAMTemplates05
+	dw OAMTemplates06
+	dw OAMTemplates07
+	dw OAMTemplates08

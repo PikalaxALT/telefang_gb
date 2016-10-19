@@ -70,12 +70,12 @@ Func_8069::
 Func_807c::
 	ld a, [hJoyNew]
 	and START
-	jr nz, .asm_808b
+	jr nz, .start
 	call Func_0530
 	ld a, [wc9c9]
 	cp $9
 	ret nz
-.asm_808b
+.start
 	jp IncrementSubroutine
 
 Func_808e::
@@ -100,21 +100,220 @@ Func_80a0::
 
 Func_80b5::
 	ld a, $5
-	ld [wc3e0], a
+	ld [wGameRoutine], a
 	xor a
 	ld [wc3e1], a
 	ret
 
 INCLUDE "engine/intro_movie.asm"
 
-Func_84cf::
-	dr $84cf, $858e
+Func_84cf: ; 84cf (2:44cf)
+	ld a, [wc3e1]
+	ld hl, Pointers_84d9
+	call GetHalfwordFromTable
+	jp [hl]
 
-Func_858e::
-	dr $858e, $8638
+Pointers_84d9::
+	dw Func_84e9
+	dw Func_8501
+	dw Func_8530
+	dw Func_8538
+	dw Func_854b
+	dw Func_855d
+	dw Func_856f
+	dw Func_8584
 
-Func_8638:
-	dr $8638, $8648
+Func_84e9::
+	call ClearBGMapAndAttrs
+	call ClearBGWindowAndAttrs
+	call ClearObjectAnimationBuffers
+	ld bc, $7
+	call DecompressGFXByIndex_
+	ld bc, $8
+	call DecompressGFXByIndex_
+	jp IncrementSubroutine
+
+Func_8501::
+	ld bc, $0
+	ld e, $3f
+	ld a, $0
+	call Func_04ca
+	ld bc, $0
+	ld e, $3f
+	ld a, $0
+	call Func_04da
+	ld bc, $f
+	call GetCGB_BGLayout_
+	ld a, $f0
+	ld [wc91e], a
+	call Func_3566
+	ld a, $85
+	ld [wca65], a
+	ld a, $a0
+	ld [wc91f], a
+	jp IncrementSubroutine
+
+Func_8530::
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
+
+Func_8538::
+	ld a, $2
+	call Func_050f
+	or a
+	ret z
+	ld c, $2
+	ld b, $0
+	ld d, $c
+	call Func_0520
+	jp IncrementSubroutine
+
+Func_854b::
+	ld a, [hJoyNew]
+	and START
+	jr nz, .asm_855a
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+.asm_855a
+	jp IncrementSubroutine
+
+Func_855d::
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	jp IncrementSubroutine
+
+Func_856f::
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	ld bc, $0
+	call GetCGB_BGLayout_
+	ld a, $1
+	ld [wBGPalUpdate], a
+	jp IncrementSubroutine
+
+Func_8584::
+	ld a, $5
+	ld [wGameRoutine], a
+	xor a
+	ld [wc3e1], a
+	ret
+
+Func_858e: ; 858e (2:458e)
+	ld a, [wc3e1]
+	ld hl, Pointers_8598
+	call GetHalfwordFromTable
+	jp [hl]
+
+Pointers_8598:
+	dw Func_85a8
+	dw Func_85c6
+	dw Func_85dd
+	dw Func_85ed
+	dw Func_85f7
+	dw Func_85ff
+	dw Func_8611
+	dw Func_8626
+
+Func_85a8:
+	call ClearBGMapAndAttrs
+	call ClearBGWindowAndAttrs
+	call ClearObjectAnimationBuffers
+	ld bc, $42
+	call DecompressGFXByIndex_
+	ld bc, $43
+	call DecompressGFXByIndex_
+	ld bc, $7
+	call GetCGB_BGLayout_
+	jp IncrementSubroutine
+
+Func_85c6:
+	ld bc, $0
+	ld e, $72
+	ld a, $0
+	call Func_04ca
+	ld bc, $0
+	ld e, $72
+	ld a, $0
+	call Func_04da
+	jp IncrementSubroutine
+
+Func_85dd:
+	ld a, $1b
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
+
+Func_85ed:
+	ld a, $2
+	call Func_050f
+	or a
+	ret z
+	jp IncrementSubroutine
+
+Func_85f7:
+	ld a, [hJoyNew]
+	and $8
+	ret z
+	jp IncrementSubroutine
+
+Func_85ff:
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	jp IncrementSubroutine
+
+Func_8611:
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	ld bc, $0
+	call GetCGB_BGLayout_
+	ld a, $1
+	ld [wBGPalUpdate], a
+	jp IncrementSubroutine
+
+Func_8626:
+	ld a, $0
+	ld [wGameRoutine], a
+	xor a
+	ld [wc3e1], a
+	ret
+
+Func_8630::
+	ld hl, $0
+	add hl, de
+	inc hl
+	jp Func_863f
+
+Func_8638: ; 8638 (2:4638)
+	ld hl, $0
+	add hl, de
+	ld a, $1
+	ld [hli], a
+Func_863f: ; 863f (2:463f)
+	ld a, $0
+	ld [hli], a
+	inc hl
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ret
 
 Func_8648::
 	dr $8648, $872e
@@ -166,7 +365,7 @@ Func_105c0::
 SECTION "bank 05", ROMX, BANK [$5]
 	dr $14000, $1441b
 
-Func_1441b::
+DoBattle::
 	dr $1441b, $17ff8
 
 SECTION "bank 06", ROMX, BANK [$6]
@@ -292,8 +491,7 @@ Pointers_24000::
 	dr $24000, $28000
 
 SECTION "bank 0A", ROMX, BANK [$a]
-Pointers_28000::
-	dr $28000, $2c000
+INCLUDE "data/oam_templates_0.asm"
 
 SECTION "bank 0B", ROMX, BANK [$b]
 Data_2c000::
@@ -524,8 +722,7 @@ SECTION "bank 0E", ROMX, BANK [$e]
 PalPackets_38000::
 	dr $38000, $38120
 
-Pointers_38120::
-	dr $38120, $38f8d
+INCLUDE "data/oam_templates_1.asm"
 
 Func_38f8d::
 	dr $38f8d, $39fab
@@ -556,32 +753,25 @@ SECTION "bank 12", ROMX, BANK [$12]
 	dr $48000, $4c000
 
 SECTION "bank 13", ROMX, BANK [$13]
-Pointers_4c000::
-	dr $4c000, $50000
+INCLUDE "data/oam_templates_2.asm"
 
 SECTION "bank 14", ROMX, BANK [$14]
-Pointers_50000::
-	dr $50000, $54000
+INCLUDE "data/oam_templates_3.asm"
 
 SECTION "bank 15", ROMX, BANK [$15]
-Pointers_54000::
-	dr $54000, $58000
+INCLUDE "data/oam_templates_4.asm"
 
 SECTION "bank 16", ROMX, BANK [$16]
-Pointers_58000::
-	dr $58000, $5c000
+INCLUDE "data/oam_templates_5.asm"
 
 SECTION "bank 17", ROMX, BANK [$17]
-Pointers_5c000::
-	dr $5c000, $60000
+INCLUDE "data/oam_templates_6.asm"
 
 SECTION "bank 18", ROMX, BANK [$18]
-Pointers_60000::
-	dr $60000, $64000
+INCLUDE "data/oam_templates_7.asm"
 
 SECTION "bank 19", ROMX, BANK [$19]
-Pointers_64000::
-	dr $64000, $68000
+INCLUDE "data/oam_templates_8.asm"
 
 SECTION "bank 1A", ROMX, BANK [$1a]
 Func_68000::
@@ -847,7 +1037,7 @@ Func_6eec0::
 	dr $6eec0, $70000
 
 SECTION "bank 1C", ROMX, BANK [$1c]
-Func_70000::
+StartBattle::
 	dr $70000, $703c4
 
 Func_703c4::
@@ -866,7 +1056,7 @@ Func_7122c::
 	dr $7122c, $74000
 
 SECTION "bank 1D", ROMX, BANK [$1d]
-Func_74000::
+WinBattle::
 	dr $74000, $74ff2
 
 Func_74ff2::

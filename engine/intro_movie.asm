@@ -88,10 +88,10 @@ Func_8124: ; 8124 (2:4124)
 	ld a, $1
 	ld [wc430], a
 	xor a
-	ld [wc3c2], a
+	ld [wSCX], a
 	ld a, $37
 	call GetMusicBank
-	ld [H_FFA0], a
+	ld [H_MusicID], a
 	ld b, $1
 	call Func_3768
 	jp IncrementSubroutine
@@ -112,9 +112,9 @@ Func_819b: ; 819b (2:419b)
 	ld a, [wOAMAnimation02 + 3]
 	dec a
 	ld [wOAMAnimation02 + 3], a
-	ld a, [wc3c2]
+	ld a, [wSCX]
 	inc a
-	ld [wc3c2], a
+	ld [wSCX], a
 	cp $40
 	ret nz
 	ld a, $40
@@ -181,7 +181,7 @@ Func_820b: ; 820b (2:420b)
 	ld a, $4
 	call Func_050a
 	xor a
-	ld [wc3c2], a
+	ld [wSCX], a
 	ld a, $c0
 	ld [wcb2c], a
 	ld de, wOAMAnimation02
@@ -249,9 +249,9 @@ Func_82cd: ; 82cd (2:42cd)
 	jr z, .asm_82e6
 	dec a
 	ld [wcb2c], a
-	ld a, [wc3c2]
+	ld a, [wSCX]
 	add $4
-	ld [wc3c2], a
+	ld [wSCX], a
 	ret
 
 .asm_82e6
@@ -299,9 +299,9 @@ Func_832f: ; 832f (2:432f)
 	jr z, .asm_8343
 	dec a
 	ld [wcb2c], a
-	ld a, [wc3c2]
+	ld a, [wSCX]
 	sub $4
-	ld [wc3c2], a
+	ld [wSCX], a
 	ret
 
 .asm_8343
@@ -310,9 +310,9 @@ Func_832f: ; 832f (2:432f)
 	jp IncrementSubroutine
 
 Func_834b: ; 834b (2:434b)
-	ld a, [wc3c2]
+	ld a, [wSCX]
 	sub $4
-	ld [wc3c2], a
+	ld [wSCX], a
 	ld a, $1
 	call Func_050f
 	or a
@@ -342,7 +342,7 @@ Func_835d: ; 835d (2:435d)
 	ld a, $c0
 	ld [wcb2c], a
 	xor a
-	ld [wc3c2], a
+	ld [wSCX], a
 	ld de, wOAMAnimation02
 	ld bc, $8068
 	call Func_8638
@@ -426,16 +426,16 @@ Func_8423: ; 8423 (2:4423)
 	xor a
 	ld [wc463], a
 	ld a, $40
-	ld [wc3c2], a
+	ld [wSCX], a
 	jp IncrementSubroutine
 
 Func_845c: ; 845c (2:445c)
 	ld a, [wc3c0]
 	and $3
 	ret nz
-	ld a, [wc3c2]
+	ld a, [wSCX]
 	dec a
-	ld [wc3c2], a
+	ld [wSCX], a
 	cp $0
 	ret nz
 	ld a, $40
@@ -466,11 +466,11 @@ Func_8491: ; 8491 (2:4491)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, $1
-	ld [wc3e0], a
+	ld [wGameRoutine], a
 	xor a
 	ld [wc3e1], a
-	ld [wc3c2], a
-	ld [wc3c3], a
+	ld [wSCX], a
+	ld [wSCY], a
 	ld [wc46d], a
 	ld [wc46c], a
 	ld b, $0

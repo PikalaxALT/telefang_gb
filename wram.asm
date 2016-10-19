@@ -66,15 +66,15 @@ wc3be:: ds 1
 wc3bf:: ds 1
 wc3c0:: ds 1
 wc3c1:: ds 1
-wc3c2:: ds 1
-wc3c3:: ds 1
-wc3c4:: ds 1
-wc3c5:: ds 1
+wSCX:: ds 1
+wSCY:: ds 1
+wWX:: ds 1
+wWY:: ds 1
 wBGP:: ds 1 ; c3c6
-wOBP1:: ds 1 ; c3c7
-wOBP2:: ds 1 ; c3c8
+wOBP0:: ds 1 ; c3c7
+wOBP1:: ds 1 ; c3c8
 wLCDC:: ds 1 ; c3c9
-wc3ca:: ds 1
+wLYC:: ds 1
 wc3cb:: ds 1
 wc3cc:: ds 1
 wc3cd:: ds 1
@@ -96,7 +96,7 @@ wc3dc:: ds 1
 wc3dd:: ds 1
 wc3de:: ds 1
 wc3df:: ds 1
-wc3e0:: ds 1
+wGameRoutine:: ds 1
 wc3e1:: ds 1
 wc3e2:: ds 1
 wc3e3:: ds 1
@@ -152,12 +152,14 @@ wc414:: ds 1
 wc415:: ds 1
 wc416:: ds 1
 wc417:: ds 1
-wc418:: ds 1
-wc419:: ds 1
-wc41a:: ds 1
-wc41b:: ds 1
-wc41c:: ds 1
-wc41d:: ds 1
+
+wCurSpriteTemplateBank:: ds 1
+wCurSpriteOAMFlags:: ds 1
+wCurSpriteTemplateIdx:: ds 1
+wCurSpriteYCoord:: ds 1
+wCurSpriteXCoord:: ds 1
+wCurSpritePalette:: ds 1
+
 wc41e:: ds 1
 wc41f:: ds 1
 wc420:: ds 1
@@ -183,7 +185,7 @@ wc433:: ds 1
 wc434:: ds 1
 wc435:: ds 1
 wc436:: ds 1
-wc437:: ds 1
+wOAMUpdate:: ds 1
 wc438:: ds 1
 wc439:: ds 1
 wc43a:: ds 1

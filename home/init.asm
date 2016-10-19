@@ -1,7 +1,7 @@
 Start::
 	ld [wCGB], a
 	di
-	call Func_07df
+	call DisableLCD
 	xor a
 	ld [rIF], a
 	ld [rIE], a
@@ -73,7 +73,7 @@ Start::
 	call Func_c000
 .skip
 	xor a
-	ld [wc3e0], a
+	ld [wGameRoutine], a
 	ld [wc3e1], a
 	ld a, $3
 	rst Bankswitch
@@ -93,8 +93,8 @@ Start::
 	call UpdatePalsCGB
 	call Func_3869
 	call ReadJoypad
-	call Func_1be2
-	call Func_0824
+	call RunGameRoutine
+	call UpdateSprites
 	ld a, 1
 	ld [wc3c1], a
 .wait

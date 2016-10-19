@@ -2,29 +2,29 @@ LCD: ; 324 (0:0324)
 	push af
 	ld a, [wc46d]
 	cp $2
-	jp nc, Func_0402
+	jp nc, .ScrollScreenVerticalFollowingSprite
 	push bc
 	push hl
 	ld a, [wc469]
 	or a
-	jp nz, Func_033b
-	call Func_0425
-	jr asm_037f
+	jp nz, .okay
+	call .ClearLCDBuffers
+	jr .bail
 
-Func_033b: ; 33b (0:033b)
+.okay
 	ld a, [wc46d]
 	or a
-	jr nz, asm_0383
+	jr nz, .scanlines
 	ld hl, wc464
 	ld a, [hli]
 	sub $4
 	ld b, a
 	ld a, [rLY]
 	cp b
-	jr nc, .asm_0363
+	jr nc, .add_4
 	ld a, [wcac1]
 	or a
-	jr nz, asm_037f
+	jr nz, .bail
 	ld a, [hli]
 	ld [rWX], a
 	ld a, [hl]
@@ -33,46 +33,46 @@ Func_033b: ; 33b (0:033b)
 	ld [rLYC], a
 	ld a, $1
 	ld [wcac1], a
-	jr asm_037f
+	jr .bail
 
-.asm_0363
+.add_4
 	ld a, b
 	add $4
 	ld b, a
-.asm_0367
+.wait_ly
 	ld a, [rLY]
 	cp b
-	jr c, .asm_0367
-asm_036c
+	jr c, .wait_ly
+.bail3
 	xor a
 	ld [rSCX], a
 	ld [rSCY], a
-Func_0371: ; 371 (0:0371)
+.bail2
 	ld [wcac1], a
 	ld a, $0
 	ld [rLYC], a
-	ld [wc3ca], a
+	ld [wLYC], a
 	ld a, $83
 	ld [rLCDC], a
-asm_037f
+.bail
 	pop hl
 	pop bc
 	pop af
 	reti
 
-asm_0383
-	ld a, [wc3e0]
+.scanlines
+	ld a, [wGameRoutine]
 	cp $4
 	jr z, .asm_03bc
 	ld hl, wc467
 	ld a, [rLY]
 	cp $5f
-	jr nc, asm_036c
+	jr nc, .bail3
 	ld a, [wcac1]
 	cp $1
-	jr z, .asm_03ae
+	jr z, .load_scx
 	cp $0
-	jr nz, asm_037f
+	jr nz, .bail
 	xor a
 	ld [rSCX], a
 	ld [rSCY], a
@@ -80,64 +80,64 @@ asm_0383
 	ld [rLYC], a
 	ld a, $1
 	ld [wcac1], a
-	jr asm_037f
+	jr .bail
 
-.asm_03ae
+.load_scx
 	ld a, [hl]
 	ld [rSCX], a
 	ld a, $5f
 	ld [rLYC], a
 	ld a, $2
 	ld [wcac1], a
-	jr asm_037f
+	jr .bail
 
 .asm_03bc
 	ld a, [rLY]
 	cp $6c
-	jr nc, .asm_03f2
+	jr nc, .wait_set_scy_0x10
 	ld a, [wcac1]
 	cp $1
-	jr z, .asm_03dc
+	jr z, .wait_set_scy_wc467
 	cp $0
-	jr nz, asm_037f
+	jr nz, .bail
 	ld a, $7f
 	ld [rSCY], a
 	ld a, $14
 	ld [rLYC], a
 	ld a, $1
 	ld [wcac1], a
-	jr asm_037f
+	jr .bail
 
-.asm_03dc
+.wait_set_scy_wc467
 	ld a, [rLY]
 	cp $18
-	jr c, .asm_03dc
+	jr c, .wait_set_scy_wc467
 	ld a, [wc467]
 	ld [rSCY], a
 	ld a, $6c
 	ld [rLYC], a
 	ld a, $2
 	ld [wcac1], a
-	jr asm_037f
+	jr .bail
 
-.asm_03f2
+.wait_set_scy_0x10
 	ld a, [rLY]
 	cp $70
-	jr c, .asm_03f2
+	jr c, .wait_set_scy_0x10
 	ld a, $10
 	ld [rSCY], a
 	xor a
 	ld [rSCX], a
-	jp Func_0371
+	jp .bail2
 
-Func_0402: ; 402 (0:0402)
+.ScrollScreenVerticalFollowingSprite
 	push hl
 	ld hl, wOAMAnimation06
 	ld a, [wc957]
 	or a
-	jr nz, .asm_040f
+	jr nz, .got_start_addr
 	ld hl, wOAMAnimation01
-.asm_040f
+.got_start_addr
 	ld a, [wc46d]
 	add l
 	ld l, a
@@ -153,7 +153,7 @@ Func_0402: ; 402 (0:0402)
 	pop af
 	reti
 
-Func_0425: ; 425 (0:0425)
+.ClearLCDBuffers
 	xor a
 	ld [wcac1], a
 	ld hl, wc460
@@ -161,14 +161,4 @@ Func_0425: ; 425 (0:0425)
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ret
-
-ClearMemory:
-.asm_0431
-	xor a
-	ld [hli], a
-	dec bc
-	ld a, b
-	or c
-	jr nz, .asm_0431
 	ret

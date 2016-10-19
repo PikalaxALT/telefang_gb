@@ -459,7 +459,7 @@ Func_06e4::
 	ld a, [wdc01]
 	or a
 	ret nz
-	ld a, [wc3e0]
+	ld a, [wGameRoutine]
 	cp $f
 	ret z
 	ld a, [wdc07]

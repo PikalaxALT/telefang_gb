@@ -3,24 +3,24 @@ VBlank: ; 2e7 (0:02e7)
 	push bc
 	push de
 	push hl
-	call Func_0266
+	call PushGFXRegisters
 	ld a, [hVBlankOccurred]
 	or a
-	jr nz, .asm_0306
-	ld a, [wc437]
+	jr nz, .skip_sprites
+	ld a, [wOAMUpdate]
 	or a
-	jr z, .asm_0306
+	jr z, .skip_sprites
 	call hPushOAM
-	call Func_3171
+	call ServeSpecialGFXRequest
 	xor a
 	ld [wc430], a
-	ld [wc437], a
-.asm_0306
+	ld [wOAMUpdate], a
+.skip_sprites
 	ld a, $1
 	ld [hVBlankOccurred], a
 	ei
 	call UpdateSound
-	call Func_3442
+	call HandleOverworldGFX
 	ld a, [wcb3f]
 	or a
 	jr nz, .asm_031c
