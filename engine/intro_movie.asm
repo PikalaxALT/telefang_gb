@@ -285,6 +285,7 @@ Func_8318: ; 8318 (2:4318)
 	ld a, $1
 	ld [wc430], a
 	ld a, [wOAMAnimation02 + 3]
+Func_8320:
 	inc a
 	ld [wOAMAnimation02 + 3], a
 	cp $c0
