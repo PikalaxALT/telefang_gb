@@ -5,31 +5,31 @@ wOAMBuffer:: ds 4 * 40 ; c000
 wOAMBufferEnd::
 
 wOAMAnimations:: ; c0a0
-wOAMAnimation01:: ds $20 ; c0a0
-wOAMAnimation02:: ds $20 ; c0c0
-wOAMAnimation03:: ds $20 ; c0e0
-wOAMAnimation04:: ds $20 ; c100
-wOAMAnimation05:: ds $20 ; c120
-wOAMAnimation06:: ds $20 ; c140
-wOAMAnimation07:: ds $20 ; c160
-wOAMAnimation08:: ds $20 ; c180
-wOAMAnimation09:: ds $20 ; c1a0
-wOAMAnimation10:: ds $20 ; c1c0
-wOAMAnimation11:: ds $20 ; c1e0
-wOAMAnimation12:: ds $20 ; c200
+wOAMAnimation01:: oam_animation_struct wOAMAnimation01 ; c0a0
+wOAMAnimation02:: oam_animation_struct wOAMAnimation02 ; c0c0
+wOAMAnimation03:: oam_animation_struct wOAMAnimation03 ; c0e0
+wOAMAnimation04:: oam_animation_struct wOAMAnimation04 ; c100
+wOAMAnimation05:: oam_animation_struct wOAMAnimation05 ; c120
+wOAMAnimation06:: oam_animation_struct wOAMAnimation06 ; c140
+wOAMAnimation07:: oam_animation_struct wOAMAnimation07 ; c160
+wOAMAnimation08:: oam_animation_struct wOAMAnimation08 ; c180
+wOAMAnimation09:: oam_animation_struct wOAMAnimation09 ; c1a0
+wOAMAnimation10:: oam_animation_struct wOAMAnimation10 ; c1c0
+wOAMAnimation11:: oam_animation_struct wOAMAnimation11 ; c1e0
+wOAMAnimation12:: oam_animation_struct wOAMAnimation12 ; c200
 
-wOAMAnimation13:: ds $20 ; c220
-wOAMAnimation14:: ds $20 ; c240
-wOAMAnimation15:: ds $20 ; c260
-wOAMAnimation16:: ds $20 ; c280
-wOAMAnimation17:: ds $20 ; c2a0
-wOAMAnimation18:: ds $20 ; c2c0
-wOAMAnimation19:: ds $20 ; c2e0
-wOAMAnimation20:: ds $20 ; c300
-wOAMAnimation21:: ds $20 ; c320
-wOAMAnimation22:: ds $20 ; c340
-wOAMAnimation23:: ds $20 ; c360
-wOAMAnimation24:: ds $20 ; c380
+wOAMAnimation13:: oam_animation_struct wOAMAnimation13 ; c220
+wOAMAnimation14:: oam_animation_struct wOAMAnimation14 ; c240
+wOAMAnimation15:: oam_animation_struct wOAMAnimation15 ; c260
+wOAMAnimation16:: oam_animation_struct wOAMAnimation16 ; c280
+wOAMAnimation17:: oam_animation_struct wOAMAnimation17 ; c2a0
+wOAMAnimation18:: oam_animation_struct wOAMAnimation18 ; c2c0
+wOAMAnimation19:: oam_animation_struct wOAMAnimation19 ; c2e0
+wOAMAnimation20:: oam_animation_struct wOAMAnimation20 ; c300
+wOAMAnimation21:: oam_animation_struct wOAMAnimation21 ; c320
+wOAMAnimation22:: oam_animation_struct wOAMAnimation22 ; c340
+wOAMAnimation23:: oam_animation_struct wOAMAnimation23 ; c360
+wOAMAnimation24:: oam_animation_struct wOAMAnimation24 ; c380
 wOAMAnimationsEnd:: ; c3a0
 
 wc3a0:: ds 1

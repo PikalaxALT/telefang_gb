@@ -315,14 +315,453 @@ Func_863f: ; 863f (2:463f)
 	ld [hli], a
 	ret
 
-Func_8648::
-	dr $8648, $872e
+Func_8648: ; 8648 (2:4648)
+	ld a, [wc3e1]
+	cp $1c
+	ret z
+	cp $22
+	ret z
+	cp $10
+	jr nz, .asm_8663
+	ld a, [wc3e2]
+	cp $e
+	ret z
+	cp $f
+	ret z
+	cp $15
+	ret z
+	jr .asm_867d
 
-Func_872e::
-	dr $872e, $8824
+.asm_8663
+	ld a, [wc3e1]
+	cp $16
+	jr nz, .asm_8670
+	ld a, [wc3e2]
+	cp $9
+	ret z
+.asm_8670
+	ld a, [wc3e1]
+	cp $18
+	jr nz, .asm_867d
+	ld a, [wc3e2]
+	cp $6
+	ret z
+.asm_867d
+	ld a, [wc3df]
+	or a
+	ret nz
+	ld a, [hJoyNew]
+	and $f3
+	jr z, .asm_86a7
+	xor a
+	ld [wcb74], a
+	ld a, [wcb75]
+	or a
+	ret z
+	ld hl, $b000
+	ld de, wCGB_BGPalsBuffer
+	ld bc, $40
+	call Func_86f9
+	ld a, $1
+	ld [wBGPalUpdate], a
+	xor a
+	ld [wcb75], a
+	ret
 
-Func_8824::
-	dr $8824, $893f
+.asm_86a7
+	ld a, [wcb75]
+	or a
+	ret nz
+	ld a, [wc3c0]
+	and $3
+	ret nz
+	ld a, [wcb74]
+	inc a
+	ld [wcb74], a
+	cp $c8
+	ret nz
+	ld hl, wCGB_BGPalsBuffer
+	ld de, s3_b000
+	ld bc, s3_b040 - s3_b000
+	call Func_86f9
+	call Func_8710
+	ld bc, $348
+	ld a, $7
+	call Func_10ee
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld a, $1
+	ld [wcb75], a
+	xor a
+	ld [wcb74], a
+	ret
+
+Func_86e2::
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, $3
+	ld [MBC3SRamBank], a
+.asm_86ec
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .asm_86ec
+	xor a
+	ld [MBC3SRamEnable], a
+	ret
+
+Func_86f9: ; 86f9 (2:46f9)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s3_b000)
+	ld [MBC3SRamBank], a
+.asm_8703
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .asm_8703
+	xor a
+	ld [MBC3SRamEnable], a
+	ret
+
+Func_8710: ; 8710 (2:4710)
+	ld hl, wCGB_BGPalsBuffer + 1 palettes + 4
+	ld b, $6
+.loop
+	ld de, .Palette
+	ld a, b
+	cp $5
+	jr z, .next
+	push hl
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	pop hl
+.next
+	ld de, 1 palettes
+	add hl, de
+	dec b
+	jr nz, .loop
+	ret
+
+.Palette RGB 20, 21, 14
+
+Func_872e: ; 872e (2:472e)
+	ld c, $10
+	ld b, $0
+Func_8732: ; 8732 (2:4732)
+	push bc
+	push bc
+	ld a, [wcb69]
+	swap a
+	and $f0
+	add b
+	ld hl, wd002
+	call Func_881b
+	ld a, [hli]
+	cp $fe
+	jp z, Func_87ba
+	ld [wcb20], a
+	ld a, [hl]
+	ld [wcb21], a
+	pop bc
+	ld a, b
+	ld hl, Pointers_47e2
+	call Func_881b
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	push hl
+	ld a, [wcb20]
+	swap a
+	and $f
+	ld hl, Data_8802
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	pop hl
+	call WaitStatAndLoad
+	push hl
+	ld a, [wcb20]
+	swap a
+	and $f
+	cp $4
+	jr z, .asm_878c
+	cp $b
+	jr z, .asm_878c
+	cp $c
+	jr nz, .asm_8787
+	ld a, $52
+	jr .asm_879b
+
+.asm_8787
+	ld hl, Data_880f
+	jr .asm_878f
+
+.asm_878c
+	ld hl, Data_8815
+.asm_878f
+	ld a, [wcb21]
+	swap a
+	and $f
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+.asm_879b
+	pop hl
+	call WaitStatAndLoad
+	pop hl
+	ld de, $20
+	add hl, de
+	ld a, [wcb21]
+	and $7
+	adc $4d
+	call WaitStatAndLoad
+	ld a, $52
+	call WaitStatAndLoad
+Func_87b3: ; 87b3 (2:47b3)
+	pop bc
+	inc b
+	dec c
+	jp nz, Func_8732
+	ret
+
+Func_87ba: ; 87ba (2:47ba)
+	pop bc
+	ld a, b
+	ld hl, Pointers_47e2
+	call Func_881b
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	ld a, $52
+	call WaitStatAndLoad
+	ld a, $52
+	call WaitStatAndLoad
+	pop hl
+	ld de, BG_MAP_WIDTH
+	add hl, de
+	ld a, $52
+	call WaitStatAndLoad
+	ld a, $52
+	call WaitStatAndLoad
+	jp Func_87b3
+
+Pointers_47e2:
+	dwbgcoord  1,  6
+	dwbgcoord  3,  6
+	dwbgcoord  5,  6
+	dwbgcoord  7,  6
+	dwbgcoord  1,  8
+	dwbgcoord  3,  8
+	dwbgcoord  5,  8
+	dwbgcoord  7,  8
+	dwbgcoord  1, 10
+	dwbgcoord  3, 10
+	dwbgcoord  5, 10
+	dwbgcoord  7, 10
+	dwbgcoord  1, 12
+	dwbgcoord  3, 12
+	dwbgcoord  5, 12
+	dwbgcoord  7, 12
+
+Data_8802:
+	db $40, $40, $41, $41, $42, $43, $43, $44, $44, $45, $45, $46, $47
+Data_880f:
+	db $52, $4c, $49, $4b, $48, $4a
+Data_8815:
+	db $52, $49, $48, $52, $49, $48
+
+Func_881b: ; 881b (2:481b)
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	add hl, de
+	ret
+
+Func_8824: ; 8824 (2:4824)
+	ld a, [wc3e1]
+	ld hl, Pointers_882e
+	call GetHalfwordFromTable
+	jp [hl]
+
+Pointers_882e:
+	dw Func_883e
+	dw Func_885b
+	dw Func_8883
+	dw Func_8890
+	dw Func_889f
+	dw Func_88a7
+	dw Func_88b6
+	dw Func_88c3
+
+Func_883e:
+	ld a, $c3
+	ld [wLCDC], a
+	xor a
+	ld [wSCX], a
+	ld [wSCY], a
+	ld [wWX], a
+	ld [wWY], a
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	jp IncrementSubroutine
+
+Func_885b:
+	ld a, [wSCX]
+	ld [wc3f0], a
+	ld a, [wSCY]
+	ld [wc3f1], a
+	xor a
+	ld [wSCX], a
+	ld [wSCY], a
+	call Func_88fb
+	ld hl, VTilesOB
+	ld de, VTilesShared
+	ld bc, $80 tiles
+	call Func_8919
+	call Func_88da
+	jp IncrementSubroutine
+
+Func_8883:
+	ld a, $1
+	ld [wc430], a
+	ld a, [hJoyNew]
+	and A_BUTTON
+	ret z
+	jp IncrementSubroutine
+
+Func_8890:
+	ld hl, VTilesShared
+	ld de, VTilesOB
+	ld bc, $80 tiles
+	call Func_8919
+	jp IncrementSubroutine
+
+Func_889f:
+	ld a, [hJoyNew]
+	and A_BUTTON
+	ret z
+	jp IncrementSubroutine
+
+Func_88a7:
+	ld hl, VTilesShared
+	ld de, VTilesBG
+	ld bc, $80 tiles
+	call Func_8919
+	jp IncrementSubroutine
+
+Func_88b6:
+	ld a, [hJoyNew]
+	and A_BUTTON
+	ret z
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
+
+Func_88c3:
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	xor a
+	ld [wGameRoutine], a
+	ld [wc3e1], a
+	ret
+
+Func_88d2:
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
+
+Func_88da: ; 88da (2:48da)
+	ld hl, VBGMap
+	ld c, $8
+	ld d, $80
+Func_88e1: ; 88e1 (2:48e1)
+	push hl
+	ld b, $10
+.asm_88e4
+	ld a, d
+	di
+	call WaitStat
+	ld [hli], a
+	ei
+	inc d
+	dec b
+	jr nz, .asm_88e4
+	pop hl
+	push de
+	ld de, BG_MAP_WIDTH
+	add hl, de
+	pop de
+	dec c
+	jp nz, Func_88e1
+	ret
+
+Func_88fb: ; 88fb (2:48fb)
+	ld hl, VBGMap
+	ld c, $12
+Func_8900: ; 8900 (2:4900)
+	push hl
+	ld b, $14
+.asm_8903
+	xor a
+	di
+	call WaitStat
+	ld [hli], a
+	ei
+	dec b
+	jr nz, .asm_8903
+	pop hl
+	push de
+	ld de, BG_MAP_WIDTH
+	add hl, de
+	pop de
+	dec c
+	jp nz, Func_8900
+	ret
+
+Func_8919: ; 8919 (2:4919)
+	di
+	call WaitStat
+	ld a, [de]
+	ei
+	ld [wFontSourceBank], a
+	di
+	call WaitStat
+	ld a, [hl]
+	ei
+	di
+	call WaitStat
+	ld [de], a
+	ei
+	ld a, [wFontSourceBank]
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	inc de
+	inc hl
+	dec bc
+	ld a, c
+	or b
+	jr nz, Func_8919
+	ret
 
 TitleScreen::
 	dr $893f, $8b24

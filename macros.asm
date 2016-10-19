@@ -5,6 +5,13 @@ Bankswitch    EQU $10
 MemBankswitch EQU $18
 FarCall       EQU $20
 
+RGB: MACRO
+	dw ((\3) << 10) + ((\2) << 5) + (\1)
+	ENDM
+
+
+percent EQUS "* $ff / 100"
+
 dr: MACRO
 IF DEF(POWER)
 INCBIN "baserom-power.gbc", \1, \2 - \1
@@ -102,6 +109,14 @@ ENDM
 hlbgcoord EQUS "bgcoord hl,"
 debgcoord EQUS "bgcoord de,"
 bcbgcoord EQUS "bgcoord bc,"
+
+dwbgcoord: MACRO
+IF _NARG >= 3
+	dw (\2 * BG_MAP_WIDTH) + \1 + \3
+ELSE
+	dw (\2 * BG_MAP_WIDTH) + \1 + VBGMap
+ENDC
+ENDM
 
 check_cgb: MACRO
 	ld a, [wCGB]
