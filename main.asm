@@ -763,11 +763,7 @@ Func_8919: ; 8919 (2:4919)
 	jr nz, Func_8919
 	ret
 
-TitleScreen::
-	dr $893f, $8b24
-
-Func_8b24::
-	dr $8b24, $8b8b
+INCLUDE "engine/title_screen.asm"
 
 Func_8b8b::
 	dr $8b8b, $9300
