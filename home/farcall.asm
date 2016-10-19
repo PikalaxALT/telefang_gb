@@ -260,12 +260,12 @@ Func_05b6::
 	rst MemBankswitch
 	ret
 
-Func_05c1::
-	homecall_memret Func_fb8d
+LoadGame_::
+	homecall_memret LoadGame
 	ret
 
-Func_05c9::
-	homecall_memret Func_fb3e
+SaveGame_::
+	homecall_memret SaveGame
 	ret
 
 Func_05d1::

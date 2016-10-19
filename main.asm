@@ -2511,20 +2511,536 @@ Func_f863: ; f863 (3:7863)
 	jp nz, Func_f863
 	ret
 
-Func_f873:
-	dr $f873, $f921
+Func_f873: ; f873 (3:7873)
+	ld b, h
+	ld c, l
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, Pointers_f888
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_f921:
-	dr $f921, $f953
+Pointers_f888:
+	dw Func_f899
+	dw Func_f898
+	dw Func_f8ba
+	dw Func_f898
+	dw Func_f8dd
+	dw Func_f898
+	dw Func_f8fe
+	dw Func_f898
 
-Func_f953:
-	dr $f953, $fb3e
+Func_f898:
+	ret
 
-Func_fb3e::
-	dr $fb3e, $fb8d
+Func_f899:
+	ld h, b
+	ld l, c
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	ld c, a
+	ld a, $20
+	sub c
+	ld c, a
+	ld b, $8
+Func_f8aa: ; f8aa (3:78aa)
+	push bc
+	push hl
+	call Func_f921
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f8aa
+	ret
 
-Func_fb8d::
-	dr $fb8d, $fc03
+Func_f8ba:
+	ld h, b
+	ld l, c
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	sub $1
+	ld c, a
+	ld a, $0
+	add c
+	ld c, a
+	ld b, $8
+Func_f8cd: ; f8cd (3:78cd)
+	push bc
+	push hl
+	call Func_f921
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f8cd
+	ret
+
+Func_f8dd:
+	ld h, b
+	ld l, c
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	ld c, a
+	ld a, $0
+	add c
+	ld c, a
+	ld b, $8
+Func_f8ee: ; f8ee (3:78ee)
+	push bc
+	push hl
+	call Func_f953
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f8ee
+	ret
+
+Func_f8fe:
+	ld h, b
+	ld l, c
+	ld a, [wc3da]
+	add $1
+	add a
+	add a
+	add a
+	sub $1
+	ld c, a
+	ld a, $1f
+	sub c
+	ld c, a
+	ld b, $8
+Func_f911: ; f911 (3:7911)
+	push bc
+	push hl
+	call Func_f953
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, Func_f911
+	ret
+
+Func_f921: ; f921 (3:7921)
+	ld a, c
+	ld [wc440], a
+REPT 4
+	ld de, wFontSourceAddr + 1
+	call Func_f93e
+ENDR
+	ret
+
+Func_f93e: ; f93e (3:793e)
+	ld b, $3
+Func_f940: ; f940 (3:7940)
+	ld a, [wc440]
+	cp [hl]
+	jp nc, Func_f948
+	ld a, [hl]
+Func_f948: ; f948 (3:7948)
+	ld [de], a
+	inc hl
+	inc de
+	dec b
+	jp nz, Func_f940
+	call Func_f985
+	ret
+
+Func_f953: ; f953 (3:7953)
+	ld a, c
+	ld [wc440], a
+REPT 4
+	ld de, wFontSourceAddr + 1
+	call Func_f970
+ENDR
+	ret
+
+Func_f970: ; f970 (3:7970)
+	ld b, $3
+Func_f972: ; f972 (3:7972)
+	ld a, [wc440]
+	cp [hl]
+	jp c, Func_f97a
+	ld a, [hl]
+Func_f97a: ; f97a (3:797a)
+	ld [de], a
+	inc hl
+	inc de
+	dec b
+	jp nz, Func_f972
+	call Func_f985
+	ret
+
+Func_f985: ; f985 (3:7985)
+	dec de
+	ld a, [de]
+	ld b, a
+	sla b
+	sla b
+	dec de
+	ld a, [de]
+	sla a
+	swap a
+	ld c, a
+	and $3
+	or b
+	ld b, a
+	ld a, c
+	and $e0
+	ld c, a
+	dec de
+	ld a, [de]
+	or c
+	ld c, a
+	ld a, [wc454]
+	ld d, a
+	ld a, [wc455]
+	ld e, a
+	ld a, c
+	ld [de], a
+	inc de
+	ld a, b
+	ld [de], a
+	inc de
+	ld a, d
+	ld [wc454], a
+	ld a, e
+	ld [wc455], a
+	ret
+
+Func_f9b6:
+	push hl
+	push de
+	push bc
+	push hl
+	call Func_12fb
+	pop hl
+	ld a, [wc44f]
+	and $f0
+	or a
+	jr z, .asm_f9cf
+	swap a
+	add $bb
+	call WaitStatAndLoad
+	jr .asm_f9d3
+
+.asm_f9cf
+	xor a
+	call WaitStatAndLoad
+.asm_f9d3
+	ld a, [wc44f]
+	and $f
+	add $bb
+	call WaitStatAndLoad
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Func_f9e1:
+	call Func_0d4e
+	ld a, [wc400]
+	ld h, $0
+	ld l, a
+	ld bc, $ff
+	call Func_1338
+	ld a, [wFontSourceBank]
+	ld [wc452], a
+	ld a, [wc441]
+	ld h, $0
+	ld l, a
+	ld d, $a
+	call Func_15b0
+	ld bc, $ff
+	call Func_1338
+	ld a, [wFontSourceBank]
+	ld [wc453], a
+	ld a, [wc441]
+	ld h, $0
+	ld l, a
+	ld d, $a
+	call Func_15b0
+	ld bc, $ff
+	call Func_1338
+	ld a, [wFontSourceBank]
+	ld [wc454], a
+	ld h, $0
+	ld a, [wc452]
+	ld l, a
+	ld d, $64
+	call Func_15b0
+	push hl
+	ld h, $0
+	ld a, [wc453]
+	ld l, a
+	ld d, $a
+	call Func_15b0
+	ld b, h
+	ld c, l
+	pop hl
+	add hl, bc
+	ld b, $0
+	ld a, [wc454]
+	ld c, a
+	add hl, bc
+	ld a, l
+	ld [wFontSourceBank], a
+	ret
+
+Func_fa4b:
+	push hl
+	push de
+	push bc
+	xor a
+	ld [wc452], a
+	ld a, b
+	ld [wc442], a
+	ld a, c
+	ld [wc443], a
+	ld bc, $3e8
+	call Func_1338
+	ld a, [wFontSourceBank]
+	or a
+	jr nz, .asm_fa77
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	xor a
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	jr .asm_fa8e
+
+.asm_fa77
+	add $bb
+	push af
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	pop af
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	ld a, $1
+	ld [wc452], a
+.asm_fa8e
+	ld a, [wc440]
+	ld h, a
+	ld a, [wc441]
+	ld l, a
+	ld bc, $64
+	call Func_1338
+	ld a, [wFontSourceBank]
+	or a
+	jr nz, .asm_fac0
+	ld a, [wc452]
+	or a
+	jr z, .asm_faab
+	xor a
+	jr .asm_fac0
+
+.asm_faab
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $1
+	add hl, bc
+	xor a
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	jr .asm_fadb
+
+.asm_fac0
+	add $bb
+	push af
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $1
+	add hl, bc
+	pop af
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	ld a, $1
+	ld [wc452], a
+.asm_fadb
+	ld a, [wc440]
+	ld h, a
+	ld a, [wc441]
+	ld l, a
+	ld bc, $a
+	call Func_1338
+	ld a, [wFontSourceBank]
+	or a
+	jr nz, .asm_fb0d
+	ld a, [wc452]
+	or a
+	jr z, .asm_faf8
+	xor a
+	jr .asm_fb0d
+
+.asm_faf8
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $2
+	add hl, bc
+	xor a
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	jr .asm_fb23
+
+.asm_fb0d
+	add $bb
+	push af
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $2
+	add hl, bc
+	pop af
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+.asm_fb23
+	ld a, [wc442]
+	ld h, a
+	ld a, [wc443]
+	ld l, a
+	ld bc, $3
+	add hl, bc
+	ld a, [wc441]
+	add $bb
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	pop bc
+	pop de
+	pop hl
+	ret
+
+SaveGame: ; fb3e (3:7b3e)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	xor a
+	ld [MBC3SRamBank], a
+	ld hl, wc900
+	ld de, s0_a010
+	ld bc, $80
+	call CopyData
+	ld hl, wcd00
+	ld de, s0_a110
+	ld bc, $100
+	call CopyData
+	ld hl, wEventFlags
+	ld de, s0_a210
+	ld bc, $200
+	call CopyData
+	ld hl, s2_a000
+	ld de, s0_a410
+	ld bc, $1900
+	ld a, BANK(s2_a000)
+	ld [wFontSourceBank], a
+	xor a
+	ld [wFontSourceAddr], a
+	call SaveAndLoadGame_FarCopySRAMDouble
+	call CalculateChecksum
+	ld a, $1
+	ld [s0_bffd], a
+	xor a
+	ld [MBC3SRamEnable], a
+	ret
+
+LoadGame: ; fb8d (3:7b8d)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	xor a
+	ld [MBC3SRamBank], a
+	ld hl, s0_a010
+	ld de, wc900
+	ld bc, $80
+	call CopyData
+	ld hl, s0_a110
+	ld de, wcd00
+	ld bc, $100
+	call CopyData
+	ld hl, s0_a210
+	ld de, wEventFlags
+	ld bc, $200
+	call CopyData
+	ld hl, s0_a410
+	ld de, s2_a000
+	ld bc, $1900
+	xor a
+	ld [wFontSourceBank], a
+	ld a, BANK(s2_a000)
+	ld [wFontSourceAddr], a
+	call SaveAndLoadGame_FarCopySRAMDouble
+	xor a
+	ld [MBC3SRamEnable], a
+	ld a, [wc926]
+	ld [wc904], a
+	ld a, [wc927]
+	ld [wc906], a
+	ld a, [wc928]
+	ld [wc901], a
+	ld a, [wc929]
+	ld [wc902], a
+	ret
+
+SaveAndLoadGame_FarCopySRAMDouble:
+.loop
+	ld a, [wFontSourceBank]
+	ld [MBC3SRamBank], a
+	ld a, [hli]
+	push af
+	ld a, [wFontSourceAddr]
+	ld [MBC3SRamBank], a
+	pop af
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .loop
+	ret
 
 SECTION "bank 04", ROMX, BANK [$4]
 Func_10000::
