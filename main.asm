@@ -2070,8 +2070,7 @@ Func_f586:
 	jr z, asm_f5d4
 	ld a, [wc3d9]
 	ld [wc3d8], a
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	jp z, Func_f701
 	ld a, [wFontSourceBank]
 	ld d, $0
@@ -2117,8 +2116,7 @@ Func_f5d7:
 	jr z, asm_f633
 	ld a, [wc3d9]
 	ld [wc3d8], a
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	jp z, Func_f763
 	ld a, [wFontSourceBank]
 	ld d, $0
@@ -3045,8 +3043,1211 @@ SaveAndLoadGame_FarCopySRAMDouble:
 SECTION "bank 04", ROMX, BANK [$4]
 INCLUDE "engine/phone_menu.asm"
 
-Func_105c0:
-	dr $105c0, $11789
+Func_105c0: ; 105c0 (4:45c0)
+	ld a, [wc3e1]
+	ld hl, Pointers_105ca
+	call GetHalfwordFromTable
+	jp [hl]
+
+Pointers_105ca:
+	dw Func_10612
+	dw Func_10621
+	dw Func_10627
+	dw Func_10642
+	dw Func_10658
+	dw Func_10681
+	dw Func_10743
+	dw Func_107d9
+	dw Func_107ee
+	dw Func_10807
+	dw Func_1082e
+	dw Func_1084e
+	dw Func_10866
+	dw Func_10872
+	dw Func_10883
+	dw Func_1089c
+	dw Func_10a49
+	dw Func_10e5b
+	dw Func_10ee7
+	dw Func_112e3
+	dw Func_11023
+	dw Func_1107e
+	dw Func_110ee
+	dw Func_108ab
+	dw Func_11417
+	dw Func_108cb
+	dw Func_10907
+	dw Func_10936
+	dw Func_10953
+	dw Func_10969
+	dw Func_109a8
+	dw Func_109a9
+	dw Func_109aa
+	dw Func_109dc
+	dw Func_109f3
+	dw Func_10a09
+
+Func_10612: ; 10612 (4:4612)
+	call ClearBGMapAndAttrs
+	call ClearBGWindowAndAttrs
+	call ClearObjectAnimationBuffers
+	call Func_13a0b
+	jp IncrementSubroutine
+
+Func_10621: ; 10621 (4:4621)
+	call Func_13e27
+	jp IncrementSubroutine
+
+Func_10627: ; 10627 (4:4627)
+	call Func_13a1e
+	ld a, $a7
+	ld [wWX], a
+	xor a
+	ld [wWY], a
+	ld a, $50
+	ld [wSCX], a
+	xor a
+	ld [wSCY], a
+	call Func_119cd
+	jp IncrementSubroutine
+
+Func_10642: ; 10642 (4:4642)
+	call NormalDMGPals
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
+	ld a, $32
+	call GetMusicBank
+	ld [H_MusicID], a
+	jp IncrementSubroutine
+
+Func_10658: ; 10658 (4:4658)
+	ld a, $e3
+	ld [wLCDC], a
+	xor a
+	ld [wSCY], a
+	ld a, [wSCX]
+	sub $10
+	ld [wSCX], a
+	ld a, [wWX]
+	sub $10
+	ld [wWX], a
+	cp $58
+	ret nc
+	ld a, $58
+	ld [wWX], a
+	ld a, $0
+	ld [wSCX], a
+	jp IncrementSubroutine
+
+Func_10681: ; 10681 (4:4681)
+	call Func_119b9
+	call Func_116e7
+	ld a, $1
+	ld [wc430], a
+	ld a, [wJoyNew]
+	and D_DOWN
+	jr z, .asm_10697
+	ld a, $b
+	jr .asm_106a0
+
+.asm_10697
+	ld a, [wJoyNew]
+	and D_UP
+	jr z, .asm_106a9
+	ld a, $e
+.asm_106a0
+	ld [wc3e1], a
+	ld a, $2
+	ld [H_FFA1], a
+	ret
+
+.asm_106a9
+	ld a, [hJoyNew]
+	and A_BUTTON
+	jr z, .asm_106f2
+	ld a, [wcd22]
+	cp $0
+	jr z, .asm_106de
+	cp $1
+	jr z, .asm_106d6
+	cp $2
+	jr z, .asm_106da
+	cp $3
+	jr z, .asm_106da
+	cp $4
+	jr z, .asm_106da
+	cp $5
+	jr z, .asm_106da
+	cp $6
+	jr z, .asm_106da
+	cp $7
+	jr z, .asm_106f8
+	ld a, $18
+	jr .asm_106e0
+
+.asm_106d6
+	ld a, $16
+	jr .asm_106e0
+
+.asm_106da
+	add $f
+	jr .asm_106e0
+
+.asm_106de
+	ld a, $10
+.asm_106e0
+	ld [wc3e1], a
+	xor a
+	ld [wc3e2], a
+	ld e, $2d
+	call Func_13951
+	ld a, $3
+	ld [H_FFA1], a
+	ret
+
+.asm_106f2
+	ld a, [hJoyNew]
+	and B_BUTTON
+	jr z, .asm_10708
+.asm_106f8
+	ld a, $4
+	ld [H_FFA1], a
+	ld a, $4
+	call Func_050a
+	ld a, $17
+	ld [wc3e1], a
+	ret
+
+.asm_10708
+	ld a, [hJoyNew]
+	and SELECT
+	jr z, .asm_10742
+	ld a, $4
+	ld [wcb65], a
+	ld a, $ff
+	ld [wcb66], a
+	call Func_11d40
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld bc, $d
+	ld hl, wd000
+	call ClearMemory3
+	ld bc, $d
+	ld hl, wd200
+	call ClearMemory3
+	xor a
+	ld [wcb29], a
+	ld [wcb43], a
+	ld [wcb39], a
+	jp IncrementSubroutine
+
+.asm_10742
+	ret
+
+Func_10743: ; 10743 (4:4743)
+	ld a, [wcb29]
+	cp $0
+	call z, Func_116e7
+	ld a, [hJoyNew]
+	and SELECT
+	jr z, .asm_10778
+	ld a, [wcb29]
+	cp $0
+	jr z, .asm_10764
+.asm_10758
+	call Func_13e37
+	ld bc, $307
+	call Func_119df
+	call Func_135ef
+.asm_10764
+	ld de, wOAMAnimation01
+	call Func_099c
+	ld a, $32
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $5
+	ld [wc3e1], a
+	ret
+
+.asm_10778
+	call Func_11b37
+	ld a, [hJoyNew]
+	and A_BUTTON
+	jr z, .asm_107b6
+	call Func_126a1
+	ld a, [wcb65]
+	cp $0
+	ret z
+	cp $1
+	ret z
+	cp $2
+	ret z
+	cp $3
+	jr nz, .asm_1079f
+	call Func_1360a
+	ld a, $10
+	ld [wcb2c], a
+	jp IncrementSubroutine
+
+.asm_1079f
+	ld a, [wcb29]
+	cp $0
+	jr nz, .asm_107b3
+	ld a, $1
+	ld [wcb29], a
+	ld e, $2d
+	call Func_13951
+	call Func_1175d
+.asm_107b3
+	jp Func_13474
+
+.asm_107b6
+	ld a, [hJoyNew]
+	and B_BUTTON
+	jr z, .asm_107d8
+	ld a, [wcb39]
+	cp $0
+	jr z, .asm_10758
+	dec a
+	ld [wcb39], a
+	ld e, a
+	ld d, $0
+	ld hl, wd000
+	add hl, de
+	xor a
+	ld [hl], a
+	ld a, $4
+	ld [H_FFA1], a
+	jp Func_134aa
+
+.asm_107d8
+	ret
+
+Func_107d9: ; 107d9 (4:47d9)
+	ld a, [wcb2c]
+	dec a
+	ld [wcb2c], a
+	cp $0
+	ret nz
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	jp IncrementSubroutine
+
+Func_107ee: ; 107ee (4:47ee)
+	ld a, $65
+	ld [H_FFA1], a
+	ld a, [wcb43]
+	cp $0
+	jr z, .asm_107ff
+	ld a, $66
+	ld [H_FFA1], a
+.asm_107ff
+	ld a, $80
+	ld [wcb2c], a
+	jp IncrementSubroutine
+
+Func_10807: ; 10807 (4:4807)
+	ld a, [wcb2c]
+	dec a
+	ld [wcb2c], a
+	cp $0
+	ret nz
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, [wcb43]
+	cp $0
+	jr z, .asm_1082b
+	ld a, $4
+	call Func_050a
+	ld a, $19
+	ld [wc3e1], a
+	ret
+
+.asm_1082b
+	jp IncrementSubroutine
+
+Func_1082e: ; 1082e (4:482e)
+	call Func_13e37
+	ld bc, $307
+	call Func_119df
+	call Func_135ef
+	ld de, wOAMAnimation01_PriorityFlags
+	call Func_099c
+	ld a, $32
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $5
+	ld [wc3e1], a
+	ret
+
+Func_1084e: ; 1084e (4:484e)
+	call Func_13f38
+	ld bc, $306
+	call Func_119df
+	ld a, [wcd22]
+	inc a
+	cp $9
+	jr nz, .asm_10860
+	xor a
+.asm_10860
+	ld [wcd22], a
+	jp IncrementSubroutine
+
+Func_10866: ; 10866 (4:4866)
+	call Func_13f3d
+	ld bc, $308
+	call Func_119df
+	jp IncrementSubroutine
+
+Func_10872: ; 10872 (4:4872)
+	ld e, $12
+	call Func_13951
+	ld bc, $307
+	call Func_119df
+	ld a, $5
+	ld [wc3e1], a
+	ret
+
+Func_10883: ; 10883 (4:4883)
+	call Func_13f3d
+	ld bc, $308
+	call Func_119df
+	ld a, [wcd22]
+	dec a
+	cp $ff
+	jr nz, .asm_10896
+	ld a, $8
+.asm_10896
+	ld [wcd22], a
+	jp IncrementSubroutine
+
+Func_1089c: ; 1089c (4:489c)
+	call Func_13f38
+	ld bc, $306
+	call Func_119df
+	ld a, $d
+	ld [wc3e1], a
+	ret
+
+Func_108ab: ; 108ab (4:48ab)
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	xor a
+	ld [wcad0], a
+	ld a, $5
+	ld [wGameRoutine], a
+	ld a, $a
+	ld [wc3e1], a
+	call Func_13e6e
+	xor a
+	ld [wcb2b], a
+	ld [wcdb1], a
+	ret
+
+Func_108cb: ; 108cb (4:48cb)
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	call Func_135ef
+	ld a, [wcb43]
+	cp $1
+	jr z, .asm_10904
+	call Func_13b3a
+	cp $0
+	jr nz, .asm_108e9
+	ld a, $20
+	ld [wc3e1], a
+	ret
+
+.asm_108e9
+	ld a, [wcb01]
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, $7c0d
+	add hl, de
+	ld a, [hli]
+	ld [wcb01], a
+	ld a, $3
+	ld [wcb43], a
+.asm_10904
+	jp IncrementSubroutine
+
+Func_10907: ; 10907 (4:4907)
+	call ClearObjectAnimationBuffers
+	ld a, [wcb01]
+	call Func_1371c
+	xor a
+	ld [wBGPalUpdate], a
+	ld a, $4
+	call Func_050a
+	call Func_13e6e
+	ld a, $f0
+	ld [wc91e], a
+	call Func_3566
+	ld a, $85
+	ld [wca65], a
+	ld a, $a0
+	ld [wc91f], a
+	ld a, $2
+	ld [wcad0], a
+	jp IncrementSubroutine
+
+Func_10936: ; 10936 (4:4936)
+	ld a, $0
+	call Func_050f
+	or a
+	ret z
+	call Func_13c53
+	ld a, [wcb43]
+	cp $3
+	jr nz, .asm_1094b
+	ld c, $fd
+	ld b, $1
+.asm_1094b
+	ld d, $c
+	call Func_0520
+	jp IncrementSubroutine
+
+Func_10953: ; 10953 (4:4953)
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
+
+Func_10969: ; 10969 (4:4969)
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	xor a
+	ld [wcad0], a
+	call Func_13a0b
+	call Func_13e27
+	call Func_13a1e
+	call Func_13e58
+	call Func_119cd
+	call NormalDMGPals
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
+	ld a, $32
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $5
+	ld [wc3e1], a
+	xor a
+	ld [wc3e2], a
+	ld [wcdb1], a
+	ld a, [wcb04]
+	jp Func_13fb5
+
+Func_109a8: ; 109a8 (4:49a8)
+	ret
+
+Func_109a9: ; 109a9 (4:49a9)
+	ret
+
+Func_109aa: ; 109aa (4:49aa)
+	call ClearObjectAnimationBuffers
+	ld a, [wcb01]
+	call Func_13c7e
+	call Func_1371c
+	xor a
+	ld [wBGPalUpdate], a
+	ld a, $4
+	call Func_050a
+	call Func_13e6e
+	ld a, $f0
+	ld [wc91e], a
+	call Func_3566
+	ld a, $85
+	ld [wca65], a
+	ld a, $a0
+	ld [wc91f], a
+	ld a, $2
+	ld [wcad0], a
+	jp IncrementSubroutine
+
+Func_109dc: ; 109dc (4:49dc)
+	ld a, $0
+	call Func_050f
+	or a
+	ret z
+	ld a, [wcb01]
+	add $80
+	ld c, a
+	ld b, $1
+	ld d, $c
+	call Func_0520
+	jp IncrementSubroutine
+
+Func_109f3: ; 109f3 (4:49f3)
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
+
+Func_10a09: ; 10a09 (4:4a09)
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	xor a
+	ld [wcad0], a
+	call Func_13a0b
+	call Func_13e27
+	call Func_13a1e
+	call Func_13e58
+	call Func_119cd
+	call NormalDMGPals
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
+	ld a, $32
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $5
+	ld [wc3e1], a
+	xor a
+	ld [wc3e2], a
+	ld [wcdb1], a
+	ld a, [wcb01]
+	call Func_13b79
+	ret
+
+Func_10a49: ; 10a49 (4:4a49)
+	call Func_116e7
+	ld a, [wc3e2]
+	ld hl, $4a56
+	call GetHalfwordFromTable
+	jp [hl]
+
+	add [hl]
+	ld c, d
+	sbc h
+	ld c, d
+	sub $4a
+	db $fc
+	ld c, d
+	sub d
+	ld c, e
+	cp l
+	ld c, e
+	ret nz
+	ld c, e
+	adc $4b
+	di
+	ld c, e
+	ld b, a
+	ld c, h
+	ld b, a
+	ld a, a
+	ld c, [hl]
+	ld a, a
+	ld c, d
+	ld c, h
+	sub b
+	ld c, h
+	or h
+	ld c, h
+	ret
+
+	ld c, h
+	jr nc, .asm_10ac5
+	add [hl]
+	ld c, l
+	db $d3
+	ld c, l
+	db $ec
+	ld c, l
+	scf
+	ld c, [hl]
+	ld b, l
+	ld c, [hl]
+	ld e, c
+	ld c, [hl]
+	ld e, d
+	ld c, [hl]
+	call Func_1236b
+	ld bc, $12
+	check_cgb
+	jr z, .asm_10a96
+	ld bc, $57
+.asm_10a96
+	call DecompressGFXByIndex_
+	jp IncrementSubroutine2
+
+	ld a, [wcd24]
+	ld b, a
+	ld a, [wcb72]
+	dec a
+	cp b
+	jr nc, .asm_10aae
+	ld a, [wcd24]
+	dec a
+	ld [wcd24], a
+.asm_10aae
+	ld a, [wcd24]
+	call Func_12473
+	ld c, $0
+	ld de, $9400
+	call Func_0516
+	ld a, [wcd24]
+	call Func_12473
+	call Func_1764
+.asm_10ac5
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld a, [wcd24]
+	call Func_12473
+	call Func_11a35
+	jp IncrementSubroutine2
+
+	ld e, $2e
+	call Func_13951
+	ld a, $4
+	ld [wd411], a
+	ld de, wOAMAnimation02
+	call Func_0609
+	ld a, $b
+	ld [wd411], a
+	ld de, wOAMAnimation03
+	call Func_0609
+	call Func_13124
+	ld a, $1
+	ld [wc430], a
+	jp IncrementSubroutine2
+
+	call Func_132d9
+	ld a, $1
+	ld [wc430], a
+	ld a, [wcb72]
+	dec a
+	cp $0
+	jr z, .asm_10b2f
+	ld a, [wJoyNew]
+	and D_RIGHT
+	jr z, .asm_10b2f
+	ld a, [wcb72]
+	dec a
+	ld b, a
+	ld a, [wcd24]
+	cp b
+	jr nz, .asm_10b20
+	ld a, $ff
+.asm_10b20
+	inc a
+	ld [wcd24], a
+	ld a, $1
+	ld [wc3e2], a
+	ld a, $2
+	ld [H_FFA1], a
+	ret
+
+.asm_10b2f
+	ld a, [wcb72]
+	dec a
+	cp $0
+	jr z, .asm_10b57
+	ld a, [wJoyNew]
+	and D_LEFT
+	jr z, .asm_10b57
+	ld a, [wcd24]
+	cp $0
+	jr nz, .asm_10b48
+	ld a, [wcb72]
+.asm_10b48
+	dec a
+	ld [wcd24], a
+	ld a, $1
+	ld [wc3e2], a
+	ld a, $2
+	ld [H_FFA1], a
+	ret
+
+.asm_10b57
+	ld a, [hJoyNew]
+	and B_BUTTON
+	jr z, .asm_10b70
+	ld e, $2d
+	call Func_13951
+	ld a, $4
+	ld [H_FFA1], a
+	call Func_13fc6
+	ld a, $a
+	ld [wc3e2], a
+	ret
+
+.asm_10b70
+	ld a, [hJoyNew]
+	and A_BUTTON
+	jr z, .asm_10b91
+	ld a, $3
+	ld [H_FFA1], a
+	ld e, $2d
+	call Func_13951
+	xor a
+	ld [wcb67], a
+	call Func_13fc6
+	ld a, $4
+	call Func_050a
+	ld a, $7
+	ld [wc3e2], a
+.asm_10b91
+	ret
+
+Func_10b92:
+	ld bc, $1a
+	check_cgb
+	jr z, .asm_10b9f
+	ld bc, $54
+.asm_10b9f
+	call DecompressGFXByIndex_
+	ld e, $3e
+	call Func_13951
+	ld a, $4
+	ld [wd411], a
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_0609
+	call Func_1329a
+	ld a, $1
+	ld [wc430], a
+	jp IncrementSubroutine2
+
+Func_4bbd:
+	jp IncrementSubroutine2
+
+Func_4bc0:
+	ld de, wOAMAnimation02
+	call Func_0616
+	ld a, $1
+	ld [wc430], a
+	jp Func_131a0
+
+Func_4bce:
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	call Func_13e6e
+	call Func_136d2
+	call ClearObjectAnimationBuffers
+	ld a, $1
+	ld [wc430], a
+	ld [wcb2b], a
+	ld a, $9
+	ld [wGameRoutine], a
+	xor a
+	ld [wd41f], a
+	ld [wcdb1], a
+	ret
+
+Func_4bf3:
+	call ClearObjectAnimationBuffers
+	call Func_13a0b
+	ld bc, $0
+	ld e, $10
+	call Func_13959
+	ld bc, $0
+	ld e, $11
+	call Func_13963
+	call Func_13a1e
+	call Func_13e58
+	call NormalDMGPals
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
+	ld a, [wcb2b]
+	cp $1
+	jr nz, .asm_10c3d
+	ld bc, $12
+	check_cgb
+	jr z, .asm_10c2e
+	ld bc, $57
+.asm_10c2e
+	call DecompressGFXByIndex_
+	ld a, $1
+	ld [wc3e2], a
+	xor a
+	ld [wcb2b], a
+	jp Func_1236b
+
+.asm_10c3d
+	xor a
+	ld [wcb2b], a
+	ld a, $4
+	ld [wc3e2], a
+	ret
+
+Func_10c47:
+	jp Func_12b2b
+
+Func_10c4a:
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	call Func_13e6e
+	xor a
+	ld [wcdb1], a
+	ld a, $1
+	ld [wcb2b], a
+	call ClearObjectAnimationBuffers
+	call Func_13e4c
+	ld [wcb04], a
+	call Func_13a30
+	call Func_1371c
+	call Func_13f15
+	ld e, $1c
+	ld bc, $603
+	ld a, $0
+	call Func_04ca
+	xor a
+	ld [wBGPalUpdate], a
+	ld a, $4
+	call Func_050a
+	ld a, $2
+	ld [wcad0], a
+	ld a, [wcb04]
+	call Func_13fb5
+	jp IncrementSubroutine2
+
+Func_10c90:
+	ld a, $0
+	call Func_050f
+	or a
+	ret z
+	ld a, $f0
+	ld [wc91e], a
+	call Func_3566
+	ld a, $85
+	ld [wca65], a
+	ld a, $a0
+	ld [wc91f], a
+	call Func_070c
+	ld d, $c
+	call Func_0520
+	jp IncrementSubroutine2
+
+Func_10cb4:
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld c, $fe
+	ld b, $1
+	ld d, $c
+	call Func_0520
+	jp IncrementSubroutine2
+
+Func_10cc9:
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld bc, $c3e
+	call CheckEventFlag
+	jr nz, .asm_10ce7
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine2
+
+.asm_10ce7
+	ld a, $3
+	ld [H_FFA1], a
+	call Func_06d4
+	ld a, [wc955]
+	cp c
+	jr nz, .asm_10d21
+	call Func_13e4c
+	ld b, a
+	ld a, [wcdb4]
+	cp b
+	jr z, .asm_10d1d
+	ld a, b
+	ld [wcdb4], a
+	call Func_13a30
+	ld [wc912], a
+	ld a, $8
+	ld [wc900], a
+	ld a, $4
+	call Func_050a
+	ld a, $17
+	ld [wc3e1], a
+	xor a
+	ld [wc3e2], a
+	ret
+
+.asm_10d1d
+	ld c, $f0
+	jr .asm_10d23
+
+.asm_10d21
+	ld c, $f1
+.asm_10d23
+	ld b, $1
+	ld d, $c
+	call Func_0520
+	ld a, $15
+	ld [wc3e2], a
+	ret
+
+Func_10d30:
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	xor a
+	ld [wcad0], a
+	call ClearObjectAnimationBuffers
+	call Func_13a0b
+	ld bc, $12
+	check_cgb
+	jr z, .asm_10d4e
+	ld bc, $57
+.asm_10d4e
+	call DecompressGFXByIndex_
+	ld bc, $0
+	ld e, $10
+	call Func_13959
+	ld bc, $0
+	ld e, $11
+	call Func_13963
+	call Func_13a1e
+	call Func_13e58
+	call NormalDMGPals
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
+	ld a, $32
+	call GetMusicBank
+	ld [H_MusicID], a
+	xor a
+	ld [wcb2b], a
+	ld a, $1
+	ld [wc3e2], a
+	jp Func_1236b
+
+Func_10d86:
+	ld e, $58
+	call Func_13951
+	call Func_13dea
+	call Func_13907
+	sla a
+	sla a
+	sla a
+	add $38
+	ld [wOAMAnimation03_YCoord], a
+	ld a, $10
+	ld [wOAMAnimation03_XCoord], a
+	ld a, $1
+	ld [wOAMAnimation03], a
+	ld a, $0
+	ld [wOAMAnimation03_TemplateBank], a
+	ld a, $d
+	ld [wd411], a
+	ld de, wOAMAnimation03_PriorityFlags
+	call Func_0609
+	ld a, $4
+	ld [wd411], a
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_0609
+	xor a
+	ld [wcb67], a
+	call Func_138e2
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	jp IncrementSubroutine2
+
+Func_10dd3:
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_0616
+	ld de, wOAMAnimation03_PriorityFlags
+	call Func_0616
+	ld a, $1
+	ld [wc430], a
+	ld a, $c
+	ld [wcb2c], a
+	jp Func_13816
+
+Func_10dec:
+	ld a, [wcb2c]
+	dec a
+	ld [wcb2c], a
+	cp $1
+	jr z, .asm_10e2e
+	cp $0
+	ret nz
+	ld e, $2d
+	call Func_13951
+	check_cgb
+	jr z, .asm_10e14
+	ld bc, $54
+	call DecompressGFXByIndex_
+	ld bc, $57
+	call DecompressGFXByIndex_
+	jr .asm_10e20
+
+.asm_10e14
+	ld bc, $1a
+	call DecompressGFXByIndex_
+	ld bc, $12
+	call DecompressGFXByIndex_
+.asm_10e20
+	ld a, $32
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $1
+	ld [wc3e2], a
+	ret
+
+.asm_10e2e
+	call Func_13fc6
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Func_10e37:
+	ld de, wOAMAnimation02
+	call Func_0616
+	ld a, $1
+	ld [wc430], a
+	jp Func_1396d
+
+Func_10e45:
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wc3e2], a
+	ret
+
+Func_10e59:
+	ret
+
+Func_10e5a:
+	ret
+
+Func_10e5b: ; 10e5b (4:4e5b)
+	call Func_116e7
+	ld a, [wc3e2]
+	ld hl, Pointers_10e68
+	call GetHalfwordFromTable
+	jp [hl]
+
+Pointers_10e68:
+	dw Func_10e78
+	dw Func_10e7b
+	dw Func_10e8e
+	dw Func_10ed2
+	dw Func_10edb
+	dw Func_13f47
+	dw Func_13f4e
+	dw Func_10ede
+
+Func_10e78:
+	jp IncrementSubroutine2
+
+Func_10e7b:
+	ld bc, $13
+	check_cgb
+	jr z, .asm_10e88
+	ld bc, $5a
+.asm_10e88
+	call DecompressGFXByIndex_
+	jp IncrementSubroutine2
+
+Func_10e8e:
+	ld e, $30
+	call Func_13931
+	ld e, $35
+	call Func_13939
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	xor a
+	ld [wcb65], a
+	ld [wcb67], a
+	ld [wcb68], a
+	ld [wcb69], a
+	ld [wcb6a], a
+	ld [wcb6b], a
+	ld [wcb6c], a
+	ld [wcb6d], a
+	ld a, $ff
+	ld [wcb66], a
+	ld [wcb6e], a
+	ld a, $4
+	ld [wd411], a
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_0609
+	call Func_11fe9
+	jp IncrementSubroutine2
+
+Func_10ed2:
+	ld de, wOAMAnimation02
+	call Func_0616
+	jp Func_1208b
+
+Func_10edb:
+	jp Func_11aaf
+
+Func_10ede:
+	call Func_11c1d
+	ld a, $4
+	ld [wc3e2], a
+	ret
+
+Func_10ee7:
+	dr $10ee7, $11023
+
+Func_11023:
+	dr $11023, $1107e
+
+Func_1107e:
+	dr $1107e, $110ee
+
+Func_110ee:
+	dr $110ee, $112e3
+
+Func_112e3:
+	dr $112e3, $11417
+
+Func_11417:
+	dr $11417, $116e7
+
+Func_116e7:
+	dr $116e7, $1175d
+
+Func_1175d:
+	dr $1175d, $11789
 
 Func_11789:
 	dr $11789, $11799
@@ -3070,16 +4271,49 @@ Func_11927:
 	dr $11927, $11939
 
 Func_11939:
-	dr $11939, $11a06
+	dr $11939, $119b9
+
+Func_119b9:
+	dr $119b9, $119cd
+
+Func_119cd:
+	dr $119cd, $119df
+
+Func_119df:
+	dr $119df, $11a06
 
 Func_11a06:
-	dr $11a06, $11a80
+	dr $11a06, $11a35
+
+Func_11a35:
+	dr $11a35, $11a80
 
 Func_11a80:
-	dr $11a80, $11d40
+	dr $11a80, $11aaf
+
+Func_11aaf:
+	dr $11aaf, $11b37
+
+Func_11b37:
+	dr $11b37, $11c1d
+
+Func_11c1d:
+	dr $11c1d, $11d40
 
 Func_11d40:
-	dr $11d40, $12488
+	dr $11d40, $11fe9
+
+Func_11fe9:
+	dr $11fe9, $1208b
+
+Func_1208b:
+	dr $1208b, $1236b
+
+Func_1236b:
+	dr $1236b, $12473
+
+Func_12473:
+	dr $12473, $12488
 
 Func_12488:
 	dr $12488, $1249a
@@ -3094,7 +4328,10 @@ Func_12582:
 	dr $12582, $1265a
 
 Func_1265a:
-	dr $1265a, $127b7
+	dr $1265a, $126a1
+
+Func_126a1:
+	dr $126a1, $127b7
 
 Func_127b7:
 	dr $127b7, $128ff
@@ -3115,13 +4352,61 @@ Func_12a4e:
 	dr $12a4e, $12a5f
 
 Func_12a5f:
-	dr $12a5f, $12bbc
+	dr $12a5f, $12b2b
+
+Func_12b2b:
+	dr $12b2b, $12bbc
 
 Func_12bbc:
 	dr $12bbc, $12cd3
 
 Func_12cd3:
-	dr $12cd3, $13951
+	dr $12cd3, $13124
+
+Func_13124:
+	dr $13124, $131a0
+
+Func_131a0:
+	dr $131a0, $1329a
+
+Func_1329a:
+	dr $1329a, $132d9
+
+Func_132d9:
+	dr $132d9, $13474
+
+Func_13474:
+	dr $13474, $134aa
+
+Func_134aa:
+	dr $134aa, $135ef
+
+Func_135ef:
+	dr $135ef, $1360a
+
+Func_1360a:
+	dr $1360a, $136d2
+
+Func_136d2:
+	dr $136d2, $1371c
+
+Func_1371c:
+	dr $1371c, $13816
+
+Func_13816:
+	dr $13816, $138e2
+
+Func_138e2:
+	dr $138e2, $13907
+
+Func_13907:
+	dr $13907, $13931
+
+Func_13931:
+	dr $13931, $13939
+
+Func_13939:
+	dr $13939, $13951
 
 Func_13951:
 	dr $13951, $13959
@@ -3130,10 +4415,31 @@ Func_13959:
 	dr $13959, $13963
 
 Func_13963:
-	dr $13963, $13a1e
+	dr $13963, $1396d
+
+Func_1396d:
+	dr $1396d, $13a0b
+
+Func_13a0b:
+	dr $13a0b, $13a1e
 
 Func_13a1e:
-	dr $13a1e, $13c8f
+	dr $13a1e, $13a30
+
+Func_13a30:
+	dr $13a30, $13b3a
+
+Func_13b3a:
+	dr $13b3a, $13b79
+
+Func_13b79:
+	dr $13b79, $13c53
+
+Func_13c53:
+	dr $13c53, $13c7e
+
+Func_13c7e:
+	dr $13c7e, $13c8f
 
 Func_13c8f:
 	dr $13c8f, $13cf4
@@ -3148,13 +4454,52 @@ Func_13d8c:
 	dr $13d8c, $13dca
 
 Func_13dca:
-	dr $13dca, $13f3f
+	dr $13dca, $13dea
+
+Func_13dea:
+	dr $13dea, $13e27
+
+Func_13e27:
+	dr $13e27, $13e37
+
+Func_13e37:
+	dr $13e37, $13e4c
+
+Func_13e4c:
+	dr $13e4c, $13e58
+
+Func_13e58:
+	dr $13e58, $13e6e
+
+Func_13e6e:
+	dr $13e6e, $13f15
+
+Func_13f15:
+	dr $13f15, $13f38
+
+Func_13f38:
+	dr $13f38, $13f3d
+
+Func_13f3d:
+	dr $13f3d, $13f3f
 
 Func_13f3f:
-	dr $13f3f, $13f51
+	dr $13f3f, $13f47
+
+Func_13f47:
+	dr $13f47, $13f4e
+
+Func_13f4e:
+	dr $13f4e, $13f51
 
 Func_13f51:
-	dr $13f51, $13fd2
+	dr $13f51, $13fb5
+
+Func_13fb5:
+	dr $13fb5, $13fc6
+
+Func_13fc6:
+	dr $13fc6, $13fd2
 
 Func_13fd2:
 	dr $13fd2, $13fdf
