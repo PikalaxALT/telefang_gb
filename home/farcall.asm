@@ -39,8 +39,8 @@ Func_04a7::
 	pop af
 	ret
 
-Func_04b1::
-	call Func_0c36
+DecompressGFXByIndex_::
+	call DecompressGFXByIndex
 	rst MemBankswitch
 	ret
 

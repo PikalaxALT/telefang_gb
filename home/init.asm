@@ -35,7 +35,7 @@ Start::
 	jr nz, .clear_hram
 	ld a, [wCGB]
 	push af
-	call ClearWRAM0 ; 097c
+	call ClearWRAM ; 097c
 	pop af
 	ld [wCGB], a
 	call LoadPushOAM ; 079a

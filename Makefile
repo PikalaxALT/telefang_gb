@@ -11,13 +11,14 @@ gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) scan_includes.py
 tzcomp    := $(PYTHON3) tz.py
 pcm       := $(PYTHON) pcm.py pcm
+# rlecomp   := $(PYTHON) rle.py
 
 telefang_obj := \
 hramsec.o \
 wram.o \
 sram.o \
-main.o \
-gfx.o
+gfx.o \
+main.o
 
 telepower_obj := $(telefang_obj:.o=_power.o)
 telespeed_obj := $(telefang_obj:.o=_speed.o)
@@ -61,6 +62,8 @@ gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/f
 %.bin: ;
 %.blk: ;
 %.tilemap: ;
+%.rle: ;
+# %.rle: % ; $(rlecomp) compress $<
 
 %.wav: ;
 %.pcm: %.wav; @$(pcm) $<
@@ -69,4 +72,4 @@ gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/f
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
 %.tz: ;
-# %.tz: ; %.2bpp; $(tzcomp) compress $<
+# %.tz: % ; $(tzcomp) compress $<

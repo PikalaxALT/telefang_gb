@@ -24,12 +24,12 @@ Pointers_800a::
 Func_801a::
 	call ClearBGMapAndAttrs
 	call ClearBGWindowAndAttrs
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $7
-	call Func_04b1
+	call DecompressGFXByIndex_
 	ld bc, $8
-	call Func_04b1
-	jp Func_0ea3
+	call DecompressGFXByIndex_
+	jp IncrementSubroutine
 
 Func_8032::
 	ld bc, $0
@@ -49,12 +49,12 @@ Func_8032::
 	ld [wca65], a
 	ld a, $a0
 	ld [wc91f], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8061::
 	ld a, $4
 	call Func_050a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8069::
 	ld a, $2
@@ -65,7 +65,7 @@ Func_8069::
 	ld b, $0
 	ld d, $c
 	call Func_0520
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_807c::
 	ld a, [hJoyNew]
@@ -76,7 +76,7 @@ Func_807c::
 	cp $9
 	ret nz
 .asm_808b
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_808e::
 	ld a, $3
@@ -85,7 +85,7 @@ Func_808e::
 	call Func_050a
 	ld a, $10
 	ld [wcf96], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_80a0::
 	ld a, $1
@@ -96,7 +96,7 @@ Func_80a0::
 	call GetCGB_BGLayout_
 	ld a, $1
 	ld [wBGPalUpdate], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_80b5::
 	ld a, $5
@@ -175,7 +175,7 @@ macro_18000: MACRO
 	db 0
 ENDM
 
-Data_18000::
+CompressedGFXBanksAndDests::
 	macro_18000 $00,                   VTilesOB tile $00
 	macro_18000 BANK(UnknownTZFile01), VTilesOB tile $10
 	macro_18000 BANK(UnknownTZFile02), VTilesShared tile $4d
@@ -1239,13 +1239,12 @@ UnknownTZFile66:: INCBIN "gfx/tzfiles/tz_66_speed.2bpp.tz"
 UnknownTZFile67:: INCBIN "gfx/tzfiles/tz_67_speed.2bpp.tz"
 ENDC
 
-SECTION "bank 3E", ROMX, BANK [$3e]
-Pointers_f8000::
-	dr $f8000, $fc000
-
-SECTION "bank 3F", ROMX, BANK [$3f]
-Pointers_fc000::
-	dr $fc000, $100000
+SECTION "bank 3f", ROMX, BANK [$3f]
+IF DEF(POWER)
+	dr $fc4eb, $100000
+ELSE
+	dr $fc4e9, $100000
+ENDC
 
 SECTION "bank 40", ROMX, BANK [$40]
 	dr $100000, $104000

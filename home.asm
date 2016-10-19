@@ -226,8 +226,8 @@ Func_0816::
 INCLUDE "home/oam_animations.asm"
 
 ClearVTiles: ; 968 (0:0968)
-	ld hl, $8000
-	ld bc, $1800
+	ld hl, VTilesOB
+	ld bc, VBGMap - VTilesOB
 	jp ClearMemory3
 
 ClearOAMBuffer: ; 971 (0:0971)
@@ -240,18 +240,18 @@ ClearOAMBuffer: ; 971 (0:0971)
 	jr nz, .asm_0977
 	ret
 
-ClearWRAM0: ; 97c (0:097c)
-	ld bc, $1e60
+ClearWRAM: ; 97c (0:097c)
+	ld bc, wStackBottom - wOAMAnimations
 	ld hl, wOAMAnimations
 	jp ClearMemory3
 
-Func_0985::
+ClearObjectAnimationBuffers::
 	ld a, $1
 	ld [wc430], a
-	ld bc, $300
-	ld hl, wOAMAnimation01
+	ld bc, wOAMAnimationsEnd - wOAMAnimations
+	ld hl, wOAMAnimations
 	call ClearMemory3
-	ld bc, $40
+	ld bc, wc4c0 - wc480
 	ld hl, wc480
 	jp ClearMemory3
 
@@ -366,6 +366,7 @@ Func_0a34: ; a34 (0:0a34)
 	ld [wc41e], a
 asm_0a3d
 	pop af
+
 	push hl
 	push de
 	ld hl, Data_0b18
@@ -376,6 +377,7 @@ asm_0a3d
 	rst Bankswitch
 	pop de
 	pop hl
+
 	push de
 	ld a, b
 	and $1f
@@ -383,23 +385,20 @@ asm_0a3d
 	ld a, c
 	and $1f
 	ld c, a
+
 	ld d, $0
 	ld e, c
+REPT 5
 	sla e
 	rl d
-	sla e
-	rl d
-	sla e
-	rl d
-	sla e
-	rl d
-	sla e
-	rl d
+ENDR
+
 	ld c, b
 	ld b, $0
 	add hl, bc
 	add hl, de
 	pop de
+
 	push hl
 	ld hl, Pointers_f8000 ; Pointers_fc000
 	ld d, $0
@@ -410,41 +409,42 @@ asm_0a3d
 	ld d, [hl]
 	ld e, a
 	pop hl
+
 	ld b, h
 	ld c, l
 	ld a, [de]
 	cp $ff
 	ret z
 	and $3
-	jr z, .asm_0a8c
-	jr asm_0ab2
+	jr z, .nonrle_loop
+	jr .rle_loop
 
-.asm_0a8c
+.nonrle_loop
 	inc de
 	ld a, [de]
 	cp $ff
 	ret z
 	cp $fe
-	jr z, .asm_0aa0
+	jr z, .next_row
 	call WaitStatAndLoad
 	ld a, [wc41e]
-	call Func_0eb3
-	jr .asm_0a8c
+	call WrapAroundBGMapOrWindowHorizontal
+	jr .nonrle_loop
 
-.asm_0aa0
+.next_row
 	push de
-	ld de, $20
+	ld de, BG_MAP_WIDTH
 	ld h, b
 	ld l, c
 	add hl, de
 	ld a, [wc41e]
-	call Func_0f29
+	call WrapAroundBGMapOrWindowVertical
 	ld b, h
 	ld c, l
 	pop de
-	jr .asm_0a8c
+	jr .nonrle_loop
 
-asm_0ab2
+.rle_loop
 	inc de
 	ld a, [de]
 	cp $ff
@@ -452,25 +452,26 @@ asm_0ab2
 	ld a, [de]
 	and $c0
 	cp $c0
-	jp z, Func_0b03
+	jp z, .copy_decrement
 	cp $80
-	jp z, Func_0aee
+	jp z, .copy_increment
 	cp $40
-	jp z, Func_0ada
+	jp z, .copy_repeat
+.copy_literal
 	push bc
 	ld a, [de]
 	inc a
 	ld b, a
-Func_0acd: ; acd (0:0acd)
+.loop_acd
 	inc de
 	ld a, [de]
 	call WaitStatAndLoad
 	dec b
-	jp nz, Func_0acd
+	jp nz, .loop_acd
 	pop bc
-	jp asm_0ab2
+	jp .rle_loop
 
-Func_0ada: ; ada (0:0ada)
+.copy_repeat
 	push bc
 	ld a, [de]
 	and $3f
@@ -478,14 +479,14 @@ Func_0ada: ; ada (0:0ada)
 	ld b, a
 	inc de
 	ld a, [de]
-Func_0ae3: ; ae3 (0:0ae3)
+.loop_ae3
 	call WaitStatAndLoad
 	dec b
-	jp nz, Func_0ae3
+	jp nz, .loop_ae3
 	pop bc
-	jp asm_0ab2
+	jp .rle_loop
 
-Func_0aee: ; aee (0:0aee)
+.copy_increment
 	push bc
 	ld a, [de]
 	and $3f
@@ -493,15 +494,15 @@ Func_0aee: ; aee (0:0aee)
 	ld b, a
 	inc de
 	ld a, [de]
-Func_0af7: ; af7 (0:0af7)
+.loop_af7
 	call WaitStatAndLoad
 	inc a
 	dec b
-	jp nz, Func_0af7
+	jp nz, .loop_af7
 	pop bc
-	jp asm_0ab2
+	jp .rle_loop
 
-Func_0b03: ; b03 (0:0b03)
+.copy_decrement
 	push bc
 	ld a, [de]
 	and $3f
@@ -509,17 +510,17 @@ Func_0b03: ; b03 (0:0b03)
 	ld b, a
 	inc de
 	ld a, [de]
-Func_0b0c: ; b0c (0:0b0c)
+.loop_b0c
 	call WaitStatAndLoad
 	dec a
 	dec b
-	jp nz, Func_0b0c
+	jp nz, .loop_b0c
 	pop bc
-	jp asm_0ab2
+	jp .rle_loop
 
 Data_0b18::
-	db BANK(Pointers_f8000)
-	db BANK(Pointers_fc000)
+	db TILEMAPS_01
+	db TILEMAPS_02
 
 Func_0b1a: ; b1a (0:0b1a)
 	push af
@@ -613,7 +614,7 @@ asm_0ba0
 	jr z, .asm_0bb6
 	call WaitStatAndLoad
 	ld a, [wc41e]
-	call Func_0eb3
+	call WrapAroundBGMapOrWindowHorizontal
 	jr asm_0ba0
 
 .asm_0bb6
@@ -623,7 +624,7 @@ asm_0ba0
 	ld l, c
 	add hl, de
 	ld a, [wc41e]
-	call Func_0f29
+	call WrapAroundBGMapOrWindowVertical
 	ld b, h
 	ld c, l
 	pop de
@@ -711,12 +712,12 @@ Data_0c34::
 	db BANK(Pointers_20000)
 	db BANK(Pointers_24000)
 
-Func_0c36: ; c36 (0:0c36)
-	ld a, BANK(Data_18000)
+DecompressGFXByIndex: ; c36 (0:0c36)
+	ld a, BANK(CompressedGFXBanksAndDests)
 	rst Bankswitch
 	push bc
 	pop de
-	ld hl, Data_18000
+	ld hl, CompressedGFXBanksAndDests
 	sla e
 	rl d
 	sla e
@@ -730,7 +731,7 @@ Func_0c36: ; c36 (0:0c36)
 	ld [wFontSourceAddr + 1], a
 	ld a, [wFontSourceBank]
 	rst Bankswitch
-	ld hl, Pointers_1de1
+	ld hl, CompressedGFXAddresses
 	sla c
 	rl b
 	add hl, bc
@@ -1125,44 +1126,38 @@ GetHalfwordFromTable::
 	ld l, a
 	ret
 
-Func_0ea3::
+IncrementSubroutine::
 	ld a, [wc3e1]
 	inc a
 	ld [wc3e1], a
 	ret
 
-Func_0eab::
+IncrementSubroutine2::
 	ld a, [wc3e2]
 	inc a
 	ld [wc3e2], a
 	ret
 
-Func_0eb3: ; eb3 (0:0eb3)
+WrapAroundBGMapOrWindowHorizontal: ; eb3 (0:0eb3)
 	push af
 	push bc
 	push de
-	call Func_0f29
+	call WrapAroundBGMapOrWindowVertical
 	ld d, h
 	ld e, l
-	ld bc, $6800
+	ld bc, (-VBGMap) & $ffff
 	or a
 	jr z, .asm_0ec4
-	ld bc, $6400
+	ld bc, (-VWindow) & $ffff
 .asm_0ec4
 	add hl, bc
+REPT 5
 	srl l
-	jr c, .asm_0edb
-	srl l
-	jr c, .asm_0edb
-	srl l
-	jr c, .asm_0edb
-	srl l
-	jr c, .asm_0edb
-	srl l
-	jr c, .asm_0edb
-	jr .asm_0ee1
+	jr c, .not_at_start_of_row
+ENDR
+	jr .is_at_start_of_row
 
-.asm_0edb
+.not_at_start_of_row
 	ld h, d
 	ld l, e
 	pop de
@@ -1170,12 +1165,12 @@ Func_0eb3: ; eb3 (0:0eb3)
 	pop af
 	ret
 
-.asm_0ee1
+.is_at_start_of_row
 	ld h, d
 	ld l, e
-	ld bc, hFFE0
+	ld bc, -BG_MAP_WIDTH
 	add hl, bc
-	call Func_0f29
+	call WrapAroundBGMapOrWindowVertical
 	pop de
 	pop bc
 	pop af
@@ -1185,7 +1180,7 @@ Func_0eee::
 	push af
 	push bc
 	push de
-	call Func_0f29
+	call WrapAroundBGMapOrWindowVertical
 	ld d, h
 	ld e, l
 	ld bc, $6800
@@ -1219,13 +1214,13 @@ Func_0eee::
 	ld l, e
 	ld bc, $20
 	add hl, bc
-	call Func_0f29
+	call WrapAroundBGMapOrWindowVertical
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_0f29: ; f29 (0:0f29)
+WrapAroundBGMapOrWindowVertical: ; f29 (0:0f29)
 	push af
 	or a
 	jr nz, .window
@@ -1611,7 +1606,7 @@ Func_14b1::
 	ld bc, $1
 	add hl, bc
 	xor a
-	call Func_0eb3
+	call WrapAroundBGMapOrWindowHorizontal
 	pop af
 	di
 	call WaitStat
@@ -1642,11 +1637,11 @@ Func_14b1::
 	ld bc, $1
 	add hl, bc
 	xor a
-	call Func_0eb3
+	call WrapAroundBGMapOrWindowHorizontal
 	ld bc, $1
 	add hl, bc
 	xor a
-	call Func_0eb3
+	call WrapAroundBGMapOrWindowHorizontal
 	pop af
 	di
 	call WaitStat
@@ -1668,15 +1663,15 @@ Func_14b1::
 	ld bc, $1
 	add hl, bc
 	xor a
-	call Func_0eb3
+	call WrapAroundBGMapOrWindowHorizontal
 	ld bc, $1
 	add hl, bc
 	xor a
-	call Func_0eb3
+	call WrapAroundBGMapOrWindowHorizontal
 	ld bc, $1
 	add hl, bc
 	xor a
-	call Func_0eb3
+	call WrapAroundBGMapOrWindowHorizontal
 	pop af
 	di
 	call WaitStat
@@ -2847,7 +2842,7 @@ Func_1dbc: ; 1dbc (0:1dbc)
 	ei
 	ret
 
-Pointers_1de1:
+CompressedGFXAddresses:
 	dw $0000
 	dw UnknownTZFile01
 	dw UnknownTZFile02
@@ -3276,7 +3271,7 @@ Func_2134::
 	call Func_24f6
 	call Func_2264
 	call Func_3252
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	homecall Func_c96ba
 	callba Func_3d00e
 	ld a, $c
@@ -3299,7 +3294,7 @@ Func_2134::
 	jr nz, .asm_21b3
 	ld a, $0
 	ld [wc3e1], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_21db::
 	ld a, $0
@@ -3435,7 +3430,7 @@ Func_231e::
 	call Func_33a2
 	ld a, $1
 	ld [wc430], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_2329::
 	ld a, $e0
@@ -3454,7 +3449,7 @@ Func_2329::
 .asm_234b
 	ld a, $5
 	call Func_122d
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_2353::
 	ld a, $1
@@ -3465,7 +3460,7 @@ Func_2353::
 	ret z
 	ld a, [wc9cf]
 	or a
-	jp z, Func_0ea3
+	jp z, IncrementSubroutine
 	ld a, $5
 	ld [wc3e1], a
 	ret
@@ -4867,7 +4862,7 @@ Func_2d59::
 	push af
 	ld a, b
 	rst Bankswitch
-	ld hl, Data_18000
+	ld hl, CompressedGFXBanksAndDests
 	ld a, [wc905]
 	cp $3
 	jr c, .asm_2da2
@@ -4932,7 +4927,7 @@ Func_2d59::
 	ld b, [hl]
 	pop af
 	rst Bankswitch
-	ld hl, Data_18000
+	ld hl, CompressedGFXBanksAndDests
 	push bc
 	ld bc, $20b
 	call CheckEventFlag

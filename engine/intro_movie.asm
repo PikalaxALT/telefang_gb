@@ -51,16 +51,16 @@ Pointers_80db:
 	dw Func_8491
 
 Func_8121::
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8124: ; 8124 (2:4124)
 	call ClearBGMapAndAttrs
 	call ClearBGWindowAndAttrs
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $30
 	call Func_84c6
 	ld bc, $3a
-	call Func_04b1
+	call DecompressGFXByIndex_
 	xor a
 	ld [wc463], a
 	ld a, $1
@@ -94,14 +94,14 @@ Func_8124: ; 8124 (2:4124)
 	ld [H_FFA0], a
 	ld b, $1
 	call Func_3768
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8191: ; 8191 (2:4191)
 	ld a, $2
 	call Func_050f
 	or a
 	ret z
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_819b: ; 819b (2:419b)
 	ld a, $1
@@ -119,7 +119,7 @@ Func_819b: ; 819b (2:419b)
 	ret nz
 	ld a, $40
 	ld [wcb2c], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_81bf: ; 81bf (2:41bf)
 	ld a, [wcb2c]
@@ -141,7 +141,7 @@ Func_81bf: ; 81bf (2:41bf)
 	ld [wOAMAnimation02 + 2], a
 	ld a, $1
 	ld [wc430], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_81ef: ; 81ef (2:41ef)
 	ld a, [wcb2c]
@@ -151,21 +151,21 @@ Func_81ef: ; 81ef (2:41ef)
 	ret nz
 	ld a, $4
 	call Func_050a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8201: ; 8201 (2:4201)
 	ld a, $1
 	call Func_050f
 	or a
 	ret z
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_820b: ; 820b (2:420b)
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $32
-	call Func_04b1
+	call DecompressGFXByIndex_
 	ld bc, $3c
-	call Func_04b1
+	call DecompressGFXByIndex_
 	ld bc, $0
 	ld e, $a
 	ld a, $1
@@ -193,7 +193,7 @@ Func_820b: ; 820b (2:420b)
 	call Func_0609
 	ld a, $1
 	ld [wc430], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8264: ; 8264 (2:4264)
 	ld de, wOAMAnimation02
@@ -208,14 +208,14 @@ Func_8264: ; 8264 (2:4264)
 .asm_8276
 	ld a, $4
 	call Func_050a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_827e: ; 827e (2:427e)
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $33
-	call Func_04b1
+	call DecompressGFXByIndex_
 	ld bc, $3d
-	call Func_04b1
+	call DecompressGFXByIndex_
 	ld bc, $0
 	ld e, $b
 	ld a, $1
@@ -239,7 +239,7 @@ Func_827e: ; 827e (2:427e)
 	ld [wc430], a
 	ld a, $a0
 	ld [wcb2c], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_82cd: ; 82cd (2:42cd)
 	ld a, $1
@@ -266,7 +266,7 @@ Func_82cd: ; 82cd (2:42cd)
 	call Func_0609
 	ld a, $a0
 	ld [wcb2c], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8303: ; 8303 (2:4303)
 	ld de, wOAMAnimation02
@@ -279,7 +279,7 @@ Func_8303: ; 8303 (2:4303)
 	ret
 
 .asm_8315
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8318: ; 8318 (2:4318)
 	ld a, $1
@@ -291,7 +291,7 @@ Func_8318: ; 8318 (2:4318)
 	ret c
 	ld a, $80
 	ld [wcb2c], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_832f: ; 832f (2:432f)
 	ld a, [wcb2c]
@@ -307,7 +307,7 @@ Func_832f: ; 832f (2:432f)
 .asm_8343
 	ld a, $4
 	call Func_050a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_834b: ; 834b (2:434b)
 	ld a, [wc3c2]
@@ -317,14 +317,14 @@ Func_834b: ; 834b (2:434b)
 	call Func_050f
 	or a
 	ret z
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_835d: ; 835d (2:435d)
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $34
 	call Func_84c6
 	ld bc, $3e
-	call Func_04b1
+	call DecompressGFXByIndex_
 	ld bc, $0
 	ld e, $c
 	ld a, $1
@@ -352,7 +352,7 @@ Func_835d: ; 835d (2:435d)
 	call Func_0609
 	ld a, $1
 	ld [wc430], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_83b6: ; 83b6 (2:43b6)
 	ld de, wOAMAnimation02
@@ -364,10 +364,10 @@ Func_83b6: ; 83b6 (2:43b6)
 	ret nz
 	ld a, $4
 	call Func_050a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_83ce: ; 83ce (2:43ce)
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $36
 	call Func_84c6
 	ld bc, $0
@@ -386,7 +386,7 @@ Func_83ce: ; 83ce (2:43ce)
 	ld [wcb2c], a
 	ld a, $8
 	ld [wc463], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8403: ; 8403 (2:4403)
 	ld a, [wc3c0]
@@ -403,10 +403,10 @@ Func_8403: ; 8403 (2:4403)
 	ret nz
 	ld a, $4
 	call Func_050a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8423: ; 8423 (2:4423)
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $38
 	call Func_84c6
 	ld bc, $0
@@ -427,7 +427,7 @@ Func_8423: ; 8423 (2:4423)
 	ld [wc463], a
 	ld a, $40
 	ld [wc3c2], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_845c: ; 845c (2:445c)
 	ld a, [wc3c0]
@@ -440,7 +440,7 @@ Func_845c: ; 845c (2:445c)
 	ret nz
 	ld a, $40
 	ld [wcb2c], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_8474: ; 8474 (2:4474)
 	ld a, [wcb2c]
@@ -452,7 +452,7 @@ Func_8474: ; 8474 (2:4474)
 	call Func_050a
 	ld a, $10
 	ld [wcf96], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_848b: ; 848b (2:448b)
 	ld a, $1f
@@ -460,7 +460,7 @@ Func_848b: ; 848b (2:448b)
 	ret
 
 Func_8491: ; 8491 (2:4491)
-	call Func_0985
+	call ClearObjectAnimationBuffers
 	ld bc, $0
 	call GetCGB_BGLayout_
 	ld a, $1
@@ -481,11 +481,11 @@ Func_84b9: ; 84b9 (2:44b9)
 	call Func_050a
 	ld a, $10
 	ld [wcf96], a
-	jp Func_0ea3
+	jp IncrementSubroutine
 
 Func_84c6: ; 84c6 (2:44c6)
 	push bc
-	call Func_04b1
+	call DecompressGFXByIndex_
 	pop bc
 	inc bc
-	jp Func_04b1
+	jp DecompressGFXByIndex_
