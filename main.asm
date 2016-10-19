@@ -2056,10 +2056,213 @@ REPT $1e
 ENDR
 
 Func_f586:
-	dr $f586, $f682
+	ld [wFontSourceBank], a
+	ld a, [wc3d8]
+	or a
+	jr z, .asm_f596
+	dec a
+	ld [wc3d8], a
+	jp Func_f5d2
 
-Func_f682::
-	dr $f682, $fb3e
+.asm_f596
+	ld a, [wc3da]
+	cp $4
+	jr z, asm_f5d4
+	ld a, [wc3d9]
+	ld [wc3d8], a
+	ld a, [wCGB]
+	cp $11
+	jp z, Func_f701
+	ld a, [wFontSourceBank]
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, Pointers_f636
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wc3da]
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wBGP], a
+	ld a, [wc3da]
+	inc a
+	ld [wc3da], a
+Func_f5d2: ; f5d2 (3:75d2)
+	xor a
+	ret
+
+asm_f5d4
+	ld a, $1
+	ret
+
+Func_f5d7:
+	ld [wFontSourceBank], a
+	ld a, [wc3d8]
+	or a
+	jr z, .asm_f5e7
+	dec a
+	ld [wc3d8], a
+	jp Func_f631
+
+.asm_f5e7
+	ld a, [wc3da]
+	cp $4
+	jr z, asm_f633
+	ld a, [wc3d9]
+	ld [wc3d8], a
+	ld a, [wCGB]
+	cp $11
+	jp z, Func_f763
+	ld a, [wFontSourceBank]
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, Pointers_f636
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wc3da]
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld d, $0
+	ld e, $5
+	add hl, de
+	ld a, [hl]
+	ld [wOBP0], a
+	ld d, $0
+	ld e, $5
+	add hl, de
+	ld a, [hl]
+	ld [wOBP1], a
+	ld a, [wc3da]
+	inc a
+	ld [wc3da], a
+Func_f631: ; f631 (3:7631)
+	xor a
+	ret
+
+asm_f633
+	ld a, $1
+	ret
+
+Pointers_f636:
+	dw Data_f646, Data_f650
+	dw Data_f655, Data_f65f
+	dw Data_f664, Data_f66e
+	dw Data_f673, Data_f67d
+
+Data_f646: db $00, $54, $a4, $e4, $ff
+           db $00, $50, $a0, $e0, $ff
+Data_f650: db $00, $51, $92, $d2, $ff
+Data_f655: db $e4, $a4, $54, $00, $ff
+           db $e0, $a0, $50, $00, $ff
+Data_f65f: db $d2, $92, $51, $00, $ff
+Data_f664: db $ff, $ea, $e5, $e4, $ff
+           db $ff, $ea, $e5, $e0, $ff
+Data_f66e: db $ff, $ea, $d6, $d2, $ff
+Data_f673: db $e4, $e5, $ea, $ff, $ff
+           db $e0, $e5, $ea, $ff, $ff
+Data_f67d: db $d2, $d6, $ea, $ff, $ff
+
+Func_f682: ; f682 (3:7682)
+	push de
+	ld de, wdec0
+	ld a, d
+	ld [wc454], a
+	ld a, e
+	ld [wc455], a
+	ld a, [wcb27]
+	ld hl, wde00
+	call Func_f873
+	call CopyDEC0ToBGPalBuffer
+	ld de, wdec0
+	ld a, d
+	ld [wc454], a
+	ld a, e
+	ld [wc455], a
+	ld a, [wcb27]
+	ld hl, wde60
+	call Func_f873
+	call CopyDEC0ToOBPalBuffer
+	ld a, [wc3da]
+	inc a
+	ld [wc3da], a
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld [wOBPalUpdate], a
+	pop de
+	xor a
+	ret
+
+CopyDEC0ToBGPalBuffer: ; f6c3 (3:76c3)
+	ld hl, wdec0
+	ld de, wCGB_BGPalsBuffer
+	ld b, $8
+.pal
+	push bc
+	ld b, $4
+.hue
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jp nz, .hue
+	pop bc
+	dec b
+	jp nz, .pal
+	ret
+
+Data_f6de:
+x = VTilesOB >> 8
+REPT 8
+	db x
+x = x + $08
+ENDR
+
+CopyDEC0ToOBPalBuffer: ; f6e6 (3:76e6)
+	ld hl, wdec0
+	ld de, wCGB_OBPalsBuffer
+	ld b, $8
+.pal
+	push bc
+	ld b, $4
+.hue
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jp nz, .hue
+	pop bc
+	dec b
+	jp nz, .pal
+	ret
+
+Func_f701:
+	dr $f701, $f763
+
+Func_f763:
+	dr $f763, $f873
+
+Func_f873:
+	dr $f873, $fb3e
 
 Func_fb3e::
 	dr $fb3e, $fb8d
