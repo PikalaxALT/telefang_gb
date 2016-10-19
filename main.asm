@@ -3043,11 +3043,124 @@ SaveAndLoadGame_FarCopySRAMDouble:
 	ret
 
 SECTION "bank 04", ROMX, BANK [$4]
-Func_10000::
-	dr $10000, $105c0
+INCLUDE "engine/phone_menu.asm"
 
-Func_105c0::
-	dr $105c0, $13ff0
+Func_105c0:
+	dr $105c0, $11789
+
+Func_11789:
+	dr $11789, $11799
+
+Func_11799:
+	dr $11799, $117c4
+
+Func_117c4:
+	dr $117c4, $117ef
+
+Func_117ef:
+	dr $117ef, $1189e
+
+Func_1189e:
+	dr $1189e, $11913
+
+Func_11913:
+	dr $11913, $11927
+
+Func_11927:
+	dr $11927, $11939
+
+Func_11939:
+	dr $11939, $11a06
+
+Func_11a06:
+	dr $11a06, $11a80
+
+Func_11a80:
+	dr $11a80, $11d40
+
+Func_11d40:
+	dr $11d40, $12488
+
+Func_12488:
+	dr $12488, $1249a
+
+Func_1249a:
+	dr $1249a, $124a9
+
+Func_124a9:
+	dr $124a9, $12582
+
+Func_12582:
+	dr $12582, $1265a
+
+Func_1265a:
+	dr $1265a, $127b7
+
+Func_127b7:
+	dr $127b7, $128ff
+
+Func_128ff:
+	dr $128ff, $12921
+
+Func_12921:
+	dr $12921, $1293b
+
+Func_1293b:
+	dr $1293b, $129c4
+
+Func_129c4:
+	dr $129c4, $12a4e
+
+Func_12a4e:
+	dr $12a4e, $12a5f
+
+Func_12a5f:
+	dr $12a5f, $12bbc
+
+Func_12bbc:
+	dr $12bbc, $12cd3
+
+Func_12cd3:
+	dr $12cd3, $13951
+
+Func_13951:
+	dr $13951, $13959
+
+Func_13959:
+	dr $13959, $13963
+
+Func_13963:
+	dr $13963, $13a1e
+
+Func_13a1e:
+	dr $13a1e, $13c8f
+
+Func_13c8f:
+	dr $13c8f, $13cf4
+
+Func_13cf4:
+	dr $13cf4, $13d46
+
+Func_13d46:
+	dr $13d46, $13d8c
+
+Func_13d8c:
+	dr $13d8c, $13dca
+
+Func_13dca:
+	dr $13dca, $13f3f
+
+Func_13f3f:
+	dr $13f3f, $13f51
+
+Func_13f51:
+	dr $13f51, $13fd2
+
+Func_13fd2:
+	dr $13fd2, $13fdf
+
+Func_13fdf:
+	dr $13fdf, $13ff0
 
 SECTION "bank 05", ROMX, BANK [$5]
 	dr $14000, $1441b

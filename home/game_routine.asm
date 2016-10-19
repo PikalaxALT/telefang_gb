@@ -48,10 +48,10 @@ Func_1c26::
 	jp Func_8000
 
 PhoneMenu_::
-	ld a, BANK(Func_10000)
+	ld a, BANK(PhoneMenu)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_10000
+	jp PhoneMenu
 
 PlayIntroMovie_::
 	ld a, BANK(PlayIntroMovie)
