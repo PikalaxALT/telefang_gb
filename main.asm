@@ -1637,14 +1637,391 @@ asm_92ff
 INCLUDE "engine/opening_logos.asm"
 
 SECTION "bank 03", ROMX, BANK [$3]
-Func_c000::
-	dr $c000, $c1af
+Func_c000:
+	ld bc, $20
+	call Func_c122
+	ld hl, Data_c290
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c2a0
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c2b0
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c2c0
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c2d0
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c2e0
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c2f0
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c300
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c310
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_ebc8
+	ld de, Data_c230
+	call Func_c169
+	ld hl, Data_eed8
+	ld de, Data_c270
+	call Func_c169
+	ld hl, Data_c368
+	ld de, Data_c240
+	call Func_c169
+	ld hl, Data_d368
+	ld de, Data_c250
+	call Func_c169
+	ld hl, Data_e368
+	ld de, Data_c260
+	call Func_c169
+	ld hl, Data_c280
+	call Func_c133
+	ld bc, $40
+	call Func_c122
+	ld b, $0
+	ld c, $0
+	ld d, $0
+	ld e, $0
+	ld a, $0
+	jp Func_c320
 
-Func_c1af::
-	dr $c1af, $c320
+Func_c0b8:
+	ld hl, Data_c290
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c368
+	ld de, Data_c240
+	call Func_c169
+	ld hl, Data_d368
+	ld de, Data_c250
+	call Func_c169
+	ld hl, Data_e368
+	ld de, Data_c260
+	call Func_c169
+	ld hl, Data_c280
+	call Func_c133
+	ld bc, $20
+	call Func_c122
+	ret
 
-Func_c320::
-	dr $c320, $f682
+Func_c0ec:
+	ld hl, Data_c290
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ld hl, Data_c112
+	call Func_c133
+	ld bc, $4
+	call Func_c122
+	ret
+
+Func_c105:
+	ld hl, wcc00
+	call Func_c133
+	ld bc, $3
+	call Func_c122
+	ret
+
+Data_c112:
+	db $50 | 1, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $c2, $00, $00
+	db     $00, $00, $00, $00
+
+Func_c122: ; c122 (3:4122)
+	ld de, 1750
+.asm_c125
+	nop
+	nop
+	nop
+	dec de
+	ld a, d
+	or e
+	jr nz, .asm_c125
+	dec bc
+	ld a, b
+	or c
+	jr nz, Func_c122
+	ret
+
+Func_c133: ; c133 (3:4133)
+	ld a, [hl]
+	and $7
+	ret z
+	ld b, a
+	ld c, rJOYP % $100
+.asm_c13a
+	push bc
+	ld a, $0
+	ld [$ff00+c], a
+	ld a, $30
+	ld [$ff00+c], a
+	ld b, $10
+.asm_c143
+	ld e, $8
+	ld a, [hli]
+	ld d, a
+.asm_c147
+	bit 0, d
+	ld a, R_BUTTONS
+	jr nz, .asm_c14f
+	ld a, R_DPAD
+.asm_c14f
+	ld [$ff00+c], a
+	ld a, $30
+	ld [$ff00+c], a
+	rr d
+	dec e
+	jr nz, .asm_c147
+	dec b
+	jr nz, .asm_c143
+	ld a, R_DPAD
+	ld [$ff00+c], a
+	ld a, $30
+	ld [$ff00+c], a
+	pop bc
+	dec b
+	ret z
+	call Func_c224
+	jr .asm_c13a
+
+Func_c169: ; c169 (3:4169)
+	di
+	push de
+	call DisableLCD
+	ld a, $e4
+	ld [rBGP], a
+	ld de, VTilesShared
+	ld bc, $1000
+	call Func_c1a6
+	ld hl, VBGMap
+	ld de, $c
+	ld a, $80
+	ld c, $d
+.asm_c185
+	ld b, $14
+.asm_c187
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .asm_c187
+	add hl, de
+	dec c
+	jr nz, .asm_c185
+	ld a, $81
+	ld [rLCDC], a
+	ld bc, $5
+	call Func_c122
+	pop hl
+	call Func_c133
+	ld bc, $6
+	call Func_c122
+	ei
+	ret
+
+Func_c1a6: ; c1a6 (3:41a6)
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, Func_c1a6
+	ret
+
+Func_c1af: ; c1af (3:41af)
+	ld hl, Data_c214
+	call Func_c133
+	call Func_c224
+	ld a, [rJOYP]
+	and A_BUTTON | B_BUTTON
+	cp  A_BUTTON | B_BUTTON
+	jr nz, .finish_return_carry
+	ld a, R_DPAD
+	ld [rJOYP], a
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, $30
+	ld [rJOYP], a
+	ld a, R_BUTTONS
+	ld [rJOYP], a
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, $30
+	ld [rJOYP], a
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	and A_BUTTON | B_BUTTON
+	cp  A_BUTTON | B_BUTTON
+	jr nz, .finish_return_carry
+	ld hl, Data_c204
+	call Func_c133
+	call Func_c224
+	sub a
+	ret
+
+.finish_return_carry
+	ld hl, Data_c204
+	call Func_c133
+	call Func_c224
+	scf
+	ret
+
+Data_c204:
+	db $88 | 1, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c214:
+	db $88 | 1, $01, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Func_c224: ; c224 (3:4224)
+	ld de, 7000
+.asm_c227
+	nop
+	nop
+	nop
+	dec de
+	ld a, d
+	or e
+	jr nz, .asm_c227
+	ret
+
+Data_c230:
+	db $58 | 1, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c240:
+	db $98 | 1, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c250:
+	db $98 | 1, $01, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c260:
+	db $a0 | 1, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c270:
+	db $a8 | 1, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c280:
+	db $b8 | 1, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c290:
+	db $b8 | 1, $01, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c2a0:
+	db $78 | 1, $5d, $08, $00
+	db     $0b, $8c, $d0, $f4
+	db     $60, $00, $00, $00
+	db     $00, $00, $00, $00
+
+Data_c2b0:
+	db $78 | 1, $52, $08, $00
+	db     $0b, $a9, $e7, $9f
+	db     $01, $c0, $7e, $e8
+	db     $e8, $e8, $e8, $e0
+
+Data_c2c0:
+	db $78 | 1, $47, $08, $00
+	db     $0b, $c4, $d0, $16
+	db     $a5, $cb, $c9, $05
+	db     $d0, $10, $a2, $28
+
+Data_c2d0:
+	db $78 | 1, $3c, $08, $00
+	db     $0b, $f0, $12, $a5
+	db     $c9, $c9, $c8, $d0
+	db     $1c, $a5, $ca, $c9
+
+Data_c2e0:
+	db $78 | 1, $31, $08, $00
+	db     $0b, $0c, $a5, $ca
+	db     $c9, $7e, $d0, $06
+	db     $a5, $cb, $c9, $7e
+
+Data_c2f0:
+	db $78 | 1, $26, $08, $00
+	db     $0b, $39, $cd, $48
+	db     $0c, $d0, $34, $a5
+	db     $c9, $c9, $80, $d0
+
+Data_c300:
+	db $78 | 1, $1b, $08, $00
+	db     $0b, $ea, $ea, $ea
+	db     $ea, $ea, $a9, $01
+	db     $cd, $4f, $0c, $d0
+
+Data_c310:
+	db $78 | 1, $10, $08, $00
+	db     $0b, $4c, $20, $08
+	db     $ea, $ea, $ea, $ea
+	db     $ea, $60, $ea, $ea
+
+Func_c320:
+	dr $c320, $c368
+
+Data_c368:
+	dr $c368, $d368
+
+Data_d368:
+	dr $d368, $e368
+
+Data_e368:
+	dr $e368, $ebc8
+
+Data_ebc8:
+	dr $ebc8, $eed8
+
+Data_eed8:
+	dr $eed8, $f682
 
 Func_f682::
 	dr $f682, $fb3e
