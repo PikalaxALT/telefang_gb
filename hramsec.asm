@@ -6,5 +6,6 @@ H_PushOAM:: ds $8
 
 H_MusicID:: ds 1
 H_FFA1:: ds 1
-	ds 7
+H_FFA2:: ds 1
+	ds 6
 H_FFA9:: ds 1

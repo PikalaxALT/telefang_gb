@@ -5756,7 +5756,7 @@ Func_11a80: ; 11a80 (4:5a80)
 	pop de
 	jp Func_1249a
 
-Func_11a99:
+Rom4_CloseSRAM:
 	xor a
 	ld [wd000], a
 	ld [wd001], a
@@ -5992,22 +5992,688 @@ Func_11b37: ; 11b37 (4:5b37)
 	ret
 
 Func_11c1d:
-	dr $11c1d, $11d40
+	ld a, [wcb65]
+	ld hl, Pointers_11c27
+	call GetHalfwordFromTable
+	jp [hl]
 
-Func_11d40:
-	dr $11d40, $11d7e
+Pointers_11c27:
+	dw Func_11c47
+	dw Func_11c5c
+	dw Func_11c9f
+	dw Func_11ce9
+	dw Func_11cec
+	dw Func_11cec
+	dw Func_11cec
+	dw Func_11cec
+	dw Func_11cec
+	dw Func_11cec
+	dw Func_11cec
+	dw Func_11d2a
+	dw Func_11d35
+	dw Func_11d10
+	dw Func_11cf4
+	dw Func_11cf9
 
-Func_11d7e:
-	dr $11d7e, $11ee9
+Func_11c47: ; 11c47 (4:5c47)
+	ld a, [wcfc0]
+	cp $0
+	jr nz, .asm_11c59
+	ld a, $cf
+	ld [H_FFA2], a
+	ld a, $4
+	ld [wMusicBank], a
+	ret
 
-Func_11ee9:
-	dr $11ee9, $11fe9
+.asm_11c59
+	jp Func_1bd1
 
-Func_11fe9:
-	dr $11fe9, $1208b
+Func_11c5c: ; 11c5c (4:5c5c)
+	ld a, [wcb69]
+	cp $0
+	jr nz, .asm_11c6b
+	ld a, [wcb67]
+	cp $0
+	jr nz, .asm_11c6b
+	ret
+
+.asm_11c6b
+	ld a, [wcb67]
+	dec a
+	and $f
+	ld [wcb67], a
+	cp $f
+	jr nz, .asm_11c7f
+	ld a, [wcb69]
+	cp $0
+	jr nz, .asm_11c87
+.asm_11c7f
+	ld a, $ff
+	ld [wcb66], a
+	jp Func_11d7e
+
+.asm_11c87
+	dec a
+	ld [wcb69], a
+	ld a, $ff
+	ld [wcb66], a
+	call Func_11d7e
+	call Func_1221c
+	call Func_121bf
+	call Func_121fd
+	jp Func_072f
+
+Func_11c9f: ; 11c9f (4:5c9f)
+	ld a, [wcb69]
+	cp $e
+	jr nz, .asm_11cae
+	ld a, [wcb67]
+	cp $f
+	jr nz, .asm_11cae
+	ret
+
+.asm_11cae
+	ld a, [wcb67]
+	inc a
+	and $f
+	ld [wcb67], a
+	jr nz, .asm_11cde
+	ld a, [wcb69]
+	cp $e
+	jr z, .asm_11cde
+	inc a
+	and $f
+	ld [wcb69], a
+	xor a
+	ld [wcb67], a
+	ld a, $ff
+	ld [wcb66], a
+	call Func_11d7e
+	call Func_1221c
+	call Func_121bf
+	call Func_121fd
+	jp Func_072f
+
+.asm_11cde
+	ld a, $ff
+	ld [wcb66], a
+	call Func_11d7e
+	jp Func_072f
+
+Func_11ce9: ; 11ce9 (4:5ce9)
+	jp Func_11fbc
+
+Func_11cec: ; 11cec (4:5cec)
+	ld a, [wcb65]
+	sub $4
+	jp Func_11dcb
+
+Func_11cf4: ; 11cf4 (4:5cf4)
+	ld a, $7
+	jp Func_11dcb
+
+Func_11cf9: ; 11cf9 (4:5cf9)
+	call Func_11ec6
+	inc hl
+	ld a, [hl]
+	inc a
+	push af
+	and $7
+	cp $5
+	jr nz, .asm_11d0b
+	pop af
+	ld a, [hl]
+	and $f0
+	push af
+.asm_11d0b
+	pop af
+	ld [hl], a
+	jp Func_072f
+
+Func_11d10: ; 11d10 (4:5d10)
+	call Func_11ec6
+	inc hl
+	ld a, [hl]
+	push af
+	and $7
+	cp $0
+	jr nz, .asm_11d24
+	pop af
+	ld a, [hl]
+	and $f0
+	add $4
+	jr .asm_11d26
+
+.asm_11d24
+	pop af
+	dec a
+.asm_11d26
+	ld [hl], a
+	jp Func_072f
+
+Func_11d2a: ; 11d2a (4:5d2a)
+	ld a, [wd001]
+	xor $1
+	ld [wd001], a
+	jp Func_121fd
+
+Func_11d35: ; 11d35 (4:5d35)
+	call Func_11ed8
+	ld a, $ff
+	ld [wcb66], a
+	jp Func_072f
+
+Func_11d40: ; 11d40 (4:5d40)
+	ld hl, Data_11d5e
+	ld a, [wcb65]
+	call Func_12270
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	ld c, a
+	ld a, $7
+	ld [wOAMAnimation01_TemplateIdx], a
+	ld de, wOAMAnimation01
+	call Func_11789
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Data_11d5e:
+	db $68, $28
+	db $78, $28
+	db $88, $28
+	db $98, $28
+	db $68, $40
+	db $80, $40
+	db $98, $40
+	db $68, $50
+	db $80, $50
+	db $98, $50
+	db $68, $60
+	db $80, $60
+	db $98, $60
+	db $68, $70
+	db $80, $70
+	db $98, $70
+
+Func_11d7e: ; 11d7e (4:5d7e)
+	ld hl, Data_11dab
+	ld a, [wcb67]
+	call Func_12270
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	ld c, a
+	ld a, $a
+	ld [wOAMAnimation02_TemplateIdx], a
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_11781
+	ld a, [wc3c0]
+	and $f
+	jr nz, .asm_11da5
+	ld a, [wOAMAnimation02]
+	xor $1
+	ld [wOAMAnimation02_PriorityFlags], a
+.asm_11da5
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Data_11dab:
+	db $10, $38
+	db $20, $38
+	db $30, $38
+	db $40, $38
+	db $10, $48
+	db $20, $48
+	db $30, $48
+	db $40, $48
+	db $10, $58
+	db $20, $58
+	db $30, $58
+	db $40, $58
+	db $10, $68
+	db $20, $68
+	db $30, $68
+	db $40, $68
+
+Func_11dcb: ; 11dcb (4:5dcb)
+	ld [wcb20], a
+	call Func_11ec6
+	ld a, [wcb66]
+	ld b, a
+	ld a, [wcb65]
+	cp b
+	jp z, Func_11e54
+	ld a, [wcb68]
+	cp $f0
+	ret z
+	ld a, [wcb66]
+	cp $ff
+	jr z, .asm_11e44
+	ld a, [wcb67]
+	inc a
+	and $f
+	ld [wcb67], a
+	jr nz, .asm_11e1c
+	ld a, [wcb69]
+	inc a
+	and $f
+	ld [wcb69], a
+	cp $f
+	jr nz, .asm_11e0c
+	ld a, $f
+	ld [wcb67], a
+	ld a, $e
+	ld [wcb69], a
+	ret
+
+.asm_11e0c
+	ld bc, $106
+	ld e, $30
+	ld a, $0
+	call Func_04ca
+	call Func_121bf
+	call Func_121fd
+.asm_11e1c
+	call Func_11efa
+	ld a, [wcb20]
+	ld hl, $5e86
+	call Func_12270
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hl]
+	push af
+	call Func_11ec6
+	pop af
+	ld [hli], a
+	ld a, $2
+	ld [hl], a
+	call Func_072f
+	ld a, [wcb65]
+	ld [wcb66], a
+	call Func_11d7e
+	jp Func_1221c
+
+.asm_11e44
+	push hl
+	ld a, [hl]
+	cp $fe
+	jr z, .asm_11e4f
+	call Func_11efa
+	pop hl
+	push hl
+.asm_11e4f
+	inc hl
+	ld a, $2
+	jr asm_11e60
+
+Func_11e54: ; 11e54 (4:5e54)
+	push hl
+	inc hl
+	ld a, [hl]
+	add $10
+	cp $60
+	jr c, asm_11e60
+	ld a, [hl]
+	and $7
+asm_11e60
+	ld [hl], a
+	swap a
+	and $f
+	push af
+	ld a, [wcb20]
+	ld hl, Data_11e86
+	call Func_12270
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	pop hl
+	ld [hl], a
+	call Func_072f
+	ld a, [wcb65]
+	ld [wcb66], a
+	jp Func_1221c
+
+Data_11e86:
+	db $96, $5e
+	db $9c, $5e
+	db $a2, $5e
+	db $a8, $5e
+	db $ae, $5e
+	db $b4, $5e
+	db $ba, $5e
+	db $c0, $5e
+	db $01, $11
+	db $02, $12
+	db $00, $10
+	db $21, $31
+	db $22, $32
+	db $20, $30
+	db $41, $42
+	db $40, $41
+	db $42, $40
+	db $51, $61
+	db $52, $62
+	db $50, $60
+	db $71, $81
+	db $72, $82
+	db $70, $80
+	db $91, $a1
+	db $92, $a2
+	db $90, $a0
+	db $b1, $b2
+	db $b0, $b1
+	db $b2, $b0
+	db $c0, $c0
+	db $c0, $c0
+	db $c0, $c0
+
+Func_11ec6: ; 11ec6 (4:5ec6)
+	ld a, [wcb69]
+	swap a
+	and $f0
+	ld b, a
+	ld a, [wcb67]
+	add b
+	ld hl, wd002
+	jp Func_12270
+
+Func_11ed8: ; 11ed8 (4:5ed8)
+	call Func_11ec6
+	ld a, [hl]
+	cp $fe
+	jr z, .asm_11ee6
+	call Func_11f37
+	jp Func_1221c
+
+.asm_11ee6
+	jp Func_11f37
+
+Func_11ee9: ; 11ee9 (4:5ee9)
+	ld a, $1
+	ld [wc430], a
+	ld de, wOAMAnimation01_PriorityFlags
+	call Func_099c
+	ld de, wOAMAnimation02_PriorityFlags
+	jp Func_099c
+
+Func_11efa: ; 11efa (4:5efa)
+	call Func_11ec6
+	ld a, l
+	cp $e0
+	jr nz, .asm_11f0c
+	ld a, h
+	cp $d1
+	jr nz, .asm_11f0c
+	ld a, $fe
+	ld [hli], a
+	ld [hli], a
+	ret
+
+.asm_11f0c
+	push hl
+	ld hl, wd000
+	ld de, wd200
+	ld bc, $200
+	call CopyData
+	pop hl
+	push hl
+	ld de, $200
+	add hl, de
+	push hl
+	pop de
+	pop hl
+	ld a, $fe
+	ld [hli], a
+	ld [hli], a
+.asm_11f26
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, l
+	cp $e2
+	jr nz, .asm_11f26
+	ld a, h
+	cp $d1
+	jr nz, .asm_11f26
+	ret
+
+Func_11f37: ; 11f37 (4:5f37)
+	call Func_11ec6
+	ld a, l
+	cp $e0
+	jr nz, .asm_11f49
+	ld a, h
+	cp $d1
+	jr nz, .asm_11f49
+	ld a, $fe
+	ld [hli], a
+	ld [hli], a
+	ret
+
+.asm_11f49
+	push hl
+	ld hl, wd000
+	ld de, wd200
+	ld bc, $200
+	call CopyData
+	pop hl
+	push hl
+	ld de, $200
+	add hl, de
+	push hl
+	pop de
+	inc de
+	inc de
+	pop hl
+.asm_11f61
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, l
+	cp $e0
+	jr nz, .asm_11f61
+	ld a, h
+	cp $d1
+	jr nz, .asm_11f61
+	ld a, $fe
+	ld [hli], a
+	ld [hli], a
+	ret
+
+Func_11f76:
+	ld b, BANK(s1_a000)
+	call Rom4_GetSRAMBankB
+	ld a, [wcb6c]
+	ld b, a
+	ld a, [wcb6d]
+	add b
+	sub $47
+	and $7
+	sla a
+	ld d, a
+	ld e, $0
+	ld hl, s1_a000
+	add hl, de
+	ld a, [hl]
+	cp $1
+	jr z, .asm_11f98
+	jp Rom4_CloseSRAM
+
+.asm_11f98
+	ld a, [wcb6c]
+	ld b, a
+	ld a, [wcb6d]
+	add b
+	sub $47
+	and $7
+	sla a
+	ld d, a
+	ld e, $0
+	ld hl, $a000
+	add hl, de
+	ld de, wd000
+	ld bc, $200
+	call CopyData
+	call Func_13ef1
+	jp Func_1224e
+
+Func_11fbc: ; 11fbc (4:5fbc)
+	ld a, $1
+	ld [wd000], a
+	ld b, BANK(s1_a000)
+	call Rom4_GetSRAMBankB
+	ld a, [wcb6c]
+	ld b, a
+	ld a, [wcb6d]
+	add b
+	sub $47
+	and $7
+	sla a
+	ld d, a
+	ld e, $0
+	ld hl, s1_a000
+	add hl, de
+	push hl
+	pop de
+	ld hl, wd000
+	ld bc, $200
+	call CopyData
+	jp Func_13ef1
+
+Func_11fe9: ; 11fe9 (4:5fe9)
+	ld a, $1
+	ld [wc430], a
+	ld a, $1
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld a, [wcb6d]
+	and $7
+	sla a
+	sla a
+	sla a
+	add $50
+	ld [wOAMAnimation02_YCoord], a
+	xor a
+	ld [wOAMAnimation03], a
+	ld [wOAMAnimation04_PriorityFlags], a
+	ld a, $8
+	ld [wOAMAnimation02_XCoord], a
+	ld [wOAMAnimation03_XCoord], a
+	ld [wOAMAnimation04_XCoord], a
+	ld [wOAMAnimation03_YCoord], a
+	ld [wOAMAnimation04_YCoord], a
+	ld a, $0
+	ld [wOAMAnimation02_TemplateBank], a
+	ld [wOAMAnimation03_TemplateBank], a
+	ld [wOAMAnimation04_TemplateBank], a
+	ld b, $6
+	ld a, [wcb6c]
+	ld de, $9942
+.asm_1202e
+	push af
+	ld c, a
+	cp $47
+	jr nc, .asm_12037
+	xor a
+	jr .asm_12039
+
+.asm_12037
+	ld a, $1
+.asm_12039
+	push bc
+	push de
+	call Func_1204e
+	pop de
+	pop bc
+	ld a, e
+	add $20
+	ld e, a
+	ld a, d
+	adc $0
+	ld d, a
+	pop af
+	inc a
+	dec b
+	jr nz, .asm_1202e
+	ret
+
+Func_1204e: ; 1204e (4:604e)
+	push de
+	push bc
+	push de
+	ld hl, Data_1207d
+	call Func_12270
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop de
+	ld b, $5
+.asm_1205d
+	di
+	ld a, [hli]
+	call WaitStat
+	ld [de], a
+	ei
+	inc de
+	dec b
+	jr nz, .asm_1205d
+	pop bc
+	ld a, c
+	cp $47
+	jr c, .asm_12070
+	sub $47
+.asm_12070
+	inc a
+	ld c, a
+	call Func_12fb
+	pop de
+	ld hl, $5
+	add hl, de
+	jp Func_121e0
+
+Data_1207d:
+	db $81, $60
+	db $86, $60
+	db $60, $61
+	db $62, $63
+	db $52, $64
+	db $65, $66
+	db $67, $52
 
 Func_1208b:
-	dr $1208b, $12279
+	dr $1208b, $121bf
+
+Func_121bf:
+	dr $121bf, $121e0
+
+Func_121e0:
+	dr $121e0, $121fd
+
+Func_121fd:
+	dr $121fd, $1221c
+
+Func_1221c:
+	dr $1221c, $1224e
+
+Func_1224e:
+	dr $1224e, $12270
+
+Func_12270:
+	dr $12270, $12279
 
 Func_12279:
 	dr $12279, $122ba
@@ -6268,7 +6934,13 @@ Func_13e6e:
 	dr $13e6e, $13eb5
 
 Func_13eb5:
-	dr $13eb5, $13f15
+	dr $13eb5, $13ee7
+
+Rom4_GetSRAMBankB:
+	dr $13ee7, $13ef1
+
+Func_13ef1:
+	dr $13ef1, $13f15
 
 Func_13f15:
 	dr $13f15, $13f18
