@@ -7359,32 +7359,570 @@ asm_12575
 Func_12581: ; 12581 (4:6581)
 	ret
 
-Func_12582:
-	dr $12582, $1265a
+Func_12582: ; 12582 (4:6582)
+	call Func_11b37
+	ld a, [hJoyNew]
+	and $2
+	jr z, .asm_125be
+	ld a, $ff
+	ld [wcb66], a
+	xor a
+	ld [wcb3e], a
+	ld hl, $9780
+	ld b, $6
+	call Func_13fd2
+	ld hl, wc3a9
+	ld a, [wcb38]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld [hl], $0
+	call Func_127b7
+	call Func_1249a
+	ld a, [wcb38]
+	cp $0
+	ret z
+	dec a
+	ld [wcb38], a
+	ld a, $4
+	ld [H_FFA1], a
+	ret
 
-Func_1265a:
-	dr $1265a, $12673
+.asm_125be
+	ld a, [hJoyNew]
+	and $8
+	jr nz, asm_12612
+	ld a, [hJoyNew]
+	and $1
+	jp z, Func_12659
+	call Func_126a1
+	ld a, [wcb65]
+	cp $0
+	jp z, Func_125f2
+	cp $1
+	jp z, Func_12632
+	cp $2
+	jp z, Func_12646
+	cp $3
+	jp z, asm_12612
+	cp $d
+	jp z, Func_1262f
+	cp $f
+	jp z, Func_1262f
+	jp Func_1272a
 
-Func_12673:
-	dr $12673, $126a1
+Func_125f2: ; 125f2 (4:65f2)
+	xor a
+	ld [wcb3e], a
+	ld a, [wcb2a]
+	inc a
+	cp $3
+	jr nz, .asm_125ff
+	xor a
+.asm_125ff
+	ld [wcb2a], a
+	add $1
+	cp $3
+	jr nz, .asm_12609
+	xor a
+.asm_12609
+	ld [wcb28], a
+	call Func_1293b
+	jp Func_1265a
 
-Func_126a1:
-	dr $126a1, $126c0
+asm_12612
+	ld a, $3
+	ld [H_FFA1], a
+	call Func_127b7
+	cp $0
+	jr nz, .asm_1262c
+	ld a, [wd4a7]
+	call Func_13d8c
+	call Func_12794
+	ld d, $c
+	jp Func_1249a
 
-Func_126c0:
-	dr $126c0, $12794
+.asm_1262c
+	jp IncrementSubroutine
 
-Func_12794:
-	dr $12794, $127b7
+Func_1262f: ; 1262f (4:662f)
+	jp Func_1268a
 
-Func_127b7:
-	dr $127b7, $127da
+Func_12632: ; 12632 (4:6632)
+	ld a, [wcb38]
+	cp $0
+	ret z
+	dec a
+	ld [wcb38], a
+	ld a, $ff
+	ld [wcb66], a
+	xor a
+	ld [wcb3e], a
+	ret
 
-Func_127da:
-	dr $127da, $127e3
+Func_12646: ; 12646 (4:6646)
+	ld a, [wcb38]
+	cp $5
+	ret z
+	inc a
+	ld [wcb38], a
+	ld a, $ff
+	ld [wcb66], a
+	xor a
+	ld [wcb3e], a
+Func_12659: ; 12659 (4:6659)
+	ret
 
-Func_127e3:
-	dr $127e3, $128ff
+Func_1265a: ; 1265a (4:665a)
+	ld e, $15
+	ld a, [wcb2a]
+	cp $0
+	jr z, .asm_1266b
+	ld e, $16
+	cp $1
+	jr z, .asm_1266b
+	ld e, $1b
+.asm_1266b
+	ld bc, $111
+	ld a, $0
+	jp Func_04ca
+
+Func_12673: ; 12673 (4:6673)
+	ld hl, wc3a9
+	ld a, [wcb38]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	push hl
+	call Func_133ab
+	pop hl
+	ld [hl], a
+	call Func_12794
+	jp Func_1249a
+
+Func_1268a: ; 1268a (4:668a)
+	ld hl, wc3a9
+	ld a, [wcb38]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	push hl
+	call Func_133ab
+	pop hl
+	ld [hl], a
+	call Func_127b7
+	jp Func_1249a
+
+Func_126a1: ; 126a1 (4:66a1)
+	ld a, [wcb65]
+	ld e, a
+	ld d, $0
+	ld hl, Data_126b0
+	add hl, de
+	ld a, [hl]
+	ld [H_FFA1], a
+	ret
+
+Data_126b0:
+	db $63, $63, $63, $63
+	db $16, $17, $18, $19
+	db $1a, $1b, $1c, $1d
+	db $1e, $1f, $20, $21
+
+Func_126c0: ; 126c0 (4:66c0)
+	ld a, [wcb66]
+	cp $ff
+	jr z, .asm_126e9
+	ld b, a
+	ld a, [wcb65]
+	cp b
+	jr nz, .asm_126d7
+	ld a, [wcb3e]
+	inc a
+	ld [wcb3e], a
+	jr .asm_126e9
+
+.asm_126d7
+	xor a
+	ld [wcb3e], a
+	ld a, [wcb38]
+	cp $7
+	jr z, .asm_126e9
+.asm_126e1
+	ld a, [wcb38]
+	inc a
+	ld [wcb38], a
+.asm_126e9
+	ld a, [wcb65]
+	ld [wcb66], a
+	ld a, [wcb2a]
+	ld hl, Pointers_1280d
+	call Rom4_PointToHalfwordInTable
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcb65]
+	sub $4
+	call Rom4_PointToHalfwordInTable
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	ld b, a
+	ld a, [wcb3e]
+	cp b
+	jr nz, .asm_12712
+	xor a
+	ld [wcb3e], a
+.asm_12712
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	push af
+	ld hl, wc3a9
+	ld a, [wcb38]
+	ld e, a
+	ld d, $0
+	add hl, de
+	pop af
+	ld [hl], a
+	call Func_12794
+	jp Func_1249a
+
+Func_1272a: ; 1272a (4:672a)
+	ld a, [wcb66]
+	cp $ff
+	jr z, .asm_12753
+	ld b, a
+	ld a, [wcb65]
+	cp b
+	jr nz, .asm_12741
+	ld a, [wcb3e]
+	inc a
+	ld [wcb3e], a
+	jr .asm_12753
+
+.asm_12741
+	xor a
+	ld [wcb3e], a
+	ld a, [wcb38]
+	cp $5
+	jr z, .asm_12753
+	ld a, [wcb38]
+	inc a
+	ld [wcb38], a
+.asm_12753
+	ld a, [wcb65]
+	ld [wcb66], a
+	ld a, [wcb2a]
+	ld hl, Pointers_1280d
+	call Rom4_PointToHalfwordInTable
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcb65]
+	sub $4
+	call Rom4_PointToHalfwordInTable
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	ld b, a
+	ld a, [wcb3e]
+	cp b
+	jr nz, .asm_1277c
+	xor a
+	ld [wcb3e], a
+.asm_1277c
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	push af
+	ld hl, wc3a9
+	ld a, [wcb38]
+	ld e, a
+	ld d, $0
+	add hl, de
+	pop af
+	ld [hl], a
+	call Func_127b7
+	jp Func_1249a
+
+Func_12794: ; 12794 (4:6794)
+	ld hl, wc3a7
+	ld de, wc3b0
+	ld b, $8
+	ld c, $0
+.asm_1279e
+	ld a, c
+	cp $0
+	jr nz, .asm_127af
+	ld a, [de]
+	cp $0
+	jr nz, .asm_127ad
+	ld a, $e0
+	ld [hld], a
+	jr .asm_127b1
+
+.asm_127ad
+	ld c, $1
+.asm_127af
+	ld a, [de]
+	ld [hld], a
+.asm_127b1
+	dec de
+	dec b
+	jr nz, .asm_1279e
+	ld a, c
+	ret
+
+Func_127b7: ; 127b7 (4:67b7)
+	ld hl, wc3a5
+	ld de, wc3ae
+	ld b, $6
+	ld c, $0
+.asm_127c1
+	ld a, c
+	cp $0
+	jr nz, .asm_127d2
+	ld a, [de]
+	cp $0
+	jr nz, .asm_127d0
+	ld a, $e0
+	ld [hld], a
+	jr .asm_127d4
+
+.asm_127d0
+	ld c, $1
+.asm_127d2
+	ld a, [de]
+	ld [hld], a
+.asm_127d4
+	dec de
+	dec b
+	jr nz, .asm_127c1
+	ld a, c
+	ret
+
+Func_127da: ; 127da (4:67da)
+	ld a, [wcb6f]
+	call Func_122ba
+	ld hl, $9a06
+Func_127e3: ; 127e3 (4:67e3)
+	push hl
+	call Func_12fb
+	pop hl
+	jp Func_1316d
+
+Func_127eb:
+	push hl
+	call Func_12fb
+	pop hl
+	ld a, [wc44f]
+	and $f0
+	swap a
+	add $f0
+	di
+	call WaitStat
+	ld [hli], a
+	ei
+	ld a, [wc44f]
+	and $f
+	add $f0
+	di
+	call WaitStat
+	ld [hl], a
+	ei
+	ret
+
+Pointers_1280d:
+	dw Pointers_12813
+	dw Pointers_12872
+	dw Pointers_128d1
+
+Pointers_12813:
+	dw Data_1282b
+	dw Data_12836
+	dw Data_1283c
+	dw Data_12842
+	dw Data_12849
+	dw Data_1284f
+	dw Data_12855
+	dw Data_1285b
+	dw Data_12862
+	dw Data_12868
+	dw Data_12869
+	dw Data_12871
+
+Data_1282b:
+	db 10
+	db $38, $39, $3a, $3b, $3c, $64, $65, $66, $67, $68
+
+Data_12836:
+	db 5
+	db $3d, $3e, $3f, $40, $41
+
+Data_1283c:
+	db 5
+	db $42, $43, $44, $45, $46
+
+Data_12842:
+	db 6
+	db $47, $48, $49, $4a, $4b, $69
+
+Data_12849:
+	db 5
+	db $4c, $4d, $4e, $4f, $50
+
+Data_1284f:
+	db 5
+	db $51, $52, $53, $1d, $54
+
+Data_12855:
+	db 5
+	db $55, $56, $57, $58, $59
+
+Data_1285b:
+	db 6
+	db $5a, $5b, $5c, $6a, $6b, $6c
+
+Data_12862:
+	db 5
+	db $5d, $28, $5e, $5f, $60
+
+Data_12868:
+	db $ff
+
+Data_12869:
+	db 7
+	db $61, $62, $63, $cd, $c8, $b9, $b8
+
+Data_12871:
+	db $ff
+
+Pointers_12872:
+	dw Data_1288a
+	dw Data_12895
+	dw Data_1289b
+	dw Data_128a1
+	dw Data_128a8
+	dw Data_128ae
+	dw Data_128b4
+	dw Data_128ba
+	dw Data_128c1
+	dw Data_128c7
+	dw Data_128c8
+	dw Data_128d0
+
+Data_1288a:
+	db 10
+	db $01, $02, $03, $04, $05, $2f, $30, $31, $32, $33
+
+Data_12895:
+	db 5
+	db $06, $07, $08, $09, $0a
+
+Data_1289b:
+	db 5
+	db $0b, $0c, $0d, $0e, $0f
+
+Data_128a1:
+	db 6
+	db $10, $11, $12, $13, $14, $34
+
+Data_128a8:
+	db 5
+	db $15, $16, $17, $18, $19
+
+Data_128ae:
+	db 5
+	db $1a, $1b, $1c, $1d, $1e
+
+Data_128b4:
+	db 5
+	db $1f, $20, $21, $22, $23
+
+Data_128ba:
+	db 6
+	db $24, $25, $26, $35, $36, $37
+
+Data_128c1:
+	db 5
+	db $27, $28, $29, $2a, $2b
+
+Data_128c7:
+	db $ff
+
+Data_128c8:
+	db 7
+	db $2c, $2d, $2e, $cd, $c8, $b9, $b8
+
+Data_128d0:
+	db $ff
+
+Pointers_128d1:
+	dw Data_128e9
+	dw Data_128eb
+	dw Data_128ed
+	dw Data_128ef
+	dw Data_128f1
+	dw Data_128f3
+	dw Data_128f5
+	dw Data_128f7
+	dw Data_128f9
+	dw Data_128fb
+	dw Data_128fc
+	dw Data_128fe
+
+Data_128e9:
+	db 1
+	db $bc
+
+Data_128eb:
+	db 1
+	db $bd
+
+Data_128ed:
+	db 1
+	db $be
+
+Data_128ef:
+	db 1
+	db $bf
+
+Data_128f1:
+	db 1
+	db $c0
+
+Data_128f3:
+	db 1
+	db $c1
+
+Data_128f5:
+	db 1
+	db $c2
+
+Data_128f7:
+	db 1
+	db $c3
+
+Data_128f9:
+	db 1
+	db $c4
+
+Data_128fb:
+	db $ff
+
+Data_128fc:
+	db 1
+	db $bb
+
+Data_128fe:
+	db $ff
 
 Func_128ff:
 	dr $128ff, $12921
@@ -7453,7 +7991,10 @@ Func_130bc:
 	dr $130bc, $13124
 
 Func_13124:
-	dr $13124, $131a0
+	dr $13124, $1316d
+
+Func_1316d:
+	dr $1316d, $131a0
 
 Func_131a0:
 	dr $131a0, $1329a
@@ -7471,7 +8012,10 @@ Func_13340:
 	dr $13340, $1336e
 
 Func_1336e:
-	dr $1336e, $13474
+	dr $1336e, $133ab
+
+Func_133ab:
+	dr $133ab, $13474
 
 Func_13474:
 	dr $13474, $134aa
