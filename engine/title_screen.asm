@@ -1,5 +1,5 @@
 TitleScreen: ; 893f (2:493f)
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	ld hl, Pointers_8949
 	call GetHalfwordFromTable
 	jp [hl]
@@ -177,7 +177,7 @@ Func_8a63:
 	ld a, $10
 	ld [wcf96], a
 	ld a, $11
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_8ac3:
@@ -207,7 +207,7 @@ Func_8acd:
 	ld a, $3
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 .asm_8af6
@@ -215,7 +215,7 @@ Func_8acd:
 	ld a, $3
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_8b03:
@@ -260,14 +260,14 @@ Func_8b44:
 	ld a, $3
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_8b59:
 	ld a, $4
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_8b63:

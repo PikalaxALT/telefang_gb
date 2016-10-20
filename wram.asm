@@ -97,8 +97,8 @@ wc3dd:: ds 1
 wc3de:: ds 1
 wc3df:: ds 1
 wGameRoutine:: ds 1
-wc3e1:: ds 1
-wc3e2:: ds 1
+wSubroutine:: ds 1
+wSubroutine2:: ds 1
 wc3e3:: ds 1
 wc3e4:: ds 1
 wc3e5:: ds 1

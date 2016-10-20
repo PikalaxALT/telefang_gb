@@ -1,5 +1,5 @@
 OpeningLogos: ; 9300 (2:5300)
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	ld hl, Pointers_930a
 	call GetHalfwordFromTable
 	jp [hl]
@@ -133,7 +133,7 @@ Func_9406: ; 9406 (2:5406)
 	ld a, $0
 	call Func_050a
 	ld a, $14
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 .asm_9417
@@ -224,7 +224,7 @@ Func_94c5: ; 94c5 (2:54c5)
 	ld a, $1
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_94dc: ; 94dc (2:54dc)
@@ -235,7 +235,7 @@ Func_94dc: ; 94dc (2:54dc)
 	ld a, $1
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_94ed: ; 94ed (2:54ed)
@@ -298,12 +298,12 @@ Func_9557: ; 9557 (2:5557)
 	ld a, $0
 	call Func_050a
 	ld a, $28
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_9562: ; 9562 (2:5562)
 	ld a, $1
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_9568: ; 9568 (2:5568)
@@ -319,7 +319,7 @@ Func_9573: ; 9573 (2:5573)
 	ld [rIF], a
 	ld [rIE], a
 	xor a
-	ld [wc3e2], a
+	ld [wSubroutine2], a
 	ld [wc46c], a
 	ld [wc469], a
 	ld [wc46d], a
@@ -357,7 +357,7 @@ Func_9573: ; 9573 (2:5573)
 	ld [wc430], a
 	call ClearObjectAnimationBuffers
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld b, $0
 	call Func_3768
 	ret

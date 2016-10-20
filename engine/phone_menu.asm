@@ -1,5 +1,5 @@
 PhoneMenu:
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	ld hl, Pointers_1000a
 	call GetHalfwordFromTable
 	jp [hl]
@@ -169,7 +169,7 @@ Func_1013b: ; 1013b (4:413b)
 	jr z, .asm_1015b
 	ld a, $c
 .asm_10152
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, $2
 	ld [H_FFA1], a
 	ret
@@ -197,7 +197,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld a, $1
 	ld [wcb3f], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld [wd400], a
 	ld a, $f
 	ld [wGameRoutine], a
@@ -216,7 +216,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld [wc91e], a
 	call Func_3566
 	ld a, $18
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	jp Func_12cd3
 
 .asm_101b7
@@ -230,7 +230,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld a, $10
 	ld [wcf96], a
 	ld a, $e
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 .asm_101d3
@@ -242,7 +242,7 @@ Func_101d9: ; 101d9 (4:41d9)
 	ld a, $3
 	ld [H_FFA1], a
 	ld a, $f
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	xor a
 	ld [wcb39], a
 	ld [wcb3a], a
@@ -270,7 +270,7 @@ Func_10205: ; 10205 (4:4205)
 	ld bc, $307
 	call Func_11939
 	ld a, $8
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_10216: ; 10216 (4:4216)
@@ -285,7 +285,7 @@ Func_10221: ; 10221 (4:4221)
 	ld bc, $306
 	call Func_11939
 	ld a, $b
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_10232: ; 10232 (4:4232)
@@ -304,7 +304,7 @@ Func_10232: ; 10232 (4:4232)
 	ld a, $5
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	call LoadGame_
 	ld b, $1
 	call Func_3768
@@ -325,7 +325,7 @@ Func_10265: ; 10265 (4:4265)
 .asm_1027e
 	call DecompressGFXByIndex_
 	ld a, $1b
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 .asm_10287
@@ -436,7 +436,7 @@ Func_10346: ; 10346 (4:4346)
 	ld a, $5
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld b, $1
 	call Func_3768
 	call ClearSRAM
@@ -484,7 +484,7 @@ Func_103b4: ; 103b4 (4:43b4)
 	ld [H_MusicID], a
 	call Func_11927
 	ld a, $8
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_103e2: ; 103e2 (4:43e2)
@@ -515,7 +515,7 @@ Func_1040e: ; 1040e (4:440e)
 .asm_1041b
 	call DecompressGFXByIndex_
 	ld a, $10
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_10424: ; 10424 (4:4424)
@@ -535,7 +535,7 @@ Func_10424: ; 10424 (4:4424)
 	call Func_13959
 	call Func_11927
 	ld a, $8
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_10452: ; 10452 (4:4452)
@@ -681,7 +681,7 @@ Func_1057d: ; 1057d (4:457d)
 	call Func_3768
 	call SaveGame_
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 .asm_105b0
@@ -690,5 +690,5 @@ Func_1057d: ; 1057d (4:457d)
 	ld a, $5
 	ld [wGameRoutine], a
 	ld a, $a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret

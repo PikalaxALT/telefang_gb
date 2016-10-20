@@ -2,13 +2,13 @@ PlayIntroMovie: ; 80bf (2:40bf)
 	ld a, [hJoyNew]
 	and A_BUTTON | START
 	jr z, .asm_80d1
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	cp $20
 	jr nc, .asm_80d1
 	ld a, $20
-	ld [wc3e1], a
+	ld [wSubroutine], a
 .asm_80d1
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	ld hl, Pointers_80db
 	call GetHalfwordFromTable
 	jp [hl]
@@ -457,7 +457,7 @@ Func_8474: ; 8474 (2:4474)
 
 Func_848b: ; 848b (2:448b)
 	ld a, $1f
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_8491: ; 8491 (2:4491)
@@ -469,7 +469,7 @@ Func_8491: ; 8491 (2:4491)
 	ld a, $1
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld [wSCX], a
 	ld [wSCY], a
 	ld [wc46d], a

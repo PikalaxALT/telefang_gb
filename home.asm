@@ -76,7 +76,7 @@ Func_02d0: ; 2d0 (0:02d0)
 	xor a
 	ld [wGameRoutine], a
 	ld a, $2a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 INCLUDE "home/vblank.asm"
@@ -1137,15 +1137,15 @@ GetHalfwordFromTable::
 	ret
 
 IncrementSubroutine::
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	inc a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 IncrementSubroutine2::
-	ld a, [wc3e2]
+	ld a, [wSubroutine2]
 	inc a
-	ld [wc3e2], a
+	ld [wSubroutine2], a
 	ret
 
 WrapAroundBGMapOrWindowHorizontal: ; eb3 (0:0eb3)
@@ -2832,7 +2832,7 @@ CompressedGFXAddresses:
 	dw $0000
 
 Func_1ea1: ; 1ea1 (0:1ea1)
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	cp $0
 	jr z, .asm_1ee2
 	cp $a
@@ -2854,7 +2854,7 @@ Func_1ea1: ; 1ea1 (0:1ea1)
 	ld a, [rLY]
 	cp $64
 	call c, Func_34dc
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	cp $4
 	jr z, .asm_1f07
 	cp $5
@@ -2945,7 +2945,7 @@ Func_1f80: ; 1f80 (0:1f80)
 .asm_1fbe
 	call Func_1fff
 	ld a, b
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, $4
 	jp Func_122d
 
@@ -2964,7 +2964,7 @@ Func_1fca: ; 1fca (0:1fca)
 	call Func_20f6
 	call Func_1fff
 	ld a, $17
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	xor a
 	ld [wca5d], a
 	ld a, $4
@@ -3065,7 +3065,7 @@ Func_2021: ; 2021 (0:2021)
 	ld [wd403], a
 Func_20b1: ; 20b1 (0:20b1)
 	call Func_20f6
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	cp $5
 	ret z
 	call Func_30a7
@@ -3076,7 +3076,7 @@ Func_20b1: ; 20b1 (0:20b1)
 	ld [wc9d9], a
 	ld [wc91d], a
 	ld a, $6
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, $1
 	ld [wc917], a
 	call GetMusicBank
@@ -3107,7 +3107,7 @@ Func_2107: ; 2107 (0:2107)
 	ld a, [wcd00]
 	or a
 	jr nz, .asm_2121
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	cp $4
 	jr nz, .asm_2121
 	ld a, [wc98e]
@@ -3125,7 +3125,7 @@ Func_2122::
 	ld bc, $180 tiles
 	call Func_3801
 	ld a, $a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_2134::
@@ -3173,7 +3173,7 @@ Func_2134::
 	call Func_3395
 	call Func_225b
 	ld a, $4
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld b, $3
 .asm_21b3
 	push bc
@@ -3184,7 +3184,7 @@ Func_2134::
 	dec b
 	jr nz, .asm_21b3
 	ld a, $0
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	jp IncrementSubroutine
 
 Func_21db::
@@ -3226,11 +3226,11 @@ Func_21db::
 	ld [wca51], a
 	call Func_30240
 	ld a, $4
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	call Func_236c
 	homecall Func_30000
 	ld a, $1
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	homecall Func_3c00c
 	ret
 
@@ -3353,7 +3353,7 @@ Func_2353::
 	or a
 	jp z, IncrementSubroutine
 	ld a, $5
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_236c: ; 236c (0:236c)
@@ -3370,7 +3370,7 @@ Func_236c: ; 236c (0:236c)
 	sub b
 	ld [wc484], a
 	homecall Func_38f8d
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	cp $4
 	jr nz, .asm_23bc
 	ld a, [wc49b]
@@ -3395,7 +3395,7 @@ Func_23c3::
 	ld a, $6
 	ld [wGameRoutine], a
 	ld a, $0
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_23d1::
@@ -3404,7 +3404,7 @@ Func_23d1::
 	ld a, $c
 	ld [wGameRoutine], a
 	ld a, $0
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_23e2: ; 23e2 (0:23e2)
@@ -3443,7 +3443,7 @@ Func_242b::
 	cp $9
 	jr nz, .asm_2464
 	ld a, $4
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, [wc900]
 	cp $4
 	jr nz, .asm_2464
@@ -3452,7 +3452,7 @@ Func_242b::
 	callba Func_2ccb9
 	call Func_2411
 	ld a, $24
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, $4
 	jp Func_122d
 
@@ -3498,7 +3498,7 @@ Func_24ad::
 	call Func_2793
 	homecall Func_c981a
 	ld a, $0
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ret
 
 Func_24c9::
@@ -3518,7 +3518,7 @@ Func_24d8::
 	ld a, $b
 	ld [wGameRoutine], a
 	xor a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, [wLCDC]
 	res 5, a
 	ld [wLCDC], a
@@ -4329,7 +4329,7 @@ Func_29ed::
 	ld a, $0
 	ld [wc947], a
 	ld a, $7
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, $5
 	call Func_122d
 Func_2a65: ; 2a65 (0:2a65)
@@ -5885,7 +5885,7 @@ HandleOverworldGFX: ; 3442 (0:3442)
 	ld a, [wGameRoutine]
 	cp $5
 	ret nz
-	ld a, [wc3e1]
+	ld a, [wSubroutine]
 	cp $5
 	jr z, .go
 	cp $4

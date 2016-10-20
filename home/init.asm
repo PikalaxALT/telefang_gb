@@ -74,7 +74,7 @@ Start::
 .skip
 	xor a
 	ld [wGameRoutine], a
-	ld [wc3e1], a
+	ld [wSubroutine], a
 	ld a, $3
 	rst Bankswitch
 .loop
