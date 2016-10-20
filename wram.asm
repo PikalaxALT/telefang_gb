@@ -2611,7 +2611,7 @@ wcdad:: ds 1
 wcdae:: ds 1
 wcdaf:: ds 1
 wcdb0:: ds 1
-wcdb1:: ds 1
+wFontPaletteMode:: ds 1
 wcdb2:: ds 1
 wcdb3:: ds 1
 wcdb4:: ds 1

@@ -2318,11 +2318,11 @@ Func_1a8e::
 	ld [de], a
 	ld hl, VTilesBG + $40 tiles
 	ld b, $4
-	call $5a06
+	call ClearTiles
 	ld de, wc9e1
 	ld b, $4
 	ld hl, VTilesBG + $40 tiles
-	jp Func_0560
+	jp PlaceString_
 
 Func_1ac6::
 	ld de, VTilesBG + $40 tiles
@@ -3158,7 +3158,7 @@ Func_2134::
 	ld [wc923], a
 	homecall Func_a52b2
 	ld a, $0
-	ld [wcdb1], a
+	ld [wFontPaletteMode], a
 	call Func_24f6
 	call Func_2264
 	call Func_3252
@@ -5203,14 +5203,14 @@ Func_2fb4::
 	pop af
 	ret
 
-Func_2fc7::
+LoadCharacter_::
 	push af
 	ld a, [wROMBank]
 	ld [wca52], a
-	ld a, BANK(Func_2ce29)
+	ld a, BANK(LoadCharacter)
 	rst Bankswitch
 	pop af
-	call Func_2ce29
+	call LoadCharacter
 	ld a, [wca52]
 	rst Bankswitch
 	ret
@@ -6107,7 +6107,7 @@ Func_3566: ; 3566 (0:3566)
 	ld b, $80
 asm_3578
 	di
-	ld a, [wcdb1]
+	ld a, [wFontPaletteMode]
 	cp $2
 	jr z, .inverted
 .wait_stat
@@ -6875,12 +6875,10 @@ Func_3a01: ; 3a01 (0:3a01)
 	ld d, $0
 	ld a, [wd435]
 	ld e, a
+REPT 3
 	sla e
 	rl d
-	sla e
-	rl d
-	sla e
-	rl d
+ENDR
 	add hl, de
 	ld bc, $8
 	ld de, wd440
@@ -6960,21 +6958,21 @@ Func_3a35: ; 3a35 (0:3a35)
 	ld [wd45f], a
 	ret
 
-Func_3a91: ; 3a91 (0:3a91)
+PlaceString: ; 3a91 (0:3a91)
 	xor a
 	ld [wcb2f], a
-Func_3a95: ; 3a95 (0:3a95)
+.loop
 	push bc
 	push de
 	push hl
 	ld a, [de]
 	cp $e0
-	jp z, Func_3ab7
+	jp z, .break
 	pop hl
 	push hl
-	call Func_2fc7
+	call LoadCharacter_
 	pop hl
-	ld bc, $10
+	ld bc, 1 tiles
 	add hl, bc
 	pop de
 	inc de
@@ -6983,10 +6981,10 @@ Func_3a95: ; 3a95 (0:3a95)
 	ld [wcb2f], a
 	pop bc
 	dec b
-	jp nz, Func_3a95
+	jp nz, .loop
 	ret
 
-Func_3ab7: ; 3ab7 (0:3ab7)
+.break
 	pop hl
 	pop de
 	pop bc
@@ -7015,7 +7013,7 @@ Func_3ac3: ; 3ac3 (0:3ac3)
 	pop hl
 	ld de, wd440
 	ld b, $8
-	jp Func_0560
+	jp PlaceString_
 
 Func_3adc::
 	ld [wd435], a
@@ -7040,7 +7038,7 @@ Func_3adc::
 	ld de, wc3a0
 	pop hl
 	ld b, $8
-	jp Func_0560
+	jp PlaceString_
 
 Func_3b09: ; 3b09 (0:3b09)
 	ld [wd435], a
@@ -7055,7 +7053,7 @@ Func_3b09: ; 3b09 (0:3b09)
 	pop hl
 	ld de, wd440
 	ld b, $4
-	jp Func_0560
+	jp PlaceString_
 
 Func_3b22: ; 3b22 (0:3b22)
 	ld a, [wd497]
@@ -7372,7 +7370,7 @@ Func_3d5c: ; 3d5c (0:3d5c)
 	push af
 	ld de, Data_3ac2
 	ld b, $1
-	call Func_0560
+	call PlaceString_
 	pop af
 	dec a
 	jr nz, Func_3d5c
@@ -7522,7 +7520,7 @@ Func_3e19::
 	ld de, wOAMAnimationsEnd
 	ld b, $8
 	pop hl
-	jp Func_0560
+	jp PlaceString_
 
 Func_3e45: ; 3e45 (0:3e45)
 	ld hl, Data_9cbfa

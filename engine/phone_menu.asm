@@ -432,7 +432,7 @@ Func_10346: ; 10346 (4:4346)
 	ld [wWX], a
 	ld [wWY], a
 	ld [wcb2a], a
-	ld [wcdb1], a
+	ld [wFontPaletteMode], a
 	ld a, $5
 	ld [wGameRoutine], a
 	xor a
@@ -547,7 +547,7 @@ Func_10452: ; 10452 (4:4452)
 	call DecompressGFXByIndex_
 	ld hl, $9700
 	ld b, $10
-	call Func_11a06
+	call ClearTiles
 	ld bc, $0
 	ld e, $10
 	call Func_13959
@@ -673,7 +673,7 @@ Func_1057d: ; 1057d (4:457d)
 	ld [wWX], a
 	ld [wWY], a
 	ld [wcb2a], a
-	ld [wcdb1], a
+	ld [wFontPaletteMode], a
 	ld a, [wcb3f]
 	cp $0
 	jr z, .asm_105b0

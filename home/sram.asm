@@ -20,11 +20,7 @@ CopyROMName: ; f3f (0:0f3f)
 	ret
 
 ROMName::
-IF DEF(POWER)
-	db " TELEFANG POWER", 0
-ELSE
-	db " TELEFANG SPEED", 0
-ENDC
+INCLUDE "home/rom_name.asm"
 ROMNameEnd::
 
 CalculateChecksum: ; f71 (0:0f71)

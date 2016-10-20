@@ -1,5 +1,5 @@
-INCLUDE "charmap.asm"
 INCLUDE "macros.asm"
+INCLUDE "charmap.asm"
 INCLUDE "gbhw.asm"
 INCLUDE "hram.asm"
 INCLUDE "constants.asm"

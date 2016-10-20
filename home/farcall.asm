@@ -149,7 +149,7 @@ Func_0543::
 	ret
 
 Func_0548::
-	ld a, $75
+	ld a, BANK(Data_1d4000)
 	rst Bankswitch
 	call Func_3a01
 	rst MemBankswitch
@@ -169,8 +169,8 @@ Func_0558::
 	rst MemBankswitch
 	ret
 
-Func_0560::
-	call Func_3a91
+PlaceString_::
+	call PlaceString
 	rst MemBankswitch
 	ret
 

@@ -132,3 +132,12 @@ addntimes_hl_de: MACRO
 	jr nz, .loop\@
 .skip\@
 ENDM
+
+char_def: MACRO
+cur_char = 0
+ENDM
+
+defchar: MACRO
+	charmap \1, cur_char
+cur_char = cur_char + 1
+ENDM
