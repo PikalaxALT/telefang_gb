@@ -3378,7 +3378,7 @@ Func_1082e: ; 1082e (4:482e)
 	ld bc, $307
 	call Func_119df
 	call Func_135ef
-	ld de, wOAMAnimation01_PriorityFlags
+	ld de, wOAMAnimation01
 	call Func_099c
 	ld a, $32
 	call GetMusicBank
@@ -3831,7 +3831,7 @@ Func_10b92:
 	call Func_13951
 	ld a, $4
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	call Func_1329a
 	ld a, $1
@@ -4072,11 +4072,11 @@ Func_10d86:
 	ld [wOAMAnimation03_TemplateBank], a
 	ld a, $d
 	ld [wd411], a
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0609
 	ld a, $4
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	xor a
 	ld [wcb67], a
@@ -4087,9 +4087,9 @@ Func_10d86:
 	jp IncrementSubroutine2
 
 Func_10dd3:
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0616
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0616
 	ld a, $1
 	ld [wc430], a
@@ -4209,7 +4209,7 @@ Func_10e8e:
 	ld [wcb6e], a
 	ld a, $4
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	call Func_11fe9
 	jp IncrementSubroutine2
@@ -4413,7 +4413,7 @@ Func_1103c: ; 1103c (4:503c)
 	call Func_13951
 	ld a, $4
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	xor a
 	ld [wcb67], a
@@ -4421,7 +4421,7 @@ Func_1103c: ; 1103c (4:503c)
 	jp IncrementSubroutine2
 
 Func_11056: ; 11056 (4:5056)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0616
 	jp Func_122ea
 
@@ -4491,9 +4491,9 @@ Func_110d6:
 	jp IncrementSubroutine2
 
 Func_110d9:
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0616
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0616
 	jp Func_12e00
 
@@ -4598,7 +4598,7 @@ Func_11177: ; 11177 (4:5177)
 	call Func_0609
 	ld a, $b
 	ld [wd411], a
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0609
 	ld a, $40
 	ld [wOAMAnimation02_XCoord], a
@@ -4623,7 +4623,7 @@ Func_111dd: ; 111dd (4:51dd)
 	ld a, [wcb68]
 	cp $1
 	jr z, .asm_111f0
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0616
 	ld de, wOAMAnimation03
 	call Func_0616
@@ -4837,7 +4837,7 @@ Func_11370: ; 11370 (4:5370)
 	call Func_0609
 	ld a, $b
 	ld [wd411], a
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0609
 	ld a, $40
 	ld [wOAMAnimation02_XCoord], a
@@ -4864,7 +4864,7 @@ Func_113d6: ; 113d6 (4:53d6)
 	jr z, .asm_113e9
 	ld de, wOAMAnimation02
 	call Func_0616
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0616
 .asm_113e9
 	jp Func_13028
@@ -5068,7 +5068,7 @@ Func_114ff: ; 114ff (4:54ff)
 	call Func_13f70
 	ld a, $4
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	ld a, $b
 	ld [wd411], a
@@ -5270,13 +5270,13 @@ Func_116e7: ; 116e7 (4:56e7)
 	ld de, wOAMAnimation18
 	ld bc, $2820
 	call Func_11789
-	ld de, wOAMAnimation19_PriorityFlags
+	ld de, wOAMAnimation19
 	ld bc, $3820
 	call Func_11789
-	ld de, wOAMAnimation20_PriorityFlags
+	ld de, wOAMAnimation20
 	ld bc, $4020
 	call Func_11789
-	ld de, wOAMAnimation21_PriorityFlags
+	ld de, wOAMAnimation21
 	ld bc, Func_3020
 	call Func_11789
 	ld a, $1
@@ -6211,7 +6211,7 @@ Func_11d7e: ; 11d7e (4:5d7e)
 	ld c, a
 	ld a, $a
 	ld [wOAMAnimation02_TemplateIdx], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_11781
 	ld a, [wc3c0]
 	and $f
@@ -6404,9 +6404,9 @@ Func_11ed8: ; 11ed8 (4:5ed8)
 Func_11ee9: ; 11ee9 (4:5ee9)
 	ld a, $1
 	ld [wc430], a
-	ld de, wOAMAnimation01_PriorityFlags
+	ld de, wOAMAnimation01
 	call Func_099c
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	jp Func_099c
 
 Func_11efa: ; 11efa (4:5efa)
@@ -6766,7 +6766,7 @@ Func_1208b: ; 1208b (4:608b)
 	ld [wcb66], a
 	ld a, $3
 	ld [H_FFA1], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_099c
 	call Func_11f76
 	call Func_072f
@@ -7716,7 +7716,7 @@ Func_127e3: ; 127e3 (4:67e3)
 	push hl
 	call Get2DigitBCD
 	pop hl
-	jp Func_1316d
+	jp Print2DigitBCD_2
 
 Func_127eb:
 	push hl
@@ -7933,7 +7933,7 @@ Func_128ff: ; 128ff (4:68ff)
 	ld a, [hl]
 	ld b, a
 	ld c, $68
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_11789
 	ld a, $1
 	ld [wc430], a
@@ -7954,7 +7954,7 @@ Func_12921: ; 12921 (4:6921)
 	add $10
 	ld b, a
 	ld c, $70
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_11789
 	ld a, $1
 	ld [wc430], a
@@ -8084,6 +8084,8 @@ Func_129c4: ; 129c4 (4:69c4)
 	ld bc, $3 tiles
 	ld a, BANK(GFX_dee5f)
 	jp Copy2bpp
+
+Func_12a08:
 	ld a, [wCurPhoneGFX]
 	ld e, a
 	ld d, $0
@@ -8331,7 +8333,7 @@ Func_12baa: ; 12baa (4:6baa)
 	dec a
 	add $2f
 	ld [wOAMAnimation16_TemplateIdx], a
-	ld de, wOAMAnimation16_PriorityFlags
+	ld de, wOAMAnimation16
 	ld bc, $1028
 	jp Func_11789
 
@@ -8533,7 +8535,7 @@ Func_12cd3: ; 12cd3 (4:6cd3)
 	call Func_127e3
 	ld a, [wcb40]
 	hlbgcoord 4, 13
-	jp Func_1315b
+	jp Print3DigitBCD
 
 Func_12d32: ; 12d32 (4:6d32)
 	ld e, a
@@ -9067,38 +9069,38 @@ Func_1310c:
 	ld a, [wcd24]
 	inc a
 	hlbgcoord 2, 16
-	call Func_1315b
+	call Print3DigitBCD
 	ld a, $ee
 	call WaitStatAndLoad
 	ld a, [wcb70]
 	hlbgcoord 6, 16
-	jp Func_1315b
+	jp Print3DigitBCD
 
 Func_13124: ; 13124 (4:7124)
 	ld a, [wcd24]
 	call Func_13d38
 	hlbgcoord 4, 14
-	call Func_1315b
+	call Print3DigitBCD
 	ld a, [wcb70]
 	hlbgcoord 4, 17
-	jp Func_1315b
+	jp Print3DigitBCD
 
 Func_13139:
 	ld a, [wcd23]
 	inc a
 	hlbgcoord 2, 14
-	call Func_1315b
+	call Print3DigitBCD
 	ld a, $ee
 	call WaitStatAndLoad
 	ld a, [wcb72]
 	inc a
 	hlbgcoord 6, 14
-	call Func_1315b
+	call Print3DigitBCD
 	ld a, [wcb76]
 	hlbgcoord 3, 17
-	jp Func_1315b
+	jp Print3DigitBCD
 
-Func_1315b: ; 1315b (4:715b)
+Print3DigitBCD: ; 1315b (4:715b)
 	push hl
 	call Get2DigitBCD
 	pop hl
@@ -9109,7 +9111,7 @@ Func_1315b: ; 1315b (4:715b)
 	call WaitStat
 	ld [hli], a
 	ei
-Func_1316d: ; 1316d (4:716d)
+Print2DigitBCD_2: ; 1316d (4:716d)
 	ld a, [wc44f]
 	and $f0
 	swap a
@@ -9120,6 +9122,7 @@ Func_1316d: ; 1316d (4:716d)
 	ei
 	ld a, [wc44f]
 	and $f
+LoadBCDDigit:
 	add $e0
 	di
 	call WaitStat
@@ -9143,212 +9146,1999 @@ Func_1318a:
 	ld a, $1
 	ret
 
-Func_131a0:
-	dr $131a0, $1329a
-
-Func_1329a:
-	dr $1329a, $132d9
-
-Func_132d9:
-	dr $132d9, $13312
-
-Func_13312:
-	dr $13312, $13340
-
-Func_13340:
-	dr $13340, $1336e
-
-Func_1336e:
-	dr $1336e, $133ab
-
-Func_133ab:
-	dr $133ab, $13474
-
-Func_13474:
-	dr $13474, $134aa
-
-Func_134aa:
-	dr $134aa, $135ef
-
-Func_135ef:
-	dr $135ef, $1360a
-
-Func_1360a:
-	dr $1360a, $136d2
-
-Func_136d2:
-	dr $136d2, $1371c
-
-Func_1371c:
-	dr $1371c, $137a1
-
-Func_137a1:
-	dr $137a1, $137af
-
-Func_137af:
-	dr $137af, $137d9
-
-Func_137d9:
-	dr $137d9, $137df
-
-Func_137df:
-	dr $137df, $137fa
-
-Func_137fa:
-	dr $137fa, $13816
-
-Func_13816:
-	dr $13816, $138e2
-
-Func_138e2:
-	dr $138e2, $13907
-
-Func_13907:
-	dr $13907, $13931
-
-Func_13931:
-	dr $13931, $13939
-
-Func_13939:
-	dr $13939, $13951
-
-Func_13951:
-	dr $13951, $13959
-
-Func_13959:
-	dr $13959, $13963
-
-Func_13963:
-	dr $13963, $1396d
-
-Func_1396d:
-	dr $1396d, $139f9
-
-Print2DigitBCD:
-	dr $139f9, $13a0b
-
-Func_13a0b:
-	dr $13a0b, $13a1e
-
-Func_13a1e:
-	dr $13a1e, $13a30
-
-Func_13a30:
-	dr $13a30, $13a3a
-
-Func_13a3a:
-	dr $13a3a, $13a42
-
-Func_13a42:
-	dr $13a42, $13a4e
-
-Func_13a4e:
-	dr $13a4e, $13b3a
-
-Func_13b3a:
-	dr $13b3a, $13b79
-
-Func_13b79:
-	dr $13b79, $13c53
-
-Func_13c53:
-	dr $13c53, $13c7e
-
-Func_13c7e:
-	dr $13c7e, $13c8f
-
-Func_13c8f:
-	dr $13c8f, $13cf4
-
-Func_13cf4:
-	dr $13cf4, $13d38
-
-Func_13d38:
-	dr $13d38, $13d46
-
-Func_13d46:
-	dr $13d46, $13d8c
-
-Func_13d8c:
-	dr $13d8c, $13dca
-
-Func_13dca:
-	dr $13dca, $13dea
-
-Func_13dea:
-	dr $13dea, $13e08
-
-Func_13e08:
-	dr $13e08, $13e27
-
-Func_13e27:
-	dr $13e27, $13e37
-
-Func_13e37:
-	dr $13e37, $13e4c
-
-Func_13e4c:
-	dr $13e4c, $13e58
-
-Func_13e58:
-	dr $13e58, $13e6e
-
-Func_13e6e:
-	dr $13e6e, $13eb5
-
-Func_13eb5:
-	dr $13eb5, $13ee7
-
-Rom4_GetSRAMBankB:
-	dr $13ee7, $13ef1
-
-Rom4_CloseSRAM:
-	dr $13ef1, $13ef6
-
-Func_13ef6:
-	dr $13ef6, $13f15
-
-Func_13f15:
-	dr $13f15, $13f18
-
-Func_13f18:
-	dr $13f18, $13f38
-
-Func_13f38:
-	dr $13f38, $13f3d
-
-Func_13f3d:
-	dr $13f3d, $13f3f
-
-Func_13f3f:
-	dr $13f3f, $13f47
-
-Func_13f47:
-	dr $13f47, $13f4e
-
-Func_13f4e:
-	dr $13f4e, $13f51
-
-Func_13f51:
-	dr $13f51, $13f70
-
-Func_13f70:
-	dr $13f70, $13f8c
-
-Func_13f8c:
-	dr $13f8c, $13fb5
-
-Func_13fb5:
-	dr $13fb5, $13fc6
-
-Func_13fc6:
-	dr $13fc6, $13fd2
-
-Func_13fd2:
-	dr $13fd2, $13fdf
-
-Func_13fdf:
-	dr $13fdf, $13ff0
+Func_131a0: ; 131a0 (4:71a0)
+	ld a, [wJoyNew]
+	and $40
+	jp z, Func_131bd
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb67]
+	cp $0
+	jr nz, .asm_131b6
+	ld a, $3
+.asm_131b6
+	dec a
+	ld [wcb67], a
+	jp Func_1329a
+
+Func_131bd: ; 131bd (4:71bd)
+	ld a, [wJoyNew]
+	and $80
+	jp z, Func_131da
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb67]
+	cp $2
+	jr nz, .asm_131d3
+	ld a, $ff
+.asm_131d3
+	inc a
+	ld [wcb67], a
+	jp Func_1329a
+
+Func_131da: ; 131da (4:71da)
+	ld a, [hJoyNew]
+	and $2
+	jp z, Func_13209
+	ld a, $4
+	ld [H_FFA1], a
+	ld e, $2d
+	call Func_13951
+	ld bc, $12
+	check_cgb
+	jr z, .asm_131f8
+	ld bc, $57
+.asm_131f8
+	call DecompressGFXByIndex_
+	ld de, wOAMAnimation02
+	call Func_099c
+	ld a, $1
+	ld [wSubroutine2], a
+	jp Func_1236b
+
+Func_13209: ; 13209 (4:7209)
+	ld a, [hJoyNew]
+	and $1
+	jp z, Func_13266
+	ld a, [wcb67]
+	cp $0
+	jp z, Func_13243
+	cp $1
+	jp z, Func_13267
+	ld de, wOAMAnimation02
+	call Func_099c
+	ld a, $3
+	ld [H_FFA1], a
+	ld e, $2d
+	call Func_13951
+	ld bc, $13
+	check_cgb
+	jr z, .asm_1323a
+	ld bc, $5a
+.asm_1323a
+	call DecompressGFXByIndex_
+	ld a, $11
+	ld [wSubroutine2], a
+	ret
+
+Func_13243: ; 13243 (4:7243)
+	call Func_13e4c
+	call Func_132b0
+	xor a
+	ld [wcb67], a
+	ld a, $10
+	ld [wcb2c], a
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $9
+	ld [wSubroutine2], a
+	ret
+
+Func_13261:
+	ld a, $5
+	ld [H_FFA1], a
+	ret
+
+Func_13266: ; 13266 (4:7266)
+	ret
+
+Func_13267: ; 13267 (4:7267)
+	call Func_1318a
+	cp $0
+	jr z, .asm_13274
+	ld a, $5
+	ld [H_FFA1], a
+	ret
+
+.asm_13274
+	ld a, $3
+	ld [H_FFA1], a
+	ld bc, $109
+	ld e, $59
+	call Func_13959
+	ld a, $4
+	ld [wd411], a
+	ld de, wOAMAnimation02
+	call Func_0609
+	ld a, $1
+	ld [wcb68], a
+	call Func_139e7
+	ld a, $14
+	ld [wSubroutine2], a
+	ret
+
+Func_1329a: ; 1329a (4:729a)
+	ld b, $10
+	ld a, [wcb67]
+	sla a
+	sla a
+	sla a
+	sla a
+	add $58
+Func_132a9:
+	ld c, a
+	ld de, wOAMAnimation02
+	jp Func_11789
+
+Func_132b0:
+	push af
+	and $f0
+	swap a
+	ld d, a
+	pop af
+	and $f
+	swap a
+	ld e, a
+	ld b, BANK(s2_a00a)
+	call Rom4_GetSRAMBankB
+	ld hl, s2_a00a
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	push af
+	call Rom4_CloseSRAM
+	pop af
+	call Func_0667
+	jp Func_12aef
+
+Func_132d9: ; 132d9 (4:72d9)
+	ld a, $40
+	ld [wOAMAnimation02_XCoord], a
+	ld a, $8
+	ld [wOAMAnimation03_XCoord], a
+	ld a, $60
+	ld [wOAMAnimation02_YCoord], a
+	ld [wOAMAnimation03_YCoord], a
+	ld b, $1
+	ld a, [wcb72]
+	dec a
+	cp $0
+	jr nz, .asm_132f7
+	ld b, $0
+.asm_132f7
+	ld a, b
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld a, $0
+	ld [wOAMAnimation02_TemplateBank], a
+	ld [wOAMAnimation03_TemplateBank], a
+	ld de, wOAMAnimation02
+	call Func_0616
+	ld de, wOAMAnimation03
+	jp Func_0616
+
+Func_13312: ; 13312 (4:7312)
+	ld a, $40
+	ld [wOAMAnimation02_XCoord], a
+	ld a, $8
+	ld [wOAMAnimation03_XCoord], a
+	ld a, $60
+	ld [wOAMAnimation02_YCoord], a
+	ld [wOAMAnimation03_YCoord], a
+	ld a, $1
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld a, $0
+	ld [wOAMAnimation02_TemplateBank], a
+	ld [wOAMAnimation03_TemplateBank], a
+	ld de, wOAMAnimation02
+	call Func_0616
+	ld de, wOAMAnimation03
+	jp Func_0616
+
+Func_13340: ; 13340 (4:7340)
+	ld a, $90
+	ld [wOAMAnimation02_XCoord], a
+	ld a, $8
+	ld [wOAMAnimation03_XCoord], a
+	ld a, $60
+	ld [wOAMAnimation02_YCoord], a
+	ld [wOAMAnimation03_YCoord], a
+	ld a, $1
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld a, $0
+	ld [wOAMAnimation02_TemplateBank], a
+	ld [wOAMAnimation03_TemplateBank], a
+	ld de, wOAMAnimation02
+	call Func_0616
+	ld de, wOAMAnimation03
+	jp Func_0616
+
+Func_1336e: ; 1336e (4:736e)
+	ld a, $40
+	ld [wOAMAnimation02_XCoord], a
+	ld a, $8
+	ld [wOAMAnimation03_XCoord], a
+	ld a, $50
+	ld [wOAMAnimation02_YCoord], a
+	ld [wOAMAnimation03_YCoord], a
+	ld a, $1
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld a, [wcb37]
+	dec a
+	cp $0
+	jr nz, .asm_13397
+	xor a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+.asm_13397
+	ld a, $0
+	ld [wOAMAnimation02_TemplateBank], a
+	ld [wOAMAnimation03_TemplateBank], a
+	ld de, wOAMAnimation02
+	call Func_0616
+	ld de, wOAMAnimation03
+	jp Func_0616
+
+Func_133ab: ; 133ab (4:73ab)
+	ld hl, Data_133c0
+	ld de, Data_1341a
+	ld c, $5a
+	ld b, a
+.asm_133b4
+	ld a, [hli]
+	cp b
+	jr z, .asm_133be
+	inc de
+	dec c
+	jr nz, .asm_133b4
+	ld a, b
+	ret
+
+.asm_133be
+	ld a, [de]
+	ret
+
+Data_133c0:
+	db $3d, $3e, $3f, $40, $41
+	db $42, $43, $44, $45, $46
+	db $47, $48, $49, $4a, $4b
+	db $51, $52, $53, $1d, $54
+	db $96, $97, $98, $7f, $99
+	db $06, $07, $08, $09, $0a
+	db $0b, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $13, $14
+	db $1a, $1b, $1c, $1d, $1e
+	db $7c, $7d, $7e, $7f, $80
+	db $87, $88, $89, $8a, $8b
+	db $8c, $8d, $8e, $8f, $90
+	db $91, $92, $93, $94, $95
+	db $9a, $9b, $9c, $84, $9d
+	db $6d, $6e, $6f, $70, $71
+	db $72, $73, $74, $75, $76
+	db $77, $78, $79, $7a, $7b
+	db $81, $82, $83, $84, $85
+
+Data_1341a:
+	db $87, $88, $89, $8a, $8b
+	db $8c, $8d, $8e, $8f, $90
+	db $91, $92, $93, $94, $95
+	db $96, $97, $98, $7f, $99
+	db $9a, $9b, $9c, $84, $9d
+	db $6d, $6e, $6f, $70, $71
+	db $72, $73, $74, $75, $76
+	db $77, $78, $79, $7a, $7b
+	db $7c, $7d, $7e, $7f, $80
+	db $81, $82, $83, $84, $85
+	db $3d, $3e, $3f, $40, $41
+	db $42, $43, $44, $45, $46
+	db $47, $48, $49, $4a, $4b
+	db $51, $52, $53, $1d, $54
+	db $06, $07, $08, $09, $0a
+	db $0b, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $13, $14
+	db $1a, $1b, $1c, $1d, $1e
+
+Func_13474: ; 13474 (4:7474)
+	ld a, [wcb39]
+	cp $d
+	ret z
+	ld a, [wcb65]
+	cp $4
+	ret c
+	sub $4
+	ld e, a
+	ld d, $0
+	ld hl, Data_13584
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	ld hl, Data_13590
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	ld a, [wcb39]
+	ld e, a
+	ld d, $0
+	ld hl, wd000
+	add hl, de
+	ld a, b
+	ld [hl], a
+	ld hl, wd200
+	add hl, de
+	ld a, c
+	ld [hl], a
+	ld a, [wcb39]
+	inc a
+	ld [wcb39], a
+Func_134aa: ; 134aa (4:74aa)
+	ld a, $1
+	ld [wc430], a
+	xor a
+	ld b, $c
+	ld hl, wOAMAnimation02_PriorityFlags
+	call Func_13798
+	ld a, [wcb39]
+	cp $0
+	ret z
+	dec a
+	ld b, a
+	ld a, $c
+	sub b
+	ld c, a
+	ld b, $0
+	ld de, $20
+	call Multiply_DE_by_BC
+	ld hl, wOAMAnimation01_PriorityFlags
+	add hl, de
+	ld a, [wcb39]
+	ld b, a
+	xor a
+	ld [wcb22], a
+.asm_134d8
+	push bc
+	push hl
+	push hl
+	ld de, $0
+	add hl, de
+	ld a, $1
+	ld [hl], a
+	pop hl
+	ld de, $2
+	add hl, de
+	push hl
+	ld hl, wd200
+	ld a, [wcb22]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	pop hl
+	ld [hl], a
+	pop hl
+	ld de, $20
+	add hl, de
+	ld a, [wcb22]
+	inc a
+	ld [wcb22], a
+	pop bc
+	dec b
+	jr nz, .asm_134d8
+	ld a, $50
+	ld [wOAMAnimation02_YCoord], a
+	ld [wOAMAnimation03_YCoord], a
+	ld [wOAMAnimation04_YCoord], a
+	add $10
+	ld [wOAMAnimation05_YCoord], a
+	ld [wOAMAnimation06_YCoord], a
+	ld [wOAMAnimation07_YCoord], a
+	ld [wOAMAnimation08_YCoord], a
+	add $10
+	ld [wOAMAnimation09_YCoord], a
+	ld [wOAMAnimation10_YCoord], a
+	ld [wOAMAnimation11_YCoord], a
+	ld [wOAMAnimation12_YCoord], a
+	ld [wOAMAnimation13_YCoord], a
+	ld a, $10
+	ld [wOAMAnimation02_XCoord], a
+	ld a, $18
+	ld [wOAMAnimation03_XCoord], a
+	ld [wOAMAnimation05_XCoord], a
+	ld a, $20
+	ld [wOAMAnimation04_XCoord], a
+	ld [wOAMAnimation06_XCoord], a
+	ld [wOAMAnimation09_XCoord], a
+	ld a, $28
+	ld [wOAMAnimation07_XCoord], a
+	ld [wOAMAnimation10_XCoord], a
+	ld a, $30
+	ld [wOAMAnimation08_XCoord], a
+	ld [wOAMAnimation11_XCoord], a
+	ld a, $38
+	ld [wOAMAnimation12_XCoord], a
+	ld a, $40
+	ld [wOAMAnimation13_XCoord], a
+	ld a, $0
+	ld b, $c
+	ld hl, wOAMAnimation02_TemplateBank
+	call Func_13798
+	ld a, $1
+	ld [wc430], a
+	ld a, [wcb39]
+	cp $c
+	jp z, Func_13579
+	ret
+
+Func_13579: ; 13579 (4:7579)
+	call Func_1360a
+	ld a, $10
+	ld [wcb2c], a
+	jp IncrementSubroutine
+
+Data_13584:
+	db $62, $64, $66, $68
+	db $6a, $6c, $6e, $70
+	db $72, $7c, $60, $78
+
+Data_13590:
+	db $21, $22, $23, $24
+	db $25, $26, $27, $28
+	db $29, $2e, $20, $2c
+
+Func_1359c: ; 1359c (4:759c)
+	ld a, [wd000]
+	ld [wd200], a
+	ld a, [wd001]
+	ld [wd201], a
+	ld a, [wd002]
+	ld [wd202], a
+	ld a, $7a
+	ld [wd203], a
+	ld a, [wd003]
+	ld [wd204], a
+	ld a, [wd004]
+	ld [wd205], a
+	ld a, [wd005]
+	ld [wd206], a
+	ld a, [wd006]
+	ld [wd207], a
+	ld a, $7a
+	ld [wd208], a
+	ld a, [wd007]
+	ld [wd209], a
+	ld a, [wd008]
+	ld [wd20a], a
+	ld a, [wd009]
+	ld [wd20b], a
+	ld a, [wd00a]
+	ld [wd20c], a
+	ld a, [wd00b]
+	ld [wd20d], a
+	ret
+
+Func_135ef: ; 135ef (4:75ef)
+	ld b, $c
+	ld de, wOAMAnimation02
+.asm_135f4
+	push bc
+	push de
+	call Func_099c
+	pop de
+	ld hl, $20
+	add hl, de
+	push hl
+	pop de
+	pop bc
+	dec b
+	jr nz, .asm_135f4
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Func_1360a: ; 1360a (4:760a)
+	xor a
+	ld [wcb43], a
+	ld [wcb03], a
+	ld [wcb22], a
+	call Func_1359c
+	ld hl, wd200
+	call Func_3720
+	ld a, e
+	cp $0
+	jr nz, .asm_13633
+	ld a, d
+	cp $0
+	jr nz, .asm_13633
+	ld a, c
+	cp $0
+	jr nz, .asm_13633
+	ld a, b
+	cp $0
+	jr nz, .asm_13633
+	jr .asm_1369a
+
+.asm_13633
+	ld hl, wd300
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	set 7, b
+	ld a, b
+	ld [hli], a
+	ld a, [wca69]
+	ld [hli], a
+	ld b, BANK(s2_a000)
+	call Rom4_GetSRAMBankB
+	ld b, $fe
+	ld hl, s2_a000
+	ld c, $0
+.asm_13650
+	push bc
+	push hl
+	ld de, $1
+	add hl, de
+	ld a, [hl]
+	cp $0
+	jr z, .asm_1368d
+	pop hl
+	push hl
+	ld de, $a
+	add hl, de
+	ld de, wd300
+	ld a, [hli]
+	ld b, a
+	ld a, [de]
+	cp b
+	jr nz, .asm_1368d
+	inc de
+	ld a, [hli]
+	ld b, a
+	ld a, [de]
+	cp b
+	jr nz, .asm_1368d
+	inc de
+	ld a, [hli]
+	ld b, a
+	ld a, [de]
+	cp b
+	jr nz, .asm_1368d
+	inc de
+	ld a, [hli]
+	ld [wcb22], a
+	and $3
+	ld b, a
+	ld a, [de]
+	and $3
+	cp b
+	jr nz, .asm_1368d
+	inc de
+	ld a, [hl]
+	ld b, a
+	ld a, [de]
+	cp b
+	jr z, .asm_136a7
+.asm_1368d
+	pop hl
+	ld de, $10
+	add hl, de
+	pop bc
+	inc c
+	dec b
+	jr nz, .asm_13650
+	call Rom4_CloseSRAM
+.asm_1369a
+	call Func_06ac
+	ld a, c
+	cp $0
+	jr z, .asm_136c6
+	xor a
+	ld [wcb43], a
+	ret
+
+.asm_136a7
+	pop hl
+	pop bc
+	ld a, c
+	ld [wcb04], a
+	ld a, [hl]
+	ld [wcb01], a
+	ld a, [wcb22]
+	bit 7, a
+	jr z, .asm_136bd
+	ld a, $1
+	ld [wcb03], a
+.asm_136bd
+	call Rom4_CloseSRAM
+	ld a, $1
+	ld [wcb43], a
+	ret
+
+.asm_136c6
+	ld a, $2
+	ld [wcb43], a
+	ld a, [wcb20]
+	ld [wcb01], a
+	ret
+
+Func_136d2: ; 136d2 (4:76d2)
+	xor a
+	ld [wd415], a
+	ld [wd4b0], a
+	ld hl, wd000
+	ld a, [wcd24]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	ld [wcb20], a
+	ld hl, s1_b000
+	ld de, wd000
+	ld b, BANK(s1_b000)
+	call Rom4_GetSRAMBankB
+	ld a, [wcb70]
+	ld b, a
+.asm_136f6
+	push bc
+	push hl
+	ld a, [hl]
+	push af
+	ld a, [wcb20]
+	ld b, a
+	pop af
+	cp b
+	jr nz, .asm_1370e
+	inc hl
+	inc hl
+	ld a, [hl]
+	ld [de], a
+	inc de
+	ld a, [wd4b0]
+	inc a
+	ld [wd4b0], a
+.asm_1370e
+	pop hl
+	push de
+	ld de, $4
+	add hl, de
+	pop de
+	pop bc
+	dec b
+	jr nz, .asm_136f6
+	jp Rom4_CloseSRAM
+
+Func_1371c: ; 1371c (4:771c)
+	push af
+	call Func_0583
+	ld a, [wc9da]
+	call Func_0579
+	pop af
+	push af
+	ld c, $0
+	ld de, VTilesBG tile $40
+	call Func_0516
+	ld hl, GFX_de95f
+	ld de, VTilesShared tile $00
+	ld bc, $10 tiles
+	ld a, BANK(GFX_de95f)
+	call Copy2bpp
+	ld a, [wc9da]
+	add $50
+	ld e, a
+	ld bc, $0
+	call Func_13959
+	ld bc, $c
+	ld e, $1a
+	call Func_13959
+	pop af
+	call Func_175f
+	ld hl, $60
+	ld a, [wCurHours]
+	cp $14
+	jr nc, .asm_13764
+	cp $4
+	jr nc, .asm_13767
+.asm_13764
+	ld hl, $380
+.asm_13767
+	ld a, [wc9da]
+	call Rom4_PointToHalfwordInTable
+	push hl
+	pop bc
+	push bc
+	ld a, $3
+	call Func_10ee
+	pop bc
+	inc bc
+	ld a, $4
+	call Func_10ee
+	ld bc, $36
+	ld a, $1
+	call Func_10ee
+	ld a, [wcdb3]
+	ld c, a
+	ld b, $0
+	ld hl, $324
+	add hl, bc
+	push hl
+	pop bc
+	ld a, $5
+	call Func_10ee
+	jp Func_12a08
+
+Func_13798: ; 13798 (4:7798)
+	ld [hl], a
+	ld de, $20
+	add hl, de
+	dec b
+	jr nz, Func_13798
+	ret
+
+Func_137a1: ; 137a1 (4:77a1)
+	ld hl, GFX_dea5f
+	ld de, VTilesBG tile $40
+	ld bc, $38 tiles
+	ld a, BANK(GFX_dea5f)
+	jp Copy2bpp
+
+Func_137af: ; 137af (4:77af)
+	ld a, [wcb67]
+	ld b, a
+	ld a, [wcb68]
+	dec a
+	sub b
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, wcd90
+	add hl, de
+	inc hl
+	inc hl
+	inc hl
+	ld a, [hl]
+	ld c, a
+	ld b, $1
+	ld d, $c
+	call Func_0528
+	call Func_0530
+	jp Func_0530
+
+Func_137d9: ; 137d9 (4:77d9)
+	call Func_137df
+	jp Func_132b0
+
+Func_137df: ; 137df (4:77df)
+	ld a, [wcb67]
+	ld b, a
+	ld a, [wcb68]
+	dec a
+	sub b
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, wcd70
+	add hl, de
+	ld a, [hli]
+	dec a
+	ret
+
+Func_137fa: ; 137fa (4:77fa)
+	push af
+	and $f0
+	swap a
+	ld d, a
+	pop af
+	and $f
+	swap a
+	ld e, a
+	ld b, BANK(s2_a000)
+	call Rom4_GetSRAMBankB
+	ld hl, s2_a000
+	add hl, de
+	ld a, [hl]
+	push af
+	call Rom4_CloseSRAM
+	pop af
+	ret
+
+Func_13816: ; 13816 (4:7816)
+	ld a, [hJoyNew]
+	and $10
+	jp z, Func_13850
+	ld a, [wcb67]
+	cp $0
+	jr z, .asm_1382e
+	cp $1
+	jr z, .asm_13832
+	sub $2
+	add $50
+	jr .asm_13835
+
+.asm_1382e
+	ld a, $47
+	jr .asm_13835
+
+.asm_13832
+	ld a, [wcb73]
+.asm_13835
+	ld [wcb20], a
+	ld a, [wcfc0]
+	cp $0
+	jr z, .asm_13842
+	call Func_1bd1
+.asm_13842
+	ld a, [wcb20]
+	add $80
+	ld [H_FFA2], a
+	ld a, $4
+	ld [wMusicBank], a
+	ret
+
+Func_13850: ; 13850 (4:7850)
+	ld a, [wJoyNew]
+	and $40
+	jp z, Func_13870
+	call Func_1bd1
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb67]
+	cp $0
+	jr nz, .asm_13869
+	ld a, $a
+.asm_13869
+	dec a
+	ld [wcb67], a
+	jp Func_138e2
+
+Func_13870: ; 13870 (4:7870)
+	ld a, [wJoyNew]
+	and $80
+	jp z, Func_13890
+	call Func_1bd1
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb67]
+	cp $9
+	jr nz, .asm_13889
+	ld a, $ff
+.asm_13889
+	inc a
+	ld [wcb67], a
+	jp Func_138e2
+
+Func_13890: ; 13890 (4:7890)
+	ld a, [hJoyNew]
+	and $2
+	jp z, Func_138a5
+	call Func_1bd1
+	ld a, $4
+	ld [H_FFA1], a
+	call Func_1236b
+	jp IncrementSubroutine2
+
+Func_138a5: ; 138a5 (4:78a5)
+	ld a, [hJoyNew]
+	and $1
+	jp z, Func_138e1
+	call Func_1bd1
+	ld a, $3
+	ld [H_FFA1], a
+	ld b, $47
+	ld a, [wcb67]
+	cp $0
+	jp z, Func_138d1
+	cp $1
+	jp z, Func_138cd
+	ld a, [wcb67]
+	sub $2
+	add $50
+	ld b, a
+	jr Func_138d1
+
+Func_138cd: ; 138cd (4:78cd)
+	ld a, [wcb73]
+	ld b, a
+Func_138d1: ; 138d1 (4:78d1)
+	ld a, b
+	call Func_138f2
+	ld a, [wOAMAnimation02_YCoord]
+	ld [wOAMAnimation03_YCoord], a
+	call Func_1236b
+	jp IncrementSubroutine2
+
+Func_138e1: ; 138e1 (4:78e1)
+	ret
+
+Func_138e2: ; 138e2 (4:78e2)
+	ld b, $8
+	ld a, [wcb67]
+	sla a
+	sla a
+	sla a
+	add $38
+	jp Func_132a9
+
+Func_138f2: ; 138f2 (4:78f2)
+	push af
+	call Func_13e4c
+	ld e, a
+	ld d, $0
+	ld hl, s2_b800
+	add hl, de
+	ld b, BANK(s2_b800)
+	call Rom4_GetSRAMBankB
+	pop af
+	ld [hl], a
+	jp Rom4_CloseSRAM
+
+Func_13907: ; 13907 (4:7907)
+	call Func_13e4c
+	ld e, a
+	ld d, $0
+	ld hl, s2_b800
+	add hl, de
+	ld b, BANK(s2_b800)
+	call Rom4_GetSRAMBankB
+	ld a, [hl]
+	ld b, a
+	call Rom4_CloseSRAM
+	ld a, b
+	cp $47
+	jr z, .asm_1392d
+	cp $50
+	jr c, .asm_13929
+	sub $4e
+	ld b, a
+	jr .asm_1392f
+
+.asm_13929
+	ld b, $1
+	jr .asm_1392f
+
+.asm_1392d
+	ld b, $0
+.asm_1392f
+	ld a, b
+	ret
+
+Func_13931: ; 13931 (4:7931)
+	ld bc, $106
+Func_13934: ; 13934 (4:7934)
+	ld a, $0
+	jp Func_04ca
+
+Func_13939: ; 13939 (4:7939)
+	ld bc, $106
+Func_1393c: ; 1393c (4:793c)
+	ld a, $0
+	jp Func_04da
+
+	ld bc, $106
+Func_13944: ; 13944 (4:7944)
+	ld a, $0
+	jp Func_04fa
+
+	ld bc, $106
+Func_1394c: ; 1394c (4:794c)
+	ld a, $0
+	jp Func_04ea
+
+Func_13951: ; 13951 (4:7951)
+	push de
+	call Func_13931
+	pop de
+	jp Func_13939
+
+Func_13959: ; 13959 (4:7959)
+	push bc
+	push de
+	call Func_13934
+	pop de
+	pop bc
+	jp Func_1393c
+
+Func_13963: ; 13963 (4:7963)
+	push bc
+	push de
+	call Func_13944
+	pop de
+	pop bc
+	jp Func_1394c
+
+Func_1396d: ; 1396d (4:796d)
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_139a8
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	cp $0
+	jr nz, .asm_139b3
+	call Func_13e4c
+	call Func_1247c
+	call Func_1236b
+	ld e, $2d
+	call Func_13951
+	ld a, $1
+	ld [wSubroutine2], a
+	ld bc, $12
+	check_cgb
+	jr z, .asm_1399f
+	ld bc, $57
+.asm_1399f
+	call DecompressGFXByIndex_
+	ld de, wOAMAnimation02_PriorityFlags
+	jp Func_099c
+
+.asm_139a8
+	ld a, [hJoyNew]
+	and $2
+	jr z, .asm_139c4
+	ld a, $4
+	ld [H_FFA1], a
+.asm_139b3
+	ld de, wOAMAnimation02
+	call Func_099c
+	ld a, $1
+	ld [wc430], a
+	ld a, $4
+	ld [wSubroutine2], a
+	ret
+
+.asm_139c4
+	ld a, [wJoyNew]
+	and $40
+	jp z, Func_139ce
+	jr asm_139d6
+
+Func_139ce: ; 139ce (4:79ce)
+	ld a, [wJoyNew]
+	and $80
+	jp z, Func_139e6
+asm_139d6
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	xor $1
+	ld [wcb68], a
+	jp Func_139e7
+
+Func_139e6: ; 139e6 (4:79e6)
+	ret
+
+Func_139e7: ; 139e7 (4:79e7)
+	ld b, $10
+	ld a, [wcb68]
+	sla a
+	sla a
+	sla a
+	sla a
+	add $68
+	jp Func_132a9
+
+Print2DigitBCD: ; 139f9 (4:79f9)
+	ld a, [wc44f]
+	swap a
+	and $f
+	call LoadBCDDigit
+	ld a, [wc44f]
+	and $f
+	jp LoadBCDDigit
+
+Func_13a0b: ; 13a0b (4:7a0b)
+	call Func_13f51
+	ld bc, $11
+	call DecompressGFXByIndex_
+	xor a
+	ld [wcb28], a
+	call Func_129c4
+	jp LoadPhoneKeypad
+
+Func_13a1e: ; 13a1e (4:7a1e)
+	ld bc, $15
+	call GetCGB_BGLayout_
+	ld bc, $3
+	call GetCGB_OBLayout_
+	call Func_12efe
+	jp Func_12a08
+
+Func_13a30: ; 13a30 (4:7a30)
+	call Func_13e08
+	ld a, [hl]
+	push af
+	call Rom4_CloseSRAM
+	pop af
+	ret
+
+Func_13a3a: ; 13a3a (4:7a3a)
+	ld e, a
+	ld d, $0
+	ld hl, $f00
+	jr asm_13a48
+
+Func_13a42: ; 13a42 (4:7a42)
+	ld e, a
+	ld d, $0
+	ld hl, $e00
+asm_13a48
+	add hl, de
+	ld b, h
+	ld c, l
+	jp CheckEventFlag
+
+Func_13a4e: ; 13a4e (4:7a4e)
+	ld hl, wEventFlags
+	ld bc, $f00
+	srl b
+	rr c
+	srl b
+	rr c
+	srl b
+	rr c
+	add hl, bc
+	ld de, $1f
+	add hl, de
+	ld c, $1f
+.asm_13a67
+	ld a, [hld]
+	cp $0
+	jr nz, .asm_13a6f
+	dec c
+	jr .asm_13a67
+
+.asm_13a6f
+	sla c
+	sla c
+	sla c
+	ld b, $8
+	bit 7, a
+	jr nz, .asm_13aa1
+	ld b, $7
+	bit 6, a
+	jr nz, .asm_13aa1
+	ld b, $6
+	bit 5, a
+	jr nz, .asm_13aa1
+	ld b, $5
+	bit 4, a
+	jr nz, .asm_13aa1
+	ld b, $4
+	bit 3, a
+	jr nz, .asm_13aa1
+	ld b, $3
+	bit 2, a
+	jr nz, .asm_13aa1
+	ld b, $2
+	bit 1, a
+	jr nz, .asm_13aa1
+	ld b, $1
+.asm_13aa1
+	ld a, c
+	add b
+	dec a
+	ld [wcb72], a
+	ld hl, wEventFlags
+	ld bc, $e00
+	srl b
+	rr c
+	srl b
+	rr c
+	srl b
+	rr c
+	add hl, bc
+	ld de, $1f
+	add hl, de
+	ld c, $1f
+.asm_13ac0
+	ld a, [hld]
+	cp $0
+	jr nz, .asm_13ac8
+	dec c
+	jr .asm_13ac0
+
+.asm_13ac8
+	sla c
+	sla c
+	sla c
+	ld b, $8
+	bit 7, a
+	jr nz, .asm_13afa
+	ld b, $7
+	bit 6, a
+	jr nz, .asm_13afa
+	ld b, $6
+	bit 5, a
+	jr nz, .asm_13afa
+	ld b, $5
+	bit 4, a
+	jr nz, .asm_13afa
+	ld b, $4
+	bit 3, a
+	jr nz, .asm_13afa
+	ld b, $3
+	bit 2, a
+	jr nz, .asm_13afa
+	ld b, $2
+	bit 1, a
+	jr nz, .asm_13afa
+	ld b, $1
+.asm_13afa
+	ld a, c
+	add b
+	dec a
+	ld b, a
+	ld a, [wcb72]
+	cp b
+	jr nc, .asm_13b08
+	ld a, b
+	ld [wcb72], a
+.asm_13b08
+	xor a
+	ld [wcb76], a
+	ld hl, wEventFlags
+	ld bc, $e00
+	srl b
+	rr c
+	srl b
+	rr c
+	srl b
+	rr c
+	add hl, bc
+	ld b, $1f
+.asm_13b21
+	ld c, $8
+	ld a, [hli]
+.asm_13b24
+	bit 0, a
+	jr z, .asm_13b31
+	push af
+	ld a, [wcb76]
+	inc a
+	ld [wcb76], a
+	pop af
+.asm_13b31
+	srl a
+	dec c
+	jr nz, .asm_13b24
+	dec b
+	jr nz, .asm_13b21
+	ret
+
+Func_13b3a: ; 13b3a (4:7b3a)
+	ld a, [wCurPhoneGFX]
+	ld e, a
+	ld d, $0
+	ld hl, Data_13b70
+	add hl, de
+	ld a, [hl]
+	push af
+	ld [wcb33], a
+	ld b, BANK(s2_a001)
+	call Rom4_GetSRAMBankB
+	ld hl, s2_a001
+	ld c, $fe
+	ld b, $0
+	ld de, $10
+.asm_13b58
+	ld a, [hl]
+	cp $0
+	jr z, .asm_13b5e
+	inc b
+.asm_13b5e
+	add hl, de
+	dec c
+	jr nz, .asm_13b58
+	call Rom4_CloseSRAM
+	pop af
+	cp b
+	jr z, .asm_13b6b
+	jr nc, .asm_13b6e
+.asm_13b6b
+	ld a, $1
+	ret
+
+.asm_13b6e
+	xor a
+	ret
+
+Data_13b70:
+	db $46, $96, $f0
+	db $46, $96, $f0
+	db $46, $96, $f0
+
+Func_13b79: ; 13b79 (4:7b79)
+	push af
+	xor a
+	ld [wcb21], a
+	ld b, BANK(s2_a000)
+	call Rom4_GetSRAMBankB
+	ld hl, s2_a000
+	ld b, $fe
+	ld c, $0
+.asm_13b8a
+	push hl
+	ld de, $1
+	add hl, de
+	ld a, [hl]
+	cp $0
+	jr z, .asm_13ba1
+	pop hl
+	ld de, $10
+	add hl, de
+	inc c
+	dec b
+	jr nz, .asm_13b8a
+	pop af
+	jp Rom4_CloseSRAM
+
+.asm_13ba1
+	ld a, c
+	ld [wcb21], a
+	pop de
+	pop af
+	push af
+	push de
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, Data_13c0d
+	add hl, de
+	ld a, [hli]
+	pop de
+	ld [de], a
+	ld [wcb20], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	xor a
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	pop af
+	push de
+	ld e, a
+	ld d, $0
+	ld hl, Data_13c45
+	add hl, de
+	ld a, [hli]
+	pop de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld hl, wd300
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, $2
+	ld [de], a
+	ld h, $0
+	ld b, $0
+	ld a, [wcb21]
+	ld c, a
+	ld a, [wcb01]
+	ld l, a
+	ld de, $420
+	add hl, de
+	push hl
+	pop de
+	call Func_06cc
+	jp Rom4_CloseSRAM
+
+Data_13c0d:
+	db $2f, $14, $1e, $01
+	db $64, $14, $1e, $0b
+	db $94, $14, $1e, $07
+	db $6b, $14, $1e, $05
+	db $82, $0a, $28, $02
+	db $92, $0a, $28, $0a
+	db $84, $0a, $28, $03
+	db $69, $0a, $28, $08
+	db $36, $1e, $14, $02
+	db $83, $1e, $14, $06
+	db $67, $1e, $14, $04
+	db $6c, $1e, $14, $02
+	db $a5, $32, $0a, $04
+	db $a6, $32, $0a, $09
+
+Data_13c45:
+	db $00
+	db $07
+	db $06
+	db $0e
+	db $00
+	db $00
+	db $00
+	db $00
+	db $04
+	db $04
+	db $04
+	db $04
+	db $0b
+	db $0b
+
+Func_13c53: ; 13c53 (4:7c53)
+	xor a
+	ld [wcb22], a
+	ld a, [wcb01]
+	ld b, a
+	ld c, $e
+	ld hl, Data_13c0d
+.asm_13c60
+	ld a, [hl]
+	cp b
+	jr z, .asm_13c75
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	ld a, [wcb22]
+	inc a
+	ld [wcb22], a
+	dec c
+	jr nz, .asm_13c60
+	jp Func_070c
+
+.asm_13c75
+	ld a, [wcb22]
+	add $8e
+	ld c, a
+	ld b, $1
+	ret
+
+Func_13c7e: ; 13c7e (4:7c7e)
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, Data_13c0d
+	add hl, de
+	ld a, [hli]
+	ret
+
+Func_13c8f: ; 13c8f (4:7c8f)
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_13cb2
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	cp $0
+	jr nz, .asm_13cbd
+	ld de, wOAMAnimation02
+	call Func_099c
+	ld bc, $104
+	ld e, $5b
+	call Func_13959
+	jp IncrementSubroutine
+
+.asm_13cb2
+	ld a, [hJoyNew]
+	and $2
+	jr z, .asm_13cd1
+	ld a, $4
+	ld [H_FFA1], a
+.asm_13cbd
+	ld bc, $104
+	ld e, $5b
+	call Func_13959
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_099c
+	ld a, $1e
+	ld [wSubroutine], a
+	ret
+
+.asm_13cd1
+	ld a, [wJoyNew]
+	and $40
+	jp z, Func_13cdb
+	jr asm_13ce3
+
+Func_13cdb: ; 13cdb (4:7cdb)
+	ld a, [wJoyNew]
+	and $80
+	jp z, Func_13cf3
+asm_13ce3
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	xor $1
+	ld [wcb68], a
+	jp Func_13cf4
+
+Func_13cf3: ; 13cf3 (4:7cf3)
+	ret
+
+Func_13cf4: ; 13cf4 (4:7cf4)
+	ld b, $10
+	ld a, [wcb68]
+	sla a
+	sla a
+	sla a
+	add $78
+	jp Func_132a9
+
+Func_13d04: ; 13d04 (4:7d04)
+	ld [wcb20], a
+	xor a
+	ld [wcb21], a
+	ld b, BANK(s2_a000)
+	call Rom4_GetSRAMBankB
+	ld hl, s2_a000
+	ld b, $fe
+.asm_13d15
+	push bc
+	push hl
+	ld a, [wcb20]
+	ld b, a
+	ld a, [hli]
+	cp b
+	jr nz, .asm_13d2b
+	ld a, [hli]
+	cp $0
+	jr z, .asm_13d2b
+	ld a, [wcb21]
+	inc a
+	ld [wcb21], a
+.asm_13d2b
+	pop hl
+	ld de, $10
+	add hl, de
+	pop bc
+	dec b
+	jr nz, .asm_13d15
+	ld a, [wcb21]
+	ret
+
+Func_13d38: ; 13d38 (4:7d38)
+	ld hl, wd000
+	ld a, [wcd24]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	jp Func_13d04
+
+Func_13d46: ; 13d46 (4:7d46)
+	push af
+	ld hl, VTilesOB tile $50
+	push hl
+	ld [wd409], a
+	call Func_05d1
+	pop hl
+	ld a, [wd409]
+	call GetOverworldSprite_SizeHL
+	pop af
+	ld d, $4
+	jp Func_13d5e
+
+Func_13d5e: ; 13d5e (4:7d5e)
+	ld b, a
+	ld hl, Data_13d81
+.is_in_array
+	ld a, [hli]
+	cp $ff
+	jr z, .not_in_array
+	cp b
+	jr nz, .is_in_array
+	ld a, b
+	ld bc, $100
+	jr .okay
+
+.not_in_array
+	ld a, [wd409]
+	ld bc, $2a0
+	sub $14
+.okay
+	add c
+	jr nc, .asm_13d7c
+	inc b
+.asm_13d7c
+	ld c, a
+	ld a, d
+	jp Func_1196
+
+Data_13d81:
+	db $5f
+	db $71
+	db $91
+	db $95
+	db $a4
+	db $a5
+	db $a7
+	db $a8
+	db $ab
+	db $ad
+	db $ff
+
+Func_13d8c: ; 13d8c (4:7d8c)
+	ld c, a
+	ld b, $0
+	ld de, $6
+	call Multiply_DE_by_BC
+	ld hl, s2_b200
+	add hl, de
+	ld b, BANK(s2_b200)
+	call Rom4_GetSRAMBankB
+	ld de, wc3a9
+	ld bc, $6
+	call CopyData
+	call Rom4_CloseSRAM
+	ld hl, wc3a9
+	ld b, $0
+	ld c, $6
+.asm_13db1
+	ld a, [hl]
+	cp $e0
+	jr z, .asm_13db9
+	inc b
+	jr .asm_13dbb
+
+.asm_13db9
+	xor a
+	ld [hl], a
+.asm_13dbb
+	inc hl
+	dec c
+	jr nz, .asm_13db1
+	ld a, b
+	cp $5
+	jr c, .asm_13dc6
+	ld a, $5
+.asm_13dc6
+	ld [wcb38], a
+	ret
+
+Func_13dca: ; 13dca (4:7dca)
+	ld c, a
+	ld b, $0
+	ld de, $6
+	call Multiply_DE_by_BC
+	ld hl, s2_b200
+	add hl, de
+	push hl
+	pop de
+	ld b, BANK(s2_b200)
+	call Rom4_GetSRAMBankB
+	ld hl, wOAMAnimationsEnd
+	ld bc, $6
+	call CopyData
+	jp Rom4_CloseSRAM
+
+Func_13dea: ; 13dea (4:7dea)
+	call Func_13e4c
+	call Func_13e08
+	ld a, [hl]
+	ld [wd409], a
+	call Func_05d1
+	ld a, [wd409]
+	sub $13
+	ld [wcb73], a
+	hlbgcoord 7, 8
+	call Func_127e3
+	jp Rom4_CloseSRAM
+
+Func_13e08: ; 13e08 (4:7e08)
+	push af
+	ld b, BANK(s2_a000)
+	call Rom4_GetSRAMBankB
+	pop af
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, s2_a000
+	add hl, de
+	ret
+
+Func_13e27: ; 13e27 (4:7e27)
+	ld bc, $0
+	ld e, $10
+	call Func_13959
+	ld bc, $0
+	ld e, $11
+	call Func_13963
+Func_13e37: ; 13e37 (4:7e37)
+	ld e, $12
+	call Func_13951
+	ld bc, $30f
+	ld e, $20
+	call Func_13959
+	ld bc, $310
+	ld e, $21
+	jp Func_13959
+
+Func_13e4c: ; 13e4c (4:7e4c)
+	ld a, [wd415]
+	ld e, a
+	ld d, $0
+	ld hl, wd000
+	add hl, de
+	ld a, [hl]
+	ret
+
+Func_13e58: ; 13e58 (4:7e58)
+	ld a, $e3
+	ld [wLCDC], a
+	ld a, $58
+	ld [wWX], a
+	xor a
+	ld [wWY], a
+	xor a
+	ld [wSCX], a
+	ld [wSCY], a
+	ret
+
+Func_13e6e: ; 13e6e (4:7e6e)
+	ld a, $c3
+	ld [wLCDC], a
+	xor a
+	ld [wSCX], a
+	ld [wSCY], a
+	ld [wWX], a
+	ld [wWY], a
+	ret
+
+Func_13e81:
+	ld a, [wcd23]
+	ld b, $0
+	ld c, $d
+	call Func_058d
+	ld a, [wd45f]
+	ld de, Data_1d5628
+	ld bc, VTilesBG tile $38
+	jp Func_056a
+
+Func_13e97: ; 13e97 (4:7e97)
+	xor a
+	ld [wcb20], a
+	ld a, [wcd23]
+	call Func_13a3a
+	jr nz, .asm_13eaf
+	ld a, [wcd23]
+	call Func_13a42
+	jr z, .asm_13eb4
+	ld a, $1
+	jr .asm_13eb1
+
+.asm_13eaf
+	ld a, $2
+.asm_13eb1
+	ld [wcb20], a
+.asm_13eb4
+	ret
+
+Func_13eb5: ; 13eb5 (4:7eb5)
+	call Func_13e97
+	cp $0
+	jr z, .asm_13ed3
+	ld a, [wcd23]
+	ld c, $0
+	ld de, VTilesBG tile $40
+	call Func_0516
+	ld a, [wcd23]
+	call Func_1764
+	ld a, [wcd23]
+	jp Func_11a35
+
+.asm_13ed3
+	ld a, $ae
+	ld c, $0
+	ld de, VTilesBG tile $40
+	call Func_0516
+	ld a, $ae
+	call Func_1764
+	ld a, $ae
+	jp Func_11a35
+
+Rom4_GetSRAMBankB: ; 13ee7 (4:7ee7)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, b
+	ld [MBC3SRamBank], a
+	ret
+
+Rom4_CloseSRAM: ; 13ef1 (4:7ef1)
+	xor a
+	ld [MBC3SRamEnable], a
+	ret
+
+Func_13ef6: ; 13ef6 (4:7ef6)
+	call Func_069c
+	ld hl, wc9e1
+	ld de, wOAMAnimationsEnd
+	call Func_33e3
+	ld hl, VTilesBG tile $40
+	ld b, $6
+	call Func_13fd2
+	ld de, wc3a1
+	ld b, $6
+	ld hl, VTilesBG tile $40
+	jp PlaceString_
+
+Func_13f15: ; 13f15 (4:7f15)
+	call Func_13e4c
+Func_13f18: ; 13f18 (4:7f18)
+	ld c, a
+	call Func_069c
+	ld hl, wc9e1
+	ld de, wc3a0
+	call Func_33e3
+	ld hl, VTilesBG tile $78
+	ld b, $6
+	call ClearTiles
+	ld de, wc3a1
+	ld b, $6
+	ld hl, VTilesBG tile $78
+	jp PlaceString_
+
+Func_13f38: ; 13f38 (4:7f38)
+	ld e, $1e
+	jp Func_13f3f
+
+Func_13f3d: ; 13f3d (4:7f3d)
+	ld e, $1f
+Func_13f3f: ; 13f3f (4:7f3f)
+	call Func_13931
+	ld e, $12
+	jp Func_13939
+
+Func_13f47: ; 13f47 (4:7f47)
+	xor a
+	ld [wFontPaletteMode], a
+	jp Func_11b21
+
+Func_13f4e: ; 13f4e (4:7f4e)
+	jp Func_11b27
+
+Func_13f51: ; 13f51 (4:7f51)
+	check_cgb
+	jr z, .asm_13f64
+	ld bc, $54
+	call DecompressGFXByIndex_
+	ld bc, $55
+	jp DecompressGFXByIndex_
+
+.asm_13f64
+	ld bc, $1a
+	call DecompressGFXByIndex_
+	ld bc, $1b
+	jp DecompressGFXByIndex_
+
+Func_13f70: ; 13f70 (4:7f70)
+	call Func_13e97
+	cp $1
+	jr z, .asm_13f7d
+	ld a, [wcd23]
+	ld c, a
+	jr .asm_13f7f
+
+.asm_13f7d
+	ld c, $ae
+.asm_13f7f
+	ld b, $11
+	ld d, $a
+	call Func_0528
+	call Func_0530
+	jp Func_0530
+
+Func_13f8c: ; 13f8c (4:7f8c)
+	ld e, $5c
+	call Func_13951
+	ld a, $4
+	ld [wd411], a
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_0609
+	ld a, $b
+	ld [wd411], a
+	ld de, wOAMAnimation03_PriorityFlags
+	call Func_0609
+	call Func_13312
+	call Func_13139
+	ld a, $1
+	ld [wc430], a
+	jp IncrementSubroutine2
+
+Func_13fb5: ; 13fb5 (4:7fb5)
+	call Func_13e08
+	ld de, $2
+	add hl, de
+	ld a, [hl]
+	cp $64
+	jr nc, .asm_13fc3
+	inc a
+	ld [hl], a
+.asm_13fc3
+	jp Rom4_CloseSRAM
+
+Func_13fc6: ; 13fc6 (4:7fc6)
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_099c
+	ld de, wOAMAnimation03_PriorityFlags
+	jp Func_099c
+
+Func_13fd2: ; 13fd2 (4:7fd2)
+	check_cgb
+	jr nz, .asm_13fdc
+	jp Func_11a1c
+
+.asm_13fdc
+	jp Func_11a16
+
+Func_13fdf: ; 13fdf (4:7fdf)
+	check_cgb
+	jr nz, .asm_13fea
+	ld a, $1
+	jr .asm_13fec
+
+.asm_13fea
+	ld a, $3
+.asm_13fec
+	ld [wFontPaletteMode], a
+	ret
 
 SECTION "bank 05", ROMX, BANK [$5]
 	dr $14000, $1441b
@@ -10465,7 +12255,9 @@ UnknownTZFile72:: INCBIN "gfx/tzfiles/tz_72.2bpp.tz"
 Phone1GFX:: INCBIN "gfx/phone/phone1.2bpp"
 Phone2GFX:: INCBIN "gfx/phone/phone2.2bpp"
 Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
-	dr $de95f, $dee5f
+
+GFX_de95f: INCBIN "gfx/phone/de95f.2bpp"
+GFX_dea5f: INCBIN "gfx/phone/dea5f.w64.2bpp"
 
 GFX_dee5f: INCBIN "gfx/phone/dee5f.w24.2bpp"
 GFX_dee8f: INCBIN "gfx/phone/dee8f.w24.2bpp"
@@ -10476,13 +12268,15 @@ GFX_def4f: INCBIN "gfx/phone/def4f.w24.2bpp"
 GFX_def7f: INCBIN "gfx/phone/def7f.w24.2bpp"
 GFX_defaf: INCBIN "gfx/phone/defaf.w24.2bpp"
 GFX_defdf: INCBIN "gfx/phone/defdf.w24.2bpp"
-	dr $df00f, $e0000
+
+GFX_df00f: INCBIN "gfx/phone/df00f.w64.2bpp"
+GFX_df08f: INCBIN "gfx/phone/df08f.w64.2bpp"
 
 SECTION "bank 38", ROMX, BANK [$38]
 GFX_e0000:: INCBIN "gfx/misc/e0000.2bpp"
 GFX_e00c0:: INCBIN "gfx/misc/e00c0.2bpp"
 GFX_e01f0:: INCBIN "gfx/misc/e01f0.2bpp"
-	dr $e0320, $e03a0
+GFX_e0320:: INCBIN "gfx/misc/e0320.2bpp"
 
 TileMap_e03a0:: INCBIN "gfx/misc/e03a0.tilemap"
 TileMap_e03c8:: INCBIN "gfx/misc/e03c8.tilemap"
