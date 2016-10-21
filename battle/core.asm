@@ -129,8 +129,17 @@ Pointers_1448d:
 	dw Func_14f32
 	dw Func_15810
 
-Data_1450d:
-	dr $1450d, $1452d
+String_1450d:
+	db "たたかう    "
+
+String_14515:
+	db "にげる     "
+
+String_1451d:
+	db "にげだした!  "
+
+String_14525:
+	db "とうちゃく!  "
 
 Func_1452d: ; 1452d (5:452d)
 	ld bc, $c
@@ -527,7 +536,7 @@ Func_147ef: ; 147ef (5:47ef)
 .asm_1481c
 	ld hl, VTilesBG tile $18
 	ld a, $4
-	call Func_3d5c
+	call ClearString
 	ld a, [wd458]
 	cp $0
 	jp z, Func_14831
@@ -573,7 +582,7 @@ Func_1486d: ; 1486d (5:486d)
 	ld a, $e8
 	ld [wdc34], a
 Func_1487a: ; 1487a (5:487a)
-	ld hl, $6368
+	ld hl, Data_16368
 	call Func_0620
 	ld hl, wd4d0
 	call Func_14020
@@ -679,23 +688,512 @@ Func_14911: ; 14911 (5:4911)
 	ld [wd400], a
 	ret
 
-Func_1492f:
-	dr $1492f, $14aad
+Func_1492f: ; 1492f (5:492f)
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd584]
+	ld [wd435], a
+	ld a, [wd58b]
+	cp $5
+	jr nz, .asm_1499f
+	ld a, [wd584]
+	call Func_142cd
+	ld a, [wd584]
+	ld [wd497], a
+	ld a, $3
+	call Func_143f9
+	ld a, [wd58f]
+	ld b, a
+	ld a, [wd474]
+	cp b
+	jr z, .asm_14999
+	ld a, [wd4e6]
+	cp $3
+	jr z, .asm_14975
+	cp $2
+	jr z, .asm_1496b
+	jp .asm_14999
 
-Func_14aad:
-	dr $14aad, $14af8
+.asm_1496b
+	ld a, [wd58f]
+	ld b, a
+	ld a, [wd475]
+	cp b
+	jr nz, .asm_14999
+.asm_14975
+	ld bc, $105
+	ld e, $8b
+	xor a
+	call Func_04ca
+.asm_1497e
+	ld a, [wd58f]
+	ld b, a
+	ld a, [wd474]
+	cp b
+	jr z, .asm_1498d
+	call Func_1651b
+	jr .asm_1497e
 
-Func_14af8:
-	dr $14af8, $14b07
+.asm_1498d
+	call Func_1657b
+	call Func_1404a
+	ld a, $24
+	ld [wd400], a
+	ret
 
-Func_14b07:
-	dr $14b07, $14bc6
+.asm_14999
+	ld a, $c
+	ld [wd400], a
+	ret
 
-Func_14bc6:
-	dr $14bc6, $14c34
+.asm_1499f
+	ld a, [wd584]
+	call Func_142cd
+	ld a, [wcb3f]
+	cp $0
+	jp z, Func_149cd
+	ld a, [wd458]
+	cp $1
+	jp z, Func_149cd
+	call Func_3eee
+	cp $0
+	ret z
+	ld a, [wdc45]
+	inc a
+	ld [wdc45], a
+	ld a, [hl]
+	cp $ee
+	jp z, Func_14a01
+	cp $e0
+	jp z, Func_14a67
+Func_149cd: ; 149cd (5:49cd)
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd596]
+	cp $0
+	jp z, Func_14a7f
+	cp $1
+	jr z, Func_14a01
+	cp $2
+	jr z, Func_14a01
+	cp $8
+	jr z, Func_14a01
+	cp $b
+	jr z, Func_14a01
+	call Func_16614
+	cp $1
+	jr z, Func_14a01
+	ld a, [wd595]
+	ld b, a
+	ld a, $cd
+	add b
+	ld b, a
+	call Func_0d4e
+	cp $80
+	jr nc, Func_14a67
+Func_14a01: ; 14a01 (5:4a01)
+	ld a, [wd596]
+	call Func_148a3
+	call Func_3d02
+	ld a, [wd477]
+	cp $1
+	jr z, .asm_14a1e
+	cp $2
+	jr z, .asm_14a27
+	xor a
+	ld [wd554], a
+	ld [wd548], a
+	jr .asm_14a2e
 
-Func_14c34:
-	dr $14c34, $14d1f
+.asm_14a1e
+	xor a
+	ld [wd56a], a
+	ld [wd55e], a
+	jr .asm_14a2e
+
+.asm_14a27
+	xor a
+	ld [wd580], a
+	ld [wd574], a
+.asm_14a2e
+	ld hl, VTilesBG tile $1c
+	ld a, $4
+	call ClearString
+	ld a, [wd458]
+	cp $0
+	jp z, Func_14a43
+	ld a, $ee
+	ld [wdc34], a
+Func_14a43: ; 14a43 (5:4a43)
+	ld a, [wd596]
+	cp $5
+	jr z, .asm_14a61
+	cp $7
+	jr z, .asm_14a61
+	cp $8
+	jr z, .asm_14a61
+	cp $b
+	jr z, .asm_14a61
+	ld a, $3c
+	ld [wd45a], a
+	ld a, $29
+	ld [wd400], a
+	ret
+
+.asm_14a61
+	ld a, $30
+	ld [wd400], a
+	ret
+
+Func_14a67: ; 14a67 (5:4a67)
+	ld a, [wd458]
+	cp $0
+	jp z, Func_14a74
+	ld a, $e0
+	ld [wdc34], a
+Func_14a74: ; 14a74 (5:4a74)
+	call Func_3f22
+	ld a, [wd596]
+	call Func_1489e
+	jr asm_14a9f
+
+Func_14a7f: ; 14a7f (5:4a7f)
+	ld a, [wd458]
+	cp $0
+	jp z, Func_14a8c
+	ld a, $e8
+	ld [wdc34], a
+Func_14a8c: ; 14a8c (5:4a8c)
+	ld hl, Data_16368
+	call Func_0620
+	ld hl, wd4d0
+	call Func_14020
+	ld a, $5d
+	ld [H_FFA1], a
+	ld c, $4
+asm_14a9f
+	call Func_3d02
+	ld a, $3c
+	ld [wd45a], a
+	ld a, $29
+	ld [wd400], a
+	ret
+
+Func_14aad: ; 14aad (5:4aad)
+	call Func_0530
+	ld a, [wcb3f]
+	or a
+	jr z, .asm_14abf
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	jr z, .asm_14ac5
+.asm_14abf
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+.asm_14ac5
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd596]
+	cp $5
+	jr z, .asm_14af2
+	cp $7
+	jr z, .asm_14af2
+	cp $8
+	jr z, .asm_14af2
+	cp $b
+	jr z, .asm_14af2
+	cp $3
+	jr z, .asm_14af2
+	ld a, $1e
+	ld [wd45a], a
+	ld c, $72
+	call Func_3d02
+	ld a, $b
+	ld [wd400], a
+	ret
+
+.asm_14af2
+	ld a, $e
+	ld [wd400], a
+	ret
+
+Func_14af8: ; 14af8 (5:4af8)
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld a, $e
+	ld [wd400], a
+	ret
+
+Func_14b07: ; 14b07 (5:4b07)
+	ld a, [wcb3f]
+	cp $1
+	jr z, .asm_14b35
+	ld a, [wd590]
+	cp $4
+	jr z, .asm_14b19
+	cp $5
+	jr nz, .asm_14b35
+.asm_14b19
+	ld a, [wd58e]
+	add $9b
+	ld b, a
+	call Func_0d4e
+	cp b
+	jr c, .asm_14b35
+	ld a, $0
+	ld [wd414], a
+	ld c, $1f
+	call Func_3d02
+	ld a, $2a
+	ld [wd400], a
+	ret
+
+.asm_14b35
+	ld a, [wd590]
+	cp $8
+	jr z, .asm_14b40
+	cp $9
+	jr nz, .asm_14b8d
+.asm_14b40
+	ld a, [wd58e]
+	sla a
+	add $37
+	ld b, a
+	call Func_0d4e
+	cp b
+	jr c, .asm_14b8d
+	ld a, [wd474]
+	cp $1
+	jr z, .asm_14b60
+	cp $2
+	jr z, .asm_14b67
+	ld a, $1
+	ld [wd5ca], a
+	jr .asm_14b6c
+
+.asm_14b60
+	ld a, $1
+	ld [wd5cb], a
+	jr .asm_14b6c
+
+.asm_14b67
+	ld a, $1
+	ld [wd5cc], a
+.asm_14b6c
+	ld a, $0
+	ld [wd414], a
+	ld a, [wd584]
+	ld [wd497], a
+	ld a, [wd414]
+	call Func_143f9
+	ld a, [wd477]
+	ld [wd415], a
+	xor a
+	ld [wd45a], a
+	ld a, $2c
+	ld [wd400], a
+	ret
+
+.asm_14b8d
+	ld bc, $c
+	ld e, $80
+	xor a
+	call Func_04ca
+	ld de, String_1450d
+	ld hl, VTilesBG tile $60
+	call Func_142aa
+	ld de, String_14515
+	ld hl, VTilesBG tile $68
+	call Func_142aa
+	ld bc, $30e
+	ld e, $8c
+	xor a
+	call Func_04ca
+	xor a
+	ld [wd414], a
+	xor a
+	call Func_142ba
+	call Func_1659f
+	xor a
+	ld [wd411], a
+	call Func_3cb5
+	jp Func_3cf8
+
+Func_14bc6: ; 14bc6 (5:4bc6)
+	call Func_3cd0
+	ld a, [wcb3f]
+	cp $1
+	jr z, .asm_14bfc
+	ld a, [hJoyNew]
+	and $40
+	jr z, .asm_14be3
+	ld a, [wd414]
+	cp $0
+	jr z, .asm_14be3
+	dec a
+	ld [wd414], a
+	jr .asm_14bf4
+
+.asm_14be3
+	ld a, [hJoyNew]
+	and $80
+	jr z, .asm_14bfc
+	ld a, [wd414]
+	cp $1
+	jr z, .asm_14bfc
+	inc a
+	ld [wd414], a
+.asm_14bf4
+	ld a, $2
+	ld [H_FFA1], a
+	call Func_1659f
+.asm_14bfc
+	ld a, [hJoyNew]
+	and $1
+	jp z, Func_14c27
+	ld a, $3
+	ld [H_FFA1], a
+	ld a, [wd414]
+	cp $0
+	jp nz, Func_14c13
+	jp Func_3cf8
+
+Func_14c13: ; 14c13 (5:4c13)
+	xor a
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wc430], a
+	ld a, $57
+	ld [H_FFA1], a
+	ld a, $14
+	ld [wd400], a
+	ret
+
+Func_14c27: ; 14c27 (5:4c27)
+	ld a, [wcb3f]
+	cp $1
+	ret z
+	ld a, [hJoyNew]
+	and $2
+	ret z
+	jr Func_14c13
+
+Func_14c34: ; 14c34 (5:4c34)
+	ld hl, wc460
+	ld a, $3f
+	ld [hli], a
+	ld a, [wWX]
+	ld [hl], a
+	xor a
+	ld [wWY], a
+	ld a, [wd474]
+	call Func_1412b
+	ld a, [wd584]
+	ld c, $6
+	ld hl, VTilesBG tile $40
+	call Func_14d0f
+	ld a, [wd584]
+	ld c, $7
+	ld hl, VTilesBG tile $48
+	call Func_14d0f
+	ld a, [wd584]
+	ld b, $0
+	ld c, $e
+	call Func_058d
+	ld a, [wd45f]
+	ld b, a
+	ld a, [wd585]
+	cp b
+	jr c, .asm_14c84
+	ld a, [wd584]
+	ld c, $8
+	ld hl, VTilesBG tile $50
+	call Func_14d0f
+	ld a, $2
+	ld [wd41e], a
+	jr .asm_14c93
+
+.asm_14c84
+	ld a, $1
+	ld [wd41e], a
+	ld hl, VTilesBG tile $50
+	ld a, $8
+	call ClearString
+	jr .asm_14cc7
+
+.asm_14c93
+	ld a, [wd584]
+	ld b, $0
+	ld c, $f
+	call Func_058d
+	ld a, [wd45f]
+	ld b, a
+	ld a, [wd585]
+	cp b
+	jr c, .asm_14cc7
+	ld a, [wd584]
+	ld c, $9
+	call Func_058d
+	ld a, [wd45f]
+	or a
+	jr z, .asm_14cc7
+	ld a, [wd584]
+	ld c, $9
+	ld hl, VTilesBG tile $58
+	call Func_14d0f
+	ld a, $3
+	ld [wd41e], a
+	jr .asm_14ccf
+
+.asm_14cc7
+	ld hl, VTilesBG tile $58
+	ld a, $8
+	call ClearString
+.asm_14ccf
+	ld bc, $909
+	ld e, $88
+	xor a
+	call Func_04ca
+	ld bc, $909
+	ld e, $80
+	xor a
+	call Func_04da
+	ld a, [wd474]
+	cp $1
+	jr z, .asm_14cf4
+	cp $2
+	jr z, .asm_14cfc
+	ld a, [wd49d]
+	ld [wd414], a
+	jr .asm_14d02
+
+.asm_14cf4
+	ld a, [wd49e]
+	ld [wd414], a
+	jr .asm_14d02
+
+.asm_14cfc
+	ld a, [wd49f]
+	ld [wd414], a
+.asm_14d02
+	call Func_165c3
+	xor a
+	ld [wd411], a
+	call Func_3cb5
+	jp Func_3cf8
+
+Func_14d0f: ; 14d0f (5:4d0f)
+	push hl
+	ld b, $0
+	call Func_058d
+	ld a, [wd45f]
+	ld de, AttackNames
+	pop bc
+	jp Func_0565
 
 Func_14d1f:
 	dr $14d1f, $14ddd
@@ -806,7 +1304,10 @@ Func_16348:
 	dr $16348, $16360
 
 Func_16360:
-	dr $16360, $163e0
+	dr $16360, $16368
+
+Data_16368:
+	dr $16368, $163e0
 
 Func_163e0:
 	dr $163e0, $163ef
@@ -836,7 +1337,13 @@ Func_1657b:
 	dr $1657b, $1658d
 
 Func_1658d:
-	dr $1658d, $16614
+	dr $1658d, $1659f
+
+Func_1659f:
+	dr $1659f, $165c3
+
+Func_165c3:
+	dr $165c3, $16614
 
 Func_16614:
 	dr $16614, $17ff8

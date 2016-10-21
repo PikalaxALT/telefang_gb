@@ -855,7 +855,7 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	call Func_05b1
 	ld hl, VTilesBG tile $30
 	ld a, $8
-	call Func_3d5c
+	call ClearString
 	ld a, [wd456]
 	cp $1
 	jr z, .asm_8d20
@@ -870,14 +870,14 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 
 .asm_8d2b
 	ld a, [wd497]
-	ld de, Data_1d4000
+	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
-	call Func_3adc
+	call GetAndPrintName75CenterAlign
 .asm_8d37
 	ld a, [wd499]
 	ld bc, VTilesShared tile $58
 	ld de, Data_1d7928
-	call Func_3adc
+	call GetAndPrintName75CenterAlign
 	call Func_0597
 	call Func_90c2
 	ld de, Data_8ba7
@@ -1091,14 +1091,14 @@ Func_8e98: ; 8e98 (2:4e98)
 	call Func_05b1
 	ld hl, VTilesBG tile $30
 	ld a, $8
-	call Func_3d5c
+	call ClearString
 	ld a, [wSubroutine]
 	cp $1
 	jr nz, .asm_8eff
 	ld a, [wd497]
-	ld de, Data_1d4000
+	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
-	call Func_3adc
+	call GetAndPrintName75CenterAlign
 	jr .asm_8f08
 
 .asm_8eff
@@ -1109,7 +1109,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	ld a, [wd499]
 	ld bc, VTilesShared tile $58
 	ld de, Data_1d7928
-	call Func_3adc
+	call GetAndPrintName75CenterAlign
 	call Func_0597
 	call Func_90c2
 	jp Func_3cfd
@@ -1451,7 +1451,7 @@ Func_90c2: ; 90c2 (2:50c2)
 .asm_9161
 	ld hl, VTilesShared tile $50
 	ld a, $8
-	call Func_3d5c
+	call ClearString
 	ret
 
 Func_916a: ; 916a (2:516a)
@@ -5050,9 +5050,9 @@ Func_114ff: ; 114ff (4:54ff)
 	ld a, [wcd23]
 	call Func_175f
 	ld a, [wcd23]
-	ld de, Data_1d4000
+	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
-	call Func_3adc
+	call GetAndPrintName75CenterAlign
 	ld a, [wcd23]
 	ld de, VTilesBG tile $20
 	call Func_3d95
@@ -5219,9 +5219,9 @@ Func_1169d: ; 1169d (4:569d)
 	ld a, [wcd23]
 	call Func_175f
 	ld a, [wcd23]
-	ld de, Data_1d4000
+	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
-	call Func_3adc
+	call GetAndPrintName75CenterAlign
 	ld a, [wcd23]
 	ld de, VTilesBG tile $20
 	call Func_3d95
@@ -5723,8 +5723,8 @@ Func_11a35: ; 11a35 (4:5a35)
 	ld [wca65], a
 	ld a, $78
 	ld [wc91f], a
-	ld hl, $4000
-	call Func_0548
+	ld hl, DenjuuNames
+	call GetName75
 	ld d, $c
 	jp Func_11a80
 
@@ -5741,7 +5741,7 @@ Func_11a59: ; 11a59 (4:5a59)
 	ld a, $78
 	ld [wc91f], a
 	ld hl, $6652
-	call Func_0550
+	call GetName0B
 	ld d, $b
 	jp Func_11a80
 
@@ -11545,8 +11545,8 @@ Func_142c1: ; 142c1 (5:42c1)
 
 Func_142cd:
 	ld [wd435], a
-	ld hl, $4000
-	call Func_0548
+	ld hl, DenjuuNames
+	call GetName75
 	ld bc, wd440
 	call Func_1402a
 	jp Func_14019
@@ -11571,7 +11571,7 @@ Func_142f9: ; 142f9 (5:42f9)
 	push hl
 	push af
 	ld a, $8
-	call Func_3d5c
+	call ClearString
 	call OpenSRAMBank2
 	pop af
 	ld hl, s2_a006
@@ -11708,10 +11708,10 @@ Func_143f9:
 	ld a, [wd497]
 	call Func_058d
 	ld a, [wd45f]
-	ld hl, $46f8
+	ld hl, AttackNames
 	ld [wd435], a
 	ld [wd46f], a
-	call Func_0548
+	call GetName75
 	ld bc, wd440
 	call Func_1402a
 	jp Func_14012
@@ -13072,8 +13072,12 @@ SECTION "bank 6A", ROMX, BANK [$6a]
 	dr $1a8000, $1ac000
 
 SECTION "bank 75", ROMX, BANK [$75]
-Data_1d4000::
-	dr $1d4000, $1d4b48
+DenjuuNames::
+INCLUDE "text/denjuu_names.asm"
+TFangerNames:: ; 1d4580
+INCLUDE "text/tfanger_names.asm"
+AttackNames:: ; 1d46f8
+INCLUDE "text/attack_names.asm"
 
 Data_1d4b48::
 	dr $1d4b48, $1d5628

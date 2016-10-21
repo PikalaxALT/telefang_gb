@@ -6872,7 +6872,7 @@ Func_39ec: ; 39ec (0:39ec)
 	ld bc, $10 tiles
 	jp WaitStatCopy
 
-Func_3a01: ; 3a01 (0:3a01)
+GetName: ; 3a01 (0:3a01)
 	ld d, $0
 	ld a, [wd435]
 	ld e, a
@@ -7001,22 +7001,22 @@ Func_3abb::
 Data_3ac2::
 	db $0
 
-Func_3ac3: ; 3ac3 (0:3ac3)
+GetAndPrintName75LeftAlign: ; 3ac3 (0:3ac3)
 	ld [wd435], a
 	push bc
 	push de
 	pop hl
-	call Func_0548
+	call GetName75
 	pop hl
 	push hl
 	ld a, $8
-	call Func_3d5c
+	call ClearString
 	pop hl
 	ld de, wd440
 	ld b, $8
 	jp PlaceString_
 
-Func_3adc::
+GetAndPrintName75CenterAlign::
 	ld [wd435], a
 	push bc
 	push de
@@ -7028,11 +7028,11 @@ Func_3adc::
 	dec b
 	jr nz, .asm_3ae6
 	pop hl
-	call Func_0548
+	call GetName75
 	pop hl
 	push hl
 	ld a, $8
-	call Func_3d5c
+	call ClearString
 	ld hl, wd440
 	ld de, wc3a0
 	call Func_33e3
@@ -7050,7 +7050,7 @@ Func_3b09: ; 3b09 (0:3b09)
 	pop hl
 	push hl
 	ld a, $4
-	call Func_3d5c
+	call ClearString
 	pop hl
 	ld de, wd440
 	ld b, $4
@@ -7367,14 +7367,14 @@ Func_3d18: ; 3d18 (0:3d18)
 	ld [wc430], a
 	ret
 
-Func_3d5c: ; 3d5c (0:3d5c)
+ClearString: ; 3d5c (0:3d5c)
 	push af
 	ld de, Data_3ac2
 	ld b, $1
 	call PlaceString_
 	pop af
 	dec a
-	jr nz, Func_3d5c
+	jr nz, ClearString
 	ret
 
 OpenSRAMBank2::

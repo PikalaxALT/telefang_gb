@@ -148,17 +148,17 @@ Func_0543::
 	rst MemBankswitch
 	ret
 
-Func_0548::
-	ld a, BANK(Data_1d4000)
+GetName75::
+	ld a, BANK(DenjuuNames)
 	rst Bankswitch
-	call Func_3a01
+	call GetName
 	rst MemBankswitch
 	ret
 
-Func_0550::
+GetName0B::
 	ld a, $b
 	rst Bankswitch
-	call Func_3a01
+	call GetName
 	rst MemBankswitch
 	ret
 
@@ -175,7 +175,7 @@ PlaceString_::
 	ret
 
 Func_0565::
-	call Func_3ac3
+	call GetAndPrintName75LeftAlign
 	rst MemBankswitch
 	ret
 
