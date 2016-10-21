@@ -77,11 +77,10 @@ wLCDC:: ds 1 ; c3c9
 wLYC:: ds 1
 wc3cb:: ds 1
 wc3cc:: ds 1
-wc3cd:: ds 1
-wc3ce:: ds 1
-wc3cf:: ds 1
-wc3d0:: ds 1
-wc3d1:: ds 1
+wCurSeconds:: ds 1
+wCurMinutes:: ds 1
+wCurHours:: ds 1
+wCurDays:: ds 2
 wc3d2:: ds 1
 wc3d3:: ds 1
 wc3d4:: ds 1

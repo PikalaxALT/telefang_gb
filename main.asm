@@ -2735,7 +2735,7 @@ Func_f9b6:
 	push de
 	push bc
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	ld a, [wc44f]
 	and $f0
@@ -5242,8 +5242,8 @@ Func_116e7: ; 116e7 (4:56e7)
 	cp $0
 	ret nz
 	call Func_11773
-	ld a, [wc3cf]
-	call Func_12fb
+	ld a, [wCurHours]
+	call Get2DigitBCD
 	ld a, [wc44f]
 	swap a
 	and $f
@@ -5253,8 +5253,8 @@ Func_116e7: ; 116e7 (4:56e7)
 	and $f
 	add $20
 	ld [wOAMAnimation18_TemplateIdx], a
-	ld a, [wc3ce]
-	call Func_12fb
+	ld a, [wCurMinutes]
+	call Get2DigitBCD
 	ld a, [wc44f]
 	swap a
 	and $f
@@ -5295,8 +5295,8 @@ Func_1175d: ; 1175d (4:575d)
 	ret
 
 Func_11773: ; 11773 (4:5773)
-	call Func_12ab9
-	ld a, [wc3cd]
+	call GetRTC
+	ld a, [wCurSeconds]
 	and $1
 	add $2a
 	ld [wOAMAnimation21_TemplateIdx], a
@@ -5371,10 +5371,10 @@ Func_117c4: ; 117c4 (4:57c4)
 	ld [wcb3a], a
 	ret
 
-Func_117ef: ; 117ef (4:57ef)
+SelectTime: ; 117ef (4:57ef)
 	call Func_118dd
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_1181f
 	ld a, $3
 	ld [H_FFA1], a
@@ -5396,7 +5396,7 @@ Func_117ef: ; 117ef (4:57ef)
 
 .asm_1181f
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_11837
 	ld a, [wcb3e]
 	cp $0
@@ -5409,59 +5409,59 @@ Func_117ef: ; 117ef (4:57ef)
 
 .asm_11837
 	ld a, [wJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_1186a
 	ld a, $2
 	ld [H_FFA1], a
 	ld a, [wcb3e]
 	cp $1
 	jr z, .asm_1185a
-	ld a, [wc3cf]
-	cp $17
+	ld a, [wCurHours]
+	cp 23
 	jr nz, .asm_11853
 	ld a, $ff
 .asm_11853
 	inc a
-	ld [wc3cf], a
-	jp Func_118ac
+	ld [wCurHours], a
+	jp TimeSet_PrintHours
 
 .asm_1185a
-	ld a, [wc3ce]
-	cp $3b
+	ld a, [wCurMinutes]
+	cp 59
 	jr nz, .asm_11863
 	ld a, $ff
 .asm_11863
 	inc a
-	ld [wc3ce], a
-	jp Func_118b8
+	ld [wCurMinutes], a
+	jp TimeSet_PrintMinutes
 
 .asm_1186a
 	ld a, [wJoyNew]
-	and $80
+	and D_DOWN
 	jr z, .asm_1189d
 	ld a, $2
 	ld [H_FFA1], a
 	ld a, [wcb3e]
 	cp $1
 	jr z, .asm_1188d
-	ld a, [wc3cf]
+	ld a, [wCurHours]
 	cp $0
 	jr nz, .asm_11886
-	ld a, $18
+	ld a, 24
 .asm_11886
 	dec a
-	ld [wc3cf], a
-	jp Func_118ac
+	ld [wCurHours], a
+	jp TimeSet_PrintHours
 
 .asm_1188d
-	ld a, [wc3ce]
+	ld a, [wCurMinutes]
 	cp $0
 	jr nz, .asm_11896
-	ld a, $3c
+	ld a, 60
 .asm_11896
 	dec a
-	ld [wc3ce], a
-	jp Func_118b8
+	ld [wCurMinutes], a
+	jp TimeSet_PrintMinutes
 
 .asm_1189d
 	ret
@@ -5469,21 +5469,21 @@ Func_117ef: ; 117ef (4:57ef)
 Func_1189e: ; 1189e (4:589e)
 	ld a, $1
 	ld [wc430], a
-	call Func_118ac
-	call Func_118b8
+	call TimeSet_PrintHours
+	call TimeSet_PrintMinutes
 	jp Func_118c4
 
-Func_118ac: ; 118ac (4:58ac)
-	ld a, [wc3cf]
-	call Func_12fb
+TimeSet_PrintHours: ; 118ac (4:58ac)
+	ld a, [wCurHours]
+	call Get2DigitBCD
 	hlbgcoord 2, 13
-	jp Func_139f9
+	jp Print2DigitBCD
 
-Func_118b8: ; 118b8 (4:58b8)
-	ld a, [wc3ce]
-	call Func_12fb
+TimeSet_PrintMinutes: ; 118b8 (4:58b8)
+	ld a, [wCurMinutes]
+	call Get2DigitBCD
 	hlbgcoord 5, 13
-	jp Func_139f9
+	jp Print2DigitBCD
 
 Func_118c4: ; 118c4 (4:58c4)
 	ld b, $15
@@ -5511,10 +5511,10 @@ Func_118dd: ; 118dd (4:58dd)
 	ld a, [wcb3e]
 	cp $0
 	jr nz, .asm_118f9
-	jp Func_118ac
+	jp TimeSet_PrintHours
 
 .asm_118f9
-	jp Func_118b8
+	jp TimeSet_PrintMinutes
 
 .asm_118fc
 	lb bc, 2, 13
@@ -6643,7 +6643,7 @@ Func_1204e: ; 1204e (4:604e)
 .asm_12070
 	inc a
 	ld c, a
-	call Func_12fb
+	call Get2DigitBCD
 	pop de
 	ld hl, $5
 	add hl, de
@@ -6822,7 +6822,7 @@ Func_121bf: ; 121bf (4:61bf)
 	inc a
 Func_121db:
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 Func_121e0: ; 121e0 (4:61e0)
 	ld a, [wc44f]
@@ -6870,7 +6870,7 @@ Func_1221c: ; 1221c (4:621c)
 	call WaitStatAndLoad
 	ld a, [wcb68]
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	ld a, [wFontSourceBank]
 	and $f
@@ -7714,13 +7714,13 @@ Func_127da: ; 127da (4:67da)
 	hlbgcoord 6, 16
 Func_127e3: ; 127e3 (4:67e3)
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	jp Func_1316d
 
 Func_127eb:
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	ld a, [wc44f]
 	and $f0
@@ -8129,11 +8129,11 @@ Pointers_12a3c:
 
 Func_12a4e: ; 12a4e (4:6a4e)
 	xor a
-	ld [wc3cd], a
-	ld [wc3ce], a
-	ld [wc3cf], a
-	ld [wc3d0], a
-	ld [wc3d1], a
+	ld [wCurSeconds], a
+	ld [wCurMinutes], a
+	ld [wCurHours], a
+	ld [wCurDays], a
+	ld [wCurDays + 1], a
 	ret
 
 SetRTC: ; 12a5f (4:6a5f)
@@ -8157,7 +8157,7 @@ SetRTC: ; 12a5f (4:6a5f)
 	nop
 	ld a, RTC_M
 	ld [MBC3SRamBank], a
-	ld a, [wc3ce]
+	ld a, [wCurMinutes]
 	ld [MBC3RTC], a
 	nop
 	nop
@@ -8165,7 +8165,7 @@ SetRTC: ; 12a5f (4:6a5f)
 	nop
 	ld a, RTC_H
 	ld [MBC3SRamBank], a
-	ld a, [wc3cf]
+	ld a, [wCurHours]
 	ld [MBC3RTC], a
 	nop
 	nop
@@ -8173,7 +8173,7 @@ SetRTC: ; 12a5f (4:6a5f)
 	nop
 	ld a, RTC_DL
 	ld [MBC3SRamBank], a
-	ld a, [wc3d0]
+	ld a, [wCurDays]
 	ld [MBC3RTC], a
 	nop
 	nop
@@ -8181,18 +8181,150 @@ SetRTC: ; 12a5f (4:6a5f)
 	nop
 	ld a, RTC_DH
 	ld [MBC3SRamBank], a
-	ld a, [wc3d1]
+	ld a, [wCurDays + 1]
 	ld [MBC3RTC], a
 	jp Rom4_CloseSRAM
 
-Func_12ab9:
-	dr $12ab9, $12b2b
+GetRTC: ; 12ab9 (4:6ab9)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	xor a
+	ld [MBC3LatchClock], a
+	ld a, $1
+	ld [MBC3LatchClock], a
+	nop
+	nop
+	nop
+	nop
+	ld a, $8
+	ld [MBC3SRamBank], a
+	ld a, [MBC3RTC]
+	ld [wCurSeconds], a
+	ld a, $9
+	ld [MBC3SRamBank], a
+	ld a, [MBC3RTC]
+	ld [wCurMinutes], a
+	ld a, $a
+	ld [MBC3SRamBank], a
+	ld a, [MBC3RTC]
+	ld [wCurHours], a
+	jp Rom4_CloseSRAM
 
-Func_12b2b:
-	dr $12b2b, $12b6c
+Func_12aef:
+	ld hl, wca00
+	ld de, wcb08
+	ld b, $e
+.loop
+	ld a, [hli]
+	cp $7a
+	jr z, .next
+	sub $60
+	srl a
+	ld [de], a
+	inc de
+.next
+	dec b
+	jr nz, .loop
+	ld b, $c
+	ld hl, wcb08
+.loop2
+	push bc
+	ld a, [hl]
+	push hl
+	ld hl, Data_12b1c
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	pop hl
+	ld [hli], a
+	pop bc
+	dec b
+	jr nz, .loop2
+	ret
 
-Func_12b6c:
-	dr $12b6c, $12baa
+Data_12b1c:
+	db 10
+	db  0
+	db  1
+	db  2
+	db  3
+	db  4
+	db  5
+	db  6
+	db  7
+	db  8
+	db  0
+	db  0
+	db 11
+	db  0
+	db  9
+
+Func_12b2b: ; 12b2b (4:6b2b)
+	ld a, [wcb2c]
+	dec a
+	ld [wcb2c], a
+	cp $0
+	ret nz
+	ld a, [wcb67]
+	cp $c
+	jr z, .asm_12b59
+	ld a, $8
+	ld [wcb2c], a
+	ld hl, wcb08
+	ld a, [wcb67]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	add $16
+	ld [H_FFA1], a
+	ld a, [wcb67]
+	inc a
+	ld [wcb67], a
+	ret
+
+.asm_12b59
+	ld a, $4
+	call Func_050a
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $c
+	ld [wSubroutine2], a
+	ret
+
+Func_12b6c: ; 12b6c (4:6b6c)
+	ld a, [wcb2c]
+	dec a
+	ld [wcb2c], a
+	cp $0
+	ret nz
+	ld a, [wcb6d]
+	cp $c
+	jr z, .asm_12b9a
+	ld a, $8
+	ld [wcb2c], a
+	ld hl, wcb08
+	ld a, [wcb6d]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	add $16
+	ld [H_FFA1], a
+	ld a, [wcb6d]
+	inc a
+	ld [wcb6d], a
+	ret
+
+.asm_12b9a
+	ld a, $4
+	call Func_050a
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	jp IncrementSubroutine2
 
 Func_12baa:
 	dr $12baa, $12bbc
@@ -8314,7 +8446,7 @@ Func_13963:
 Func_1396d:
 	dr $1396d, $139f9
 
-Func_139f9:
+Print2DigitBCD:
 	dr $139f9, $13a0b
 
 Func_13a0b:

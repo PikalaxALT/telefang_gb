@@ -1254,7 +1254,8 @@ WrapAroundBGMapOrWindowVertical: ; f29 (0:0f29)
 INCLUDE "home/sram.asm"
 INCLUDE "home/palettes.asm"
 
-Func_12fb: ; 12fb (0:12fb)
+Get2DigitBCD: ; 12fb (0:12fb)
+; bcd convert 2-digit number to [wc44f]
 	push de
 	push bc
 	push hl
@@ -1264,39 +1265,39 @@ Func_12fb: ; 12fb (0:12fb)
 	ld [wc44f], a
 	ld de, 0
 	pop af
-	ld b, $64
-.asm_130c
+	ld b, 100
+.loop_100
 	ld c, a
 	sub b
-	jr c, .asm_1313
+	jr c, .okay_100
 	inc d
-	jr .asm_130c
+	jr .loop_100
 
-.asm_1313
+.okay_100
 	ld a, c
-	ld b, $a
-.asm_1316
+	ld b, 10
+.loop_10
 	ld c, a
 	sub b
-	jr c, .asm_1322
+	jr c, .okay_10
 	push af
 	ld a, e
 	add $10
 	ld e, a
 	pop af
-	jr .asm_1316
+	jr .loop_10
 
-.asm_1322
+.okay_10
 	ld a, c
 	ld b, $1
-.asm_1325
+.loop_1
 	ld c, a
 	sub b
-	jr c, .asm_132c
+	jr c, .okay_1
 	inc e
-	jr .asm_1325
+	jr .loop_1
 
-.asm_132c
+.okay_1
 	ld a, d
 	ld [wFontSourceBank], a
 	ld a, e
@@ -1354,7 +1355,7 @@ Func_1378::
 	push bc
 	push bc
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	xor a
 	ld [wFontSourceAddr], a
@@ -1417,7 +1418,7 @@ Func_13d7::
 	push de
 	push bc
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	xor a
 	ld [wFontSourceAddr], a
@@ -1479,7 +1480,7 @@ Func_1430::
 	push bc
 	push bc
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	xor a
 	ld [wFontSourceAddr], a
@@ -1546,7 +1547,7 @@ Func_1499::
 	push bc
 	push bc
 	push hl
-	call Func_12fb
+	call Get2DigitBCD
 	pop hl
 	pop bc
 	ld a, [wc44f]

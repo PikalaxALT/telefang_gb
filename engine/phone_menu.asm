@@ -5,43 +5,43 @@ PhoneMenu:
 	jp [hl]
 
 Pointers_1000a:
-	dw Func_10054
-	dw Func_1006e
-	dw Func_10089
-	dw Func_100bd
-	dw Func_100ea
-	dw Func_100fa
-	dw Func_10108
-	dw Func_10113
-	dw Func_1013b
-	dw Func_101ec
-	dw Func_101f7
-	dw Func_10205
-	dw Func_10216
-	dw Func_10221
-	dw Func_10232
-	dw Func_10265
-	dw Func_1028a
-	dw Func_102aa
-	dw Func_102b3
-	dw Func_102cd
-	dw Func_1031c
-	dw Func_10328
-	dw Func_10339
-	dw Func_10346
-	dw Func_1037f
-	dw Func_103a5
-	dw Func_103b4
-	dw Func_103e2
-	dw Func_10400
-	dw Func_1040e
-	dw Func_10424
-	dw Func_1006e
-	dw Func_10452
-	dw Func_10546
-	dw Func_10558
-	dw Func_1056a
-	dw Func_1057d
+	dw Func_10054 ; 00
+	dw Func_1006e ; 01
+	dw Func_10089 ; 02
+	dw Func_100bd ; 03
+	dw Func_100ea ; 04
+	dw Func_100fa ; 05
+	dw Func_10108 ; 06
+	dw Func_10113 ; 07
+	dw Func_1013b ; 08
+	dw Func_101ec ; 09
+	dw Func_101f7 ; 0a
+	dw Func_10205 ; 0b
+	dw Func_10216 ; 0c
+	dw Func_10221 ; 0d
+	dw Func_10232 ; 0e
+	dw Func_10265 ; 0f
+	dw Func_1028a ; 10
+	dw Func_102aa ; 11
+	dw Func_102b3 ; 12
+	dw Func_102cd ; 13
+	dw Func_1031c ; 14
+	dw Func_10328 ; 15
+	dw Func_10339 ; 16
+	dw Func_10346 ; 17
+	dw Func_1037f ; 18
+	dw Func_103a5 ; 19
+	dw Func_103b4 ; 1a
+	dw Func_103e2 ; 1b
+	dw Func_10400 ; 1c
+	dw Func_1040e ; 1d
+	dw Func_10424 ; 1e
+	dw Func_1006e ; 1f
+	dw Func_10452 ; 20
+	dw Func_10546 ; 21
+	dw Func_10558 ; 22
+	dw Func_1056a ; 23
+	dw Func_1057d ; 24
 
 Func_10054: ; 10054 (4:4054)
 	ld bc, $0
@@ -348,7 +348,7 @@ Func_1028a: ; 1028a (4:428a)
 Func_102aa: ; 102aa (4:42aa)
 	ld de, wOAMAnimation02
 	call Func_0616
-	jp Func_117ef
+	jp SelectTime
 
 Func_102b3: ; 102b3 (4:42b3)
 	ld a, $7
@@ -363,7 +363,7 @@ Func_102b3: ; 102b3 (4:42b3)
 	jp IncrementSubroutine
 
 Func_102cd: ; 102cd (4:42cd)
-	ld hl, $9780
+	ld hl, VTilesBG tile $78
 	ld b, $8
 	call Func_13fd2
 	xor a
@@ -545,7 +545,7 @@ Func_10452: ; 10452 (4:4452)
 	ld bc, $58
 .asm_1045f
 	call DecompressGFXByIndex_
-	ld hl, $9700
+	ld hl, VTilesBG tile $70
 	ld b, $10
 	call ClearTiles
 	ld bc, $0
@@ -595,7 +595,7 @@ Func_10452: ; 10452 (4:4452)
 	ld [wcb65], a
 	call Func_12921
 	call Func_11d40
-	ld hl, $9700
+	ld hl, VTilesBG tile $70
 	ld b, $10
 	call Func_13fd2
 	ld a, $70
