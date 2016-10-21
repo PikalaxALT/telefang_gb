@@ -6882,7 +6882,7 @@ REPT 3
 ENDR
 	add hl, de
 	ld bc, $8
-	ld de, wd440
+	ld de, wStringBuffer
 	jp CopyData
 
 Func_3a1d: ; 3a1d (0:3a1d)
@@ -6895,7 +6895,7 @@ Func_3a1d: ; 3a1d (0:3a1d)
 	rl d
 	add hl, de
 	ld bc, $4
-	ld de, wd440
+	ld de, wStringBuffer
 	jp CopyData
 
 Func_3a35: ; 3a35 (0:3a35)
@@ -7012,7 +7012,7 @@ GetAndPrintName75LeftAlign: ; 3ac3 (0:3ac3)
 	ld a, $8
 	call ClearString
 	pop hl
-	ld de, wd440
+	ld de, wStringBuffer
 	ld b, $8
 	jp PlaceString_
 
@@ -7033,7 +7033,7 @@ GetAndPrintName75CenterAlign::
 	push hl
 	ld a, $8
 	call ClearString
-	ld hl, wd440
+	ld hl, wStringBuffer
 	ld de, wc3a0
 	call Func_33e3
 	ld de, wc3a0
@@ -7052,7 +7052,7 @@ Func_3b09: ; 3b09 (0:3b09)
 	ld a, $4
 	call ClearString
 	pop hl
-	ld de, wd440
+	ld de, wStringBuffer
 	ld b, $4
 	jp PlaceString_
 

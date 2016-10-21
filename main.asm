@@ -782,11 +782,35 @@ Pointers_8b95:
 	dw Func_8e98
 	dw Func_8f1d
 
-Data_8ba7:
-	dr $8ba7, $8baf
+String_8ba7:
+	db "せんとうわざ  "
 
-Data_8baf:
-	dr $8baf, $8c81
+String_8baf:
+	db "  ????  "
+
+Data_8bb7:
+	db "トロンコむら$"
+	db "クリノンむら$"
+	db "うみのみえるまち イ<リス$"
+	db "パ<ムかい$"
+	db "キカイのまち フリジア$"
+	db "すなのまち バ<ラン$"
+	db "イォンとう$"
+	db "パパルナこ$"
+	db "パンセスむら$"
+	db "トリパむら$"
+	db "フラウラむら$"
+	db "あくまのやま ぺぺリやま$"
+	db "イクソスのもリ$"
+	db "カクトスいせき$"
+	db "ブリォンいせき$"
+	db "トロンコむら すいげん$"
+	db "クリノンむら ちか1かい$"
+	db "クラフトけんきゅうじょ$"
+	db "ディメンザのやしき$"
+	db "アンテナのき 1かい$"
+	db "ぺぺリやま ふもと$"
+	db "カクトスいせき$"
 
 Func_8c81: ; 8c81 (2:4c81)
 	ld bc, $e
@@ -880,7 +904,7 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	call GetAndPrintName75CenterAlign
 	call Func_0597
 	call Func_90c2
-	ld de, Data_8ba7
+	ld de, String_8ba7
 	ld hl, VTilesShared tile $60
 	ld b, $8
 	call PlaceString_
@@ -1206,12 +1230,12 @@ Func_8f96: ; 8f96 (2:4f96)
 	ret
 
 Func_8fb9:
-	ld a, $a
+	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ld a, $1
+	ld a, BANK(s1_b000)
 	ld [MBC3SRamBank], a
 	ld de, wd000
-	ld hl, $b000
+	ld hl, s1_b000
 	ld a, [wcb70]
 	ld b, $0
 	ld c, a
@@ -1230,7 +1254,7 @@ Func_8fb9:
 	ld a, c
 	or b
 	jr nz, .asm_8fd7
-	ld a, $0
+	ld a, SRAM_DISABLE
 	ld [MBC3SRamEnable], a
 	ret
 
@@ -1414,7 +1438,7 @@ Func_90c2: ; 90c2 (2:50c2)
 	jr .asm_9125
 
 .asm_911a
-	ld de, Data_8baf
+	ld de, String_8baf
 	ld hl, VTilesShared tile $48
 	ld b, $8
 	call PlaceString_
@@ -1441,7 +1465,7 @@ Func_90c2: ; 90c2 (2:50c2)
 	jr .asm_9160
 
 .asm_9155
-	ld de, $4baf
+	ld de, String_8baf
 	ld hl, VTilesShared tile $50
 	ld b, $8
 	call PlaceString_
@@ -3477,7 +3501,7 @@ Func_108cb: ; 108cb (4:48cb)
 	rl d
 	sla e
 	rl d
-	ld hl, $7c0d
+	ld hl, Data_13c0d
 	add hl, de
 	ld a, [hli]
 	ld [wcb01], a
@@ -3642,56 +3666,37 @@ Func_10a09: ; 10a09 (4:4a09)
 Func_10a49: ; 10a49 (4:4a49)
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, $4a56
+	ld hl, Pointers_10a56
 	call GetHalfwordFromTable
 	jp [hl]
 
-	add [hl]
-	ld c, d
-	sbc h
-	ld c, d
-	sub $4a
-	db $fc
-	ld c, d
-	sub d
-	ld c, e
-	cp l
-	ld c, e
-	ret nz
-	ld c, e
-	adc $4b
-	di
-	ld c, e
-	ld b, a
-	ld c, h
-	ld b, a
-	ld a, a
-	ld c, [hl]
-	ld a, a
-	ld c, d
-	ld c, h
-	sub b
-	ld c, h
-	or h
-	ld c, h
-	ret
+Pointers_10a56:
+	dw Func_10a86
+	dw Func_10a9c
+	dw Func_10ad6
+	dw Func_10afc
+	dw Func_10b92
+	dw Func_10bbd
+	dw Func_10bc0
+	dw Func_10bce
+	dw Func_10bf3
+	dw Func_10c47
+	dw Func_13f47
+	dw Func_13f4e
+	dw Func_10c4a
+	dw Func_10c90
+	dw Func_10cb4
+	dw Func_10cc9
+	dw Func_10d30
+	dw Func_10d86
+	dw Func_10dd3
+	dw Func_10dec
+	dw Func_10e37
+	dw Func_10e45
+	dw Func_10e59
+	dw Func_10e5a
 
-	ld c, h
-	jr nc, .asm_10ac5
-	add [hl]
-	ld c, l
-	db $d3
-	ld c, l
-	db $ec
-	ld c, l
-	scf
-	ld c, [hl]
-	ld b, l
-	ld c, [hl]
-	ld e, c
-	ld c, [hl]
-	ld e, d
-	ld c, [hl]
+Func_10a86:
 	call Func_1236b
 	ld bc, $12
 	check_cgb
@@ -3701,6 +3706,7 @@ Func_10a49: ; 10a49 (4:4a49)
 	call DecompressGFXByIndex_
 	jp IncrementSubroutine2
 
+Func_10a9c:
 	ld a, [wcd24]
 	ld b, a
 	ld a, [wcb72]
@@ -3727,6 +3733,7 @@ Func_10a49: ; 10a49 (4:4a49)
 	call Func_11a35
 	jp IncrementSubroutine2
 
+Func_10ad6:
 	ld e, $2e
 	call Func_13951
 	ld a, $4
@@ -3742,6 +3749,7 @@ Func_10a49: ; 10a49 (4:4a49)
 	ld [wc430], a
 	jp IncrementSubroutine2
 
+Func_10afc:
 	call Func_132d9
 	ld a, $1
 	ld [wc430], a
@@ -3838,17 +3846,17 @@ Func_10b92:
 	ld [wc430], a
 	jp IncrementSubroutine2
 
-Func_4bbd:
+Func_10bbd:
 	jp IncrementSubroutine2
 
-Func_4bc0:
+Func_10bc0:
 	ld de, wOAMAnimation02
 	call Func_0616
 	ld a, $1
 	ld [wc430], a
 	jp Func_131a0
 
-Func_4bce:
+Func_10bce:
 	ld a, $1
 	call Func_050f
 	or a
@@ -3866,7 +3874,7 @@ Func_4bce:
 	ld [wFontPaletteMode], a
 	ret
 
-Func_4bf3:
+Func_10bf3:
 	call ClearObjectAnimationBuffers
 	call Func_13a0b
 	ld bc, $0
@@ -5754,7 +5762,7 @@ Func_11a80: ; 11a80 (4:5a80)
 	ld [hli], a
 	dec b
 	jr nz, .asm_11a86
-	ld hl, wd440
+	ld hl, wStringBuffer
 	ld de, wOAMAnimationsEnd
 	call Func_33e3
 	pop de
@@ -11547,7 +11555,7 @@ Func_142cd:
 	ld [wd435], a
 	ld hl, DenjuuNames
 	call GetName75
-	ld bc, wd440
+	ld bc, wStringBuffer
 	call Func_1402a
 	jp Func_14019
 
@@ -11712,7 +11720,7 @@ Func_143f9:
 	ld [wd435], a
 	ld [wd46f], a
 	call GetName75
-	ld bc, wd440
+	ld bc, wStringBuffer
 	call Func_1402a
 	jp Func_14012
 

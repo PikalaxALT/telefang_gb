@@ -4293,14 +4293,7 @@ wd43c:: ds 1
 wd43d:: ds 1
 wd43e:: ds 1
 wd43f:: ds 1
-wd440:: ds 1
-wd441:: ds 1
-wd442:: ds 1
-wd443:: ds 1
-wd444:: ds 1
-wd445:: ds 1
-wd446:: ds 1
-wd447:: ds 1
+wStringBuffer:: ds 8
 wd448:: ds 1
 wd449:: ds 1
 wd44a:: ds 1

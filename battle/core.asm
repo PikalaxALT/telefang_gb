@@ -1195,50 +1195,1033 @@ Func_14d0f: ; 14d0f (5:4d0f)
 	pop bc
 	jp Func_0565
 
-Func_14d1f:
-	dr $14d1f, $14ddd
+Func_14d1f: ; 14d1f (5:4d1f)
+	call Func_3cd0
+	ld a, [wJoyNew]
+	and $40
+	jr z, .asm_14d3e
+	ld a, [wd414]
+	cp $0
+	jr z, .asm_14d36
+	dec a
+	ld [wd414], a
+	jr .asm_14d59
 
-Func_14ddd:
-	dr $14ddd, $14f12
+.asm_14d36
+	ld a, [wd41e]
+	ld [wd414], a
+	jr .asm_14d59
 
-Func_14f12:
-	dr $14f12, $14f32
+.asm_14d3e
+	ld a, [wJoyNew]
+	and $80
+	jr z, .asm_14d61
+	ld a, [wd41e]
+	ld b, a
+	ld a, [wd414]
+	cp b
+	jr z, .asm_14d55
+	inc a
+	ld [wd414], a
+	jr .asm_14d59
 
-Func_14f32:
-	dr $14f32, $14f81
+.asm_14d55
+	xor a
+	ld [wd414], a
+.asm_14d59
+	ld a, $2
+	ld [H_FFA1], a
+	call Func_165c3
+.asm_14d61
+	ld a, [hJoyNew]
+	and $2
+	jr z, .asm_14da3
+	ld a, $4
+	ld [H_FFA1], a
+	ld bc, $909
+	ld e, $87
+	xor a
+	call Func_04ca
+	ld bc, $909
+	ld e, $81
+	xor a
+	call Func_04da
+	ld hl, wc460
+	ld a, $5f
+	ld [hli], a
+	ld a, [wWX]
+	ld [hl], a
+	xor a
+	ld [wOAMAnimation01], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld a, $1
+	ld [wc430], a
+	call Func_14062
+	ld a, [wd474]
+	call Func_1412b
+	ld a, $5
+	ld [wd400], a
+	ret
 
-Func_14f81:
-	dr $14f81, $15051
+.asm_14da3
+	ld a, [hJoyNew]
+	and $1
+	ret z
+	ld a, [wd474]
+	cp $1
+	jr z, .asm_14dbb
+	cp $2
+	jr z, .asm_14dc3
+	ld a, [wd414]
+	ld [wd49d], a
+	jr .asm_14dc9
 
-Func_15051:
-	dr $15051, $150e0
+.asm_14dbb
+	ld a, [wd414]
+	ld [wd49e], a
+	jr .asm_14dc9
 
-Func_150e0:
-	dr $150e0, $150f5
+.asm_14dc3
+	ld a, [wd414]
+	ld [wd49f], a
+.asm_14dc9
+	ld a, $3
+	ld [H_FFA1], a
+	xor a
+	ld [wOAMAnimation01], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld a, $1
+	ld [wc430], a
+	jp Func_3cf8
 
-Func_150f5:
-	dr $150f5, $1510a
+Func_14ddd: ; 14ddd (5:4ddd)
+	ld bc, $909
+	ld e, $87
+	xor a
+	call Func_04ca
+	ld bc, $909
+	ld e, $81
+	xor a
+	call Func_04da
+	call Func_142af
+	ld a, [wd474]
+	call Func_1412b
+	call OpenSRAMBank2
+	ld a, [wd591]
+	ld hl, $a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	ld a, [wd596]
+	cp $4
+	jr nz, .asm_14e23
+	xor a
+	ld [wd414], a
+	ld a, [wd584]
+	ld [wd497], a
+	ld a, [wd414]
+	call Func_143f9
+	jp Func_14ec6
 
-Func_1510a:
-	dr $1510a, $15292
+.asm_14e23
+	ld a, [wd414]
+	cp $3
+	jr nz, .asm_14e4b
+	ld a, [wd474]
+	cp $1
+	jr z, .asm_14e3c
+	cp $2
+	jr z, .asm_14e43
+	ld a, $5
+	ld [wd507], a
+	jr .asm_14e48
 
-Func_15292:
-	dr $15292, $153ef
+.asm_14e3c
+	ld a, $5
+	ld [wd51d], a
+	jr .asm_14e48
 
-Func_153ef:
-	dr $153ef, $15416
+.asm_14e43
+	ld a, $5
+	ld [wd533], a
+.asm_14e48
+	jp Func_14e9d
 
-Func_15416:
-	dr $15416, $15428
+.asm_14e4b
+	ld a, [wd584]
+	ld [wd497], a
+	ld a, [wd414]
+	call Func_143f9
+	call Func_143df
+	cp $1
+	jr nz, .asm_14e96
+	ld a, [wd4e6]
+	cp $2
+	jr c, .asm_14e77
+	ld c, $8b
+	call Func_3d02
+	ld a, $1
+	ld [wd411], a
+	call Func_165fe
+	call Func_3cb5
+	jr .asm_14e87
 
-Func_15428:
-	dr $15428, $1545c
+.asm_14e77
+	ld a, [wd474]
+	ld [wd415], a
+	ld [wd457], a
+	ld c, $94
+	call Func_3d02
+	jr Func_14ec6
 
-Func_1545c:
-	dr $1545c, $1545f
+.asm_14e87
+	ld a, [wd474]
+	ld [wd415], a
+	ld [wd457], a
+	ld a, $3b
+	ld [wd400], a
+	ret
 
-Func_1545f:
-	dr $1545f, $15489
+.asm_14e96
+	call Func_14ed6
+	cp $0
+	jr z, .asm_14e77
+Func_14e9d: ; 14e9d (5:4e9d)
+	ld a, [wd477]
+	ld [wd415], a
+	ld a, [wd4e7]
+	cp $2
+	jr c, .asm_14ebc
+	ld c, $95
+	call Func_3d02
+	ld a, $1
+	ld [wd411], a
+	call Func_165e8
+	call Func_3cb5
+	jr .asm_14ec3
+
+.asm_14ebc
+	ld c, $94
+	call Func_3d02
+	jr Func_14ec6
+
+.asm_14ec3
+	jp Func_3cf8
+
+Func_14ec6: ; 14ec6 (5:4ec6)
+	ld a, [wd477]
+	ld [wd415], a
+	xor a
+	ld [wd45a], a
+	ld a, $2c
+	ld [wd400], a
+	ret
+
+Func_14ed6: ; 14ed6 (5:4ed6)
+	ld a, [wd46f]
+	cp $38
+	jr c, .asm_14f0d
+	cp $3e
+	jr c, .asm_14f10
+	cp $41
+	jr c, .asm_14f0d
+	cp $44
+	jr c, .asm_14f10
+	cp $4c
+	jr c, .asm_14f0d
+	cp $4e
+	jr c, .asm_14f10
+	cp $4f
+	jr c, .asm_14f0d
+	cp $51
+	jr c, .asm_14f10
+	cp $6e
+	jr c, .asm_14f0d
+	cp $74
+	jr c, .asm_14f10
+	cp $77
+	jr c, .asm_14f0d
+	cp $7a
+	jr c, .asm_14f10
+	cp $86
+	jr z, .asm_14f10
+.asm_14f0d
+	ld a, $1
+	ret
+
+.asm_14f10
+	xor a
+	ret
+
+Func_14f12: ; 14f12 (5:4f12)
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld a, [wd414]
+	cp $3
+	jr nz, .asm_14f27
+	ld a, $58
+	ld [H_FFA1], a
+.asm_14f27
+	ld a, $1e
+	ld [wd45a], a
+	ld a, $3e
+	ld [wd400], a
+	ret
+
+Func_14f32: ; 14f32 (5:4f32)
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	ret nz
+	ld a, $0
+	ld [wd40a], a
+	ld a, [wd416]
+	cp $1
+	jr z, .asm_14f59
+	ld a, [wd474]
+	call Func_1412b
+	ld a, [wd596]
+	cp $a
+	jr z, .asm_14f71
+	ld a, $2d
+	ld [wd400], a
+	ret
+
+.asm_14f59
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd596]
+	cp $a
+	jr z, .asm_14f71
+	ld c, $72
+	call Func_3d02
+	ld a, $36
+	ld [wd400], a
+	ret
+
+.asm_14f71
+	ld c, $2e
+	call Func_3d02
+	ld a, $c
+	ld [wd400], a
+	ld a, $22
+	ld [wd401], a
+	ret
+
+Func_14f81: ; 14f81 (5:4f81)
+	call Func_0530
+	ld a, [wd4e7]
+	cp $1
+	jr z, .asm_14fba
+	call Func_3cd0
+	ld a, [hJoyNew]
+	and $10
+	jr z, .asm_14f99
+	call Func_1654b
+	jr .asm_14fa2
+
+.asm_14f99
+	ld a, [hJoyNew]
+	and $20
+	jr z, .asm_14fba
+	call Func_1656b
+.asm_14fa2
+	ld bc, $101
+	ld e, $8b
+	xor a
+	call Func_04fa
+	call Func_1658d
+	ld a, [wd477]
+	ld [wd415], a
+	ld a, $23
+	ld [wd400], a
+	ret
+
+.asm_14fba
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_15016
+	ld a, [wd414]
+	cp $3
+	jr nz, .asm_15003
+	ld a, [wd474]
+	cp $0
+	jr z, .asm_14fd4
+	cp $1
+	jr z, .asm_14fdc
+	jr .asm_14fe4
+
+.asm_14fd4
+	ld a, [wd477]
+	ld [wd50b], a
+	jr .asm_14fea
+
+.asm_14fdc
+	ld a, [wd477]
+	ld [wd521], a
+	jr .asm_14fea
+
+.asm_14fe4
+	ld a, [wd477]
+	ld [wd537], a
+.asm_14fea
+	xor a
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wc430], a
+	ld a, [wd477]
+	ld [wd415], a
+	xor a
+	ld [wd45a], a
+	ld a, $2c
+	ld [wd400], a
+	ret
+
+.asm_15003
+	xor a
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wc430], a
+	xor a
+	ld [wd45a], a
+	ld a, $2c
+	ld [wd400], a
+	ret
+
+.asm_15016
+	ld a, [hJoyNew]
+	and $2
+	ret z
+	xor a
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wc430], a
+	ld a, [wd474]
+	cp $1
+	jr z, .asm_15036
+	cp $2
+	jr z, .asm_1503d
+	ld a, $3
+	ld [wd507], a
+	jr .asm_15042
+
+.asm_15036
+	ld a, $3
+	ld [wd51d], a
+	jr .asm_15042
+
+.asm_1503d
+	ld a, $3
+	ld [wd533], a
+.asm_15042
+	ld bc, $c
+	ld e, $80
+	xor a
+	call Func_04ca
+	ld a, $7
+	ld [wd400], a
+	ret
+
+Func_15051: ; 15051 (5:5051)
+	call Func_0530
+	call Func_14ed6
+	cp $0
+	jr z, .asm_15091
+	ld a, [wd4e6]
+	cp $1
+	jr z, .asm_15091
+	call Func_3cd0
+	ld a, [hJoyNew]
+	and $10
+	jr z, .asm_15070
+	call Func_1651b
+	jr .asm_15079
+
+.asm_15070
+	ld a, [hJoyNew]
+	and $20
+	jr z, .asm_15091
+	call Func_1653b
+.asm_15079
+	ld bc, $105
+	ld e, $8b
+	xor a
+	call Func_04ca
+	call Func_1657b
+	ld a, [wd474]
+	ld [wd415], a
+	ld a, $3c
+	ld [wd400], a
+	ret
+
+.asm_15091
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_150aa
+	xor a
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wc430], a
+	xor a
+	ld [wd45a], a
+	ld a, $2c
+	ld [wd400], a
+	ret
+
+.asm_150aa
+	ld a, [hJoyNew]
+	and $2
+	ret z
+	ld a, [wd474]
+	ld b, a
+	ld a, [wd457]
+	cp b
+	jr z, .asm_150c8
+.asm_150b9
+	ld a, [wd457]
+	ld b, a
+	ld a, [wd474]
+	cp b
+	jr z, .asm_15079
+	call Func_1651b
+	jr .asm_150b9
+
+.asm_150c8
+	xor a
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wc430], a
+	ld bc, $c
+	ld e, $80
+	xor a
+	call Func_04ca
+	ld a, $7
+	ld [wd400], a
+	ret
+
+Func_150e0: ; 150e0 (5:50e0)
+	ld bc, $105
+	ld e, $92
+	xor a
+	call Func_04ca
+	call Func_1404a
+	call Func_1643a
+	ld a, $3b
+	ld [wd400], a
+	ret
+
+Func_150f5: ; 150f5 (5:50f5)
+	ld bc, $101
+	ld e, $91
+	xor a
+	call Func_04fa
+	call Func_14062
+	call Func_16461
+	ld a, $a
+	ld [wd400], a
+	ret
+
+Func_1510a: ; 1510a (5:510a)
+	ld a, [wcb3f]
+	cp $0
+	jr z, .asm_15149
+	call Func_3eee
+	cp $ff
+	ret z
+	or a
+	jr nz, .asm_15129
+	ld a, [wd45a]
+	cp $0
+	jr z, .asm_15126
+	dec a
+	ld [wd45a], a
+	ret
+
+.asm_15126
+	jp Func_0530
+
+.asm_15129
+	dec a
+	ld [wd414], a
+	ld a, [wdc45]
+	inc a
+	ld [wdc45], a
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd584]
+	ld [wd497], a
+	ld a, [wd414]
+	call Func_143f9
+	jp Func_1528c
+
+.asm_15149
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd596]
+	cp $4
+	jr nz, .asm_15173
+	ld a, $0
+	ld [wd414], a
+	ld a, [wd474]
+	ld [wd415], a
+	ld a, [wd584]
+	ld [wd497], a
+	ld a, [wd414]
+	call Func_143f9
+	ld a, $c
+	ld [wd400], a
+	ret
+
+.asm_15173
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd584]
+	ld [wd497], a
+	call Func_0d4e
+	cp $78
+	jr c, .asm_15190
+	cp $b4
+	jr c, .asm_15193
+	cp $dc
+	jr c, .asm_15197
+	jr .asm_151af
+
+.asm_15190
+	xor a
+	jr .asm_151d6
+
+.asm_15193
+	ld a, $1
+	jr .asm_151d6
+
+.asm_15197
+	ld a, [wd584]
+	ld b, $0
+	ld c, $e
+	call Func_058d
+	ld a, [wd45f]
+	ld b, a
+	ld a, [wd585]
+	cp b
+	jr c, .asm_151d5
+	ld a, $2
+	jr .asm_151d6
+
+.asm_151af
+	ld a, [wd584]
+	ld b, $0
+	ld c, $f
+	call Func_058d
+	ld a, [wd45f]
+	ld b, a
+	ld a, [wd585]
+	cp b
+	jr c, .asm_151d5
+	ld a, [wd584]
+	ld c, $9
+	call Func_058d
+	ld a, [wd45f]
+	or a
+	jr z, .asm_151d5
+	ld a, $3
+	jr .asm_151d6
+
+.asm_151d5
+	xor a
+.asm_151d6
+	ld [wd414], a
+	ld a, [wd474]
+	call Func_1412b
+	ld a, [wd596]
+	or a
+	jr z, .asm_151e9
+	xor a
+	ld [wd414], a
+.asm_151e9
+	ld a, [wd414]
+	call Func_143f9
+	ld a, [wd477]
+	cp $1
+	jr z, .asm_151ff
+	cp $2
+	jr z, .asm_15204
+	ld a, [wd4a8]
+	jr .asm_15207
+
+.asm_151ff
+	ld a, [wd4a9]
+	jr .asm_15207
+
+.asm_15204
+	ld a, [wd4aa]
+.asm_15207
+	cp $1
+	jr nz, .asm_1522f
+	xor a
+	ld [wd414], a
+	call Func_143f9
+	ld a, [wd477]
+	cp $1
+	jr z, .asm_15223
+	cp $2
+	jr z, .asm_15229
+	xor a
+	ld [wd4a8], a
+	jr .asm_1525c
+
+.asm_15223
+	xor a
+	ld [wd4a9], a
+	jr .asm_1525c
+
+.asm_15229
+	xor a
+	ld [wd4aa], a
+	jr .asm_1525c
+
+.asm_1522f
+	ld a, [wd46f]
+	cp $4d
+	jr z, .asm_1523e
+	cp $43
+	jr z, .asm_1523e
+	cp $79
+	jr nz, .asm_1525c
+.asm_1523e
+	ld a, [wd477]
+	cp $1
+	jr z, .asm_15250
+	cp $2
+	jr z, .asm_15257
+	ld a, $1
+	ld [wd4a8], a
+	jr .asm_1525c
+
+.asm_15250
+	ld a, $1
+	ld [wd4a9], a
+	jr .asm_1525c
+
+.asm_15257
+	ld a, $1
+	ld [wd4aa], a
+.asm_1525c
+	ld a, [wd46f]
+	cp $73
+	jr z, .asm_15273
+	cp $74
+	jr z, .asm_15273
+	cp $3d
+	jr z, .asm_15273
+	cp $3e
+	jr z, .asm_15273
+	cp $3f
+	jr nz, Func_1528c
+.asm_15273
+	ld a, [wd477]
+	call Func_14131
+	ld a, [wd586]
+	ld b, a
+	ld a, [wd587]
+	srl a
+	cp b
+	jr nc, Func_1528c
+	xor a
+	ld [wd414], a
+	call Func_143f9
+Func_1528c: ; 1528c (5:528c)
+	ld a, $35
+	ld [wd400], a
+	ret
+
+Func_15292: ; 15292 (5:5292)
+	ld a, [wcb3f]
+	or a
+	jr z, .asm_152c0
+	call Func_3eee
+	or a
+	ret z
+	dec a
+	ld [wd417], a
+	ld a, [wdc45]
+	inc a
+	ld [wdc45], a
+	ld a, [wd414]
+	cp $3
+	jp z, Func_15345
+	call Func_143df
+	cp $1
+	jp nz, Func_15345
+	ld a, [wd417]
+	ld [wd418], a
+	jr .asm_152ee
+
+.asm_152c0
+	call Func_143df
+	cp $1
+	jr nz, .asm_1531e
+	ld a, [wd4e7]
+	cp $3
+	jr z, .asm_152d5
+	cp $2
+	jr z, .asm_152dc
+	jp Func_153d4
+
+.asm_152d5
+	call Func_0d4e
+	and $2
+	jr .asm_152eb
+
+.asm_152dc
+	call Func_0d4e
+	cp $7f
+	jr c, .asm_152e8
+	ld a, [wd477]
+	jr .asm_152eb
+
+.asm_152e8
+	ld a, [wd478]
+.asm_152eb
+	ld [wd418], a
+.asm_152ee
+	ld a, [wd418]
+	ld b, a
+	ld a, [wd477]
+	cp b
+	jp z, Func_153d4
+	ld bc, $101
+	ld e, $8b
+	ld a, $0
+	call Func_04fa
+.asm_15303
+	ld a, [wd418]
+	ld b, a
+	ld a, [wd477]
+	cp b
+	jr z, .asm_15312
+	call Func_1654b
+	jr .asm_15303
+
+.asm_15312
+	call Func_1658d
+	call Func_14062
+	ld a, $3d
+	ld [wd400], a
+	ret
+
+.asm_1531e
+	ld a, [wd4e6]
+	cp $3
+	jr z, .asm_1532c
+	cp $2
+	jr z, .asm_15333
+	jp Func_15345
+
+.asm_1532c
+	call Func_0d4e
+	and $2
+	jr .asm_15342
+
+.asm_15333
+	call Func_0d4e
+	cp $7f
+	jr c, .asm_1533f
+	ld a, [wd474]
+	jr .asm_15342
+
+.asm_1533f
+	ld a, [wd475]
+.asm_15342
+	ld [wd417], a
+Func_15345: ; 15345 (5:5345)
+	ld a, [wd414]
+	cp $3
+	jr nz, .asm_15383
+	ld a, [wd477]
+	cp $1
+	jr z, .asm_15364
+	cp $2
+	jr z, .asm_15371
+	ld a, $5
+	ld [wd549], a
+	ld a, [wd417]
+	ld [wd54d], a
+	jr .asm_1537c
+
+.asm_15364
+	ld a, $5
+	ld [wd55f], a
+	ld a, [wd417]
+	ld [wd563], a
+	jr .asm_1537c
+
+.asm_15371
+	ld a, $5
+	ld [wd575], a
+	ld a, [wd417]
+	ld [wd579], a
+.asm_1537c
+	ld a, $1
+	ld [wd4ea], a
+	jr .asm_153a6
+
+.asm_15383
+	ld a, [wd477]
+	cp $1
+	jr z, .asm_15393
+	cp $2
+	jr z, .asm_15398
+	ld a, [wd542]
+	jr .asm_1539d
+
+.asm_15393
+	ld a, [wd558]
+	jr .asm_1539d
+
+.asm_15398
+	ld a, [wd56e]
+	jr .asm_1539d
+
+.asm_1539d
+	call Func_142cd
+	call Func_14ed6
+	or a
+	jr z, Func_153d4
+.asm_153a6
+	ld a, [wd417]
+	ld b, a
+	ld a, [wd474]
+	cp b
+	jr z, Func_153d4
+	ld bc, $105
+	ld e, $8b
+	xor a
+	call Func_04ca
+.asm_153b9
+	ld a, [wd417]
+	ld b, a
+	ld a, [wd474]
+	cp b
+	jr z, .asm_153c8
+	call Func_1651b
+	jr .asm_153b9
+
+.asm_153c8
+	call Func_1657b
+	call Func_1404a
+	ld a, $24
+	ld [wd400], a
+	ret
+
+Func_153d4: ; 153d4 (5:53d4)
+	ld a, [wd4ea]
+	or a
+	jr z, .asm_153e9
+	xor a
+	ld [wd4ea], a
+	ld c, $c
+	call Func_3d02
+	ld a, $2a
+	ld [wd400], a
+	ret
+
+.asm_153e9
+	ld a, $c
+	ld [wd400], a
+	ret
+
+Func_153ef: ; 153ef (5:53ef)
+	ld bc, $105
+	ld e, $92
+	xor a
+	call Func_04ca
+	call Func_1643a
+	ld a, [wd4ea]
+	or a
+	jr z, .asm_15410
+	xor a
+	ld [wd4ea], a
+	ld c, $c
+	call Func_3d02
+	ld a, $2a
+	ld [wd400], a
+	ret
+
+.asm_15410
+	ld a, $c
+	ld [wd400], a
+	ret
+
+Func_15416: ; 15416 (5:5416)
+	ld bc, $101
+	ld e, $91
+	xor a
+	call Func_04fa
+	call Func_16461
+	ld a, $c
+	ld [wd400], a
+	ret
+
+Func_15428: ; 15428 (5:5428)
+	ld a, [wd45a]
+	or a
+	jr nz, .asm_1543d
+	ld a, [wd414]
+	inc a
+	ld [wdc34], a
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	ret
+
+.asm_1543d
+	ld a, [wd415]
+	inc a
+	ld [wdc34], a
+	ld a, [wd414]
+	cp $3
+	jr z, .asm_15451
+	ld a, $c
+	ld [wd400], a
+	ret
+
+.asm_15451
+	ld c, $c
+	call Func_3d02
+	ld a, $2a
+	ld [wd400], a
+	ret
+
+Func_1545c: ; 1545c (5:545c)
+	jp Func_16643
+
+Func_1545f: ; 1545f (5:545f)
+	ld a, [wd412]
+	cp $1
+	jr z, .asm_15483
+	ld a, $0
+	ld [wd40a], a
+	ld a, [wd416]
+	cp $1
+	jr z, .asm_15478
+	ld a, $2d
+	ld [wd400], a
+	ret
+
+.asm_15478
+	ld c, $72
+	call Func_3d02
+	ld a, $36
+	ld [wd400], a
+	ret
+
+.asm_15483
+	ld a, $13
+	ld [wd400], a
+	ret
 
 Func_15489:
 	dr $15489, $1561e
@@ -1328,10 +2311,16 @@ Func_16461:
 	dr $16461, $1651b
 
 Func_1651b:
-	dr $1651b, $1654b
+	dr $1651b, $1653b
+
+Func_1653b:
+	dr $1653b, $1654b
 
 Func_1654b:
-	dr $1654b, $1657b
+	dr $1654b, $1656b
+
+Func_1656b:
+	dr $1656b, $1657b
 
 Func_1657b:
 	dr $1657b, $1658d
@@ -1343,7 +2332,16 @@ Func_1659f:
 	dr $1659f, $165c3
 
 Func_165c3:
-	dr $165c3, $16614
+	dr $165c3, $165e8
+
+Func_165e8:
+	dr $165e8, $165fe
+
+Func_165fe:
+	dr $165fe, $16614
 
 Func_16614:
-	dr $16614, $17ff8
+	dr $16614, $16643
+
+Func_16643:
+	dr $16643, $17ff8
