@@ -207,7 +207,7 @@ Func_8584::
 	ld [wSubroutine], a
 	ret
 
-Func_858e: ; 858e (2:458e)
+GameOverScreen: ; 858e (2:458e)
 	ld a, [wSubroutine]
 	ld hl, Pointers_8598
 	call GetHalfwordFromTable
@@ -11141,10 +11141,582 @@ Func_13fdf: ; 13fdf (4:7fdf)
 	ret
 
 SECTION "bank 05", ROMX, BANK [$5]
-	dr $14000, $1441b
+Func_14000:
+	ld hl, wd401
+	inc [hl]
+	ret
 
-DoBattle::
-	dr $1441b, $17ff8
+Func_14005:
+	ld a, $4
+	jp Func_050a
+
+Func_1400a:
+	ld a, $f0
+	ld [wc91e], a
+	jp Func_3566
+
+Func_14012: ; 14012 (5:4012)
+	ld de, wd4b1
+	ld c, $9
+	jr asm_14025
+
+Func_14019: ; 14019 (5:4019)
+	ld de, wd460
+	ld c, $9
+	jr asm_14025
+
+Func_14020:
+	ld de, wd4b1
+	ld c, $11
+asm_14025
+	ld b, $0
+	jp CopyData
+
+Func_1402a: ; 1402a (5:402a)
+	ld hl, wd420
+	ld a, $8
+	ld [wd45a], a
+.asm_14032
+	ld a, [bc]
+	cp $c0
+	jr z, .asm_14043
+	ld [hl], a
+	inc hl
+	inc bc
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	jr nz, .asm_14032
+.asm_14043
+	ld a, $e0
+	ld [hl], a
+	ld hl, wd420
+	ret
+
+Func_1404a:
+	ld a, [wd474]
+	call Func_1412b
+	call Func_1407d
+	ld a, [wd474]
+	call Func_140d9
+	ld a, [wd591]
+	ld hl, VTilesBG tile $20
+	jp Func_142f9
+
+Func_14062:
+	ld a, [wd477]
+	call Func_14131
+	call Func_140ab
+	ld a, [wd477]
+	call Func_14102
+	ld a, [wd584]
+	ld de, $4000
+	ld bc, VTilesBG tile $28
+	jp Func_0565
+
+Func_1407d: ; 1407d (5:407d)
+	ld a, [wd587]
+	ld e, a
+	ld a, [wd586]
+	call Func_3980
+	ld [wd4e8], a
+	or a
+	jr nz, .asm_14098
+	ld a, [wd586]
+	or a
+	jr z, .asm_14098
+	ld a, $1
+	ld [wd4e8], a
+.asm_14098
+	ld d, $1
+	ld a, [wd4e8]
+	call Func_3998
+	ld a, [wd4e8]
+	ld c, $0
+	hlbgcoord 3, 2
+	jp Func_3957
+
+Func_140ab: ; 140ab (5:40ab)
+	ld a, [wd587]
+	ld e, a
+	ld a, [wd586]
+	call Func_3980
+	ld [wd4e9], a
+	or a
+	jr nz, .asm_140c6
+	ld a, [wd586]
+	or a
+	jr z, .asm_140c6
+	ld a, $1
+	ld [wd4e9], a
+.asm_140c6
+	ld d, $2
+	ld a, [wd4e9]
+	call Func_3998
+	ld a, [wd4e9]
+	ld c, $1
+	hlbgcoord 6, 10, VWindow
+	jp Func_3957
+
+Func_140d9: ; 140d9 (5:40d9)
+	call Func_1412b
+	ld a, [wd58d]
+	ld e, a
+	ld a, [wd589]
+	call Func_3980
+	ld [wd4e8], a
+	or a
+	jr nz, .asm_140f7
+	ld a, [wd589]
+	or a
+	jr z, .asm_140f7
+	ld a, $1
+	ld [wd4e8], a
+.asm_140f7
+	ld a, [wd4e8]
+	ld c, $0
+	hlbgcoord 3, 3
+	jp Func_3957
+
+Func_14102: ; 14102 (5:4102)
+	call Func_14131
+	ld a, [wd58d]
+	ld e, a
+	ld a, [wd589]
+	call Func_3980
+	ld [wd4e9], a
+	or a
+	jr nz, .asm_14120
+	ld a, [wd589]
+	or a
+	jr z, .asm_14120
+	ld a, $1
+	ld [wd4e9], a
+.asm_14120
+	ld a, [wd4e9]
+	ld c, $1
+	hlbgcoord 6, 11, VWindow
+	jp Func_3957
+
+Func_1412b: ; 1412b (5:412b)
+	ld hl, wd500
+	jp Func_14137
+
+Func_14131: ; 14131 (5:4131)
+	ld hl, wd542
+	jp Func_14137
+
+Func_14137: ; 14137 (5:4137)
+	ld de, $16
+	cp $0
+	jr z, .asm_14142
+.asm_1413e
+	add hl, de
+	dec a
+	jr nz, .asm_1413e
+.asm_14142
+	ld de, wd584
+	ld bc, $16
+	jp CopyData
+
+Func_1414b:
+	ld bc, $30d
+	cp $0
+	jr z, .asm_14167
+	cp $1
+	jr z, .asm_1415f
+	cp $2
+	jr z, .asm_14164
+	ld bc, $d0f
+	jr .asm_14167
+
+.asm_1415f
+	ld bc, $30f
+	jr .asm_14167
+
+.asm_14164
+	ld bc, $d0d
+.asm_14167
+	push bc
+	ld e, $8f
+	ld a, $0
+	call Func_04ca
+	pop bc
+	inc bc
+	ld e, $82
+	ld a, $0
+	jp Func_04da
+
+Func_14178:
+	cp $1
+	jr z, .asm_1418d
+	cp $2
+	jr z, .asm_14196
+	cp $3
+	jr z, .asm_1419f
+	hlbgcoord 3, 14
+	ld a, [wd430]
+	jp Func_141a5
+
+.asm_1418d
+	hlbgcoord 3, 16
+	ld a, [wd431]
+	jp Func_141a5
+
+.asm_14196
+	hlbgcoord 13, 14
+	ld a, [wd432]
+	jp Func_141a5
+
+.asm_1419f
+	hlbgcoord 13, 16
+	ld a, [wd433]
+Func_141a5: ; 141a5 (5:41a5)
+	ld c, $0
+	jp Func_3957
+
+Func_141aa:
+	ld bc, $30e
+	cp $0
+	jr z, .asm_141c6
+	cp $1
+	jr z, .asm_141be
+	cp $2
+	jr z, .asm_141c3
+	ld bc, $d10
+	jr .asm_141c6
+
+.asm_141be
+	ld bc, $310
+	jr .asm_141c6
+
+.asm_141c3
+	ld bc, $d0e
+.asm_141c6
+	push bc
+	ld e, $8d
+	ld a, $0
+	call Func_04da
+	pop bc
+	dec bc
+	ld e, $93
+	ld a, $0
+	jp Func_04ca
+
+Func_141d7:
+	cp $1
+	jr z, .asm_141ec
+	cp $2
+	jr z, asm_1421c
+	cp $3
+	jr z, asm_14225
+	hlbgcoord 3, 14
+	ld a, [wd475]
+	jp Func_141f2
+
+.asm_141ec
+	hlbgcoord 3, 16
+	ld a, [wd476]
+Func_141f2: ; 141f2 (5:41f2)
+	push hl
+	call Func_1412b
+	ld a, [wd587]
+	ld e, a
+	ld a, [wd586]
+	call Func_3980
+	ld [wd4e8], a
+	cp $0
+	jr nz, .asm_14213
+	ld a, [wd586]
+	cp $0
+	jr z, .asm_14213
+	ld a, $1
+	ld [wd4e8], a
+.asm_14213
+	ld a, [wd4e8]
+	ld c, $0
+	pop hl
+	jp Func_3957
+
+asm_1421c
+	hlbgcoord 13, 14
+	ld a, [wd478]
+	jp Func_1422b
+
+asm_14225
+	hlbgcoord 13, 16
+	ld a, [wd479]
+Func_1422b: ; 1422b (5:422b)
+	push hl
+	call Func_14131
+	ld a, [wd587]
+	ld e, a
+	ld a, [wd586]
+	call Func_3980
+	ld [wd4e9], a
+	cp $0
+	jr nz, .asm_1424c
+	ld a, [wd586]
+	cp $0
+	jr z, .asm_1424c
+	ld a, $1
+	ld [wd4e9], a
+.asm_1424c
+	ld a, [wd4e9]
+	ld c, $0
+	pop hl
+	jp Func_3957
+
+Func_14255: ; 14255 (5:4255)
+	ld a, [wd42d]
+	inc a
+	ld [wd42d], a
+	cp $1
+	jr z, .asm_1426c
+	cp $2
+	jr z, .asm_14275
+	xor a
+	ld [wd42d], a
+	ld [wSCX], a
+	ret
+
+.asm_1426c
+	ld a, [wSCX]
+	sub $2
+	ld [wSCX], a
+	ret
+
+.asm_14275
+	ld a, [wSCX]
+	add $2
+	ld [wSCX], a
+	ret
+
+Func_1427e: ; 1427e (5:427e)
+	ld a, [wd42d]
+	inc a
+	ld [wd42d], a
+	cp $1
+	jr z, .asm_14293
+	cp $2
+	jr z, .asm_1429d
+	xor a
+	ld [wd42d], a
+	jr .asm_142a7
+
+.asm_14293
+	ld a, [wWX]
+	sub $2
+	ld [wWX], a
+	jr .asm_142a7
+
+.asm_1429d
+	ld a, [wWX]
+	add $2
+	ld [wWX], a
+	jr .asm_142a7
+
+.asm_142a7
+	jp Func_142af
+
+Func_142aa:
+	ld b, $8
+	jp PlaceString_
+
+Func_142af: ; 142af (5:42af)
+	ld hl, wc460
+	ld a, $5f
+	ld [hli], a
+	ld a, [wWX]
+	ld [hl], a
+	ret
+
+Func_142ba:
+	xor a
+	call Func_0543
+	jp Func_142c1
+
+Func_142c1: ; 142c1 (5:42c1)
+	ld a, $1
+	ld [wOBPalUpdate], a
+	xor a
+	ld bc, $4
+	jp Func_1196
+
+Func_142cd:
+	ld [wd435], a
+	ld hl, $4000
+	call Func_0548
+	ld bc, wd440
+	call Func_1402a
+	jp Func_14019
+
+Func_142df:
+	push af
+	ld c, $0
+	ld de, VTilesShared tile $00
+	call Func_0516
+	pop af
+	jp Func_1764
+
+Func_142ec:
+	push af
+	ld c, $1
+	ld de, VTilesShared tile $38
+	call Func_0516
+	pop af
+	jp Func_175f
+
+Func_142f9: ; 142f9 (5:42f9)
+	push hl
+	push af
+	ld a, $8
+	call Func_3d5c
+	call OpenSRAMBank2
+	pop af
+	ld hl, s2_a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	pop hl
+	ld de, wc9e1
+	ld b, $6
+	jp PlaceString_
+
+Func_14318:
+	ld bc, $100
+	ld e, $86
+	ld a, $0
+	call Func_04ca
+	ld bc, $100
+	ld e, $87
+	ld a, $0
+	call Func_04da
+	ld bc, $8
+	ld e, $81
+	ld a, $0
+	call Func_04fa
+	ld bc, $108
+	ld e, $84
+	ld a, $0
+	jp Func_04ea
+
+Func_14340:
+	call Func_14255
+	ld a, [wd45b]
+	inc a
+	ld [wd45b], a
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	cp $1
+	jr c, .asm_1435e
+	cp $2
+	jr c, .asm_1436a
+	ld a, $0
+	ld [wd45a], a
+.asm_1435e
+	ld bc, $105
+	ld e, $92
+	ld a, $0
+	call Func_04ca
+	jr .asm_14374
+
+.asm_1436a
+	ld bc, $105
+	ld e, $8b
+	ld a, $0
+	call Func_04ca
+.asm_14374
+	ld a, $1
+	ld [wc430], a
+	ld a, [wd45b]
+	cp $a
+	ret nz
+	xor a
+	ld [wd42d], a
+	ld [wSCX], a
+	ld [wd45a], a
+	ld [wd45b], a
+	ret
+
+Func_1438d:
+	call Func_1427e
+	ld a, [wd45b]
+	inc a
+	ld [wd45b], a
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	cp $1
+	jr c, .asm_143ab
+	cp $2
+	jr c, .asm_143b7
+	ld a, $0
+	ld [wd45a], a
+.asm_143ab
+	ld bc, $101
+	ld e, $91
+	ld a, $0
+	call Func_04fa
+	jr .asm_143c1
+
+.asm_143b7
+	ld bc, $101
+	ld e, $8b
+	ld a, $0
+	call Func_04fa
+.asm_143c1
+	ld a, $1
+	ld [wc430], a
+	ld a, [wd45b]
+	cp $a
+	ret nz
+	ld a, $58
+	ld [wWX], a
+	call Func_142af
+	xor a
+	ld [wd42d], a
+	ld [wd45a], a
+	ld [wd45b], a
+	ret
+
+Func_143df:
+	ld a, [wd46f]
+	cp $6e
+	jr c, .asm_143e8
+	sub $36
+.asm_143e8
+	cp $3e
+	jr z, .asm_143f6
+	cp $3f
+	jr z, .asm_143f6
+	cp $40
+	jr z, .asm_143f6
+	xor a
+	ret
+
+.asm_143f6
+	ld a, $1
+	ret
+
+Func_143f9:
+	ld c, $6
+	add c
+	ld c, a
+	ld a, [wd497]
+	call Func_058d
+	ld a, [wd45f]
+	ld hl, $46f8
+	ld [wd435], a
+	ld [wd46f], a
+	call Func_0548
+	ld bc, wd440
+	call Func_1402a
+	jp Func_14012
+
+INCLUDE "battle/core.asm"
 
 SECTION "bank 06", ROMX, BANK [$6]
 macro_18000: MACRO
@@ -11933,7 +12505,7 @@ Func_7122c::
 	dr $7122c, $74000
 
 SECTION "bank 1D", ROMX, BANK [$1d]
-WinBattle::
+BattleResult::
 	dr $74000, $74ff2
 
 Func_74ff2::
@@ -11960,12 +12532,15 @@ UpdateSound20::
 	dr $80000, $84000
 
 SECTION "bank 21", ROMX, BANK [$21]
+UpdateSound21::
 	dr $84000, $88000
 
 SECTION "bank 22", ROMX, BANK [$22]
+UpdateSound22::
 	dr $88000, $8c000
 
 SECTION "bank 23", ROMX, BANK [$23]
+UpdateSound23::
 	dr $8c000, $90000
 
 SECTION "bank 24", ROMX, BANK [$24]

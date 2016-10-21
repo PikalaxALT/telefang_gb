@@ -2689,6 +2689,8 @@ wcdfc:: ds 1
 wcdfd:: ds 1
 wcdfe:: ds 1
 wcdff:: ds 1
+
+SECTION "Sound Engine", WRAM0
 wce00:: ds 1
 wce01:: ds 1
 wce02:: ds 1

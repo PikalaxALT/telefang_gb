@@ -20,13 +20,13 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	dw RunOverworld_
 	dw StartBattle_
 	dw DoBattle_
-	dw WinBattle_
+	dw BattleResult_
 	dw Func_1c65
 	dw Func_1c6e
 	dw Func_1c77
 	dw Func_1c77
 	dw Func_1c80
-	dw Func_1c89
+	dw GameOverScreen_
 	dw Func_1c92
 
 OpeningLogos_::
@@ -77,11 +77,11 @@ DoBattle_::
 	rst Bankswitch
 	jp DoBattle
 
-WinBattle_::
-	ld a, BANK(WinBattle)
+BattleResult_::
+	ld a, BANK(BattleResult)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp WinBattle
+	jp BattleResult
 
 Func_1c65::
 	ld a, BANK(Func_8b8b)
@@ -107,11 +107,11 @@ Func_1c80::
 	rst Bankswitch
 	jp Func_84cf
 
-Func_1c89::
-	ld a, BANK(Func_858e)
+GameOverScreen_::
+	ld a, BANK(GameOverScreen)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_858e
+	jp GameOverScreen
 
 Func_1c92::
 	ld a, BANK(Func_7c000)
