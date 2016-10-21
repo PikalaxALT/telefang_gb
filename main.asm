@@ -7253,7 +7253,7 @@ Func_124a9: ; 124a9 (4:64a9)
 	ld [wcb66], a
 	xor a
 	ld [wcb3e], a
-	ld hl, $9780
+	ld hl, VTilesBG tile $78
 	ld b, $8
 	call Func_13fd2
 	ld hl, wc3a9
@@ -7368,7 +7368,7 @@ Func_12582: ; 12582 (4:6582)
 	ld [wcb66], a
 	xor a
 	ld [wcb3e], a
-	ld hl, $9780
+	ld hl, VTilesBG tile $78
 	ld b, $6
 	call Func_13fd2
 	ld hl, wc3a9
@@ -8326,47 +8326,708 @@ Func_12b6c: ; 12b6c (4:6b6c)
 	ld [H_MusicID], a
 	jp IncrementSubroutine2
 
-Func_12baa:
-	dr $12baa, $12bbc
+Func_12baa: ; 12baa (4:6baa)
+	ld a, [wc907]
+	dec a
+	add $2f
+	ld [wOAMAnimation16_TemplateIdx], a
+	ld de, wOAMAnimation16_PriorityFlags
+	ld bc, $1028
+	jp Func_11789
 
-Func_12bbc:
-	dr $12bbc, $12cd3
+Func_12bbc: ; 12bbc (4:6bbc)
+	ld a, [hJoyNew]
+	and $2
+	jp nz, Func_12cb7
+	ld a, [hJoyNew]
+	and $40
+	jr z, .asm_12be6
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb42]
+	dec a
+	cp $ff
+	jr nz, .asm_12be0
+	ld a, $2
+.asm_12be0
+	ld [wcb42], a
+	jp Func_12cd3
 
-Func_12cd3:
-	dr $12cd3, $12d63
+.asm_12be6
+	ld a, [hJoyNew]
+	and $80
+	jr z, .asm_12c08
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb42]
+	inc a
+	cp $3
+	jr nz, .asm_12c02
+	xor a
+.asm_12c02
+	ld [wcb42], a
+	jp Func_12cd3
 
-Func_12d63:
-	dr $12d63, $12dc7
+.asm_12c08
+	ld a, [wcb42]
+	cp $1
+	jr z, .asm_12c5f
+	cp $2
+	jp z, Func_12cb1
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_12c30
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb41]
+	dec a
+	cp $ff
+	jr nz, .asm_12c2a
+	ld a, $27
+.asm_12c2a
+	ld [wcb41], a
+	jp Func_12cd3
 
-Func_12dc7:
-	dr $12dc7, $12e00
+.asm_12c30
+	ld a, [wJoyNew]
+	and $10
+	jr z, .asm_12c4b
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb41]
+	inc a
+	cp $28
+	jr c, .asm_12c45
+	xor a
+.asm_12c45
+	ld [wcb41], a
+	jp Func_12cd3
 
-Func_12e00:
-	dr $12e00, $12f14
+.asm_12c4b
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_12c5e
+	ld a, [wcb41]
+	call Func_12d32
+	call GetMusicBank
+	ld [H_MusicID], a
+	ret
 
-Func_12f14:
-	dr $12f14, $12f31
+.asm_12c5e
+	ret
 
-Func_12f31:
-	dr $12f31, $12f3a
+.asm_12c5f
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_12c7b
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb40]
+	cp $0
+	jr nz, .asm_12c74
+	ld a, $74
+.asm_12c74
+	dec a
+	ld [wcb40], a
+	jp Func_12cd3
 
-Func_12f3a:
-	dr $12f3a, $12f59
+.asm_12c7b
+	ld a, [wJoyNew]
+	and $10
+	jr z, .asm_12c97
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb40]
+	cp $73
+	jr c, .asm_12c90
+	ld a, $ff
+.asm_12c90
+	inc a
+	ld [wcb40], a
+	jp Func_12cd3
 
-Func_12f59:
-	dr $12f59, $12fd8
+.asm_12c97
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_12ca5
+	ld a, [wcb40]
+	inc a
+	ld [H_FFA1], a
+	ret
 
-Func_12fd8:
-	dr $12fd8, $13028
+.asm_12ca5
+	ld a, [hJoyNew]
+	and $2
+	jr z, .asm_12cb0
+	ld a, $1
+	ld [H_FFA1], a
+.asm_12cb0
+	ret
 
-Func_13028:
-	dr $13028, $130bc
+Func_12cb1: ; 12cb1 (4:6cb1)
+	ld a, [hJoyNew]
+	and $1
+	jr z, asm_12cd2
+Func_12cb7: ; 12cb7 (4:6cb7)
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	call ClearObjectAnimationBuffers
+	ld a, $4
+	ld [H_FFA1], a
+	ld bc, $0
+	ld e, $10
+	call Func_13959
+	jp IncrementSubroutine
+
+asm_12cd2
+	ret
+
+Func_12cd3: ; 12cd3 (4:6cd3)
+	ld b, $48
+	ld c, $50
+	ld d, $1
+	ld a, [wcb42]
+	cp $0
+	jr z, .asm_12cf2
+	cp $1
+	jr z, .asm_12cec
+	ld b, $78
+	ld c, $80
+	ld d, $0
+	jr .asm_12cf2
+
+.asm_12cec
+	ld b, $60
+	ld c, $68
+	ld d, $1
+.asm_12cf2
+	ld a, $10
+	ld [wOAMAnimation02_XCoord], a
+	ld a, b
+	add $2
+	ld [wOAMAnimation02_YCoord], a
+	ld a, $1
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld a, $0
+	ld [wOAMAnimation02_TemplateBank], a
+	ld a, $30
+	ld [wOAMAnimation03_XCoord], a
+	ld a, c
+	add $2
+	ld [wOAMAnimation03_YCoord], a
+	ld a, d
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld a, $0
+	ld [wOAMAnimation03_TemplateBank], a
+	ld a, $1
+	ld [wc430], a
+	ld a, [wcb41]
+	hlbgcoord 5, 10
+	call Func_127e3
+	ld a, [wcb40]
+	hlbgcoord 4, 13
+	jp Func_1315b
+
+Func_12d32: ; 12d32 (4:6d32)
+	ld e, a
+	ld hl, Data_12d3b
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	ret
+
+Data_12d3b:
+	db      $03, $04, $05, $06, $07, $08, $09, $0a, $0b
+	db $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b
+	db $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c, $2d, $2e
+	db $32, $33, $34, $35, $36, $37, $38, $39
+
+Func_12d63: ; 12d63 (4:6d63)
+	ld b, $48
+	ld c, $50
+	ld d, $1
+	ld a, [wcb3e]
+	cp $0
+	jr z, .asm_12d9a
+	cp $1
+	jr z, .asm_12d94
+	cp $2
+	jr z, .asm_12d8c
+	cp $3
+	jr z, .asm_12d84
+	ld b, $88
+	ld c, $90
+	ld d, $0
+	jr .asm_12d9a
+
+.asm_12d84
+	ld b, $78
+	ld c, $80
+	ld d, $1
+	jr .asm_12d9a
+
+.asm_12d8c
+	ld b, $68
+	ld c, $70
+	ld d, $1
+	jr .asm_12d9a
+
+.asm_12d94
+	ld b, $58
+	ld c, $60
+	ld d, $1
+.asm_12d9a
+	ld a, $8
+	ld [wOAMAnimation02_XCoord], a
+	ld a, $28
+	ld [wOAMAnimation03_XCoord], a
+	ld a, b
+	add $2
+	ld [wOAMAnimation02_YCoord], a
+	ld a, c
+	add $2
+	ld [wOAMAnimation03_YCoord], a
+	ld a, $1
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld a, d
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld a, $0
+	ld [wOAMAnimation02_TemplateBank], a
+	ld [wOAMAnimation03_TemplateBank], a
+	ld a, $1
+	ld [wc430], a
+	ret
+
+Func_12dc7: ; 12dc7 (4:6dc7)
+	ld e, $19
+	ld a, [wc90a]
+	cp $0
+	jr z, .asm_12dd2
+	ld e, $18
+.asm_12dd2
+	ld bc, $40a
+	ld a, $0
+	call Func_04ca
+	ld e, $19
+	ld a, [wc93e]
+	cp $0
+	jr z, .asm_12de5
+	ld e, $18
+.asm_12de5
+	ld bc, $40c
+	ld a, $0
+	call Func_04ca
+	ld e, $19
+	ld a, [wcd27]
+	cp $0
+	jr z, .asm_12df8
+	ld e, $18
+.asm_12df8
+	ld bc, $410
+	ld a, $0
+	jp Func_04ca
+
+Func_12e00: ; 12e00 (4:6e00)
+	ld a, [hJoyNew]
+	and $2
+	jp nz, Func_12eee
+	ld a, [wJoyNew]
+	and $40
+	jr z, .asm_12e23
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb3e]
+	cp $0
+	jr nz, .asm_12e1c
+	ld a, $5
+.asm_12e1c
+	dec a
+	ld [wcb3e], a
+	jp Func_12d63
+
+.asm_12e23
+	ld a, [wJoyNew]
+	and $80
+	jr z, .asm_12e3f
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb3e]
+	cp $4
+	jr nz, .asm_12e38
+	ld a, $ff
+.asm_12e38
+	inc a
+	ld [wcb3e], a
+	jp Func_12d63
+
+.asm_12e3f
+	ld a, [wcb3e]
+	cp $1
+	jr z, .asm_12e73
+	cp $2
+	jr z, .asm_12e92
+	cp $3
+	jp z, Func_12ec3
+	cp $4
+	jp z, Func_12ee2
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_12e5d
+	jr .asm_12e63
+
+.asm_12e5d
+	ld a, [wJoyNew]
+	and $10
+	ret z
+.asm_12e63
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wc90a]
+	xor $1
+	ld [wc90a], a
+	jp Func_12dc7
+
+.asm_12e73
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_12e7c
+	jr .asm_12e82
+
+.asm_12e7c
+	ld a, [wJoyNew]
+	and $10
+	ret z
+.asm_12e82
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wc93e]
+	xor $1
+	ld [wc93e], a
+	jp Func_12dc7
+
+.asm_12e92
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_12eab
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcdb3]
+	inc a
+	and $3
+	ld [wcdb3], a
+	call Func_12efe
+	ret
+
+.asm_12eab
+	ld a, [wJoyNew]
+	and $10
+	ret z
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcdb3]
+	dec a
+	and $3
+	ld [wcdb3], a
+	call Func_12efe
+	ret
+
+Func_12ec3: ; 12ec3 (4:6ec3)
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_12ecc
+	jr .asm_12ed2
+
+.asm_12ecc
+	ld a, [wJoyNew]
+	and $10
+	ret z
+.asm_12ed2
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcd27]
+	xor $1
+	ld [wcd27], a
+	jp Func_12dc7
+
+Func_12ee2: ; 12ee2 (4:6ee2)
+	ld a, [hJoyNew]
+	and $1
+	ret z
+	ld a, $3
+	ld [H_FFA1], a
+	jr asm_12ef3
+
+Func_12eee: ; 12eee (4:6eee)
+	ld a, $4
+	ld [H_FFA1], a
+asm_12ef3
+	call Func_13fc6
+	ld e, $2d
+	call Func_13951
+	jp IncrementSubroutine2
+
+Func_12efe: ; 12efe (4:6efe)
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld a, [wcdb3]
+	ld e, a
+	ld d, $0
+	ld hl, $320
+	add hl, de
+	push hl
+	pop bc
+	ld a, $5
+	jp Func_10ee
+
+Func_12f14: ; 12f14 (4:6f14)
+	xor a
+	ld [wcb68], a
+	ld hl, wcd70
+	ld de, $4
+	ld b, $8
+.asm_12f20
+	ld a, [hl]
+	cp $0
+	jr z, .asm_12f2c
+	ld a, [wcb68]
+	inc a
+	ld [wcb68], a
+.asm_12f2c
+	add hl, de
+	dec b
+	jr nz, .asm_12f20
+	ret
+
+Func_12f31: ; 12f31 (4:6f31)
+	ld a, [wcb68]
+	hlbgcoord 2, 10
+	jp Func_127eb
+
+Func_12f3a: ; 12f3a (4:6f3a)
+	xor a
+	ld [wcb68], a
+	ld hl, wcd90
+	ld de, $4
+	ld b, $8
+.asm_12f46
+	push hl
+	ld a, [hli]
+	cp $0
+	jr z, .asm_12f53
+	ld a, [wcb68]
+	inc a
+	ld [wcb68], a
+.asm_12f53
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .asm_12f46
+	ret
+
+Func_12f59: ; 12f59 (4:6f59)
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_12f7e
+	ld a, $3
+	ld [H_FFA1], a
+	call Func_137d9
+	xor a
+	ld [wcb6d], a
+	ld a, $8
+	ld [wcb2c], a
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	call Func_13fc6
+	jp IncrementSubroutine2
+
+.asm_12f7e
+	ld a, [hJoyNew]
+	and $2
+	jr z, .asm_12f8f
+	ld a, $4
+	ld [H_FFA1], a
+	ld a, $c
+	ld [wSubroutine2], a
+	ret
+
+.asm_12f8f
+	ld a, [wcb68]
+	cp $1
+	ret z
+	ld a, [wJoyNew]
+	and $10
+	jr z, .asm_12fb5
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	dec a
+	ld b, a
+	ld a, [wcb67]
+	cp b
+	jr nz, .asm_12fae
+	ld a, $ff
+.asm_12fae
+	inc a
+	ld [wcb67], a
+	jp Func_12fd8
+
+.asm_12fb5
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_12fd7
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	dec a
+	ld b, a
+	ld a, [wcb67]
+	cp $0
+	jr nz, .asm_12fd0
+	ld a, [wcb68]
+.asm_12fd0
+	dec a
+	ld [wcb67], a
+	jp Func_12fd8
+
+.asm_12fd7
+	ret
+
+Func_12fd8: ; 12fd8 (4:6fd8)
+	ld b, a
+	ld a, [wcb68]
+	dec a
+	sub b
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, wcd70
+	add hl, de
+	ld a, [hli]
+	dec a
+	ld c, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld e, a
+	push de
+	call Func_13ef6
+	pop de
+	push de
+	ld a, d
+	call Get2DigitBCD
+	hlbgcoord 2, 11
+	call Print2DigitBCD
+	pop de
+	ld a, e
+	call Get2DigitBCD
+	hlbgcoord 5, 11
+	call Print2DigitBCD
+	ld a, [wcb67]
+	inc a
+	call Get2DigitBCD
+	hlbgcoord 2, 15
+	call Print2DigitBCD
+	ld a, [wcb68]
+	call Get2DigitBCD
+	hlbgcoord 5, 15
+	jp Print2DigitBCD
+
+Func_13028: ; 13028 (4:7028)
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_1305e
+	ld a, $3
+	ld [H_FFA1], a
+	ld e, $2d
+	call Func_13951
+	call Func_13fc6
+	ld hl, VTilesBG tile $40
+	ld b, $20
+	call Func_13fd2
+	ld a, $f0
+	ld [wc91e], a
+	call Func_3566
+	ld a, $85
+	ld [wca65], a
+	call Func_13fdf
+	ld a, $40
+	ld [wc91f], a
+	call Func_137af
+	jp IncrementSubroutine2
+
+.asm_1305e
+	ld a, [hJoyNew]
+	and $2
+	jr z, .asm_13073
+	ld a, $4
+	ld [H_FFA1], a
+	xor a
+	ld [wFontPaletteMode], a
+	ld a, $7
+	ld [wSubroutine2], a
+	ret
+
+.asm_13073
+	ld a, [wcb68]
+	cp $1
+	ret z
+	ld a, [wJoyNew]
+	and $10
+	jr z, .asm_13099
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	dec a
+	ld b, a
+	ld a, [wcb67]
+	cp b
+	jr nz, .asm_13092
+	ld a, $ff
+.asm_13092
+	inc a
+	ld [wcb67], a
+	jp Func_130bc
+
+.asm_13099
+	ld a, [wJoyNew]
+	and $20
+	jr z, .asm_130bb
+	ld a, $2
+	ld [H_FFA1], a
+	ld a, [wcb68]
+	dec a
+	ld b, a
+	ld a, [wcb67]
+	cp $0
+	jr nz, .asm_130b4
+	ld a, [wcb68]
+.asm_130b4
+	dec a
+	ld [wcb67], a
+	jp Func_130bc
+
+.asm_130bb
+	ret
 
 Func_130bc:
 	dr $130bc, $13124
 
 Func_13124:
-	dr $13124, $1316d
+	dr $13124, $1315b
+
+Func_1315b:
+	dr $1315b, $1316d
 
 Func_1316d:
 	dr $1316d, $131a0
@@ -8411,7 +9072,13 @@ Func_1371c:
 	dr $1371c, $137a1
 
 Func_137a1:
-	dr $137a1, $137df
+	dr $137a1, $137af
+
+Func_137af:
+	dr $137af, $137d9
+
+Func_137d9:
+	dr $137d9, $137df
 
 Func_137df:
 	dr $137df, $137fa
@@ -8522,7 +9189,10 @@ Rom4_GetSRAMBankB:
 	dr $13ee7, $13ef1
 
 Rom4_CloseSRAM:
-	dr $13ef1, $13f15
+	dr $13ef1, $13ef6
+
+Func_13ef6:
+	dr $13ef6, $13f15
 
 Func_13f15:
 	dr $13f15, $13f18
