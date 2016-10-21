@@ -399,7 +399,7 @@ Func_8648: ; 8648 (2:4648)
 Func_86e2::
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ld a, $3
+	ld a, BANK(s3_b000)
 	ld [MBC3SRamBank], a
 .asm_86ec
 	ld a, [hli]
@@ -1207,9 +1207,9 @@ Func_8f96: ; 8f96 (2:4f96)
 
 Func_8fb9:
 	ld a, $a
-	ld [$0], a
+	ld [MBC3SRamEnable], a
 	ld a, $1
-	ld [$4000], a
+	ld [MBC3SRamBank], a
 	ld de, wd000
 	ld hl, $b000
 	ld a, [wcb70]
@@ -1231,7 +1231,7 @@ Func_8fb9:
 	or b
 	jr nz, .asm_8fd7
 	ld a, $0
-	ld [$0], a
+	ld [MBC3SRamEnable], a
 	ret
 
 Func_8fe8: ; 8fe8 (2:4fe8)
@@ -1305,7 +1305,7 @@ Func_904a: ; 904a (2:504a)
 	cp $2
 	jr nz, .asm_907c
 .asm_9062
-	ld hl, $a00a
+	ld hl, s2_a00a
 	ld a, [wd496]
 	call Func_3d0e
 	ld a, [hli]
@@ -1317,7 +1317,7 @@ Func_904a: ; 904a (2:504a)
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ld hl, $9984
+	hlbgcoord 4, 12
 	call Func_0650
 	jr .asm_9086
 
@@ -1503,7 +1503,7 @@ Func_91c7: ; 91c7 (2:51c7)
 	ld c, $1
 	call Func_058d
 	ld a, [wd45f]
-	ld hl, $9986
+	hlbgcoord 6, 12
 	ld c, $0
 	call Func_1378
 	ld a, [wd498]
@@ -1512,7 +1512,7 @@ Func_91c7: ; 91c7 (2:51c7)
 	ld c, $2
 	call Func_058d
 	ld a, [wd45f]
-	ld hl, $99c6
+	hlbgcoord 6, 14
 	ld c, $0
 	call Func_1378
 	ld a, [wd498]
@@ -1521,7 +1521,7 @@ Func_91c7: ; 91c7 (2:51c7)
 	ld c, $3
 	call Func_058d
 	ld a, [wd45f]
-	ld hl, $9a06
+	hlbgcoord 6, 16
 	ld c, $0
 	call Func_1378
 	ld a, [wd498]
@@ -1530,7 +1530,7 @@ Func_91c7: ; 91c7 (2:51c7)
 	ld c, $4
 	call Func_058d
 	ld a, [wd45f]
-	ld hl, $998f
+	hlbgcoord 15, 12
 	ld c, $0
 	call Func_1378
 	ld a, [wd498]
@@ -1539,18 +1539,18 @@ Func_91c7: ; 91c7 (2:51c7)
 	ld c, $5
 	call Func_058d
 	ld a, [wd45f]
-	ld hl, $99cf
+	hlbgcoord 15, 14
 	ld c, $0
 	call Func_1378
 	ret
 
 Func_923b: ; 923b (2:523b)
-	ld a, $a
-	ld [$0], a
-	ld a, $2
-	ld [$4000], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s2_a002)
+	ld [MBC3SRamBank], a
 	ld a, [wd498]
-	ld hl, $99e5
+	hlbgcoord 5, 15
 	ld c, $1
 	call Func_1378
 	ld a, [wd498]
@@ -1559,7 +1559,7 @@ Func_923b: ; 923b (2:523b)
 	ld c, $0
 	call Func_058d
 	ld a, [wd45f]
-	ld hl, $9a05
+	hlbgcoord 5, 16
 	ld c, $0
 	call Func_1378
 	ld a, [wcb2b]
@@ -1573,7 +1573,7 @@ Func_923b: ; 923b (2:523b)
 	jp nz, Func_9289
 .asm_927d
 	ld a, [wd496]
-	ld hl, $a002
+	ld hl, s2_a002
 	call Func_3d0e
 	ld a, [hl]
 	jr asm_928b
@@ -1581,7 +1581,7 @@ Func_923b: ; 923b (2:523b)
 Func_9289: ; 9289 (2:5289)
 	ld a, $0
 asm_928b
-	ld hl, $99ee
+	hlbgcoord 14, 15
 	ld c, $0
 	call Func_1378
 	ld a, [wd498]
@@ -1607,7 +1607,7 @@ asm_928b
 	rr c
 	push bc
 	pop hl
-	ld bc, $9a0b
+	bcbgcoord 11, 16
 	call Func_14b1
 	ld a, [wd497]
 	ld b, $0
@@ -1621,7 +1621,7 @@ asm_928b
 	rr c
 	push bc
 	pop hl
-	ld bc, $9a0f
+	bcbgcoord 15, 16
 	call Func_14b1
 	jr asm_92ff
 
@@ -4266,7 +4266,7 @@ Func_10f06:
 	ld e, $31
 	call Func_13951
 	xor a
-	ld hl, $9a06
+	hlbgcoord 6, 16
 	call Func_127e3
 	ld a, $4
 	ld [wSubroutine2], a
@@ -5804,7 +5804,7 @@ Func_11aaf: ; 11aaf (4:5aaf)
 	call Func_11fe9
 	xor a
 	ld [wcb28], a
-	jp Func_1293b
+	jp LoadPhoneKeypad
 
 .asm_11af9
 	ld a, [hJoyNew]
@@ -5827,7 +5827,7 @@ Func_11aaf: ; 11aaf (4:5aaf)
 .asm_11b19
 	ld a, b
 	ld [wcb28], a
-	call Func_1293b
+	call LoadPhoneKeypad
 .asm_11b20
 	ret
 
@@ -6586,7 +6586,7 @@ Func_11fe9: ; 11fe9 (4:5fe9)
 	ld [wOAMAnimation04_TemplateBank], a
 	ld b, $6
 	ld a, [wcb6c]
-	ld de, $9942
+	debgcoord 2, 10
 .asm_1202e
 	push af
 	ld c, a
@@ -6718,7 +6718,7 @@ Func_1208b: ; 1208b (4:608b)
 	call Func_13951
 	xor a
 	ld [wcb28], a
-	call Func_1293b
+	call LoadPhoneKeypad
 	call Func_1bd1
 	call Func_11ee9
 	ld a, $32
@@ -6756,7 +6756,7 @@ Func_1208b: ; 1208b (4:608b)
 	call Func_13951
 	xor a
 	ld [wcb28], a
-	call Func_1293b
+	call LoadPhoneKeypad
 	xor a
 	ld [wcb67], a
 	ld [wcb69], a
@@ -7312,7 +7312,7 @@ Func_12519: ; 12519 (4:6519)
 	xor a
 .asm_12530
 	ld [wcb28], a
-	call Func_1293b
+	call LoadPhoneKeypad
 	jp Func_1265a
 
 asm_12539
@@ -7427,7 +7427,7 @@ Func_125f2: ; 125f2 (4:65f2)
 	xor a
 .asm_12609
 	ld [wcb28], a
-	call Func_1293b
+	call LoadPhoneKeypad
 	jp Func_1265a
 
 asm_12612
@@ -7711,7 +7711,7 @@ Func_127b7: ; 127b7 (4:67b7)
 Func_127da: ; 127da (4:67da)
 	ld a, [wcb6f]
 	call Func_122ba
-	ld hl, $9a06
+	hlbgcoord 6, 16
 Func_127e3: ; 127e3 (4:67e3)
 	push hl
 	call Func_12fb
@@ -7924,23 +7924,266 @@ Data_128fc:
 Data_128fe:
 	db $ff
 
-Func_128ff:
-	dr $128ff, $12921
+Func_128ff: ; 128ff (4:68ff)
+	ld a, [wcb38]
+	ld e, a
+	ld d, $0
+	ld hl, Data_12919
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	ld c, $68
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_11789
+	ld a, $1
+	ld [wc430], a
+	ret
 
-Func_12921:
-	dr $12921, $1293b
+Data_12919:
+x = 8
+REPT 8
+	db x
+x = x + 8
+ENDR
 
-Func_1293b:
-	dr $1293b, $129c4
+Func_12921: ; 12921 (4:6921)
+	ld a, [wcb38]
+	sla a
+	sla a
+	sla a
+	add $10
+	ld b, a
+	ld c, $70
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_11789
+	ld a, $1
+	ld [wc430], a
+	ret
 
-Func_129c4:
-	dr $129c4, $12a4e
+LoadPhoneKeypad: ; 1293b (4:693b)
+	ld hl, Pointers_12970
+	check_cgb
+	jr z, .asm_12948
+	ld hl, Pointers_1299a
+.asm_12948
+	ld a, [wCurPhoneGFX]
+	call Rom4_PointToHalfwordInTable
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wcb28]
+	call Rom4_PointToHalfwordInTable
+	ld a, [hli]
+.asm_12958
+	ld h, [hl]
+	ld l, a
+	check_cgb
+	jr z, .asm_12965
+	ld a, BANK(GFX_1e4000)
+	jr .asm_12967
 
-Func_12a4e:
-	dr $12a4e, $12a5f
+.asm_12965
+	ld a, BANK(GFX_1ec000)
+.asm_12967
+	ld de, VTilesShared tile $20
+	ld bc, $40 tiles
+	jp Copy2bpp
 
-Func_12a5f:
-	dr $12a5f, $12ab9
+Pointers_12970:
+	dw Pointers_12982
+	dw Pointers_12982
+	dw Pointers_12982
+	dw Pointers_1298a
+	dw Pointers_1298a
+	dw Pointers_1298a
+	dw Pointers_12992
+	dw Pointers_12992
+	dw Pointers_12992
+
+Pointers_12982:
+	dw GFX_1e4000
+	dw GFX_1e4400
+	dw GFX_1e4800
+	dw GFX_1e4c00
+
+Pointers_1298a:
+	dw GFX_1e5000
+	dw GFX_1e5400
+	dw GFX_1e5800
+	dw GFX_1e5c00
+
+Pointers_12992:
+	dw GFX_1e6000
+	dw GFX_1e6400
+	dw GFX_1e6800
+	dw GFX_1e6c00
+
+Pointers_1299a:
+	dw Pointers_129ac
+	dw Pointers_129ac
+	dw Pointers_129ac
+	dw Pointers_129b4
+	dw Pointers_129b4
+	dw Pointers_129b4
+	dw Pointers_129bc
+	dw Pointers_129bc
+	dw Pointers_129bc
+
+Pointers_129ac:
+	dw GFX_1ec000
+	dw GFX_1ec400
+	dw GFX_1ec800
+	dw GFX_1ecc00
+
+Pointers_129b4:
+	dw GFX_1ed000
+	dw GFX_1ed400
+	dw GFX_1ed800
+	dw GFX_1edc00
+
+Pointers_129bc:
+	dw GFX_1ee000
+	dw GFX_1ee400
+	dw GFX_1ee800
+	dw GFX_1eec00
+
+Func_129c4: ; 129c4 (4:69c4)
+	ld a, [wCurPhoneGFX]
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	push de
+	ld hl, Pointers_12a18
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, VTilesBG
+	ld bc, $40 tiles
+	ld a, BANK(Phone1GFX)
+	call Copy2bpp
+	pop de
+	push de
+	ld hl, Pointers_12a2a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, VTilesShared
+	ld bc, $20 tiles
+	ld a, $7a
+	call Copy2bpp
+	pop de
+	ld hl, Pointers_12a3c
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, VTilesBG tile $21
+	ld bc, $3 tiles
+	ld a, BANK(GFX_dee5f)
+	jp Copy2bpp
+	ld a, [wCurPhoneGFX]
+	ld e, a
+	ld d, $0
+	ld hl, $39 tiles
+	add hl, de
+	push hl
+	pop bc
+	xor a
+	jp Func_10ee
+
+Pointers_12a18:
+	dw Phone1GFX
+	dw Phone1GFX
+	dw Phone1GFX
+	dw Phone2GFX
+	dw Phone2GFX
+	dw Phone2GFX
+	dw Phone3GFX
+	dw Phone3GFX
+	dw Phone3GFX
+
+Pointers_12a2a:
+	dw GFX_1e8000
+	dw GFX_1e8200
+	dw GFX_1e8400
+	dw GFX_1e8600
+	dw GFX_1e8800
+	dw GFX_1e8a00
+	dw GFX_1e8c00
+	dw GFX_1e8e00
+	dw GFX_1e9000
+
+Pointers_12a3c:
+	dw GFX_dee5f
+	dw GFX_dee8f
+	dw GFX_deebf
+	dw GFX_deeef
+	dw GFX_def1f
+	dw GFX_def4f
+	dw GFX_def7f
+	dw GFX_defaf
+	dw GFX_defdf
+
+Func_12a4e: ; 12a4e (4:6a4e)
+	xor a
+	ld [wc3cd], a
+	ld [wc3ce], a
+	ld [wc3cf], a
+	ld [wc3d0], a
+	ld [wc3d1], a
+	ret
+
+SetRTC: ; 12a5f (4:6a5f)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	xor a
+	ld [MBC3LatchClock], a
+	ld a, $1
+	ld [MBC3LatchClock], a
+	nop
+	nop
+	nop
+	nop
+	ld a, RTC_S
+	ld [MBC3SRamBank], a
+	xor a
+	ld [MBC3RTC], a
+	nop
+	nop
+	nop
+	nop
+	ld a, RTC_M
+	ld [MBC3SRamBank], a
+	ld a, [wc3ce]
+	ld [MBC3RTC], a
+	nop
+	nop
+	nop
+	nop
+	ld a, RTC_H
+	ld [MBC3SRamBank], a
+	ld a, [wc3cf]
+	ld [MBC3RTC], a
+	nop
+	nop
+	nop
+	nop
+	ld a, RTC_DL
+	ld [MBC3SRamBank], a
+	ld a, [wc3d0]
+	ld [MBC3RTC], a
+	nop
+	nop
+	nop
+	nop
+	ld a, RTC_DH
+	ld [MBC3SRamBank], a
+	ld a, [wc3d1]
+	ld [MBC3RTC], a
+	jp Rom4_CloseSRAM
 
 Func_12ab9:
 	dr $12ab9, $12b2b
@@ -9306,7 +9549,18 @@ UnknownTZFile72:: INCBIN "gfx/tzfiles/tz_72.2bpp.tz"
 Phone1GFX:: INCBIN "gfx/phone/phone1.2bpp"
 Phone2GFX:: INCBIN "gfx/phone/phone2.2bpp"
 Phone3GFX:: INCBIN "gfx/phone/phone3.2bpp"
-	dr $de95f, $e0000
+	dr $de95f, $dee5f
+
+GFX_dee5f: INCBIN "gfx/phone/dee5f.w24.2bpp"
+GFX_dee8f: INCBIN "gfx/phone/dee8f.w24.2bpp"
+GFX_deebf: INCBIN "gfx/phone/deebf.w24.2bpp"
+GFX_deeef: INCBIN "gfx/phone/deeef.w24.2bpp"
+GFX_def1f: INCBIN "gfx/phone/def1f.w24.2bpp"
+GFX_def4f: INCBIN "gfx/phone/def4f.w24.2bpp"
+GFX_def7f: INCBIN "gfx/phone/def7f.w24.2bpp"
+GFX_defaf: INCBIN "gfx/phone/defaf.w24.2bpp"
+GFX_defdf: INCBIN "gfx/phone/defdf.w24.2bpp"
+	dr $df00f, $e0000
 
 SECTION "bank 38", ROMX, BANK [$38]
 GFX_e0000:: INCBIN "gfx/misc/e0000.2bpp"
@@ -9555,13 +9809,43 @@ Data_1d7988::
 	dr $1d7988, $1d8000
 
 SECTION "bank 79", ROMX, BANK [$79]
-	dr $1e4000, $1e8000
+GFX_1e4000: INCBIN "gfx/phone_keypads/1e4000.t2.2bpp"
+GFX_1e4400: INCBIN "gfx/phone_keypads/1e4400.t2.2bpp"
+GFX_1e4800: INCBIN "gfx/phone_keypads/1e4800.t2.2bpp"
+GFX_1e4c00: INCBIN "gfx/phone_keypads/1e4c00.t2.2bpp"
+GFX_1e5000: INCBIN "gfx/phone_keypads/1e5000.t2.2bpp"
+GFX_1e5400: INCBIN "gfx/phone_keypads/1e5400.t2.2bpp"
+GFX_1e5800: INCBIN "gfx/phone_keypads/1e5800.t2.2bpp"
+GFX_1e5c00: INCBIN "gfx/phone_keypads/1e5c00.t2.2bpp"
+GFX_1e6000: INCBIN "gfx/phone_keypads/1e6000.t2.2bpp"
+GFX_1e6400: INCBIN "gfx/phone_keypads/1e6400.t2.2bpp"
+GFX_1e6800: INCBIN "gfx/phone_keypads/1e6800.t2.2bpp"
+GFX_1e6c00: INCBIN "gfx/phone_keypads/1e6c00.t2.2bpp"
 
 SECTION "bank 7A", ROMX, BANK [$7a]
-	dr $1e8000, $1ec000
+GFX_1e8000: INCBIN "gfx/phone/1e8000.2bpp"
+GFX_1e8200: INCBIN "gfx/phone/1e8200.2bpp"
+GFX_1e8400: INCBIN "gfx/phone/1e8400.2bpp"
+GFX_1e8600: INCBIN "gfx/phone/1e8600.2bpp"
+GFX_1e8800: INCBIN "gfx/phone/1e8800.2bpp"
+GFX_1e8a00: INCBIN "gfx/phone/1e8a00.2bpp"
+GFX_1e8c00: INCBIN "gfx/phone/1e8c00.2bpp"
+GFX_1e8e00: INCBIN "gfx/phone/1e8e00.2bpp"
+GFX_1e9000: INCBIN "gfx/phone/1e9000.2bpp"
 
 SECTION "bank 7B", ROMX, BANK [$7b]
-	dr $1ec000, $1f0000
+GFX_1ec000: INCBIN "gfx/phone_keypads/1ec000.t2.2bpp"
+GFX_1ec400: INCBIN "gfx/phone_keypads/1ec400.t2.2bpp"
+GFX_1ec800: INCBIN "gfx/phone_keypads/1ec800.t2.2bpp"
+GFX_1ecc00: INCBIN "gfx/phone_keypads/1ecc00.t2.2bpp"
+GFX_1ed000: INCBIN "gfx/phone_keypads/1ed000.t2.2bpp"
+GFX_1ed400: INCBIN "gfx/phone_keypads/1ed400.t2.2bpp"
+GFX_1ed800: INCBIN "gfx/phone_keypads/1ed800.t2.2bpp"
+GFX_1edc00: INCBIN "gfx/phone_keypads/1edc00.t2.2bpp"
+GFX_1ee000: INCBIN "gfx/phone_keypads/1ee000.t2.2bpp"
+GFX_1ee400: INCBIN "gfx/phone_keypads/1ee400.t2.2bpp"
+GFX_1ee800: INCBIN "gfx/phone_keypads/1ee800.t2.2bpp"
+GFX_1eec00: INCBIN "gfx/phone_keypads/1eec00.t2.2bpp"
 
 SECTION "bank 7C", ROMX, BANK [$7c]
 TitleScreenPCM:: INCBIN "audio/pcm/title.pcm"

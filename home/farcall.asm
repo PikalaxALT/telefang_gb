@@ -132,7 +132,7 @@ Func_0530::
 	homecall_memret Func_2c100
 	ret
 
-Func_0538::
+Copy2bpp::
 	rst Bankswitch
 	call WaitStatCopy
 	rst MemBankswitch

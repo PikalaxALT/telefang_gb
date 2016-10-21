@@ -67,7 +67,7 @@ Func_1006e: ; 1006e (4:406e)
 	ld bc, $11
 	call DecompressGFXByIndex_
 	call Func_129c4
-	call Func_1293b
+	call LoadPhoneKeypad
 	jp IncrementSubroutine
 
 Func_10089: ; 10089 (4:4089)
@@ -385,7 +385,7 @@ Func_102cd: ; 102cd (4:42cd)
 	call Func_0609
 	ld a, $2
 	ld [wcb28], a
-	call Func_1293b
+	call LoadPhoneKeypad
 	call Func_12488
 	call Func_1249a
 	ld bc, $104
@@ -442,7 +442,7 @@ Func_10346: ; 10346 (4:4346)
 	call ClearSRAM
 	call DeleteSaveFile
 	call Func_1a09
-	jp Func_12a5f
+	jp SetRTC
 
 Func_1037f: ; 1037f (4:437f)
 	ld a, $4
@@ -575,7 +575,7 @@ Func_10452: ; 10452 (4:4452)
 	call Func_0609
 	ld a, $2
 	ld [wcb28], a
-	call Func_1293b
+	call LoadPhoneKeypad
 	ld a, $1
 	ld [wcb2a], a
 	call Func_13a1e

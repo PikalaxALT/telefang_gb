@@ -108,11 +108,11 @@ Func_93bd: ; 93bd (2:53bd)
 	ld [wdd06], a
 	ld bc, $1412
 	ld a, $0
-	ld hl, $9800
+	hlbgcoord 0, 0
 	call Func_15ca
 	ld bc, $2006
 	ld a, $1
-	ld hl, $98e0
+	hlbgcoord 0, 7
 	call Func_15ca
 	ld bc, $0
 	ld e, $7
@@ -154,7 +154,7 @@ Func_9427: ; 9427 (2:5427)
 	call Func_04c0
 	ld bc, $1412
 	ld a, $2
-	ld hl, $9800
+	hlbgcoord 0, 0
 	call Func_15ca
 	ld bc, $0
 	ld e, $8
@@ -177,7 +177,7 @@ Func_945c: ; 945c (2:545c)
 	call Func_04c0
 	ld bc, $1412
 	ld a, $0
-	ld hl, $9800
+	hlbgcoord 0, 0
 	call Func_15ca
 	ld bc, $0
 	ld e, $a
