@@ -9020,17 +9020,128 @@ Func_13028: ; 13028 (4:7028)
 .asm_130bb
 	ret
 
-Func_130bc:
-	dr $130bc, $13124
+Func_130bc: ; 130bc (4:70bc)
+	ld b, a
+	ld a, [wcb68]
+	dec a
+	sub b
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, wcd90
+	add hl, de
+	ld a, [hli]
+	dec a
+	ld c, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld e, a
+	push de
+	call Func_13ef6
+	pop de
+	push de
+	ld a, d
+	call Get2DigitBCD
+	hlbgcoord 2, 11
+	call Print2DigitBCD
+	pop de
+	ld a, e
+	call Get2DigitBCD
+	hlbgcoord 5, 11
+	call Print2DigitBCD
+	ld a, [wcb67]
+	inc a
+	call Get2DigitBCD
+	hlbgcoord 2, 15
+	call Print2DigitBCD
+	ld a, [wcb68]
+	call Get2DigitBCD
+	hlbgcoord 5, 15
+	jp Print2DigitBCD
 
-Func_13124:
-	dr $13124, $1315b
+Func_1310c:
+	ld a, [wcd24]
+	inc a
+	hlbgcoord 2, 16
+	call Func_1315b
+	ld a, $ee
+	call WaitStatAndLoad
+	ld a, [wcb70]
+	hlbgcoord 6, 16
+	jp Func_1315b
 
-Func_1315b:
-	dr $1315b, $1316d
+Func_13124: ; 13124 (4:7124)
+	ld a, [wcd24]
+	call Func_13d38
+	hlbgcoord 4, 14
+	call Func_1315b
+	ld a, [wcb70]
+	hlbgcoord 4, 17
+	jp Func_1315b
 
-Func_1316d:
-	dr $1316d, $131a0
+Func_13139:
+	ld a, [wcd23]
+	inc a
+	hlbgcoord 2, 14
+	call Func_1315b
+	ld a, $ee
+	call WaitStatAndLoad
+	ld a, [wcb72]
+	inc a
+	hlbgcoord 6, 14
+	call Func_1315b
+	ld a, [wcb76]
+	hlbgcoord 3, 17
+	jp Func_1315b
+
+Func_1315b: ; 1315b (4:715b)
+	push hl
+	call Get2DigitBCD
+	pop hl
+	ld a, [wFontSourceBank]
+	and $f
+	add $e0
+	di
+	call WaitStat
+	ld [hli], a
+	ei
+Func_1316d: ; 1316d (4:716d)
+	ld a, [wc44f]
+	and $f0
+	swap a
+	add $e0
+	di
+	call WaitStat
+	ld [hli], a
+	ei
+	ld a, [wc44f]
+	and $f
+	add $e0
+	di
+	call WaitStat
+	ld [hli], a
+	ei
+	ret
+
+Func_1318a:
+	call Func_13e4c
+	ld d, a
+	call Rom4_CloseSRAM
+	ld a, [wcdb4]
+	cp d
+	jr z, .asm_1319d
+	ld c, d
+	call Func_06a4
+	xor a
+	ret
+
+.asm_1319d
+	ld a, $1
+	ret
 
 Func_131a0:
 	dr $131a0, $1329a
@@ -9150,7 +9261,10 @@ Func_13c8f:
 	dr $13c8f, $13cf4
 
 Func_13cf4:
-	dr $13cf4, $13d46
+	dr $13cf4, $13d38
+
+Func_13d38:
+	dr $13d38, $13d46
 
 Func_13d46:
 	dr $13d46, $13d8c
