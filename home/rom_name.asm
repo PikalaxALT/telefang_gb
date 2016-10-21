@@ -9,4 +9,3 @@ ELSE
 ENDC
 
 SECTION "Home part 2", HOME [$f71]
-INCLUDE "charmap.asm"
