@@ -11832,8 +11832,11 @@ INCLUDE "data/unknown_20000.speed.asm"
 ENDC
 
 SECTION "bank 09", ROMX, BANK [$9]
-Pointers_24000::
-	dr $24000, $28000
+IF DEF(POWER)
+INCLUDE "data/unknown_24000.power.asm"
+ELSE
+INCLUDE "data/unknown_24000.speed.asm"
+ENDC
 
 SECTION "bank 0A", ROMX, BANK [$a]
 INCLUDE "data/oam_templates_0.asm"
