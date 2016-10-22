@@ -2648,38 +2648,1122 @@ asm_157f5
 	ld [wd400], a
 	ret
 
-Func_157fb:
-	dr $157fb, $15810
+Func_157fb: ; 157fb (5:57fb)
+	ld a, $aa
+	ld [wdc34], a
+	ld a, $1e
+	ld [wd45a], a
+	ld c, $72
+	call Func_3d02
+	ld a, $3f
+	ld [wd400], a
+	ret
 
-Func_15810:
-	dr $15810, $159bc
+Func_15810: ; 15810 (5:5810)
+	call Func_142c1
+	ld a, [wcb3f]
+	or a
+	jr z, .asm_1583e
+	call Func_3eee
+	cp $aa
+	jr z, .asm_1582f
+	ld a, [wd45a]
+	cp $0
+	jr z, .asm_1582c
+	dec a
+	ld [wd45a], a
+	ret
 
-Func_159bc:
-	dr $159bc, $15f2d
+.asm_1582c
+	jp Func_0530
 
-Func_15f2d:
-	dr $15f2d, $15f3d
+.asm_1582f
+	ld a, [wdc45]
+	inc a
+	ld [wdc45], a
+	ld hl, VTilesBG tile $60
+	ld a, $20
+	call ClearString
+.asm_1583e
+	ld a, [wd475]
+	call GetNthPlayerDenjuu
+	call Func_3f2a
+	or a
+	jr z, .asm_1587f
+	cp $2
+	jr z, .asm_15854
+	xor a
+	call Func_1414b
+	jr .asm_15858
 
-Func_15f3d:
-	dr $15f3d, $15f57
+.asm_15854
+	xor a
+	call Func_141aa
+.asm_15858
+	ld a, $0
+	ld [wd43e], a
+	ld a, [wCurDenjuuBufferSpecies]
+	ld b, $0
+	call Func_16487
+	ld a, $4
+	ld [wd459], a
+	callba Func_70448
+	ld a, BANK(Func_15810)
+	ld [wPrevROMBank], a
+	ld a, $d0
+	ld [wd411], a
+	call Func_3cb5
+.asm_1587f
+	ld a, [wd476]
+	call GetNthPlayerDenjuu
+	call Func_3f2a
+	or a
+	jr z, .asm_158c2
+	cp $2
+	jr z, .asm_15896
+	ld a, $1
+	call Func_1414b
+	jr .asm_1589b
 
-Func_15f57:
-	dr $15f57, $15f66
+.asm_15896
+	ld a, $1
+	call Func_141aa
+.asm_1589b
+	ld a, $1
+	ld [wd43e], a
+	ld a, [wCurDenjuuBufferSpecies]
+	ld b, $1
+	call Func_16487
+	ld a, $5
+	ld [wd459], a
+	callba Func_70448
+	ld a, BANK(Func_15810)
+	ld [wPrevROMBank], a
+	ld a, $d1
+	ld [wd411], a
+	call Func_3cb5
+.asm_158c2
+	ld a, [wd478]
+	call GetNthEnemyDenjuu
+	call Func_3f2a
+	or a
+	jr z, .asm_15905
+	cp $2
+	jr z, .asm_158d9
+	ld a, $2
+	call Func_1414b
+	jr .asm_158de
 
-Func_15f66:
-	dr $15f66, $15f79
+.asm_158d9
+	ld a, $2
+	call Func_141aa
+.asm_158de
+	ld a, $2
+	ld [wd43e], a
+	ld a, [wCurDenjuuBufferSpecies]
+	ld b, $2
+	call Func_16487
+	ld a, $6
+	ld [wd459], a
+	callba Func_70448
+	ld a, BANK(Func_15810)
+	ld [wPrevROMBank], a
+	ld a, $d2
+	ld [wd411], a
+	call Func_3cb5
+.asm_15905
+	ld a, [wd479]
+	call GetNthEnemyDenjuu
+	call Func_3f2a
+	or a
+	jr z, .asm_15948
+	cp $2
+	jr z, .asm_1591c
+	ld a, $3
+	call Func_1414b
+	jr .asm_15921
 
-Func_15f79:
-	dr $15f79, $15fa1
+.asm_1591c
+	ld a, $3
+	call Func_141aa
+.asm_15921
+	ld a, $3
+	ld [wd43e], a
+	ld a, [wCurDenjuuBufferSpecies]
+	ld b, $3
+	call Func_16487
+	ld a, $7
+	ld [wd459], a
+	callba Func_70448
+	ld a, BANK(Func_15810)
+	ld [wPrevROMBank], a
+	ld a, $d3
+	ld [wd411], a
+	call Func_3cb5
+.asm_15948
+	call Func_1643a
+	call Func_16461
+	ld a, [wPlayerDenjuu1Speed]
+	ld b, a
+	ld [wd43f], a
+	ld a, [wd4e6]
+	cp $1
+	jr z, .asm_15979
+	ld a, [wPlayerDenjuu2Speed]
+	cp b
+	jr c, .asm_15965
+	ld [wd43f], a
+.asm_15965
+	ld a, [wd4e6]
+	cp $2
+	jr z, .asm_15979
+	ld a, [wd43f]
+	ld b, a
+	ld a, [wPlayerDenjuu3Speed]
+	cp b
+	jr c, .asm_15979
+	ld [wd43f], a
+.asm_15979
+	ld a, [wd43f]
+	ld b, a
+	ld a, [wEnemyDenjuu1Speed]
+	cp b
+	jr c, .asm_15986
+	ld [wd43f], a
+.asm_15986
+	ld a, [wd4e7]
+	cp $1
+	jr z, .asm_159ae
+	ld a, [wd43f]
+	ld b, a
+	ld a, [wEnemyDenjuu2Speed]
+	cp b
+	jr c, .asm_1599a
+	ld [wd43f], a
+.asm_1599a
+	ld a, [wd4e7]
+	cp $2
+	jr z, .asm_159ae
+	ld a, [wd43f]
+	ld b, a
+	ld a, [wEnemyDenjuu3Speed]
+	cp b
+	jr c, .asm_159ae
+	ld [wd43f], a
+.asm_159ae
+	ld a, [wd43f]
+	add $28
+	ld [wd43f], a
+	ld a, $f
+	ld [wd400], a
+	ret
 
-Func_15fa1:
-	dr $15fa1, $15fb4
+Func_159bc: ; 159bc (5:59bc)
+	ld a, [wcb3f]
+	or a
+	jr nz, .asm_159cf
+	ld a, [hJoyLast]
+	and $1
+	jr z, .asm_159cf
+	ld a, $1
+	ld [wd4ad], a
+	jr .asm_159d3
 
-Func_15fb4:
-	dr $15fb4, $15fd6
+.asm_159cf
+	xor a
+	ld [wd4ad], a
+.asm_159d3
+	ld a, [wd474]
+	call Func_140d9
+	ld a, [wd477]
+	call Func_14102
+	ld a, [wPlayerDenjuu1Field0x07]
+	cp $0
+	jr z, .asm_15a26
+	cp $8
+	jr z, .asm_15a26
+	cp $5
+	jr z, .asm_15a0b
+	ld a, [wPlayerDenjuu1Field0x06]
+	inc a
+	ld [wPlayerDenjuu1Field0x06], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15a26
+	ld a, [wPlayerDenjuu1Field0x06]
+	inc a
+	ld [wPlayerDenjuu1Field0x06], a
+	ld a, [wPlayerDenjuu1Field0x06]
+	inc a
+	ld [wPlayerDenjuu1Field0x06], a
+	jr .asm_15a26
 
-Func_15fd6:
-	dr $15fd6, $16099
+.asm_15a0b
+	ld a, [wPlayerDenjuu1Field0x05]
+	inc a
+	ld [wPlayerDenjuu1Field0x05], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15a26
+	ld a, [wPlayerDenjuu1Field0x05]
+	inc a
+	ld [wPlayerDenjuu1Field0x05], a
+	ld a, [wPlayerDenjuu1Field0x05]
+	inc a
+	ld [wPlayerDenjuu1Field0x05], a
+.asm_15a26
+	ld a, [wPlayerDenjuu2Field0x07]
+	cp $0
+	jr z, .asm_15a71
+	cp $8
+	jr z, .asm_15a71
+	cp $4
+	jr z, .asm_15a71
+	cp $5
+	jr z, .asm_15a56
+	ld a, [wPlayerDenjuu2Field0x06]
+	inc a
+	ld [wPlayerDenjuu2Field0x06], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15a71
+	ld a, [wPlayerDenjuu2Field0x06]
+	inc a
+	ld [wPlayerDenjuu2Field0x06], a
+	ld a, [wPlayerDenjuu2Field0x06]
+	inc a
+	ld [wPlayerDenjuu2Field0x06], a
+	jr .asm_15a71
+
+.asm_15a56
+	ld a, [wPlayerDenjuu2Field0x05]
+	inc a
+	ld [wPlayerDenjuu2Field0x05], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15a71
+	ld a, [wPlayerDenjuu2Field0x05]
+	inc a
+	ld [wPlayerDenjuu2Field0x05], a
+	ld a, [wPlayerDenjuu2Field0x05]
+	inc a
+	ld [wPlayerDenjuu2Field0x05], a
+.asm_15a71
+	ld a, [wPlayerDenjuu3Field0x07]
+	cp $0
+	jr z, .asm_15abc
+	cp $8
+	jr z, .asm_15abc
+	cp $4
+	jr z, .asm_15abc
+	cp $5
+	jr z, .asm_15aa1
+	ld a, [wPlayerDenjuu3Field0x06]
+	inc a
+	ld [wPlayerDenjuu3Field0x06], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15abc
+	ld a, [wPlayerDenjuu3Field0x06]
+	inc a
+	ld [wPlayerDenjuu3Field0x06], a
+	ld a, [wPlayerDenjuu3Field0x06]
+	inc a
+	ld [wPlayerDenjuu3Field0x06], a
+	jr .asm_15abc
+
+.asm_15aa1
+	ld a, [wPlayerDenjuu3Field0x05]
+	inc a
+	ld [wPlayerDenjuu3Field0x05], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15abc
+	ld a, [wPlayerDenjuu3Field0x05]
+	inc a
+	ld [wPlayerDenjuu3Field0x05], a
+	ld a, [wPlayerDenjuu3Field0x05]
+	inc a
+	ld [wPlayerDenjuu3Field0x05], a
+.asm_15abc
+	ld a, [wEnemyDenjuu1Field0x07]
+	cp $0
+	jr z, .asm_15b03
+	cp $8
+	jr z, .asm_15b03
+	cp $5
+	jr z, .asm_15ae8
+	ld a, [wEnemyDenjuu1Field0x06]
+	inc a
+	ld [wEnemyDenjuu1Field0x06], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15b03
+	ld a, [wEnemyDenjuu1Field0x06]
+	inc a
+	ld [wEnemyDenjuu1Field0x06], a
+	ld a, [wEnemyDenjuu1Field0x06]
+	inc a
+	ld [wEnemyDenjuu1Field0x06], a
+	jr .asm_15b03
+
+.asm_15ae8
+	ld a, [wEnemyDenjuu1Field0x05]
+	inc a
+	ld [wEnemyDenjuu1Field0x05], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15b03
+	ld a, [wEnemyDenjuu1Field0x05]
+	inc a
+	ld [wEnemyDenjuu1Field0x05], a
+	ld a, [wEnemyDenjuu1Field0x05]
+	inc a
+	ld [wEnemyDenjuu1Field0x05], a
+.asm_15b03
+	ld a, [wEnemyDenjuu2Field0x07]
+	cp $0
+	jr z, .asm_15b4e
+	cp $8
+	jr z, .asm_15b4e
+	cp $4
+	jr z, .asm_15b4e
+	cp $5
+	jr z, .asm_15b33
+	ld a, [wEnemyDenjuu2Field0x06]
+	inc a
+	ld [wEnemyDenjuu2Field0x06], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15b4e
+	ld a, [wEnemyDenjuu2Field0x06]
+	inc a
+	ld [wEnemyDenjuu2Field0x06], a
+	ld a, [wEnemyDenjuu2Field0x06]
+	inc a
+	ld [wEnemyDenjuu2Field0x06], a
+	jr .asm_15b4e
+
+.asm_15b33
+	ld a, [wEnemyDenjuu2Field0x05]
+	inc a
+	ld [wEnemyDenjuu2Field0x05], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15b4e
+	ld a, [wEnemyDenjuu2Field0x05]
+	inc a
+	ld [wEnemyDenjuu2Field0x05], a
+	ld a, [wEnemyDenjuu2Field0x05]
+	inc a
+	ld [wEnemyDenjuu2Field0x05], a
+.asm_15b4e
+	ld a, [wEnemyDenjuu3Field0x07]
+	cp $0
+	jr z, .asm_15b99
+	cp $8
+	jr z, .asm_15b99
+	cp $4
+	jr z, .asm_15b99
+	cp $5
+	jr z, .asm_15b7e
+	ld a, [wEnemyDenjuu3Field0x06]
+	inc a
+	ld [wEnemyDenjuu3Field0x06], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15b99
+	ld a, [wEnemyDenjuu3Field0x06]
+	inc a
+	ld [wEnemyDenjuu3Field0x06], a
+	ld a, [wEnemyDenjuu3Field0x06]
+	inc a
+	ld [wEnemyDenjuu3Field0x06], a
+	jr .asm_15b99
+
+.asm_15b7e
+	ld a, [wEnemyDenjuu3Field0x05]
+	inc a
+	ld [wEnemyDenjuu3Field0x05], a
+	ld a, [wd4ad]
+	or a
+	jr z, .asm_15b99
+	ld a, [wEnemyDenjuu3Field0x05]
+	inc a
+	ld [wEnemyDenjuu3Field0x05], a
+	ld a, [wEnemyDenjuu3Field0x05]
+	inc a
+	ld [wEnemyDenjuu3Field0x05], a
+.asm_15b99
+	ld a, [wd475]
+	call GetNthPlayerDenjuu
+	call Func_3f2a
+	or a
+	jr z, asm_15bc8
+	cp $2
+	jr z, .asm_15bbd
+	ld a, [wCurDenjuuBufferField0x08]
+	ld e, a
+	ld a, [wCurDenjuuBufferField0x06]
+	call Func_3980
+	ld [wd430], a
+	xor a
+	call Func_14178
+	jp Func_15bc1
+
+.asm_15bbd
+	xor a
+	call Func_141d7
+Func_15bc1: ; 15bc1 (5:5bc1)
+	xor a
+	ld [wd43e], a
+	call Func_3cd0
+asm_15bc8
+	ld a, [wd476]
+	call GetNthPlayerDenjuu
+	call Func_3f2a
+	or a
+	jr z, asm_15bfa
+	cp $2
+	jr z, .asm_15bed
+	ld a, [wCurDenjuuBufferField0x08]
+	ld e, a
+	ld a, [wCurDenjuuBufferField0x06]
+	call Func_3980
+	ld [wd431], a
+	ld a, $1
+	call Func_14178
+	jp Func_15bf2
+
+.asm_15bed
+	ld a, $1
+	call Func_141d7
+Func_15bf2: ; 15bf2 (5:5bf2)
+	ld a, $1
+	ld [wd43e], a
+	call Func_3cd0
+asm_15bfa
+	ld a, [wd478]
+	call GetNthEnemyDenjuu
+	call Func_3f2a
+	or a
+	jr z, asm_15c2c
+	cp $2
+	jr z, .asm_15c1f
+	ld a, [wCurDenjuuBufferField0x08]
+	ld e, a
+	ld a, [wCurDenjuuBufferField0x06]
+	call Func_3980
+	ld [wd432], a
+	ld a, $2
+	call Func_14178
+	jp Func_15c24
+
+.asm_15c1f
+	ld a, $2
+	call Func_141d7
+Func_15c24: ; 15c24 (5:5c24)
+	ld a, $2
+	ld [wd43e], a
+	call Func_3cd0
+asm_15c2c
+	ld a, [wd479]
+	call GetNthEnemyDenjuu
+	call Func_3f2a
+	or a
+	jr z, asm_15c5e
+	cp $2
+	jr z, .asm_15c51
+	ld a, [wCurDenjuuBufferField0x08]
+	ld e, a
+	ld a, [wCurDenjuuBufferField0x06]
+	call Func_3980
+	ld [wd433], a
+	ld a, $3
+	call Func_14178
+	jp Func_15c56
+
+.asm_15c51
+	ld a, $3
+	call Func_141d7
+Func_15c56: ; 15c56 (5:5c56)
+	ld a, $3
+	ld [wd43e], a
+	call Func_3cd0
+asm_15c5e
+	ld a, [wcb3f]
+	or a
+	jp z, Func_15cd6
+	ld a, [wd458]
+	cp $1
+	jp z, Func_15cd6
+	call Func_3eee
+	or a
+	ret z
+	ld a, [wdc45]
+	inc a
+	ld [wdc45], a
+	ld a, [hl]
+	cp $1
+	jr z, .asm_15ca7
+	cp $2
+	jr z, .asm_15caf
+	cp $3
+	jr z, .asm_15cb7
+	cp $4
+	jr z, .asm_15cbf
+	cp $5
+	jr z, .asm_15cc6
+	cp $6
+	jr z, .asm_15cce
+	cp $14
+	jp z, Func_15d52
+	cp $15
+	jp z, Func_15dc0
+	cp $a
+	jp z, Func_15e6f
+	cp $b
+	jp z, Func_15edd
+	ret
+
+.asm_15ca7
+	ld a, $3
+	ld [wd47f], a
+	jp Func_15f16
+
+.asm_15caf
+	ld a, $4
+	ld [wd47f], a
+	jp Func_15f16
+
+.asm_15cb7
+	ld a, $5
+	ld [wd47f], a
+	jp Func_15f16
+
+.asm_15cbf
+	xor a
+	ld [wd47f], a
+	jp Func_15f16
+
+.asm_15cc6
+	ld a, $1
+	ld [wd47f], a
+	jp Func_15f16
+
+.asm_15cce
+	ld a, $2
+	ld [wd47f], a
+	jp Func_15f16
+
+Func_15cd6: ; 15cd6 (5:5cd6)
+	ld a, [wPlayerDenjuu1Field0x07]
+	cp $3
+	jr z, .asm_15cfc
+	cp $5
+	jr nz, .asm_15d15
+	ld a, [wPlayerDenjuu1Field0x09]
+	ld b, a
+	ld a, [wPlayerDenjuu1Field0x05]
+	cp b
+	jp c, .asm_15d15
+	xor a
+	ld [wPlayerDenjuu1Field0x05], a
+	ld a, $59
+	ld [H_FFA1], a
+	xor a
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15cfc
+	ld a, [wPlayerDenjuu1Speed]
+	ld b, a
+	ld a, [wd43f]
+	sub b
+	ld b, a
+	ld a, [wPlayerDenjuu1Field0x06]
+	cp b
+	jr c, .asm_15d15
+	xor a
+	ld [wPlayerDenjuu1Field0x06], a
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15d15
+	ld a, [wPlayerDenjuu2Field0x07]
+	cp $3
+	jr z, asm_15d68
+	cp $1
+	jr z, .asm_15d3f
+	cp $5
+	jr nz, asm_15d83
+	ld a, [wPlayerDenjuu2Field0x09]
+	ld b, a
+	ld a, [wPlayerDenjuu2Field0x05]
+	cp b
+	jr c, asm_15d83
+	xor a
+	ld [wPlayerDenjuu2Field0x05], a
+	ld a, $59
+	ld [H_FFA1], a
+	ld a, $1
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15d3f
+	ld a, [wPlayerDenjuu2Field0x08]
+	ld e, a
+	ld a, [wPlayerDenjuu2Field0x06]
+	call Func_3980
+	cp $30
+	jr c, asm_15d83
+	ld a, $a
+	ld [wdc34], a
+Func_15d52: ; 15d52 (5:5d52)
+	ld a, $2
+	ld [wPlayerDenjuu2Field0x07], a
+	ld a, $30
+	ld [wd430], a
+	xor a
+	ld [wPlayerDenjuu2Field0x06], a
+	ld a, $52
+	ld [H_FFA1], a
+	jp Func_15f20
+
+asm_15d68
+	ld a, [wPlayerDenjuu2Speed]
+	ld b, a
+	ld a, [wd43f]
+	sub b
+	ld b, a
+	ld a, [wPlayerDenjuu2Field0x06]
+	cp b
+	jr c, asm_15d83
+	xor a
+	ld [wPlayerDenjuu2Field0x06], a
+	ld a, $1
+	ld [wd47f], a
+	jp Func_15f0f
+
+asm_15d83
+	ld a, [wPlayerDenjuu3Field0x07]
+	cp $3
+	jr z, asm_15dd6
+	cp $1
+	jr z, .asm_15dad
+	cp $5
+	jr nz, asm_15df1
+	ld a, [wPlayerDenjuu3Field0x09]
+	ld b, a
+	ld a, [wPlayerDenjuu3Field0x05]
+	cp b
+	jr c, asm_15df1
+	xor a
+	ld [wPlayerDenjuu3Field0x05], a
+	ld a, $59
+	ld [H_FFA1], a
+	ld a, $2
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15dad
+	ld a, [wPlayerDenjuu3Field0x08]
+	ld e, a
+	ld a, [wPlayerDenjuu3Field0x06]
+	call Func_3980
+	cp $30
+	jr c, asm_15df1
+	ld a, $b
+	ld [wdc34], a
+Func_15dc0: ; 15dc0 (5:5dc0)
+	ld a, $2
+	ld [wPlayerDenjuu3Field0x07], a
+	ld a, $30
+	ld [wd431], a
+	xor a
+	ld [wPlayerDenjuu3Field0x06], a
+	ld a, $52
+	ld [H_FFA1], a
+	jp Func_15f20
+
+asm_15dd6
+	ld a, [wPlayerDenjuu3Speed]
+	ld b, a
+	ld a, [wd43f]
+	sub b
+	ld b, a
+	ld a, [wPlayerDenjuu3Field0x06]
+	cp b
+	jr c, asm_15df1
+	xor a
+	ld [wPlayerDenjuu3Field0x06], a
+	ld a, $2
+	ld [wd47f], a
+	jp Func_15f0f
+
+asm_15df1
+	ld a, [wEnemyDenjuu1Field0x07]
+	cp $3
+	jr z, .asm_15e17
+	cp $5
+	jr nz, .asm_15e32
+	ld a, [wEnemyDenjuu1Field0x09]
+	ld b, a
+	ld a, [wEnemyDenjuu1Field0x05]
+	cp b
+	jr c, .asm_15e32
+	xor a
+	ld [wEnemyDenjuu1Field0x05], a
+	ld a, $59
+	ld [H_FFA1], a
+	ld a, $3
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15e17
+	ld a, [wEnemyDenjuu1Speed]
+	ld b, a
+	ld a, [wd43f]
+	sub b
+	ld b, a
+	ld a, [wEnemyDenjuu1Field0x06]
+	cp b
+	jr c, .asm_15e32
+	xor a
+	ld [wEnemyDenjuu1Field0x06], a
+	ld a, $3
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15e32
+	ld a, [wEnemyDenjuu2Field0x07]
+	cp $3
+	jr z, asm_15e85
+	cp $1
+	jr z, .asm_15e5c
+	cp $5
+	jr nz, asm_15ea0
+	ld a, [wEnemyDenjuu2Field0x09]
+	ld b, a
+	ld a, [wEnemyDenjuu2Field0x05]
+	cp b
+	jr c, asm_15ea0
+	xor a
+	ld [wEnemyDenjuu2Field0x05], a
+	ld a, $59
+	ld [H_FFA1], a
+	ld a, $4
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15e5c
+	ld a, [wEnemyDenjuu2Field0x08]
+	ld e, a
+	ld a, [wEnemyDenjuu2Field0x06]
+	call Func_3980
+	cp $30
+	jr c, asm_15ea0
+	ld a, $14
+	ld [wdc34], a
+Func_15e6f: ; 15e6f (5:5e6f)
+	ld a, $2
+	ld [wEnemyDenjuu2Field0x07], a
+	ld a, $30
+	ld [wd432], a
+	xor a
+	ld [wEnemyDenjuu2Field0x06], a
+	ld a, $52
+	ld [H_FFA1], a
+	jp Func_15f20
+
+asm_15e85
+	ld a, [wEnemyDenjuu2Speed]
+	ld b, a
+	ld a, [wd43f]
+	sub b
+	ld b, a
+	ld a, [wEnemyDenjuu2Field0x06]
+	cp b
+	jr c, asm_15ea0
+	xor a
+	ld [wEnemyDenjuu2Field0x06], a
+	ld a, $4
+	ld [wd47f], a
+	jp Func_15f0f
+
+asm_15ea0
+	ld a, [wEnemyDenjuu3Field0x07]
+	cp $3
+	jr z, asm_15ef3
+	cp $1
+	jr z, .asm_15eca
+	cp $5
+	jr nz, asm_15f0e
+	ld a, [wEnemyDenjuu3Field0x09]
+	ld b, a
+	ld a, [wEnemyDenjuu3Field0x05]
+	cp b
+	jr c, asm_15f0e
+	xor a
+	ld [wEnemyDenjuu3Field0x05], a
+	ld a, $59
+	ld [H_FFA1], a
+	ld a, $5
+	ld [wd47f], a
+	jp Func_15f0f
+
+.asm_15eca
+	ld a, [wEnemyDenjuu3Field0x08]
+	ld e, a
+	ld a, [wEnemyDenjuu3Field0x06]
+	call Func_3980
+	cp $30
+	jr c, asm_15f0e
+	ld a, $15
+	ld [wdc34], a
+Func_15edd: ; 15edd (5:5edd)
+	ld a, $2
+	ld [wEnemyDenjuu3Field0x07], a
+	ld a, $30
+	ld [wd433], a
+	xor a
+	ld [wEnemyDenjuu3Field0x06], a
+	ld a, $52
+	ld [H_FFA1], a
+	jp Func_15f20
+
+asm_15ef3
+	ld a, [wEnemyDenjuu3Speed]
+	ld b, a
+	ld a, [wd43f]
+	sub b
+	ld b, a
+	ld a, [wEnemyDenjuu3Field0x06]
+	cp b
+	jr c, asm_15f0e
+	xor a
+	ld [wEnemyDenjuu3Field0x06], a
+	ld a, $5
+	ld [wd47f], a
+	jp Func_15f0f
+
+asm_15f0e
+	ret
+
+Func_15f0f: ; 15f0f (5:5f0f)
+	ld a, [wd47f]
+	inc a
+	ld [wdc34], a
+Func_15f16: ; 15f16 (5:5f16)
+	xor a
+	ld [wd45a], a
+	ld a, $10
+	ld [wd400], a
+	ret
+
+Func_15f20: ; 15f20 (5:5f20)
+	xor a
+	ld [wd45a], a
+	ld [wd45b], a
+	ld a, $20
+	ld [wd400], a
+	ret
+
+Func_15f2d: ; 15f2d (5:5f2d)
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	cp $15
+	ret nz
+	ld a, $25
+	ld [wd400], a
+	ret
+
+Func_15f3d: ; 15f3d (5:5f3d)
+	ld bc, $c
+	ld e, $80
+	ld a, $0
+	call Func_04ca
+	ld bc, $30e
+	ld e, $83
+	ld a, $0
+	call Func_04da
+	ld a, $4
+	ld [wd400], a
+	ret
+
+Func_15f57: ; 15f57 (5:5f57)
+	xor a
+	ld [wd401], a
+	ld a, $5
+	ld [wSubroutine], a
+	ld a, $6
+	ld [wGameRoutine], a
+	ret
+
+Func_15f66: ; 15f66 (5:5f66)
+	ld a, $0
+	call Func_050f
+	or a
+	ret z
+	call Func_1404a
+	call Func_14062
+	ld a, $2b
+	ld [wd400], a
+	ret
+
+Func_15f79: ; 15f79 (5:5f79)
+	ld a, [wd40a]
+	cp $1
+	jr z, asm_15f9b
+	ld a, [wd40a]
+	inc a
+	ld [wd40a], a
+	ld a, [wd416]
+	cp $1
+	jp z, Func_15f95
+	ld a, $2d
+	ld [wd400], a
+	ret
+
+Func_15f95: ; 15f95 (5:5f95)
+	ld a, $36
+	ld [wd400], a
+	ret
+
+asm_15f9b
+	ld a, $e
+	ld [wd400], a
+	ret
+
+Func_15fa1: ; 15fa1 (5:5fa1)
+	ld a, [wd4ce]
+	call Func_142cd
+	ld a, $3c
+	ld [wd45a], a
+	ld c, $69
+	call Func_3d02
+	jp Func_3cf8
+
+Func_15fb4: ; 15fb4 (5:5fb4)
+	call Func_0530
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	ret nz
+	ld a, $2b
+	ld [wd400], a
+	ret
+
+Func_15fc5: ; 15fc5 (5:5fc5)
+	ld a, [wd45a]
+	cp $a
+	jr nc, .asm_15fd0
+	ld e, $8e
+	jr .asm_15fd2
+
+.asm_15fd0
+	ld e, $82
+.asm_15fd2
+	xor a
+	jp Func_04da
+
+Func_15fd6: ; 15fd6 (5:5fd6)
+	ld a, [wd45b]
+	cp $5
+	jr nc, .asm_1603f
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	cp $14
+	jr z, .asm_16033
+	ld a, [wd475]
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferField0x07]
+	cp $2
+	jr nz, .asm_15ffb
+	ld bc, $30e
+	jp Func_15fc5
+
+.asm_15ffb
+	ld a, [wd476]
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferField0x07]
+	cp $2
+	jr nz, .asm_1600e
+	ld bc, $310
+	jp Func_15fc5
+
+.asm_1600e
+	ld a, [wd478]
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferField0x07]
+	cp $2
+	jr nz, .asm_16021
+	ld bc, $d0e
+	jp Func_15fc5
+
+.asm_16021
+	ld a, [wd479]
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferField0x07]
+	cp $2
+	ret nz
+	ld bc, $d10
+	jp Func_15fc5
+
+.asm_16033
+	xor a
+	ld [wd45a], a
+	ld a, [wd45b]
+	inc a
+	ld [wd45b], a
+	ret
+
+.asm_1603f
+	call Func_3f02
+	ld bc, $c
+	ld e, $80
+	xor a
+	call Func_04ca
+	ld bc, $30e
+	ld e, $83
+	xor a
+	call Func_04da
+	ld a, [wPlayerDenjuu2Field0x07]
+	cp $2
+	jp z, Func_16076
+	ld a, [wPlayerDenjuu3Field0x07]
+	cp $2
+	jp z, Func_16076
+	ld a, [wEnemyDenjuu2Field0x07]
+	cp $2
+	jp z, Func_16085
+	ld a, [wEnemyDenjuu3Field0x07]
+	cp $2
+	jp z, Func_16085
+	jr asm_16093
+
+Func_16076: ; 16076 (5:6076)
+	xor a
+	ld [wd470], a
+	ld bc, $105
+	ld e, $8b
+	xor a
+	call Func_04ca
+	jr asm_16093
+
+Func_16085: ; 16085 (5:6085)
+	ld a, $1
+	ld [wd470], a
+	ld bc, $101
+	ld e, $8b
+	xor a
+	call Func_04fa
+asm_16093
+	ld a, $1e
+	ld [wd400], a
+	ret
 
 Func_16099:
 	dr $16099, $161fb
@@ -2721,7 +3805,10 @@ Func_1643a:
 	dr $1643a, $16461
 
 Func_16461:
-	dr $16461, $1651b
+	dr $16461, $16487
+
+Func_16487:
+	dr $16487, $1651b
 
 Func_1651b:
 	dr $1651b, $1653b
