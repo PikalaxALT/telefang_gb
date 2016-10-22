@@ -4754,7 +4754,7 @@ Func_2d59::
 	push af
 	ld a, b
 	rst Bankswitch
-	ld hl, CompressedGFXBanksAndDests
+	ld hl, Pointers_148000
 	ld a, [wc905]
 	cp $3
 	jr c, .asm_2da2
@@ -4778,7 +4778,7 @@ Func_2d59::
 	ld a, [wc905]
 	cp $6
 	jr nz, .asm_2d91
-	ld hl, Data_18ba1
+	ld hl, Pointers_18ba1
 .asm_2d91
 	ld a, [wc903]
 .asm_2d94
@@ -4819,13 +4819,13 @@ Func_2d59::
 	ld b, [hl]
 	pop af
 	rst Bankswitch
-	ld hl, CompressedGFXBanksAndDests
+	ld hl, Pointers_148000
 	push bc
 	ld bc, $20b
 	call CheckEventFlag
 	pop bc
 	jr z, .asm_2dd8
-	ld hl, Data_18180
+	ld hl, Pointers_148180
 .asm_2dd8
 	ld a, b
 	jr .asm_2d94
@@ -4837,14 +4837,14 @@ Func_2ddb: ; 2ddb (0:2ddb)
 	pop bc
 	jr nz, .asm_2df5
 .asm_2de5
-	ld b, $52
+	ld b, BANK(Pointers_148000)
 	ld a, [wc905]
 	cp $6
 	jr z, .asm_2df2
 	cp $b
 	jr c, .asm_2df4
 .asm_2df2
-	ld b, $53
+	ld b, BANK(Pointers_14c668)
 .asm_2df4
 	ret
 
@@ -4859,27 +4859,27 @@ Func_2ddb: ; 2ddb (0:2ddb)
 	jr .asm_2de5
 
 .asm_2e06
-	ld b, BANK(Data_18ba1) ; $6
+	ld b, BANK(Pointers_18ba1) ; $6
 	ret
 
 Data_2e09::
-	dw $4000 ; bank 6 if EVENT_20B else bank 52
-	dw $4000 ; bank 6 if EVENT_20B else bank 52
-	dw $4000 ; bank 6 if EVENT_20B else bank 52
-	dw $556e ; bank 52
-	dw $4000 ; bank 6 if EVENT_20B else bank 52
-	dw $556e ; bank 52
-	dw Data_14c668
-	dw $5dfc ; bank 52
-	dw $5dfc ; bank 52
-	dw $697c ; bank 52
-	dw $70f8 ; bank 52
-	dw Data_14c668
-	dw Data_14c668
-	dw Data_14c668
-	dw Data_14c668
-	dw Data_14c668
-	dw $5472 ; bank 53
+	dw Pointers_148000 ; bank 6 if EVENT_20B else bank 52
+	dw Pointers_148000 ; bank 6 if EVENT_20B else bank 52
+	dw Pointers_148000 ; bank 6 if EVENT_20B else bank 52
+	dw Pointers_14956e ; bank 52
+	dw Pointers_148000 ; bank 6 if EVENT_20B else bank 52
+	dw Pointers_14956e ; bank 52
+	dw Pointers_14c668
+	dw Pointers_149dfc ; bank 52
+	dw Pointers_149dfc ; bank 52
+	dw Pointers_14a97c ; bank 52
+	dw Pointers_14b0f8 ; bank 52
+	dw Pointers_14c668
+	dw Pointers_14c668
+	dw Pointers_14c668
+	dw Pointers_14c668
+	dw Pointers_14c668
+	dw Pointers_14d472 ; bank 53
 
 Func_2e2b::
 	call Func_2ddb
