@@ -11822,8 +11822,7 @@ INCLUDE "data/map_data_18180.asm"
 INCLUDE "data/map_data_18ba1.asm"
 
 SECTION "bank 07", ROMX, BANK [$7]
-PalPackets_1c000::
-	dr $1c000, $1c680
+PalPackets_1c000:: INCLUDE "data/pal_packets.asm"
 
 SECTION "bank 08", ROMX, BANK [$8]
 Pointers_20000::

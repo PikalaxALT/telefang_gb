@@ -46,6 +46,13 @@ lb: MACRO
 	ld \1, ((\2 & $ff) << 8) | (\3 & $ff)
 ENDM
 
+bigdw: MACRO
+REPT _NARG
+	db (\1 >> 8), (\1 & $ff)
+	shift
+ENDR
+ENDM
+
 dn: MACRO
 	db ((\1 & $f) << 4) | (\2 & $f)
 ENDM
