@@ -141,3 +141,28 @@ defchar: MACRO
 	charmap \1, cur_char
 cur_char = cur_char + 1
 ENDM
+
+battle_struct: MACRO
+\1Species:: ds 1
+\1Level:: ds 1
+\1CurHP:: ds 1
+\1MaxHP:: ds 1
+\1Speed:: ds 1
+\1Field0x05:: ds 1
+\1Field0x06:: ds 1
+\1Field0x07:: ds 1
+\1Field0x08:: ds 1
+\1Field0x09:: ds 1
+\1Field0x0a:: ds 1
+\1Field0x0b:: ds 1
+\1Field0x0c:: ds 1
+\1Field0x0d:: ds 1
+\1Attack:: ds 1
+\1Defense:: ds 1
+\1SpAtk:: ds 1
+\1SpDef:: ds 1
+\1Field0x12:: ds 1
+\1SpeedCopy1:: ds 1
+\1SpeedCopy2:: ds 1
+\1Field0x15:: ds 1
+ENDM

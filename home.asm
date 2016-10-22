@@ -6898,16 +6898,17 @@ Func_3a1d: ; 3a1d (0:3a1d)
 	ld de, wStringBuffer
 	jp CopyData
 
-Func_3a35: ; 3a35 (0:3a35)
-; [wd45f] = Data_1d4b48 + ($10 * a) + c
-	ld hl, Data_1d4b48
-	ld [wd497], a
+GetBaseStat: ; 3a35 (0:3a35)
+; [wCurBaseStat] = BaseStats + ($10 * a) + c
+; level in b if applicable
+	ld hl, BaseStats
+	ld [wCurDenjuu], a
 	cp $0
 	jr z, .first_row
 	ld d, $0
 	ld a, $10
 	ld e, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 .row
 	add hl, de
 	dec a
@@ -6918,7 +6919,7 @@ Func_3a35: ; 3a35 (0:3a35)
 	ld e, a
 	add hl, de
 	ld a, [hl]
-	ld [wd45f], a
+	ld [wCurBaseStat], a
 ; if (c >= 6) or (b < 2): return
 	ld a, c
 	cp $6
@@ -6933,7 +6934,7 @@ Func_3a35: ; 3a35 (0:3a35)
 	push de
 	ld a, c
 	ld b, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	call Func_05ed
 	pop de
 	ld a, e
@@ -6953,10 +6954,10 @@ Func_3a35: ; 3a35 (0:3a35)
 	sra d
 	rr e
 .asm_3a88
-	ld a, [wd45f]
+	ld a, [wCurBaseStat]
 	ld a, a
 	add e
-	ld [wd45f], a
+	ld [wCurBaseStat], a
 	ret
 
 PlaceString: ; 3a91 (0:3a91)
@@ -7057,10 +7058,10 @@ Func_3b09: ; 3b09 (0:3b09)
 	jp PlaceString_
 
 Func_3b22: ; 3b22 (0:3b22)
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld c, $d
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	ld de, Data_1d5628
 	ld bc, VTilesBG tile $38
 	jp Func_3b09
@@ -7523,60 +7524,60 @@ Func_3e19::
 	pop hl
 	jp PlaceString_
 
-Func_3e45: ; 3e45 (0:3e45)
-	ld hl, Data_9cbfa
+LoadScriptedEnemyDenjuu: ; 3e45 (0:3e45)
+	ld hl, ScriptedEnemyDenjuu
 	ld de, $5
 	ld a, [wd402]
 	addntimes_hl_de
 	ld a, [hli]
-	ld [wd542], a
+	ld [wEnemyDenjuu1Species], a
 	ld a, [hli]
-	ld [wd543], a
+	ld [wEnemyDenjuu1Level], a
 	ld a, [hli]
-	ld [wd54c], a
+	ld [wEnemyDenjuu1Field0x0a], a
 	inc hl
 	ld a, [hl]
-	ld [wd54e], a
+	ld [wEnemyDenjuu1Field0x0c], a
 	ret
 
-Func_3e68: ; 3e68 (0:3e68)
-	ld hl, Data_9ce9d
+LoadEnemyTFangerParty: ; 3e68 (0:3e68)
+	ld hl, EnemyTFangerParties
 	ld de, $12
 	ld a, [wd402]
 	addntimes_hl_de
 	ld a, [hli]
-	ld [wd542], a
+	ld [wEnemyDenjuu1Species], a
 	ld a, [hli]
-	ld [wd543], a
+	ld [wEnemyDenjuu1Level], a
 	ld a, [hli]
-	ld [wd54a], a
+	ld [wEnemyDenjuu1Field0x08], a
 	ld a, [hli]
-	ld [wd54c], a
+	ld [wEnemyDenjuu1Field0x0a], a
 	inc hl
 	ld a, [hli]
-	ld [wd54e], a
+	ld [wEnemyDenjuu1Field0x0c], a
 	ld a, [hli]
-	ld [wd558], a
+	ld [wEnemyDenjuu2Species], a
 	ld a, [hli]
-	ld [wd559], a
+	ld [wEnemyDenjuu2Level], a
 	ld a, [hli]
-	ld [wd560], a
+	ld [wEnemyDenjuu2Field0x08], a
 	ld a, [hli]
-	ld [wd562], a
+	ld [wEnemyDenjuu2Field0x0a], a
 	inc hl
 	ld a, [hli]
-	ld [wd564], a
+	ld [wEnemyDenjuu2Field0x0c], a
 	ld a, [hli]
-	ld [wd56e], a
+	ld [wEnemyDenjuu3Species], a
 	ld a, [hli]
-	ld [wd56f], a
+	ld [wEnemyDenjuu3Level], a
 	ld a, [hli]
-	ld [wd576], a
+	ld [wEnemyDenjuu3Field0x08], a
 	ld a, [hli]
-	ld [wd578], a
+	ld [wEnemyDenjuu3Field0x0a], a
 	inc hl
 	ld a, [hl]
-	ld [wd57a], a
+	ld [wEnemyDenjuu3Field0x0c], a
 	ret
 
 Func_3eb9
@@ -7653,10 +7654,10 @@ Func_3f22::
 	ret
 
 Func_3f2a::
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
 	jr z, .asm_3f4a
-	ld a, [wd58b]
+	ld a, [wCurDenjuuBufferField0x07]
 	cp $1
 	jr z, .asm_3f47
 	cp $4

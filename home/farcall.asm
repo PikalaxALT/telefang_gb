@@ -174,7 +174,7 @@ PlaceString_::
 	rst MemBankswitch
 	ret
 
-Func_0565::
+GetAndPrintName75LeftAlign_::
 	call GetAndPrintName75LeftAlign
 	rst MemBankswitch
 	ret
@@ -214,12 +214,12 @@ Func_0588::
 	rst MemBankswitch
 	ret
 
-Func_058d::
+GetBaseStat_::
 	push af
-	ld a, BANK(Data_1d4b48)
+	ld a, BANK(BaseStats)
 	rst Bankswitch
 	pop af
-	call Func_3a35
+	call GetBaseStat
 	rst MemBankswitch
 	ret
 
@@ -395,17 +395,17 @@ Func_0681::
 	rst MemBankswitch
 	ret
 
-Func_0689::
-	ld a, BANK(Data_9cbfa)
+LoadScriptedEnemyDenjuu_::
+	ld a, BANK(ScriptedEnemyDenjuu)
 	rst Bankswitch
-	call Func_3e45
+	call LoadScriptedEnemyDenjuu
 	rst MemBankswitch
 	ret
 
-Func_0691::
-	ld a, BANK(Data_9ce9d)
+LoadEnemyTFangerParty_::
+	ld a, BANK(EnemyTFangerParties)
 	rst Bankswitch
-	call Func_3e68
+	call LoadEnemyTFangerParty
 	ld hl, wOAMAnimations
 	rst MemBankswitch
 	ret

@@ -791,10 +791,10 @@ String_8baf:
 Data_8bb7:
 	db "トロンコむら$"
 	db "クリノンむら$"
-	db "うみのみえるまち イ<リス$"
-	db "パ<ムかい$"
+	db "うみのみえるまち イーリス$"
+	db "パームかい$"
 	db "キカイのまち フリジア$"
-	db "すなのまち バ<ラン$"
+	db "すなのまち バーラン$"
 	db "イォンとう$"
 	db "パパルナこ$"
 	db "パンセスむら$"
@@ -847,7 +847,7 @@ Func_8cac: ; 8cac (2:4cac)
 .asm_8cc4
 	call Func_8fe8
 asm_8cc7
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	push af
 	ld c, $1
 	ld de, VTilesShared tile $00
@@ -870,7 +870,7 @@ Func_8cde: ; 8cde (2:4cde)
 	jp Func_3cfd
 
 Func_8cf5: ; 8cf5 (2:4cf5)
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld de, VTilesBG tile $20
 	call Func_3d95
 	ld a, [wd499]
@@ -893,7 +893,7 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	jr .asm_8d37
 
 .asm_8d2b
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
 	call GetAndPrintName75CenterAlign
@@ -1097,7 +1097,7 @@ Func_8e98: ; 8e98 (2:4e98)
 .asm_8eb5
 	call Func_8fe8
 .asm_8eb8
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	push af
 	ld c, $1
 	ld de, VTilesShared tile $00
@@ -1106,7 +1106,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	call Func_175f
 	ld a, $1
 	ld [wBGPalUpdate], a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld de, VTilesBG tile $20
 	call Func_3d95
 	ld a, [wd499]
@@ -1119,7 +1119,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	ld a, [wSubroutine]
 	cp $1
 	jr nz, .asm_8eff
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
 	call GetAndPrintName75CenterAlign
@@ -1271,9 +1271,9 @@ Func_8fe8: ; 8fe8 (2:4fe8)
 	ld hl, $a000
 	call Func_3d0e
 	ld a, [hli]
-	ld [wd497], a
+	ld [wCurDenjuu], a
 	ld a, [hli]
-	ld [wd498], a
+	ld [wCurDenjuuLevel], a
 	inc hl
 	ld a, [hl]
 	ld [wd499], a
@@ -1290,9 +1290,9 @@ Func_9013: ; 9013 (2:5013)
 	ld e, a
 	add hl, de
 	ld a, [hli]
-	ld [wd497], a
+	ld [wCurDenjuu], a
 	ld a, [hli]
-	ld [wd498], a
+	ld [wCurDenjuuLevel], a
 	ld a, [hl]
 	ld [wd499], a
 	ret
@@ -1355,15 +1355,9 @@ Func_904a: ; 904a (2:504a)
 	ret
 
 Func_908a:
-	ld bc, wd584
+	ld bc, wCurDenjuuBuffer
 	ld de, $16
-	cp $0
-	jr z, .asm_9098
-.asm_9094
-	add hl, de
-	dec a
-	jr nz, .asm_9094
-.asm_9098
+	addntimes_hl_de
 	ld d, $10
 .asm_909a
 	ld a, [hli]
@@ -1402,167 +1396,167 @@ Func_90b1: ; 90b1 (2:50b1)
 	ret
 
 Func_90c2: ; 90c2 (2:50c2)
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $6
-	call Func_058d
-	ld a, [wd45f]
-	ld de, $46f8
+	ld c, $6 ; move 1
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld de, MoveNames
 	ld bc, VTilesShared tile $38
-	call Func_0565
-	ld a, [wd497]
+	call GetAndPrintName75LeftAlign_
+	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $7
-	call Func_058d
-	ld a, [wd45f]
-	ld de, $46f8
+	ld c, $7 ; move 2
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld de, MoveNames
 	ld bc, VTilesShared tile $40
-	call Func_0565
-	ld a, [wd497]
+	call GetAndPrintName75LeftAlign_
+	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $e
-	call Func_058d
-	ld a, [wd45f]
+	ld c, $e ; level at which third move is unlocked?
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	ld b, a
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	cp b
-	jr c, .asm_911a
-	ld a, [wd497]
+	jr c, .third_move_unknown
+	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $8
-	call Func_058d
-	ld a, [wd45f]
-	ld de, $46f8
+	ld c, $8 ; move 3
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld de, MoveNames
 	ld bc, VTilesShared tile $48
-	call Func_0565
-	jr .asm_9125
+	call GetAndPrintName75LeftAlign_
+	jr .done_third_move
 
-.asm_911a
+.third_move_unknown
 	ld de, String_8baf
 	ld hl, VTilesShared tile $48
 	ld b, $8
 	call PlaceString_
-.asm_9125
-	ld a, [wd497]
+.done_third_move
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $f
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	ld b, a
 	cp $64
-	jr z, .asm_9161
-	ld a, [wd498]
+	jr z, .no_last_move
+	ld a, [wCurDenjuuLevel]
 	cp b
-	jr c, .asm_9155
-	ld a, [wd497]
+	jr c, .fourth_move_unknown
+	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $9
-	call Func_058d
-	ld a, [wd45f]
-	ld de, $46f8
+	ld c, $9 ; move 4
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld de, MoveNames
 	ld bc, VTilesShared tile $50
-	call Func_0565
-	jr .asm_9160
+	call GetAndPrintName75LeftAlign_
+	jr .done_fouth_move
 
-.asm_9155
+.fourth_move_unknown
 	ld de, String_8baf
 	ld hl, VTilesShared tile $50
 	ld b, $8
 	call PlaceString_
-.asm_9160
+.done_fouth_move
 	ret
 
-.asm_9161
+.no_last_move
 	ld hl, VTilesShared tile $50
 	ld a, $8
 	call ClearString
 	ret
 
 Func_916a: ; 916a (2:516a)
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $6
-	call Func_058d
-	ld a, [wd45f]
-	ld a, [wd497]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $7
-	call Func_058d
-	ld a, [wd45f]
-	ld a, [wd497]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $e
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	ld b, a
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	cp b
-	jr c, .asm_91c6
-	ld a, [wd497]
+	jr c, .no_extra_move
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $8
-	call Func_058d
-	ld a, [wd45f]
-	ld a, [wd497]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $f
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	ld b, a
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	cp b
-	jr c, .asm_91c6
-	ld a, [wd497]
+	jr c, .no_extra_move
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $9
-	call Func_058d
-	ld a, [wd45f]
-.asm_91c6
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+.no_extra_move
 	ret
 
 Func_91c7: ; 91c7 (2:51c7)
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld c, $1
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	hlbgcoord 6, 12
 	ld c, $0
 	call Func_1378
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld c, $2
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	hlbgcoord 6, 14
 	ld c, $0
 	call Func_1378
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld c, $3
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	hlbgcoord 6, 16
 	ld c, $0
 	call Func_1378
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld c, $4
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	hlbgcoord 15, 12
 	ld c, $0
 	call Func_1378
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld c, $5
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	hlbgcoord 15, 14
 	ld c, $0
 	call Func_1378
@@ -1573,16 +1567,16 @@ Func_923b: ; 923b (2:523b)
 	ld [MBC3SRamEnable], a
 	ld a, BANK(s2_a002)
 	ld [MBC3SRamBank], a
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	hlbgcoord 5, 15
 	ld c, $1
 	call Func_1378
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld c, $0
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	hlbgcoord 5, 16
 	ld c, $0
 	call Func_1378
@@ -1608,7 +1602,7 @@ asm_928b
 	hlbgcoord 14, 15
 	ld c, $0
 	call Func_1378
-	ld a, [wd498]
+	ld a, [wCurDenjuuLevel]
 	cp $63
 	jp z, Func_92eb
 	ld a, [wcb2b]
@@ -1633,13 +1627,13 @@ asm_928b
 	pop hl
 	bcbgcoord 11, 16
 	call Func_14b1
-	ld a, [wd497]
+	ld a, [wCurDenjuu]
 	ld b, $0
 	ld c, $d
-	call Func_058d
-	ld a, [wd498]
+	call GetBaseStat_
+	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wd45f]
+	ld a, [wCurBaseStat]
 	call Func_05d9
 	sra b
 	rr c
@@ -5049,7 +5043,7 @@ Func_114ff: ; 114ff (4:54ff)
 	call Func_04da
 	call Func_13e6e
 	ld a, [wcd23]
-	ld [wd497], a
+	ld [wCurDenjuu], a
 	call Func_0597
 	ld a, [wcd23]
 	ld c, $1
@@ -5218,7 +5212,7 @@ Func_11690: ; 11690 (4:5690)
 
 Func_1169d: ; 1169d (4:569d)
 	ld a, [wcd23]
-	ld [wd497], a
+	ld [wCurDenjuu], a
 	call Func_0597
 	ld a, [wcd23]
 	ld c, $1
@@ -10954,8 +10948,8 @@ Func_13e81:
 	ld a, [wcd23]
 	ld b, $0
 	ld c, $d
-	call Func_058d
-	ld a, [wd45f]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
 	ld de, Data_1d5628
 	ld bc, VTilesBG tile $38
 	jp Func_056a
@@ -11203,34 +11197,34 @@ Func_1402a: ; 1402a (5:402a)
 
 Func_1404a:
 	ld a, [wd474]
-	call Func_1412b
+	call GetNthPlayerDenjuu
 	call Func_1407d
 	ld a, [wd474]
 	call Func_140d9
-	ld a, [wd591]
+	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, VTilesBG tile $20
 	jp Func_142f9
 
 Func_14062:
 	ld a, [wd477]
-	call Func_14131
+	call GetNthEnemyDenjuu
 	call Func_140ab
 	ld a, [wd477]
 	call Func_14102
-	ld a, [wd584]
+	ld a, [wCurDenjuuBuffer]
 	ld de, $4000
 	ld bc, VTilesBG tile $28
-	jp Func_0565
+	jp GetAndPrintName75LeftAlign_
 
 Func_1407d: ; 1407d (5:407d)
-	ld a, [wd587]
+	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	call Func_3980
 	ld [wd4e8], a
 	or a
 	jr nz, .asm_14098
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	or a
 	jr z, .asm_14098
 	ld a, $1
@@ -11245,14 +11239,14 @@ Func_1407d: ; 1407d (5:407d)
 	jp Func_3957
 
 Func_140ab: ; 140ab (5:40ab)
-	ld a, [wd587]
+	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	call Func_3980
 	ld [wd4e9], a
 	or a
 	jr nz, .asm_140c6
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	or a
 	jr z, .asm_140c6
 	ld a, $1
@@ -11267,15 +11261,15 @@ Func_140ab: ; 140ab (5:40ab)
 	jp Func_3957
 
 Func_140d9: ; 140d9 (5:40d9)
-	call Func_1412b
-	ld a, [wd58d]
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferField0x09]
 	ld e, a
-	ld a, [wd589]
+	ld a, [wCurDenjuuBufferField0x05]
 	call Func_3980
 	ld [wd4e8], a
 	or a
 	jr nz, .asm_140f7
-	ld a, [wd589]
+	ld a, [wCurDenjuuBufferField0x05]
 	or a
 	jr z, .asm_140f7
 	ld a, $1
@@ -11287,15 +11281,15 @@ Func_140d9: ; 140d9 (5:40d9)
 	jp Func_3957
 
 Func_14102: ; 14102 (5:4102)
-	call Func_14131
-	ld a, [wd58d]
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferField0x09]
 	ld e, a
-	ld a, [wd589]
+	ld a, [wCurDenjuuBufferField0x05]
 	call Func_3980
 	ld [wd4e9], a
 	or a
 	jr nz, .asm_14120
-	ld a, [wd589]
+	ld a, [wCurDenjuuBufferField0x05]
 	or a
 	jr z, .asm_14120
 	ld a, $1
@@ -11306,24 +11300,18 @@ Func_14102: ; 14102 (5:4102)
 	hlbgcoord 6, 11, VWindow
 	jp Func_3957
 
-Func_1412b: ; 1412b (5:412b)
-	ld hl, wd500
-	jp Func_14137
+GetNthPlayerDenjuu: ; 1412b (5:412b)
+	ld hl, wPlayerDenjuu1
+	jp GetNthDenjuuAnySide
 
-Func_14131: ; 14131 (5:4131)
-	ld hl, wd542
-	jp Func_14137
+GetNthEnemyDenjuu: ; 14131 (5:4131)
+	ld hl, wEnemyDenjuu1
+	jp GetNthDenjuuAnySide
 
-Func_14137: ; 14137 (5:4137)
+GetNthDenjuuAnySide: ; 14137 (5:4137)
 	ld de, $16
-	cp $0
-	jr z, .asm_14142
-.asm_1413e
-	add hl, de
-	dec a
-	jr nz, .asm_1413e
-.asm_14142
-	ld de, wd584
+	addntimes_hl_de
+	ld de, wCurDenjuuBuffer
 	ld bc, $16
 	jp CopyData
 
@@ -11427,15 +11415,15 @@ Func_141d7:
 	ld a, [wd476]
 Func_141f2: ; 141f2 (5:41f2)
 	push hl
-	call Func_1412b
-	ld a, [wd587]
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	call Func_3980
 	ld [wd4e8], a
 	cp $0
 	jr nz, .asm_14213
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
 	jr z, .asm_14213
 	ld a, $1
@@ -11456,15 +11444,15 @@ asm_14225
 	ld a, [wd479]
 Func_1422b: ; 1422b (5:422b)
 	push hl
-	call Func_14131
-	ld a, [wd587]
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	call Func_3980
 	ld [wd4e9], a
 	cp $0
 	jr nz, .asm_1424c
-	ld a, [wd586]
+	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
 	jr z, .asm_1424c
 	ld a, $1
@@ -11713,10 +11701,10 @@ Func_143f9:
 	ld c, $6
 	add c
 	ld c, a
-	ld a, [wd497]
-	call Func_058d
-	ld a, [wd45f]
-	ld hl, AttackNames
+	ld a, [wCurDenjuu]
+	call GetBaseStat_
+	ld a, [wCurBaseStat]
+	ld hl, MoveNames
 	ld [wd435], a
 	ld [wd46f], a
 	call GetName75
@@ -12507,7 +12495,10 @@ Func_7048c::
 	dr $7048c, $70a99
 
 Func_70a99::
-	dr $70a99, $7122c
+	dr $70a99, $711d9
+
+LoadAllBattlingDenjuu:
+	dr $711d9, $7122c
 
 Func_7122c::
 	dr $7122c, $74000
@@ -12573,11 +12564,11 @@ Data_9cb29::
 Data_9cbb2::
 	dr $9cbb2, $9cbfa
 
-Data_9cbfa::
-	dr $9cbfa, $9ce9d
+ScriptedEnemyDenjuu::
+INCLUDE "data/scripted_denjuu.asm"
 
-Data_9ce9d::
-	dr $9ce9d, $a0000
+EnemyTFangerParties::
+INCLUDE "data/tfanger_parties.asm"
 
 SECTION "bank 28", ROMX, BANK [$28]
 	dr $a0000, $a4000
@@ -13084,11 +13075,11 @@ DenjuuNames::
 INCLUDE "text/denjuu_names.asm"
 TFangerNames:: ; 1d4580
 INCLUDE "text/tfanger_names.asm"
-AttackNames:: ; 1d46f8
+MoveNames:: ; 1d46f8
 INCLUDE "text/attack_names.asm"
 
-Data_1d4b48::
-	dr $1d4b48, $1d5628
+BaseStats::
+INCLUDE "data/base_stats.asm"
 
 Data_1d5628::
 	dr $1d5628, $1d5640
