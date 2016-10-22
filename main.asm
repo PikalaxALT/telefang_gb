@@ -12156,7 +12156,7 @@ Func_33a90::
 	dr $33a90, $33ac4
 
 Pointers_33ac4::
-	dr $33ac4, $34000
+	dr $33ac4, $33ff8
 
 SECTION "bank 0D", ROMX, BANK [$d]
 IF DEF(POWER)
@@ -12175,7 +12175,7 @@ Func_38f8d::
 	dr $38f8d, $39fab
 
 Func_39fab::
-	dr $39fab, $3c000
+	dr $39fab, $3ad7a
 
 SECTION "bank 0F", ROMX, BANK [$f]
 Func_3c000::
@@ -12188,16 +12188,19 @@ Func_3c91b::
 	dr $3c91b, $3d00e
 
 Func_3d00e::
-	dr $3d00e, $40000
+	dr $3d00e, $3f147
 
 SECTION "bank 10", ROMX, BANK [$10]
-	dr $40000, $44000
+Pointers_40000:
+	dr $40000, $416f0
 
 SECTION "bank 11", ROMX, BANK [$11]
-	dr $44000, $48000
+Func_44000:
+	dr $44000, $47d2d
 
 SECTION "bank 12", ROMX, BANK [$12]
-	dr $48000, $4c000
+Func_48000:
+	dr $48000, $4bf03
 
 SECTION "bank 13", ROMX, BANK [$13]
 INCLUDE "data/oam_templates_2.asm"
@@ -12384,7 +12387,7 @@ Func_6afdc::
 	dr $6afdc, $6b1ad
 
 Func_6b1ad::
-	dr $6b1ad, $6c000
+	dr $6b1ad, $6b9f7
 
 SECTION "bank 1B", ROMX, BANK [$1b]
 Func_6c000::
@@ -12481,7 +12484,7 @@ Func_6ec18::
 	dr $6ec18, $6eec0
 
 Func_6eec0::
-	dr $6eec0, $70000
+	dr $6eec0, $6f3a6
 
 SECTION "bank 1C", ROMX, BANK [$1c]
 StartBattle::
@@ -12506,7 +12509,7 @@ LoadAllBattlingDenjuu:
 	dr $711d9, $7122c
 
 Func_7122c::
-	dr $7122c, $74000
+	dr $7122c, $71a87
 
 SECTION "bank 1D", ROMX, BANK [$1d]
 BattleResult::
@@ -12519,7 +12522,7 @@ Func_753f8::
 	dr $753f8, $758f8
 
 Func_758f8::
-	dr $758f8, $78000
+	dr $758f8, $7598a
 
 SECTION "bank 1F", ROMX, BANK [$1f]
 Func_7c000::
@@ -12529,7 +12532,7 @@ Func_7c61b::
 	dr $7c61b, $7d2c3
 
 Func_7d2c3::
-	dr $7d2c3, $80000
+	dr $7d2c3, $7f9d5
 
 SECTION "bank 20", ROMX, BANK [$20]
 UpdateSound20::
