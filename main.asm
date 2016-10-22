@@ -12159,15 +12159,15 @@ Pointers_33ac4::
 	dr $33ac4, $34000
 
 SECTION "bank 0D", ROMX, BANK [$d]
-Palettes_34000::
-	dr $34000, $35d80
-
-Palettes_35d80::
-	dr $35d80, $38000
+IF DEF(POWER)
+INCLUDE "data/palettes_34000.power.asm"
+ELSE
+INCLUDE "data/palettes_34000.speed.asm"
+ENDC
 
 SECTION "bank 0E", ROMX, BANK [$e]
 PalPackets_38000::
-	dr $38000, $38120
+INCLUDE "data/pal_packets2.asm"
 
 INCLUDE "data/oam_templates_1.asm"
 
