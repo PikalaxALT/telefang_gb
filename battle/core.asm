@@ -2223,17 +2223,430 @@ Func_1545f: ; 1545f (5:545f)
 	ld [wd400], a
 	ret
 
-Func_15489:
-	dr $15489, $1561e
+Func_15489: ; 15489 (5:5489)
+	ld a, [wcb3f]
+	cp $1
+	jp z, Func_15606
+	ld a, [wd40a]
+	cp $1
+	jr z, .asm_154f7
+	ld a, [wPlayerDenjuu2Field0x07]
+	cp $0
+	jp z, Func_155ed
+	cp $4
+	jr nz, .asm_154ab
+	call Func_0d4e
+	cp $c8
+	jr c, .asm_154ef
+.asm_154ab
+	ld a, [wPlayerDenjuu2Field0x07]
+	cp $1
+	jp nz, Func_155ed
+	ld a, [wd450]
+	cp $1
+	jp z, Func_155ed
+	ld a, [wPlayerDenjuu2Field0x0c]
+	cp $4
+	jp nc, Func_155ed
+	ld a, [wPlayerDenjuu2Field0x0a]
+	sla a
+	add $37
+	ld b, a
+	call Func_0d4e
+	cp b
+	jr c, .asm_154ef
+	ld a, $4
+	ld [wPlayerDenjuu2Field0x07], a
+	ld a, [wPlayerDenjuu2Species]
+	ld [wd4ca], a
+	ld a, [wPlayerDenjuu2Field0x0c]
+	ld [wd46a], a
+	ld a, $f2
+	ld [wdc34], a
+	ld a, $1
+	ld [wd450], a
+	jp Func_15556
 
-Func_1561e:
-	dr $1561e, $15661
+.asm_154ef
+	ld a, $1
+	ld [wPlayerDenjuu2Field0x07], a
+	jp Func_155ed
 
-Func_15661:
-	dr $15661, $15683
+.asm_154f7
+	ld a, [wPlayerDenjuu3Field0x07]
+	cp $0
+	jp z, Func_155ed
+	cp $4
+	jr nz, .asm_1550a
+	call Func_0d4e
+	cp $c8
+	jr c, .asm_1554e
+.asm_1550a
+	ld a, [wPlayerDenjuu3Field0x07]
+	cp $1
+	jp nz, Func_155ed
+	ld a, [wd451]
+	cp $1
+	jp z, Func_155ed
+	ld a, [wPlayerDenjuu3Field0x0c]
+	cp $4
+	jp nc, Func_155ed
+	ld a, [wPlayerDenjuu3Field0x0a]
+	sla a
+	add $37
+	ld b, a
+	call Func_0d4e
+	cp b
+	jr c, .asm_1554e
+	ld a, $4
+	ld [wPlayerDenjuu3Field0x07], a
+	ld a, [wPlayerDenjuu3Species]
+	ld [wd4cb], a
+	ld a, [wPlayerDenjuu3Field0x0c]
+	ld [wd46b], a
+	ld a, $f3
+	ld [wdc34], a
+	ld a, $1
+	ld [wd451], a
+	jp Func_15556
 
-Func_15683:
-	dr $15683, $157fb
+.asm_1554e
+	ld a, $1
+	ld [wPlayerDenjuu3Field0x07], a
+	jp Func_155ed
+
+Func_15556: ; 15556 (5:5556)
+	ld a, [wd4ca]
+	cp $ff
+	jr z, .asm_15585
+	call OpenSRAMBank2
+	ld a, [wPlayerDenjuu2]
+	ld [wd4ce], a
+	ld a, [wPlayerDenjuu2Field0x0d]
+	ld [wd43c], a
+	ld hl, s2_a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	ld a, [wd46a]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4ca], a
+	jp Func_1560c
+
+.asm_15585
+	ld a, [wd4cb]
+	cp $ff
+	jr z, .asm_155b3
+	call OpenSRAMBank2
+	ld a, [wPlayerDenjuu3Species]
+	ld [wd4ce], a
+	ld a, [wPlayerDenjuu3Field0x0d]
+	ld [wd43c], a
+	ld hl, s2_a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	ld a, [wd46b]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4cb], a
+	jr Func_1560c
+
+.asm_155b3
+	ld a, [wd4cc]
+	cp $ff
+	jr z, .asm_155d0
+	ld [wd4ce], a
+	ld a, [wEnemyDenjuu2Field0x0d]
+	ld [wd43c], a
+	ld a, [wd46c]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4cc], a
+	jr Func_1560c
+
+.asm_155d0
+	ld a, [wd4cd]
+	cp $ff
+	jr z, Func_155ed
+	ld [wd4ce], a
+	ld a, [wEnemyDenjuu3Field0x0d]
+	ld [wd43c], a
+	ld a, [wd46d]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4cd], a
+	jr Func_1560c
+
+Func_155ed: ; 155ed (5:55ed)
+	ld a, [wd40a]
+	cp $1
+	jr z, .asm_15601
+	ld a, [wd40a]
+	inc a
+	ld [wd40a], a
+	ld a, $1
+	ld [wdc34], a
+	ret
+
+.asm_15601
+	ld a, $1
+	ld [wdc34], a
+Func_15606: ; 15606 (5:5606)
+	ld a, $e
+	ld [wd400], a
+	ret
+
+Func_1560c: ; 1560c (5:560c)
+	xor a
+	ld [wd401], a
+	ld a, $1
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $3a
+	ld [wd400], a
+	ret
+
+Func_1561e: ; 1561e (5:561e)
+	ld a, [wc90a]
+	cp $1
+	jr z, .asm_1564c
+	ld hl, s2_b800
+	ld d, $0
+	ld a, [wd43c]
+	ld e, a
+	add hl, de
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s2_b800)
+	ld [MBC3SRamBank], a
+	ld a, [hl]
+	push af
+	xor a
+	ld [MBC3SRamEnable], a
+	pop af
+	set 7, a
+	ld [H_FFA2], a
+	ld a, $4
+	ld [wMusicBank], a
+	jr .asm_15651
+
+.asm_1564c
+	ld a, $3c
+	ld [wd45a], a
+.asm_15651
+	ld a, $1
+	ld [wcad0], a
+	ld c, $6d
+	call Func_3d02
+	ld a, $34
+	ld [wd400], a
+	ret
+
+Func_15661: ; 15661 (5:5661)
+	call Func_0530
+	ld a, [wc90a]
+	cp $1
+	jr z, .asm_15672
+	ld a, [wcfc0]
+	or a
+	ret nz
+	jr .asm_1567a
+
+.asm_15672
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	ret nz
+.asm_1567a
+	call Func_1bd1
+	ld a, $11
+	ld [wd400], a
+	ret
+
+Func_15683: ; 15683 (5:5683)
+	ld a, [wcb3f]
+	cp $1
+	jp z, Func_157ef
+	ld a, [wcb3f]
+	or a
+	jr z, .asm_156ae
+	call Func_0530
+	call Func_3eee
+	or a
+	ret z
+	ld a, [wdc45]
+	inc a
+	ld [wdc45], a
+	ld a, [hl]
+	cp $f2
+	jp z, Func_156ee
+	cp $f3
+	jp z, Func_15745
+	jp Func_157e0
+
+.asm_156ae
+	ld a, [wd40a]
+	cp $1
+	jr z, asm_1570f
+	ld a, [wEnemyDenjuu2Field0x07]
+	cp $0
+	jp z, Func_157e0
+	cp $4
+	jr nz, .asm_156c8
+	call Func_0d4e
+	cp $c8
+	jr c, asm_15707
+.asm_156c8
+	ld a, [wEnemyDenjuu2Field0x07]
+	cp $1
+	jp nz, Func_157e0
+	ld a, [wd452]
+	cp $1
+	jp z, Func_157e0
+	ld a, [wEnemyDenjuu2Field0x0c]
+	cp $4
+	jp nc, Func_157e0
+	ld a, [wEnemyDenjuu2Field0x0a]
+	sla a
+	add $37
+	ld b, a
+	call Func_0d4e
+	cp b
+	jr c, asm_15707
+Func_156ee: ; 156ee (5:56ee)
+	ld a, $4
+	ld [wEnemyDenjuu2Field0x07], a
+	ld a, [wEnemyDenjuu2Species]
+	ld [wd4cc], a
+	ld a, [wEnemyDenjuu2Field0x0c]
+	ld [wd46c], a
+	ld a, $1
+	ld [wd452], a
+	jp Func_15766
+
+asm_15707
+	ld a, $1
+	ld [wEnemyDenjuu2Field0x07], a
+	jp Func_157e0
+
+asm_1570f
+	ld a, [wEnemyDenjuu3Field0x07]
+	cp $0
+	jp z, Func_157e0
+	cp $4
+	jr nz, .asm_15722
+	call Func_0d4e
+	cp $c8
+	jr c, asm_1575e
+.asm_15722
+	ld a, [wEnemyDenjuu3Field0x07]
+	cp $1
+	jr nz, Func_15766
+	ld a, [wd453]
+	cp $1
+	jr z, Func_15766
+	ld a, [wEnemyDenjuu3Field0x0c]
+	cp $4
+	jr nc, Func_15766
+	ld a, [wEnemyDenjuu3Field0x0a]
+	sla a
+	add $37
+	ld b, a
+	call Func_0d4e
+	cp b
+	jr c, asm_1575e
+Func_15745: ; 15745 (5:5745)
+	ld a, $4
+	ld [wEnemyDenjuu3Field0x07], a
+	ld a, [wEnemyDenjuu3]
+	ld [wd4cd], a
+	ld a, [wEnemyDenjuu3Field0x0c]
+	ld [wd46d], a
+	ld a, $1
+	ld [wd453], a
+	jp Func_15766
+
+asm_1575e
+	ld a, $1
+	ld [wEnemyDenjuu3Field0x07], a
+	jp Func_157e0
+
+Func_15766: ; 15766 (5:5766)
+	ld a, [wd4ca]
+	cp $ff
+	jr z, .asm_15783
+	ld [wd4ce], a
+	ld a, [wPlayerDenjuu2Field0x0d]
+	ld [wd43c], a
+	ld a, [wd46a]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4ca], a
+	jr asm_157f5
+
+.asm_15783
+	ld a, [wd4cb]
+	cp $ff
+	jr z, .asm_157a0
+	ld [wd4ce], a
+	ld a, [wPlayerDenjuu3Field0x0d]
+	ld [wd43c], a
+	ld a, [wd46b]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4cb], a
+	jr asm_157f5
+
+.asm_157a0
+	ld a, [wd4cc]
+	cp $ff
+	jr z, .asm_157c0
+	ld a, [wEnemyDenjuu2Species]
+	ld [wd4ce], a
+	ld a, [wEnemyDenjuu2Field0x0d]
+	ld [wd43c], a
+	ld a, [wd46c]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4cc], a
+	jr asm_157f5
+
+.asm_157c0
+	ld a, [wd4cd]
+	cp $ff
+	jr z, Func_157e0
+	ld a, [wEnemyDenjuu3]
+	ld [wd4ce], a
+	ld a, [wEnemyDenjuu3Field0x0d]
+	ld [wd43c], a
+	ld a, [wd46d]
+	ld [wd46e], a
+	ld a, $ff
+	ld [wd4cd], a
+	jr asm_157f5
+
+Func_157e0: ; 157e0 (5:57e0)
+	ld a, [wd40a]
+	cp $1
+	jr z, Func_157ef
+	ld a, [wd40a]
+	inc a
+	ld [wd40a], a
+	ret
+
+Func_157ef: ; 157ef (5:57ef)
+	ld a, $e
+	ld [wd400], a
+	ret
+
+asm_157f5
+	ld a, $32
+	ld [wd400], a
+	ret
 
 Func_157fb:
 	dr $157fb, $15810
