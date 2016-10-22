@@ -3984,7 +3984,7 @@ Func_10cc9:
 	ld a, $3
 	ld [H_FFA1], a
 	call Func_06d4
-	ld a, [wc955]
+	ld a, [wPartnerDenjuuHPRemaining]
 	cp c
 	jr nz, .asm_10d21
 	call Func_13e4c
@@ -13091,7 +13091,10 @@ Data_1d5640::
 	dr $1d5640, $1d56ee
 
 Data_1d56ee::
-	dr $1d56ee, $1d7928
+	dr $1d56ee, $1d5888
+
+Data_1d5888:
+	dr $1d5888, $1d7928
 
 Data_1d7928::
 	dr $1d7928, $1d7988

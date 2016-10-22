@@ -22,7 +22,7 @@ Func_14430: ; 14430 (5:4430)
 
 Func_1443b: ; 1443b (5:443b)
 	ld a, [wPlayerDenjuu1CurHP]
-	ld [wc955], a
+	ld [wPartnerDenjuuHPRemaining], a
 	ld a, $a
 	ld [wSubroutine], a
 	ld a, $5
@@ -3765,83 +3765,937 @@ asm_16093
 	ld [wd400], a
 	ret
 
-Func_16099:
-	dr $16099, $161fb
+Func_16099: ; 16099 (5:6099)
+	ld bc, $c
+	ld e, $80
+	xor a
+	call Func_04ca
+	ld bc, $30e
+	ld e, $83
+	xor a
+	call Func_04da
+	ld a, [wPlayerDenjuu2Field0x07]
+	cp $2
+	jp z, Func_160cb
+	ld a, [wPlayerDenjuu3Field0x07]
+	cp $2
+	jp z, Func_16108
+	ld a, [wEnemyDenjuu2Field0x07]
+	cp $2
+	jp z, Func_1615f
+	ld a, [wEnemyDenjuu3Field0x07]
+	cp $2
+	jp z, Func_1619e
+Func_160cb: ; 160cb (5:60cb)
+	ld a, [wPlayerDenjuu2]
+	ld [wd435], a
+	ld hl, DenjuuNames
+	call GetName75
+	ld bc, wStringBuffer
+	call Func_1402a
+	call Func_14012
+	ld a, [wd435]
+	call Func_142ec
+	ld a, [wPlayerDenjuu2Field0x0d]
+	ld hl, VTilesBG tile $20
+	call Func_142f9
+	ld a, [wPlayerDenjuu2MaxHP]
+	ld [wCurDenjuuBufferCurHP], a
+	ld [wCurDenjuuBufferMaxHP], a
+	call Func_1407d
+	ld a, $1
+	call Func_140d9
+	ld a, $3
+	ld [wPlayerDenjuu2Field0x07], a
+	jp Func_161f5
 
-Func_161fb:
-	dr $161fb, $16289
+Func_16108: ; 16108 (5:6108)
+	ld a, $1
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferField0x07]
+	cp $4
+	jr z, .asm_16118
+	cp $1
+	jr nz, .asm_16122
+.asm_16118
+	ld a, $2
+	ld [wd475], a
+	ld a, $1
+	ld [wd476], a
+.asm_16122
+	ld a, [wPlayerDenjuu3Species]
+	ld [wd435], a
+	ld hl, DenjuuNames
+	call GetName75
+	ld bc, wStringBuffer
+	call Func_1402a
+	call Func_14012
+	ld a, [wd435]
+	call Func_142ec
+	ld a, [wPlayerDenjuu3Field0x0d]
+	ld hl, VTilesBG tile $20
+	call Func_142f9
+	ld a, [wPlayerDenjuu3MaxHP]
+	ld [wCurDenjuuBufferCurHP], a
+	ld [wCurDenjuuBufferMaxHP], a
+	call Func_1407d
+	ld a, $2
+	call Func_140d9
+	ld a, $3
+	ld [wPlayerDenjuu3Field0x07], a
+	jp Func_161f5
 
-Func_16289:
-	dr $16289, $162cd
+Func_1615f: ; 1615f (5:615f)
+	ld a, [wEnemyDenjuu2]
+	ld [wd435], a
+	ld hl, DenjuuNames
+	call GetName75
+	ld bc, wStringBuffer
+	call Func_1402a
+	call Func_14012
+	ld a, [wd435]
+	call Func_142df
+	ld a, [wd435]
+	ld de, DenjuuNames
+	ld bc, VTilesBG tile $28
+	call GetAndPrintName75LeftAlign_
+	ld a, [wEnemyDenjuu2MaxHP]
+	ld [wCurDenjuuBufferCurHP], a
+	ld [wCurDenjuuBufferMaxHP], a
+	call Func_140ab
+	ld a, $1
+	call Func_14102
+	ld a, $3
+	ld [wEnemyDenjuu2Field0x07], a
+	jr Func_161f5
 
-Func_162cd:
-	dr $162cd, $16318
+Func_1619e: ; 1619e (5:619e)
+	ld a, $1
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferField0x07]
+	cp $4
+	jr z, .asm_161ae
+	cp $1
+	jr nz, .asm_161b8
+.asm_161ae
+	ld a, $2
+	ld [wd478], a
+	ld a, $1
+	ld [wd479], a
+.asm_161b8
+	ld a, [wEnemyDenjuu3Species]
+	ld [wd435], a
+	ld hl, DenjuuNames
+	call GetName75
+	ld bc, wStringBuffer
+	call Func_1402a
+	call Func_14012
+	ld a, [wd435]
+	call Func_142df
+	ld a, [wd435]
+	ld de, DenjuuNames
+	ld bc, VTilesBG tile $28
+	call GetAndPrintName75LeftAlign_
+	ld a, [wEnemyDenjuu3MaxHP]
+	ld [wCurDenjuuBufferCurHP], a
+	ld [wCurDenjuuBufferMaxHP], a
+	call Func_140ab
+	ld a, $2
+	call Func_14102
+	ld a, $3
+	ld [wEnemyDenjuu3Field0x07], a
+Func_161f5: ; 161f5 (5:61f5)
+	ld a, $22
+	ld [wd400], a
+	ret
 
-Func_16318:
-	dr $16318, $16348
+Func_161fb: ; 161fb (5:61fb)
+	ld a, $10
+	ld hl, VTilesBG tile $70
+	call ClearString
+	ld de, BattleString_Arrived
+	ld hl, VTilesBG tile $78
+	call Func_142aa
+	ld a, [wd470]
+	cp $1
+	jr z, .asm_16239
+	ld bc, $105
+	ld e, $92
+	xor a
+	call Func_04ca
+	ld bc, $20e
+	ld e, $99
+	xor a
+	call Func_04ca
+	ld a, $28
+	ld [wd4f4], a
+	ld a, $3c
+	ld [wd4fa], a
+	ld hl, VTilesBG tile $18
+	ld a, $4
+	call ClearString
+	jr .asm_1625d
 
-Func_16348:
-	dr $16348, $16360
+.asm_16239
+	ld bc, $101
+	ld e, $91
+	xor a
+	call Func_04fa
+	ld bc, $20e
+	ld e, $9c
+	xor a
+	call Func_04ca
+	ld a, $78
+	ld [wd4f4], a
+	ld a, $28
+	ld [wd4fa], a
+	ld hl, VTilesBG tile $1c
+	ld a, $4
+	call ClearString
+.asm_1625d
+	ld bc, $105
+	ld e, $8c
+	xor a
+	call Func_04da
+	ld bc, $4
+	call GetCGB_OBLayout_
+	call Func_142c1
+	ld a, $4
+	ld [wd43e], a
+	ld hl, VTilesOB tile $00
+	ld a, $7d
+	ld [wd41d], a
+	call Func_3d18
+	xor a
+	ld [wd45a], a
+	ld a, $1f
+	ld [wd400], a
+	ret
 
-Func_16360:
-	dr $16360, $16368
+Func_16289: ; 16289 (5:6289)
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	cp $1e
+	ret c
+	xor a
+	ld [wOAMAnimation05], a
+	ld a, $1
+	ld [wc430], a
+	ld a, $10
+	ld hl, VTilesBG tile $70
+	call ClearString
+	ld hl, Data_1d5888
+	call Func_0620
+	ld hl, wd4d0
+	call Func_14020
+	ld a, [wd470]
+	cp $1
+	jr z, .asm_162bc
+	call Func_3d7f
+	jr .asm_162c2
 
-Data_16368:
-	dr $16368, $163e0
+.asm_162bc
+	ld a, [wd435]
+	call Func_142cd
+.asm_162c2
+	ld c, $2
+	call Func_3d02
+	ld a, $12
+	ld [wd400], a
+	ret
 
-Func_163e0:
-	dr $163e0, $163ef
+Func_162cd: ; 162cd (5:62cd)
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld a, [wd470]
+	cp $1
+	jr z, .asm_162f5
+	ld a, [wd4e6]
+	inc a
+	ld [wd4e6], a
+	ld bc, $105
+	ld e, $8b
+	xor a
+	call Func_04ca
+	call Func_1657b
+	call Func_1643a
+	jr .asm_1630b
 
-Func_163ef:
-	dr $163ef, $163fe
+.asm_162f5
+	ld a, [wd4e7]
+	inc a
+	ld [wd4e7], a
+	ld bc, $101
+	ld e, $8b
+	xor a
+	call Func_04fa
+	call Func_1658d
+	call Func_16461
+.asm_1630b
+	ld a, [wd4e5]
+	inc a
+	ld [wd4e5], a
+	ld a, $21
+	ld [wd400], a
+	ret
 
-Func_163fe:
-	dr $163fe, $16416
+Func_16318: ; 16318 (5:6318)
+	ld a, [wd470]
+	cp $1
+	jr z, .asm_1632d
+	ld bc, $105
+	ld e, $92
+	xor a
+	call Func_04ca
+	call Func_1404a
+	jr .asm_16339
 
-Func_16416:
-	dr $16416, $1643a
+.asm_1632d
+	ld bc, $101
+	ld e, $91
+	xor a
+	call Func_04fa
+	call Func_14062
+.asm_16339
+	ld bc, $20e
+	ld e, $9a
+	xor a
+	call Func_04ca
+	ld a, $e
+	ld [wd400], a
+	ret
 
-Func_1643a:
-	dr $1643a, $16461
+Func_16348: ; 16348 (5:6348)
+	xor a
+	ld [wd400], a
+	ld a, [wcb3f]
+	cp $1
+	jr z, .asm_16356
+	jp IncrementSubroutine
 
-Func_16461:
-	dr $16461, $16487
+.asm_16356
+	xor a
+	ld [wd456], a
+	ld a, $3
+	ld [wSubroutine], a
+	ret
 
-Func_16487:
-	dr $16487, $1651b
+Func_16360: ; 16360 (5:6360)
+	ld a, [wcb3f]
+	cp $1
+	jp z, Func_163d0
+Data_16368: ; 16368 (5:6368)
+	ld a, [wd403]
+	cp $0
+	jp nz, Func_163d0
+	call Func_3f0a
+	ld a, [wd5cd]
+	or a
+	jr z, Func_163d0
+	call OpenSRAMBank2
+	ld hl, s2_a002
+	ld a, [wcdb4]
+	call Func_3d0e
+	ld a, [hl]
+	cp $1
+	jr c, .asm_1638d
+	sub $1
+	ld [hl], a
+.asm_1638d
+	call CloseSRAM
+	ld bc, $20d
+	ld e, $95
+	xor a
+	call Func_04ca
+	ld de, BattleString_Escaped
+	ld hl, VTilesBG tile $78
+	call Func_142aa
+	ld a, [wd474]
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBuffer]
+	ld c, $0
+	ld de, VTilesBG tile $40
+	call Func_0516
+	ld bc, $105
+	ld e, $94
+	xor a
+	call Func_04ca
+	ld bc, $105
+	ld e, $8c
+	xor a
+	call Func_04da
+	ld a, $a
+	ld [wd45a], a
+	ld a, $2f
+	ld [wd400], a
+	ret
 
-Func_1651b:
-	dr $1651b, $1653b
+Func_163d0: ; 163d0 (5:63d0)
+	ld a, $a
+	ld [wd45a], a
+	ld c, $24
+	call Func_3d02
+	ld a, $30
+	ld [wd400], a
+	ret
 
-Func_1653b:
-	dr $1653b, $1654b
+Func_163e0: ; 163e0 (5:63e0)
+	call Func_0530
+	ld a, [wc9c9]
+	cp $9
+	ret nz
+	ld a, $e
+	ld [wd400], a
+	ret
 
-Func_1654b:
-	dr $1654b, $1656b
+Func_163ef: ; 163ef (5:63ef)
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	ld a, $15
+	ld [wd400], a
+	ret
 
-Func_1656b:
-	dr $1656b, $1657b
+Func_163fe: ; 163fe (5:63fe)
+	ld a, [wSCX]
+	cp $64
+	jr nc, .asm_1640b
+	add $8
+	ld [wSCX], a
+	ret
 
-Func_1657b:
-	dr $1657b, $1658d
+.asm_1640b
+	call Func_14005
+	ld a, $10
+	ld [wcf96], a
+	jp Func_3cf8
 
-Func_1658d:
-	dr $1658d, $1659f
+Func_16416: ; 16416 (5:6416)
+	ld a, $1
+	call Func_050f
+	or a
+	ret z
+	xor a
+	ld [wc46c], a
+	ld [wSCX], a
+	ld [wWX], a
+	call Func_142af
+	xor a
+	ld [wd401], a
+	ld [wd400], a
+	ld [wSCX], a
+	ld a, $2
+	ld [wSubroutine], a
+	ret
 
-Func_1659f:
-	dr $1659f, $165c3
+Func_1643a: ; 1643a (5:643a)
+	ld hl, VTilesBG tile $18
+	ld a, $4
+	call ClearString
+	ld a, [wd474]
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferField0x12]
+	or a
+	ret z
+	ld bc, $100
+	ld e, $ba
+	ld a, $0
+	call Func_04ca
+	ld a, [wCurDenjuuBufferField0x12]
+	ld b, a
+	ld hl, VTilesBG tile $18
+	jp Func_059f
 
-Func_165c3:
-	dr $165c3, $165e8
+Func_16461: ; 16461 (5:6461)
+	ld hl, VTilesBG tile $1c
+	ld a, $4
+	call ClearString
+	ld a, [wd477]
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferField0x12]
+	or a
+	ret z
+	ld bc, $108
+	ld e, $bb
+	xor a
+	call Func_04fa
+	ld a, [wCurDenjuuBufferField0x12]
+	ld b, a
+	ld hl, VTilesBG tile $1c
+	jp Func_059f
 
-Func_165e8:
-	dr $165e8, $165fe
+Func_16487: ; 16487 (5:6487)
+	push af
+	ld a, b
+	cp $1
+	jr z, .asm_164a4
+	cp $2
+	jr z, .asm_164b3
+	cp $3
+	jr z, .asm_164c2
+	ld a, $10
+	ld [wd4f0], a
+	ld a, $70
+	ld [wd4f6], a
+	ld hl, VTilesOB tile $50
+	jr .asm_164cf
 
-Func_165fe:
-	dr $165fe, $16614
+.asm_164a4
+	ld a, $10
+	ld [wd4f1], a
+	ld a, $80
+	ld [wd4f7], a
+	ld hl, VTilesOB tile $5c
+	jr .asm_164cf
 
-Func_16614:
-	dr $16614, $16643
+.asm_164b3
+	ld a, $60
+	ld [wd4f2], a
+	ld a, $70
+	ld [wd4f8], a
+	ld hl, VTilesOB tile $68
+	jr .asm_164cf
+
+.asm_164c2
+	ld a, $60
+	ld [wd4f3], a
+	ld a, $80
+	ld [wd4f9], a
+	ld hl, VTilesOB tile $74
+.asm_164cf
+	pop af
+	push hl
+	ld [wd409], a
+	call Func_05d1
+	pop hl
+	ld a, [wd409]
+	jp GetOverworldSprite_SizeHL
+
+Func_164de:
+	ld h, b
+	ld l, c
+	ld a, [hl]
+	ld d, a
+	inc hl
+	ld a, [hl]
+	ld h, b
+	ld l, c
+	ld [hl], a
+	inc hl
+	inc hl
+	ld a, [hl]
+	ld h, b
+	ld l, c
+	inc hl
+	ld [hl], a
+	ld a, d
+	ld h, b
+	ld l, c
+	inc hl
+	inc hl
+	ld [hl], a
+	ret
+
+Func_164f5:
+	ld h, b
+	ld l, c
+	ld a, [hl]
+	ld d, a
+	inc hl
+	ld a, [hl]
+	ld h, b
+	ld l, c
+	ld [hl], a
+	ld a, d
+	ld h, b
+	ld l, c
+	inc hl
+	ld [hl], a
+	ret
+
+Func_16504:
+	ld h, b
+	ld l, c
+	ld a, [hl]
+	ld d, a
+	inc hl
+	inc hl
+	ld a, [hl]
+	ld h, b
+	ld l, c
+	ld [hl], a
+	inc hl
+	ld a, [hl]
+	ld h, b
+	ld l, c
+	inc hl
+	inc hl
+	ld [hl], a
+	ld a, d
+	ld h, b
+	ld l, c
+	inc hl
+	ld [hl], a
+	ret
+
+Func_1651b: ; 1651b (5:651b)
+	ld bc, wd474
+	ld a, [wd4e6]
+	cp $3
+	jr z, .asm_16528
+	jp Func_164f5
+
+.asm_16528
+	jp Func_164de
+
+	ld bc, wd474
+	ld a, [wd5c6]
+	cp $3
+	jr z, .asm_16538
+	jp Func_164f5
+
+.asm_16538
+	jp Func_164de
+
+Func_1653b: ; 1653b (5:653b)
+	ld bc, wd474
+	ld a, [wd4e6]
+	cp $3
+	jr z, .asm_16548
+	jp Func_164f5
+
+.asm_16548
+	jp Func_16504
+
+Func_1654b: ; 1654b (5:654b)
+	ld bc, wd477
+	ld a, [wd4e7]
+	cp $3
+	jr z, .asm_16558
+	jp Func_164f5
+
+.asm_16558
+	jp Func_164de
+
+	ld bc, wd477
+	ld a, [wd5c7]
+	cp $3
+	jr z, .asm_16568
+	jp Func_164f5
+
+.asm_16568
+	jp Func_164de
+
+Func_1656b: ; 1656b (5:656b)
+	ld bc, wd477
+	ld a, [wd4e7]
+	cp $3
+	jr z, .asm_16578
+	jp Func_164f5
+
+.asm_16578
+	jp Func_16504
+
+Func_1657b: ; 1657b (5:657b)
+	ld a, [wd474]
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferSpecies]
+	call Func_142ec
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ret
+
+Func_1658d: ; 1658d (5:658d)
+	ld a, [wd477]
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferSpecies]
+	call Func_142df
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ret
+
+Func_1659f: ; 1659f (5:659f)
+	ld a, [wd414]
+	cp $1
+	jr z, .asm_165ad
+	ld a, $70
+	ld [wd4f6], a
+	jr .asm_165b2
+
+.asm_165ad
+	ld a, $80
+	ld [wd4f6], a
+.asm_165b2
+	ld a, $c
+	ld [wd4f0], a
+	xor a
+	ld [wd43e], a
+	ld a, $d0
+	ld [wd41d], a
+	jp Func_3d18
+
+Func_165c3: ; 165c3 (5:65c3)
+	ld hl, wd4f7
+	ld [hl], $50
+	ld a, [wd414]
+	ld b, a
+	or a
+	jr z, .asm_165d6
+.asm_165cf
+	ld a, [hl]
+	add $10
+	ld [hl], a
+	dec b
+	jr nz, .asm_165cf
+.asm_165d6
+	ld a, $50
+	ld [wd4f1], a
+	ld a, $1
+	ld [wd43e], a
+	ld a, $d0
+	ld [wd41d], a
+	jp Func_3d18
+
+Func_165e8: ; 165e8 (5:65e8)
+	xor a
+	ld [wd43e], a
+	ld a, $50
+	ld [wd4f0], a
+	ld a, $48
+	ld [wd4f6], a
+	ld a, $d2
+	ld [wd41d], a
+	jp Func_3d18
+
+Func_165fe: ; 165fe (5:65fe)
+	xor a
+	ld [wd43e], a
+	ld a, $8
+	ld [wd4f0], a
+	ld a, $58
+	ld [wd4f6], a
+	ld a, $d2
+	ld [wd41d], a
+	jp Func_3d18
+
+Func_16614: ; 16614 (5:6614)
+	ld a, [wd416]
+	cp $1
+	jr z, .asm_1662c
+	ld d, $0
+	ld a, [wd474]
+	ld e, a
+	ld hl, wd5ba
+	add hl, de
+	ld a, [hl]
+	cp $2
+	jr z, .asm_1663d
+	xor a
+	ret
+
+.asm_1662c
+	ld d, $0
+	ld a, [wd477]
+	ld e, a
+	ld hl, wd5bd
+	add hl, de
+	ld a, [hl]
+	cp $2
+	jr z, .asm_1663d
+	xor a
+	ret
+
+.asm_1663d
+	ld a, $0
+	ld [hl], a
+	ld a, $1
+	ret
 
 Func_16643:
-	dr $16643, $17ff8
+	ld a, [wd401]
+	ld hl, Pointers_1664d
+	call GetHalfwordFromTable
+	jp [hl]
+
+Pointers_1664d:
+	dw Func_166a5
+	dw Func_16709
+	dw Func_16724
+	dw Func_168d6
+	dw Func_16c11
+	dw Func_16c6e
+	dw Func_16e82
+	dw Func_16f47
+	dw Func_16f84
+	dw Func_16f97
+	dw Func_17122
+	dw Func_1717f
+	dw Func_17347
+	dw Func_173cf
+	dw Func_1740c
+	dw Func_1741f
+	dw Func_174b9
+	dw Func_17521
+	dw Func_17589
+	dw Func_175ce
+	dw Func_17612
+	dw Func_17aea
+	dw Func_17df4
+	dw Func_17e09
+	dw Func_17f13
+	dw Func_16e1d
+	dw Func_16e29
+	dw Func_172dd
+	dw Func_172e9
+	dw Func_17dd6
+	dw Func_17689
+	dw Func_175bd
+	dw Func_176b9
+	dw Func_16801
+	dw Func_1747e
+	dw Func_17ef6
+	dw Func_16cba
+	dw Func_17de5
+	dw Func_170c5
+	dw Func_16aa7
+	dw Func_170d8
+	dw Func_16c7f
+	dw Func_16cda
+	dw Func_17190
+
+Func_166a5:
+	dr $166a5, $16709
+
+Func_16709:
+	dr $16709, $16724
+
+Func_16724:
+	dr $16724, $16801
+
+Func_16801:
+	dr $16801, $168d6
+
+Func_168d6:
+	dr $168d6, $16aa7
+
+Func_16aa7:
+	dr $16aa7, $16c11
+
+Func_16c11:
+	dr $16c11, $16c6e
+
+Func_16c6e:
+	dr $16c6e, $16c7f
+
+Func_16c7f:
+	dr $16c7f, $16cba
+
+Func_16cba:
+	dr $16cba, $16cda
+
+Func_16cda:
+	dr $16cda, $16e1d
+
+Func_16e1d:
+	dr $16e1d, $16e29
+
+Func_16e29:
+	dr $16e29, $16e82
+
+Func_16e82:
+	dr $16e82, $16f47
+
+Func_16f47:
+	dr $16f47, $16f84
+
+Func_16f84:
+	dr $16f84, $16f97
+
+Func_16f97:
+	dr $16f97, $170c5
+
+Func_170c5:
+	dr $170c5, $170d8
+
+Func_170d8:
+	dr $170d8, $17122
+
+Func_17122:
+	dr $17122, $1717f
+
+Func_1717f:
+	dr $1717f, $17190
+
+Func_17190:
+	dr $17190, $172dd
+
+Func_172dd:
+	dr $172dd, $172e9
+
+Func_172e9:
+	dr $172e9, $17347
+
+Func_17347:
+	dr $17347, $173cf
+
+Func_173cf:
+	dr $173cf, $1740c
+
+Func_1740c:
+	dr $1740c, $1741f
+
+Func_1741f:
+	dr $1741f, $1747e
+
+Func_1747e:
+	dr $1747e, $174b9
+
+Func_174b9:
+	dr $174b9, $17521
+
+Func_17521:
+	dr $17521, $17589
+
+Func_17589:
+	dr $17589, $175bd
+
+Func_175bd:
+	dr $175bd, $175ce
+
+Func_175ce:
+	dr $175ce, $17612
+
+Func_17612:
+	dr $17612, $17689
+
+Func_17689:
+	dr $17689, $176b9
+
+Func_176b9:
+	dr $176b9, $17aea
+
+Func_17aea:
+	dr $17aea, $17dd6
+
+Func_17dd6:
+	dr $17dd6, $17de5
+
+Func_17de5:
+	dr $17de5, $17df4
+
+Func_17df4:
+	dr $17df4, $17e09
+
+Func_17e09:
+	dr $17e09, $17ef6
+
+Func_17ef6:
+	dr $17ef6, $17f13
+
+Func_17f13:
+	dr $17f13, $17ff8

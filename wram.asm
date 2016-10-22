@@ -1495,7 +1495,7 @@ wc951:: ds 1
 wc952:: ds 1
 wc953:: ds 1
 wc954:: ds 1
-wc955:: ds 1
+wPartnerDenjuuHPRemaining:: ds 1
 wc956:: ds 1
 wc957:: ds 1
 wc958:: ds 1
