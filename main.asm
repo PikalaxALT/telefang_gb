@@ -372,7 +372,7 @@ Func_8648: ; 8648 (2:4648)
 	ld a, [wcb75]
 	or a
 	ret nz
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $3
 	ret nz
 	ld a, [wcb74]
@@ -957,7 +957,7 @@ Func_8d7a: ; 8d7a (2:4d7a)
 	jp Func_3cfd
 
 Func_8dbb: ; 8dbb (2:4dbb)
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $3
 	jr nz, .asm_8dc8
 	ld hl, VTilesBG tile $1b
@@ -2778,8 +2778,8 @@ Func_f9b6:
 	ret
 
 Func_f9e1:
-	call Func_0d4e
-	ld a, [wc400]
+	call Random
+	ld a, [wRandomSample]
 	ld h, $0
 	ld l, a
 	ld bc, $ff
@@ -5090,7 +5090,7 @@ Func_115a4: ; 115a4 (4:55a4)
 
 Func_115ae: ; 115ae (4:55ae)
 	call Func_13340
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $3
 	jr nz, .asm_115be
 	ld hl, VTilesBG tile $1b
@@ -5502,7 +5502,7 @@ Func_118c4: ; 118c4 (4:58c4)
 	ret
 
 Func_118dd: ; 118dd (4:58dd)
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $f
 	ret nz
 	ld a, [wcb3d]
@@ -6215,7 +6215,7 @@ Func_11d7e: ; 11d7e (4:5d7e)
 	ld [wOAMAnimation02_TemplateIdx], a
 	ld de, wOAMAnimation02
 	call Func_11781
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $f
 	jr nz, .asm_11da5
 	ld a, [wOAMAnimation02]

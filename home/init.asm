@@ -78,9 +78,9 @@ Start::
 	ld a, $3
 	rst Bankswitch
 .loop
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	inc a
-	ld [wc3c0], a
+	ld [wVBlankCounter], a
 	call Func_02d0
 	ld a, [wcb3f]
 	or a

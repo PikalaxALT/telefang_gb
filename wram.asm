@@ -64,7 +64,7 @@ wc3bc:: ds 1
 wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
-wc3c0:: ds 1
+wVBlankCounter:: ds 1
 wc3c1:: ds 1
 wSCX:: ds 1
 wSCY:: ds 1
@@ -127,7 +127,7 @@ wc3fc:: ds 1
 wc3fd:: ds 1
 wc3fe:: ds 1
 wc3ff:: ds 1
-wc400:: ds 1
+wRandomSample:: ds 1
 wc401:: ds 1
 wc402:: ds 1
 
@@ -160,8 +160,7 @@ wCurSpriteXCoord:: ds 1
 wCurSpritePalette:: ds 1
 
 wc41e:: ds 1
-wc41f:: ds 1
-wc420:: ds 1
+wRNGState:: ds 2
 wc421:: ds 1
 wc422:: ds 1
 wPrevROMBank:: ds 1

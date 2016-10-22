@@ -506,7 +506,7 @@ Func_147bb: ; 147bb (5:47bb)
 	ld a, $cd
 	add b
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp $80
 	jr nc, Func_14855
 Func_147ef: ; 147ef (5:47ef)
@@ -788,7 +788,7 @@ Func_149cd: ; 149cd (5:49cd)
 	ld a, $cd
 	add b
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp $80
 	jr nc, Func_14a67
 Func_14a01: ; 14a01 (5:4a01)
@@ -941,7 +941,7 @@ Func_14b07: ; 14b07 (5:4b07)
 	ld a, [wCurDenjuuBufferField0x0a]
 	add $9b
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, .asm_14b35
 	ld a, $0
@@ -963,7 +963,7 @@ Func_14b07: ; 14b07 (5:4b07)
 	sla a
 	add $37
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, .asm_14b8d
 	ld a, [wd474]
@@ -1780,7 +1780,7 @@ Func_1510a: ; 1510a (5:510a)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
-	call Func_0d4e
+	call Random
 	cp $78
 	jr c, .asm_15190
 	cp $b4
@@ -1971,12 +1971,12 @@ Func_15292: ; 15292 (5:5292)
 	jp Func_153d4
 
 .asm_152d5
-	call Func_0d4e
+	call Random
 	and $2
 	jr .asm_152eb
 
 .asm_152dc
-	call Func_0d4e
+	call Random
 	cp $7f
 	jr c, .asm_152e8
 	ld a, [wd477]
@@ -2021,12 +2021,12 @@ Func_15292: ; 15292 (5:5292)
 	jp Func_15345
 
 .asm_1532c
-	call Func_0d4e
+	call Random
 	and $2
 	jr .asm_15342
 
 .asm_15333
-	call Func_0d4e
+	call Random
 	cp $7f
 	jr c, .asm_1533f
 	ld a, [wd474]
@@ -2235,7 +2235,7 @@ Func_15489: ; 15489 (5:5489)
 	jp z, Func_155ed
 	cp $4
 	jr nz, .asm_154ab
-	call Func_0d4e
+	call Random
 	cp $c8
 	jr c, .asm_154ef
 .asm_154ab
@@ -2252,7 +2252,7 @@ Func_15489: ; 15489 (5:5489)
 	sla a
 	add $37
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, .asm_154ef
 	ld a, $4
@@ -2278,7 +2278,7 @@ Func_15489: ; 15489 (5:5489)
 	jp z, Func_155ed
 	cp $4
 	jr nz, .asm_1550a
-	call Func_0d4e
+	call Random
 	cp $c8
 	jr c, .asm_1554e
 .asm_1550a
@@ -2295,7 +2295,7 @@ Func_15489: ; 15489 (5:5489)
 	sla a
 	add $37
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, .asm_1554e
 	ld a, $4
@@ -2497,7 +2497,7 @@ Func_15683: ; 15683 (5:5683)
 	jp z, Func_157e0
 	cp $4
 	jr nz, .asm_156c8
-	call Func_0d4e
+	call Random
 	cp $c8
 	jr c, asm_15707
 .asm_156c8
@@ -2514,7 +2514,7 @@ Func_15683: ; 15683 (5:5683)
 	sla a
 	add $37
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, asm_15707
 Func_156ee: ; 156ee (5:56ee)
@@ -2539,7 +2539,7 @@ asm_1570f
 	jp z, Func_157e0
 	cp $4
 	jr nz, .asm_15722
-	call Func_0d4e
+	call Random
 	cp $c8
 	jr c, asm_1575e
 .asm_15722
@@ -2556,7 +2556,7 @@ asm_1570f
 	sla a
 	add $37
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, asm_1575e
 Func_15745: ; 15745 (5:5745)
@@ -4702,7 +4702,7 @@ Func_1679b: ; 1679b (5:679b)
 	cp $9
 	jr nz, asm_167af
 .asm_167a6
-	call Func_0d4e
+	call Random
 	cp $50
 	jr c, asm_167c1
 	jr Func_167c5
@@ -4712,7 +4712,7 @@ asm_167af
 	cp $63
 	jr z, asm_167c1
 	call Func_167e9
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, asm_167c1
 	jr Func_167c5
@@ -4837,7 +4837,7 @@ Func_16892: ; 16892 (5:6892)
 	cp $9
 	jr nz, asm_168a6
 .asm_1689d
-	call Func_0d4e
+	call Random
 	cp $50
 	jr c, asm_168b8
 	jr asm_168bc
@@ -4847,7 +4847,7 @@ asm_168a6
 	cp $63
 	jr z, asm_168b8
 	call Func_167e9
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, asm_168b8
 	jr asm_168bc
@@ -5064,7 +5064,7 @@ Func_16a4b: ; 16a4b (5:6a4b)
 	ld [wd434], a
 	ld [wd4ef], a
 .asm_16a6a
-	call Func_0d4e
+	call Random
 	cp $10
 	jr nc, Func_16a9c
 	ld a, [wd434]
@@ -5294,7 +5294,7 @@ Func_16bd3: ; 16bd3 (5:6bd3)
 	ret
 
 Func_16c11: ; 16c11 (5:6c11)
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $1
 	ret nz
 	ld a, [wd474]
@@ -5438,7 +5438,7 @@ Func_16cda: ; 16cda (5:6cda)
 	sla a
 	add $37
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, Func_16d5c
 	ld a, [wd474]
@@ -5879,7 +5879,7 @@ Func_1706c: ; 1706c (5:706c)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_16add
-	call Func_0d4e
+	call Random
 	cp $10
 	jr nc, .asm_170b5
 	ld a, [wd434]
@@ -5970,7 +5970,7 @@ Func_170e4: ; 170e4 (5:70e4)
 	ret
 
 Func_17122: ; 17122 (5:7122)
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $1
 	ret nz
 	ld a, [wd477]
@@ -6090,7 +6090,7 @@ asm_171d9
 	sla a
 	add $37
 	ld b, a
-	call Func_0d4e
+	call Random
 	cp b
 	jr c, Func_17246
 	ld a, [wd477]
@@ -6813,13 +6813,13 @@ Func_17705: ; 17705 (5:7705)
 	pop bc
 	cp b
 	jr c, .asm_17751
-	call Func_0d4e
+	call Random
 	cp $c0
 	jr c, Func_17785
 	jp Func_1798f
 
 .asm_17751
-	call Func_0d4e
+	call Random
 	cp $40
 	jr c, Func_17785
 	jp Func_1798f
@@ -6836,13 +6836,13 @@ Func_17705: ; 17705 (5:7705)
 	pop bc
 	cp b
 	jr c, .asm_1777d
-	call Func_0d4e
+	call Random
 	cp $c0
 	jr c, Func_17785
 	jp Func_1798f
 
 .asm_1777d
-	call Func_0d4e
+	call Random
 	cp $40
 	jp nc, Func_1798f
 Func_17785: ; 17785 (5:7785)

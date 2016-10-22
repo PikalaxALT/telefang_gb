@@ -106,7 +106,7 @@ Func_8191: ; 8191 (2:4191)
 Func_819b: ; 819b (2:419b)
 	ld a, $1
 	ld [wc430], a
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $3
 	ret nz
 	ld a, [wOAMAnimation02 + 3]
@@ -390,7 +390,7 @@ Func_83ce: ; 83ce (2:43ce)
 	jp IncrementSubroutine
 
 Func_8403: ; 8403 (2:4403)
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $7
 	jr nz, .asm_8411
 	ld a, [wc463]
@@ -431,7 +431,7 @@ Func_8423: ; 8423 (2:4423)
 	jp IncrementSubroutine
 
 Func_845c: ; 845c (2:445c)
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $3
 	ret nz
 	ld a, [wSCX]

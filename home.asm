@@ -899,17 +899,17 @@ DecompressGFXByIndex: ; c36 (0:0c36)
 .exit
 	ret
 
-Func_0d4e::
+Random::
 	ld a, [wc470]
 	cp $2
 	jp z, Func_0d7d
 	push hl
 	push bc
-	ld a, [wc41f]
+	ld a, [wRNGState]
 	ld h, a
-	ld a, [wc420]
+	ld a, [wRNGState + 1]
 	ld l, a
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	ld b, a
 	swap a
 	inc a
@@ -918,12 +918,12 @@ Func_0d4e::
 	ld c, a
 	add hl, bc
 	ld a, l
-	ld [wc41f], a
+	ld [wRNGState], a
 	ld a, h
 	xor l
-	ld [wc420], a
+	ld [wRNGState + 1], a
 	add l
-	ld [wc400], a
+	ld [wRandomSample], a
 	pop bc
 	pop hl
 	ret
@@ -941,7 +941,7 @@ Func_0d7d: ; d7d (0:0d7d)
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [wc400], a
+	ld [wRandomSample], a
 	pop bc
 	pop hl
 	ret
@@ -3149,7 +3149,7 @@ Func_2134::
 	ld b, a
 	ld a, [wc92b]
 	ld c, a
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	ld b, a
 	ld a, [wc922]
 	add b
@@ -7156,7 +7156,7 @@ Func_3bc1: ; 3bc1 (0:3bc1)
 	add hl, de
 	ld a, [hl]
 	ld b, a
-	call Func_0d4e
+	call Random
 	and $3
 	add b
 	ld [wd495], a
@@ -7216,7 +7216,7 @@ Func_3c57: ; 3c57 (0:3c57)
 	ld a, [wd402]
 	addntimes_hl_de
 	push hl
-	call Func_0d4e
+	call Random
 	cp $19
 	jr c, .asm_3c7a
 	cp $4c

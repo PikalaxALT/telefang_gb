@@ -142,7 +142,7 @@ Func_8a63:
 	call Func_0616
 	ld a, $1
 	ld [wOAMAnimation05], a
-	ld a, [wc3c0]
+	ld a, [wVBlankCounter]
 	and $7
 	jr nz, .asm_8a88
 	ld a, [wOAMAnimation02]
@@ -277,7 +277,7 @@ Func_8b63:
 	ld [wcb2c], a
 	jr nz, .asm_8b7e
 .asm_8b6f
-	call Func_0d4e
+	call Random
 	and $7f
 	cp $30
 	jr c, .asm_8b6f
