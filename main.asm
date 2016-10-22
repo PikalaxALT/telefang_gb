@@ -1188,7 +1188,7 @@ Func_8f2d: ; 8f2d (2:4f2d)
 	ld a, $6
 	ld [wGameRoutine], a
 	ld a, $0
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_8f80
@@ -13099,7 +13099,7 @@ Data_1d5640::
 	dr $1d5640, $1d56ee
 
 Data_1d56ee::
-	dr $1d56ee, $1d5888
+INCLUDE "data/wild_denjuu.asm"
 
 Data_1d5888:
 	dr $1d5888, $1d7928

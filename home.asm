@@ -7306,7 +7306,7 @@ Func_3cd0::
 	jp Func_3cfd
 
 Func_3cf8::
-	ld hl, wd400
+	ld hl, wBattleSubroutine
 	inc [hl]
 	ret
 

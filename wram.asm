@@ -4228,7 +4228,7 @@ wd3fc:: ds 1
 wd3fd:: ds 1
 wd3fe:: ds 1
 wd3ff:: ds 1
-wd400:: ds 1
+wBattleSubroutine:: ds 1
 wd401:: ds 1
 wd402:: ds 1
 wd403:: ds 1

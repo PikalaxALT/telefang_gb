@@ -86,7 +86,7 @@ Func_9390: ; 9390 (2:5390)
 	ld hl, wEventFlags
 	ld bc, $900
 	call ClearMemory3
-	ld hl, wd400
+	ld hl, wBattleSubroutine
 	ld bc, $200
 	call ClearMemory3
 	ld bc, $3

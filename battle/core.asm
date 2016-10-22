@@ -33,7 +33,7 @@ Func_1444c: ; 1444c (5:444c)
 	xor a
 	ld [wd401], a
 	ld a, $2
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ld a, $1
 	ld [wSubroutine], a
 	ld a, $f
@@ -44,7 +44,7 @@ Func_14460: ; 14460 (5:4460)
 	ld a, [wcb3f]
 	or a
 	jr z, .asm_14483
-	ld a, [wd400]
+	ld a, [wBattleSubroutine]
 	cp $37
 	jr z, .asm_14483
 	cp $38
@@ -56,9 +56,9 @@ Func_14460: ; 14460 (5:4460)
 	or a
 	jr z, .asm_14483
 	ld a, $37
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 .asm_14483
-	ld a, [wd400]
+	ld a, [wBattleSubroutine]
 	ld hl, Pointers_1448d
 	call GetHalfwordFromTable
 	jp [hl]
@@ -175,7 +175,7 @@ Func_14566: ; 14566 (5:4566)
 	ret z
 	xor a
 	ld [wd401], a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ld [wSubroutine], a
 	ld a, $3
 	ld [wGameRoutine], a
@@ -279,7 +279,7 @@ Func_1463e: ; 1463e (5:463e)
 	or a
 	ret z
 	ld a, $1d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_1464b: ; 1464b (5:464b)
@@ -307,7 +307,7 @@ Func_1464b: ; 1464b (5:464b)
 	call Func_1404a
 	call Func_14062
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14681: ; 14681 (5:4681)
@@ -333,12 +333,12 @@ Func_14681: ; 14681 (5:4681)
 
 .asm_146a8
 	ld a, $17
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_146ae
 	ld a, $26
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_146b4
@@ -362,12 +362,12 @@ Func_14681: ; 14681 (5:4681)
 
 .asm_146d6
 	ld a, $1a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_146dc
 	ld a, $28
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_146e2: ; 146e2 (5:46e2)
@@ -404,7 +404,7 @@ Func_14707: ; 14707 (5:4707)
 	xor a
 	ld [wSCX], a
 	ld a, $26
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14721: ; 14721 (5:4721)
@@ -457,12 +457,12 @@ Func_14721: ; 14721 (5:4721)
 	call Func_1658d
 	call Func_14062
 	ld a, $3d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_1478b
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14791
@@ -555,12 +555,12 @@ Func_14831: ; 14831 (5:4831)
 	ld a, $3c
 	ld [wd45a], a
 	ld a, $27
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_1484f
 	ld a, $30
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14855: ; 14855 (5:4855)
@@ -595,7 +595,7 @@ asm_14890
 	ld a, $3c
 	ld [wd45a], a
 	ld a, $27
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_1489e: ; 1489e (5:489e)
@@ -637,17 +637,17 @@ Func_148ad: ; 148ad (5:48ad)
 	cp $3
 	jr z, .asm_148dd
 	ld a, $5
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_148dd
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_148e3
 	ld a, $9
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_148e9: ; 148e9 (5:48e9)
@@ -685,7 +685,7 @@ Func_14911: ; 14911 (5:4911)
 	ld [wWX], a
 	call Func_142af
 	ld a, $28
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_1492f: ; 1492f (5:492f)
@@ -738,12 +738,12 @@ Func_1492f: ; 1492f (5:492f)
 	call Func_1657b
 	call Func_1404a
 	ld a, $24
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14999
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_1499f
@@ -837,12 +837,12 @@ Func_14a43: ; 14a43 (5:4a43)
 	ld a, $3c
 	ld [wd45a], a
 	ld a, $29
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14a61
 	ld a, $30
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14a67: ; 14a67 (5:4a67)
@@ -876,7 +876,7 @@ asm_14a9f
 	ld a, $3c
 	ld [wd45a], a
 	ld a, $29
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14aad: ; 14aad (5:4aad)
@@ -911,12 +911,12 @@ Func_14aad: ; 14aad (5:4aad)
 	ld c, $72
 	call Func_3d02
 	ld a, $b
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14af2
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14af8: ; 14af8 (5:4af8)
@@ -925,7 +925,7 @@ Func_14af8: ; 14af8 (5:4af8)
 	cp $9
 	ret nz
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14b07: ; 14b07 (5:4b07)
@@ -949,7 +949,7 @@ Func_14b07: ; 14b07 (5:4b07)
 	ld c, $1f
 	call Func_3d02
 	ld a, $2a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14b35
@@ -957,7 +957,7 @@ Func_14b07: ; 14b07 (5:4b07)
 	cp $8
 	jr z, .asm_14b40
 	cp $9
-	jr nz, .asm_14b8d
+	jr nz, .show_menu
 .asm_14b40
 	ld a, [wCurDenjuuBufferField0x0a]
 	sla a
@@ -965,7 +965,7 @@ Func_14b07: ; 14b07 (5:4b07)
 	ld b, a
 	call Random
 	cp b
-	jr c, .asm_14b8d
+	jr c, .show_menu
 	ld a, [wd474]
 	cp $1
 	jr z, .asm_14b60
@@ -995,10 +995,10 @@ Func_14b07: ; 14b07 (5:4b07)
 	xor a
 	ld [wd45a], a
 	ld a, $2c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
-.asm_14b8d
+.show_menu
 	ld bc, $c
 	ld e, $80
 	xor a
@@ -1070,7 +1070,7 @@ Func_14c13: ; 14c13 (5:4c13)
 	ld a, $57
 	ld [H_FFA1], a
 	ld a, $14
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14c27: ; 14c27 (5:4c27)
@@ -1260,7 +1260,7 @@ Func_14d1f: ; 14d1f (5:4d1f)
 	ld a, [wd474]
 	call GetNthPlayerDenjuu
 	ld a, $5
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14da3
@@ -1380,7 +1380,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	ld [wd415], a
 	ld [wd457], a
 	ld a, $3b
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14e96
@@ -1415,7 +1415,7 @@ Func_14ec6: ; 14ec6 (5:4ec6)
 	xor a
 	ld [wd45a], a
 	ld a, $2c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14ed6: ; 14ed6 (5:4ed6)
@@ -1468,7 +1468,7 @@ Func_14f12: ; 14f12 (5:4f12)
 	ld a, $1e
 	ld [wd45a], a
 	ld a, $3e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_14f32: ; 14f32 (5:4f32)
@@ -1487,7 +1487,7 @@ Func_14f32: ; 14f32 (5:4f32)
 	cp $a
 	jr z, .asm_14f71
 	ld a, $2d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14f59
@@ -1499,14 +1499,14 @@ Func_14f32: ; 14f32 (5:4f32)
 	ld c, $72
 	call Func_3d02
 	ld a, $36
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14f71
 	ld c, $2e
 	call Func_3d02
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ld a, $22
 	ld [wd401], a
 	ret
@@ -1537,7 +1537,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	ld a, [wd477]
 	ld [wd415], a
 	ld a, $23
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_14fba
@@ -1577,7 +1577,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	xor a
 	ld [wd45a], a
 	ld a, $2c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15003
@@ -1588,7 +1588,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	xor a
 	ld [wd45a], a
 	ld a, $2c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15016
@@ -1622,7 +1622,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	xor a
 	call Func_04ca
 	ld a, $7
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15051: ; 15051 (5:5051)
@@ -1654,7 +1654,7 @@ Func_15051: ; 15051 (5:5051)
 	ld a, [wd474]
 	ld [wd415], a
 	ld a, $3c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15091
@@ -1668,7 +1668,7 @@ Func_15051: ; 15051 (5:5051)
 	xor a
 	ld [wd45a], a
 	ld a, $2c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_150aa
@@ -1699,7 +1699,7 @@ Func_15051: ; 15051 (5:5051)
 	xor a
 	call Func_04ca
 	ld a, $7
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_150e0: ; 150e0 (5:50e0)
@@ -1710,7 +1710,7 @@ Func_150e0: ; 150e0 (5:50e0)
 	call Func_1404a
 	call Func_1643a
 	ld a, $3b
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_150f5: ; 150f5 (5:50f5)
@@ -1721,7 +1721,7 @@ Func_150f5: ; 150f5 (5:50f5)
 	call Func_14062
 	call Func_16461
 	ld a, $a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_1510a: ; 1510a (5:510a)
@@ -1772,7 +1772,7 @@ Func_1510a: ; 1510a (5:510a)
 	ld a, [wd414]
 	call Func_143f9
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15173
@@ -1934,7 +1934,7 @@ Func_1510a: ; 1510a (5:510a)
 	call Func_143f9
 Func_1528c: ; 1528c (5:528c)
 	ld a, $35
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15292: ; 15292 (5:5292)
@@ -2009,7 +2009,7 @@ Func_15292: ; 15292 (5:5292)
 	call Func_1658d
 	call Func_14062
 	ld a, $3d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_1531e
@@ -2113,7 +2113,7 @@ Func_15345: ; 15345 (5:5345)
 	call Func_1657b
 	call Func_1404a
 	ld a, $24
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_153d4: ; 153d4 (5:53d4)
@@ -2125,12 +2125,12 @@ Func_153d4: ; 153d4 (5:53d4)
 	ld c, $c
 	call Func_3d02
 	ld a, $2a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_153e9
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_153ef: ; 153ef (5:53ef)
@@ -2147,12 +2147,12 @@ Func_153ef: ; 153ef (5:53ef)
 	ld c, $c
 	call Func_3d02
 	ld a, $2a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15410
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15416: ; 15416 (5:5416)
@@ -2162,7 +2162,7 @@ Func_15416: ; 15416 (5:5416)
 	call Func_04fa
 	call Func_16461
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15428: ; 15428 (5:5428)
@@ -2185,14 +2185,14 @@ Func_15428: ; 15428 (5:5428)
 	cp $3
 	jr z, .asm_15451
 	ld a, $c
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15451
 	ld c, $c
 	call Func_3d02
 	ld a, $2a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_1545c: ; 1545c (5:545c)
@@ -2208,19 +2208,19 @@ Func_1545f: ; 1545f (5:545f)
 	cp $1
 	jr z, .asm_15478
 	ld a, $2d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15478
 	ld c, $72
 	call Func_3d02
 	ld a, $36
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_15483
 	ld a, $13
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15489: ; 15489 (5:5489)
@@ -2397,7 +2397,7 @@ Func_155ed: ; 155ed (5:55ed)
 	ld [wdc34], a
 Func_15606: ; 15606 (5:5606)
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_1560c: ; 1560c (5:560c)
@@ -2407,7 +2407,7 @@ Func_1560c: ; 1560c (5:560c)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $3a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_1561e: ; 1561e (5:561e)
@@ -2443,7 +2443,7 @@ Func_1561e: ; 1561e (5:561e)
 	ld c, $6d
 	call Func_3d02
 	ld a, $34
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15661: ; 15661 (5:5661)
@@ -2464,7 +2464,7 @@ Func_15661: ; 15661 (5:5661)
 .asm_1567a
 	call Func_1bd1
 	ld a, $11
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15683: ; 15683 (5:5683)
@@ -2640,12 +2640,12 @@ Func_157e0: ; 157e0 (5:57e0)
 
 Func_157ef: ; 157ef (5:57ef)
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 asm_157f5
 	ld a, $32
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_157fb: ; 157fb (5:57fb)
@@ -2656,7 +2656,7 @@ Func_157fb: ; 157fb (5:57fb)
 	ld c, $72
 	call Func_3d02
 	ld a, $3f
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15810: ; 15810 (5:5810)
@@ -2855,7 +2855,7 @@ Func_15810: ; 15810 (5:5810)
 	add $28
 	ld [wd43f], a
 	ld a, $f
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_159bc: ; 159bc (5:59bc)
@@ -3558,7 +3558,7 @@ Func_15f16: ; 15f16 (5:5f16)
 	xor a
 	ld [wd45a], a
 	ld a, $10
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15f20: ; 15f20 (5:5f20)
@@ -3566,7 +3566,7 @@ Func_15f20: ; 15f20 (5:5f20)
 	ld [wd45a], a
 	ld [wd45b], a
 	ld a, $20
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15f2d: ; 15f2d (5:5f2d)
@@ -3576,7 +3576,7 @@ Func_15f2d: ; 15f2d (5:5f2d)
 	cp $15
 	ret nz
 	ld a, $25
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15f3d: ; 15f3d (5:5f3d)
@@ -3589,7 +3589,7 @@ Func_15f3d: ; 15f3d (5:5f3d)
 	ld a, $0
 	call Func_04da
 	ld a, $4
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15f57: ; 15f57 (5:5f57)
@@ -3609,7 +3609,7 @@ Func_15f66: ; 15f66 (5:5f66)
 	call Func_1404a
 	call Func_14062
 	ld a, $2b
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15f79: ; 15f79 (5:5f79)
@@ -3623,17 +3623,17 @@ Func_15f79: ; 15f79 (5:5f79)
 	cp $1
 	jp z, Func_15f95
 	ld a, $2d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15f95: ; 15f95 (5:5f95)
 	ld a, $36
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 asm_15f9b
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15fa1: ; 15fa1 (5:5fa1)
@@ -3652,7 +3652,7 @@ Func_15fb4: ; 15fb4 (5:5fb4)
 	ld [wd45a], a
 	ret nz
 	ld a, $2b
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_15fc5: ; 15fc5 (5:5fc5)
@@ -3762,7 +3762,7 @@ Func_16085: ; 16085 (5:6085)
 	call Func_04fa
 asm_16093
 	ld a, $1e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_16099: ; 16099 (5:6099)
@@ -3906,7 +3906,7 @@ Func_1619e: ; 1619e (5:619e)
 	ld [wEnemyDenjuu3Field0x07], a
 Func_161f5: ; 161f5 (5:61f5)
 	ld a, $22
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_161fb: ; 161fb (5:61fb)
@@ -3969,7 +3969,7 @@ Func_161fb: ; 161fb (5:61fb)
 	xor a
 	ld [wd45a], a
 	ld a, $1f
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_16289: ; 16289 (5:6289)
@@ -4002,7 +4002,7 @@ Func_16289: ; 16289 (5:6289)
 	ld c, $2
 	call Func_3d02
 	ld a, $12
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_162cd: ; 162cd (5:62cd)
@@ -4039,7 +4039,7 @@ Func_162cd: ; 162cd (5:62cd)
 	inc a
 	ld [wd4e5], a
 	ld a, $21
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_16318: ; 16318 (5:6318)
@@ -4065,12 +4065,12 @@ Func_16318: ; 16318 (5:6318)
 	xor a
 	call Func_04ca
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_16348: ; 16348 (5:6348)
 	xor a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ld a, [wcb3f]
 	cp $1
 	jr z, .asm_16356
@@ -4130,7 +4130,7 @@ Data_16368: ; 16368 (5:6368)
 	ld a, $a
 	ld [wd45a], a
 	ld a, $2f
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_163d0: ; 163d0 (5:63d0)
@@ -4139,7 +4139,7 @@ Func_163d0: ; 163d0 (5:63d0)
 	ld c, $24
 	call Func_3d02
 	ld a, $30
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_163e0: ; 163e0 (5:63e0)
@@ -4148,7 +4148,7 @@ Func_163e0: ; 163e0 (5:63e0)
 	cp $9
 	ret nz
 	ld a, $e
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_163ef: ; 163ef (5:63ef)
@@ -4158,7 +4158,7 @@ Func_163ef: ; 163ef (5:63ef)
 	or a
 	ret nz
 	ld a, $15
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_163fe: ; 163fe (5:63fe)
@@ -4187,7 +4187,7 @@ Func_16416: ; 16416 (5:6416)
 	call Func_142af
 	xor a
 	ld [wd401], a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ld [wSCX], a
 	ld a, $2
 	ld [wSubroutine], a
@@ -5739,7 +5739,7 @@ Func_16f47: ; 16f47 (5:6f47)
 	xor a
 	ld [wd401], a
 	ld a, $d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_16f6b
@@ -6347,7 +6347,7 @@ Func_173cf: ; 173cf (5:73cf)
 	xor a
 	ld [wd401], a
 	ld a, $d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_173f3
@@ -6505,7 +6505,7 @@ Func_174b9: ; 174b9 (5:74b9)
 	xor a
 	ld [wd401], a
 	ld a, $d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_17516
@@ -6562,7 +6562,7 @@ Func_17521: ; 17521 (5:7521)
 	xor a
 	ld [wd401], a
 	ld a, $d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 .asm_1757e
@@ -6646,7 +6646,7 @@ Func_175ce: ; 175ce (5:75ce)
 	xor a
 	ld [wd401], a
 	ld a, $d
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ret
 
 Func_17612: ; 17612 (5:7612)

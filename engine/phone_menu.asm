@@ -198,7 +198,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld [wcb3f], a
 	xor a
 	ld [wSubroutine], a
-	ld [wd400], a
+	ld [wBattleSubroutine], a
 	ld a, $f
 	ld [wGameRoutine], a
 	ret
