@@ -11825,8 +11825,11 @@ SECTION "bank 07", ROMX, BANK [$7]
 PalPackets_1c000:: INCLUDE "data/pal_packets.asm"
 
 SECTION "bank 08", ROMX, BANK [$8]
-Pointers_20000::
-	dr $20000, $24000
+IF DEF(POWER)
+INCLUDE "data/unknown_20000.power.asm"
+ELSE
+INCLUDE "data/unknown_20000.speed.asm"
+ENDC
 
 SECTION "bank 09", ROMX, BANK [$9]
 Pointers_24000::

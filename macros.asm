@@ -5,6 +5,10 @@ Bankswitch    EQU $10
 MemBankswitch EQU $18
 FarCall       EQU $20
 
+text EQUS "db $00,"
+line EQUS "db $fe,"
+done EQUS "db $ff"
+
 RGB: MACRO
 	dw ((\3) << 10) + ((\2) << 5) + (\1)
 	ENDM
