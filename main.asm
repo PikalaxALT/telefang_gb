@@ -11818,9 +11818,7 @@ CompressedGFXBanksAndDests::
 	macro_18000 $29,                   VTilesBG tile $00
 	macro_18000 $29,                   VTilesBG tile $00
 
-Data_18180::
-	dr $18180, $18ba1
-
+INCLUDE "data/map_data_18180.asm"
 INCLUDE "data/map_data_18ba1.asm"
 
 SECTION "bank 07", ROMX, BANK [$7]
@@ -13000,9 +12998,7 @@ INCLUDE "data/map_data_148000.asm"
 INCLUDE "data/map_data_14956e.asm"
 INCLUDE "data/map_data_149dfc.asm"
 INCLUDE "data/map_data_14a97c.asm"
-
-Pointers_14b0f8:
-	dr $14b0f8, $14c000
+INCLUDE "data/map_data_14b0f8.asm"
 
 SECTION "bank 53", ROMX, BANK [$53]
 Data_14c000:: INCLUDE "data/unknown_14c000.asm"
