@@ -11821,7 +11821,7 @@ CompressedGFXBanksAndDests::
 Data_18180::
 	dr $18180, $18ba1
 
-INCLUDE "data/map_data_6.asm"
+INCLUDE "data/map_data_18ba1.asm"
 
 SECTION "bank 07", ROMX, BANK [$7]
 PalPackets_1c000::
@@ -12996,27 +12996,16 @@ SECTION "bank 51", ROMX, BANK [$51]
 	dr $144000, $148000
 
 SECTION "bank 52", ROMX, BANK [$52]
-Pointers_148000::
-	dr $148000, $148180
-
-Pointers_148180:
-	dr $148180, $14956e
-
-Pointers_14956e:
-	dr $14956e, $149dfc
-
-Pointers_149dfc:
-	dr $149dfc, $14a97c
-
-Pointers_14a97c:
-	dr $14a97c, $14b0f8
+INCLUDE "data/map_data_148000.asm"
+INCLUDE "data/map_data_14956e.asm"
+INCLUDE "data/map_data_149dfc.asm"
+INCLUDE "data/map_data_14a97c.asm"
 
 Pointers_14b0f8:
 	dr $14b0f8, $14c000
 
 SECTION "bank 53", ROMX, BANK [$53]
 Data_14c000:: INCLUDE "data/unknown_14c000.asm"
-
 INCLUDE "data/map_data_14c668.asm"
 INCLUDE "data/map_data_14d472.asm"
 
