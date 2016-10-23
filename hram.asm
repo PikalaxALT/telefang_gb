@@ -22,7 +22,7 @@ hFF9D EQU $ff9d
 hFF9E EQU $ff9e
 hFF9F EQU $ff9f
 hMusicID EQU $ffa0
-hFFA1 EQU $ffa1
+hSFX_ID EQU $ffa1
 hFFA2 EQU $ffa2
 hFFA3 EQU $ffa3
 hFFA4 EQU $ffa4

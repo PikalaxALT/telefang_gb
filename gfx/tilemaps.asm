@@ -1,5 +1,5 @@
 SECTION "Tilemaps 01", ROMX, BANK [TILEMAPS_01]
-Pointers_f8000::
+StdBGMapLayoutPointers1::
 	dw .Tilemap_001
 	dw .Tilemap_001
 	dw .Tilemap_002
@@ -376,7 +376,7 @@ ENDC
 .Tilemap_157:
 
 SECTION "Tilemaps 02", ROMX, BANK [TILEMAPS_02]
-Pointers_fc000::
+StdBGMapLayoutPointers2::
 	dw .Tilemap_158
 	dw .Tilemap_158
 	dw .Tilemap_159

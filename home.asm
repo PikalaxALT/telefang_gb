@@ -362,24 +362,24 @@ Func_0a0b::
 	ld [wLCDC], a
 	ret
 
-Func_0a2a: ; a2a (0:0a2a)
+LoadStdBGMapLayout: ; a2a (0:0a2a)
 	push af
 	ld hl, VBGMap
 	xor a
 	ld [wc41e], a
-	jr asm_0a3d
+	jr ContinueLoadStdTileLayout
 
-Func_0a34: ; a34 (0:0a34)
+LoadStdWindowLayout: ; a34 (0:0a34)
 	push af
 	ld hl, VWindow
 	ld a, $1
 	ld [wc41e], a
-asm_0a3d
+ContinueLoadStdTileLayout:
 	pop af
 
 	push hl
 	push de
-	ld hl, Data_0b18
+	ld hl, .banks
 	ld d, $0
 	ld e, a
 	add hl, de
@@ -410,7 +410,7 @@ ENDR
 	pop de
 
 	push hl
-	ld hl, Pointers_f8000 ; Pointers_fc000
+	ld hl, StdBGMapLayoutPointers1 ; StdBGMapLayoutPointers2
 	ld d, $0
 	sla e
 	rl d
@@ -528,39 +528,39 @@ ENDR
 	pop bc
 	jp .rle_loop
 
-Data_0b18::
+.banks
 	db TILEMAPS_01
 	db TILEMAPS_02
 
-Func_0b1a: ; b1a (0:0b1a)
+LoadStdBGMapAttrLayout: ; b1a (0:0b1a)
 	push af
 	ld a, [wdd06]
 	or a
-	jp z, Func_0b9e
+	jp z, DontLoadStdAttrMap
 	check_cgb
-	jp nz, Func_0b9e
+	jp nz, DontLoadStdAttrMap
 	ld hl, VBGMap
 	xor a
 	ld [wc41e], a
-	jr asm_0b4b
+	jr ContinueLoadStdAttrLayout
 
-Func_0b33: ; b33 (0:0b33)
+LoadStdWindowAttrLayout: ; b33 (0:0b33)
 	push af
 	ld a, [wdd06]
 	or a
-	jp z, Func_0b9e
+	jp z, DontLoadStdAttrMap
 	check_cgb
-	jp nz, Func_0b9e
+	jp nz, DontLoadStdAttrMap
 	ld hl, VWindow
 	ld a, $1
 	ld [wc41e], a
-asm_0b4b
+ContinueLoadStdAttrLayout
 	ld a, $1
 	ld [rVBK], a
 	pop af
 	push hl
 	push de
-	ld hl, Data_0c34
+	ld hl, StdAttrLayoutBanks
 	ld d, $0
 	ld e, a
 	add hl, de
@@ -593,7 +593,7 @@ asm_0b4b
 	add hl, de
 	pop de
 	push hl
-	ld hl, Pointers_20000 ; Pointers_24000
+	ld hl, StdBGMapAttrLayoutPointers1 ; StdBGMapAttrLayoutPointers2
 	ld d, $0
 	sla e
 	rl d
@@ -608,26 +608,27 @@ asm_0b4b
 	cp $ff
 	ret z
 	and $3
-	jr z, asm_0ba0
-	jr asm_0bc8
+	jr z, LiteralAttrLayout
+	jr RLEAttrLayout
 
-Func_0b9e: ; b9e (0:0b9e)
+DontLoadStdAttrMap: ; b9e (0:0b9e)
 	pop af
 	ret
 
-asm_0ba0
+LiteralAttrLayout: ; ba0 (0:0ba0)
+.loop_regular
 	inc de
 	ld a, [de]
 	cp $ff
-	jp z, Func_0c30
+	jp z, RestoreVBankAfterStdAttrLayout
 	cp $fe
-	jr z, .asm_0bb6
+	jr z, .line
 	call WaitStatAndLoad
 	ld a, [wc41e]
 	call WrapAroundBGMapOrWindowHorizontal
-	jr asm_0ba0
+	jr .loop_regular
 
-.asm_0bb6
+.line
 	push de
 	ld de, $20
 	ld h, b
@@ -638,35 +639,36 @@ asm_0ba0
 	ld b, h
 	ld c, l
 	pop de
-	jr asm_0ba0
+	jr .loop_regular
 
-asm_0bc8: ; bc8 (0:0bc8)
+RLEAttrLayout: ; bc8 (0:0bc8)
+.loop_rle
 	inc de
 	ld a, [de]
 	cp $ff
-	jp z, Func_0c30
+	jp z, RestoreVBankAfterStdAttrLayout
 	ld a, [de]
 	and $c0
 	cp $c0
-	jp z, Func_0c1b
+	jp z, .decrement
 	cp $80
-	jp z, Func_0c06
+	jp z, .increment
 	cp $40
-	jp z, Func_0bf2
+	jp z, .repeat
 	push bc
 	ld a, [de]
 	inc a
 	ld b, a
-Func_0be5: ; be5 (0:0be5)
+.loop_literal
 	inc de
 	ld a, [de]
 	call WaitStatAndLoad
 	dec b
-	jp nz, Func_0be5
+	jp nz, .loop_literal
 	pop bc
-	jp asm_0bc8
+	jp .loop_rle
 
-Func_0bf2: ; bf2 (0:0bf2)
+.repeat
 	push bc
 	ld a, [de]
 	and $3f
@@ -674,14 +676,14 @@ Func_0bf2: ; bf2 (0:0bf2)
 	ld b, a
 	inc de
 	ld a, [de]
-Func_0bfb: ; bfb (0:0bfb)
+.loop_repeat
 	call WaitStatAndLoad
 	dec b
-	jp nz, Func_0bfb
+	jp nz, .loop_repeat
 	pop bc
-	jp asm_0bc8
+	jp .loop_rle
 
-Func_0c06: ; c06 (0:0c06)
+.increment
 	push bc
 	ld a, [de]
 	and $3f
@@ -689,15 +691,15 @@ Func_0c06: ; c06 (0:0c06)
 	ld b, a
 	inc de
 	ld a, [de]
-Func_0c0f: ; c0f (0:0c0f)
+.loop_increment
 	call WaitStatAndLoad
 	inc a
 	dec b
-	jp nz, Func_0c0f
+	jp nz, .loop_increment
 	pop bc
-	jp asm_0bc8
+	jp .loop_rle
 
-Func_0c1b: ; c1b (0:0c1b)
+.decrement
 	push bc
 	ld a, [de]
 	and $3f
@@ -705,22 +707,22 @@ Func_0c1b: ; c1b (0:0c1b)
 	ld b, a
 	inc de
 	ld a, [de]
-Func_0c24: ; c24 (0:0c24)
+.loop_decrement
 	call WaitStatAndLoad
 	dec a
 	dec b
-	jp nz, Func_0c24
+	jp nz, .loop_decrement
 	pop bc
-	jp asm_0bc8
+	jp .loop_rle
 
-Func_0c30::
+RestoreVBankAfterStdAttrLayout:
 	xor a
 	ld [rVBK], a
 	ret
 
-Data_0c34::
-	db BANK(Pointers_20000)
-	db BANK(Pointers_24000)
+StdAttrLayoutBanks::
+	db ATTRMAPS_01
+	db ATTRMAPS_02
 
 DecompressGFXByIndex: ; c36 (0:0c36)
 	ld a, BANK(CompressedGFXBanksAndDests)
@@ -3468,7 +3470,7 @@ Func_2465::
 	cp $1
 	jr nz, .asm_2481
 	ld a, $50
-	ld [hFFA1], a
+	ld [hSFX_ID], a
 .asm_2481
 	cp $ff
 	ret nz
@@ -3655,7 +3657,7 @@ Func_256e::
 	jr nz, .asm_2665
 	call Func_1fff
 	ld a, $13
-	ld [hFFA1], a
+	ld [hSFX_ID], a
 	ld a, [wc9c3]
 	ld b, a
 	ld a, [wc9c4]
@@ -3717,7 +3719,7 @@ Func_256e::
 	ld a, $0
 	ld [wc9c1], a
 	ld a, $13
-	ld [hFFA1], a
+	ld [hSFX_ID], a
 Func_2690: ; 2690 (0:2690)
 	ret
 
@@ -3802,7 +3804,7 @@ Func_26ff: ; 26ff (0:26ff)
 	ld a, $c
 	ld [wc493], a
 	ld a, $68
-	ld [hFFA1], a
+	ld [hSFX_ID], a
 Func_2726::
 	ld a, [wc499]
 	res 2, a
@@ -4315,12 +4317,12 @@ Func_29ed::
 	cp $b
 	jr nz, .asm_2a44
 	ld a, $13
-	ld [hFFA1], a
+	ld [hSFX_ID], a
 	jr .asm_2a48
 
 .asm_2a44
 	ld a, $d
-	ld [hFFA1], a
+	ld [hSFX_ID], a
 .asm_2a48
 	ld a, $0
 	ld [wc94f], a
@@ -7262,10 +7264,10 @@ ENDR
 
 Func_3cb5::
 	push af
-	call Func_3d18
+	call InitBattleMenuCursor
 	ld hl, wOAMAnimations
 	ld de, $20
-	ld a, [wd43e]
+	ld a, [wWhichBattleMenuCursor]
 .asm_3cc2
 	cp $0
 	jr z, .asm_3cca
@@ -7282,7 +7284,7 @@ Func_3cb5::
 Func_3cd0::
 	ld hl, wOAMAnimations
 	ld de, $20
-	ld a, [wd43e]
+	ld a, [wWhichBattleMenuCursor]
 .asm_3cd9
 	cp $0
 	jr z, .asm_3ce1
@@ -7305,7 +7307,7 @@ Func_3cd0::
 	ret nz
 	jp Func_3cfd
 
-Func_3cf8::
+NextBattleSubroutine::
 	ld hl, wBattleSubroutine
 	inc [hl]
 	ret
@@ -7331,22 +7333,22 @@ Func_3d0e::
 	add hl, de
 	ret
 
-Func_3d18: ; 3d18 (0:3d18)
+InitBattleMenuCursor: ; 3d18 (0:3d18)
 	ld hl, wOAMAnimations
 	ld de, $20
-	ld a, [wd43e]
+	ld a, [wWhichBattleMenuCursor]
 	addntimes_hl_de
 	push hl
-	ld hl, wd4f0
+	ld hl, wBattleMenuCursorXCoord
 	ld d, $0
-	ld a, [wd43e]
+	ld a, [wWhichBattleMenuCursor]
 	ld e, a
 	add hl, de
 	ld a, [hl]
 	ld b, a
-	ld hl, wd4f6
+	ld hl, wBattleMenuCursorYCoord
 	ld d, $0
-	ld a, [wd43e]
+	ld a, [wWhichBattleMenuCursor]
 	ld e, a
 	add hl, de
 	ld a, [hl]
@@ -7358,7 +7360,7 @@ Func_3d18: ; 3d18 (0:3d18)
 	ld [hli], a
 	ld a, [wd4ee]
 	ld [hli], a
-	ld a, [wd41d]
+	ld a, [wBattleMenuCursorObjectTemplateIDX]
 	ld [hli], a
 	ld a, b
 	ld [hli], a
@@ -7534,7 +7536,7 @@ LoadScriptedEnemyDenjuu: ; 3e45 (0:3e45)
 	ld a, [hli]
 	ld [wEnemyDenjuu1Level], a
 	ld a, [hli]
-	ld [wEnemyDenjuu1Field0x0a], a
+	ld [wEnemyDenjuu1Autonomy], a
 	inc hl
 	ld a, [hl]
 	ld [wEnemyDenjuu1Field0x0c], a
@@ -7552,7 +7554,7 @@ LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld a, [hli]
 	ld [wEnemyDenjuu1Field0x08], a
 	ld a, [hli]
-	ld [wEnemyDenjuu1Field0x0a], a
+	ld [wEnemyDenjuu1Autonomy], a
 	inc hl
 	ld a, [hli]
 	ld [wEnemyDenjuu1Field0x0c], a
@@ -7563,7 +7565,7 @@ LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld a, [hli]
 	ld [wEnemyDenjuu2Field0x08], a
 	ld a, [hli]
-	ld [wEnemyDenjuu2Field0x0a], a
+	ld [wEnemyDenjuu2Autonomy], a
 	inc hl
 	ld a, [hli]
 	ld [wEnemyDenjuu2Field0x0c], a
@@ -7574,7 +7576,7 @@ LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld a, [hli]
 	ld [wEnemyDenjuu3Field0x08], a
 	ld a, [hli]
-	ld [wEnemyDenjuu3Field0x0a], a
+	ld [wEnemyDenjuu3Autonomy], a
 	inc hl
 	ld a, [hl]
 	ld [wEnemyDenjuu3Field0x0c], a

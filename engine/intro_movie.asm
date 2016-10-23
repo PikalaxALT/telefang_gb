@@ -66,14 +66,14 @@ Func_8124: ; 8124 (2:4124)
 	ld a, $1
 	ld [wc46c], a
 	ld [wc46d], a
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $8
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $8
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $20
 	call GetCGB_BGLayout_
 	ld bc, $5
@@ -127,14 +127,14 @@ Func_81bf: ; 81bf (2:41bf)
 	ld [wcb2c], a
 	cp $0
 	ret nz
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $9
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $9
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld a, $80
 	ld [wcb2c], a
 	ld a, $41
@@ -166,14 +166,14 @@ Func_820b: ; 820b (2:420b)
 	call DecompressGFXByIndex_
 	ld bc, $3c
 	call DecompressGFXByIndex_
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $a
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $a
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $21
 	call GetCGB_BGLayout_
 	ld bc, $6
@@ -216,14 +216,14 @@ Func_827e: ; 827e (2:427e)
 	call DecompressGFXByIndex_
 	ld bc, $3d
 	call DecompressGFXByIndex_
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $b
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $b
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $22
 	call GetCGB_BGLayout_
 	ld bc, INTRO_MOVIE_DENJUU_OB_LAYOUT
@@ -326,14 +326,14 @@ Func_835d: ; 835d (2:435d)
 	call Func_84c6
 	ld bc, $3e
 	call DecompressGFXByIndex_
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $c
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $c
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $23
 	call GetCGB_BGLayout_
 	ld bc, $8
@@ -371,14 +371,14 @@ Func_83ce: ; 83ce (2:43ce)
 	call ClearObjectAnimationBuffers
 	ld bc, $36
 	call Func_84c6
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $d
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $d
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $24
 	call GetCGB_BGLayout_
 	ld a, $4
@@ -410,14 +410,14 @@ Func_8423: ; 8423 (2:4423)
 	call ClearObjectAnimationBuffers
 	ld bc, $38
 	call Func_84c6
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $e
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $e
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $25
 	call GetCGB_BGLayout_
 	ld a, $4

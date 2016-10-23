@@ -58,42 +58,42 @@ Func_04c0::
 	homecall_memret_passa Func_c320
 	ret
 
-Func_04ca::
-	ld [wcb26], a
+LoadStdBGMapLayout_:: ; 04ca
+	ld [wStdLayoutIndexBuffer], a
 	ld a, [wROMBank]
 	push af
-	ld a, [wcb26]
-	call Func_0a2a
+	ld a, [wStdLayoutIndexBuffer]
+	call LoadStdBGMapLayout
 	pop af
 	rst Bankswitch
 	ret
 
-Func_04da::
-	ld [wcb26], a
+LoadStdBGMapAttrLayout_:: ; 04da
+	ld [wStdLayoutIndexBuffer], a
 	ld a, [wROMBank]
 	push af
-	ld a, [wcb26]
-	call Func_0b1a
+	ld a, [wStdLayoutIndexBuffer]
+	call LoadStdBGMapAttrLayout
 	pop af
 	rst Bankswitch
 	ret
 
-Func_04ea::
-	ld [wcb26], a
+LoadStdWindowAttrLayout_:: ; 04ea
+	ld [wStdLayoutIndexBuffer], a
 	ld a, [wROMBank]
 	push af
-	ld a, [wcb26]
-	call Func_0b33
+	ld a, [wStdLayoutIndexBuffer]
+	call LoadStdWindowAttrLayout
 	pop af
 	rst Bankswitch
 	ret
 
-Func_04fa::
-	ld [wcb26], a
+LoadStdWindowLayout_:: ; 04fa
+	ld [wStdLayoutIndexBuffer], a
 	ld a, [wROMBank]
 	push af
-	ld a, [wcb26]
-	call Func_0a34
+	ld a, [wStdLayoutIndexBuffer]
+	call LoadStdWindowLayout
 	pop af
 	rst Bankswitch
 	ret

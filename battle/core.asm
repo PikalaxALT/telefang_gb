@@ -69,10 +69,10 @@ Pointers_1448d:
 	dw Func_145f5
 	dw Func_1463e
 	dw Func_14681
-	dw Func_14b07
-	dw Func_14bc6
-	dw Func_14c34
-	dw Func_14d1f
+	dw Battle_DrawMenuOrAttackOnYourOwn
+	dw Battle_MenuSelection
+	dw Battle_DrawMoveSelectionMenu
+	dw MoveSelectionMenu
 	dw Func_14ddd
 	dw Func_14f81
 	dw Func_1510a
@@ -142,18 +142,18 @@ BattleString_Arrived:
 	db "とうちゃく!  " ; has arrived!
 
 Func_1452d: ; 1452d (5:452d)
-	ld bc, $c
+	lb bc, $0, $c
 	ld e, $80
 	xor a
-	call Func_04ca
-	ld bc, $c
+	call LoadStdBGMapLayout_
+	lb bc, $0, $c
 	ld e, $8a
 	xor a
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	call Func_3f02
 	ld c, $74
 	call Func_3d02
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_1454a: ; 1454a (5:454a)
 	call Func_0530
@@ -166,7 +166,7 @@ Func_1454a: ; 1454a (5:454a)
 	ld [wcf96], a
 	ld a, $4
 	call Func_050a
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_14566: ; 14566 (5:4566)
 	ld a, $1
@@ -196,29 +196,29 @@ Func_1457d: ; 1457d (5:457d)
 	ld [wd4ee], a
 	xor a
 	ld [wd417], a
-	ld [wd414], a
-	jp Func_3cf8
+	ld [wBattleMenuSelection], a
+	jp NextBattleSubroutine
 
 Func_145a9: ; 145a9 (5:45a9)
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $f
 	xor a
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $f
 	xor a
-	call Func_04da
-	ld bc, $0
+	call LoadStdBGMapAttrLayout_
+	lb bc, $0, $0
 	ld e, $71
 	xor a
-	call Func_04fa
-	ld bc, $0
+	call LoadStdWindowLayout_
+	lb bc, $0, $0
 	ld e, $71
 	xor a
-	call Func_04ea
+	call LoadStdWindowAttrLayout_
 	call Func_145d6
 	call Func_1400a
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_145d6: ; 145d6 (5:45d6)
 	ld a, $58
@@ -271,7 +271,7 @@ Func_145f5: ; 145f5 (5:45f5)
 .asm_14635
 	call GetMusicBank
 	ld [H_MusicID], a
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_1463e: ; 1463e (5:463e)
 	ld a, $0
@@ -319,7 +319,7 @@ Func_14681: ; 14681 (5:4681)
 	ld [wd416], a
 	ld a, [wd47f]
 	ld b, a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp b
 	jr z, .asm_146ae
 .asm_14699
@@ -379,16 +379,16 @@ Func_146e2: ; 146e2 (5:46e2)
 	ret
 
 .asm_146ef
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_146f2: ; 146f2 (5:46f2)
 	call Func_1651b
 	call Func_1657b
 	call Func_1404a
 	call Func_1643a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld [wd417], a
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_14707: ; 14707 (5:4707)
 	ld a, [wSCX]
@@ -408,7 +408,7 @@ Func_14707: ; 14707 (5:4707)
 	ret
 
 Func_14721: ; 14721 (5:4721)
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld [wd435], a
@@ -440,10 +440,10 @@ Func_14721: ; 14721 (5:4721)
 	cp b
 	jr nz, .asm_1478b
 .asm_14767
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 .asm_14770
 	ld a, [wCurDenjuuBufferField0x0b]
 	ld b, a
@@ -485,7 +485,7 @@ Func_14721: ; 14721 (5:4721)
 	cp $e0
 	jp z, Func_14855
 Func_147bb: ; 147bb (5:47bb)
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x12]
 	cp $0
@@ -513,7 +513,7 @@ Func_147ef: ; 147ef (5:47ef)
 	ld a, [wCurDenjuuBufferField0x12]
 	call Func_148a3
 	call Func_3d02
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_1480c
 	cp $2
@@ -587,7 +587,7 @@ Func_1487a: ; 1487a (5:487a)
 	ld hl, wd4d0
 	call Func_14020
 	ld a, $5c
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_3d7f
 	ld c, $4
 asm_14890
@@ -621,7 +621,7 @@ Func_148ad: ; 148ad (5:48ad)
 	ld a, [wc9c9]
 	cp $9
 	ret nz
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x12]
 	cp $4
@@ -660,7 +660,7 @@ Func_148e9: ; 148e9 (5:48e9)
 	ret
 
 .asm_148f9
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_148fc: ; 148fc (5:48fc)
 	call Func_1654b
@@ -669,7 +669,7 @@ Func_148fc: ; 148fc (5:48fc)
 	call Func_16461
 	ld a, [wd477]
 	ld [wd418], a
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_14911: ; 14911 (5:4911)
 	ld a, [wWX]
@@ -704,7 +704,7 @@ Func_1492f: ; 1492f (5:492f)
 	call Func_143f9
 	ld a, [wCurDenjuuBufferField0x0b]
 	ld b, a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp b
 	jr z, .asm_14999
 	ld a, [wd4e6]
@@ -721,14 +721,14 @@ Func_1492f: ; 1492f (5:492f)
 	cp b
 	jr nz, .asm_14999
 .asm_14975
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8b
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 .asm_1497e
 	ld a, [wCurDenjuuBufferField0x0b]
 	ld b, a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp b
 	jr z, .asm_1498d
 	call Func_1651b
@@ -869,7 +869,7 @@ Func_14a8c: ; 14a8c (5:4a8c)
 	ld hl, wd4d0
 	call Func_14020
 	ld a, $5d
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld c, $4
 asm_14a9f
 	call Func_3d02
@@ -928,67 +928,67 @@ Func_14af8: ; 14af8 (5:4af8)
 	ld [wBattleSubroutine], a
 	ret
 
-Func_14b07: ; 14b07 (5:4b07)
+Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	ld a, [wcb3f]
 	cp $1
-	jr z, .asm_14b35
+	jr z, .check_2
 	ld a, [wCurDenjuuBufferField0x0c]
 	cp $4
-	jr z, .asm_14b19
+	jr z, .roll_1
 	cp $5
-	jr nz, .asm_14b35
-.asm_14b19
-	ld a, [wCurDenjuuBufferField0x0a]
+	jr nz, .check_2
+.roll_1
+	ld a, [wCurDenjuuBufferAutonomy]
 	add $9b
 	ld b, a
 	call Random
 	cp b
-	jr c, .asm_14b35
+	jr c, .check_2
 	ld a, $0
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	ld c, $1f
 	call Func_3d02
 	ld a, $2a
 	ld [wBattleSubroutine], a
 	ret
 
-.asm_14b35
+.check_2
 	ld a, [wCurDenjuuBufferField0x0c]
 	cp $8
-	jr z, .asm_14b40
+	jr z, .roll_2
 	cp $9
 	jr nz, .show_menu
-.asm_14b40
-	ld a, [wCurDenjuuBufferField0x0a]
+.roll_2
+	ld a, [wCurDenjuuBufferAutonomy]
 	sla a
 	add $37
 	ld b, a
 	call Random
 	cp b
 	jr c, .show_menu
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
-	jr z, .asm_14b60
+	jr z, .denjuu_2
 	cp $2
-	jr z, .asm_14b67
+	jr z, .denjuu_3
 	ld a, $1
-	ld [wd5ca], a
-	jr .asm_14b6c
+	ld [wPlayerDenjuu1AttackedOnItsOwn], a
+	jr .done
 
-.asm_14b60
+.denjuu_2
 	ld a, $1
-	ld [wd5cb], a
-	jr .asm_14b6c
+	ld [wPlayerDenjuu2AttackedOnItsOwn], a
+	jr .done
 
-.asm_14b67
+.denjuu_3
 	ld a, $1
-	ld [wd5cc], a
-.asm_14b6c
+	ld [wPlayerDenjuu3AttackedOnItsOwn], a
+.done
 	ld a, $0
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	call Func_143f9
 	ld a, [wd477]
 	ld [wd415], a
@@ -999,90 +999,90 @@ Func_14b07: ; 14b07 (5:4b07)
 	ret
 
 .show_menu
-	ld bc, $c
+	lb bc, $0, $c
 	ld e, $80
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld de, BattleString_Fight
 	ld hl, VTilesBG tile $60
-	call Func_142aa
+	call PlaceBattleString
 	ld de, BattleString_Run
 	ld hl, VTilesBG tile $68
-	call Func_142aa
-	ld bc, $30e
+	call PlaceBattleString
+	lb bc, $3, $e
 	ld e, $8c
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	xor a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	xor a
 	call Func_142ba
-	call Func_1659f
+	call InitBattleTopMenuCursor
 	xor a
 	ld [wd411], a
 	call Func_3cb5
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
-Func_14bc6: ; 14bc6 (5:4bc6)
+Battle_MenuSelection: ; 14bc6 (5:4bc6)
 	call Func_3cd0
 	ld a, [wcb3f]
 	cp $1
-	jr z, .asm_14bfc
+	jr z, .check_a_button
 	ld a, [hJoyNew]
-	and $40
-	jr z, .asm_14be3
-	ld a, [wd414]
+	and D_UP
+	jr z, .check_down
+	ld a, [wBattleMenuSelection]
 	cp $0
-	jr z, .asm_14be3
+	jr z, .check_down
 	dec a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	jr .asm_14bf4
 
-.asm_14be3
+.check_down
 	ld a, [hJoyNew]
-	and $80
-	jr z, .asm_14bfc
-	ld a, [wd414]
-	cp $1
-	jr z, .asm_14bfc
+	and D_DOWN
+	jr z, .check_a_button
+	ld a, [wBattleMenuSelection]
+	cp $1 ; run
+	jr z, .check_a_button
 	inc a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 .asm_14bf4
 	ld a, $2
-	ld [H_FFA1], a
-	call Func_1659f
-.asm_14bfc
+	ld [H_SFX_ID], a
+	call InitBattleTopMenuCursor
+.check_a_button
 	ld a, [hJoyNew]
-	and $1
-	jp z, Func_14c27
+	and A_BUTTON
+	jp z, .check_b_button
 	ld a, $3
-	ld [H_FFA1], a
-	ld a, [wd414]
+	ld [H_SFX_ID], a
+	ld a, [wBattleMenuSelection]
 	cp $0
-	jp nz, Func_14c13
-	jp Func_3cf8
+	jp nz, .try_to_run
+	jp NextBattleSubroutine
 
-Func_14c13: ; 14c13 (5:4c13)
+.try_to_run
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
 	ld [wc430], a
 	ld a, $57
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $14
 	ld [wBattleSubroutine], a
 	ret
 
-Func_14c27: ; 14c27 (5:4c27)
+.check_b_button
 	ld a, [wcb3f]
 	cp $1
 	ret z
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	ret z
-	jr Func_14c13
+	jr .try_to_run
 
-Func_14c34: ; 14c34 (5:4c34)
+Battle_DrawMoveSelectionMenu: ; 14c34 (5:4c34)
 	ld hl, wc460
 	ld a, $3f
 	ld [hli], a
@@ -1090,16 +1090,16 @@ Func_14c34: ; 14c34 (5:4c34)
 	ld [hl], a
 	xor a
 	ld [wWY], a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld c, $6 ; move 1
 	ld hl, VTilesBG tile $40
-	call Func_14d0f
+	call Battle_PrintDenjuuMove
 	ld a, [wCurDenjuuBuffer]
 	ld c, $7 ; move 2
 	ld hl, VTilesBG tile $48
-	call Func_14d0f
+	call Battle_PrintDenjuuMove
 	ld a, [wCurDenjuuBuffer]
 	ld b, $0
 	ld c, $e
@@ -1108,24 +1108,24 @@ Func_14c34: ; 14c34 (5:4c34)
 	ld b, a
 	ld a, [wCurDenjuuBufferLevel]
 	cp b
-	jr c, .asm_14c84
+	jr c, .skip_move_3
 	ld a, [wCurDenjuuBuffer]
 	ld c, $8
 	ld hl, VTilesBG tile $50
-	call Func_14d0f
+	call Battle_PrintDenjuuMove
 	ld a, $2
-	ld [wd41e], a
-	jr .asm_14c93
+	ld [wCurDenjuuMaxMoveIndex], a
+	jr .check_move_4
 
-.asm_14c84
+.skip_move_3
 	ld a, $1
-	ld [wd41e], a
+	ld [wCurDenjuuMaxMoveIndex], a
 	ld hl, VTilesBG tile $50
 	ld a, $8
 	call ClearString
-	jr .asm_14cc7
+	jr .skip_move_4
 
-.asm_14c93
+.check_move_4
 	ld a, [wCurDenjuuBuffer]
 	ld b, $0
 	ld c, $f
@@ -1134,59 +1134,59 @@ Func_14c34: ; 14c34 (5:4c34)
 	ld b, a
 	ld a, [wCurDenjuuBufferLevel]
 	cp b
-	jr c, .asm_14cc7
+	jr c, .skip_move_4
 	ld a, [wCurDenjuuBuffer]
 	ld c, $9
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	or a
-	jr z, .asm_14cc7
+	jr z, .skip_move_4
 	ld a, [wCurDenjuuBuffer]
 	ld c, $9
 	ld hl, VTilesBG tile $58
-	call Func_14d0f
+	call Battle_PrintDenjuuMove
 	ld a, $3
-	ld [wd41e], a
-	jr .asm_14ccf
+	ld [wCurDenjuuMaxMoveIndex], a
+	jr .init_cursor
 
-.asm_14cc7
+.skip_move_4
 	ld hl, VTilesBG tile $58
 	ld a, $8
 	call ClearString
-.asm_14ccf
-	ld bc, $909
+.init_cursor
+	lb bc, $9, $9
 	ld e, $88
 	xor a
-	call Func_04ca
-	ld bc, $909
+	call LoadStdBGMapLayout_
+	lb bc, $9, $9
 	ld e, $80
 	xor a
-	call Func_04da
-	ld a, [wd474]
+	call LoadStdBGMapAttrLayout_
+	ld a, [wCurBattleDenjuu]
 	cp $1
-	jr z, .asm_14cf4
+	jr z, .get_denjuu_2
 	cp $2
-	jr z, .asm_14cfc
-	ld a, [wd49d]
-	ld [wd414], a
-	jr .asm_14d02
+	jr z, .get_denjuu_3
+	ld a, [wPlayerDenjuu1LastMoveSelection]
+	ld [wBattleMenuSelection], a
+	jr .set_cursor_position
 
-.asm_14cf4
-	ld a, [wd49e]
-	ld [wd414], a
-	jr .asm_14d02
+.get_denjuu_2
+	ld a, [wPlayerDenjuu2LastMoveSelection]
+	ld [wBattleMenuSelection], a
+	jr .set_cursor_position
 
-.asm_14cfc
-	ld a, [wd49f]
-	ld [wd414], a
-.asm_14d02
-	call Func_165c3
+.get_denjuu_3
+	ld a, [wPlayerDenjuu3LastMoveSelection]
+	ld [wBattleMenuSelection], a
+.set_cursor_position
+	call InitMoveSelectionMenuCursor
 	xor a
 	ld [wd411], a
 	call Func_3cb5
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
-Func_14d0f: ; 14d0f (5:4d0f)
+Battle_PrintDenjuuMove: ; 14d0f (5:4d0f)
 	push hl
 	ld b, $0
 	call GetBaseStat_
@@ -1195,57 +1195,57 @@ Func_14d0f: ; 14d0f (5:4d0f)
 	pop bc
 	jp GetAndPrintName75LeftAlign_
 
-Func_14d1f: ; 14d1f (5:4d1f)
+MoveSelectionMenu: ; 14d1f (5:4d1f)
 	call Func_3cd0
 	ld a, [wJoyNew]
-	and $40
-	jr z, .asm_14d3e
-	ld a, [wd414]
+	and D_UP
+	jr z, .check_down
+	ld a, [wBattleMenuSelection]
 	cp $0
-	jr z, .asm_14d36
+	jr z, .wrap_up
 	dec a
-	ld [wd414], a
-	jr .asm_14d59
+	ld [wBattleMenuSelection], a
+	jr .done_dpad
 
-.asm_14d36
-	ld a, [wd41e]
-	ld [wd414], a
-	jr .asm_14d59
+.wrap_up
+	ld a, [wCurDenjuuMaxMoveIndex]
+	ld [wBattleMenuSelection], a
+	jr .done_dpad
 
-.asm_14d3e
+.check_down
 	ld a, [wJoyNew]
-	and $80
-	jr z, .asm_14d61
-	ld a, [wd41e]
+	and D_DOWN
+	jr z, .check_b_button
+	ld a, [wCurDenjuuMaxMoveIndex]
 	ld b, a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	cp b
-	jr z, .asm_14d55
+	jr z, .wrap_down
 	inc a
-	ld [wd414], a
-	jr .asm_14d59
+	ld [wBattleMenuSelection], a
+	jr .done_dpad
 
-.asm_14d55
+.wrap_down
 	xor a
-	ld [wd414], a
-.asm_14d59
+	ld [wBattleMenuSelection], a
+.done_dpad
 	ld a, $2
-	ld [H_FFA1], a
-	call Func_165c3
-.asm_14d61
+	ld [H_SFX_ID], a
+	call InitMoveSelectionMenuCursor
+.check_b_button
 	ld a, [hJoyNew]
-	and $2
-	jr z, .asm_14da3
+	and B_BUTTON
+	jr z, .check_a_button
 	ld a, $4
-	ld [H_FFA1], a
-	ld bc, $909
+	ld [H_SFX_ID], a
+	lb bc, $9, $9
 	ld e, $87
 	xor a
-	call Func_04ca
-	ld bc, $909
+	call LoadStdBGMapLayout_
+	lb bc, $9, $9
 	ld e, $81
 	xor a
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld hl, wc460
 	ld a, $5f
 	ld [hli], a
@@ -1257,54 +1257,54 @@ Func_14d1f: ; 14d1f (5:4d1f)
 	ld a, $1
 	ld [wc430], a
 	call Func_14062
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, $5
 	ld [wBattleSubroutine], a
 	ret
 
-.asm_14da3
+.check_a_button
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
-	jr z, .asm_14dbb
+	jr z, .store_denjuu_2
 	cp $2
-	jr z, .asm_14dc3
-	ld a, [wd414]
-	ld [wd49d], a
-	jr .asm_14dc9
+	jr z, .store_denjuu_3
+	ld a, [wBattleMenuSelection]
+	ld [wPlayerDenjuu1LastMoveSelection], a
+	jr .done_storage
 
-.asm_14dbb
-	ld a, [wd414]
-	ld [wd49e], a
-	jr .asm_14dc9
+.store_denjuu_2
+	ld a, [wBattleMenuSelection]
+	ld [wPlayerDenjuu2LastMoveSelection], a
+	jr .done_storage
 
-.asm_14dc3
-	ld a, [wd414]
-	ld [wd49f], a
-.asm_14dc9
+.store_denjuu_3
+	ld a, [wBattleMenuSelection]
+	ld [wPlayerDenjuu3LastMoveSelection], a
+.done_storage
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wc430], a
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_14ddd: ; 14ddd (5:4ddd)
-	ld bc, $909
+	lb bc, $9, $9
 	ld e, $87
 	xor a
-	call Func_04ca
-	ld bc, $909
+	call LoadStdBGMapLayout_
+	lb bc, $9, $9
 	ld e, $81
 	xor a
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	call Func_142af
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	call OpenSRAMBank2
 	ld a, [wCurDenjuuBufferField0x0d]
@@ -1317,18 +1317,18 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	cp $4
 	jr nz, .asm_14e23
 	xor a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	call Func_143f9
 	jp Func_14ec6
 
 .asm_14e23
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	cp $3
 	jr nz, .asm_14e4b
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_14e3c
 	cp $2
@@ -1351,7 +1351,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 .asm_14e4b
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	call Func_143f9
 	call Func_143df
 	cp $1
@@ -1368,7 +1368,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	jr .asm_14e87
 
 .asm_14e77
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld [wd415], a
 	ld [wd457], a
 	ld c, $94
@@ -1376,7 +1376,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	jr Func_14ec6
 
 .asm_14e87
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld [wd415], a
 	ld [wd457], a
 	ld a, $3b
@@ -1407,7 +1407,7 @@ Func_14e9d: ; 14e9d (5:4e9d)
 	jr Func_14ec6
 
 .asm_14ec3
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_14ec6: ; 14ec6 (5:4ec6)
 	ld a, [wd477]
@@ -1459,11 +1459,11 @@ Func_14f12: ; 14f12 (5:4f12)
 	ld a, [wc9c9]
 	cp $9
 	ret nz
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	cp $3
 	jr nz, .asm_14f27
 	ld a, $58
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 .asm_14f27
 	ld a, $1e
 	ld [wd45a], a
@@ -1481,7 +1481,7 @@ Func_14f32: ; 14f32 (5:4f32)
 	ld a, [wd416]
 	cp $1
 	jr z, .asm_14f59
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x12]
 	cp $a
@@ -1518,21 +1518,21 @@ Func_14f81: ; 14f81 (5:4f81)
 	jr z, .asm_14fba
 	call Func_3cd0
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_14f99
 	call Func_1654b
 	jr .asm_14fa2
 
 .asm_14f99
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_14fba
 	call Func_1656b
 .asm_14fa2
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 	call Func_1658d
 	ld a, [wd477]
 	ld [wd415], a
@@ -1542,12 +1542,12 @@ Func_14f81: ; 14f81 (5:4f81)
 
 .asm_14fba
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_15016
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	cp $3
 	jr nz, .asm_15003
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $0
 	jr z, .asm_14fd4
 	cp $1
@@ -1593,13 +1593,13 @@ Func_14f81: ; 14f81 (5:4f81)
 
 .asm_15016
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	ret z
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
 	ld [wc430], a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_15036
 	cp $2
@@ -1617,10 +1617,10 @@ Func_14f81: ; 14f81 (5:4f81)
 	ld a, $3
 	ld [wPlayerDenjuu3Field0x07], a
 .asm_15042
-	ld bc, $c
+	lb bc, $0, $c
 	ld e, $80
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $7
 	ld [wBattleSubroutine], a
 	ret
@@ -1635,23 +1635,23 @@ Func_15051: ; 15051 (5:5051)
 	jr z, .asm_15091
 	call Func_3cd0
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_15070
 	call Func_1651b
 	jr .asm_15079
 
 .asm_15070
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_15091
 	call Func_1653b
 .asm_15079
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8b
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	call Func_1657b
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld [wd415], a
 	ld a, $3c
 	ld [wBattleSubroutine], a
@@ -1659,7 +1659,7 @@ Func_15051: ; 15051 (5:5051)
 
 .asm_15091
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_150aa
 	xor a
 	ld [wOAMAnimation01], a
@@ -1673,9 +1673,9 @@ Func_15051: ; 15051 (5:5051)
 
 .asm_150aa
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	ret z
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld b, a
 	ld a, [wd457]
 	cp b
@@ -1683,7 +1683,7 @@ Func_15051: ; 15051 (5:5051)
 .asm_150b9
 	ld a, [wd457]
 	ld b, a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp b
 	jr z, .asm_15079
 	call Func_1651b
@@ -1694,19 +1694,19 @@ Func_15051: ; 15051 (5:5051)
 	ld [wOAMAnimation01], a
 	ld a, $1
 	ld [wc430], a
-	ld bc, $c
+	lb bc, $0, $c
 	ld e, $80
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $7
 	ld [wBattleSubroutine], a
 	ret
 
 Func_150e0: ; 150e0 (5:50e0)
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $92
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	call Func_1404a
 	call Func_1643a
 	ld a, $3b
@@ -1714,10 +1714,10 @@ Func_150e0: ; 150e0 (5:50e0)
 	ret
 
 Func_150f5: ; 150f5 (5:50f5)
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $91
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 	call Func_14062
 	call Func_16461
 	ld a, $a
@@ -1745,7 +1745,7 @@ Func_1510a: ; 1510a (5:510a)
 
 .asm_15129
 	dec a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	ld a, [wdc45]
 	inc a
 	ld [wdc45], a
@@ -1753,7 +1753,7 @@ Func_1510a: ; 1510a (5:510a)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	call Func_143f9
 	jp Func_1528c
 
@@ -1764,12 +1764,12 @@ Func_1510a: ; 1510a (5:510a)
 	cp $4
 	jr nz, .asm_15173
 	ld a, $0
-	ld [wd414], a
-	ld a, [wd474]
+	ld [wBattleMenuSelection], a
+	ld a, [wCurBattleDenjuu]
 	ld [wd415], a
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	call Func_143f9
 	ld a, $c
 	ld [wBattleSubroutine], a
@@ -1832,16 +1832,16 @@ Func_1510a: ; 1510a (5:510a)
 .asm_151d5
 	xor a
 .asm_151d6
-	ld [wd414], a
-	ld a, [wd474]
+	ld [wBattleMenuSelection], a
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x12]
 	or a
 	jr z, .asm_151e9
 	xor a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 .asm_151e9
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	call Func_143f9
 	ld a, [wd477]
 	cp $1
@@ -1861,7 +1861,7 @@ Func_1510a: ; 1510a (5:510a)
 	cp $1
 	jr nz, .asm_1522f
 	xor a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	call Func_143f9
 	ld a, [wd477]
 	cp $1
@@ -1930,7 +1930,7 @@ Func_1510a: ; 1510a (5:510a)
 	cp b
 	jr nc, Func_1528c
 	xor a
-	ld [wd414], a
+	ld [wBattleMenuSelection], a
 	call Func_143f9
 Func_1528c: ; 1528c (5:528c)
 	ld a, $35
@@ -1949,7 +1949,7 @@ Func_15292: ; 15292 (5:5292)
 	ld a, [wdc45]
 	inc a
 	ld [wdc45], a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	cp $3
 	jp z, Func_15345
 	call Func_143df
@@ -1992,10 +1992,10 @@ Func_15292: ; 15292 (5:5292)
 	ld a, [wd477]
 	cp b
 	jp z, Func_153d4
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 .asm_15303
 	ld a, [wd418]
 	ld b, a
@@ -2029,7 +2029,7 @@ Func_15292: ; 15292 (5:5292)
 	call Random
 	cp $7f
 	jr c, .asm_1533f
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	jr .asm_15342
 
 .asm_1533f
@@ -2037,7 +2037,7 @@ Func_15292: ; 15292 (5:5292)
 .asm_15342
 	ld [wd417], a
 Func_15345: ; 15345 (5:5345)
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	cp $3
 	jr nz, .asm_15383
 	ld a, [wd477]
@@ -2093,17 +2093,17 @@ Func_15345: ; 15345 (5:5345)
 .asm_153a6
 	ld a, [wd417]
 	ld b, a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp b
 	jr z, Func_153d4
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8b
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 .asm_153b9
 	ld a, [wd417]
 	ld b, a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp b
 	jr z, .asm_153c8
 	call Func_1651b
@@ -2134,10 +2134,10 @@ Func_153d4: ; 153d4 (5:53d4)
 	ret
 
 Func_153ef: ; 153ef (5:53ef)
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $92
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	call Func_1643a
 	ld a, [wd4ea]
 	or a
@@ -2156,10 +2156,10 @@ Func_153ef: ; 153ef (5:53ef)
 	ret
 
 Func_15416: ; 15416 (5:5416)
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $91
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 	call Func_16461
 	ld a, $c
 	ld [wBattleSubroutine], a
@@ -2169,7 +2169,7 @@ Func_15428: ; 15428 (5:5428)
 	ld a, [wd45a]
 	or a
 	jr nz, .asm_1543d
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	inc a
 	ld [wdc34], a
 	ld a, [wd45a]
@@ -2181,7 +2181,7 @@ Func_15428: ; 15428 (5:5428)
 	ld a, [wd415]
 	inc a
 	ld [wdc34], a
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	cp $3
 	jr z, .asm_15451
 	ld a, $c
@@ -2248,7 +2248,7 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wPlayerDenjuu2Field0x0c]
 	cp $4
 	jp nc, Func_155ed
-	ld a, [wPlayerDenjuu2Field0x0a]
+	ld a, [wPlayerDenjuu2Autonomy]
 	sla a
 	add $37
 	ld b, a
@@ -2291,7 +2291,7 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wPlayerDenjuu3Field0x0c]
 	cp $4
 	jp nc, Func_155ed
-	ld a, [wPlayerDenjuu3Field0x0a]
+	ld a, [wPlayerDenjuu3Autonomy]
 	sla a
 	add $37
 	ld b, a
@@ -2510,7 +2510,7 @@ Func_15683: ; 15683 (5:5683)
 	ld a, [wEnemyDenjuu2Field0x0c]
 	cp $4
 	jp nc, Func_157e0
-	ld a, [wEnemyDenjuu2Field0x0a]
+	ld a, [wEnemyDenjuu2Autonomy]
 	sla a
 	add $37
 	ld b, a
@@ -2552,7 +2552,7 @@ asm_1570f
 	ld a, [wEnemyDenjuu3Field0x0c]
 	cp $4
 	jr nc, Func_15766
-	ld a, [wEnemyDenjuu3Field0x0a]
+	ld a, [wEnemyDenjuu3Autonomy]
 	sla a
 	add $37
 	ld b, a
@@ -2701,7 +2701,7 @@ Func_15810: ; 15810 (5:5810)
 	call Func_141aa
 .asm_15858
 	ld a, $0
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, [wCurDenjuuBufferSpecies]
 	ld b, $0
 	call Func_16487
@@ -2730,7 +2730,7 @@ Func_15810: ; 15810 (5:5810)
 	call Func_141aa
 .asm_1589b
 	ld a, $1
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, [wCurDenjuuBufferSpecies]
 	ld b, $1
 	call Func_16487
@@ -2759,7 +2759,7 @@ Func_15810: ; 15810 (5:5810)
 	call Func_141aa
 .asm_158de
 	ld a, $2
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, [wCurDenjuuBufferSpecies]
 	ld b, $2
 	call Func_16487
@@ -2788,7 +2788,7 @@ Func_15810: ; 15810 (5:5810)
 	call Func_141aa
 .asm_15921
 	ld a, $3
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, [wCurDenjuuBufferSpecies]
 	ld b, $3
 	call Func_16487
@@ -2863,7 +2863,7 @@ Func_159bc: ; 159bc (5:59bc)
 	or a
 	jr nz, .asm_159cf
 	ld a, [hJoyLast]
-	and $1
+	and A_BUTTON
 	jr z, .asm_159cf
 	ld a, $1
 	ld [wd4ad], a
@@ -2873,7 +2873,7 @@ Func_159bc: ; 159bc (5:59bc)
 	xor a
 	ld [wd4ad], a
 .asm_159d3
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call Func_140d9
 	ld a, [wd477]
 	call Func_14102
@@ -3116,7 +3116,7 @@ Func_159bc: ; 159bc (5:59bc)
 	call Func_141d7
 Func_15bc1: ; 15bc1 (5:5bc1)
 	xor a
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	call Func_3cd0
 asm_15bc8
 	ld a, [wd476]
@@ -3140,7 +3140,7 @@ asm_15bc8
 	call Func_141d7
 Func_15bf2: ; 15bf2 (5:5bf2)
 	ld a, $1
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	call Func_3cd0
 asm_15bfa
 	ld a, [wd478]
@@ -3164,7 +3164,7 @@ asm_15bfa
 	call Func_141d7
 Func_15c24: ; 15c24 (5:5c24)
 	ld a, $2
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	call Func_3cd0
 asm_15c2c
 	ld a, [wd479]
@@ -3188,7 +3188,7 @@ asm_15c2c
 	call Func_141d7
 Func_15c56: ; 15c56 (5:5c56)
 	ld a, $3
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	call Func_3cd0
 asm_15c5e
 	ld a, [wcb3f]
@@ -3270,7 +3270,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	xor a
 	ld [wPlayerDenjuu1Field0x05], a
 	ld a, $59
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	xor a
 	ld [wd47f], a
 	jp Func_15f0f
@@ -3305,7 +3305,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	xor a
 	ld [wPlayerDenjuu2Field0x05], a
 	ld a, $59
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $1
 	ld [wd47f], a
 	jp Func_15f0f
@@ -3327,7 +3327,7 @@ Func_15d52: ; 15d52 (5:5d52)
 	xor a
 	ld [wPlayerDenjuu2Field0x06], a
 	ld a, $52
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_15f20
 
 asm_15d68
@@ -3361,7 +3361,7 @@ asm_15d83
 	xor a
 	ld [wPlayerDenjuu3Field0x05], a
 	ld a, $59
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $2
 	ld [wd47f], a
 	jp Func_15f0f
@@ -3383,7 +3383,7 @@ Func_15dc0: ; 15dc0 (5:5dc0)
 	xor a
 	ld [wPlayerDenjuu3Field0x06], a
 	ld a, $52
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_15f20
 
 asm_15dd6
@@ -3415,7 +3415,7 @@ asm_15df1
 	xor a
 	ld [wEnemyDenjuu1Field0x05], a
 	ld a, $59
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $3
 	ld [wd47f], a
 	jp Func_15f0f
@@ -3451,7 +3451,7 @@ asm_15df1
 	xor a
 	ld [wEnemyDenjuu2Field0x05], a
 	ld a, $59
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wd47f], a
 	jp Func_15f0f
@@ -3473,7 +3473,7 @@ Func_15e6f: ; 15e6f (5:5e6f)
 	xor a
 	ld [wEnemyDenjuu2Field0x06], a
 	ld a, $52
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_15f20
 
 asm_15e85
@@ -3507,7 +3507,7 @@ asm_15ea0
 	xor a
 	ld [wEnemyDenjuu3Field0x05], a
 	ld a, $59
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $5
 	ld [wd47f], a
 	jp Func_15f0f
@@ -3529,7 +3529,7 @@ Func_15edd: ; 15edd (5:5edd)
 	xor a
 	ld [wEnemyDenjuu3Field0x06], a
 	ld a, $52
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_15f20
 
 asm_15ef3
@@ -3580,14 +3580,14 @@ Func_15f2d: ; 15f2d (5:5f2d)
 	ret
 
 Func_15f3d: ; 15f3d (5:5f3d)
-	ld bc, $c
+	lb bc, $0, $c
 	ld e, $80
 	ld a, $0
-	call Func_04ca
-	ld bc, $30e
+	call LoadStdBGMapLayout_
+	lb bc, $3, $e
 	ld e, $83
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld a, $4
 	ld [wBattleSubroutine], a
 	ret
@@ -3643,7 +3643,7 @@ Func_15fa1: ; 15fa1 (5:5fa1)
 	ld [wd45a], a
 	ld c, $69
 	call Func_3d02
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_15fb4: ; 15fb4 (5:5fb4)
 	call Func_0530
@@ -3666,7 +3666,7 @@ Func_15fc5: ; 15fc5 (5:5fc5)
 	ld e, $82
 .asm_15fd2
 	xor a
-	jp Func_04da
+	jp LoadStdBGMapAttrLayout_
 
 Func_15fd6: ; 15fd6 (5:5fd6)
 	ld a, [wd45b]
@@ -3722,14 +3722,14 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 
 .asm_1603f
 	call Func_3f02
-	ld bc, $c
+	lb bc, $0, $c
 	ld e, $80
 	xor a
-	call Func_04ca
-	ld bc, $30e
+	call LoadStdBGMapLayout_
+	lb bc, $3, $e
 	ld e, $83
 	xor a
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld a, [wPlayerDenjuu2Field0x07]
 	cp $2
 	jp z, Func_16076
@@ -3747,33 +3747,33 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 Func_16076: ; 16076 (5:6076)
 	xor a
 	ld [wd470], a
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8b
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	jr asm_16093
 
 Func_16085: ; 16085 (5:6085)
 	ld a, $1
 	ld [wd470], a
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 asm_16093
 	ld a, $1e
 	ld [wBattleSubroutine], a
 	ret
 
 Func_16099: ; 16099 (5:6099)
-	ld bc, $c
+	lb bc, $0, $c
 	ld e, $80
 	xor a
-	call Func_04ca
-	ld bc, $30e
+	call LoadStdBGMapLayout_
+	lb bc, $3, $e
 	ld e, $83
 	xor a
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld a, [wPlayerDenjuu2Field0x07]
 	cp $2
 	jp z, Func_160cb
@@ -3915,18 +3915,18 @@ Func_161fb: ; 161fb (5:61fb)
 	call ClearString
 	ld de, BattleString_Arrived
 	ld hl, VTilesBG tile $78
-	call Func_142aa
+	call PlaceBattleString
 	ld a, [wd470]
 	cp $1
 	jr z, .asm_16239
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $92
 	xor a
-	call Func_04ca
-	ld bc, $20e
+	call LoadStdBGMapLayout_
+	lb bc, $2, $e
 	ld e, $99
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $28
 	ld [wd4f4], a
 	ld a, $3c
@@ -3937,14 +3937,14 @@ Func_161fb: ; 161fb (5:61fb)
 	jr .asm_1625d
 
 .asm_16239
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $91
 	xor a
-	call Func_04fa
-	ld bc, $20e
+	call LoadStdWindowLayout_
+	lb bc, $2, $e
 	ld e, $9c
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $78
 	ld [wd4f4], a
 	ld a, $28
@@ -3953,19 +3953,19 @@ Func_161fb: ; 161fb (5:61fb)
 	ld a, $4
 	call ClearString
 .asm_1625d
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8c
 	xor a
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $4
 	call GetCGB_OBLayout_
 	call Func_142c1
 	ld a, $4
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld hl, VTilesOB tile $00
 	ld a, $7d
-	ld [wd41d], a
-	call Func_3d18
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	call InitBattleMenuCursor
 	xor a
 	ld [wd45a], a
 	ld a, $1f
@@ -4016,10 +4016,10 @@ Func_162cd: ; 162cd (5:62cd)
 	ld a, [wd4e6]
 	inc a
 	ld [wd4e6], a
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8b
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	call Func_1657b
 	call Func_1643a
 	jr .asm_1630b
@@ -4028,10 +4028,10 @@ Func_162cd: ; 162cd (5:62cd)
 	ld a, [wd4e7]
 	inc a
 	ld [wd4e7], a
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 	call Func_1658d
 	call Func_16461
 .asm_1630b
@@ -4046,24 +4046,24 @@ Func_16318: ; 16318 (5:6318)
 	ld a, [wd470]
 	cp $1
 	jr z, .asm_1632d
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $92
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	call Func_1404a
 	jr .asm_16339
 
 .asm_1632d
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $91
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 	call Func_14062
 .asm_16339
-	ld bc, $20e
+	lb bc, $2, $e
 	ld e, $9a
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $e
 	ld [wBattleSubroutine], a
 	ret
@@ -4106,27 +4106,27 @@ Data_16368: ; 16368 (5:6368)
 	ld [hl], a
 .asm_1638d
 	call CloseSRAM
-	ld bc, $20d
+	lb bc, $2, $d
 	ld e, $95
 	xor a
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld de, BattleString_Escaped
 	ld hl, VTilesBG tile $78
-	call Func_142aa
-	ld a, [wd474]
+	call PlaceBattleString
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld c, $0
 	ld de, VTilesBG tile $40
 	call Func_0516
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $94
 	xor a
-	call Func_04ca
-	ld bc, $105
+	call LoadStdBGMapLayout_
+	lb bc, $1, $5
 	ld e, $8c
 	xor a
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld a, $a
 	ld [wd45a], a
 	ld a, $2f
@@ -4173,7 +4173,7 @@ Func_163fe: ; 163fe (5:63fe)
 	call Func_14005
 	ld a, $10
 	ld [wcf96], a
-	jp Func_3cf8
+	jp NextBattleSubroutine
 
 Func_16416: ; 16416 (5:6416)
 	ld a, $1
@@ -4197,15 +4197,15 @@ Func_1643a: ; 1643a (5:643a)
 	ld hl, VTilesBG tile $18
 	ld a, $4
 	call ClearString
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x12]
 	or a
 	ret z
-	ld bc, $100
+	lb bc, $1, $0
 	ld e, $ba
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, [wCurDenjuuBufferField0x12]
 	ld b, a
 	ld hl, VTilesBG tile $18
@@ -4220,10 +4220,10 @@ Func_16461: ; 16461 (5:6461)
 	ld a, [wCurDenjuuBufferField0x12]
 	or a
 	ret z
-	ld bc, $108
+	lb bc, $1, $8
 	ld e, $bb
 	xor a
-	call Func_04fa
+	call LoadStdWindowLayout_
 	ld a, [wCurDenjuuBufferField0x12]
 	ld b, a
 	ld hl, VTilesBG tile $1c
@@ -4239,17 +4239,17 @@ Func_16487: ; 16487 (5:6487)
 	cp $3
 	jr z, .asm_164c2
 	ld a, $10
-	ld [wd4f0], a
+	ld [wBattleMenuCursorXCoord], a
 	ld a, $70
-	ld [wd4f6], a
+	ld [wBattleMenuCursorYCoord], a
 	ld hl, VTilesOB tile $50
 	jr .asm_164cf
 
 .asm_164a4
 	ld a, $10
-	ld [wd4f1], a
+	ld [wMoveSelectionCursorXCoord], a
 	ld a, $80
-	ld [wd4f7], a
+	ld [wMoveSelectionCursorYCoord], a
 	ld hl, VTilesOB tile $5c
 	jr .asm_164cf
 
@@ -4344,7 +4344,7 @@ Func_16504:
 	ret
 
 Func_1651b: ; 1651b (5:651b)
-	ld bc, wd474
+	ld bc, wCurBattleDenjuu
 	ld a, [wd4e6]
 	cp $3
 	jr z, .asm_16528
@@ -4354,7 +4354,7 @@ Func_1651b: ; 1651b (5:651b)
 	jp Func_164de
 
 Func_1652b:
-	ld bc, wd474
+	ld bc, wCurBattleDenjuu
 	ld a, [wd5c6]
 	cp $3
 	jr z, .asm_16538
@@ -4364,7 +4364,7 @@ Func_1652b:
 	jp Func_164de
 
 Func_1653b: ; 1653b (5:653b)
-	ld bc, wd474
+	ld bc, wCurBattleDenjuu
 	ld a, [wd4e6]
 	cp $3
 	jr z, .asm_16548
@@ -4404,7 +4404,7 @@ Func_1656b: ; 1656b (5:656b)
 	jp Func_16504
 
 Func_1657b: ; 1657b (5:657b)
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142ec
@@ -4421,76 +4421,76 @@ Func_1658d: ; 1658d (5:658d)
 	ld [wBGPalUpdate], a
 	ret
 
-Func_1659f: ; 1659f (5:659f)
-	ld a, [wd414]
+InitBattleTopMenuCursor: ; 1659f (5:659f)
+	ld a, [wBattleMenuSelection]
 	cp $1
 	jr z, .asm_165ad
 	ld a, $70
-	ld [wd4f6], a
+	ld [wBattleMenuCursorYCoord], a
 	jr .asm_165b2
 
 .asm_165ad
 	ld a, $80
-	ld [wd4f6], a
+	ld [wBattleMenuCursorYCoord], a
 .asm_165b2
 	ld a, $c
-	ld [wd4f0], a
+	ld [wBattleMenuCursorXCoord], a
 	xor a
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, $d0
-	ld [wd41d], a
-	jp Func_3d18
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	jp InitBattleMenuCursor
 
-Func_165c3: ; 165c3 (5:65c3)
-	ld hl, wd4f7
+InitMoveSelectionMenuCursor: ; 165c3 (5:65c3)
+	ld hl, wMoveSelectionCursorYCoord
 	ld [hl], $50
-	ld a, [wd414]
+	ld a, [wBattleMenuSelection]
 	ld b, a
 	or a
-	jr z, .asm_165d6
-.asm_165cf
+	jr z, .skip
+.loop
 	ld a, [hl]
 	add $10
 	ld [hl], a
 	dec b
-	jr nz, .asm_165cf
-.asm_165d6
+	jr nz, .loop
+.skip
 	ld a, $50
-	ld [wd4f1], a
+	ld [wMoveSelectionCursorXCoord], a
 	ld a, $1
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, $d0
-	ld [wd41d], a
-	jp Func_3d18
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	jp InitBattleMenuCursor
 
 Func_165e8: ; 165e8 (5:65e8)
 	xor a
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, $50
-	ld [wd4f0], a
+	ld [wBattleMenuCursorXCoord], a
 	ld a, $48
-	ld [wd4f6], a
+	ld [wBattleMenuCursorYCoord], a
 	ld a, $d2
-	ld [wd41d], a
-	jp Func_3d18
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	jp InitBattleMenuCursor
 
 Func_165fe: ; 165fe (5:65fe)
 	xor a
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, $8
-	ld [wd4f0], a
+	ld [wBattleMenuCursorXCoord], a
 	ld a, $58
-	ld [wd4f6], a
+	ld [wBattleMenuCursorYCoord], a
 	ld a, $d2
-	ld [wd41d], a
-	jp Func_3d18
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	jp InitBattleMenuCursor
 
 Func_16614: ; 16614 (5:6614)
 	ld a, [wd416]
 	cp $1
 	jr z, .asm_1662c
 	ld d, $0
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld e, a
 	ld hl, wd5ba
 	add hl, de
@@ -4578,14 +4578,14 @@ Func_166a5: ; 166a5 (5:66a5)
 	cp $0
 	jr nz, .asm_166dd
 	call Func_3d7f
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x07]
 	cp $5
 	jr z, .asm_166fc
-	ld hl, wd5ca
+	ld hl, wPlayerDenjuu1AttackedOnItsOwn
 	ld d, $0
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld e, a
 	add hl, de
 	ld a, [hl]
@@ -4609,9 +4609,9 @@ Func_166a5: ; 166a5 (5:66a5)
 
 .asm_166ee
 	xor a
-	ld [wd5ca], a
-	ld [wd5cb], a
-	ld [wd5cc], a
+	ld [wPlayerDenjuu1AttackedOnItsOwn], a
+	ld [wPlayerDenjuu2AttackedOnItsOwn], a
+	ld [wPlayerDenjuu3AttackedOnItsOwn], a
 .asm_166f8
 	ld c, $20
 	jr .asm_166fe
@@ -4678,7 +4678,7 @@ Func_16724: ; 16724 (5:6724)
 	jr z, Func_167c5
 	cp $3
 	jr z, Func_167c5
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x07]
 	cp $5
@@ -4784,7 +4784,7 @@ Func_16801: ; 16801 (5:6801)
 	jp Func_168c2
 
 .asm_1682b
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpeedCopy2]
 	ld [wd49b], a
@@ -4906,7 +4906,7 @@ Func_168ed: ; 168ed (5:68ed)
 	ld a, [wdc45]
 	inc a
 	ld [wdc45], a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	ld c, $d
@@ -4930,7 +4930,7 @@ Func_168ed: ; 168ed (5:68ed)
 	ld a, [wdc45]
 	inc a
 	ld [wdc45], a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld c, $d
@@ -4965,7 +4965,7 @@ Func_1697c: ; 1697c (5:697c)
 	srl a
 	add b
 	ld [wd434], a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	ld c, $d
@@ -5018,7 +5018,7 @@ Func_169e0: ; 169e0 (5:69e0)
 .asm_16a06
 	ld a, b
 	ld [wd434], a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	ld c, $d
@@ -5083,7 +5083,7 @@ Func_16a87: ; 16a87 (5:6a87)
 	ld c, $90
 	call Func_3d02
 	ld a, $53
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wd45a], a
 	ld a, $27
@@ -5092,7 +5092,7 @@ Func_16a87: ; 16a87 (5:6a87)
 
 Func_16a9c: ; 16a9c (5:6a9c)
 	ld a, $53
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wd401], a
 	ret
@@ -5297,7 +5297,7 @@ Func_16c11: ; 16c11 (5:6c11)
 	ld a, [wVBlankCounter]
 	and $1
 	ret nz
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_16c2b
 	cp $2
@@ -5318,7 +5318,7 @@ Func_16c11: ; 16c11 (5:6c11)
 	dec a
 	ld [wPlayerDenjuu3CurHP], a
 .asm_16c3b
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	call Func_1407d
 	ld a, [wd434]
@@ -5406,7 +5406,7 @@ Func_16cba: ; 16cba (5:6cba)
 	ret
 
 Func_16cda: ; 16cda (5:6cda)
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
@@ -5434,14 +5434,14 @@ Func_16cda: ; 16cda (5:6cda)
 	cp $7
 	jr nz, Func_16d5c
 .asm_16d14
-	ld a, [wCurDenjuuBufferField0x0a]
+	ld a, [wCurDenjuuBufferAutonomy]
 	sla a
 	add $37
 	ld b, a
 	call Random
 	cp b
 	jr c, Func_16d5c
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_16d38
 	cp $2
@@ -5476,7 +5476,7 @@ Func_16cda: ; 16cda (5:6cda)
 Func_16d5c: ; 16d5c (5:6d5c)
 	ld a, $f0
 	ld [wdc34], a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $0
 	jr z, .asm_16d73
 	cp $1
@@ -5592,18 +5592,18 @@ Func_16e1d: ; 16e1d (5:6e1d)
 	jp Func_14000
 
 Func_16e29: ; 16e29 (5:6e29)
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8b
 	ld a, $0
-	call Func_04ca
-	ld bc, $100
+	call LoadStdBGMapLayout_
+	lb bc, $1, $0
 	ld e, $85
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld hl, VTilesBG tile $18
 	ld a, $4
 	call ClearString
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142cd
@@ -5611,9 +5611,9 @@ Func_16e29: ; 16e29 (5:6e29)
 	ld c, $7
 	call Func_3d02
 	ld a, $57
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_1652b
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld [wd417], a
 	ld a, [wd4e6]
 	dec a
@@ -5630,19 +5630,19 @@ Func_16e29: ; 16e29 (5:6e29)
 
 Func_16e82: ; 16e82 (5:6e82)
 	ld a, $5a
-	ld [H_FFA1], a
-	ld bc, $105
+	ld [H_SFX_ID], a
+	lb bc, $1, $5
 	ld e, $8b
 	ld a, $0
-	call Func_04ca
-	ld bc, $100
+	call LoadStdBGMapLayout_
+	lb bc, $1, $0
 	ld e, $85
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld hl, VTilesBG tile $18
 	ld a, $4
 	call ClearString
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_16ecb
 	cp $2
@@ -5693,7 +5693,7 @@ Func_16e82: ; 16e82 (5:6e82)
 .asm_16f00
 	call CloseSRAM
 .asm_16f03
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142cd
@@ -5711,7 +5711,7 @@ Func_16e82: ; 16e82 (5:6e82)
 .asm_16f26
 	call Func_1651b
 .asm_16f29
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld [wd417], a
 	ld a, [wd4e6]
 	dec a
@@ -5743,22 +5743,22 @@ Func_16f47: ; 16f47 (5:6f47)
 	ret
 
 .asm_16f6b
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142ec
-	ld bc, $100
+	lb bc, $1, $0
 	ld e, $86
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	jp Func_14000
 
 Func_16f84: ; 16f84 (5:6f84)
 	call Func_1404a
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $92
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $13
 	ld [wd401], a
 	ret
@@ -5767,7 +5767,7 @@ Func_16f97: ; 16f97 (5:6f97)
 	call Func_1438d
 	cp $0
 	ret nz
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x07]
 	cp $5
@@ -5875,7 +5875,7 @@ Func_17001: ; 17001 (5:7001)
 	ld [wd4ef], a
 Func_1706c: ; 1706c (5:706c)
 	call Func_16aba
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_16add
@@ -5900,7 +5900,7 @@ Func_1706c: ; 1706c (5:706c)
 	ld c, $90
 	call Func_3d02
 	ld a, $53
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wd45a], a
 	ld a, $26
@@ -5911,7 +5911,7 @@ Func_1706c: ; 1706c (5:706c)
 	ld a, $f0
 	ld [wdc34], a
 	ld a, $53
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $28
 	ld [wd401], a
 	ret
@@ -5935,7 +5935,7 @@ Func_170d8: ; 170d8 (5:70d8)
 	ret
 
 Func_170e4: ; 170e4 (5:70e4)
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17100
 	cp $2
@@ -6086,7 +6086,7 @@ asm_171d9
 	cp $7
 	jr nz, Func_17246
 .asm_17203
-	ld a, [wCurDenjuuBufferField0x0a]
+	ld a, [wCurDenjuuBufferAutonomy]
 	sla a
 	add $37
 	ld b, a
@@ -6225,14 +6225,14 @@ Func_172dd: ; 172dd (5:72dd)
 	jp Func_14000
 
 Func_172e9: ; 172e9 (5:72e9)
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	ld a, $0
-	call Func_04fa
-	ld bc, $8
+	call LoadStdWindowLayout_
+	lb bc, $0, $8
 	ld e, $85
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 	ld hl, VTilesBG tile $1c
 	ld a, $4
 	call ClearString
@@ -6243,7 +6243,7 @@ Func_172e9: ; 172e9 (5:72e9)
 	ld c, $7
 	call Func_3d02
 	ld a, $57
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wd4e7]
 	dec a
 	cp $0
@@ -6267,15 +6267,15 @@ Func_172e9: ; 172e9 (5:72e9)
 
 Func_17347: ; 17347 (5:7347)
 	ld a, $5a
-	ld [H_FFA1], a
-	ld bc, $101
+	ld [H_SFX_ID], a
+	lb bc, $1, $1
 	ld e, $8b
 	ld a, $0
-	call Func_04fa
-	ld bc, $8
+	call LoadStdWindowLayout_
+	lb bc, $0, $8
 	ld e, $85
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 	ld hl, VTilesBG tile $1c
 	ld a, $4
 	call ClearString
@@ -6355,18 +6355,18 @@ Func_173cf: ; 173cf (5:73cf)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBuffer]
 	call Func_142df
-	ld bc, $8
+	lb bc, $0, $8
 	ld e, $81
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 	jp Func_14000
 
 Func_1740c: ; 1740c (5:740c)
 	call Func_14062
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $91
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 	ld a, $13
 	ld [wd401], a
 	ret
@@ -6459,7 +6459,7 @@ Func_1747e: ; 1747e (5:747e)
 	ret
 
 Func_174b9: ; 174b9 (5:74b9)
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_174cd
 	cp $2
@@ -6480,7 +6480,7 @@ Func_174b9: ; 174b9 (5:74b9)
 	dec a
 	ld [wPlayerDenjuu3CurHP], a
 .asm_174dd
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	call Func_1407d
 	ld a, [wd434]
@@ -6593,7 +6593,7 @@ Func_17589: ; 17589 (5:7589)
 .asm_175a6
 	call Func_3d02
 	ld a, $5b
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	xor a
 	ld [wd46f], a
 	ld a, $3c
@@ -6622,7 +6622,7 @@ Func_175ce: ; 175ce (5:75ce)
 	ld a, [wd416]
 	cp $1
 	jr z, .asm_175eb
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	jr .asm_175f1
 
@@ -6650,18 +6650,18 @@ Func_175ce: ; 175ce (5:75ce)
 	ret
 
 Func_17612: ; 17612 (5:7612)
-	ld bc, $100
+	lb bc, $1, $0
 	ld e, $85
 	ld a, $0
-	call Func_04ca
-	ld bc, $8
+	call LoadStdBGMapLayout_
+	lb bc, $0, $8
 	ld e, $85
 	ld a, $0
-	call Func_04fa
-	ld bc, $c
+	call LoadStdWindowLayout_
+	lb bc, $0, $c
 	ld e, $80
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld hl, VTilesBG tile $18
 	ld a, $8
 	call ClearString
@@ -6807,7 +6807,7 @@ Func_17705: ; 17705 (5:7705)
 	ld a, [wCurDenjuuBufferSpDef]
 	ld b, a
 	push bc
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpAtk]
 	pop bc
@@ -6825,7 +6825,7 @@ Func_17705: ; 17705 (5:7705)
 	jp Func_1798f
 
 .asm_1775b
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpDef]
 	ld b, a
@@ -7019,7 +7019,7 @@ Func_178d3: ; 178d3 (5:78d3)
 	ld a, [wd416]
 	and a
 	jr z, asm_17933
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
@@ -7036,7 +7036,7 @@ Func_178d3: ; 178d3 (5:78d3)
 	cp $b
 	jp nz, Func_1797c
 Func_17911: ; 17911 (5:7911)
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $0
 	jr z, .asm_1791e
 	cp $1
@@ -7123,7 +7123,7 @@ Func_179a2: ; 179a2 (5:79a2)
 	ld a, [wd416]
 	and a
 	jr nz, .asm_179c7
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, s2_a006
@@ -7149,7 +7149,7 @@ Func_179d7: ; 179d7 (5:79d7)
 	ld a, [wd416]
 	and a
 	jr z, .asm_179fc
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, s2_a006
@@ -7175,7 +7175,7 @@ Func_17a0c: ; 17a0c (5:7a0c)
 	ld a, [wd416]
 	and a
 	jr nz, .asm_17a2f
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $0
 	jr z, .asm_17a20
 	cp $1
@@ -7242,7 +7242,7 @@ Func_17a4c: ; 17a4c (5:7a4c)
 	jr .asm_17a89
 
 .asm_17a6f
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $0
 	jr z, .asm_17a7c
 	cp $1
@@ -7270,7 +7270,7 @@ Func_17a8c: ; 17a8c (5:7a8c)
 	jr nz, .asm_17a9f
 	ld hl, wd5c0
 	ld d, $0
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld e, a
 	add hl, de
 	ld [hl], $1
@@ -7300,7 +7300,7 @@ Func_17aac: ; 17aac (5:7aac)
 .asm_17abf
 	ld hl, wd5c0
 	ld d, $0
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld e, a
 	add hl, de
 	ld [hl], $0
@@ -7320,7 +7320,7 @@ Func_17acc: ; 17acc (5:7acc)
 .asm_17ade
 	ld hl, wd5c0
 	ld d, $0
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	ld e, a
 	add hl, de
 .asm_17ae8
@@ -7332,7 +7332,7 @@ Func_17aea: ; 17aea (5:7aea)
 	ld a, [wd416]
 	cp $1
 	jr z, .asm_17b10
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, s2_a006
@@ -7375,7 +7375,7 @@ Func_17b49: ; 17b49 (5:7b49)
 	ld a, [wd416]
 	cp $0
 	jr nz, .asm_17b7a
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17b68
 	cp $2
@@ -7429,7 +7429,7 @@ Func_17ba6: ; 17ba6 (5:7ba6)
 	ld a, [wd416]
 	cp $0
 	jr nz, .asm_17be3
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17bc9
 	cp $2
@@ -7495,7 +7495,7 @@ Func_17c1b: ; 17c1b (5:7c1b)
 	ld a, [wd416]
 	cp $0
 	jr nz, .asm_17c58
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17c3e
 	cp $2
@@ -7561,7 +7561,7 @@ Func_17c90: ; 17c90 (5:7c90)
 	ld a, [wd416]
 	cp $0
 	jr nz, .asm_17cc1
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17caf
 	cp $2
@@ -7615,7 +7615,7 @@ Func_17ced: ; 17ced (5:7ced)
 	ld a, [wd416]
 	cp $0
 	jr nz, .asm_17d33
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17d13
 	cp $2
@@ -7687,7 +7687,7 @@ Func_17d73: ; 17d73 (5:7d73)
 	ld a, [wd416]
 	cp $0
 	jr nz, .asm_17da4
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17d92
 	cp $2
@@ -7770,14 +7770,14 @@ Func_17df4: ; 17df4 (5:7df4)
 Func_17e09: ; 17e09 (5:7e09)
 	ld bc, $1
 	call DecompressGFXByIndex_
-	ld bc, $100
+	lb bc, $1, $0
 	ld e, $86
 	ld a, $0
-	call Func_04ca
-	ld bc, $8
+	call LoadStdBGMapLayout_
+	lb bc, $0, $8
 	ld e, $81
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 	call Func_1404a
 	call Func_14062
 	call Func_1643a
@@ -7851,7 +7851,7 @@ Func_17ea0: ; 17ea0 (5:7ea0)
 	ld a, [wd416]
 	cp $1
 	jr z, .asm_17eca
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x07]
 	cp $5
@@ -7907,7 +7907,7 @@ Func_17f13: ; 17f13 (5:7f13)
 	ld a, [wd416]
 	cp $1
 	jr z, .asm_17f7d
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_17f3c
 	cp $2
@@ -7946,7 +7946,7 @@ Func_17f13: ; 17f13 (5:7f13)
 	inc a
 	ld [wPlayerDenjuu3CurHP], a
 .asm_17f68
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	call Func_1407d
 	ld a, [wd434]

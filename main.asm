@@ -32,14 +32,14 @@ Func_801a::
 	jp IncrementSubroutine
 
 Func_8032::
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $3f
 	ld a, $0
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $3f
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $f
 	call GetCGB_BGLayout_
 	ld a, $f0
@@ -80,7 +80,7 @@ Func_807c::
 
 Func_808e::
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	ld a, $10
@@ -134,14 +134,14 @@ Func_84e9::
 	jp IncrementSubroutine
 
 Func_8501::
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $3f
 	ld a, $0
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $3f
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $f
 	call GetCGB_BGLayout_
 	ld a, $f0
@@ -182,7 +182,7 @@ Func_854b::
 
 Func_855d::
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	ld a, $10
@@ -236,14 +236,14 @@ Func_85a8:
 	jp IncrementSubroutine
 
 Func_85c6:
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $72
 	ld a, $0
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $72
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	jp IncrementSubroutine
 
 Func_85dd:
@@ -269,7 +269,7 @@ Func_85f7:
 
 Func_85ff:
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	ld a, $10
@@ -859,14 +859,14 @@ asm_8cc7
 	jp Func_3cfd
 
 Func_8cde: ; 8cde (2:4cde)
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $1
 	ld a, $0
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $1
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	jp Func_3cfd
 
 Func_8cf5: ; 8cf5 (2:4cf5)
@@ -918,9 +918,9 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	ld a, [wcb30]
 	add $2
 	ld e, a
-	ld bc, $9
+	lb bc, $0, $9
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld a, $4
 	call Func_050a
 	jp Func_3cfd
@@ -940,14 +940,14 @@ Func_8d7a: ; 8d7a (2:4d7a)
 	ld a, $20
 	ld [wd4ee], a
 	ld a, $d7
-	ld [wd41d], a
+	ld [wBattleMenuCursorObjectTemplateIDX], a
 	ld a, $0
-	ld [wd43e], a
+	ld [wWhichBattleMenuCursor], a
 	ld a, $28
-	ld [wd4f0], a
+	ld [wBattleMenuCursorXCoord], a
 	ld a, $0
-	ld [wd4f6], a
-	call Func_3d18
+	ld [wBattleMenuCursorYCoord], a
+	call InitBattleMenuCursor
 	ld a, $0
 	ld bc, $4
 	call Func_1196
@@ -1004,7 +1004,7 @@ Func_8dbb: ; 8dbb (2:4dbb)
 	ld [wd415], a
 .asm_8e0f
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $7
 	ld [wd41f], a
 	ret
@@ -1035,7 +1035,7 @@ Func_8dbb: ; 8dbb (2:4dbb)
 	ld [wcb30], a
 Func_8e44: ; 8e44 (2:4e44)
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $6
 	ld [wd41f], a
 	ret
@@ -1059,7 +1059,7 @@ Func_8e64: ; 8e64 (2:4e64)
 	and $2
 	jr z, Func_8e79
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jr asm_8e83
 
 Func_8e79: ; 8e79 (2:4e79)
@@ -1068,7 +1068,7 @@ Func_8e79: ; 8e79 (2:4e79)
 	ret z
 asm_8e7e
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 asm_8e83
 	ld a, $4
 	call Func_050a
@@ -1081,10 +1081,10 @@ Func_8e95: ; 8e95 (2:4e95)
 	jp Func_3cfd
 
 Func_8e98: ; 8e98 (2:4e98)
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, [wcb3f]
 	cp $1
 	jr z, .asm_8eb5
@@ -1139,10 +1139,10 @@ Func_8e98: ; 8e98 (2:4e98)
 	jp Func_3cfd
 
 Func_8f1d: ; 8f1d (2:4f1d)
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $b9
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $6
 	ld [wd41f], a
 	ret
@@ -1301,9 +1301,9 @@ Func_902e: ; 902e (2:502e)
 	ld a, [wcb30]
 	add $2
 	ld e, a
-	ld bc, $9
+	lb bc, $0, $9
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ret
 
 Func_903d: ; 903d (2:503d)
@@ -1346,10 +1346,10 @@ Func_904a: ; 904a (2:504a)
 	jr .asm_9086
 
 .asm_907c
-	ld bc, $80c
+	lb bc, $8, $c
 	ld e, $ac
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 .asm_9086
 	call CloseSRAM
 	ret
@@ -1644,14 +1644,14 @@ asm_928b
 	jr asm_92ff
 
 Func_92eb: ; 92eb (2:52eb)
-	ld bc, $c10
+	lb bc, $c, $10
 	ld e, $ac
 	ld a, $0
-	call Func_04ca
-	ld bc, $1010
+	call LoadStdBGMapLayout_
+	lb bc, $10, $10
 	ld e, $ac
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 asm_92ff
 	ret
 
@@ -3180,7 +3180,7 @@ Func_10681: ; 10681 (4:4681)
 .asm_106a0
 	ld [wSubroutine], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_106a9
@@ -3224,7 +3224,7 @@ Func_10681: ; 10681 (4:4681)
 	ld e, $2d
 	call Func_13951
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_106f2
@@ -3233,7 +3233,7 @@ Func_10681: ; 10681 (4:4681)
 	jr z, .asm_10708
 .asm_106f8
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	ld a, $17
@@ -3340,7 +3340,7 @@ Func_10743: ; 10743 (4:4743)
 	xor a
 	ld [hl], a
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_134aa
 
 .asm_107d8
@@ -3359,12 +3359,12 @@ Func_107d9: ; 107d9 (4:47d9)
 
 Func_107ee: ; 107ee (4:47ee)
 	ld a, $65
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb43]
 	cp $0
 	jr z, .asm_107ff
 	ld a, $66
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 .asm_107ff
 	ld a, $80
 	ld [wcb2c], a
@@ -3546,7 +3546,7 @@ Func_10953: ; 10953 (4:4953)
 	cp $9
 	ret nz
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	jp IncrementSubroutine
@@ -3624,7 +3624,7 @@ Func_109f3: ; 109f3 (4:49f3)
 	cp $9
 	ret nz
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	jp IncrementSubroutine
@@ -3767,7 +3767,7 @@ Func_10afc:
 	ld a, $1
 	ld [wSubroutine2], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_10b2f
@@ -3788,7 +3788,7 @@ Func_10afc:
 	ld a, $1
 	ld [wSubroutine2], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_10b57
@@ -3798,7 +3798,7 @@ Func_10afc:
 	ld e, $2d
 	call Func_13951
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_13fc6
 	ld a, $a
 	ld [wSubroutine2], a
@@ -3809,7 +3809,7 @@ Func_10afc:
 	and A_BUTTON
 	jr z, .asm_10b91
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
 	xor a
@@ -3925,9 +3925,9 @@ Func_10c4a:
 	call Func_1371c
 	call Func_13f15
 	ld e, $1c
-	ld bc, $603
+	lb bc, $6, $3
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	xor a
 	ld [wBGPalUpdate], a
 	ld a, $4
@@ -3975,14 +3975,14 @@ Func_10cc9:
 	call CheckEventFlag
 	jr nz, .asm_10ce7
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	jp IncrementSubroutine2
 
 .asm_10ce7
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_06d4
 	ld a, [wPartnerDenjuuHPRemaining]
 	cp c
@@ -4290,10 +4290,10 @@ Func_10f4d:
 	call Func_11a59
 	ld e, $31
 	call Func_13951
-	ld bc, $10d
+	lb bc, $1, $d
 	ld e, $2f
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	call Func_127da
 	ld a, $4
 	ld [wd411], a
@@ -4325,7 +4325,7 @@ Func_10f82:
 	ld a, $1
 	ld [wSubroutine2], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_10fad
@@ -4342,7 +4342,7 @@ Func_10f82:
 	ld a, $1
 	ld [wSubroutine2], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_10fcd
@@ -4350,7 +4350,7 @@ Func_10f82:
 	and $2
 	jr z, .asm_10fe6
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
 	call Func_13fc6
@@ -4384,7 +4384,7 @@ Func_1100c:
 	ld e, $2d
 	call Func_13951
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $7
 	ld [wSubroutine2], a
 	ret
@@ -4565,7 +4565,7 @@ Func_11159: ; 11159 (4:5159)
 	and $2
 	jr z, .asm_11167
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_11171
 
 .asm_11167
@@ -4573,7 +4573,7 @@ Func_11159: ; 11159 (4:5159)
 	and $1
 	ret z
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 Func_11171: ; 11171 (4:5171)
 	ld a, $c
 	ld [wSubroutine2], a
@@ -4588,10 +4588,10 @@ Func_11177: ; 11177 (4:5177)
 	call DecompressGFXByIndex_
 	ld e, $3c
 	call Func_13951
-	ld bc, $10b
+	lb bc, $1, $b
 	ld e, $22
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, [wcb67]
 	call Func_12fd8
 	ld a, $4
@@ -4659,9 +4659,9 @@ Func_1120c: ; 1120c (4:520c)
 	pop af
 	call Func_13f18
 	ld e, $1c
-	ld bc, $603
+	lb bc, $6, $3
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	xor a
 	ld [wBGPalUpdate], a
 	ld a, $4
@@ -4794,7 +4794,7 @@ Func_1133b: ; 1133b (4:533b)
 	and $2
 	jr z, .asm_11349
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_1136a
 
 .asm_11349
@@ -4802,7 +4802,7 @@ Func_1133b: ; 1133b (4:533b)
 	and $1
 	ret z
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	cp $0
 	jr z, Func_1136a
@@ -4827,10 +4827,10 @@ Func_11370: ; 11370 (4:5370)
 	call DecompressGFXByIndex_
 	ld e, $3d
 	call Func_13951
-	ld bc, $10b
+	lb bc, $1, $b
 	ld e, $22
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, [wcb67]
 	call Func_130bc
 	ld a, $4
@@ -4979,7 +4979,7 @@ Func_1147c: ; 1147c (4:547c)
 	ld a, $1
 	ld [wSubroutine2], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld hl, VTilesBG tile $40
 	ld b, $38
 	call ClearTiles
@@ -4992,7 +4992,7 @@ Func_1147c: ; 1147c (4:547c)
 	ld e, $2d
 	call Func_13951
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_13fc6
 	ld a, $a
 	ld [wSubroutine2], a
@@ -5010,7 +5010,7 @@ Func_1147c: ; 1147c (4:547c)
 	ret z
 .asm_114f1
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	jp IncrementSubroutine2
@@ -5033,14 +5033,14 @@ Func_114ff: ; 114ff (4:54ff)
 	call GetCGB_BGLayout_
 	ld bc, $3
 	call GetCGB_OBLayout_
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $1
 	ld a, $1
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $1
 	ld a, $1
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	call Func_13e6e
 	ld a, [wcd23]
 	ld [wCurDenjuu], a
@@ -5100,7 +5100,7 @@ Func_115ae: ; 115ae (4:55ae)
 	and $3
 	jr z, .asm_115d1
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	jp IncrementSubroutine2
@@ -5134,7 +5134,7 @@ Func_115ae: ; 115ae (4:55ae)
 
 .asm_11605
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $c
 	ld [wSubroutine2], a
 	ret
@@ -5379,7 +5379,7 @@ SelectTime: ; 117ef (4:57ef)
 	and A_BUTTON
 	jr z, .asm_1181f
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb3e]
 	cp $0
 	jr z, .asm_11815
@@ -5404,7 +5404,7 @@ SelectTime: ; 117ef (4:57ef)
 	cp $0
 	ret z
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	xor a
 	ld [wcb3e], a
 	jp Func_11910
@@ -5414,7 +5414,7 @@ SelectTime: ; 117ef (4:57ef)
 	and D_UP
 	jr z, .asm_1186a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb3e]
 	cp $1
 	jr z, .asm_1185a
@@ -5442,7 +5442,7 @@ SelectTime: ; 117ef (4:57ef)
 	and D_DOWN
 	jr z, .asm_1189d
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb3e]
 	cp $1
 	jr z, .asm_1188d
@@ -5527,7 +5527,7 @@ Func_118dd: ; 118dd (4:58dd)
 .asm_11909
 	ld e, $23
 	ld a, $0
-	jp Func_04ca
+	jp LoadStdBGMapLayout_
 
 Func_11910: ; 11910 (4:5910)
 	jp Func_1189e
@@ -5623,7 +5623,7 @@ Func_119ac: ; 119ac (4:59ac)
 	push bc
 	ld e, a
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	pop bc
 	ld a, c
 	add $3
@@ -5784,15 +5784,15 @@ Func_11aaf: ; 11aaf (4:5aaf)
 	and $2
 	jr z, .asm_11af9
 	ld a, $4
-	ld [H_FFA1], a
-	ld bc, $106
+	ld [H_SFX_ID], a
+	lb bc, $1, $6
 	ld e, $30
 	ld a, $0
-	call Func_04ca
-	ld bc, $106
+	call LoadStdBGMapLayout_
+	lb bc, $1, $6
 	ld e, $35
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	call Func_1bd1
 	call Func_11ee9
 	ld a, $3
@@ -5851,7 +5851,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	and $10
 	jr z, .asm_11b68
 	ld a, $63
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $3
 	jr nz, .asm_11b4d
@@ -5882,7 +5882,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	and $20
 	jr z, .asm_11b9a
 	ld a, $63
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $0
 	jr nz, .asm_11b7f
@@ -5913,7 +5913,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	and $40
 	jr z, .asm_11bdb
 	ld a, $63
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $0
 	jr nz, .asm_11bb1
@@ -5956,7 +5956,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	and $80
 	jr z, .asm_11c1c
 	ld a, $63
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $0
 	jr nz, .asm_11bf2
@@ -6276,10 +6276,10 @@ Func_11dcb: ; 11dcb (4:5dcb)
 	ret
 
 .asm_11e0c
-	ld bc, $106
+	lb bc, $1, $6
 	ld e, $30
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	call Func_121bf
 	call Func_121fd
 .asm_11e1c
@@ -6675,14 +6675,14 @@ Func_1208b: ; 1208b (4:608b)
 	dec a
 	ld [wcb6c], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_120b1
 	dec a
 	ld [wcb6d], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_120bd
@@ -6700,14 +6700,14 @@ Func_1208b: ; 1208b (4:608b)
 	inc a
 	ld [wcb6c], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_120e3
 	inc a
 	ld [wcb6d], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_120ef
@@ -6715,7 +6715,7 @@ Func_1208b: ; 1208b (4:608b)
 	and $2
 	jr z, .asm_1211a
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
 	xor a
@@ -6767,7 +6767,7 @@ Func_1208b: ; 1208b (4:608b)
 	ld a, $ff
 	ld [wcb66], a
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld de, wOAMAnimation02
 	call Func_099c
 	call Func_11f76
@@ -6789,7 +6789,7 @@ Func_1208b: ; 1208b (4:608b)
 	ld [wcb6c], a
 	call Func_1bd1
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_121a1
@@ -6803,7 +6803,7 @@ Func_1208b: ; 1208b (4:608b)
 	ld [wcb6c], a
 	call Func_1bd1
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_121be
@@ -6994,7 +6994,7 @@ Func_122ea: ; 122ea (4:62ea)
 	xor $1
 	ld [wcb67], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jp Func_12352
 
 .asm_12307
@@ -7010,13 +7010,13 @@ Func_122ea: ; 122ea (4:62ea)
 	xor a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $0
 	jr z, .asm_1233c
 .asm_12326
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
 	ld de, wOAMAnimation02
@@ -7027,10 +7027,10 @@ Func_122ea: ; 122ea (4:62ea)
 
 .asm_1233c
 	call SaveGame_
-	ld bc, $106
+	lb bc, $1, $6
 	ld e, $33
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $40
 	ld [wcb2c], a
 	jp IncrementSubroutine2
@@ -7272,7 +7272,7 @@ Func_124a9: ; 124a9 (4:64a9)
 	dec a
 	ld [wcb38], a
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_124e5
@@ -7319,7 +7319,7 @@ Func_12519: ; 12519 (4:6519)
 
 asm_12539
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_12794
 	cp $0
 	jr nz, .asm_1255f
@@ -7387,7 +7387,7 @@ Func_12582: ; 12582 (4:6582)
 	dec a
 	ld [wcb38], a
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_125be
@@ -7434,7 +7434,7 @@ Func_125f2: ; 125f2 (4:65f2)
 
 asm_12612
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_127b7
 	cp $0
 	jr nz, .asm_1262c
@@ -7487,7 +7487,7 @@ Func_1265a: ; 1265a (4:665a)
 .asm_1266b
 	ld bc, $111
 	ld a, $0
-	jp Func_04ca
+	jp LoadStdBGMapLayout_
 
 Func_12673: ; 12673 (4:6673)
 	ld hl, wc3a9
@@ -7524,7 +7524,7 @@ Func_126a1: ; 126a1 (4:66a1)
 	ld hl, Data_126b0
 	add hl, de
 	ld a, [hl]
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 Data_126b0:
@@ -8282,7 +8282,7 @@ Func_12b2b: ; 12b2b (4:6b2b)
 	add hl, de
 	ld a, [hl]
 	add $16
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	inc a
 	ld [wcb67], a
@@ -8316,7 +8316,7 @@ Func_12b6c: ; 12b6c (4:6b6c)
 	add hl, de
 	ld a, [hl]
 	add $16
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb6d]
 	inc a
 	ld [wcb6d], a
@@ -8350,7 +8350,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb42]
 	dec a
 	cp $ff
@@ -8368,7 +8368,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb42]
 	inc a
 	cp $3
@@ -8388,7 +8388,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	and $20
 	jr z, .asm_12c30
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb41]
 	dec a
 	cp $ff
@@ -8403,7 +8403,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	and $10
 	jr z, .asm_12c4b
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb41]
 	inc a
 	cp $28
@@ -8431,7 +8431,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	and $20
 	jr z, .asm_12c7b
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb40]
 	cp $0
 	jr nz, .asm_12c74
@@ -8446,7 +8446,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	and $10
 	jr z, .asm_12c97
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb40]
 	cp $73
 	jr c, .asm_12c90
@@ -8462,7 +8462,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	jr z, .asm_12ca5
 	ld a, [wcb40]
 	inc a
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_12ca5
@@ -8470,7 +8470,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	and $2
 	jr z, .asm_12cb0
 	ld a, $1
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 .asm_12cb0
 	ret
 
@@ -8484,7 +8484,7 @@ Func_12cb7: ; 12cb7 (4:6cb7)
 	ld [H_MusicID], a
 	call ClearObjectAnimationBuffers
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld bc, $0
 	ld e, $10
 	call Func_13959
@@ -8616,18 +8616,18 @@ Func_12dc7: ; 12dc7 (4:6dc7)
 	jr z, .asm_12dd2
 	ld e, $18
 .asm_12dd2
-	ld bc, $40a
+	lb bc, $4, $a
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld e, $19
 	ld a, [wc93e]
 	cp $0
 	jr z, .asm_12de5
 	ld e, $18
 .asm_12de5
-	ld bc, $40c
+	lb bc, $4, $c
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld e, $19
 	ld a, [wcd27]
 	cp $0
@@ -8636,7 +8636,7 @@ Func_12dc7: ; 12dc7 (4:6dc7)
 .asm_12df8
 	ld bc, $410
 	ld a, $0
-	jp Func_04ca
+	jp LoadStdBGMapLayout_
 
 Func_12e00: ; 12e00 (4:6e00)
 	ld a, [hJoyNew]
@@ -8646,7 +8646,7 @@ Func_12e00: ; 12e00 (4:6e00)
 	and $40
 	jr z, .asm_12e23
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb3e]
 	cp $0
 	jr nz, .asm_12e1c
@@ -8661,7 +8661,7 @@ Func_12e00: ; 12e00 (4:6e00)
 	and $80
 	jr z, .asm_12e3f
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb3e]
 	cp $4
 	jr nz, .asm_12e38
@@ -8692,7 +8692,7 @@ Func_12e00: ; 12e00 (4:6e00)
 	ret z
 .asm_12e63
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wc90a]
 	xor $1
 	ld [wc90a], a
@@ -8710,7 +8710,7 @@ Func_12e00: ; 12e00 (4:6e00)
 	ret z
 .asm_12e82
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wc93e]
 	xor $1
 	ld [wc93e], a
@@ -8721,7 +8721,7 @@ Func_12e00: ; 12e00 (4:6e00)
 	and $20
 	jr z, .asm_12eab
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcdb3]
 	inc a
 	and $3
@@ -8734,7 +8734,7 @@ Func_12e00: ; 12e00 (4:6e00)
 	and $10
 	ret z
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcdb3]
 	dec a
 	and $3
@@ -8754,7 +8754,7 @@ Func_12ec3: ; 12ec3 (4:6ec3)
 	ret z
 .asm_12ed2
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcd27]
 	xor $1
 	ld [wcd27], a
@@ -8765,12 +8765,12 @@ Func_12ee2: ; 12ee2 (4:6ee2)
 	and $1
 	ret z
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	jr asm_12ef3
 
 Func_12eee: ; 12eee (4:6eee)
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 asm_12ef3
 	call Func_13fc6
 	ld e, $2d
@@ -8840,7 +8840,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	and $1
 	jr z, .asm_12f7e
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_137d9
 	xor a
 	ld [wcb6d], a
@@ -8857,7 +8857,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	and $2
 	jr z, .asm_12f8f
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $c
 	ld [wSubroutine2], a
 	ret
@@ -8870,7 +8870,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	and $10
 	jr z, .asm_12fb5
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
 	ld b, a
@@ -8888,7 +8888,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	and $20
 	jr z, .asm_12fd7
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
 	ld b, a
@@ -8952,7 +8952,7 @@ Func_13028: ; 13028 (4:7028)
 	and $1
 	jr z, .asm_1305e
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
 	call Func_13fc6
@@ -8975,7 +8975,7 @@ Func_13028: ; 13028 (4:7028)
 	and $2
 	jr z, .asm_13073
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	xor a
 	ld [wFontPaletteMode], a
 	ld a, $7
@@ -8990,7 +8990,7 @@ Func_13028: ; 13028 (4:7028)
 	and $10
 	jr z, .asm_13099
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
 	ld b, a
@@ -9008,7 +9008,7 @@ Func_13028: ; 13028 (4:7028)
 	and $20
 	jr z, .asm_130bb
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
 	ld b, a
@@ -9153,7 +9153,7 @@ Func_131a0: ; 131a0 (4:71a0)
 	and $40
 	jp z, Func_131bd
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $0
 	jr nz, .asm_131b6
@@ -9168,7 +9168,7 @@ Func_131bd: ; 131bd (4:71bd)
 	and $80
 	jp z, Func_131da
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $2
 	jr nz, .asm_131d3
@@ -9183,7 +9183,7 @@ Func_131da: ; 131da (4:71da)
 	and $2
 	jp z, Func_13209
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
 	ld bc, $12
@@ -9210,7 +9210,7 @@ Func_13209: ; 13209 (4:7209)
 	ld de, wOAMAnimation02
 	call Func_099c
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
 	ld bc, $13
@@ -9239,7 +9239,7 @@ Func_13243: ; 13243 (4:7243)
 
 Func_13261:
 	ld a, $5
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 Func_13266: ; 13266 (4:7266)
@@ -9250,12 +9250,12 @@ Func_13267: ; 13267 (4:7267)
 	cp $0
 	jr z, .asm_13274
 	ld a, $5
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_13274
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld bc, $109
 	ld e, $59
 	call Func_13959
@@ -10010,7 +10010,7 @@ Func_13850: ; 13850 (4:7850)
 	jp z, Func_13870
 	call Func_1bd1
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $0
 	jr nz, .asm_13869
@@ -10026,7 +10026,7 @@ Func_13870: ; 13870 (4:7870)
 	jp z, Func_13890
 	call Func_1bd1
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $9
 	jr nz, .asm_13889
@@ -10042,7 +10042,7 @@ Func_13890: ; 13890 (4:7890)
 	jp z, Func_138a5
 	call Func_1bd1
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	call Func_1236b
 	jp IncrementSubroutine2
 
@@ -10052,7 +10052,7 @@ Func_138a5: ; 138a5 (4:78a5)
 	jp z, Func_138e1
 	call Func_1bd1
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld b, $47
 	ld a, [wcb67]
 	cp $0
@@ -10135,23 +10135,25 @@ Func_13931: ; 13931 (4:7931)
 	ld bc, $106
 Func_13934: ; 13934 (4:7934)
 	ld a, $0
-	jp Func_04ca
+	jp LoadStdBGMapLayout_
 
 Func_13939: ; 13939 (4:7939)
 	ld bc, $106
 Func_1393c: ; 1393c (4:793c)
 	ld a, $0
-	jp Func_04da
+	jp LoadStdBGMapAttrLayout_
 
+Func_13941:
 	ld bc, $106
 Func_13944: ; 13944 (4:7944)
 	ld a, $0
-	jp Func_04fa
+	jp LoadStdWindowLayout_
 
+Func_13949:
 	ld bc, $106
 Func_1394c: ; 1394c (4:794c)
 	ld a, $0
-	jp Func_04ea
+	jp LoadStdWindowAttrLayout_
 
 Func_13951: ; 13951 (4:7951)
 	push de
@@ -10180,7 +10182,7 @@ Func_1396d: ; 1396d (4:796d)
 	and $1
 	jr z, .asm_139a8
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	cp $0
 	jr nz, .asm_139b3
@@ -10205,7 +10207,7 @@ Func_1396d: ; 1396d (4:796d)
 	and $2
 	jr z, .asm_139c4
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 .asm_139b3
 	ld de, wOAMAnimation02
 	call Func_099c
@@ -10227,7 +10229,7 @@ Func_139ce: ; 139ce (4:79ce)
 	jp z, Func_139e6
 asm_139d6
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	xor $1
 	ld [wcb68], a
@@ -10660,7 +10662,7 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	and $1
 	jr z, .asm_13cb2
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	cp $0
 	jr nz, .asm_13cbd
@@ -10676,7 +10678,7 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	and $2
 	jr z, .asm_13cd1
 	ld a, $4
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 .asm_13cbd
 	ld bc, $104
 	ld e, $5b
@@ -10699,7 +10701,7 @@ Func_13cdb: ; 13cdb (4:7cdb)
 	jp z, Func_13cf3
 asm_13ce3
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	xor $1
 	ld [wcb68], a
@@ -11196,10 +11198,10 @@ Func_1402a: ; 1402a (5:402a)
 	ret
 
 Func_1404a:
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	call Func_1407d
-	ld a, [wd474]
+	ld a, [wCurBattleDenjuu]
 	call Func_140d9
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, VTilesBG tile $20
@@ -11323,25 +11325,25 @@ Func_1414b:
 	jr z, .asm_1415f
 	cp $2
 	jr z, .asm_14164
-	ld bc, $d0f
+	lb bc, $d, $f
 	jr .asm_14167
 
 .asm_1415f
-	ld bc, $30f
+	lb bc, $3, $f
 	jr .asm_14167
 
 .asm_14164
-	ld bc, $d0d
+	lb bc, $d, $d
 .asm_14167
 	push bc
 	ld e, $8f
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	pop bc
 	inc bc
 	ld e, $82
 	ld a, $0
-	jp Func_04da
+	jp LoadStdBGMapAttrLayout_
 
 Func_14178:
 	cp $1
@@ -11379,25 +11381,25 @@ Func_141aa:
 	jr z, .asm_141be
 	cp $2
 	jr z, .asm_141c3
-	ld bc, $d10
+	lb bc, $d, $10
 	jr .asm_141c6
 
 .asm_141be
-	ld bc, $310
+	lb bc, $3, $10
 	jr .asm_141c6
 
 .asm_141c3
-	ld bc, $d0e
+	lb bc, $d, $e
 .asm_141c6
 	push bc
 	ld e, $8d
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	pop bc
 	dec bc
 	ld e, $93
 	ld a, $0
-	jp Func_04ca
+	jp LoadStdBGMapLayout_
 
 Func_141d7:
 	cp $1
@@ -11515,7 +11517,7 @@ Func_1427e: ; 1427e (5:427e)
 .asm_142a7
 	jp Func_142af
 
-Func_142aa:
+PlaceBattleString:
 	ld b, $8
 	jp PlaceString_
 
@@ -11581,22 +11583,22 @@ Func_142f9: ; 142f9 (5:42f9)
 	jp PlaceString_
 
 Func_14318:
-	ld bc, $100
+	lb bc, $1, $0
 	ld e, $86
 	ld a, $0
-	call Func_04ca
-	ld bc, $100
+	call LoadStdBGMapLayout_
+	lb bc, $1, $0
 	ld e, $87
 	ld a, $0
-	call Func_04da
-	ld bc, $8
+	call LoadStdBGMapAttrLayout_
+	lb bc, $0, $8
 	ld e, $81
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 	ld bc, $108
 	ld e, $84
 	ld a, $0
-	jp Func_04ea
+	jp LoadStdWindowAttrLayout_
 
 Func_14340:
 	call Func_14255
@@ -11613,17 +11615,17 @@ Func_14340:
 	ld a, $0
 	ld [wd45a], a
 .asm_1435e
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $92
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	jr .asm_14374
 
 .asm_1436a
-	ld bc, $105
+	lb bc, $1, $5
 	ld e, $8b
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 .asm_14374
 	ld a, $1
 	ld [wc430], a
@@ -11652,17 +11654,17 @@ Func_1438d:
 	ld a, $0
 	ld [wd45a], a
 .asm_143ab
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $91
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 	jr .asm_143c1
 
 .asm_143b7
-	ld bc, $101
+	lb bc, $1, $1
 	ld e, $8b
 	ld a, $0
-	call Func_04fa
+	call LoadStdWindowLayout_
 .asm_143c1
 	ld a, $1
 	ld [wc430], a

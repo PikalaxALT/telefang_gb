@@ -1,4 +1,4 @@
-Pointers_24000:
+StdBGMapAttrLayoutPointers2:
 	dw Data_24020
 	dw Data_24020
 	dw Data_240bf

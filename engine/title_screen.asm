@@ -45,14 +45,14 @@ Func_896f:
 	jp IncrementSubroutine
 
 Func_899e:
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $c
 	ld a, $0
-	call Func_04ca
-	ld bc, $0
+	call LoadStdBGMapLayout_
+	lb bc, $0, $0
 	ld e, $9
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld a, $6
 	ld [wOAMAnimation02_TemplateIdx], a
 	ld bc, $4c60
@@ -153,7 +153,7 @@ Func_8a63:
 	and $9
 	jr z, .asm_8aa0
 	ld a, $9
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $4
 	call Func_050a
 	ld a, $10
@@ -231,15 +231,15 @@ Func_8b11:
 	jp IncrementSubroutine
 
 Func_8b1a:
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $5
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 Func_8b24: ; 8b24 (2:4b24)
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $5
 	ld a, $0
-	call Func_04da
+	call LoadStdBGMapAttrLayout_
 	ld bc, $18
 	call GetCGB_BGLayout_
 	jp IncrementSubroutine

@@ -114,10 +114,10 @@ Func_93bd: ; 93bd (2:53bd)
 	ld a, $1
 	hlbgcoord 0, 7
 	call Func_15ca
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $7
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $4
 	call Func_050a
 	ld a, $60
@@ -156,10 +156,10 @@ Func_9427: ; 9427 (2:5427)
 	ld a, $2
 	hlbgcoord 0, 0
 	call Func_15ca
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $8
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $60
 	ld [wc3e4], a
 	ld a, $1
@@ -179,10 +179,10 @@ Func_945c: ; 945c (2:545c)
 	ld a, $0
 	hlbgcoord 0, 0
 	call Func_15ca
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $a
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $60
 	ld [wc3e4], a
 	ld a, $2
@@ -198,14 +198,14 @@ Func_9491: ; 9491 (2:5491)
 	ld e, $0
 	ld a, $1
 	call Func_04c0
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $7
 	ld a, $0
-	call Func_04da
-	ld bc, $0
+	call LoadStdBGMapAttrLayout_
+	lb bc, $0, $0
 	ld e, $9
 	ld a, $0
-	call Func_04ca
+	call LoadStdBGMapLayout_
 	ld a, $60
 	ld [wc3e4], a
 	ld a, $3
@@ -256,11 +256,11 @@ Func_9503: ; 9503 (2:5503)
 	ld bc, $0
 	ld e, $aa
 	ld a, $0
-	call Func_0a2a
+	call LoadStdBGMapLayout
 	ld bc, $0
 	ld e, $aa
 	ld a, $0
-	call Func_0b1a
+	call LoadStdBGMapAttrLayout
 	jp IncrementSubroutine
 
 Func_951f: ; 951f (2:551f)

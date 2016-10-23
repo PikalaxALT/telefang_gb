@@ -171,7 +171,7 @@ Func_1013b: ; 1013b (4:413b)
 .asm_10152
 	ld [wSubroutine], a
 	ld a, $2
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 .asm_1015b
@@ -193,7 +193,7 @@ Func_1013b: ; 1013b (4:413b)
 
 .asm_1017b
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $1
 	ld [wcb3f], a
 	xor a
@@ -208,7 +208,7 @@ Func_1013b: ; 1013b (4:413b)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld bc, $104
 	ld e, $3b
 	call Func_13959
@@ -226,7 +226,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld a, $4
 	call Func_050a
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $10
 	ld [wcf96], a
 	ld a, $e
@@ -235,12 +235,12 @@ Func_1013b: ; 1013b (4:413b)
 
 .asm_101d3
 	ld a, $5
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ret
 
 Func_101d9: ; 101d9 (4:41d9)
 	ld a, $3
-	ld [H_FFA1], a
+	ld [H_SFX_ID], a
 	ld a, $f
 	ld [wSubroutine], a
 	xor a

@@ -164,7 +164,7 @@ battle_struct: MACRO
 \1Field0x07:: ds 1
 \1Field0x08:: ds 1
 \1Field0x09:: ds 1
-\1Field0x0a:: ds 1
+\1Autonomy:: ds 1
 \1Field0x0b:: ds 1
 \1Field0x0c:: ds 1
 \1Field0x0d:: ds 1
