@@ -766,7 +766,7 @@ Func_8919: ; 8919 (2:4919)
 INCLUDE "engine/title_screen.asm"
 
 Func_8b8b: ; 8b8b (2:4b8b)
-	ld a, [wd41f]
+	ld a, [wMoveAnimationSubroutine]
 	ld hl, Pointers_8b95
 	call GetHalfwordFromTable
 	jp [hl]
@@ -788,29 +788,29 @@ String_8ba7:
 String_8baf:
 	db "  ????  "
 
-Data_8bb7:
-	db "トロンコむら$"
-	db "クリノンむら$"
-	db "うみのみえるまち イーリス$"
-	db "パームかい$"
-	db "キカイのまち フリジア$"
-	db "すなのまち バーラン$"
-	db "イォンとう$"
-	db "パパルナこ$"
-	db "パンセスむら$"
-	db "トリパむら$"
-	db "フラウラむら$"
-	db "あくまのやま ぺぺリやま$"
-	db "イクソスのもリ$"
-	db "カクトスいせき$"
-	db "ブリォンいせき$"
-	db "トロンコむら すいげん$"
-	db "クリノンむら ちか1かい$"
-	db "クラフトけんきゅうじょ$"
-	db "ディメンザのやしき$"
-	db "アンテナのき 1かい$"
-	db "ぺぺリやま ふもと$"
-	db "カクトスいせき$"
+LandmarkNames:
+	db "トロンコむら$" ; Toronko Village
+	db "クリノンむら$" ; Kurinon Village
+	db "うみのみえるまち イーリス$" ; The town with a view of the see - Iris
+	db "パームかい$" ; Palm Sea
+	db "キカイのまち フリジア$" ; Machine Town Freesia
+	db "すなのまち バーラン$" ; Barran Desert
+	db "イォンとう$" ; Ion Island
+	db "パパルナこ$" ; Paparuna Lake
+	db "パンセスむら$" ; Panses Village
+	db "トリパむら$" ; Tripa Village
+	db "フラウラむら$" ; Flaura Village
+	db "あくまのやま ぺぺリやま$" ; Devil's Mountain: Peperi Mountain
+	db "イクソスのもリ$" ; Ixos Forest
+	db "カクトスいせき$" ; Cactos Ruins
+	db "ブリォンいせき$" ; Burion Ruins
+	db "トロンコむら すいげん$" ; Toronoko Village Spring
+	db "クリノンむら ちか1かい$" ; Kurinon Village B1F
+	db "クラフトけんきゅうじょ$" ; Craft Research Center
+	db "ディメンザのやしき$" ; Dimenza's Mansion
+	db "アンテナのき 1かい$" ; Antenna Tree 1F
+	db "ぺぺリやま ふもと$" ; Peperi Mountain Foothills
+	db "カクトスいせき$" ; Cactos Ruins
 
 Func_8c81: ; 8c81 (2:4c81)
 	ld bc, $e
@@ -856,7 +856,7 @@ asm_8cc7
 	call Func_175f
 	xor a
 	ld [wcb30], a
-	jp Func_3cfd
+	jp NextMoveAnimationSubroutine
 
 Func_8cde: ; 8cde (2:4cde)
 	lb bc, $0, $0
@@ -867,7 +867,7 @@ Func_8cde: ; 8cde (2:4cde)
 	ld e, $1
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	jp Func_3cfd
+	jp NextMoveAnimationSubroutine
 
 Func_8cf5: ; 8cf5 (2:4cf5)
 	ld a, [wCurDenjuu]
@@ -923,7 +923,7 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	call LoadStdBGMapAttrLayout_
 	ld a, $4
 	call Func_050a
-	jp Func_3cfd
+	jp NextMoveAnimationSubroutine
 
 Func_8d7a: ; 8d7a (2:4d7a)
 	ld a, $0
@@ -954,7 +954,7 @@ Func_8d7a: ; 8d7a (2:4d7a)
 	ld a, $1
 	ld [wOBPalUpdate], a
 .asm_8db8
-	jp Func_3cfd
+	jp NextMoveAnimationSubroutine
 
 Func_8dbb: ; 8dbb (2:4dbb)
 	ld a, [wVBlankCounter]
@@ -1006,7 +1006,7 @@ Func_8dbb: ; 8dbb (2:4dbb)
 	ld a, $2
 	ld [H_SFX_ID], a
 	ld a, $7
-	ld [wd41f], a
+	ld [wMoveAnimationSubroutine], a
 	ret
 
 .asm_8e1a
@@ -1037,7 +1037,7 @@ Func_8e44: ; 8e44 (2:4e44)
 	ld a, $2
 	ld [H_SFX_ID], a
 	ld a, $6
-	ld [wd41f], a
+	ld [wMoveAnimationSubroutine], a
 	ret
 
 asm_8e4f
@@ -1078,7 +1078,7 @@ asm_8e83
 	ld a, $1
 	ld [wd43a], a
 Func_8e95: ; 8e95 (2:4e95)
-	jp Func_3cfd
+	jp NextMoveAnimationSubroutine
 
 Func_8e98: ; 8e98 (2:4e98)
 	lb bc, $1, $1
@@ -1136,7 +1136,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	call GetAndPrintName75CenterAlign
 	call Func_0597
 	call Func_90c2
-	jp Func_3cfd
+	jp NextMoveAnimationSubroutine
 
 Func_8f1d: ; 8f1d (2:4f1d)
 	lb bc, $1, $1
@@ -1144,7 +1144,7 @@ Func_8f1d: ; 8f1d (2:4f1d)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, $6
-	ld [wd41f], a
+	ld [wMoveAnimationSubroutine], a
 	ret
 
 Func_8f2d: ; 8f2d (2:4f2d)
@@ -1164,7 +1164,7 @@ Func_8f2d: ; 8f2d (2:4f2d)
 	ret z
 .asm_8f49
 	xor a
-	ld [wd41f], a
+	ld [wMoveAnimationSubroutine], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
@@ -1226,7 +1226,7 @@ Func_8f96: ; 8f96 (2:4f96)
 	call Func_9040
 .asm_8fb3
 	ld a, $4
-	ld [wd41f], a
+	ld [wMoveAnimationSubroutine], a
 	ret
 
 Func_8fb9:
@@ -3864,7 +3864,7 @@ Func_10bce:
 	ld a, $9
 	ld [wGameRoutine], a
 	xor a
-	ld [wd41f], a
+	ld [wMoveAnimationSubroutine], a
 	ld [wFontPaletteMode], a
 	ret
 

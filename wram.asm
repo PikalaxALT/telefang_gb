@@ -4259,7 +4259,7 @@ wd41b:: ds 1
 wd41c:: ds 1
 wBattleMenuCursorObjectTemplateIDX:: ds 1
 wCurDenjuuMaxMoveIndex:: ds 1
-wd41f:: ds 1
+wMoveAnimationSubroutine:: ds 1
 wd420:: ds 1
 wd421:: ds 1
 wd422:: ds 1

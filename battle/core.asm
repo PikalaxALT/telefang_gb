@@ -72,7 +72,7 @@ Pointers_1448d:
 	dw Battle_DrawMenuOrAttackOnYourOwn
 	dw Battle_MenuSelection
 	dw Battle_DrawMoveSelectionMenu
-	dw MoveSelectionMenu
+	dw Battle_MoveSelectionMenu
 	dw Func_14ddd
 	dw Func_14f81
 	dw Func_1510a
@@ -1195,7 +1195,7 @@ Battle_PrintDenjuuMove: ; 14d0f (5:4d0f)
 	pop bc
 	jp GetAndPrintName75LeftAlign_
 
-MoveSelectionMenu: ; 14d1f (5:4d1f)
+Battle_MoveSelectionMenu: ; 14d1f (5:4d1f)
 	call Func_3cd0
 	ld a, [wJoyNew]
 	and D_UP
