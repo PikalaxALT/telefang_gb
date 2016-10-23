@@ -293,12 +293,12 @@ Func_05e3::
 	rst MemBankswitch
 	ret
 
-Func_05ed::
+GetStatOffsetMultiplier_::
 	push af
-	ld a, BANK(Data_9c715)
+	ld a, BANK(StatOffsetMultipliers)
 	rst Bankswitch
 	pop af
-	call Func_3ba9
+	call GetStatOffsetMultiplier
 	rst MemBankswitch
 	ret
 

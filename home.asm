@@ -6564,11 +6564,12 @@ GetBaseStat: ; 3a35 (0:3a35)
 	ld [wCurBaseStat], a
 ; if (c >= 6) or (b < 2): return
 	ld a, c
-	cp $6
+	cp DENJUU_MOVE1
 	ret nc
 	ld a, b
 	cp $2
 	ret c
+; get an offset multiplier (stored in wd494)
 	dec b
 	ld d, $0
 	ld a, b
@@ -6577,25 +6578,26 @@ GetBaseStat: ; 3a35 (0:3a35)
 	ld a, c
 	ld b, a
 	ld a, [wCurDenjuu]
-	call Func_05ed
+	call GetStatOffsetMultiplier_
 	pop de
 	ld a, e
 	cp $1
-	jr nz, .asm_3a7b
+	jr nz, .multiply
 	ld a, [wd494]
 	cp $1
-	jr nz, .asm_3a7b
+	jr nz, .multiply
 	ld e, $1
-	jr .asm_3a88
+	jr .offset
 
-.asm_3a7b
+.multiply
+; (level * offset / 2) + 2 * base
 	ld b, $0
 	ld a, [wd494]
 	ld c, a
 	call Multiply_DE_by_BC
 	sra d
 	rr e
-.asm_3a88
+.offset
 	ld a, [wCurBaseStat]
 	ld a, a
 	add e
@@ -6778,8 +6780,8 @@ Func_3b74: ; 3b74 (0:3b74)
 	ld [wd4ec], a
 	ret
 
-Func_3ba9: ; 3ba9 (0:3ba9)
-	ld hl, Data_9c715
+GetStatOffsetMultiplier: ; 3ba9 (0:3ba9)
+	ld hl, StatOffsetMultipliers
 	ld de, 6
 	addntimes_hl_de
 	ld d, $0

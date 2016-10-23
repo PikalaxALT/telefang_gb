@@ -1093,16 +1093,16 @@ Battle_DrawMoveSelectionMenu: ; 14c34 (5:4c34)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
-	ld c, $6 ; move 1
+	ld c, DENJUU_MOVE1
 	ld hl, VTilesBG tile $40
 	call Battle_PrintDenjuuMove
 	ld a, [wCurDenjuuBuffer]
-	ld c, $7 ; move 2
+	ld c, DENJUU_MOVE2
 	ld hl, VTilesBG tile $48
 	call Battle_PrintDenjuuMove
 	ld a, [wCurDenjuuBuffer]
 	ld b, $0
-	ld c, $e
+	ld c, DENJUU_MOVE3_LEVEL
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld b, a
@@ -1110,7 +1110,7 @@ Battle_DrawMoveSelectionMenu: ; 14c34 (5:4c34)
 	cp b
 	jr c, .skip_move_3
 	ld a, [wCurDenjuuBuffer]
-	ld c, $8
+	ld c, DENJUU_MOVE3
 	ld hl, VTilesBG tile $50
 	call Battle_PrintDenjuuMove
 	ld a, $2
@@ -1128,7 +1128,7 @@ Battle_DrawMoveSelectionMenu: ; 14c34 (5:4c34)
 .check_move_4
 	ld a, [wCurDenjuuBuffer]
 	ld b, $0
-	ld c, $f
+	ld c, DENJUU_MOVE4_LEVEL
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld b, a
@@ -1136,13 +1136,13 @@ Battle_DrawMoveSelectionMenu: ; 14c34 (5:4c34)
 	cp b
 	jr c, .skip_move_4
 	ld a, [wCurDenjuuBuffer]
-	ld c, $9
+	ld c, DENJUU_MOVE4
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	or a
 	jr z, .skip_move_4
 	ld a, [wCurDenjuuBuffer]
-	ld c, $9
+	ld c, DENJUU_MOVE4
 	ld hl, VTilesBG tile $58
 	call Battle_PrintDenjuuMove
 	ld a, $3
@@ -1800,7 +1800,7 @@ Func_1510a: ; 1510a (5:510a)
 .asm_15197
 	ld a, [wCurDenjuuBuffer]
 	ld b, $0
-	ld c, $e
+	ld c, DENJUU_MOVE3_LEVEL
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld b, a
@@ -1813,7 +1813,7 @@ Func_1510a: ; 1510a (5:510a)
 .asm_151af
 	ld a, [wCurDenjuuBuffer]
 	ld b, $0
-	ld c, $f
+	ld c, DENJUU_MOVE4_LEVEL
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld b, a
@@ -1821,7 +1821,7 @@ Func_1510a: ; 1510a (5:510a)
 	cp b
 	jr c, .asm_151d5
 	ld a, [wCurDenjuuBuffer]
-	ld c, $9
+	ld c, DENJUU_MOVE4
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	or a
@@ -4908,7 +4908,7 @@ Func_168ed: ; 168ed (5:68ed)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld [wd44f], a
@@ -4932,7 +4932,7 @@ Func_168ed: ; 168ed (5:68ed)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld [wd44f], a
@@ -4967,7 +4967,7 @@ Func_1697c: ; 1697c (5:697c)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld [wd44f], a
@@ -5020,7 +5020,7 @@ Func_169e0: ; 169e0 (5:69e0)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld [wd44f], a
@@ -5109,7 +5109,7 @@ Func_16aa7: ; 16aa7 (5:6aa7)
 
 Func_16aba: ; 16aba (5:6aba)
 	ld a, [wCurDenjuuBufferSpecies]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld b, a
@@ -5177,7 +5177,7 @@ Func_16b18: ; 16b18 (5:6b18)
 
 Func_16b33: ; 16b33 (5:6b33)
 	ld a, [wCurDenjuu]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	cp $1
@@ -5789,7 +5789,7 @@ Func_16f97: ; 16f97 (5:6f97)
 	ld a, [wd477]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld [wd44f], a
@@ -5842,7 +5842,7 @@ Func_17001: ; 17001 (5:7001)
 	ld a, [wd477]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetBaseStat_
 	ld a, [wCurBaseStat]
 	ld [wd44f], a

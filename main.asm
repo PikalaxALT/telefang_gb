@@ -11895,8 +11895,8 @@ Data_9c000::
 Data_9c4a4::
 	dr $9c4a4, $9c715
 
-Data_9c715::
-	dr $9c715, $9cb29
+StatOffsetMultipliers::
+INCLUDE "data/base_stat_offsets.asm"
 
 Data_9cb29::
 	dr $9cb29, $9cbb2
