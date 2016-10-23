@@ -542,7 +542,7 @@ DecompressGFXByIndex: ; c36 (0:0c36)
 	ret
 
 Random::
-	ld a, [wc470]
+	ld a, [wInLinkBattle]
 	cp $2
 	jp z, Func_0d7d
 	push hl
@@ -573,12 +573,12 @@ Random::
 Func_0d7d: ; d7d (0:0d7d)
 	push hl
 	push bc
-	ld a, BANK(Data_2c000)
+	ld a, BANK(LinkBattleRNs)
 	rst Bankswitch
-	ld a, [wc471]
+	ld a, [wLinkBattleRNIdx]
 	inc a
-	ld [wc471], a
-	ld hl, Data_2c000
+	ld [wLinkBattleRNIdx], a
+	ld hl, LinkBattleRNs
 	ld b, $0
 	ld c, a
 	add hl, bc
@@ -991,7 +991,7 @@ Func_1338: ; 1338 (0:1338)
 	ld [wc44f], a
 	jr .asm_1346
 
-Func_1378::
+PrintDenjuuStat::
 	push hl
 	push de
 	push bc
@@ -1004,12 +1004,12 @@ Func_1378::
 	pop bc
 	ld a, c
 	cp $1
-	jp nz, Func_1394
+	jp nz, .ThreeDigits
 	ld a, $1
 	ld [wFontSourceAddr], a
-	jp Func_13aa
+	jp .TwoDigits
 
-Func_1394: ; 1394 (0:1394)
+.ThreeDigits: ; 1394 (0:1394)
 	ld a, [wFontSourceBank]
 	and $f
 	or a
@@ -1023,7 +1023,7 @@ Func_1394: ; 1394 (0:1394)
 	ei
 	ld a, $1
 	ld [wFontSourceAddr], a
-Func_13aa: ; 13aa (0:13aa)
+.TwoDigits: ; 13aa (0:13aa)
 	inc hl
 	ld a, [wc44f]
 	and $f0
@@ -6514,7 +6514,7 @@ Func_39ec: ; 39ec (0:39ec)
 	ld bc, $10 tiles
 	jp WaitStatCopy
 
-GetName: ; 3a01 (0:3a01)
+Get8CharName: ; 3a01 (0:3a01)
 	ld d, $0
 	ld a, [wd435]
 	ld e, a
@@ -6527,21 +6527,21 @@ ENDR
 	ld de, wStringBuffer
 	jp CopyData
 
-Func_3a1d: ; 3a1d (0:3a1d)
+Get4CharName: ; 3a1d (0:3a1d)
 	ld d, $0
 	ld a, [wd435]
 	ld e, a
+REPT 2
 	sla e
 	rl d
-	sla e
-	rl d
+ENDR
 	add hl, de
 	ld bc, $4
 	ld de, wStringBuffer
 	jp CopyData
 
-GetBaseStat: ; 3a35 (0:3a35)
-; [wCurBaseStat] = BaseStats + ($10 * a) + c
+GetOrCalcStatC: ; 3a35 (0:3a35)
+; [wCurDenjuuStat] = BaseStats + ($10 * a) + c
 ; level in b if applicable
 	ld hl, BaseStats
 	ld [wCurDenjuu], a
@@ -6561,7 +6561,7 @@ GetBaseStat: ; 3a35 (0:3a35)
 	ld e, a
 	add hl, de
 	ld a, [hl]
-	ld [wCurBaseStat], a
+	ld [wCurDenjuuStat], a
 ; if (c >= 6) or (b < 2): return
 	ld a, c
 	cp DENJUU_MOVE1
@@ -6590,7 +6590,7 @@ GetBaseStat: ; 3a35 (0:3a35)
 	jr .offset
 
 .multiply
-; (level * offset / 2) + 2 * base
+; max(1, (level - 1) * offset / 2) + 2 * base
 	ld b, $0
 	ld a, [wd494]
 	ld c, a
@@ -6598,10 +6598,10 @@ GetBaseStat: ; 3a35 (0:3a35)
 	sra d
 	rr e
 .offset
-	ld a, [wCurBaseStat]
+	ld a, [wCurDenjuuStat]
 	ld a, a
 	add e
-	ld [wCurBaseStat], a
+	ld [wCurDenjuuStat], a
 	ret
 
 PlaceString: ; 3a91 (0:3a91)
@@ -6651,7 +6651,7 @@ GetAndPrintName75LeftAlign: ; 3ac3 (0:3ac3)
 	push bc
 	push de
 	pop hl
-	call GetName75
+	call Get8CharName75
 	pop hl
 	push hl
 	ld a, $8
@@ -6673,7 +6673,7 @@ GetAndPrintName75CenterAlign::
 	dec b
 	jr nz, .asm_3ae6
 	pop hl
-	call GetName75
+	call Get8CharName75
 	pop hl
 	push hl
 	ld a, $8
@@ -6691,7 +6691,7 @@ Func_3b09: ; 3b09 (0:3b09)
 	push bc
 	push de
 	pop hl
-	call Func_0558
+	call Get4CharName75
 	pop hl
 	push hl
 	ld a, $4
@@ -6701,12 +6701,12 @@ Func_3b09: ; 3b09 (0:3b09)
 	ld b, $4
 	jp PlaceString_
 
-Func_3b22: ; 3b22 (0:3b22)
+PrintCurDenjuuTypeName: ; 3b22 (0:3b22)
 	ld a, [wCurDenjuu]
-	ld c, $d
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
-	ld de, Data_1d5628
+	ld c, DENJUU_TYPE
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	ld de, TypeNames
 	ld bc, VTilesBG tile $38
 	jp Func_3b09
 

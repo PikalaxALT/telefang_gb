@@ -902,7 +902,7 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	ld bc, VTilesShared tile $58
 	ld de, Data_1d7928
 	call GetAndPrintName75CenterAlign
-	call Func_0597
+	call PrintCurDenjuuTypeName_
 	call Func_90c2
 	ld de, String_8ba7
 	ld hl, VTilesShared tile $60
@@ -1134,7 +1134,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	ld bc, VTilesShared tile $58
 	ld de, Data_1d7928
 	call GetAndPrintName75CenterAlign
-	call Func_0597
+	call PrintCurDenjuuTypeName_
 	call Func_90c2
 	jp NextMoveAnimationSubroutine
 
@@ -1398,34 +1398,34 @@ Func_90b1: ; 90b1 (2:50b1)
 Func_90c2: ; 90c2 (2:50c2)
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $6 ; move 1
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE1
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld de, MoveNames
 	ld bc, VTilesShared tile $38
 	call GetAndPrintName75LeftAlign_
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $7 ; move 2
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE2
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld de, MoveNames
 	ld bc, VTilesShared tile $40
 	call GetAndPrintName75LeftAlign_
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $e ; level at which third move is unlocked?
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE3_LEVEL
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld b, a
 	ld a, [wCurDenjuuLevel]
 	cp b
 	jr c, .third_move_unknown
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $8 ; move 3
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE3
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld de, MoveNames
 	ld bc, VTilesShared tile $48
 	call GetAndPrintName75LeftAlign_
@@ -1439,20 +1439,20 @@ Func_90c2: ; 90c2 (2:50c2)
 .done_third_move
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $f
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE4_LEVEL
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld b, a
-	cp $64
+	cp MAX_LEVEL
 	jr z, .no_last_move
 	ld a, [wCurDenjuuLevel]
 	cp b
 	jr c, .fourth_move_unknown
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $9 ; move 4
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE4
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld de, MoveNames
 	ld bc, VTilesShared tile $50
 	call GetAndPrintName75LeftAlign_
@@ -1475,42 +1475,42 @@ Func_90c2: ; 90c2 (2:50c2)
 Func_916a: ; 916a (2:516a)
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $6
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE1
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $7
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE2
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $e
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE3_LEVEL
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld b, a
 	ld a, [wCurDenjuuLevel]
 	cp b
 	jr c, .no_extra_move
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $8
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE3
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $f
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE4_LEVEL
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld b, a
 	ld a, [wCurDenjuuLevel]
 	cp b
 	jr c, .no_extra_move
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $9
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_MOVE4
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 .no_extra_move
 	ret
 
@@ -1518,48 +1518,48 @@ Func_91c7: ; 91c7 (2:51c7)
 	ld a, [wCurDenjuuLevel]
 	ld b, a
 	ld a, [wCurDenjuu]
-	ld c, $1
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_SPEED
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	hlbgcoord 6, 12
 	ld c, $0
-	call Func_1378
+	call PrintDenjuuStat
 	ld a, [wCurDenjuuLevel]
 	ld b, a
 	ld a, [wCurDenjuu]
-	ld c, $2
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_ATTACK
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	hlbgcoord 6, 14
 	ld c, $0
-	call Func_1378
+	call PrintDenjuuStat
 	ld a, [wCurDenjuuLevel]
 	ld b, a
 	ld a, [wCurDenjuu]
-	ld c, $3
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_DEFENSE
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	hlbgcoord 6, 16
 	ld c, $0
-	call Func_1378
+	call PrintDenjuuStat
 	ld a, [wCurDenjuuLevel]
 	ld b, a
 	ld a, [wCurDenjuu]
-	ld c, $4
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_SPATK
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	hlbgcoord 15, 12
 	ld c, $0
-	call Func_1378
+	call PrintDenjuuStat
 	ld a, [wCurDenjuuLevel]
 	ld b, a
 	ld a, [wCurDenjuu]
-	ld c, $5
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_SPDEF
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	hlbgcoord 15, 14
 	ld c, $0
-	call Func_1378
+	call PrintDenjuuStat
 	ret
 
 Func_923b: ; 923b (2:523b)
@@ -1570,16 +1570,16 @@ Func_923b: ; 923b (2:523b)
 	ld a, [wCurDenjuuLevel]
 	hlbgcoord 5, 15
 	ld c, $1
-	call Func_1378
+	call PrintDenjuuStat
 	ld a, [wCurDenjuuLevel]
 	ld b, a
 	ld a, [wCurDenjuu]
-	ld c, $0
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	ld c, DENJUU_HP
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	hlbgcoord 5, 16
 	ld c, $0
-	call Func_1378
+	call PrintDenjuuStat
 	ld a, [wcb2b]
 	cp $1
 	jr z, .asm_927d
@@ -1601,7 +1601,7 @@ Func_9289: ; 9289 (2:5289)
 asm_928b
 	hlbgcoord 14, 15
 	ld c, $0
-	call Func_1378
+	call PrintDenjuuStat
 	ld a, [wCurDenjuuLevel]
 	cp $63
 	jp z, Func_92eb
@@ -1629,11 +1629,11 @@ asm_928b
 	call Func_14b1
 	ld a, [wCurDenjuu]
 	ld b, $0
-	ld c, $d
-	call GetBaseStat_
+	ld c, DENJUU_TYPE
+	call GetOrCalcStatC_
 	ld a, [wCurDenjuuLevel]
 	ld b, a
-	ld a, [wCurBaseStat]
+	ld a, [wCurDenjuuStat]
 	call Func_05d9
 	sra b
 	rr c
@@ -4374,7 +4374,7 @@ Func_114ff: ; 114ff (4:54ff)
 	call Func_13e6e
 	ld a, [wcd23]
 	ld [wCurDenjuu], a
-	call Func_0597
+	call PrintCurDenjuuTypeName_
 	ld a, [wcd23]
 	ld c, $1
 	ld de, VTilesShared tile $00
@@ -4543,7 +4543,7 @@ Func_11690: ; 11690 (4:5690)
 Func_1169d: ; 1169d (4:569d)
 	ld a, [wcd23]
 	ld [wCurDenjuu], a
-	call Func_0597
+	call PrintCurDenjuuTypeName_
 	ld a, [wcd23]
 	ld c, $1
 	ld de, VTilesShared tile $00
@@ -5056,7 +5056,7 @@ Func_11a35: ; 11a35 (4:5a35)
 	ld a, $78
 	ld [wc91f], a
 	ld hl, DenjuuNames
-	call GetName75
+	call Get8CharName75
 	ld d, $c
 	jp Func_11a80
 
@@ -5073,7 +5073,7 @@ Func_11a59: ; 11a59 (4:5a59)
 	ld a, $78
 	ld [wc91f], a
 	ld hl, $6652
-	call GetName0B
+	call Get8CharName0B
 	ld d, $b
 	jp Func_11a80
 
@@ -10279,10 +10279,10 @@ Func_13e6e: ; 13e6e (4:7e6e)
 Func_13e81:
 	ld a, [wcd23]
 	ld b, $0
-	ld c, $d
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
-	ld de, Data_1d5628
+	ld c, DENJUU_TYPE
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	ld de, TypeNames
 	ld bc, VTilesBG tile $38
 	jp Func_056a
 
@@ -10874,7 +10874,7 @@ Func_142c1: ; 142c1 (5:42c1)
 Func_142cd:
 	ld [wd435], a
 	ld hl, DenjuuNames
-	call GetName75
+	call Get8CharName75
 	ld bc, wStringBuffer
 	call Func_1402a
 	jp Func_14019
@@ -11030,16 +11030,16 @@ Func_143df:
 	ret
 
 Func_143f9:
-	ld c, $6
+	ld c, DENJUU_MOVE1
 	add c
 	ld c, a
 	ld a, [wCurDenjuu]
-	call GetBaseStat_
-	ld a, [wCurBaseStat]
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
 	ld hl, MoveNames
 	ld [wd435], a
 	ld [wd46f], a
-	call GetName75
+	call Get8CharName75
 	ld bc, wStringBuffer
 	call Func_1402a
 	jp Func_14012
@@ -11174,8 +11174,8 @@ SECTION "bank 0A", ROMX, BANK [$a]
 INCLUDE "data/oam_templates_0.asm"
 
 SECTION "bank 0B", ROMX, BANK [$b]
-Data_2c000::
-	dr $2c000, $2c100
+LinkBattleRNs::
+INCLUDE "data/pseudo_rng.asm"
 
 Func_2c100::
 	dr $2c100, $2c63b
@@ -12424,8 +12424,13 @@ INCLUDE "text/attack_names.asm"
 BaseStats::
 INCLUDE "data/base_stats.asm"
 
-Data_1d5628::
-	dr $1d5628, $1d5640
+TypeNames::
+	db "いわやま"
+	db "そうげん"
+	db "しんリん"
+	db "すいせい"
+	db "そら  "
+	db "さばく "
 
 Data_1d5640::
 	dr $1d5640, $1d56ee

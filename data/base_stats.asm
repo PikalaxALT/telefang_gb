@@ -10,7 +10,7 @@
 	db 14, RAYGIRTH ; evolution
 	db MOUNTAIN ; type
 	db 8 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; KOCHIA
 	db 30 ; hp
@@ -24,7 +24,7 @@
 	db 30, ARMARU ; evolution
 	db SKY ; type
 	db 16 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; OSHE
 	db 32 ; hp
@@ -38,7 +38,7 @@
 	db 15, CHAMERAID ; evolution
 	db MOUNTAIN ; type
 	db 9 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; KESHI
 	db 30 ; hp
@@ -52,7 +52,7 @@
 	db 24, CRYPTORIDE ; evolution
 	db GRASSLAND ; type
 	db 13 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; CRYPTO
 	db 38 ; hp
@@ -66,7 +66,7 @@
 	db 20, WORMITERALA ; evolution
 	db FOREST ; type
 	db 11 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; MONSTERA
 	db 36 ; hp
@@ -80,7 +80,7 @@
 	db 25, FUNGBLADE ; evolution
 	db GRASSLAND ; type
 	db 10 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; FUNGUS
 	db 37 ; hp
@@ -94,7 +94,7 @@
 	db 20, BULLTAMUS ; evolution
 	db GRASSLAND ; type
 	db 11 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; HIOUGI
 	db 38 ; hp
@@ -108,7 +108,7 @@
 	db 23, PUNEEDLE ; evolution
 	db AQUATIC ; type
 	db 12 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; PUNICA
 	db 33 ; hp
@@ -122,7 +122,7 @@
 	db 15, KERORIN ; evolution
 	db GRASSLAND ; type
 	db 10 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; GUMI
 	db 33 ; hp
@@ -136,7 +136,7 @@
 	db 31, SUGULAI ; evolution
 	db AQUATIC ; type
 	db 16 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; SUGURI
 	db 32 ; hp
@@ -150,7 +150,7 @@
 	db 24, CORTOS ; evolution
 	db GRASSLAND ; type
 	db 13 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; GANRAIKOU
 	db 33 ; hp
@@ -164,7 +164,7 @@
 	db 35, GAIURUS ; evolution
 	db SKY ; type
 	db 18 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; BYAKUBU
 	db 35 ; hp
@@ -178,7 +178,7 @@
 	db 26, MIDOTOR ; evolution
 	db GRASSLAND ; type
 	db 14 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; TELOPEA
 	db 40 ; hp
@@ -192,7 +192,7 @@
 	db 32, OCTOR ; evolution
 	db AQUATIC ; type
 	db 17 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; MANTEA
 	db 38 ; hp
@@ -206,7 +206,7 @@
 	db 17, HITODEIGHT ; evolution
 	db AQUATIC ; type
 	db 9 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; IXORA
 	db 33 ; hp
@@ -220,7 +220,7 @@
 	db 28, GHOSBOAR ; evolution
 	db AQUATIC ; type
 	db 15 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; MYRTUS
 	db 32 ; hp
@@ -234,7 +234,7 @@
 	db 15, RASENMAI ; evolution
 	db GRASSLAND ; type
 	db 8 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; LYCHNIS
 	db 35 ; hp
@@ -248,7 +248,7 @@
 	db 28, SCORPIL ; evolution
 	db AQUATIC ; type
 	db 15 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; LAPEIROUSIA
 	db 34 ; hp
@@ -262,7 +262,7 @@
 	db 30, ARMCRAB ; evolution
 	db DESERT ; type
 	db 16 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; BUBARIA
 	db 35 ; hp
@@ -276,7 +276,7 @@
 	db 20, ANGIORN ; evolution
 	db AQUATIC ; type
 	db 11 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; ANGIOS
 	db 38 ; hp
@@ -290,7 +290,7 @@
 	db 0, 0 ; no evolution
 	db SKY ; type
 	db 8 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; GYMNOS
 	db 39 ; hp
@@ -304,7 +304,7 @@
 	db 0, 0 ; no evolution
 	db MOUNTAIN ; type
 	db 9 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; LIRIOPE
 	db 30 ; hp
@@ -318,7 +318,7 @@
 	db 0, 0 ; no evolution
 	db AQUATIC ; type
 	db 10 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; WARATAH
 	db 30 ; hp
@@ -332,7 +332,7 @@
 	db 0, 0 ; no evolution
 	db FOREST ; type
 	db 15 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; SORGHUM
 	db 33 ; hp
@@ -346,7 +346,7 @@
 	db 0, 0 ; no evolution
 	db DESERT ; type
 	db 11 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; ERYNGO
 	db 35 ; hp
@@ -360,7 +360,7 @@
 	db 0, 0 ; no evolution
 	db FOREST ; type
 	db 16 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; NORIUTSUGI
 	db 33 ; hp
@@ -374,7 +374,7 @@
 	db 0, 0 ; no evolution
 	db SKY ; type
 	db 11 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; PAMPAS
 	db 30 ; hp
@@ -388,7 +388,7 @@
 	db 0, 0 ; no evolution
 	db AQUATIC ; type
 	db 16 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; RHODANTHE
 	db 30 ; hp
@@ -402,7 +402,7 @@
 	db 0, 0 ; no evolution
 	db SKY ; type
 	db 12 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; LICORICE
 	db 34 ; hp
@@ -416,7 +416,7 @@
 	db 0, 0 ; no evolution
 	db GRASSLAND ; type
 	db 8 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; VIBURNUM
 	db 30 ; hp
@@ -430,7 +430,7 @@
 	db 0, 0 ; no evolution
 	db GRASSLAND ; type
 	db 9 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; FUNNEL
 	db 34 ; hp
@@ -444,7 +444,7 @@
 	db 0, 0 ; no evolution
 	db GRASSLAND ; type
 	db 15 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; VANDA
 	db 38 ; hp
@@ -458,7 +458,7 @@
 	db 0, 0 ; no evolution
 	db FOREST ; type
 	db 18 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; UIKYOU
 	db 30 ; hp
@@ -472,7 +472,7 @@
 	db 0, 0 ; no evolution
 	db AQUATIC ; type
 	db 12 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; OBANA
 	db 38 ; hp
@@ -486,7 +486,7 @@
 	db 0, 0 ; no evolution
 	db DESERT ; type
 	db 20 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; FIREKOKKO
 	db 35 ; hp
@@ -654,7 +654,7 @@
 	db 0, 0 ; no evolution
 	db AQUATIC ; type
 	db 0 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; MUSA
 	db 42 ; hp
@@ -822,7 +822,7 @@
 	db 0, 0 ; no evolution
 	db GRASSLAND ; type
 	db 0 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; CRYPTORIDE
 	db 40 ; hp
@@ -1130,7 +1130,7 @@
 	db 0, 0 ; no evolution
 	db FOREST ; type
 	db 0 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; GADHORO
 	db 33 ; hp
@@ -1830,7 +1830,7 @@
 	db 0, 0 ; no evolution
 	db GRASSLAND ; type
 	db 0 ; level at which move 3 is learned
-	db 100 ; level at which move 4 is learned
+	db MAX_LEVEL ; level at which move 4 is learned
 
 ; SALAL
 	db 32 ; hp

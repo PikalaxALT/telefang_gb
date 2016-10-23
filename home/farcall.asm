@@ -148,24 +148,24 @@ Func_0543::
 	rst MemBankswitch
 	ret
 
-GetName75::
+Get8CharName75::
 	ld a, BANK(DenjuuNames)
 	rst Bankswitch
-	call GetName
+	call Get8CharName
 	rst MemBankswitch
 	ret
 
-GetName0B::
+Get8CharName0B::
 	ld a, $b
 	rst Bankswitch
-	call GetName
+	call Get8CharName
 	rst MemBankswitch
 	ret
 
-Func_0558::
-	ld a, $75
+Get4CharName75::
+	ld a, BANK(TypeNames)
 	rst Bankswitch
-	call Func_3a1d
+	call Get4CharName
 	rst MemBankswitch
 	ret
 
@@ -214,19 +214,19 @@ Func_0588::
 	rst MemBankswitch
 	ret
 
-GetBaseStat_::
+GetOrCalcStatC_::
 	push af
 	ld a, BANK(BaseStats)
 	rst Bankswitch
 	pop af
-	call GetBaseStat
+	call GetOrCalcStatC
 	rst MemBankswitch
 	ret
 
-Func_0597::
-	ld a, BANK(Data_1d5628)
+PrintCurDenjuuTypeName_::
+	ld a, BANK(TypeNames)
 	rst Bankswitch
-	call Func_3b22
+	call PrintCurDenjuuTypeName
 	rst MemBankswitch
 	ret
 

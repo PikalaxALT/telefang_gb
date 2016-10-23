@@ -241,8 +241,8 @@ wc46c:: ds 1
 wc46d:: ds 1
 wc46e:: ds 1
 wc46f:: ds 1
-wc470:: ds 1
-wc471:: ds 1
+wInLinkBattle:: ds 1
+wLinkBattleRNIdx:: ds 1
 wc472:: ds 1
 wJoyNew:: ds 1
 wMenuScrollDelay:: ds 1
@@ -4316,7 +4316,7 @@ wd45b:: ds 1
 wd45c:: ds 1
 wd45d:: ds 1
 wd45e:: ds 1
-wCurBaseStat:: ds 1
+wCurDenjuuStat:: ds 1
 wd460:: ds 1
 wd461:: ds 1
 wd462:: ds 1

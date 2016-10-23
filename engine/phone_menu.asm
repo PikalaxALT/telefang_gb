@@ -603,7 +603,7 @@ Func_10452: ; 10452 (4:4452)
 	ld a, [wd480]
 	ld [wd435], a
 	ld hl, DenjuuNames
-	call GetName75
+	call Get8CharName75
 	ld d, $c
 	call Func_11a80
 	ld a, [wd480]
