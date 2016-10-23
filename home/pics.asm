@@ -1,4 +1,4 @@
-GetDenjuuPicPointer: ; 1620 (0:1620)
+LoadDenjuuPic: ; 1620 (0:1620)
 	push de
 	cp $12
 	jp nc, Func_162c
@@ -99,7 +99,7 @@ Func_16bc: ; 16bc (0:16bc)
 	ld bc, (7 * 8) tiles
 	jp WaitStatCopyInverted
 
-GetTFangerPicPointer: ; 16c2 (0:16c2)
+LoadTFangerPic: ; 16c2 (0:16c2)
 	push de
 	cp $12
 	jp nc, Func_16d0

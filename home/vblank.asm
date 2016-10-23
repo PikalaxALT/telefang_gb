@@ -13,7 +13,7 @@ VBlank: ; 2e7 (0:02e7)
 	call hPushOAM
 	call ServeSpecialGFXRequest
 	xor a
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld [wOAMUpdate], a
 .skip_sprites
 	ld a, $1

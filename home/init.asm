@@ -41,7 +41,7 @@ Start::
 	call LoadPushOAM ; 079a
 	call InitSoundData ; 0439
 	ld a, 1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	call WhiteDMGPals ; 1043
 	ld a, $83
 	ld [wLCDC], a

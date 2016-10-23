@@ -92,7 +92,7 @@ ENDC
 	ld bc, $8838
 	call Func_8638
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
 Func_8a1a:
@@ -111,11 +111,11 @@ Func_8a2e:
 
 Func_8a36:
 	ld a, $2
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
 Func_8a45:
@@ -135,7 +135,7 @@ Func_8a45:
 
 Func_8a63:
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld de, wOAMAnimation03
 	call Func_0616
 	ld de, wOAMAnimation04
@@ -182,7 +182,7 @@ Func_8a63:
 
 Func_8ac3:
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine

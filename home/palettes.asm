@@ -341,7 +341,7 @@ Func_122d: ; 122d (0:122d)
 	pop de
 	ret
 
-Func_1248: ; 1248 (0:1248)
+PaletteFade: ; 1248 (0:1248)
 	ld [wcb27], a
 	ld a, [wc3d8]
 	or a
@@ -353,11 +353,11 @@ Func_1248: ; 1248 (0:1248)
 .asm_1258
 	ld a, [wc3da]
 	cp $4
-	jr z, .asm_12a8
+	jr z, .done
 	ld a, [wc3d9]
 	ld [wc3d8], a
 	check_cgb
-	jp z, Func_04a7
+	jp z, PaletteFadeCGB_
 	ld a, [wcb27]
 	ld d, $0
 	ld e, a
@@ -393,7 +393,7 @@ Func_1248: ; 1248 (0:1248)
 	xor a
 	ret
 
-.asm_12a8
+.done
 	xor a
 	ld [wc3df], a
 	ld a, $1

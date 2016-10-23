@@ -1,5 +1,5 @@
 UpdateSprites: ; 824 (0:0824)
-	ld a, [wc430]
+	ld a, [wSpriteUpdatesEnabled]
 	or a
 	ret z
 	xor a

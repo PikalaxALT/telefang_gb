@@ -290,7 +290,7 @@ Func_10221: ; 10221 (4:4221)
 
 Func_10232: ; 10232 (4:4232)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $c3
@@ -358,7 +358,7 @@ Func_102b3: ; 102b3 (4:42b3)
 	ld de, wOAMAnimations
 	call Func_11789
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	call Func_11d40
 	jp IncrementSubroutine
 
@@ -386,7 +386,7 @@ Func_102cd: ; 102cd (4:42cd)
 	ld a, $2
 	ld [wcb28], a
 	call LoadPhoneKeypad
-	call Func_12488
+	call PaletteFade8
 	call Func_1249a
 	ld bc, $104
 	ld e, $35
@@ -421,7 +421,7 @@ Func_10339: ; 10339 (4:4339)
 
 Func_10346: ; 10346 (4:4346)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $c3
@@ -504,7 +504,7 @@ Func_10400: ; 10400 (4:4400)
 	ld de, wOAMAnimation02
 	call Func_0616
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp Func_13c8f
 
 Func_1040e: ; 1040e (4:440e)
@@ -562,7 +562,7 @@ Func_10452: ; 10452 (4:4452)
 	call Func_13fdf
 	ld a, $78
 	ld [wc91f], a
-	call Func_12488
+	call PaletteFade8
 	xor a
 	ld [wcb3e], a
 	ld [wcb38], a
@@ -622,7 +622,7 @@ Func_10452: ; 10452 (4:4452)
 	ld [wOAMAnimation05_TemplateBank], a
 	ld a, $78
 	ld [wc91f], a
-	call Func_12488
+	call PaletteFade8
 	ld a, [wd4a7]
 	call Func_13d8c
 	call Func_127b7
@@ -635,7 +635,7 @@ Func_10452: ; 10452 (4:4452)
 
 Func_10546: ; 10546 (4:4546)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $32
@@ -662,7 +662,7 @@ Func_1056a: ; 1056a (4:456a)
 
 Func_1057d: ; 1057d (4:457d)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $c3

@@ -84,9 +84,9 @@ Pointers_1448d:
 	dw Func_15f57
 	dw Func_162cd
 	dw Func_16348
-	dw Func_16360
-	dw Func_163fe
-	dw Func_16416
+	dw Battle_TryToRun
+	dw Battle_RunAwayScrollScreen
+	dw Battle_FinishRunAway
 	dw Func_146e2
 	dw Func_146f2
 	dw Func_14707
@@ -111,7 +111,7 @@ Pointers_1448d:
 	dw Func_15428
 	dw Func_15489
 	dw Func_14af8
-	dw Func_163ef
+	dw Battle_DelayBeforeRunAway
 	dw Func_163e0
 	dw Func_15f66
 	dw Func_15fa1
@@ -170,7 +170,7 @@ Func_1454a: ; 1454a (5:454a)
 
 Func_14566: ; 14566 (5:4566)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a
@@ -275,7 +275,7 @@ Func_145f5: ; 145f5 (5:45f5)
 
 Func_1463e: ; 1463e (5:463e)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $1d
@@ -582,7 +582,7 @@ Func_1486d: ; 1486d (5:486d)
 	ld a, $e8
 	ld [wdc34], a
 Func_1487a: ; 1487a (5:487a)
-	ld hl, Data_16368
+	ld hl, $6368
 	call Func_0620
 	ld hl, wd4d0
 	call Func_14020
@@ -864,7 +864,7 @@ Func_14a7f: ; 14a7f (5:4a7f)
 	ld a, $e8
 	ld [wdc34], a
 Func_14a8c: ; 14a8c (5:4a8c)
-	ld hl, Data_16368
+	ld hl, $6368
 	call Func_0620
 	ld hl, wd4d0
 	call Func_14020
@@ -1066,7 +1066,7 @@ Battle_MenuSelection: ; 14bc6 (5:4bc6)
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $57
 	ld [H_SFX_ID], a
 	ld a, $14
@@ -1255,7 +1255,7 @@ Battle_MoveSelectionMenu: ; 14d1f (5:4d1f)
 	ld [wOAMAnimation01], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	call Func_14062
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
@@ -1291,7 +1291,7 @@ Battle_MoveSelectionMenu: ; 14d1f (5:4d1f)
 	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp NextBattleSubroutine
 
 Func_14ddd: ; 14ddd (5:4ddd)
@@ -1308,7 +1308,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	call GetNthPlayerDenjuu
 	call OpenSRAMBank2
 	ld a, [wCurDenjuuBufferField0x0d]
-	ld hl, $a006
+	ld hl, s2_a006
 	call Func_3d0e
 	push hl
 	pop de
@@ -1571,7 +1571,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd477]
 	ld [wd415], a
 	xor a
@@ -1584,7 +1584,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld [wd45a], a
 	ld a, $2c
@@ -1598,7 +1598,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_15036
@@ -1664,7 +1664,7 @@ Func_15051: ; 15051 (5:5051)
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld [wd45a], a
 	ld a, $2c
@@ -1693,7 +1693,7 @@ Func_15051: ; 15051 (5:5051)
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	lb bc, $0, $c
 	ld e, $80
 	xor a
@@ -3603,7 +3603,7 @@ Func_15f57: ; 15f57 (5:5f57)
 
 Func_15f66: ; 15f66 (5:5f66)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	call Func_1404a
@@ -3981,7 +3981,7 @@ Func_16289: ; 16289 (5:6289)
 	xor a
 	ld [wOAMAnimation05], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $10
 	ld hl, VTilesBG tile $70
 	call ClearString
@@ -4083,11 +4083,10 @@ Func_16348: ; 16348 (5:6348)
 	ld [wSubroutine], a
 	ret
 
-Func_16360: ; 16360 (5:6360)
+Battle_TryToRun: ; 16360 (5:6360)
 	ld a, [wcb3f]
 	cp $1
 	jp z, Func_163d0
-Data_16368: ; 16368 (5:6368)
 	ld a, [wd403]
 	cp $0
 	jp nz, Func_163d0
@@ -4115,10 +4114,10 @@ Data_16368: ; 16368 (5:6368)
 	call PlaceBattleString
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBuffer]
+	ld a, [wCurDenjuuBufferSpecies]
 	ld c, $0
 	ld de, VTilesBG tile $40
-	call Func_0516
+	call LoadDenjuuPic_
 	lb bc, $1, $5
 	ld e, $94
 	xor a
@@ -4151,7 +4150,7 @@ Func_163e0: ; 163e0 (5:63e0)
 	ld [wBattleSubroutine], a
 	ret
 
-Func_163ef: ; 163ef (5:63ef)
+Battle_DelayBeforeRunAway: ; 163ef (5:63ef)
 	ld a, [wd45a]
 	dec a
 	ld [wd45a], a
@@ -4161,7 +4160,7 @@ Func_163ef: ; 163ef (5:63ef)
 	ld [wBattleSubroutine], a
 	ret
 
-Func_163fe: ; 163fe (5:63fe)
+Battle_RunAwayScrollScreen: ; 163fe (5:63fe)
 	ld a, [wSCX]
 	cp $64
 	jr nc, .asm_1640b
@@ -4175,9 +4174,9 @@ Func_163fe: ; 163fe (5:63fe)
 	ld [wcf96], a
 	jp NextBattleSubroutine
 
-Func_16416: ; 16416 (5:6416)
+Battle_FinishRunAway: ; 16416 (5:6416)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a

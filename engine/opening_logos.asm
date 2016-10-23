@@ -52,14 +52,14 @@ Pointers_930a:
 
 Func_9362: ; 9362 (2:5362)
 	ld a, $0
-	call Func_1248
+	call PaletteFade
 	or a
 	ret z
 	jp IncrementSubroutine
 
 Func_936c: ; 936c (2:536c)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
@@ -229,7 +229,7 @@ Func_94c5: ; 94c5 (2:54c5)
 
 Func_94dc: ; 94dc (2:54dc)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $1
@@ -354,7 +354,7 @@ Func_9573: ; 9573 (2:5573)
 	call GetCGB_BGLayout_
 	call GetCGB_OBLayout_
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	call ClearObjectAnimationBuffers
 	xor a
 	ld [wSubroutine], a

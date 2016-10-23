@@ -176,7 +176,7 @@ wc42c:: ds 1
 wc42d:: ds 1
 wc42e:: ds 1
 wc42f:: ds 1
-wc430:: ds 1
+wSpriteUpdatesEnabled:: ds 1
 wc431:: ds 1
 wc432:: ds 1
 wc433:: ds 1

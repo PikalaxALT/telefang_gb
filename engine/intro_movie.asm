@@ -86,7 +86,7 @@ Func_8124: ; 8124 (2:4124)
 	ld bc, $b068
 	call Func_8638
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld [wSCX], a
 	ld a, $37
@@ -98,14 +98,14 @@ Func_8124: ; 8124 (2:4124)
 
 Func_8191: ; 8191 (2:4191)
 	ld a, $2
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
 
 Func_819b: ; 819b (2:419b)
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wVBlankCounter]
 	and $3
 	ret nz
@@ -140,7 +140,7 @@ Func_81bf: ; 81bf (2:41bf)
 	ld a, $41
 	ld [wOAMAnimation02 + 2], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
 Func_81ef: ; 81ef (2:41ef)
@@ -155,7 +155,7 @@ Func_81ef: ; 81ef (2:41ef)
 
 Func_8201: ; 8201 (2:4201)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
@@ -192,7 +192,7 @@ Func_820b: ; 820b (2:420b)
 	ld de, wOAMAnimation02
 	call Func_0609
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
 Func_8264: ; 8264 (2:4264)
@@ -236,14 +236,14 @@ Func_827e: ; 827e (2:427e)
 	ld bc, $c068
 	call Func_8638
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $a0
 	ld [wcb2c], a
 	jp IncrementSubroutine
 
 Func_82cd: ; 82cd (2:42cd)
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wcb2c]
 	cp $0
 	jr z, .asm_82e6
@@ -283,7 +283,7 @@ Func_8303: ; 8303 (2:4303)
 
 Func_8318: ; 8318 (2:4318)
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wOAMAnimation02 + 3]
 Func_8320:
 	inc a
@@ -315,7 +315,7 @@ Func_834b: ; 834b (2:434b)
 	sub $4
 	ld [wSCX], a
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
@@ -352,7 +352,7 @@ Func_835d: ; 835d (2:435d)
 	ld de, wOAMAnimation02
 	call Func_0609
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
 Func_83b6: ; 83b6 (2:43b6)

@@ -30,10 +30,10 @@ BankSwitch::
 	ei
 	ret
 
-Func_04a7::
-	ld a, BANK(Func_f682)
+PaletteFadeCGB_::
+	ld a, BANK(PaletteFadeCGB)
 	rst Bankswitch
-	call Func_f682
+	call PaletteFadeCGB
 	push af
 	rst MemBankswitch
 	pop af
@@ -103,20 +103,20 @@ Func_050a::
 	rst MemBankswitch
 	ret
 
-Func_050f::
-	call Func_1248
+PaletteFade_::
+	call PaletteFade
 	push af
 	rst MemBankswitch
 	pop af
 	ret
 
-Func_0516::
-	call GetDenjuuPicPointer
+LoadDenjuuPic_::
+	call LoadDenjuuPic
 	rst MemBankswitch
 	ret
 
-GetTFangerPicPointer_::
-	call GetTFangerPicPointer
+LoadTFangerPic_::
+	call LoadTFangerPic
 	rst MemBankswitch
 	ret
 

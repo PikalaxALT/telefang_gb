@@ -58,7 +58,7 @@ Func_8061::
 
 Func_8069::
 	ld a, $2
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld c, $2
@@ -89,7 +89,7 @@ Func_808e::
 
 Func_80a0::
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld bc, $0
@@ -160,7 +160,7 @@ Func_8530::
 
 Func_8538::
 	ld a, $2
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld c, $2
@@ -191,7 +191,7 @@ Func_855d::
 
 Func_856f::
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld bc, $0
@@ -256,7 +256,7 @@ Func_85dd:
 
 Func_85ed:
 	ld a, $2
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
@@ -278,7 +278,7 @@ Func_85ff:
 
 Func_8611:
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld bc, $0
@@ -639,7 +639,7 @@ Func_885b:
 
 Func_8883:
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
@@ -675,7 +675,7 @@ Func_88b6:
 
 Func_88c3:
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a
@@ -851,7 +851,7 @@ asm_8cc7
 	push af
 	ld c, $1
 	ld de, VTilesShared tile $00
-	call Func_0516
+	call LoadDenjuuPic_
 	pop af
 	call Func_175f
 	xor a
@@ -927,7 +927,7 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 
 Func_8d7a: ; 8d7a (2:4d7a)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, [wd456]
@@ -1101,7 +1101,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	push af
 	ld c, $1
 	ld de, VTilesShared tile $00
-	call Func_0516
+	call LoadDenjuuPic_
 	pop af
 	call Func_175f
 	ld a, $1
@@ -1159,7 +1159,7 @@ Func_8f2d: ; 8f2d (2:4f2d)
 	jr z, .asm_8f49
 .asm_8f42
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 .asm_8f49
@@ -1168,7 +1168,7 @@ Func_8f2d: ; 8f2d (2:4f2d)
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wcb2b]
 	cp $0
 	jr z, .asm_8f6a
@@ -2076,677 +2076,7 @@ REPT $1e
 	db $0
 ENDR
 
-Func_f586:
-	ld [wFontSourceBank], a
-	ld a, [wc3d8]
-	or a
-	jr z, .asm_f596
-	dec a
-	ld [wc3d8], a
-	jp Func_f5d2
-
-.asm_f596
-	ld a, [wc3da]
-	cp $4
-	jr z, asm_f5d4
-	ld a, [wc3d9]
-	ld [wc3d8], a
-	check_cgb
-	jp z, Func_f701
-	ld a, [wFontSourceBank]
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	sla e
-	rl d
-	ld hl, Pointers_f636
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [wc3da]
-	ld d, $0
-	ld e, a
-	add hl, de
-	ld a, [hl]
-	ld [wBGP], a
-	ld a, [wc3da]
-	inc a
-	ld [wc3da], a
-Func_f5d2: ; f5d2 (3:75d2)
-	xor a
-	ret
-
-asm_f5d4
-	ld a, $1
-	ret
-
-Func_f5d7:
-	ld [wFontSourceBank], a
-	ld a, [wc3d8]
-	or a
-	jr z, .asm_f5e7
-	dec a
-	ld [wc3d8], a
-	jp Func_f631
-
-.asm_f5e7
-	ld a, [wc3da]
-	cp $4
-	jr z, asm_f633
-	ld a, [wc3d9]
-	ld [wc3d8], a
-	check_cgb
-	jp z, Func_f763
-	ld a, [wFontSourceBank]
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	sla e
-	rl d
-	ld hl, Pointers_f636
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [wc3da]
-	ld d, $0
-	ld e, a
-	add hl, de
-	ld d, $0
-	ld e, $5
-	add hl, de
-	ld a, [hl]
-	ld [wOBP0], a
-	ld d, $0
-	ld e, $5
-	add hl, de
-	ld a, [hl]
-	ld [wOBP1], a
-	ld a, [wc3da]
-	inc a
-	ld [wc3da], a
-Func_f631: ; f631 (3:7631)
-	xor a
-	ret
-
-asm_f633
-	ld a, $1
-	ret
-
-Pointers_f636:
-	dw Data_f646, Data_f650
-	dw Data_f655, Data_f65f
-	dw Data_f664, Data_f66e
-	dw Data_f673, Data_f67d
-
-Data_f646: db $00, $54, $a4, $e4, $ff
-           db $00, $50, $a0, $e0, $ff
-Data_f650: db $00, $51, $92, $d2, $ff
-Data_f655: db $e4, $a4, $54, $00, $ff
-           db $e0, $a0, $50, $00, $ff
-Data_f65f: db $d2, $92, $51, $00, $ff
-Data_f664: db $ff, $ea, $e5, $e4, $ff
-           db $ff, $ea, $e5, $e0, $ff
-Data_f66e: db $ff, $ea, $d6, $d2, $ff
-Data_f673: db $e4, $e5, $ea, $ff, $ff
-           db $e0, $e5, $ea, $ff, $ff
-Data_f67d: db $d2, $d6, $ea, $ff, $ff
-
-Func_f682: ; f682 (3:7682)
-	push de
-	ld de, wdec0
-	ld a, d
-	ld [wc454], a
-	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
-	ld hl, wde00
-	call Func_f873
-	call CopyDEC0ToBGPalBuffer
-	ld de, wdec0
-	ld a, d
-	ld [wc454], a
-	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
-	ld hl, wde60
-	call Func_f873
-	call CopyDEC0ToOBPalBuffer
-	ld a, [wc3da]
-	inc a
-	ld [wc3da], a
-	ld a, $1
-	ld [wBGPalUpdate], a
-	ld [wOBPalUpdate], a
-	pop de
-	xor a
-	ret
-
-CopyDEC0ToBGPalBuffer: ; f6c3 (3:76c3)
-	ld hl, wdec0
-	ld de, wCGB_BGPalsBuffer
-	ld b, $8
-.pal
-	push bc
-	ld b, $4
-.hue
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jp nz, .hue
-	pop bc
-	dec b
-	jp nz, .pal
-	ret
-
-Data_f6de:
-x = $80
-REPT 8
-	db x
-x = x + $08
-ENDR
-
-CopyDEC0ToOBPalBuffer: ; f6e6 (3:76e6)
-	ld hl, wdec0
-	ld de, wCGB_OBPalsBuffer
-	ld b, $8
-.pal
-	push bc
-	ld b, $4
-.hue
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jp nz, .hue
-	pop bc
-	dec b
-	jp nz, .pal
-	ret
-
-Func_f701: ; f701 (3:7701)
-	push de
-	push bc
-	ld a, b
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	sla e
-	rl d
-	ld h, d
-	ld l, e
-	sla e
-	rl d
-	add hl, de
-	ld de, wde00
-	add hl, de
-	ld a, c
-	ld [wc44f], a
-	ld de, wdec0
-	ld a, d
-	ld [wc454], a
-	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
-	call Func_f7bd
-	pop bc
-	ld a, b
-	ld hl, Data_f75b
-	ld d, $0
-	ld e, a
-	add hl, de
-	ld a, [hl]
-	ld [rBGPI], a
-	ld hl, wdec0
-	ld a, c
-	add a
-	add a
-	add a
-	ld b, a
-Func_f743: ; f743 (3:7743)
-	push bc
-	di
-	call WaitStat
-	ld a, [hli]
-	ld [rBGPD], a
-	ei
-	pop bc
-	dec b
-	jp nz, Func_f743
-	ld a, [wc3da]
-	inc a
-	ld [wc3da], a
-	pop de
-	xor a
-	ret
-
-Data_f75b:
-x = $80
-REPT 8
-	db x
-x = x + $08
-ENDR
-
-Func_f763: ; f763 (3:7763)
-	push de
-	push bc
-	ld a, b
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	sla e
-	rl d
-	ld h, d
-	ld l, e
-	sla e
-	rl d
-	add hl, de
-	ld de, wde60
-	add hl, de
-	ld a, c
-	ld [wc44f], a
-	ld de, wdec0
-	ld a, d
-	ld [wc454], a
-	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
-	call Func_f7bd
-	pop bc
-	ld a, b
-	ld hl, Data_f75b
-	ld d, $0
-	ld e, a
-	add hl, de
-	ld a, [hl]
-	ld [rOBPI], a
-	ld hl, wdec0
-	ld a, c
-	add a
-	add a
-	add a
-	ld b, a
-Func_f7a5: ; f7a5 (3:77a5)
-	push bc
-	di
-	call WaitStat
-	ld a, [hli]
-	ld [rOBPD], a
-	ei
-	pop bc
-	dec b
-	jp nz, Func_f7a5
-	ld a, [wc3da]
-	inc a
-	ld [wc3da], a
-	pop de
-	xor a
-	ret
-
-Func_f7bd: ; f7bd (3:77bd)
-	ld b, h
-	ld c, l
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	sla e
-	rl d
-	ld hl, Pointers_f7d2
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-Pointers_f7d2:
-	dw Func_f7e3
-	dw Func_f7e2
-	dw Func_f806
-	dw Func_f7e2
-	dw Func_f82b
-	dw Func_f7e2
-	dw Func_f84e
-	dw Func_f7e2
-
-Func_f7e2:
-	ret
-
-Func_f7e3:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	ld c, a
-	ld a, $20
-	sub c
-	ld c, a
-Func_f7f6: ; f7f6 (3:77f6)
-	push bc
-	push hl
-	call Func_f921
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f7f6
-	ret
-
-Func_f806:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	sub $1
-	ld c, a
-	ld a, $0
-	add c
-	ld c, a
-Func_f81b: ; f81b (3:781b)
-	push bc
-	push hl
-	call Func_f921
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f81b
-	ret
-
-Func_f82b:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	ld c, a
-	ld a, $0
-	add c
-	ld c, a
-Func_f83e: ; f83e (3:783e)
-	push bc
-	push hl
-	call Func_f953
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f83e
-	ret
-
-Func_f84e:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	sub $1
-	ld c, a
-	ld a, $1f
-	sub c
-	ld c, a
-Func_f863: ; f863 (3:7863)
-	push bc
-	push hl
-	call Func_f953
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f863
-	ret
-
-Func_f873: ; f873 (3:7873)
-	ld b, h
-	ld c, l
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	sla e
-	rl d
-	ld hl, Pointers_f888
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-Pointers_f888:
-	dw Func_f899
-	dw Func_f898
-	dw Func_f8ba
-	dw Func_f898
-	dw Func_f8dd
-	dw Func_f898
-	dw Func_f8fe
-	dw Func_f898
-
-Func_f898:
-	ret
-
-Func_f899:
-	ld h, b
-	ld l, c
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	ld c, a
-	ld a, $20
-	sub c
-	ld c, a
-	ld b, $8
-Func_f8aa: ; f8aa (3:78aa)
-	push bc
-	push hl
-	call Func_f921
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f8aa
-	ret
-
-Func_f8ba:
-	ld h, b
-	ld l, c
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	sub $1
-	ld c, a
-	ld a, $0
-	add c
-	ld c, a
-	ld b, $8
-Func_f8cd: ; f8cd (3:78cd)
-	push bc
-	push hl
-	call Func_f921
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f8cd
-	ret
-
-Func_f8dd:
-	ld h, b
-	ld l, c
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	ld c, a
-	ld a, $0
-	add c
-	ld c, a
-	ld b, $8
-Func_f8ee: ; f8ee (3:78ee)
-	push bc
-	push hl
-	call Func_f953
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f8ee
-	ret
-
-Func_f8fe:
-	ld h, b
-	ld l, c
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	sub $1
-	ld c, a
-	ld a, $1f
-	sub c
-	ld c, a
-	ld b, $8
-Func_f911: ; f911 (3:7911)
-	push bc
-	push hl
-	call Func_f953
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f911
-	ret
-
-Func_f921: ; f921 (3:7921)
-	ld a, c
-	ld [wc440], a
-REPT 4
-	ld de, wFontSourceAddr + 1
-	call Func_f93e
-ENDR
-	ret
-
-Func_f93e: ; f93e (3:793e)
-	ld b, $3
-Func_f940: ; f940 (3:7940)
-	ld a, [wc440]
-	cp [hl]
-	jp nc, Func_f948
-	ld a, [hl]
-Func_f948: ; f948 (3:7948)
-	ld [de], a
-	inc hl
-	inc de
-	dec b
-	jp nz, Func_f940
-	call Func_f985
-	ret
-
-Func_f953: ; f953 (3:7953)
-	ld a, c
-	ld [wc440], a
-REPT 4
-	ld de, wFontSourceAddr + 1
-	call Func_f970
-ENDR
-	ret
-
-Func_f970: ; f970 (3:7970)
-	ld b, $3
-Func_f972: ; f972 (3:7972)
-	ld a, [wc440]
-	cp [hl]
-	jp c, Func_f97a
-	ld a, [hl]
-Func_f97a: ; f97a (3:797a)
-	ld [de], a
-	inc hl
-	inc de
-	dec b
-	jp nz, Func_f972
-	call Func_f985
-	ret
-
-Func_f985: ; f985 (3:7985)
-	dec de
-	ld a, [de]
-	ld b, a
-	sla b
-	sla b
-	dec de
-	ld a, [de]
-	sla a
-	swap a
-	ld c, a
-	and $3
-	or b
-	ld b, a
-	ld a, c
-	and $e0
-	ld c, a
-	dec de
-	ld a, [de]
-	or c
-	ld c, a
-	ld a, [wc454]
-	ld d, a
-	ld a, [wc455]
-	ld e, a
-	ld a, c
-	ld [de], a
-	inc de
-	ld a, b
-	ld [de], a
-	inc de
-	ld a, d
-	ld [wc454], a
-	ld a, e
-	ld [wc455], a
-	ret
+INCLUDE "engine/color.asm"
 
 Func_f9b6:
 	push hl
@@ -3165,7 +2495,7 @@ Func_10681: ; 10681 (4:4681)
 	call Func_119b9
 	call Func_116e7
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wJoyNew]
 	and D_DOWN
 	jr z, .asm_10697
@@ -3456,7 +2786,7 @@ Func_1089c: ; 1089c (4:489c)
 
 Func_108ab: ; 108ab (4:48ab)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a
@@ -3473,7 +2803,7 @@ Func_108ab: ; 108ab (4:48ab)
 
 Func_108cb: ; 108cb (4:48cb)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	call Func_135ef
@@ -3526,7 +2856,7 @@ Func_10907: ; 10907 (4:4907)
 
 Func_10936: ; 10936 (4:4936)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	call Func_13c53
@@ -3553,7 +2883,7 @@ Func_10953: ; 10953 (4:4953)
 
 Func_10969: ; 10969 (4:4969)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a
@@ -3607,7 +2937,7 @@ Func_109aa: ; 109aa (4:49aa)
 
 Func_109dc: ; 109dc (4:49dc)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, [wcb01]
@@ -3631,7 +2961,7 @@ Func_109f3: ; 109f3 (4:49f3)
 
 Func_10a09: ; 10a09 (4:4a09)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a
@@ -3715,7 +3045,7 @@ Func_10a9c:
 	call Func_12473
 	ld c, $0
 	ld de, VTilesBG tile $40
-	call Func_0516
+	call LoadDenjuuPic_
 	ld a, [wcd24]
 	call Func_12473
 	call Func_1764
@@ -3740,13 +3070,13 @@ Func_10ad6:
 	call Func_0609
 	call Func_13124
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine2
 
 Func_10afc:
 	call Func_132d9
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wcb72]
 	dec a
 	cp $0
@@ -3837,7 +3167,7 @@ Func_10b92:
 	call Func_0609
 	call Func_1329a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine2
 
 Func_10bbd:
@@ -3847,19 +3177,19 @@ Func_10bc0:
 	ld de, wOAMAnimation02
 	call Func_0616
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp Func_131a0
 
 Func_10bce:
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	call Func_13e6e
 	call Func_136d2
 	call ClearObjectAnimationBuffers
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld [wcb2b], a
 	ld a, $9
 	ld [wGameRoutine], a
@@ -3910,7 +3240,7 @@ Func_10c47:
 
 Func_10c4a:
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	call Func_13e6e
@@ -3940,7 +3270,7 @@ Func_10c4a:
 
 Func_10c90:
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $f0
@@ -4022,7 +3352,7 @@ Func_10cc9:
 
 Func_10d30:
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a
@@ -4094,7 +3424,7 @@ Func_10dd3:
 	ld de, wOAMAnimation03
 	call Func_0616
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $c
 	ld [wcb2c], a
 	jp Func_13816
@@ -4133,14 +3463,14 @@ Func_10dec:
 .asm_10e2e
 	call Func_13fc6
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_10e37:
 	ld de, wOAMAnimation02
 	call Func_0616
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp Func_1396d
 
 Func_10e45:
@@ -4308,7 +3638,7 @@ Func_10f4d:
 Func_10f82:
 	call Func_1336e
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wJoyNew]
 	and $10
 	jr z, .asm_10fad
@@ -4637,7 +3967,7 @@ Func_111f3: ; 111f3 (4:51f3)
 
 Func_111f6: ; 111f6 (4:51f6)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	call Func_13e6e
@@ -4672,7 +4002,7 @@ Func_1120c: ; 1120c (4:520c)
 
 Func_11241: ; 11241 (4:5241)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $f0
@@ -4698,7 +4028,7 @@ Func_11265: ; 11265 (4:5265)
 
 Func_11276: ; 11276 (4:5276)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	xor a
@@ -4949,7 +4279,7 @@ Func_11479: ; 11479 (4:5479)
 Func_1147c: ; 1147c (4:547c)
 	call Func_13312
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wJoyNew]
 	and $10
 	jr z, .asm_1149a
@@ -5020,7 +4350,7 @@ Func_1147c: ; 1147c (4:547c)
 
 Func_114ff: ; 114ff (4:54ff)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	call ClearObjectAnimationBuffers
@@ -5048,7 +4378,7 @@ Func_114ff: ; 114ff (4:54ff)
 	ld a, [wcd23]
 	ld c, $1
 	ld de, VTilesShared tile $00
-	call Func_0516
+	call LoadDenjuuPic_
 	ld a, [wcd23]
 	call Func_175f
 	ld a, [wcd23]
@@ -5078,12 +4408,12 @@ Func_114ff: ; 114ff (4:54ff)
 	call Func_0609
 	call Func_13340
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine2
 
 Func_115a4: ; 115a4 (4:55a4)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine2
@@ -5170,7 +4500,7 @@ Func_115ae: ; 115ae (4:55ae)
 
 Func_11644: ; 11644 (4:5644)
 	ld a, $1
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld hl, VTilesBG tile $40
@@ -5203,7 +4533,7 @@ Func_11644: ; 11644 (4:5644)
 
 Func_11690: ; 11690 (4:5690)
 	ld a, $0
-	call Func_050f
+	call PaletteFade_
 	or a
 	ret z
 	ld a, $3
@@ -5217,7 +4547,7 @@ Func_1169d: ; 1169d (4:569d)
 	ld a, [wcd23]
 	ld c, $1
 	ld de, VTilesShared tile $00
-	call Func_0516
+	call LoadDenjuuPic_
 	ld a, [wcd23]
 	call Func_175f
 	ld a, [wcd23]
@@ -5282,7 +4612,7 @@ Func_116e7: ; 116e7 (4:56e7)
 	ld bc, Func_3020
 	call Func_11789
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp Func_12baa
 
 Func_1175d: ; 1175d (4:575d)
@@ -5293,7 +4623,7 @@ Func_1175d: ; 1175d (4:575d)
 	ld [wOAMAnimation20], a
 	ld [wOAMAnimation21], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_11773: ; 11773 (4:5773)
@@ -5470,7 +4800,7 @@ SelectTime: ; 117ef (4:57ef)
 
 Func_1189e: ; 1189e (4:589e)
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	call TimeSet_PrintHours
 	call TimeSet_PrintMinutes
 	jp Func_118c4
@@ -5498,7 +4828,7 @@ Func_118c4: ; 118c4 (4:58c4)
 	ld de, wOAMAnimation02
 	call Func_11789
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_118dd: ; 118dd (4:58dd)
@@ -6182,7 +5512,7 @@ Func_11d40: ; 11d40 (4:5d40)
 	ld de, wOAMAnimation01
 	call Func_11789
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Data_11d5e:
@@ -6223,7 +5553,7 @@ Func_11d7e: ; 11d7e (4:5d7e)
 	ld [wOAMAnimation02_PriorityFlags], a
 .asm_11da5
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Data_11dab:
@@ -6405,7 +5735,7 @@ Func_11ed8: ; 11ed8 (4:5ed8)
 
 Func_11ee9: ; 11ee9 (4:5ee9)
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld de, wOAMAnimation01
 	call Func_099c
 	ld de, wOAMAnimation02
@@ -6563,7 +5893,7 @@ Func_11fbc: ; 11fbc (4:5fbc)
 
 Func_11fe9: ; 11fe9 (4:5fe9)
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $1
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, [wcb6d]
@@ -7049,7 +6379,7 @@ Func_12352: ; 12352 (4:6352)
 	ld de, wOAMAnimation02
 	call Func_11789
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_1236b: ; 1236b (4:636b)
@@ -7224,7 +6554,7 @@ Func_1247c:
 	call ClearMemory3
 	jp Rom4_CloseSRAM
 
-Func_12488: ; 12488 (4:6488)
+PaletteFade8: ; 12488 (4:6488)
 	ld hl, wc3a9
 	ld de, wOAMAnimationsEnd
 	ld b, $9
@@ -7938,7 +7268,7 @@ Func_128ff: ; 128ff (4:68ff)
 	ld de, wOAMAnimation02
 	call Func_11789
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Data_12919:
@@ -7959,7 +7289,7 @@ Func_12921: ; 12921 (4:6921)
 	ld de, wOAMAnimation02
 	call Func_11789
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 LoadPhoneKeypad: ; 1293b (4:693b)
@@ -8531,7 +7861,7 @@ Func_12cd3: ; 12cd3 (4:6cd3)
 	ld a, $0
 	ld [wOAMAnimation03_TemplateBank], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wcb41]
 	hlbgcoord 5, 10
 	call Func_127e3
@@ -8606,7 +7936,7 @@ Func_12d63: ; 12d63 (4:6d63)
 	ld [wOAMAnimation02_TemplateBank], a
 	ld [wOAMAnimation03_TemplateBank], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_12dc7: ; 12dc7 (4:6dc7)
@@ -9495,7 +8825,7 @@ Func_13474: ; 13474 (4:7474)
 	ld [wcb39], a
 Func_134aa: ; 134aa (4:74aa)
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld b, $c
 	ld hl, wOAMAnimation02_PriorityFlags
@@ -9585,7 +8915,7 @@ Func_134aa: ; 134aa (4:74aa)
 	ld hl, wOAMAnimation02_TemplateBank
 	call Func_13798
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wcb39]
 	cp $c
 	jp z, Func_13579
@@ -9654,7 +8984,7 @@ Func_135ef: ; 135ef (4:75ef)
 	dec b
 	jr nz, .asm_135f4
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_1360a: ; 1360a (4:760a)
@@ -9840,7 +9170,7 @@ Func_1371c: ; 1371c (4:771c)
 	push af
 	ld c, $0
 	ld de, VTilesBG tile $40
-	call Func_0516
+	call LoadDenjuuPic_
 	ld hl, GFX_de95f
 	ld de, VTilesShared tile $00
 	ld bc, $10 tiles
@@ -10212,7 +9542,7 @@ Func_1396d: ; 1396d (4:796d)
 	ld de, wOAMAnimation02
 	call Func_099c
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $4
 	ld [wSubroutine2], a
 	ret
@@ -10982,7 +10312,7 @@ Func_13eb5: ; 13eb5 (4:7eb5)
 	ld a, [wcd23]
 	ld c, $0
 	ld de, VTilesBG tile $40
-	call Func_0516
+	call LoadDenjuuPic_
 	ld a, [wcd23]
 	call Func_1764
 	ld a, [wcd23]
@@ -10992,7 +10322,7 @@ Func_13eb5: ; 13eb5 (4:7eb5)
 	ld a, $ae
 	ld c, $0
 	ld de, VTilesBG tile $40
-	call Func_0516
+	call LoadDenjuuPic_
 	ld a, $ae
 	call Func_1764
 	ld a, $ae
@@ -11103,7 +10433,7 @@ Func_13f8c: ; 13f8c (4:7f8c)
 	call Func_13312
 	call Func_13139
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine2
 
 Func_13fb5: ; 13fb5 (4:7fb5)
@@ -11553,7 +10883,7 @@ Func_142df:
 	push af
 	ld c, $0
 	ld de, VTilesShared tile $00
-	call Func_0516
+	call LoadDenjuuPic_
 	pop af
 	jp Func_1764
 
@@ -11561,7 +10891,7 @@ Func_142ec:
 	push af
 	ld c, $1
 	ld de, VTilesShared tile $38
-	call Func_0516
+	call LoadDenjuuPic_
 	pop af
 	jp Func_175f
 
@@ -11628,7 +10958,7 @@ Func_14340:
 	call LoadStdBGMapLayout_
 .asm_14374
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd45b]
 	cp $a
 	ret nz
@@ -11667,7 +10997,7 @@ Func_1438d:
 	call LoadStdWindowLayout_
 .asm_143c1
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd45b]
 	cp $a
 	ret nz

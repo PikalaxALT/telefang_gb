@@ -257,7 +257,7 @@ ClearWRAM: ; 97c (0:097c)
 
 ClearObjectAnimationBuffers::
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld bc, wOAMAnimationsEnd - wOAMAnimations
 	ld hl, wOAMAnimations
 	call ClearMemory3
@@ -274,7 +274,7 @@ Func_099c::
 	dec b
 	jr nz, .asm_099f
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 WaitStat: ; 9aa (0:09aa)
@@ -688,7 +688,7 @@ Func_0e10: ; e10 (0:0e10)
 
 .asm_0e23
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld hl, $1
 	add hl, de
 	ld a, [hl]
@@ -2963,7 +2963,7 @@ Func_22d2: ; 22d2 (0:22d2)
 Func_231e::
 	call Func_33a2
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
 Func_2329::
@@ -2987,9 +2987,9 @@ Func_2329::
 
 Func_2353::
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $0
-	call Func_1248
+	call PaletteFade
 	or a
 	ret z
 	ld a, [wc9cf]
@@ -3030,7 +3030,7 @@ Func_236c: ; 236c (0:236c)
 .asm_23bc
 	rst MemBankswitch
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_23c3::
@@ -3069,7 +3069,7 @@ Func_23e2: ; 23e2 (0:23e2)
 	ld a, $0
 	ld [wSCY], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_2411: ; 2411 (0:2411)
@@ -3105,7 +3105,7 @@ Func_242b::
 Func_2465::
 	homecall Func_c9875
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wCustomSpriteDest]
 	cp $1
 	jr nz, .asm_2481
@@ -3135,7 +3135,7 @@ Func_2465::
 
 Func_24ad::
 	ld a, $1
-	call Func_1248
+	call PaletteFade
 	or a
 	ret z
 	call Func_2793
@@ -3146,7 +3146,7 @@ Func_24ad::
 
 Func_24c9::
 	ld a, $1
-	call Func_1248
+	call PaletteFade
 	or a
 	ret z
 	ld a, $0
@@ -3155,7 +3155,7 @@ Func_24c9::
 
 Func_24d8::
 	ld a, $1
-	call Func_1248
+	call PaletteFade
 	or a
 	ret z
 	ld a, $b
@@ -3175,7 +3175,7 @@ Func_24f6: ; 24f6 (0:24f6)
 
 Func_2503::
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Func_2509::
@@ -6938,7 +6938,7 @@ Func_3cd0::
 	push de
 	call Func_0616
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ld hl, $6
 	pop de
 	add hl, de
@@ -7007,7 +7007,7 @@ InitBattleMenuCursor: ; 3d18 (0:3d18)
 	ld a, c
 	ld [hli], a
 	ld a, $1
-	ld [wc430], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 
 ClearString: ; 3d5c (0:3d5c)
