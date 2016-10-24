@@ -260,7 +260,7 @@ Func_145f5: ; 145f5 (5:45f5)
 	jr .asm_14635
 
 .asm_14627
-	ld bc, $1f7
+	ld bc, EVENT_1F7
 	call CheckEventFlag
 	jr nz, .asm_14633
 	ld a, $16
@@ -412,7 +412,7 @@ Func_14721: ; 14721 (5:4721)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld [wd435], a
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jr nz, .asm_14791
 	ld a, [wCurDenjuuBuffer]
@@ -693,7 +693,7 @@ Func_1492f: ; 1492f (5:492f)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBuffer]
 	ld [wd435], a
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jr nz, .asm_1499f
 	ld a, [wCurDenjuuBuffer]
@@ -1308,7 +1308,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	call GetNthPlayerDenjuu
 	call OpenSRAMBank2
 	ld a, [wCurDenjuuBufferField0x0d]
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -1334,17 +1334,17 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	cp $2
 	jr z, .asm_14e43
 	ld a, $5
-	ld [wPlayerDenjuu1Field0x07], a
+	ld [wPlayerDenjuu1ArrivedStatus], a
 	jr .asm_14e48
 
 .asm_14e3c
 	ld a, $5
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	jr .asm_14e48
 
 .asm_14e43
 	ld a, $5
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 .asm_14e48
 	jp Func_14e9d
 
@@ -1605,17 +1605,17 @@ Func_14f81: ; 14f81 (5:4f81)
 	cp $2
 	jr z, .asm_1503d
 	ld a, $3
-	ld [wPlayerDenjuu1Field0x07], a
+	ld [wPlayerDenjuu1ArrivedStatus], a
 	jr .asm_15042
 
 .asm_15036
 	ld a, $3
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	jr .asm_15042
 
 .asm_1503d
 	ld a, $3
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 .asm_15042
 	lb bc, $0, $c
 	ld e, $80
@@ -2046,21 +2046,21 @@ Func_15345: ; 15345 (5:5345)
 	cp $2
 	jr z, .asm_15371
 	ld a, $5
-	ld [wEnemyDenjuu1Field0x07], a
+	ld [wEnemyDenjuu1ArrivedStatus], a
 	ld a, [wd417]
 	ld [wEnemyDenjuu1Field0x0b], a
 	jr .asm_1537c
 
 .asm_15364
 	ld a, $5
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	ld a, [wd417]
 	ld [wEnemyDenjuu2Field0x0b], a
 	jr .asm_1537c
 
 .asm_15371
 	ld a, $5
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 	ld a, [wd417]
 	ld [wEnemyDenjuu3Field0x0b], a
 .asm_1537c
@@ -2230,7 +2230,7 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wd40a]
 	cp $1
 	jr z, .asm_154f7
-	ld a, [wPlayerDenjuu2Field0x07]
+	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $0
 	jp z, Func_155ed
 	cp $4
@@ -2239,7 +2239,7 @@ Func_15489: ; 15489 (5:5489)
 	cp $c8
 	jr c, .asm_154ef
 .asm_154ab
-	ld a, [wPlayerDenjuu2Field0x07]
+	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $1
 	jp nz, Func_155ed
 	ld a, [wd450]
@@ -2256,7 +2256,7 @@ Func_15489: ; 15489 (5:5489)
 	cp b
 	jr c, .asm_154ef
 	ld a, $4
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld a, [wPlayerDenjuu2Species]
 	ld [wd4ca], a
 	ld a, [wPlayerDenjuu2Field0x0c]
@@ -2269,11 +2269,11 @@ Func_15489: ; 15489 (5:5489)
 
 .asm_154ef
 	ld a, $1
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	jp Func_155ed
 
 .asm_154f7
-	ld a, [wPlayerDenjuu3Field0x07]
+	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $0
 	jp z, Func_155ed
 	cp $4
@@ -2282,7 +2282,7 @@ Func_15489: ; 15489 (5:5489)
 	cp $c8
 	jr c, .asm_1554e
 .asm_1550a
-	ld a, [wPlayerDenjuu3Field0x07]
+	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $1
 	jp nz, Func_155ed
 	ld a, [wd451]
@@ -2299,7 +2299,7 @@ Func_15489: ; 15489 (5:5489)
 	cp b
 	jr c, .asm_1554e
 	ld a, $4
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 	ld a, [wPlayerDenjuu3Species]
 	ld [wd4cb], a
 	ld a, [wPlayerDenjuu3Field0x0c]
@@ -2312,7 +2312,7 @@ Func_15489: ; 15489 (5:5489)
 
 .asm_1554e
 	ld a, $1
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 	jp Func_155ed
 
 Func_15556: ; 15556 (5:5556)
@@ -2324,7 +2324,7 @@ Func_15556: ; 15556 (5:5556)
 	ld [wd4ce], a
 	ld a, [wPlayerDenjuu2Field0x0d]
 	ld [wd43c], a
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -2344,7 +2344,7 @@ Func_15556: ; 15556 (5:5556)
 	ld [wd4ce], a
 	ld a, [wPlayerDenjuu3Field0x0d]
 	ld [wd43c], a
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -2492,7 +2492,7 @@ Func_15683: ; 15683 (5:5683)
 	ld a, [wd40a]
 	cp $1
 	jr z, asm_1570f
-	ld a, [wEnemyDenjuu2Field0x07]
+	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $0
 	jp z, Func_157e0
 	cp $4
@@ -2501,7 +2501,7 @@ Func_15683: ; 15683 (5:5683)
 	cp $c8
 	jr c, asm_15707
 .asm_156c8
-	ld a, [wEnemyDenjuu2Field0x07]
+	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $1
 	jp nz, Func_157e0
 	ld a, [wd452]
@@ -2519,7 +2519,7 @@ Func_15683: ; 15683 (5:5683)
 	jr c, asm_15707
 Func_156ee: ; 156ee (5:56ee)
 	ld a, $4
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	ld a, [wEnemyDenjuu2Species]
 	ld [wd4cc], a
 	ld a, [wEnemyDenjuu2Field0x0c]
@@ -2530,11 +2530,11 @@ Func_156ee: ; 156ee (5:56ee)
 
 asm_15707
 	ld a, $1
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	jp Func_157e0
 
 asm_1570f
-	ld a, [wEnemyDenjuu3Field0x07]
+	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $0
 	jp z, Func_157e0
 	cp $4
@@ -2543,7 +2543,7 @@ asm_1570f
 	cp $c8
 	jr c, asm_1575e
 .asm_15722
-	ld a, [wEnemyDenjuu3Field0x07]
+	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $1
 	jr nz, Func_15766
 	ld a, [wd453]
@@ -2561,7 +2561,7 @@ asm_1570f
 	jr c, asm_1575e
 Func_15745: ; 15745 (5:5745)
 	ld a, $4
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 	ld a, [wEnemyDenjuu3]
 	ld [wd4cd], a
 	ld a, [wEnemyDenjuu3Field0x0c]
@@ -2572,7 +2572,7 @@ Func_15745: ; 15745 (5:5745)
 
 asm_1575e
 	ld a, $1
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 	jp Func_157e0
 
 Func_15766: ; 15766 (5:5766)
@@ -2877,7 +2877,7 @@ Func_159bc: ; 159bc (5:59bc)
 	call Func_140d9
 	ld a, [wd477]
 	call Func_14102
-	ld a, [wPlayerDenjuu1Field0x07]
+	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $0
 	jr z, .asm_15a26
 	cp $8
@@ -2912,7 +2912,7 @@ Func_159bc: ; 159bc (5:59bc)
 	inc a
 	ld [wPlayerDenjuu1Field0x05], a
 .asm_15a26
-	ld a, [wPlayerDenjuu2Field0x07]
+	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $0
 	jr z, .asm_15a71
 	cp $8
@@ -2949,7 +2949,7 @@ Func_159bc: ; 159bc (5:59bc)
 	inc a
 	ld [wPlayerDenjuu2Field0x05], a
 .asm_15a71
-	ld a, [wPlayerDenjuu3Field0x07]
+	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $0
 	jr z, .asm_15abc
 	cp $8
@@ -2986,7 +2986,7 @@ Func_159bc: ; 159bc (5:59bc)
 	inc a
 	ld [wPlayerDenjuu3Field0x05], a
 .asm_15abc
-	ld a, [wEnemyDenjuu1Field0x07]
+	ld a, [wEnemyDenjuu1ArrivedStatus]
 	cp $0
 	jr z, .asm_15b03
 	cp $8
@@ -3021,7 +3021,7 @@ Func_159bc: ; 159bc (5:59bc)
 	inc a
 	ld [wEnemyDenjuu1Field0x05], a
 .asm_15b03
-	ld a, [wEnemyDenjuu2Field0x07]
+	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $0
 	jr z, .asm_15b4e
 	cp $8
@@ -3058,7 +3058,7 @@ Func_159bc: ; 159bc (5:59bc)
 	inc a
 	ld [wEnemyDenjuu2Field0x05], a
 .asm_15b4e
-	ld a, [wEnemyDenjuu3Field0x07]
+	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $0
 	jr z, .asm_15b99
 	cp $8
@@ -3257,7 +3257,7 @@ asm_15c5e
 	jp Func_15f16
 
 Func_15cd6: ; 15cd6 (5:5cd6)
-	ld a, [wPlayerDenjuu1Field0x07]
+	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $3
 	jr z, .asm_15cfc
 	cp $5
@@ -3290,7 +3290,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	jp Func_15f0f
 
 .asm_15d15
-	ld a, [wPlayerDenjuu2Field0x07]
+	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $3
 	jr z, asm_15d68
 	cp $1
@@ -3321,7 +3321,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	ld [wdc34], a
 Func_15d52: ; 15d52 (5:5d52)
 	ld a, $2
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld a, $30
 	ld [wd430], a
 	xor a
@@ -3346,7 +3346,7 @@ asm_15d68
 	jp Func_15f0f
 
 asm_15d83
-	ld a, [wPlayerDenjuu3Field0x07]
+	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $3
 	jr z, asm_15dd6
 	cp $1
@@ -3377,7 +3377,7 @@ asm_15d83
 	ld [wdc34], a
 Func_15dc0: ; 15dc0 (5:5dc0)
 	ld a, $2
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 	ld a, $30
 	ld [wd431], a
 	xor a
@@ -3402,7 +3402,7 @@ asm_15dd6
 	jp Func_15f0f
 
 asm_15df1
-	ld a, [wEnemyDenjuu1Field0x07]
+	ld a, [wEnemyDenjuu1ArrivedStatus]
 	cp $3
 	jr z, .asm_15e17
 	cp $5
@@ -3436,7 +3436,7 @@ asm_15df1
 	jp Func_15f0f
 
 .asm_15e32
-	ld a, [wEnemyDenjuu2Field0x07]
+	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $3
 	jr z, asm_15e85
 	cp $1
@@ -3467,7 +3467,7 @@ asm_15df1
 	ld [wdc34], a
 Func_15e6f: ; 15e6f (5:5e6f)
 	ld a, $2
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	ld a, $30
 	ld [wd432], a
 	xor a
@@ -3492,7 +3492,7 @@ asm_15e85
 	jp Func_15f0f
 
 asm_15ea0
-	ld a, [wEnemyDenjuu3Field0x07]
+	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $3
 	jr z, asm_15ef3
 	cp $1
@@ -3523,7 +3523,7 @@ asm_15ea0
 	ld [wdc34], a
 Func_15edd: ; 15edd (5:5edd)
 	ld a, $2
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 	ld a, $30
 	ld [wd433], a
 	xor a
@@ -3679,7 +3679,7 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 	jr z, .asm_16033
 	ld a, [wd475]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $2
 	jr nz, .asm_15ffb
 	ld bc, $30e
@@ -3688,7 +3688,7 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 .asm_15ffb
 	ld a, [wd476]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $2
 	jr nz, .asm_1600e
 	ld bc, $310
@@ -3697,7 +3697,7 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 .asm_1600e
 	ld a, [wd478]
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $2
 	jr nz, .asm_16021
 	ld bc, $d0e
@@ -3706,7 +3706,7 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 .asm_16021
 	ld a, [wd479]
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $2
 	ret nz
 	ld bc, $d10
@@ -3730,16 +3730,16 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 	ld e, $83
 	xor a
 	call LoadStdBGMapAttrLayout_
-	ld a, [wPlayerDenjuu2Field0x07]
+	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $2
 	jp z, Func_16076
-	ld a, [wPlayerDenjuu3Field0x07]
+	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $2
 	jp z, Func_16076
-	ld a, [wEnemyDenjuu2Field0x07]
+	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $2
 	jp z, Func_16085
-	ld a, [wEnemyDenjuu3Field0x07]
+	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $2
 	jp z, Func_16085
 	jr asm_16093
@@ -3774,16 +3774,16 @@ Func_16099: ; 16099 (5:6099)
 	ld e, $83
 	xor a
 	call LoadStdBGMapAttrLayout_
-	ld a, [wPlayerDenjuu2Field0x07]
+	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $2
 	jp z, Func_160cb
-	ld a, [wPlayerDenjuu3Field0x07]
+	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $2
 	jp z, Func_16108
-	ld a, [wEnemyDenjuu2Field0x07]
+	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $2
 	jp z, Func_1615f
-	ld a, [wEnemyDenjuu3Field0x07]
+	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $2
 	jp z, Func_1619e
 Func_160cb: ; 160cb (5:60cb)
@@ -3806,13 +3806,13 @@ Func_160cb: ; 160cb (5:60cb)
 	ld a, $1
 	call Func_140d9
 	ld a, $3
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	jp Func_161f5
 
 Func_16108: ; 16108 (5:6108)
 	ld a, $1
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $4
 	jr z, .asm_16118
 	cp $1
@@ -3842,7 +3842,7 @@ Func_16108: ; 16108 (5:6108)
 	ld a, $2
 	call Func_140d9
 	ld a, $3
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 	jp Func_161f5
 
 Func_1615f: ; 1615f (5:615f)
@@ -3866,13 +3866,13 @@ Func_1615f: ; 1615f (5:615f)
 	ld a, $1
 	call Func_14102
 	ld a, $3
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	jr Func_161f5
 
 Func_1619e: ; 1619e (5:619e)
 	ld a, $1
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $4
 	jr z, .asm_161ae
 	cp $1
@@ -3903,7 +3903,7 @@ Func_1619e: ; 1619e (5:619e)
 	ld a, $2
 	call Func_14102
 	ld a, $3
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 Func_161f5: ; 161f5 (5:61f5)
 	ld a, $22
 	ld [wBattleSubroutine], a
@@ -4095,7 +4095,7 @@ Battle_TryToRun: ; 16360 (5:6360)
 	or a
 	jr z, Func_163d0
 	call OpenSRAMBank2
-	ld hl, s2_a002
+	ld hl, sAddressBook + 2
 	ld a, [wcdb4]
 	call Func_3d0e
 	ld a, [hl]
@@ -4384,7 +4384,7 @@ Func_1654b: ; 1654b (5:654b)
 
 Func_1655b:
 	ld bc, wd477
-	ld a, [wd5c7]
+	ld a, [wEnemyPartySize]
 	cp $3
 	jr z, .asm_16568
 	jp Func_164f5
@@ -4579,7 +4579,7 @@ Func_166a5: ; 166a5 (5:66a5)
 	call Func_3d7f
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jr z, .asm_166fc
 	ld hl, wPlayerDenjuu1AttackedOnItsOwn
@@ -4600,7 +4600,7 @@ Func_166a5: ; 166a5 (5:66a5)
 .asm_166dd
 	ld a, [wd477]
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jr z, .asm_166fc
 	ld c, $1d
@@ -4640,7 +4640,7 @@ Func_16709: ; 16709 (5:6709)
 	ret
 
 Func_16724: ; 16724 (5:6724)
-	ld bc, $1f1
+	ld bc, EVENT_1F1
 	call CheckEventFlag
 	jr z, .asm_1672f
 	jp Func_167c5
@@ -4679,7 +4679,7 @@ Func_16724: ; 16724 (5:6724)
 	jr z, Func_167c5
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jp nz, Func_1679b
 	ld a, [wCurDenjuuBufferField0x12]
@@ -4759,7 +4759,7 @@ Func_167e9: ; 167e9 (5:67e9)
 	ret
 
 Func_16801: ; 16801 (5:6801)
-	ld bc, $1f1
+	ld bc, EVENT_1F1
 	call CheckEventFlag
 	jr z, .asm_1680c
 	jp Func_168d0
@@ -4816,7 +4816,7 @@ Func_16801: ; 16801 (5:6801)
 	jr z, asm_168bc
 	ld a, [wd477]
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jp nz, Func_16892
 	ld a, [wCurDenjuuBufferField0x12]
@@ -4946,7 +4946,7 @@ Func_168ed: ; 168ed (5:68ed)
 Func_1697c: ; 1697c (5:697c)
 	ld a, [wd477]
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jp nz, Func_169e0
 	ld a, [wd46f]
@@ -5056,7 +5056,7 @@ Func_16a4b: ; 16a4b (5:6a4b)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_16add
-	ld bc, $1f1
+	ld bc, EVENT_1F1
 	call CheckEventFlag
 	jr z, .asm_16a6a
 	ld a, $ff
@@ -5263,31 +5263,31 @@ Func_16bd3: ; 16bd3 (5:6bd3)
 	jr z, .asm_16bef
 	cp $2
 	jr z, .asm_16c00
-	ld a, [wEnemyDenjuu1Field0x07]
+	ld a, [wEnemyDenjuu1ArrivedStatus]
 	cp $5
 	ret nz
 	ld a, $3
-	ld [wEnemyDenjuu1Field0x07], a
+	ld [wEnemyDenjuu1ArrivedStatus], a
 	ld a, $0
 	ld [wEnemyDenjuu1Field0x05], a
 	ret
 
 .asm_16bef
-	ld a, [wEnemyDenjuu2Field0x07]
+	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $5
 	ret nz
 	ld a, $3
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	ld a, $0
 	ld [wEnemyDenjuu2Field0x05], a
 	ret
 
 .asm_16c00
-	ld a, [wEnemyDenjuu3Field0x07]
+	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $5
 	ret nz
 	ld a, $3
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 	ld a, $0
 	ld [wEnemyDenjuu3Field0x05], a
 	ret
@@ -5448,21 +5448,21 @@ Func_16cda: ; 16cda (5:6cda)
 	xor a
 	ld [wPlayerDenjuu1CurHP], a
 	ld a, $8
-	ld [wPlayerDenjuu1Field0x07], a
+	ld [wPlayerDenjuu1ArrivedStatus], a
 	jr .asm_16d4c
 
 .asm_16d38
 	xor a
 	ld [wPlayerDenjuu2CurHP], a
 	ld a, $8
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	jr .asm_16d4c
 
 .asm_16d43
 	xor a
 	ld [wPlayerDenjuu3CurHP], a
 	ld a, $8
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 .asm_16d4c
 	ld a, $f2
 	ld [wdc34], a
@@ -5548,7 +5548,7 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	call OpenSRAMBank2
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld a, a
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -5565,7 +5565,7 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	call OpenSRAMBank2
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld a, a
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -5647,9 +5647,9 @@ Func_16e82: ; 16e82 (5:6e82)
 	cp $2
 	jr z, .asm_16ee8
 	ld a, $0
-	ld [wPlayerDenjuu1Field0x07], a
+	ld [wPlayerDenjuu1ArrivedStatus], a
 	call OpenSRAMBank2
-	ld hl, s2_a002
+	ld hl, sAddressBook + 2
 	ld a, [wPlayerDenjuu1Field0x0d]
 	call Func_3d0e
 	ld a, [hl]
@@ -5663,9 +5663,9 @@ Func_16e82: ; 16e82 (5:6e82)
 
 .asm_16ecb
 	ld a, $0
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	call OpenSRAMBank2
-	ld hl, s2_a002
+	ld hl, sAddressBook + 2
 	ld a, [wPlayerDenjuu2Field0x0d]
 	call Func_3d0e
 	ld a, [hl]
@@ -5679,9 +5679,9 @@ Func_16e82: ; 16e82 (5:6e82)
 
 .asm_16ee8
 	ld a, $0
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 	call OpenSRAMBank2
-	ld hl, s2_a002
+	ld hl, sAddressBook + 2
 	ld a, [wPlayerDenjuu3Field0x0d]
 	call Func_3d0e
 	ld a, [hl]
@@ -5768,7 +5768,7 @@ Func_16f97: ; 16f97 (5:6f97)
 	ret nz
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jp nz, Func_17001
 	ld a, [wd46f]
@@ -5939,31 +5939,31 @@ Func_170e4: ; 170e4 (5:70e4)
 	jr z, .asm_17100
 	cp $2
 	jr z, .asm_17111
-	ld a, [wPlayerDenjuu1Field0x07]
+	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $5
 	ret nz
 	ld a, $3
-	ld [wPlayerDenjuu1Field0x07], a
+	ld [wPlayerDenjuu1ArrivedStatus], a
 	ld a, $0
 	ld [wPlayerDenjuu1Field0x05], a
 	ret
 
 .asm_17100
-	ld a, [wPlayerDenjuu2Field0x07]
+	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $5
 	ret nz
 	ld a, $3
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld a, $0
 	ld [wPlayerDenjuu2Field0x05], a
 	ret
 
 .asm_17111
-	ld a, [wPlayerDenjuu3Field0x07]
+	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $5
 	ret nz
 	ld a, $3
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 	ld a, $0
 	ld [wPlayerDenjuu3Field0x05], a
 	ret
@@ -6101,21 +6101,21 @@ asm_1721c
 	xor a
 	ld [wEnemyDenjuu1CurHP], a
 	ld a, $8
-	ld [wEnemyDenjuu1Field0x07], a
+	ld [wEnemyDenjuu1ArrivedStatus], a
 	jr asm_1723b
 
 Func_17227: ; 17227 (5:7227)
 	xor a
 	ld [wEnemyDenjuu2CurHP], a
 	ld a, $8
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	jr asm_1723b
 
 Func_17232: ; 17232 (5:7232)
 	xor a
 	ld [wEnemyDenjuu3CurHP], a
 	ld a, $8
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 asm_1723b
 	ld c, $6
 	call Func_3d02
@@ -6254,9 +6254,9 @@ Func_172e9: ; 172e9 (5:72e9)
 	ld a, [wd4e7]
 	dec a
 	ld [wd4e7], a
-	ld a, [wd5c7]
+	ld a, [wEnemyPartySize]
 	dec a
-	ld [wd5c7], a
+	ld [wEnemyPartySize], a
 	ld a, [wd4e5]
 	dec a
 	ld [wd4e5], a
@@ -6284,17 +6284,17 @@ Func_17347: ; 17347 (5:7347)
 	cp $2
 	jr z, .asm_17381
 	ld a, $0
-	ld [wEnemyDenjuu1Field0x07], a
+	ld [wEnemyDenjuu1ArrivedStatus], a
 	jr .asm_17386
 
 .asm_1737a
 	ld a, $0
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	jr .asm_17386
 
 .asm_17381
 	ld a, $0
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 .asm_17386
 	ld a, [wd477]
 	call GetNthEnemyDenjuu
@@ -6306,7 +6306,7 @@ Func_17347: ; 17347 (5:7347)
 	dec a
 	cp $0
 	jr z, .asm_173b7
-	ld a, [wd5c7]
+	ld a, [wEnemyPartySize]
 	ld b, a
 	ld a, [wd4e7]
 	cp b
@@ -6323,9 +6323,9 @@ Func_17347: ; 17347 (5:7347)
 	ld a, [wd4e7]
 	dec a
 	ld [wd4e7], a
-	ld a, [wd5c7]
+	ld a, [wEnemyPartySize]
 	dec a
-	ld [wd5c7], a
+	ld [wEnemyPartySize], a
 	ld a, [wd4e5]
 	dec a
 	ld [wd4e5], a
@@ -7044,17 +7044,17 @@ Func_17911: ; 17911 (5:7911)
 
 .asm_1791e
 	ld a, $3
-	ld [wPlayerDenjuu1Field0x07], a
+	ld [wPlayerDenjuu1ArrivedStatus], a
 	jr Func_1797c
 
 .asm_17925
 	ld a, $3
-	ld [wPlayerDenjuu2Field0x07], a
+	ld [wPlayerDenjuu2ArrivedStatus], a
 	jr Func_1797c
 
 .asm_1792c
 	ld a, $3
-	ld [wPlayerDenjuu3Field0x07], a
+	ld [wPlayerDenjuu3ArrivedStatus], a
 	jr Func_1797c
 
 asm_17933
@@ -7084,17 +7084,17 @@ Func_1795c: ; 1795c (5:795c)
 
 .asm_17969
 	ld a, $3
-	ld [wEnemyDenjuu1Field0x07], a
+	ld [wEnemyDenjuu1ArrivedStatus], a
 	jr Func_1797c
 
 .asm_17970
 	ld a, $3
-	ld [wEnemyDenjuu2Field0x07], a
+	ld [wEnemyDenjuu2ArrivedStatus], a
 	jr Func_1797c
 
 .asm_17977
 	ld a, $3
-	ld [wEnemyDenjuu3Field0x07], a
+	ld [wEnemyDenjuu3ArrivedStatus], a
 Func_1797c: ; 1797c (5:797c)
 	ld a, [wd458]
 	cp $0
@@ -7125,7 +7125,7 @@ Func_179a2: ; 179a2 (5:79a2)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -7151,7 +7151,7 @@ Func_179d7: ; 179d7 (5:79d7)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -7334,7 +7334,7 @@ Func_17aea: ; 17aea (5:7aea)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -7852,7 +7852,7 @@ Func_17ea0: ; 17ea0 (5:7ea0)
 	jr z, .asm_17eca
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jr nz, .asm_17ef0
 	call Func_17acc
@@ -7864,7 +7864,7 @@ Func_17ea0: ; 17ea0 (5:7ea0)
 .asm_17eca
 	ld a, [wd477]
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jp nz, .asm_17ef0
 	call Func_17acc

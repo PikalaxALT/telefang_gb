@@ -15,7 +15,7 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	dw OpeningLogos_
 	dw TitleScreen_
 	dw Func_1c26
-	dw PhoneMenu_
+	dw TopPhoneMenu_
 	dw PlayIntroMovie_
 	dw RunOverworld_
 	dw StartBattle_
@@ -23,8 +23,8 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	dw BattleResult_
 	dw Func_1c65
 	dw Func_1c6e
-	dw Func_1c77
-	dw Func_1c77
+	dw InGamePhoneMenu_
+	dw InGamePhoneMenu_
 	dw Func_1c80
 	dw GameOverScreen_
 	dw Func_1c92
@@ -47,11 +47,11 @@ Func_1c26::
 	rst Bankswitch
 	jp Func_8000
 
-PhoneMenu_::
-	ld a, BANK(PhoneMenu)
+TopPhoneMenu_::
+	ld a, BANK(TopPhoneMenu)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp PhoneMenu
+	jp TopPhoneMenu
 
 PlayIntroMovie_::
 	ld a, BANK(PlayIntroMovie)
@@ -95,11 +95,11 @@ Func_1c6e::
 	rst Bankswitch
 	jp Func_8824
 
-Func_1c77::
-	ld a, BANK(Func_105c0)
+InGamePhoneMenu_::
+	ld a, BANK(InGamePhoneMenu)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_105c0
+	jp InGamePhoneMenu
 
 Func_1c80::
 	ld a, BANK(Func_84cf)

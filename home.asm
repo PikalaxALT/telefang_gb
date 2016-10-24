@@ -1383,7 +1383,11 @@ CopyData::
 	jr nz, .asm_15c1
 	ret
 
-Func_15ca::
+FillBoxAttr::
+; hl: start
+; b: x dim
+; c: y dim
+; a: bg attributes
 	ld [wNumCGBPalettesToFade], a
 	check_cgb
 	ret nz
@@ -1391,20 +1395,20 @@ Func_15ca::
 	ld [rVBK], a
 	ld a, b
 	ld [wFontSourceBank], a
-.asm_15db
+.row
 	push hl
 	ld a, [wFontSourceBank]
 	ld b, a
-.asm_15e0
+.col
 	ld a, [wNumCGBPalettesToFade]
 	call WaitStatAndLoad
 	dec b
-	jr nz, .asm_15e0
+	jr nz, .col
 	pop hl
-	ld de, $20
+	ld de, BG_MAP_WIDTH
 	add hl, de
 	dec c
-	jr nz, .asm_15db
+	jr nz, .row
 	xor a
 	ld [rVBK], a
 	ret
@@ -2950,10 +2954,10 @@ Func_22d2: ; 22d2 (0:22d2)
 	ld a, [wc905]
 	cp $4
 	jr nz, .asm_231a
-	ld bc, $448
+	ld bc, EVENT_448
 	call CheckEventFlag
 	ret z
-	ld bc, $210
+	ld bc, EVENT_210
 	call CheckEventFlag
 	ret nz
 .asm_231a
@@ -3250,7 +3254,7 @@ Func_256e::
 	cp $11
 	jr nz, .asm_260e
 .asm_259a
-	ld bc, $1de
+	ld bc, EVENT_1DE
 	call CheckEventFlag
 	jp z, Func_2691
 	callba Func_31843
@@ -3406,7 +3410,7 @@ Func_26b1: ; 26b1 (0:26b1)
 	ld [wc9fe], a
 	cp $1c
 	jr c, Func_2690
-	ld bc, $1df
+	ld bc, EVENT_1DF
 	call CheckEventFlag
 	jr z, .asm_26f6
 	callba Func_31e97
@@ -3594,7 +3598,7 @@ Func_2809: ; 2809 (0:2809)
 	ld a, [wc9c4]
 	ld [wc916], a
 	call Func_2a68
-	jp z, Func_28a4
+	jp z, .quit_true
 	inc hl
 	inc hl
 	inc hl
@@ -3602,38 +3606,38 @@ Func_2809: ; 2809 (0:2809)
 	ld c, a
 	ld b, [hl]
 	push hl
-	ld hl, $fc00
+	ld hl, -$400
 	add hl, bc
 	pop hl
-	jr c, .asm_2882
+	jr c, .skip_flag_check
 	cp $ff
-	jr nz, .asm_2839
+	jr nz, .check_flag
 	ld a, b
 	cp $ff
-	jr z, .asm_2894
-.asm_2839
+	jr z, .skip_flag_action
+.check_flag
 	call CheckEventFlag
-	jr nz, .asm_287e
+	jr nz, .quit_false
 	ld a, [wc904]
 	cp $a
 	jr nz, .asm_284c
 	ld a, [wc906]
 	cp $1c
-	jr z, .asm_2861
+	jr z, .check_set_flag
 .asm_284c
 	ld a, [wc904]
 	cp $e
-	jr z, .asm_2861
+	jr z, .check_set_flag
 	ld a, [wc904]
 	cp $f
-	jr z, .asm_2861
+	jr z, .check_set_flag
 	ld a, [wc904]
 	cp $34
-	jr nz, .asm_2882
-.asm_2861
+	jr nz, .skip_flag_check
+.check_set_flag
 	ld a, [wcdec]
 	or a
-	jr z, .asm_2894
+	jr z, .skip_flag_action
 	dec a
 	ld [wcdec], a
 	call SetEventFlag
@@ -3646,13 +3650,13 @@ Func_2809: ; 2809 (0:2809)
 	call Func_2c63b
 	pop af
 	rst Bankswitch
-.asm_287e
+.quit_false
 	pop af
 	rst Bankswitch
 	xor a
 	ret
 
-.asm_2882
+.skip_flag_check
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_2c63b)
@@ -3662,9 +3666,9 @@ Func_2809: ; 2809 (0:2809)
 	call Func_2c63b
 	pop af
 	rst Bankswitch
-	jr Func_28a4
+	jr .quit_true
 
-.asm_2894
+.skip_flag_action
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_2c63b)
@@ -3674,7 +3678,7 @@ Func_2809: ; 2809 (0:2809)
 	call Func_2c63b
 	pop af
 	rst Bankswitch
-Func_28a4: ; 28a4 (0:28a4)
+.quit_true
 	pop af
 	rst Bankswitch
 	or $1
@@ -4212,7 +4216,7 @@ Func_2c05::
 	cp $3
 	jr nz, asm_2c22
 	push bc
-	ld bc, $1d8
+	ld bc, EVENT_1D8
 	call CheckEventFlag
 	pop bc
 	ld a, $3
@@ -4234,7 +4238,7 @@ Func_2c29::
 	cp $3
 	jr nz, asm_2c22
 	push bc
-	ld bc, $1d8
+	ld bc, EVENT_1D8
 	call CheckEventFlag
 	pop bc
 	ld a, $3
@@ -4413,7 +4417,7 @@ Func_2d59::
 	ld h, [hl]
 	ld l, a
 	push bc
-	ld bc, $20b
+	ld bc, EVENT_20B
 	call CheckEventFlag
 	pop bc
 	jr z, .asm_2d91
@@ -4463,7 +4467,7 @@ Func_2d59::
 	rst Bankswitch
 	ld hl, Pointers_148000
 	push bc
-	ld bc, $20b
+	ld bc, EVENT_20B
 	call CheckEventFlag
 	pop bc
 	jr z, .asm_2dd8
@@ -4474,7 +4478,7 @@ Func_2d59::
 
 Func_2ddb: ; 2ddb (0:2ddb)
 	push bc
-	ld bc, $20b
+	ld bc, EVENT_20B
 	call CheckEventFlag
 	pop bc
 	jr nz, .asm_2df5
@@ -6877,12 +6881,12 @@ Func_3c57: ; 3c57 (0:3c57)
 	inc hl
 .asm_3c7d
 	ld a, [hl]
-	ld [wd4e0], a
+	ld [wTempWildDenjuuSpecies], a
 	pop hl
 	ld de, $4
 	add hl, de
 	ld a, [hl]
-	ld [wd49c], a
+	ld [wTempWildDenjuuLevel], a
 	ret
 
 Func_3c8b: ; 3c8b (0:3c8b)
@@ -6901,7 +6905,7 @@ ENDR
 	ld de, wd4d0
 	call CopyData
 	ld a, $e0
-	ld [wd4e0], a
+	ld [wTempWildDenjuuSpecies], a
 	ret
 
 Func_3cb5::
@@ -7026,7 +7030,7 @@ OpenSRAMBank2::
 	push af
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ld a, BANK(s2_a006)
+	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	pop af
 	ret
@@ -7152,7 +7156,7 @@ Func_3e19::
 	push af
 	call OpenSRAMBank2
 	pop af
-	ld hl, s2_a006
+	ld hl, sAddressBook + 6
 	call Func_3d0e
 	push hl
 	pop de
@@ -7301,7 +7305,7 @@ Func_3f2a::
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
 	jr z, .asm_3f4a
-	ld a, [wCurDenjuuBufferField0x07]
+	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $1
 	jr z, .asm_3f47
 	cp $4

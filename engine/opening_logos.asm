@@ -106,14 +106,14 @@ Func_93bd: ; 93bd (2:53bd)
 	call GetCGB_BGLayout_
 	ld a, $1
 	ld [wdd06], a
-	ld bc, $1412
+	lb bc, SCREEN_WIDTH, SCREEN_HEIGHT
 	ld a, $0
 	hlbgcoord 0, 0
-	call Func_15ca
-	ld bc, $2006
+	call FillBoxAttr
+	lb bc, BG_MAP_WIDTH, 6
 	ld a, $1
 	hlbgcoord 0, 7
-	call Func_15ca
+	call FillBoxAttr
 	lb bc, $0, $0
 	ld e, $7
 	ld a, $0
@@ -152,10 +152,10 @@ Func_9427: ; 9427 (2:5427)
 	ld e, $0
 	ld a, $0
 	call Func_04c0
-	ld bc, $1412
+	lb bc, SCREEN_WIDTH, SCREEN_HEIGHT
 	ld a, $2
 	hlbgcoord 0, 0
-	call Func_15ca
+	call FillBoxAttr
 	lb bc, $0, $0
 	ld e, $8
 	ld a, $0
@@ -175,10 +175,10 @@ Func_945c: ; 945c (2:545c)
 	ld e, $0
 	ld a, $0
 	call Func_04c0
-	ld bc, $1412
+	lb bc, SCREEN_WIDTH, SCREEN_HEIGHT
 	ld a, $0
 	hlbgcoord 0, 0
-	call Func_15ca
+	call FillBoxAttr
 	lb bc, $0, $0
 	ld e, $a
 	ld a, $0

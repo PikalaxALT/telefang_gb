@@ -161,7 +161,7 @@ battle_struct: MACRO
 \1Speed:: ds 1
 \1Field0x05:: ds 1
 \1Field0x06:: ds 1
-\1Field0x07:: ds 1
+\1ArrivedStatus:: ds 1
 \1Field0x08:: ds 1
 \1Field0x09:: ds 1
 \1Autonomy:: ds 1
@@ -177,3 +177,11 @@ battle_struct: MACRO
 \1SpeedCopy2:: ds 1
 \1Field0x15:: ds 1
 ENDM
+
+flag_array: MACRO
+IF (\1 & $7) > 0
+	ds (\1 >> 3) + 1
+ELSE
+	ds (\1 >> 3)
+ENDC
+ENDR
