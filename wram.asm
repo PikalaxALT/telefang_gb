@@ -87,9 +87,9 @@ wc3d4:: ds 1
 wc3d5:: ds 1
 wc3d6:: ds 1
 wc3d7:: ds 1
-wc3d8:: ds 1
-wc3d9:: ds 1
-wc3da:: ds 1
+wCurFadeTimer:: ds 1
+wCurFadeTimerReset:: ds 1
+wCurFadePosition:: ds 1
 wc3db:: ds 1
 wc3dc:: ds 1
 wc3dd:: ds 1
@@ -192,7 +192,7 @@ wc43c:: ds 1
 wc43d:: ds 1
 wc43e:: ds 1
 wc43f:: ds 1
-wc440:: ds 1
+wCGBFade_PalLimit:: ds 1
 wc441:: ds 1
 wc442:: ds 1
 wc443:: ds 1
@@ -210,11 +210,15 @@ wc44d:: ds 1
 wFontSourceBank:: ds 1 ; c44e
 wc44f:: ds 1
 wFontSourceAddr:: dw ; c450
-
 wc452:: ds 1
 wc453:: ds 1
-wc454:: ds 1
-wc455:: ds 1
+	ds wFontSourceBank - @
+
+wCGBPalFadeProgram:: ds 1
+wNumCGBPalettesToFade:: ds 1
+wc450:: ds 1
+wCGBPalFadeCurPalRGBBuffer:: ds 3
+wCGBPalFadeBufferPointer:: dw
 wc456:: ds 1
 wc457:: ds 1
 wc458:: ds 1
@@ -1959,7 +1963,7 @@ wcb23:: ds 1
 wcb24:: ds 1
 wcb25:: ds 1
 wStdLayoutIndexBuffer:: ds 1
-wcb27:: ds 1
+wCurFadeProgram:: ds 1
 wcb28:: ds 1
 wcb29:: ds 1
 wcb2a:: ds 1
@@ -6612,168 +6616,16 @@ wde5c:: ds 1
 wde5d:: ds 1
 wde5e:: ds 1
 wde5f:: ds 1
-wde60:: ds 1
-wde61:: ds 1
-wde62:: ds 1
-wde63:: ds 1
-wde64:: ds 1
-wde65:: ds 1
-wde66:: ds 1
-wde67:: ds 1
-wde68:: ds 1
-wde69:: ds 1
-wde6a:: ds 1
-wde6b:: ds 1
-wde6c:: ds 1
-wde6d:: ds 1
-wde6e:: ds 1
-wde6f:: ds 1
-wde70:: ds 1
-wde71:: ds 1
-wde72:: ds 1
-wde73:: ds 1
-wde74:: ds 1
-wde75:: ds 1
-wde76:: ds 1
-wde77:: ds 1
-wde78:: ds 1
-wde79:: ds 1
-wde7a:: ds 1
-wde7b:: ds 1
-wde7c:: ds 1
-wde7d:: ds 1
-wde7e:: ds 1
-wde7f:: ds 1
-wde80:: ds 1
-wde81:: ds 1
-wde82:: ds 1
-wde83:: ds 1
-wde84:: ds 1
-wde85:: ds 1
-wde86:: ds 1
-wde87:: ds 1
-wde88:: ds 1
-wde89:: ds 1
-wde8a:: ds 1
-wde8b:: ds 1
-wde8c:: ds 1
-wde8d:: ds 1
-wde8e:: ds 1
-wde8f:: ds 1
-wde90:: ds 1
-wde91:: ds 1
-wde92:: ds 1
-wde93:: ds 1
-wde94:: ds 1
-wde95:: ds 1
-wde96:: ds 1
-wde97:: ds 1
-wde98:: ds 1
-wde99:: ds 1
-wde9a:: ds 1
-wde9b:: ds 1
-wde9c:: ds 1
-wde9d:: ds 1
-wde9e:: ds 1
-wde9f:: ds 1
-wdea0:: ds 1
-wdea1:: ds 1
-wdea2:: ds 1
-wdea3:: ds 1
-wdea4:: ds 1
-wdea5:: ds 1
-wdea6:: ds 1
-wdea7:: ds 1
-wdea8:: ds 1
-wdea9:: ds 1
-wdeaa:: ds 1
-wdeab:: ds 1
-wdeac:: ds 1
-wdead:: ds 1
-wdeae:: ds 1
-wdeaf:: ds 1
-wdeb0:: ds 1
-wdeb1:: ds 1
-wdeb2:: ds 1
-wdeb3:: ds 1
-wdeb4:: ds 1
-wdeb5:: ds 1
-wdeb6:: ds 1
-wdeb7:: ds 1
-wdeb8:: ds 1
-wdeb9:: ds 1
-wdeba:: ds 1
-wdebb:: ds 1
-wdebc:: ds 1
-wdebd:: ds 1
-wdebe:: ds 1
-wdebf:: ds 1
-wdec0:: ds 1
-wdec1:: ds 1
-wdec2:: ds 1
-wdec3:: ds 1
-wdec4:: ds 1
-wdec5:: ds 1
-wdec6:: ds 1
-wdec7:: ds 1
-wdec8:: ds 1
-wdec9:: ds 1
-wdeca:: ds 1
-wdecb:: ds 1
-wdecc:: ds 1
-wdecd:: ds 1
-wdece:: ds 1
-wdecf:: ds 1
-wded0:: ds 1
-wded1:: ds 1
-wded2:: ds 1
-wded3:: ds 1
-wded4:: ds 1
-wded5:: ds 1
-wded6:: ds 1
-wded7:: ds 1
-wded8:: ds 1
-wded9:: ds 1
-wdeda:: ds 1
-wdedb:: ds 1
-wdedc:: ds 1
-wdedd:: ds 1
-wdede:: ds 1
-wdedf:: ds 1
-wdee0:: ds 1
-wdee1:: ds 1
-wdee2:: ds 1
-wdee3:: ds 1
-wdee4:: ds 1
-wdee5:: ds 1
-wdee6:: ds 1
-wdee7:: ds 1
-wdee8:: ds 1
-wdee9:: ds 1
-wdeea:: ds 1
-wdeeb:: ds 1
-wdeec:: ds 1
-wdeed:: ds 1
-wdeee:: ds 1
-wdeef:: ds 1
-wdef0:: ds 1
-wdef1:: ds 1
-wdef2:: ds 1
-wdef3:: ds 1
-wdef4:: ds 1
-wdef5:: ds 1
-wdef6:: ds 1
-wdef7:: ds 1
-wdef8:: ds 1
-wdef9:: ds 1
-wdefa:: ds 1
-wdefb:: ds 1
-wdefc:: ds 1
-wdefd:: ds 1
-wdefe:: ds 1
-wdeff:: ds 1
 
-SECTION "Stack", WRAMX, BANK [1]
+SECTION "RGB Fade Buffer", WRAMX, BANK [$1]
+wCGBPalFadeComponentBuffer::
+	ds 8 * 12
+
+SECTION "CGB Palette Fade Buffer", WRAMX, BANK [1]
+wCGBPalFadeBuffer::
+	ds 8 * 8
+
+SECTION "Stack", WRAMX [$df00], BANK [1]
 wStackBottom::
 	ds $ff
 wStackTop::

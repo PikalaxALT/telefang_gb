@@ -1,79 +1,79 @@
-Func_f586:
-	ld [wFontSourceBank], a
-	ld a, [wc3d8]
+BGPaletteFade:
+	ld [wCGBPalFadeProgram], a
+	ld a, [wCurFadeTimer]
 	or a
-	jr z, .asm_f596
+	jr z, .fade
 	dec a
-	ld [wc3d8], a
-	jp Func_f5d2
+	ld [wCurFadeTimer], a
+	jp .nope
 
-.asm_f596
-	ld a, [wc3da]
+.fade
+	ld a, [wCurFadePosition]
 	cp $4
-	jr z, asm_f5d4
-	ld a, [wc3d9]
-	ld [wc3d8], a
+	jr z, .done
+	ld a, [wCurFadeTimerReset]
+	ld [wCurFadeTimer], a
 	check_cgb
-	jp z, Func_f701
-	ld a, [wFontSourceBank]
+	jp z, BGPaletteFadeCGB
+	ld a, [wCGBPalFadeProgram]
 	ld d, $0
 	ld e, a
 	sla e
 	rl d
 	sla e
 	rl d
-	ld hl, Pointers_f636
+	ld hl, FadePrograms_ROM3
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	ld d, $0
 	ld e, a
 	add hl, de
 	ld a, [hl]
 	ld [wBGP], a
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	inc a
-	ld [wc3da], a
-Func_f5d2: ; f5d2 (3:75d2)
+	ld [wCurFadePosition], a
+.nope
 	xor a
 	ret
 
-asm_f5d4
+.done
 	ld a, $1
 	ret
 
-Func_f5d7:
-	ld [wFontSourceBank], a
-	ld a, [wc3d8]
+OBPaletteFade:
+	ld [wCGBPalFadeProgram], a
+	ld a, [wCurFadeTimer]
 	or a
-	jr z, .asm_f5e7
+	jr z, .fade
 	dec a
-	ld [wc3d8], a
-	jp Func_f631
+	ld [wCurFadeTimer], a
+	jp .nope
 
-.asm_f5e7
-	ld a, [wc3da]
+.fade
+	ld a, [wCurFadePosition]
 	cp $4
-	jr z, asm_f633
-	ld a, [wc3d9]
-	ld [wc3d8], a
+	jr z, .done
+	ld a, [wCurFadeTimerReset]
+	ld [wCurFadeTimer], a
 	check_cgb
-	jp z, Func_f763
-	ld a, [wFontSourceBank]
+	jp z, OBPaletteFadeCGB
+	ld a, [wCGBPalFadeProgram]
 	ld d, $0
 	ld e, a
 	sla e
 	rl d
 	sla e
 	rl d
-	ld hl, Pointers_f636
+	ld hl, FadePrograms_ROM3
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	ld d, $0
 	ld e, a
 	add hl, de
@@ -87,18 +87,18 @@ Func_f5d7:
 	add hl, de
 	ld a, [hl]
 	ld [wOBP1], a
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	inc a
-	ld [wc3da], a
-Func_f631: ; f631 (3:7631)
+	ld [wCurFadePosition], a
+.nope
 	xor a
 	ret
 
-asm_f633
+.done
 	ld a, $1
 	ret
 
-Pointers_f636:
+FadePrograms_ROM3:
 	dw Data_f646, Data_f650
 	dw Data_f655, Data_f65f
 	dw Data_f664, Data_f66e
@@ -119,27 +119,27 @@ Data_f67d: db $d2, $d6, $ea, $ff, $ff
 
 PaletteFadeCGB: ; f682 (3:7682)
 	push de
-	ld de, wdec0
+	ld de, wCGBPalFadeBuffer
 	ld a, d
-	ld [wc454], a
+	ld [wCGBPalFadeBufferPointer], a
 	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
+	ld [wCGBPalFadeBufferPointer + 1], a
+	ld a, [wCurFadeProgram]
 	ld hl, wde00
-	call Func_f873
-	call CopyDEC0ToBGPalBuffer
-	ld de, wdec0
+	call ApplyCGBFadeToEightPals
+	call CopyFadeBufferToBGPalBuffer
+	ld de, wCGBPalFadeBuffer
 	ld a, d
-	ld [wc454], a
+	ld [wCGBPalFadeBufferPointer], a
 	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
-	ld hl, wde60
-	call Func_f873
-	call CopyDEC0ToOBPalBuffer
-	ld a, [wc3da]
+	ld [wCGBPalFadeBufferPointer + 1], a
+	ld a, [wCurFadeProgram]
+	ld hl, wCGBPalFadeComponentBuffer
+	call ApplyCGBFadeToEightPals
+	call CopyFadeBufferToOBPalBuffer
+	ld a, [wCurFadePosition]
 	inc a
-	ld [wc3da], a
+	ld [wCurFadePosition], a
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
@@ -147,8 +147,8 @@ PaletteFadeCGB: ; f682 (3:7682)
 	xor a
 	ret
 
-CopyDEC0ToBGPalBuffer: ; f6c3 (3:76c3)
-	ld hl, wdec0
+CopyFadeBufferToBGPalBuffer: ; f6c3 (3:76c3)
+	ld hl, wCGBPalFadeBuffer
 	ld de, wCGB_BGPalsBuffer
 	ld b, $8
 .pal
@@ -168,15 +168,15 @@ CopyDEC0ToBGPalBuffer: ; f6c3 (3:76c3)
 	jp nz, .pal
 	ret
 
-Data_f6de:
-x = $80
+CGBPalIOFlags_f6de:
+x = $80 ; auto-increment
 REPT 8
 	db x
-x = x + $08
+x = x + 1 palettes
 ENDR
 
-CopyDEC0ToOBPalBuffer: ; f6e6 (3:76e6)
-	ld hl, wdec0
+CopyFadeBufferToOBPalBuffer: ; f6e6 (3:76e6)
+	ld hl, wCGBPalFadeBuffer
 	ld de, wCGB_OBPalsBuffer
 	ld b, $8
 .pal
@@ -196,7 +196,8 @@ CopyDEC0ToOBPalBuffer: ; f6e6 (3:76e6)
 	jp nz, .pal
 	ret
 
-Func_f701: ; f701 (3:7701)
+BGPaletteFadeCGB: ; f701 (3:7701)
+; c palettes starting at b
 	push de
 	push bc
 	ld a, b
@@ -214,29 +215,29 @@ Func_f701: ; f701 (3:7701)
 	ld de, wde00
 	add hl, de
 	ld a, c
-	ld [wc44f], a
-	ld de, wdec0
+	ld [wNumCGBPalettesToFade], a
+	ld de, wCGBPalFadeBuffer
 	ld a, d
-	ld [wc454], a
+	ld [wCGBPalFadeBufferPointer], a
 	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
-	call Func_f7bd
+	ld [wCGBPalFadeBufferPointer + 1], a
+	ld a, [wCurFadeProgram]
+	call ApplyCGBFadeToCPals
 	pop bc
 	ld a, b
-	ld hl, Data_f75b
+	ld hl, CGBPalIOFlags_f75b
 	ld d, $0
 	ld e, a
 	add hl, de
 	ld a, [hl]
 	ld [rBGPI], a
-	ld hl, wdec0
+	ld hl, wCGBPalFadeBuffer
 	ld a, c
 	add a
 	add a
 	add a
 	ld b, a
-Func_f743: ; f743 (3:7743)
+.ApplyBGPal
 	push bc
 	di
 	call WaitStat
@@ -245,22 +246,23 @@ Func_f743: ; f743 (3:7743)
 	ei
 	pop bc
 	dec b
-	jp nz, Func_f743
-	ld a, [wc3da]
+	jp nz, .ApplyBGPal
+	ld a, [wCurFadePosition]
 	inc a
-	ld [wc3da], a
+	ld [wCurFadePosition], a
 	pop de
 	xor a
 	ret
 
-Data_f75b:
-x = $80
+CGBPalIOFlags_f75b:
+x = $80 ; auto-increment
 REPT 8
 	db x
-x = x + $08
+x = x + 1 palettes
 ENDR
 
-Func_f763: ; f763 (3:7763)
+OBPaletteFadeCGB: ; f763 (3:7763)
+; c palettes starting at b
 	push de
 	push bc
 	ld a, b
@@ -275,32 +277,32 @@ Func_f763: ; f763 (3:7763)
 	sla e
 	rl d
 	add hl, de
-	ld de, wde60
+	ld de, wCGBPalFadeComponentBuffer
 	add hl, de
 	ld a, c
-	ld [wc44f], a
-	ld de, wdec0
+	ld [wNumCGBPalettesToFade], a
+	ld de, wCGBPalFadeBuffer
 	ld a, d
-	ld [wc454], a
+	ld [wCGBPalFadeBufferPointer], a
 	ld a, e
-	ld [wc455], a
-	ld a, [wcb27]
-	call Func_f7bd
+	ld [wCGBPalFadeBufferPointer + 1], a
+	ld a, [wCurFadeProgram]
+	call ApplyCGBFadeToCPals
 	pop bc
 	ld a, b
-	ld hl, Data_f75b
+	ld hl, CGBPalIOFlags_f75b
 	ld d, $0
 	ld e, a
 	add hl, de
 	ld a, [hl]
 	ld [rOBPI], a
-	ld hl, wdec0
+	ld hl, wCGBPalFadeBuffer
 	ld a, c
 	add a
 	add a
 	add a
 	ld b, a
-Func_f7a5: ; f7a5 (3:77a5)
+.ApplyOBPal
 	push bc
 	di
 	call WaitStat
@@ -309,15 +311,15 @@ Func_f7a5: ; f7a5 (3:77a5)
 	ei
 	pop bc
 	dec b
-	jp nz, Func_f7a5
-	ld a, [wc3da]
+	jp nz, .ApplyOBPal
+	ld a, [wCurFadePosition]
 	inc a
-	ld [wc3da], a
+	ld [wCurFadePosition], a
 	pop de
 	xor a
 	ret
 
-Func_f7bd: ; f7bd (3:77bd)
+ApplyCGBFadeToCPals: ; f7bd (3:77bd)
 	ld b, h
 	ld c, l
 	ld d, $0
@@ -326,161 +328,157 @@ Func_f7bd: ; f7bd (3:77bd)
 	rl d
 	sla e
 	rl d
-	ld hl, Pointers_f7d2
+	ld hl, .Pointers
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
-Pointers_f7d2:
-	dw Func_f7e3
-	dw Func_f7e2
-	dw Func_f806
-	dw Func_f7e2
-	dw Func_f82b
-	dw Func_f7e2
-	dw Func_f84e
-	dw Func_f7e2
-
-Func_f7e2:
-	ret
-
-Func_f7e3:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	ld c, a
-	ld a, $20
-	sub c
-	ld c, a
-Func_f7f6: ; f7f6 (3:77f6)
-	push bc
-	push hl
-	call Func_f921
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f7f6
-	ret
-
-Func_f806:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	sub $1
-	ld c, a
-	ld a, $0
-	add c
-	ld c, a
-Func_f81b: ; f81b (3:781b)
-	push bc
-	push hl
-	call Func_f921
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f81b
-	ret
-
-Func_f82b:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	ld c, a
-	ld a, $0
-	add c
-	ld c, a
-Func_f83e: ; f83e (3:783e)
-	push bc
-	push hl
-	call Func_f953
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f83e
-	ret
-
-Func_f84e:
-	ld h, b
-	ld l, c
-	ld a, [wc44f]
-	ld b, a
-	ld a, [wc3da]
-	add $1
-	add a
-	add a
-	add a
-	sub $1
-	ld c, a
-	ld a, $1f
-	sub c
-	ld c, a
-Func_f863: ; f863 (3:7863)
-	push bc
-	push hl
-	call Func_f953
-	pop hl
-	ld de, $c
-	add hl, de
-	pop bc
-	dec b
-	jp nz, Func_f863
-	ret
-
-Func_f873: ; f873 (3:7873)
-	ld b, h
-	ld c, l
-	ld d, $0
-	ld e, a
-	sla e
-	rl d
-	sla e
-	rl d
-	ld hl, Pointers_f888
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-Pointers_f888:
-	dw Func_f899, .ret
-	dw Func_f8ba, .ret
-	dw Func_f8dd, .ret
-	dw Func_f8fe, .ret
+.Pointers:
+	dw .FromWhite, .ret
+	dw .ToWhite, .ret
+	dw .FromBlack, .ret
+	dw .ToBlack, .ret
 
 .ret
 	ret
 
-Func_f899:
+.FromWhite:
 	ld h, b
 	ld l, c
-	ld a, [wc3da]
+	ld a, [wNumCGBPalettesToFade]
+	ld b, a
+	ld a, [wCurFadePosition]
+	add $1
+	add a
+	add a
+	add a
+	ld c, a
+	ld a, $20
+	sub c
+	ld c, a
+.loop1
+	push bc
+	push hl
+	call CGB_FadeToOrFromWhite
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, .loop1
+	ret
+
+.ToWhite:
+	ld h, b
+	ld l, c
+	ld a, [wNumCGBPalettesToFade]
+	ld b, a
+	ld a, [wCurFadePosition]
+	add $1
+	add a
+	add a
+	add a
+	sub $1
+	ld c, a
+	ld a, $0
+	add c
+	ld c, a
+.loop2
+	push bc
+	push hl
+	call CGB_FadeToOrFromWhite
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, .loop2
+	ret
+
+.FromBlack:
+	ld h, b
+	ld l, c
+	ld a, [wNumCGBPalettesToFade]
+	ld b, a
+	ld a, [wCurFadePosition]
+	add $1
+	add a
+	add a
+	add a
+	ld c, a
+	ld a, $0
+	add c
+	ld c, a
+.loop3
+	push bc
+	push hl
+	call CGB_FadeToOrFromBlack
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, .loop3
+	ret
+
+.ToBlack:
+	ld h, b
+	ld l, c
+	ld a, [wNumCGBPalettesToFade]
+	ld b, a
+	ld a, [wCurFadePosition]
+	add $1
+	add a
+	add a
+	add a
+	sub $1
+	ld c, a
+	ld a, $1f
+	sub c
+	ld c, a
+.loop4
+	push bc
+	push hl
+	call CGB_FadeToOrFromBlack
+	pop hl
+	ld de, $c
+	add hl, de
+	pop bc
+	dec b
+	jp nz, .loop4
+	ret
+
+ApplyCGBFadeToEightPals: ; f873 (3:7873)
+	ld b, h
+	ld c, l
+	ld d, $0
+	ld e, a
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, .Pointers
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+.Pointers:
+	dw .FromWhite, .ret
+	dw .ToWhite,   .ret
+	dw .FromBlack, .ret
+	dw .ToBlack,   .ret
+
+.ret
+	ret
+
+.FromWhite:
+	ld h, b
+	ld l, c
+	ld a, [wCurFadePosition]
 	add $1
 	add a
 	add a
@@ -490,22 +488,22 @@ Func_f899:
 	sub c
 	ld c, a
 	ld b, $8
-.loop
+.loop1
 	push bc
 	push hl
-	call Func_f921
+	call CGB_FadeToOrFromWhite
 	pop hl
 	ld de, $c
 	add hl, de
 	pop bc
 	dec b
-	jp nz, .loop
+	jp nz, .loop1
 	ret
 
-Func_f8ba:
+.ToWhite:
 	ld h, b
 	ld l, c
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	add $1
 	add a
 	add a
@@ -516,22 +514,22 @@ Func_f8ba:
 	add c
 	ld c, a
 	ld b, $8
-.loop
+.loop2
 	push bc
 	push hl
-	call Func_f921
+	call CGB_FadeToOrFromWhite
 	pop hl
 	ld de, $c
 	add hl, de
 	pop bc
 	dec b
-	jp nz, .loop
+	jp nz, .loop2
 	ret
 
-Func_f8dd:
+.FromBlack:
 	ld h, b
 	ld l, c
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	add $1
 	add a
 	add a
@@ -541,22 +539,22 @@ Func_f8dd:
 	add c
 	ld c, a
 	ld b, $8
-.loop
+.loop3
 	push bc
 	push hl
-	call Func_f953
+	call CGB_FadeToOrFromBlack
 	pop hl
 	ld de, $c
 	add hl, de
 	pop bc
 	dec b
-	jp nz, .loop
+	jp nz, .loop3
 	ret
 
-Func_f8fe:
+.ToBlack:
 	ld h, b
 	ld l, c
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	add $1
 	add a
 	add a
@@ -567,69 +565,69 @@ Func_f8fe:
 	sub c
 	ld c, a
 	ld b, $8
-.loop
+.loop4
 	push bc
 	push hl
-	call Func_f953
+	call CGB_FadeToOrFromBlack
 	pop hl
 	ld de, $c
 	add hl, de
 	pop bc
 	dec b
+	jp nz, .loop4
+	ret
+
+CGB_FadeToOrFromWhite: ; f921 (3:7921)
+	ld a, c
+	ld [wCGBFade_PalLimit], a
+REPT 4
+	ld de, wCGBPalFadeCurPalRGBBuffer
+	call .ApplyFade
+ENDR
+	ret
+
+.ApplyFade: ; f93e (3:793e)
+	ld b, $3
+.loop
+	ld a, [wCGBFade_PalLimit]
+	cp [hl]
+	jp nc, .skip
+	ld a, [hl]
+.skip
+	ld [de], a
+	inc hl
+	inc de
+	dec b
 	jp nz, .loop
+	call CompressCGBPalette
 	ret
 
-Func_f921: ; f921 (3:7921)
+CGB_FadeToOrFromBlack: ; f953 (3:7953)
 	ld a, c
-	ld [wc440], a
+	ld [wCGBFade_PalLimit], a
 REPT 4
-	ld de, wFontSourceAddr + 1
-	call Func_f93e
+	ld de, wCGBPalFadeCurPalRGBBuffer
+	call .ApplyFade
 ENDR
 	ret
 
-Func_f93e: ; f93e (3:793e)
+.ApplyFade: ; f970 (3:7970)
 	ld b, $3
-Func_f940: ; f940 (3:7940)
-	ld a, [wc440]
+.loop
+	ld a, [wCGBFade_PalLimit]
 	cp [hl]
-	jp nc, Func_f948
+	jp c, .skip
 	ld a, [hl]
-Func_f948: ; f948 (3:7948)
+.skip
 	ld [de], a
 	inc hl
 	inc de
 	dec b
-	jp nz, Func_f940
-	call Func_f985
+	jp nz, .loop
+	call CompressCGBPalette
 	ret
 
-Func_f953: ; f953 (3:7953)
-	ld a, c
-	ld [wc440], a
-REPT 4
-	ld de, wFontSourceAddr + 1
-	call Func_f970
-ENDR
-	ret
-
-Func_f970: ; f970 (3:7970)
-	ld b, $3
-Func_f972: ; f972 (3:7972)
-	ld a, [wc440]
-	cp [hl]
-	jp c, Func_f97a
-	ld a, [hl]
-Func_f97a: ; f97a (3:797a)
-	ld [de], a
-	inc hl
-	inc de
-	dec b
-	jp nz, Func_f972
-	call Func_f985
-	ret
-
-Func_f985: ; f985 (3:7985)
+CompressCGBPalette: ; f985 (3:7985)
 	dec de
 	ld a, [de]
 	ld b, a
@@ -650,9 +648,9 @@ Func_f985: ; f985 (3:7985)
 	ld a, [de]
 	or c
 	ld c, a
-	ld a, [wc454]
+	ld a, [wCGBPalFadeBufferPointer]
 	ld d, a
-	ld a, [wc455]
+	ld a, [wCGBPalFadeBufferPointer + 1]
 	ld e, a
 	ld a, c
 	ld [de], a
@@ -661,7 +659,7 @@ Func_f985: ; f985 (3:7985)
 	ld [de], a
 	inc de
 	ld a, d
-	ld [wc454], a
+	ld [wCGBPalFadeBufferPointer], a
 	ld a, e
-	ld [wc455], a
+	ld [wCGBPalFadeBufferPointer + 1], a
 	ret

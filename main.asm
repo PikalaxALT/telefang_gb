@@ -785,7 +785,7 @@ Pointers_8b95:
 String_8ba7:
 	db "せんとうわざ  "
 
-String_8baf:
+UnknownMoveString:
 	db "  ????  "
 
 LandmarkNames:
@@ -1371,27 +1371,27 @@ Func_90a1:
 	ld hl, wd000
 	call Func_90b1
 	cp $0
-	jr z, .asm_90af
-.asm_90ab
+	jr z, .load
+.loop
 	inc hl
 	dec a
-	jr nz, .asm_90ab
-.asm_90af
+	jr nz, .loop
+.load
 	ld a, [hl]
 	ret
 
 Func_90b1: ; 90b1 (2:50b1)
 	ld a, [wd4a0]
 	cp $0
-	jr z, .asm_90c0
+	jr z, .skip_add
 	ld b, a
 	ld a, d
-.asm_90ba
+.add_3_times
 	add $3
 	dec b
-	jr nz, .asm_90ba
+	jr nz, .add_3_times
 	ld d, a
-.asm_90c0
+.skip_add
 	ld a, d
 	ret
 
@@ -1432,7 +1432,7 @@ Func_90c2: ; 90c2 (2:50c2)
 	jr .done_third_move
 
 .third_move_unknown
-	ld de, String_8baf
+	ld de, UnknownMoveString
 	ld hl, VTilesShared tile $48
 	ld b, $8
 	call PlaceString_
@@ -1459,7 +1459,7 @@ Func_90c2: ; 90c2 (2:50c2)
 	jr .done_fouth_move
 
 .fourth_move_unknown
-	ld de, String_8baf
+	ld de, UnknownMoveString
 	ld hl, VTilesShared tile $50
 	ld b, $8
 	call PlaceString_
@@ -2085,7 +2085,7 @@ Func_f9b6:
 	push hl
 	call Get2DigitBCD
 	pop hl
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	or a
 	jr z, .asm_f9cf
@@ -2098,7 +2098,7 @@ Func_f9b6:
 	xor a
 	call WaitStatAndLoad
 .asm_f9d3
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $bb
 	call WaitStatAndLoad
@@ -2133,7 +2133,7 @@ Func_f9e1:
 	ld bc, $ff
 	call Func_1338
 	ld a, [wFontSourceBank]
-	ld [wc454], a
+	ld [wCGBPalFadeBufferPointer], a
 	ld h, $0
 	ld a, [wc452]
 	ld l, a
@@ -2150,7 +2150,7 @@ Func_f9e1:
 	pop hl
 	add hl, bc
 	ld b, $0
-	ld a, [wc454]
+	ld a, [wCGBPalFadeBufferPointer]
 	ld c, a
 	add hl, bc
 	ld a, l
@@ -2198,7 +2198,7 @@ Func_fa4b:
 	ld a, $1
 	ld [wc452], a
 .asm_fa8e
-	ld a, [wc440]
+	ld a, [wCGBFade_PalLimit]
 	ld h, a
 	ld a, [wc441]
 	ld l, a
@@ -2244,7 +2244,7 @@ Func_fa4b:
 	ld a, $1
 	ld [wc452], a
 .asm_fadb
-	ld a, [wc440]
+	ld a, [wCGBFade_PalLimit]
 	ld h, a
 	ld a, [wc441]
 	ld l, a
@@ -4576,23 +4576,23 @@ Func_116e7: ; 116e7 (4:56e7)
 	call Func_11773
 	ld a, [wCurHours]
 	call Get2DigitBCD
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	swap a
 	and $f
 	add $20
 	ld [wOAMAnimation17_TemplateIdx], a
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $20
 	ld [wOAMAnimation18_TemplateIdx], a
 	ld a, [wCurMinutes]
 	call Get2DigitBCD
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	swap a
 	and $f
 	add $20
 	ld [wOAMAnimation19_TemplateIdx], a
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $20
 	ld [wOAMAnimation20_TemplateIdx], a
@@ -6157,7 +6157,7 @@ Func_121db:
 	call Get2DigitBCD
 	pop hl
 Func_121e0: ; 121e0 (4:61e0)
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	swap a
 	add $76
@@ -6165,7 +6165,7 @@ Func_121e0: ; 121e0 (4:61e0)
 	call WaitStat
 	ld [hli], a
 	ei
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $76
 	di
@@ -7054,7 +7054,7 @@ Func_127eb:
 	push hl
 	call Get2DigitBCD
 	pop hl
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	swap a
 	add $f0
@@ -7062,7 +7062,7 @@ Func_127eb:
 	call WaitStat
 	ld [hli], a
 	ei
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $f0
 	di
@@ -8444,7 +8444,7 @@ Print3DigitBCD: ; 1315b (4:715b)
 	ld [hli], a
 	ei
 Print2DigitBCD_2: ; 1316d (4:716d)
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	swap a
 	add $e0
@@ -8452,7 +8452,7 @@ Print2DigitBCD_2: ; 1316d (4:716d)
 	call WaitStat
 	ld [hli], a
 	ei
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 LoadBCDDigit:
 	add $e0
@@ -9579,11 +9579,11 @@ Func_139e7: ; 139e7 (4:79e7)
 	jp Func_132a9
 
 Print2DigitBCD: ; 139f9 (4:79f9)
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	swap a
 	and $f
 	call LoadBCDDigit
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	jp LoadBCDDigit
 

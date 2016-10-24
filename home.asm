@@ -897,14 +897,14 @@ INCLUDE "home/sram.asm"
 INCLUDE "home/palettes.asm"
 
 Get2DigitBCD: ; 12fb (0:12fb)
-; bcd convert 2-digit number to [wc44f]
+; bcd convert 2-digit number to [wNumCGBPalettesToFade]
 	push de
 	push bc
 	push hl
 	push af
 	xor a
 	ld [wFontSourceBank], a
-	ld [wc44f], a
+	ld [wNumCGBPalettesToFade], a
 	ld de, 0
 	pop af
 	ld b, 100
@@ -943,7 +943,7 @@ Get2DigitBCD: ; 12fb (0:12fb)
 	ld a, d
 	ld [wFontSourceBank], a
 	ld a, e
-	ld [wc44f], a
+	ld [wNumCGBPalettesToFade], a
 	pop hl
 	pop bc
 	pop de
@@ -952,7 +952,7 @@ Get2DigitBCD: ; 12fb (0:12fb)
 Func_1338: ; 1338 (0:1338)
 	xor a
 	ld [wFontSourceBank], a
-	ld [wc44f], a
+	ld [wNumCGBPalettesToFade], a
 	ld a, b
 	or a
 	jr nz, .asm_1346
@@ -961,7 +961,7 @@ Func_1338: ; 1338 (0:1338)
 	ret z
 .asm_1346
 	ld a, h
-	ld [wc440], a
+	ld [wCGBFade_PalLimit], a
 	ld a, l
 	ld [wc441], a
 	ld d, b
@@ -977,7 +977,7 @@ Func_1338: ; 1338 (0:1338)
 	ld a, [wc441]
 	sub c
 	ld l, a
-	ld a, [wc440]
+	ld a, [wCGBFade_PalLimit]
 	sbc b
 	ld h, a
 	ld a, [wFontSourceBank]
@@ -986,9 +986,9 @@ Func_1338: ; 1338 (0:1338)
 	ld a, $0
 	adc $0
 	ld d, a
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	add d
-	ld [wc44f], a
+	ld [wNumCGBPalettesToFade], a
 	jr .asm_1346
 
 PrintDenjuuStat::
@@ -1025,7 +1025,7 @@ PrintDenjuuStat::
 	ld [wFontSourceAddr], a
 .TwoDigits: ; 13aa (0:13aa)
 	inc hl
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	or a
 	jr nz, .asm_13bb
@@ -1043,7 +1043,7 @@ PrintDenjuuStat::
 	ei
 .asm_13c5
 	inc hl
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $f0
 	di
@@ -1064,7 +1064,7 @@ Func_13d7::
 	pop hl
 	xor a
 	ld [wFontSourceAddr], a
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	or a
 	jr nz, .asm_13ec
@@ -1087,7 +1087,7 @@ Func_13d7::
 	ld a, $1
 	ld [wFontSourceAddr], a
 	inc hl
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	or a
 	jr nz, .asm_1417
@@ -1155,7 +1155,7 @@ Func_144c: ; 144c (0:144c)
 	ld a, $ff
 	call WaitStatAndLoad
 Func_146d: ; 146d (0:146d)
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	or a
 	jr nz, .asm_147d
@@ -1174,7 +1174,7 @@ Func_146d: ; 146d (0:146d)
 	ld a, $ff
 	call WaitStatAndLoad
 .asm_148b
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $f0
 	call WaitStatAndLoad
@@ -1192,7 +1192,7 @@ Func_1499::
 	call Get2DigitBCD
 	pop hl
 	pop bc
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	and $f
 	add $f0
 	call WaitStatAndLoad
@@ -1236,7 +1236,7 @@ Func_14b1::
 	ld a, $1
 	ld [wFontSourceAddr], a
 .asm_14eb
-	ld a, [wc440]
+	ld a, [wCGBFade_PalLimit]
 	ld h, a
 	ld a, [wc441]
 	ld l, a
@@ -1267,7 +1267,7 @@ Func_14b1::
 	ei
 	ld a, $1
 	ld [wFontSourceAddr], a
-	ld a, [wc440]
+	ld a, [wCGBFade_PalLimit]
 	ld h, a
 	ld a, [wc441]
 	ld l, a
@@ -1300,7 +1300,7 @@ Func_14b1::
 	call WaitStat
 	ld [hl], a
 	ei
-	ld a, [wc440]
+	ld a, [wCGBFade_PalLimit]
 	ld h, a
 	ld a, [wc441]
 	ld l, a
@@ -1384,7 +1384,7 @@ CopyData::
 	ret
 
 Func_15ca::
-	ld [wc44f], a
+	ld [wNumCGBPalettesToFade], a
 	check_cgb
 	ret nz
 	ld a, $1
@@ -1396,7 +1396,7 @@ Func_15ca::
 	ld a, [wFontSourceBank]
 	ld b, a
 .asm_15e0
-	ld a, [wc44f]
+	ld a, [wNumCGBPalettesToFade]
 	call WaitStatAndLoad
 	dec b
 	jr nz, .asm_15e0

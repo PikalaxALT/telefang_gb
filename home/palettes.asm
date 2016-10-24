@@ -266,7 +266,7 @@ Func_11d1::
 	ld hl, wde00
 	ld de, wCGB_BGPalsBuffer
 	call Func_11e3
-	ld hl, wde60
+	ld hl, wCGBPalFadeComponentBuffer
 	ld de, wCGB_OBPalsBuffer
 	jp Func_11f7
 
@@ -328,10 +328,10 @@ Func_120b: ; 120b (0:120b)
 	ret
 
 Func_122d: ; 122d (0:122d)
-	ld [wc3d9], a
+	ld [wCurFadeTimerReset], a
 	xor a
-	ld [wc3d8], a
-	ld [wc3da], a
+	ld [wCurFadeTimer], a
+	ld [wCurFadePosition], a
 	ld a, $1
 	ld [wc3df], a
 	check_cgb
@@ -342,23 +342,23 @@ Func_122d: ; 122d (0:122d)
 	ret
 
 PaletteFade: ; 1248 (0:1248)
-	ld [wcb27], a
-	ld a, [wc3d8]
+	ld [wCurFadeProgram], a
+	ld a, [wCurFadeTimer]
 	or a
-	jr z, .asm_1258
+	jr z, .fade
 	dec a
-	ld [wc3d8], a
+	ld [wCurFadeTimer], a
 	jp .nope
 
-.asm_1258
-	ld a, [wc3da]
+.fade
+	ld a, [wCurFadePosition]
 	cp $4
 	jr z, .done
-	ld a, [wc3d9]
-	ld [wc3d8], a
+	ld a, [wCurFadeTimerReset]
+	ld [wCurFadeTimer], a
 	check_cgb
 	jp z, PaletteFadeCGB_
-	ld a, [wcb27]
+	ld a, [wCurFadeProgram]
 	ld d, $0
 	ld e, a
 	sla e
@@ -370,7 +370,7 @@ PaletteFade: ; 1248 (0:1248)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	ld d, $0
 	ld e, a
 	add hl, de
@@ -386,9 +386,9 @@ PaletteFade: ; 1248 (0:1248)
 	add hl, de
 	ld a, [hl]
 	ld [wOBP1], a
-	ld a, [wc3da]
+	ld a, [wCurFadePosition]
 	inc a
-	ld [wc3da], a
+	ld [wCurFadePosition], a
 .nope
 	xor a
 	ret
@@ -400,14 +400,10 @@ PaletteFade: ; 1248 (0:1248)
 	ret
 
 Pointers_12af::
-	dw DMGPals_12bf
-	dw DMGPals_12c9
-	dw DMGPals_12ce
-	dw DMGPals_12d8
-	dw DMGPals_12dd
-	dw DMGPals_12e7
-	dw DMGPals_12ec
-	dw DMGPals_12f6
+	dw DMGPals_12bf, DMGPals_12c9
+	dw DMGPals_12ce, DMGPals_12d8
+	dw DMGPals_12dd, DMGPals_12e7
+	dw DMGPals_12ec, DMGPals_12f6
 
 DMGPals_12bf:: db $00, $54, $a4, $e4, $ff
                db $00, $50, $a0, $e0, $ff
