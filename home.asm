@@ -4862,7 +4862,8 @@ LoadCharacter_::
 	rst Bankswitch
 	ret
 
-Func_2fda::
+GetFarByte::
+; get byte at b:hl
 	ld a, [wROMBank]
 	push af
 	ld a, b

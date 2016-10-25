@@ -2685,41 +2685,1288 @@ SECTION "bank 0B", ROMX, BANK [$b]
 LinkBattleRNs::
 INCLUDE "data/pseudo_rng.asm"
 
-Func_2c100::
-	dr $2c100, $2c63b
+Func_2c100: ; 2c100 (b:4100)
+	ld a, [wc9c5]
+	inc a
+	ld [wc9c5], a
+	ld a, [wc9c9]
+	cp $0
+	jp z, Func_2c57d
+	cp $1
+	jr z, .asm_2c13c
+	cp $2
+	jp z, Func_2c34e
+	cp $3
+	jp z, Func_2c3c7
+	cp $4
+	jp z, Func_2c3c7
+	cp $5
+	jp z, Func_2c432
+	cp $6
+	jp z, Func_2c40d
+	cp $7
+	jp z, Func_2c413
+	cp $8
+	jp z, Func_2c429
+	cp $a
+	jp z, Func_2c445
+	ret
 
-Func_2c63b::
-	dr $2c63b, $2c63f
+.asm_2c13c
+	ld a, [wc9c6]
+	ld l, a
+	ld a, [wc9c7]
+	ld h, a
+	call Func_2d2b
+	or a
+	jr nz, .asm_2c152
+	push af
+	ld a, [wc9cb]
+	ld [wc959], a
+	pop af
+.asm_2c152
+	cp $e2
+	jr nz, .asm_2c17b
+	ld a, [wc9cb]
+	cp $10
+	jr nc, .asm_2c16c
+	ld a, $10
+	ld [wc9cb], a
+	ld a, [wc9ce]
+	inc a
+	ld [wc9ce], a
+	jp Func_2c2ea
 
-Func_2c63f::
-	dr $2c63f, $2c6e2
+.asm_2c16c
+	ld a, $0
+	ld [wc9cb], a
+	ld a, [wc9ce]
+	inc a
+	ld [wc9ce], a
+	jp Func_2c2ea
 
-Func_2c6e2::
-	dr $2c6e2, $2c711
+.asm_2c17b
+	cp $e1
+	jr nz, asm_2c182
+Func_2c17f: ; 2c17f (b:417f)
+	jp Func_2c5c8
 
-Func_2c711::
-	dr $2c711, $2c766
+asm_2c182
+	cp $e7
+	jr nz, .asm_2c18c
+	call Func_2c22f
+	jp Func_2c316
 
-Func_2c766::
-	dr $2c766, $2c7ed
+.asm_2c18c
+	cp $e9
+	jr nz, .asm_2c196
+	call Func_2c337
+	jp Func_2c313
 
-Func_2c7ed::
-	dr $2c7ed, $2c831
+.asm_2c196
+	cp $e3
+	jr nz, .asm_2c1a6
+	call Func_2d2b
+	ld [wc9cd], a
+	call Func_2c337
+	jp Func_2c313
 
-Func_2c831::
-	dr $2c831, $2c84d
+.asm_2c1a6
+	cp $e5
+	jr nz, .asm_2c1ba
+	ld a, [wc9c7]
+	ld [wc9d2], a
+	ld a, [wc9c6]
+	ld [wc9d1], a
+	call Func_2d39
+	ret
 
-Func_2c84d::
-	dr $2c84d, $2c904
+.asm_2c1ba
+	cp $e0
+	jr nz, .asm_2c1d3
+	ld a, [wc9d1]
+	ld [wc9c6], a
+	ld a, [wc9d2]
+	ld [wc9c7], a
+	call Func_2c337
+	call Func_2c337
+	jp Func_2c313
 
-Func_2c904::
-	dr $2c904, $2c92e
+.asm_2c1d3
+	cp $e1
+	jp nc, Func_2c337
+	ld a, [wc9cc]
+	or a
+	jp z, Func_2c1e3
+	dec a
+	jp nz, Func_2c34a
+Func_2c1e3: ; 2c1e3 (b:41e3)
+	push hl
+	ld a, [wc9cd]
+	ld [wc9cc], a
+	ld a, [wc9cb]
+	ld b, a
+	ld a, [wc91f]
+	add b
+	call Func_35c2
+	call Func_2c22d
+	ld a, c
+	call LoadCharacter
+	pop hl
+	ld a, [wc9cb]
+	inc a
+	ld [wc9cb], a
+	cp $10
+	jr nz, .asm_2c212
+	ld a, [wc9ce]
+	inc a
+	ld [wc9ce], a
+	jp Func_2c2ea
 
-Func_2c92e::
-	dr $2c92e, $2ccb9
+.asm_2c212
+	cp $1f
+	jr c, .asm_2c22a
+	call Func_2c2be
+	jr z, .asm_2c22a
+	ld a, [wc9ce]
+	inc a
+	ld [wc9ce], a
+	ld a, $0
+	ld [wc9cb], a
+	jp Func_2c2ea
+
+.asm_2c22a
+	jp Func_2c313
+
+Func_2c22d: ; 2c22d (b:422d)
+	ld a, c
+	ret
+
+Func_2c22f: ; 2c22f (b:422f)
+	ld a, $0
+	ld [wc9d2], a
+	ld b, $0
+	ld c, $e0
+	ld de, VTilesShared tile $60
+.asm_2c23b
+	push bc
+.asm_2c23c
+	call Func_2d2b
+	cp $e0
+	jr z, .asm_2c25c
+	cp $e5
+	jr nz, .asm_2c27b
+	ld a, h
+	ld [wc9d2], a
+	ld a, l
+	ld [wc9d1], a
+	call Func_2d39
+	ld a, [wc9c6]
+	ld l, a
+	ld a, [wc9c7]
+	ld h, a
+	jr .asm_2c23c
+
+.asm_2c25c
+	ld a, [wc9d2]
+	or a
+	jr z, .asm_2c299
+	ld a, [wc9d1]
+	ld l, a
+	ld a, [wc9d2]
+	ld h, a
+	inc hl
+	inc hl
+	ld a, l
+	ld [wc9c6], a
+	ld a, h
+	ld [wc9c7], a
+	ld a, $0
+	ld [wc9d2], a
+	jr .asm_2c23c
+
+.asm_2c27b
+	pop bc
+	push bc
+	push af
+	ld a, c
+	ld c, $1
+	inc b
+	inc b
+	call Func_2c2a4
+	pop af
+	push hl
+	ld h, d
+	ld l, e
+	call LoadCharacter
+	ld d, h
+	ld e, l
+	pop hl
+	pop bc
+	inc c
+	inc b
+	ld a, b
+	cp $a
+	jr nz, .asm_2c23b
+	ret
+
+.asm_2c299
+	add sp, $2
+	ld a, l
+	ld [wc9c6], a
+	ld a, h
+	ld [wc9c7], a
+	ret
+
+Func_2c2a4: ; 2c2a4 (b:42a4)
+	push hl
+	push af
+	push bc
+	ld a, [wc9ca]
+	add c
+	call Func_2cb68
+	pop bc
+	push bc
+	ld c, b
+	call Func_2cc32
+	pop bc
+	di
+	call WaitStat_1f79
+	pop af
+	ld [hl], a
+	ei
+	pop hl
+	ret
+
+Func_2c2be: ; 2c2be (b:42be)
+	ld b, $0
+.asm_2c2c0
+	call Func_2d2b
+	cp $e1
+	jr c, .asm_2c2e2
+	cp $e1
+	jr nz, .asm_2c2d6
+	ld a, b
+	or a
+	jr z, .asm_2c2d1
+	xor a
+	ret
+
+.asm_2c2d1
+	call Func_2c17f
+	xor a
+	ret
+
+.asm_2c2d6
+	cp $e2
+	jr nz, .asm_2c2e0
+	ld a, b
+	or a
+	jr nz, .asm_2c2e2
+	xor a
+	ret
+
+.asm_2c2e0
+	jr .asm_2c2c0
+
+.asm_2c2e2
+	inc b
+	ld a, b
+	cp $1
+	jr z, .asm_2c2c0
+	or a
+	ret
+
+Func_2c2ea: ; 2c2ea (b:42ea)
+	call Func_2c337
+	ld a, [wc9ce]
+	cp $2
+	jr nc, .asm_2c2f6
+	jr Func_2c316
+
+.asm_2c2f6
+	and $1
+	jr nz, .asm_2c306
+	ld a, $2
+	ld [wc9c9], a
+	ld a, $0
+	ld [wc9cc], a
+	jr Func_2c316
+
+.asm_2c306
+	ld a, [wc9c5]
+	ld [wc9cc], a
+	ld a, $3
+	ld [wc9c9], a
+	jr Func_2c316
+
+Func_2c313: ; 2c313 (b:4313)
+	call Func_2c337
+Func_2c316: ; 2c316 (b:4316)
+	ld a, [wc9cd]
+	or a
+	jp z, Func_2c100
+	ld a, [wcad3]
+	or a
+	jp nz, Func_2c100
+	ld a, [hJoyLast]
+	and $2
+	jp nz, Func_2c100
+	ld a, [hJoyNew]
+	and $1
+	jr z, .asm_2c336
+	ld a, $1
+	ld [wcad3], a
+.asm_2c336
+	ret
+
+Func_2c337: ; 2c337 (b:4337)
+	ld a, [wc9c7]
+	ld c, a
+	ld a, [wc9c6]
+	add $1
+	ld [wc9c6], a
+	ld a, $0
+	adc c
+	ld [wc9c7], a
+	ret
+
+Func_2c34a: ; 2c34a (b:434a)
+	ld [wc9cc], a
+	ret
+
+Func_2c34e: ; 2c34e (b:434e)
+	ld a, [wc9ca]
+	add $4
+	call Func_2cb68
+	ld c, $11
+	call Func_2cc32
+	ld a, [wc91f]
+	add $1f
+	ld c, a
+	ld a, [wc9cc]
+	inc a
+	ld [wc9cc], a
+	bit 4, a
+	jr nz, .asm_2c372
+	ld a, [wc91e]
+	add $e
+	ld c, a
+.asm_2c372
+	di
+	call WaitStat_1f79
+	ld [hl], c
+	ei
+	ld a, [hJoyNew]
+	ld [wcdb7], a
+	ld a, [hJoyLast]
+	and $1
+	jr z, .asm_2c39a
+	ld a, [wcdb8]
+	cp $14
+	jr c, .asm_2c391
+	ld a, $1
+	ld [wcdb7], a
+	jr .asm_2c39f
+
+.asm_2c391
+	ld a, [wcdb8]
+	inc a
+	ld [wcdb8], a
+	jr .asm_2c39f
+
+.asm_2c39a
+	ld a, $0
+	ld [wcdb8], a
+.asm_2c39f
+	ld a, [wcdb7]
+	and $1
+	ret z
+	ld a, $0
+	ld [wcad3], a
+	ld a, [wc91f]
+	add $1f
+	ld c, a
+	di
+	call WaitStat_1f79
+	ld [hl], c
+	ei
+	ld a, $8
+	ld [H_SFX_ID], a
+	ld a, [wc9c5]
+	ld [wc9cc], a
+	ld a, $3
+	ld [wc9c9], a
+	ret
+
+Func_2c3c7: ; 2c3c7 (b:43c7)
+	ld a, [hJoyLast]
+	and $2
+	jr nz, .asm_2c3d8
+	ld a, [wc9cc]
+	ld b, a
+	ld a, [wc9c5]
+	sub b
+	and $3
+	ret nz
+.asm_2c3d8
+	call Func_2cb3d
+	ld a, [wc9c9]
+	cp $3
+	jr z, .asm_2c3f2
+	ld a, [wc9ce]
+	and $1
+	jr z, .asm_2c3ef
+	call Func_2ccf6
+	jp .asm_2c3f2
+
+.asm_2c3ef
+	call Func_2cceb
+.asm_2c3f2
+	call Func_2cbd0
+	ld a, [wc9c9]
+	cp $3
+	jr z, .asm_2c407
+	ld a, $1
+	ld [wc9c9], a
+	ld a, $2
+	ld [wc9cc], a
+	ret
+
+.asm_2c407
+	ld a, $4
+	ld [wc9c9], a
+	ret
+
+Func_2c40d: ; 2c40d (b:440d)
+	call Func_2c533
+	jr z, .asm_2c412
+.asm_2c412
+	ret
+
+Func_2c413: ; 2c413 (b:4413)
+	call Func_2c533
+	jr z, .asm_2c428
+	call Func_2cce5
+	ld a, [wc9ca]
+	ld de, $500f
+	ld b, $6
+	ld c, $1
+	jp Func_2ca5c
+
+.asm_2c428
+	ret
+
+Func_2c429: ; 2c429 (b:4429)
+	call Func_2c533
+	jr z, .asm_2c431
+	call Func_2c9d1
+.asm_2c431
+	ret
+
+Func_2c432: ; 2c432 (b:4432)
+	call Func_2c533
+	jr z, .asm_2c444
+	ld a, [wc900]
+	cp $4
+	jr nc, .asm_2c444
+	call Func_2ccb9
+	jp Func_2ba9
+
+.asm_2c444
+	ret
+
+Func_2c445: ; 2c445 (b:4445)
+	call Func_2c4f0
+	call Func_2c533
+	jr z, .asm_2c484
+	ld bc, $c3e
+	ld a, [wc9d7]
+	or a
+	jr nz, .asm_2c461
+	call ResetEventFlag
+	ld bc, $c3f
+	call SetEventFlag
+	jr .asm_2c46a
+
+.asm_2c461
+	call SetEventFlag
+	ld bc, $c3f
+	call ResetEventFlag
+.asm_2c46a
+	ld a, [wSubroutine]
+	cp $5
+	jr nz, .asm_2c47e
+	ld a, [wc900]
+	cp $4
+	jr nc, .asm_2c47e
+	call Func_2ccb9
+	call Func_2ba9
+.asm_2c47e
+	ld a, $0
+	ld [wc9cf], a
+	ret
+
+.asm_2c484
+	ld a, [hJoyNew]
+	and $20
+	jr z, .asm_2c49d
+	ld a, [wc9d7]
+	cp $1
+	jr z, .asm_2c4b4
+	ld a, $1
+	ld [wc9d7], a
+	ld a, $2
+	ld [H_SFX_ID], a
+	jr .asm_2c4b4
+
+.asm_2c49d
+	ld a, [hJoyNew]
+	and $12
+	jr z, .asm_2c4b4
+	ld a, [wc9d7]
+	cp $0
+	jr z, .asm_2c4b4
+	ld a, $0
+	ld [wc9d7], a
+	ld a, $2
+	ld [H_SFX_ID], a
+.asm_2c4b4
+	ld b, $f
+	ld a, [wc9d7]
+	or a
+	jr z, .asm_2c4be
+	ld b, $e
+.asm_2c4be
+	ld c, $2
+	push bc
+	call Func_2c4d5
+	pop bc
+	ld a, [wc959]
+	and $f
+	add $2
+	ld c, a
+	ld a, b
+	xor $1
+	ld b, a
+	call Func_2c4d5
+	ret
+
+Func_2c4d5: ; 2c4d5 (b:44d5)
+	ld a, [wc9ca]
+	add $4
+	push bc
+	call Func_2cb68
+	pop bc
+	push bc
+	call Func_2cc32
+	pop bc
+	ld a, [wc91e]
+	add b
+	ld b, a
+	di
+	call WaitStat_1f79
+	ld [hl], b
+	ei
+	ret
+
+Func_2c4f0: ; 2c4f0 (b:44f0)
+	ld a, [wc9c5]
+	and $3
+	ret nz
+Func_2c4f6: ; 2c4f6 (b:44f6)
+	ld a, [wc9c5]
+	srl a
+	srl a
+	and $7
+	ld hl, Data_2c52b
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	swap a
+	ld de, Data_2cb08
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [wc91e]
+	cp $e0
+	jr nz, .asm_2c520
+	ld hl, VTilesShared tile $6e
+	jr .asm_2c523
+
+.asm_2c520
+	ld hl, VTilesShared tile $7e
+.asm_2c523
+	ld a, $38
+	ld bc, $10
+	jp Func_372d
+
+Data_2c52b:
+	db 0, 1
+	db 2, 2
+	db 2, 2
+	db 1, 0
+
+Func_2c533: ; 2c533 (b:4533)
+	ld a, [wc9cc]
+	or a
+	jr nz, .asm_2c575
+	ld a, [wc9ca]
+	add $4
+	call Func_2cb68
+	ld c, $11
+	call Func_2cc32
+	ld c, $c
+	ld a, [wc9c5]
+	bit 4, a
+	jr nz, .asm_2c551
+	ld c, $d
+.asm_2c551
+	ld a, [wc91e]
+	add c
+	ld c, a
+	di
+	call WaitStat_1f79
+	ld [hl], c
+	ei
+	ld a, [hJoyLast]
+	and $3
+	cp $3
+	jr z, .asm_2c569
+	ld a, [hJoyNew]
+	and $1
+	ret z
+.asm_2c569
+	ld a, $0
+	ld [wcad3], a
+	ld a, $9
+	ld [wc9c9], a
+	or a
+	ret
+
+.asm_2c575
+	dec a
+	jr z, .asm_2c569
+	ld [wc9cc], a
+	xor a
+	ret
+
+Func_2c57d: ; 2c57d (b:457d)
+	ld a, [wc9cc]
+	dec a
+	ld [wc9cc], a
+	jr nz, .asm_2c5c7
+	ld a, $4
+	ld [wc9cc], a
+	ld a, [wc9ce]
+	inc a
+	ld [wc9ce], a
+	cp $1
+	jr nz, .asm_2c5a7
+	ld a, [wc9ca]
+	dec a
+	ld [wc9ca], a
+	ld de, Data_2d07b
+	ld b, $4
+	ld c, $1
+	jp Func_2ca5c
+
+.asm_2c5a7
+	ld a, $1
+	ld [wc9c9], a
+	ld a, $0
+	ld [wc9ce], a
+	ld a, $8
+	ld [wc9cc], a
+	ld a, [wc9ca]
+	dec a
+	ld [wc9ca], a
+	ld de, Data_2d00f
+	ld b, $6
+	ld c, $1
+	jp Func_2ca5c
+
+.asm_2c5c7
+	ret
+
+Func_2c5c8: ; 2c5c8 (b:45c8)
+	call Func_2d2b
+	ld [wc9cf], a
+	cp $0
+	jr nz, .asm_2c5dd
+	ld a, $0
+	ld [wc9cc], a
+	ld a, $5
+	ld [wc9c9], a
+	ret
+
+.asm_2c5dd
+	cp $1
+	jr nz, .asm_2c5ec
+	ld a, $3c
+	ld [wc9cc], a
+	ld a, $5
+	ld [wc9c9], a
+	ret
+
+.asm_2c5ec
+	cp $2
+	jr nz, .asm_2c5fb
+	ld a, $0
+	ld [wc9cc], a
+	ld a, $6
+	ld [wc9c9], a
+	ret
+
+.asm_2c5fb
+	cp $3
+	jr nz, .asm_2c60a
+	ld a, $0
+	ld [wc9cc], a
+	ld a, $7
+	ld [wc9c9], a
+	ret
+
+.asm_2c60a
+	cp $4
+	jr nz, .asm_2c619
+	ld a, $1
+	ld [wc9cc], a
+	ld a, $6
+	ld [wc9c9], a
+	ret
+
+.asm_2c619
+	cp $a
+	jr nz, .asm_2c630
+	ld a, $0
+	ld [wc9cc], a
+	ld a, $a
+	ld [wc9c9], a
+	call Func_2c4f6
+	ld a, $1
+	ld [wc9d7], a
+	ret
+
+.asm_2c630
+	ld a, $0
+	ld [wc9cc], a
+	ld a, $8
+	ld [wc9c9], a
+	ret
+
+Func_2c63b: ; 2c63b (b:463b)
+	xor a
+	ld [wc9cf], a
+Func_2c63f: ; 2c63f (b:463f)
+	ld a, [wc9d8]
+	cp $2
+	jr z, .asm_2c64b
+	ld a, $1
+	ld [wc9d8], a
+.asm_2c64b
+	call Func_2c6d2
+Func_2c64e: ; 2c64e (b:464e)
+	ld a, $c0
+	ld [wc91f], a
+	ld a, $e0
+	ld [wc91e], a
+	ld a, $1
+	ld [wc9d7], a
+	ld d, $0
+	ld e, b
+	ld hl, Pointers_2c94f
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld [wc9c8], a
+	ld l, c
+	ld h, $0
+	sla l
+	rl h
+	add hl, de
+	call Func_2d39
+	call Func_3566
+	ld a, $7
+	ld [wca65], a
+	xor a
+	ld [wc9cb], a
+	ld [wc9ce], a
+	ld a, $5
+	ld [wSubroutine], a
+	ld a, $4
+	ld [wc9cc], a
+	ld a, $1
+	ld [wc9cd], a
+	ld a, $0
+	ld [wcad3], a
+	ld a, $2
+	ld [wcada], a
+	ld bc, EVENT_C3E
+	call ResetEventFlag
+	ld bc, EVENT_C3F
+	call ResetEventFlag
+	ld a, [wc9cf]
+	cp $2
+	jr c, .asm_2c6be
+	ld a, $1
+	ld [wc9c9], a
+	call Func_2c98e
+	jr .asm_2c6d1
+
+.asm_2c6be
+	ld a, $0
+	ld [wc9c9], a
+	ld a, [wc9ca]
+	add $2
+	ld [wc9ca], a
+	call Func_2c9bd
+	call Func_2cc4e
+.asm_2c6d1
+	ret
+
+Func_2c6d2: ; 2c6d2 (b:46d2)
+	ld d, $a
+	ld a, [wc484]
+	cp $48
+	jr c, .asm_2c6dd
+	ld d, $1
+.asm_2c6dd
+	ld a, d
+	ld [wc9ca], a
+	ret
+
+Func_2c6e2: ; 2c6e2 (b:46e2)
+	call Func_2c6d2
+	ld hl, Data_2e652
+	ld c, b
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld b, $8
+	ld de, wca53
+.asm_2c6fd
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_2c6fd
+	ld a, $e0
+	ld [de], a
+	xor a
+	ld [wc9cf], a
+	ld b, $0
+	ld c, $bf
+	jp Func_2c64e
+
+Func_2c711: ; 2c711 (b:4711)
+	push bc
+	call Func_2c73e
+	xor a
+	ld [wc9cf], a
+	ld a, $c0
+	ld [wc91f], a
+	ld a, $e0
+	ld [wc91e], a
+	ld b, $0
+	ld c, $ba
+	ld d, $0
+	call Func_2c76c
+	ld a, $1
+	ld [wcada], a
+	ld a, $7
+	ld [wca65], a
+	call Func_2c9e6
+	pop bc
+	call Func_2ca0f
+	ret
+
+Func_2c73e: ; 2c73e (b:473e)
+	ld hl, Data_2e652
+	ld c, b
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld b, $8
+	ld de, wca53
+.asm_2c756
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_2c756
+	ld a, $e0
+	ld [de], a
+	ret
+
+Func_2c760:
+	call Func_2c775
+	jp Func_2c9d1
+
+Func_2c766: ; 2c766 (b:4766)
+	call Func_2c76c
+	jp Func_2c9d1
+
+Func_2c76c: ; 2c76c (b:476c)
+	ld hl, wc9fc
+	ld a, $0
+	ld [hli], a
+	ld a, $98
+	ld [hl], a
+Func_2c775: ; 2c775 (b:4775)
+	ld a, d
+	ld [wc9ca], a
+	ld d, $0
+	ld e, b
+	ld hl, Pointers_2c94f
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld [wc9c8], a
+	ld l, c
+	ld h, $0
+	sla l
+	rl h
+	add hl, de
+	call Func_2d39
+	call Func_3566
+	xor a
+	ld [wc9cb], a
+	ld [wc9ce], a
+	ld a, $0
+	ld [wc9cc], a
+	ld a, $1
+	ld [wc9cd], a
+	ld a, $0
+	ld [wcad3], a
+	ld a, $2
+	ld [wcada], a
+	ld a, $1
+	ld [wc9c9], a
+	ret
+
+Func_2c7b9:
+	ld a, $d0
+	ld [wc91f], a
+	ld a, $f0
+	ld [wc91e], a
+	call Func_2c76c
+	ld a, $7
+	ld [wca65], a
+	jp Func_2c9a2
+
+Func_2c7ce:
+	ld a, $d0
+	ld [wc91f], a
+	ld a, $f0
+	ld [wc91e], a
+	call Func_3566
+	ld d, $3
+	call Func_2c76c
+	ld a, $7
+	ld [wca65], a
+	ld a, $5
+	ld [wSubroutine], a
+	jp Func_2c9a2
+
+Func_2c7ed: ; 2c7ed (b:47ed)
+	ld hl, wc9fc
+	ld a, $0
+	ld [hli], a
+	ld a, $98
+	ld [hl], a
+	ld a, d
+	ld [wc9ca], a
+	ld d, $0
+	ld e, b
+	ld hl, Pointers_2c94f
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld [wc9c8], a
+	ld l, c
+	ld h, $0
+	sla l
+	rl h
+	add hl, de
+	call Func_2d39
+	xor a
+	ld [wc9cb], a
+	ld [wc9ce], a
+	ld [wc9cc], a
+	ld [wcad3], a
+	ld a, $0
+	ld [wc9cd], a
+	ld [wcada], a
+	ld a, $1
+	ld [wc9c9], a
+	ret
+
+Func_2c831: ; 2c831 (b:4831)
+	ld a, [wc910]
+	ld l, a
+	ld a, [wc911]
+	ld h, a
+	ld d, $0
+	call Func_2c883
+	call Func_2c9e6
+	call Func_2c100
+	call Func_2c100
+	ld a, $0
+	ld [wc9cf], a
+	ret
+
+Func_2c84d: ; 2c84d (b:484d)
+	ld a, [wc910]
+	ld l, a
+	ld a, [wc911]
+	ld h, a
+	ld a, [wc484]
+	cp $48
+	jr nc, .asm_2c86b
+	ld d, $e
+	call Func_2c883
+	call Func_2c9fb
+	ld a, $1
+	ld [wcd29], a
+	jr .asm_2c878
+
+.asm_2c86b
+	ld d, $0
+	call Func_2c883
+	call Func_2c9fb
+	ld a, $0
+	ld [wcd29], a
+.asm_2c878
+	ld a, $1
+	ld [wcd21], a
+	ld a, $0
+	ld [wc9cf], a
+	ret
+
+Func_2c883: ; 2c883 (b:4883)
+	push de
+	ld a, $c0
+	ld [wc91f], a
+	ld a, $e0
+	ld [wc91e], a
+	call Func_2d03
+	ld b, $0
+	ld c, $9d
+	pop de
+	call Func_2c775
+	ld a, $7
+	ld [wca65], a
+	ret
+
+Func_2c89f: ; 2c89f (b:489f)
+	ld a, [wca5d]
+	cp $5a
+	jr c, .asm_2c8a9
+	call Func_2c8b1
+.asm_2c8a9
+	xor a
+	ld [wca5d], a
+	ld [wcd21], a
+	ret
+
+Func_2c8b1: ; 2c8b1 (b:48b1)
+	ld a, [wcd29]
+	or a
+	jr nz, .asm_2c8c6
+	ld a, [wc9fd]
+	ld h, a
+	ld a, [wc9fc]
+	ld l, a
+	ld de, wca70
+	call Func_2c8d8
+	ret
+
+.asm_2c8c6
+	ld a, [wc9fd]
+	ld h, a
+	ld a, [wc9fc]
+	ld l, a
+	ld bc, $1c0
+	add hl, bc
+	call WrapAroundBGMapPointer
+	ld de, wcab6
+Func_2c8d8: ; 2c8d8 (b:48d8)
+	call Func_2c8f6
+	call Func_2c8f6
+	call Func_2c8f6
+	call Func_2c8f6
+	call Func_2c8f6
+	call Func_2c8f6
+	call Func_2c8f6
+	call Func_2c8f6
+	call Func_2c8f6
+	jp Func_2c8f6
+
+Func_2c8f6: ; 2c8f6 (b:48f6)
+	ld a, [de]
+	push hl
+	push de
+	call Func_328d
+	pop de
+	inc de
+	pop hl
+	ld c, $2
+	jp Func_2cc32
+
+Func_2c904: ; 2c904 (b:4904)
+	call Func_2107
+	jr nz, .asm_2c92b
+	ld a, [wc904]
+	cp $b
+	jr z, .asm_2c92b
+	ld a, [wca5d]
+	cp $5a
+	jr nz, .asm_2c91a
+	jp Func_2cde
+
+.asm_2c91a
+	ret c
+	ld a, [hJoyNew]
+	and $1
+	ret z
+	ld a, [wc956]
+	xor $1
+	ld [wc956], a
+	jp Func_2c9fe
+
+.asm_2c92b
+	jp Func_2c89f
+
+Func_2c92e: ; 2c92e (b:492e)
+	ld a, $c0
+	ld [wc91f], a
+	ld a, $e0
+	ld [wc91e], a
+	push bc
+	push de
+	call Func_2d03
+	pop de
+	pop bc
+	ld a, $e6
+	ld [wca00], a
+	call Func_2c76c
+	ld a, $7
+	ld [wca65], a
+	jp Func_2ca48
+
+Pointers_2c94f:
+	dab Pointers_114000
+	dab Pointers_118000
+	dab Pointers_11c000
+	dab Pointers_120000
+	dab Pointers_124000
+	dab Pointers_128000
+	dab Pointers_100000
+	dab Pointers_130000
+	dab Pointers_134000
+	dab Pointers_12c000
+	dab Pointers_138000
+	dab Pointers_13c000
+	dab Pointers_140000
+	dab Pointers_11507b
+	dab Pointers_144000
+	dab Pointers_145c9a
+	dab Pointers_99068
+	dab Pointers_40000
+	dab Pointers_158000
+	dab Pointers_15c000
+	dab Pointers_1281d9
+
+Func_2c98e:
+	dr $2c98e, $2c9a2
+
+Func_2c9a2:
+	dr $2c9a2, $2c9bd
+
+Func_2c9bd:
+	dr $2c9bd, $2c9d1
+
+Func_2c9d1:
+	dr $2c9d1, $2c9e6
+
+Func_2c9e6:
+	dr $2c9e6, $2c9fb
+
+Func_2c9fb:
+	dr $2c9fb, $2c9fe
+
+Func_2c9fe:
+	dr $2c9fe, $2ca0f
+
+Func_2ca0f:
+	dr $2ca0f, $2ca48
+
+Func_2ca48:
+	dr $2ca48, $2ca5c
+
+Func_2ca5c:
+	dr $2ca5c, $2cb08
+
+Data_2cb08:
+	dr $2cb08, $2cb3d
+
+Func_2cb3d:
+	dr $2cb3d, $2cb68
+
+Func_2cb68:
+	dr $2cb68, $2cbd0
+
+Func_2cbd0:
+	dr $2cbd0, $2cc32
+
+Func_2cc32:
+	dr $2cc32, $2cc4e
+
+Func_2cc4e:
+	dr $2cc4e, $2ccb9
 
 Func_2ccb9::
-	dr $2ccb9, $2ce29
+	dr $2ccb9, $2cce5
+
+Func_2cce5:
+	dr $2cce5, $2cceb
+
+Func_2cceb:
+	dr $2cceb, $2ccf6
+
+Func_2ccf6:
+	dr $2ccf6, $2ce29
 
 LoadCharacter: ; 2ce29 (b:4e29)
 	push hl
@@ -2819,7 +4066,13 @@ LoadCharacter: ; 2ce29 (b:4e29)
 	ret
 
 Func_2cea0:
-	dr $2cea0, $2d229
+	dr $2cea0, $2d00f
+
+Data_2d00f:
+	dr $2d00f, $2d07b
+
+Data_2d07b:
+	dr $2d07b, $2d229
 
 FontGFX: INCBIN "gfx/font/font_2d229.t13.1bpp"
 
@@ -2935,7 +4188,10 @@ Func_2e562::
 	dr $2e562, $2e589
 
 Func_2e589::
-	dr $2e589, $2e8fa
+	dr $2e589, $2e652
+
+Data_2e652:
+	dr $2e652, $2e8fa
 
 Data_2e8fa::
 	dr $2e8fa, $2f9ba
@@ -3372,7 +4628,10 @@ SECTION "bank 24", ROMX, BANK [$24]
 	dr $90000, $94000
 
 SECTION "bank 26", ROMX, BANK [$26]
-	dr $98000, $9c000
+	dr $98000, $99068
+
+Pointers_99068:
+	dr $99068, $9c000
 
 SECTION "bank 27", ROMX, BANK [$27]
 Data_9c000::
@@ -3532,10 +4791,62 @@ Func_a85ae: ; a85ae (2a:45ae)
 	ret
 
 Func_a85e5::
-	dr $a85e5, $a8663
+	dr $a85e5, $a8631
 
-Func_a8663::
-	dr $a8663, $a8788
+Func_a8631:
+	call GetFarByte
+	ld a, b
+	bit 0, c
+	jr nz, .no_swap
+	swap a
+.no_swap
+	and $f
+	ld b, a
+	ret
+
+Func_a863f:
+	ld d, $0
+REPT 5
+	sla e
+	rl d
+ENDR
+	add hl, de
+	ld a, [wc906]
+	ld c, a
+	srl a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ret
+
+Func_a8663: ; a8663 (2a:4663)
+	ld hl, Data_aa417
+	ld a, [wc904]
+	cp $2
+	jr c, .asm_a867d
+	cp $6
+	jr nc, .asm_a867d
+	sub $2
+	ld e, a
+	call Func_a863f
+	ld b, BANK(Data_aa417)
+	call Func_a8631
+	ret
+
+.asm_a867d
+	ld hl, Data_aa497
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld b, [hl]
+	ret
+
+Data_a8688:
+	dr $a8688, $a8788
 
 Func_a8788::
 	dr $a8788, $a8c50
@@ -3547,7 +4858,63 @@ Func_a8c86::
 	dr $a8c86, $a8d20
 
 Func_a8d20::
-	dr $a8d20, $ac000
+	dr $a8d20, $aa417
+
+Data_aa417:
+; 2
+	dn 4, 4, 4, 4, 4, 4, 4, 4
+	dn 4, 4, 4, 4, 4, 4, 4, 4
+	dn 4, 4, 4, 4, 4, 4, 4, 4
+	dn 4, 4, 4, 4, 1, 4, 4, 4
+	dn 0, 0, 1, 1, 1, 1, 1, 1
+	dn 0, 5, 1, 1, 0, 6, 6, 1
+	dn 5, 5, 0, 0, 0, 1, 6, 6
+	dn 5, 5, 0, 0, 0, 1, 6, 6
+; 3
+	dn 0, 1, 1, 1, 1, 1, 1, 1
+	dn 0, 1, 1, 1, 1, 1, 1, 1
+	dn 0, 1, 1, 1, 1, 1, 5, 1
+	dn 0, 1, 1, 1, 1, 1, 5, 1
+	dn 0, 1, 1, 1, 1, 1, 5, 1
+	dn 0, 1, 1, 1, 1, 1, 1, 1
+	dn 6, 1, 1, 1, 1, 1, 1, 1
+	dn 6, 0, 6, 6, 6, 1, 1, 1
+; 4
+	dn 5, 5, 0, 0, 0, 0, 0, 6
+	dn 0, 0, 0, 0, 0, 5, 5, 5
+	dn 0, 0, 0, 0, 0, 5, 1, 1
+	dn 0, 0, 0, 5, 5, 5, 1, 1
+	dn 0, 0, 0, 5, 1, 1, 1, 1
+	dn 0, 0, 0, 5, 1, 1, 1, 1
+	dn 0, 0, 0, 5, 0, 0, 0, 1
+	dn 0, 0, 0, 5, 0, 0, 0, 0
+	dn 0, 6, 6, 6, 6, 6, 0, 1
+; 5
+	dn 5, 1, 0, 6, 6, 6, 0, 1
+	dn 5, 1, 0, 6, 6, 0, 0, 0
+	dn 5, 1, 0, 6, 6, 0, 0, 5
+	dn 1, 1, 0, 6, 5, 5, 5, 5
+	dn 1, 1, 0, 6, 5, 5, 5, 5
+	dn 1, 1, 0, 6, 5, 5, 5, 5
+	dn 1, 1, 0, 6, 5, 5, 5, 5
+
+Data_aa497:
+	db 0, 0, 0, 0, 0
+	db 0, 1, 1, 1, 1
+	db 4, 0, 4, 4, 3
+	db 3, 4, 4, 4, 4
+	db 4, 4, 4, 4, 4
+	db 4, 3, 3, 3, 3
+	db 3, 3, 3, 3, 3
+	db 3, 3, 3, 3, 3
+	db 3, 3, 3, 0, 0
+	db 0, 0, 0, 0, 0
+	db 3, 3, 3, 0, 0
+	db 0, 0, 0, 0, 0
+	db 0, 0
+
+Pointers_aa4d5:
+	dr $aa4d5, $ac000
 
 SECTION "bank 2B", ROMX, BANK [$2b]
 	dr $ac000, $b0000
@@ -3773,34 +5140,49 @@ ELSE
 ENDC
 
 SECTION "bank 40", ROMX, BANK [$40]
+Pointers_100000:
 	dr $100000, $104000
 
 SECTION "bank 45", ROMX, BANK [$45]
-	dr $114000, $118000
+Pointers_114000:
+	dr $114000, $11507b
+
+Pointers_11507b:
+	dr $11507b, $118000
 
 SECTION "bank 46", ROMX, BANK [$46]
+Pointers_118000:
 	dr $118000, $11c000
 
 SECTION "bank 47", ROMX, BANK [$47]
+Pointers_11c000:
 	dr $11c000, $120000
 
 SECTION "bank 48", ROMX, BANK [$48]
+Pointers_120000:
 	dr $120000, $124000
 
 SECTION "bank 49", ROMX, BANK [$49]
+Pointers_124000:
 	dr $124000, $128000
 
 SECTION "bank 4A", ROMX, BANK [$4a]
-	dr $128000, $12c000
+Pointers_128000:
+	dr $128000, $1281d9
+
+Pointers_1281d9:
+	dr $1281d9, $12c000
 
 SECTION "bank 4B", ROMX, BANK [$4b]
+Pointers_12c000:
 	dr $12c000, $130000
 
 SECTION "bank 4C", ROMX, BANK [$4c]
+Pointers_130000:
 	dr $130000, $134000
 
 SECTION "bank 4D", ROMX, BANK [$4d]
-Data_134000::
+Pointers_134000::
 	dr $134000, $13622e
 
 UnknownTZFile30:: INCBIN "gfx/tzfiles/tz_30.2bpp.tz"
@@ -3808,16 +5190,23 @@ UnknownTZFile31:: INCBIN "gfx/tzfiles/tz_31.2bpp.tz"
 UnknownTZFile29:: INCBIN "gfx/tzfiles/tz_29.2bpp.tz"
 
 SECTION "bank 4E", ROMX, BANK [$4e]
+Pointers_138000:
 	dr $138000, $13c000
 
 SECTION "bank 4F", ROMX, BANK [$4f]
+Pointers_13c000:
 	dr $13c000, $140000
 
 SECTION "bank 50", ROMX, BANK [$50]
+Pointers_140000:
 	dr $140000, $144000
 
 SECTION "bank 51", ROMX, BANK [$51]
-	dr $144000, $148000
+Pointers_144000:
+	dr $144000, $145c9a
+
+Pointers_145c9a:
+	dr $145c9a, $148000
 
 SECTION "bank 52", ROMX, BANK [$52]
 INCLUDE "data/map_data_148000.asm"
@@ -3838,9 +5227,11 @@ SECTION "bank 55", ROMX, BANK [$55]
 	dr $154000, $158000
 
 SECTION "bank 56", ROMX, BANK [$56]
+Pointers_158000:
 	dr $158000, $15c000
 
 SECTION "bank 57", ROMX, BANK [$57]
+Pointers_15c000:
 	dr $15c000, $160000
 
 SECTION "bank 59", ROMX, BANK [$59]

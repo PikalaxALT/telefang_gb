@@ -685,8 +685,8 @@ Func_704af: ; 704af (1c:44af)
 	jp [hl]
 
 Pointers_704b9:
-	dw Func_704d7
-	dw Func_704da
+	dw BattleStart_Reset
+	dw BattleStart_Init
 	dw Func_70541
 	dw Func_70693
 	dw Func_706b6
@@ -701,10 +701,10 @@ Pointers_704b9:
 	dw Func_70957
 	dw Func_70961
 
-Func_704d7:
+BattleStart_Reset:
 	jp NextBattleSubroutine
 
-Func_704da:
+BattleStart_Init:
 	call ClearBGMapAndAttrs
 	call ClearBGWindowAndAttrs
 	call ClearObjectAnimationBuffers
@@ -726,7 +726,6 @@ Func_70500: ; 70500 (1c:4500)
 	ld e, a
 	ld d, $0
 	sla e
-.asm_7050e
 	rl d
 	ld hl, $60
 	ld a, [wc93b]
@@ -995,7 +994,7 @@ Func_70755:
 	call Func_3cd0
 	call Func_0530
 	ld a, [hJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_70784
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -1016,7 +1015,7 @@ Func_70755:
 
 .asm_70784
 	ld a, [hJoyNew]
-	and $80
+	and D_DOWN
 	jr z, .asm_707b2
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -1040,7 +1039,7 @@ Func_70755:
 
 .asm_707b2
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_707db
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -1061,7 +1060,7 @@ Func_70755:
 
 .asm_707db
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_70802
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -1081,7 +1080,7 @@ Func_70755:
 
 .asm_70802
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_70832
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -1106,7 +1105,7 @@ Func_70755:
 
 .asm_70832
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_70856
 .asm_70838
 	ld a, $57
@@ -1194,7 +1193,7 @@ Func_708c2:
 	cp $0
 	jr z, .asm_70915
 	call OpenSRAMBank2
-	ld hl, $a002
+	ld hl, sAddressBook + $02
 	ld a, [wcdb4]
 	call Func_3d0e
 	ld a, [hl]
@@ -1269,7 +1268,7 @@ Func_7096b:
 	ld c, $0
 	call Func_1430
 	ld a, [wJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_709a9
 	ld a, [wd406]
 	cp $24
@@ -1292,7 +1291,7 @@ Func_7096b:
 
 .asm_709a9
 	ld a, [wJoyNew]
-	and $20
+	and D_LEFT
 	jr z, Func_709db
 	ld a, [wd406]
 	cp $0
@@ -1321,7 +1320,7 @@ Func_709dc:
 	ld c, $0
 	call Func_1430
 	ld a, [wJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_70a1a
 	ld a, [wEnemyDenjuu1]
 	cp $ad
@@ -1344,7 +1343,7 @@ Func_709dc:
 
 .asm_70a1a
 	ld a, [wJoyNew]
-	and $20
+	and D_LEFT
 	jr z, Func_70a4c
 	ld a, [wEnemyDenjuu1Species]
 	cp $0
@@ -1370,32 +1369,32 @@ Func_70a4c: ; 70a4c (1c:4a4c)
 
 Func_70a4d:
 	ld a, [hJoyNew]
-	and $8
+	and START
 	jr z, .asm_70a98
 	ld a, $4
-	ld [$a000], a
+	ld [sAddressBook + $00], a
 	ld a, $5
-	ld [$a001], a
+	ld [sAddressBook + $01], a
 	ld a, $0
-	ld [$a004], a
+	ld [sAddressBook + $04], a
 	ld a, $64
-	ld [$a002], a
+	ld [sAddressBook + $02], a
 	ld a, $0
-	ld [$a010], a
-	ld [$a020], a
-	ld [$a030], a
+	ld [sAddressBook + $10], a
+	ld [sAddressBook + $20], a
+	ld [sAddressBook + $30], a
 	ld a, $0
-	ld [$a014], a
-	ld [$a024], a
-	ld [$a034], a
+	ld [sAddressBook + $14], a
+	ld [sAddressBook + $24], a
+	ld [sAddressBook + $34], a
 	ld a, $0
-	ld [$a011], a
-	ld [$a021], a
-	ld [$a031], a
+	ld [sAddressBook + $11], a
+	ld [sAddressBook + $21], a
+	ld [sAddressBook + $31], a
 	ld a, $0
-	ld [$a012], a
-	ld [$a022], a
-	ld [$a032], a
+	ld [sAddressBook + $12], a
+	ld [sAddressBook + $22], a
+	ld [sAddressBook + $32], a
 	ld a, $0
 	ld a, [wPlayerDenjuu1Field0x0d]
 .asm_70a98
@@ -1613,7 +1612,7 @@ Func_70bca:
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_71738
-	ld hl, $a000
+	ld hl, sAddressBook + $00
 	call Func_3d0e
 	ld a, [hl]
 	ld [wd490], a
@@ -1745,7 +1744,7 @@ Func_70d81:
 	call Func_0530
 	call Func_3cd0
 	ld a, [wJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_70db0
 	ld a, [wd4a1]
 	cp $0
@@ -1766,7 +1765,7 @@ Func_70d81:
 
 .asm_70db0
 	ld a, [wJoyNew]
-	and $10
+	and D_RIGHT
 	jp z, Func_70e18
 	ld a, [wd4a1]
 	cp $0
@@ -1813,7 +1812,7 @@ Func_70d81:
 
 Func_70e18: ; 70e18 (1c:4e18)
 	ld a, [wJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_70e35
 	ld a, [wBattleMenuSelection]
 	cp $0
@@ -1828,7 +1827,7 @@ Func_70e18: ; 70e18 (1c:4e18)
 
 .asm_70e35
 	ld a, [wJoyNew]
-	and $80
+	and D_DOWN
 	jp z, Func_70e59
 	ld a, [wd413]
 	sub $1
@@ -1846,7 +1845,7 @@ Func_70e18: ; 70e18 (1c:4e18)
 
 Func_70e59: ; 70e59 (1c:4e59)
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jp z, Func_70f60
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -1967,7 +1966,7 @@ Func_70f2c: ; 70f2c (1c:4f2c)
 
 Func_70f60: ; 70f60 (1c:4f60)
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_70fba
 	ld a, $4
 	ld [H_SFX_ID], a
@@ -2007,7 +2006,7 @@ Func_70f60: ; 70f60 (1c:4f60)
 
 .asm_70fba
 	ld a, [hJoyNew]
-	and $8
+	and START
 	jp z, Func_70fc8
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -2015,7 +2014,7 @@ Func_70f60: ; 70f60 (1c:4f60)
 
 Func_70fc8: ; 70fc8 (1c:4fc8)
 	ld a, [hJoyNew]
-	and $4
+	and SELECT
 	jp z, Func_70fdf
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -2043,7 +2042,7 @@ Func_70fe3: ; 70fe3 (1c:4fe3)
 	ret
 
 Func_70ffd:
-	ld bc, $105
+	lb bc, 1, 5
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -2051,7 +2050,7 @@ Func_70ffd:
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_71738
-	ld hl, $a000
+	ld hl, sAddressBook + $00
 	call Func_3d0e
 	ld a, [hl]
 	ld [wd490], a
@@ -2067,11 +2066,11 @@ Func_70ffd:
 	jp NextBattleSubroutine
 
 Func_71033:
-	ld bc, $105
+	lb bc, 1, 5
 	ld e, $92
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $105
+	lb bc, 1, 5
 	ld e, $8c
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
@@ -2120,7 +2119,7 @@ Func_71097:
 	ld a, [wd45a]
 	inc a
 	ld [wd45a], a
-	cp $a
+	cp 10
 	ret c
 	xor a
 	ld [wd45a], a
@@ -2133,78 +2132,78 @@ Func_710ae:
 	call Func_0530
 	ld a, [wd47c]
 	cp $1
-	jr nz, .asm_710c0
+	jr nz, .okay1
 	ld a, $0
 	call Func_71446
-.asm_710c0
+.okay1
 	ld a, [wd47d]
 	cp $1
-	jr nz, .asm_710cc
+	jr nz, .okay2
 	ld a, $1
 	call Func_71446
-.asm_710cc
+.okay2
 	ld a, [wd47e]
 	cp $1
-	jr nz, .asm_710d8
+	jr nz, .okay3
 	ld a, $2
 	call Func_71446
-.asm_710d8
+.okay3
 	ld a, [wd42b]
 	cp $0
-	jp z, Func_71177
+	jp z, .check_a_b
 	ld a, [wd40c]
 	cp $0
-	jp z, Func_71177
+	jp z, .check_a_b
 	ld a, [hJoyNew]
-	and $20
-	jr z, .asm_71103
+	and D_LEFT
+	jr z, .check_d_right
 	ld a, [wd40d]
 	cp $0
-	jr z, .asm_710fc
+	jr z, .set_cursor_pos_1_left
 	ld a, $0
 	ld [wd40d], a
-	jr .asm_7111c
+	jr .done_left_right
 
-.asm_710fc
+.set_cursor_pos_1_left
 	ld a, $1
 	ld [wd40d], a
-	jr .asm_7111c
+	jr .done_left_right
 
-.asm_71103
+.check_d_right
 	ld a, [hJoyNew]
-	and $10
-	jr z, .asm_71124
+	and D_RIGHT
+	jr z, .check_b_button
 	ld a, [wd40d]
 	cp $1
-	jr z, .asm_71117
+	jr z, .set_cursor_pos_0_right
 	ld a, $1
 	ld [wd40d], a
-	jr .asm_7111c
+	jr .done_left_right
 
-.asm_71117
+.set_cursor_pos_0_right
 	ld a, $0
 	ld [wd40d], a
-.asm_7111c
+.done_left_right
 	ld a, $2
 	ld [H_SFX_ID], a
 	jp Func_703a2
 
-.asm_71124
+.check_b_button
 	ld a, [hJoyNew]
-	and $2
-	jr z, .asm_7112c
-	jr asm_7113b
+	and B_BUTTON
+	jr z, .check_a_button
+	jr .cancel
 
-.asm_7112c
+.check_a_button
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wd40d]
 	cp $1
-	jr z, asm_7113b
-	jp Func_71188
+	jr z, .cancel
+	jp .set_summoned_denjuu
 
-asm_7113b
+.cancel
 	ld a, $4
 	ld [H_SFX_ID], a
 	call Func_713de
@@ -2229,35 +2228,35 @@ asm_7113b
 	ld [wBattleSubroutine], a
 	ret
 
-Func_71177: ; 71177 (1c:5177)
+.check_a_b
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
-	jr z, asm_7113b
-Func_71188: ; 71188 (1c:5188)
+	jr z, .cancel
+.set_summoned_denjuu
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, [wd42e]
 	cp $1
-	jr z, .asm_711ab
+	jr z, .done
 	cp $2
-	jr z, .asm_7119c
+	jr z, .one_denjuu_chosen
 	cp $3
-	jr z, .asm_711a3
-.asm_7119c
+	jr z, .two_denjuu_chosen
+.one_denjuu_chosen
 	ld a, $1
 	ld [wPlayerDenjuu2ArrivedStatus], a
-	jr .asm_711ab
+	jr .done
 
-.asm_711a3
+.two_denjuu_chosen
 	ld a, $1
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld [wPlayerDenjuu3ArrivedStatus], a
-.asm_711ab
+.done
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
@@ -2332,7 +2331,7 @@ Func_7122c: ; 7122c (1c:522c)
 	push hl
 	push bc
 	call OpenSRAMBank2
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	ld a, b
 	call Func_3d0e
 	ld a, [hl]
@@ -2345,7 +2344,7 @@ Func_7122c: ; 7122c (1c:522c)
 	push hl
 	push bc
 	ld a, b
-	ld hl, $a008
+	ld hl, sAddressBook + $08
 	call Func_3d0e
 	ld a, [hl]
 	ld b, a
@@ -2463,7 +2462,7 @@ Func_7131f: ; 7131f (1c:531f)
 	call OpenSRAMBank2
 	ld d, $0
 	call Func_71738
-	ld hl, $a008
+	ld hl, sAddressBook + $08
 	call Func_3d0e
 	ld a, [hl]
 	ld b, a
@@ -2474,7 +2473,7 @@ Func_7131f: ; 7131f (1c:531f)
 	call OpenSRAMBank2
 	ld d, $1
 	call Func_71738
-	ld hl, $a008
+	ld hl, sAddressBook + $08
 	call Func_3d0e
 	ld a, [hl]
 	ld b, a
@@ -2485,7 +2484,7 @@ Func_7131f: ; 7131f (1c:531f)
 	call OpenSRAMBank2
 	ld d, $2
 	call Func_71738
-	ld hl, $a008
+	ld hl, sAddressBook + $08
 	call Func_3d0e
 	ld a, [hl]
 	ld b, a
@@ -2499,29 +2498,29 @@ Func_71374: ; 71374 (1c:5374)
 	ld a, [wd413]
 	cp $1
 	jr c, .asm_713dd
-	ld bc, $b04
+	lb bc, 11, 4
 	ld e, $a5
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $f04
+	lb bc, 15, 4
 	ld e, $a6
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, [wd413]
 	cp $2
 	jr c, .asm_713ac
-	ld bc, $b07
+	lb bc, 11, 7
 	ld e, $a5
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $f07
+	lb bc, 15, 7
 	ld e, $a6
 	ld a, $0
 	call LoadStdBGMapLayout_
 	jr .asm_713b6
 
 .asm_713ac
-	ld bc, $b07
+	lb bc, 11, 7
 	ld e, $aa
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -2529,18 +2528,18 @@ Func_71374: ; 71374 (1c:5374)
 	ld a, [wd413]
 	cp $3
 	jr c, .asm_713d3
-	ld bc, $b0a
+	lb bc, 11, 10
 	ld e, $a5
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $f0a
+	lb bc, 15, 10
 	ld e, $a6
 	ld a, $0
 	call LoadStdBGMapLayout_
 	jr .asm_713dd
 
 .asm_713d3
-	ld bc, $b0a
+	lb bc, 11, 10
 	ld e, $aa
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -2640,7 +2639,7 @@ Func_71477: ; 71477 (1c:5477)
 	call Func_71738
 	ld [wPlayerDenjuu2Field0x0d], a
 	call OpenSRAMBank2
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	ld a, [wPlayerDenjuu2Field0x0d]
 	call Func_3d0e
 	ld a, [hli]
@@ -2649,7 +2648,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld [wPlayerDenjuu2Autonomy], a
 	ld a, [hl]
 	ld [wPlayerDenjuu2Field0x0c], a
-	ld hl, $a008
+	ld hl, sAddressBook + $08
 	ld a, [wPlayerDenjuu2Field0x0d]
 	call Func_3d0e
 	ld a, [hl]
@@ -2673,7 +2672,7 @@ Func_71477: ; 71477 (1c:5477)
 	call Func_71738
 	ld [wPlayerDenjuu3Field0x0d], a
 	call OpenSRAMBank2
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	ld a, [wPlayerDenjuu3Field0x0d]
 	call Func_3d0e
 	ld a, [hli]
@@ -2682,7 +2681,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld [wPlayerDenjuu3Autonomy], a
 	ld a, [hl]
 	ld [wPlayerDenjuu3Field0x0c], a
-	ld hl, $a008
+	ld hl, sAddressBook + $08
 	ld a, [wPlayerDenjuu3Field0x0d]
 	call Func_3d0e
 	ld a, [hl]
@@ -2806,7 +2805,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	jr c, .asm_71656
 	ld d, $0
 	call Func_71738
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	call Func_3d0e
 	ld a, [hl]
 	hlbgcoord 13, 4
@@ -2821,7 +2820,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	jr c, .asm_71656
 	ld d, $1
 	call Func_71738
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	call Func_3d0e
 	ld a, [hl]
 	hlbgcoord 13, 7
@@ -2836,7 +2835,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	jr c, .asm_71656
 	ld d, $2
 	call Func_71738
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	call Func_3d0e
 	ld a, [hl]
 	hlbgcoord 13, 10
@@ -2855,7 +2854,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	jp c, Func_71703
 	ld d, $0
 	call Func_71738
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	call Func_3d0e
 	ld a, [hld]
 	ld b, a
@@ -2868,7 +2867,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	call Func_1430
 	ld d, $0
 	call Func_71738
-	ld hl, $a002
+	ld hl, sAddressBook + $02
 	call Func_3d0e
 	ld a, [hl]
 	hlbgcoord 17, 4
@@ -2879,7 +2878,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	jr c, Func_71703
 	ld d, $1
 	call Func_71738
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	call Func_3d0e
 	ld a, [hld]
 	ld b, a
@@ -2892,7 +2891,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	call Func_1430
 	ld d, $1
 	call Func_71738
-	ld hl, $a002
+	ld hl, sAddressBook + $02
 	call Func_3d0e
 	ld a, [hl]
 	hlbgcoord 17, 7
@@ -2903,7 +2902,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	jr c, Func_71703
 	ld d, $2
 	call Func_71738
-	ld hl, $a001
+	ld hl, sAddressBook + $01
 	call Func_3d0e
 	ld a, [hld]
 	ld b, a
@@ -2916,7 +2915,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	call Func_1430
 	ld d, $2
 	call Func_71738
-	ld hl, $a002
+	ld hl, sAddressBook + $02
 	call Func_3d0e
 	ld a, [hl]
 	hlbgcoord 17, 10
@@ -2970,7 +2969,7 @@ Func_71744: ; 71744 (1c:5744)
 	call OpenSRAMBank2
 	ld d, $0
 	call Func_71738
-	ld hl, $a006
+	ld hl, sAddressBook + $06
 	call Func_3d0e
 	push hl
 	pop de
@@ -2979,7 +2978,7 @@ Func_71744: ; 71744 (1c:5744)
 	ld de, wc9e1
 	ld b, $6
 	call PlaceString_
-	ld bc, $b03
+	lb bc, 11, 3
 	ld e, $a7
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -2989,7 +2988,7 @@ Func_71744: ; 71744 (1c:5744)
 	call OpenSRAMBank2
 	ld d, $1
 	call Func_71738
-	ld hl, $a006
+	ld hl, sAddressBook + $06
 	call Func_3d0e
 	push hl
 	pop de
@@ -2998,7 +2997,7 @@ Func_71744: ; 71744 (1c:5744)
 	ld de, wc9e1
 	ld b, $6
 	call PlaceString_
-	ld bc, $b06
+	lb bc, 11, 6
 	ld e, $a8
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -3008,7 +3007,7 @@ Func_71744: ; 71744 (1c:5744)
 	call OpenSRAMBank2
 	ld d, $2
 	call Func_71738
-	ld hl, $a006
+	ld hl, sAddressBook + $06
 	call Func_3d0e
 	push hl
 	pop de
@@ -3017,7 +3016,7 @@ Func_71744: ; 71744 (1c:5744)
 	ld de, wc9e1
 	ld b, $6
 	call PlaceString_
-	ld bc, $b09
+	lb bc, 11, 9
 	ld e, $a9
 	ld a, $0
 	jp LoadStdBGMapLayout_
@@ -3105,11 +3104,11 @@ Func_71831:
 	pop bc
 	xor a
 	call Func_10ee
-	ld bc, $c
+	lb bc, 0, 12
 	ld e, $80
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $0
+	lb bc, 0, 0
 	ld e, $b
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
@@ -3117,21 +3116,21 @@ Func_71831:
 	ld a, [wc9da]
 	add e
 	ld e, a
-	ld bc, $0
+	lb bc, 0, 0
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld e, $a0
 	ld a, [wc9da]
 	add e
 	ld e, a
-	ld bc, $0
+	lb bc, 0, 0
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld bc, $500
+	lb bc, 5, 0
 	ld e, $ae
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $500
+	lb bc, 5, 0
 	ld e, $93
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
@@ -3175,7 +3174,7 @@ Func_71831:
 	jr .asm_718f4
 
 .asm_718e6
-	ld bc, $1f7
+	ld bc, EVENT_1F7
 	call CheckEventFlag
 	jr nz, .asm_718f2
 	ld a, $16
@@ -3219,7 +3218,7 @@ Func_7191b:
 Func_7192e:
 	call Func_0530
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -3241,11 +3240,11 @@ Func_71948:
 	ret
 
 Func_71957:
-	ld bc, $0
+	lb bc, 0, 0
 	ld e, $f
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $0
+	lb bc, 0, 0
 	ld e, $f
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
@@ -3276,19 +3275,19 @@ Func_71957:
 	ld hl, VTilesBG tile $20
 	ld a, $8
 	call ClearString
-	ld bc, $100
+	lb bc, 1, 0
 	ld e, $86
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld bc, $100
+	lb bc, 1, 0
 	ld e, $87
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld bc, $8
+	lb bc, 0, 8
 	ld e, $81
 	ld a, $0
 	call LoadStdWindowLayout_
-	ld bc, $108
+	lb bc, 1, 8
 	ld e, $84
 	ld a, $0
 	call LoadStdWindowAttrLayout_

@@ -58,7 +58,11 @@ ENDR
 ENDM
 
 dn: MACRO
+REPT _NARG / 2
 	db ((\1 & $f) << 4) | (\2 & $f)
+	shift
+	shift
+ENDR
 ENDM
 
 ln: MACRO
@@ -72,6 +76,15 @@ ENDM
 
 dba: MACRO
 	dbw BANK(\1), \1
+ENDM
+
+dwb: MACRO
+	dw \1
+	db \2
+ENDM
+
+dab: MACRO
+	dwb \1, BANK(\1)
 ENDM
 
 homecall: MACRO
