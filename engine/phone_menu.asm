@@ -1171,7 +1171,7 @@ Func_10936: ; 10936 (4:4936)
 
 Func_10953: ; 10953 (4:4953)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $3
@@ -1249,7 +1249,7 @@ Func_109dc: ; 109dc (4:49dc)
 
 Func_109f3: ; 109f3 (4:49f3)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $3
@@ -1586,7 +1586,7 @@ Func_10c90:
 
 Func_10cb4:
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld c, $fe
@@ -1597,7 +1597,7 @@ Func_10cb4:
 
 Func_10cc9:
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld bc, EVENT_C3E
@@ -1774,7 +1774,7 @@ Func_10e37:
 
 Func_10e45:
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $4
@@ -2318,7 +2318,7 @@ Func_11241: ; 11241 (4:5241)
 
 Func_11265: ; 11265 (4:5265)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $4

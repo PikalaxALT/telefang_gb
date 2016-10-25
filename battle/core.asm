@@ -157,7 +157,7 @@ Func_1452d: ; 1452d (5:452d)
 
 Func_1454a: ; 1454a (5:454a)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	call InitSerialData
@@ -618,7 +618,7 @@ Func_148a8:
 
 Func_148ad: ; 148ad (5:48ad)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, [wCurBattleDenjuu]
@@ -889,7 +889,7 @@ Func_14aad: ; 14aad (5:4aad)
 	ld [wd45a], a
 	jr z, .asm_14ac5
 .asm_14abf
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 .asm_14ac5
@@ -921,7 +921,7 @@ Func_14aad: ; 14aad (5:4aad)
 
 Func_14af8: ; 14af8 (5:4af8)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $e
@@ -1456,7 +1456,7 @@ Func_14ed6: ; 14ed6 (5:4ed6)
 
 Func_14f12: ; 14f12 (5:4f12)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, [wBattleMenuSelection]
@@ -4007,7 +4007,7 @@ Func_16289: ; 16289 (5:6289)
 
 Func_162cd: ; 162cd (5:62cd)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, [wd470]
@@ -4143,7 +4143,7 @@ Func_163d0: ; 163d0 (5:63d0)
 
 Func_163e0: ; 163e0 (5:63e0)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $e
@@ -5387,7 +5387,7 @@ Func_16c7f: ; 16c7f (5:6c7f)
 
 Func_16cba: ; 16cba (5:6cba)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, [wd416]
@@ -5585,7 +5585,7 @@ Func_16e17: ; 16e17 (5:6e17)
 
 Func_16e1d: ; 16e1d (5:6e1d)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	jp Func_14000
@@ -5725,7 +5725,7 @@ Func_16e82: ; 16e82 (5:6e82)
 
 Func_16f47: ; 16f47 (5:6f47)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, [wd4e6]
@@ -6218,7 +6218,7 @@ Func_172d7: ; 172d7 (5:72d7)
 
 Func_172dd: ; 172dd (5:72dd)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	jp Func_14000
@@ -6333,7 +6333,7 @@ Func_17347: ; 17347 (5:7347)
 
 Func_173cf: ; 173cf (5:73cf)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, [wd4e7]
@@ -6424,7 +6424,7 @@ Func_17478: ; 17478 (5:7478)
 
 Func_1747e: ; 1747e (5:747e)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $5
@@ -7740,7 +7740,7 @@ Func_17dcd: ; 17dcd (5:7dcd)
 
 Func_17dd6: ; 17dd6 (5:7dd6)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $f
@@ -7749,7 +7749,7 @@ Func_17dd6: ; 17dd6 (5:7dd6)
 
 Func_17de5: ; 17de5 (5:7de5)
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $13

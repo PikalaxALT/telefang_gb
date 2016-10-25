@@ -129,7 +129,7 @@ Func_0528::
 	ret
 
 Func_0530::
-	homecall_memret Func_2c100
+	homecall_memret PrintText
 	ret
 
 Copy2bpp::

@@ -1107,7 +1107,7 @@ wc9c5:: ds 1
 wc9c6:: ds 1
 wc9c7:: ds 1
 wc9c8:: ds 1
-wc9c9:: ds 1
+wTextSubroutine:: ds 1
 wc9ca:: ds 1
 wc9cb:: ds 1
 wc9cc:: ds 1

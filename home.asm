@@ -3085,8 +3085,8 @@ Func_241e: ; 241e (0:241e)
 	ret
 
 Func_242b::
-	homecall Func_2c100
-	ld a, [wc9c9]
+	homecall PrintText
+	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, .asm_2464
 	ld a, $4
@@ -4338,7 +4338,7 @@ Func_2cb7::
 	ret
 
 Func_2cc4::
-	homecall Func_2c100
+	homecall PrintText
 	ret
 
 Func_2cd1::
@@ -4350,7 +4350,7 @@ Func_2cde::
 	ret
 
 Func_2ceb::
-	homecall Func_2c711, Func_2c100, Func_2c100
+	homecall Func_2c711, PrintText, PrintText
 	ld a, $0
 	ld [wc9cf], a
 	ret
@@ -4360,7 +4360,7 @@ Func_2d03::
 	ret
 
 Func_2d10::
-	homecall Func_2c92e, Func_2c100, Func_2c100, Func_2c100
+	homecall Func_2c92e, PrintText, PrintText, PrintText
 	ld a, $0
 	ld [wc9cf], a
 	ret

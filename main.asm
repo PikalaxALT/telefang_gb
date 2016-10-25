@@ -72,7 +72,7 @@ Func_807c::
 	and START
 	jr nz, .start
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 .start
@@ -174,7 +174,7 @@ Func_854b::
 	and START
 	jr nz, .asm_855a
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 .asm_855a
@@ -2685,11 +2685,11 @@ SECTION "bank 0B", ROMX, BANK [$b]
 LinkBattleRNs::
 INCLUDE "data/pseudo_rng.asm"
 
-Func_2c100: ; 2c100 (b:4100)
+PrintText: ; 2c100 (b:4100)
 	ld a, [wc9c5]
 	inc a
 	ld [wc9c5], a
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $0
 	jp z, Func_2c57d
 	cp $1
@@ -2988,7 +2988,7 @@ Func_2c2ea: ; 2c2ea (b:42ea)
 	and $1
 	jr nz, .asm_2c306
 	ld a, $2
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ld a, $0
 	ld [wc9cc], a
 	jr Func_2c316
@@ -2997,7 +2997,7 @@ Func_2c2ea: ; 2c2ea (b:42ea)
 	ld a, [wc9c5]
 	ld [wc9cc], a
 	ld a, $3
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	jr Func_2c316
 
 Func_2c313: ; 2c313 (b:4313)
@@ -3005,13 +3005,13 @@ Func_2c313: ; 2c313 (b:4313)
 Func_2c316: ; 2c316 (b:4316)
 	ld a, [wc9cd]
 	or a
-	jp z, Func_2c100
+	jp z, PrintText
 	ld a, [wcad3]
 	or a
-	jp nz, Func_2c100
+	jp nz, PrintText
 	ld a, [hJoyLast]
 	and $2
-	jp nz, Func_2c100
+	jp nz, PrintText
 	ld a, [hJoyNew]
 	and $1
 	jr z, .asm_2c336
@@ -3096,7 +3096,7 @@ Func_2c34e: ; 2c34e (b:434e)
 	ld a, [wc9c5]
 	ld [wc9cc], a
 	ld a, $3
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 Func_2c3c7: ; 2c3c7 (b:43c7)
@@ -3111,7 +3111,7 @@ Func_2c3c7: ; 2c3c7 (b:43c7)
 	ret nz
 .asm_2c3d8
 	call Func_2cb3d
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $3
 	jr z, .asm_2c3f2
 	ld a, [wc9ce]
@@ -3124,18 +3124,18 @@ Func_2c3c7: ; 2c3c7 (b:43c7)
 	call Func_2cceb
 .asm_2c3f2
 	call Func_2cbd0
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $3
 	jr z, .asm_2c407
 	ld a, $1
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ld a, $2
 	ld [wc9cc], a
 	ret
 
 .asm_2c407
 	ld a, $4
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 Func_2c40d: ; 2c40d (b:440d)
@@ -3287,7 +3287,7 @@ Func_2c4f6: ; 2c4f6 (b:44f6)
 	ld h, a
 	ld a, [hl]
 	swap a
-	ld de, Data_2cb08
+	ld de, $4b08
 	add e
 	ld e, a
 	ld a, $0
@@ -3345,7 +3345,7 @@ Func_2c533: ; 2c533 (b:4533)
 	ld a, $0
 	ld [wcad3], a
 	ld a, $9
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	or a
 	ret
 
@@ -3378,7 +3378,7 @@ Func_2c57d: ; 2c57d (b:457d)
 
 .asm_2c5a7
 	ld a, $1
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ld a, $0
 	ld [wc9ce], a
 	ld a, $8
@@ -3402,7 +3402,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	ld a, $0
 	ld [wc9cc], a
 	ld a, $5
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 .asm_2c5dd
@@ -3411,7 +3411,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	ld a, $3c
 	ld [wc9cc], a
 	ld a, $5
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 .asm_2c5ec
@@ -3420,7 +3420,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	ld a, $0
 	ld [wc9cc], a
 	ld a, $6
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 .asm_2c5fb
@@ -3429,7 +3429,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	ld a, $0
 	ld [wc9cc], a
 	ld a, $7
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 .asm_2c60a
@@ -3438,7 +3438,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	ld a, $1
 	ld [wc9cc], a
 	ld a, $6
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 .asm_2c619
@@ -3447,7 +3447,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	ld a, $0
 	ld [wc9cc], a
 	ld a, $a
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	call Func_2c4f6
 	ld a, $1
 	ld [wc9d7], a
@@ -3457,7 +3457,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	ld a, $0
 	ld [wc9cc], a
 	ld a, $8
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 Func_2c63b: ; 2c63b (b:463b)
@@ -3520,13 +3520,13 @@ Func_2c64e: ; 2c64e (b:464e)
 	cp $2
 	jr c, .asm_2c6be
 	ld a, $1
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	call Func_2c98e
 	jr .asm_2c6d1
 
 .asm_2c6be
 	ld a, $0
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ld a, [wc9ca]
 	add $2
 	ld [wc9ca], a
@@ -3667,7 +3667,7 @@ Func_2c775: ; 2c775 (b:4775)
 	ld a, $2
 	ld [wcada], a
 	ld a, $1
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 Func_2c7b9:
@@ -3729,7 +3729,7 @@ Func_2c7ed: ; 2c7ed (b:47ed)
 	ld [wc9cd], a
 	ld [wcada], a
 	ld a, $1
-	ld [wc9c9], a
+	ld [wTextSubroutine], a
 	ret
 
 Func_2c831: ; 2c831 (b:4831)
@@ -3740,8 +3740,8 @@ Func_2c831: ; 2c831 (b:4831)
 	ld d, $0
 	call Func_2c883
 	call Func_2c9e6
-	call Func_2c100
-	call Func_2c100
+	call PrintText
+	call PrintText
 	ld a, $0
 	ld [wc9cf], a
 	ret
@@ -3908,65 +3908,729 @@ Pointers_2c94f:
 	dab Pointers_15c000
 	dab Pointers_1281d9
 
-Func_2c98e:
-	dr $2c98e, $2c9a2
+Func_2c98e: ; 2c98e (b:498e)
+	call Func_2cf28
+	call Func_2cce5
+	ld de, Data_2d00f
+	ld b, $6
+	ld a, [wc9ca]
+	ld c, $1
+	call Func_2ca5c
+	ret
 
-Func_2c9a2:
-	dr $2c9a2, $2c9bd
+Func_2c9a2: ; 2c9a2 (b:49a2)
+	call Func_2cf28
+	call Func_2ccf6
+	ld de, Data_2d127
+	ld b, $3
+	ld a, [wc9ca]
+	ld c, $1
+	call Func_2ca5c
+	ld a, [wc9ca]
+	dec a
+	ld [wc9ca], a
+	ret
 
-Func_2c9bd:
-	dr $2c9bd, $2c9d1
+Func_2c9bd: ; 2c9bd (b:49bd)
+	call Func_2cf28
+	call Func_2cce5
+	ld de, Data_2d0c3
+	ld b, $2
+	ld a, [wc9ca]
+	ld c, $1
+	call Func_2ca5c
+	ret
 
-Func_2c9d1:
-	dr $2c9d1, $2c9e6
+Func_2c9d1: ; 2c9d1 (b:49d1)
+	call Func_2cce5
+	call Func_2cd3b
+	ld de, wca00
+	ld b, $4
+	ld a, [wc9ca]
+	inc a
+	ld c, $2
+	call Func_2ca5c
+	ret
 
-Func_2c9e6:
-	dr $2c9e6, $2c9fb
+Func_2c9e6: ; 2c9e6 (b:49e6)
+	call Func_2cf28
+	call Func_2cceb
+	ld de, Data_2d15d
+	ld b, $4
+	ld a, [wc9ca]
+	ld c, $0
+	call Func_2ca5c
+	ret
 
-Func_2c9fb:
-	dr $2c9fb, $2c9fe
+Func_2c9fa:
+	ret
 
-Func_2c9fe:
-	dr $2c9fe, $2ca0f
+Func_2c9fb: ; 2c9fb (b:49fb)
+	call Func_2d001
+Func_2c9fe: ; 2c9fe (b:49fe)
+	call Func_2cd63
+	ld de, wca08
+	ld b, $2
+	ld a, [wc9ca]
+	ld c, $0
+	call Func_2ca5c
+	ret
 
-Func_2ca0f:
-	dr $2ca0f, $2ca48
+Func_2ca0f: ; 2ca0f (b:4a0f)
+	ld a, b
+	ld hl, wcdbc
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	cp $64
+	jr c, .asm_2ca20
+	ld a, $63
+.asm_2ca20
+	call Get2DigitBCD
+	ld a, $c7
+	ld hl, VTilesShared tile $48
+	call LoadCharacter
+	ld a, [wNumCGBPalettesToFade]
+	swap a
+	and $f
+	add $bb
+	ld hl, VTilesShared tile $49
+	call LoadCharacter
+	ld a, [wNumCGBPalettesToFade]
+	and $f
+	add $bb
+	ld hl, VTilesShared tile $4a
+	call LoadCharacter
+	ret
 
-Func_2ca48:
-	dr $2ca48, $2ca5c
+Func_2ca48: ; 2ca48 (b:4a48)
+	call Func_2cf28
+	call Func_2ccf6
+	ld de, Data_2d185
+	ld b, $3
+	ld a, [wc9ca]
+	ld c, $c
+	call Func_2ca5c
+	ret
 
-Func_2ca5c:
-	dr $2ca5c, $2cb08
+Func_2ca5c: ; 2ca5c (b:4a5c)
+	push bc
+	push de
+	ld b, $0
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	ld d, a
+	ld a, [wc9fc]
+	add c
+	ld l, a
+	ld a, [wc9fd]
+	ld h, a
+	ld c, d
+	add hl, bc
+	call WrapAroundBGMapPointer
+	pop de
+	pop bc
+.asm_2ca85
+	push bc
+	push hl
+	call Func_2caa5
+	pop hl
+	pop bc
+	push bc
+	push hl
+	ld a, [wCGB]
+	cp $11
+	jr nz, .asm_2ca98
+	call Func_2caf9
+.asm_2ca98
+	pop hl
+	ld bc, $20
+	add hl, bc
+	call WrapAroundBGMapPointer
+	pop bc
+	dec b
+	jr nz, .asm_2ca85
+	ret
 
-Data_2cb08:
-	dr $2cb08, $2cb3d
+Func_2caa5: ; 2caa5 (b:4aa5)
+	ld a, c
+	ld [wSpriteDestIsCustom], a
+	ld c, $12
+	cp $1
+	jr z, .asm_2cacb
+	ld c, $a
+	cp $0
+	jr nz, .asm_2cac0
+	ld a, [wc904]
+	cp $b
+	jr z, .asm_2cacb
+	ld c, $14
+	jr .asm_2cacb
 
-Func_2cb3d:
-	dr $2cb3d, $2cb68
+.asm_2cac0
+	ld a, [wSpriteDestIsCustom]
+	ld c, $8
+	cp $c
+	jr z, .asm_2cacb
+	ld c, $10
+.asm_2cacb
+	ld a, c
+	ld [wc987], a
+Func_2cacf:
+	ld a, l
+	and $e0
+	ld b, a
+	ld c, l
+	ld a, h
+	ld [wc988], a
+.asm_2cad8
+	di
+.asm_2cad9
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cad9
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ei
+	ld a, [wc988]
+	ld h, a
+	ld a, $1
+	add c
+	ld c, a
+	and $1f
+	or b
+	ld l, a
+	ld a, [wc987]
+	dec a
+	ld [wc987], a
+	jr nz, .asm_2cad8
+	ret
 
-Func_2cb68:
-	dr $2cb68, $2cbd0
+Func_2caf9: ; 2caf9 (b:4af9)
+	push de
+	ld a, c
+	ld d, $12
+	cp $1
+	jr z, .asm_2cb14
+	ld d, $a
+	cp $0
+	jr nz, .asm_2cb12
+	ld a, [wc904]
+	cp $b
+	jr z, .asm_2cb14
+	ld d, $14
+	jr .asm_2cb14
 
-Func_2cbd0:
-	dr $2cbd0, $2cc32
+.asm_2cb12
+	ld d, $10
+.asm_2cb14
+	ld a, l
+	and $e0
+	ld b, a
+	ld c, l
+	ld a, h
+	ld e, a
+	ld a, $1
+	ld [rVBK], a
+.asm_2cb1f
+	di
+.asm_2cb20
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cb20
+	ld a, [wca65]
+	ld [hli], a
+	ei
+	ld a, e
+	ld h, a
+	ld a, $1
+	add c
+	ld c, a
+	and $1f
+	or b
+	ld l, a
+	dec d
+	jr nz, .asm_2cb1f
+	xor a
+	ld [rVBK], a
+	pop de
+	ret
 
-Func_2cc32:
-	dr $2cc32, $2cc4e
+Func_2cb3d: ; 2cb3d (b:4b3d)
+	ld a, [wc9ca]
+	inc a
+	call Func_2cb68
+	ld c, $2
+	call Func_2cc32
+	push hl
+	ld bc, $20
+	add hl, bc
+	call WrapAroundBGMapPointer
+	pop de
+	ld b, $3
+.asm_2cb54
+	push bc
+	push hl
+	call Func_2cb8c
+	pop de
+	ld h, d
+	ld l, e
+	ld bc, $20
+	add hl, bc
+	call WrapAroundBGMapPointer
+	pop bc
+	dec b
+	jr nz, .asm_2cb54
+	ret
 
-Func_2cc4e:
-	dr $2cc4e, $2ccb9
+Func_2cb68: ; 2cb68 (b:4b68)
+	ld b, $0
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	ld c, a
+	ld a, [wc9fc]
+	ld l, a
+	ld a, [wc9fd]
+	ld h, a
+	add hl, bc
+	call WrapAroundBGMapPointer
+	ret
 
-Func_2ccb9::
-	dr $2ccb9, $2cce5
+Func_2cb8c: ; 2cb8c (b:4b8c)
+	ld a, $8
+	ld [wc987], a
+	ld a, l
+	and $e0
+	ld b, a
+	ld c, l
+	ld a, h
+	ld [wc988], a
+.asm_2cb9a
+	di
+.asm_2cb9b
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cb9b
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ei
+	ld a, [wc988]
+	ld h, a
+	ld a, $2
+	add c
+	ld c, a
+	and $1f
+	or b
+	ld l, a
+	push hl
+	ld de, hFFE0
+	add hl, de
+	call Func_2cbc8
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, [wc987]
+	dec a
+	ld [wc987], a
+	jr nz, .asm_2cb9a
+	ret
 
-Func_2cce5:
-	dr $2cce5, $2cceb
+Func_2cbc8: ; 2cbc8 (b:4bc8)
+	ld a, h
+	cp $98
+	jr nc, .asm_2cbcf
+	ld h, $9c
+.asm_2cbcf
+	ret
 
-Func_2cceb:
-	dr $2cceb, $2ccf6
+Func_2cbd0: ; 2cbd0 (b:4bd0)
+	ld a, [wc9ca]
+	add $4
+	ld b, $0
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	sla a
+	rl b
+	ld c, a
+	ld a, [wc91f]
+	cp $c0
+	jr nz, .asm_2cbf8
+	ld hl, Data_2d0e7
+	jr .asm_2cbfb
 
-Func_2ccf6:
-	dr $2ccf6, $2ce29
+.asm_2cbf8
+	ld hl, wca00
+.asm_2cbfb
+	ld a, [wc9ce]
+	and $1
+	ld de, $0
+	jr z, .asm_2cc08
+	ld de, $20
+.asm_2cc08
+	add hl, de
+	ld de, $0
+	ld a, [wTextSubroutine]
+	cp $3
+	jr z, .asm_2cc16
+	ld de, $10
+.asm_2cc16
+	add hl, de
+	ld d, h
+	ld e, l
+	ld a, [wc9fc]
+	ld l, a
+	ld a, [wc9fd]
+	ld h, a
+	add hl, bc
+	call WrapAroundBGMapPointer
+	ld c, $2
+	call Func_2cc32
+	ld a, $10
+	ld [wc987], a
+	jp Func_2cacf
+
+Func_2cc32: ; 2cc32 (b:4c32)
+	ld a, l
+	and $1f
+	add c
+	cp $20
+	jr c, .asm_2cc4a
+	bit 7, a
+	jr z, .asm_2cc44
+	ld a, l
+	add c
+	add $20
+	jr .asm_2cc4c
+
+.asm_2cc44
+	ld a, l
+	add c
+	sub $20
+	jr .asm_2cc4c
+
+.asm_2cc4a
+	ld a, l
+	add c
+.asm_2cc4c
+	ld l, a
+	ret
+
+Func_2cc4e: ; 2cc4e (b:4c4e)
+	ld hl, wc480
+	ld de, wOAMAnimation15
+	ld b, $8
+	call CopyData_8Bits
+	ld hl, wc4a0
+	ld de, wOAMAnimation16
+	ld b, $8
+	call CopyData_8Bits
+	ld de, wcadf
+	ld hl, wOAMAnimation01
+	ld b, $18
+	ld a, [wc9ca]
+	dec a
+	swap a
+	srl a
+	ld c, a
+.asm_2cc75
+	push hl
+	ld a, [hl]
+	ld [de], a
+	inc de
+	ld a, $4
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	pop hl
+	add $6
+	cp c
+	jr c, .asm_2cc92
+	sub $3c
+	jr nc, .asm_2cc8d
+	xor a
+.asm_2cc8d
+	cp c
+	jr nc, .asm_2cc92
+	xor a
+	ld [hl], a
+.asm_2cc92
+	ld a, $20
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	dec b
+	jr nz, .asm_2cc75
+	ld hl, wOAMAnimation15
+	ld de, wc480
+	ld b, $8
+	call CopyData_8Bits
+	ld hl, wOAMAnimation16
+	ld de, wc4a0
+	ld b, $8
+	call CopyData_8Bits
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ret
+
+Func_2ccb9: ; 2ccb9 (b:4cb9)
+	ld hl, wcadf
+	ld de, wOAMAnimation01
+	ld b, $18
+.asm_2ccc1
+	ld a, [hli]
+	ld [de], a
+	ld a, $20
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	dec b
+	jr nz, .asm_2ccc1
+	ld hl, wOAMAnimation15
+	ld de, wc480
+	ld b, $1
+	call CopyData_8Bits
+	ld hl, wOAMAnimation16
+	ld de, wc4a0
+	ld b, $1
+	call CopyData_8Bits
+	ret
+
+Func_2cce5: ; 2cce5 (b:4ce5)
+	call Func_2cceb
+	jp Func_2ccf6
+
+Func_2cceb: ; 2cceb (b:4ceb)
+	ld a, [wc91f]
+asm_2ccee
+	call Func_35c2
+	ld b, $80
+	jp Func_2ccfd
+
+Func_2ccf6: ; 2ccf6 (b:4cf6)
+	ld a, [wc91f]
+	add $10
+	jr asm_2ccee
+
+Func_2ccfd: ; 2ccfd (b:4cfd)
+	ld a, [wFontPaletteMode]
+	cp $0
+	jr z, .asm_2cd0c
+	cp $1
+	jr z, .asm_2cd1b
+	cp $2
+	jr z, .asm_2cd2b
+.asm_2cd0c
+	di
+.asm_2cd0d
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cd0d
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ei
+	dec b
+	jr nz, .asm_2cd0c
+	ret
+
+.asm_2cd1b
+	di
+.asm_2cd1c
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cd1c
+	xor a
+	ld [hli], a
+	cpl
+	ld [hli], a
+	ei
+	dec b
+	jr nz, .asm_2cd1b
+	ret
+
+.asm_2cd2b
+	di
+.asm_2cd2c
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cd2c
+	ld a, $ff
+	ld [hli], a
+	ld [hli], a
+	ei
+	dec b
+	jr nz, .asm_2cd2b
+	ret
+
+Func_2cd3b: ; 2cd3b (b:4d3b)
+	ld hl, wca00
+	ld a, [wc91e]
+	add $f
+	ld b, $30
+.asm_2cd45
+	ld a, a
+	ld [hli], a
+	inc de
+	dec b
+	jr nz, .asm_2cd45
+	ld hl, wca10
+	ld a, [wc91f]
+	ld b, $10
+.asm_2cd53
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .asm_2cd53
+	ld hl, wca30
+	ld b, $10
+.asm_2cd5d
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .asm_2cd5d
+	ret
+
+Func_2cd63: ; 2cd63 (b:4d63)
+	ld hl, wca08
+	ld de, Data_2d1c5
+	ld a, [wc956]
+	or a
+	jr z, .asm_2cd72
+	ld de, Data_2d1ed
+.asm_2cd72
+	ld b, $28
+.asm_2cd74
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec b
+	jr nz, .asm_2cd74
+	ld hl, wca09
+	ld c, $0
+	call Func_2cd87
+	ld hl, wca1d
+	ld c, $1
+Func_2cd87: ; 2cd87 (b:4d87)
+	ld de, wca00
+	ld b, $5
+.asm_2cd8c
+	ld a, [de]
+	sub $bb
+	jr c, .asm_2cd98
+	add a
+	add $c4
+	add c
+	ld [hli], a
+	jr .asm_2cd99
+
+.asm_2cd98
+	inc hl
+.asm_2cd99
+	inc de
+	dec b
+	jr nz, .asm_2cd8c
+	jr .asm_2cd9f
+
+.asm_2cd9f
+	ld a, [wc956]
+	or a
+	jr z, .asm_2cdd8
+	callba Func_a54f1
+	push de
+	ld a, d
+	call Get2DigitBCD
+	ld hl, wca14
+	ld c, $c4
+	call Func_2ce14
+	ld hl, wca28
+	ld c, $c5
+	call Func_2ce14
+	pop de
+	ld a, e
+	call Get2DigitBCD
+	ld hl, wca18
+	ld c, $c4
+	call Func_2ce0b
+	ld hl, wca2c
+	ld c, $c5
+	call Func_2ce0b
+	ret
+
+.asm_2cdd8
+	ld a, [wPartnerDenjuuHPRemaining]
+	call Get2DigitBCD
+	ld hl, wca14
+	ld c, $c4
+	call Func_2ce0b
+	ld hl, wca28
+	ld c, $c5
+	call Func_2ce0b
+	callba Func_a5525
+	ld a, c
+	call Get2DigitBCD
+	ld hl, wca18
+	ld c, $c4
+	call Func_2ce0b
+	ld hl, wca2c
+	ld c, $c5
+	call Func_2ce0b
+	ret
+
+Func_2ce0b: ; 2ce0b (b:4e0b)
+	ld a, [wCGBPalFadeProgram]
+	and $f
+	sla a
+	add c
+	ld [hli], a
+Func_2ce14: ; 2ce14 (b:4e14)
+	ld a, [wNumCGBPalettesToFade]
+	swap a
+	and $f
+	sla a
+	add c
+	ld [hli], a
+	ld a, [wNumCGBPalettesToFade]
+	and $f
+	sla a
+	add c
+	ld [hli], a
+	ret
 
 LoadCharacter: ; 2ce29 (b:4e29)
 	push hl
@@ -4065,14 +4729,148 @@ LoadCharacter: ; 2ce29 (b:4e29)
 	jr nz, .hue2_bg_loop
 	ret
 
-Func_2cea0:
-	dr $2cea0, $2d00f
+	ld d, $0
+	ld a, [wcafc]
+	ld e, a
+	ld hl, Pointers_2c94f
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld b, [hl]
+	ld a, [wcafb]
+	ld l, a
+	ld h, $0
+	sla l
+	rl h
+	add hl, de
+	ld c, b
+	call GetFarByte
+	ld e, b
+	inc hl
+	ld b, c
+	call GetFarByte
+	ld h, b
+	ld l, e
+	ld b, c
+	call GetFarByte
+	ld a, b
+	cp $e9
+	ret nz
+	inc hl
+	ld b, c
+	call GetFarByte
+	ld a, b
+	or a
+	ret z
+	dec a
+	ld b, a
+	ld a, [wCustomSpriteDest]
+	cp b
+	ret nz
+	ld a, $1
+	ld [wc942], a
+	call Func_30a7
+	and $3
+	add $c0
+	ld [wcafb], a
+	ld a, $0
+	ld [wcafc], a
+	ret
+
+Data_2cef4:
+	db $03, $06, $07, $08
+	db $09, $0a, $0b, $0c
+	db $0d, $0e, $0f, $10
+	db $11, $12, $13, $14
+	db $1a, $1b, $1c, $1d
+	db $1e, $1a, $1b, $1c
+	db $1d, $1e, $03, $3d
+	db $3e, $3f, $40, $41
+	db $42, $43, $44, $45
+	db $46, $47, $48, $49
+	db $4a, $4b, $51, $52
+	db $53, $1d, $54, $51
+	db $52, $53, $1d, $54
+
+Func_2cf28: ; 2cf28 (b:4f28)
+	ld hl, VTilesShared tile $70
+	ld de, GFX_2cf61
+	ld bc, 10 tiles
+	call Func_3801
+	ld hl, VTilesShared tile $6f
+	ld b, $8
+	ld a, [wFontPaletteMode]
+	cp $2
+	jr z, .asm_2cf50
+.asm_2cf40
+	di
+.asm_2cf41
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cf41
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ei
+	inc de
+	dec b
+	jr nz, .asm_2cf40
+	ret
+
+.asm_2cf50
+	di
+.asm_2cf51
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_2cf51
+	ld a, $ff
+	ld [hli], a
+	ld [hli], a
+	ei
+	inc de
+	dec b
+	jr nz, .asm_2cf50
+	ret
+
+GFX_2cf61: INCBIN "gfx/font/frame_2cf61.2bpp"
+
+Func_2d001:
+	ld a, BANK(GFX_e319c)
+	ld hl, VTilesShared tile $40
+	ld de, GFX_e319c
+	ld bc, $2c tiles
+	jp Func_372d
 
 Data_2d00f:
 	dr $2d00f, $2d07b
 
 Data_2d07b:
-	dr $2d07b, $2d229
+	dr $2d07b, $2d0c3
+
+Data_2d0c3:
+	dr $2d0c3, $2d0e7
+
+Data_2d0e7:
+	dr $2d0e7, $2d127
+
+Data_2d127:
+	dr $2d127, $2d15d
+
+Data_2d15d:
+	dr $2d15d, $2d185
+
+Data_2d185:
+	dr $2d185, $2d1c5
+
+Data_2d1c5:
+	dr $2d1c5, $2d1ed
+
+Data_2d1ed:
+	dr $2d1ed, $2d229
 
 FontGFX: INCBIN "gfx/font/font_2d229.t13.1bpp"
 
@@ -4723,7 +5521,10 @@ Func_a5418::
 	dr $a5418, $a54a2
 
 Func_a54a2::
-	dr $a54a2, $a5525
+	dr $a54a2, $a54f1
+
+Func_a54f1:
+	dr $a54f1, $a5525
 
 Func_a5525::
 	dr $a5525, $a6b69
@@ -5080,7 +5881,10 @@ Data_e2c54::
 	dr $e2c54, $e2d14
 
 Data_e2d14::
-	dr $e2d14, $e4000
+	dr $e2d14, $e319c
+
+GFX_e319c:
+	dr $e319c, $e4000
 
 SECTION "bank 39", ROMX, BANK [$39]
 IF DEF(POWER)

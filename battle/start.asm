@@ -923,7 +923,7 @@ Func_70693:
 
 Func_706b6:
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, [wd403]
@@ -969,7 +969,7 @@ Func_7071e: ; 7071e (1c:471e)
 
 Func_70724:
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	jp NextBattleSubroutine
@@ -1218,7 +1218,7 @@ Func_708c2:
 
 Func_7091d:
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	jp NextBattleSubroutine
@@ -1727,7 +1727,7 @@ Func_70d39:
 
 Func_70d63:
 	call Func_0530
-	ld a, [wc9c9]
+	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld a, $3
