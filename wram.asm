@@ -1142,7 +1142,7 @@ wc9ea:: ds 1
 wc9eb:: ds 1
 wc9ec:: ds 1
 wc9ed:: ds 1
-wc9ee:: ds 1
+wCurTilesetBank:: ds 1
 wc9ef:: ds 1
 wc9f0:: ds 1
 wc9f1:: ds 1
@@ -1150,10 +1150,8 @@ wc9f2:: ds 1
 wc9f3:: ds 1
 wc9f4:: ds 1
 wc9f5:: ds 1
-wc9f6:: ds 1
-wc9f7:: ds 1
-wc9f8:: ds 1
-wc9f9:: ds 1
+wCurTilesetMetatilesPointer:: dw
+wCurTilesetMetaattrsPointer:: dw
 wc9fa:: ds 1
 wc9fb:: ds 1
 wBGMapAnchor:: dw
@@ -1272,7 +1270,9 @@ wca6e:: ds 1
 wca6f:: ds 1
 
 SECTION "Overworld Map", WRAM0
-wOverworldMap:: ds (SCREEN_WIDTH / 2) * ((SCREEN_HEIGHT +- 2) / 2)
+wOverworldMap::
+	ds (SCREEN_WIDTH / 2) * ((SCREEN_HEIGHT +- 2) / 2)
+wOverworldMapEnd::
 
 wcac0:: ds 1
 wcac1:: ds 1

@@ -2891,7 +2891,7 @@ Func_225b: ; 225b (0:225b)
 Func_2264: ; 2264 (0:2264)
 	call Func_2793
 	ld a, $5e
-	ld [wc9ee], a
+	ld [wCurTilesetBank], a
 	callba Func_2e0d2
 	call Func_3388
 	call Func_37d5
@@ -3224,7 +3224,7 @@ Func_252a: ; 252a (0:252a)
 	or b
 	ld l, a
 	pop af
-	call Func_328d
+	call LoadMetatile
 	ret
 
 Data_255a::
@@ -3547,9 +3547,9 @@ Func_2793: ; 2793 (0:2793)
 Func_27c7: ; 27c7 (0:27c7)
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_178000)
+	ld a, BANK(TilesetMetatilesPointerTable)
 	rst Bankswitch
-	ld hl, Data_178000
+	ld hl, TilesetMetatilesPointerTable
 	ld a, b
 	add a
 	ld b, a
@@ -3559,10 +3559,10 @@ Func_27c7: ; 27c7 (0:27c7)
 	adc h
 	ld h, a
 	ld a, [hli]
-	ld [wc9f6], a
+	ld [wCurTilesetMetatilesPointer], a
 	ld a, [hl]
-	ld [wc9f7], a
-	ld hl, Data_178022
+	ld [wCurTilesetMetatilesPointer + 1], a
+	ld hl, TilesetMetaattrsPointerTable
 	ld a, b
 	add l
 	ld l, a
@@ -3570,9 +3570,9 @@ Func_27c7: ; 27c7 (0:27c7)
 	adc h
 	ld h, a
 	ld a, [hli]
-	ld [wc9f8], a
+	ld [wCurTilesetMetaattrsPointer], a
 	ld a, [hl]
-	ld [wc9f9], a
+	ld [wCurTilesetMetaattrsPointer + 1], a
 	ld hl, Data_178044
 	ld a, b
 	add l
@@ -3688,7 +3688,7 @@ Func_28a9: ; 28a9 (0:28a9)
 	push bc
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_19e8ed)
+	ld a, BANK(Pointers_19e8ed)
 	rst Bankswitch
 	call Func_28dd
 .asm_28b4
@@ -3725,7 +3725,7 @@ Func_28a9: ; 28a9 (0:28a9)
 	ret
 
 Func_28dd: ; 28dd (0:28dd)
-	ld hl, Data_19e8ed
+	ld hl, Pointers_19e8ed
 	ld a, [wc904]
 	add a
 	add l
@@ -3786,12 +3786,12 @@ Func_28ee: ; 28ee (0:28ee)
 Func_2928::
 	ld a, [wROMBank]
 	push af
-	ld a, [wc9ee]
+	ld a, [wCurTilesetBank]
 	rst Bankswitch
 	hlcoord 0, 0
-	ld a, $50
+	ld a, wOverworldMapEnd - wOverworldMap
 	ld [wFontSourceBank], a
-.asm_2938
+.loop
 	ld b, [hl]
 	ld a, [wc9fb]
 	ld d, a
@@ -3805,35 +3805,35 @@ Func_2928::
 	ld d, a
 	ld a, [de]
 	cp $13
-	jr z, .asm_295e
+	jr z, .check_0x13
 	cp $15
-	jr z, .asm_29a4
-.asm_2951
+	jr z, .check_0x15
+.next
 	inc hl
 	ld a, [wFontSourceBank]
 	dec a
 	ld [wFontSourceBank], a
-	jr nz, .asm_2938
+	jr nz, .loop
 	pop af
 	rst Bankswitch
 	ret
 
-.asm_295e
+.check_0x13
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_19e8ed)
+	ld a, BANK(Pointers_19e8ed)
 	rst Bankswitch
 	push bc
 	push hl
 	call Func_28dd
-.asm_296a
+.loop_0x13
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_299e
+	jr z, .nope_0x13
 	push af
 	ld a, [wROMBank]
 	push af
-	ld a, $b
+	ld a, BANK(Func_2da20)
 	rst Bankswitch
 	push hl
 	ld a, [wFontSourceBank]
@@ -3842,35 +3842,35 @@ Func_2928::
 	sub c
 	ld c, a
 	ld e, $a
-	call $5a20
+	call Func_2da20
 	ld b, e
 	pop hl
 	pop af
 	rst Bankswitch
 	pop af
 	call Func_28ee
-	jr nz, .asm_296a
+	jr nz, .loop_0x13
 	pop hl
 	ld a, [de]
 	and c
-	jr nz, .asm_299b
+	jr nz, .bitmasked_0x13
 	ld a, $1
 	ld [wc94c], a
-	jr .asm_299f
+	jr .done_0x13
 
-.asm_299b
+.bitmasked_0x13
 	inc [hl]
-	jr .asm_299f
+	jr .done_0x13
 
-.asm_299e
+.nope_0x13
 	pop hl
-.asm_299f
+.done_0x13
 	pop bc
 	pop af
 	rst Bankswitch
-	jr .asm_2951
+	jr .next
 
-.asm_29a4
+.check_0x15
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Pointers_19c000)
@@ -3899,7 +3899,7 @@ Func_2928::
 	rst Bankswitch
 	pop af
 	call Func_2a68
-	jr z, .asm_29e6
+	jr z, .nope_0x15
 	inc hl
 	inc hl
 	inc hl
@@ -3907,20 +3907,20 @@ Func_2928::
 	ld c, a
 	ld b, [hl]
 	call CheckEventFlag
-	jr z, .asm_29e6
+	jr z, .nope_0x15
 	pop hl
 	ld a, [hl]
 	or $1
 	ld [hl], a
-	jr .asm_29e7
+	jr .next_0x15
 
-.asm_29e6
+.nope_0x15
 	pop hl
-.asm_29e7
+.next_0x15
 	pop bc
 	pop af
 	rst Bankswitch
-	jp .asm_2951
+	jp .next
 
 Func_29ed::
 	ld a, [wROMBank]
@@ -4210,7 +4210,7 @@ Func_2bdc: ; 2bdc (0:2bdc)
 Func_2c05::
 	ld a, [wROMBank]
 	ld [wca52], a
-	ld a, [wc9ee]
+	ld a, [wCurTilesetBank]
 	rst Bankswitch
 	ld a, [de]
 	cp $3
@@ -4232,7 +4232,7 @@ asm_2c22
 Func_2c29::
 	ld a, [wROMBank]
 	ld [wca52], a
-	ld a, [wc9ee]
+	ld a, [wCurTilesetBank]
 	rst Bankswitch
 	ld a, [hl]
 	cp $3
@@ -5262,7 +5262,7 @@ Func_3255: ; 3255 (0:3255)
 	ld a, [de]
 	inc de
 	push de
-	call Func_328d
+	call LoadMetatile
 	pop de
 	pop hl
 	pop bc
@@ -5285,21 +5285,21 @@ Func_3255: ; 3255 (0:3255)
 	homecall Func_39fab
 	ret
 
-Func_328d: ; 328d (0:328d)
+LoadMetatile: ; 328d (0:328d)
 	ld c, a
 	ld a, [wROMBank]
 	push af
-	ld a, [wc9ee]
+	ld a, [wCurTilesetBank]
 	rst Bankswitch
-	ld a, [wc9f7]
+	ld a, [wCurTilesetMetatilesPointer + 1]
 	ld d, a
-	ld a, [wc9f6]
+	ld a, [wCurTilesetMetatilesPointer]
 	ld e, a
 	ld b, $0
+REPT 2
 	sla c
 	rl b
-	sla c
-	rl b
+ENDR
 	push hl
 	push bc
 	ld a, c
@@ -5309,10 +5309,10 @@ Func_328d: ; 328d (0:328d)
 	adc d
 	ld d, a
 	ld bc, BG_MAP_WIDTH - 1
-	call Func_32dc
-	ld a, [wc9f9]
+	call .disable_and_load
+	ld a, [wCurTilesetMetaattrsPointer + 1]
 	ld h, a
-	ld a, [wc9f8]
+	ld a, [wCurTilesetMetaattrsPointer]
 	ld l, a
 	pop bc
 	add hl, bc
@@ -5320,26 +5320,27 @@ Func_328d: ; 328d (0:328d)
 	ld e, l
 	pop hl
 	check_cgb
-	jr nz, .asm_32d9
+	jr nz, .skip_attr
 	ld bc, BG_MAP_WIDTH - 1
 	ld a, $1
 	di
 	ld [rVBK], a
-	call Func_32dd
+	call .just_load
 	xor a
 	ld [rVBK], a
 	ei
-.asm_32d9
+.skip_attr
 	pop af
 	rst Bankswitch
 	ret
 
-Func_32dc: ; 32dc (0:32dc)
+.disable_and_load
 	di
-Func_32dd: ; 32dd (0:32dd)
+.just_load
+.wait_stat_1
 	ld a, [rSTAT]
 	and $2
-	jr nz, Func_32dd
+	jr nz, .wait_stat_1
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -5347,10 +5348,10 @@ Func_32dd: ; 32dd (0:32dd)
 	inc de
 	ld [hl], a
 	add hl, bc
-.asm_32ea
+.wait_stat_2
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_32ea
+	jr nz, .wait_stat_2
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -6890,10 +6891,10 @@ ChooseWildDenjuuEncounter: ; 3c57 (0:3c57)
 	ld [wTempWildDenjuuLevel], a
 	ret
 
-Func_3c8b: ; 3c8b (0:3c8b)
+LoadDenjuuBattleCatchphrase: ; 3c8b (0:3c8b)
 	ld a, [wd435]
 	cp $0
-	jr z, .asm_3ca6
+	jr z, .first_string
 	ld e, a
 	ld d, $0
 REPT 4
@@ -6901,7 +6902,7 @@ REPT 4
 	rl d
 ENDR
 	add hl, de
-.asm_3ca6
+.first_string
 	ld bc, $f
 	ld de, wd4d0
 	call CopyData

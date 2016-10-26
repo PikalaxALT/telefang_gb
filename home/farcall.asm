@@ -335,10 +335,10 @@ Func_0616::
 	rst Bankswitch
 	ret
 
-Func_0620::
-	ld a, BANK(Data_1d5888)
+LoadDenjuuBattleCatchphrase_::
+	ld a, BANK(DenjuuArrivalMessages)
 	rst Bankswitch
-	call Func_3c8b
+	call LoadDenjuuBattleCatchphrase
 	rst MemBankswitch
 	ret
 

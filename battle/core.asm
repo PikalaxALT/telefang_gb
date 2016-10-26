@@ -582,8 +582,8 @@ Func_1486d: ; 1486d (5:486d)
 	ld a, $e8
 	ld [wdc34], a
 Func_1487a: ; 1487a (5:487a)
-	ld hl, $6368
-	call Func_0620
+	ld hl, DenjuuBattleMessages
+	call LoadDenjuuBattleCatchphrase_
 	ld hl, wd4d0
 	call Func_14020
 	ld a, $5c
@@ -864,8 +864,8 @@ Func_14a7f: ; 14a7f (5:4a7f)
 	ld a, $e8
 	ld [wdc34], a
 Func_14a8c: ; 14a8c (5:4a8c)
-	ld hl, $6368
-	call Func_0620
+	ld hl, DenjuuBattleMessages
+	call LoadDenjuuBattleCatchphrase_
 	ld hl, wd4d0
 	call Func_14020
 	ld a, $5d
@@ -3985,8 +3985,8 @@ Func_16289: ; 16289 (5:6289)
 	ld a, $10
 	ld hl, VTilesBG tile $70
 	call ClearString
-	ld hl, Data_1d5888
-	call Func_0620
+	ld hl, DenjuuArrivalMessages
+	call LoadDenjuuBattleCatchphrase_
 	ld hl, wd4d0
 	call Func_14020
 	ld a, [wd470]

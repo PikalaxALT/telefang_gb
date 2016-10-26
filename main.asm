@@ -2928,7 +2928,7 @@ Func_2c2a4: ; 2c2a4 (b:42a4)
 	pop bc
 	push bc
 	ld c, b
-	call Func_2cc32
+	call AdvanceBGMapPointerByC
 	pop bc
 	di
 	call WaitStat_1f79
@@ -3040,7 +3040,7 @@ Func_2c34e: ; 2c34e (b:434e)
 	add $4
 	call Func_2cb68
 	ld c, $11
-	call Func_2cc32
+	call AdvanceBGMapPointerByC
 	ld a, [wc91f]
 	add $1f
 	ld c, a
@@ -3259,7 +3259,7 @@ Func_2c4d5: ; 2c4d5 (b:44d5)
 	call Func_2cb68
 	pop bc
 	push bc
-	call Func_2cc32
+	call AdvanceBGMapPointerByC
 	pop bc
 	ld a, [wc91e]
 	add b
@@ -3320,7 +3320,7 @@ Func_2c533: ; 2c533 (b:4533)
 	add $4
 	call Func_2cb68
 	ld c, $11
-	call Func_2cc32
+	call AdvanceBGMapPointerByC
 	ld c, $c
 	ld a, [wc9c5]
 	bit 4, a
@@ -3809,7 +3809,7 @@ CloseIdleOverworldHUD: ; 2c8b1 (b:48b1)
 	ld a, [wBGMapAnchor]
 	ld l, a
 	decoord 0, 0
-	call Func_2c8d8
+	call .ReloadMetatilesOverIdleHUD
 	ret
 
 .asm_2c8c6
@@ -3821,28 +3821,28 @@ CloseIdleOverworldHUD: ; 2c8b1 (b:48b1)
 	add hl, bc
 	call WrapAroundBGMapPointer
 	decoord 0, 7
-Func_2c8d8: ; 2c8d8 (b:48d8)
-	call Func_2c8f6
-	call Func_2c8f6
-	call Func_2c8f6
-	call Func_2c8f6
-	call Func_2c8f6
-	call Func_2c8f6
-	call Func_2c8f6
-	call Func_2c8f6
-	call Func_2c8f6
-	jp Func_2c8f6
+.ReloadMetatilesOverIdleHUD: ; 2c8d8 (b:48d8)
+	call .ReloadMetatile
+	call .ReloadMetatile
+	call .ReloadMetatile
+	call .ReloadMetatile
+	call .ReloadMetatile
+	call .ReloadMetatile
+	call .ReloadMetatile
+	call .ReloadMetatile
+	call .ReloadMetatile
+	jp .ReloadMetatile
 
-Func_2c8f6: ; 2c8f6 (b:48f6)
+.ReloadMetatile: ; 2c8f6 (b:48f6)
 	ld a, [de]
 	push hl
 	push de
-	call Func_328d
+	call LoadMetatile
 	pop de
 	inc de
 	pop hl
 	ld c, $2
-	jp Func_2cc32
+	jp AdvanceBGMapPointerByC
 
 OverworldIdleHudCheck: ; 2c904 (b:4904)
 	call Func_2107
@@ -4166,7 +4166,7 @@ Func_2cb3d: ; 2cb3d (b:4b3d)
 	inc a
 	call Func_2cb68
 	ld c, $2
-	call Func_2cc32
+	call AdvanceBGMapPointerByC
 	push hl
 	ld bc, BG_MAP_WIDTH
 	add hl, bc
@@ -4300,34 +4300,34 @@ Func_2cbd0: ; 2cbd0 (b:4bd0)
 	add hl, bc
 	call WrapAroundBGMapPointer
 	ld c, $2
-	call Func_2cc32
+	call AdvanceBGMapPointerByC
 	ld a, $10
 	ld [wc987], a
 	jp Func_2cacf
 
-Func_2cc32: ; 2cc32 (b:4c32)
+AdvanceBGMapPointerByC: ; 2cc32 (b:4c32)
 	ld a, l
 	and $1f
 	add c
-	cp $20
-	jr c, .asm_2cc4a
+	cp BG_MAP_WIDTH
+	jr c, .no_wrap
 	bit 7, a
-	jr z, .asm_2cc44
+	jr z, .forward
 	ld a, l
 	add c
-	add $20
-	jr .asm_2cc4c
+	add BG_MAP_WIDTH
+	jr .finish
 
-.asm_2cc44
+.forward
 	ld a, l
 	add c
-	sub $20
-	jr .asm_2cc4c
+	sub BG_MAP_WIDTH
+	jr .finish
 
-.asm_2cc4a
+.no_wrap
 	ld a, l
 	add c
-.asm_2cc4c
+.finish
 	ld l, a
 	ret
 
@@ -6524,10 +6524,10 @@ UnknownTZFile41:: INCBIN "gfx/tzfiles/tz_41.2bpp.tz"
 UnknownTZFile42:: INCBIN "gfx/tzfiles/tz_42.2bpp.tz"
 
 SECTION "bank 5E", ROMX, BANK [$5e]
-Data_178000::
+TilesetMetatilesPointerTable::
 	dr $178000, $178022
 
-Data_178022::
+TilesetMetaattrsPointerTable::
 	dr $178022, $178044
 
 Data_178044::
@@ -6554,8 +6554,262 @@ SECTION "bank 66", ROMX, BANK [$66]
 SECTION "bank 67", ROMX, BANK [$67]
 INCLUDE "data/unknown_19c000.asm"
 
-Data_19e8ed::
-	dr $19e8ed, $1a0000
+Pointers_19e8ed::
+	dw Data_19e957
+	dw Data_19e958
+	dw Data_19e959
+	dw Data_19e95e
+	dw Data_19e95f
+	dw Data_19e968
+	dw Data_19e959
+	dw Data_19e95e
+	dw Data_19e95f
+	dw Data_19e968
+	dw Data_19e96d
+	dw Data_19e972
+	dw Data_19e973
+	dw Data_19e974
+	dw Data_19e975
+	dw Data_19e99a
+	dw Data_19e9b3
+	dw Data_19e9b4
+	dw Data_19e9c5
+	dw Data_19e9e6
+	dw Data_19ea03
+	dw Data_19ea04
+	dw Data_19ea15
+	dw Data_19ea2a
+	dw Data_19ea3f
+	dw Data_19ea4c
+	dw Data_19ea4d
+	dw Data_19ea4e
+	dw Data_19ea4f
+	dw Data_19ea58
+	dw Data_19ea61
+	dw Data_19ea7e
+	dw Data_19ea9f
+	dw Data_19eac0
+	dw Data_19eac5
+	dw Data_19eac6
+	dw Data_19eac7
+	dw Data_19ead8
+	dw Data_19eae5
+	dw Data_19eb0a
+	dw Data_19eb27
+	dw Data_19eb30
+	dw Data_19eb31
+	dw Data_19eb3a
+	dw Data_19eb3b
+	dw Data_19eb3c
+	dw Data_19eb3d
+	dw Data_19eb3e
+	dw Data_19eb3f
+	dw Data_19eb44
+	dw Data_19eb45
+	dw Data_19eb52
+	dw Data_19eb5f
+
+Data_19e957:
+	db $ff
+
+Data_19e958:
+	db $ff
+
+Data_19e959:
+	db $43, $83, $01, $36, $ff
+
+Data_19e95e:
+	db $ff
+
+Data_19e95f:
+	db $94, $85, $00, $37, $a2, $66, $03, $37
+	db $ff
+
+Data_19e968:
+	db $1d, $16, $02, $36, $ff
+
+Data_19e96d:
+	db $4c, $11, $05, $30, $ff
+
+Data_19e972:
+	db $ff
+
+Data_19e973:
+	db $ff
+
+Data_19e974:
+	db $ff
+
+Data_19e975:
+	db $6a, $16, $0a, $00, $71, $11, $0b, $01
+	db $71, $81, $0c, $02, $74, $24, $0d, $03
+	db $76, $86, $0e, $04, $7b, $12, $0f, $05
+	db $7d, $65, $10, $08, $7e, $25, $11, $07
+	db $65, $24, $12, $30, $ff
+
+Data_19e99a:
+	db $84, $86, $13, $09, $86, $16, $14, $0a
+	db $89, $16, $15, $30, $8b, $16, $16, $0c
+	db $93, $86, $17, $0d, $94, $16, $18, $0e
+	db $ff
+
+Data_19e9b3:
+	db $ff
+
+Data_19e9b4:
+	db $16, $16, $19, $0f, $17, $86, $1a, $10
+	db $20, $33, $1b, $11, $26, $56, $1c, $12
+	db $ff
+
+Data_19e9c5:
+	db $2f, $51, $1d, $13, $33, $42, $1e, $14
+	db $33, $24, $1f, $15, $33, $64, $20, $16
+	db $34, $54, $21, $17, $39, $44, $22, $18
+	db $39, $24, $23, $19, $39, $64, $24, $1a
+	db $ff
+
+Data_19e9e6:
+	db $40, $32, $25, $1b, $40, $62, $26, $1c
+	db $41, $32, $27, $1d, $41, $24, $28, $1e
+	db $41, $54, $29, $1f, $4a, $53, $2a, $20
+	db $52, $81, $2b, $21, $ff
+
+Data_19ea03:
+	db $ff
+
+Data_19ea04:
+	db $66, $44, $2c, $22, $6e, $83, $6f, $23
+	db $71, $16, $70, $24, $72, $11, $71, $22
+	db $ff
+
+Data_19ea15:
+	db $76, $11, $72, $26, $76, $14, $73, $27
+	db $87, $26, $74, $28, $87, $76, $75, $29
+	db $8b, $51, $76, $2a, $ff
+
+Data_19ea2a:
+	db $99, $13, $2d, $23, $9b, $33, $2e, $24
+	db $a2, $35, $2f, $24, $a2, $65, $30, $26
+	db $ad, $86, $77, $27, $ff
+
+Data_19ea3f:
+	db $b5, $16, $81, $28, $b7, $76, $82, $29
+	db $bc, $43, $83, $2a, $ff
+
+Data_19ea4c:
+	db $ff
+
+Data_19ea4d:
+	db $ff
+
+Data_19ea4e:
+	db $ff
+
+Data_19ea4f:
+	db $24, $61, $31, $27, $2d, $14, $32, $28
+	db $ff
+
+Data_19ea58:
+	db $30, $13, $33, $29, $3f, $84, $34, $2a
+	db $ff
+
+Data_19ea61:
+	db $49, $83, $85, $2b, $4e, $83, $86, $2c
+	db $53, $83, $35, $2d, $55, $41, $36, $2e
+	db $56, $41, $37, $2f, $57, $41, $38, $01
+	db $58, $41, $39, $34, $ff
+
+Data_19ea7e:
+	db $67, $83, $3a, $1d, $6a, $83, $3b, $37
+	db $6f, $83, $3c, $1d, $78, $13, $3d, $37
+	db $79, $83, $3e, $1d, $7a, $13, $3f, $37
+	db $7a, $15, $40, $1d, $7b, $83, $41, $37
+	db $ff
+
+Data_19ea9f:
+	db $8c, $22, $42, $1d, $8c, $42, $43, $38
+	db $8c, $62, $44, $1d, $8c, $82, $45, $38
+	db $8c, $24, $46, $1d, $8c, $44, $47, $38
+	db $8c, $64, $48, $1d, $8c, $84, $49, $38
+	db $ff
+
+Data_19eac0:
+	db $ac, $42, $4a, $35, $ff
+
+Data_19eac5:
+	db $ff
+
+Data_19eac6:
+	db $ff
+
+Data_19eac7:
+	db $25, $32, $4b, $1d, $25, $72, $4c, $0a
+	db $25, $54, $4d, $35, $45, $81, $4e, $36
+	db $ff
+
+Data_19ead8:
+	db $55, $54, $4f, $37, $61, $15, $50, $38
+	db $81, $31, $51, $39, $ff
+
+Data_19eae5:
+	db $8d, $23, $52, $40, $8d, $43, $53, $41
+	db $8d, $73, $54, $40, $96, $33, $55, $41
+	db $96, $53, $56, $40, $96, $44, $57, $41
+	db $a2, $22, $58, $40, $a2, $72, $59, $40
+	db $a2, $45, $5a, $41, $ff
+
+Data_19eb0a:
+	db $a7, $42, $5b, $21, $aa, $42, $5c, $1f
+	db $b0, $55, $5d, $07, $b6, $42, $5e, $1e
+	db $bb, $42, $5f, $39, $be, $55, $60, $39
+	db $c3, $55, $61, $39, $ff
+
+Data_19eb27:
+	db $07, $41, $62, $41, $11, $41, $63, $41
+	db $ff
+
+Data_19eb30:
+	db $ff
+
+Data_19eb31:
+	db $27, $41, $64, $42, $2b, $41, $65, $42
+	db $ff
+
+Data_19eb3a:
+	db $ff
+
+Data_19eb3b:
+	db $ff
+
+Data_19eb3c:
+	db $ff
+
+Data_19eb3d:
+	db $ff
+
+Data_19eb3e:
+	db $ff
+
+Data_19eb3f:
+	db $56, $43, $84, $ff
+
+Data_19eb43:
+	db $ff
+
+Data_19eb44:
+	db $ff
+
+Data_19eb45:
+	db $02, $44, $66, $34, $0d, $75, $67, $35
+	db $15, $11, $68, $36, $ff
+
+Data_19eb52:
+	db $23, $61, $69, $20, $26, $81, $6a, $23
+	db $2f, $41, $6b, $0b, $ff
+
+Data_19eb5f:
+	db $42, $45, $6c, $3f, $4e, $53, $6d, $3c
+	db $4f, $44, $6e, $30, $ff
 
 SECTION "bank 68", ROMX, BANK [$68]
 	dr $1a0000, $1a4000
@@ -6585,14 +6839,11 @@ TypeNames::
 	db "そら  "
 	db "さばく "
 
-Data_1d5640::
-	dr $1d5640, $1d56ee
+INCLUDE "data/denjuu_sprites.asm"
 
 Data_1d56ee::
 INCLUDE "data/wild_denjuu.asm"
-
-Data_1d5888:
-	dr $1d5888, $1d7928
+INCLUDE "text/battle_catchphrases.asm"
 
 Data_1d7928::
 	db "のんびリ$$$$"
@@ -6609,7 +6860,22 @@ Data_1d7928::
 	db "ちょーリちぎ$$"
 
 Data_1d7988::
-	dr $1d7988, $1d8000
+	db "ふつう$"
+	db "かくれる"
+	db "ジャンプ"
+	db "ひこう$"
+	db "こんらん"
+	db "まひ$$"
+	db "のろい$"
+	db "ねむリ$"
+	db "ひるむ$"
+	db "けむリ$"
+	db "どく$$"
+	db "みえない"
+	db "バリア$"
+	db "けっかい"
+	db "しもやけ"
+	db "やけど$"
 
 SECTION "bank 79", ROMX, BANK [$79]
 GFX_1e4000: INCBIN "gfx/phone_keypads/1e4000.t2.2bpp"
