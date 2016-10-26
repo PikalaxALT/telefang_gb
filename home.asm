@@ -3008,28 +3008,28 @@ Func_236c: ; 236c (0:236c)
 	ld [wPrevROMBank], a
 	ld a, [wc49b]
 	ld b, a
-	ld a, [wc483]
+	ld a, [wPlayerXCoord]
 	sub b
-	ld [wc483], a
+	ld [wPlayerXCoord], a
 	ld a, [wc49c]
 	ld b, a
-	ld a, [wc484]
+	ld a, [wPlayerYCoord]
 	sub b
-	ld [wc484], a
+	ld [wPlayerYCoord], a
 	homecall Func_38f8d
 	ld a, [wSubroutine]
 	cp $4
 	jr nz, .asm_23bc
 	ld a, [wc49b]
 	ld b, a
-	ld a, [wc483]
+	ld a, [wPlayerXCoord]
 	add b
-	ld [wc483], a
+	ld [wPlayerXCoord], a
 	ld a, [wc49c]
 	ld b, a
-	ld a, [wc484]
+	ld a, [wPlayerYCoord]
 	add b
-	ld [wc484], a
+	ld [wPlayerYCoord], a
 	homecall Func_30000
 .asm_23bc
 	rst MemBankswitch
@@ -3055,15 +3055,15 @@ Func_23d1::
 	ret
 
 Func_23e2: ; 23e2 (0:23e2)
-	ld a, [wc483]
+	ld a, [wPlayerXCoord]
 	ld [wc901], a
-	ld a, [wc484]
+	ld a, [wPlayerYCoord]
 	ld [wc902], a
 	ld a, $7
 	ld [wWX], a
 	ld a, $90
 	ld [wWY], a
-	ld hl, wc9fc
+	ld hl, wBGMapAnchor
 	ld a, $0
 	ld [hli], a
 	ld a, $98
@@ -3208,9 +3208,9 @@ Func_252a: ; 252a (0:252a)
 	ld e, a
 	sla e
 	rl d
-	ld a, [wc9fc]
+	ld a, [wBGMapAnchor]
 	ld l, a
-	ld a, [wc9fd]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	add hl, de
 	call WrapAroundBGMapPointer
@@ -3788,7 +3788,7 @@ Func_2928::
 	push af
 	ld a, [wc9ee]
 	rst Bankswitch
-	ld hl, wca70
+	hlcoord 0, 0
 	ld a, $50
 	ld [wFontSourceBank], a
 .asm_2938
@@ -4130,7 +4130,7 @@ Func_2b72::
 	push af
 	ld a, [wc9ec]
 	rst Bankswitch
-	ld de, wca70
+	decoord 0, 0
 	ld b, $50
 .asm_2b82
 	ld a, [hli]
@@ -4164,7 +4164,7 @@ Func_2ba9::
 	ld c, a
 	ld e, $a
 	call Multiply_C_by_E
-	ld hl, wca70
+	hlcoord 0, 0
 	add hl, de
 	ld d, h
 	ld e, l
@@ -4180,16 +4180,16 @@ Func_2ba9::
 
 Func_2bcd::
 	ld bc, $0000
-	ld de, wca70
+	decoord 0, 0
 	jp Func_2bdc
 
 Func_2bd6::
 	ld bc, $0100
-	ld de, wca98
+	decoord 0, 4
 Func_2bdc: ; 2bdc (0:2bdc)
-	ld a, [wc9fc]
+	ld a, [wBGMapAnchor]
 	ld l, a
-	ld a, [wc9fd]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	add hl, bc
 	call WrapAroundBGMapPointer
@@ -5251,7 +5251,7 @@ Func_3238: ; 3238 (0:3238)
 Func_3252: ; 3252 (0:3252)
 	call Func_2b72
 Func_3255: ; 3255 (0:3255)
-	ld de, wca70
+	decoord 0, 0
 	ld hl, VBGMap
 	ld b, $8
 .asm_325d

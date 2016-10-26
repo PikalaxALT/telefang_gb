@@ -142,6 +142,18 @@ ELSE
 ENDC
 ENDM
 
+coord: MACRO
+	ld \1, (\3 * (SCREEN_WIDTH / 2) + \2) + wOverworldMap
+ENDM
+
+hlcoord EQUS "coord hl,"
+decoord EQUS "coord de,"
+bccoord EQUS "coord bc,"
+
+dwcoord: MACRO
+	dw (\2 * (SCREEN_WIDTH / 2) + \1) + wOverworldMap
+ENDM
+
 check_cgb: MACRO
 	ld a, [wCGB]
 	cp $11

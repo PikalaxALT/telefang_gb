@@ -3149,7 +3149,7 @@ Func_2c413: ; 2c413 (b:4413)
 	jr z, .asm_2c428
 	call Func_2cce5
 	ld a, [wc9ca]
-	ld de, $500f
+	ld de, Data_2d00f
 	ld b, $6
 	ld c, $1
 	jp Func_2ca5c
@@ -3287,7 +3287,7 @@ Func_2c4f6: ; 2c4f6 (b:44f6)
 	ld h, a
 	ld a, [hl]
 	swap a
-	ld de, $4b08
+	ld de, GFX_e0b08
 	add e
 	ld e, a
 	ld a, $0
@@ -3302,7 +3302,7 @@ Func_2c4f6: ; 2c4f6 (b:44f6)
 .asm_2c520
 	ld hl, VTilesShared tile $7e
 .asm_2c523
-	ld a, $38
+	ld a, BANK(GFX_e0b08)
 	ld bc, $10
 	jp Func_372d
 
@@ -3537,7 +3537,7 @@ Func_2c64e: ; 2c64e (b:464e)
 
 Func_2c6d2: ; 2c6d2 (b:46d2)
 	ld d, $a
-	ld a, [wc484]
+	ld a, [wPlayerYCoord]
 	cp $48
 	jr c, .asm_2c6dd
 	ld d, $1
@@ -3628,7 +3628,7 @@ Func_2c766: ; 2c766 (b:4766)
 	jp Func_2c9d1
 
 Func_2c76c: ; 2c76c (b:476c)
-	ld hl, wc9fc
+	ld hl, wBGMapAnchor
 	ld a, $0
 	ld [hli], a
 	ld a, $98
@@ -3695,7 +3695,7 @@ Func_2c7ce:
 	jp Func_2c9a2
 
 Func_2c7ed: ; 2c7ed (b:47ed)
-	ld hl, wc9fc
+	ld hl, wBGMapAnchor
 	ld a, $0
 	ld [hli], a
 	ld a, $98
@@ -3733,9 +3733,9 @@ Func_2c7ed: ; 2c7ed (b:47ed)
 	ret
 
 Func_2c831: ; 2c831 (b:4831)
-	ld a, [wc910]
+	ld a, [wMoney]
 	ld l, a
-	ld a, [wc911]
+	ld a, [wMoney + 1]
 	ld h, a
 	ld d, $0
 	call Func_2c883
@@ -3747,27 +3747,27 @@ Func_2c831: ; 2c831 (b:4831)
 	ret
 
 OverworldIdleHUD: ; 2c84d (b:484d)
-	ld a, [wc910]
+	ld a, [wMoney]
 	ld l, a
-	ld a, [wc911]
+	ld a, [wMoney + 1]
 	ld h, a
-	ld a, [wc484]
-	cp $48
-	jr nc, .asm_2c86b
+	ld a, [wPlayerYCoord]
+	cp $48 ; halfway up/down the screen
+	jr nc, .on_top
 	ld d, $e
 	call Func_2c883
 	call Func_2c9fb
 	ld a, $1
-	ld [wcd29], a
-	jr .asm_2c878
+	ld [wIdleHUDOnBottomOfScreen], a
+	jr .done
 
-.asm_2c86b
+.on_top
 	ld d, $0
 	call Func_2c883
 	call Func_2c9fb
 	ld a, $0
-	ld [wcd29], a
-.asm_2c878
+	ld [wIdleHUDOnBottomOfScreen], a
+.done
 	ld a, $1
 	ld [wcd21], a
 	ld a, $0
@@ -3793,34 +3793,34 @@ Func_2c89f: ; 2c89f (b:489f)
 	ld a, [wca5d]
 	cp $5a
 	jr c, .skip
-	call Func_2c8b1
+	call CloseIdleOverworldHUD
 .skip
 	xor a
 	ld [wca5d], a
 	ld [wcd21], a
 	ret
 
-Func_2c8b1: ; 2c8b1 (b:48b1)
-	ld a, [wcd29]
+CloseIdleOverworldHUD: ; 2c8b1 (b:48b1)
+	ld a, [wIdleHUDOnBottomOfScreen]
 	or a
 	jr nz, .asm_2c8c6
-	ld a, [wc9fd]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
-	ld a, [wc9fc]
+	ld a, [wBGMapAnchor]
 	ld l, a
-	ld de, wca70
+	decoord 0, 0
 	call Func_2c8d8
 	ret
 
 .asm_2c8c6
-	ld a, [wc9fd]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
-	ld a, [wc9fc]
+	ld a, [wBGMapAnchor]
 	ld l, a
-	ld bc, $1c0
+	ld bc, 14 * BG_MAP_WIDTH
 	add hl, bc
 	call WrapAroundBGMapPointer
-	ld de, wcab6
+	decoord 0, 7
 Func_2c8d8: ; 2c8d8 (b:48d8)
 	call Func_2c8f6
 	call Func_2c8f6
@@ -3852,10 +3852,10 @@ OverworldIdleHudCheck: ; 2c904 (b:4904)
 	jr z, .finish
 	ld a, [wca5d]
 	cp 90
-	jr nz, .no_check_a
+	jr nz, .check_a
 	jp OverworldIdleHUD_
 
-.no_check_a
+.check_a
 	ret c
 	ld a, [hJoyNew]
 	and A_BUTTON
@@ -4020,21 +4020,15 @@ Func_2ca5c: ; 2ca5c (b:4a5c)
 	push bc
 	push de
 	ld b, $0
+REPT 5
 	sla a
 	rl b
-	sla a
-	rl b
-	sla a
-	rl b
-	sla a
-	rl b
-	sla a
-	rl b
+ENDR
 	ld d, a
-	ld a, [wc9fc]
+	ld a, [wBGMapAnchor]
 	add c
 	ld l, a
-	ld a, [wc9fd]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	ld c, d
 	add hl, bc
@@ -4201,9 +4195,9 @@ REPT 5
 	rl b
 ENDR
 	ld c, a
-	ld a, [wc9fc]
+	ld a, [wBGMapAnchor]
 	ld l, a
-	ld a, [wc9fd]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	add hl, bc
 	call WrapAroundBGMapPointer
@@ -4299,9 +4293,9 @@ Func_2cbd0: ; 2cbd0 (b:4bd0)
 	add hl, de
 	ld d, h
 	ld e, l
-	ld a, [wc9fc]
+	ld a, [wBGMapAnchor]
 	ld l, a
-	ld a, [wc9fd]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	add hl, bc
 	call WrapAroundBGMapPointer
@@ -5666,7 +5660,22 @@ Func_a8663: ; a8663 (2a:4663)
 	ret
 
 Data_a8688:
-	dr $a8688, $a8788
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+	db 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
 
 CheckCanGenerateEncounters: ; a8788 (2a:4788)
 ; b = 0: generates encounters
@@ -6325,8 +6334,7 @@ GFX_e0918:: INCBIN "gfx/misc/e0918.w24.2bpp"
 GFX_e0978:: INCBIN "gfx/misc/e0978.w24.2bpp"
 
 GFX_e09d8:: INCBIN "gfx/misc/e09d8.2bpp"
-	dr $e0b08, $e0b38
-
+GFX_e0b08:: INCBIN "gfx/misc/cursor.2bpp"
 GFX_e0b38:: INCBIN "gfx/misc/e0b38.1bpp"
 GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"
 	dr $e0c38, $e1038
