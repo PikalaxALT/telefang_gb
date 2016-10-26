@@ -6987,7 +6987,7 @@ Func_136d2: ; 136d2 (4:76d2)
 Func_1371c: ; 1371c (4:771c)
 	push af
 	call Func_0583
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	call Func_0579
 	pop af
 	push af
@@ -6999,7 +6999,7 @@ Func_1371c: ; 1371c (4:771c)
 	ld bc, $10 tiles
 	ld a, BANK(GFX_de95f)
 	call Copy2bpp
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	add $50
 	ld e, a
 	ld bc, $0
@@ -7018,7 +7018,7 @@ Func_1371c: ; 1371c (4:771c)
 .asm_13764
 	ld hl, $380
 .asm_13767
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	call Rom4_PointToHalfwordInTable
 	push hl
 	pop bc

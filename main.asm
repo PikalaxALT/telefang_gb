@@ -3010,10 +3010,10 @@ Func_2c316: ; 2c316 (b:4316)
 	or a
 	jp nz, PrintText
 	ld a, [hJoyLast]
-	and $2
+	and B_BUTTON
 	jp nz, PrintText
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_2c336
 	ld a, $1
 	ld [wcad3], a
@@ -3060,7 +3060,7 @@ Func_2c34e: ; 2c34e (b:434e)
 	ld a, [hJoyNew]
 	ld [wcdb7], a
 	ld a, [hJoyLast]
-	and $1
+	and A_BUTTON
 	jr z, .asm_2c39a
 	ld a, [wcdb8]
 	cp $14
@@ -3101,7 +3101,7 @@ Func_2c34e: ; 2c34e (b:434e)
 
 Func_2c3c7: ; 2c3c7 (b:43c7)
 	ld a, [hJoyLast]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_2c3d8
 	ld a, [wc9cc]
 	ld b, a
@@ -3209,7 +3209,7 @@ Func_2c445: ; 2c445 (b:4445)
 
 .asm_2c484
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_2c49d
 	ld a, [wc9d7]
 	cp $1
@@ -3222,7 +3222,7 @@ Func_2c445: ; 2c445 (b:4445)
 
 .asm_2c49d
 	ld a, [hJoyNew]
-	and $12
+	and D_RIGHT | B_BUTTON
 	jr z, .asm_2c4b4
 	ld a, [wc9d7]
 	cp $0
@@ -3339,7 +3339,7 @@ Func_2c533: ; 2c533 (b:4533)
 	cp $3
 	jr z, .asm_2c569
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 .asm_2c569
 	ld a, $0
@@ -3746,7 +3746,7 @@ Func_2c831: ; 2c831 (b:4831)
 	ld [wc9cf], a
 	ret
 
-Func_2c84d: ; 2c84d (b:484d)
+OverworldIdleHUD: ; 2c84d (b:484d)
 	ld a, [wc910]
 	ld l, a
 	ld a, [wc911]
@@ -3792,9 +3792,9 @@ Func_2c883: ; 2c883 (b:4883)
 Func_2c89f: ; 2c89f (b:489f)
 	ld a, [wca5d]
 	cp $5a
-	jr c, .asm_2c8a9
+	jr c, .skip
 	call Func_2c8b1
-.asm_2c8a9
+.skip
 	xor a
 	ld [wca5d], a
 	ld [wcd21], a
@@ -3844,28 +3844,28 @@ Func_2c8f6: ; 2c8f6 (b:48f6)
 	ld c, $2
 	jp Func_2cc32
 
-Func_2c904: ; 2c904 (b:4904)
+OverworldIdleHudCheck: ; 2c904 (b:4904)
 	call Func_2107
-	jr nz, .asm_2c92b
+	jr nz, .finish
 	ld a, [wc904]
 	cp $b
-	jr z, .asm_2c92b
+	jr z, .finish
 	ld a, [wca5d]
-	cp $5a
-	jr nz, .asm_2c91a
-	jp Func_2cde
+	cp 90
+	jr nz, .no_check_a
+	jp OverworldIdleHUD_
 
-.asm_2c91a
+.no_check_a
 	ret c
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wc956]
 	xor $1
 	ld [wc956], a
 	jp Func_2c9fe
 
-.asm_2c92b
+.finish
 	jp Func_2c89f
 
 Func_2c92e: ; 2c92e (b:492e)
@@ -4041,7 +4041,7 @@ Func_2ca5c: ; 2ca5c (b:4a5c)
 	call WrapAroundBGMapPointer
 	pop de
 	pop bc
-.asm_2ca85
+.loop
 	push bc
 	push hl
 	call Func_2caa5
@@ -4049,18 +4049,17 @@ Func_2ca5c: ; 2ca5c (b:4a5c)
 	pop bc
 	push bc
 	push hl
-	ld a, [wCGB]
-	cp $11
-	jr nz, .asm_2ca98
+	check_cgb
+	jr nz, .not_cgb
 	call Func_2caf9
-.asm_2ca98
+.not_cgb
 	pop hl
-	ld bc, $20
+	ld bc, BG_MAP_WIDTH
 	add hl, bc
 	call WrapAroundBGMapPointer
 	pop bc
 	dec b
-	jr nz, .asm_2ca85
+	jr nz, .loop
 	ret
 
 Func_2caa5: ; 2caa5 (b:4aa5)
@@ -4094,12 +4093,12 @@ Func_2cacf:
 	ld c, l
 	ld a, h
 	ld [wc988], a
-.asm_2cad8
+.loop
 	di
-.asm_2cad9
+.wait_stat
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_2cad9
+	jr nz, .wait_stat
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -4115,7 +4114,7 @@ Func_2cacf:
 	ld a, [wc987]
 	dec a
 	ld [wc987], a
-	jr nz, .asm_2cad8
+	jr nz, .loop
 	ret
 
 Func_2caf9: ; 2caf9 (b:4af9)
@@ -4123,19 +4122,19 @@ Func_2caf9: ; 2caf9 (b:4af9)
 	ld a, c
 	ld d, $12
 	cp $1
-	jr z, .asm_2cb14
+	jr z, .go
 	ld d, $a
 	cp $0
 	jr nz, .asm_2cb12
 	ld a, [wc904]
 	cp $b
-	jr z, .asm_2cb14
+	jr z, .go
 	ld d, $14
-	jr .asm_2cb14
+	jr .go
 
 .asm_2cb12
 	ld d, $10
-.asm_2cb14
+.go
 	ld a, l
 	and $e0
 	ld b, a
@@ -4144,12 +4143,12 @@ Func_2caf9: ; 2caf9 (b:4af9)
 	ld e, a
 	ld a, $1
 	ld [rVBK], a
-.asm_2cb1f
+.loop
 	di
-.asm_2cb20
+.wait_stat
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_2cb20
+	jr nz, .wait_stat
 	ld a, [wca65]
 	ld [hli], a
 	ei
@@ -4162,7 +4161,7 @@ Func_2caf9: ; 2caf9 (b:4af9)
 	or b
 	ld l, a
 	dec d
-	jr nz, .asm_2cb1f
+	jr nz, .loop
 	xor a
 	ld [rVBK], a
 	pop de
@@ -4175,38 +4174,32 @@ Func_2cb3d: ; 2cb3d (b:4b3d)
 	ld c, $2
 	call Func_2cc32
 	push hl
-	ld bc, $20
+	ld bc, BG_MAP_WIDTH
 	add hl, bc
 	call WrapAroundBGMapPointer
 	pop de
 	ld b, $3
-.asm_2cb54
+.loop
 	push bc
 	push hl
 	call Func_2cb8c
 	pop de
 	ld h, d
 	ld l, e
-	ld bc, $20
+	ld bc, BG_MAP_WIDTH
 	add hl, bc
 	call WrapAroundBGMapPointer
 	pop bc
 	dec b
-	jr nz, .asm_2cb54
+	jr nz, .loop
 	ret
 
 Func_2cb68: ; 2cb68 (b:4b68)
 	ld b, $0
+REPT 5
 	sla a
 	rl b
-	sla a
-	rl b
-	sla a
-	rl b
-	sla a
-	rl b
-	sla a
-	rl b
+ENDR
 	ld c, a
 	ld a, [wc9fc]
 	ld l, a
@@ -4225,12 +4218,12 @@ Func_2cb8c: ; 2cb8c (b:4b8c)
 	ld c, l
 	ld a, h
 	ld [wc988], a
-.asm_2cb9a
+.loop
 	di
-.asm_2cb9b
+.wait_stat
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_2cb9b
+	jr nz, .wait_stat
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -4255,7 +4248,7 @@ Func_2cb8c: ; 2cb8c (b:4b8c)
 	ld a, [wc987]
 	dec a
 	ld [wc987], a
-	jr nz, .asm_2cb9a
+	jr nz, .loop
 	ret
 
 Func_2cbc8: ; 2cbc8 (b:4bc8)
@@ -5082,7 +5075,10 @@ Func_3c91b::
 	dr $3c91b, $3d00e
 
 Func_3d00e::
-	dr $3d00e, $3f147
+	dr $3d00e, $3e407
+
+MapEncounterTableIndices:
+	dr $3e407, $3f147
 
 SECTION "bank 10", ROMX, BANK [$10]
 Pointers_40000:
@@ -5539,6 +5535,7 @@ Data_a7869::
 	dr $a7869, $a8000
 
 SECTION "bank 2A", ROMX, BANK [$2a]
+Func_a8000:
 	dr $a8000, $a8539
 
 Func_a8539::
@@ -5591,8 +5588,30 @@ Func_a85ae: ; a85ae (2a:45ae)
 	jr nz, .right_pad
 	ret
 
-Func_a85e5::
-	dr $a85e5, $a8631
+GetMapEncounterTableIndex: ; a85e5 (2a:45e5)
+	push hl
+	ld hl, MapEncounterTableIndices
+	ld a, [wc904]
+	ld d, a
+	ld e, $0
+	srl d
+	rr e
+	srl d
+	rr e
+	add hl, de
+	ld a, [wc906]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld b, BANK(MapEncounterTableIndices)
+	call GetFarByte
+	pop hl
+	ret
+
+Func_a8608:
+	dr $a8608, $a8631
 
 Func_a8631:
 	call GetFarByte
@@ -5649,8 +5668,76 @@ Func_a8663: ; a8663 (2a:4663)
 Data_a8688:
 	dr $a8688, $a8788
 
-Func_a8788::
-	dr $a8788, $a8c50
+CheckCanGenerateEncounters: ; a8788 (2a:4788)
+; b = 0: generates encounters
+; b = 1: suppresses encounters
+	ld b, $0
+	ld a, [wc904]
+	cp $16
+	jr z, .check_c906_1
+	cp $17
+	jr z, .check_c906_2
+	cp $18
+	jr z, .check_c906_3
+	sub $2
+	cp $4
+	jr nc, .yup
+	ld hl, OverworldEncounterFlags
+	or a
+	jr z, .skip_addntimes
+	ld de, $40
+.addntimes
+	add hl, de
+	dec a
+	jr nz, .addntimes
+.skip_addntimes
+	ld a, [wc906]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld b, BANK(OverworldEncounterFlags)
+	call GetFarByte
+	ld a, b
+	or a
+	ret z
+	ld a, [wOAMAnimation13]
+	and $1
+	ret z
+.yup
+	ld b, $0
+	ret
+
+.check_c906_1
+	ld a, [wc906]
+	cp $19
+	jr z, .nope
+	cp $1b
+	jr z, .nope
+	ret
+
+.nope
+	inc b
+	ret
+
+.check_c906_2
+	ld a, [wc906]
+	cp $35
+	jr z, .nope
+	ret
+
+.check_c906_3
+	ld a, [wc906]
+	cp $34
+	jr z, .nope
+	ret
+
+Func_a87e4:
+	jp Func_a8000
+
+Func_a87e7:
+	dr $a87e7, $a8c50
 
 Func_a8c50::
 	dr $a8c50, $a8c86
@@ -5700,22 +5787,399 @@ Data_aa417:
 	dn 1, 1, 0, 6, 5, 5, 5, 5
 
 Data_aa497:
-	db 0, 0, 0, 0, 0
-	db 0, 1, 1, 1, 1
-	db 4, 0, 4, 4, 3
-	db 3, 4, 4, 4, 4
-	db 4, 4, 4, 4, 4
-	db 4, 3, 3, 3, 3
-	db 3, 3, 3, 3, 3
-	db 3, 3, 3, 3, 3
-	db 3, 3, 3, 0, 0
-	db 0, 0, 0, 0, 0
-	db 3, 3, 3, 0, 0
-	db 0, 0, 0, 0, 0
+	db 0, 0, 0, 0, 0, 0
+	db 1, 1, 1, 1, 4, 0
+	db 4, 4, 3, 3, 4, 4
+	db 4, 4, 4, 4, 4, 4
+	db 4, 4, 3, 3, 3, 3
+	db 3, 3, 3, 3, 3, 3
+	db 3, 3, 3, 3, 3, 3
+	db 3, 0, 0, 0, 0, 0
+	db 0, 0, 3, 3, 3, 0
+	db 0, 0, 0, 0, 0, 0
 	db 0, 0
 
 Pointers_aa4d5:
-	dr $aa4d5, $ac000
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e2
+	dw Data_aa6e2
+	dw Data_aa6e2
+	dw Data_aa6e2
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e2
+	dw Data_aa6e2
+	dw Data_aa6e2
+	dw Data_aa6e2
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e4
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6e3
+	dw Data_aa6e3
+	dw Data_aa6e4
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e0
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6e3
+	dw Data_aa6e3
+	dw Data_aa6e4
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6dc
+	dw Data_aa6e3
+	dw Data_aa6e3
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6e1
+	dw Data_aa6de
+	dw Data_aa6de
+	dw Data_aa6de
+	dw Data_aa6e3
+	dw Data_aa6e3
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6de
+	dw Data_aa6de
+	dw Data_aa6de
+	dw Data_aa6e3
+	dw Data_aa6e3
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6df
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6d7
+	dw Data_aa6d7
+	dw Data_aa6d6
+	dw Data_aa6d6
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6d7
+	dw Data_aa6d7
+	dw Data_aa6d6
+	dw Data_aa6d6
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6d5
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6d7
+	dw Data_aa6d7
+	dw Data_aa6d7
+	dw Data_aa6d6
+	dw Data_aa6d6
+	dw Data_aa6d6
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6d7
+	dw Data_aa6d7
+	dw Data_aa6d7
+	dw Data_aa6d6
+	dw Data_aa6d6
+	dw Data_aa6d6
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6da
+	dw Data_aa6d7
+	dw Data_aa6d8
+	dw Data_aa6dd
+	dw Data_aa6dd
+	dw Data_aa6dd
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6dd
+	dw Data_aa6dd
+	dw Data_aa6dd
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6dd
+	dw Data_aa6dd
+	dw Data_aa6dd
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6db
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d9
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6d8
+	dw Data_aa6d8
+
+Data_aa6d5: db $00
+Data_aa6d6: db $01
+Data_aa6d7: db $02
+Data_aa6d8: db $03
+Data_aa6d9: db $04
+Data_aa6da: db $05
+Data_aa6db: db $06
+Data_aa6dc: db $07
+Data_aa6dd: db $08
+Data_aa6de: db $09
+Data_aa6df: db $0a
+Data_aa6e0: db $0b
+Data_aa6e1: db $0c
+Data_aa6e2: db $0d
+Data_aa6e3: db $15
+Data_aa6e4: db $0e
+
+Pointers_aa6e5:
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa74f
+	dw Data_aa750
+	dw Data_aa751
+	dw Data_aa752
+	dw Data_aa753
+	dw Data_aa754
+	dw Data_aa755
+	dw Data_aa756
+	dw Data_aa757
+	dw Data_aa758
+	dw Data_aa759
+	dw Data_aa75a
+	dw Data_aa75b
+	dw Data_aa75c
+	dw Data_aa75d
+	dw Data_aa75e
+	dw Data_aa75f
+	dw Data_aa760
+	dw Data_aa761
+	dw Data_aa762
+	dw Data_aa763
+	dw Data_aa764
+	dw Data_aa765
+	dw Data_aa766
+	dw Data_aa767
+	dw Data_aa768
+	dw Data_aa769
+	dw Data_aa76a
+	dw Data_aa76b
+	dw Data_aa76c
+	dw Data_aa76d
+	dw Data_aa76e
+	dw Data_aa76f
+	dw Data_aa770
+	dw Data_aa770
+	dw Data_aa770
+	dw Data_aa770
+	dw Data_aa771
+	dw Data_aa772
+	dw Data_aa773
+	dw Data_aa774
+	dw Data_aa774
+	dw Data_aa774
+
+Data_aa74f: db $0f
+Data_aa750: db $00
+Data_aa751: db $10
+Data_aa752: db $10
+Data_aa753: db $11
+Data_aa754: db $12
+Data_aa755: db $13
+Data_aa756: db $13
+Data_aa757: db $13
+Data_aa758: db $13
+Data_aa759: db $13
+Data_aa75a: db $14
+Data_aa75b: db $14
+Data_aa75c: db $14
+Data_aa75d: db $14
+Data_aa75e: db $14
+Data_aa75f: db $0d
+Data_aa760: db $0d
+Data_aa761: db $0d
+Data_aa762: db $0d
+Data_aa763: db $0d
+Data_aa764: db $0d
+Data_aa765: db $0d
+Data_aa766: db $0d
+Data_aa767: db $0e
+Data_aa768: db $0e
+Data_aa769: db $0e
+Data_aa76a: db $0e
+Data_aa76b: db $0e
+Data_aa76c: db $0e
+Data_aa76d: db $0e
+Data_aa76e: db $0e
+Data_aa76f: db $0e
+Data_aa770: db $00
+Data_aa771: db $00
+Data_aa772: db $04
+Data_aa773: db $00
+Data_aa774: db $06
+
+OverworldEncounterFlags: ; 4 rows of 64
+	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1
+	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	db 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1
+	db 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
+	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0
+	db 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0
+
+Data_aa875:
+	dr $aa875, $abd86
 
 SECTION "bank 2B", ROMX, BANK [$2b]
 	dr $ac000, $b0000

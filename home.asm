@@ -2478,7 +2478,7 @@ CompressedGFXAddresses:
 	dw $0000
 	dw $0000
 
-Func_1ea1: ; 1ea1 (0:1ea1)
+RunOverworld: ; 1ea1 (0:1ea1)
 	ld a, [wSubroutine]
 	cp $0
 	jr z, .asm_1ee2
@@ -2490,7 +2490,7 @@ Func_1ea1: ; 1ea1 (0:1ea1)
 	or a
 	jr nz, .asm_1ee2
 	homecall Func_a5060, Func_a50be, Func_a4e47, Func_a4ba4, Func_a5245, Func_a54a2
-	callba Func_2c904
+	callba OverworldIdleHudCheck
 	callba Func_2e4b2
 .asm_1ee2
 	call Func_1f24
@@ -2549,7 +2549,6 @@ Func_1f24: ; 1f24 (0:1f24)
 	ld a, [wca6f]
 	inc a
 	ld [wca6f], a
-
 Func_1f6a: ; 1f6a (0:1f6a)
 	callba Func_2e589
 	ld a, [wPrevROMBank]
@@ -2557,6 +2556,7 @@ Func_1f6a: ; 1f6a (0:1f6a)
 	ld h, d
 	ld l, e
 	jp [hl]
+
 WaitStat_1f79::
 .asm_1f79
 	ld a, [rSTAT]
@@ -2572,12 +2572,12 @@ Func_1f80: ; 1f80 (0:1f80)
 	ret nz
 	homecall Func_a501e
 	ld a, [hJoyNew]
-	and $8
-	cp $8
-	jp nz, Func_1fca
+	and START
+	cp START
+	jp nz, .check_select
 	ld a, [wc9de]
 	or a
-	jr nz, Func_1fca
+	jr nz, .check_select
 	xor a
 	ld [wca5d], a
 	call Func_2411
@@ -2596,13 +2596,13 @@ Func_1f80: ; 1f80 (0:1f80)
 	ld a, $4
 	jp Func_122d
 
-Func_1fca: ; 1fca (0:1fca)
+.check_select
 	ld a, [hJoyNew]
-	and $4
-	jr z, .asm_1ffe
+	and SELECT
+	jr z, .no_select
 	ld a, [wc935]
 	or a
-	jr nz, .asm_1ffe
+	jr nz, .no_select
 	ld a, [wc904]
 	ld [wc926], a
 	ld a, [wc906]
@@ -2617,7 +2617,7 @@ Func_1fca: ; 1fca (0:1fca)
 	ld a, $4
 	jp Func_122d
 
-.asm_1ffe
+.no_select
 	ret
 
 Func_1fff: ; 1fff (0:1fff)
@@ -2648,7 +2648,7 @@ Func_2021: ; 2021 (0:2021)
 	cp $b
 	ret z
 	cp $32
-	jr nc, .asm_2041
+	jr nc, .try_generate
 	cp $2b
 	ret nc
 	ld a, [wc905]
@@ -2658,7 +2658,7 @@ Func_2021: ; 2021 (0:2021)
 	ret z
 	cp $c
 	ret nc
-.asm_2041
+.try_generate
 	ld a, [wc94f]
 	or a
 	ret nz
@@ -2667,26 +2667,26 @@ Func_2021: ; 2021 (0:2021)
 	ld a, [wc49a]
 	or a
 	ret nz
-	ld a, [wc98f]
+	ld a, [wTakingAStep]
 	or a
 	ret z
 	ld a, [wcdb2]
 	or a
 	ret nz
-	homecall Func_a8788
+	homecall CheckCanGenerateEncounters
 	ld a, b
 	or a
 	ret nz
-	ld a, [wc951]
+	ld a, [wEncounterStepCounter + 1]
 	ld h, a
-	ld a, [wc950]
+	ld a, [wEncounterStepCounter]
 	ld l, a
 	ld bc, $1
 	ld a, [hJoyLast]
-	and $2
-	jr z, .asm_207c
+	and B_BUTTON
+	jr z, .not_running
 	ld bc, $2
-.asm_207c
+.not_running
 	add hl, bc
 	ld a, [wca5e]
 	cp $1
@@ -2696,16 +2696,16 @@ Func_2021: ; 2021 (0:2021)
 	add hl, bc
 .asm_2087
 	ld a, h
-	ld [wc951], a
+	ld [wEncounterStepCounter + 1], a
 	ld a, l
-	ld [wc950], a
-	ld bc, -$320
+	ld [wEncounterStepCounter], a
+	ld bc, -800
 	add hl, bc
 	bit 7, h
 	jr nz, asm_20f5
-	homecall Func_a85e5
+	homecall GetMapEncounterTableIndex
 	ld a, b
-	ld [wd402], a
+	ld [wCurWildDenjuuEncounterTableIndex], a
 	ld a, $0
 	ld [wd406], a
 	ld a, $0
@@ -2731,8 +2731,8 @@ Func_20b1: ; 20b1 (0:20b1)
 	ld a, $0
 	ld [wca5d], a
 	ld a, $0
-	ld [wc950], a
-	ld [wc951], a
+	ld [wEncounterStepCounter], a
+	ld [wEncounterStepCounter + 1], a
 	call Func_2411
 	add sp, $2
 asm_20f5
@@ -2745,7 +2745,7 @@ Func_20f6: ; 20f6 (0:20f6)
 	rst Bankswitch
 	call Func_a8663
 	ld a, b
-	ld [wc9da], a
+	ld [wCurBackground], a
 	pop af
 	rst Bankswitch
 	ret
@@ -2768,7 +2768,7 @@ Func_2107: ; 2107 (0:2107)
 
 Func_2122::
 	ld hl, VTilesOB
-	ld de, Func_1ea1
+	ld de, RunOverworld
 	ld bc, $180 tiles
 	call Func_3801
 	ld a, $a
@@ -3240,7 +3240,7 @@ Func_256e::
 	jp nz, Func_2690
 	call Func_26b1
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jp z, Func_2690
 	ld a, [wc499]
 	bit 2, a
@@ -3394,7 +3394,7 @@ Func_26a0::
 	jp Func_252a
 
 Func_26b1: ; 26b1 (0:26b1)
-	ld a, [wc98f]
+	ld a, [wTakingAStep]
 	or a
 	jr z, .asm_26f1
 	ld a, [wc9c1]
@@ -4345,8 +4345,8 @@ Func_2cd1::
 	homecall Func_2c831
 	ret
 
-Func_2cde::
-	homecall Func_2c84d
+OverworldIdleHUD_::
+	homecall OverworldIdleHUD
 	ret
 
 Func_2ceb::
@@ -4666,7 +4666,7 @@ Func_2ea0::
 	ld a, [hli]
 	ld [wc9dd], a
 	ld a, [hli]
-	ld [wd402], a
+	ld [wCurWildDenjuuEncounterTableIndex], a
 	ld a, [hl]
 	ld [wd406], a
 	or a
@@ -6859,10 +6859,10 @@ ENDR
 	ld [de], a
 	ret
 
-Func_3c57: ; 3c57 (0:3c57)
+ChooseWildDenjuuEncounter: ; 3c57 (0:3c57)
 	ld hl, Data_1d56ee
 	ld de, $5
-	ld a, [wd402]
+	ld a, [wCurWildDenjuuEncounterTableIndex]
 	addntimes_hl_de
 	push hl
 	call Random
@@ -7176,7 +7176,7 @@ Func_3e19::
 LoadScriptedEnemyDenjuu: ; 3e45 (0:3e45)
 	ld hl, ScriptedEnemyDenjuu
 	ld de, $5
-	ld a, [wd402]
+	ld a, [wCurWildDenjuuEncounterTableIndex]
 	addntimes_hl_de
 	ld a, [hli]
 	ld [wEnemyDenjuu1Species], a
@@ -7192,7 +7192,7 @@ LoadScriptedEnemyDenjuu: ; 3e45 (0:3e45)
 LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld hl, EnemyTFangerParties
 	ld de, $12
-	ld a, [wd402]
+	ld a, [wCurWildDenjuuEncounterTableIndex]
 	addntimes_hl_de
 	ld a, [hli]
 	ld [wEnemyDenjuu1Species], a

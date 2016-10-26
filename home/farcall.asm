@@ -311,10 +311,10 @@ Func_05f7::
 	rst MemBankswitch
 	ret
 
-Func_0601::
+ChooseWildDenjuuEncounter_::
 	ld a, BANK(Data_1d56ee)
 	rst Bankswitch
-	call Func_3c57
+	call ChooseWildDenjuuEncounter
 	rst MemBankswitch
 	ret
 

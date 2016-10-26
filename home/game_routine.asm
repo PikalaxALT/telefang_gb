@@ -63,7 +63,7 @@ RunOverworld_::
 	ld a, $b
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_1ea1
+	jp RunOverworld
 
 StartBattle_::
 	ld a, BANK(StartBattle)

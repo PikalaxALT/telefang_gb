@@ -191,7 +191,7 @@ Func_70016: ; 70016 (1c:4016)
 	jp .finish_load_enemy
 
 .wild_denjuu
-	call Func_0601
+	call ChooseWildDenjuuEncounter_
 	ld a, [wTempWildDenjuuSpecies]
 	dec a
 	ld [wEnemyDenjuu1], a
@@ -720,9 +720,9 @@ BattleStart_Init:
 	jp NextBattleSubroutine
 
 Func_70500: ; 70500 (1c:4500)
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	call LoadWildBattleBackgroundGFX
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	ld e, a
 	ld d, $0
 	sla e
@@ -736,7 +736,7 @@ Func_70500: ; 70500 (1c:4500)
 .asm_7051e
 	ld hl, $380
 .asm_70521
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	ld e, a
 	ld d, $0
 	sla e
@@ -767,14 +767,14 @@ Func_70541:
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
 	ld e, $40
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	add e
 	ld e, a
 	lb bc, 0, 4
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld e, $40
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	add e
 	ld e, a
 	ld bc, $4
@@ -2736,7 +2736,7 @@ Func_71550: ; 71550 (1c:5550)
 	ld de, $7
 	addntimes_hl_de
 	ld d, $0
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	ld e, a
 	add hl, de
 	ld a, [hl]
@@ -3113,14 +3113,14 @@ Func_71831:
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
 	ld e, $b0
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	add e
 	ld e, a
 	lb bc, 0, 0
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld e, $a0
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	add e
 	ld e, a
 	lb bc, 0, 0
@@ -3335,9 +3335,9 @@ Func_71a11:
 	ret
 
 Func_71a2f: ; 71a2f (1c:5a2f)
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	call Func_0574
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	ld e, a
 	ld d, $0
 	sla e
@@ -3351,7 +3351,7 @@ Func_71a2f: ; 71a2f (1c:5a2f)
 .asm_71a4d
 	ld hl, $380
 .asm_71a50
-	ld a, [wc9da]
+	ld a, [wCurBackground]
 	ld e, a
 	ld d, $0
 	sla e

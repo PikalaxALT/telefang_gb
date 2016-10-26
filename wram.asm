@@ -986,8 +986,7 @@ wc94c:: ds 1
 wc94d:: ds 1
 wc94e:: ds 1
 wc94f:: ds 1
-wc950:: ds 1
-wc951:: ds 1
+wEncounterStepCounter:: dw
 wc952:: ds 1
 wc953:: ds 1
 wc954:: ds 1
@@ -1049,7 +1048,7 @@ wc98b:: ds 1
 wc98c:: ds 1
 wc98d:: ds 1
 wc98e:: ds 1
-wc98f:: ds 1
+wTakingAStep:: ds 1
 wc990:: ds 1
 wc991:: ds 1
 wc992:: ds 1
@@ -1124,7 +1123,7 @@ wc9d6:: ds 1
 wc9d7:: ds 1
 wc9d8:: ds 1
 wc9d9:: ds 1
-wc9da:: ds 1
+wCurBackground:: ds 1
 wc9db:: ds 1
 wc9dc:: ds 1
 wc9dd:: ds 1
@@ -3727,7 +3726,7 @@ wd3fe:: ds 1
 wd3ff:: ds 1
 wBattleSubroutine:: ds 1
 wd401:: ds 1
-wd402:: ds 1
+wCurWildDenjuuEncounterTableIndex:: ds 1
 wd403:: ds 1
 wd404:: ds 1
 wd405:: ds 1
