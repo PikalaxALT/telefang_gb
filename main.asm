@@ -944,9 +944,9 @@ Func_8d7a: ; 8d7a (2:4d7a)
 	ld a, $0
 	ld [wWhichBattleMenuCursor], a
 	ld a, $28
-	ld [wBattleMenuCursorXCoord], a
+	ld [wSpriteInitXCoordBuffers + 0], a
 	ld a, $0
-	ld [wBattleMenuCursorYCoord], a
+	ld [wSpriteInitYCoordBuffers + 0], a
 	call InitBattleMenuCursor
 	ld a, $0
 	ld bc, $4
@@ -1940,7 +1940,11 @@ LoadGame: ; fb8d (3:7b8d)
 	call CopyData
 	ld hl, sEventFlags
 	ld de, wEventFlags
-	ld bc, $200
+IF (NUM_EVENTS & 7) > 0
+	ld bc, (NUM_EVENTS >> 3) + 1
+ELSE
+	ld bc, (NUM_EVENTS >> 3)
+ENDC
 	call CopyData
 	ld hl, sBackupAddressBook
 	ld de, sAddressBook
@@ -2046,10 +2050,10 @@ Func_1404a:
 	jp Func_142f9
 
 Func_14062:
-	ld a, [wd477]
+	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
 	call Func_140ab
-	ld a, [wd477]
+	ld a, [wCurEnemyDenjuu]
 	call Func_14102
 	ld a, [wCurDenjuuBufferSpecies]
 	ld de, DenjuuNames
@@ -2247,12 +2251,12 @@ Func_141d7:
 	cp $3
 	jr z, asm_14225
 	hlbgcoord 3, 14
-	ld a, [wd475]
+	ld a, [wCurBattleDenjuu2]
 	jp Func_141f2
 
 .asm_141ec
 	hlbgcoord 3, 16
-	ld a, [wd476]
+	ld a, [wCurBattleDenjuu3]
 Func_141f2: ; 141f2 (5:41f2)
 	push hl
 	call GetNthPlayerDenjuu
@@ -2276,12 +2280,12 @@ Func_141f2: ; 141f2 (5:41f2)
 
 asm_1421c
 	hlbgcoord 13, 14
-	ld a, [wd478]
+	ld a, [wCurEnemyDenjuu2]
 	jp Func_1422b
 
 asm_14225
 	hlbgcoord 13, 16
-	ld a, [wd479]
+	ld a, [wCurEnemyDenjuu3]
 Func_1422b: ; 1422b (5:422b)
 	push hl
 	call GetNthEnemyDenjuu
@@ -3860,9 +3864,9 @@ OverworldIdleHudCheck: ; 2c904 (b:4904)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, [wc956]
+	ld a, [wOverworldIdleHUDPage]
 	xor $1
-	ld [wc956], a
+	ld [wOverworldIdleHUDPage], a
 	jp Func_2c9fe
 
 .finish
@@ -4059,24 +4063,24 @@ ENDR
 Func_2caa5: ; 2caa5 (b:4aa5)
 	ld a, c
 	ld [wSpriteDestIsCustom], a
-	ld c, $12
+	ld c, 18
 	cp $1
 	jr z, .asm_2cacb
-	ld c, $a
+	ld c, 10
 	cp $0
 	jr nz, .asm_2cac0
 	ld a, [wc904]
 	cp $b
 	jr z, .asm_2cacb
-	ld c, $14
+	ld c, 20
 	jr .asm_2cacb
 
 .asm_2cac0
 	ld a, [wSpriteDestIsCustom]
-	ld c, $8
+	ld c, 8
 	cp $c
 	jr z, .asm_2cacb
-	ld c, $10
+	ld c, 16
 .asm_2cacb
 	ld a, c
 	ld [wc987], a
@@ -4516,7 +4520,7 @@ Func_2cd3b: ; 2cd3b (b:4d3b)
 Func_2cd63: ; 2cd63 (b:4d63)
 	ld hl, wca08
 	ld de, Data_2d1c5
-	ld a, [wc956]
+	ld a, [wOverworldIdleHUDPage]
 	or a
 	jr z, .asm_2cd72
 	ld de, Data_2d1ed
@@ -4536,76 +4540,74 @@ Func_2cd63: ; 2cd63 (b:4d63)
 Func_2cd87: ; 2cd87 (b:4d87)
 	ld de, wca00
 	ld b, $5
-.asm_2cd8c
+.loop
 	ld a, [de]
-	sub $bb
-	jr c, .asm_2cd98
+	sub "0"
+	jr c, .skip
 	add a
-	add $c4
+	add "9"
 	add c
 	ld [hli], a
-	jr .asm_2cd99
+	jr .next
 
-.asm_2cd98
+.skip
 	inc hl
-.asm_2cd99
+.next
 	inc de
 	dec b
-	jr nz, .asm_2cd8c
-	jr .asm_2cd9f
-
-.asm_2cd9f
-	ld a, [wc956]
+	jr nz, .loop
+	jr @ + 2 ; nop
+	ld a, [wOverworldIdleHUDPage]
 	or a
-	jr z, .asm_2cdd8
+	jr z, .print_hp
 	callba Func_a54f1
 	push de
 	ld a, d
 	call Get2DigitBCD
 	ld hl, wca14
-	ld c, $c4
-	call Func_2ce14
+	ld c, "9"
+	call .Print2DigitBCD
 	ld hl, wca28
-	ld c, $c5
-	call Func_2ce14
+	ld c, "9" + 1
+	call .Print2DigitBCD
 	pop de
 	ld a, e
 	call Get2DigitBCD
 	ld hl, wca18
-	ld c, $c4
-	call Func_2ce0b
+	ld c, "9"
+	call .Print3DigitBCD
 	ld hl, wca2c
-	ld c, $c5
-	call Func_2ce0b
+	ld c, "9" + 1
+	call .Print3DigitBCD
 	ret
 
-.asm_2cdd8
+.print_hp
 	ld a, [wPartnerDenjuuHPRemaining]
 	call Get2DigitBCD
 	ld hl, wca14
-	ld c, $c4
-	call Func_2ce0b
+	ld c, "9"
+	call .Print3DigitBCD
 	ld hl, wca28
-	ld c, $c5
-	call Func_2ce0b
-	callba Func_a5525
+	ld c, "9" + 1
+	call .Print3DigitBCD
+	callba GetPartnerDenjuuMaxHP
 	ld a, c
 	call Get2DigitBCD
 	ld hl, wca18
-	ld c, $c4
-	call Func_2ce0b
+	ld c, "9"
+	call .Print3DigitBCD
 	ld hl, wca2c
-	ld c, $c5
-	call Func_2ce0b
+	ld c, "9" + 1
+	call .Print3DigitBCD
 	ret
 
-Func_2ce0b: ; 2ce0b (b:4e0b)
+.Print3DigitBCD: ; 2ce0b (b:4e0b)
 	ld a, [wCGBPalFadeProgram]
 	and $f
 	sla a
 	add c
 	ld [hli], a
-Func_2ce14: ; 2ce14 (b:4e14)
+.Print2DigitBCD: ; 2ce14 (b:4e14)
 	ld a, [wNumCGBPalettesToFade]
 	swap a
 	and $f
@@ -4787,7 +4789,7 @@ Func_2cf28: ; 2cf28 (b:4f28)
 	ld hl, VTilesShared tile $70
 	ld de, GFX_2cf61
 	ld bc, 10 tiles
-	call Func_3801
+	call Copy2bpp_2
 	ld hl, VTilesShared tile $6f
 	ld b, $8
 	ld a, [wFontPaletteMode]
@@ -4833,31 +4835,70 @@ Func_2d001:
 	jp Func_372d
 
 Data_2d00f:
-	dr $2d00f, $2d07b
+	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
+	db $f4, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $f6
+	db $f4, $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $ca, $cb, $cc, $cd, $ce, $cf, $f6
+	db $f4, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $f6
+	db $f4, $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8, $d9, $da, $db, $dc, $dd, $de, $df, $f6
+	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f9
 
 Data_2d07b:
-	dr $2d07b, $2d0c3
+	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
+	db $f4, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $f6
+	db $f4, $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8, $d9, $da, $db, $dc, $dd, $de, $df, $f6
+	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f9
 
 Data_2d0c3:
-	dr $2d0c3, $2d0e7
+	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
+	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f9
 
 Data_2d0e7:
-	dr $2d0e7, $2d127
+	db $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef
+	db $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $ca, $cb, $cc, $cd, $ce, $cf
+
+Data_2d107:
+	db $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef
+	db $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8, $d9, $da, $db, $dc, $dd, $de, $df
 
 Data_2d127:
-	dr $2d127, $2d15d
+	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
+	db $f4, $e0, $e1, $e2, $e3, $e4, $e5, $e6, $e7, $e8, $e9, $ea, $eb, $ec, $ed, $ee, $ef, $f6
+	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f9
 
 Data_2d15d:
-	dr $2d15d, $2d185
+	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
+	db $f4, $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $f6
+	db $f4, $ef, $ef, $ef, $ef, $ef, $c8, $c9, $ca, $f6
+	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f9
 
 Data_2d185:
-	dr $2d185, $2d1c5
+	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f3
+	db $f4, $d0, $d1, $d2, $d3, $d4, $d5, $f6
+	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f9
+
+Data_2d19d:
+	db $f4, $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $f6
+	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f9
+
+Data_2d1b1:
+	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
+	db $f4, $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $f6
 
 Data_2d1c5:
-	dr $2d1c5, $2d1ed
+	db $c0, $e0, $e0, $e0, $e0, $e0, $d8, $da, $c2, $c0
+	db $de, $e2, $c4, $c4, $c4, $dc, $c4, $c4, $c4, $c2
+	db $c1, $e1, $e1, $e1, $e1, $e1, $d9, $db, $c3, $c1
+	db $df, $e3, $c5, $c5, $c5, $dd, $c5, $c5, $c5, $c3
 
 Data_2d1ed:
-	dr $2d1ed, $2d229
+	db $c0, $e0, $e0, $e0, $e0, $e0, $d8, $da, $c2, $c0
+	db $e4, $e6, $c4, $c4, $e8, $ea, $c4, $c4, $c4, $c2
+	db $c1, $e1, $e1, $e1, $e1, $e1, $d9, $db, $c3, $c1
+	db $e5, $e7, $c5, $c5, $e9, $eb, $c5, $c5, $c5, $c3
+
+Data_2d215:
+	db $c0, $de, $c4, $c4, $c4, $dc, $c4, $c4, $c4, $c2
+	db $c1, $df, $c5, $c5, $c5, $dd, $c5, $c5, $c5, $c3
 
 FontGFX: INCBIN "gfx/font/font_2d229.t13.1bpp"
 
@@ -5516,7 +5557,7 @@ Func_a54a2::
 Func_a54f1:
 	dr $a54f1, $a5525
 
-Func_a5525::
+GetPartnerDenjuuMaxHP::
 	dr $a5525, $a6b69
 
 Data_a6b69::

@@ -268,10 +268,10 @@ SaveGame_::
 	homecall_memret SaveGame
 	ret
 
-Func_05d1::
-	ld a, BANK(Data_1d5640)
+GetDenjuuSprite_::
+	ld a, BANK(DenjuuSprites)
 	rst Bankswitch
-	call Func_3b3f
+	call GetDenjuuSprite
 	rst MemBankswitch
 	ret
 
@@ -441,12 +441,12 @@ Func_06cc::
 	homecall_memret Func_a40ef
 	ret
 
-Func_06d4::
+GetPartnerDenjuuMaxHP_::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_a5525)
+	ld a, BANK(GetPartnerDenjuuMaxHP)
 	rst Bankswitch
-	call Func_a5525
+	call GetPartnerDenjuuMaxHP
 	pop af
 	ld [wPrevROMBank], a
 	rst Bankswitch

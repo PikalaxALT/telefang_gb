@@ -990,7 +990,7 @@ wc952:: ds 1
 wc953:: ds 1
 wc954:: ds 1
 wPartnerDenjuuHPRemaining:: ds 1
-wc956:: ds 1
+wOverworldIdleHUDPage:: ds 1
 wc957:: ds 1
 wc958:: ds 1
 wc959:: ds 1
@@ -3668,7 +3668,7 @@ wd412:: ds 1
 wd413:: ds 1
 wBattleMenuSelection:: ds 1
 wd415:: ds 1
-wd416:: ds 1
+wBattleTurn:: ds 1
 wd417:: ds 1
 wd418:: ds 1
 wd419:: ds 1
@@ -3756,11 +3756,11 @@ wd471:: ds 1
 wd472:: ds 1
 wd473:: ds 1
 wCurBattleDenjuu:: ds 1
-wd475:: ds 1
-wd476:: ds 1
-wd477:: ds 1
-wd478:: ds 1
-wd479:: ds 1
+wCurBattleDenjuu2:: ds 1
+wCurBattleDenjuu3:: ds 1
+wCurEnemyDenjuu:: ds 1
+wCurEnemyDenjuu2:: ds 1
+wCurEnemyDenjuu3:: ds 1
 wd47a:: ds 1
 wd47b:: ds 1
 wd47c:: ds 1
@@ -3879,18 +3879,10 @@ wd4ec:: ds 1
 wd4ed:: ds 1
 wd4ee:: ds 1
 wd4ef:: ds 1
-wBattleMenuCursorXCoord:: ds 1
-wMoveSelectionCursorXCoord:: ds 1
-wd4f2:: ds 1
-wd4f3:: ds 1
-wd4f4:: ds 1
-wd4f5:: ds 1
-wBattleMenuCursorYCoord:: ds 1
-wMoveSelectionCursorYCoord:: ds 1
-wd4f8:: ds 1
-wd4f9:: ds 1
-wd4fa:: ds 1
-wd4fb:: ds 1
+
+wSpriteInitXCoordBuffers:: ds 6
+wSpriteInitYCoordBuffers:: ds 6
+
 wd4fc:: ds 1
 wd4fd:: ds 1
 wd4fe:: ds 1
@@ -3950,7 +3942,7 @@ wd5c2:: ds 1
 wd5c3:: ds 1
 wd5c4:: ds 1
 wd5c5:: ds 1
-wd5c6:: ds 1
+wPlayerPartySize:: ds 1
 wEnemyPartySize:: ds 1
 wd5c8:: ds 1
 wd5c9:: ds 1

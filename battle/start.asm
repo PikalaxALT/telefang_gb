@@ -30,13 +30,13 @@ Func_70016: ; 70016 (1c:4016)
 	ld [wEnemyDenjuu1ArrivedStatus], a
 	xor a
 	ld [wCurBattleDenjuu], a
-	ld [wd477], a
+	ld [wCurEnemyDenjuu], a
 	inc a
-	ld [wd475], a
-	ld [wd478], a
+	ld [wCurBattleDenjuu2], a
+	ld [wCurEnemyDenjuu2], a
 	inc a
-	ld [wd476], a
-	ld [wd479], a
+	ld [wCurBattleDenjuu3], a
+	ld [wCurEnemyDenjuu3], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook
 	ld de, $10
@@ -521,9 +521,9 @@ Func_703a2: ; 703a2 (1c:43a2)
 .asm_703ad
 	ld a, $48
 .asm_703af
-	ld [wBattleMenuCursorXCoord], a
+	ld [wSpriteInitXCoordBuffers + 0], a
 	ld a, $80
-	ld [wBattleMenuCursorYCoord], a
+	ld [wSpriteInitYCoordBuffers + 0], a
 	ld a, $0
 	ld [wWhichBattleMenuCursor], a
 	ld a, $d0
@@ -532,14 +532,14 @@ Func_703a2: ; 703a2 (1c:43a2)
 
 Func_703c4: ; 703c4 (1c:43c4)
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld [wOAMAnimation03_PriorityFlags], a
-	ld [wOAMAnimation04], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation04_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld [wOAMAnimation06_PriorityFlags], a
-	ld [wOAMAnimation07], a
-	ld [wOAMAnimation08], a
+	ld [wOAMAnimation07_PriorityFlags], a
+	ld [wOAMAnimation08_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -654,7 +654,7 @@ Data_70480:
 	db $ff
 
 Func_7048c: ; 7048c (1c:448c)
-	ld a, [wd416]
+	ld a, [wBattleTurn]
 	cp $1
 	jr z, .asm_704a1
 	ld d, $0
@@ -669,7 +669,7 @@ Func_7048c: ; 7048c (1c:448c)
 
 .asm_704a1
 	ld d, $0
-	ld a, [wd477]
+	ld a, [wCurEnemyDenjuu]
 	ld e, a
 	ld hl, wd5bd
 	add hl, de
@@ -1435,23 +1435,23 @@ Func_70aca: ; 70aca (1c:4aca)
 	cp $1
 	jr z, .asm_70ad8
 	ld a, $70
-	ld [wBattleMenuCursorYCoord], a
+	ld [wSpriteInitYCoordBuffers + 0], a
 	jr .asm_70add
 
 .asm_70ad8
 	ld a, $80
-	ld [wBattleMenuCursorYCoord], a
+	ld [wSpriteInitYCoordBuffers + 0], a
 .asm_70add
 	ld a, [wd40d]
 	cp $1
 	jr z, .asm_70aeb
 	ld a, $e
-	ld [wBattleMenuCursorXCoord], a
+	ld [wSpriteInitXCoordBuffers + 0], a
 	jr .asm_70af0
 
 .asm_70aeb
 	ld a, $4e
-	ld [wBattleMenuCursorXCoord], a
+	ld [wSpriteInitXCoordBuffers + 0], a
 .asm_70af0
 	ld a, $0
 	ld [wWhichBattleMenuCursor], a
@@ -2282,7 +2282,7 @@ Func_711cf:
 
 Func_711d9:
 	ld a, [wd42e]
-	ld [wd5c6], a
+	ld [wPlayerPartySize], a
 	ld hl, wPlayerDenjuu1
 	call Func_71550
 	ld a, [wPlayerDenjuu2Level]
@@ -2394,9 +2394,9 @@ Func_712aa: ; 712aa (1c:52aa)
 	ld a, $4
 	ld [wWhichBattleMenuCursor], a
 	ld a, $50
-	ld [wd4f4], a
+	ld [wSpriteInitXCoordBuffers + 4], a
 	ld a, $8
-	ld [wd4fa], a
+	ld [wSpriteInitYCoordBuffers + 4], a
 	jp InitBattleMenuCursor
 
 Func_712c1:
@@ -2562,9 +2562,9 @@ Func_713de: ; 713de (1c:53de)
 .asm_713f1
 	ld a, $48
 .asm_713f3
-	ld [wBattleMenuCursorYCoord], a
+	ld [wSpriteInitYCoordBuffers + 0], a
 	ld a, $50
-	ld [wBattleMenuCursorXCoord], a
+	ld [wSpriteInitXCoordBuffers + 0], a
 	ld a, $0
 	ld [wWhichBattleMenuCursor], a
 	ld a, $d0
@@ -2577,23 +2577,23 @@ Func_71408: ; 71408 (1c:5408)
 	ld a, $1
 	ld [wWhichBattleMenuCursor], a
 	ld a, $64
-	ld [wMoveSelectionCursorXCoord], a
+	ld [wSpriteInitXCoordBuffers + 1], a
 	ld a, $10
-	ld [wMoveSelectionCursorYCoord], a
+	ld [wSpriteInitYCoordBuffers + 1], a
 	call InitBattleMenuCursor
 	ld a, $2
 	ld [wWhichBattleMenuCursor], a
 	ld a, $64
-	ld [wd4f2], a
+	ld [wSpriteInitXCoordBuffers + 2], a
 	ld a, $28
-	ld [wd4f8], a
+	ld [wSpriteInitYCoordBuffers + 2], a
 	call InitBattleMenuCursor
 	ld a, $3
 	ld [wWhichBattleMenuCursor], a
 	ld a, $64
-	ld [wd4f3], a
+	ld [wSpriteInitXCoordBuffers + 3], a
 	ld a, $40
-	ld [wd4f9], a
+	ld [wSpriteInitYCoordBuffers + 3], a
 	call InitBattleMenuCursor
 	jp Func_71467
 
@@ -3262,7 +3262,7 @@ Func_71957:
 	call LoadDenjuuPic_
 	pop af
 	call Func_175f
-	ld a, [wd477]
+	ld a, [wCurEnemyDenjuu]
 	ld hl, wEnemyDenjuu1Species
 	call Func_71a70
 	ld a, [wCurDenjuuBuffer]

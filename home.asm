@@ -2770,7 +2770,7 @@ Func_2122::
 	ld hl, VTilesOB
 	ld de, RunOverworld
 	ld bc, $180 tiles
-	call Func_3801
+	call Copy2bpp_2
 	ld a, $a
 	ld [wSubroutine], a
 	ret
@@ -2844,7 +2844,7 @@ Func_21db::
 	call Func_241e
 	ld a, $0
 	ld [wc9cf], a
-	ld [wc956], a
+	ld [wOverworldIdleHUDPage], a
 	ld [wcd21], a
 	ld a, [wc900]
 	cp $3
@@ -2940,7 +2940,7 @@ Func_22d2: ; 22d2 (0:22d2)
 	ld [wc95a], a
 	ld a, [wc912]
 	ld [wd409], a
-	call Func_05d1
+	call GetDenjuuSprite_
 	ld a, [wd409]
 	ld [wc9db], a
 	xor a
@@ -5102,7 +5102,7 @@ asm_30db
 	ld l, a
 	ld bc, 12 tiles
 .asm_314f
-	call Func_3801
+	call Copy2bpp_2
 	ld a, [wca52]
 	rst Bankswitch
 	ret
@@ -5112,7 +5112,7 @@ asm_30db
 .asm_3159
 	push bc
 	ld bc, (2 * 2) tiles
-	call Func_3801
+	call Copy2bpp_2
 	ld a, (2 * 2 * 2) tiles
 	add e
 	ld e, a
@@ -5185,7 +5185,7 @@ Func_31c5: ; 31c5 (0:31c5)
 	pop de
 	ld hl, VTilesOB
 	ld bc, (2 * 2) tiles
-	call Func_3801
+	call Copy2bpp_2
 	pop af
 	rst Bankswitch
 	ret
@@ -5846,7 +5846,7 @@ Func_35e0: ; 35e0 (0:35e0)
 	ld hl, VTilesShared tile $14
 	ld de, GFX_e09d8
 	ld bc, $130
-	call Func_3801
+	call Copy2bpp_2
 	ld de, TileMap_e03a0
 	hlbgcoord 0, 0, VWindow
 	call Func_3694
@@ -5860,21 +5860,21 @@ Func_35e0: ; 35e0 (0:35e0)
 	ld hl, VTilesShared tile $14
 	ld de, GFX_e0418
 	ld bc, $60
-	call Func_3801
+	call Copy2bpp_2
 	ld hl, VTilesShared tile $36
 	ld bc, $60
-	call Func_3801
+	call Copy2bpp_2
 	ld hl, VTilesShared tile $20
 	ld de, GFX_e06b8
 	ld bc, $c0
-	call Func_3801
+	call Copy2bpp_2
 	ld a, [wc9de]
 	or a
 	jr z, .asm_363e
 	ld de, GFX_e0918
 	ld hl, VTilesShared tile $26
 	ld bc, $60
-	call Func_3801
+	call Copy2bpp_2
 .asm_363e
 	ld a, [wc935]
 	or a
@@ -5882,7 +5882,7 @@ Func_35e0: ; 35e0 (0:35e0)
 	ld de, GFX_e0978
 	ld hl, VTilesShared tile $20
 	ld bc, $60
-	call Func_3801
+	call Copy2bpp_2
 .asm_3650
 	ld a, [wc93e]
 	or a
@@ -5973,7 +5973,7 @@ Func_36cf: ; 36cf (0:36cf)
 	ld d, a
 	ld hl, VTilesShared tile $2c
 	ld bc, $40
-	call Func_3801
+	call Copy2bpp_2
 	pop af
 	rst Bankswitch
 	ld a, [wROMBank]
@@ -5999,7 +5999,7 @@ Func_36cf: ; 36cf (0:36cf)
 	ld d, a
 	ld hl, VTilesShared tile $30
 	ld bc, $60
-	call Func_3801
+	call Copy2bpp_2
 	pop af
 	rst Bankswitch
 	ret
@@ -6014,7 +6014,7 @@ Func_372d: ; 372d (0:372d)
 	ld [wca52], a
 	pop af
 	rst Bankswitch
-	call Func_3801
+	call Copy2bpp_2
 	ld a, [wca52]
 	rst Bankswitch
 	ret
@@ -6150,7 +6150,7 @@ Func_37d5: ; 37d5 (0:37d5)
 	ld hl, VTilesOB tile $70
 	ld de, GFX_e0000
 	ld bc, $c0
-	call Func_3801
+	call Copy2bpp_2
 	ld hl, VTilesShared
 	ld de, GFX_e01f0
 	ld a, [wc904]
@@ -6159,20 +6159,20 @@ Func_37d5: ; 37d5 (0:37d5)
 	ld de, GFX_e00c0
 .asm_37f8
 	ld bc, $130
-	call Func_3801
+	call Copy2bpp_2
 	pop af
 	rst Bankswitch
 	ret
 
-Func_3801: ; 3801 (0:3801)
+Copy2bpp_2: ; 3801 (0:3801)
 	bit 0, c
-	jr z, .asm_3816
-.asm_3805
+	jr z, .double
+.loop1
 	di
-.asm_3806
+.waitstat1
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_3806
+	jr nz, .waitstat1
 	ld a, [de]
 	ld [hli], a
 	ei
@@ -6180,18 +6180,18 @@ Func_3801: ; 3801 (0:3801)
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_3805
+	jr nz, .loop1
 	ret
 
-.asm_3816
+.double
 	srl b
 	rr c
-.asm_381a
+.loop2
 	di
-.asm_381b
+.waitstat2
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_381b
+	jr nz, .waitstat2
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -6202,7 +6202,7 @@ Func_3801: ; 3801 (0:3801)
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_381a
+	jr nz, .loop2
 	ret
 
 Func_382e::
@@ -6723,8 +6723,8 @@ Func_3b36: ; 3b36 (0:3b36)
 	pop bc
 	jp Func_3b09
 
-Func_3b3f: ; 3b3f (0:3b3f)
-	ld hl, Data_1d5640
+GetDenjuuSprite: ; 3b3f (0:3b3f)
+	ld hl, DenjuuSprites
 	ld d, $0
 	ld a, [wd409]
 	ld e, a
@@ -6987,14 +6987,14 @@ InitBattleMenuCursor: ; 3d18 (0:3d18)
 	ld a, [wWhichBattleMenuCursor]
 	addntimes_hl_de
 	push hl
-	ld hl, wBattleMenuCursorXCoord
+	ld hl, wSpriteInitXCoordBuffers + 0
 	ld d, $0
 	ld a, [wWhichBattleMenuCursor]
 	ld e, a
 	add hl, de
 	ld a, [hl]
 	ld b, a
-	ld hl, wBattleMenuCursorYCoord
+	ld hl, wSpriteInitYCoordBuffers + 0
 	ld d, $0
 	ld a, [wWhichBattleMenuCursor]
 	ld e, a

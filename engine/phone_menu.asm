@@ -1612,7 +1612,7 @@ Func_10cc9:
 .asm_10ce7
 	ld a, $3
 	ld [H_SFX_ID], a
-	call Func_06d4
+	call GetPartnerDenjuuMaxHP_
 	ld a, [wPartnerDenjuuHPRemaining]
 	cp c
 	jr nz, .asm_10d21
@@ -7918,7 +7918,7 @@ Func_13d46: ; 13d46 (4:7d46)
 	ld hl, VTilesOB tile $50
 	push hl
 	ld [wd409], a
-	call Func_05d1
+	call GetDenjuuSprite_
 	pop hl
 	ld a, [wd409]
 	call GetOverworldSprite_SizeHL
@@ -8024,7 +8024,7 @@ Func_13dea: ; 13dea (4:7dea)
 	call Func_13e08
 	ld a, [hl]
 	ld [wd409], a
-	call Func_05d1
+	call GetDenjuuSprite_
 	ld a, [wd409]
 	sub $13
 	ld [wcb73], a
