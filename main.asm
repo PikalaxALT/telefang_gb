@@ -795,7 +795,7 @@ LandmarkNames:
 	db "パームかい$" ; Palm Sea
 	db "キカイのまち フリジア$" ; Machine Town Freesia
 	db "すなのまち バーラン$" ; Barran Desert
-	db "イォンとう$" ; Ion Island
+	db "イオンとう$" ; Ion Island
 	db "パパルナこ$" ; Paparuna Lake
 	db "パンセスむら$" ; Panses Village
 	db "トリパむら$" ; Tripa Village
@@ -803,7 +803,7 @@ LandmarkNames:
 	db "あくまのやま ぺぺリやま$" ; Devil's Mountain: Peperi Mountain
 	db "イクソスのもリ$" ; Ixos Forest
 	db "カクトスいせき$" ; Cactos Ruins
-	db "ブリォンいせき$" ; Burion Ruins
+	db "ブリオンいせき$" ; Burion Ruins
 	db "トロンコむら すいげん$" ; Toronoko Village Spring
 	db "クリノンむら ちか1かい$" ; Kurinon Village B1F
 	db "クラフトけんきゅうじょ$" ; Craft Research Center
@@ -3552,7 +3552,7 @@ Func_2c6d2: ; 2c6d2 (b:46d2)
 
 Func_2c6e2: ; 2c6e2 (b:46e2)
 	call Func_2c6d2
-	ld hl, Data_2e652
+	ld hl, ItemNames
 	ld c, b
 	ld b, $0
 	sla c
@@ -3601,7 +3601,7 @@ Func_2c711: ; 2c711 (b:4711)
 	ret
 
 Func_2c73e: ; 2c73e (b:473e)
-	ld hl, Data_2e652
+	ld hl, ItemNames
 	ld c, b
 	ld b, $0
 	sla c
@@ -4718,6 +4718,7 @@ LoadCharacter: ; 2ce29 (b:4e29)
 	jr nz, .hue2_bg_loop
 	ret
 
+Func_2cea0:
 	ld d, $0
 	ld a, [wcafc]
 	ld e, a
@@ -6153,41 +6154,1044 @@ Func_2e050: ; 2e050 (b:6050)
 	ret nz
 	jr Func_2e050
 
-Func_2e064::
-	dr $2e064, $2e0d2
+Func_2e064: ; 2e064 (b:6064)
+	ld a, [wSubroutine]
+	cp $6
+	ret z
+	ld hl, wc480
+	ld de, wOAMAnimation15_PriorityFlags
+	ld a, [wc49a]
+	cp $14
+	jr nz, .asm_2e080
+	ld a, [$c29f]
+	ld b, a
+	ld a, [$c29e]
+	jr .asm_2e087
 
-Func_2e0d2::
-	dr $2e0d2, $2e33e
+.asm_2e080
+	ld a, [wc4a4]
+	ld b, a
+	ld a, [wPlayerYCoord]
+.asm_2e087
+	sub b
+	ld b, a
+	bit 7, b
+	jr z, .asm_2e090
+	ld de, wOAMAnimation16
+.asm_2e090
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ld hl, wc4a0
+	ld de, wOAMAnimation16
+	bit 7, b
+	jr z, .asm_2e0ae
+	ld de, wOAMAnimation15
+.asm_2e0ae
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ld a, [wc49a]
+	cp $14
+	jr z, .asm_2e0d1
+	ld hl, $c29e
+	ld a, [wPlayerYCoord]
+	ld [hli], a
+	ld a, [wc4a4]
+	ld [hl], a
+.asm_2e0d1
+	ret
 
-Func_2e33e::
-	dr $2e33e, $2e3dc
+Func_2e0d2: ; 2e0d2 (b:60d2)
+	ld a, [wcd01]
+	cp $1
+	jr z, .asm_2e0de
+	ld a, [wcd00]
+	or a
+	ret nz
+.asm_2e0de
+	ld a, [wc904]
+	cp $2
+	ret c
+	cp $32
+	jr nc, .asm_2e0eb
+	cp $2b
+	ret nc
+.asm_2e0eb
+	ld a, [wc904]
+	cp $a
+	jr nc, .asm_2e148
+	call Func_2e179
+	ld a, [wc906]
+	ld [wc913], a
+	ld a, [wc904]
+	ld [wc914], a
+	cp $6
+	jr c, .asm_2e107
+	sub $4
+.asm_2e107
+	sub $2
+	sla a
+	sla a
+	sla a
+	ld hl, wc960
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [wc906]
+	ld b, a
+	srl a
+	srl a
+	srl a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, b
+.asm_2e129
+	and $7
+	ld c, $1
+	or a
+	jr z, .asm_2e135
+.asm_2e130
+	sla c
+	dec a
+	jr nz, .asm_2e130
+.asm_2e135
+	ld a, $a
+	ld [MBC3SRamEnable], a
+	ld a, $2
+	ld [MBC3SRamBank], a
+	ld a, [hl]
+	or c
+	ld [hl], a
+	ld a, $0
+	ld [MBC3SRamEnable], a
+	ret
 
-Func_2e3dc::
-	dr $2e3dc, $2e3ff
+.asm_2e148
+	sub $a
+	cp $28
+	jr c, .asm_2e150
+	sub $7
+.asm_2e150
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	ld hl, $b000
+	add hl, bc
+	ld a, [wc906]
+	srl a
+	srl a
+	srl a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [wc906]
+	and $7
+	jr .asm_2e129
 
-Func_2e3ff::
-	dr $2e3ff, $2e466
+Func_2e179: ; 2e179 (b:6179)
+	ld a, [wc906]
+	ld b, a
+	ld a, [wc904]
+	ld c, a
+	cp $2
+	jr nz, .asm_2e1b8
+	ld a, b
+	cp $8
+	jr nz, .asm_2e1b8
+	ld b, $1e
+	ld a, [wc960]
+	or b
+	ld [wc960], a
+	ld b, $a
+	ld a, [wc961]
+	or b
+	ld [wc961], a
+	ld b, $9
+	ld a, [wc962]
+	or b
+	ld [wc962], a
+	ld b, $3
+	ld a, [wc963]
+	or b
+	ld [wc963], a
+	ld b, $5
+	ld a, [wc964]
+	or b
+	ld [wc964], a
+	ret
 
-Func_2e466::
-	dr $2e466, $2e48d
+.asm_2e1b8
+	ld a, c
+	cp $2
+	jr nz, .asm_2e1d5
+	ld a, b
+	cp $f
+	jr nz, .asm_2e1d5
+	ld b, $80
+	ld a, [wc960]
+	or b
+	ld [wc960], a
+	ld b, $1
+	ld a, [wc968]
+	or b
+	ld [wc968], a
+	ret
 
-Func_2e48d::
-	dr $2e48d, $2e4b2
+.asm_2e1d5
+	ld a, c
+	cp $3
+	jr nz, .asm_2e1e9
+	ld a, b
+	cp $f
+	jr nz, .asm_2e1e9
+	ld b, $c0
+	ld a, [wc968]
+	or b
+	ld [wc968], a
+	ret
 
-Func_2e4b2::
-	dr $2e4b2, $2e562
+.asm_2e1e9
+	ld a, c
+	cp $5
+	jr nz, .asm_2e1fc
+	ld a, b
+	cp $27
+	jr nz, .asm_2e1fc
+	ld b, $80
+	ld a, [wc97d]
+	or b
+	ld [wc97d], a
+.asm_2e1fc
+	ret
 
-Func_2e562::
-	dr $2e562, $2e589
+Func_2e1fd:
+	ld a, b
+	call Func_2e204
+	jp Func_2e0d2
 
-Func_2e589::
-	dr $2e589, $2e652
+Func_2e204: ; 2e204 (b:6204)
+	call Func_2e2f1
+	ld b, a
+	and $1
+	jr nz, .asm_2e217
+	ld a, [wc906]
+	add b
+	and $3f
+	ld [wc906], a
+	jr .asm_2e227
 
-Data_2e652:
-	dr $2e652, $2e8fa
+.asm_2e217
+	ld a, [wc906]
+	and $f8
+	ld c, a
+	ld a, [wc906]
+	add b
+	and $7
+	or c
+	ld [wc906], a
+.asm_2e227
+	ld a, [wc904]
+	cp $2
+	jr z, .asm_2e23c
+	cp $3
+	jr z, .asm_2e268
+	cp $4
+	jr z, asm_2e297
+	cp $5
+	jp z, Func_2e2c3
+	ret
+
+.asm_2e23c
+	ld a, $8
+	cp b
+	jr nz, .asm_2e252
+	ld a, [wc906]
+	cp $8
+	jr nc, asm_2e296
+	ld a, [wc904]
+	add $2
+	ld [wc904], a
+	jr asm_2e296
+
+.asm_2e252
+	ld a, $1
+	cp b
+	jr nz, asm_2e296
+	ld a, [wc906]
+	and $7
+	jr nz, asm_2e296
+	ld a, [wc904]
+	add $1
+	ld [wc904], a
+	jr asm_2e296
+
+.asm_2e268
+	ld a, $8
+	cp b
+	jr nz, .asm_2e27e
+	ld a, [wc906]
+	cp $7
+	jr nc, asm_2e296
+	ld a, [wc904]
+	add $2
+	ld [wc904], a
+	jr asm_2e296
+
+.asm_2e27e
+	ld a, $ff
+	cp b
+	jr nz, asm_2e296
+	ld a, [wc906]
+	and $7
+	cp $7
+	jr nz, asm_2e296
+	ld a, [wc904]
+	sub $1
+	ld [wc904], a
+	jr asm_2e296
+
+asm_2e296
+	ret
+
+asm_2e297
+	ld a, $f8
+	cp b
+	jr nz, .asm_2e2ad
+	ld a, [wc906]
+	cp $38
+	jr c, asm_2e296
+	ld a, [wc904]
+	sub $2
+	ld [wc904], a
+	jr asm_2e296
+
+.asm_2e2ad
+	ld a, $1
+	cp b
+	jr nz, asm_2e296
+	ld a, [wc906]
+	and $7
+	jr nz, asm_2e296
+	ld a, [wc904]
+	add $1
+	ld [wc904], a
+	jr asm_2e296
+
+Func_2e2c3: ; 2e2c3 (b:62c3)
+	ld a, $f8
+	cp b
+	jr nz, .asm_2e2d9
+	ld a, [wc906]
+	cp $38
+	jr c, asm_2e296
+	ld a, [wc904]
+	sub $2
+	ld [wc904], a
+	jr asm_2e296
+
+.asm_2e2d9
+	ld a, $ff
+	cp b
+	jr nz, asm_2e296
+	ld a, [wc906]
+	and $7
+	cp $7
+	jr nz, asm_2e296
+	ld a, [wc904]
+	sub $1
+	ld [wc904], a
+	jr asm_2e296
+
+Func_2e2f1: ; 2e2f1 (b:62f1)
+	ld a, [wc904]
+	cp $3
+	jr nz, .asm_2e337
+	ld a, [wc906]
+	cp $23
+	jr nz, .asm_2e337
+	ld a, [wc954]
+	ld c, a
+	ld a, b
+	cp $ff
+	jr z, .asm_2e312
+	cp $f8
+	jr z, .asm_2e32e
+	cp $8
+	jr z, .asm_2e320
+	jr .asm_2e337
+
+IF DEF(POWER)
+x = 0
+ELSE
+x = 1
+ENDC
+
+.asm_2e312
+	ld a, c
+	cp x
+	jr nz, .asm_2e335
+	ld a, x + 1
+	ld [wc954], a
+	ld a, $0
+	ld b, a
+	ret
+x = x ^ 1
+
+.asm_2e320
+	ld a, c
+	cp x
+	jr nz, .asm_2e335
+	ld a, x + 1
+	ld [wc954], a
+	ld a, $0
+	ld b, a
+	ret
+
+.asm_2e32e
+	ld a, c
+	cp $2
+	jr nz, .asm_2e335
+	jr .asm_2e337
+
+.asm_2e335
+	ld b, $0
+.asm_2e337
+	ld a, $0
+	ld [wc954], a
+	ld a, b
+	ret
+
+Func_2e33e: ; 2e33e (b:633e)
+	ld a, [wc958]
+	or a
+	ret nz
+	ld bc, EVENT_210
+	call CheckEventFlag
+	ret nz
+	ld a, [wc917]
+	ld b, a
+	ld a, [wc904]
+	cp $2e
+	jr nz, .asm_2e359
+	ld a, $33
+	jr .asm_2e3bb
+
+.asm_2e359
+	ld hl, Data_2e3c8
+	ld a, [wc905]
+	cp $6
+	jr nz, .asm_2e370
+	ld c, a
+	ld a, [wc906]
+	cp $10
+	jr nc, .asm_2e36f
+	ld a, $24
+	jr .asm_2e3bb
+
+.asm_2e36f
+	ld a, c
+.asm_2e370
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	cp $3
+	jr nz, .asm_2e3bb
+	push bc
+	callba Func_a8539
+	ld a, c
+	cp $5
+	jr nz, .asm_2e38d
+	ld a, $6
+	jr .asm_2e3ba
+
+.asm_2e38d
+	cp $6
+	jr nz, .asm_2e395
+	ld a, $5
+	jr .asm_2e3ba
+
+.asm_2e395
+	cp $3
+	jr nz, .asm_2e39d
+	ld a, $7
+	jr .asm_2e3ba
+
+.asm_2e39d
+	cp $b
+	jr nz, .asm_2e3a5
+	ld a, $8
+	jr .asm_2e3ba
+
+.asm_2e3a5
+	cp $e
+	jr nz, .asm_2e3b8
+	ld a, [wc904]
+	cp $6
+	jr z, .asm_2e3b4
+	ld a, $b
+	jr .asm_2e3ba
+
+.asm_2e3b4
+	ld a, $2a
+	jr .asm_2e3ba
+
+.asm_2e3b8
+	ld a, $3
+.asm_2e3ba
+	pop bc
+.asm_2e3bb
+	cp b
+	jr z, .asm_2e3c7
+	ld [wc917], a
+	call GetMusicBank
+	ld [H_MusicID], a
+.asm_2e3c7
+	ret
+
+Data_2e3c8:
+	db $03, $03, $03, $0a
+	db $03, $09, $33, $09
+	db $08, $04, $0b, $0b
+	db $33, $33, $23, $0a
+	db $0a, $05, $06, $07
+
+Func_2e3dc: ; 2e3dc (b:63dc)
+	ld hl, Data_2e3ee
+	ld a, [wc905]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld c, [hl]
+	ld b, $0
+	jp DecompressGFXByIndex_
+
+Data_2e3ee:
+	db $20
+	db $20
+	db $21
+	db $22
+	db $21
+	db $23
+	db $24
+	db $25
+	db $26
+	db $27
+	db $28
+	db $28
+	db $29
+	db $2a
+	db $2b
+	db $2c
+	db $22
+
+Func_2e3ff: ; 2e3ff (b:63ff)
+	ld a, BANK(Func_2e3ff)
+	ld [wPrevROMBank], a
+	ld hl, Data_2e455
+	ld a, [wc905]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld c, [hl]
+	ld b, $0
+	call GetCGB_OBLayout_
+	callba Func_30741
+	ld a, [wc905]
+	cp $6
+.asm_2e422
+	jr z, .asm_2e437
+	ld a, [wcdba]
+	ld c, a
+	ld a, [wcdbb]
+	ld b, a
+	ld a, BANK(Func_2e3ff)
+	ld [wPrevROMBank], a
+	ld a, $3
+	call Func_1196
+.asm_2e437
+	ld a, [wc905]
+	cp $2
+	ret nc
+	ld a, [wc93b]
+	ld hl, $280
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld b, h
+	ld c, l
+	ld a, BANK(Func_2e3ff)
+	ld [wPrevROMBank], a
+	xor a
+	call Func_1196
+	ret
+
+Data_2e455:
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+
+Func_2e466: ; 2e466 (b:6466)
+	ld hl, Data_2e49e
+	ld a, [wc905]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	ld c, a
+	cp $40
+	jr nz, .asm_2e47e
+	ld a, [wc93b]
+	add $50
+	ld c, a
+.asm_2e47e
+	ld a, $b
+	ld [wPrevROMBank], a
+	ld b, $0
+	call GetCGB_BGLayout_
+	jp Func_2e48b
+
+Func_2e48b: ; 2e48b (b:648b)
+	ld b, $7
+Func_2e48d: ; 2e48d (b:648d)
+	push bc
+	ld a, [wcdb3]
+	ld c, a
+	ld b, $0
+	ld hl, $328
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop af
+	jp Func_10ee
+
+Data_2e49e:
+	db $40, $40, $40, $43
+	db $40, $42, $47, $44
+	db $45, $46, $48, $48
+	db $49, $4a, $4b, $45
+	db $43, $4d, $4e, $4f
+
+Func_2e4b2: ; 2e4b2 (b:64b2)
+	ld a, [wSubroutine]
+	cp $4
+	jr c, .asm_2e4ec
+	cp $16
+	jr nc, .asm_2e4ec
+	ld a, [hJoyLast]
+	and $f3
+	jr z, .asm_2e4d3
+	ld a, [wc91a]
+	cp $c7
+	jr c, .asm_2e4cd
+	call Func_2e526
+.asm_2e4cd
+	ld a, $0
+	ld [wc91a], a
+	ret
+
+.asm_2e4d3
+	ld a, [wc984]
+	and $3
+	jr nz, .asm_2e4ec
+	ld a, [wc91a]
+	inc a
+	cp $c8
+	jr c, .asm_2e4e9
+	jr nz, .asm_2e4ec
+	call Func_2e4ed
+	ld a, $c8
+.asm_2e4e9
+	ld [wc91a], a
+.asm_2e4ec
+	ret
+
+Func_2e4ed: ; 2e4ed (b:64ed)
+	ld a, BANK(Func_2e4ed)
+	ld [wPrevROMBank], a
+	ld bc, $1da
+	ld d, $7
+	ld a, [wSubroutine]
+	cp $24
+	jr c, .asm_2e504
+	cp $28
+	jr nc, .asm_2e504
+	ld d, $5
+.asm_2e504
+	cp $19
+	jr c, .asm_2e50c
+	cp $24
+	jr c, .asm_2e516
+.asm_2e50c
+	ld a, d
+	call Func_10ee
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ret
+
+.asm_2e516
+	ld a, $0
+	call Func_10ee
+	ld a, $1
+	call Func_10ee
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ret
+
+Func_2e526: ; 2e526 (b:6526)
+	ld a, BANK(Func_2e526)
+	ld [wPrevROMBank], a
+	ld a, [wSubroutine]
+	cp $24
+	jr c, .asm_2e536
+	cp $29
+	jr c, .asm_2e557
+.asm_2e536
+	cp $19
+	jr c, .asm_2e53e
+	cp $24
+	jr c, .asm_2e547
+.asm_2e53e
+	call Func_2e48b
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ret
+
+.asm_2e547
+	ld b, $0
+	call Func_2e48d
+	ld b, $1
+	call Func_2e48d
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ret
+
+.asm_2e557
+	ld b, $5
+	call Func_2e48d
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ret
+
+Func_2e562: ; 2e562 (b:6562)
+	ret
+
+Func_2e563:
+	check_cgb
+	ret nz
+	push hl
+	ld hl, rKEY1
+	ld a, b
+	or a
+	jr nz, .asm_2e57d
+	di
+	bit 7, [hl]
+	jr z, .asm_2e57a
+	set 0, [hl]
+	stop
+.asm_2e57a
+	ei
+	pop hl
+	ret
+
+.asm_2e57d
+	di
+	bit 7, [hl]
+	jr nz, .asm_2e586
+	set 0, [hl]
+	stop
+.asm_2e586
+	ei
+	pop hl
+	ret
+
+Func_2e589: ; 2e589 (b:6589)
+	ld a, [wSubroutine]
+	ld b, a
+	ld hl, Pointers_2e5a1
+	add a
+	add b
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld [wPrevROMBank], a
+	ld b, a
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ret
+
+Pointers_2e5a1:
+	dbw $0e, Func_2134
+	dbw $0e, Func_231e
+	dbw $0e, Func_2329
+	dbw $0e, Func_2353
+	dbw $0e, Func_236c
+	dbw $0e, Func_242b
+	dbw $0e, Func_2465
+	dbw $0e, Func_24ad
+	dba Func_2dfaf
+	dbw $0e, Func_2503
+	dbw $0e, Func_21db
+	dbw $0e, Func_2122
+	dba Func_a8000
+	dba Func_a8046
+	dba Func_a8200
+	dba Func_a8210
+	dba Func_a8210
+	dba Func_a8368
+	dba Func_a87e4
+	dba Func_a87e7
+	dba Func_a8981
+	dba Func_a8991
+	dba Func_a89cb
+	dbw $0e, Func_24c9
+	dbw $0e, Func_24d8
+	dba Func_a89dd
+	dba Func_a89e5
+	dba Func_a8e7e
+	dba Func_a8ea3
+	dba Func_a91a3
+	dba Func_a9223
+	dba Func_a91dc
+	dba Func_a9377
+	dba Func_a93cf
+	dba Func_a98bf
+	dba Func_a99f5
+	dba Func_a5569
+	dba Func_a5572
+	dba Func_a56c2
+	dba Func_a56cd
+	dba Func_a572c
+	dba Func_a5814
+	dba Func_a5822
+	dba Func_a593b
+	dba Func_a594b
+	dba Func_a5d17
+	dba Func_c9b17
+	dba Func_c9b01
+	dba Func_3a0f4
+	dba Func_3a0fd
+	dba Func_3a175
+	dba Func_3a1bc
+	dba Func_3a696
+	dba Func_a837a
+	dba Func_a5efd
+	dba Func_a5f06
+	dba Func_a5f78
+	dba Func_a5f82
+	dba Func_a5f9b
+
+ItemNames:
+	db "ファイアーガン$"
+	db "ガン$$$$$$"
+	db "リボルバーガン$"
+	db "バズーカ$$$$"
+	db "マシンガン$$$"
+	db "ミサイル$$$$"
+	db "ボム$$$$$$"
+	db "ガトリングガン$"
+	db "サーベル$$$$"
+	db "ドリル$$$$$"
+	db "ジェットエンジン"
+	db "プロぺラエンジン"
+	db "シュリケン$$$"
+	db "でんち$$$$$"
+	db "アーチェリー$$"
+	db "レンジ$$$$$"
+	db "アイロン$$$$"
+	db "ミキサー$$$$"
+	db "でんわ$$$$$"
+	db "アンテナ$$$$"
+	db "スパナ$$$$$"
+	db "ノコギリ$$$$"
+	db "チェーンソー$$"
+	db "ビームガン$$$"
+	db "アックス$$$$"
+	db "ドライバー$$$"
+	db "ネジ$$$$$$"
+	db "ゼンマイ$$$$"
+	db "ギア$$$$$$"
+	db "テレカ$$$$$"
+	db "ランス$$$$$"
+	db "クレーン$$$$"
+	db "アーミーナイフ$"
+	db "カマ$$$$$$"
+	db "コンピュータ$$"
+	db "モバイル$$$$"
+	db "ハンマー$$$$"
+	db "ちゅうしゃき$$"
+	db "カメラ$$$$$"
+	db "ビデオ$$$$$"
+	db "フライパン$$$"
+	db "えんぴつ$$$$"
+	db "タイヤ$$$$$"
+	db "ボンベ$$$$$"
+	db "じゃぐち$$$$"
+	db "バケツ$$$$$"
+	db "そうじき$$$$"
+	db "マウス$$$$$"
+	db "カギ$$$$$$"
+	db "ゲームマシン$$"
+	db "ぬいぐるみ$$$"
+	db "ボンボン$$$$"
+	db "キックボード$$"
+	db "チタリウム$$$"
+	db "ルナチウム$$$"
+	db "ガイアモンド$$"
+	db "ラウンドメタル$"
+	db "タイタニュウム$"
+	db "かいぞうしよう1"
+	db "かいぞうしよう2"
+	db "かいぞうしよう3"
+	db "じっけんしよう1"
+	db "じっけんしよう2"
+	db "じっけんしよう3"
+	db "バイオレント3$"
+	db "グラップライト9"
+	db "ギガイア00$$"
+	db "アイテム し$$"
+
+ItemPrices:
+	dw 130
+	dw 80
+	dw 100
+	dw 140
+	dw 120
+	dw 500
+	dw 50
+	dw 180
+	dw 35
+	dw 30
+	dw 700
+	dw 480
+	dw 10
+	dw 15
+	dw 65
+	dw 90
+	dw 50
+	dw 55
+	dw 60
+	dw 80
+	dw 20
+	dw 60
+	dw 110
+	dw 350
+	dw 90
+	dw 5
+	dw 3
+	dw 8
+	dw 13
+	dw 50
+	dw 100
+	dw 400
+	dw 120
+	dw 50
+	dw 200
+	dw 220
+	dw 34
+	dw 50
+	dw 250
+	dw 140
+	dw 30
+	dw 5
+	dw 100
+	dw 120
+	dw 30
+	dw 30
+	dw 60
+	dw 20
+	dw 10
+	dw 40
+	dw 30
+	dw 10
+	dw 5000
+	dw 800
+	dw 900
+	dw 1000
+	dw 1200
+	dw 1200
+	dw 150
+	dw 200
+	dw 500
+	dw 200
+	dw 300
+	dw 800
+	dw 1000
+	dw 2000
+	dw 3000
+	dw 500
 
 Data_2e8fa::
-	dr $2e8fa, $2f9ba
+INCLUDE "text/unknown_2e8fa.asm"
 
 SECTION "bank 0C", ROMX, BANK [$c]
 Func_30000::
@@ -6200,7 +7204,10 @@ Func_3024f::
 	dr $3024f, $302a8
 
 Func_302a8::
-	dr $302a8, $30b4e
+	dr $302a8, $30741
+
+Func_30741:
+	dr $30741, $30b4e
 
 Func_30b4e::
 	dr $30b4e, $3102a
@@ -6264,7 +7271,22 @@ Func_38f8d::
 	dr $38f8d, $39fab
 
 Func_39fab::
-	dr $39fab, $3ad7a
+	dr $39fab, $3a0f4
+
+Func_3a0f4:
+	dr $3a0f4, $3a0fd
+
+Func_3a0fd:
+	dr $3a0fd, $3a175
+
+Func_3a175:
+	dr $3a175, $3a1bc
+
+Func_3a1bc:
+	dr $3a1bc, $3a696
+
+Func_3a696:
+	dr $3a696, $3ad7a
 
 SECTION "bank 0F", ROMX, BANK [$f]
 Func_3c000::
@@ -6725,7 +7747,52 @@ Func_a54f1:
 	dr $a54f1, $a5525
 
 GetPartnerDenjuuMaxHP::
-	dr $a5525, $a6b69
+	dr $a5525, $a5569
+
+Func_a5569:
+	dr $a5569, $a5572
+
+Func_a5572:
+	dr $a5572, $a56c2
+
+Func_a56c2:
+	dr $a56c2, $a56cd
+
+Func_a56cd:
+	dr $a56cd, $a572c
+
+Func_a572c:
+	dr $a572c, $a5814
+
+Func_a5814:
+	dr $a5814, $a5822
+
+Func_a5822:
+	dr $a5822, $a593b
+
+Func_a593b:
+	dr $a593b, $a594b
+
+Func_a594b:
+	dr $a594b, $a5d17
+
+Func_a5d17:
+	dr $a5d17, $a5efd
+
+Func_a5efd:
+	dr $a5efd, $a5f06
+
+Func_a5f06:
+	dr $a5f06, $a5f78
+
+Func_a5f78:
+	dr $a5f78, $a5f82
+
+Func_a5f82:
+	dr $a5f82, $a5f9b
+
+Func_a5f9b:
+	dr $a5f9b, $a6b69
 
 Data_a6b69::
 	dr $a6b69, $a6d29
@@ -6738,7 +7805,22 @@ Data_a7869::
 
 SECTION "bank 2A", ROMX, BANK [$2a]
 Func_a8000:
-	dr $a8000, $a8539
+	dr $a8000, $a8046
+
+Func_a8046:
+	dr $a8046, $a8200
+
+Func_a8200:
+	dr $a8200, $a8210
+
+Func_a8210:
+	dr $a8210, $a8368
+
+Func_a8368:
+	dr $a8368, $a837a
+
+Func_a837a:
+	dr $a837a, $a8539
 
 Func_a8539::
 	dr $a8539, $a85ae
@@ -6954,7 +8036,22 @@ Func_a87e4:
 	jp Func_a8000
 
 Func_a87e7:
-	dr $a87e7, $a8c50
+	dr $a87e7, $a8981
+
+Func_a8981:
+	dr $a8981, $a8991
+
+Func_a8991:
+	dr $a8991, $a89cb
+
+Func_a89cb:
+	dr $a89cb, $a89dd
+
+Func_a89dd:
+	dr $a89dd, $a89e5
+
+Func_a89e5:
+	dr $a89e5, $a8c50
 
 Func_a8c50::
 	dr $a8c50, $a8c86
@@ -6963,7 +8060,34 @@ Func_a8c86::
 	dr $a8c86, $a8d20
 
 Func_a8d20::
-	dr $a8d20, $aa417
+	dr $a8d20, $a8e7e
+
+Func_a8e7e:
+	dr $a8e7e, $a8ea3
+
+Func_a8ea3:
+	dr $a8ea3, $a91a3
+
+Func_a91a3:
+	dr $a91a3, $a91dc
+
+Func_a91dc:
+	dr $a91dc, $a9223
+
+Func_a9223:
+	dr $a9223, $a9377
+
+Func_a9377:
+	dr $a9377, $a93cf
+
+Func_a93cf:
+	dr $a93cf, $a98bf
+
+Func_a98bf:
+	dr $a98bf, $a99f5
+
+Func_a99f5:
+	dr $a99f5, $aa417
 
 Data_aa417:
 ; 2
@@ -7442,7 +8566,13 @@ Func_c9875::
 	dr $c9875, $c99ac
 
 Func_c99ac::
-	dr $c99ac, $cc000
+	dr $c99ac, $c9b01
+
+Func_c9b01:
+	dr $c9b01, $c9b17
+
+Func_c9b17:
+	dr $c9b17, $cc000
 
 SECTION "bank 33", ROMX, BANK [$33]
 	dr $cc000, $d0000

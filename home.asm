@@ -1947,7 +1947,7 @@ Func_1a8e::
 	add hl, bc
 	ld de, wc9e1
 	ld c, $4
-.asm_1a9f
+.loop
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Data_2e8fa)
@@ -1960,7 +1960,7 @@ Func_1a8e::
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_1a9f
+	jr nz, .loop
 	ld a, $e0
 	ld [de], a
 	ld hl, VTilesBG + $40 tiles

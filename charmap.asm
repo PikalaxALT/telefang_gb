@@ -4,7 +4,7 @@
 	defchar "イ"
 	defchar "ウ"
 	defchar "エ"
-	defchar "ォ"
+	defchar "オ"
 	defchar "カ"
 	defchar "キ"
 	defchar "ク"
