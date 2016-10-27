@@ -7194,8 +7194,324 @@ Data_2e8fa::
 INCLUDE "text/unknown_2e8fa.asm"
 
 SECTION "bank 0C", ROMX, BANK [$c]
-Func_30000::
-	dr $30000, $30240
+Func_30000:
+	call Func_307a4
+	call Func_30784
+	jp Func_30009
+
+Func_30009: ; 30009 (c:4009)
+	ld hl, wc4a0
+	ld a, h
+	ld [wc98b], a
+	ld a, l
+	ld [wc98a], a
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, [wc98b]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_3007c
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call ._hl_
+	ld a, [wSubroutine]
+	cp $4
+	jr nz, .asm_3007a
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, [wc98b]
+	ld h, a
+	ld a, [hl]
+	cp $8
+	jr z, .asm_3007a
+	ld a, [wc98a]
+	add $4
+	ld l, a
+	ld a, [wc98b]
+	ld h, a
+	ld a, [hl]
+	cp $83
+	jr c, .asm_3005e
+	ld a, [wc98a]
+	add $0
+	ld l, a
+	ld a, $2
+	ld [hl], a
+	ret
+
+.asm_3005e
+	ld a, [wc98a]
+	add $0
+	ld l, a
+	ld a, $3
+	ld [hl], a
+	push hl
+	ld bc, EVENT_1C3
+	call CheckEventFlag
+	pop hl
+	jr z, .asm_3007a
+	ld a, [wc98a]
+	add $0
+	ld l, a
+	ld a, $2
+	ld [hl], a
+.asm_3007a
+	ret
+
+._hl_: ; 3007b (c:407b)
+	jp [hl]
+
+Pointers_3007c:
+	dw Func_30090
+	dw Func_3033a
+	dw Func_3033a
+	dw Func_3033a
+	dw Func_3033a
+	dw Func_3033a
+	dw Func_305e4
+	dw Func_30528
+	dw Func_30575
+	dw Func_3059f
+
+Func_30090:
+	ld a, [wc98b]
+	ld h, a
+	ld a, [wc98a]
+	add $0
+	ld l, a
+	ld a, $3
+	ld [hl], a
+	ld a, [wc98a]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wc98a]
+	add $2
+	ld l, a
+	ld a, $2
+	ld [hl], a
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wc98a]
+	add $10
+	ld l, a
+	ld a, $14
+	ld [hl], a
+	ld a, [wc9f4]
+	ld [wca50], a
+	cp $9
+	jr c, .asm_300cf
+	xor a
+	ld [wca50], a
+.asm_300cf
+	ld de, Data_301bf
+.asm_300d1
+	cp $0
+	jr z, .asm_300d9
+	ld de, Data_301c1
+.asm_300d9
+	ld a, [wc98a]
+	add $3
+	ld l, a
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [wPlayerXCoord]
+	add b
+	ld [hli], a
+	ld a, [de]
+	ld b, a
+	ld a, [wPlayerYCoord]
+	add b
+	ld [hli], a
+	ld a, [wc900]
+	cp $2
+	jr nz, .asm_300fe
+	ld a, [wc98a]
+	add $4
+	ld l, a
+	ld a, $80
+	ld [hl], a
+.asm_300fe
+	call Func_302a8
+	ld a, [wc900]
+	cp $8
+	jp nz, Func_30240
+	ld a, [wc98b]
+	ld h, a
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, $6
+	ld [hl], a
+	ld a, [wc98a]
+	add $16
+	ld l, a
+	ld [hl], $0
+	ld a, [wc98a]
+	add $e
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wc98a]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wc98a]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wc98c]
+	cpl
+	inc a
+	ld b, a
+	ld a, [wc98a]
+	add $1b
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wc98d]
+	cpl
+	inc a
+	ld b, a
+	ld a, [wc98a]
+	add $1c
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wc98c]
+	ld b, a
+	ld a, [wc98a]
+	add $3
+	ld l, a
+	ld a, [wc928]
+	ld [hl], a
+	ld a, [wc929]
+	sub $a
+	ld b, a
+	ld a, [wc98a]
+	add $4
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wc98a]
+	add $3
+	ld l, a
+	ld a, [hl]
+	call Func_3385b
+	ld a, [wc98a]
+	add $4
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wc98a]
+	add $14
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, b
+	call Func_33846
+	ld a, [wcdb9]
+	ld b, a
+	ld a, [wc912]
+	ld [wcdb9], a
+	ld a, b
+	ld [wc912], a
+	ld [wd409], a
+	ld a, BANK(Func_30090)
+	ld [wPrevROMBank], a
+	call GetDenjuuSprite_
+	ld a, [wd409]
+	ld [wc9db], a
+	ld a, $b
+	ld [wc49a], a
+	ld a, $a8
+	ld [wc493], a
+	call Func_30240
+	jp Func_30741
+
+Data_301bf:
+	db -2, -10
+
+Data_301c1:
+	db  2,  10
+
+Func_301c3:
+	ld hl, wc98a
+	ld a, wc4a0 % $100
+	ld [hli], a
+	ld a, wc4a0 / $100
+	ld [hl], a
+	ld a, [wc494]
+	cp $3
+	jr z, .asm_30207
+	cp $2
+	jr z, .asm_3021d
+	cp $0
+	jr z, .asm_301f1
+	ld a, $3
+	ld [wca50], a
+	ld a, [wPlayerXCoord]
+	ld [wc4a3], a
+	ld a, [wPlayerYCoord]
+	add $ed
+	ld a, a
+	ld [wc4a4], a
+	jr .asm_30231
+
+.asm_301f1
+	ld a, $0
+	ld [wca50], a
+	ld a, [wPlayerXCoord]
+	ld [wc4a3], a
+	ld a, [wPlayerYCoord]
+	add $13
+	ld a, a
+	ld [wc4a4], a
+	jr .asm_30231
+
+.asm_30207
+	ld a, $6
+	ld [wca50], a
+	ld a, [wPlayerYCoord]
+	ld [wc4a4], a
+	ld a, [wPlayerXCoord]
+	add $13
+	ld a, a
+	ld [wc4a3], a
+	jr .asm_30231
+
+.asm_3021d
+	ld a, $6
+	ld [wca50], a
+	ld a, [wPlayerYCoord]
+	ld [wc4a4], a
+	ld a, [wPlayerXCoord]
+	add $ed
+	ld a, a
+	ld [wc4a3], a
+.asm_30231
+	ld a, [wc482]
+	add $2
+	xor $1
+	ld [wc4a2], a
+	call Func_302a8
+	jr Func_30240
 
 Func_30240::
 	dr $30240, $3024f
@@ -7204,10 +7520,31 @@ Func_3024f::
 	dr $3024f, $302a8
 
 Func_302a8::
-	dr $302a8, $30741
+	dr $302a8, $3033a
+
+Func_3033a:
+	dr $3033a, $30528
+
+Func_30528:
+	dr $30528, $30575
+
+Func_30575:
+	dr $30575, $3059f
+
+Func_3059f:
+	dr $3059f, $305e4
+
+Func_305e4:
+	dr $305e4, $30741
 
 Func_30741:
-	dr $30741, $30b4e
+	dr $30741, $30784
+
+Func_30784:
+	dr $30784, $307a4
+
+Func_307a4:
+	dr $307a4, $30b4e
 
 Func_30b4e::
 	dr $30b4e, $3102a
