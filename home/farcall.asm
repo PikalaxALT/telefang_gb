@@ -384,8 +384,8 @@ Func_0671::
 	homecall_memret Func_a8539
 	ret
 
-Func_0679::
-	homecall_memret Func_2ded9
+AddOrSubtractMoney_::
+	homecall_memret AddOrSubtractMoney
 	ret
 
 Func_0681::

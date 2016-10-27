@@ -4902,89 +4902,1256 @@ Data_2d215:
 
 FontGFX: INCBIN "gfx/font/font_2d229.t13.1bpp"
 
-Func_2d8c1::
-	dr $2d8c1, $2d8df
+Func_2d8c1: ; 2d8c1 (b:58c1)
+	push hl
+	ld a, [wc922]
+	inc a
+	and $3f
+	ld [wc922], a
+	ld hl, Data_2d8eb
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	ld hl, wc923
+	add [hl]
+	cpl
+	swap a
+	ld [hl], a
+	pop hl
+	ret
 
-Func_2d8df::
-	dr $2d8df, $2d92b
+Func_2d8df: ; 2d8df (b:58df)
+	call Func_2d8c1
+	ld b, $0
+	bit 7, a
+	jr z, .asm_2d8e9
+	dec b
+.asm_2d8e9
+	ld c, a
+	ret
 
-Func_2d92b::
-	dr $2d92b, $2d95f
+Data_2d8eb:
+	db $1d, $a0, $63, $e5, $03, $3b, $4d, $f4
+	db $ec, $46, $5b, $37, $93, $53, $85, $fe
+	db $da, $9d, $27, $85, $f5, $10, $7b, $15
+	db $e5, $94, $55, $ab, $6c, $b4, $3f, $b6
+	db $5a, $1d, $a9, $30, $56, $c0, $49, $92
+	db $20, $e7, $d0, $c3, $85, $01, $25, $55
+	db $a4, $cf, $a8, $18, $2c, $f4, $55, $f3
+	db $d5, $33, $a4, $cd, $80, $84, $e3, $74
 
-Func_2d95f::
-	dr $2d95f, $2d99b
+Func_2d92b: ; 2d92b (b:592b)
+	push bc
+	push de
+	ld d, b
+	ld a, $10
+	sub d
+	ld e, a
+	call Multiply_C_by_E
+	ld a, e
+	ld [wCustomSpriteDest], a
+	ld a, d
+	ld [wCustomSpriteDest + 1], a
+	pop de
+	pop af
+	ld c, a
+	call Multiply_C_by_E
+	ld h, d
+	ld l, e
+	ld a, [wCustomSpriteDest]
+	ld e, a
+	ld a, [wCustomSpriteDest + 1]
+	ld d, a
+	add hl, de
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	ret
 
-Func_2d99b::
-	dr $2d99b, $2da20
+Func_2d95f: ; 2d95f (b:595f)
+	push bc
+	push de
+	ld d, b
+	ld a, $40
+	sub d
+	ld e, a
+	call Multiply_C_by_E
+	ld a, e
+	ld [wCustomSpriteDest], a
+	ld a, d
+	ld [wCustomSpriteDest + 1], a
+	pop de
+	pop af
+	ld c, a
+	call Multiply_C_by_E
+	ld h, d
+	ld l, e
+	ld a, [wCustomSpriteDest]
+	ld e, a
+	ld a, [wCustomSpriteDest + 1]
+	ld d, a
+	add hl, de
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	ret
 
-Func_2da20::
-	dr $2da20, $2da27
+Func_2d99b: ; 2d99b (b:599b)
+	ld a, b
+	ld [wca68], a
+	xor d
+	ld [wca69], a
+	bit 7, d
+	jp z, Func_2d9ae
+	sub a
+	sub e
+	ld e, a
+	sbc a
+	sub d
+	ld d, a
+Func_2d9ae: ; 2d9ae (b:59ae)
+	bit 7, b
+	jp z, Func_2d9b9
+	sub a
+	sub c
+	ld c, a
+	sbc a
+	sub b
+	ld b, a
+Func_2d9b9: ; 2d9b9 (b:59b9)
+	call Func_2d9d8
+	ret c
+	ld a, [wca69]
+	and $80
+	jp z, Func_2d9cb
+	sub a
+	sub c
+	ld c, a
+	sbc a
+	sub b
+	ld b, a
+Func_2d9cb: ; 2d9cb (b:59cb)
+	ld a, [wca68]
+	and $80
+	ret z
+	sub a
+	sub e
+	ld e, a
+	sbc a
+	sub d
+	ld d, a
+	ret
 
-Func_2da27::
-	dr $2da27, $2da3a
+Func_2d9d8: ; 2d9d8 (b:59d8)
+	ld a, e
+	or d
+	jr nz, .asm_2d9e3
+	ld bc, $0
+	ld d, b
+	ld e, c
+	scf
+	ret
 
-Func_2da3a::
-	dr $2da3a, $2da47
+.asm_2d9e3
+	ld l, c
+	ld h, b
+	ld bc, $0
+	or a
+	ld a, $10
+.asm_2d9eb
+	ld [wca6a], a
+	rl l
+	rl h
+	rl c
+	rl b
+	push bc
+	ld a, c
+	sbc e
+	ld c, a
+	ld a, b
+	sbc d
+	ld b, a
+	ccf
+	jr c, .asm_2da03
+	pop bc
+	jr .asm_2da05
 
-Func_2da47::
-	dr $2da47, $2da54
+.asm_2da03
+	inc sp
+	inc sp
+.asm_2da05
+	ld a, [wca6a]
+	dec a
+	jr nz, .asm_2d9eb
+	ld d, b
+	ld e, c
+	rl l
+	ld c, l
+	rl h
+	ld b, h
+	or a
+	ret
 
-Func_2da54::
-	dr $2da54, $2da69
+Func_2da15:
+	ld a, c
+	rlca
+	sbc a
+	ld b, a
+	ld a, e
+	rlca
+	sbc a
+	ld d, a
+	jp Func_2d99b
 
-Func_2da69::
-	dr $2da69, $2da7e
+Func_2da20: ; 2da20 (b:5a20)
+	ld b, $0
+	ld d, $0
+	jp Func_2d9d8
 
-Func_2da7e::
-	dr $2da7e, $2db1c
+Func_2da27: ; 2da27 (b:5a27)
+	push hl
+	ld a, b
+	sub d
+	jr nc, .asm_2da2e
+	cpl
+	inc a
+.asm_2da2e
+	push af
+	ld a, c
+	sub e
+	jr nc, .asm_2da35
+	cpl
+	inc a
+.asm_2da35
+	ld l, a
+	pop af
+	add l
+	pop hl
+	ret
 
-Func_2db1c::
-	dr $2db1c, $2db55
+Func_2da3a: ; 2da3a (b:5a3a)
+	ld de, SineWave
+	and $7f
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [de]
+	ret
 
-Func_2db55::
-	dr $2db55, $2db90
+Func_2da47: ; 2da47 (b:5a47)
+	ld de, CosineWave
+	and $7f
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [de]
+	ret
 
-Func_2db90::
-	dr $2db90, $2dc6d
+Func_2da54: ; 2da54 (b:5a54)
+	ld de, SineWave
+	and $7f
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [de]
+	ld e, a
+	ld d, $0
+	bit 7, a
+	jr z, .asm_2da68
+	dec d
+.asm_2da68
+	ret
 
-Func_2dc6d::
-	dr $2dc6d, $2dd28
+Func_2da69: ; 2da69 (b:5a69)
+	ld de, CosineWave
+	and $7f
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [de]
+	ld e, a
+	ld d, $0
+	bit 7, a
+	jr z, .asm_2da7d
+	dec d
+.asm_2da7d
+	ret
 
-Func_2dd28::
-	dr $2dd28, $2dd41
+Func_2da7e: ; 2da7e (b:5a7e)
+	ld a, b
+	ld [wca06], a
+	ld a, [hli]
+	ld [wca00], a
+	ld a, [hli]
+	ld [wca01], a
+	push hl
+	ld a, [wca06]
+	call Func_2da3a
+	ld [wca02], a
+	ld a, [wca06]
+	call Func_2da47
+	ld [wca03], a
+	ld a, [wca00]
+	ld c, a
+	ld b, $0
+	bit 7, c
+	jr z, .asm_2daa8
+	dec b
+.asm_2daa8
+	ld a, [wca03]
+	ld e, a
+	ld d, $0
+	bit 7, e
+	jr z, .asm_2dab3
+	dec d
+.asm_2dab3
+	call Multiply_DE_by_BC
+	push de
+	ld a, [wca01]
+	cpl
+	inc a
+	ld c, a
+	ld b, $0
+	bit 7, c
+	jr z, .asm_2dac4
+	dec b
+.asm_2dac4
+	ld a, [wca02]
+	ld e, a
+	ld d, $0
+	bit 7, e
+	jr z, .asm_2dacf
+	dec d
+.asm_2dacf
+	call Multiply_DE_by_BC
+	ld h, d
+	ld l, e
+	pop de
+	add hl, de
+	ld a, h
+	ld [wca04], a
+	ld a, [wca00]
+	ld c, a
+	ld b, $0
+	bit 7, c
+	jr z, .asm_2dae5
+	dec b
+.asm_2dae5
+	ld a, [wca02]
+	ld e, a
+	ld d, $0
+	bit 7, e
+	jr z, .asm_2daf0
+	dec d
+.asm_2daf0
+	call Multiply_DE_by_BC
+	push de
+	ld a, [wca01]
+	ld c, a
+	ld b, $0
+	bit 7, c
+	jr z, .asm_2daff
+	dec b
+.asm_2daff
+	ld a, [wca03]
+	ld e, a
+	ld d, $0
+	bit 7, e
+	jr z, .asm_2db0a
+	dec d
+.asm_2db0a
+	call Multiply_DE_by_BC
+	ld h, d
+	ld l, e
+	pop de
+	add hl, de
+	ld a, h
+	ld [wca05], a
+	ld a, [wca04]
+	ld b, a
+	ld c, h
+	pop hl
+	ret
 
-Func_2dd41::
-	dr $2dd41, $2dd5a
+Func_2db1c: ; 2db1c (b:5b1c)
+	push bc
+	push de
+	ld a, d
+	ld l, e
+	call Func_2da47
+	ld d, $0
+	ld e, l
+	ld c, a
+	bit 7, a
+	ld b, $0
+	jr z, .asm_2db2e
+	dec b
+.asm_2db2e
+	call Multiply_DE_by_BC
+	ld a, d
+	ld [wca68], a
+	pop de
+	pop bc
+	ld a, [wca68]
+	add b
+	ld b, a
+	push bc
+	ld a, d
+	ld l, e
+	call Func_2da3a
+	ld d, $0
+	ld e, l
+	ld c, a
+	bit 7, a
+	ld b, $0
+	jr z, .asm_2db4d
+	dec b
+.asm_2db4d
+	call Multiply_DE_by_BC
+	ld a, d
+	pop bc
+	add c
+	ld c, a
+	ret
 
-Func_2dd5a::
-	dr $2dd5a, $2dd89
+Func_2db55: ; 2db55 (b:5b55)
+	push de
+	ld a, d
+	ld l, e
+	call Func_2da47
+	ld d, $0
+	ld e, l
+	ld c, a
+	bit 7, a
+	ld b, $0
+	jr z, .asm_2db66
+	dec b
+.asm_2db66
+	call Multiply_DE_by_BC
+	ld c, d
+	ld b, $0
+	bit 7, c
+	jr z, .asm_2db71
+	dec b
+.asm_2db71
+	pop de
+	push bc
+	ld a, d
+	ld l, e
+	call Func_2da3a
+	ld d, $0
+	ld e, l
+	ld c, a
+	bit 7, a
+	ld b, $0
+	jr z, .asm_2db83
+	dec b
+.asm_2db83
+	call Multiply_DE_by_BC
+	ld e, d
+	ld d, $0
+	bit 7, e
+	jr z, .asm_2db8e
+	dec d
+.asm_2db8e
+	pop bc
+	ret
 
-Func_2dd89::
-	dr $2dd89, $2dd9d
+Func_2db90: ; 2db90 (b:5b90)
+	srl b
+	srl c
+	srl d
+	srl e
+Func_2db98: ; 2db98 (b:5b98)
+	xor a
+	ld hl, wca67
+	ld [hl], a
+	ld a, c
+	sub e
+	ld e, a
+	bit 7, a
+	jr z, .asm_2dba8
+	xor a
+	sub e
+	ld e, a
+	inc [hl]
+.asm_2dba8
+	ld a, b
+	sub d
+	ld c, a
+	bit 7, a
+	jr z, .asm_2dbb4
+	xor a
+	sub c
+	ld c, a
+	set 1, [hl]
+.asm_2dbb4
+	xor a
+	or e
+	jr nz, .asm_2dbbc
+	ld a, $10
+	jr .asm_2dbd6
 
-Func_2dd9d::
-	dr $2dd9d, $2ddb1
+.asm_2dbbc
+	ld d, $0
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	call Func_2d9d8
+	call Func_2dbfb
+.asm_2dbd6
+	sla a
+	push af
+	ld a, [wca67]
+	or a
+	jr nz, .asm_2dbe5
+	pop af
+	cpl
+	inc a
+	add $20
+	ret
 
-Func_2ddb1::
-	dr $2ddb1, $2ddc5
+.asm_2dbe5
+	cp $2
+	jr nz, .asm_2dbed
+	pop af
+	add $20
+	ret
 
-Func_2ddc5::
-	dr $2ddc5, $2ddd9
+.asm_2dbed
+	cp $3
+	jr nz, .asm_2dbf7
+	pop af
+	cpl
+	inc a
+	add $60
+	ret
 
-Func_2ddd9::
-	dr $2ddd9, $2de18
+.asm_2dbf7
+	pop af
+	add $60
+	ret
 
-Func_2de18::
-	dr $2de18, $2ded9
+Func_2dbfb: ; 2dbfb (b:5bfb)
+	xor a
+	or b
+	jr nz, .asm_2dc04
+	ld a, c
+	cp $a2
+	jr c, .asm_2dc07
+.asm_2dc04
+	ld a, $10
+	ret
 
-Func_2ded9::
-	dr $2ded9, $2df1e
+.asm_2dc07
+	or a
+	jr nz, .asm_2dc0c
+	xor a
+	ret
 
-Func_2df1e::
-	dr $2df1e, $2df55
+.asm_2dc0c
+	cp $50
+	jr nc, .asm_2dc43
+	cp $34
+	jr nc, .asm_2dc46
+	cp $26
+	jr nc, .asm_2dc49
+	cp $1d
+	jr nc, .asm_2dc4c
+	cp $17
+	jr nc, .asm_2dc4f
+	cp $13
+	jr nc, .asm_2dc52
+	cp $10
+	jr nc, .asm_2dc55
+	cp $d
+	jr nc, .asm_2dc58
+	cp $a
+	jr nc, .asm_2dc5b
+	cp $8
+	jr nc, .asm_2dc5e
+	cp $6
+	jr nc, .asm_2dc61
+	cp $4
+	jr nc, .asm_2dc64
+	cp $3
+	jr nc, .asm_2dc67
+	ld a, $1
+	ret
 
-Func_2df55::
-	dr $2df55, $2e064
+.asm_2dc43
+	ld a, $f
+	ret
+
+.asm_2dc46
+	ld a, $e
+	ret
+
+.asm_2dc49
+	ld a, $d
+	ret
+
+.asm_2dc4c
+	ld a, $c
+	ret
+
+.asm_2dc4f
+	ld a, $b
+	ret
+
+.asm_2dc52
+	ld a, $a
+	ret
+
+.asm_2dc55
+	ld a, $9
+	ret
+
+.asm_2dc58
+	ld a, $8
+	ret
+
+.asm_2dc5b
+	ld a, $7
+	ret
+
+.asm_2dc5e
+	ld a, $6
+	ret
+
+.asm_2dc61
+	ld a, $5
+	ret
+
+.asm_2dc64
+	ld a, $4
+	ret
+
+.asm_2dc67
+	ld a, $3
+	ret
+
+.asm_2dc6a
+	ld a, $2
+	ret
+
+Func_2dc6d: ; 2dc6d (b:5c6d)
+	ld a, $10
+	add b
+	ld b, a
+	ld a, $10
+	add c
+	ld c, a
+	ld a, $10
+	add d
+	ld d, a
+	ld a, $10
+	add e
+	ld e, a
+	srl b
+	srl c
+	srl d
+	srl e
+	jp Func_2db98
+
+SineWave:
+	db  $00,  $06,  $0c,  $12,  $18,  $1f,  $25,  $2b,  $30,  $36,  $3c,  $41,  $47,  $4c,  $51,  $55
+	db  $5a,  $5e,  $62,  $66,  $6a,  $6d,  $70,  $73,  $76,  $78,  $7a,  $7c,  $7d,  $7e,  $7f,  $7f
+CosineWave:
+	db  $7f,  $7f,  $7f,  $7e,  $7d,  $7c,  $7a,  $78,  $76,  $73,  $70,  $6d,  $6a,  $66,  $62,  $5e
+	db  $5a,  $55,  $51,  $4c,  $47,  $41,  $3c,  $36,  $30,  $2b,  $25,  $1f,  $18,  $12,  $0c,  $06
+	db  $00, -$06, -$0c, -$12, -$18, -$1f, -$25, -$2b, -$30, -$36, -$3c, -$41, -$47, -$4c, -$51, -$55
+	db -$5a, -$5e, -$62, -$66, -$6a, -$6d, -$70, -$73, -$76, -$78, -$7a, -$7c, -$7d, -$7e, -$7f, -$7f
+	db -$7f, -$7f, -$7f, -$7e, -$7d, -$7c, -$7a, -$78, -$76, -$73, -$70, -$6d, -$6a, -$66, -$62, -$5e
+	db -$5a, -$55, -$51, -$4c, -$47, -$41, -$3c, -$36, -$30, -$2b, -$25, -$1f, -$18, -$12, -$0c, -$06
+	db  $00,  $06,  $0c,  $12,  $18,  $1f,  $25,  $2b,  $30,  $36,  $3c,  $41,  $47,  $4c,  $51,  $55
+	db  $5a,  $5e,  $62,  $66,  $6a,  $6d,  $70,  $73,  $76,  $78,  $7a,  $7c,  $7d,  $7e,  $7f,  $7f
+
+Func_2dd28: ; 2dd28 (b:5d28)
+	push hl
+	ld a, $8
+	add l
+	ld l, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	dec hl
+	dec hl
+	dec hl
+	ld a, c
+	add e
+	ld c, a
+	ld a, b
+	adc d
+	ld [hl], c
+	inc hl
+	ld [hl], a
+	pop hl
+	ret
+
+Func_2dd41: ; 2dd41 (b:5d41)
+	push hl
+	ld a, $c
+	add l
+	ld l, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	dec hl
+	dec hl
+	dec hl
+	ld a, c
+	add e
+	ld c, a
+	ld a, b
+	adc d
+	ld [hl], c
+	inc hl
+	ld [hl], a
+	pop hl
+	ret
+
+Func_2dd5a: ; 2dd5a (b:5d5a)
+	push hl
+	ld a, $8
+	add l
+	ld l, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	dec hl
+	dec hl
+	dec hl
+	ld a, c
+	add e
+	ld c, a
+	ld a, b
+	adc d
+	ld [hl], c
+	inc hl
+	ld [hl], a
+	ld de, $3
+	add hl, de
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	dec hl
+	dec hl
+	dec hl
+	ld a, c
+	add e
+	ld c, a
+	ld a, b
+	adc d
+	ld [hl], c
+	inc hl
+	ld [hl], a
+	pop hl
+	ret
+
+Func_2dd89: ; 2dd89 (b:5d89)
+	push hl
+	ld a, $a
+	add l
+	ld l, a
+	push hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld h, a
+	ld l, e
+	add hl, bc
+	pop de
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	pop hl
+	ret
+
+Func_2dd9d: ; 2dd9d (b:5d9d)
+	push hl
+	ld a, $e
+	add l
+	ld l, a
+	push hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld h, a
+	ld l, e
+	add hl, bc
+	pop de
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	pop hl
+	ret
+
+Func_2ddb1: ; 2ddb1 (b:5db1)
+	push hl
+	ld a, $c
+	add l
+	ld l, a
+	push hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld h, a
+	ld l, e
+	add hl, bc
+	pop de
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	pop hl
+	ret
+
+Func_2ddc5: ; 2ddc5 (b:5dc5)
+	push hl
+	ld a, $8
+	add l
+	ld l, a
+	push hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld h, a
+	ld l, e
+	add hl, bc
+	pop de
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	pop hl
+	ret
+
+Func_2ddd9: ; 2ddd9 (b:5dd9)
+	ld a, [wcad4]
+	or a
+	ret z
+	sub $3
+	jr nc, .asm_2dde3
+	xor a
+.asm_2dde3
+	ld [wcad4], a
+	ld c, a
+	ld a, [wcad5]
+	add $18
+	ld [wcad5], a
+	call Func_2da3a
+	ld e, a
+	call Multiply_C_by_E_signed
+	ld a, [wcad6]
+	or a
+	jr nz, .asm_2de0a
+	ld a, [wcad8]
+	sra d
+	sra d
+	sra d
+	add d
+	ld [wSCY], a
+	ret
+
+.asm_2de0a
+	ld a, [wcad7]
+	sra d
+	sra d
+	sra d
+	add d
+	ld [wSCX], a
+	ret
+
+Func_2de18: ; 2de18 (b:5e18)
+	ld a, [wcad4]
+	or a
+	jr z, .asm_2de2a
+	ld a, [wcad7]
+	ld [wSCX], a
+	ld a, [wcad8]
+	ld [wSCY], a
+.asm_2de2a
+	ld a, b
+	ld [wcad4], a
+	ld a, [wSCX]
+	ld [wcad7], a
+	ld a, [wSCY]
+	ld [wcad8], a
+	ld a, c
+	ld [wcad6], a
+	ret
+
+Func_2de3f:
+	call Func_2dec1
+	ld bc, EVENT_08A
+	call ResetEventFlag
+	ld bc, EVENT_08B
+	call ResetEventFlag
+	ld hl, wcdf6
+	ld a, [wc912]
+	cp $6e
+	jr c, .asm_2de75
+	cp $9b
+	jr c, .asm_2dea0
+	ld a, [wcdf8]
+	or a
+	jr z, .asm_2de68
+	ld bc, EVENT_08A
+	call SetEventFlag
+.asm_2de68
+	ld a, [wcdfb]
+	or a
+	jr z, .asm_2de74
+	ld bc, EVENT_08B
+	call SetEventFlag
+.asm_2de74
+	ret
+
+.asm_2de75
+	ld a, [wcdf6]
+	ld c, a
+	ld a, [wcdf7]
+	ld b, a
+	ld a, [wcdf8]
+	or b
+	or c
+	jr z, .asm_2de8a
+	ld bc, EVENT_08A
+	call SetEventFlag
+.asm_2de8a
+	ld a, [wcdf9]
+	ld c, a
+	ld a, [wcdfa]
+	ld b, a
+	ld a, [wcdfb]
+	or b
+	or c
+	jr z, .asm_2de9f
+	ld bc, EVENT_08B
+	call SetEventFlag
+.asm_2de9f
+	ret
+
+.asm_2dea0
+	ld a, [wcdf7]
+	ld b, a
+	ld a, [wcdf8]
+	or b
+	jr z, .asm_2deb0
+	ld bc, EVENT_08A
+	call SetEventFlag
+.asm_2deb0
+	ld a, [wcdfa]
+	ld b, a
+	ld a, [wcdfb]
+	or b
+	jr z, .asm_2dec0
+	ld bc, EVENT_08B
+	call SetEventFlag
+.asm_2dec0
+	ret
+
+Func_2dec1: ; 2dec1 (b:5ec1)
+	ld hl, wcdf6
+	ld b, $6
+.asm_2dec6
+	ld a, [hli]
+	or a
+	jr nz, .asm_2ded3
+	dec b
+	jr nz, .asm_2dec6
+	ld bc, EVENT_088
+	jp ResetEventFlag
+
+.asm_2ded3
+	ld bc, EVENT_088
+	jp SetEventFlag
+
+AddOrSubtractMoney: ; 2ded9 (b:5ed9)
+	push hl
+	ld a, [wMoney + 1]
+	ld h, a
+	ld a, [wMoney]
+	ld l, a
+	add hl, bc
+	jr c, .overflow_or_underflow
+	bit 7, b
+	jr nz, .overflow_or_underflow
+.underflowed
+	push hl
+	ld bc, (-MAX_MONEY) & $ffff
+	add hl, bc
+	jr nc, .no_overflow
+	add sp, $2
+	ld hl, MAX_MONEY
+	jr .return_money
+
+.no_overflow
+	pop hl
+.return_money
+	ld a, h
+	ld [wMoney + 1], a
+	ld a, l
+	ld [wMoney], a
+	pop hl
+	ret
+
+.overflow_or_underflow
+	bit 7, b
+	jr nz, .underflowed
+	ld hl, wMoney
+	ld a, MAX_MONEY % $100
+	ld [hli], a
+	ld a, MAX_MONEY / $100
+	ld [hl], a
+	pop hl
+	ret
+
+Func_2df11:
+	ld a, [wcadc]
+	cpl
+	ld c, a
+	ld a, [wcadd]
+	cpl
+	ld b, a
+	inc bc
+	jr AddOrSubtractMoney
+
+Func_2df1e: ; 2df1e (b:5f1e)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s3_a000)
+	ld [MBC3SRamBank], a
+	ld hl, wc480
+	ld de, wOAMAnimation15
+	ld b, $20
+	call CopyData_8Bits
+	ld hl, wc4a0
+	ld de, wOAMAnimation16_PriorityFlags
+	ld b, $20
+	call CopyData_8Bits
+	ld de, wOAMBufferEnd
+	ld hl, s3_a000
+	ld bc, $300
+.asm_2df47
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_2df47
+	ld a, $0
+	ld [MBC3SRamEnable], a
+	ret
+
+Func_2df55: ; 2df55 (b:5f55)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s3_a000)
+	ld [MBC3SRamBank], a
+	ld de, wOAMAnimations
+	ld hl, s3_a000
+	ld bc, $300
+.asm_2df68
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_2df68
+	ld a, $0
+	ld [MBC3SRamEnable], a
+	ld hl, wOAMAnimation15_PriorityFlags
+	ld de, wc480
+	ld b, $20
+	call CopyData_8Bits
+	ld hl, wOAMAnimation16_PriorityFlags
+	ld de, wc4a0
+	ld b, $20
+	call CopyData_8Bits
+	ld de, $20
+	ld hl, wOAMAnimation01
+	ld b, $18
+	xor a
+.asm_2df94
+	push hl
+	ld a, [hl]
+	and $2
+	jr nz, .asm_2df9d
+	ld [hl], a
+	jr .asm_2dfa9
+
+.asm_2df9d
+	ld a, $19
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	or $8
+	ld [hl], a
+.asm_2dfa9
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .asm_2df94
+	ret
+
+Func_2dfaf:
+	ld a, [wJoyNew]
+	and D_LEFT
+	jr z, .asm_2dfc8
+	ld a, [wc904]
+	inc a
+	ld [wc904], a
+	cp $35
+	jr c, .asm_2dff7
+	ld a, $0
+	ld [wc904], a
+	jr .asm_2dff7
+
+.asm_2dfc8
+	ld a, [wJoyNew]
+	and D_RIGHT
+	jr z, .asm_2dfe1
+	ld a, [wc904]
+	dec a
+	ld [wc904], a
+	cp $2
+	jr nc, .asm_2dff7
+	ld a, $34
+	ld [wc904], a
+	jr .asm_2dff7
+
+.asm_2dfe1
+	ld a, [wJoyNew]
+	and D_UP
+	jr z, .asm_2dfed
+	call Func_2e050
+	jr .asm_2dff7
+
+.asm_2dfed
+	ld a, [wJoyNew]
+	and D_DOWN
+	jr z, .asm_2dff7
+	call Func_2e03c
+.asm_2dff7
+	push af
+	push hl
+	push bc
+	ld a, [wc904]
+	hlbgcoord 1, 0, VWindow
+	call Func_353b
+	pop bc
+	pop hl
+	pop af
+	push af
+	push hl
+	push bc
+	ld a, [wc906]
+	hlbgcoord 4, 0, VWindow
+	call Func_353b
+	pop bc
+	pop hl
+	pop af
+	ld a, [hJoyNew]
+	and A_BUTTON
+	ret z
+	ld a, $50
+	ld [wc902], a
+	ld a, $40
+	ld [wc901], a
+	ld a, $2
+	ld [wc900], a
+	ld a, $7
+	ld [wSubroutine], a
+	ld a, $4
+	jp Func_122d
+
+Func_2e033:
+	ld a, $8
+	ld [wSubroutine], a
+	call Func_35a3
+	ret
+
+Func_2e03c: ; 2e03c (b:603c)
+	ld a, [wc906]
+	inc a
+	and $3f
+	ld [wc906], a
+	call Func_2793
+	ld a, [wc903]
+	cp $ff
+	ret nz
+	jr Func_2e03c
+
+Func_2e050: ; 2e050 (b:6050)
+	ld a, [wc906]
+	dec a
+	and $3f
+	ld [wc906], a
+	call Func_2793
+	ld a, [wc903]
+	cp $ff
+	ret nz
+	jr Func_2e050
 
 Func_2e064::
 	dr $2e064, $2e0d2

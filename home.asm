@@ -4111,7 +4111,7 @@ Multiply_C_by_E: ; 2b5c (0:2b5c)
 	ld d, $0
 	jp Multiply_DE_by_BC
 
-Multiple_C_by_E_signed:
+Multiply_C_by_E_signed:
 	xor a
 	ld b, a
 	ld d, a
