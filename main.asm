@@ -10402,11 +10402,191 @@ Func_31416:
 	call Func_31407
 	ret
 
-Func_31429:
-	dr $31429, $314b9
+Func_31429: ; 31429 (c:5429)
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, [wc98b]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Func_31442
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_314b9:
-	dr $314b9, $3154b
+Func_31442:
+	dw Func_3144e
+	dw Func_31483
+	dw Func_30b23
+	dw Func_314a6
+	dw Func_30cd0
+	dw Func_30cf0
+
+Func_3144e:
+	ld a, [wc98b]
+	ld h, a
+	ld a, [wc98a]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wc98a]
+	add $2
+	ld l, a
+	ld a, $1c
+	ld [hl], a
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+Func_3146d: ; 3146d (c:546d)
+	ld a, [wc98a]
+	add $19
+	ld l, a
+	ld a, [hl]
+	and $f7
+	ld [hl], a
+	ld a, [wc98a]
+	add $18
+	ld l, a
+	ld a, [hl]
+	ld b, $4
+	jp GetOverworldSprite
+
+Func_31483:
+	call Func_30dbf
+	ld a, [wc98b]
+	ld h, a
+	ld a, [wc98a]
+	add $2
+	ld l, a
+	ld a, [hl]
+	or $1c
+	ld [hl], a
+	call Func_30a09
+Func_31497: ; 31497 (c:5497)
+	ld a, [wc98a]
+	add $19
+	ld l, a
+	ld a, [hl]
+	and $8
+	jr z, .asm_314a5
+	call Func_3146d
+.asm_314a5
+	ret
+
+Func_314a6:
+	call Func_30c1d
+	ld a, [wc98a]
+	add $14
+	ld l, a
+	ld a, [hl]
+	cp $1
+	jp z, Func_3146d
+	call Func_31497
+	ret
+
+Func_314b9: ; 314b9 (c:54b9)
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, [wc98b]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_314d2
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_314d2:
+	dw Func_314d6
+	dw Func_31510
+
+Func_314d6:
+	ld a, [wc98a]
+	ld l, a
+	ld a, [wc98b]
+	ld h, a
+	ld [hl], $3
+	ld a, [wc98a]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wc98a]
+	add $2
+	ld l, a
+	ld a, $23
+	ld [hl], a
+	ld a, [wc98a]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wc98a]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wc98a]
+	add $e
+	ld l, a
+	ld a, $30
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ret
+
+Func_31510:
+	ld a, [wc98b]
+	ld h, a
+	ld a, [wc98a]
+	add $13
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $8
+	jr c, .asm_3153d
+	ld a, [wc98a]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wc98a]
+	add $2
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $26
+	jr c, .asm_3153d
+	ld a, [wc98a]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_3153d
+	ld a, [wc98a]
+	ld l, a
+	ld bc, -3
+	call Func_2ae7
+	call Func_2acd
+	ret
 
 Func_3154b:
 	dr $3154b, $31576
