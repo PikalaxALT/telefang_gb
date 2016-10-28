@@ -296,8 +296,8 @@ wc49f:: ds 1
 wc4a0:: ds 1
 wc4a1:: ds 1
 wc4a2:: ds 1
-wc4a3:: ds 1
-wc4a4:: ds 1
+wPartnerDenjuuXCoord:: ds 1
+wPartnerDenjuuYCoord:: ds 1
 wc4a5:: ds 1
 wc4a6:: ds 1
 wc4a7:: ds 1
