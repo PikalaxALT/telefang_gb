@@ -3308,7 +3308,7 @@ Func_2c4f6: ; 2c4f6 (b:44f6)
 .asm_2c523
 	ld a, BANK(GFX_e0b08)
 	ld bc, $10
-	jp Func_372d
+	jp FarCopy2bpp_2
 
 Data_2c52b:
 	db 0, 1
@@ -4833,7 +4833,7 @@ Func_2d001:
 	ld hl, VTilesShared tile $40
 	ld de, GFX_e319c
 	ld bc, $2c tiles
-	jp Func_372d
+	jp FarCopy2bpp_2
 
 Data_2d00f:
 	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
@@ -14835,7 +14835,7 @@ Func_3306f: ; 3306f (c:706f)
 .asm_33099
 	ld a, $2a
 	ld bc, $40
-	jp Func_372d
+	jp FarCopy2bpp_2
 
 Func_330a1: ; 330a1 (c:70a1)
 	ld a, [wCurObjectStruct]
@@ -15108,83 +15108,2255 @@ Func_3322a:
 .asm_33246
 	ret
 
-Func_33247:
-	dr $33247, $3333d
+Func_33247: ; 33247 (c:7247)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_33260
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_3333d:
-	dr $3333d, $33346
+Pointers_33260:
+	dw Func_33264
+	dw Func_332ad
 
-Func_33346:
-	dr $33346, $3334f
+Func_33264:
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, $40
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $d
+	ld l, a
+	ld a, b
+	ld [hl], a
+Func_332ad:
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	ld d, a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	srl a
+	srl a
+	add $2
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ld e, a
+	lb bc, $50, $44
+	call Func_3020
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, c
+	ld [hl], a
+	ld a, c
+	cp $28
+	jr c, .asm_332fc
+	cp $62
+	jr nc, .asm_332fc
+	ld a, b
+	cp $a4
+	jr nc, .asm_332fc
+	ret
 
-Func_3334f:
-	dr $3334f, $33358
+.asm_332fc
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
 
-Func_33358:
-	dr $33358, $33361
+Func_33303:
+	ld hl, wc480
+	ld b, $18
+	call Func_33886
+	jp z, Func_3333c
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	call Func_30a7
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], b
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $72
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, $96
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, $10
+	ld [hl], a
+Func_3333c: ; 3333c (c:733c)
+	ret
 
-Func_33361:
-	dr $33361, $3336a
+Func_3333d: ; 3333d (c:733d)
+	callba Func_c83bc
+	ret
 
-Func_3336a:
-	dr $3336a, $33392
+Func_33346: ; 33346 (c:7346)
+	callba Func_c8621
+	ret
 
-Func_33392:
-	dr $33392, $33479
+Func_3334f: ; 3334f (c:734f)
+	callba Func_c885f
+	ret
 
-Func_33479:
-	dr $33479, $33574
+Func_33358: ; 33358 (c:7358)
+	callba Func_c8f2d
+	ret
 
-Func_33574:
-	dr $33574, $335f4
+Func_33361: ; 33361 (c:7361)
+	callba Func_c91df
+	ret
 
-Func_335f4:
-	dr $335f4, $336dc
+Func_3336a: ; 3336a (c:736a)
+	push hl
+	ld b, $1f
+	push bc
+	call Func_33886
+	pop bc
+	jr z, .asm_33390
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $d0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, c
+	ld [hl], a
+.asm_33390
+	pop hl
+	ret
 
-Func_336dc:
-	dr $336dc, $33756
+Func_33392: ; 33392 (c:7392)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_333ab
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_33756:
-	dr $33756, $337b0
+Pointers_333ab:
+	dw Func_333af
+	dw Func_3342c
+	dw Func_33478
 
-Func_337b0:
-	dr $337b0, $337b9
+Func_333af:
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $35
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $13
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $10
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $8
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $d0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $4c
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $5
+	ld l, a
+	ld a, $2
+	ld [hl], a
+	ld a, $30
+	ld c, $0
+	call Func_3306f
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ret
 
-Func_337b9:
-	dr $337b9, $33846
+Func_3342c:
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, $1
+	call Func_2ae7
+	call Func_2acd
+	callba Func_308b0 ; same bank
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $f
+	ld l, a
+	ld a, [hl]
+	bit 7, a
+	jr nz, .asm_3346b
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, [hl]
+	cp $38
+	jr c, .asm_3346b
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $0
+	ld a, $a
+	ld [H_SFX_ID], a
+	ret
 
-Func_33846::
-	dr $33846, $3385b
+.asm_3346b
+	ld a, [wc984]
+	and $7
+	ret nz
+	ld a, [wCurObjectStruct]
+	ld l, a
+	jp Func_3222a
 
-Func_3385b::
-	dr $3385b, $33870
+Func_33478:
+	ret
 
-Func_33870:
-	dr $33870, $33886
+Func_33479: ; 33479 (c:7479)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_33492
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_33886:
-	dr $33886, $3389c
+Pointers_33492:
+	dw Func_33496
+	dw Func_33508
 
-Func_3389c:
-	dr $3389c, $338f0
+Func_33496:
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $36
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, $40
+	ld [hl], a
+	ld a, [wc906]
+	cp $16
+	jr z, .asm_334e2
+	cp $e
+	jr z, .asm_334f5
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, $48
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, $48
+	ld [hl], a
+	ret
 
-Func_338f0:
-	dr $338f0, $338f9
+.asm_334e2
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, $40
+	ld [hl], a
+	ret
 
-Func_338f9:
-	dr $338f9, $3394e
+.asm_334f5
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, $5c
+	ld [hl], a
+	ret
 
-Func_3394e::
-	dr $3394e, $33a62
+Func_33508:
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wc98e]
+	or a
+	jr z, .asm_33519
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $0
+	ret
 
-Func_33a62::
-	dr $33a62, $33a90
+.asm_33519
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld d, a
+	call Func_3068
+	sra d
+	sra d
+	ld a, [wc906]
+	cp $16
+	jr z, .asm_33540
+	cp $e
+	jr z, .asm_33540
+	sra d
+.asm_33540
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, [hl]
+	add d
+	ld d, a
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, d
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	ld d, a
+	call Func_3058
+	sra d
+	sra d
+	sra d
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, [hl]
+	add d
+	ld d, a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, d
+	ld [hl], a
+	ret
 
-Func_33a90::
-	dr $33a90, $33ac4
+Func_33574: ; 33574 (c:7574)
+	ld a, [wc906]
+	cp $16
+	jr nz, .asm_3358e
+	ld bc, $1f4
+	call CheckEventFlag
+	jr nz, .asm_3358e
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $0
+	ret
+
+.asm_3358e
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $2
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, $40
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $13
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $10
+	ld [hl], a
+	ld a, [wc98e]
+	or a
+	ret nz
+	ld a, [wCurObjectStruct]
+	ld l, a
+	push hl
+	ld b, $8
+	ld c, $0
+.asm_335c7
+	push bc
+	ld b, $21
+	call Func_33886
+	jr z, .asm_335ee
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	pop bc
+	add sp, $fe
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, c
+	ld [hl], a
+	pop bc
+	ld a, c
+	add $10
+	ld c, a
+	dec b
+	jr nz, .asm_335c7
+	pop hl
+	ld [hl], $0
+	ret
+
+.asm_335ee
+	add sp, $2
+	pop hl
+	ld [hl], $0
+	ret
+
+Func_335f4: ; 335f4 (c:75f4)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_3360d
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_3360d:
+	dw Func_33637
+	dw Func_33688
+
+Func_33611: ; 33611 (c:7611)
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, [hl]
+	and $8
+	jr z, asm_33636
+Func_3361c: ; 3361c (c:761c)
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, [hl]
+	and $f7
+	ld [hl], a
+	ld de, GFX_e0320 + 4 tiles
+	push hl
+	ld a, BANK(GFX_e0320)
+	ld hl, VTilesOB tile $7c
+	ld bc, $40
+	call FarCopy2bpp_2
+	pop hl
+asm_33636
+	ret
+
+Func_33637:
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $1e
+	ld l, a
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
+	call CheckEventFlag
+	ld a, [wCurObjectStruct + 1]
+	ld l, a
+	jr z, .asm_33650
+	ld [hl], $0
+	ret
+
+.asm_33650
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $17
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $5
+	ld l, a
+	ld a, $5
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, $3c
+	ld [hl], a
+	ld bc, EVENT_C02
+	call ResetEventFlag
+	call Func_3361c
+Func_33688:
+	call Func_336bd
+	ld a, [wCurObjectStruct]
+	add $1e
+	ld l, a
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
+	call CheckEventFlag
+	jr z, .asm_336b9
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	dec a
+	ld [hl], a
+	jr nz, .asm_336b9
+	ld bc, EVENT_C02
+	call ResetEventFlag
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $0
+	call Func_336e5
+	ld a, $41
+	ld [H_SFX_ID], a
+	ret
+
+.asm_336b9
+	call Func_33611
+	ret
+
+Func_336bd: ; 336bd (c:76bd)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wPlayerYCoord]
+	cp $48
+	jr nc, .asm_336d7
+	ld a, [wcd21]
+	or a
+	jr z, .asm_336d7
+	ld a, [hl]
+	and $fe
+	ld [hl], a
+	ret
+
+.asm_336d7
+	ld a, [hl]
+	or $1
+	ld [hl], a
+	ret
+
+Func_336dc: ; 336dc (c:76dc)
+	callba Func_3ac86
+	ret
+
+Func_336e5: ; 336e5 (c:76e5)
+	ld a, $b
+	ld [wc49a], a
+	ld a, $40
+	ld [wc493], a
+	ld b, $40
+	ld c, $0
+	call Func_341d
+	ld b, $c
+.asm_336f8
+	push bc
+	push hl
+	ld b, $23
+	call Func_33886
+	jr z, .asm_3374b
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	call Func_30a7
+	ld a, d
+	and $1f
+	add $50
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, b
+	ld [hl], a
+	call Func_30a7
+	ld a, d
+	and $1f
+	add $18
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, b
+	ld [hl], a
+	call Func_30b6
+	sla c
+	rl b
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2b01
+	call Func_30b6
+	sla c
+	rl b
+	call Func_2af4
+	ld bc, rJOYP
+	call Func_2af4
+	pop hl
+	pop bc
+	dec b
+	jr nz, .asm_336f8
+	ret
+
+.asm_3374b
+	pop hl
+	pop bc
+	ld a, h
+	ld [wCurObjectStruct + 1], a
+	ld a, l
+	ld [wCurObjectStruct + 1], a
+	ret
+
+Func_33756: ; 33756 (c:7756)
+	callba Func_c9374
+	ret
+
+Func_3375f:
+	push de
+	ld a, BANK(GFX_e3494)
+	ld hl, VTilesOB tile $60
+	ld de, GFX_e3494
+	ld bc, $80
+	call FarCopy2bpp_2
+	pop de
+	ld hl, wc480
+	ld b, $10
+	ld c, $0
+.asm_33776
+	push bc
+	push de
+	ld b, $24
+	call Func_33886
+	jr z, .asm_337ad
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	pop de
+	pop bc
+	add sp, $fc
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, c
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, d
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, e
+	ld [hl], a
+	pop de
+	pop bc
+	ld a, c
+	add $10
+	ld c, a
+	dec b
+	jr nz, .asm_33776
+	ret
+
+.asm_337ad
+	add sp, $4
+	ret
+
+Func_337b0: ; 337b0 (c:77b0)
+	callba Func_3a7fd
+	ret
+
+Func_337b9: ; 337b9 (c:77b9)
+	callba Func_3a996
+	ret
+
+Func_337c2:
+	ld a, d
+	ld [wCurObjectStruct + 1], a
+	ld a, e
+	ld [wCurObjectStruct], a
+	ld h, d
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld e, a
+	push de
+	dec hl
+	ld a, [hl]
+	add $10
+	ld [hl], a
+	push hl
+	call Func_304c9
+	pop hl
+	and $10
+	jr nz, .asm_337f1
+.asm_337e4
+	pop de
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, d
+	ld [hli], a
+	ld [hl], e
+	ld d, $3
+	ret
+
+.asm_337f1
+	ld a, [hl]
+	add $e0
+	ld [hl], a
+	push hl
+	call Func_304c9
+	pop hl
+	and $10
+	jr nz, .asm_3380b
+	pop de
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, d
+	ld [hli], a
+	ld [hl], e
+	ld d, $2
+	ret
+
+.asm_3380b
+	ld a, [hl]
+	add $10
+	ld [hl], a
+	inc hl
+	ld a, [hl]
+	add $f0
+	ld [hl], a
+	push hl
+	call Func_304c9
+	pop hl
+	and $10
+	jr nz, .asm_3382a
+	pop de
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, d
+	ld [hli], a
+	ld [hl], e
+	ld d, $1
+	ret
+
+.asm_3382a
+	ld a, [hl]
+	add $20
+	ld [hl], a
+	push hl
+	call Func_304c9
+	pop hl
+	and $10
+	jr nz, .asm_33844
+	pop de
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, d
+	ld [hli], a
+	ld [hl], e
+	ld d, $0
+	ret
+
+.asm_33844
+	jr .asm_337e4
+
+Func_33846: ; 33846 (c:7846)
+	ld c, a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld b, $0
+	sra c
+	rr b
+	sra c
+	rr b
+	ld a, b
+	ld [hli], a
+	ld [hl], c
+	ret
+
+Func_3385b: ; 3385b (c:785b)
+	ld c, a
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld b, $0
+	sra c
+	rr b
+	sra c
+	rr b
+	ld a, b
+	ld [hli], a
+	ld [hl], c
+	ret
+
+Func_33870: ; 33870 (c:7870)
+	ld a, [wc98e]
+	or a
+	jr nz, .asm_33883
+	push hl
+	push bc
+	call Func_3091f
+	pop bc
+	pop de
+	jr z, .asm_33882
+	call Func_3389c
+.asm_33882
+	ret
+
+.asm_33883
+	ld d, h
+	ld e, l
+	ret
+
+Func_33886: ; 33886 (c:7886)
+	ld a, [wc98e]
+	or a
+	jr nz, .asm_33899
+	push hl
+	push bc
+	call Func_30918
+	pop bc
+	pop de
+	jr z, .asm_33898
+	call Func_3389c
+.asm_33898
+	ret
+
+.asm_33899
+	ld d, h
+	ld e, l
+	ret
+
+Func_3389c: ; 3389c (c:789c)
+	push de
+	ld a, l
+	ld [wCurObjectStruct], a
+	ld a, h
+	ld [wCurObjectStruct + 1], a
+	ld [hl], $2
+	ld a, [wCurObjectStruct]
+	add $10
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1b
+	ld l, a
+	ld a, [wc9e8]
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1c
+	ld l, a
+	ld a, [wc9e9]
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, $8
+	add e
+	ld e, a
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	inc de
+	inc de
+	inc de
+	inc hl
+	inc hl
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hl], a
+	pop de
+	or $1
+	ret
+
+Func_338f0: ; 338f0 (c:78f0)
+	ld de, wc480
+	ld hl, wOAMAnimation13
+	jp Func_3389c
+
+Func_338f9: ; 338f9 (c:78f9)
+	ld de, wc4a0
+	ld hl, wOAMAnimation14
+	call Func_3389c
+	ld a, $0
+	ld [$c259], a
+	ret
+
+Func_33908:
+	ld a, [wc98d]
+	cpl
+	inc a
+	sub $80
+	ld [wc9e9], a
+	jr asm_33942
+
+Func_33914:
+	ld a, [wc98d]
+	cpl
+	inc a
+	add $80
+	ld [wc9e9], a
+	jr asm_33942
+
+Func_33920:
+	ld a, [wc98c]
+	cpl
+	inc a
+	sub $a0
+	ld [wc9e8], a
+	jr asm_33936
+
+Func_3392c:
+	ld a, [wc98c]
+	cpl
+	inc a
+	add $a0
+	ld [wc9e8], a
+asm_33936
+	ld a, [wc98d]
+	cpl
+	inc a
+	ld [wc9e9], a
+	call Func_3394e
+	ret
+
+asm_33942
+	ld a, [wc98c]
+	cpl
+	inc a
+	ld [wc9e8], a
+	call Func_3394e
+	ret
+
+Func_3394e: ; 3394e (c:794e)
+	call Func_2d59
+.asm_33951
+	call Func_2e2b
+	push de
+	ld de, wca00
+	ld a, [de]
+	inc de
+	cp $ff
+	jr nz, .asm_33964
+	ld a, [de]
+	dec de
+	cp $ff
+	jr z, .asm_339ab
+.asm_33964
+	call Func_30926
+	jr z, .asm_339a8
+	ld de, wca00
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [de]
+	ld c, a
+	inc de
+	or b
+	jr z, .asm_3398c
+	bit 7, b
+	jr z, .asm_33987
+	ld a, b
+	cpl
+	ld b, a
+	ld a, c
+	cpl
+	ld c, a
+	inc bc
+	call CheckEventFlag
+	jr nz, .asm_339a8
+	jr .asm_3398c
+
+.asm_33987
+	call CheckEventFlag
+	jr z, .asm_339a8
+.asm_3398c
+	call Func_339ad
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld e, a
+	ld a, [wCurObjectStruct + 1]
+	ld d, a
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+.asm_339a8
+	pop de
+	jr .asm_33951
+
+.asm_339ab
+	pop de
+	ret
+
+Func_339ad: ; 339ad (c:79ad)
+	ld a, l
+	ld [wCurObjectStruct], a
+	ld a, h
+	ld [wCurObjectStruct + 1], a
+	xor a
+	ld b, $20
+	call Func_2f76
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $1b
+	ld l, a
+	ld a, [wc9e8]
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1c
+	ld l, a
+	ld a, [wc9e9]
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $10
+	ld l, a
+	ld a, [de]
+	push af
+	inc de
+	and $3f
+	ld [hl], a
+	call Func_33a62
+	push de
+	call Func_308b0
+	pop de
+	inc de
+	ld a, [wCurObjectStruct]
+	add $18
+	ld l, a
+	ld a, [de]
+	ld [hl], a
+	inc de
+	ld a, [wCurObjectStruct]
+	add $1e
+	ld l, a
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hl], a
+	inc de
+	ld b, $3
+	ld a, [de]
+	and $1
+	jr z, .asm_33a0a
+	ld b, $7
+.asm_33a0a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], b
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [de]
+	ld b, a
+	pop af
+	swap a
+	srl a
+	srl a
+	and $3
+	or $80
+	ld c, a
+	ld a, b
+	and $8
+	jr z, .asm_33a2b
+	ld [hl], c
+	jr .asm_33a2d
+
+.asm_33a2b
+	ld [hl], $0
+.asm_33a2d
+	ld a, [de]
+	and $2
+	jr z, .asm_33a3c
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, [hl]
+	or $80
+	ld [hl], a
+.asm_33a3c
+	ld a, [de]
+	and $60
+	jr z, .asm_33a4b
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	or b
+	ld [hl], a
+.asm_33a4b
+	ld a, [de]
+	and $10
+	jr z, .asm_33a5a
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, [hl]
+	or $1
+	ld [hl], a
+.asm_33a5a
+	ld a, [wc98e]
+	or a
+	ret z
+	jp Func_309b8
+
+Func_33a62: ; 33a62 (c:7a62)
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld a, [de]
+	and $f0
+	add $8
+	ld b, $0
+	sra a
+	rr b
+	sra a
+	rr b
+	ld [hl], b
+	inc hl
+	ld [hli], a
+	inc hl
+	inc hl
+	ld a, [de]
+	inc a
+	swap a
+	and $f0
+	ld b, $0
+	sra a
+	rr b
+	sra a
+	rr b
+	ld [hl], b
+	inc hl
+	ld [hl], a
+	ret
+
+Func_33a90: ; 33a90 (c:7a90)
+	call Func_30926
+	jr z, .asm_33ac3
+	ld de, wca00
+	call Func_339ad
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld e, a
+	ld a, [wCurObjectStruct + 1]
+	ld d, a
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	ld b, $3
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], b
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld [hl], $0
+.asm_33ac3
+	ret
 
 Pointers_33ac4::
-	dr $33ac4, $33ff8
+	dw Data_33c84
+	dw Data_33c8a
+	dw Data_33c90
+	dw Data_33c96
+	dw Data_33c9c
+	dw Data_33ca2
+	dw Data_33ca8
+	dw Data_33cb2
+	dw Data_33cbc
+	dw Data_33cc6
+	dw Data_33cd4
+	dw Data_33ce2
+	dw Data_33ce8
+	dw Data_33cf2
+	dw Data_33cf8
+	dw Data_33cfe
+	dw Data_33cfe
+	dw Data_33d09
+	dw Data_33d14
+	dw Data_33d1d
+	dw Data_33d24
+	dw Data_33d24
+	dw Data_33d2b
+	dw Data_33d2b
+	dw Data_33d3a
+	dw Data_33d47
+	dw Data_33d4c
+	dw Data_33d57
+	dw Data_33d57
+	dw Data_33d57
+	dw Data_33d57
+	dw Data_33d5c
+	dw Data_33d5c
+	dw Data_33d5c
+	dw Data_33d5c
+	dw Data_33d62
+	dw Data_33d62
+	dw Data_33d68
+	dw Data_33d68
+	dw Data_33d73
+	dw Data_33d88
+	dw Data_33d88
+	dw Data_33d93
+	dw Data_33d93
+	dw Data_33da0
+	dw Data_33da7
+	dw Data_33da7
+	dw Data_33dad
+	dw Data_33db3
+	dw Data_33db3
+	dw Data_33db3
+	dw Data_33db9
+	dw Data_33db9
+	dw Data_33db9
+	dw Data_33db9
+	dw Data_33dc1
+	dw Data_33dd0
+	dw Data_33dd0
+	dw Data_33dd0
+	dw Data_33dd0
+	dw Data_33dd0
+	dw Data_33dd6
+	dw Data_33de3
+	dw Data_33deb
+	dw Data_33df8
+	dw Data_33df8
+	dw Data_33df8
+	dw Data_33e00
+	dw Data_33e0d
+	dw Data_33e13
+	dw Data_33e19
+	dw Data_33e1f
+	dw Data_33e25
+	dw Data_33e2b
+	dw Data_33e31
+	dw Data_33e31
+	dw Data_33e31
+	dw Data_33e31
+	dw Data_33e3a
+	dw Data_33e3a
+	dw Data_33e3a
+	dw Data_33e40
+	dw Data_33e46
+	dw Data_33e46
+	dw Data_33e46
+	dw Data_33e4c
+	dw Data_33e51
+	dw Data_33e59
+	dw Data_33e59
+	dw Data_33e6e
+	dw Data_33e6e
+	dw Data_33e6e
+	dw Data_33e6e
+	dw Data_33e85
+	dw Data_33e85
+	dw Data_33e8b
+	dw Data_33e8b
+	dw Data_33e93
+	dw Data_33e93
+	dw Data_33e93
+	dw Data_33e93
+	dw Data_33e9d
+	dw Data_33eac
+	dw Data_33eb2
+	dw Data_33ec3
+	dw Data_33ec8
+	dw Data_33ec8
+	dw Data_33ec8
+	dw Data_33ec8
+	dw Data_33ed2
+	dw Data_33ed2
+	dw Data_33ed8
+	dw Data_33ede
+	dw Data_33ef5
+	dw Data_33f0c
+	dw Data_33f0c
+	dw Data_33f0c
+	dw Data_33f12
+	dw Data_33f23
+	dw Data_33f29
+	dw Data_33f36
+	dw Data_33f36
+	dw Data_33f36
+	dw Data_33f36
+	dw Data_33f36
+	dw Data_33f36
+	dw Data_33f36
+	dw Data_33f3e
+	dw Data_33f3e
+	dw Data_33f46
+	dw Data_33f46
+	dw Data_33f46
+	dw Data_33f46
+	dw Data_33f5f
+	dw Data_33f5f
+	dw Data_33f67
+	dw Data_33f80
+	dw Data_33f80
+	dw Data_33f80
+	dw Data_33f80
+	dw Data_33f80
+	dw Data_33f80
+	dw Data_33f80
+	dw Data_33f91
+	dw Data_33f91
+	dw Data_33f91
+	dw Data_33f91
+	dw Data_33f91
+	dw Data_33f91
+	dw Data_33f91
+	dw Data_33f91
+	dw Data_33f98
+	dw Data_33f98
+	dw Data_33f98
+	dw Data_33f98
+	dw Data_33f9e
+	dw Data_33fa4
+	dw Data_33fa4
+	dw Data_33fa4
+	dw Data_33fa4
+	dw Data_33fa4
+	dw Data_33faa
+	dw Data_33fb0
+	dw Data_33fb0
+	dw Data_33fb0
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fb9
+	dw Data_33fc0
+	dw Data_33fc0
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fd1
+	dw Data_33fdb
+	dw Data_33fe5
+	dw Data_33fef
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+	dw Data_33ff9
+
+Data_33c84:
+	db $10, $d0
+	db $10, $d1
+	db $fe, $00
+
+Data_33c8a:
+	db $10, $d2
+	db $10, $d3
+	db $fe, $00
+
+Data_33c90:
+	db $10, $11
+	db $10, $12
+	db $fe, $00
+
+Data_33c96:
+	db $10, $13
+	db $10, $14
+	db $fe, $00
+
+Data_33c9c:
+	db $10, $15
+	db $10, $16
+	db $fe, $00
+
+Data_33ca2:
+	db $10, $17
+	db $10, $18
+	db $fe, $00
+
+Data_33ca8:
+	db $10, $42
+	db $10, $43
+	db $08, $42
+	db $08, $43
+	db $fe, $00
+
+Data_33cb2:
+	db $10, $46
+	db $10, $47
+	db $08, $46
+	db $08, $47
+	db $fe, $00
+
+Data_33cbc:
+	db $10, $44
+	db $10, $45
+	db $08, $44
+	db $08, $45
+	db $fe, $00
+
+Data_33cc6:
+	db $04, $02
+	db $04, $04
+	db $02, $02
+	db $02, $04
+	db $06, $02
+	db $06, $04
+	db $fe, $00
+
+Data_33cd4:
+	db $04, $03
+	db $04, $05
+	db $02, $03
+	db $02, $05
+	db $06, $03
+	db $06, $05
+	db $fe, $00
+
+Data_33ce2:
+	db $10, $19
+	db $10, $1a
+	db $fe, $00
+
+Data_33ce8:
+	db $08, $33
+	db $08, $34
+	db $08, $33
+	db $08, $35
+	db $fe, $00
+
+Data_33cf2:
+	db $10, $36
+	db $10, $37
+	db $fe, $00
+
+Data_33cf8:
+	db $10, $d8
+	db $10, $d9
+	db $fe, $00
+
+Data_33cfe:
+	db $03, $00
+	db $03, $01
+	db $03, $02
+	db $03, $03
+	db $03, $04
+	db $ff
+
+Data_33d09:
+	db $02, $05
+	db $02, $06
+	db $02, $07
+	db $02, $08
+	db $02, $09
+	db $ff
+
+Data_33d14:
+	db $06, $0a
+	db $06, $0b
+	db $06, $0c
+	db $06, $0d
+	db $ff
+
+Data_33d1d:
+	db $06, $ce
+	db $06, $cf
+	db $06, $d0
+	db $ff
+
+Data_33d24:
+	db $04, $cb
+	db $04, $cc
+	db $04, $cd
+	db $ff
+
+Data_33d2b:
+	db $08, $12
+	db $08, $13
+	db $08, $14
+	db $08, $15
+	db $08, $16
+	db $08, $17
+	db $08, $18
+	db $ff
+
+Data_33d3a:
+	db $04, $1b
+	db $08, $1c
+	db $04, $1b
+	db $08, $1c
+	db $04, $1b
+	db $08, $1c
+	db $ff
+
+Data_33d47:
+	db $04, $1d
+	db $06, $1e
+	db $ff
+
+Data_33d4c:
+	db $04, $1f
+	db $04, $20
+	db $04, $21
+	db $04, $22
+	db $04, $23
+	db $ff
+
+Data_33d57:
+	db $04, $d1
+	db $04, $d2
+	db $ff
+
+Data_33d5c:
+	db $04, $2f
+	db $04, $30
+	db $fe, $00
+
+Data_33d62:
+	db $04, $32
+	db $04, $33
+	db $fe, $00
+
+Data_33d68:
+	db $04, $38
+	db $04, $37
+	db $04, $36
+	db $04, $35
+	db $04, $34
+	db $ff
+
+Data_33d73:
+	db $04, $3e
+	db $04, $3f
+	db $04, $40
+	db $04, $41
+	db $04, $42
+	db $04, $43
+	db $04, $44
+	db $04, $45
+	db $04, $46
+	db $04, $47
+	db $ff
+
+Data_33d88:
+	db $04, $48
+	db $04, $49
+	db $04, $4a
+	db $04, $4b
+	db $04, $4c
+	db $ff
+
+Data_33d93:
+	db $08, $51
+	db $08, $53
+	db $08, $51
+	db $08, $53
+	db $08, $51
+	db $08, $53
+	db $ff
+
+Data_33da0:
+	db $04, $56
+	db $04, $57
+	db $04, $58
+	db $ff
+
+Data_33da7:
+	db $04, $59
+	db $04, $5a
+	db $fe, $00
+
+Data_33dad:
+	db $04, $5b
+	db $04, $5c
+	db $fe, $00
+
+Data_33db3:
+	db $02, $5f
+	db $02, $60
+	db $fe, $00
+
+Data_33db9:
+	db $04, $64
+	db $04, $65
+	db $04, $66
+	db $fe, $00
+
+Data_33dc1:
+	db $04, $67
+	db $04, $68
+	db $04, $69
+	db $04, $6a
+	db $04, $6b
+	db $04, $6c
+	db $04, $6d
+	db $ff
+
+Data_33dd0:
+	db $04, $89
+	db $04, $8a
+	db $fe, $00
+
+Data_33dd6:
+	db $04, $8b
+	db $04, $8c
+	db $04, $8d
+	db $04, $8e
+	db $04, $8f
+	db $04, $90
+	db $ff
+
+Data_33de3:
+	db $04, $93
+	db $04, $94
+	db $04, $95
+	db $fe, $00
+
+Data_33deb:
+	db $04, $96
+	db $04, $97
+	db $04, $98
+	db $04, $99
+	db $04, $9a
+	db $04, $9b
+	db $ff
+
+Data_33df8:
+	db $04, $a8
+	db $04, $a9
+	db $04, $aa
+	db $fe, $00
+
+Data_33e00:
+	db $04, $ab
+	db $04, $ac
+	db $04, $ad
+	db $04, $ae
+	db $04, $af
+	db $04, $b0
+	db $ff
+
+Data_33e0d:
+	db $02, $b1
+	db $02, $b2
+	db $fe, $00
+
+Data_33e13:
+	db $04, $b3
+	db $04, $b4
+	db $fe, $00
+
+Data_33e19:
+	db $02, $b5
+	db $02, $b6
+	db $fe, $00
+
+Data_33e1f:
+	db $02, $b7
+	db $02, $b8
+	db $fe, $00
+
+Data_33e25:
+	db $02, $b9
+	db $02, $ba
+	db $fe, $00
+
+Data_33e2b:
+	db $02, $bb
+	db $02, $bc
+	db $fe, $00
+
+Data_33e31:
+	db $04, $d6
+	db $04, $d7
+	db $04, $d8
+	db $04, $d9
+	db $ff
+
+Data_33e3a:
+	db $04, $0b
+	db $04, $0c
+	db $fe, $00
+
+Data_33e40:
+	db $04, $0d
+	db $04, $0e
+	db $fe, $00
+
+Data_33e46:
+	db $04, $14
+	db $04, $15
+	db $fe, $00
+
+Data_33e4c:
+	db $04, $16
+	db $04, $17
+	db $ff
+
+Data_33e51:
+	db $04, $18
+	db $04, $19
+	db $04, $1a
+	db $fe, $00
+
+Data_33e59:
+	db $02, $9e
+	db $02, $a0
+	db $02, $a1
+	db $02, $a2
+	db $02, $a3
+	db $02, $a4
+	db $02, $a5
+	db $02, $a6
+	db $02, $a7
+	db $02, $a8
+	db $ff
+
+Data_33e6e:
+	db $02, $ad
+	db $02, $ae
+	db $02, $af
+	db $02, $b0
+	db $02, $b1
+	db $02, $b2
+	db $02, $b3
+	db $02, $b4
+	db $02, $b5
+	db $02, $b6
+	db $02, $b7
+	db $ff
+
+Data_33e85:
+	db $04, $2c
+	db $04, $2d
+	db $fe, $00
+
+Data_33e8b:
+	db $04, $30
+	db $04, $31
+	db $04, $32
+	db $fe, $00
+
+Data_33e93:
+	db $02, $38
+	db $02, $39
+	db $02, $3a
+	db $02, $3b
+	db $fe, $00
+
+Data_33e9d:
+	db $04, $3c
+	db $04, $3d
+	db $04, $3e
+	db $04, $3f
+	db $04, $40
+	db $04, $41
+	db $04, $42
+	db $ff
+
+Data_33eac:
+	db $02, $43
+	db $02, $44
+	db $fe, $00
+
+Data_33eb2:
+	db $04, $45
+	db $04, $46
+	db $04, $47
+	db $04, $48
+	db $04, $49
+	db $04, $4a
+	db $04, $4b
+	db $04, $4c
+	db $ff
+
+Data_33ec3:
+	db $08, $4e
+	db $08, $4f
+	db $ff
+
+Data_33ec8:
+	db $04, $57
+	db $04, $56
+	db $04, $58
+	db $04, $56
+	db $fe, $00
+
+Data_33ed2:
+	db $02, $59
+	db $02, $5a
+	db $fe, $00
+
+Data_33ed8:
+	db $02, $5b
+	db $02, $5c
+	db $fe, $00
+
+Data_33ede:
+	db $04, $5f
+	db $04, $60
+	db $04, $61
+	db $04, $62
+	db $04, $63
+	db $04, $69
+	db $04, $68
+	db $04, $67
+	db $04, $66
+	db $04, $65
+	db $04, $64
+	db $ff
+
+Data_33ef5:
+	db $04, $64
+	db $04, $65
+	db $04, $66
+	db $04, $67
+	db $04, $68
+	db $04, $69
+	db $04, $63
+	db $04, $62
+	db $04, $61
+	db $04, $60
+	db $04, $5f
+	db $ff
+
+Data_33f0c:
+	db $04, $6e
+	db $04, $6f
+	db $fe, $00
+
+Data_33f12:
+	db $04, $b7
+	db $04, $b8
+	db $04, $b7
+	db $04, $b8
+	db $04, $b7
+	db $04, $b8
+	db $04, $b7
+	db $04, $b8
+	db $ff
+
+Data_33f23:
+	db $04, $71
+	db $04, $72
+	db $fe, $00
+
+Data_33f29:
+	db $08, $73
+	db $08, $74
+	db $08, $75
+	db $08, $73
+	db $08, $74
+	db $08, $75
+	db $ff
+
+Data_33f36:
+	db $08, $87
+	db $08, $88
+	db $08, $89
+	db $fe, $00
+
+Data_33f3e:
+	db $04, $8a
+	db $04, $8b
+	db $04, $8c
+	db $fe, $00
+
+Data_33f46:
+	db $04, $97
+	db $04, $96
+	db $04, $95
+	db $04, $97
+	db $04, $96
+	db $04, $95
+	db $04, $97
+	db $04, $96
+	db $04, $95
+	db $04, $97
+	db $04, $96
+	db $04, $95
+	db $ff
+
+Data_33f5f:
+	db $04, $98
+	db $04, $99
+	db $04, $9a
+	db $fe, $00
+
+Data_33f67:
+	db $04, $9d
+	db $04, $9c
+	db $04, $9b
+	db $04, $9d
+	db $04, $9c
+	db $04, $9b
+	db $04, $9d
+	db $04, $9c
+	db $04, $9b
+	db $04, $9d
+	db $04, $9c
+	db $04, $9b
+	db $ff
+
+Data_33f80:
+	db $04, $05
+	db $04, $06
+	db $04, $07
+	db $04, $08
+	db $04, $09
+	db $04, $0a
+	db $04, $0b
+	db $04, $0c
+	db $ff
+
+Data_33f91:
+	db $08, $1d
+	db $08, $1e
+	db $08, $1f
+	db $ff
+
+Data_33f98:
+	db $04, $29
+	db $04, $2a
+	db $fe, $00
+
+Data_33f9e:
+	db $04, $2c
+	db $04, $2d
+	db $fe, $00
+
+Data_33fa4:
+	db $04, $8b
+	db $04, $8c
+	db $fe, $00
+
+Data_33faa:
+	db $04, $8b
+	db $04, $8c
+	db $fe, $00
+
+Data_33fb0:
+	db $04, $45
+	db $04, $46
+	db $04, $47
+	db $04, $48
+	db $ff
+
+Data_33fb9:
+	db $04, $d3
+	db $04, $d4
+	db $04, $d5
+	db $ff
+
+Data_33fc0:
+	db $04, $da
+	db $04, $db
+	db $04, $da
+	db $04, $db
+	db $04, $da
+	db $04, $db
+	db $04, $da
+	db $04, $db
+	db $ff
+
+Data_33fd1:
+	db $08, $b0
+	db $08, $b1
+	db $08, $b0
+	db $08, $b2
+	db $fe, $00
+
+Data_33fdb:
+	db $08, $b3
+	db $08, $b4
+	db $08, $b3
+	db $08, $b5
+	db $fe, $00
+
+Data_33fe5:
+	db $08, $b6
+	db $08, $b7
+	db $08, $b6
+	db $08, $b8
+	db $fe, $00
+
+Data_33fef:
+	db $08, $b9
+	db $08, $ba
+	db $08, $b9
+	db $08, $bb
+	db $fe, $00
+
+Data_33ff9:
+	db $00, $00
 
 SECTION "bank 0D", ROMX, BANK [$d]
 IF DEF(POWER)
@@ -15221,7 +17393,16 @@ Func_3a1bc:
 	dr $3a1bc, $3a696
 
 Func_3a696:
-	dr $3a696, $3ad7a
+	dr $3a696, $3a7fd
+
+Func_3a7fd:
+	dr $3a7fd, $3a996
+
+Func_3a996:
+	dr $3a996, $3ac86
+
+Func_3ac86:
+	dr $3ac86, $3ad7a
 
 SECTION "bank 0F", ROMX, BANK [$f]
 Func_3c000::
@@ -16555,13 +18736,31 @@ Func_c82df::
 	dr $c82df, $c830a
 
 Func_c830a:
-	dr $c830a, $c8d9b
+	dr $c830a, $c83bc
+
+Func_c83bc:
+	dr $c83bc, $c8621
+
+Func_c8621:
+	dr $c8621, $c885f
+
+Func_c885f:
+	dr $c885f, $c8d9b
 
 Func_c8d9b:
-	dr $c8d9b, $c903d
+	dr $c8d9b, $c8f2d
+
+Func_c8f2d:
+	dr $c8f2d, $c903d
 
 Func_c903d:
-	dr $c903d, $c9538
+	dr $c903d, $c91df
+
+Func_c91df:
+	dr $c91df, $c9374
+
+Func_c9374:
+	dr $c9374, $c9538
 
 Func_c9538::
 	dr $c9538, $c96ba
@@ -16710,7 +18909,10 @@ Data_e2d14::
 	dr $e2d14, $e319c
 
 GFX_e319c:
-	dr $e319c, $e4000
+	dr $e319c, $e3494
+
+GFX_e3494: INCBIN "gfx/misc/e3494.2bpp"
+	dr $e3514, $e3a54
 
 SECTION "bank 39", ROMX, BANK [$39]
 IF DEF(POWER)

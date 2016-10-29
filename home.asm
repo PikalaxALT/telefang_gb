@@ -5245,7 +5245,7 @@ Func_3238: ; 3238 (0:3238)
 	hlbgcoord 0, 5
 	ld de, TileMap_e1038
 	ld bc, $e0
-	call Func_372d
+	call FarCopy2bpp_2
 	ret
 
 Func_3252: ; 3252 (0:3252)
@@ -6008,7 +6008,7 @@ Func_3720::
 	homecall Func_a4187
 	ret
 
-Func_372d: ; 372d (0:372d)
+FarCopy2bpp_2: ; 372d (0:372d)
 	push af
 	ld a, [wROMBank]
 	ld [wca52], a
