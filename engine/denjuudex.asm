@@ -2,7 +2,7 @@ DenjuuDex:
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_11424
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_11424:

@@ -1,7 +1,7 @@
 TitleScreen: ; 893f (2:493f)
 	ld a, [wSubroutine]
 	ld hl, Pointers_8949
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_8949:

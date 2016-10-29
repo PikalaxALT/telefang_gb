@@ -10,7 +10,7 @@ PlayIntroMovie: ; 80bf (2:40bf)
 .asm_80d1
 	ld a, [wSubroutine]
 	ld hl, Pointers_80db
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_80db:

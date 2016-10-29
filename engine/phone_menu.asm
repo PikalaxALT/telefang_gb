@@ -1,7 +1,7 @@
 TopPhoneMenu:
 	ld a, [wSubroutine]
 	ld hl, Pointers_1000a
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_1000a:
@@ -696,7 +696,7 @@ Phone_Save: ; 1057d (4:457d)
 InGamePhoneMenu: ; 105c0 (4:45c0)
 	ld a, [wSubroutine]
 	ld hl, Pointers_105ca
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_105ca:
@@ -1290,7 +1290,7 @@ Func_10a49: ; 10a49 (4:4a49)
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_10a56
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_10a56:
@@ -1793,7 +1793,7 @@ Func_10e5b: ; 10e5b (4:4e5b)
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_10e68
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_10e68:
@@ -1863,7 +1863,7 @@ Func_10ee7: ; 10ee7 (4:4ee7)
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_10ef4
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_10ef4:
@@ -2028,7 +2028,7 @@ InGamePhone_Save: ; 11023 (4:5023)
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_11030
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_11030:
@@ -2078,7 +2078,7 @@ Func_1107e: ; 1107e (4:507e)
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_1108b
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 
@@ -2138,7 +2138,7 @@ Func_110ee:
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_110fb
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_110fb:
@@ -2378,7 +2378,7 @@ Func_112e3:
 	call Func_116e7
 	ld a, [wSubroutine2]
 	ld hl, Pointers_112f0
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_112f0:
@@ -3153,7 +3153,7 @@ Func_11b37: ; 11b37 (4:5b37)
 Func_11c1d:
 	ld a, [wcb65]
 	ld hl, Pointers_11c27
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_11c27:
@@ -3325,7 +3325,7 @@ Func_11d35: ; 11d35 (4:5d35)
 Func_11d40: ; 11d40 (4:5d40)
 	ld hl, Data_11d5e
 	ld a, [wcb65]
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -3359,7 +3359,7 @@ Data_11d5e:
 Func_11d7e: ; 11d7e (4:5d7e)
 	ld hl, Data_11dab
 	ld a, [wcb67]
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -3439,7 +3439,7 @@ Func_11dcb: ; 11dcb (4:5dcb)
 	call Func_11efa
 	ld a, [wcb20]
 	ld hl, Data_11e86
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -3485,7 +3485,7 @@ asm_11e60
 	push af
 	ld a, [wcb20]
 	ld hl, Data_11e86
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -3543,7 +3543,7 @@ Func_11ec6: ; 11ec6 (4:5ec6)
 	ld a, [wcb67]
 	add b
 	ld hl, wd002
-	jp Rom4_PointToShortInTable
+	jp Rom4_PointToWordInTable
 
 Func_11ed8: ; 11ed8 (4:5ed8)
 	call Func_11ec6
@@ -3775,7 +3775,7 @@ Func_1204e: ; 1204e (4:604e)
 	push bc
 	push de
 	ld hl, Data_1207d
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4061,7 +4061,7 @@ Func_1224e: ; 1224e (4:624e)
 	jr nz, .loop
 	ret
 
-Rom4_PointToShortInTable: ; 12270 (4:6270)
+Rom4_PointToWordInTable: ; 12270 (4:6270)
 	ld d, $0
 	ld e, a
 	sla e
@@ -4110,7 +4110,7 @@ Func_122ba: ; 122ba (4:62ba)
 	call Rom4_GetSRAMBankB
 	pop af
 	ld hl, s1_b000
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	push af
 	ld a, [hli]
@@ -4714,13 +4714,13 @@ Func_126c0: ; 126c0 (4:66c0)
 	ld [wcb66], a
 	ld a, [wcb2a]
 	ld hl, Pointers_1280d
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wcb65]
 	sub $4
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4774,13 +4774,13 @@ Func_1272a: ; 1272a (4:672a)
 	ld [wcb66], a
 	ld a, [wcb2a]
 	ld hl, Pointers_1280d
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wcb65]
 	sub $4
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5122,12 +5122,12 @@ LoadPhoneKeypad: ; 1293b (4:693b)
 	ld hl, Pointers_1299a
 .asm_12948
 	ld a, [wCurPhoneGFX]
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wcb28]
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	ld a, [hli]
 .asm_12958
 	ld h, [hl]
@@ -7019,7 +7019,7 @@ Func_1371c: ; 1371c (4:771c)
 	ld hl, $380
 .asm_13767
 	ld a, [wCurBackground]
-	call Rom4_PointToShortInTable
+	call Rom4_PointToWordInTable
 	push hl
 	pop bc
 	push bc

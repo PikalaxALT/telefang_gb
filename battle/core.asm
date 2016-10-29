@@ -1,7 +1,7 @@
 DoBattle::
 	ld a, [wSubroutine]
 	ld hl, Pointers_14425
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_14425:
@@ -60,7 +60,7 @@ Func_14460: ; 14460 (5:4460)
 .asm_14483
 	ld a, [wBattleSubroutine]
 	ld hl, Pointers_1448d
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_1448d:
@@ -4520,7 +4520,7 @@ Func_16614: ; 16614 (5:6614)
 Func_16643:
 	ld a, [wd401]
 	ld hl, Pointers_1664d
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_1664d:

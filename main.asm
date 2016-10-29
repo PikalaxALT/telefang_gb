@@ -8,7 +8,7 @@ SECTION "bank 02", ROMX, BANK [$2]
 Func_8000::
 	ld a, [wSubroutine]
 	ld hl, Pointers_800a
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_800a::
@@ -110,7 +110,7 @@ INCLUDE "engine/intro_movie.asm"
 Func_84cf: ; 84cf (2:44cf)
 	ld a, [wSubroutine]
 	ld hl, Pointers_84d9
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_84d9::
@@ -210,7 +210,7 @@ Func_8584::
 GameOverScreen: ; 858e (2:458e)
 	ld a, [wSubroutine]
 	ld hl, Pointers_8598
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_8598:
@@ -595,7 +595,7 @@ Func_881b: ; 881b (2:481b)
 Func_8824: ; 8824 (2:4824)
 	ld a, [wSubroutine]
 	ld hl, Pointers_882e
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_882e:
@@ -768,7 +768,7 @@ INCLUDE "engine/title_screen.asm"
 Func_8b8b: ; 8b8b (2:4b8b)
 	ld a, [wMoveAnimationSubroutine]
 	ld hl, Pointers_8b95
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_8b95:
@@ -14126,7 +14126,7 @@ Func_32bcd: ; 32bcd (c:6bcd)
 	adc h
 	ld h, a
 	ld b, BANK(ItemPrices)
-	call GetFarShort
+	call GetFarWord
 	ld h, d
 	ld l, e
 	ld b, $0
@@ -14275,7 +14275,7 @@ Func_32bf4: ; 32bf4 (c:6bf4)
 	adc h
 	ld h, a
 	ld b, BANK(ItemPrices)
-	call GetFarShort
+	call GetFarWord
 	ld a, [wcadc]
 	ld l, a
 	ld a, [wcadd]
@@ -18041,32 +18041,417 @@ Func_39488: ; 39488 (e:5488)
 .asm_39496
 	ret
 
-Func_39497:
-	dr $39497, $394ea
+Func_39497: ; 39497 (e:5497)
+	ld a, $0
+	ld [wc49c], a
+	ld a, [wc493]
+	dec a
+	ld [wc493], a
+	jr nz, .asm_394d9
+	ld a, $0
+	ld [wc49a], a
+	ld a, [wcd51]
+	ld [wcd03], a
+	ld b, a
+	ld a, [wcd50]
+	ld [wcd02], a
+	cp $ff
+	jr nz, .asm_394c0
+	ld a, b
+	cp $ff
+	jr z, .asm_394d8
+.asm_394c0
+	ld a, $1
+	ld [wcd00], a
+	ld a, $0
+	ld [wcd10], a
+	ld a, $0
+	ld [wcd01], a
+	ld hl, wcd06
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+.asm_394d8
+	ret
 
-Func_394ea:
-	dr $394ea, $3952b
+.asm_394d9
+	cp $40
+	jr nz, .asm_394d8
+	ld b, $40
+	ld c, $1
+	call Func_341d
+	ld a, $41
+	ld [H_SFX_ID], a
+	ret
 
-Func_3952b:
-	dr $3952b, $39550
+Func_394ea: ; 394ea (e:54ea)
+	ld a, [wc493]
+	ld hl, Data_39517
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld b, [hl]
+	ld a, [wc9f4]
+	sub b
+	ld [wc9f4], a
+	ld a, [wc493]
+	inc a
+	ld [wc493], a
+	cp $14
+	jr c, .asm_39516
+	ld a, [wc9f4]
+	add $9
+	ld [wc9f4], a
+	ld a, $0
+	ld [wc49a], a
+.asm_39516
+	ret
 
-Func_39550:
-	dr $39550, $39598
+Data_39517:
+	db  0,  0
+	db  0,  0
+	db  0,  0
+	db  1,  0
+	db  0,  0
+	db  0,  0
+	db  0,  0
+	db  1,  0
+	db  0,  0
+	db  0,  0
 
-Func_39598:
-	dr $39598, $3963a
+Func_3952b: ; 3952b (e:552b)
+	ld a, [wc493]
+	ld hl, Data_39517
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld b, [hl]
+	ld a, [wc9f4]
+	add b
+	ld [wc9f4], a
+	ld a, [wc493]
+	inc a
+	ld [wc493], a
+	cp $14
+	jr c, .asm_3954f
+	ld a, $0
+	ld [wc49a], a
+.asm_3954f
+	ret
 
-Func_3963a:
-	dr $3963a, $3966d
+Func_39550: ; 39550 (e:5550)
+	ld a, [wc494]
+	dec a
+	ld [wc494], a
+	jr nz, .asm_39595
+	ld a, $0
+	ld [wc49a], a
+	ld a, [wc9df]
+	ld b, a
+	ld a, [wc915]
+	cp b
+	jp nz, Func_3966d
+	ld a, [wc9e0]
+	ld b, a
+	ld a, [wc916]
+	cp b
+	jp nz, Func_3966d
+	ld a, [wPlayerXCoord]
+	ld [wc48a], a
+	ld a, [wPlayerYCoord]
+	ld [wc48e], a
+	ld a, $e
+	ld [wc49a], a
+	ld a, $0
+	ld [wc495], a
+	ld a, $b
+	ld [wc9f4], a
+	ld a, $11
+	ld [H_SFX_ID], a
+	ret
 
-Func_3966d:
-	dr $3966d, $3982c
+.asm_39595
+	jp Func_3966d
+
+Func_39598: ; 39598 (e:5598)
+	ld a, [wc495]
+	add $2
+	cp $40
+	jr nc, .asm_395a4
+	ld [wc495], a
+.asm_395a4
+	ld a, [wc9df]
+	swap a
+	and $f0
+	add $8
+	ld e, a
+	ld a, [wc48a]
+	ld c, a
+	ld a, [wc495]
+	ld b, a
+	call Func_3013
+	ld a, l
+	ld [wPlayerXCoord], a
+	call Func_39be9
+	ld a, [wc9e0]
+	inc a
+	and $f
+	swap a
+	ld e, a
+	ld a, [wc48e]
+	ld c, a
+	ld a, [wc495]
+	ld b, a
+	call Func_3013
+	ld a, l
+	ld [wPlayerYCoord], a
+	call Func_39bd5
+	ld a, [wc984]
+	and $3
+	ret nz
+	ld a, [wc9f4]
+	inc a
+	ld [wc9f4], a
+	cp $1a
+	ret nz
+	ld a, [wc905]
+	cp $8
+	jr z, .asm_39631
+	cp $10
+	jr z, .asm_395ff
+	ld a, [wc904]
+	dec a
+	ld [wc904], a
+	jr .asm_39606
+
+.asm_395ff
+	ld a, [wc904]
+	inc a
+	ld [wc904], a
+.asm_39606
+	ld a, $2
+	ld [wc900], a
+	ld a, [wc9df]
+	swap a
+	and $f0
+	add $8
+	ld [wc901], a
+	ld a, [wc9e0]
+	inc a
+	and $f
+	swap a
+	ld [wc902], a
+	ld a, BANK(Func_39598)
+	ld [wPrevROMBank], a
+	ld a, $7
+	ld [wSubroutine], a
+	ld a, $4
+	jp Func_050a
+
+.asm_39631
+	callba Func_c8802
+	ret
+
+Func_3963a: ; 3963a (e:563a)
+	ld a, $0
+	ld [wc989], a
+	ld a, [wc495]
+	dec a
+	ld [wc495], a
+	jr nz, .asm_3964e
+	ld a, $0
+	ld [wc49a], a
+	ret
+
+.asm_3964e
+	ld a, [wc494]
+	cp $c
+	jr z, .asm_39665
+	cp $d
+	jr z, .asm_39669
+	cp $e
+	jr z, .asm_39661
+	ld a, D_LEFT
+	jr asm_39674
+
+.asm_39661
+	ld a, D_RIGHT
+	jr asm_39674
+
+.asm_39665
+	ld a, D_UP
+	jr asm_39674
+
+.asm_39669
+	ld a, D_DOWN
+	jr asm_39674
+
+Func_3966d: ; 3966d (e:566d)
+	ld a, $0
+	ld [wc989], a
+	ld a, [hJoyLast]
+asm_39674
+	ld b, a
+	and $f0
+	push af
+	jr z, .asm_39699
+	ld a, [wOverworldMapEnd]
+	or a
+	jr z, .asm_3968c
+	ld a, [wca6e]
+	inc a
+	cp $14
+	jr c, .asm_39689
+	xor a
+.asm_39689
+	ld [wca6e], a
+.asm_3968c
+	ld a, [wTakingAStep]
+	or a
+	jr nz, .asm_3969e
+	ld a, $1
+	ld [wTakingAStep], a
+	jr .asm_3969e
+
+.asm_39699
+	ld a, $0
+	ld [wca6e], a
+.asm_3969e
+	pop af
+	swap a
+	and $f
+	ld hl, Pointers_396c7
+	add a
+	ld b, a
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Func_396c6
+	ld a, [wc98e]
+	or a
+	jr nz, .asm_396c5
+	call Func_2509
+	ld a, [wSubroutine]
+	cp $4
+	jr nz, .asm_396c5
+	call Func_256e
+.asm_396c5
+	ret
+
+Func_396c6: ; 396c6 (e:56c6)
+	jp [hl]
+
+Pointers_396c7:
+	dw Func_397e7
+	dw Func_399b3
+	dw Func_39950
+	dw Func_397e7
+	dw Func_3985b
+	dw Func_39a24
+	dw Func_39a78
+	dw Func_3985b
+	dw Func_398b8
+	dw Func_39a40
+	dw Func_39a5c
+	dw Func_398b8
+	dw Func_397e7
+	dw Func_399b3
+	dw Func_39950
+	dw Func_397e7
+
+Data_396e7:
+	db $00, $00, $00, $00, $80, $00, $00, $00, $80, $ff, $00, $00, $00, $00, $00, $00
+	db $00, $00, $80, $ff, $59, $00, $a7, $ff, $a7, $ff, $a7, $ff, $00, $00, $80, $ff
+	db $00, $00, $80, $00, $59, $00, $59, $00, $a7, $ff, $59, $00, $00, $00, $59, $00
+	db $00, $00, $00, $00, $80, $00, $00, $00, $80, $ff, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $40, $00, $00, $00, $c0, $7f, $00, $00, $00, $00, $00, $00
+	db $00, $00, $c0, $7f, $2c, $00, $d3, $7f, $d3, $7f, $d3, $7f, $00, $00, $c0, $7f
+	db $00, $00, $40, $00, $2c, $00, $2c, $00, $d3, $7f, $2c, $00, $00, $00, $2c, $00
+	db $00, $00, $00, $00, $40, $00, $00, $00, $c0, $7f, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $55, $00, $00, $00, $ab, $ff, $00, $00, $00, $00, $00, $00
+	db $00, $00, $ab, $ff, $3b, $00, $c5, $ff, $c5, $ff, $c5, $ff, $00, $00, $ab, $ff
+	db $00, $00, $55, $00, $3b, $00, $3b, $00, $c5, $ff, $3b, $00, $00, $00, $3b, $00
+	db $00, $00, $00, $00, $55, $00, $00, $00, $ab, $ff, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $2a, $00, $00, $00, $d5, $7f, $00, $00, $00, $00, $00, $00
+	db $00, $00, $d5, $7f, $1d, $00, $e2, $7f, $e2, $7f, $e2, $7f, $00, $00, $d5, $7f
+	db $00, $00, $2a, $00, $1d, $00, $1d, $00, $e2, $7f, $1d, $00, $00, $00, $1d, $00
+	db $00, $00, $00, $00, $2a, $00, $00, $00, $d5, $7f, $00, $00, $00, $00, $00, $00
+
+Func_397e7:
+	call Func_3982c
+	ld a, [wca5d]
+	inc a
+	jr nz, .asm_397f1
+	cpl
+.asm_397f1
+	ld [wca5d], a
+	ld a, [wc905]
+	cp $7
+	jr nz, .asm_3981b
+	ld a, [wc9ef]
+	cp $c
+	jr z, .asm_3980e
+	cp $d
+	jr z, .asm_3980e
+	cp $f
+	jr z, .asm_3980e
+	cp $e
+	jr nz, .asm_3981b
+.asm_3980e
+	ld [wc494], a
+	ld a, $f
+	ld [wc49a], a
+	ld a, $10
+	ld [wc495], a
+.asm_3981b
+	ret
+
+Data_3981c:
+	db $86, $87, $86, $88
+	db $06, $07, $06, $08
+	db $03, $04, $03, $05
+	db $00, $01, $00, $02
 
 Func_3982c:
-	dr $3982c, $39bd5
+	dr $3982c, $3985b
+
+Func_3985b:
+	dr $3985b, $398b8
+
+Func_398b8:
+	dr $398b8, $39950
+
+Func_39950:
+	dr $39950, $399b3
+
+Func_399b3:
+	dr $399b3, $39a24
+
+Func_39a24:
+	dr $39a24, $39a40
+
+Func_39a40:
+	dr $39a40, $39a5c
+
+Func_39a5c:
+	dr $39a5c, $39a78
+
+Func_39a78:
+	dr $39a78, $39bd5
 
 Func_39bd5:
-	dr $39bd5, $39bfa
+	dr $39bd5, $39be9
+
+Func_39be9:
+	dr $39be9, $39bfa
 
 Func_39bfa:
 	dr $39bfa, $39c1c
@@ -19472,7 +19857,10 @@ Func_c83bc:
 	dr $c83bc, $c8621
 
 Func_c8621:
-	dr $c8621, $c885f
+	dr $c8621, $c8802
+
+Func_c8802:
+	dr $c8802, $c885f
 
 Func_c885f:
 	dr $c885f, $c8d9b

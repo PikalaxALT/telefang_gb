@@ -767,7 +767,7 @@ Func_0e7f: ; e7f (0:0e7f)
 	ld [hl], a
 	ret
 
-GetShortFromTable::
+GetWordFromTable::
 	ld b, $0
 	ld c, a
 	sla c
@@ -1769,7 +1769,7 @@ Func_192a: ; 192a (0:192a)
 Func_1939: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_1943
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_1943::
@@ -1838,7 +1838,7 @@ Func_19b3::
 Func_19b9: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_19c3
-	call GetShortFromTable
+	call GetWordFromTable
 	jp [hl]
 
 Pointers_19c3::
@@ -4762,7 +4762,7 @@ Func_2f43::
 	rst Bankswitch
 	ret
 
-GetFarShort::
+GetFarWord::
 	ld a, [wROMBank]
 	push af
 	ld a, b
