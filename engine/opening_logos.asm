@@ -1,7 +1,7 @@
 OpeningLogos: ; 9300 (2:5300)
 	ld a, [wSubroutine]
 	ld hl, Pointers_930a
-	call GetHalfwordFromTable
+	call GetShortFromTable
 	jp [hl]
 
 Pointers_930a:

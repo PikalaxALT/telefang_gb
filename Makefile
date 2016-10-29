@@ -5,7 +5,7 @@ MD5 := md5sum -c --quiet
 .SUFFIXES:
 .PHONY: all clean power speed
 .SECONDEXPANSION:
-.PRECIOUS: %.2bpp %.1bpp
+.PRECIOUS: %.2bpp %.1bpp %.tz %.pcm
 
 gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) scan_includes.py

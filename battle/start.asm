@@ -1,7 +1,7 @@
 StartBattle::
 	ld a, [wSubroutine]
 	ld hl, Pointers_7000a
-	call GetHalfwordFromTable
+	call GetShortFromTable
 	jp [hl]
 
 Pointers_7000a:
@@ -681,7 +681,7 @@ Func_7048c: ; 7048c (1c:448c)
 Func_704af: ; 704af (1c:44af)
 	ld a, [wBattleSubroutine]
 	ld hl, Pointers_704b9
-	call GetHalfwordFromTable
+	call GetShortFromTable
 	jp [hl]
 
 Pointers_704b9:
@@ -1462,7 +1462,7 @@ Func_70aca: ; 70aca (1c:4aca)
 Func_70afd: ; 70afd (1c:4afd)
 	ld a, [wBattleSubroutine]
 	ld hl, Pointers_70b07
-	call GetHalfwordFromTable
+	call GetShortFromTable
 	jp [hl]
 
 Pointers_70b07:
@@ -3054,7 +3054,7 @@ Pointers_717e5:
 Func_717f7: ; 717f7 (1c:57f7)
 	ld a, [wd401]
 	ld hl, Pointers_71801
-	call GetHalfwordFromTable
+	call GetShortFromTable
 	jp [hl]
 
 Pointers_71801:

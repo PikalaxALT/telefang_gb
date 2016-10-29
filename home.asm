@@ -767,7 +767,7 @@ Func_0e7f: ; e7f (0:0e7f)
 	ld [hl], a
 	ret
 
-GetHalfwordFromTable::
+GetShortFromTable::
 	ld b, $0
 	ld c, a
 	sla c
@@ -1769,7 +1769,7 @@ Func_192a: ; 192a (0:192a)
 Func_1939: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_1943
-	call GetHalfwordFromTable
+	call GetShortFromTable
 	jp [hl]
 
 Pointers_1943::
@@ -1838,7 +1838,7 @@ Func_19b3::
 Func_19b9: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_19c3
-	call GetHalfwordFromTable
+	call GetShortFromTable
 	jp [hl]
 
 Pointers_19c3::
@@ -4319,7 +4319,7 @@ Func_2c94::
 	push af
 	ld a, BANK(Func_302a8)
 	rst Bankswitch
-	ld hl, wc98a
+	ld hl, wCurObjectStruct
 	ld a, wc4a0 % $100
 	ld [hli], a
 	ld a, wc4a0 / $100
@@ -4762,7 +4762,7 @@ Func_2f43::
 	rst Bankswitch
 	ret
 
-Func_2f6a::
+GetFarShort::
 	ld a, [wROMBank]
 	push af
 	ld a, b

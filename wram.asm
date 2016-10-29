@@ -1042,8 +1042,7 @@ wc986:: ds 1
 wc987:: ds 1
 wc988:: ds 1
 wc989:: ds 1
-wc98a:: ds 1
-wc98b:: ds 1
+wCurObjectStruct:: dw
 wc98c:: ds 1
 wc98d:: ds 1
 wc98e:: ds 1
