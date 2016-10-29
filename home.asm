@@ -7184,7 +7184,7 @@ LoadScriptedEnemyDenjuu: ; 3e45 (0:3e45)
 	ld a, [hli]
 	ld [wEnemyDenjuu1Level], a
 	ld a, [hli]
-	ld [wEnemyDenjuu1Autonomy], a
+	ld [wEnemyDenjuu1FD], a
 	inc hl
 	ld a, [hl]
 	ld [wEnemyDenjuu1Field0x0c], a
@@ -7202,7 +7202,7 @@ LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld a, [hli]
 	ld [wEnemyDenjuu1Field0x08], a
 	ld a, [hli]
-	ld [wEnemyDenjuu1Autonomy], a
+	ld [wEnemyDenjuu1FD], a
 	inc hl
 	ld a, [hli]
 	ld [wEnemyDenjuu1Field0x0c], a
@@ -7213,7 +7213,7 @@ LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld a, [hli]
 	ld [wEnemyDenjuu2Field0x08], a
 	ld a, [hli]
-	ld [wEnemyDenjuu2Autonomy], a
+	ld [wEnemyDenjuu2FD], a
 	inc hl
 	ld a, [hli]
 	ld [wEnemyDenjuu2Field0x0c], a
@@ -7224,7 +7224,7 @@ LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld a, [hli]
 	ld [wEnemyDenjuu3Field0x08], a
 	ld a, [hli]
-	ld [wEnemyDenjuu3Autonomy], a
+	ld [wEnemyDenjuu3FD], a
 	inc hl
 	ld a, [hl]
 	ld [wEnemyDenjuu3Field0x0c], a

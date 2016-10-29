@@ -938,8 +938,8 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	cp $5
 	jr nz, .check_2
 .roll_1
-	ld a, [wCurDenjuuBufferAutonomy]
-	add $9b
+	ld a, [wCurDenjuuBufferFD]
+	add (-101 & $ff)
 	ld b, a
 	call Random
 	cp b
@@ -959,9 +959,9 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	cp $9
 	jr nz, .show_menu
 .roll_2
-	ld a, [wCurDenjuuBufferAutonomy]
+	ld a, [wCurDenjuuBufferFD]
 	sla a
-	add $37
+	add (-201 & $ff)
 	ld b, a
 	call Random
 	cp b
@@ -2248,9 +2248,9 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wPlayerDenjuu2Field0x0c]
 	cp $4
 	jp nc, Func_155ed
-	ld a, [wPlayerDenjuu2Autonomy]
+	ld a, [wPlayerDenjuu2FD]
 	sla a
-	add $37
+	add (-201 & $ff)
 	ld b, a
 	call Random
 	cp b
@@ -2291,9 +2291,9 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wPlayerDenjuu3Field0x0c]
 	cp $4
 	jp nc, Func_155ed
-	ld a, [wPlayerDenjuu3Autonomy]
+	ld a, [wPlayerDenjuu3FD]
 	sla a
-	add $37
+	add (-201 & $ff)
 	ld b, a
 	call Random
 	cp b
@@ -2510,9 +2510,9 @@ Func_15683: ; 15683 (5:5683)
 	ld a, [wEnemyDenjuu2Field0x0c]
 	cp $4
 	jp nc, Func_157e0
-	ld a, [wEnemyDenjuu2Autonomy]
+	ld a, [wEnemyDenjuu2FD]
 	sla a
-	add $37
+	add (-201 & $ff)
 	ld b, a
 	call Random
 	cp b
@@ -2552,9 +2552,9 @@ asm_1570f
 	ld a, [wEnemyDenjuu3Field0x0c]
 	cp $4
 	jr nc, Func_15766
-	ld a, [wEnemyDenjuu3Autonomy]
+	ld a, [wEnemyDenjuu3FD]
 	sla a
-	add $37
+	add (-201 & $ff)
 	ld b, a
 	call Random
 	cp b
@@ -5433,9 +5433,9 @@ Func_16cda: ; 16cda (5:6cda)
 	cp $7
 	jr nz, Func_16d5c
 .asm_16d14
-	ld a, [wCurDenjuuBufferAutonomy]
+	ld a, [wCurDenjuuBufferFD]
 	sla a
-	add $37
+	add (-201 & $ff)
 	ld b, a
 	call Random
 	cp b
@@ -6085,9 +6085,9 @@ asm_171d9
 	cp $7
 	jr nz, Func_17246
 .asm_17203
-	ld a, [wCurDenjuuBufferAutonomy]
+	ld a, [wCurDenjuuBufferFD]
 	sla a
-	add $37
+	add (-201 & $ff)
 	ld b, a
 	call Random
 	cp b

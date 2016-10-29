@@ -48,7 +48,7 @@ Func_70016: ; 70016 (1c:4016)
 	ld a, [hli]
 	ld [wPlayerDenjuu1Level], a
 	ld a, [hli]
-	ld [wPlayerDenjuu1Autonomy], a
+	ld [wPlayerDenjuu1FD], a
 	ld a, [hl]
 	ld [wPlayerDenjuu1Field0x0c], a
 	xor a
@@ -2645,7 +2645,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld a, [hli]
 	ld [wPlayerDenjuu2Level], a
 	ld a, [hli]
-	ld [wPlayerDenjuu2Autonomy], a
+	ld [wPlayerDenjuu2FD], a
 	ld a, [hl]
 	ld [wPlayerDenjuu2Field0x0c], a
 	ld hl, sAddressBook + $08
@@ -2678,7 +2678,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld a, [hli]
 	ld [wPlayerDenjuu3Level], a
 	ld a, [hli]
-	ld [wPlayerDenjuu3Autonomy], a
+	ld [wPlayerDenjuu3FD], a
 	ld a, [hl]
 	ld [wPlayerDenjuu3Field0x0c], a
 	ld hl, sAddressBook + $08
