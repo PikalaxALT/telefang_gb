@@ -21191,20 +21191,593 @@ Func_3acc9:
 	ret
 
 SECTION "bank 0F", ROMX, BANK [$f]
-Func_3c000::
-	dr $3c000, $3c00c
+Func_3c000: ; 3c000 (f:4000)
+	ld a, [wSubroutine]
+	cp $4
+	ret nz
+	ld a, [wcd10]
+	or a
+	jr nz, asm_3c019
+Func_3c00c: ; 3c00c (f:400c)
+	ld a, [wcd00]
+	or a
+	jp z, Func_3c050
+asm_3c013
+	ld a, [wcd10]
+	or a
+	jr z, asm_3c01e
+asm_3c019
+	dec a
+	ld [wcd10], a
+	ret
 
-Func_3c00c::
-	dr $3c00c, $3c91b
+asm_3c01e
+	ld a, [wcd01]
+	ld b, a
+	add a
+	add b
+	ld hl, Pointers_3c03b
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Func_2f43
+	call Func_3c041
+	jr c, asm_3c013
+	ret
 
-Func_3c91b::
-	dr $3c91b, $3d00e
+Pointers_3c03b:
+	dba Pointers_150000
+	dba Pointers_154000
+
+Func_3c041: ; 3c041 (f:4041)
+	ld a, [wcd08]
+	ld c, a
+	ld b, $0
+	ld hl, Pointers_3c130
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Func_3c050: ; 3c050 (f:4050)
+	ld a, [wc98e]
+	or a
+	ret nz
+	ld a, [wc49a]
+	cp $0
+	ret nz
+	ld hl, wcd50
+Func_3c05e: ; 3c05e (f:405e)
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, $ff
+	cp c
+	jr nz, .asm_3c06b
+	cp b
+	jr nz, .asm_3c06b
+	ret
+
+.asm_3c06b
+	push hl
+	push bc
+	ld hl, EVENT_400
+	add hl, bc
+	ld b, h
+	ld c, l
+	call CheckEventFlag
+	pop bc
+	push bc
+	jp nz, Func_3c109
+	ld h, b
+	ld l, c
+	add hl, bc
+	add hl, hl
+	add hl, bc
+	ld bc, Data_14c000 + $2
+	add hl, bc
+	ld b, BANK(Data_14c000)
+	call Func_2f34
+	ld a, [wc497]
+	bit 0, a
+	jr z, .asm_3c092
+	xor $2
+.asm_3c092
+	ld hl, Data_3c10e
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	and d
+	jr z, Func_3c109
+	ld a, b
+	and $1
+	jr z, .asm_3c0c0
+	ld a, [wc98e]
+	or a
+	jr nz, Func_3c109
+	ld a, [wc915]
+	ld e, a
+	ld a, c
+	swap a
+	and $f
+	cp e
+	jr nz, Func_3c109
+	ld a, [wc916]
+	ld e, a
+	ld a, c
+	and $f
+	cp e
+	jr nz, Func_3c109
+.asm_3c0c0
+	ld a, b
+	and $2
+	jr z, .asm_3c0cb
+	ld a, [hJoyNew]
+	and $1
+	jr z, Func_3c109
+.asm_3c0cb
+	ld a, b
+	and $4
+	jr nz, .asm_3c0dd
+	pop bc
+	push bc
+	ld hl, EVENT_800
+	add hl, bc
+	ld b, h
+	ld c, l
+	call CheckEventFlag
+	jr z, Func_3c109
+.asm_3c0dd
+	pop bc
+	ld a, b
+	ld [wcd03], a
+	ld a, c
+	ld [wcd02], a
+	ld a, $1
+	ld [wcd00], a
+	ld a, $0
+	ld [wcd10], a
+	ld a, $0
+	ld [wcd01], a
+	ld hl, wcd06
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	add sp, $2
+	callba Func_3982c
+	ret
+
+Func_3c109: ; 3c109 (f:4109)
+	pop bc
+	pop hl
+	jp Func_3c05e
+
+Data_3c10e:
+x = 0
+REPT 4
+	db 1 << x
+x = x + 1
+ENDR
+
+Func_3c112: ; 3c112 (f:4112)
+	push hl
+	push de
+	ld a, [wcd06]
+	ld l, a
+	ld a, [wcd07]
+	ld h, a
+	ld d, $0
+	ld e, b
+	bit 7, b
+	jr z, .asm_3c124
+	dec d
+.asm_3c124
+	add hl, de
+	ld a, l
+	ld [wcd06], a
+	ld a, h
+	ld [wcd07], a
+	pop de
+	pop hl
+	ret
+
+Pointers_3c130:
+	dw Func_3c263
+	dw Func_3c222
+	dw Func_3c222
+	dw Func_3c23d
+	dw Func_3c247
+	dw Func_3c254
+	dw Func_3c263
+	dw Func_3c28f
+	dw Func_3c28f
+	dw Func_3c28f
+	dw Func_3c28f
+	dw Func_3c28f
+	dw Func_3c314
+	dw Func_3c314
+	dw Func_3c35e
+	dw Func_3c38b
+	dw Func_3c3c7
+	dw Func_3c3ee
+	dw Func_3c3ee
+	dw Func_3c406
+	dw Func_3c458
+	dw Func_3c481
+	dw Func_3c499
+	dw Func_3c49c
+	dw Func_3c4a9
+	dw Func_3c4b7
+	dw Func_3c4d4
+	dw Func_3c4d4
+	dw Func_3c50a
+	dw Func_3c536
+	dw Func_3c596
+	dw Func_3c5c7
+	dw Func_3c5c7
+	dw Func_3c5c7
+	dw Func_3c61b
+	dw Func_3c645
+	dw Func_3c696
+	dw Func_3c696
+	dw Func_3c6aa
+	dw Func_3c6ed
+	dw Func_3c6ed
+	dw Func_3c73a
+	dw Func_3c977
+	dw Func_3c73a
+	dw Func_3c987
+	dw Func_3c73a
+	dw Func_3c9b4
+	dw Func_3c73a
+	dw Func_3c74e
+	dw Func_3c76a
+	dw Func_3c76a
+	dw Func_3c76a
+	dw Func_3ca66
+	dw Func_3ca78
+	dw Func_3c78b
+	dw Func_3c7a5
+	dw Func_3ca8a
+	dw Func_3caa8
+	dw Func_3c7bf
+	dw Func_3c7d6
+	dw Func_3ca46
+	dw Func_3ca06
+	dw Func_3caf0
+	dw Func_3cabc
+	dw Func_3c7f0
+	dw Func_3c7f0
+	dw Func_3c7f0
+	dw Func_3c7f0
+	dw Func_3c802
+	dw Func_3c80f
+	dw Func_3c822
+	dw Func_3c822
+	dw Func_3c822
+	dw Func_3c822
+	dw Func_3c822
+	dw Func_3c843
+	dw Func_3cb2a
+	dw Func_3cb46
+	dw Func_3c843
+	dw Func_3c843
+	dw Func_3c85a
+	dw Func_3ccd9
+	dw Func_3cce7
+	dw Func_3ccf5
+	dw Func_3cd02
+	dw Func_3cd1d
+	dw Func_3c85a
+	dw Func_3c943
+	dw Func_3c962
+	dw Func_3cd38
+	dw Func_3ce0f
+	dw Func_3ce34
+	dw Func_3ce70
+	dw Func_3ce97
+	dw Func_3ceb6
+	dw Func_3cecd
+	dw Func_3cf13
+	dw Func_3cf28
+	dw Func_3c3e4
+	dw Func_3c687
+	dw Func_3ca32
+	dw Func_3cf1a
+	dw Func_3cf21
+	dw Func_3cf44
+	dw Func_3c2d9
+	dw Func_3cf54
+	dw Func_3cf93
+	dw Func_3cfa6
+	dw Func_3c42f
+	dw Func_3cfb3
+	dw Func_3cfca
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+	dw Func_3c972
+
+Func_3c222:
+	dr $3c222, $3c23d
+
+Func_3c23d:
+	dr $3c23d, $3c247
+
+Func_3c247:
+	dr $3c247, $3c254
+
+Func_3c254:
+	dr $3c254, $3c263
+
+Func_3c263:
+	dr $3c263, $3c28f
+
+Func_3c28f:
+	dr $3c28f, $3c2d9
+
+Func_3c2d9:
+	dr $3c2d9, $3c314
+
+Func_3c314:
+	dr $3c314, $3c35e
+
+Func_3c35e:
+	dr $3c35e, $3c38b
+
+Func_3c38b:
+	dr $3c38b, $3c3c7
+
+Func_3c3c7:
+	dr $3c3c7, $3c3e4
+
+Func_3c3e4:
+	dr $3c3e4, $3c3ee
+
+Func_3c3ee:
+	dr $3c3ee, $3c406
+
+Func_3c406:
+	dr $3c406, $3c42f
+
+Func_3c42f:
+	dr $3c42f, $3c458
+
+Func_3c458:
+	dr $3c458, $3c481
+
+Func_3c481:
+	dr $3c481, $3c499
+
+Func_3c499:
+	dr $3c499, $3c49c
+
+Func_3c49c:
+	dr $3c49c, $3c4a9
+
+Func_3c4a9:
+	dr $3c4a9, $3c4b7
+
+Func_3c4b7:
+	dr $3c4b7, $3c4d4
+
+Func_3c4d4:
+	dr $3c4d4, $3c50a
+
+Func_3c50a:
+	dr $3c50a, $3c536
+
+Func_3c536:
+	dr $3c536, $3c596
+
+Func_3c596:
+	dr $3c596, $3c5c7
+
+Func_3c5c7:
+	dr $3c5c7, $3c61b
+
+Func_3c61b:
+	dr $3c61b, $3c645
+
+Func_3c645:
+	dr $3c645, $3c687
+
+Func_3c687:
+	dr $3c687, $3c696
+
+Func_3c696:
+	dr $3c696, $3c6aa
+
+Func_3c6aa:
+	dr $3c6aa, $3c6ed
+
+Func_3c6ed:
+	dr $3c6ed, $3c73a
+
+Func_3c73a:
+	dr $3c73a, $3c74e
+
+Func_3c74e:
+	dr $3c74e, $3c76a
+
+Func_3c76a:
+	dr $3c76a, $3c78b
+
+Func_3c78b:
+	dr $3c78b, $3c7a5
+
+Func_3c7a5:
+	dr $3c7a5, $3c7bf
+
+Func_3c7bf:
+	dr $3c7bf, $3c7d6
+
+Func_3c7d6:
+	dr $3c7d6, $3c7f0
+
+Func_3c7f0:
+	dr $3c7f0, $3c802
+
+Func_3c802:
+	dr $3c802, $3c80f
+
+Func_3c80f:
+	dr $3c80f, $3c822
+
+Func_3c822:
+	dr $3c822, $3c843
+
+Func_3c843:
+	dr $3c843, $3c85a
+
+Func_3c85a:
+	dr $3c85a, $3c91b
+
+Func_3c91b:
+	dr $3c91b, $3c943
+
+Func_3c943:
+	dr $3c943, $3c962
+
+Func_3c962:
+	dr $3c962, $3c972
+
+Func_3c972:
+	dr $3c972, $3c977
+
+Func_3c977:
+	dr $3c977, $3c987
+
+Func_3c987:
+	dr $3c987, $3c9b4
+
+Func_3c9b4:
+	dr $3c9b4, $3ca06
+
+Func_3ca06:
+	dr $3ca06, $3ca32
+
+Func_3ca32:
+	dr $3ca32, $3ca46
+
+Func_3ca46:
+	dr $3ca46, $3ca66
+
+Func_3ca66:
+	dr $3ca66, $3ca78
+
+Func_3ca78:
+	dr $3ca78, $3ca8a
+
+Func_3ca8a:
+	dr $3ca8a, $3caa8
+
+Func_3caa8:
+	dr $3caa8, $3cabc
+
+Func_3cabc:
+	dr $3cabc, $3caf0
+
+Func_3caf0:
+	dr $3caf0, $3cb2a
+
+Func_3cb2a:
+	dr $3cb2a, $3cb46
+
+Func_3cb46:
+	dr $3cb46, $3ccd9
+
+Func_3ccd9:
+	dr $3ccd9, $3cce7
+
+Func_3cce7:
+	dr $3cce7, $3ccf5
+
+Func_3ccf5:
+	dr $3ccf5, $3cd02
+
+Func_3cd02:
+	dr $3cd02, $3cd1d
+
+Func_3cd1d:
+	dr $3cd1d, $3cd38
+
+Func_3cd38:
+	dr $3cd38, $3ce0f
+
+Func_3ce0f:
+	dr $3ce0f, $3ce34
+
+Func_3ce34:
+	dr $3ce34, $3ce70
+
+Func_3ce70:
+	dr $3ce70, $3ce97
+
+Func_3ce97:
+	dr $3ce97, $3ceb6
+
+Func_3ceb6:
+	dr $3ceb6, $3cecd
+
+Func_3cecd:
+	dr $3cecd, $3cf13
+
+Func_3cf13:
+	dr $3cf13, $3cf1a
+
+Func_3cf1a:
+	dr $3cf1a, $3cf21
+
+Func_3cf21:
+	dr $3cf21, $3cf28
+
+Func_3cf28:
+	dr $3cf28, $3cf44
+
+Func_3cf44:
+	dr $3cf44, $3cf54
+
+Func_3cf54:
+	dr $3cf54, $3cf93
+
+Func_3cf93:
+	dr $3cf93, $3cfa6
+
+Func_3cfa6:
+	dr $3cfa6, $3cfb3
+
+Func_3cfb3:
+	dr $3cfb3, $3cfca
+
+Func_3cfca:
+	dr $3cfca, $3d00e
 
 Func_3d00e::
 	dr $3d00e, $3e407
 
 MapEncounterTableIndices:
-	dr $3e407, $3f147
+INCLUDE "data/wild_data_tables_by_map.asm"
 
 SECTION "bank 10", ROMX, BANK [$10]
 Pointers_40000:
@@ -22861,9 +23434,11 @@ INCLUDE "data/map_data_14c668.asm"
 INCLUDE "data/map_data_14d472.asm"
 
 SECTION "bank 54", ROMX, BANK [$54]
+Pointers_150000:
 	dr $150000, $154000
 
 SECTION "bank 55", ROMX, BANK [$55]
+Pointers_154000:
 	dr $154000, $158000
 
 SECTION "bank 56", ROMX, BANK [$56]
