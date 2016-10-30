@@ -4757,7 +4757,7 @@ Func_2f43::
 	add hl, de
 	ld de, wcd08
 	ld b, $8
-	call CopyData_8Bits
+	call CopyData_Under256Bytes
 	pop af
 	rst Bankswitch
 	ret
@@ -4782,21 +4782,23 @@ Func_2f76: ; 2f76 (0:2f76)
 	jr nz, .asm_2f77
 	pop bc
 	ret
+
+FarCopyData_Under256Bytes:
 	ld a, [wROMBank]
 	push af
 	ld a, c
 	rst Bankswitch
-	call CopyData_8Bits
+	call CopyData_Under256Bytes
 	pop af
 	rst Bankswitch
 	ret
 
-CopyData_8Bits: ; 2f89 (0:2f89)
+CopyData_Under256Bytes: ; 2f89 (0:2f89)
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, CopyData_8Bits
+	jr nz, CopyData_Under256Bytes
 	ret
 
 Func_2f90::
