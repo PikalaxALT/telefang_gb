@@ -39,7 +39,7 @@ ENDM
 jpba: MACRO
 	ld a, BANK(\1)
 	ld hl, \1
-	jp FarJump_HL
+	jp FarCall_HL
 ENDM
 
 palettes EQUS "* 8"
