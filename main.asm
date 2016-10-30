@@ -23644,8 +23644,19 @@ Func_3cfef: ; 3cfef (f:4fef)
 	xor a
 	ret
 
-Func_3d00e::
-	dr $3d00e, $3e407
+Func_3d00e: ; 3d00e (f:500e)
+	ld bc, EVENT_C3C
+	call CheckEventFlag
+	ret nz
+	ld bc, EVENT_C39
+	call ResetEventFlag
+	ld bc, EVENT_C3A
+	call ResetEventFlag
+	ld bc, EVENT_C3D
+	jp ResetEventFlag
+
+Data_3d027:
+INCLUDE "data/unknown_3d027.asm"
 
 MapEncounterTableIndices:
 INCLUDE "data/wild_data_tables_by_map.asm"
