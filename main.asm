@@ -25467,20 +25467,303 @@ Data_44bec:
 	db $00, $60, $40, $20
 	db $00, $00, $00, $00
 
-Func_44bf4:
-	dr $44bf4, $44c22
+Func_44bf4: ; 44bf4 (11:4bf4)
+	xor a
+	ld [wcf96], a
+	ld [wcf97], a
+	ld [wcf9b], a
+	ld [wcfb0], a
+	ld [wcfb1], a
+	ld [wcfb4], a
+	ld [wcfb5], a
+	ld a, $80
+	ld [rNR52], a
+	ld a, $77
+	ld [wcf98], a
+	ld [rNR50], a
+	ld a, $ff
+	ld [rNR51], a
+	ld hl, Pointers_47d2d
+	ld a, [H_MusicID]
+	jp Func_44cdd
 
-Func_44c22:
-	dr $44c22, $44c3a
+Func_44c22: ; 44c22 (11:4c22)
+	ld a, $80
+	ld [rNR52], a
+	ld a, $77
+	ld [wcf98], a
+	ld [rNR50], a
+	ld a, $ff
+	ld [rNR51], a
+	ld hl, Pointers_44ee5
+	ld a, [H_SFX_ID]
+	jp Func_44cdd
 
-Func_44c3a:
-	dr $44c3a, $44d95
+Func_44c3a: ; 44c3a (11:4c3a)
+	ld a, $80
+	ld [rNR52], a
+	ld a, $77
+	ld [wcf98], a
+	ld [rNR50], a
+	ld a, $ff
+	ld [rNR51], a
+	ld hl, Pointers_45fe2
+	xor a
+	ld [wcfc8], a
+	ld a, [H_FFA2]
+	and $80
+	jr z, .asm_44c5c
+	ld a, $ff
+	ld [wcfc8], a
+.asm_44c5c
+	ld a, [H_FFA2]
+	and $7f
+	ld [wcfc0], a
+	cp $50
+	jr c, .asm_44c6b
+	jp Func_44cad
+
+.asm_44c6b
+	dec a
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+Func_44c71: ; 44c71 (11:4c71)
+	ld a, [hli]
+	ld [wcfc1], a
+	ld [wcfc3], a
+	ld a, [hl]
+	ld [wcfc2], a
+	ld [wcfc4], a
+	ld a, $1
+	ld [wcfc7], a
+	ld a, $fe
+	ld [wcfc5], a
+	ld a, $8
+	ld [rNR10], a
+	ld [rNR12], a
+	xor a
+	ld [wcfc6], a
+	ld [rNR11], a
+	ld [rNR13], a
+	ld [rNR30], a
+	ld [rNR31], a
+	ld [rNR32], a
+	ld [rNR33], a
+	ld a, $80
+	ld [rNR14], a
+	ld [rNR34], a
+	xor a
+	ld [wce78], a
+	ld [wcea0], a
+	ret
+
+Func_44cad: ; 44cad (11:4cad)
+	dec a
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld c, a
+	ld h, [hl]
+	ld l, c
+	ld a, [hli]
+	ld [wcfc9], a
+	jp Func_44c71
+
+Func_44cbe:
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, c
+	ld [MBC3SRamBank], a
+asm_44cc7
+	inc bc
+	inc bc
+asm_44cc9
+	ld a, [H_FFA3]
+	inc a
+	ld [H_FFA3], a
+	cp $6
+	jr nz, .asm_44cd5
+	ret
+
+.asm_44cd5
+	ld hl, $28
+	add hl, de
+	ld e, l
+	ld d, h
+	jr asm_44cf7
+
+Func_44cdd: ; 44cdd (11:4cdd)
+	dec a
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ld a, [bc]
+	ld [wcf92], a
+	inc bc
+	ld a, [bc]
+	ld [wcf93], a
+	inc bc
+	ld de, wce00
+	xor a
+	ld [H_FFA3], a
+asm_44cf7
+	ld a, [wcf92]
+	add a
+	ld [wcf92], a
+	jr nc, asm_44cc9
+	ld hl, $0
+	add hl, de
+	ld a, [wcf93]
+	cp [hl]
+	jr c, asm_44cc7
+	push de
+	ld l, wce28 % $100
+	xor a
+.asm_44d0e
+	ld [de], a
+	inc de
+	dec l
+	jr nz, .asm_44d0e
+	pop de
+	ld hl, $4
+	add hl, de
+	ld [hl], $1
+	ld hl, $b
+	add hl, de
+	ld [hl], $ff
+	call Func_44866
+	ld a, [H_FFA3]
+	cp $5
+	jr nz, .asm_44d3f
+	ld a, [wce78]
+	or a
+	jp nz, Func_44d7d
+	xor a
+	ld [rNR41], a
+	ld [rNR42], a
+	ld [rNR43], a
+	ld a, $80
+	ld [rNR44], a
+	jp Func_44d7d
+
+.asm_44d3f
+	push bc
+	ld hl, Data_44d95
+	ld a, [H_FFA3]
+	or a
+	jr z, .asm_44d66
+	ld b, $0
+	cp $1
+	jr nz, .asm_44d53
+	ld c, $5
+	jr .asm_44d65
+
+.asm_44d53
+	cp $2
+	jr nz, .asm_44d5b
+	ld c, $a
+	jr .asm_44d65
+
+.asm_44d5b
+	cp $3
+	jr nz, .asm_44d63
+	ld c, $f
+	jr .asm_44d65
+
+.asm_44d63
+	ld c, $14
+.asm_44d65
+	add hl, bc
+.asm_44d66
+	pop bc
+	ld a, [hli]
+	cp $ee
+	call nz, Func_44b25
+	ld a, [hli]
+	call Func_44b2f
+	ld a, [hli]
+	call Func_44b39
+	ld a, [hli]
+	call Func_44b6c
+	ld a, [hl]
+	call Func_44b76
+Func_44d7d: ; 44d7d (11:4d7d)
+	ld hl, $0
+	add hl, de
+	ld a, [wcf93]
+	ld [hli], a
+	ld a, [bc]
+	inc bc
+	ld [hli], a
+	ld a, [bc]
+	inc bc
+	ld [hl], a
+	ld hl, $22
+	add hl, de
+	ld a, $80
+	ld [hl], a
+	jp asm_44cc9
 
 Data_44d95:
-	dr $44d95, $44db3
+	db $08, $00, $08, $00, $80
+	db $ee, $00, $08, $00, $80
+	db $00, $00, $00, $00, $80
+	db $ee, $00, $08, $00, $80
+	db $08, $00, $08, $00, $80
+	db $ee, $00, $08, $00, $80
 
 Pointers_44db3:
-	dr $44db3, $47d2d
+	dw Data_44dd5
+	dw Data_44de5
+	dw Data_44df5
+	dw Data_44e05
+	dw Data_44e15
+	dw Data_44e25
+	dw Data_44e35
+	dw Data_44e45
+	dw Data_44e55
+	dw Data_44e65
+	dw Data_44e75
+	dw Data_44e85
+	dw Data_44e95
+	dw Data_44ea5
+	dw Data_44eb5
+	dw Data_44ec5
+	dw Data_44ed5
+
+Data_44dd5: db $00, $00, $00, $00, $00, $00, $00, $00, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+Data_44de5: db $00, $11, $23, $46, $8c, $de, $ef, $ff, $ff, $ee, $dc, $b9, $73, $21, $10, $00
+Data_44df5: db $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8
+Data_44e05: db $02, $8d, $fd, $8d, $02, $8d, $fd, $8d, $02, $8d, $fd, $8d, $02, $8d, $fd, $8d
+Data_44e15: db $01, $24, $8b, $de, $fe, $eb, $84, $21, $01, $24, $8b, $de, $fe, $eb, $84, $21
+Data_44e25: db $9b, $ce, $fd, $cb, $ba, $aa, $99, $88, $77, $66, $55, $54, $43, $20, $13, $46
+Data_44e35: db $bf, $ff, $da, $88, $76, $31, $01, $37, $bc, $ef, $ec, $98, $77, $52, $00, $04
+Data_44e45: db $b9, $53, $02, $44, $56, $8b, $cb, $ac, $df, $ec, $d6, $74, $33, $24, $35, $20
+Data_44e55: db $fc, $d5, $63, $43, $64, $46, $86, $47, $66, $06, $ce, $96, $49, $64, $64, $34
+Data_44e65: db $f8, $0c, $5a, $87, $a7, $89, $87, $98, $79, $87, $98, $7a, $79, $a5, $c0, $7f
+Data_44e75: db $8f, $0c, $49, $67, $89, $6b, $3f, $07, $8f, $0c, $49, $67, $89, $6b, $3f, $07
+Data_44e85: db $f0, $a5, $97, $87, $87, $86, $a5, $f0, $f0, $a5, $97, $87, $87, $86, $a5, $f0
+Data_44e95: db $fc, $ba, $a9, $98, $76, $65, $54, $30, $fc, $ba, $a9, $98, $76, $65, $54, $30
+Data_44ea5: db $8f, $6c, $28, $5f, $0a, $6d, $39, $07, $8f, $6c, $28, $5f, $0a, $6d, $39, $07
+Data_44eb5: db $fa, $b7, $97, $84, $b7, $86, $84, $50, $fa, $b7, $97, $84, $b7, $86, $84, $50
+Data_44ec5: db $bf, $dc, $dc, $b9, $64, $32, $32, $04, $bf, $dc, $dc, $b9, $64, $32, $32, $04
+Data_44ed5: db $be, $de, $96, $76, $98, $95, $12, $14, $be, $de, $96, $76, $98, $95, $12, $14
+
+Pointers_44ee5:
+INCLUDE "audio/unknown_sfx_44ee5.asm"
+
+Pointers_45fe2:
+	dr $45fe2, $47d2d
+
+Pointers_47d2d:
 
 SECTION "bank 12", ROMX, BANK [$12]
 Func_48000:
