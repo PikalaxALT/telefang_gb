@@ -25761,7 +25761,7 @@ Pointers_44ee5:
 INCLUDE "audio/unknown_sfx_44ee5.asm"
 
 Pointers_45fe2:
-	dr $45fe2, $47d2d
+INCLUDE "audio/unknown_sfx_45fe2.asm"
 
 Pointers_47d2d:
 
