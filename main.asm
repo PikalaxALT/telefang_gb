@@ -23897,11 +23897,11 @@ Func_44173: ; 44173 (11:4173)
 .asm_4418d
 	ld a, [wcf90]
 	or a
-	jr nz, .asm_441ad
+	jr nz, Func_441ad
 	ld de, wcec8
 	ld a, [de]
 	or a
-	jr z, .asm_441ad
+	jr z, Func_441ad
 	ld a, $5
 	ld [H_FFA3], a
 	call Func_442ff
@@ -23909,11 +23909,11 @@ Func_44173: ; 44173 (11:4173)
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_441ad
+	jr Func_441ad
 
 .asm_441aa
 	call Func_44307
-.asm_441ad
+Func_441ad:
 	ld a, [wcf90]
 	or a
 	jr z, .asm_441b6
@@ -24364,7 +24364,7 @@ asm_44455
 	jr z, .asm_4448b
 	cp $1
 	ld a, [H_FFA8]
-	jr nz, .asm_44495
+	jr nz, Func_44495
 	call Func_4469d
 	ld hl, wcfb5
 	jr .asm_44494
@@ -24375,7 +24375,7 @@ asm_44455
 	ld hl, wcfb4
 .asm_44494
 	ld [hl], a
-.asm_44495
+Func_44495:
 	ld hl, Data_44569
 	ld c, a
 	ld b, $0
@@ -24507,34 +24507,644 @@ Func_44561: ; 44561 (11:4561)
 	ret
 
 Data_44569:
-	dr $44569, $44629
+	dw  $783,  $706,  $60b,  $413,  $02e, -1, -1, -1
+	dw  $78a,  $714,  $627,  $450,  $0a2, -1, -1, -1
+	dw  $791,  $721,  $642,  $485,  $108, -1, -1, -1
+	dw  $797,  $72d,  $65b,  $4b7,  $16d, -1, -1, -1
+	dw  $79d,  $739,  $672,  $4e6,  $1cb, -1, -1, -1
+	dw  $7a2,  $744,  $689,  $516,  $225, -1, -1, -1
+	dw  $7a8,  $74f,  $69e,  $53c,  $27a, -1, -1, -1
+	dw  $7ad,  $759,  $6b2,  $564,  $2c7, -1, -1, -1
+	dw  $7b1,  $762,  $6c4,  $589,  $314, -1, -1, -1
+	dw  $7b6,  $76b,  $6d6,  $5ad,  $35a, -1, -1, -1
+	dw  $7ba,  $774,  $6e9,  $5d2,  $39d, -1, -1, -1
+	dw  $7be,  $77b,  $6f9,  $5ed,  $3dc, -1, -1, -1
 
-Func_44629:
-	dr $44629, $44651
+Func_44629: ; 44629 (11:4629)
+	xor a
+	ld [rNR52], a
+	ld [rNR50], a
+	xor a
+	ld [H_FFA2], a
+	ld [wcfc0], a
+	ld [H_MusicID], a
+	ld [wce00], a
+	ld [wce28], a
+	ld [wce50], a
+	ld [wce78], a
+	ld [wcea0], a
+	ld [wcec8], a
+	ld a, $77
+	ld [rNR50], a
+	jp Func_441ad
 
-Func_44651:
-	dr $44651, $44698
+Func_44651: ; 44651 (11:4651)
+	ld a, [H_FFA3]
+	or a
+	jr z, .asm_44679
+	cp $1
+	ret nz
+	ld a, [wcfb5]
+	call Func_4469d
+	ld a, [wcfb1]
+	or a
+	ret z
+	ld hl, $8
+	add hl, de
+	ld a, [hl]
+	or a
+	ret nz
+	ld a, $20
+	ld [hl], a
+	call Func_44b39
+	call Func_446b4
+	ld a, [hl]
+	jp Func_44495
 
-Func_44698:
-	dr $44698, $4469d
+.asm_44679
+	ld a, [wcfb4]
+	call Func_44698
+	ld a, [wcfb0]
+	or a
+	ret z
+	ld hl, $8
+	add hl, de
+	ld a, [hl]
+	or a
+	ret nz
+	ld a, $20
+	ld [hl], a
+	call Func_44b39
+	call Func_446ac
+	ld a, [hl]
+	jp Func_44495
 
-Func_4469d:
-	dr $4469d, $4471d
+Func_44698: ; 44698 (11:4698)
+	ld hl, wcfb2
+	jr asm_446a0
 
-Func_4471d:
-	dr $4471d, $44723
+Func_4469d: ; 4469d (11:469d)
+	ld hl, wcfb3
+asm_446a0
+	push af
+	ld a, [hl]
+	inc a
+	and $3f
+	ld [hl], a
+	call Func_446c2
+	pop af
+	ld [hl], a
+	ret
 
-Func_44723:
-	dr $44723, $4489a
+Func_446ac: ; 446ac (11:46ac)
+	ld hl, wcfb0
+	ld a, [wcfb2]
+	jr asm_446ba
 
-Func_4489a:
-	dr $4489a, $448cb
+Func_446b4: ; 446b4 (11:46b4)
+	ld hl, wcfb1
+	ld a, [wcfb3]
+asm_446ba
+	sub [hl]
+	and $3f
+	call Func_446c2
+	ld a, [hl]
+	ret
 
-Func_448cb:
-	dr $448cb, $449e3
+Func_446c2: ; 446c2 (11:46c2)
+	push bc
+	push af
+	ld hl, Pointers_446d9
+	ld a, [H_FFA3]
+	add a
+	ld c, a
+	ld b, $0
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	ld c, a
+	ld b, $0
+	add hl, bc
+	pop bc
+	ret
 
-Func_449e3:
-	dr $449e3, $449eb
+Pointers_446d9:
+	dw wcf00
+	dw wcf40
+
+Pointers_446dd:
+	dw Func_44894
+	dw Func_44840
+	dw Func_44846
+	dw Func_4484f
+	dw Func_44864
+	dw Func_44865
+	dw Func_44866
+	dw Func_44867
+	dw Func_44858
+	dw Func_44894
+	dw Func_4486d
+	dw Func_44877
+	dw Func_4488b
+	dw Func_44894
+	dw Func_44894
+	dw Func_44894
+
+Pointers_446fd:
+	dw Func_44738
+	dw Func_4473d
+	dw Func_44742
+	dw Func_44749
+	dw Func_44754
+	dw Func_4475f
+	dw Func_4476f
+	dw Func_44777
+	dw Func_44780
+	dw Func_44786
+	dw Func_44799
+	dw Func_447b6
+	dw Func_447c9
+	dw Func_447d2
+	dw Func_447d8
+	dw Func_447de
+
+Func_4471d: ; 4471d (11:471d)
+	ld hl, Pointers_446fd
+	jp Func_44729
+
+Func_44723: ; 44723 (11:4723)
+	ld hl, Pointers_446dd
+	jp Func_44729
+
+Func_44729: ; 44729 (11:4729)
+	ld a, [H_FFA4]
+	and $f
+	add a
+	add l
+	ld l, a
+	jr nc, .asm_44734
+	inc h
+.asm_44734
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Func_44738: ; 44738 (11:4738)
+	ld hl, $1a
+	jr asm_4474c
+
+Func_4473d: ; 4473d (11:473d)
+	ld hl, $1a
+	jr asm_44757
+
+Func_44742: ; 44742 (11:4742)
+	ld a, [bc]
+	ld l, a
+	inc bc
+	ld a, [bc]
+	ld b, a
+	ld c, l
+	ret
+
+Func_44749: ; 44749 (11:4749)
+	ld hl, $1d
+asm_4474c
+	ld a, [bc]
+	inc bc
+	add hl, de
+	ld [hli], a
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	ret
+
+Func_44754: ; 44754 (11:4754)
+	ld hl, $1d
+asm_44757
+	add hl, de
+	dec [hl]
+	ret z
+	inc hl
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ret
+
+Func_4475f: ; 4475f (11:475f)
+	ld a, [bc]
+	inc bc
+	push af
+	ld a, [bc]
+	inc bc
+	ld hl, $20
+	add hl, de
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	ld b, a
+	pop af
+	ld c, a
+	ret
+
+Func_4476f: ; 4476f (11:476f)
+	ld hl, $20
+	add hl, de
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ret
+
+Func_44777: ; 44777 (11:4777)
+	ld hl, $5
+	call Func_44895
+	jp Func_44b25
+
+Func_44780: ; 44780 (11:4780)
+	ld hl, $24
+	jp Func_44895
+
+Func_44786: ; 44786 (11:4786)
+	ld a, [bc]
+	inc bc
+	ld hl, $14
+	add hl, de
+	ld [hli], a
+	ld a, [bc]
+	and $f0
+	swap a
+	ld [hli], a
+	ld a, [bc]
+	inc bc
+	and $f
+	ld [hl], a
+	ret
+
+Func_44799: ; 44799 (11:4799)
+	ld a, [bc]
+	inc bc
+	push af
+	ld hl, $6
+	add hl, de
+	and $c0
+	ld [hl], a
+	ld a, [H_FFA3]
+	cp $2
+	jr z, .asm_447ae
+	ld a, [hl]
+	call Func_44b2f
+.asm_447ae
+	inc hl
+	pop af
+	and $f
+	swap a
+	ld [hl], a
+	ret
+
+Func_447b6: ; 447b6 (11:47b6)
+	ld hl, $10
+	add hl, de
+	ld a, [bc]
+	inc bc
+	ld [hli], a
+	ld a, [bc]
+	inc bc
+	ld [hli], a
+	ld a, [bc]
+	inc bc
+	ld [hli], a
+	ld a, [bc]
+	inc bc
+	ld [hl], a
+	jp Func_4488b
+
+Func_447c9: ; 447c9 (11:47c9)
+	ld hl, $22
+	add hl, de
+	ld a, [hl]
+	and $bf
+	ld [hl], a
+	ret
+
+Func_447d2: ; 447d2 (11:47d2)
+	ld hl, $3
+	jp Func_44895
+
+Func_447d8: ; 447d8 (11:47d8)
+	ld hl, $23
+	jp Func_44895
+
+Func_447de: ; 447de (11:47de)
+	ld hl, $0
+	add hl, de
+	xor a
+	ld [hl], a
+	ld a, [H_FFA3]
+	cp $5
+	jr nz, .asm_447f4
+	ld a, [wce78]
+	or a
+	ret nz
+	xor a
+	ld [rNR42], a
+	ret
+
+.asm_447f4
+	cp $4
+	jr nz, .asm_447fd
+	ld a, $ff
+	ld [wcf94], a
+.asm_447fd
+	ld hl, Data_44d95
+	ld a, [H_FFA3]
+	or a
+	jr z, .asm_4482a
+	push bc
+	ld b, $0
+	cp $1
+	jr nz, .asm_44811
+	ld c, $5
+	jr .asm_44828
+
+.asm_44811
+	cp $2
+	jr nz, .asm_44819
+	ld c, $a
+	jr .asm_44828
+
+.asm_44819
+	cp $3
+	jr nz, .asm_44826
+	ld c, $f
+	ld a, $ff
+	ld [wcf9a], a
+	jr .asm_44828
+
+.asm_44826
+	ld c, $14
+.asm_44828
+	add hl, bc
+	pop bc
+.asm_4482a
+	ld a, [hli]
+	cp $ee
+	call nz, Func_44b25
+	ld a, [hli]
+	call Func_44b2f
+	ld a, [hli]
+	call Func_44b39
+	ld a, [hli]
+	call Func_44b6c
+	ld a, [hl]
+	jp Func_44b76
+
+Func_44840: ; 44840 (11:4840)
+	ld hl, $3
+	jp Func_44895
+
+Func_44846: ; 44846 (11:4846)
+	ld hl, $a
+	call Func_44895
+	ld [rNR43], a
+	ret
+
+Func_4484f: ; 4484f (11:484f)
+	ld hl, $6
+	call Func_44895
+	jp Func_44b2f
+
+Func_44858: ; 44858 (11:4858)
+	ld hl, wcfb0
+	ld a, [H_FFA3]
+	add l
+	ld l, a
+	ld a, [bc]
+	inc bc
+	ld [hl], a
+	ret
+
+Func_44864: ; 44864 (11:4864)
+	ret
+
+Func_44865: ; 44865 (11:4865)
+	ret
+
+Func_44866: ; 44866 (11:4866)
+	ret
+
+Func_44867: ; 44867 (11:4867)
+	ld a, [bc]
+	inc bc
+	ld [wcf99], a
+	ret
+
+Func_4486d: ; 4486d (11:486d)
+	ld hl, $22
+	add hl, de
+	ld a, [hl]
+	and $bf
+	ld [hl], a
+	jr asm_4487f
+
+Func_44877: ; 44877 (11:4877)
+	ld hl, $22
+	add hl, de
+	ld a, [hl]
+	or $40
+	ld [hl], a
+asm_4487f
+	ld hl, $7
+	add hl, de
+	ld a, [bc]
+	inc bc
+	and $f
+	swap a
+	ld [hl], a
+	ret
+
+Func_4488b: ; 4488b (11:488b)
+	ld hl, $22
+	add hl, de
+	ld a, [hl]
+	or $40
+	ld [hl], a
+	ret
+
+Func_44894: ; 44894 (11:4894)
+	ret
+
+Func_44895: ; 44895 (11:4895)
+	ld a, [bc]
+	inc bc
+	add hl, de
+	ld [hl], a
+	ret
+
+Func_4489a: ; 4489a (11:489a)
+	ld a, [wce78]
+	or a
+	ret nz
+	ld a, [wcf9a]
+	or a
+	jr z, .asm_448b5
+	xor a
+	ld [wcf9a], a
+	ld a, [wcf95]
+	and $77
+	or $88
+	ld [rNR51], a
+	ld [wcf95], a
+.asm_448b5
+	ld a, [H_FFA4]
+	and $f0
+	swap a
+	add a
+	ld hl, Pointers_44937
+	add l
+	ld l, a
+	jr nc, .asm_448c5
+	inc h
+.asm_448c5
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	jp Func_448e0
+
+Func_448cb: ; 448cb (11:48cb)
+	ld a, [wce78]
+	or a
+	ret nz
+	ld hl, $11
+	add hl, de
+	dec [hl]
+	ret nz
+	ld hl, $c
+	add hl, de
+	ld a, [hl]
+	or a
+	ret z
+	ld c, a
+	inc hl
+	ld b, [hl]
+Func_448e0: ; 448e0 (11:48e0)
+	ld a, [bc]
+	inc bc
+	ld [H_FFA5], a
+	cp $ff
+	jr nz, .asm_448f7
+	xor a
+	ld [rNR41], a
+	ld [rNR42], a
+	ld [rNR43], a
+	ld hl, $c
+	add hl, de
+	ld [hli], a
+	ld [hl], a
+	ret
+
+.asm_448f7
+	ld a, [H_FFA5]
+	and $f0
+	jr nz, .asm_4491a
+	ld hl, $10
+	add hl, de
+	ld a, [hli]
+	ld [hl], a
+	ld a, [H_FFA5]
+	swap a
+	ld [rNR42], a
+	call Func_44ba0
+	ld a, $80
+	ld [rNR44], a
+	ld hl, $c
+	add hl, de
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	ret
+
+.asm_4491a
+	cp $e0
+	jr nz, .asm_4492b
+	ld a, [H_FFA5]
+	and $f
+	ld hl, $10
+	add hl, de
+	ld [hl], a
+	jp Func_448e0
+
+.asm_4492b
+	ld a, [bc]
+	inc bc
+	ld hl, $a
+	add hl, de
+	ld [hl], a
+	ld [rNR43], a
+	jp Func_448e0
+
+Pointers_44937:
+	dw Data_44951
+	dw Data_4495d
+	dw Data_44965
+	dw Data_4496d
+	dw Data_44978
+	dw Data_44985
+	dw Data_44991
+	dw Data_4499d
+	dw Data_449aa
+	dw Data_449b7
+	dw Data_449c7
+	dw Data_449d3
+	dw Data_449e2
+
+Data_44951:
+	db $e1, $d0, $36, $0f, $d0, $37, $0f, $d0, $35, $03, $02, $ff
+
+Data_4495d:
+	db $e1, $d0, $01, $09, $d0, $00, $04, $ff
+
+Data_44965:
+	db $e1, $d0, $01, $0c, $d0, $00, $06, $ff
+
+Data_4496d:
+	db $e1, $d0, $01, $0b, $e6, $05, $04, $03, $02, $01, $ff
+
+Data_44978:
+	db $e1, $d0, $01, $0e, $e6, $07, $06, $05, $04, $03, $02, $01, $ff
+
+Data_44985:
+	db $e1, $d0, $15, $0b, $d0, $16, $e3, $05, $04, $03, $02, $ff
+
+Data_44991:
+	db $e1, $d0, $15, $0c, $d0, $16, $e3, $05, $04, $03, $02, $ff
+
+Data_4499d:
+	db $e1, $d0, $15, $0d, $d0, $16, $e3, $05, $04, $03, $02, $01, $ff
+
+Data_449aa:
+	db $e1, $d0, $15, $0e, $d0, $07, $e3, $05, $04, $03, $02, $01, $ff
+
+Data_449b7:
+	db $e1, $d0, $4f, $0f, $d0, $3f, $0e, $d0, $3d, $e4, $05, $04, $03, $02, $01, $ff
+
+Data_449c7:
+	db $e1, $d0, $2c, $0c, $e6, $d0, $11, $0d, $0a, $06, $02, $ff
+
+Data_449d3:
+	db $e1, $d0, $3c, $0b, $d0, $4c, $0b, $d0, $5c, $0b, $07, $e3, $04, $02, $ff
+
+Data_449e2:
+	db $ff
+
+Func_449e3: ; 449e3 (11:49e3)
+	ld hl, $c
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
 Data_449eb:
 	dr $449eb, $44a1a
@@ -24546,7 +25156,13 @@ Data_44a49:
 	dr $44a49, $44ad1
 
 Func_44ad1:
-	dr $44ad1, $44b39
+	dr $44ad1, $44b25
+
+Func_44b25:
+	dr $44b25, $44b2f
+
+Func_44b2f:
+	dr $44b2f, $44b39
 
 Func_44b39:
 	dr $44b39, $44b6c
@@ -24567,7 +25183,10 @@ Func_44c22:
 	dr $44c22, $44c3a
 
 Func_44c3a:
-	dr $44c3a, $44db3
+	dr $44c3a, $44d95
+
+Data_44d95:
+	dr $44d95, $44db3
 
 Pointers_44db3:
 	dr $44db3, $47d2d
