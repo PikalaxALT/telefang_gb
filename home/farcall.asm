@@ -353,7 +353,7 @@ Func_0630::
 Func_0638::
 	ld a, BANK(Func_68000)
 	rst Bankswitch
-	call Func_1939
+	call PlayMoveAnimation
 	rst MemBankswitch
 	ret
 

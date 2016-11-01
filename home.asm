@@ -1766,7 +1766,7 @@ Func_192a: ; 192a (0:192a)
 	call Func_10ee
 	ret
 
-Func_1939: ; 1939 (0:1939)
+PlayMoveAnimation: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_1943
 	call GetWordFromTable

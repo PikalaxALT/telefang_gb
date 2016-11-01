@@ -336,8 +336,145 @@ Func_6828a:
 	ld de, wOAMAnimation02
 	jp Func_6b4bb
 
-Func_68290::
-	dr $68290, $6839c
+Func_68290: ; 68290 (1a:4290)
+	ld a, [wMoveAnimationSubroutine]
+	ld hl, Pointers_6829a
+	call GetWordFromTable
+	jp [hl]
+
+Pointers_6829a:
+	dw Func_682ae
+	dw Func_682be
+	dw Func_682c4
+	dw Func_682d4
+	dw Func_682ff
+	dw Func_68319
+	dw Func_68344
+	dw Func_6835e
+	dw Func_68389
+	dw Func_6b761
+
+Func_682ae:
+	ld a, $d
+	ld de, wOAMAnimation02
+	call Func_6b28c
+	ld a, $3f
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_682be:
+	ld de, wOAMAnimation02
+	jp Func_6b4bb
+
+Func_682c4:
+	ld a, $29
+	ld de, wOAMAnimation02
+	call Func_6b4f8
+	ld a, $a
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_682d4:
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wOAMAnimation02_YCoord]
+	inc a
+	inc a
+	inc a
+	inc a
+	ld [wOAMAnimation02_YCoord], a
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	cp $0
+	ret nz
+	ld a, $1e
+	ld [wOAMAnimation02_TemplateIdx], a
+	ld a, $47
+	ld [H_SFX_ID], a
+	ld a, $10
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_682ff:
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	cp $0
+	ret nz
+	ld a, $2a
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_6b4f8
+	ld a, $a
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_68319:
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wOAMAnimation02_YCoord]
+	inc a
+	inc a
+	inc a
+	inc a
+	ld [wOAMAnimation02_YCoord], a
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	cp $0
+	ret nz
+	ld a, $1e
+	ld [wOAMAnimation02_TemplateIdx], a
+	ld a, $47
+	ld [H_SFX_ID], a
+	ld a, $10
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_68344:
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	cp $0
+	ret nz
+	ld a, $2b
+	ld de, wOAMAnimation02
+	call Func_6b4f8
+	ld a, $a
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_6835e:
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wOAMAnimation02_YCoord]
+	inc a
+	inc a
+	inc a
+	inc a
+	ld [wOAMAnimation02_YCoord], a
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	cp $0
+	ret nz
+	ld a, $1e
+	ld [wOAMAnimation02_TemplateIdx], a
+	ld a, $47
+	ld [H_SFX_ID], a
+	ld a, $10
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_68389:
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	cp $0
+	ret nz
+	ld de, wOAMAnimation02_PriorityFlags
+	call Func_6b70d
+	jp NextMoveAnimationSubroutine
 
 Func_6839c::
 	dr $6839c, $683f0

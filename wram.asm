@@ -3668,7 +3668,7 @@ wd413:: ds 1
 wBattleMenuSelection:: ds 1
 wd415:: ds 1
 wBattleTurn:: ds 1
-wd417:: ds 1
+wCurMoveTarget:: ds 1
 wd418:: ds 1
 wd419:: ds 1
 wd41a:: ds 1
@@ -3749,7 +3749,7 @@ wd46b:: ds 1
 wd46c:: ds 1
 wd46d:: ds 1
 wd46e:: ds 1
-wd46f:: ds 1
+wCurMove:: ds 1
 wd470:: ds 1
 wd471:: ds 1
 wd472:: ds 1

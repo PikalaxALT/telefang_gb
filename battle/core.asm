@@ -1,3 +1,572 @@
+Func_14000:
+	ld hl, wd401
+	inc [hl]
+	ret
+
+Func_14005:
+	ld a, $4
+	jp Func_050a
+
+Func_1400a:
+	ld a, $f0
+	ld [wc91e], a
+	jp Func_3566
+
+Func_14012: ; 14012 (5:4012)
+	ld de, wd4b1
+	ld c, $9
+	jr asm_14025
+
+Func_14019: ; 14019 (5:4019)
+	ld de, wd460
+	ld c, $9
+	jr asm_14025
+
+Func_14020:
+	ld de, wd4b1
+	ld c, $11
+asm_14025
+	ld b, $0
+	jp CopyData
+
+Func_1402a: ; 1402a (5:402a)
+	ld hl, wd420
+	ld a, $8
+	ld [wd45a], a
+.asm_14032
+	ld a, [bc]
+	cp $c0
+	jr z, .asm_14043
+	ld [hl], a
+	inc hl
+	inc bc
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	jr nz, .asm_14032
+.asm_14043
+	ld a, $e0
+	ld [hl], a
+	ld hl, wd420
+	ret
+
+Func_1404a:
+	ld a, [wCurBattleDenjuu]
+	call GetNthPlayerDenjuu
+	call Func_1407d
+	ld a, [wCurBattleDenjuu]
+	call Func_140d9
+	ld a, [wCurDenjuuBufferField0x0d]
+	ld hl, VTilesBG tile $20
+	jp Func_142f9
+
+Func_14062:
+	ld a, [wCurEnemyDenjuu]
+	call GetNthEnemyDenjuu
+	call Func_140ab
+	ld a, [wCurEnemyDenjuu]
+	call Func_14102
+	ld a, [wCurDenjuuBufferSpecies]
+	ld de, DenjuuNames
+	ld bc, VTilesBG tile $28
+	jp GetAndPrintName75LeftAlign_
+
+Func_1407d: ; 1407d (5:407d)
+	ld a, [wCurDenjuuBufferMaxHP]
+	ld e, a
+	ld a, [wCurDenjuuBufferCurHP]
+	call Func_3980
+	ld [wd4e8], a
+	or a
+	jr nz, .asm_14098
+	ld a, [wCurDenjuuBufferCurHP]
+	or a
+	jr z, .asm_14098
+	ld a, $1
+	ld [wd4e8], a
+.asm_14098
+	ld d, $1
+	ld a, [wd4e8]
+	call Func_3998
+	ld a, [wd4e8]
+	ld c, $0
+	hlbgcoord 3, 2
+	jp Func_3957
+
+Func_140ab: ; 140ab (5:40ab)
+	ld a, [wCurDenjuuBufferMaxHP]
+	ld e, a
+	ld a, [wCurDenjuuBufferCurHP]
+	call Func_3980
+	ld [wd4e9], a
+	or a
+	jr nz, .asm_140c6
+	ld a, [wCurDenjuuBufferCurHP]
+	or a
+	jr z, .asm_140c6
+	ld a, $1
+	ld [wd4e9], a
+.asm_140c6
+	ld d, $2
+	ld a, [wd4e9]
+	call Func_3998
+	ld a, [wd4e9]
+	ld c, $1
+	hlbgcoord 6, 10, VWindow
+	jp Func_3957
+
+Func_140d9: ; 140d9 (5:40d9)
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferField0x09]
+	ld e, a
+	ld a, [wCurDenjuuBufferField0x05]
+	call Func_3980
+	ld [wd4e8], a
+	or a
+	jr nz, .asm_140f7
+	ld a, [wCurDenjuuBufferField0x05]
+	or a
+	jr z, .asm_140f7
+	ld a, $1
+	ld [wd4e8], a
+.asm_140f7
+	ld a, [wd4e8]
+	ld c, $0
+	hlbgcoord 3, 3
+	jp Func_3957
+
+Func_14102: ; 14102 (5:4102)
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferField0x09]
+	ld e, a
+	ld a, [wCurDenjuuBufferField0x05]
+	call Func_3980
+	ld [wd4e9], a
+	or a
+	jr nz, .asm_14120
+	ld a, [wCurDenjuuBufferField0x05]
+	or a
+	jr z, .asm_14120
+	ld a, $1
+	ld [wd4e9], a
+.asm_14120
+	ld a, [wd4e9]
+	ld c, $1
+	hlbgcoord 6, 11, VWindow
+	jp Func_3957
+
+GetNthPlayerDenjuu: ; 1412b (5:412b)
+	ld hl, wPlayerDenjuu1
+	jp GetNthDenjuuAnySide
+
+GetNthEnemyDenjuu: ; 14131 (5:4131)
+	ld hl, wEnemyDenjuu1
+	jp GetNthDenjuuAnySide
+
+GetNthDenjuuAnySide: ; 14137 (5:4137)
+	ld de, $16
+	addntimes_hl_de
+	ld de, wCurDenjuuBuffer
+	ld bc, $16
+	jp CopyData
+
+Func_1414b:
+	ld bc, $30d
+	cp $0
+	jr z, .asm_14167
+	cp $1
+	jr z, .asm_1415f
+	cp $2
+	jr z, .asm_14164
+	lb bc, $d, $f
+	jr .asm_14167
+
+.asm_1415f
+	lb bc, $3, $f
+	jr .asm_14167
+
+.asm_14164
+	lb bc, $d, $d
+.asm_14167
+	push bc
+	ld e, $8f
+	ld a, $0
+	call LoadStdBGMapLayout_
+	pop bc
+	inc bc
+	ld e, $82
+	ld a, $0
+	jp LoadStdBGMapAttrLayout_
+
+Func_14178:
+	cp $1
+	jr z, .asm_1418d
+	cp $2
+	jr z, .asm_14196
+	cp $3
+	jr z, .asm_1419f
+	hlbgcoord 3, 14
+	ld a, [wd430]
+	jp Func_141a5
+
+.asm_1418d
+	hlbgcoord 3, 16
+	ld a, [wd431]
+	jp Func_141a5
+
+.asm_14196
+	hlbgcoord 13, 14
+	ld a, [wd432]
+	jp Func_141a5
+
+.asm_1419f
+	hlbgcoord 13, 16
+	ld a, [wd433]
+Func_141a5: ; 141a5 (5:41a5)
+	ld c, $0
+	jp Func_3957
+
+Func_141aa:
+	ld bc, $30e
+	cp $0
+	jr z, .asm_141c6
+	cp $1
+	jr z, .asm_141be
+	cp $2
+	jr z, .asm_141c3
+	lb bc, $d, $10
+	jr .asm_141c6
+
+.asm_141be
+	lb bc, $3, $10
+	jr .asm_141c6
+
+.asm_141c3
+	lb bc, $d, $e
+.asm_141c6
+	push bc
+	ld e, $8d
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	pop bc
+	dec bc
+	ld e, $93
+	ld a, $0
+	jp LoadStdBGMapLayout_
+
+Func_141d7:
+	cp $1
+	jr z, .asm_141ec
+	cp $2
+	jr z, asm_1421c
+	cp $3
+	jr z, asm_14225
+	hlbgcoord 3, 14
+	ld a, [wCurBattleDenjuu2]
+	jp Func_141f2
+
+.asm_141ec
+	hlbgcoord 3, 16
+	ld a, [wCurBattleDenjuu3]
+Func_141f2: ; 141f2 (5:41f2)
+	push hl
+	call GetNthPlayerDenjuu
+	ld a, [wCurDenjuuBufferMaxHP]
+	ld e, a
+	ld a, [wCurDenjuuBufferCurHP]
+	call Func_3980
+	ld [wd4e8], a
+	cp $0
+	jr nz, .asm_14213
+	ld a, [wCurDenjuuBufferCurHP]
+	cp $0
+	jr z, .asm_14213
+	ld a, $1
+	ld [wd4e8], a
+.asm_14213
+	ld a, [wd4e8]
+	ld c, $0
+	pop hl
+	jp Func_3957
+
+asm_1421c
+	hlbgcoord 13, 14
+	ld a, [wCurEnemyDenjuu2]
+	jp Func_1422b
+
+asm_14225
+	hlbgcoord 13, 16
+	ld a, [wCurEnemyDenjuu3]
+Func_1422b: ; 1422b (5:422b)
+	push hl
+	call GetNthEnemyDenjuu
+	ld a, [wCurDenjuuBufferMaxHP]
+	ld e, a
+	ld a, [wCurDenjuuBufferCurHP]
+	call Func_3980
+	ld [wd4e9], a
+	cp $0
+	jr nz, .asm_1424c
+	ld a, [wCurDenjuuBufferCurHP]
+	cp $0
+	jr z, .asm_1424c
+	ld a, $1
+	ld [wd4e9], a
+.asm_1424c
+	ld a, [wd4e9]
+	ld c, $0
+	pop hl
+	jp Func_3957
+
+Func_14255: ; 14255 (5:4255)
+	ld a, [wd42d]
+	inc a
+	ld [wd42d], a
+	cp $1
+	jr z, .asm_1426c
+	cp $2
+	jr z, .asm_14275
+	xor a
+	ld [wd42d], a
+	ld [wSCX], a
+	ret
+
+.asm_1426c
+	ld a, [wSCX]
+	sub $2
+	ld [wSCX], a
+	ret
+
+.asm_14275
+	ld a, [wSCX]
+	add $2
+	ld [wSCX], a
+	ret
+
+Func_1427e: ; 1427e (5:427e)
+	ld a, [wd42d]
+	inc a
+	ld [wd42d], a
+	cp $1
+	jr z, .asm_14293
+	cp $2
+	jr z, .asm_1429d
+	xor a
+	ld [wd42d], a
+	jr .asm_142a7
+
+.asm_14293
+	ld a, [wWX]
+	sub $2
+	ld [wWX], a
+	jr .asm_142a7
+
+.asm_1429d
+	ld a, [wWX]
+	add $2
+	ld [wWX], a
+	jr .asm_142a7
+
+.asm_142a7
+	jp Func_142af
+
+PlaceBattleString:
+	ld b, $8
+	jp PlaceString_
+
+Func_142af: ; 142af (5:42af)
+	ld hl, wc460
+	ld a, $5f
+	ld [hli], a
+	ld a, [wWX]
+	ld [hl], a
+	ret
+
+Func_142ba:
+	xor a
+	call Func_0543
+	jp Func_142c1
+
+Func_142c1: ; 142c1 (5:42c1)
+	ld a, $1
+	ld [wOBPalUpdate], a
+	xor a
+	ld bc, $4
+	jp Func_1196
+
+Func_142cd:
+	ld [wd435], a
+	ld hl, DenjuuNames
+	call Get8CharName75
+	ld bc, wStringBuffer
+	call Func_1402a
+	jp Func_14019
+
+Func_142df:
+	push af
+	ld c, $0
+	ld de, VTilesShared tile $00
+	call LoadDenjuuPic_
+	pop af
+	jp Func_1764
+
+Func_142ec:
+	push af
+	ld c, $1
+	ld de, VTilesShared tile $38
+	call LoadDenjuuPic_
+	pop af
+	jp Func_175f
+
+Func_142f9: ; 142f9 (5:42f9)
+	push hl
+	push af
+	ld a, $8
+	call ClearString
+	call OpenSRAMBank2
+	pop af
+	ld hl, sAddressBook + 6
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	pop hl
+	ld de, wc9e1
+	ld b, $6
+	jp PlaceString_
+
+Func_14318:
+	lb bc, $1, $0
+	ld e, $86
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, $1, $0
+	ld e, $87
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	lb bc, $0, $8
+	ld e, $81
+	ld a, $0
+	call LoadStdWindowLayout_
+	ld bc, $108
+	ld e, $84
+	ld a, $0
+	jp LoadStdWindowAttrLayout_
+
+Func_14340:
+	call Func_14255
+	ld a, [wd45b]
+	inc a
+	ld [wd45b], a
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	cp $1
+	jr c, .asm_1435e
+	cp $2
+	jr c, .asm_1436a
+	ld a, $0
+	ld [wd45a], a
+.asm_1435e
+	lb bc, $1, $5
+	ld e, $92
+	ld a, $0
+	call LoadStdBGMapLayout_
+	jr .asm_14374
+
+.asm_1436a
+	lb bc, $1, $5
+	ld e, $8b
+	ld a, $0
+	call LoadStdBGMapLayout_
+.asm_14374
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd45b]
+	cp $a
+	ret nz
+	xor a
+	ld [wd42d], a
+	ld [wSCX], a
+	ld [wd45a], a
+	ld [wd45b], a
+	ret
+
+Func_1438d:
+	call Func_1427e
+	ld a, [wd45b]
+	inc a
+	ld [wd45b], a
+	ld a, [wd45a]
+	inc a
+	ld [wd45a], a
+	cp $1
+	jr c, .asm_143ab
+	cp $2
+	jr c, .asm_143b7
+	ld a, $0
+	ld [wd45a], a
+.asm_143ab
+	lb bc, $1, $1
+	ld e, $91
+	ld a, $0
+	call LoadStdWindowLayout_
+	jr .asm_143c1
+
+.asm_143b7
+	lb bc, $1, $1
+	ld e, $8b
+	ld a, $0
+	call LoadStdWindowLayout_
+.asm_143c1
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd45b]
+	cp $a
+	ret nz
+	ld a, $58
+	ld [wWX], a
+	call Func_142af
+	xor a
+	ld [wd42d], a
+	ld [wd45a], a
+	ld [wd45b], a
+	ret
+
+Func_143df:
+	ld a, [wCurMove]
+	cp QUICK_STEP
+	jr c, .asm_143e8
+	sub QUICK_STEP - SPEED_UP
+.asm_143e8
+	cp RECOVER
+	jr z, .asm_143f6
+	cp RESTORE
+	jr z, .asm_143f6
+	cp SHIELD
+	jr z, .asm_143f6
+	xor a
+	ret
+
+.asm_143f6
+	ld a, $1
+	ret
+
+UseMove:
+	ld c, DENJUU_MOVE1
+	add c
+	ld c, a
+	ld a, [wCurDenjuu]
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	ld hl, MoveNames
+	ld [wd435], a
+	ld [wCurMove], a
+	call Get8CharName75
+	ld bc, wStringBuffer
+	call Func_1402a
+	jp Func_14012
+
 DoBattle::
 	ld a, [wSubroutine]
 	ld hl, Pointers_14425
@@ -195,7 +764,7 @@ Func_1457d: ; 1457d (5:457d)
 	ld a, $20
 	ld [wd4ee], a
 	xor a
-	ld [wd417], a
+	ld [wCurMoveTarget], a
 	ld [wBattleMenuSelection], a
 	jp NextBattleSubroutine
 
@@ -387,7 +956,7 @@ Func_146f2: ; 146f2 (5:46f2)
 	call Func_1404a
 	call Func_1643a
 	ld a, [wCurBattleDenjuu]
-	ld [wd417], a
+	ld [wCurMoveTarget], a
 	jp NextBattleSubroutine
 
 Func_14707: ; 14707 (5:4707)
@@ -420,8 +989,8 @@ Func_14721: ; 14721 (5:4721)
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, $3
-	call Func_143f9
-	ld a, [wCurDenjuuBufferField0x0b]
+	call UseMove
+	ld a, [wCurDenjuuBufferMoveTarget]
 	ld b, a
 	ld a, [wCurEnemyDenjuu]
 	cp b
@@ -434,7 +1003,7 @@ Func_14721: ; 14721 (5:4721)
 	jp .asm_1478b
 
 .asm_1475d
-	ld a, [wCurDenjuuBufferField0x0b]
+	ld a, [wCurDenjuuBufferMoveTarget]
 	ld b, a
 	ld a, [wCurEnemyDenjuu2]
 	cp b
@@ -445,7 +1014,7 @@ Func_14721: ; 14721 (5:4721)
 	xor a
 	call LoadStdWindowLayout_
 .asm_14770
-	ld a, [wCurDenjuuBufferField0x0b]
+	ld a, [wCurDenjuuBufferMoveTarget]
 	ld b, a
 	ld a, [wCurEnemyDenjuu]
 	cp b
@@ -701,8 +1270,8 @@ Func_1492f: ; 1492f (5:492f)
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, $3
-	call Func_143f9
-	ld a, [wCurDenjuuBufferField0x0b]
+	call UseMove
+	ld a, [wCurDenjuuBufferMoveTarget]
 	ld b, a
 	ld a, [wCurBattleDenjuu]
 	cp b
@@ -715,7 +1284,7 @@ Func_1492f: ; 1492f (5:492f)
 	jp .asm_14999
 
 .asm_1496b
-	ld a, [wCurDenjuuBufferField0x0b]
+	ld a, [wCurDenjuuBufferMoveTarget]
 	ld b, a
 	ld a, [wCurBattleDenjuu2]
 	cp b
@@ -726,7 +1295,7 @@ Func_1492f: ; 1492f (5:492f)
 	xor a
 	call LoadStdBGMapLayout_
 .asm_1497e
-	ld a, [wCurDenjuuBufferField0x0b]
+	ld a, [wCurDenjuuBufferMoveTarget]
 	ld b, a
 	ld a, [wCurBattleDenjuu]
 	cp b
@@ -989,7 +1558,7 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, [wBattleMenuSelection]
-	call Func_143f9
+	call UseMove
 	ld a, [wCurEnemyDenjuu]
 	ld [wd415], a
 	xor a
@@ -1321,7 +1890,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, [wBattleMenuSelection]
-	call Func_143f9
+	call UseMove
 	jp Func_14ec6
 
 .asm_14e23
@@ -1352,7 +1921,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, [wBattleMenuSelection]
-	call Func_143f9
+	call UseMove
 	call Func_143df
 	cp $1
 	jr nz, .asm_14e96
@@ -1384,7 +1953,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	ret
 
 .asm_14e96
-	call Func_14ed6
+	call GetMoveTargetSide
 	cp $0
 	jr z, .asm_14e77
 Func_14e9d: ; 14e9d (5:4e9d)
@@ -1418,39 +1987,39 @@ Func_14ec6: ; 14ec6 (5:4ec6)
 	ld [wBattleSubroutine], a
 	ret
 
-Func_14ed6: ; 14ed6 (5:4ed6)
-	ld a, [wd46f]
-	cp $38
-	jr c, .asm_14f0d
-	cp $3e
-	jr c, .asm_14f10
-	cp $41
-	jr c, .asm_14f0d
-	cp $44
-	jr c, .asm_14f10
-	cp $4c
-	jr c, .asm_14f0d
-	cp $4e
-	jr c, .asm_14f10
-	cp $4f
-	jr c, .asm_14f0d
-	cp $51
-	jr c, .asm_14f10
-	cp $6e
-	jr c, .asm_14f0d
-	cp $74
-	jr c, .asm_14f10
-	cp $77
-	jr c, .asm_14f0d
-	cp $7a
-	jr c, .asm_14f10
-	cp $86
-	jr z, .asm_14f10
-.asm_14f0d
+GetMoveTargetSide: ; 14ed6 (5:4ed6)
+	ld a, [wCurMove]
+	cp SPEED_UP
+	jr c, .enemy
+	cp RECOVER
+	jr c, .player
+	cp PROTECT
+	jr c, .enemy
+	cp ULTRASONIC
+	jr c, .player
+	cp JUMP
+	jr c, .enemy
+	cp SCREAM
+	jr c, .player
+	cp WINGBEAT
+	jr c, .enemy
+	cp FORCE_FIELD
+	jr c, .player
+	cp QUICK_STEP
+	jr c, .enemy
+	cp REPAIR
+	jr c, .player
+	cp DEFEND
+	jr c, .enemy
+	cp EM_PULSE
+	jr c, .player
+	cp ELECTRO_SCREEN
+	jr z, .player
+.enemy
 	ld a, $1
 	ret
 
-.asm_14f10
+.player
 	xor a
 	ret
 
@@ -1556,17 +2125,17 @@ Func_14f81: ; 14f81 (5:4f81)
 
 .asm_14fd4
 	ld a, [wCurEnemyDenjuu]
-	ld [wPlayerDenjuu1Field0x0b], a
+	ld [wPlayerDenjuu1MoveTarget], a
 	jr .asm_14fea
 
 .asm_14fdc
 	ld a, [wCurEnemyDenjuu]
-	ld [wPlayerDenjuu2Field0x0b], a
+	ld [wPlayerDenjuu2MoveTarget], a
 	jr .asm_14fea
 
 .asm_14fe4
 	ld a, [wCurEnemyDenjuu]
-	ld [wPlayerDenjuu3Field0x0b], a
+	ld [wPlayerDenjuu3MoveTarget], a
 .asm_14fea
 	xor a
 	ld [wOAMAnimation01], a
@@ -1627,7 +2196,7 @@ Func_14f81: ; 14f81 (5:4f81)
 
 Func_15051: ; 15051 (5:5051)
 	call Func_0530
-	call Func_14ed6
+	call GetMoveTargetSide
 	cp $0
 	jr z, .asm_15091
 	ld a, [wd4e6]
@@ -1754,7 +2323,7 @@ Func_1510a: ; 1510a (5:510a)
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, [wBattleMenuSelection]
-	call Func_143f9
+	call UseMove
 	jp Func_1528c
 
 .asm_15149
@@ -1770,7 +2339,7 @@ Func_1510a: ; 1510a (5:510a)
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, [wBattleMenuSelection]
-	call Func_143f9
+	call UseMove
 	ld a, $c
 	ld [wBattleSubroutine], a
 	ret
@@ -1842,7 +2411,7 @@ Func_1510a: ; 1510a (5:510a)
 	ld [wBattleMenuSelection], a
 .asm_151e9
 	ld a, [wBattleMenuSelection]
-	call Func_143f9
+	call UseMove
 	ld a, [wCurEnemyDenjuu]
 	cp $1
 	jr z, .asm_151ff
@@ -1862,7 +2431,7 @@ Func_1510a: ; 1510a (5:510a)
 	jr nz, .asm_1522f
 	xor a
 	ld [wBattleMenuSelection], a
-	call Func_143f9
+	call UseMove
 	ld a, [wCurEnemyDenjuu]
 	cp $1
 	jr z, .asm_15223
@@ -1883,12 +2452,12 @@ Func_1510a: ; 1510a (5:510a)
 	jr .asm_1525c
 
 .asm_1522f
-	ld a, [wd46f]
-	cp $4d
+	ld a, [wCurMove]
+	cp FLIGHT
 	jr z, .asm_1523e
-	cp $43
+	cp CAMOUFLAGE
 	jr z, .asm_1523e
-	cp $79
+	cp CONCEAL
 	jr nz, .asm_1525c
 .asm_1523e
 	ld a, [wCurEnemyDenjuu]
@@ -1909,16 +2478,16 @@ Func_1510a: ; 1510a (5:510a)
 	ld a, $1
 	ld [wd4aa], a
 .asm_1525c
-	ld a, [wd46f]
-	cp $73
+	ld a, [wCurMove]
+	cp FIRST_AID
 	jr z, .asm_15273
-	cp $74
+	cp REPAIR
 	jr z, .asm_15273
-	cp $3d
+	cp HEAL
 	jr z, .asm_15273
-	cp $3e
+	cp RECOVER
 	jr z, .asm_15273
-	cp $3f
+	cp RESTORE
 	jr nz, Func_1528c
 .asm_15273
 	ld a, [wCurEnemyDenjuu]
@@ -1931,7 +2500,7 @@ Func_1510a: ; 1510a (5:510a)
 	jr nc, Func_1528c
 	xor a
 	ld [wBattleMenuSelection], a
-	call Func_143f9
+	call UseMove
 Func_1528c: ; 1528c (5:528c)
 	ld a, $35
 	ld [wBattleSubroutine], a
@@ -1945,7 +2514,7 @@ Func_15292: ; 15292 (5:5292)
 	or a
 	ret z
 	dec a
-	ld [wd417], a
+	ld [wCurMoveTarget], a
 	ld a, [wdc45]
 	inc a
 	ld [wdc45], a
@@ -1955,7 +2524,7 @@ Func_15292: ; 15292 (5:5292)
 	call Func_143df
 	cp $1
 	jp nz, Func_15345
-	ld a, [wd417]
+	ld a, [wCurMoveTarget]
 	ld [wd418], a
 	jr .asm_152ee
 
@@ -2023,19 +2592,19 @@ Func_15292: ; 15292 (5:5292)
 .asm_1532c
 	call Random
 	and $2
-	jr .asm_15342
+	jr .set_target
 
 .asm_15333
 	call Random
 	cp $7f
-	jr c, .asm_1533f
+	jr c, .enemy_targets_denjuu_2
 	ld a, [wCurBattleDenjuu]
-	jr .asm_15342
+	jr .set_target
 
-.asm_1533f
+.enemy_targets_denjuu_2
 	ld a, [wCurBattleDenjuu2]
-.asm_15342
-	ld [wd417], a
+.set_target
+	ld [wCurMoveTarget], a
 Func_15345: ; 15345 (5:5345)
 	ld a, [wBattleMenuSelection]
 	cp $3
@@ -2047,22 +2616,22 @@ Func_15345: ; 15345 (5:5345)
 	jr z, .asm_15371
 	ld a, $5
 	ld [wEnemyDenjuu1ArrivedStatus], a
-	ld a, [wd417]
-	ld [wEnemyDenjuu1Field0x0b], a
+	ld a, [wCurMoveTarget]
+	ld [wEnemyDenjuu1MoveTarget], a
 	jr .asm_1537c
 
 .asm_15364
 	ld a, $5
 	ld [wEnemyDenjuu2ArrivedStatus], a
-	ld a, [wd417]
-	ld [wEnemyDenjuu2Field0x0b], a
+	ld a, [wCurMoveTarget]
+	ld [wEnemyDenjuu2MoveTarget], a
 	jr .asm_1537c
 
 .asm_15371
 	ld a, $5
 	ld [wEnemyDenjuu3ArrivedStatus], a
-	ld a, [wd417]
-	ld [wEnemyDenjuu3Field0x0b], a
+	ld a, [wCurMoveTarget]
+	ld [wEnemyDenjuu3MoveTarget], a
 .asm_1537c
 	ld a, $1
 	ld [wd4ea], a
@@ -2071,27 +2640,27 @@ Func_15345: ; 15345 (5:5345)
 .asm_15383
 	ld a, [wCurEnemyDenjuu]
 	cp $1
-	jr z, .asm_15393
+	jr z, .enemy_denjuu_2
 	cp $2
-	jr z, .asm_15398
+	jr z, .enemy_denjuu_3
 	ld a, [wEnemyDenjuu1]
-	jr .asm_1539d
+	jr .got_enemy_denjuu
 
-.asm_15393
+.enemy_denjuu_2
 	ld a, [wEnemyDenjuu2]
-	jr .asm_1539d
+	jr .got_enemy_denjuu
 
-.asm_15398
+.enemy_denjuu_3
 	ld a, [wEnemyDenjuu3]
-	jr .asm_1539d
+	jr .got_enemy_denjuu
 
-.asm_1539d
+.got_enemy_denjuu
 	call Func_142cd
-	call Func_14ed6
+	call GetMoveTargetSide
 	or a
 	jr z, Func_153d4
 .asm_153a6
-	ld a, [wd417]
+	ld a, [wCurMoveTarget]
 	ld b, a
 	ld a, [wCurBattleDenjuu]
 	cp b
@@ -2101,7 +2670,7 @@ Func_15345: ; 15345 (5:5345)
 	xor a
 	call LoadStdBGMapLayout_
 .asm_153b9
-	ld a, [wd417]
+	ld a, [wCurMoveTarget]
 	ld b, a
 	ld a, [wCurBattleDenjuu]
 	cp b
@@ -4650,24 +5219,24 @@ Func_16724: ; 16724 (5:6724)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferSpeedCopy2]
 	ld [wd49b], a
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_16744
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_16744
-	cp $3e
+	cp RECOVER
 	jr z, asm_167af
-	cp $40
+	cp SHIELD
 	jr z, asm_167af
-	cp $4c
+	cp JUMP
 	jp z, asm_167af
-	cp $4d
+	cp FLIGHT
 	jp z, asm_167af
-	cp $50
+	cp EM_BARRIER
 	jp z, asm_167af
-	cp $38
+	cp SPEED_UP
 	jr c, .asm_16763
-	cp $44
+	cp ULTRASONIC
 	jr c, asm_167af
 .asm_16763
 	ld a, [wCurDenjuuBufferField0x12]
@@ -4787,24 +5356,24 @@ Func_16801: ; 16801 (5:6801)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpeedCopy2]
 	ld [wd49b], a
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_16840
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_16840
-	cp $3e
+	cp RECOVER
 	jr z, asm_168a6
-	cp $40
+	cp SHIELD
 	jr z, asm_168a6
-	cp $4c
+	cp JUMP
 	jp z, asm_168a6
-	cp $4d
+	cp FLIGHT
 	jp z, asm_168a6
-	cp $50
+	cp EM_BARRIER
 	jp z, asm_168a6
-	cp $38
+	cp SPEED_UP
 	jr c, .asm_1685f
-	cp $44
+	cp ULTRASONIC
 	jr c, asm_168a6
 .asm_1685f
 	ld a, [wCurDenjuuBufferField0x12]
@@ -4949,16 +5518,16 @@ Func_1697c: ; 1697c (5:697c)
 	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jp nz, Func_169e0
-	ld a, [wd46f]
+	ld a, [wCurMove]
 	call Func_05f7
 	ld a, [wCurDenjuuBufferSpAtk]
 	ld b, a
 	ld a, [wd495]
 	add b
 	ld b, a
-	cp $aa
+	cp 170 ; 66.6%
 	jr c, .asm_169a0
-	ld a, $aa
+	ld a, 170
 	ld b, a
 .asm_169a0
 	srl a
@@ -4993,16 +5562,16 @@ Func_1697c: ; 1697c (5:697c)
 	jp Func_16a4b
 
 Func_169e0: ; 169e0 (5:69e0)
-	ld a, [wd46f]
+	ld a, [wCurMove]
 	call Func_05f7
 	ld a, [wCurDenjuuBufferAttack]
 	ld b, a
 	ld a, [wd495]
 	add b
 	ld b, a
-	cp $c8
+	cp 200
 	jr c, .asm_169f6
-	ld a, $c8
+	ld a, 200
 	ld b, a
 .asm_169f6
 	ld a, [wCurDenjuuBufferField0x12]
@@ -5613,7 +6182,7 @@ Func_16e29: ; 16e29 (5:6e29)
 	ld [H_SFX_ID], a
 	call Func_1652b
 	ld a, [wCurBattleDenjuu]
-	ld [wd417], a
+	ld [wCurMoveTarget], a
 	ld a, [wd4e6]
 	dec a
 	ld [wd4e6], a
@@ -5711,7 +6280,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	call Func_1651b
 .asm_16f29
 	ld a, [wCurBattleDenjuu]
-	ld [wd417], a
+	ld [wCurMoveTarget], a
 	ld a, [wd4e6]
 	dec a
 	ld [wd4e6], a
@@ -5771,16 +6340,16 @@ Func_16f97: ; 16f97 (5:6f97)
 	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jp nz, Func_17001
-	ld a, [wd46f]
+	ld a, [wCurMove]
 	call Func_05f7
 	ld a, [wCurDenjuuBufferSpAtk]
 	ld b, a
 	ld a, [wd495]
 	add b
 	ld b, a
-	cp $aa
+	cp 170
 	jr c, .asm_16fc1
-	ld a, $aa
+	ld a, 170
 	ld b, a
 .asm_16fc1
 	srl a
@@ -5815,16 +6384,16 @@ Func_16f97: ; 16f97 (5:6f97)
 	jp Func_1706c
 
 Func_17001: ; 17001 (5:7001)
-	ld a, [wd46f]
+	ld a, [wCurMove]
 	call Func_05f7
 	ld a, [wCurDenjuuBufferAttack]
 	ld b, a
 	ld a, [wd495]
 	add b
 	ld b, a
-	cp $c8
+	cp 200
 	jr c, .asm_17017
-	ld a, $c8
+	ld a, 200
 	ld b, a
 .asm_17017
 	ld a, [wCurDenjuuBufferField0x12]
@@ -6371,32 +6940,32 @@ Func_1740c: ; 1740c (5:740c)
 	ret
 
 Func_1741f: ; 1741f (5:741f)
-	ld a, [wd46f]
-	cp $11
+	ld a, [wCurMove]
+	cp BLOODSUCK
 	jp z, Func_1745b
-	cp $6b
+	cp DRAIN
 	jp z, Func_1745b
-	cp $a
+	cp POISON_STING
 	jr z, asm_17466
-	cp $b
+	cp NUMBING_STING
 	jr z, asm_17466
-	cp $28
+	cp FLAMETHROWER
 	jr z, asm_17466
-	cp $29
+	cp MINI_FLAME
 	jr z, asm_17466
-	cp $2a
+	cp MEGA_FLAME
 	jr z, asm_17466
-	cp $2d
+	cp MINI_SNOW
 	jr z, asm_17466
-	cp $2e
+	cp BLIZZARD
 	jr z, asm_17466
-	cp $32
+	cp MINI_BOLT
 	jr z, asm_17466
-	cp $33
+	cp MEGA_BOLT
 	jr z, asm_17466
-	cp $64
+	cp TOXIC_STING
 	jr z, asm_17466
-	cp $65
+	cp ELECTRIC_STING
 	jr z, asm_17466
 	jp Func_17478
 
@@ -6429,8 +6998,8 @@ Func_1747e: ; 1747e (5:747e)
 	ret nz
 	ld a, $5
 	ld [wd434], a
-	ld a, [wd46f]
-	cp $4b
+	ld a, [wCurMove]
+	cp POISON_GAS
 	jr nz, .asm_174a6
 	ld a, [wBattleTurn]
 	cp $1
@@ -6491,11 +7060,11 @@ Func_174b9: ; 174b9 (5:74b9)
 	ld a, [wd434]
 	cp $0
 	ret nz
-	ld a, [wd46f]
-	cp $4b
+	ld a, [wCurMove]
+	cp POISON_GAS
 	jr nz, .asm_1750c
 	ld a, $0
-	ld [wd46f], a
+	ld [wCurMove], a
 	ld a, $13
 	ld [wd401], a
 	ret
@@ -6509,7 +7078,7 @@ Func_174b9: ; 174b9 (5:74b9)
 
 .asm_17516
 	ld a, $0
-	ld [wd46f], a
+	ld [wCurMove], a
 	ld a, $6
 	ld [wd401], a
 	ret
@@ -6548,11 +7117,11 @@ Func_17521: ; 17521 (5:7521)
 	ld a, [wd434]
 	cp $0
 	ret nz
-	ld a, [wd46f]
-	cp $4b
+	ld a, [wCurMove]
+	cp POISON_GAS
 	jr nz, .asm_17574
 	ld a, $0
-	ld [wd46f], a
+	ld [wCurMove], a
 	ld a, $13
 	ld [wd401], a
 	ret
@@ -6566,7 +7135,7 @@ Func_17521: ; 17521 (5:7521)
 
 .asm_1757e
 	ld a, $0
-	ld [wd46f], a
+	ld [wCurMove], a
 	ld a, $c
 	ld [wd401], a
 	ret
@@ -6576,12 +7145,12 @@ Func_17589: ; 17589 (5:7589)
 	dec a
 	ld [wd45a], a
 	ret nz
-	ld a, [wd46f]
-	cp $38
+	ld a, [wCurMove]
+	cp SPEED_UP
 	jr c, .asm_175a4
-	cp $54
+	cp WATER_SHOT
 	jr c, .asm_175a0
-	cp $6e
+	cp QUICK_STEP
 	jr c, .asm_175a4
 .asm_175a0
 	ld c, $2f
@@ -6594,7 +7163,7 @@ Func_17589: ; 17589 (5:7589)
 	ld a, $5b
 	ld [H_SFX_ID], a
 	xor a
-	ld [wd46f], a
+	ld [wCurMove], a
 	ld a, $3c
 	ld [wd45a], a
 	ld a, $1f
@@ -6615,8 +7184,8 @@ Func_175ce: ; 175ce (5:75ce)
 	ld a, [wd412]
 	cp $1
 	jr z, .asm_17608
-	ld a, [wd46f]
-	cp $4b
+	ld a, [wCurMove]
+	cp POISON_GAS
 	jr z, .asm_175f8
 	ld a, [wBattleTurn]
 	cp $1
@@ -6664,12 +7233,12 @@ Func_17612: ; 17612 (5:7612)
 	ld hl, VTilesBG tile $18
 	ld a, $8
 	call ClearString
-	ld a, [wd46f]
-	cp $38
+	ld a, [wCurMove]
+	cp SPEED_UP
 	jr c, .asm_17649
-	cp $5b
+	cp IRON_CLAW
 	jr c, .asm_1764e
-	cp $6e
+	cp QUICK_STEP
 	jr c, .asm_17658
 	jr .asm_1765f
 
@@ -6678,21 +7247,21 @@ Func_17612: ; 17612 (5:7612)
 	jr .asm_17669
 
 .asm_1764e
-	sub $38
+	sub SPEED_UP
 	ld [wd4fc], a
-	ld a, [wd46f]
+	ld a, [wCurMove]
 	jr .asm_17669
 
 .asm_17658
-	sub $5a
+	sub STATUS_RESET
 	ld [wd4fc], a
 	jr .asm_17669
 
 .asm_1765f
-	sub $6e
+	sub QUICK_STEP
 	ld [wd4fc], a
-	ld a, [wd46f]
-	sub $36
+	ld a, [wCurMove]
+	sub QUICK_STEP - SPEED_UP
 .asm_17669
 	call Func_053e
 	ld a, $1
@@ -6714,8 +7283,8 @@ Func_17612: ; 17612 (5:7612)
 	ret
 
 Func_17689: ; 17689 (5:7689)
-	ld a, [wd46f]
-	cp $4b
+	ld a, [wCurMove]
+	cp POISON_GAS
 	jr nz, .asm_17699
 	ld a, [wBattleTurn]
 	cp $0
@@ -6756,22 +7325,22 @@ Func_176b9: ; 176b9 (5:76b9)
 	ld a, [wdc45]
 	inc a
 	ld [wdc45], a
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_176df
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_176df
-	cp $4d
+	cp FLIGHT
 	jp z, Func_17785
-	cp $4e
+	cp SCREAM
 	jp z, Func_17785
-	cp $50
+	cp EM_BARRIER
 	jp z, Func_17785
-	cp $56
+	cp LICK
 	jp z, Func_17785
-	cp $43
+	cp CAMOUFLAGE
 	jr c, .asm_176fc
-	cp $54
+	cp WATER_SHOT
 	jp c, Func_17785
 .asm_176fc
 	ld a, [hl]
@@ -6780,22 +7349,22 @@ Func_176b9: ; 176b9 (5:76b9)
 	jp Func_17785
 
 Func_17705: ; 17705 (5:7705)
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_1770e
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_1770e
-	cp $4d
+	cp FLIGHT
 	jp z, Func_17785
-	cp $4e
+	cp SCREAM
 	jp z, Func_17785
-	cp $50
+	cp EM_BARRIER
 	jp z, Func_17785
-	cp $56
+	cp LICK
 	jr z, Func_17785
-	cp $43
+	cp CAMOUFLAGE
 	jr c, .asm_17729
-	cp $54
+	cp WATER_SHOT
 	jr c, Func_17785
 .asm_17729
 	ld a, [wBattleTurn]
@@ -6845,68 +7414,68 @@ Func_17705: ; 17705 (5:7705)
 	cp $40
 	jp nc, Func_1798f
 Func_17785: ; 17785 (5:7785)
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_1778e
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_1778e
-	cp $43
+	cp CAMOUFLAGE
 	jp z, Func_1781b
-	cp $44
+	cp ULTRASONIC
 	jp z, Func_17826
-	cp $45
+	cp EM_WAVE
 	jp z, Func_17831
-	cp $46
+	cp CURSE_SONG
 	jp z, Func_1783c
-	cp $47
+	cp LULLABY
 	jp z, Func_17847
-	cp $48
+	cp GLARE
 	jp z, Func_17852
-	cp $49
+	cp SLEEP_GAS
 	jp z, Func_1785d
-	cp $4a
+	cp SMOKESCREEN
 	jp z, Func_17868
-	cp $4b
+	cp POISON_GAS
 	jp z, Func_17873
-	cp $4c
+	cp JUMP
 	jp z, Func_1787e
-	cp $4d
+	cp FLIGHT
 	jp z, Func_17889
-	cp $4e
+	cp SCREAM
 	jp z, Func_17894
-	cp $4f
+	cp WINGBEAT
 	jp z, Func_1789f
-	cp $50
+	cp EM_BARRIER
 	jp z, Func_178aa
-	cp $51
+	cp FORCE_FIELD
 	jp z, Func_178b5
-	cp $52
+	cp CHILL
 	jp z, Func_178c0
-	cp $53
+	cp HEAT_WAVE
 	jp z, Func_178cb
-	cp $56
+	cp LICK
 	jp z, Func_17852
-	cp $a
+	cp POISON_STING
 	jp z, Func_17873
-	cp $b
+	cp NUMBING_STING
 	jp z, Func_17831
-	cp $28
+	cp FLAMETHROWER
 	jp z, Func_178cb
-	cp $29
+	cp MINI_FLAME
 	jp z, Func_178cb
-	cp $2a
+	cp MEGA_FLAME
 	jp z, Func_178cb
-	cp $2d
+	cp MINI_SNOW
 	jp z, Func_178c0
-	cp $2e
+	cp BLIZZARD
 	jp z, Func_178c0
-	cp $32
+	cp MINI_BOLT
 	jr z, Func_17831
-	cp $33
+	cp MEGA_BOLT
 	jr z, Func_17831
-	cp $64
+	cp TOXIC_STING
 	jr z, Func_17873
-	cp $65
+	cp ELECTRIC_STING
 	jr z, Func_17831
 Func_1781b: ; 1781b (5:781b)
 	call Func_179a2
@@ -7349,24 +7918,24 @@ Func_17aea: ; 17aea (5:7aea)
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142cd
 .asm_17b1c
-	ld a, [wd46f]
+	ld a, [wCurMove]
 	call Func_05f7
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_17b2b
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_17b2b
-	cp $38
+	cp SPEED_UP
 	jp z, Func_17b49
-	cp $39
+	cp FOCUS
 	jp z, Func_17ba6
-	cp $3a
+	cp AVOID
 	jp z, Func_17c1b
-	cp $3b
+	cp INVIGORATE
 	jp z, Func_17c90
-	cp $3c
+	cp CHARGE_UP
 	jp z, Func_17ced
-	cp $40
+	cp SHIELD
 	jp nc, Func_17d73
 Func_17b49: ; 17b49 (5:7b49)
 	ld a, [wd495]
@@ -7757,12 +8326,12 @@ Func_17de5: ; 17de5 (5:7de5)
 	ret
 
 Func_17df4: ; 17df4 (5:7df4)
-	ld a, [wd46f]
-	cp $38
+	ld a, [wCurMove]
+	cp SPEED_UP
 	jp c, Func_0638
-	cp $5b
+	cp IRON_CLAW
 	jp c, Func_0640
-	cp $6e
+	cp QUICK_STEP
 	jp c, Func_0638
 	jp Func_0640
 
@@ -7784,21 +8353,21 @@ Func_17e09: ; 17e09 (5:7e09)
 	xor a
 	ld [wd45a], a
 	ld [wd45b], a
-	ld a, [wd46f]
-	cp $38
+	ld a, [wCurMove]
+	cp SPEED_UP
 	jp c, Func_17ea0
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_17e47
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_17e47
-	cp $38
+	cp SPEED_UP
 	jr c, .asm_17e5d
-	cp $3d
+	cp HEAL
 	jr c, .asm_17e57
-	cp $40
+	cp SHIELD
 	jr c, .asm_17e5d
-	cp $43
+	cp CAMOUFLAGE
 	jr nc, .asm_17e5d
 .asm_17e57
 	ld a, $15
@@ -7806,16 +8375,16 @@ Func_17e09: ; 17e09 (5:7e09)
 	ret
 
 .asm_17e5d
-	ld a, [wd46f]
-	cp $6e
+	ld a, [wCurMove]
+	cp QUICK_STEP
 	jr c, .asm_17e66
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_17e66
-	cp $3d
+	cp HEAL
 	jr c, .asm_17e80
-	cp $40
+	cp SHIELD
 	jr nc, .asm_17e80
-	ld a, [wd46f]
+	ld a, [wCurMove]
 	call Func_05f7
 	ld a, [wd495]
 	ld [wd434], a
@@ -7824,16 +8393,16 @@ Func_17e09: ; 17e09 (5:7e09)
 	ret
 
 .asm_17e80
-	ld a, [wd46f]
-	cp $56
+	ld a, [wCurMove]
+	cp LICK
 	jr z, .asm_17e95
-	cp $6e
+	cp QUICK_STEP
 	jr c, .asm_17e8d
-	sub $36
+	sub QUICK_STEP - SPEED_UP
 .asm_17e8d
-	cp $43
+	cp CAMOUFLAGE
 	jr c, Func_17ea0
-	cp $54
+	cp WATER_SHOT
 	jr nc, Func_17ea0
 .asm_17e95
 	ld c, $72

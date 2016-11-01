@@ -54,7 +54,7 @@
 	const MEGA_BOLT
 	const EARTHQUAKE
 	const MEGA_QUAKE
-	const ROCK
+	const ROCK ; 36
 	const MEGA_ROCK
 	const SPEED_UP
 	const FOCUS

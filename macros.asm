@@ -190,7 +190,7 @@ battle_struct: MACRO
 \1Field0x08:: ds 1
 \1Field0x09:: ds 1
 \1FD:: ds 1
-\1Field0x0b:: ds 1
+\1MoveTarget:: ds 1
 \1Field0x0c:: ds 1
 \1Field0x0d:: ds 1
 \1Attack:: ds 1
