@@ -23267,7 +23267,7 @@ SECTION "bank 26", ROMX, BANK [$26]
 	dr $98000, $99068
 
 Pointers_99068:
-	dr $99068, $9c000
+	dr $99068, $999bf
 
 SECTION "bank 27", ROMX, BANK [$27]
 Data_9c000::
@@ -23292,7 +23292,7 @@ EnemyTFangerParties::
 INCLUDE "data/tfanger_parties.asm"
 
 SECTION "bank 28", ROMX, BANK [$28]
-	dr $a0000, $a4000
+	dr $a0000, $a3320
 
 SECTION "bank 29", ROMX, BANK [$29]
 Func_a4000::
@@ -23423,9 +23423,6 @@ Data_a6b69::
 
 UnknownTZFile43:: INCBIN "gfx/tzfiles/tz_43.2bpp.tz"
 UnknownTZFile44:: INCBIN "gfx/tzfiles/tz_44.2bpp.tz"
-
-Data_a7869::
-	dr $a7869, $a8000
 
 SECTION "bank 2A", ROMX, BANK [$2a]
 Func_a8000:
@@ -24225,10 +24222,10 @@ INCBIN "gfx/sprites/items/065.w16.2bpp"
 INCBIN "gfx/sprites/items/066.w16.2bpp"
 
 SECTION "bank 2B", ROMX, BANK [$2b]
-	dr $ac000, $b0000
+	dr $ac000, $affc0
 
 SECTION "bank 2C", ROMX, BANK [$2c]
-	dr $b0000, $b4000
+	dr $b0000, $b3f28
 
 SECTION "bank 32", ROMX, BANK [$32]
 Func_c8000::
@@ -24313,7 +24310,7 @@ Func_c9b01:
 	dr $c9b01, $c9b17
 
 Func_c9b17:
-	dr $c9b17, $cc000
+	dr $c9b17, $cb0c9
 
 SECTION "bank 33", ROMX, BANK [$33]
 	dr $cc000, $ce601
@@ -24358,9 +24355,9 @@ UnknownTZFile24:: INCBIN "gfx/tzfiles/tz_24.2bpp.tz"
 
 Data_da4f9::
 IF DEF(POWER)
-	dr $da4f9, $dc000
+	dr $da4f9, $dae00
 ELSE
-	dr $da5ac, $dc000
+	dr $da5ac, $daeb3
 ENDC
 
 SECTION "bank 37", ROMX, BANK [$37]
@@ -24502,21 +24499,21 @@ ENDC
 
 SECTION "bank 3f", ROMX, BANK [$3f]
 IF DEF(POWER)
-	dr $fc4eb, $100000
+	dr $fc4eb, $fd3c7
 ELSE
-	dr $fc4e9, $100000
+	dr $fc4e9, $fd3c5
 ENDC
 
 SECTION "bank 40", ROMX, BANK [$40]
 Pointers_100000:
-	dr $100000, $104000
+	dr $100000, $100ea5
 
 SECTION "bank 45", ROMX, BANK [$45]
 Pointers_114000:
 	dr $114000, $11507b
 
 Pointers_11507b:
-	dr $11507b, $118000
+	dr $11507b, $11702d
 
 SECTION "bank 46", ROMX, BANK [$46]
 Pointers_118000:
