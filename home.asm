@@ -1766,117 +1766,117 @@ Func_192a: ; 192a (0:192a)
 	call Func_10ee
 	ret
 
-PlayMoveAnimation: ; 1939 (0:1939)
+PlayMoveAnimation_grp1: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_1943
 	call GetWordFromTable
 	jp [hl]
 
 Pointers_1943::
-	dw Func_19b3
-	dw Func_68000
-	dw Func_6804c
-	dw Func_68103
-	dw Func_681d7
-	dw Func_68290
-	dw Func_6839c
-	dw Func_683f0
-	dw Func_68444
-	dw Func_68497
-	dw Func_68598
-	dw Func_686f2
-	dw Func_6877a
-	dw Func_687e1
-	dw Func_68829
-	dw Func_688c9
-	dw Func_6890e
-	dw Func_68a2d
-	dw Func_68bc7
-	dw Func_68d43
-	dw Func_68e59
-	dw Func_68ebf
-	dw Func_68f25
-	dw Func_68f8b
-	dw Func_68fdc
-	dw Func_69042
-	dw Func_690a8
-	dw Func_69133
-	dw Func_6921d
-	dw Func_692eb
-	dw Func_693cd
-	dw Func_694af
-	dw Func_695c7
-	dw Func_696c8
-	dw Func_6974c
-	dw Func_69828
-	dw Func_69913
-	dw Func_69961
-	dw Func_699e5
-	dw Func_69a69
-	dw Func_69acb
-	dw Func_69cd0
-	dw Func_69f99
-	dw Func_6a15a
-	dw Func_6a35e
-	dw Func_6a401
-	dw Func_6a618
-	dw Func_6a774
-	dw Func_6a954
-	dw Func_6ab1e
-	dw Func_6ab5e
-	dw Func_6ac98
-	dw Func_6ad72
-	dw Func_6aea7
-	dw Func_6afdc
-	dw Func_6b1ad
+	dw Dummy0Animation  ; DUMMY_0
+	dw ClawAnimation ; CLAW                     IRON_CLAW
+	dw RushAnimation ; RUSH                     ASSAULT
+	dw StrikeAnimation ; STRIKE                   MISSILE_PUNCH
+	dw CatPunchAnimation ; CAT_PUNCH                RAZOR_PUNCH
+	dw BisonHammerAnimation ; BISON_HAMMER             HOOF
+	dw KickAnimation ; KICK                     HIGH_KICK
+	dw TailAnimation ; TAIL                     MIDDLE_KICK
+	dw HornAnimation ; HORN                     STAB
+	dw BeakAnimation ; BEAK                     TRIPLE_ATTACK
+	dw PoisonStingAnimation ; POISON_STING             TOXIC_STING
+	dw NumbingStingAnimation ; NUMBING_STING            ELECTRIC_STING
+	dw ScissorAnimation ; SCISSOR                  CROSS_ATTACK
+	dw SabreAnimation ; SABRE                    VACUUM_SLASH
+	dw BiteAnimation ; BITE                     FANG_CRUSH
+	dw BodyPressAnimation ; BODY_PRESS               PUNT
+	dw HornDrillAnimation ; HORN_DRILL               SCREW_HORN
+	dw BloodsuckAnimation ; BLOODSUCK                DRAIN
+	dw ShurikenAnimation ; SHURIKEN                 DENMA_SHURIKEN
+	dw BowgunAnimation ; BOWGUN                   NEEDLE
+	dw BisonBeamAnimation ; BISON_BEAM
+	dw StagBeamAnimation ; STAG_BEAM
+	dw PulseBeamAnimation ; PULSE_BEAM
+	dw PlasmaLaserAnimation ; PLASMA_LASER
+	dw MegaLauncherAnimation ; MEGA_LAUNCHER
+	dw MegaCannonAnimation ; MEGA_CANNON
+	dw MegaRifleAnimation ; MEGA_RIFLE
+	dw DrillMissileAnimation ; DRILL_MISSILE
+	dw HyperMissileAnimation ; HYPER_MISSILE
+	dw DragonMissileAnimation ; DRAGON_MISSILE
+	dw PenguinMissileAnimation ; PENGUIN_MISSILE
+	dw MissilePodAnimation ; MISSILE_POD
+	dw WarCannonAnimation ; WAR_CANNON
+	dw HarpoonMissileAnimation ; HARPOON_MISSILE
+	dw HornLauncherAnimation ; HORN_LAUNCHER
+	dw BirdBazookaAnimation ; BIRD_BAZOOKA
+	dw NoseMagnumAnimation ; NOSE_MAGNUM
+	dw EarVulcanAnimation ; EAR_VULCAN
+	dw TuskVulcanAnimation ; TUSK_VULCAN
+	dw MachineGunAnimation ; MACHINE_GUN
+	dw FlamethrowerAnimation ; FLAMETHROWER
+	dw MiniFlameAnimation ; MINI_FLAME
+	dw MegaFlameAnimation ; MEGA_FLAME
+	dw KamaitachiAnimation ; KAMAITACHI
+	dw HurricaneAnimation ; HURRICANE
+	dw MiniSnowAnimation ; MINI_SNOW
+	dw BlizzardAnimation ; BLIZZARD
+	dw EggBombAnimation ; EGG_BOMB
+	dw WhirlpoolAnimation ; WHIRLPOOL
+	dw TsunamiAnimation ; TSUNAMI
+	dw MiniBoltAnimation ; MINI_BOLT
+	dw MegaBoltAnimation ; MEGA_BOLT
+	dw EarthquakeAnimation ; EARTHQUAKE
+	dw MegaQuakeAnimation ; MEGA_QUAKE
+	dw RockAnimation ; ROCK
+	dw MegaRockAnimation ; MEGA_ROCK
 
-Func_19b3::
+Dummy0Animation::
 	ld a, $17
 	ld [wd401], a
 	ret
 
-Func_19b9: ; 1939 (0:1939)
+PlayMoveAnimation_grp2: ; 1939 (0:1939)
 	ld a, [wd4fc]
 	ld hl, Pointers_19c3
 	call GetWordFromTable
 	jp [hl]
 
 Pointers_19c3::
-	dw Func_6c000
-	dw Func_6c082
-	dw Func_6c11b
-	dw Func_6c1b4
-	dw Func_6c21d
-	dw Func_6c27e
-	dw Func_6c27e
-	dw Func_6c556
-	dw Func_6c676
-	dw Func_6c6d4
-	dw Func_6c732
-	dw Func_6c790
-	dw Func_6c8f7
-	dw Func_6ca8c
-	dw Func_6cc6a
-	dw Func_6ce90
-	dw Func_6d0d3
-	dw Func_6d30d
-	dw Func_6d462
-	dw Func_6d5aa
-	dw Func_6d6ff
-	dw Func_6d6ff
-	dw Func_6dc84
-	dw Func_6dd4b
-	dw Func_6e0f1
-	dw Func_6e304
-	dw Func_6e457
-	dw Func_6e5af
-	dw Func_6e733
-	dw Func_6e853
-	dw Func_6e94a
-	dw Func_6ec18
-	dw Func_6eec0
-	dw Func_6c082
-	dw Func_6c082
+	dw SpeedUpAnimation ; SPEED_UP        QUICK_STEP
+	dw ParameterDownAnimation ; FOCUS           AIM
+	dw AvoidAnimation ; AVOID           EVADE
+	dw InvigorateAnimation ; INVIGORATE      BRACE
+	dw ChargeUpAnimation ; CHARGE_UP       DUMMY_1
+	dw RecoverAnimation ; HEAL            FIRST_AID
+	dw RecoverAnimation ; RECOVER         REPAIR
+	dw RestoreAnimation ; RESTORE         DUMMY_2
+	dw ShieldAnimation ; SHIELD          SHUTTER
+	dw ProtectAnimation ; PROTECT         DEFEND
+	dw IronWallAnimation ; IRON_WALL       DUMMY_3
+	dw CamouflageAnimation ; CAMOUFLAGE      CONCEAL
+	dw UltrasonicAnimation ; ULTRASONIC      EM_PULSE
+	dw EmWaveAnimation ; EM_WAVE         SHOCKWAVE
+	dw CurseSongAnimation ; CURSE_SONG      DUMMY_4
+	dw LullabyAnimation ; LULLABY         DUMMY_5
+	dw GlareAnimation ; GLARE           STARE
+	dw SleepGasAnimation ; SLEEP_GAS       DUMMY_6
+	dw SmokescreenAnimation ; SMOKESCREEN     DUMMY_7
+	dw PoisonGasAnimation ; POISON_GAS      DUMMY_8
+	dw FlightAnimation ; JUMP            DUMMY_9
+	dw FlightAnimation ; FLIGHT          DUMMY_10
+	dw ScreamAnimation ; SCREAM          SNARL
+	dw WingbeatAnimation ; WINGBEAT        DUST_CLOUD
+	dw EmBarrierAnimation ; EM_BARRIER      ELECTRO_SCREEN
+	dw ForceFieldAnimation ; FORCE_FIELD     DENMA_SEAL
+	dw ChillAnimation ; CHILL           FROST_BREATH
+	dw HeatWaveAnimation ; HEAT_WAVE       PETAL_STORM
+	dw WaterShotAnimation ; WATER_SHOT
+	dw AcidAnimation ; ACID
+	dw LickAnimation ; LICK
+	dw TentacleAnimation ; TENTACLE
+	dw IceBallAnimation ; ICE_BALL
+	dw ParameterDownAnimation ; PARAMETER_DOWN
+	dw ParameterDownAnimation ; STATUS_RESET
 
 Func_1a09: ; 1a09 (0:1a09)
 	ld a, SRAM_ENABLE

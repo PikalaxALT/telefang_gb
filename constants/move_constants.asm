@@ -56,7 +56,7 @@
 	const MEGA_QUAKE
 	const ROCK ; 36
 	const MEGA_ROCK
-	const SPEED_UP
+	const SPEED_UP ; 38
 	const FOCUS
 	const AVOID
 	const INVIGORATE

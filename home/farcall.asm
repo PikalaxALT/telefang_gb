@@ -350,17 +350,17 @@ Func_0630::
 	homecall_memret Func_a8d20
 	ret
 
-Func_0638::
-	ld a, BANK(Func_68000)
+PlayMoveAnimation_grp1_::
+	ld a, BANK(ClawAnimation)
 	rst Bankswitch
-	call PlayMoveAnimation
+	call PlayMoveAnimation_grp1
 	rst MemBankswitch
 	ret
 
-Func_0640::
-	ld a, BANK(Func_6c000)
+PlayMoveAnimation_grp2_::
+	ld a, BANK(SpeedUpAnimation)
 	rst Bankswitch
-	call Func_19b9
+	call PlayMoveAnimation_grp2
 	rst MemBankswitch
 	ret
 

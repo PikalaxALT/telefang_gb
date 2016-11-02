@@ -7253,7 +7253,7 @@ Func_17612: ; 17612 (5:7612)
 	jr .asm_17669
 
 .asm_17658
-	sub STATUS_RESET
+	sub IRON_CLAW - 1
 	ld [wd4fc], a
 	jr .asm_17669
 
@@ -8328,12 +8328,12 @@ Func_17de5: ; 17de5 (5:7de5)
 Func_17df4: ; 17df4 (5:7df4)
 	ld a, [wCurMove]
 	cp SPEED_UP
-	jp c, Func_0638
+	jp c, PlayMoveAnimation_grp1_
 	cp IRON_CLAW
-	jp c, Func_0640
+	jp c, PlayMoveAnimation_grp2_
 	cp QUICK_STEP
-	jp c, Func_0638
-	jp Func_0640
+	jp c, PlayMoveAnimation_grp1_
+	jp PlayMoveAnimation_grp2_
 
 Func_17e09: ; 17e09 (5:7e09)
 	ld bc, $1

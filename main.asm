@@ -23126,100 +23126,100 @@ SECTION "bank 1A", ROMX, BANK [$1a]
 INCLUDE "battle/anims.asm"
 
 SECTION "bank 1B", ROMX, BANK [$1b]
-Func_6c000::
+SpeedUpAnimation::
 	dr $6c000, $6c082
 
-Func_6c082::
+ParameterDownAnimation::
 	dr $6c082, $6c11b
 
-Func_6c11b::
+AvoidAnimation::
 	dr $6c11b, $6c1b4
 
-Func_6c1b4::
+InvigorateAnimation::
 	dr $6c1b4, $6c21d
 
-Func_6c21d::
+ChargeUpAnimation::
 	dr $6c21d, $6c27e
 
-Func_6c27e::
+RecoverAnimation::
 	dr $6c27e, $6c556
 
-Func_6c556::
+RestoreAnimation::
 	dr $6c556, $6c676
 
-Func_6c676::
+ShieldAnimation::
 	dr $6c676, $6c6d4
 
-Func_6c6d4::
+ProtectAnimation::
 	dr $6c6d4, $6c732
 
-Func_6c732::
+IronWallAnimation::
 	dr $6c732, $6c790
 
-Func_6c790::
+CamouflageAnimation::
 	dr $6c790, $6c8f7
 
-Func_6c8f7::
+UltrasonicAnimation::
 	dr $6c8f7, $6ca8c
 
-Func_6ca8c::
+EmWaveAnimation::
 	dr $6ca8c, $6cc6a
 
-Func_6cc6a::
+CurseSongAnimation::
 	dr $6cc6a, $6ce90
 
-Func_6ce90::
+LullabyAnimation::
 	dr $6ce90, $6d0d3
 
-Func_6d0d3::
+GlareAnimation::
 	dr $6d0d3, $6d30d
 
-Func_6d30d::
+SleepGasAnimation::
 	dr $6d30d, $6d462
 
-Func_6d462::
+SmokescreenAnimation::
 	dr $6d462, $6d5aa
 
-Func_6d5aa::
+PoisonGasAnimation::
 	dr $6d5aa, $6d6ff
 
-Func_6d6ff::
+FlightAnimation::
 	dr $6d6ff, $6db13
 
 Func_6db13::
 	dr $6db13, $6dc84
 
-Func_6dc84::
+ScreamAnimation::
 	dr $6dc84, $6dd4b
 
-Func_6dd4b::
+WingbeatAnimation::
 	dr $6dd4b, $6e0f1
 
-Func_6e0f1::
+EmBarrierAnimation::
 	dr $6e0f1, $6e304
 
-Func_6e304::
+ForceFieldAnimation::
 	dr $6e304, $6e457
 
-Func_6e457::
+ChillAnimation::
 	dr $6e457, $6e5af
 
-Func_6e5af::
+HeatWaveAnimation::
 	dr $6e5af, $6e733
 
-Func_6e733::
+WaterShotAnimation::
 	dr $6e733, $6e853
 
-Func_6e853::
+AcidAnimation::
 	dr $6e853, $6e94a
 
-Func_6e94a::
+LickAnimation::
 	dr $6e94a, $6ec18
 
-Func_6ec18::
+TentacleAnimation::
 	dr $6ec18, $6eec0
 
-Func_6eec0::
+IceBallAnimation::
 	dr $6eec0, $6f3a6
 
 SECTION "bank 1C", ROMX, BANK [$1c]
