@@ -23261,7 +23261,7 @@ SECTION "bank 23", ROMX, BANK [$23]
 INCLUDE "audio/engine_23.asm"
 
 SECTION "bank 24", ROMX, BANK [$24]
-	dr $90000, $94000
+INCLUDE "audio/engine_24.asm"
 
 SECTION "bank 26", ROMX, BANK [$26]
 	dr $98000, $99068
