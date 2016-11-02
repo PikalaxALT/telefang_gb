@@ -230,7 +230,7 @@ Func_6819a:
 	ld a, $4
 	ld de, wOAMAnimation03
 	call Func_6b28c
-	ld bc, $810
+	lb bc, 8, 16
 	ld de, wOAMAnimation03
 	call Func_6b737
 	jp NextMoveAnimationSubroutine
@@ -274,7 +274,7 @@ Func_68206:
 	or a
 	ret nz
 	ld a, $5
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_6b4f8
 	ld a, $10
 	ld [wd45a], a
@@ -296,7 +296,7 @@ Func_68224:
 
 Func_6823c:
 	ld a, $6
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b4f8
 	ld a, $8
 	ld [wd45a], a
@@ -309,7 +309,7 @@ Func_6824c:
 	or a
 	ret nz
 	ld a, $7
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_6b4f8
 	ld a, $10
 	ld [wd45a], a
@@ -323,10 +323,10 @@ Func_68265:
 	ret nz
 	ld hl, wOAMAnimation02
 	call Func_6b70d
-	ld hl, wOAMAnimation03_PriorityFlags
+	ld hl, wOAMAnimation03
 	call Func_6b70d
 	ld a, $5
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $2a
 	ld [H_SFX_ID], a
@@ -403,7 +403,7 @@ Func_682ff:
 	cp $0
 	ret nz
 	ld a, $2a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b4f8
 	ld a, $a
 	ld [wd45a], a
@@ -472,7 +472,7 @@ Func_68389:
 	ld [wd45a], a
 	cp $0
 	ret nz
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b70d
 	jp NextMoveAnimationSubroutine
 
@@ -499,7 +499,7 @@ Func_683b2:
 	jp NextMoveAnimationSubroutine
 
 Func_683c2:
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	jp Func_6b4bb
 
 Func_683c8:
@@ -514,7 +514,7 @@ Func_683d0:
 	cp $0
 	ret nz
 	ld a, $4
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $41
 	ld [H_SFX_ID], a
@@ -540,7 +540,7 @@ Pointers_683fa:
 
 Func_68406:
 	ld a, $6
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $2a
 	ld [H_SFX_ID], a
@@ -562,7 +562,7 @@ Func_68424:
 	cp $0
 	ret nz
 	ld a, $2
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $42
 	ld [H_SFX_ID], a
@@ -618,14 +618,365 @@ Func_6847e:
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
-Func_68497::
-	dr $68497, $68598
+Func_68497: ; 68497 (1a:4497)
+	ld a, [wMoveAnimationSubroutine]
+	ld hl, Pointers_684a1
+	call GetWordFromTable
+	jp [hl]
 
-Func_68598::
-	dr $68598, $686f2
+Pointers_684a1:
+	dw Func_684af
+	dw Func_684bf
+	dw Func_684d8
+	dw Func_684f1
+	dw Func_68507
+	dw Func_68586
+	dw Func_6b761
 
-Func_686f2::
-	dr $686f2, $6877a
+Func_684af:
+	ld a, $9
+	ld de, wOAMAnimation02
+	call Func_6b4f8
+	ld a, $18
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_684bf:
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	ld a, $a
+	ld de, wOAMAnimation03
+	call Func_6b4f8
+	ld a, $18
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_684d8:
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	ld a, $b
+	ld de, wOAMAnimation04
+	call Func_6b4f8
+	ld a, $18
+	ld [wd45a], a
+	jp NextMoveAnimationSubroutine
+
+Func_684f1:
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	ld a, $18
+	ld [wd45a], a
+	ld a, $31
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_68507:
+	lb bc, 2, -1
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_68513
+	lb bc, -2, 1
+.asm_68513
+	ld de, wOAMAnimation02
+	call Func_6b737
+	lb bc, 2, -1
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_68525
+	lb bc, -2, 1
+.asm_68525
+	ld de, wOAMAnimation03
+	call Func_6b737
+	lb bc, 2, -1
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_68537
+	lb bc, -2, 1
+.asm_68537
+	ld de, wOAMAnimation04
+	call Func_6b737
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	ld a, $f
+	ld de, wOAMAnimation02
+	call Func_6b28c
+	lb bc, -8, -8
+	ld de, wOAMAnimation02
+	call Func_6b737
+	ld a, $f
+	ld de, wOAMAnimation03
+	call Func_6b28c
+	lb bc, 0, 8
+	ld de, wOAMAnimation03
+	call Func_6b737
+	ld a, $f
+	ld de, wOAMAnimation04
+	call Func_6b28c
+	lb bc, 8, 24
+	ld de, wOAMAnimation04
+	call Func_6b737
+	ld a, $38
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_68586:
+	ld de, wOAMAnimation02
+	call Func_6b4ef
+	ld de, wOAMAnimation03
+	call Func_6b4ef
+	ld de, wOAMAnimation04
+	jp Func_6b4bb
+
+Func_68598: ; 68598 (1a:4598)
+	ld a, [wMoveAnimationSubroutine]
+	ld hl, Pointers_685a2
+	call GetWordFromTable
+	jp [hl]
+
+Pointers_685a2:
+	dw Func_685ae
+	dw Func_685c3
+	dw Func_685f3
+	dw Func_685f9
+	dw Func_6867d
+	dw Func_6b761
+
+Func_685ae:
+	ld a, $c
+	ld de, wOAMAnimation02
+	call Func_6b4f8
+	ld a, $18
+	ld [wd45a], a
+	ld a, $31
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_685c3:
+	lb bc, 2, -1
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_685cf
+	lb bc, -2, 1
+.asm_685cf
+	ld de, wOAMAnimation02
+	call Func_6b737
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	ld a, $f
+	ld de, wOAMAnimation02
+	call Func_6b28c
+	ld a, $41
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_685f3:
+	ld de, wOAMAnimation02
+	jp Func_6b4bb
+
+Func_685f9:
+	ld a, $10
+	ld de, wOAMAnimation02
+	call Func_6b28c
+	ld a, $60
+	ld [$c0d9], a
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_68611
+	ld a, $18
+	ld [$c0d9], a
+.asm_68611
+	ld a, $10
+	ld de, wOAMAnimation03
+	call Func_6b28c
+	ld a, $70
+	ld [$c0f9], a
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_68629
+	ld a, $28
+	ld [$c0f9], a
+.asm_68629
+	ld a, $10
+	ld de, wOAMAnimation04
+	call Func_6b28c
+	ld a, $80
+	ld [$c119], a
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_68641
+	ld a, $38
+	ld [$c119], a
+.asm_68641
+	call Random
+	sla a
+	ld [$c0d8], a
+	call Random
+	sla a
+	ld [$c0f8], a
+	call Random
+	sla a
+	ld [$c118], a
+	ld de, wOAMAnimation02
+	call Func_686cd
+	ld de, wOAMAnimation03
+	call Func_686cd
+	ld de, wOAMAnimation04
+	call Func_686cd
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, $28
+	ld [wd45a], a
+	ld a, $23
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_6867d:
+	ld de, wOAMAnimation02
+	call Func_6b4ef
+	ld de, wOAMAnimation03
+	call Func_6b4ef
+	ld de, wOAMAnimation04
+	call Func_6b4ef
+	ld de, wOAMAnimation02
+	call Func_686cd
+	ld de, wOAMAnimation03
+	call Func_686cd
+	ld de, wOAMAnimation04
+	call Func_686cd
+	lb bc, 0, -1
+	ld de, wOAMAnimation02
+	call Func_6b737
+	lb bc, 0, -1
+	ld de, wOAMAnimation03
+	call Func_6b737
+	lb bc, 0, -1
+	ld de, wOAMAnimation04
+	call Func_6b737
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	jp NextMoveAnimationSubroutine
+
+Func_686cd: ; 686cd (1a:46cd)
+	push de
+	ld hl, $18
+	add hl, de
+	ld a, [hl]
+	inc a
+	inc a
+	inc a
+	inc a
+	ld [hl], a
+	ld d, a
+	call Func_3058
+	sra a
+	sra a
+	sra a
+	sra a
+	ld b, a
+	pop de
+	ld hl, $19
+	add hl, de
+	ld a, [hl]
+	add b
+	ld hl, $3
+	add hl, de
+	ld [hl], a
+	ret
+
+Func_686f2: ; 686f2 (1a:46f2)
+	ld a, [wMoveAnimationSubroutine]
+	ld hl, Pointers_686fc
+	call GetWordFromTable
+	jp [hl]
+
+Pointers_686fc:
+	dw Func_68708
+	dw Func_6871d
+	dw Func_6874d
+	dw Func_68753
+	dw Func_68768
+	dw Func_6b761
+
+Func_68708:
+	ld a, $d
+	ld de, wOAMAnimation02
+	call Func_6b4f8
+	ld a, $18
+	ld [wd45a], a
+	ld a, $2a
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_6871d:
+	lb bc, 2, -1
+	ld a, [wBattleTurn]
+	or a
+	jr z, .asm_68729
+	lb bc, -2, 1
+.asm_68729
+	ld de, wOAMAnimation02
+	call Func_6b737
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	ld a, $f
+	ld de, wOAMAnimation02
+	call Func_6b28c
+	ld a, $41
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_6874d:
+	ld de, wOAMAnimation02
+	jp Func_6b4bb
+
+Func_68753:
+	ld a, $11
+	ld de, wOAMAnimation02
+	call Func_6b28c
+	ld a, $28
+	ld [wd45a], a
+	ld a, $4b
+	ld [H_SFX_ID], a
+	jp NextMoveAnimationSubroutine
+
+Func_68768:
+	ld de, wOAMAnimation02
+	call Func_6b4ef
+	ld a, [wd45a]
+	dec a
+	ld [wd45a], a
+	or a
+	ret nz
+	jp NextMoveAnimationSubroutine
 
 Func_6877a::
 	dr $6877a, $687e1
