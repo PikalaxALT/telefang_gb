@@ -93,7 +93,7 @@ ClearMemory:
 	ret
 
 InitSoundData: ; 439 (0:0439)
-	ld hl, wce00
+	ld hl, wChannel1
 	ld bc, $200
 	call ClearMemory
 	ld hl, hMusicID
@@ -117,7 +117,7 @@ UpdateSound: ; 464 (0:0464)
 	ld a, [wMusicBank]
 	add MUSIC_00
 	ld [MBC3RomBank], a
-	call UpdateSound20
+	call UpdateSound_20
 	ld a, [wROMBank]
 	ld [MBC3RomBank], a
 	ret

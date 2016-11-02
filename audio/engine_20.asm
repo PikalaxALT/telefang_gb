@@ -1,4 +1,4 @@
-UpdateSound20:
+UpdateSound_20:
 	push af
 	push bc
 	push de
@@ -8,7 +8,7 @@ UpdateSound20:
 	jp z, Func_80629
 	or a
 	jr z, .asm_80018
-	call Func_80bf4
+	call PlayMusic_20
 	xor a
 	ld [H_MusicID], a
 	jr .asm_8003e
@@ -23,7 +23,7 @@ UpdateSound20:
 	ld a, [H_SFX_ID]
 	or a
 	jr z, .asm_80031
-	call Func_80c22
+	call PlaySFX_20
 	xor a
 	ld [H_SFX_ID], a
 	jr .asm_8003e
@@ -69,7 +69,7 @@ UpdateSound20:
 	ld a, $80
 	ld [rNR14], a
 	xor a
-	ld [wcea0], a
+	ld [wChannel5], a
 .asm_80081
 	ld a, [wcf96]
 	or a
@@ -97,12 +97,12 @@ UpdateSound20:
 	ld [wcf96], a
 	ld [wcf97], a
 	ld [rNR51], a
-	ld [wce00], a
-	ld [wce28], a
-	ld [wce50], a
-	ld [wce78], a
-	ld [wcea0], a
-	ld [wcec8], a
+	ld [wChannel1], a
+	ld [wChannel2], a
+	ld [wChannel3], a
+	ld [wChannel4], a
+	ld [wChannel5], a
+	ld [wChannel6], a
 	ld [rNR11], a
 	ld [rNR21], a
 	ld [rNR32], a
@@ -126,7 +126,7 @@ UpdateSound20:
 	ret
 
 .asm_800e9
-	ld de, wce00
+	ld de, wChannel1
 	ld a, [de]
 	or a
 	jr z, .asm_80125
@@ -162,9 +162,9 @@ UpdateSound20:
 	or $80
 	ld [rNR14], a
 .asm_80122
-	call Func_80307
+	call UpdateChannel_20
 .asm_80125
-	ld de, wce28
+	ld de, wChannel2
 	ld a, [de]
 	or a
 	jr z, .asm_8013f
@@ -178,9 +178,9 @@ UpdateSound20:
 	jr .asm_8013f
 
 .asm_8013c
-	call Func_80307
+	call UpdateChannel_20
 .asm_8013f
-	ld de, wce50
+	ld de, wChannel3
 	ld a, [de]
 	or a
 	jr z, .asm_80159
@@ -194,9 +194,9 @@ UpdateSound20:
 	jr .asm_80159
 
 .asm_80156
-	call Func_80307
+	call UpdateChannel_20
 .asm_80159
-	ld de, wce78
+	ld de, wChannel4
 	ld a, [de]
 	or a
 	jr z, Func_80173
@@ -210,9 +210,9 @@ UpdateSound20:
 	jr Func_80173
 
 .asm_80170
-	call Func_80307
+	call UpdateChannel_20
 Func_80173: ; 48173 (11:4173)
-	ld de, wcea0
+	ld de, wChannel5
 	ld a, [de]
 	or a
 	jr z, .asm_8018d
@@ -226,12 +226,12 @@ Func_80173: ; 48173 (11:4173)
 	jr .asm_8018d
 
 .asm_8018a
-	call Func_80307
+	call UpdateChannel_20
 .asm_8018d
 	ld a, [wcf90]
 	or a
 	jr nz, Func_801ad
-	ld de, wcec8
+	ld de, wChannel6
 	ld a, [de]
 	or a
 	jr z, Func_801ad
@@ -245,7 +245,7 @@ Func_80173: ; 48173 (11:4173)
 	jr Func_801ad
 
 .asm_801aa
-	call Func_80307
+	call UpdateChannel_20
 Func_801ad:
 	ld a, [wcf90]
 	or a
@@ -461,7 +461,7 @@ Func_802ff: ; 482ff (11:42ff)
 	and $80
 	ret
 
-Func_80307: ; 48307 (11:4307)
+UpdateChannel_20: ; 48307 (11:4307)
 	ld hl, $23
 	add hl, de
 	ld a, [hl]
@@ -861,12 +861,12 @@ Func_80629: ; 48629 (11:4629)
 	ld [H_FFA2], a
 	ld [wcfc0], a
 	ld [H_MusicID], a
-	ld [wce00], a
-	ld [wce28], a
-	ld [wce50], a
-	ld [wce78], a
-	ld [wcea0], a
-	ld [wcec8], a
+	ld [wChannel1], a
+	ld [wChannel2], a
+	ld [wChannel3], a
+	ld [wChannel4], a
+	ld [wChannel5], a
+	ld [wChannel6], a
 	ld a, $77
 	ld [rNR50], a
 	jp Func_801ad
@@ -1177,7 +1177,7 @@ Func_807de: ; 487de (11:47de)
 	ld a, [H_FFA3]
 	cp $5
 	jr nz, .asm_807f4
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	ret nz
 	xor a
@@ -1316,7 +1316,7 @@ Func_80895: ; 48895 (11:4895)
 	ret
 
 Func_8089a: ; 4889a (11:489a)
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	ret nz
 	ld a, [wcf9a]
@@ -1346,7 +1346,7 @@ Func_8089a: ; 4889a (11:489a)
 	jp Func_808e0
 
 Func_808cb: ; 488cb (11:48cb)
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	ret nz
 	ld hl, $11
@@ -1767,7 +1767,7 @@ Func_80b90: ; 48b90 (11:4b90)
 	ld a, [H_FFA3]
 	or a
 	jr nz, .asm_80b9e
-	ld a, [wcea0]
+	ld a, [wChannel5]
 	or a
 	ret
 
@@ -1778,9 +1778,9 @@ Func_80b90: ; 48b90 (11:4b90)
 Func_80ba0: ; 48ba0 (11:4ba0)
 	ld [H_FFA8], a
 	ld a, [H_FFA3]
-	add $f0
+	add wcff0 % $100
 	ld l, a
-	ld h, $cf
+	ld h, wcff0 / $100
 	ld a, [H_FFA8]
 	ld [hl], a
 	ret
@@ -1800,7 +1800,7 @@ Data_80bec:
 	db $00, $60, $40, $20
 	db $00, $00, $00, $00
 
-Func_80bf4: ; 48bf4 (11:4bf4)
+PlayMusic_20: ; 48bf4 (11:4bf4)
 	xor a
 	ld [wcf96], a
 	ld [wcf97], a
@@ -1820,7 +1820,7 @@ Func_80bf4: ; 48bf4 (11:4bf4)
 	ld a, [H_MusicID]
 	jp Func_80cdd
 
-Func_80c22: ; 48c22 (11:4c22)
+PlaySFX_20: ; 48c22 (11:4c22)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
@@ -1888,8 +1888,8 @@ Func_80c71: ; 48c71 (11:4c71)
 	ld [rNR14], a
 	ld [rNR34], a
 	xor a
-	ld [wce78], a
-	ld [wcea0], a
+	ld [wChannel4], a
+	ld [wChannel5], a
 	ret
 
 Func_80cad: ; 48cad (11:4cad)
@@ -1944,7 +1944,7 @@ Func_80cdd: ; 48cdd (11:4cdd)
 	ld a, [bc]
 	ld [wcf93], a
 	inc bc
-	ld de, wce00
+	ld de, wChannel1
 	xor a
 	ld [H_FFA3], a
 asm_80cf7
@@ -1958,7 +1958,7 @@ asm_80cf7
 	cp [hl]
 	jr c, asm_80cc7
 	push de
-	ld l, wce28 % $100
+	ld l, wChannel2 - wChannel1
 	xor a
 .asm_80d0e
 	ld [de], a
@@ -1976,7 +1976,7 @@ asm_80cf7
 	ld a, [H_FFA3]
 	cp $5
 	jr nz, .asm_80d3f
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	jp nz, Func_80d7d
 	xor a

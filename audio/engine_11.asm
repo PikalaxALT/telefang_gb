@@ -1,4 +1,4 @@
-UpdateSound11:
+UpdateSound_11:
 	push af
 	push bc
 	push de
@@ -8,7 +8,7 @@ UpdateSound11:
 	jp z, Func_44629
 	or a
 	jr z, .asm_44018
-	call Func_44bf4
+	call PlayMusic_11
 	xor a
 	ld [H_MusicID], a
 	jr .asm_4403e
@@ -23,7 +23,7 @@ UpdateSound11:
 	ld a, [H_SFX_ID]
 	or a
 	jr z, .asm_44031
-	call Func_44c22
+	call PlaySFX_11
 	xor a
 	ld [H_SFX_ID], a
 	jr .asm_4403e
@@ -69,7 +69,7 @@ UpdateSound11:
 	ld a, $80
 	ld [rNR14], a
 	xor a
-	ld [wcea0], a
+	ld [wChannel5], a
 .asm_44081
 	ld a, [wcf96]
 	or a
@@ -97,12 +97,12 @@ UpdateSound11:
 	ld [wcf96], a
 	ld [wcf97], a
 	ld [rNR51], a
-	ld [wce00], a
-	ld [wce28], a
-	ld [wce50], a
-	ld [wce78], a
-	ld [wcea0], a
-	ld [wcec8], a
+	ld [wChannel1], a
+	ld [wChannel2], a
+	ld [wChannel3], a
+	ld [wChannel4], a
+	ld [wChannel5], a
+	ld [wChannel6], a
 	ld [rNR11], a
 	ld [rNR21], a
 	ld [rNR32], a
@@ -126,7 +126,7 @@ UpdateSound11:
 	ret
 
 .asm_440e9
-	ld de, wce00
+	ld de, wChannel1
 	ld a, [de]
 	or a
 	jr z, .asm_44125
@@ -162,9 +162,9 @@ UpdateSound11:
 	or $80
 	ld [rNR14], a
 .asm_44122
-	call Func_44307
+	call UpdateChannel_11
 .asm_44125
-	ld de, wce28
+	ld de, wChannel2
 	ld a, [de]
 	or a
 	jr z, .asm_4413f
@@ -178,9 +178,9 @@ UpdateSound11:
 	jr .asm_4413f
 
 .asm_4413c
-	call Func_44307
+	call UpdateChannel_11
 .asm_4413f
-	ld de, wce50
+	ld de, wChannel3
 	ld a, [de]
 	or a
 	jr z, .asm_44159
@@ -194,9 +194,9 @@ UpdateSound11:
 	jr .asm_44159
 
 .asm_44156
-	call Func_44307
+	call UpdateChannel_11
 .asm_44159
-	ld de, wce78
+	ld de, wChannel4
 	ld a, [de]
 	or a
 	jr z, Func_44173
@@ -210,9 +210,9 @@ UpdateSound11:
 	jr Func_44173
 
 .asm_44170
-	call Func_44307
+	call UpdateChannel_11
 Func_44173: ; 44173 (11:4173)
-	ld de, wcea0
+	ld de, wChannel5
 	ld a, [de]
 	or a
 	jr z, .asm_4418d
@@ -226,12 +226,12 @@ Func_44173: ; 44173 (11:4173)
 	jr .asm_4418d
 
 .asm_4418a
-	call Func_44307
+	call UpdateChannel_11
 .asm_4418d
 	ld a, [wcf90]
 	or a
 	jr nz, Func_441ad
-	ld de, wcec8
+	ld de, wChannel6
 	ld a, [de]
 	or a
 	jr z, Func_441ad
@@ -245,7 +245,7 @@ Func_44173: ; 44173 (11:4173)
 	jr Func_441ad
 
 .asm_441aa
-	call Func_44307
+	call UpdateChannel_11
 Func_441ad:
 	ld a, [wcf90]
 	or a
@@ -461,7 +461,7 @@ Func_442ff: ; 442ff (11:42ff)
 	and $80
 	ret
 
-Func_44307: ; 44307 (11:4307)
+UpdateChannel_11: ; 44307 (11:4307)
 	ld hl, $23
 	add hl, de
 	ld a, [hl]
@@ -861,12 +861,12 @@ Func_44629: ; 44629 (11:4629)
 	ld [H_FFA2], a
 	ld [wcfc0], a
 	ld [H_MusicID], a
-	ld [wce00], a
-	ld [wce28], a
-	ld [wce50], a
-	ld [wce78], a
-	ld [wcea0], a
-	ld [wcec8], a
+	ld [wChannel1], a
+	ld [wChannel2], a
+	ld [wChannel3], a
+	ld [wChannel4], a
+	ld [wChannel5], a
+	ld [wChannel6], a
 	ld a, $77
 	ld [rNR50], a
 	jp Func_441ad
@@ -1177,7 +1177,7 @@ Func_447de: ; 447de (11:47de)
 	ld a, [H_FFA3]
 	cp $5
 	jr nz, .asm_447f4
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	ret nz
 	xor a
@@ -1316,7 +1316,7 @@ Func_44895: ; 44895 (11:4895)
 	ret
 
 Func_4489a: ; 4489a (11:489a)
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	ret nz
 	ld a, [wcf9a]
@@ -1346,7 +1346,7 @@ Func_4489a: ; 4489a (11:489a)
 	jp Func_448e0
 
 Func_448cb: ; 448cb (11:48cb)
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	ret nz
 	ld hl, $11
@@ -1767,7 +1767,7 @@ Func_44b90: ; 44b90 (11:4b90)
 	ld a, [H_FFA3]
 	or a
 	jr nz, .asm_44b9e
-	ld a, [wcea0]
+	ld a, [wChannel5]
 	or a
 	ret
 
@@ -1778,9 +1778,9 @@ Func_44b90: ; 44b90 (11:4b90)
 Func_44ba0: ; 44ba0 (11:4ba0)
 	ld [H_FFA8], a
 	ld a, [H_FFA3]
-	add $f0
+	add wcff0 % $100
 	ld l, a
-	ld h, $cf
+	ld h, wcff0 / $100
 	ld a, [H_FFA8]
 	ld [hl], a
 	ret
@@ -1800,7 +1800,7 @@ Data_44bec:
 	db $00, $60, $40, $20
 	db $00, $00, $00, $00
 
-Func_44bf4: ; 44bf4 (11:4bf4)
+PlayMusic_11: ; 44bf4 (11:4bf4)
 	xor a
 	ld [wcf96], a
 	ld [wcf97], a
@@ -1820,7 +1820,7 @@ Func_44bf4: ; 44bf4 (11:4bf4)
 	ld a, [H_MusicID]
 	jp Func_44cdd
 
-Func_44c22: ; 44c22 (11:4c22)
+PlaySFX_11: ; 44c22 (11:4c22)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
@@ -1888,8 +1888,8 @@ Func_44c71: ; 44c71 (11:4c71)
 	ld [rNR14], a
 	ld [rNR34], a
 	xor a
-	ld [wce78], a
-	ld [wcea0], a
+	ld [wChannel4], a
+	ld [wChannel5], a
 	ret
 
 Func_44cad: ; 44cad (11:4cad)
@@ -1944,7 +1944,7 @@ Func_44cdd: ; 44cdd (11:4cdd)
 	ld a, [bc]
 	ld [wcf93], a
 	inc bc
-	ld de, wce00
+	ld de, wChannel1
 	xor a
 	ld [H_FFA3], a
 asm_44cf7
@@ -1958,7 +1958,7 @@ asm_44cf7
 	cp [hl]
 	jr c, asm_44cc7
 	push de
-	ld l, wce28 % $100
+	ld l, wChannel2 - wChannel1
 	xor a
 .asm_44d0e
 	ld [de], a
@@ -1976,7 +1976,7 @@ asm_44cf7
 	ld a, [H_FFA3]
 	cp $5
 	jr nz, .asm_44d3f
-	ld a, [wce78]
+	ld a, [wChannel4]
 	or a
 	jp nz, Func_44d7d
 	xor a
