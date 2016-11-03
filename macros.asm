@@ -209,4 +209,10 @@ IF (\1 & $7) > 0
 ELSE
 	ds (\1 >> 3)
 ENDC
-ENDR
+ENDM
+
+jump_table: MACRO
+	ld hl, @ + 6
+	call GetWordFromTable
+	jp [hl]
+ENDM

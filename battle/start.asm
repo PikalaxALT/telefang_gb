@@ -1,10 +1,6 @@
 StartBattle::
 	ld a, [wSubroutine]
-	ld hl, Pointers_7000a
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7000a:
+	jump_table
 	dw Func_70016
 	dw Func_70279
 	dw Func_7027c
@@ -469,7 +465,7 @@ Func_70357: ; 70357 (1c:4357)
 Func_70360: ; 70360 (1c:4360)
 	ld hl, wd420
 	ld a, $8
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 .asm_70368
 	ld a, [bc]
 	cp $c0
@@ -477,9 +473,9 @@ Func_70360: ; 70360 (1c:4360)
 	ld [hl], a
 	inc hl
 	inc bc
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	jr nz, .asm_70368
 .asm_70379
 	ld a, $e0
@@ -680,11 +676,7 @@ Func_7048c: ; 7048c (1c:448c)
 
 Func_704af: ; 704af (1c:44af)
 	ld a, [wBattleSubroutine]
-	ld hl, Pointers_704b9
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_704b9:
+	jump_table
 	dw BattleStart_Reset
 	dw BattleStart_Init
 	dw Func_70541
@@ -1115,7 +1107,7 @@ Func_70755:
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $1e
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld c, $11
 	call Func_3d02
 	ld a, $9
@@ -1175,9 +1167,9 @@ Func_708c2:
 	ld [wOAMAnimation01], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $0
 	jr z, .asm_708d9
 	jp Func_0530
@@ -1228,21 +1220,21 @@ Func_70929:
 	cp $50
 	jr c, .asm_7093d
 	ld a, $1
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld c, $96
 	call Func_3d02
 	jp NextBattleSubroutine
 
 .asm_7093d
 	ld a, $1
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	jp NextBattleSubroutine
 
 Func_70945:
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 	xor a
 	ld [wBattleSubroutine], a
@@ -1461,11 +1453,7 @@ Func_70aca: ; 70aca (1c:4aca)
 
 Func_70afd: ; 70afd (1c:4afd)
 	ld a, [wBattleSubroutine]
-	ld hl, Pointers_70b07
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_70b07:
+	jump_table
 	dw Func_70b53
 	dw Func_70bb6
 	dw Func_70bca
@@ -1507,7 +1495,7 @@ Func_70b53:
 	ld [wd4bc], a
 	ld [wd40a], a
 	ld [wd435], a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $1
 	ld [wd415], a
 	ld a, $1
@@ -2116,13 +2104,13 @@ Func_7106c:
 
 Func_71097:
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp 10
 	ret c
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $b
 	ld [wBattleSubroutine], a
 	ret
@@ -3053,11 +3041,7 @@ Pointers_717e5:
 
 Func_717f7: ; 717f7 (1c:57f7)
 	ld a, [wd401]
-	ld hl, Pointers_71801
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_71801:
+	jump_table
 	dw Func_71815
 	dw Func_71822
 	dw Func_71831
@@ -3198,7 +3182,7 @@ Func_71907:
 	or a
 	ret z
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -3206,9 +3190,9 @@ Func_71907:
 
 Func_7191b:
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 	ld a, [wd401]
 	inc a

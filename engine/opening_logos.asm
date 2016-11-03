@@ -1,10 +1,6 @@
 OpeningLogos: ; 9300 (2:5300)
 	ld a, [wSubroutine]
-	ld hl, Pointers_930a
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_930a:
+	jump_table
 	dw Func_937e
 	dw Func_9390
 	dw Func_93bd

@@ -1,10 +1,6 @@
 TitleScreen: ; 893f (2:493f)
 	ld a, [wSubroutine]
-	ld hl, Pointers_8949
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_8949:
+	jump_table
 	dw Func_896f
 	dw Func_899e
 	dw Func_8a1a

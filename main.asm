@@ -7,11 +7,7 @@ INCLUDE "home.asm"
 SECTION "bank 02", ROMX, BANK [$2]
 Func_8000::
 	ld a, [wSubroutine]
-	ld hl, Pointers_800a
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_800a::
+	jump_table:
 	dw Func_801a
 	dw Func_8032
 	dw Func_8061
@@ -109,11 +105,7 @@ INCLUDE "engine/intro_movie.asm"
 
 Func_84cf: ; 84cf (2:44cf)
 	ld a, [wSubroutine]
-	ld hl, Pointers_84d9
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_84d9::
+	jump_table:
 	dw Func_84e9
 	dw Func_8501
 	dw Func_8530
@@ -209,11 +201,7 @@ Func_8584::
 
 GameOverScreen: ; 858e (2:458e)
 	ld a, [wSubroutine]
-	ld hl, Pointers_8598
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_8598:
+	jump_table
 	dw Func_85a8
 	dw Func_85c6
 	dw Func_85dd
@@ -594,11 +582,7 @@ Func_881b: ; 881b (2:481b)
 
 Func_8824: ; 8824 (2:4824)
 	ld a, [wSubroutine]
-	ld hl, Pointers_882e
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_882e:
+	jump_table
 	dw Func_883e
 	dw Func_885b
 	dw Func_8883
@@ -767,11 +751,7 @@ INCLUDE "engine/title_screen.asm"
 
 Func_8b8b: ; 8b8b (2:4b8b)
 	ld a, [wMoveAnimationSubroutine]
-	ld hl, Pointers_8b95
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_8b95:
+	jump_table
 	dw Func_8c81
 	dw Func_8cde
 	dw Func_8cf5

@@ -1,11 +1,7 @@
 DenjuuDex:
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_11424
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_11424:
+	jump_table
 	dw Func_1143e
 	dw Func_1146e
 	dw Func_11479

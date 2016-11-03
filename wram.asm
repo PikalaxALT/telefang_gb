@@ -3495,7 +3495,7 @@ wd456:: ds 1
 wd457:: ds 1
 wd458:: ds 1
 wd459:: ds 1
-wd45a:: ds 1
+wMoveAnimationTimer:: ds 1
 wd45b:: ds 1
 wd45c:: ds 1
 wd45d:: ds 1

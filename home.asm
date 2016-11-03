@@ -1768,12 +1768,8 @@ Func_192a: ; 192a (0:192a)
 
 PlayMoveAnimation_grp1: ; 1939 (0:1939)
 	ld a, [wd4fc]
-	ld hl, Pointers_1943
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_1943::
-	dw Dummy0Animation  ; DUMMY_0
+	jump_table:
+	dw EndMoveAnimation  ; DUMMY_0
 	dw ClawAnimation ; CLAW                     IRON_CLAW
 	dw RushAnimation ; RUSH                     ASSAULT
 	dw StrikeAnimation ; STRIKE                   MISSILE_PUNCH
@@ -1830,18 +1826,14 @@ Pointers_1943::
 	dw RockAnimation ; ROCK
 	dw MegaRockAnimation ; MEGA_ROCK
 
-Dummy0Animation::
+EndMoveAnimation::
 	ld a, $17
 	ld [wd401], a
 	ret
 
 PlayMoveAnimation_grp2: ; 1939 (0:1939)
 	ld a, [wd4fc]
-	ld hl, Pointers_19c3
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_19c3::
+	jump_table:
 	dw SpeedUpAnimation ; SPEED_UP        QUICK_STEP
 	dw ParameterDownAnimation ; FOCUS           AIM
 	dw AvoidAnimation ; AVOID           EVADE

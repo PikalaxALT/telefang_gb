@@ -9,11 +9,7 @@ PlayIntroMovie: ; 80bf (2:40bf)
 	ld [wSubroutine], a
 .asm_80d1
 	ld a, [wSubroutine]
-	ld hl, Pointers_80db
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_80db:
+	jump_table
 	dw Func_8124
 	dw Func_8191
 	dw Func_819b

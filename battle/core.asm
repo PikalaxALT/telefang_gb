@@ -32,7 +32,7 @@ asm_14025
 Func_1402a: ; 1402a (5:402a)
 	ld hl, wd420
 	ld a, $8
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 .asm_14032
 	ld a, [bc]
 	cp $c0
@@ -40,9 +40,9 @@ Func_1402a: ; 1402a (5:402a)
 	ld [hl], a
 	inc hl
 	inc bc
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	jr nz, .asm_14032
 .asm_14043
 	ld a, $e0
@@ -458,15 +458,15 @@ Func_14340:
 	ld a, [wd45b]
 	inc a
 	ld [wd45b], a
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $1
 	jr c, .asm_1435e
 	cp $2
 	jr c, .asm_1436a
 	ld a, $0
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 .asm_1435e
 	lb bc, $1, $5
 	ld e, $92
@@ -488,7 +488,7 @@ Func_14340:
 	xor a
 	ld [wd42d], a
 	ld [wSCX], a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld [wd45b], a
 	ret
 
@@ -497,15 +497,15 @@ Func_1438d:
 	ld a, [wd45b]
 	inc a
 	ld [wd45b], a
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $1
 	jr c, .asm_143ab
 	cp $2
 	jr c, .asm_143b7
 	ld a, $0
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 .asm_143ab
 	lb bc, $1, $1
 	ld e, $91
@@ -529,7 +529,7 @@ Func_1438d:
 	call Func_142af
 	xor a
 	ld [wd42d], a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld [wd45b], a
 	ret
 
@@ -569,11 +569,7 @@ UseMove:
 
 DoBattle::
 	ld a, [wSubroutine]
-	ld hl, Pointers_14425
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_14425:
+	jump_table
 	dw Func_1442d
 	dw Func_14430
 	dw Func_1443b
@@ -628,11 +624,7 @@ Func_14460: ; 14460 (5:4460)
 	ld [wBattleSubroutine], a
 .asm_14483
 	ld a, [wBattleSubroutine]
-	ld hl, Pointers_1448d
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_1448d:
+	jump_table
 	dw Func_1457d
 	dw Func_145a9
 	dw Func_145f5
@@ -1122,7 +1114,7 @@ Func_14831: ; 14831 (5:4831)
 	cp $b
 	jr z, .asm_1484f
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $27
 	ld [wBattleSubroutine], a
 	ret
@@ -1162,7 +1154,7 @@ Func_1487a: ; 1487a (5:487a)
 asm_14890
 	call Func_3d02
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $27
 	ld [wBattleSubroutine], a
 	ret
@@ -1404,7 +1396,7 @@ Func_14a43: ; 14a43 (5:4a43)
 	cp $b
 	jr z, .asm_14a61
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $29
 	ld [wBattleSubroutine], a
 	ret
@@ -1443,7 +1435,7 @@ Func_14a8c: ; 14a8c (5:4a8c)
 asm_14a9f
 	call Func_3d02
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $29
 	ld [wBattleSubroutine], a
 	ret
@@ -1453,9 +1445,9 @@ Func_14aad: ; 14aad (5:4aad)
 	ld a, [wcb3f]
 	or a
 	jr z, .asm_14abf
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	jr z, .asm_14ac5
 .asm_14abf
 	ld a, [wTextSubroutine]
@@ -1476,7 +1468,7 @@ Func_14aad: ; 14aad (5:4aad)
 	cp $3
 	jr z, .asm_14af2
 	ld a, $1e
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld c, $72
 	call Func_3d02
 	ld a, $b
@@ -1562,7 +1554,7 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	ld a, [wCurEnemyDenjuu]
 	ld [wd415], a
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $2c
 	ld [wBattleSubroutine], a
 	ret
@@ -1982,7 +1974,7 @@ Func_14ec6: ; 14ec6 (5:4ec6)
 	ld a, [wCurEnemyDenjuu]
 	ld [wd415], a
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $2c
 	ld [wBattleSubroutine], a
 	ret
@@ -2035,15 +2027,15 @@ Func_14f12: ; 14f12 (5:4f12)
 	ld [H_SFX_ID], a
 .asm_14f27
 	ld a, $1e
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $3e
 	ld [wBattleSubroutine], a
 	ret
 
 Func_14f32: ; 14f32 (5:4f32)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 	ld a, $0
 	ld [wd40a], a
@@ -2144,7 +2136,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	ld a, [wCurEnemyDenjuu]
 	ld [wd415], a
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $2c
 	ld [wBattleSubroutine], a
 	ret
@@ -2155,7 +2147,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $2c
 	ld [wBattleSubroutine], a
 	ret
@@ -2235,7 +2227,7 @@ Func_15051: ; 15051 (5:5051)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $2c
 	ld [wBattleSubroutine], a
 	ret
@@ -2302,11 +2294,11 @@ Func_1510a: ; 1510a (5:510a)
 	ret z
 	or a
 	jr nz, .asm_15129
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	cp $0
 	jr z, .asm_15126
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret
 
 .asm_15126
@@ -2735,15 +2727,15 @@ Func_15416: ; 15416 (5:5416)
 	ret
 
 Func_15428: ; 15428 (5:5428)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	or a
 	jr nz, .asm_1543d
 	ld a, [wBattleMenuSelection]
 	inc a
 	ld [wdc34], a
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret
 
 .asm_1543d
@@ -3005,7 +2997,7 @@ Func_1561e: ; 1561e (5:561e)
 
 .asm_1564c
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 .asm_15651
 	ld a, $1
 	ld [wcad0], a
@@ -3026,9 +3018,9 @@ Func_15661: ; 15661 (5:5661)
 	jr .asm_1567a
 
 .asm_15672
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 .asm_1567a
 	call Func_1bd1
@@ -3221,7 +3213,7 @@ Func_157fb: ; 157fb (5:57fb)
 	ld a, $aa
 	ld [wdc34], a
 	ld a, $1e
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld c, $72
 	call Func_3d02
 	ld a, $3f
@@ -3236,11 +3228,11 @@ Func_15810: ; 15810 (5:5810)
 	call Func_3eee
 	cp $aa
 	jr z, .asm_1582f
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	cp $0
 	jr z, .asm_1582c
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret
 
 .asm_1582c
@@ -4125,23 +4117,23 @@ Func_15f0f: ; 15f0f (5:5f0f)
 	ld [wdc34], a
 Func_15f16: ; 15f16 (5:5f16)
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $10
 	ld [wBattleSubroutine], a
 	ret
 
 Func_15f20: ; 15f20 (5:5f20)
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld [wd45b], a
 	ld a, $20
 	ld [wBattleSubroutine], a
 	ret
 
 Func_15f2d: ; 15f2d (5:5f2d)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $15
 	ret nz
 	ld a, $25
@@ -4209,23 +4201,23 @@ Func_15fa1: ; 15fa1 (5:5fa1)
 	ld a, [wd4ce]
 	call Func_142cd
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld c, $69
 	call Func_3d02
 	jp NextBattleSubroutine
 
 Func_15fb4: ; 15fb4 (5:5fb4)
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 	ld a, $2b
 	ld [wBattleSubroutine], a
 	ret
 
 Func_15fc5: ; 15fc5 (5:5fc5)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	cp $a
 	jr nc, .asm_15fd0
 	ld e, $8e
@@ -4241,9 +4233,9 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 	ld a, [wd45b]
 	cp $5
 	jr nc, .asm_1603f
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $14
 	jr z, .asm_16033
 	ld a, [wCurBattleDenjuu2]
@@ -4283,7 +4275,7 @@ Func_15fd6: ; 15fd6 (5:5fd6)
 
 .asm_16033
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, [wd45b]
 	inc a
 	ld [wd45b], a
@@ -4536,15 +4528,15 @@ Func_161fb: ; 161fb (5:61fb)
 	ld [wBattleMenuCursorObjectTemplateIDX], a
 	call InitBattleMenuCursor
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $1f
 	ld [wBattleSubroutine], a
 	ret
 
 Func_16289: ; 16289 (5:6289)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $1e
 	ret c
 	xor a
@@ -4696,14 +4688,14 @@ Battle_TryToRun: ; 16360 (5:6360)
 	xor a
 	call LoadStdBGMapAttrLayout_
 	ld a, $a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $2f
 	ld [wBattleSubroutine], a
 	ret
 
 Func_163d0: ; 163d0 (5:63d0)
 	ld a, $a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld c, $24
 	call Func_3d02
 	ld a, $30
@@ -4720,9 +4712,9 @@ Func_163e0: ; 163e0 (5:63e0)
 	ret
 
 Battle_DelayBeforeRunAway: ; 163ef (5:63ef)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	or a
 	ret nz
 	ld a, $15
@@ -5088,11 +5080,7 @@ Func_16614: ; 16614 (5:6614)
 
 Func_16643:
 	ld a, [wd401]
-	ld hl, Pointers_1664d
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_1664d:
+	jump_table
 	dw Func_166a5
 	dw Func_16709
 	dw Func_16724
@@ -5189,14 +5177,14 @@ Func_166a5: ; 166a5 (5:66a5)
 .asm_166fe
 	call Func_3d02
 	ld a, $32
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	jp Func_14000
 
 Func_16709: ; 16709 (5:6709)
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 	ld a, [wBattleTurn]
 	cp $1
@@ -5295,7 +5283,7 @@ asm_167c7
 	cp $1
 	jr z, .asm_167de
 	ld a, $1e
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	call Func_170e4
 	ld a, $f4
 	ld [wdc34], a
@@ -5431,7 +5419,7 @@ asm_168be
 	jr z, Func_168d0
 Func_168c2: ; 168c2 (5:68c2)
 	ld a, $1e
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	call Func_16bd3
 	ld a, $12
 	ld [wd401], a
@@ -5653,7 +5641,7 @@ Func_16a87: ; 16a87 (5:6a87)
 	ld a, $53
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $27
 	ld [wd401], a
 	ret
@@ -5667,9 +5655,9 @@ Func_16a9c: ; 16a9c (5:6a9c)
 
 Func_16aa7: ; 16aa7 (5:6aa7)
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $1e
 	ret c
 	ld a, $4
@@ -6470,7 +6458,7 @@ Func_1706c: ; 1706c (5:706c)
 	ld a, $53
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $26
 	ld [wd401], a
 	ret
@@ -6486,9 +6474,9 @@ Func_1706c: ; 1706c (5:706c)
 
 Func_170c5: ; 170c5 (5:70c5)
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	inc a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $1e
 	ret c
 	ld a, $28
@@ -7141,9 +7129,9 @@ Func_17521: ; 17521 (5:7521)
 	ret
 
 Func_17589: ; 17589 (5:7589)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 	ld a, [wCurMove]
 	cp SPEED_UP
@@ -7165,16 +7153,16 @@ Func_17589: ; 17589 (5:7589)
 	xor a
 	ld [wCurMove], a
 	ld a, $3c
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $1f
 	ld [wd401], a
 	ret
 
 Func_175bd: ; 175bd (5:75bd)
 	call Func_0530
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ret nz
 	ld a, $13
 	ld [wd401], a
@@ -7204,7 +7192,7 @@ Func_175ce: ; 175ce (5:75ce)
 .asm_175f8
 	xor a
 	ld [wd42d], a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld [wd45b], a
 	ld a, $1e
 	ld [wd401], a
@@ -8351,7 +8339,7 @@ Func_17e09: ; 17e09 (5:7e09)
 	call Func_1643a
 	call Func_16461
 	xor a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld [wd45b], a
 	ld a, [wCurMove]
 	cp SPEED_UP
@@ -8413,7 +8401,7 @@ Func_17e09: ; 17e09 (5:7e09)
 
 Func_17ea0: ; 17ea0 (5:7ea0)
 	ld a, $a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	ld a, $0
 	ld [wd42d], a
 	ld a, [wBattleTurn]
@@ -8454,9 +8442,9 @@ Func_17ea0: ; 17ea0 (5:7ea0)
 	ret
 
 Func_17ef6: ; 17ef6 (5:7ef6)
-	ld a, [wd45a]
+	ld a, [wMoveAnimationTimer]
 	dec a
-	ld [wd45a], a
+	ld [wMoveAnimationTimer], a
 	cp $0
 	ret nz
 	ld a, [wBattleTurn]

@@ -1,10 +1,6 @@
 TopPhoneMenu:
 	ld a, [wSubroutine]
-	ld hl, Pointers_1000a
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_1000a:
+	jump_table
 	dw Func_10054 ; 00
 	dw Func_1006e ; 01
 	dw Func_10089 ; 02
@@ -695,11 +691,7 @@ Phone_Save: ; 1057d (4:457d)
 
 InGamePhoneMenu: ; 105c0 (4:45c0)
 	ld a, [wSubroutine]
-	ld hl, Pointers_105ca
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_105ca:
+	jump_table
 	dw Func_10612
 	dw Func_10621
 	dw Func_10627
@@ -1289,11 +1281,7 @@ Func_10a09: ; 10a09 (4:4a09)
 Func_10a49: ; 10a49 (4:4a49)
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_10a56
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_10a56:
+	jump_table
 	dw Func_10a86
 	dw Func_10a9c
 	dw Func_10ad6
@@ -1792,11 +1780,7 @@ Func_10e5a:
 Func_10e5b: ; 10e5b (4:4e5b)
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_10e68
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_10e68:
+	jump_table
 	dw Func_10e78
 	dw Func_10e7b
 	dw Func_10e8e
@@ -1862,11 +1846,7 @@ Func_10ede:
 Func_10ee7: ; 10ee7 (4:4ee7)
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_10ef4
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_10ef4:
+	jump_table
 	dw Func_10f06
 	dw Func_10f3a
 	dw Func_10f4d
@@ -2027,11 +2007,7 @@ Func_11022:
 InGamePhone_Save: ; 11023 (4:5023)
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_11030
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_11030:
+	jump_table
 	dw .Init
 	dw .Menu
 	dw .Delay
@@ -2137,11 +2113,7 @@ Func_110eb:
 Func_110ee:
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_110fb
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_110fb:
+	jump_table
 	dw Func_11119
 	dw Func_11133
 	dw Func_11159
@@ -2377,11 +2349,7 @@ Func_112d8: ; 112d8 (4:52d8)
 Func_112e3:
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_112f0
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_112f0:
+	jump_table
 	dw Func_11304
 	dw Func_1132a
 	dw Func_1133b
@@ -3152,11 +3120,7 @@ Func_11b37: ; 11b37 (4:5b37)
 
 Func_11c1d:
 	ld a, [wcb65]
-	ld hl, Pointers_11c27
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_11c27:
+	jump_table
 	dw Func_11c47
 	dw Func_11c5c
 	dw Func_11c9f
