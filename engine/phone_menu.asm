@@ -2053,12 +2053,7 @@ InGamePhone_Save: ; 11023 (4:5023)
 Func_1107e: ; 1107e (4:507e)
 	call Func_116e7
 	ld a, [wSubroutine2]
-	ld hl, Pointers_1108b
-	call GetWordFromTable
-	jp [hl]
-
-
-Pointers_1108b:
+	jump_table
 	dw Func_1109b
 	dw Func_110bb
 	dw Func_110d6

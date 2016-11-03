@@ -19599,11 +19599,7 @@ Data_3a66b:
 
 Func_3a696: ; 3a696 (e:6696)
 	ld a, [wd401]
-	ld hl, Pointers_3a6a0
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_3a6a0
+	jump_table
 	dw Func_3a6ac
 	dw Func_3a6b9
 	dw Func_3a705
@@ -24293,13 +24289,41 @@ Func_c9b17:
 	dr $c9b17, $cb0c9
 
 SECTION "bank 33", ROMX, BANK [$33]
-	dr $cc000, $ce601
+Func_cc000:
+	dr $cc000, $cc9a0
+
+Func_cc9a0:
+	dr $cc9a0, $cd7e0
+
+Func_cd7e0:
+	dr $cd7e0, $cd938
+
+Func_cd938:
+	dr $cd938, $cda6d
+
+Func_cda6d:
+	dr $cda6d, $cdc68
+
+Func_cdc68:
+	dr $cdc68, $ce5de
+
+Func_ce5de:
+	dr $ce5de, $ce601
 
 Func_ce601:
-	dr $ce601, $cef38
+	dr $ce601, $ce606
+
+Func_ce606:
+	dr $ce606, $cef38
 
 Data_cef38:
-	dr $cef38, $cef86
+	dr $cef38, $cef3b
+
+Data_cef3b:
+	dr $cef3b, $cef5c
+
+Func_cef5c:
+	dr $cef5c, $cef86
 
 Func_cef86:
 	dr $cef86, $cef9a
