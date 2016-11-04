@@ -19,7 +19,7 @@ Func_6c014: ; 6c014 (1b:4014)
 
 Func_6c029: ; 6c029 (1b:4029)
 	ld bc, $ff
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f1ff
 	ld a, [wMoveAnimationTimer]
 	dec a
@@ -39,7 +39,7 @@ Func_6c04a: ; 6c04a (1b:404a)
 	cp $0
 	ret nz
 	ld a, $3
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f058
 	ld a, $40
 	ld [wMoveAnimationTimer], a
@@ -55,7 +55,7 @@ Func_6c069: ; 6c069 (1b:4069)
 	ld [wMoveAnimationTimer], a
 	cp $0
 	ret nz
-	ld hl, wOAMAnimation02_PriorityFlags
+	ld hl, wOAMAnimation02
 	call Func_6f1c2
 	jp NextMoveAnimationSubroutine
 
@@ -71,7 +71,7 @@ ParameterDownAnimation: ; 6c082 (1b:4082)
 
 Func_6c098: ; 6c098 (1b:4098)
 	ld a, $0
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f058
 	ld a, $20
 	ld [wMoveAnimationTimer], a
@@ -147,7 +147,7 @@ AvoidAnimation: ; 6c11b (1b:411b)
 
 Func_6c131: ; 6c131 (1b:4131)
 	ld a, $0
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f058
 	ld a, $20
 	ld [wMoveAnimationTimer], a
@@ -156,7 +156,7 @@ Func_6c131: ; 6c131 (1b:4131)
 	jp NextMoveAnimationSubroutine
 
 Func_6c146: ; 6c146 (1b:4146)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f133
 	ld a, [wMoveAnimationTimer]
 	dec a
@@ -232,7 +232,7 @@ Func_6c1c8: ; 6c1c8 (1b:41c8)
 
 Func_6c1dd: ; 6c1dd (1b:41dd)
 	ld bc, $ff
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f1ff
 	ld a, [wMoveAnimationTimer]
 	dec a
@@ -271,7 +271,7 @@ ChargeUpAnimation: ; 6c21d (1b:421d)
 
 Func_6c231: ; 6c231 (1b:4231)
 	ld a, $5
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f058
 	ld a, $20
 	ld [wMoveAnimationTimer], a
@@ -280,7 +280,7 @@ Func_6c231: ; 6c231 (1b:4231)
 	jp NextMoveAnimationSubroutine
 
 Func_6c246: ; 6c246 (1b:4246)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f133
 	ld a, [wMoveAnimationTimer]
 	dec a
@@ -339,35 +339,35 @@ Func_6c28e: ; 6c28e (1b:428e)
 	ld [wSpriteInitYCoordBuffers + 4], a
 	ld [wSpriteInitYCoordBuffers + 5], a
 	xor a
-	ld [$c0d8], a
+	ld [wOAMAnimation02 + $18], a
 	ld a, $18
-	ld [$c0f8], a
+	ld [wOAMAnimation03 + $18], a
 	ld a, $30
-	ld [$c118], a
+	ld [wOAMAnimation04 + $18], a
 	ld a, $48
-	ld [$c138], a
+	ld [wOAMAnimation05 + $18], a
 	ld a, $60
-	ld [$c158], a
+	ld [wOAMAnimation06 + $18], a
 	ld a, $38
-	ld [$c0d9], a
-	ld [$c0f9], a
-	ld [$c119], a
-	ld [$c139], a
-	ld [$c159], a
+	ld [wOAMAnimation02 + $19], a
+	ld [wOAMAnimation03 + $19], a
+	ld [wOAMAnimation04 + $19], a
+	ld [wOAMAnimation05 + $19], a
+	ld [wOAMAnimation06 + $19], a
 	ld a, [wSpriteInitXCoordBuffers + 1]
-	ld [wOAMAnimation02_Duration + 9], a
-	ld [wOAMAnimation03_Duration + 9], a
-	ld [wOAMAnimation04_Duration + 9], a
-	ld [wOAMAnimation05_Duration + 9], a
-	ld [wOAMAnimation06_Duration + 9], a
+	ld [wOAMAnimation02 + $11], a
+	ld [wOAMAnimation03 + $11], a
+	ld [wOAMAnimation04 + $11], a
+	ld [wOAMAnimation05 + $11], a
+	ld [wOAMAnimation06 + $11], a
 	ld a, [wSpriteInitYCoordBuffers + 1]
-	ld [$c0d3], a
-	ld [$c0f3], a
-	ld [$c113], a
-	ld [$c133], a
-	ld [$c153], a
+	ld [wOAMAnimation02 + $13], a
+	ld [wOAMAnimation03 + $13], a
+	ld [wOAMAnimation04 + $13], a
+	ld [wOAMAnimation05 + $13], a
+	ld [wOAMAnimation06 + $13], a
 	ld a, $2
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f13c
 	ld a, $2
 	ld de, wOAMAnimation03
@@ -399,22 +399,22 @@ Func_6c34e: ; 6c34e (1b:434e)
 	ld a, [wSpriteInitYCoordBuffers + 1]
 	dec a
 	ld [wSpriteInitYCoordBuffers + 1], a
-	ld [$c0d3], a
-	ld [$c0f3], a
-	ld [$c113], a
-	ld [$c133], a
-	ld [$c153], a
+	ld [wOAMAnimation02 + $13], a
+	ld [wOAMAnimation03 + $13], a
+	ld [wOAMAnimation04 + $13], a
+	ld [wOAMAnimation05 + $13], a
+	ld [wOAMAnimation06 + $13], a
 	ld a, $1
 	ld [wd4c4], a
 	jp Func_6c397
 
 .asm_6c376
 	ld a, $0
-	ld [wOAMAnimation02_PriorityFlags], a
-	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation02], a
+	ld [wOAMAnimation03], a
 	ld [wOAMAnimation04], a
 	ld [wOAMAnimation05], a
-	ld [wOAMAnimation06_PriorityFlags], a
+	ld [wOAMAnimation06], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $40
@@ -429,7 +429,7 @@ Func_6c397: ; 6c397 (1b:4397)
 	ld [wd4c4], a
 	ld a, $1
 	ld [wWhichBattleMenuCursor], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6c3d9
 	ld a, $2
 	ld [wWhichBattleMenuCursor], a
@@ -437,7 +437,7 @@ Func_6c397: ; 6c397 (1b:4397)
 	call Func_6c3d9
 	ld a, $3
 	ld [wWhichBattleMenuCursor], a
-	ld de, wOAMAnimation04_PriorityFlags
+	ld de, wOAMAnimation04
 	call Func_6c3d9
 	ld a, $4
 	ld [wWhichBattleMenuCursor], a
@@ -569,7 +569,7 @@ Func_6c488: ; 6c488 (1b:4488)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -582,7 +582,7 @@ Func_6c488: ; 6c488 (1b:4488)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -701,7 +701,7 @@ Func_6c5a8: ; 6c5a8 (1b:45a8)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -714,7 +714,7 @@ Func_6c5a8: ; 6c5a8 (1b:45a8)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -793,19 +793,19 @@ ShieldAnimation: ; 6c676 (1b:4676)
 
 Func_6c68c: ; 6c68c (1b:468c)
 	ld a, $1
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f058
 	ld a, $30
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
 Func_6c69c: ; 6c69c (1b:469c)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	jp Func_6f0ff
 
 Func_6c6a2: ; 6c6a2 (1b:46a2)
 	ld a, $3
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f13c
 	ld a, $18
 	ld [wMoveAnimationTimer], a
@@ -814,7 +814,7 @@ Func_6c6a2: ; 6c6a2 (1b:46a2)
 Func_6c6b2: ; 6c6b2 (1b:46b2)
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wMoveAnimationTimer]
@@ -822,7 +822,7 @@ Func_6c6b2: ; 6c6b2 (1b:46b2)
 	ld [wMoveAnimationTimer], a
 	or a
 	ret nz
-	ld hl, wOAMAnimation02_PriorityFlags
+	ld hl, wOAMAnimation02
 	call Func_6f1c2
 	jp NextMoveAnimationSubroutine
 
@@ -841,7 +841,7 @@ ProtectAnimation: ; 6c6d4 (1b:46d4)
 
 Func_6c6ea: ; 6c6ea (1b:46ea)
 	ld a, $1
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f058
 	ld a, $30
 	ld [H_SFX_ID], a
@@ -862,7 +862,7 @@ Func_6c700: ; 6c700 (1b:4700)
 Func_6c710: ; 6c710 (1b:4710)
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wMoveAnimationTimer]
@@ -896,7 +896,7 @@ Func_6c748: ; 6c748 (1b:4748)
 	jp NextMoveAnimationSubroutine
 
 Func_6c758: ; 6c758 (1b:4758)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	jp Func_6f0ff
 
 Func_6c75e: ; 6c75e (1b:475e)
@@ -910,7 +910,7 @@ Func_6c75e: ; 6c75e (1b:475e)
 Func_6c76e: ; 6c76e (1b:476e)
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wMoveAnimationTimer]
@@ -918,7 +918,7 @@ Func_6c76e: ; 6c76e (1b:476e)
 	ld [wMoveAnimationTimer], a
 	or a
 	ret nz
-	ld hl, wOAMAnimation02_PriorityFlags
+	ld hl, wOAMAnimation02
 	call Func_6f1c2
 	jp NextMoveAnimationSubroutine
 
@@ -1122,13 +1122,7 @@ Func_6c8dd: ; 6c8dd (1b:48dd)
 
 Func_6c8ea: ; 6c8ea (1b:48ea)
 	ld de, $16
-	cp $0
-	jr z, .asm_6c8f5
-.asm_6c8f1
-	add hl, de
-	dec a
-	jr nz, .asm_6c8f1
-.asm_6c8f5
+	addntimes_hl_de
 	ld a, [hl]
 	ret
 
@@ -1150,7 +1144,7 @@ Func_6c90b: ; 6c90b (1b:490b)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $10
@@ -1163,7 +1157,7 @@ Func_6c90b: ; 6c90b (1b:490b)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -1221,7 +1215,7 @@ Func_6c98d: ; 6c98d (1b:498d)
 	ld [hli], a
 	ld a, $17
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $a
@@ -1234,7 +1228,7 @@ Func_6c98d: ; 6c98d (1b:498d)
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $12
@@ -1347,7 +1341,7 @@ Func_6caa0: ; 6caa0 (1b:4aa0)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $10
@@ -1360,7 +1354,7 @@ Func_6caa0: ; 6caa0 (1b:4aa0)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -1417,7 +1411,7 @@ Func_6cb22: ; 6cb22 (1b:4b22)
 	ld [hli], a
 	ld a, $17
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $a
@@ -1430,7 +1424,7 @@ Func_6cb22: ; 6cb22 (1b:4b22)
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $12
@@ -1557,50 +1551,50 @@ Func_6cc82: ; 6cc82 (1b:4c82)
 	ld a, $ff
 	ld [wcac2], a
 	xor a
-	ld [$c0d8], a
-	ld [$c0f8], a
-	ld [$c118], a
-	ld [$c138], a
+	ld [wOAMAnimation02 + $18], a
+	ld [wOAMAnimation03 + $18], a
+	ld [wOAMAnimation04 + $18], a
+	ld [wOAMAnimation05 + $18], a
 	ld a, $4
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f13c
 	ld a, $5
 	ld de, wOAMAnimation03
 	call Func_6f13c
 	ld a, $4
-	ld de, wOAMAnimation04_PriorityFlags
+	ld de, wOAMAnimation04
 	call Func_6f13c
 	ld a, $5
-	ld de, wOAMAnimation05_PriorityFlags
+	ld de, wOAMAnimation05
 	call Func_6f13c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wOAMAnimation02_XCoord]
-	ld [wOAMAnimation02_Duration + 9], a
-	ld [wOAMAnimation03_Duration + 9], a
-	ld [wOAMAnimation04_Duration + 9], a
-	ld [wOAMAnimation05_Duration + 9], a
+	ld [wOAMAnimation02 + $11], a
+	ld [wOAMAnimation03 + $11], a
+	ld [wOAMAnimation04 + $11], a
+	ld [wOAMAnimation05 + $11], a
 	ld a, [wOAMAnimation02_YCoord]
-	ld [$c0d3], a
-	ld [$c0f3], a
-	ld [$c113], a
-	ld [$c133], a
-	ld [$c0d9], a
-	ld [$c0f9], a
-	ld [$c119], a
-	ld [$c139], a
+	ld [wOAMAnimation02 + $13], a
+	ld [wOAMAnimation03 + $13], a
+	ld [wOAMAnimation04 + $13], a
+	ld [wOAMAnimation05 + $13], a
+	ld [wOAMAnimation02 + $19], a
+	ld [wOAMAnimation03 + $19], a
+	ld [wOAMAnimation04 + $19], a
+	ld [wOAMAnimation05 + $19], a
 	ld a, $0
-	ld [$c0da], a
+	ld [wOAMAnimation02 + $1a], a
 	ld a, $18
-	ld [$c0fa], a
+	ld [wOAMAnimation03 + $1a], a
 	ld a, $30
-	ld [$c11a], a
+	ld [wOAMAnimation04 + $1a], a
 	ld a, $48
-	ld [$c13a], a
+	ld [wOAMAnimation05 + $1a], a
 	xor a
-	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation03], a
 	ld [wOAMAnimation04], a
 	ld [wOAMAnimation05], a
 	ld a, $3c
@@ -1612,13 +1606,13 @@ Func_6cd19: ; 6cd19 (1b:4d19)
 
 Func_6cd1c: ; 6cd1c (1b:4d1c)
 	ld a, $8
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f058
 	ld a, $9
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_6f058
 	ld a, $a
-	ld de, wOAMAnimation04_PriorityFlags
+	ld de, wOAMAnimation04
 	call Func_6f058
 	ld a, $b
 	ld de, wOAMAnimation05
@@ -1635,7 +1629,7 @@ Func_6cd1c: ; 6cd1c (1b:4d1c)
 	ld [hli], a
 	ld a, $17
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $a
@@ -1648,7 +1642,7 @@ Func_6cd1c: ; 6cd1c (1b:4d1c)
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $12
@@ -1656,7 +1650,7 @@ Func_6cd1c: ; 6cd1c (1b:4d1c)
 .asm_6cd73
 	ld c, $2c
 	callba Func_cc3aa
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld bc, $e00
 	call Func_2b01
 	ld c, $2d
@@ -1671,11 +1665,11 @@ Func_6cd9d: ; 6cd9d (1b:4d9d)
 	call Func_6ca2b
 	call Func_6ca51
 	callba Func_cc000
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6f133
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_6f133
-	ld de, wOAMAnimation04_PriorityFlags
+	ld de, wOAMAnimation04
 	call Func_6f133
 	ld de, wOAMAnimation05
 	call Func_6f133
@@ -1684,7 +1678,7 @@ Func_6cd9d: ; 6cd9d (1b:4d9d)
 	ld [wMoveAnimationTimer], a
 	cp $0
 	ret nz
-	ld hl, wOAMAnimation02_PriorityFlags
+	ld hl, wOAMAnimation02
 	call Func_6f1c2
 	jp NextMoveAnimationSubroutine
 
@@ -1745,7 +1739,7 @@ Func_6ce0d: ; 6ce0d (1b:4e0d)
 	jp Func_6f1c2
 
 Func_6ce1e: ; 6ce1e (1b:4e1e)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	ld b, $4
 .asm_6ce23
 	push bc
@@ -1830,10 +1824,10 @@ Func_6cea8: ; 6cea8 (1b:4ea8)
 	ld a, $ff
 	ld [wcac2], a
 	xor a
-	ld [$c0d8], a
-	ld [$c0f8], a
-	ld [$c118], a
-	ld [$c138], a
+	ld [wOAMAnimation02 + $18], a
+	ld [wOAMAnimation03 + $18], a
+	ld [wOAMAnimation04 + $18], a
+	ld [wOAMAnimation05 + $18], a
 	ld a, $6
 	ld de, wOAMAnimation02
 	call Func_6f13c
@@ -1844,36 +1838,36 @@ Func_6cea8: ; 6cea8 (1b:4ea8)
 	ld de, wOAMAnimation04
 	call Func_6f13c
 	ld a, $7
-	ld de, wOAMAnimation05_PriorityFlags
+	ld de, wOAMAnimation05
 	call Func_6f13c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wOAMAnimation02_XCoord]
-	ld [wOAMAnimation02_Duration + 9], a
-	ld [wOAMAnimation03_Duration + 9], a
-	ld [wOAMAnimation04_Duration + 9], a
-	ld [wOAMAnimation05_Duration + 9], a
+	ld [wOAMAnimation02 + $11], a
+	ld [wOAMAnimation03 + $11], a
+	ld [wOAMAnimation04 + $11], a
+	ld [wOAMAnimation05 + $11], a
 	ld a, [wOAMAnimation02_YCoord]
-	ld [$c0d3], a
-	ld [$c0f3], a
-	ld [$c113], a
-	ld [$c133], a
-	ld [$c0d9], a
-	ld [$c0f9], a
-	ld [$c119], a
-	ld [$c139], a
+	ld [wOAMAnimation02 + $13], a
+	ld [wOAMAnimation03 + $13], a
+	ld [wOAMAnimation04 + $13], a
+	ld [wOAMAnimation05 + $13], a
+	ld [wOAMAnimation02 + $19], a
+	ld [wOAMAnimation03 + $19], a
+	ld [wOAMAnimation04 + $19], a
+	ld [wOAMAnimation05 + $19], a
 	ld a, $0
-	ld [$c0da], a
+	ld [wOAMAnimation02 + $1a], a
 	ld a, $18
-	ld [$c0fa], a
+	ld [wOAMAnimation03 + $1a], a
 	ld a, $30
-	ld [$c11a], a
+	ld [wOAMAnimation04 + $1a], a
 	ld a, $48
-	ld [$c13a], a
+	ld [wOAMAnimation05 + $1a], a
 	xor a
-	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation03], a
 	ld [wOAMAnimation04], a
 	ld [wOAMAnimation05], a
 	ld a, $27
@@ -1908,7 +1902,7 @@ Func_6cf5f: ; 6cf5f (1b:4f5f)
 	ld [hli], a
 	ld a, $1c
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $7
@@ -1921,7 +1915,7 @@ Func_6cf5f: ; 6cf5f (1b:4f5f)
 	ld [hli], a
 	ld a, $7
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $f
@@ -1944,14 +1938,14 @@ Func_6cf5f: ; 6cf5f (1b:4f5f)
 .asm_6cfc4
 	cp $10
 	jr nz, .asm_6cff6
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld bc, $fe00
 	call Func_2af4
 	ld bc, $fe80
 	call Func_2b01
 	ld c, $0
 	callba Func_cc565
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld bc, $880
 	call Func_2b01
 	ld c, $1
@@ -2094,7 +2088,7 @@ Func_6d0e7: ; 6d0e7 (1b:50e7)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $d
@@ -2107,7 +2101,7 @@ Func_6d0e7: ; 6d0e7 (1b:50e7)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $8
@@ -2168,7 +2162,7 @@ Func_6d17c: ; 6d17c (1b:517c)
 	ld [hli], a
 	ld a, $17
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $a
@@ -2181,7 +2175,7 @@ Func_6d17c: ; 6d17c (1b:517c)
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $12
@@ -2202,7 +2196,7 @@ Func_6d17c: ; 6d17c (1b:517c)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $9
@@ -2215,7 +2209,7 @@ Func_6d17c: ; 6d17c (1b:517c)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $11
@@ -2366,7 +2360,7 @@ Func_6d323: ; 6d323 (1b:5323)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $10
@@ -2379,7 +2373,7 @@ Func_6d323: ; 6d323 (1b:5323)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -2432,7 +2426,7 @@ Func_6d39c: ; 6d39c (1b:539c)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -2445,7 +2439,7 @@ Func_6d39c: ; 6d39c (1b:539c)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -2531,7 +2525,7 @@ Func_6d476: ; 6d476 (1b:5476)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $10
@@ -2544,7 +2538,7 @@ Func_6d476: ; 6d476 (1b:5476)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -2591,7 +2585,7 @@ Func_6d4e4: ; 6d4e4 (1b:54e4)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -2604,7 +2598,7 @@ Func_6d4e4: ; 6d4e4 (1b:54e4)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -2691,7 +2685,7 @@ Func_6d5c0: ; 6d5c0 (1b:55c0)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $10
@@ -2704,7 +2698,7 @@ Func_6d5c0: ; 6d5c0 (1b:55c0)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -2757,7 +2751,7 @@ Func_6d639: ; 6d639 (1b:5639)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -2770,7 +2764,7 @@ Func_6d639: ; 6d639 (1b:5639)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -2856,7 +2850,7 @@ Func_6d713: ; 6d713 (1b:5713)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -2869,7 +2863,7 @@ Func_6d713: ; 6d713 (1b:5713)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -2918,7 +2912,7 @@ Func_6d799: ; 6d799 (1b:5799)
 	cp $1e
 	ret c
 	ld a, $0
-	ld [$c0ba], a
+	ld [wOAMAnimation01 + $1a], a
 	ld a, $0
 	ld [wca60], a
 	ld a, $0
@@ -2928,19 +2922,19 @@ Func_6d799: ; 6d799 (1b:5799)
 Func_6d7bd: ; 6d7bd (1b:57bd)
 	call Func_6d846
 	callba Func_cc000
-	ld a, [$c0ba]
+	ld a, [wOAMAnimation01 + $1a]
 	cp $2
 	jr nz, .asm_6d826
 	ld a, [wMoveAnimationTimer]
 	and $3
 	jr nz, .asm_6d826
-	ld a, [wOAMAnimation01_Duration + 1]
+	ld a, [wOAMAnimation01 + $9]
 	ld b, a
 	ld a, [wOAMAnimation01_Duration]
 	ld c, a
-	ld a, [wOAMAnimation01_Duration + 5]
+	ld a, [wOAMAnimation01 + $d]
 	ld d, a
-	ld a, [wOAMAnimation01_Duration + 4]
+	ld a, [wOAMAnimation01 + $c]
 	ld e, a
 	push bc
 	push de
@@ -2961,7 +2955,7 @@ Func_6d7bd: ; 6d7bd (1b:57bd)
 	ld a, $a
 	ld [hl], a
 .asm_6d803
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $15
@@ -2970,18 +2964,18 @@ Func_6d7bd: ; 6d7bd (1b:57bd)
 	pop de
 	pop bc
 	ld a, b
-	ld [wOAMAnimation01_Duration + 1], a
+	ld [wOAMAnimation01 + $9], a
 	ld a, c
 	ld [wOAMAnimation01_Duration], a
 	ld a, d
-	ld [wOAMAnimation01_Duration + 5], a
+	ld [wOAMAnimation01 + $d], a
 	ld a, e
-	ld [wOAMAnimation01_Duration + 4], a
+	ld [wOAMAnimation01 + $c], a
 .asm_6d826
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
-	ld a, [$c0ba]
+	ld a, [wOAMAnimation01 + $1a]
 	cp $5
 	ret c
 	ld a, [wcac2]
@@ -2996,7 +2990,7 @@ Func_6d83c: ; 6d83c (1b:583c)
 	jp EndMoveAnimation
 
 Func_6d846: ; 6d846 (1b:5846)
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld a, h
 	ld [wCurObjectStruct + 1], a
 	ld a, l
@@ -3531,7 +3525,7 @@ Func_6dc21: ; 6dc21 (1b:5c21)
 
 Func_6dc24: ; 6dc24 (1b:5c24)
 	xor a
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $5
@@ -3573,7 +3567,7 @@ Func_6dc6b: ; 6dc6b (1b:5c6b)
 
 Func_6dc6e: ; 6dc6e (1b:5c6e)
 	xor a
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
@@ -3602,7 +3596,7 @@ Func_6dc9a: ; 6dc9a (1b:5c9a)
 	ld [hli], a
 	ld a, $c
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $11
@@ -3615,7 +3609,7 @@ Func_6dc9a: ; 6dc9a (1b:5c9a)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -3712,7 +3706,7 @@ Func_6dd94: ; 6dd94 (1b:5d94)
 	cp $1e
 	ret c
 	ld a, $0
-	ld [$c0ba], a
+	ld [wOAMAnimation01 + $1a], a
 	ld a, $0
 	ld [wd45b], a
 	ld a, $0
@@ -3723,19 +3717,19 @@ Func_6ddb0: ; 6ddb0 (1b:5db0)
 	call Func_6ca51
 	call Func_6de60
 	callba Func_cc000
-	ld a, [$c0ba]
+	ld a, [wOAMAnimation01 + $1a]
 	cp $2
 	jr nz, .asm_6de2b
 	ld a, [wMoveAnimationTimer]
 	and $3
 	jr nz, .asm_6de2b
-	ld a, [wOAMAnimation01_Duration + 1]
+	ld a, [wOAMAnimation01 + $9]
 	ld b, a
 	ld a, [wOAMAnimation01_Duration]
 	ld c, a
-	ld a, [wOAMAnimation01_Duration + 5]
+	ld a, [wOAMAnimation01 + $d]
 	ld d, a
-	ld a, [wOAMAnimation01_Duration + 4]
+	ld a, [wOAMAnimation01 + $c]
 	ld e, a
 	push bc
 	push de
@@ -3756,7 +3750,7 @@ Func_6ddb0: ; 6ddb0 (1b:5db0)
 	ld a, $a
 	ld [hl], a
 .asm_6ddf9
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $15
@@ -3770,18 +3764,18 @@ Func_6ddb0: ; 6ddb0 (1b:5db0)
 	pop de
 	pop bc
 	ld a, b
-	ld [wOAMAnimation01_Duration + 1], a
+	ld [wOAMAnimation01 + $9], a
 	ld a, c
 	ld [wOAMAnimation01_Duration], a
 	ld a, d
-	ld [wOAMAnimation01_Duration + 5], a
+	ld [wOAMAnimation01 + $d], a
 	ld a, e
-	ld [wOAMAnimation01_Duration + 4], a
+	ld [wOAMAnimation01 + $c], a
 .asm_6de2b
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
-	ld a, [$c0ba]
+	ld a, [wOAMAnimation01 + $1a]
 	cp $5
 	ret c
 	ld a, [wcac2]
@@ -3805,7 +3799,7 @@ Func_6de46: ; 6de46 (1b:5e46)
 	jp EndMoveAnimation
 
 Func_6de60: ; 6de60 (1b:5e60)
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld a, h
 	ld [wCurObjectStruct + 1], a
 	ld a, l
@@ -4194,7 +4188,7 @@ Func_6e107: ; 6e107 (1b:6107)
 	ld [hli], a
 	ld a, $e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $10
@@ -4207,7 +4201,7 @@ Func_6e107: ; 6e107 (1b:6107)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -4245,7 +4239,7 @@ Func_6e166: ; 6e166 (1b:6166)
 	inc a
 	ld [wd45b], a
 	callba Func_cd2ce
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld bc, $200
 	call Func_2af4
 	ret
@@ -4271,7 +4265,7 @@ Func_6e19e: ; 6e19e (1b:619e)
 	ld [hli], a
 	ld a, $15
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $4
@@ -4292,7 +4286,7 @@ Func_6e19e: ; 6e19e (1b:619e)
 	call Func_2af4
 	ld c, $67
 	callba Func_cc4a1
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld bc, $f600
 	call Func_2b01
 	ld bc, $fc80
@@ -4307,14 +4301,14 @@ Func_6e19e: ; 6e19e (1b:619e)
 	ld [hli], a
 	ld a, $9
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $d
 	ld [hl], a
 	ld c, $6a
 	callba Func_cc4a1
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld bc, $a00
 	call Func_2b01
 	ld bc, $fc80
@@ -4328,7 +4322,7 @@ Func_6e19e: ; 6e19e (1b:619e)
 	call Func_2af4
 	ld c, $67
 	callba Func_cc4a1
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld bc, $f600
 	call Func_2b01
 	ld bc, $380
@@ -4412,7 +4406,7 @@ Func_6e318: ; 6e318 (1b:6318)
 	ld [hli], a
 	ld a, $c
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $11
@@ -4425,7 +4419,7 @@ Func_6e318: ; 6e318 (1b:6318)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -4471,7 +4465,7 @@ Func_6e37e: ; 6e37e (1b:637e)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $e
@@ -4484,7 +4478,7 @@ Func_6e37e: ; 6e37e (1b:637e)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $8
@@ -4569,7 +4563,7 @@ Func_6e46b: ; 6e46b (1b:646b)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $10
@@ -4582,7 +4576,7 @@ Func_6e46b: ; 6e46b (1b:646b)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -4637,7 +4631,7 @@ Func_6e4e9: ; 6e4e9 (1b:64e9)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -4650,7 +4644,7 @@ Func_6e4e9: ; 6e4e9 (1b:64e9)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -4736,7 +4730,7 @@ Func_6e5c3: ; 6e5c3 (1b:65c3)
 	ld [hli], a
 	ld a, $f
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $10
@@ -4749,7 +4743,7 @@ Func_6e5c3: ; 6e5c3 (1b:65c3)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $b
@@ -4816,7 +4810,7 @@ Func_6e661: ; 6e661 (1b:6661)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -4829,7 +4823,7 @@ Func_6e661: ; 6e661 (1b:6661)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -4916,7 +4910,7 @@ Func_6e749: ; 6e749 (1b:6749)
 	ld [hli], a
 	ld a, $e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $11
@@ -4929,7 +4923,7 @@ Func_6e749: ; 6e749 (1b:6749)
 	ld [hli], a
 	ld a, $1a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $9
@@ -4990,7 +4984,7 @@ Func_6e7d2: ; 6e7d2 (1b:67d2)
 	ld [hli], a
 	ld a, $1e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -5003,7 +4997,7 @@ Func_6e7d2: ; 6e7d2 (1b:67d2)
 	ld [hli], a
 	ld a, $a
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $14
@@ -5056,7 +5050,7 @@ Func_6e869: ; 6e869 (1b:6869)
 	ld [hli], a
 	ld a, $e
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $11
@@ -5069,7 +5063,7 @@ Func_6e869: ; 6e869 (1b:6869)
 	ld [hli], a
 	ld a, $1c
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $8
@@ -5194,7 +5188,7 @@ Func_6e95e: ; 6e95e (1b:695e)
 	ld [hli], a
 	ld a, $14
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $fc
@@ -5229,7 +5223,7 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	jr z, .asm_6ea0a
 	cp $3a
 	jr z, .asm_6ea15
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $10
@@ -5237,7 +5231,7 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	jr .asm_6ea1e
 
 .asm_6ea0a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $14
@@ -5245,7 +5239,7 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	jr .asm_6ea1e
 
 .asm_6ea15
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $16
@@ -5275,10 +5269,10 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	sra a
 	add b
 	add $3c
-	ld [$c0b4], a
+	ld [wOAMAnimation01 + $14], a
 	call Func_6eb94
 	pop hl
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	srl a
 	and $1f
 	add $b0
@@ -5298,7 +5292,7 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	jr z, .asm_6ea7e
 	cp $3a
 	jr z, .asm_6ea89
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $8
@@ -5306,7 +5300,7 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	jr .asm_6ea92
 
 .asm_6ea7e
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $40
 	ld [hli], a
 	ld a, $c
@@ -5314,7 +5308,7 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	jr .asm_6ea92
 
 .asm_6ea89
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $e
@@ -5346,10 +5340,10 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	sra a
 	add b
 	add $f0
-	ld [$c0b4], a
+	ld [wOAMAnimation01 + $14], a
 	call Func_6eb94
 	pop hl
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	srl a
 	and $1f
 	add $b0
@@ -5464,20 +5458,20 @@ Func_6eae7: ; 6eae7 (1b:6ae7)
 	ret
 
 Func_6eb94: ; 6eb94 (1b:6b94)
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	ld d, a
 	call Func_3086
 	sla e
 	rl d
 	ld b, h
 	ld c, l
-	ld a, [wOAMAnimation01_Duration + 1]
+	ld a, [wOAMAnimation01 + $9]
 	ld h, a
 	ld a, [wOAMAnimation01_Duration]
 	ld l, a
 	add hl, de
 	ld a, h
-	ld [wOAMAnimation01_Duration + 1], a
+	ld [wOAMAnimation01 + $9], a
 	ld a, l
 	ld [wOAMAnimation01_Duration], a
 	ld a, l
@@ -5488,20 +5482,20 @@ Func_6eb94: ; 6eb94 (1b:6b94)
 	inc bc
 	inc bc
 	inc bc
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	ld d, a
 	call Func_3078
 	sla e
 	rl d
-	ld a, [wOAMAnimation01_Duration + 5]
+	ld a, [wOAMAnimation01 + $d]
 	ld h, a
-	ld a, [wOAMAnimation01_Duration + 4]
+	ld a, [wOAMAnimation01 + $c]
 	ld l, a
 	add hl, de
 	ld a, h
-	ld [wOAMAnimation01_Duration + 5], a
+	ld [wOAMAnimation01 + $d], a
 	ld a, l
-	ld [wOAMAnimation01_Duration + 4], a
+	ld [wOAMAnimation01 + $c], a
 	ld a, l
 	ld [bc], a
 	inc bc
@@ -5574,7 +5568,7 @@ Func_6ec2c: ; 6ec2c (1b:6c2c)
 	ld [hli], a
 	ld a, $14
 	ld [hl], a
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $0
 	ld [hli], a
 	ld a, $fc
@@ -5617,7 +5611,7 @@ Func_6ec8b: ; 6ec8b (1b:6c8b)
 	ld a, [wBattleTurn]
 	cp $0
 	jr nz, .asm_6ed12
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $f
@@ -5644,10 +5638,10 @@ Func_6ec8b: ; 6ec8b (1b:6c8b)
 	sra a
 	sra a
 	add $e8
-	ld [$c0b4], a
+	ld [wOAMAnimation01 + $14], a
 	call Func_6edfd
 	pop hl
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	srl a
 	and $1f
 	add $b0
@@ -5660,7 +5654,7 @@ Func_6ec8b: ; 6ec8b (1b:6c8b)
 	jr .asm_6ed5c
 
 .asm_6ed12
-	ld hl, wOAMAnimation01_Duration + 4
+	ld hl, wOAMAnimation01 + $c
 	ld a, $80
 	ld [hli], a
 	ld a, $7
@@ -5688,10 +5682,10 @@ Func_6ec8b: ; 6ec8b (1b:6c8b)
 	sra a
 	sra a
 	add $4e
-	ld [$c0b4], a
+	ld [wOAMAnimation01 + $14], a
 	call Func_6edfd
 	pop hl
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	srl a
 	and $1f
 	add $b0
@@ -5768,7 +5762,7 @@ Func_6ed6d: ; 6ed6d (1b:6d6d)
 
 .asm_6edd7
 	ld a, [wd45b]
-	ld hl, wOAMAnimation07_PriorityFlags
+	ld hl, wOAMAnimation07
 	xor $f
 	swap a
 	ld e, a
@@ -5788,7 +5782,7 @@ Func_6ed6d: ; 6ed6d (1b:6d6d)
 	ret
 
 Func_6edfd: ; 6edfd (1b:6dfd)
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	ld d, a
 	call Func_3086
 	sla e
@@ -5797,13 +5791,13 @@ Func_6edfd: ; 6edfd (1b:6dfd)
 	rl d
 	ld b, h
 	ld c, l
-	ld a, [wOAMAnimation01_Duration + 1]
+	ld a, [wOAMAnimation01 + $9]
 	ld h, a
 	ld a, [wOAMAnimation01_Duration]
 	ld l, a
 	add hl, de
 	ld a, h
-	ld [wOAMAnimation01_Duration + 1], a
+	ld [wOAMAnimation01 + $9], a
 	ld a, l
 	ld [wOAMAnimation01_Duration], a
 	ld a, l
@@ -5814,22 +5808,22 @@ Func_6edfd: ; 6edfd (1b:6dfd)
 	inc bc
 	inc bc
 	inc bc
-	ld a, [$c0b4]
+	ld a, [wOAMAnimation01 + $14]
 	ld d, a
 	call Func_3078
 	sla e
 	rl d
 	sla e
 	rl d
-	ld a, [wOAMAnimation01_Duration + 5]
+	ld a, [wOAMAnimation01 + $d]
 	ld h, a
-	ld a, [wOAMAnimation01_Duration + 4]
+	ld a, [wOAMAnimation01 + $c]
 	ld l, a
 	add hl, de
 	ld a, h
-	ld [wOAMAnimation01_Duration + 5], a
+	ld [wOAMAnimation01 + $d], a
 	ld a, l
-	ld [wOAMAnimation01_Duration + 4], a
+	ld [wOAMAnimation01 + $c], a
 	ld a, l
 	ld [bc], a
 	inc bc
@@ -5979,7 +5973,7 @@ Func_6ef50: ; 6ef50 (1b:6f50)
 
 Func_6ef53: ; 6ef53 (1b:6f53)
 	xor a
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $5
@@ -6021,7 +6015,7 @@ Func_6ef9a: ; 6ef9a (1b:6f9a)
 
 Func_6ef9d: ; 6ef9d (1b:6f9d)
 	xor a
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
@@ -6071,7 +6065,7 @@ Func_6eff5: ; 6eff5 (1b:6ff5)
 
 Func_6eff8: ; 6eff8 (1b:6ff8)
 	xor a
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $5
@@ -6113,7 +6107,7 @@ Func_6f03f: ; 6f03f (1b:703f)
 
 Func_6f042: ; 6f042 (1b:7042)
 	xor a
-	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation02], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
@@ -6370,7 +6364,7 @@ Func_6f219:
 	jr asm_6f226
 
 Func_6f21e:
-	ld de, wOAMAnimation05_PriorityFlags
+	ld de, wOAMAnimation05
 	jr asm_6f226
 
 Func_6f223:
@@ -6386,13 +6380,13 @@ Func_6f229: ; 6f229 (1b:7229)
 	call Func_6f1c2
 	ld hl, wOAMAnimation03
 	call Func_6f1c2
-	ld hl, wOAMAnimation04_PriorityFlags
+	ld hl, wOAMAnimation04
 	call Func_6f1c2
-	ld hl, wOAMAnimation05_PriorityFlags
+	ld hl, wOAMAnimation05
 	call Func_6f1c2
 	ld hl, wOAMAnimation06
 	call Func_6f1c2
-	ld hl, wOAMAnimation07_PriorityFlags
+	ld hl, wOAMAnimation07
 	call Func_6f1c2
 	ld hl, wOAMAnimation08
 	call Func_6f1c2
@@ -6415,7 +6409,7 @@ Func_6f267:
 	ld l, a
 	ld h, b
 	call Func_6f2ad
-	ld de, wOAMAnimation05_PriorityFlags
+	ld de, wOAMAnimation05
 	ld hl, $11
 	add hl, de
 	ld a, [hli]
@@ -6435,7 +6429,7 @@ Func_6f267:
 	ld l, a
 	ld h, b
 	call Func_6f2ad
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	ld hl, $11
 	add hl, de
 	ld a, [hli]
