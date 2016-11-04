@@ -6097,31 +6097,31 @@ Func_378c: ; 378c (0:378c)
 
 Func_37a9: ; 37a9 (0:37a9)
 	bit 0, c
-	jr z, .asm_37bd
-.asm_37ad
+	jr z, ._1bpp
+._2bpp_loop
 	di
-.asm_37ae
+._2bpp_waitstat
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_37ae
+	jr nz, ._2bpp_waitstat
 	ld a, d
 	ld [hli], a
 	ei
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_37ad
+	jr nz, ._2bpp_loop
 	ret
 
-.asm_37bd
+._1bpp
 	srl b
 	rr c
-.asm_37c1
+._1bpp_loop
 	di
-.asm_37c2
+._1bpp_waitstat
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_37c2
+	jr nz, ._1bpp_waitstat
 	ld a, d
 	ld [hli], a
 	ld [hli], a
@@ -6129,7 +6129,7 @@ Func_37a9: ; 37a9 (0:37a9)
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_37c1
+	jr nz, ._1bpp_loop
 	ret
 
 asm_37d2
