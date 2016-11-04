@@ -1447,21 +1447,21 @@ Func_161b: ; 161b (0:161b)
 
 INCLUDE "home/pics.asm"
 
-Func_1756: ; 1756 (0:1756)
+GetTFangerPalette: ; 1756 (0:1756)
 	ld b, $7
 	push bc
-	ld hl, $1b0
+	ld hl, (TFangerPalettes - Palettes_34000) >> 3
 	jp Func_176a
 
-Func_175f::
+GetDenjuuPalette_Pal6::
 	ld b, $6
-	jp Func_1766
+	jp GetDenjuuPalette_BG
 
-Func_1764::
+GetDenjuuPalette_Pal7::
 	ld b, $7
-Func_1766: ; 1766 (0:1766)
+GetDenjuuPalette_BG: ; 1766 (0:1766)
 	push bc
-	ld hl, $100
+	ld hl, (DenjuuPalettes - Palettes_34000) >> 3
 Func_176a: ; 176a (0:176a)
 	ld d, $0
 	ld e, a
@@ -1472,9 +1472,9 @@ Func_176a: ; 176a (0:176a)
 	ld c, l
 	jp Func_10ee
 
-Func_1775::
+GetDenjuuPalette_OB::
 	push bc
-	ld hl, $100
+	ld hl, (DenjuuPalettes - Palettes_34000) >> 3
 	ld d, $0
 	ld e, a
 	add hl, de
@@ -2699,7 +2699,7 @@ Func_2021: ; 2021 (0:2021)
 	ld a, b
 	ld [wCurWildDenjuuEncounterTableIndex], a
 	ld a, $0
-	ld [wd406], a
+	ld [wOtherTFangerClass], a
 	ld a, $0
 	ld [wd403], a
 Func_20b1: ; 20b1 (0:20b1)
@@ -4660,14 +4660,14 @@ Func_2ea0::
 	ld a, [hli]
 	ld [wCurWildDenjuuEncounterTableIndex], a
 	ld a, [hl]
-	ld [wd406], a
+	ld [wOtherTFangerClass], a
 	or a
 	jr nz, .asm_2ef3
 	ld a, $2
 	ld [wd403], a
 .asm_2ef3
 	ld l, a
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	or l
 	jr nz, .asm_2f01
 	ld a, $0

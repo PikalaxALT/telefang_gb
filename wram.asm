@@ -3418,7 +3418,7 @@ wCurWildDenjuuEncounterTableIndex:: ds 1
 wd403:: ds 1
 wd404:: ds 1
 wd405:: ds 1
-wd406:: ds 1
+wOtherTFangerClass:: ds 1
 wd407:: ds 1
 wd408:: ds 1
 wd409:: ds 1

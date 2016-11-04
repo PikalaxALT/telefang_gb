@@ -793,7 +793,7 @@ Func_70541:
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld a, [wEnemyDenjuu1Species]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $50
@@ -820,23 +820,23 @@ Func_70541:
 	jr z, .asm_7062c
 	cp $2
 	jr z, .asm_7062c
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	dec a
 	push af
 	ld de, VTilesShared tile $00
 	call LoadTFangerPic_
 	pop af
-	call Func_1756
+	call GetTFangerPalette
 	ld a, [wEnemyDenjuu1Species]
 	ld c, $0
 	ld de, VTilesShared tile $38
 	call LoadDenjuuPic_
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	dec a
 	ld de, TFangerNames + 8
 	ld bc, VTilesBG tile $50
 	call GetAndPrintName75CenterAlign
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	dec a
 	ld [wd435], a
 	ld hl, TFangerNames + 8
@@ -853,7 +853,7 @@ Func_70541:
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld a, [wEnemyDenjuu1]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $50
@@ -924,7 +924,7 @@ Func_706b6:
 	cp $2
 	jp z, Func_7071e
 	ld a, [wEnemyDenjuu1]
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld a, $1
 	ld [wBGPalUpdate], a
 	lb bc, 6, 5
@@ -1255,27 +1255,27 @@ Func_70961:
 	ret
 
 Func_7096b:
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	hlbgcoord 0, 0
 	ld c, $0
 	call Func_1430
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_709a9
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	cp $24
 	jp z, Func_709db
 	inc a
-	ld [wd406], a
-	ld a, [wd406]
+	ld [wOtherTFangerClass], a
+	ld a, [wOtherTFangerClass]
 	push af
 	ld de, VTilesShared tile $00
 	call LoadTFangerPic_
 	pop af
-	call Func_1756
+	call GetTFangerPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	ld de, $4578
 	ld bc, VTilesBG tile $50
 	call GetAndPrintName75LeftAlign_
@@ -1285,20 +1285,20 @@ Func_7096b:
 	ld a, [wJoyNew]
 	and D_LEFT
 	jr z, Func_709db
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	cp $0
 	jp z, Func_709db
 	dec a
-	ld [wd406], a
-	ld a, [wd406]
+	ld [wOtherTFangerClass], a
+	ld a, [wOtherTFangerClass]
 	push af
 	ld de, VTilesShared tile $00
 	call LoadTFangerPic_
 	pop af
-	call Func_1756
+	call GetTFangerPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
-	ld a, [wd406]
+	ld a, [wOtherTFangerClass]
 	ld de, $4578
 	ld bc, VTilesBG tile $50
 	call GetAndPrintName75LeftAlign_
@@ -1324,7 +1324,7 @@ Func_709dc:
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wEnemyDenjuu1Species]
@@ -1347,7 +1347,7 @@ Func_709dc:
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wEnemyDenjuu1]
@@ -1609,7 +1609,7 @@ Func_70bca:
 	ld de, VTilesShared tile $38
 	call LoadDenjuuPic_
 	pop af
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld a, [wd4b0]
 	dec a
 	ld b, $0
@@ -2047,7 +2047,7 @@ Func_70ffd:
 	ld de, VTilesShared tile $38
 	call LoadDenjuuPic_
 	pop af
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld a, $1
 	ld [wBGPalUpdate], a
 	call CloseSRAM
@@ -3124,7 +3124,7 @@ Func_71831:
 	ld de, VTilesShared tile $38
 	call LoadDenjuuPic_
 	pop af
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld hl, VTilesBG tile $20
 	ld a, [wd43c]
 	call Func_3e19
@@ -3245,7 +3245,7 @@ Func_71957:
 	ld de, VTilesShared tile $38
 	call LoadDenjuuPic_
 	pop af
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld a, [wCurEnemyDenjuu]
 	ld hl, wEnemyDenjuu1Species
 	call Func_71a70
@@ -3255,7 +3255,7 @@ Func_71957:
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld hl, VTilesBG tile $20
 	ld a, $8
 	call ClearString

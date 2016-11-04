@@ -408,7 +408,7 @@ Func_142df:
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	jp Func_1764
+	jp GetDenjuuPalette_Pal7
 
 Func_142ec:
 	push af
@@ -416,7 +416,7 @@ Func_142ec:
 	ld de, VTilesShared tile $38
 	call LoadDenjuuPic_
 	pop af
-	jp Func_175f
+	jp GetDenjuuPalette_Pal6
 
 Func_142f9: ; 142f9 (5:42f9)
 	push hl

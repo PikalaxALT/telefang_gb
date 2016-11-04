@@ -833,7 +833,7 @@ asm_8cc7
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	xor a
 	ld [wcb30], a
 	jp NextMoveAnimationSubroutine
@@ -1083,7 +1083,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wCurDenjuu]
@@ -16773,11 +16773,14 @@ INCLUDE "data/palettes_34000.asm"
 DenjuuPalettes:
 INCLUDE "data/denjuu_palettes.asm"
 
-Palettes_34d70:
+TFangerPalettes:
+INCLUDE "data/tfanger_palettes.asm"
+
+Palettes_34f08:
 IF DEF(POWER)
-INCLUDE "data/palettes_34d70.power.asm"
+INCLUDE "data/palettes_34f08.power.asm"
 ELSE
-INCLUDE "data/palettes_34d70.speed.asm"
+INCLUDE "data/palettes_34f08.speed.asm"
 ENDC
 
 Palettes_35d80:
@@ -19698,7 +19701,7 @@ Func_3a705:
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	pop af
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld hl, VTilesBG tile $58
 	ld a, $8
 	call ClearString
@@ -21733,7 +21736,7 @@ Func_3c76a: ; 3c76a (f:476a)
 	ld a, [wcd09]
 	ld [wCurWildDenjuuEncounterTableIndex], a
 	ld a, [wcd0a]
-	ld [wd406], a
+	ld [wOtherTFangerClass], a
 	ld a, [wcd0b]
 	ld [wd403], a
 	ld b, $4

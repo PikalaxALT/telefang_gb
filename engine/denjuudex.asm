@@ -149,7 +149,7 @@ Func_114ff: ; 114ff (4:54ff)
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	ld a, [wDexCurDenjuu]
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld a, [wDexCurDenjuu]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
@@ -318,7 +318,7 @@ Func_1169d: ; 1169d (4:569d)
 	ld de, VTilesShared tile $00
 	call LoadDenjuuPic_
 	ld a, [wDexCurDenjuu]
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld a, [wDexCurDenjuu]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30

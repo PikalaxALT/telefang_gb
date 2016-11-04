@@ -1335,7 +1335,7 @@ Func_10a9c:
 	call LoadDenjuuPic_
 	ld a, [wcd24]
 	call Func_12473
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 .asm_10ac5
 	ld a, $1
 	ld [wBGPalUpdate], a
@@ -6967,7 +6967,7 @@ Func_1371c: ; 1371c (4:771c)
 	ld e, $1a
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	pop af
-	call Func_175f
+	call GetDenjuuPalette_Pal6
 	ld hl, $60
 	ld a, [wCurHours]
 	cp $14
@@ -8096,7 +8096,7 @@ Func_13eb5: ; 13eb5 (4:7eb5)
 	ld de, VTilesBG tile $40
 	call LoadDenjuuPic_
 	ld a, [wDexCurDenjuu]
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld a, [wDexCurDenjuu]
 	jp Func_11a35
 
@@ -8106,7 +8106,7 @@ Func_13eb5: ; 13eb5 (4:7eb5)
 	ld de, VTilesBG tile $40
 	call LoadDenjuuPic_
 	ld a, $ae
-	call Func_1764
+	call GetDenjuuPalette_Pal7
 	ld a, $ae
 	jp Func_11a35
 
