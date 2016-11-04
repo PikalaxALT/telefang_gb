@@ -1,49 +1,49 @@
 	db " ーーーーーー$"
-	db "ミキちゃん$$$"
-	db "トシカズくん$$"
-	db "サナエバのてした"
-	db "みつばちゃん$$"
-	db "トールくん$$$"
-	db "サユリさん$$$"
-	db "ユキコさん$$$"
-	db "たんけんか$$$"
-	db "ジュージュツ$$"
-	db "おがわ$$$$$"
-	db "ブーた$$$$$"
-	db "クニサダくん$$"
-	db "ワンダさん$$$"
-	db "けんきゅういん$"
-	db "おんなのこ$$$"
-	db "クラフトはかせ$"
-	db "レポマン$$$$"
-	db "ほしの$$$$$"
-	db "きこリや$$$$"
-	db "キンダーママ$$"
-	db "ケイブガール$$"
-	db "ファンガリアン$"
-	db "バード$$$$$"
-	db "マニア$$$$$"
-	db "ディアミおばさん"
-	db "びーじぇー$$$"
-	db "ハックルトム$$"
-	db "スイスイスイマー"
-	db "カラテマン$$$"
-	db "ゴーゴーレーサー"
-	db "プルこう$$$$"
-	db "ミケ$$$$$$"
-	db "ベイビー$$$$"
-	db "カミナリおやじ$"
-	db "カジおやじ$$$"
-	db "ジシンおやじ$$"
-	db "カイ$$$$$$"
-	db "ネリカラ$$$$"
-	db "カクザとう$$$"
-	db "タバスコ$$$$"
-	db "サナエバ$$$$"
-	db "さいとう$$$$"
-	db "さいとう$$$$"
-	db "さいとう$$$$"
-	db "さいとう$$$$"
-	db "さいとう$$$$"
-	db "さいとう$$$$"
-	db "さいとう$$$$"
+	db "ミキちゃん$$$" ; KIMI
+	db "トシカズくん$$" ; TOSHIKAGU
+	db "サナエバのてした" ; MINION
+	db "みつばちゃん$$" ; MITSUBA
+	db "トールくん$$$" ; TORLU
+	db "サユリさん$$$" ; SAYURI
+	db "ユキコさん$$$" ; YUKIKO
+	db "たんけんか$$$" ; EXPLORER
+	db "ジュージュツ$$" ; BLACKBELT
+	db "おがわ$$$$$" ; OGAWA
+	db "ブーた$$$$$" ; BUUTA
+	db "クニサダくん$$" ; KUNISADA
+	db "ワンダさん$$$" ; WANDA
+	db "けんきゅういん$" ; SCIENTIST
+	db "おんなのこ$$$" ; LASS
+	db "クラフトはかせ$" ; CRAFT_PROF
+	db "レポマン$$$$" ; REPOMAN
+	db "ほしの$$$$$" ; HOSHINO
+	db "きこリや$$$$" ; LUMBERJACK
+	db "キンダーママ$$" ; MOM_AND_KID
+	db "ケイブガール$$" ; CAVE_GIRL
+	db "ファンガリアン$" ; FANGARIAN
+	db "バード$$$$$" ; BIRD
+	db "マニア$$$$$" ; MANIA
+	db "ディアミおばさん" ; DIAMI_AUNT
+	db "びーじぇー$$$" ; BJ
+	db "ハックルトム$$" ; HACKLE_TOM
+	db "スイスイスイマー" ; SWIMMER
+	db "カラテマン$$$" ; KARATE_MAN
+	db "ゴーゴーレーサー" ; GOGO_RACER
+	db "プルこう$$$$" ; PUPPY
+	db "ミケ$$$$$$" ; CAT
+	db "ベイビー$$$$" ; BABY
+	db "カミナリおやじ$" ; THUNDER_DAD
+	db "カジおやじ$$$" ; RUDDER_DAD
+	db "ジシンおやじ$$" ; QUAKE_DAD
+	db "カイ$$$$$$" ; KAI
+	db "ネリカラ$$$$" ; NERIKARA
+	db "カクザとう$$$" ; KAKUZA_GUARD
+	db "タバスコ$$$$" ; TABASCO
+	db "サナエバ$$$$" ; SANAEBA
+	db "さいとう$$$$" ; SAITOU
+	db "さいとう$$$$" ; SAITOU
+	db "さいとう$$$$" ; SAITOU
+	db "さいとう$$$$" ; SAITOU
+	db "さいとう$$$$" ; SAITOU
+	db "さいとう$$$$" ; SAITOU
+	db "さいとう$$$$" ; SAITOU

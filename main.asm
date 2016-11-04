@@ -24610,11 +24610,14 @@ INCLUDE "data/map_data_14d472.asm"
 
 SECTION "bank 54", ROMX, BANK [$54]
 Pointers_150000:
-	dr $150000, $154000
+IF DEF(POWER)
+INCLUDE "data/unknown_150000.power.asm"
+ELSE
+INCLUDE "data/unknown_150000.speed.asm"
+ENDC
 
 SECTION "bank 55", ROMX, BANK [$55]
-Pointers_154000:
-	dr $154000, $158000
+Pointers_154000: INCLUDE "data/unknown_154000.asm"
 
 SECTION "bank 56", ROMX, BANK [$56]
 Pointers_158000:
