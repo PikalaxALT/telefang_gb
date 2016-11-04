@@ -3856,7 +3856,7 @@ MegaFlameAnimation: ; 69f99 (1a:5f99)
 	dw Func_6a045
 	dw Func_6a09e
 	dw Func_6a0cc
-	dw $7229
+	dw Func_6f229 ; wrong bank
 
 Func_69faf: ; 69faf (1a:5faf)
 	ld a, [wBattleTurn]

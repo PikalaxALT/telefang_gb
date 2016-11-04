@@ -23102,101 +23102,7 @@ SECTION "bank 1A", ROMX, BANK [$1a]
 INCLUDE "battle/anims.asm"
 
 SECTION "bank 1B", ROMX, BANK [$1b]
-SpeedUpAnimation::
-	dr $6c000, $6c082
-
-ParameterDownAnimation::
-	dr $6c082, $6c11b
-
-AvoidAnimation::
-	dr $6c11b, $6c1b4
-
-InvigorateAnimation::
-	dr $6c1b4, $6c21d
-
-ChargeUpAnimation::
-	dr $6c21d, $6c27e
-
-RecoverAnimation::
-	dr $6c27e, $6c556
-
-RestoreAnimation::
-	dr $6c556, $6c676
-
-ShieldAnimation::
-	dr $6c676, $6c6d4
-
-ProtectAnimation::
-	dr $6c6d4, $6c732
-
-IronWallAnimation::
-	dr $6c732, $6c790
-
-CamouflageAnimation::
-	dr $6c790, $6c8f7
-
-UltrasonicAnimation::
-	dr $6c8f7, $6ca8c
-
-EmWaveAnimation::
-	dr $6ca8c, $6cc6a
-
-CurseSongAnimation::
-	dr $6cc6a, $6ce90
-
-LullabyAnimation::
-	dr $6ce90, $6d0d3
-
-GlareAnimation::
-	dr $6d0d3, $6d30d
-
-SleepGasAnimation::
-	dr $6d30d, $6d462
-
-SmokescreenAnimation::
-	dr $6d462, $6d5aa
-
-PoisonGasAnimation::
-	dr $6d5aa, $6d6ff
-
-FlightAnimation::
-	dr $6d6ff, $6db13
-
-Func_6db13::
-	dr $6db13, $6dc84
-
-ScreamAnimation::
-	dr $6dc84, $6dd4b
-
-WingbeatAnimation::
-	dr $6dd4b, $6e0f1
-
-EmBarrierAnimation::
-	dr $6e0f1, $6e304
-
-ForceFieldAnimation::
-	dr $6e304, $6e457
-
-ChillAnimation::
-	dr $6e457, $6e5af
-
-HeatWaveAnimation::
-	dr $6e5af, $6e733
-
-WaterShotAnimation::
-	dr $6e733, $6e853
-
-AcidAnimation::
-	dr $6e853, $6e94a
-
-LickAnimation::
-	dr $6e94a, $6ec18
-
-TentacleAnimation::
-	dr $6ec18, $6eec0
-
-IceBallAnimation::
-	dr $6eec0, $6f3a6
+INCLUDE "battle/anims2.asm"
 
 SECTION "bank 1C", ROMX, BANK [$1c]
 INCLUDE "battle/start.asm"
@@ -24290,10 +24196,67 @@ Func_c9b17:
 
 SECTION "bank 33", ROMX, BANK [$33]
 Func_cc000:
-	dr $cc000, $cc9a0
+	dr $cc000, $cc095
+
+Func_cc095:
+	dr $cc095, $cc2eb
+
+Func_cc2eb:
+	dr $cc2eb, $cc3aa
+
+Func_cc3aa:
+	dr $cc3aa, $cc4a1
+
+Func_cc4a1:
+	dr $cc4a1, $cc565
+
+Func_cc565:
+	dr $cc565, $cc63d
+
+Func_cc63d:
+	dr $cc63d, $cc780
+
+Func_cc780:
+	dr $cc780, $cc8b0
+
+Func_cc8b0:
+	dr $cc8b0, $cc9a0
 
 Func_cc9a0:
-	dr $cc9a0, $cd7e0
+	dr $cc9a0, $ccb0d
+
+Func_ccb0d:
+	dr $ccb0d, $ccc95
+
+Func_ccc95:
+	dr $ccc95, $ccde5
+
+Func_ccde5:
+	dr $ccde5, $ccdea
+
+Func_ccdea:
+	dr $ccdea, $ccffa
+
+Func_ccffa:
+	dr $ccffa, $cd12a
+
+Func_cd12a:
+	dr $cd12a, $cd2ce
+
+Func_cd2ce:
+	dr $cd2ce, $cd3b7
+
+Func_cd3b7:
+	dr $cd3b7, $cd491
+
+Func_cd491:
+	dr $cd491, $cd5ca
+
+Func_cd5ca:
+	dr $cd5ca, $cd6bc
+
+Func_cd6bc:
+	dr $cd6bc, $cd7e0
 
 Func_cd7e0:
 	dr $cd7e0, $cd938
@@ -24305,7 +24268,28 @@ Func_cda6d:
 	dr $cda6d, $cdc68
 
 Func_cdc68:
-	dr $cdc68, $ce5de
+	dr $cdc68, $cdeac
+
+Func_cdeac:
+	dr $cdeac, $ce043
+
+Func_ce043:
+	dr $ce043, $ce11a
+
+Func_ce11a:
+	dr $ce11a, $ce216
+
+Func_ce216:
+	dr $ce216, $ce2ea
+
+Func_ce2ea:
+	dr $ce2ea, $ce2ee
+
+Func_ce2ee:
+	dr $ce2ee, $ce3cf
+
+Func_ce3cf:
+	dr $ce3cf, $ce5de
 
 Func_ce5de:
 	dr $ce5de, $ce601
@@ -24320,7 +24304,28 @@ Data_cef38:
 	dr $cef38, $cef3b
 
 Data_cef3b:
-	dr $cef3b, $cef5c
+	dr $cef3b, $cef41
+
+Data_cef41:
+	dr $cef41, $cef47
+
+Data_cef47:
+	dr $cef47, $cef4d
+
+Data_cef4d:
+	dr $cef4d, $cef50
+
+Data_cef50:
+	dr $cef50, $cef53
+
+Data_cef53:
+	dr $cef53, $cef56
+
+Data_cef56:
+	dr $cef56, $cef59
+
+Data_cef59:
+	dr $cef59, $cef5c
 
 Func_cef5c:
 	dr $cef5c, $cef86
@@ -24449,7 +24454,8 @@ GFX_e319c:
 
 GFX_e3494: INCBIN "gfx/misc/e3494.2bpp"
 GFX_e3514: INCBIN "gfx/misc/e3514.t2.2bpp"
-	dr $e3674, $e3a54
+GFX_e3674: INCBIN "gfx/misc/e3674.2bpp"
+	dr $e3784, $e3a54
 
 SECTION "bank 39", ROMX, BANK [$39]
 IF DEF(POWER)
