@@ -16770,11 +16770,11 @@ SECTION "bank 0D", ROMX, BANK [$d]
 Palettes_34000:
 INCLUDE "data/palettes_34000.asm"
 
-Palettes_348e0:
+Palettes_34800:
 IF DEF(POWER)
-INCLUDE "data/palettes_348e0.power.asm"
+INCLUDE "data/palettes_34800.power.asm"
 ELSE
-INCLUDE "data/palettes_348e0.speed.asm"
+INCLUDE "data/palettes_34800.speed.asm"
 ENDC
 
 Palettes_35d80:

@@ -6016,7 +6016,7 @@ FarCopy2bpp_2: ; 372d (0:372d)
 Func_373e::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Palettes_348e0)
+	ld a, BANK(Palettes_34800)
 	rst Bankswitch
 .asm_3745
 	ld a, [hli]
