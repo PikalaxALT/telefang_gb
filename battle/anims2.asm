@@ -3328,8 +3328,7 @@ Func_6da8a: ; 6da8a (1b:5a8a)
 	ld [hl], a
 	cp $1e
 	ret c
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	jr z, .asm_6daae
 	ld a, $ff
 	ld [wcac2], a
@@ -4137,8 +4136,7 @@ Func_6e0a4: ; 6e0a4 (1b:60a4)
 	ld [hl], a
 	cp $1e
 	ret c
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	jr z, .asm_6e0c8
 	ld a, $ff
 	ld [wcac2], a

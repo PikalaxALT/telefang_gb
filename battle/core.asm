@@ -5468,11 +5468,11 @@ Func_168ed: ; 168ed (5:68ed)
 	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd44f], a
+	ld [wDefendingDenjuuType], a
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	call Func_16b18
+	call CalcTypeMatchup
 	call Func_16bd3
 	jp Func_16a87
 
@@ -5492,11 +5492,11 @@ Func_168ed: ; 168ed (5:68ed)
 	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd44f], a
+	ld [wDefendingDenjuuType], a
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	call Func_16b18
+	call CalcTypeMatchup
 	call Func_16bd3
 	jp Func_16a9c
 
@@ -5527,7 +5527,7 @@ Func_1697c: ; 1697c (5:697c)
 	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd44f], a
+	ld [wDefendingDenjuuType], a
 	ld a, [wCurDenjuuBufferSpDef]
 	ld b, a
 	srl a
@@ -5580,7 +5580,7 @@ Func_169e0: ; 169e0 (5:69e0)
 	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd44f], a
+	ld [wDefendingDenjuuType], a
 	ld a, [wCurDenjuuBufferDefense]
 	ld b, a
 	srl a
@@ -5683,11 +5683,11 @@ Func_16aba: ; 16aba (5:6aba)
 	ret
 
 Func_16add: ; 16add (5:6add)
-	call Func_16b18
-	ld a, [wd49a]
+	call CalcTypeMatchup
+	ld a, [wSuperEffective]
 	cp $1
 	jr z, .asm_16aef
-	ld a, [wd469]
+	ld a, [wNotVeryEffective]
 	cp $1
 	jr z, .asm_16b06
 	ret
@@ -5718,100 +5718,101 @@ Func_16add: ; 16add (5:6add)
 	ld [wd4ef], a
 	ret
 
-Func_16b18: ; 16b18 (5:6b18)
+CalcTypeMatchup: ; 16b18 (5:6b18)
 	ld [wCurDenjuu], a
-	call Func_3f1a
-	ld a, [wd4ab]
+	call IsLegendaryInParty_
+	ld a, [wLegendaryInParty]
 	cp $1
-	jp nz, Func_16b33
+	jp nz, .normal_calc
 	ld a, [wBattleTurn]
 	cp $1
-	jr z, .asm_16b30
-	jp Func_16bb7
+	jr z, .enemy_turn
+	jp SetSuperEffective
 
-.asm_16b30
-	jp Func_16bc1
+.enemy_turn
+	jp SetNotVeryEffective
 
-Func_16b33: ; 16b33 (5:6b33)
+.normal_calc
 	ld a, [wCurDenjuu]
 	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	cp $1
-	jp z, Func_16b67
-	cp $2
-	jp z, Func_16b77
-	cp $3
-	jp z, Func_16b87
-	cp $4
-	jp z, Func_16b97
-	cp $5
-	jp z, Func_16ba7
-	ld a, [wd44f]
-	cp $1
-	jp z, Func_16bc1
-	cp $4
-	jp z, Func_16bb7
-	jp Func_16bcb
+	cp GRASSLAND
+	jp z, .grassland
+	cp FOREST
+	jp z, .forest
+	cp AQUATIC
+	jp z, .aquatic
+	cp SKY
+	jp z, .sky
+	cp DESERT
+	jp z, .desert
+.mountain
+	ld a, [wDefendingDenjuuType]
+	cp GRASSLAND
+	jp z, SetNotVeryEffective
+	cp SKY
+	jp z, SetSuperEffective
+	jp SetNormalDamage
 
-Func_16b67: ; 16b67 (5:6b67)
-	ld a, [wd44f]
-	cp $0
-	jp z, Func_16bb7
-	cp $5
-	jp z, Func_16bc1
-	jp Func_16bcb
+.grassland
+	ld a, [wDefendingDenjuuType]
+	cp MOUNTAIN
+	jp z, SetSuperEffective
+	cp DESERT
+	jp z, SetNotVeryEffective
+	jp SetNormalDamage
 
-Func_16b77: ; 16b77 (5:6b77)
-	ld a, [wd44f]
-	cp $3
-	jp z, Func_16bb7
-	cp $4
-	jp z, Func_16bc1
-	jp Func_16bcb
+.forest
+	ld a, [wDefendingDenjuuType]
+	cp AQUATIC
+	jp z, SetSuperEffective
+	cp SKY
+	jp z, SetNotVeryEffective
+	jp SetNormalDamage
 
-Func_16b87: ; 16b87 (5:6b87)
-	ld a, [wd44f]
-	cp $2
-	jp z, Func_16bc1
-	cp $5
-	jp z, Func_16bb7
-	jp Func_16bcb
+.aquatic
+	ld a, [wDefendingDenjuuType]
+	cp FOREST
+	jp z, SetNotVeryEffective
+	cp DESERT
+	jp z, SetSuperEffective
+	jp SetNormalDamage
 
-Func_16b97: ; 16b97 (5:6b97)
-	ld a, [wd44f]
-	cp $0
-	jp z, Func_16bc1
-	cp $2
-	jp z, Func_16bb7
-	jp Func_16bcb
+.sky
+	ld a, [wDefendingDenjuuType]
+	cp MOUNTAIN
+	jp z, SetNotVeryEffective
+	cp FOREST
+	jp z, SetSuperEffective
+	jp SetNormalDamage
 
-Func_16ba7: ; 16ba7 (5:6ba7)
-	ld a, [wd44f]
-	cp $1
-	jp z, Func_16bb7
-	cp $3
-	jp z, Func_16bc1
-	jp Func_16bcb
+.desert
+	ld a, [wDefendingDenjuuType]
+	cp GRASSLAND
+	jp z, SetSuperEffective
+	cp AQUATIC
+	jp z, SetNotVeryEffective
+	jp SetNormalDamage
 
-Func_16bb7: ; 16bb7 (5:6bb7)
+SetSuperEffective:
 	ld a, $1
-	ld [wd49a], a
+	ld [wSuperEffective], a
 	xor a
-	ld [wd469], a
+	ld [wNotVeryEffective], a
 	ret
 
-Func_16bc1: ; 16bc1 (5:6bc1)
+SetNotVeryEffective:
 	ld a, $1
-	ld [wd469], a
+	ld [wNotVeryEffective], a
 	xor a
-	ld [wd49a], a
+	ld [wSuperEffective], a
 	ret
 
-Func_16bcb: ; 16bcb (5:6bcb)
+SetNormalDamage:
 	xor a
-	ld [wd469], a
-	ld [wd49a], a
+	ld [wNotVeryEffective], a
+	ld [wSuperEffective], a
 	ret
 
 Func_16bd3: ; 16bd3 (5:6bd3)
@@ -5908,7 +5909,7 @@ Func_16c6e: ; 16c6e (5:6c6e)
 	ret
 
 Func_16c7f: ; 16c7f (5:6c7f)
-	ld a, [wd49a]
+	ld a, [wSuperEffective]
 	cp $0
 	jr z, .asm_16c91
 	ld c, $70
@@ -5918,7 +5919,7 @@ Func_16c7f: ; 16c7f (5:6c7f)
 	ret
 
 .asm_16c91
-	ld a, [wd469]
+	ld a, [wNotVeryEffective]
 	cp $0
 	jr z, .asm_16ca3
 	ld c, $6f
@@ -6349,7 +6350,7 @@ Func_16f97: ; 16f97 (5:6f97)
 	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd44f], a
+	ld [wDefendingDenjuuType], a
 	ld a, [wCurDenjuuBufferSpDef]
 	ld b, a
 	srl a
@@ -6402,7 +6403,7 @@ Func_17001: ; 17001 (5:7001)
 	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd44f], a
+	ld [wDefendingDenjuuType], a
 	ld a, [wCurDenjuuBufferDefense]
 	ld b, a
 	srl a

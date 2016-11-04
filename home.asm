@@ -5909,7 +5909,7 @@ Func_35e0: ; 35e0 (0:35e0)
 	ret
 
 Func_3694: ; 3694 (0:3694)
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	check_cgb
 	jr nz, .asm_36bc
 .asm_369e
@@ -6016,7 +6016,7 @@ FarCopy2bpp_2: ; 372d (0:372d)
 Func_373e::
 	ld a, [wROMBank]
 	push af
-	ld a, $d
+	ld a, BANK(Palettes_348e0)
 	rst Bankswitch
 .asm_3745
 	ld a, [hli]
@@ -6199,17 +6199,17 @@ Copy2bpp_2: ; 3801 (0:3801)
 	jr nz, .loop2
 	ret
 
-Func_382e::
+PushOBPal::
 	push af
 	ld de, rOBPI
-	call Func_385f
+	call SetPalCtrlRegister
 	ld de, rOBPD
 	jr asm_3844
 
-Func_383a::
+PushBGPal::
 	push af
 	ld de, rBGPI
-	call Func_385f
+	call SetPalCtrlRegister
 	ld de, rBGPD
 asm_3844
 	di
@@ -6226,7 +6226,7 @@ ENDR
 	inc a
 	ret
 
-Func_385f: ; 385f (0:385f)
+SetPalCtrlRegister: ; 385f (0:385f)
 	sla a
 	sla a
 	sla a
@@ -6245,9 +6245,9 @@ Func_3869: ; 3869 (0:3869)
 	ld a, b
 	dec a
 	cp $8
-	jr c, Func_383a
+	jr c, PushBGPal
 	sub $8
-	jr Func_382e
+	jr PushOBPal
 
 Func_3880: ; 3880 (0:3880)
 	ret
@@ -6255,251 +6255,8 @@ Func_3880: ; 3880 (0:3880)
 Func_3881::
 	ret
 
-Func_3882: ; 3882 (0:3882)
-	push af
-	push bc
-	push de
-	push hl
-	xor a
-	ld [rNR52], a
-	call GetPCMPointer
-.loop
-	call GetPCMBlockAndLength
-	call PlayPCMBlock
-	ld a, [wcf8a]
-	dec a
-	ld [wcf8a], a
-	jr nz, .loop
-	call ResetAudioRegistersAfterPCM
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-
-GetPCMPointer: ; 38a3 (0:38a3)
-	ld hl, Pointer_3951
-	ld d, $0
-	ld a, [hFFA9]
-	dec a
-	ld e, a
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld h, a
-	ld l, d
-	ld a, [hli]
-	ld [wcf8a], a
-	ret
-
-GetPCMBlockAndLength: ; 38b8 (0:38b8)
-	ld a, [hli]
-	rst Bankswitch
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	ld de, TitleScreenPCM
-	ld a, l
-	ld [wcf8b], a
-	ld a, h
-	ld [wcf8c], a
-	ret
-
-PlayPCMBlock: ; 38ca (0:38ca)
-	ld a, $80
-	ld [rNR52], a
-	ld a, $77
-	ld [rNR50], a
-	ld a, $ff
-	ld [rNR51], a
-	ld a, $0
-	ld [rNR10], a
-	ld a, $80
-	ld [rNR11], a
-	ld [rNR21], a
-	ld a, $ff
-	ld [rNR13], a
-	ld [rNR23], a
-	ld a, $78
-	ld [rNR12], a
-	ld [rNR22], a
-	ld a, $87
-	ld [rNR14], a
-	ld [rNR24], a
-.loop
-	ld a, [de]
-	and $f0
-	or $8
-	call .PCMWait
-	ld [rNR12], a
-	ld [rNR22], a
-	ld a, $0
-	ld [rNR13], a
-	ld [rNR23], a
-	ld a, $80
-	ld [rNR14], a
-	ld [rNR24], a
-	dec bc
-	ld a, c
-	or b
-	ret z
-	ld a, [de]
-	sla a
-	sla a
-	sla a
-	sla a
-	or $8
-	nop
-	nop
-	nop
-	call .PCMWait
-	ld [rNR12], a
-	ld [rNR22], a
-	ld a, $0
-	ld [rNR13], a
-	ld [rNR23], a
-	ld a, $80
-	ld [rNR14], a
-	ld [rNR24], a
-	dec bc
-	ld a, c
-	or b
-	ret z
-	inc de
-	jr .loop
-
-.PCMWait: ; 3936 (0:3936)
-	push hl
-	pop hl
-	nop
-	nop
-	nop
-	nop
-	ret
-
-ResetAudioRegistersAfterPCM: ; 393d (0:393d)
-	xor a
-	ld [rNR12], a
-	ld [rNR22], a
-	ld [hFFA9], a
-	ld a, $ff
-	ld [rNR13], a
-	ld [rNR23], a
-	ld a, $87
-	ld [rNR14], a
-	ld [rNR24], a
-	ret
-
-Pointer_3951::
-	dw Pointer_3953
-
-Pointer_3953::
-	db 1
-	db BANK(TitleScreenPCM)
-	dw (TitleScreenPCMEnd - TitleScreenPCM) * 2 - 1
-
-Func_3957::
-	ld b, $6
-	ld [wcb20], a
-Func_395c: ; 395c (0:395c)
-	sub $8
-	jr c, .asm_396f
-	ld [wcb20], a
-	push af
-	ld a, $8
-	call Func_39b7
-	pop af
-	dec b
-	jp nz, Func_395c
-	ret
-
-.asm_396f
-	ld a, [wcb20]
-	call Func_39b7
-	dec b
-	ret z
-Func_3977: ; 3977 (0:3977)
-	xor a
-	call Func_39b7
-	dec b
-	jp nz, Func_3977
-	ret
-
-Func_3980::
-	cp e
-	jr z, .asm_3995
-	push af
-	ld bc, $3000
-	ld d, $0
-	call Func_0628
-	pop af
-	ld d, $0
-	ld e, a
-	call Multiply_DE_by_BC
-	ld a, d
-	ret
-
-.asm_3995
-	ld a, $30
-	ret
-
-Func_3998::
-	cp $d
-	jr c, .asm_39aa
-	cp $15
-	jr c, .asm_39a5
-	ld bc, $2
-	jr .asm_39ad
-
-.asm_39a5
-	ld bc, $3
-	jr .asm_39ad
-
-.asm_39aa
-	ld bc, $4
-.asm_39ad
-	ld a, d
-	call Func_10ee
-	ld a, $1
-	ld [wBGPalUpdate], a
-	ret
-
-Func_39b7: ; 39b7 (0:39b7)
-	push bc
-	push hl
-	bit 0, c
-	jr nz, .asm_39c3
-	ld hl, $39da
-	jp Func_39c6
-
-.asm_39c3
-	ld hl, $39e3
-Func_39c6: ; 39c6 (0:39c6)
-	ld d, $0
-	ld e, a
-	add hl, de
-	ld a, [hl]
-	pop hl
-	push hl
-	call WaitStatAndLoad
-	pop hl
-	pop bc
-	bit 0, c
-	jr nz, .asm_39d8
-	inc hl
-	ret
-
-.asm_39d8
-	dec hl
-	ret
-
-Data_39da::
-	db $3e, $30, $31, $32, $33, $34, $35, $36, $3f
-Data_39e3::
-	db $3e, $37, $38, $39, $3a, $3b, $3c, $3d, $3f
+INCLUDE "home/pcm.asm"
+INCLUDE "home/hp_bar.asm"
 
 Func_39ec: ; 39ec (0:39ec)
 	push af
@@ -7289,8 +7046,8 @@ Func_3f12::
 	homecall_memret Func_7d2c3
 	ret
 
-Func_3f1a::
-	homecall_memret Func_703e3
+IsLegendaryInParty_::
+	homecall_memret IsLegendaryInParty
 	ret
 
 Func_3f22::

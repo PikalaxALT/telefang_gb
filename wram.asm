@@ -3484,7 +3484,7 @@ wd44b:: ds 1
 wd44c:: ds 1
 wd44d:: ds 1
 wd44e:: ds 1
-wd44f:: ds 1
+wDefendingDenjuuType:: ds 1
 wd450:: ds 1
 wd451:: ds 1
 wd452:: ds 1
@@ -3510,7 +3510,7 @@ wd465:: ds 1
 wd466:: ds 1
 wd467:: ds 1
 wd468:: ds 1
-wd469:: ds 1
+wNotVeryEffective:: ds 1
 wd46a:: ds 1
 wd46b:: ds 1
 wd46c:: ds 1
@@ -3559,7 +3559,7 @@ wd496:: ds 1
 wCurDenjuu:: ds 1
 wCurDenjuuLevel:: ds 1
 wd499:: ds 1
-wd49a:: ds 1
+wSuperEffective:: ds 1
 wd49b:: ds 1
 wTempWildDenjuuLevel:: ds 1
 wPlayerDenjuu1LastMoveSelection:: ds 1
@@ -3576,7 +3576,7 @@ wd4a7:: ds 1
 wd4a8:: ds 1
 wd4a9:: ds 1
 wd4aa:: ds 1
-wd4ab:: ds 1
+wLegendaryInParty:: ds 1
 wd4ac:: ds 1
 wd4ad:: ds 1
 wd4ae:: ds 1

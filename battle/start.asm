@@ -540,7 +540,7 @@ Func_703c4: ; 703c4 (1c:43c4)
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Func_703e3: ; 703e3 (1c:43e3)
+IsLegendaryInParty: ; 703e3 (1c:43e3)
 	ld bc, EVENT_215
 	call CheckEventFlag
 	jp z, .flag_not_set
@@ -589,12 +589,12 @@ Func_703e3: ; 703e3 (1c:43e3)
 	jr z, .angios_or_gymnos_in_party
 .flag_not_set
 	ld a, $0
-	ld [wd4ab], a
+	ld [wLegendaryInParty], a
 	ret
 
 .angios_or_gymnos_in_party
 	ld a, $1
-	ld [wd4ab], a
+	ld [wLegendaryInParty], a
 	ret
 
 Func_70448: ; 70448 (1c:4448)
