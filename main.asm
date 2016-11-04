@@ -24620,12 +24620,10 @@ SECTION "bank 55", ROMX, BANK [$55]
 Pointers_154000: INCLUDE "data/unknown_154000.asm"
 
 SECTION "bank 56", ROMX, BANK [$56]
-Pointers_158000:
-	dr $158000, $15c000
+Pointers_158000: INCLUDE "data/unknown_158000.asm"
 
 SECTION "bank 57", ROMX, BANK [$57]
-Pointers_15c000:
-	dr $15c000, $160000
+Pointers_15c000: INCLUDE "data/unknown_15c000.asm"
 
 SECTION "bank 59", ROMX, BANK [$59]
 UnknownTZFile32:: INCBIN "gfx/tzfiles/tz_32.2bpp.tz"
