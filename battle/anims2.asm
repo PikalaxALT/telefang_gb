@@ -5217,9 +5217,9 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	ld hl, wPlayerDenjuu1Species
 	ld a, [wCurBattleDenjuu]
 	call Func_6c8ea
-	cp $2e
+	cp NIGELLA
 	jr z, .asm_6ea0a
-	cp $3a
+	cp CHAMERAID
 	jr z, .asm_6ea15
 	ld hl, wOAMAnimation01 + $c
 	ld a, $0
@@ -5286,9 +5286,9 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	ld hl, wEnemyDenjuu1Species
 	ld a, [wCurEnemyDenjuu]
 	call Func_6c8ea
-	cp $2e
+	cp NIGELLA
 	jr z, .asm_6ea7e
-	cp $3a
+	cp CHAMERAID
 	jr z, .asm_6ea89
 	ld hl, wOAMAnimation01 + $c
 	ld a, $40
