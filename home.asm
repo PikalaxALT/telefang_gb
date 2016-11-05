@@ -6721,7 +6721,7 @@ Func_3d02::
 	ld d, $c
 	ld a, $60
 	ld [wc91f], a
-	jp Func_0520
+	jp AnchorMapAndLoadTextPointer_
 
 Func_3d0e::
 	push hl

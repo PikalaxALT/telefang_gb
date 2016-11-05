@@ -120,15 +120,15 @@ LoadTFangerPic_::
 	rst MemBankswitch
 	ret
 
-Func_0520::
-	homecall_memret Func_2c766
+AnchorMapAndLoadTextPointer_::
+	homecall_memret AnchorMapAndLoadTextPointer
 	ret
 
 Func_0528::
 	homecall_memret Func_2c7ed
 	ret
 
-Func_0530::
+PrintText_::
 	homecall_memret PrintText
 	ret
 

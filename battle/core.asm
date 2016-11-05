@@ -717,7 +717,7 @@ Func_1452d: ; 1452d (5:452d)
 	jp NextBattleSubroutine
 
 Func_1454a: ; 1454a (5:454a)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1178,7 +1178,7 @@ Func_148a8:
 	ret
 
 Func_148ad: ; 148ad (5:48ad)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1441,7 +1441,7 @@ asm_14a9f
 	ret
 
 Func_14aad: ; 14aad (5:4aad)
-	call Func_0530
+	call PrintText_
 	ld a, [wcb3f]
 	or a
 	jr z, .asm_14abf
@@ -1481,7 +1481,7 @@ Func_14aad: ; 14aad (5:4aad)
 	ret
 
 Func_14af8: ; 14af8 (5:4af8)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2016,7 +2016,7 @@ GetMoveTargetSide: ; 14ed6 (5:4ed6)
 	ret
 
 Func_14f12: ; 14f12 (5:4f12)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2073,7 +2073,7 @@ Func_14f32: ; 14f32 (5:4f32)
 	ret
 
 Func_14f81: ; 14f81 (5:4f81)
-	call Func_0530
+	call PrintText_
 	ld a, [wd4e7]
 	cp $1
 	jr z, .asm_14fba
@@ -2187,7 +2187,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	ret
 
 Func_15051: ; 15051 (5:5051)
-	call Func_0530
+	call PrintText_
 	call GetMoveTargetSide
 	cp $0
 	jr z, .asm_15091
@@ -2302,7 +2302,7 @@ Func_1510a: ; 1510a (5:510a)
 	ret
 
 .asm_15126
-	jp Func_0530
+	jp PrintText_
 
 .asm_15129
 	dec a
@@ -3008,7 +3008,7 @@ Func_1561e: ; 1561e (5:561e)
 	ret
 
 Func_15661: ; 15661 (5:5661)
-	call Func_0530
+	call PrintText_
 	ld a, [wc90a]
 	cp $1
 	jr z, .asm_15672
@@ -3035,7 +3035,7 @@ Func_15683: ; 15683 (5:5683)
 	ld a, [wcb3f]
 	or a
 	jr z, .asm_156ae
-	call Func_0530
+	call PrintText_
 	call Func_3eee
 	or a
 	ret z
@@ -3236,7 +3236,7 @@ Func_15810: ; 15810 (5:5810)
 	ret
 
 .asm_1582c
-	jp Func_0530
+	jp PrintText_
 
 .asm_1582f
 	ld a, [wdc45]
@@ -4207,7 +4207,7 @@ Func_15fa1: ; 15fa1 (5:5fa1)
 	jp NextBattleSubroutine
 
 Func_15fb4: ; 15fb4 (5:5fb4)
-	call Func_0530
+	call PrintText_
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -4567,7 +4567,7 @@ Func_16289: ; 16289 (5:6289)
 	ret
 
 Func_162cd: ; 162cd (5:62cd)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -4703,7 +4703,7 @@ Func_163d0: ; 163d0 (5:63d0)
 	ret
 
 Func_163e0: ; 163e0 (5:63e0)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -5181,7 +5181,7 @@ Func_166a5: ; 166a5 (5:66a5)
 	jp Func_14000
 
 Func_16709: ; 16709 (5:6709)
-	call Func_0530
+	call PrintText_
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -5654,7 +5654,7 @@ Func_16a9c: ; 16a9c (5:6a9c)
 	ret
 
 Func_16aa7: ; 16aa7 (5:6aa7)
-	call Func_0530
+	call PrintText_
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -5899,7 +5899,7 @@ Func_16c11: ; 16c11 (5:6c11)
 	jp Func_14000
 
 Func_16c6e: ; 16c6e (5:6c6e)
-	call Func_0530
+	call PrintText_
 	ld a, [wd45c]
 	dec a
 	ld [wd45c], a
@@ -5944,7 +5944,7 @@ Func_16c7f: ; 16c7f (5:6c7f)
 	ret
 
 Func_16cba: ; 16cba (5:6cba)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6142,7 +6142,7 @@ Func_16e17: ; 16e17 (5:6e17)
 	ret
 
 Func_16e1d: ; 16e1d (5:6e1d)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6282,7 +6282,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	jp Func_14000
 
 Func_16f47: ; 16f47 (5:6f47)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6474,7 +6474,7 @@ Func_1706c: ; 1706c (5:706c)
 	ret
 
 Func_170c5: ; 170c5 (5:70c5)
-	call Func_0530
+	call PrintText_
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -6575,7 +6575,7 @@ Func_17122: ; 17122 (5:7122)
 	jp Func_14000
 
 Func_1717f: ; 1717f (5:717f)
-	call Func_0530
+	call PrintText_
 	ld a, [wd45c]
 	dec a
 	ld [wd45c], a
@@ -6588,7 +6588,7 @@ Func_17190: ; 17190 (5:7190)
 	ld a, [wcb3f]
 	or a
 	jr z, asm_171c6
-	call Func_0530
+	call PrintText_
 	call Func_3eee
 	cp $0
 	ret z
@@ -6775,7 +6775,7 @@ Func_172d7: ; 172d7 (5:72d7)
 	ret
 
 Func_172dd: ; 172dd (5:72dd)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6890,7 +6890,7 @@ Func_17347: ; 17347 (5:7347)
 	jp Func_14000
 
 Func_173cf: ; 173cf (5:73cf)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6981,7 +6981,7 @@ Func_17478: ; 17478 (5:7478)
 	ret
 
 Func_1747e: ; 1747e (5:747e)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -7160,7 +7160,7 @@ Func_17589: ; 17589 (5:7589)
 	ret
 
 Func_175bd: ; 175bd (5:75bd)
-	call Func_0530
+	call PrintText_
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -8297,7 +8297,7 @@ Func_17dcd: ; 17dcd (5:7dcd)
 	ret
 
 Func_17dd6: ; 17dd6 (5:7dd6)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -8306,7 +8306,7 @@ Func_17dd6: ; 17dd6 (5:7dd6)
 	ret
 
 Func_17de5: ; 17de5 (5:7de5)
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz

@@ -60,14 +60,14 @@ Func_8069::
 	ld c, $2
 	ld b, $0
 	ld d, $c
-	call Func_0520
+	call AnchorMapAndLoadTextPointer_
 	jp IncrementSubroutine
 
 Func_807c::
 	ld a, [hJoyNew]
 	and START
 	jr nz, .start
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -158,14 +158,14 @@ Func_8538::
 	ld c, $2
 	ld b, $0
 	ld d, $c
-	call Func_0520
+	call AnchorMapAndLoadTextPointer_
 	jp IncrementSubroutine
 
 Func_854b::
 	ld a, [hJoyNew]
 	and START
 	jr nz, .asm_855a
-	call Func_0530
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -3001,7 +3001,7 @@ Func_2c711: ; 2c711 (b:4711)
 	ld b, $0
 	ld c, $ba
 	ld d, $0
-	call Func_2c76c
+	call AnchorMapAndLoadTextPointer__
 	ld a, $1
 	ld [wcada], a
 	ld a, $7
@@ -3034,21 +3034,21 @@ Func_2c73e: ; 2c73e (b:473e)
 	ld [de], a
 	ret
 
-Func_2c760:
-	call Func_2c775
+LoadTextPointer:
+	call LoadTextPointer__
 	jp Func_2c9d1
 
-Func_2c766: ; 2c766 (b:4766)
-	call Func_2c76c
+AnchorMapAndLoadTextPointer: ; 2c766 (b:4766)
+	call AnchorMapAndLoadTextPointer__
 	jp Func_2c9d1
 
-Func_2c76c: ; 2c76c (b:476c)
+AnchorMapAndLoadTextPointer__: ; 2c76c (b:476c)
 	ld hl, wBGMapAnchor
-	ld a, $0
+	ld a, VBGMap % $100
 	ld [hli], a
-	ld a, $98
+	ld a, VBGMap / $100
 	ld [hl], a
-Func_2c775: ; 2c775 (b:4775)
+LoadTextPointer__: ; 2c775 (b:4775)
 	ld a, d
 	ld [wc9ca], a
 	ld d, $0
@@ -3090,7 +3090,7 @@ Func_2c7b9:
 	ld [wc91f], a
 	ld a, $f0
 	ld [wc91e], a
-	call Func_2c76c
+	call AnchorMapAndLoadTextPointer__
 	ld a, $7
 	ld [wca65], a
 	jp Func_2c9a2
@@ -3102,7 +3102,7 @@ Func_2c7ce:
 	ld [wc91e], a
 	call Func_3566
 	ld d, $3
-	call Func_2c76c
+	call AnchorMapAndLoadTextPointer__
 	ld a, $7
 	ld [wca65], a
 	ld a, $5
@@ -3199,7 +3199,7 @@ Func_2c883: ; 2c883 (b:4883)
 	ld b, $0
 	ld c, $9d
 	pop de
-	call Func_2c775
+	call LoadTextPointer__
 	ld a, $7
 	ld [wca65], a
 	ret
@@ -3295,7 +3295,7 @@ Func_2c92e: ; 2c92e (b:492e)
 	pop bc
 	ld a, $e6
 	ld [wca00], a
-	call Func_2c76c
+	call AnchorMapAndLoadTextPointer__
 	ld a, $7
 	ld [wca65], a
 	jp Func_2ca48
@@ -3400,23 +3400,23 @@ Func_2ca0f: ; 2ca0f (b:4a0f)
 	adc h
 	ld h, a
 	ld a, [hl]
-	cp $64
+	cp 100
 	jr c, .asm_2ca20
-	ld a, $63
+	ld a, 99
 .asm_2ca20
 	call Get2DigitBCD
-	ld a, $c7
+	ld a, "×"
 	ld hl, VTilesShared tile $48
 	call LoadCharacter
 	ld a, [wNumCGBPalettesToFade]
 	swap a
 	and $f
-	add $bb
+	add "0"
 	ld hl, VTilesShared tile $49
 	call LoadCharacter
 	ld a, [wNumCGBPalettesToFade]
 	and $f
-	add $bb
+	add "0"
 	ld hl, VTilesShared tile $4a
 	call LoadCharacter
 	ret
@@ -3648,7 +3648,7 @@ Func_2cb8c: ; 2cb8c (b:4b8c)
 	or b
 	ld l, a
 	push hl
-	ld de, hFFE0
+	ld de, -BG_MAP_WIDTH
 	add hl, de
 	call Func_2cbc8
 	ld d, h
@@ -3662,9 +3662,9 @@ Func_2cb8c: ; 2cb8c (b:4b8c)
 
 Func_2cbc8: ; 2cbc8 (b:4bc8)
 	ld a, h
-	cp $98
+	cp VBGMap / $100
 	jr nc, .asm_2cbcf
-	ld h, $9c
+	ld h, VWindow / $100
 .asm_2cbcf
 	ret
 

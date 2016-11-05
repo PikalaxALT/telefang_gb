@@ -1,880 +1,176 @@
-; TSUNONASU
-	RGB 31, 31, 31
-	RGB 15, 12, 12
-	RGB 07, 04, 04
-	RGB 03, 01, 01
-; KOCHIA
-	RGB 31, 31, 31
-	RGB 26, 24, 26
-	RGB 20, 19, 21
-	RGB 08, 04, 06
-; OSHE
-	RGB 31, 31, 31
-	RGB 30, 19, 16
-	RGB 26, 12, 10
-	RGB 10, 04, 03
-; KESHI
-	RGB 31, 31, 31
-	RGB 17, 21, 17
-	RGB 13, 16, 13
-	RGB 06, 09, 06
-; CRYPTO
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 30, 11, 06
-	RGB 05, 01, 01
-; MONSTERA
-	RGB 31, 31, 31
-	RGB 03, 21, 22
-	RGB 00, 15, 15
-	RGB 02, 06, 06
-; FUNGUS
-	RGB 31, 31, 31
-	RGB 26, 24, 19
-	RGB 20, 18, 13
-	RGB 05, 04, 03
-; HIOUGI
-	RGB 31, 31, 31
-	RGB 30, 19, 18
-	RGB 27, 06, 05
-	RGB 09, 04, 04
-; PUNICA
-	RGB 31, 31, 31
-	RGB 30, 22, 21
-	RGB 24, 03, 08
-	RGB 08, 01, 03
-; GUMI
-	RGB 31, 31, 31
-	RGB 26, 20, 24
-	RGB 19, 11, 19
-	RGB 06, 04, 06
-; SUGURI
-	RGB 31, 31, 31
-	RGB 31, 29, 26
-	RGB 04, 11, 20
-	RGB 03, 05, 09
-; GANRAIKOU
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 28, 17, 06
-	RGB 23, 01, 08
-; BYAKUBU
-	RGB 31, 31, 31
-	RGB 30, 22, 11
-	RGB 18, 06, 07
-	RGB 07, 03, 03
-; TELOPEA
-	RGB 31, 31, 31
-	RGB 15, 17, 25
-	RGB 31, 04, 04
-	RGB 08, 06, 05
-; MANTEA
-	RGB 31, 31, 31
-	RGB 30, 23, 21
-	RGB 27, 18, 17
-	RGB 08, 05, 06
-; IXORA
-	RGB 31, 31, 31
-	RGB 08, 22, 19
-	RGB 28, 06, 08
-	RGB 12, 03, 04
-; MYRTUS
-	RGB 31, 31, 31
-	RGB 26, 20, 16
-	RGB 08, 11, 17
-	RGB 04, 05, 09
-; LYCHNIS
-	RGB 31, 31, 31
-	RGB 10, 21, 18
-	RGB 18, 07, 09
-	RGB 07, 04, 05
-; LAPEIROUSIA
-	RGB 31, 31, 31
-	RGB 18, 16, 31
-	RGB 20, 00, 07
-	RGB 06, 03, 06
-; BUBARIA
-	RGB 31, 31, 31
-	RGB 29, 16, 10
-	RGB 25, 09, 07
-	RGB 15, 02, 05
-; ANGIOS
-	RGB 31, 31, 31
-	RGB 23, 24, 26
-	RGB 13, 16, 17
-	RGB 05, 08, 10
-; GYMNOS
-	RGB 31, 31, 31
-	RGB 29, 20, 00
-	RGB 05, 09, 15
-	RGB 04, 04, 06
-; LIRIOPE
-	RGB 31, 31, 31
-	RGB 17, 25, 30
-	RGB 00, 20, 28
-	RGB 02, 07, 10
-; WARATAH
-	RGB 31, 31, 31
-	RGB 23, 28, 30
-	RGB 18, 21, 23
-	RGB 09, 10, 09
-; SORGHUM
-	RGB 31, 31, 31
-	RGB 16, 21, 22
-	RGB 04, 11, 14
-	RGB 03, 04, 06
-; ERYNGO
-	RGB 31, 31, 31
-	RGB 26, 24, 22
-	RGB 28, 10, 09
-	RGB 07, 05, 05
-; NORIUTSUGI
-	RGB 31, 31, 31
-	RGB 23, 20, 24
-	RGB 16, 15, 21
-	RGB 06, 06, 07
-; PAMPAS
-	RGB 31, 31, 31
-	RGB 23, 28, 31
-	RGB 17, 25, 30
-	RGB 12, 03, 11
-; RHODANTHE
-	RGB 31, 31, 31
-	RGB 13, 24, 27
-	RGB 14, 06, 14
-	RGB 02, 08, 10
-; LICORICE
-	RGB 31, 31, 31
-	RGB 30, 23, 08
-	RGB 00, 17, 10
-	RGB 03, 07, 05
-; VIBURNUM
-	RGB 31, 31, 31
-	RGB 29, 21, 13
-	RGB 08, 22, 19
-	RGB 06, 07, 06
-; FUNNEL
-	RGB 31, 31, 31
-	RGB 29, 19, 05
-	RGB 21, 11, 10
-	RGB 09, 06, 07
-; VANDA
-	RGB 31, 31, 31
-	RGB 18, 16, 22
-	RGB 08, 13, 15
-	RGB 04, 05, 06
-; UIKYOU
-	RGB 31, 31, 31
-	RGB 20, 26, 19
-	RGB 07, 22, 14
-	RGB 02, 05, 01
-; OBANA
-	RGB 31, 31, 31
-	RGB 31, 27, 15
-	RGB 19, 09, 10
-	RGB 11, 07, 08
-; FIREKOKKO
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 28, 17, 06
-	RGB 23, 01, 08
-; RAYGOTEN
-	RGB 31, 31, 31
-	RGB 26, 24, 26
-	RGB 20, 19, 21
-	RGB 08, 04, 06
-; DRILARMOR
-	RGB 31, 31, 31
-	RGB 30, 09, 03
-	RGB 00, 12, 10
-	RGB 06, 02, 02
-; CHAMELAN
-	RGB 31, 31, 31
-	RGB 17, 21, 17
-	RGB 13, 16, 13
-	RGB 06, 09, 06
-; CRYPTOARM
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 30, 11, 06
-	RGB 05, 01, 01
-; SHELLSTERA
-	RGB 31, 31, 31
-	RGB 03, 21, 22
-	RGB 00, 15, 15
-	RGB 02, 06, 06
-; FUNGEIST
-	RGB 31, 31, 31
-	RGB 26, 24, 19
-	RGB 20, 18, 13
-	RGB 05, 04, 03
-; BALLTAMUS
-	RGB 31, 31, 31
-	RGB 30, 19, 18
-	RGB 27, 06, 05
-	RGB 09, 04, 04
-; BURENICA
-	RGB 31, 31, 31
-	RGB 30, 22, 21
-	RGB 24, 03, 08
-	RGB 08, 01, 03
-; GERON
-	RGB 31, 31, 31
-	RGB 26, 20, 24
-	RGB 19, 11, 19
-	RGB 06, 04, 06
-; BERZELIA
-	RGB 31, 31, 31
-	RGB 20, 22, 27
-	RGB 15, 17, 24
-	RGB 03, 03, 06
-; NIGELLA
-	RGB 31, 31, 31
-	RGB 30, 19, 10
-	RGB 28, 13, 09
-	RGB 10, 04, 07
-; MUSA
-	RGB 31, 31, 31
-	RGB 16, 23, 13
-	RGB 03, 11, 05
-	RGB 02, 05, 02
-; NETARO
-	RGB 31, 31, 31
-	RGB 29, 26, 16
-	RGB 23, 16, 08
-	RGB 08, 06, 04
-; NEJIRO
-	RGB 31, 31, 31
-	RGB 18, 14, 03
-	RGB 06, 04, 03
-	RGB 02, 01, 01
-; GODETIA
-	RGB 31, 31, 31
-	RGB 03, 21, 28
-	RGB 19, 13, 07
-	RGB 06, 04, 01
-; CURCUMA
-	RGB 31, 31, 31
-	RGB 30, 20, 10
-	RGB 20, 22, 17
-	RGB 08, 07, 05
-; TESSEN
-	RGB 31, 31, 31
-	RGB 31, 06, 06
-	RGB 09, 12, 19
-	RGB 04, 05, 07
-; HELIOPSIS
-	RGB 31, 31, 31
-	RGB 29, 20, 12
-	RGB 29, 14, 09
-	RGB 13, 05, 04
-; HAGUMANOKI
-	RGB 31, 31, 31
-	RGB 29, 19, 10
-	RGB 05, 22, 21
-	RGB 02, 06, 05
-; GILERTH
-	RGB 31, 31, 31
-	RGB 15, 12, 12
-	RGB 07, 04, 04
-	RGB 03, 01, 01
-; RAYGIRTH
-	RGB 31, 31, 31
-	RGB 26, 24, 26
-	RGB 20, 19, 21
-	RGB 08, 04, 06
-; ARMARU
-	RGB 31, 31, 31
-	RGB 30, 09, 03
-	RGB 00, 12, 10
-	RGB 06, 02, 02
-; CHAMERAID
-	RGB 31, 31, 31
-	RGB 17, 21, 17
-	RGB 13, 16, 13
-	RGB 06, 09, 06
-; CRYPTORIDE
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 30, 11, 06
-	RGB 05, 01, 01
-; WORMITERALA
-	RGB 31, 31, 31
-	RGB 03, 21, 22
-	RGB 00, 15, 15
-	RGB 02, 06, 06
-; FUNGBLADE
-	RGB 31, 31, 31
-	RGB 26, 24, 19
-	RGB 20, 18, 13
-	RGB 05, 04, 03
-; BULLTAMUS
-	RGB 31, 31, 31
-	RGB 30, 19, 18
-	RGB 27, 06, 05
-	RGB 09, 04, 04
-; PUNEEDLE
-	RGB 31, 31, 31
-	RGB 30, 22, 21
-	RGB 24, 03, 08
-	RGB 08, 01, 03
-; KERORIN
-	RGB 31, 31, 31
-	RGB 26, 20, 24
-	RGB 19, 11, 19
-	RGB 06, 04, 06
-; SUGULAI
-	RGB 31, 31, 31
-	RGB 31, 29, 26
-	RGB 04, 11, 20
-	RGB 03, 05, 09
-; CORTOS
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 28, 17, 06
-	RGB 23, 01, 08
-; GAIURUS
-	RGB 31, 31, 31
-	RGB 30, 22, 11
-	RGB 18, 06, 07
-	RGB 07, 03, 03
-; MIDOTOR
-	RGB 31, 31, 31
-	RGB 31, 07, 07
-	RGB 10, 13, 21
-	RGB 08, 06, 05
-; OCTOR
-	RGB 31, 31, 31
-	RGB 30, 23, 21
-	RGB 27, 18, 17
-	RGB 08, 05, 06
-; HITODEIGHT
-	RGB 31, 31, 31
-	RGB 08, 22, 19
-	RGB 28, 06, 08
-	RGB 12, 03, 04
-; GHOSBOAR
-	RGB 31, 31, 31
-	RGB 26, 20, 16
-	RGB 08, 11, 17
-	RGB 04, 05, 09
-; RASENMAI
-	RGB 31, 31, 31
-	RGB 10, 21, 18
-	RGB 18, 07, 09
-	RGB 07, 04, 05
-; SCORPIL
-	RGB 31, 31, 31
-	RGB 26, 18, 22
-	RGB 20, 00, 07
-	RGB 06, 03, 06
-; ARMCRAB
-	RGB 31, 31, 31
-	RGB 29, 16, 10
-	RGB 25, 09, 07
-	RGB 15, 02, 05
-; ANGIORN
-	RGB 31, 31, 31
-	RGB 23, 24, 26
-	RGB 13, 16, 17
-	RGB 05, 08, 10
-; GYMRACE
-	RGB 31, 31, 31
-	RGB 29, 20, 00
-	RGB 05, 09, 15
-	RGB 04, 04, 06
-; LIRIONPU
-	RGB 31, 31, 31
-	RGB 17, 25, 30
-	RGB 00, 20, 28
-	RGB 02, 07, 10
-; WHITAH
-	RGB 31, 31, 31
-	RGB 23, 28, 30
-	RGB 18, 21, 23
-	RGB 09, 10, 09
-; POTZAL
-	RGB 31, 31, 31
-	RGB 16, 21, 22
-	RGB 04, 11, 14
-	RGB 03, 04, 06
-; ARANEIDA
-	RGB 31, 31, 31
-	RGB 26, 24, 22
-	RGB 28, 10, 09
-	RGB 07, 05, 05
-; GADHORO
-	RGB 31, 31, 31
-	RGB 23, 20, 24
-	RGB 16, 15, 21
-	RGB 06, 06, 07
-; CLIOGERA
-	RGB 31, 31, 31
-	RGB 23, 28, 31
-	RGB 07, 23, 29
-	RGB 12, 03, 11
-; GUST
-	RGB 31, 31, 31
-	RGB 13, 24, 27
-	RGB 00, 21, 23
-	RGB 01, 12, 13
-; REIGE
-	RGB 31, 31, 31
-	RGB 30, 23, 08
-	RGB 00, 17, 10
-	RGB 03, 07, 05
-; TOGERUKA
-	RGB 31, 31, 31
-	RGB 29, 21, 13
-	RGB 08, 22, 19
-	RGB 06, 07, 06
-; RAIGALEON
-	RGB 31, 31, 31
-	RGB 29, 19, 05
-	RGB 21, 11, 10
-	RGB 09, 06, 07
-; GADORKUMA
-	RGB 31, 31, 31
-	RGB 18, 16, 22
-	RGB 13, 10, 19
-	RGB 04, 05, 06
-; ABIRAS
-	RGB 31, 31, 31
-	RGB 20, 26, 19
-	RGB 07, 21, 14
-	RGB 02, 05, 01
-; ALPHAGOS
-	RGB 31, 31, 31
-	RGB 28, 14, 08
-	RGB 19, 09, 10
-	RGB 05, 03, 05
-; KIYORUKA
-	RGB 31, 31, 31
-	RGB 29, 21, 13
-	RGB 08, 22, 19
-	RGB 06, 07, 06
-; GYMGARTH
-	RGB 31, 31, 31
-	RGB 29, 12, 00
-	RGB 05, 09, 15
-	RGB 04, 04, 06
-; BAIONPU
-	RGB 31, 31, 31
-	RGB 17, 25, 30
-	RGB 00, 20, 28
-	RGB 02, 07, 10
-; WARUTAH
-	RGB 31, 31, 31
-	RGB 23, 28, 30
-	RGB 18, 21, 23
-	RGB 09, 10, 09
-; GUNTZATL
-	RGB 31, 31, 31
-	RGB 31, 09, 07
-	RGB 04, 11, 14
-	RGB 03, 04, 06
-; ARAKUIDA
-	RGB 31, 31, 31
-	RGB 26, 24, 22
-	RGB 10, 10, 19
-	RGB 07, 05, 05
-; BADHORO
-	RGB 31, 31, 31
-	RGB 30, 22, 10
-	RGB 16, 15, 22
-	RGB 05, 05, 06
-; LAMPGERA
-	RGB 31, 31, 31
-	RGB 23, 28, 31
-	RGB 07, 23, 29
-	RGB 12, 03, 11
-; TEMPEST
-	RGB 31, 31, 31
-	RGB 13, 24, 27
-	RGB 02, 10, 16
-	RGB 03, 04, 07
-; ZUDOON
-	RGB 31, 31, 31
-	RGB 30, 23, 08
-	RGB 00, 17, 10
-	RGB 03, 07, 05
-; HIYU
-	RGB 31, 31, 31
-	RGB 28, 24, 13
-	RGB 25, 19, 12
-	RGB 05, 04, 03
-; GAMAZUMI
-	RGB 31, 31, 31
-	RGB 18, 21, 30
-	RGB 18, 06, 14
-	RGB 05, 02, 03
-; PAPAVER
-	RGB 31, 31, 31
-	RGB 10, 14, 22
-	RGB 07, 10, 16
-	RGB 02, 03, 04
-; GAMURU
-	RGB 31, 31, 31
-	RGB 17, 07, 11
-	RGB 09, 21, 07
-	RGB 02, 06, 05
-; BOUVARDI
-	RGB 31, 31, 31
-	RGB 30, 25, 09
-	RGB 29, 14, 11
-	RGB 09, 07, 05
-; GAULTHERIA
-	RGB 31, 31, 31
-	RGB 13, 10, 13
-	RGB 08, 06, 08
-	RGB 04, 03, 04
-; DIPSACUS
-	RGB 31, 31, 31
-	RGB 28, 25, 14
-	RGB 18, 16, 10
-	RGB 09, 07, 06
-; KAYA
-	RGB 31, 31, 31
-	RGB 30, 24, 08
-	RGB 23, 12, 03
-	RGB 08, 07, 05
-; DENFARE
-	RGB 31, 31, 31
-	RGB 22, 29, 30
-	RGB 14, 19, 24
-	RGB 06, 10, 18
-; ANGIEON
-	RGB 31, 31, 31
-	RGB 23, 24, 26
-	RGB 13, 16, 17
-	RGB 05, 08, 10
-; EASYDOG
-	RGB 31, 31, 31
-	RGB 17, 16, 17
-	RGB 12, 10, 14
-	RGB 07, 03, 05
-; TRICERARMOR
-	RGB 31, 31, 31
-	RGB 30, 09, 03
-	RGB 00, 12, 10
-	RGB 06, 02, 02
-; CRYPTOSNIPE
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 30, 11, 06
-	RGB 05, 01, 01
-; FUNGBOOST
-	RGB 31, 31, 31
-	RGB 09, 12, 31
-	RGB 18, 11, 07
-	RGB 05, 04, 03
-; VEENICA
-	RGB 31, 31, 31
-	RGB 30, 22, 21
-	RGB 24, 03, 08
-	RGB 08, 01, 03
-; SAIGULIGER
-	RGB 31, 31, 31
-	RGB 31, 29, 26
-	RGB 04, 11, 20
-	RGB 03, 05, 09
-; ARMEDURUS
-	RGB 31, 31, 31
-	RGB 30, 22, 11
-	RGB 18, 19, 23
-	RGB 07, 03, 03
-; OCTORIFLE
-	RGB 31, 31, 31
-	RGB 30, 23, 21
-	RGB 27, 18, 17
-	RGB 08, 05, 06
-; ERASERBOAR
-	RGB 31, 31, 31
-	RGB 26, 20, 16
-	RGB 08, 11, 17
-	RGB 04, 05, 09
-; SPEARNEEDLE
-	RGB 31, 31, 31
-	RGB 05, 11, 22
-	RGB 20, 00, 07
-	RGB 06, 03, 06
-; GILGIERTH
-	RGB 31, 31, 31
-	RGB 15, 12, 12
-	RGB 07, 04, 04
-	RGB 03, 01, 01
-; UNIARMOR
-	RGB 31, 31, 31
-	RGB 30, 09, 03
-	RGB 00, 12, 10
-	RGB 06, 02, 02
-; CRYPTOBURN
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 30, 11, 06
-	RGB 05, 01, 01
-; FUNGMACHINE
-	RGB 31, 31, 31
-	RGB 26, 24, 19
-	RGB 20, 18, 13
-	RGB 05, 04, 03
-; PUNISTO
-	RGB 31, 31, 31
-	RGB 30, 22, 21
-	RGB 24, 03, 08
-	RGB 08, 01, 03
-; SUGULINE
-	RGB 31, 31, 31
-	RGB 31, 29, 26
-	RGB 04, 11, 20
-	RGB 03, 05, 09
-; MACHURUS
-	RGB 31, 31, 31
-	RGB 30, 22, 11
-	RGB 18, 06, 07
-	RGB 07, 03, 03
-; OCTAGUN
-	RGB 31, 31, 31
-	RGB 30, 23, 21
-	RGB 27, 18, 17
-	RGB 08, 05, 06
-; MUMMYBOAR
-	RGB 31, 31, 31
-	RGB 26, 20, 16
-	RGB 08, 11, 17
-	RGB 04, 05, 09
-; KINGPIN
-	RGB 31, 31, 31
-	RGB 13, 08, 23
-	RGB 20, 00, 07
-	RGB 06, 03, 06
-; BEEBALM
-	RGB 31, 31, 31
-	RGB 03, 16, 09
-	RGB 12, 10, 14
-	RGB 07, 03, 05
-; SALAL
-	RGB 31, 31, 31
-	RGB 30, 22, 13
-	RGB 29, 17, 08
-	RGB 11, 03, 03
-; ENISHIDA
-	RGB 31, 31, 31
-	RGB 18, 18, 24
-	RGB 13, 12, 16
-	RGB 07, 04, 06
-; TULBAGHIA
-	RGB 31, 31, 31
-	RGB 31, 30, 19
-	RGB 21, 19, 11
-	RGB 08, 03, 05
-; KIRINGIKU
-	RGB 31, 31, 31
-	RGB 12, 21, 12
-	RGB 25, 12, 05
-	RGB 02, 03, 01
-; ANGILANCE
-	RGB 31, 31, 31
-	RGB 23, 24, 26
-	RGB 13, 16, 17
-	RGB 05, 08, 10
-; GYMGANON
-	RGB 31, 31, 31
-	RGB 29, 12, 00
-	RGB 05, 09, 15
-	RGB 04, 04, 06
-; SAIOPE
-	RGB 31, 31, 31
-	RGB 17, 25, 30
-	RGB 00, 20, 28
-	RGB 02, 07, 10
-; WATTAH
-	RGB 31, 31, 31
-	RGB 23, 28, 30
-	RGB 18, 21, 23
-	RGB 09, 10, 09
-; QUETZAKING
-	RGB 31, 31, 31
-	RGB 30, 15, 00
-	RGB 04, 11, 14
-	RGB 03, 04, 06
-; ARAKUDABARAN
-	RGB 31, 31, 31
-	RGB 26, 24, 22
-	RGB 20, 00, 06
-	RGB 03, 02, 02
-; PUNKHORO
-	RGB 31, 31, 31
-	RGB 23, 20, 24
-	RGB 00, 16, 14
-	RGB 06, 06, 07
-; VIKINGURIN
-	RGB 31, 31, 31
-	RGB 22, 27, 31
-	RGB 20, 03, 12
-	RGB 02, 05, 12
-; STORM
-	RGB 31, 31, 31
-	RGB 13, 24, 28
-	RGB 01, 21, 24
-	RGB 06, 08, 11
-; MUTOOM
-	RGB 31, 31, 31
-	RGB 30, 23, 08
-	RGB 00, 17, 10
-	RGB 03, 07, 05
-; GYPSOPHI
-	RGB 31, 31, 31
-	RGB 31, 28, 19
-	RGB 05, 20, 13
-	RGB 07, 07, 05
-; RUSCUS
-	RGB 31, 31, 31
-	RGB 10, 19, 26
-	RGB 06, 11, 17
-	RGB 03, 04, 09
-; MAORAN
-	RGB 31, 31, 31
-	RGB 24, 26, 25
-	RGB 10, 20, 20
-	RGB 04, 07, 07
-; ZEA
-	RGB 31, 31, 31
-	RGB 17, 16, 21
-	RGB 11, 11, 15
-	RGB 06, 05, 06
-; GONUM
-	RGB 31, 31, 31
-	RGB 00, 22, 19
-	RGB 00, 16, 13
-	RGB 01, 07, 05
-; ANGIPOWER
-	RGB 31, 31, 31
-	RGB 13, 16, 17
-	RGB 08, 10, 26
-	RGB 05, 08, 10
-; GYMZYRUS
-	RGB 31, 31, 31
-	RGB 29, 23, 00
-	RGB 05, 09, 15
-	RGB 04, 04, 06
-; CANONOPE
-	RGB 31, 31, 31
-	RGB 17, 25, 30
-	RGB 00, 20, 28
-	RGB 02, 07, 10
-; CALM
-	RGB 31, 31, 31
-	RGB 22, 16, 21
-	RGB 01, 21, 23
-	RGB 03, 04, 07
-; RYUUGUU
-	RGB 31, 31, 31
-	RGB 10, 19, 26
-	RGB 27, 14, 03
-	RGB 03, 04, 09
-; GIGAGIGERTH
-	RGB 31, 31, 31
-	RGB 31, 03, 03
-	RGB 08, 05, 04
-	RGB 03, 01, 01
-; BARRIARM
-	RGB 31, 31, 31
-	RGB 30, 09, 03
-	RGB 00, 12, 10
-	RGB 06, 02, 02
-; CRYPTOKNIGHT
-	RGB 31, 31, 31
-	RGB 31, 29, 16
-	RGB 30, 11, 06
-	RGB 05, 01, 01
-; FUNGWAR
-	RGB 31, 31, 31
-	RGB 26, 24, 19
-	RGB 20, 18, 13
-	RGB 05, 04, 03
-; BASHOU
-	RGB 31, 31, 31
-	RGB 29, 29, 28
-	RGB 14, 23, 28
-	RGB 02, 04, 07
-; ANGIGORGO
-	RGB 31, 31, 31
-	RGB 13, 16, 17
-	RGB 08, 10, 26
-	RGB 05, 08, 10
-; GYMBARON
-	RGB 31, 31, 31
-	RGB 29, 23, 00
-	RGB 05, 09, 15
-	RGB 04, 04, 06
-; LIRIMONARCH
-	RGB 31, 31, 31
-	RGB 17, 25, 30
-	RGB 00, 20, 28
-	RGB 02, 07, 10
-; ENTEIOH
-	RGB 31, 31, 31
-	RGB 23, 28, 30
-	RGB 18, 21, 23
-	RGB 09, 10, 09
-; GOLAKING
-	RGB 31, 31, 31
-	RGB 31, 27, 13
-	RGB 26, 16, 05
-	RGB 11, 06, 02
-; KANZOU
-	RGB 31, 31, 31
-	RGB 24, 24, 27
-	RGB 13, 19, 26
-	RGB 06, 01, 02
-; ORNITHOGALUM
-	RGB 31, 31, 31
-	RGB 26, 14, 09
-	RGB 19, 07, 05
-	RGB 06, 03, 02
-; GENTIANA
-	RGB 31, 31, 31
-	RGB 29, 19, 08
-	RGB 24, 09, 06
-	RGB 20, 00, 05
-; YARROW
-	RGB 31, 31, 31
-	RGB 19, 14, 12
-	RGB 25, 01, 05
-	RGB 06, 03, 03
-; ANGIOROS
-	RGB 31, 31, 31
-	RGB 23, 24, 26
-	RGB 13, 16, 17
-	RGB 05, 08, 10
-; GYMZATAN
-	RGB 31, 31, 31
-	RGB 29, 21, 00
-	RGB 05, 09, 15
-	RGB 04, 04, 06
-; DOOMSDAY
-	RGB 31, 31, 31
-	RGB 20, 13, 10
-	RGB 25, 03, 05
-	RGB 12, 05, 05
-; DENDEL
-	RGB 31, 31, 31
-	RGB 12, 23, 30
-	RGB 04, 10, 22
-	RGB 04, 04, 17
-; TELETEL
-	RGB 31, 31, 31
-	RGB 31, 23, 00
-	RGB 27, 03, 02
-	RGB 05, 02, 02
-
-	RGB 31, 31, 31
-	RGB 19, 25, 31
-	RGB 14, 16, 25
-	RGB 04, 04, 20
-
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
+INCLUDE "palettes/denjuu/tsunonasu.pal"
+INCLUDE "palettes/denjuu/kochia.pal"
+INCLUDE "palettes/denjuu/oshe.pal"
+INCLUDE "palettes/denjuu/keshi.pal"
+INCLUDE "palettes/denjuu/crypto.pal"
+INCLUDE "palettes/denjuu/monstera.pal"
+INCLUDE "palettes/denjuu/fungus.pal"
+INCLUDE "palettes/denjuu/hiougi.pal"
+INCLUDE "palettes/denjuu/punica.pal"
+INCLUDE "palettes/denjuu/gumi.pal"
+INCLUDE "palettes/denjuu/suguri.pal"
+INCLUDE "palettes/denjuu/ganraikou.pal"
+INCLUDE "palettes/denjuu/byakubu.pal"
+INCLUDE "palettes/denjuu/telopea.pal"
+INCLUDE "palettes/denjuu/mantea.pal"
+INCLUDE "palettes/denjuu/ixora.pal"
+INCLUDE "palettes/denjuu/myrtus.pal"
+INCLUDE "palettes/denjuu/lychnis.pal"
+INCLUDE "palettes/denjuu/lapeirousia.pal"
+INCLUDE "palettes/denjuu/bubaria.pal"
+INCLUDE "palettes/denjuu/angios.pal"
+INCLUDE "palettes/denjuu/gymnos.pal"
+INCLUDE "palettes/denjuu/liriope.pal"
+INCLUDE "palettes/denjuu/waratah.pal"
+INCLUDE "palettes/denjuu/sorghum.pal"
+INCLUDE "palettes/denjuu/eryngo.pal"
+INCLUDE "palettes/denjuu/noriutsugi.pal"
+INCLUDE "palettes/denjuu/pampas.pal"
+INCLUDE "palettes/denjuu/rhodanthe.pal"
+INCLUDE "palettes/denjuu/licorice.pal"
+INCLUDE "palettes/denjuu/viburnum.pal"
+INCLUDE "palettes/denjuu/funnel.pal"
+INCLUDE "palettes/denjuu/vanda.pal"
+INCLUDE "palettes/denjuu/uikyou.pal"
+INCLUDE "palettes/denjuu/obana.pal"
+INCLUDE "palettes/denjuu/firekokko.pal"
+INCLUDE "palettes/denjuu/raygoten.pal"
+INCLUDE "palettes/denjuu/drilarmor.pal"
+INCLUDE "palettes/denjuu/chamelan.pal"
+INCLUDE "palettes/denjuu/cryptoarm.pal"
+INCLUDE "palettes/denjuu/shellstera.pal"
+INCLUDE "palettes/denjuu/fungeist.pal"
+INCLUDE "palettes/denjuu/balltamus.pal"
+INCLUDE "palettes/denjuu/burenica.pal"
+INCLUDE "palettes/denjuu/geron.pal"
+INCLUDE "palettes/denjuu/berzelia.pal"
+INCLUDE "palettes/denjuu/nigella.pal"
+INCLUDE "palettes/denjuu/musa.pal"
+INCLUDE "palettes/denjuu/netaro.pal"
+INCLUDE "palettes/denjuu/nejiro.pal"
+INCLUDE "palettes/denjuu/godetia.pal"
+INCLUDE "palettes/denjuu/curcuma.pal"
+INCLUDE "palettes/denjuu/tessen.pal"
+INCLUDE "palettes/denjuu/heliopsis.pal"
+INCLUDE "palettes/denjuu/hagumanoki.pal"
+INCLUDE "palettes/denjuu/gilerth.pal"
+INCLUDE "palettes/denjuu/raygirth.pal"
+INCLUDE "palettes/denjuu/armaru.pal"
+INCLUDE "palettes/denjuu/chameraid.pal"
+INCLUDE "palettes/denjuu/cryptoride.pal"
+INCLUDE "palettes/denjuu/wormiterala.pal"
+INCLUDE "palettes/denjuu/fungblade.pal"
+INCLUDE "palettes/denjuu/bulltamus.pal"
+INCLUDE "palettes/denjuu/puneedle.pal"
+INCLUDE "palettes/denjuu/kerorin.pal"
+INCLUDE "palettes/denjuu/sugulai.pal"
+INCLUDE "palettes/denjuu/cortos.pal"
+INCLUDE "palettes/denjuu/gaiurus.pal"
+INCLUDE "palettes/denjuu/midotor.pal"
+INCLUDE "palettes/denjuu/octor.pal"
+INCLUDE "palettes/denjuu/hitodeight.pal"
+INCLUDE "palettes/denjuu/ghosboar.pal"
+INCLUDE "palettes/denjuu/rasenmai.pal"
+INCLUDE "palettes/denjuu/scorpil.pal"
+INCLUDE "palettes/denjuu/armcrab.pal"
+INCLUDE "palettes/denjuu/angiorn.pal"
+INCLUDE "palettes/denjuu/gymrace.pal"
+INCLUDE "palettes/denjuu/lirionpu.pal"
+INCLUDE "palettes/denjuu/whitah.pal"
+INCLUDE "palettes/denjuu/potzal.pal"
+INCLUDE "palettes/denjuu/araneida.pal"
+INCLUDE "palettes/denjuu/gadhoro.pal"
+INCLUDE "palettes/denjuu/cliogera.pal"
+INCLUDE "palettes/denjuu/gust.pal"
+INCLUDE "palettes/denjuu/reige.pal"
+INCLUDE "palettes/denjuu/togeruka.pal"
+INCLUDE "palettes/denjuu/raigaleon.pal"
+INCLUDE "palettes/denjuu/gadorkuma.pal"
+INCLUDE "palettes/denjuu/abiras.pal"
+INCLUDE "palettes/denjuu/alphagos.pal"
+INCLUDE "palettes/denjuu/kiyoruka.pal"
+INCLUDE "palettes/denjuu/gymgarth.pal"
+INCLUDE "palettes/denjuu/baionpu.pal"
+INCLUDE "palettes/denjuu/warutah.pal"
+INCLUDE "palettes/denjuu/guntzatl.pal"
+INCLUDE "palettes/denjuu/arakuida.pal"
+INCLUDE "palettes/denjuu/badhoro.pal"
+INCLUDE "palettes/denjuu/lampgera.pal"
+INCLUDE "palettes/denjuu/tempest.pal"
+INCLUDE "palettes/denjuu/zudoon.pal"
+INCLUDE "palettes/denjuu/hiyu.pal"
+INCLUDE "palettes/denjuu/gamazumi.pal"
+INCLUDE "palettes/denjuu/papaver.pal"
+INCLUDE "palettes/denjuu/gamuru.pal"
+INCLUDE "palettes/denjuu/bouvardi.pal"
+INCLUDE "palettes/denjuu/gaultheria.pal"
+INCLUDE "palettes/denjuu/dipsacus.pal"
+INCLUDE "palettes/denjuu/kaya.pal"
+INCLUDE "palettes/denjuu/denfare.pal"
+INCLUDE "palettes/denjuu/angieon.pal"
+INCLUDE "palettes/denjuu/easydog.pal"
+INCLUDE "palettes/denjuu/tricerarmor.pal"
+INCLUDE "palettes/denjuu/cryptosnipe.pal"
+INCLUDE "palettes/denjuu/fungboost.pal"
+INCLUDE "palettes/denjuu/veenica.pal"
+INCLUDE "palettes/denjuu/saiguliger.pal"
+INCLUDE "palettes/denjuu/armedurus.pal"
+INCLUDE "palettes/denjuu/octorifle.pal"
+INCLUDE "palettes/denjuu/eraserboar.pal"
+INCLUDE "palettes/denjuu/spearneedle.pal"
+INCLUDE "palettes/denjuu/gilgierth.pal"
+INCLUDE "palettes/denjuu/uniarmor.pal"
+INCLUDE "palettes/denjuu/cryptoburn.pal"
+INCLUDE "palettes/denjuu/fungmachine.pal"
+INCLUDE "palettes/denjuu/punisto.pal"
+INCLUDE "palettes/denjuu/suguline.pal"
+INCLUDE "palettes/denjuu/machurus.pal"
+INCLUDE "palettes/denjuu/octagun.pal"
+INCLUDE "palettes/denjuu/mummyboar.pal"
+INCLUDE "palettes/denjuu/kingpin.pal"
+INCLUDE "palettes/denjuu/beebalm.pal"
+INCLUDE "palettes/denjuu/salal.pal"
+INCLUDE "palettes/denjuu/enishida.pal"
+INCLUDE "palettes/denjuu/tulbaghia.pal"
+INCLUDE "palettes/denjuu/kiringiku.pal"
+INCLUDE "palettes/denjuu/angilance.pal"
+INCLUDE "palettes/denjuu/gymganon.pal"
+INCLUDE "palettes/denjuu/saiope.pal"
+INCLUDE "palettes/denjuu/wattah.pal"
+INCLUDE "palettes/denjuu/quetzaking.pal"
+INCLUDE "palettes/denjuu/arakudabaran.pal"
+INCLUDE "palettes/denjuu/punkhoro.pal"
+INCLUDE "palettes/denjuu/vikingurin.pal"
+INCLUDE "palettes/denjuu/storm.pal"
+INCLUDE "palettes/denjuu/mutoom.pal"
+INCLUDE "palettes/denjuu/gypsophi.pal"
+INCLUDE "palettes/denjuu/ruscus.pal"
+INCLUDE "palettes/denjuu/maoran.pal"
+INCLUDE "palettes/denjuu/zea.pal"
+INCLUDE "palettes/denjuu/gonum.pal"
+INCLUDE "palettes/denjuu/angipower.pal"
+INCLUDE "palettes/denjuu/gymzyrus.pal"
+INCLUDE "palettes/denjuu/canonope.pal"
+INCLUDE "palettes/denjuu/calm.pal"
+INCLUDE "palettes/denjuu/ryuuguu.pal"
+INCLUDE "palettes/denjuu/gigagigerth.pal"
+INCLUDE "palettes/denjuu/barriarm.pal"
+INCLUDE "palettes/denjuu/cryptoknight.pal"
+INCLUDE "palettes/denjuu/fungwar.pal"
+INCLUDE "palettes/denjuu/bashou.pal"
+INCLUDE "palettes/denjuu/angigorgo.pal"
+INCLUDE "palettes/denjuu/gymbaron.pal"
+INCLUDE "palettes/denjuu/lirimonarch.pal"
+INCLUDE "palettes/denjuu/enteioh.pal"
+INCLUDE "palettes/denjuu/golaking.pal"
+INCLUDE "palettes/denjuu/kanzou.pal"
+INCLUDE "palettes/denjuu/ornithogalum.pal"
+INCLUDE "palettes/denjuu/gentiana.pal"
+INCLUDE "palettes/denjuu/yarrow.pal"
+INCLUDE "palettes/denjuu/angioros.pal"
+INCLUDE "palettes/denjuu/gymzatan.pal"
+INCLUDE "palettes/denjuu/doomsday.pal"
+INCLUDE "palettes/denjuu/dendel.pal"
+INCLUDE "palettes/denjuu/teletel.pal"
+INCLUDE "palettes/denjuu/denjuu_175.pal"
+INCLUDE "palettes/denjuu/denjuu_176.pal"
