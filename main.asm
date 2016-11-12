@@ -24437,7 +24437,11 @@ GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"
 	dr $e0c38, $e1038
 
 TileMap_e1038:: INCBIN "data/e1038.tilemap"
-	dr $e1118, $e1690
+	dr $e1118, $e1560
+
+GFX_e1560: INCBIN "gfx/misc/e1560.2bpp"
+
+	dr $e1660, $e1690
 
 Pointers_e1690::
 	dr $e1690, $e197c

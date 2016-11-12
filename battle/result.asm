@@ -2136,29 +2136,1277 @@ Func_74fe8: ; 74fe8 (1d:4fe8)
 	call Func_74ff2
 	jp NextBattleSubroutine
 
-Func_74ff2::
-	dr $74ff2, $75007
+Func_74ff2: ; 74ff2 (1d:4ff2)
+	ld a, [wLCDC]
+	res 5, a
+	ld [wLCDC], a
+	ld a, [wLCDC]
+	res 6, a
+	ld [wLCDC], a
+	xor a
+	ld [wc46c], a
+	ret
 
-Func_75007:
-	dr $75007, $75040
+Func_75007: ; 75007 (1d:5007)
+	ld a, l
+	sub c
+	ld e, a
+	ld a, h
+	sbc b
+	ld d, a
+	ret
 
-Func_75040:
-	dr $75040, $753f8
+Func_7500e: ; 7500e (1d:500e)
+	ld d, $0
+	push de
+	call GetStatOffsetMultiplier_
+	pop de
+	ld b, $0
+	ld a, [wd494]
+	ld c, a
+	call Multiply_DE_by_BC
+	sra d
+	rr e
+	ld a, e
+	ret
 
-Func_753f8::
-	dr $753f8, $75456
+Func_75024:
+	push bc
+	ld a, [wCurDenjuuBufferLevel]
+	ld e, a
+	ld a, [wCurDenjuuBuffer]
+	call Func_7500e
+	pop bc
+	push af
+	ld a, [wCurDenjuuBufferLevel]
+	dec a
+	ld e, a
+	ld a, [wCurDenjuuBuffer]
+	call Func_7500e
+	ld b, a
+	pop af
+	sub b
+	ret
 
-Func_75456:
-	dr $75456, $7546d
+Func_75040: ; 75040 (1d:5040)
+	ld a, [wd401]
+	jump_table
+	dw Func_7506d
+	dw Func_75113
+	dw Func_75158
+	dw Func_75169
+	dw Func_751dc
+	dw Func_75202
+	dw Func_75297
+	dw Func_752d3
+	dw Func_752e7
+	dw Func_75144
+	dw Func_751c8
+	dw Func_752f1
+	dw Func_7538e
 
-Func_7546d:
-	dr $7546d, $7548f
+Data_75064:
+	db 70, 140, 240
+	db 70, 140, 240
+	db 70, 140, 240
 
-Func_7548f:
-	dr $7548f, $757c3
+Func_7506d:
+	ld bc, $16
+	call DecompressGFXByIndex_
+	ld bc, $9
+	call DecompressGFXByIndex_
+	ld bc, $e
+	call GetCGB_BGLayout_
+	ld a, $28
+	call Func_3eb9
+	lb bc, 0, $0
+	ld e, $70
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, 0, $0
+	ld e, $70
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	lb bc, 0, $4
+	ld e, $ad
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, $6, $5
+	ld e, $91
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, $6, $5
+	ld e, $8b
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	ld a, [wd480]
+	ld de, VTilesBG tile $10
+	call Func_3d95
+	ld a, [wd480]
+	push af
+	ld c, $0
+	ld de, VTilesShared tile $00
+	call LoadDenjuuPic_
+	pop af
+	call GetDenjuuPalette_Pal7
+	ld hl, VTilesBG tile $58
+	ld a, $8
+	call ClearString
+	ld a, [wd480]
+	ld de, DenjuuNames
+	ld bc, VTilesBG tile $58
+	call GetAndPrintName75CenterAlign
+	ld a, [wd480]
+	call Func_74066
+	ld c, $6c
+	call Func_3d02
+	ld a, $28
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, [wd481]
+	hlbgcoord 10, 2
+	ld c, $1
+	call Func_1430
+	ld a, $0
+	call Func_75456
+	ld a, $4
+	call Func_050a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
 
-Func_757c3:
-	dr $757c3, $758f8
+Func_75113:
+	ld a, $0
+	call PaletteFade_
+	or a
+	ret z
+	call Func_753f8
+	cp $0
+	jr z, .asm_7512b
+	lb bc, $2, $1
+	ld e, $a3
+	ld a, $0
+	call LoadStdBGMapLayout_
+.asm_7512b
+	ld a, [wd403]
+	cp $1
+	jp z, Func_75139
+	ld a, $9
+	ld [wd401], a
+	ret
 
-Func_758f8::
-	dr $758f8, $7598a
+Func_75139: ; 75139 (1d:5139)
+	ld c, $3
+	call Func_3d02
+	ld a, $2
+	ld [wd401], a
+	ret
+
+Func_75144: ; 75144 (1d:5144)
+	call PrintText_
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	ld c, $3
+	call Func_3d02
+	ld a, $2
+	ld [wd401], a
+	ret
+
+Func_75158: ; 75158 (1d:5158)
+	call PrintText_
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_75169: ; 75169 (1d:5169)
+	lb bc, $2, $e
+	ld e, $ab
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld hl, Data_75064
+	ld a, [wCurPhoneGFX]
+	cp $0
+	jr z, .asm_75181
+.asm_7517d
+	inc hl
+	dec a
+	jr nz, .asm_7517d
+.asm_75181
+	ld a, [hl]
+	ld b, a
+	ld a, [wd40c]
+	cp b
+	jr nc, .asm_751bd
+	ld bc, $18
+	call DecompressGFXByIndex_
+	call Func_753ad
+	ld a, $0
+	ld [wcd24], a
+	call OpenSRAMBank2
+	ld hl, sAddressBook + $a
+	ld a, [wd4a7]
+	call Func_3d0e
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	hlbgcoord 3, 14
+	call Func_0650
+	call CloseSRAM
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+.asm_751bd
+	ld c, $6e
+	call Func_3d02
+	ld a, $a
+	ld [wd401], a
+	ret
+
+Func_751c8: ; 751c8 (1d:51c8)
+	call PrintText_
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	ld a, $1
+	ld [wd40d], a
+	ld a, $6
+	ld [wd401], a
+	ret
+
+Func_751dc: ; 751dc (1d:51dc)
+	ld a, [hJoyNew]
+	and $3
+	ret z
+	ld a, $3
+	ld [H_SFX_ID], a
+	ld c, $63
+	call Func_3d02
+	xor a
+	ld [wd40d], a
+	call Func_7546d
+	ld a, $0
+	ld [wd411], a
+	call Func_3cb5
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_75202: ; 75202 (1d:5202)
+	call Func_3cd0
+	call PrintText_
+	ld a, [hJoyNew]
+	and D_LEFT
+	jr z, .asm_75229
+	ld a, $2
+	ld [H_SFX_ID], a
+	ld a, [wd40d]
+	cp $0
+	jr z, .asm_75221
+	xor a
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_75221
+	ld a, $1
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_75229
+	ld a, [hJoyNew]
+	and D_RIGHT
+	jr z, .asm_7524a
+	ld a, $2
+	ld [H_SFX_ID], a
+	ld a, [wd40d]
+	cp $1
+	jr z, .asm_75243
+	ld a, $1
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_75243
+	xor a
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_7524a
+	ld a, [hJoyNew]
+	and B_BUTTON
+	jr z, .asm_75257
+	ld a, $3
+	ld [H_SFX_ID], a
+	jr .asm_7526c
+
+.asm_75257
+	ld a, [hJoyNew]
+	and A_BUTTON
+	ret z
+	ld a, $3
+	ld [H_SFX_ID], a
+	ld a, [wd40d]
+	cp $1
+	jr z, .asm_7526c
+	ld c, $64
+	jr .asm_75282
+
+.asm_7526c
+	ld a, $1
+	ld [wd40d], a
+	call OpenSRAMBank2
+	ld hl, sAddressBook + $1
+	ld a, [wd4a7]
+	call Func_3d0e
+	ld a, $0
+	ld [hl], a
+	ld c, $65
+.asm_75282
+	call Func_3d02
+	ld a, $0
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_75297: ; 75297 (1d:5297)
+	call PrintText_
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	ld a, [wd40d]
+	cp $0
+	jr nz, .asm_752c1
+	ld c, $8f
+	call Func_3d02
+	xor a
+	ld [wd40d], a
+	call Func_7546d
+	ld a, $0
+	ld [wd411], a
+	call Func_3cb5
+	ld a, $b
+	ld [wd401], a
+	ret
+
+.asm_752c1
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_752d3: ; 752d3 (1d:52d3)
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	ld a, $0
+	ld [wc46c], a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_752e7: ; 752e7 (1d:52e7)
+	xor a
+	ld [wd401], a
+	ld a, $8
+	ld [wBattleSubroutine], a
+	ret
+
+Func_752f1: ; 752f1 (1d:52f1)
+	call Func_3cd0
+	call PrintText_
+	ld a, [hJoyNew]
+	and D_LEFT
+	jr z, .asm_75318
+	ld a, $2
+	ld [H_SFX_ID], a
+	ld a, [wd40d]
+	cp $0
+	jr z, .asm_75310
+	xor a
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_75310
+	ld a, $1
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_75318
+	ld a, [hJoyNew]
+	and D_RIGHT
+	jr z, .asm_75339
+	ld a, $2
+	ld [H_SFX_ID], a
+	ld a, [wd40d]
+	cp $1
+	jr z, .asm_75332
+	ld a, $1
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_75332
+	xor a
+	ld [wd40d], a
+	jp Func_7546d
+
+.asm_75339
+	ld a, [hJoyNew]
+	and B_BUTTON
+	jr z, .asm_75353
+	ld a, $0
+	ld [wOAMAnimation01], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, $3
+	ld [H_SFX_ID], a
+	jr .asm_7537e
+
+.asm_75353
+	ld a, [hJoyNew]
+	and A_BUTTON
+	ret z
+	ld a, $3
+	ld [H_SFX_ID], a
+	ld a, $0
+	ld [wOAMAnimation01], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wd40d]
+	cp $1
+	jr z, .asm_7537e
+	ld a, $4
+	call Func_050a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+.asm_7537e
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	ld a, $7
+	ld [wd401], a
+	ret
+
+Func_7538e: ; 7538e (1d:538e)
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	ld a, [wPlayerDenjuu1CurHP]
+	ld [wPartnerDenjuuHPRemaining], a
+	xor a
+	ld [wd401], a
+	ld [wBattleSubroutine], a
+	ld a, $1f
+	ld [wSubroutine], a
+	ld a, $3
+	ld [wGameRoutine], a
+	ret
+
+Func_753ad: ; 753ad (1d:53ad)
+	call OpenSRAMBank2
+	ld hl, sAddressBook + $1
+	ld de, $10
+	ld b, $0
+.asm_753b8
+	add hl, de
+	inc b
+	ld a, [hl]
+	cp $0
+	jr nz, .asm_753b8
+	ld a, b
+	ld [wd4a7], a
+	ld a, [wd4a7]
+	ld hl, sAddressBook + $0
+	call Func_3d0e
+	push hl
+	ld a, [wd480]
+	ld [hli], a
+	ld a, [wd481]
+	ld [hli], a
+	ld a, [wd482]
+	ld [hli], a
+	ld a, [wd483]
+	ld [hli], a
+	pop hl
+	call Func_0648
+	call OpenSRAMBank2
+	ld a, [wd4a7]
+	ld hl, sAddressBook + $8
+	call Func_3d0e
+	push hl
+	call Func_0671
+	pop hl
+	ld a, c
+	ld [hl], a
+	call CloseSRAM
+	ret
+
+Func_753f8: ; 753f8 (1d:53f8)
+	ld b, $0
+	ld hl, wd000
+	ld a, $0
+	ld [wd4b0], a
+.asm_75402
+	ld a, [wcb3f]
+	cp $0
+	jr z, .asm_7540f
+	ld a, [wd4a7]
+	cp b
+	jr z, .asm_7542d
+.asm_7540f
+	push hl
+	push bc
+	call OpenSRAMBank2
+	ld hl, sAddressBook + $0
+	ld a, b
+	call Func_3d0e
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	pop bc
+	pop hl
+	cp $0
+	jr z, .asm_7542d
+	ld a, d
+	ld [hli], a
+	ld a, [wd4b0]
+	inc a
+	ld [wd4b0], a
+.asm_7542d
+	inc b
+	ld a, $fe
+	cp b
+	jr nz, .asm_75402
+	ld hl, wd000
+	ld a, [wd480]
+	ld b, a
+	ld a, [wd4b0]
+	ld c, a
+.asm_7543e
+	ld a, [hl]
+	cp b
+	jr z, .asm_7544d
+	inc hl
+	dec c
+	jr nz, .asm_7543e
+	ld a, $0
+	ld [wd40a], a
+	jr .asm_75452
+
+.asm_7544d
+	ld a, $1
+	ld [wd40a], a
+.asm_75452
+	call CloseSRAM
+	ret
+
+Func_75456: ; 75456 (1d:5456)
+	ld a, $0
+	call Func_0543
+	call Func_7545f
+	ret
+
+Func_7545f: ; 7545f (1d:545f)
+	ld a, $0
+	ld bc, $4
+	call Func_1196
+	ld a, $1
+	ld [wOBPalUpdate], a
+	ret
+
+Func_7546d: ; 7546d (1d:546d)
+	ld a, [wd40d]
+	cp $1
+	jr z, .asm_75478
+	ld a, $18
+	jr .asm_7547a
+
+.asm_75478
+	ld a, $48
+.asm_7547a
+	ld [wSpriteInitXCoordBuffers], a
+	ld a, $80
+	ld [wSpriteInitYCoordBuffers], a
+	ld a, $0
+	ld [wWhichBattleMenuCursor], a
+	ld a, $d0
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	jp InitBattleMenuCursor
+
+Func_7548f: ; 7548f (1d:548f)
+	ld a, [wd401]
+	jump_table
+	dw Func_754b1
+	dw Func_75534
+	dw Func_756e8
+	dw Func_75770
+	dw Func_75782
+	dw Func_75791
+	dw Func_75541
+	dw Func_755f6
+	dw Func_75693
+	dw Func_756b0
+	dw Func_75610
+	dw Func_75632
+
+Func_754b1: ; 754b1 (1d:54b1)
+	ld bc, $16
+	call DecompressGFXByIndex_
+	ld bc, $9
+	call DecompressGFXByIndex_
+	ld bc, $19
+	call DecompressGFXByIndex_
+	ld bc, $e
+	call GetCGB_BGLayout_
+	ld a, $28
+	call Func_3eb9
+	ld a, $4
+	ld bc, $5
+	call Func_10ee
+	ld a, BANK(GFX_e1560)
+	ld hl, VTilesOB tile $40
+	ld de, GFX_e1560
+	ld bc, $10 tiles
+	call FarCopy2bpp_2
+	ld a, $2
+	ld bc, $1fe
+	call Func_1196
+	lb bc, 0, $0
+	ld e, $70
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, 0, $0
+	ld e, $70
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	ld hl, VTilesBG tile $58
+	ld a, $8
+	call ClearString
+	ld a, $0
+	ld [wd40a], a
+	ld a, $2b
+	call GetMusicBank
+	ld [H_MusicID], a
+	lb bc, $6, $5
+	ld e, $8b
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld a, $c
+	ld hl, VTilesBG tile $10
+	call ClearString
+	ld a, $4
+	call Func_050a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_75534: ; 75534 (1d:5534)
+	ld a, $0
+	call PaletteFade_
+	or a
+	ret z
+	ld a, $6
+	ld [wd401], a
+	ret
+
+Func_75541: ; 75541 (1d:5541)
+	ld a, [wPlayerDenjuu1ArrivedStatus]
+	cp $b
+	jr nz, .asm_7554f
+	ld a, $0
+	ld [wd40a], a
+	jr .asm_75571
+
+.asm_7554f
+	ld a, [wPlayerDenjuu2ArrivedStatus]
+	cp $b
+	jr nz, .asm_7555d
+	ld a, $1
+	ld [wd40a], a
+	jr .asm_75571
+
+.asm_7555d
+	ld a, [wPlayerDenjuu3ArrivedStatus]
+	cp $b
+	jr nz, .asm_7556b
+	ld a, $2
+	ld [wd40a], a
+	jr .asm_75571
+
+.asm_7556b
+	ld a, $3
+	ld [wd401], a
+	ret
+
+.asm_75571
+	ld a, [wd40a]
+	ld hl, wPlayerDenjuu1Species
+	call Func_7404f
+	ld a, [wCurDenjuuBufferSpecies]
+	call Func_74066
+	ld a, [wCurDenjuuBuffer]
+	ld de, VTilesBG tile $10
+	call Func_3d95
+	lb bc, $6, $5
+	ld e, $8b
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld a, [wCurDenjuuBuffer]
+	push af
+	ld c, $0
+	ld de, VTilesShared tile $00
+	call LoadDenjuuPic_
+	pop af
+	call GetDenjuuPalette_Pal6
+	ld a, [wCurDenjuuBufferSpecies]
+	ld [wCurDenjuu], a
+	ld c, $c
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	dec a
+	push af
+	ld c, $0
+	ld de, VTilesBG tile $20
+	call LoadDenjuuPic_
+	pop af
+	call GetDenjuuPalette_Pal7
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld a, [wCurDenjuuBuffer]
+	ld de, DenjuuNames
+	ld bc, VTilesBG tile $58
+	call GetAndPrintName75CenterAlign
+	ld a, $0
+	ld [wd44c], a
+	ld a, [wCurDenjuuBufferLevel]
+	hlbgcoord 10, 2
+	ld c, $1
+	call Func_1430
+	ld b, $0
+	ld a, [wCurDenjuuStat]
+	dec a
+	ld c, a
+	ld hl, DENJUU_DEX_CAUGHT_FLAGS
+	add hl, bc
+	ld b, h
+	ld c, l
+	call SetEventFlag
+	ld a, $7
+	ld [wd401], a
+	ret
+
+Func_755f6: ; 755f6 (1d:55f6)
+	lb bc, 0, $4
+	ld e, $a0
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, 0, $5
+	ld e, $92
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	ld a, $a
+	ld [wd401], a
+	ret
+
+Func_75610: ; 75610 (1d:5610)
+	ld a, $1
+	ld [wc46c], a
+	ld a, $1
+	ld [wc46d], a
+	ld hl, wc460
+	ld a, $21
+	ld [hli], a
+	ld a, $0
+	ld [hli], a
+	ld a, $5f
+	ld [hli], a
+	ld a, $0
+	ld [wd4cf], a
+	ld [hl], a
+	ld a, $b
+	ld [wd401], a
+	ret
+
+Func_75632: ; 75632 (1d:5632)
+	call Func_75657
+	cp $0
+	jr z, .asm_75640
+	ld a, $0
+	ld [wd4cf], a
+	jr .asm_75645
+
+.asm_75640
+	ld a, $80
+	ld [wd4cf], a
+.asm_75645
+	ld a, [wd4cf]
+	ld [wc463], a
+	ld a, [wd44c]
+	cp $e6
+	ret c
+	ld a, $8
+	ld [wd401], a
+	ret
+
+Func_75657: ; 75657 (1d:5657)
+	ld c, $0
+	ld a, [wd44c]
+	inc a
+	ld [wd44c], a
+	cp $55
+	jr nc, .asm_75669
+	and $e
+	jr z, .asm_7567b
+	ret
+
+.asm_75669
+	cp $96
+	jr nc, .asm_75672
+	and $6
+	jr z, .asm_7567b
+	ret
+
+.asm_75672
+	cp $e6
+	jr nc, .asm_7567b
+	and $2
+	jr z, .asm_7567b
+	ret
+
+.asm_7567b
+	inc c
+	ret
+
+Func_7567d: ; 7567d (1d:567d)
+	ld a, [wSubroutine]
+	push af
+	ld a, $4
+	ld [wSubroutine], a
+	callba Func_3079c
+	pop af
+	ld [wSubroutine], a
+	ret
+
+Func_75693: ; 75693 (1d:5693)
+	ld a, [wCurDenjuuStat]
+	dec a
+	ld de, DenjuuNames
+	ld bc, VTilesBG tile $58
+	call GetAndPrintName75CenterAlign
+	ld a, [wCurDenjuuStat]
+	dec a
+	ld de, VTilesBG tile $10
+	call Func_3d95
+	ld a, $9
+	ld [wd401], a
+	ret
+
+Func_756b0: ; 756b0 (1d:56b0)
+	lb bc, 0, $4
+	ld e, $a2
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, $6, $5
+	ld e, $a1
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, $6, $5
+	ld e, $8b
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	ld a, [wCurDenjuuStat]
+	dec a
+	ld de, $4000
+	call Func_74066
+	ld a, $15
+	ld [H_SFX_ID], a
+	ld c, $1a
+	call Func_3d02
+	ld a, $2
+	ld [wd401], a
+	ret
+
+Func_756e8: ; 756e8 (1d:56e8)
+	call PrintText_
+	ld a, [wVBlankCounter]
+	and $3
+	jr nz, .asm_756fa
+	callba Func_33303
+.asm_756fa
+	call Func_7567d
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	call Func_757b4
+	ld a, [wd40a]
+	cp $0
+	jr z, .asm_75718
+	cp $1
+	jr z, .asm_75736
+	jr .asm_75751
+
+.asm_75718
+	ld a, $3
+	ld [wPlayerDenjuu1ArrivedStatus], a
+	call OpenSRAMBank2
+	ld hl, sAddressBook + $0
+	ld a, [wPlayerDenjuu1Field0x0d]
+	call Func_3d0e
+	ld a, [wCurDenjuuStat]
+	dec a
+	ld [wPlayerDenjuu1Species], a
+	ld [hl], a
+	ld [wc912], a
+	jr .asm_7576a
+
+.asm_75736
+	ld a, $3
+	ld [wPlayerDenjuu2ArrivedStatus], a
+	call OpenSRAMBank2
+	ld a, [wPlayerDenjuu2Field0x0d]
+	ld hl, sAddressBook + $0
+	call Func_3d0e
+	ld a, [wCurDenjuuStat]
+	dec a
+	ld [wPlayerDenjuu2Species], a
+	ld [hl], a
+	jr .asm_7576a
+
+.asm_75751
+	ld a, $3
+	ld [wPlayerDenjuu3ArrivedStatus], a
+	call OpenSRAMBank2
+	ld a, [wPlayerDenjuu3Field0x0d]
+	ld hl, sAddressBook + $0
+	call Func_3d0e
+	ld a, [wCurDenjuuStat]
+	dec a
+	ld [wPlayerDenjuu3], a
+	ld [hl], a
+.asm_7576a
+	ld a, $6
+	ld [wd401], a
+	ret
+
+Func_75770: ; 75770 (1d:5770)
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_75782: ; 75782 (1d:5782)
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_75791: ; 75791 (1d:5791)
+	ld a, $0
+	ld [wc46c], a
+	ld a, $0
+	ld [wc46d], a
+	ld hl, wc460
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [wd4cf], a
+	ld [hl], a
+	xor a
+	ld [wd401], a
+	jp NextBattleSubroutine
+
+Func_757b4: ; 757b4 (1d:57b4)
+	ld b, $c
+	ld hl, wOAMAnimation01_PriorityFlags
+	ld de, $20
+	xor a
+.asm_757bd
+	ld [hl], a
+	add hl, de
+	dec b
+	jr nz, .asm_757bd
+	ret
+
+Func_757c3: ; 757c3 (1d:57c3)
+	ld a, [wd401]
+	jump_table
+	dw Func_757d9
+	dw Func_758ad
+	dw Func_758bc
+	dw Func_758cd
+	dw Func_758df
+	dw Func_758ee
+
+Func_757d9: ; 757d9 (1d:57d9)
+	ld bc, $16
+	call DecompressGFXByIndex_
+	ld bc, $9
+	call DecompressGFXByIndex_
+	ld bc, $e
+	call GetCGB_BGLayout_
+	ld a, $28
+	call Func_3eb9
+	lb bc, 0, $0
+	ld e, $70
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, 0, $0
+	ld e, $70
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	lb bc, $6, $5
+	ld e, $91
+	ld a, $0
+	call LoadStdBGMapLayout_
+	lb bc, $6, $5
+	ld e, $8b
+	ld a, $0
+	call LoadStdBGMapAttrLayout_
+	ld a, [wd40c]
+	cp $1
+	jr z, .asm_75824
+	call Func_758f8
+	jr .asm_7582a
+
+.asm_75824
+	ld a, [wcdb4]
+	ld [wd4eb], a
+.asm_7582a
+	call OpenSRAMBank2
+	ld hl, sAddressBook + $0
+	ld a, [wd4eb]
+	call Func_3d0e
+	push hl
+	ld a, [hli]
+	ld [wd492], a
+	ld a, [hl]
+	ld [wd493], a
+	pop hl
+	ld a, $10
+.asm_75842
+	ld [hl], $0
+	inc hl
+	dec a
+	jr nz, .asm_75842
+	call CloseSRAM
+	ld a, [wd40c]
+	dec a
+	ld [wd40c], a
+	ld a, [wd4eb]
+	ld c, a
+	call Func_06a4
+	ld a, $0
+	ld [wcd24], a
+	ld a, [wd492]
+	ld de, VTilesBG tile $10
+	call Func_3d95
+	ld a, [wd492]
+	push af
+	ld c, $0
+	ld de, VTilesShared tile $00
+	call LoadDenjuuPic_
+	pop af
+	call GetDenjuuPalette_Pal7
+	ld hl, VTilesBG tile $58
+	ld a, $8
+	call ClearString
+	ld hl, VTilesBG tile $58
+	ld a, [wd4eb]
+	call Func_3e19
+	ld c, $9
+	call Func_3d02
+	ld a, [wd493]
+	hlbgcoord 10, 2
+	ld c, $1
+	call Func_1430
+	ld a, $2e
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, $4
+	call Func_050a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_758ad: ; 758ad (1d:58ad)
+	ld a, $0
+	call PaletteFade_
+	or a
+	ret z
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_758bc: ; 758bc (1d:58bc)
+	call PrintText_
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_758cd: ; 758cd (1d:58cd)
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_758df: ; 758df (1d:58df)
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	ld a, [wd401]
+	inc a
+	ld [wd401], a
+	ret
+
+Func_758ee: ; 758ee (1d:58ee)
+	xor a
+	ld [wd401], a
+	ld a, $9
+	ld [wBattleSubroutine], a
+	ret
+
+Func_758f8: ; 758f8 (1d:58f8)
+	ld b, $fe
+	ld hl, wd000
+.asm_758fd
+	ld a, $0
+	ld [hli], a
+	dec b
+	jr nz, .asm_758fd
+	ld b, $0
+	ld hl, wd000
+.asm_75908
+	ld a, [wcdb4]
+	cp b
+	jr z, .asm_75923
+	push hl
+	push bc
+	call OpenSRAMBank2
+	ld hl, sAddressBook + $1
+	ld a, b
+	call Func_3d0e
+	ld a, [hl]
+	pop bc
+	pop hl
+	cp $0
+	jr z, .asm_75923
+	ld a, b
+	ld [hli], a
+.asm_75923
+	inc b
+	ld a, $fe
+	cp b
+	jr nz, .asm_75908
+	ld c, $0
+	ld a, $0
+	ld [wd4eb], a
+	ld a, [wd40c]
+	cp $2
+	jp z, Func_7597b
+	dec a
+	ld [wd40a], a
+.asm_7593c
+	push bc
+	ld hl, wd000
+	ld d, $0
+	ld a, [wd4eb]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld hl, sAddressBook + $2
+	call Func_3d0e
+	ld a, [hl]
+	ld [wd40b], a
+	pop bc
+	push bc
+	ld a, c
+	ld hl, wd000
+.asm_75958
+	inc hl
+	dec a
+	jr nz, .asm_75958
+	ld a, [hl]
+	ld hl, sAddressBook + $2
+	call Func_3d0e
+	pop bc
+	ld a, [wd40b]
+	ld b, a
+	ld a, [hl]
+	cp b
+	jr c, .asm_7596e
+	jr .asm_75972
+
+.asm_7596e
+	ld a, c
+	ld [wd4eb], a
+.asm_75972
+	inc c
+	ld a, [wd40a]
+	ld b, a
+	ld a, c
+	cp b
+	jr nz, .asm_7593c
+Func_7597b: ; 7597b (1d:597b)
+	ld hl, wd000
+	ld d, $0
+	ld a, [wd4eb]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wd4eb], a
+	ret
