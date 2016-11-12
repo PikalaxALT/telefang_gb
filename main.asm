@@ -23121,17 +23121,7 @@ SECTION "bank 1C", ROMX, BANK [$1c]
 INCLUDE "battle/start.asm"
 
 SECTION "bank 1D", ROMX, BANK [$1d]
-BattleResult::
-	dr $74000, $74ff2
-
-Func_74ff2::
-	dr $74ff2, $753f8
-
-Func_753f8::
-	dr $753f8, $758f8
-
-Func_758f8::
-	dr $758f8, $7598a
+INCLUDE "battle/result.asm"
 
 SECTION "bank 1F", ROMX, BANK [$1f]
 Func_7c000::
