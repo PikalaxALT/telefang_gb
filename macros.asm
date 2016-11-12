@@ -187,7 +187,11 @@ ENDC
 ENDM
 
 jump_table: MACRO
+IF _NARG >= 1
+	ld hl, \1
+ELSE
 	ld hl, @ + 6
+ENDC
 	call GetWordFromTable
 	jp [hl]
 ENDM

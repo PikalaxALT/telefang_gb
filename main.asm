@@ -7,7 +7,7 @@ INCLUDE "home.asm"
 SECTION "bank 02", ROMX, BANK [$2]
 Func_8000::
 	ld a, [wSubroutine]
-	jump_table:
+	jump_table
 	dw Func_801a
 	dw Func_8032
 	dw Func_8061
@@ -105,7 +105,7 @@ INCLUDE "engine/intro_movie.asm"
 
 Func_84cf: ; 84cf (2:44cf)
 	ld a, [wSubroutine]
-	jump_table:
+	jump_table
 	dw Func_84e9
 	dw Func_8501
 	dw Func_8530
@@ -23124,14 +23124,7 @@ SECTION "bank 1D", ROMX, BANK [$1d]
 INCLUDE "battle/result.asm"
 
 SECTION "bank 1F", ROMX, BANK [$1f]
-Func_7c000::
-	dr $7c000, $7c61b
-
-Func_7c61b::
-	dr $7c61b, $7d2c3
-
-Func_7d2c3::
-	dr $7d2c3, $7f9d5
+INCLUDE "engine/bank_1f.asm"
 
 SECTION "bank 20", ROMX, BANK [$20]
 INCLUDE "audio/engine_20.asm"

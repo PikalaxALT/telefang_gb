@@ -1768,7 +1768,7 @@ Func_192a: ; 192a (0:192a)
 
 PlayMoveAnimation_grp1: ; 1939 (0:1939)
 	ld a, [wd4fc]
-	jump_table:
+	jump_table
 	dw EndMoveAnimation  ; DUMMY_0
 	dw ClawAnimation ; CLAW                     IRON_CLAW
 	dw RushAnimation ; RUSH                     ASSAULT
@@ -1833,7 +1833,7 @@ EndMoveAnimation::
 
 PlayMoveAnimation_grp2: ; 1939 (0:1939)
 	ld a, [wd4fc]
-	jump_table:
+	jump_table
 	dw SpeedUpAnimation ; SPEED_UP        QUICK_STEP
 	dw ParameterDownAnimation ; FOCUS           AIM
 	dw AvoidAnimation ; AVOID           EVADE
