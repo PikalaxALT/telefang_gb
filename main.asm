@@ -24166,19 +24166,338 @@ Func_a4560: ; a4560 (29:4560)
 	ret
 
 Data_a4588:
-	dr $a4588, $a4888
+INCLUDE "data/unknown_a4588.asm"
 
 Data_a4888:
-	dr $a4888, $a49b8
+INCLUDE "data/unknown_a4888.asm"
 
-Func_a49b8:
-	dr $a49b8, $a4ba4
+Func_a49b8: ; a49b8 (29:49b8)
+	ld hl, VTilesBG tile $60
+	ld de, GFX_a49c4
+	ld bc, $200
+	jp Copy2bpp_2
 
-Func_a4ba4::
-	dr $a4ba4, $a4c9b
+GFX_a49c4: INCBIN "gfx/misc/a49c4.w24.interleave.2bpp"
 
-Func_a4c9b::
-	dr $a4c9b, $a4e02
+Func_a4ba4: ; a4ba4 (29:4ba4)
+	ld a, [wc94f]
+	or a
+	ret z
+	ld a, [wc9de]
+	or a
+	jr nz, .asm_a4bc8
+	call Func_2107
+	jr nz, .asm_a4bc8
+	ld a, [wc904]
+	cp $b
+	jr z, .asm_a4bc8
+	ld a, [wcd00]
+	or a
+	jp nz, .asm_a4bc8
+	ld a, [wc907]
+	or a
+	jr nz, .asm_a4bd8
+.asm_a4bc8
+	ld a, $0
+	ld [wc94f], a
+	ld a, $0
+	ld [wcad0], a
+	ld a, $3
+	ld [wcafe], a
+	ret
+
+.asm_a4bd8
+	ld a, [wc94f]
+	cp $c8
+	jr c, .asm_a4be7
+	ld a, [wc94f]
+	dec a
+	ld [wc94f], a
+	ret
+
+.asm_a4be7
+	ld a, [wc49a]
+	cp $0
+	ret nz
+	ld a, [wVBlankCounter]
+	and $3
+	jr nz, .asm_a4c05
+	ld a, [wc94f]
+	dec a
+	ld [wc94f], a
+	jr nz, .asm_a4c05
+	ld a, $0
+	ld [wcad0], a
+	call Func_342a
+.asm_a4c05
+	ld a, [hJoyNew]
+	and $1
+	ret z
+	ld a, $0
+	ld [wc94f], a
+	call Func_342a
+	ld a, [wc94d]
+	ld e, a
+	ld a, [wc94e]
+	ld d, a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld a, $7
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [de]
+	dec de
+	push af
+	call Func_a4e12
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld a, [wc94d]
+	ld l, a
+	ld a, [wc94e]
+	ld h, a
+	ld a, [hl]
+	ld b, a
+	ld [wCustomSpriteDest], a
+	callba Func_a92a2
+	ld a, $0
+	ld [MBC3SRamEnable], a
+	call Func_30a7
+	cp $b4
+	jr nc, .asm_a4c62
+	call Func_a4ca1
+	jr .asm_a4c85
+
+.asm_a4c62
+	ld a, $0
+	ld [wc942], a
+	ld a, [wc943]
+	ld c, a
+	inc a
+	cp $c8
+	jr c, .asm_a4c71
+	xor a
+.asm_a4c71
+	ld [wc943], a
+	ld e, $15
+	call Multiply_C_by_E
+	ld hl, $4000
+	add hl, de
+	ld a, l
+	ld [wcafb], a
+	ld a, h
+	ld [wcafc], a
+.asm_a4c85
+	callba Func_2cea0
+	ld b, $0
+	ld c, $99
+	pop af
+	call Func_33c9
+	ld a, $4
+	ld [wc900], a
+	ret
+
+Func_a4c9b: ; a4c9b (29:4c9b)
+	ld a, [wc912]
+	ld [wCustomSpriteDest], a
+Func_a4ca1: ; a4ca1 (29:4ca1)
+	push hl
+	push de
+	call Func_30a7
+	cp $99
+	jr c, .asm_a4cc5
+	ld a, $1
+	ld [wc942], a
+	call Func_30a7
+	ld c, a
+	ld e, $69
+	call Multiply_C_by_E
+	ld l, d
+	ld b, $13
+	ld a, l
+	ld [wcafb], a
+	ld a, b
+	ld [wcafc], a
+	jr .asm_a4cea
+
+.asm_a4cc5
+	ld a, $1
+	ld [wc942], a
+	ld a, [wcd26]
+	ld e, a
+	ld c, $a
+	call Multiply_C_by_E
+	ld a, [wc944]
+	ld c, a
+	inc a
+	cp $a
+	jr c, .asm_a4cdd
+	xor a
+.asm_a4cdd
+	ld [wc944], a
+	add e
+	ld b, $12
+	ld [wcafb], a
+	ld a, b
+	ld [wcafc], a
+.asm_a4cea
+	callba Func_2cea0
+	ld a, [wcafc]
+	ld b, a
+	ld a, [wcafb]
+	ld c, a
+	pop de
+	pop hl
+	ret
+
+Func_a4cfd:
+	ld a, [wc942]
+	or a
+	jr z, .asm_a4d1a
+	ld a, [wc900]
+	inc a
+	ld [wc900], a
+	cp $6
+	jp z, Func_a4db0
+	ld a, [wcafb]
+	ld c, a
+	ld a, [wcafc]
+	ld b, a
+	jp Func_a4d6b
+
+.asm_a4d1a
+	ld a, [wc900]
+	cp $4
+	jr z, .asm_a4d2c
+	cp $5
+	jr z, .asm_a4d39
+	cp $6
+	jr z, .asm_a4d39
+	jp Func_a4db0
+
+.asm_a4d2c
+	ld a, [wcafb]
+	ld l, a
+	ld a, [wcafc]
+	ld h, a
+	call Func_2f90
+	jr asm_a4d59
+
+.asm_a4d39
+	ld a, [wcafb]
+	ld l, a
+	ld a, [wcafc]
+	ld h, a
+	ld bc, EVENT_C3E
+	call CheckEventFlag
+	jr nz, .asm_a4d53
+	ld bc, EVENT_C3F
+	call CheckEventFlag
+	jr nz, asm_a4d9f
+	jr Func_a4db0
+
+.asm_a4d53
+	call Func_2f90
+	inc hl
+	inc hl
+	inc hl
+asm_a4d59
+	ld a, l
+	ld [wcafb], a
+	ld a, h
+	ld [wcafc], a
+	call Func_a4dbb
+	ld a, [wc900]
+	inc a
+	ld [wc900], a
+Func_a4d6b: ; a4d6b (29:4d6b)
+	ld a, $2
+	ld [wc9cf], a
+	ld a, $c0
+	ld [wc91f], a
+	ld a, $e0
+	ld [wc91e], a
+	ld a, $5
+	ld [wca65], a
+	ld d, $c
+	call Func_33d6
+	ld a, $2
+	ld [wc9cd], a
+	ld a, $2
+	ld [wcada], a
+	callba Func_2cce5
+	callba Func_a8c77
+	ret
+
+asm_a4d9f
+	inc hl
+	inc hl
+	inc hl
+	call Func_2f90
+	ld a, $6
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	jp asm_a4d59
+
+Func_a4db0: ; a4db0 (29:4db0)
+	ld a, $1
+	ld [wc900], a
+	ld a, $8
+	ld [wcd10], a
+	ret
+
+Func_a4dbb: ; a4dbb (29:4dbb)
+	push bc
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld hl, sAddressBook + 2
+	ld a, [wcafd]
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld a, [hl]
+	bit 7, e
+	jr nz, .asm_a4dec
+	add e
+	jr nc, .asm_a4df0
+	ld a, $ff
+	jr .asm_a4df0
+
+.asm_a4dec
+	add e
+	jr c, .asm_a4df0
+	xor a
+.asm_a4df0
+	ld [hl], a
+	ld c, a
+	ld a, [wOAMAnimation12_Duration + 3]
+	ld b, a
+	ld a, c
+	sub b
+	ld [wOAMAnimation12_Duration + 6], a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	pop bc
+	ret
 
 Func_a4e02::
 	dr $a4e02, $a4e12
@@ -24548,7 +24867,10 @@ Func_a89e5:
 	dr $a89e5, $a8c50
 
 Func_a8c50::
-	dr $a8c50, $a8c86
+	dr $a8c50, $a8c77
+
+Func_a8c77:
+	dr $a8c77, $a8c86
 
 Func_a8c86::
 	dr $a8c86, $a8d20
@@ -24569,7 +24891,10 @@ Func_a91dc:
 	dr $a91dc, $a9223
 
 Func_a9223:
-	dr $a9223, $a9377
+	dr $a9223, $a92a2
+
+Func_a92a2:
+	dr $a92a2, $a9377
 
 Func_a9377:
 	dr $a9377, $a93cf
