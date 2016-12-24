@@ -23142,17 +23142,30 @@ SECTION "bank 24", ROMX, BANK [$24]
 INCLUDE "audio/engine_24.asm"
 
 SECTION "bank 26", ROMX, BANK [$26]
-	dr $98000, $99068
+Data_98000:
+INCLUDE "data/unknown_98000.asm"
 
 Pointers_99068:
-	dr $99068, $999bf
+INCLUDE "data/unknown_99068.asm"
 
 SECTION "bank 27", ROMX, BANK [$27]
 Data_9c000::
-	dr $9c000, $9c4a4
+rept 6
+x = 1
+y = 0
+rept 99
+y = x + y
+x = x + 1
+if y < 1998
+	dw y
+else
+	dw 1998
+endc
+endr
+endr
 
 Data_9c4a4::
-	dr $9c4a4, $9c715
+INCLUDE "data/unknown_9c4a4.asm"
 
 StatOffsetMultipliers::
 INCLUDE "data/base_stat_offsets.asm"
@@ -23161,7 +23174,12 @@ Data_9cb29::
 INCLUDE "data/move_powers.asm"
 
 Data_9cbb2::
-	dr $9cbb2, $9cbfa
+	ddb 6, 5, 4, 3, 2, 1
+	ddb 5, 6, 5, 4, 3, 2
+	ddb 4, 5, 6, 5, 4, 3
+	ddb 3, 4, 5, 6, 5, 4
+	ddb 2, 3, 4, 5, 6, 5
+	ddb 1, 2, 3, 4, 5, 6
 
 ScriptedEnemyDenjuu::
 INCLUDE "data/scripted_denjuu.asm"
@@ -23170,7 +23188,7 @@ EnemyTFangerParties::
 INCLUDE "data/tfanger_parties.asm"
 
 SECTION "bank 28", ROMX, BANK [$28]
-	dr $a0000, $a3320
+INCBIN "gfx/misc/maptiles.w128.2bpp"
 
 SECTION "bank 29", ROMX, BANK [$29]
 Func_a4000::

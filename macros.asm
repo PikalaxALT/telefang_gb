@@ -24,6 +24,13 @@ INCBIN "baserom-speed.gbc", \1, \2 - \1
 ENDC
 ENDM
 
+ddb: MACRO
+rept _NARG
+	db \1, \1
+	shift
+endr
+ENDM
+
 callba_rst: MACRO
 	ld a, BANK(\1)
 	ld hl, \1
