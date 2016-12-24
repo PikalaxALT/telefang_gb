@@ -23188,26 +23188,991 @@ EnemyTFangerParties::
 INCLUDE "data/tfanger_parties.asm"
 
 SECTION "bank 28", ROMX, BANK [$28]
+rept 16
+IF DEF(POWER)
+	db $ff
+ELSE
+	db $00
+ENDC
+endr
+rept 16
+	db $ff
+endr
+
 INCBIN "gfx/misc/maptiles.w128.2bpp"
 
 SECTION "bank 29", ROMX, BANK [$29]
-Func_a4000::
-	dr $a4000, $a40ef
+Func_a4000:
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld a, [wc924]
+	inc a
+	ld [wc924], a
+	jr nz, .asm_a401a
+	ld a, [wc925]
+	inc a
+	ld [wc925], a
+.asm_a401a
+	push hl
+	call Func_a40b7
+	pop hl
+	ld b, h
+	ld c, l
+	ld a, $6
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	push hl
+	ld hl, $6000
+	add hl, bc
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	ld a, l
+	and $ff
+	ld c, a
+	call Func_a40ef
+	pop hl
+	ld a, [wPrevROMBank]
+	push af
+	push hl
+	push de
+	callba Func_a8539
+	ld a, c
+	pop de
+	pop hl
+	ld [hli], a
+	ld a, [wc906]
+	ld [hli], a
+	pop af
+	ld [wPrevROMBank], a
+	push hl
+	ld l, e
+	ld a, [wc904]
+	sla a
+	or d
+	ld h, a
+	call Func_a4560
+	push bc
+	push de
+	ld a, [wc920]
+	ld l, a
+	ld a, [wc921]
+	ld h, a
+	call Func_a452c
+	pop hl
+	ld a, d
+	or h
+	ld d, a
+	ld a, e
+	or l
+	ld e, a
+	pop hl
+	ld a, c
+	or h
+	ld c, a
+	ld a, b
+	or l
+	ld b, a
+	ld l, $0
+	sla a
+	rl l
+	sla a
+	rl l
+	ld a, b
+	and $3f
+	ld b, a
+	ld a, [wc924]
+	sla a
+	sla a
+	or l
+	pop hl
+	push af
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, b
+	and $3
+	ld [hli], a
+	pop af
+	ld [hli], a
+	xor a
+	ld [hl], a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	ret
 
-Func_a40ef::
-	dr $a40ef, $a4162
+Func_a40b7: ; a40b7 (29:40b7)
+	call Func_30a7
+	and $3
+	ld b, a
+	call Func_30a7
+	ld d, b
+	ld e, a
+	ld hl, sAddressBook + 1
+	ld bc, ADDRESS_BOOK_SIZE
+.asm_a40c8
+	push hl
+	ld a, [hl]
+	or a
+	jr z, .asm_a40e0
+	ld a, $6
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	cp e
+	jr nz, .asm_a40e0
+	ld a, [hl]
+	cp d
+	jr nz, .asm_a40e0
+	pop hl
+	jr Func_a40b7
 
-Func_a4162:
-	dr $a4162, $a4187
+.asm_a40e0
+	pop hl
+	ld a, $10
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_a40c8
+	ret
 
-Func_a4187::
-	dr $a4187, $a42a3
+Func_a40ef: ; a40ef (29:40ef)
+	call Func_a412e
+	call Func_a4121
+	ld b, $0
+	sla c
+	rl b
+	ld hl, $b200
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	push hl
+	ld hl, DenjuuNames
+	ld a, [wCGBPalFadeProgram]
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld c, BANK(DenjuuNames)
+	ld b, $6
+	pop de
+	call FarCopyData_Under256Bytes
+	ret
 
-Func_a42a3::
-	dr $a42a3, $a42e5
+Func_a4121: ; a4121 (29:4121)
+	ld a, c
+	ld hl, $b800
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld [hl], $47
+	ret
 
-Func_a42e5::
-	dr $a42e5, $a4ba4
+Func_a412e: ; a412e (29:412e)
+	push bc
+	push hl
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	ld hl, sAddressBook
+	add hl, bc
+	ld c, [hl]
+	ld a, c
+	ld [wCGBPalFadeProgram], a
+	ld b, $0
+	ld hl, DENJUU_DEX_CAUGHT_FLAGS
+	add hl, bc
+	ld b, h
+	ld c, l
+	call SetEventFlag
+	ld bc, DENJUU_DEX_SEEN_FLAGS - DENJUU_DEX_CAUGHT_FLAGS
+	add hl, bc
+	ld b, h
+	ld c, l
+	call SetEventFlag
+	pop hl
+	pop bc
+	ret
+
+Func_a4162: ; a4162 (29:4162)
+	ld e, $e
+	call Multiply_C_by_E
+	ld hl, Data_a69a9
+	add hl, de
+	ld c, $e
+	ld de, wca00
+.asm_a4170
+	ld b, BANK(Data_a69a9) ; same bank
+	call GetFarByte
+	ld a, b
+	ld [de], a
+	inc hl
+	inc de
+	dec c
+	jr nz, .asm_a4170
+	ld hl, wca00
+	call Func_a4187
+	ld a, b
+	or $80
+	ld b, a
+	ret
+
+Func_a4187: ; a4187 (29:4187)
+	push hl
+	call Func_a4202
+	pop hl
+	jr nz, .asm_a41a1
+	push hl
+	call Func_a4232
+	pop hl
+	jr nz, .asm_a41a1
+	ld a, e
+	ld [wca69], a
+	call Func_a41a7
+	xor a
+	ld a, [wca69]
+	ret
+
+.asm_a41a1
+	xor a
+	ld e, a
+	ld d, a
+	ld c, a
+	ld b, a
+	ret
+
+Func_a41a7: ; a41a7 (29:41a7)
+	inc hl
+	ld a, $8
+	ld [wCustomSpriteDest], a
+	ld b, $0
+	ld c, $0
+	ld d, $0
+	ld e, $0
+.asm_a41b5
+	ld a, [hli]
+	cp $78
+	jr nc, .asm_a41b5
+	push hl
+	push bc
+	push de
+	ld b, a
+	ld a, [wCustomSpriteDest]
+	cp $8
+	jr nz, .asm_a41cc
+	ld a, b
+	cp $6e
+	jr nz, .asm_a41cc
+	ld b, $6a
+.asm_a41cc
+	ld hl, Data_a4888
+	ld a, [wCustomSpriteDest]
+	dec a
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, b
+	sub $60
+	jr nz, .asm_a41e7
+	pop de
+	pop bc
+	pop hl
+	jr .asm_a41f8
+
+.asm_a41e7
+	srl a
+	dec a
+	add a
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	pop de
+	pop bc
+	call Func_a44e5
+	pop hl
+.asm_a41f8
+	ld a, [wCustomSpriteDest]
+	dec a
+	ld [wCustomSpriteDest], a
+	jr nz, .asm_a41b5
+	ret
+
+Func_a4202: ; a4202 (29:4202)
+	ld a, [hli]
+	cp $60
+	jr nz, .asm_a421f
+	ld b, $2
+	call Func_a4220
+	jr nz, .asm_a421f
+	inc hl
+	ld b, $4
+	call Func_a4220
+	jr nz, .asm_a421f
+	inc hl
+	ld b, $5
+	call Func_a4220
+	jr nz, .asm_a421f
+	ret
+
+.asm_a421f
+	ret
+
+Func_a4220: ; a4220 (29:4220)
+	ld c, $0
+.asm_a4222
+	ld a, [hli]
+	cp $78
+	jr c, .asm_a4228
+	inc c
+.asm_a4228
+	dec b
+	jr nz, .asm_a4222
+	ld a, c
+	cp $1
+	jr nz, .asm_a4231
+	ret
+
+.asm_a4231
+	ret
+
+Func_a4232: ; a4232 (29:4232)
+	ld b, $0
+	ld c, $0
+	ld d, $0
+	inc hl
+	ld a, [hli]
+	cp $78
+	jr nc, .asm_a4243
+	ld b, $10
+	ld a, [hli]
+	jr .asm_a4244
+
+.asm_a4243
+	inc hl
+.asm_a4244
+	cp $78
+	jr z, .asm_a4249
+	inc b
+.asm_a4249
+	inc hl
+	ld e, $4
+.asm_a424c
+	ld a, [hli]
+	cp $78
+	jr nc, .asm_a425a
+	dec e
+	jr z, .asm_a42a0
+	ld a, c
+	add $10
+	ld c, a
+	jr .asm_a424c
+
+.asm_a425a
+	push af
+	ld a, e
+	dec a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	pop af
+	cp $78
+	jr z, .asm_a4269
+	inc c
+.asm_a4269
+	inc hl
+	ld e, $5
+.asm_a426c
+	ld a, [hli]
+	cp $78
+	jr nc, .asm_a427a
+	dec e
+	jr z, .asm_a42a0
+	ld a, d
+	add $10
+	ld d, a
+	jr .asm_a426c
+
+.asm_a427a
+	push af
+	ld a, e
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	pop af
+	cp $78
+	jr z, .asm_a4288
+	inc d
+.asm_a4288
+	ld e, $0
+	ld hl, Data_a4588
+.asm_a428d
+	ld a, [hli]
+	cp b
+	jr nz, .asm_a429b
+	ld a, [hli]
+	cp c
+	jr nz, .asm_a429c
+	ld a, [hli]
+	cp d
+	jr nz, .asm_a429d
+	xor a
+	ret
+
+.asm_a429b
+	inc hl
+.asm_a429c
+	inc hl
+.asm_a429d
+	inc e
+	jr nz, .asm_a428d
+.asm_a42a0
+	or $1
+	ret
+
+Func_a42a3: ; a42a3 (29:42a3)
+	push hl
+	call Func_a42e5
+	push de
+	call Func_a49b8
+	pop de
+	pop hl
+	push hl
+	push de
+	call Func_a42bb
+	pop de
+	pop hl
+	ld bc, $20
+	add hl, bc
+	jp Func_a42cf
+
+Func_a42bb: ; a42bb (29:42bb)
+	ld b, $7
+.asm_a42bd
+	di
+.asm_a42be
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_a42be
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	ld [hli], a
+	ei
+	inc de
+	dec b
+	jr nz, .asm_a42bd
+	ret
+
+Func_a42cf: ; a42cf (29:42cf)
+	ld b, $7
+.asm_a42d1
+	di
+.asm_a42d2
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_a42d2
+	ld a, [de]
+	inc de
+	inc a
+	ld [hli], a
+	ld a, [de]
+	inc a
+	ld [hli], a
+	ei
+	inc de
+	dec b
+	jr nz, .asm_a42d1
+	ret
+
+Func_a42e5: ; a42e5 (29:42e5)
+	push af
+	call Func_a43f8
+	pop af
+	ld hl, Data_a4588
+	ld c, a
+	ld b, $0
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, wca00
+	ld a, $60
+	ld [hli], a
+	ld a, [wca10]
+	ld b, a
+	ld a, [de]
+	inc de
+	ld c, $78
+	bit 0, a
+	jr z, .asm_a4309
+	ld c, $7c
+.asm_a4309
+	swap a
+	and $7
+	or a
+	jr nz, .asm_a4313
+	ld a, c
+	ld c, b
+	ld b, a
+.asm_a4313
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, $7a
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld c, $78
+	bit 0, a
+	jr z, .asm_a4324
+	ld c, $7c
+.asm_a4324
+	swap a
+	and $7
+	cp $3
+	jr z, .asm_a4364
+	cp $2
+	jr z, .asm_a4354
+	cp $1
+	jr z, .asm_a4344
+	ld a, c
+	ld [hli], a
+	ld a, [wca11]
+	ld [hli], a
+	ld a, [wca12]
+	ld [hli], a
+	ld a, [wca13]
+	ld [hli], a
+	jr .asm_a4372
+
+.asm_a4344
+	ld a, [wca11]
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, [wca12]
+	ld [hli], a
+	ld a, [wca13]
+	ld [hli], a
+	jr .asm_a4372
+
+.asm_a4354
+	ld a, [wca11]
+	ld [hli], a
+	ld a, [wca12]
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, [wca13]
+	ld [hli], a
+	jr .asm_a4372
+
+.asm_a4364
+	ld a, [wca11]
+	ld [hli], a
+	ld a, [wca12]
+	ld [hli], a
+	ld a, [wca13]
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+.asm_a4372
+	ld a, $7a
+	ld [hli], a
+	ld a, [de]
+	ld c, $78
+	bit 0, a
+	jr z, .asm_a437e
+	ld c, $7c
+.asm_a437e
+	swap a
+	and $7
+	cp $4
+	jr z, .asm_a43e2
+	cp $3
+	jr z, .asm_a43ce
+	cp $2
+	jr z, .asm_a43ba
+	cp $1
+	jr z, .asm_a43a6
+	ld a, c
+	ld [hli], a
+	ld a, [wca14]
+	ld [hli], a
+	ld a, [wca15]
+	ld [hli], a
+	ld a, [wca16]
+	ld [hli], a
+	ld a, [wca17]
+	ld [hli], a
+	jr .asm_a43f4
+
+.asm_a43a6
+	ld a, [wca14]
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, [wca15]
+	ld [hli], a
+	ld a, [wca16]
+	ld [hli], a
+	ld a, [wca17]
+	ld [hli], a
+	jr .asm_a43f4
+
+.asm_a43ba
+	ld a, [wca14]
+	ld [hli], a
+	ld a, [wca15]
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, [wca16]
+	ld [hli], a
+	ld a, [wca17]
+	ld [hli], a
+	jr .asm_a43f4
+
+.asm_a43ce
+	ld a, [wca14]
+	ld [hli], a
+	ld a, [wca15]
+	ld [hli], a
+	ld a, [wca16]
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, [wca17]
+	ld [hli], a
+	jr .asm_a43f4
+
+.asm_a43e2
+	ld a, [wca14]
+	ld [hli], a
+	ld a, [wca15]
+	ld [hli], a
+	ld a, [wca16]
+	ld [hli], a
+	ld a, [wca17]
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+.asm_a43f4
+	ld de, wca00
+	ret
+
+Func_a43f8: ; a43f8 (29:43f8)
+	push bc
+	ld a, b
+	and $3
+	ld b, a
+	ld hl, Data_a44d5
+	ld a, $ff
+	ld [wCustomSpriteDest], a
+.asm_a4405
+	ld a, [wCustomSpriteDest]
+	inc a
+	ld [wCustomSpriteDest], a
+	push bc
+	push de
+	call Func_a44e5
+	jr z, .asm_a4417
+	add sp, $4
+	jr .asm_a4405
+
+.asm_a4417
+	pop de
+	pop bc
+	pop af
+	and $80
+	jr nz, .asm_a442a
+	ld a, [wCustomSpriteDest]
+	cp $5
+	jr nz, .asm_a442a
+	ld a, $7
+	ld [wCustomSpriteDest], a
+.asm_a442a
+	ld a, [wCustomSpriteDest]
+	ld [wca10], a
+	ld hl, Data_a44d9
+	ld a, $ff
+	ld [wCustomSpriteDest], a
+.asm_a4438
+	ld a, [wCustomSpriteDest]
+	inc a
+	ld [wCustomSpriteDest], a
+	push bc
+	push de
+	call Func_a44e5
+	jr z, .asm_a444a
+	add sp, $4
+	jr .asm_a4438
+
+.asm_a444a
+	pop de
+	pop bc
+	ld a, [wCustomSpriteDest]
+	ld [wca11], a
+	ld hl, Data_a44dd
+	ld a, $ff
+	ld [wCustomSpriteDest], a
+.asm_a445a
+	ld a, [wCustomSpriteDest]
+	inc a
+	ld [wCustomSpriteDest], a
+	push bc
+	push de
+	call Func_a44e5
+	jr z, .asm_a446c
+	add sp, $4
+	jr .asm_a445a
+
+.asm_a446c
+	pop de
+	pop bc
+	ld a, [wCustomSpriteDest]
+	ld [wca12], a
+	ld hl, Data_a44e1
+	ld a, $ff
+	ld [wCustomSpriteDest], a
+.asm_a447c
+	ld a, [wCustomSpriteDest]
+	inc a
+	ld [wCustomSpriteDest], a
+	push bc
+	push de
+	call Func_a44e5
+	jr z, .asm_a448e
+	add sp, $4
+	jr .asm_a447c
+
+.asm_a448e
+	pop hl
+	add sp, $2
+	ld a, [wCustomSpriteDest]
+	ld [wca13], a
+	ld bc, $fc18
+	ld a, $ff
+.asm_a449c
+	inc a
+	ld d, h
+	ld e, l
+	add hl, bc
+	jr c, .asm_a449c
+	ld [wca14], a
+	ld h, d
+	ld l, e
+	ld bc, hFF9C
+	ld a, $ff
+.asm_a44ac
+	inc a
+	ld d, h
+	ld e, l
+	add hl, bc
+	jr c, .asm_a44ac
+	ld [wca15], a
+	ld a, e
+	ld c, $f6
+	ld d, $ff
+.asm_a44ba
+	inc d
+	ld b, a
+	add c
+	jr c, .asm_a44ba
+	ld a, d
+	ld [wca16], a
+	ld a, b
+	ld [wca17], a
+	ld b, $8
+	ld hl, wca10
+.asm_a44cc
+	ld a, [hl]
+	add a
+	add $60
+	ld [hli], a
+	dec b
+	jr nz, .asm_a44cc
+	ret
+
+Data_a44d5:
+	db $80, $69, $67, $ff
+
+Data_a44d9:
+	db $c0, $bd, $f0, $ff
+
+Data_a44dd:
+	db $60, $79, $fe, $ff
+
+Data_a44e1:
+	db $f0, $d8, $ff, $ff
+
+Func_a44e5: ; a44e5 (29:44e5)
+	ld a, [hli]
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, $0
+	adc c
+	ld c, a
+	ld a, $0
+	adc b
+	ld b, a
+	ld a, $0
+	adc $0
+	ld [wca6a], a
+	ld a, [hli]
+	add d
+	ld d, a
+	ld a, $0
+	adc c
+	ld c, a
+	ld a, $0
+	adc b
+	ld b, a
+	ld a, [wca6a]
+	adc $0
+	ld [wca6a], a
+	ld a, [hli]
+	add c
+	ld c, a
+	ld a, $0
+	adc b
+	ld b, a
+	ld a, [wca6a]
+	adc $0
+	ld [wca6a], a
+	ld a, [hl]
+	dec hl
+	dec hl
+	dec hl
+	add b
+	ld b, a
+	ld a, [wca6a]
+	adc $0
+	ld [wca6a], a
+	ret
+
+Func_a452c: ; a452c (29:452c)
+	xor a
+	ld b, a
+	ld c, a
+	ld d, a
+	ld e, a
+	ld a, $10
+	ld [wca6a], a
+.asm_a4536
+	sla e
+	rl d
+	rl c
+	rl b
+	sla e
+	rl d
+	rl c
+	rl b
+	sla l
+	rl h
+	jr nc, .asm_a454e
+	set 0, e
+.asm_a454e
+	ld a, [wca6a]
+	dec a
+	ld [wca6a], a
+	jr nz, .asm_a4536
+	sla e
+	rl d
+	rl c
+	rl b
+	ret
+
+Func_a4560: ; a4560 (29:4560)
+	xor a
+	ld b, a
+	ld c, a
+	ld d, a
+	ld e, a
+	ld a, $10
+	ld [wca6a], a
+.asm_a456a
+	sla e
+	rl d
+	rl c
+	rl b
+	sla l
+	rl h
+	rl e
+	rl d
+	rl c
+	rl b
+	ld a, [wca6a]
+	dec a
+	ld [wca6a], a
+	jr nz, .asm_a456a
+	ret
+
+Data_a4588:
+	dr $a4588, $a4888
+
+Data_a4888:
+	dr $a4888, $a49b8
+
+Func_a49b8:
+	dr $a49b8, $a4ba4
 
 Func_a4ba4::
 	dr $a4ba4, $a4c9b
@@ -23312,7 +24277,13 @@ Func_a5f82:
 	dr $a5f82, $a5f9b
 
 Func_a5f9b:
-	dr $a5f9b, $a6b69
+	dr $a5f9b, $a5f9f
+
+Data_a5f9f:
+	dr $a5f9f, $a69a9
+
+Data_a69a9:
+	dr $a69a9, $a6b69
 
 Data_a6b69::
 	dr $a6b69, $a6d29
