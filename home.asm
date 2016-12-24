@@ -5890,12 +5890,14 @@ Func_35e0: ; 35e0 (0:35e0)
 	homecall Func_a50cd
 	pop af
 	rst Bankswitch
+Func_3672:
 	ld de, TileMap_e03f0
 	ld a, [wc93e]
 	or a
-	jr nz, .asm_367e
+	jr nz, asm_367e
+Func_367b:
 	ld de, TileMap_e03c8
-.asm_367e
+asm_367e
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(TileMap_e03c8)
@@ -5970,6 +5972,7 @@ Func_36cf: ; 36cf (0:36cf)
 	call Copy2bpp_2
 	pop af
 	rst Bankswitch
+Func_36f3:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(GFX_e0778)

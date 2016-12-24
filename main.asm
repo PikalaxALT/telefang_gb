@@ -24882,6 +24882,7 @@ Func_a5060: ; a5060 (29:5060)
 	ld a, [wVBlankCounter]
 	and $3
 	ret nz
+Func_a5066:
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	ld a, $0
@@ -24932,35 +24933,922 @@ Func_a50be: ; a50be (29:50be)
 	jr z, Func_a50cd
 	cp $5
 	ret nz
-Func_a50cd::
-	dr $a50cd, $a5245
+Func_a50cd: ; a50cd (29:50cd)
+	call Func_a51ee
+Func_a50d0: ; a50d0 (29:50d0)
+	ld a, [wc93e]
+	or a
+	jr z, .asm_a5126
+	ld a, [wc9eb]
+	ld b, a
+	ld a, [wc93b]
+	cp b
+	jr z, .asm_a5126
+	ld [wc9eb], a
+	call Func_a51d6
+	ld hl, VTilesShared tile $2c
+	ld de, GFX_e2d54
+	push bc
+	ld a, c
+	swap a
+	ld c, a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, c
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld bc, $20
+	ld a, BANK(GFX_e2d54)
+	call FarCopy2bpp_2
+	pop bc
+	ld hl, VTilesShared tile $2e
+	ld de, GFX_e2d54
+	ld a, b
+	swap a
+	ld b, a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, b
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld bc, $20
+	ld a, BANK(GFX_e2d54)
+	call FarCopy2bpp_2
+.asm_a5126
+	ld a, [wc9ed]
+	ld b, a
+	ld a, [wc939]
+	cp b
+	jr z, .asm_a514e
+	ld [wc9ed], a
+	ld de, GFX_e2e94
+	and $1
+	jr nz, .asm_a513d
+	ld de, GFX_e2eb4
+.asm_a513d
+	ld a, [wc93e]
+	or a
+	jr z, .asm_a514e
+	ld hl, VTilesShared tile $30
+	ld bc, $20
+	ld a, BANK(GFX_e2e94)
+	call FarCopy2bpp_2
+.asm_a514e
+	ld a, $0
+	ld [wcad2], a
+	ld a, [wc9ea]
+	ld b, a
+	ld a, [wc93a]
+	cp b
+	jr z, .asm_a51d5
+	push af
+	push bc
+	ld a, b
+	cp $ff
+	jr z, .asm_a5187
+	ld a, [wc95c]
+	inc a
+	ld [wc95c], a
+	cp $f
+	jr c, .asm_a517a
+	ld a, $0
+	ld [wc95c], a
+	ld bc, EVENT_211
+	call ToggleEventFlag
+.asm_a517a
+	ld a, $1
+	ld [wcad2], a
+	ld [wc93f], a
+	ld a, $78
+	ld [wcd28], a
+.asm_a5187
+	pop bc
+	pop af
+	ld [wc9ea], a
+	call Func_a51d6
+	ld a, [wc93e]
+	or a
+	jr z, .asm_a51d5
+	ld hl, VTilesShared tile $32
+	ld de, GFX_e2d54
+	push bc
+	ld a, c
+	swap a
+	ld c, a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, c
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld bc, $20
+	ld a, BANK(GFX_e2d54)
+	call FarCopy2bpp_2
+	pop bc
+	ld hl, VTilesShared tile $34
+	ld de, GFX_e2d54
+	ld a, b
+	swap a
+	ld b, a
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, b
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld bc, $20
+	ld a, BANK(GFX_e2d54)
+	call FarCopy2bpp_2
+.asm_a51d5
+	ret
 
-Func_a5245::
-	dr $a5245, $a52b2
+Func_a51d6: ; a51d6 (29:51d6)
+	ld c, $ff
+.asm_a51d8
+	inc c
+	sub $a
+	jr nc, .asm_a51d8
+	add $a
+	ld b, a
+	ret
 
-Func_a52b2::
-	dr $a52b2, $a5418
+Func_a51e1:
+	di
+.asm_a51e2
+	ld a, [rSTAT]
+	and $2
+	jr nz, .asm_a51e2
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hli], a
+	ei
+	ret
 
-Func_a5418::
-	dr $a5418, $a54a2
+Func_a51ee: ; a51ee (29:51ee)
+	ld a, [wcad1]
+	ld b, a
+	ld a, [wcad0]
+	cp b
+	jr nz, .asm_a5224
+	cp $1
+	ret nz
+	ld a, [wc90b]
+	push af
+	ld a, [wc938]
+	inc a
+	and $60
+	jr z, .asm_a5215
+	ld a, [wc938]
+	bit 2, a
+	jr nz, .asm_a5215
+	ld a, $0
+	ld [wc90b], a
+	jr .asm_a521a
 
-Func_a54a2::
-	dr $a54a2, $a54f1
+.asm_a5215
+	ld a, $1
+	ld [wc90b], a
+.asm_a521a
+	call Func_36f3
+	pop af
+	ld [wc90b], a
+	add sp, $2
+	ret
 
-Func_a54f1:
-	dr $a54f1, $a5525
+.asm_a5224
+	ld [wcad1], a
+	cp $1
+	jr nz, .asm_a5231
+	call Func_36cf
+	jp Func_367b
 
-GetPartnerDenjuuMaxHP::
-	dr $a5525, $a554b
+.asm_a5231
+	call Func_36f3
+	ld a, $ff
+	ld [wc9ea], a
+	ld [wc9eb], a
+	ld [wc9ed], a
+	call Func_a50d0
+	jp Func_3672
 
-Func_a554b:
-	dr $a554b, $a5569
+Func_a5245: ; a5245 (29:5245)
+	ld a, [wc90a]
+	or a
+	ret nz
+	ld a, [wcafe]
+	or a
+	ret z
+	cp $1
+	jr z, .asm_a5260
+	cp $2
+	jr z, .asm_a5275
+	cp $3
+	jr z, .asm_a52a4
+	cp $4
+	jr z, .asm_a52ab
+	ret
 
-Func_a5569:
-	dr $a5569, $a5572
+.asm_a5260
+	inc a
+	ld [wcafe], a
+	ld a, $0
+	ld [wc917], a
+	ld a, $1
+	ld [wc917], a
+	call GetMusicBank
+	ld [H_MusicID], a
+	ret
 
-Func_a5572:
-	dr $a5572, $a56c2
+.asm_a5275
+	ld a, $0
+	ld [wc917], a
+	ld a, $5
+	ld [wcafe], a
+	ld a, [wcafd]
+	ld hl, s2_b800
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s2_b800)
+	ld [MBC3SRamBank], a
+	ld a, [hl]
+	ld [H_FFA2], a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	ld a, $4
+	ld [wMusicBank], a
+	ret
+
+.asm_a52a4
+	inc a
+	ld [wcafe], a
+	jp Func_1bd1
+
+.asm_a52ab
+	xor a
+	ld [wcafe], a
+	jp Func_3435
+
+Func_a52b2: ; a52b2 (29:52b2)
+	ld a, $0
+	ld [wcdb6], a
+	call Func_a53ae
+	or a
+	ret z
+	ld [wCustomSpriteDest], a
+	call Func_a535e
+	ld a, [wOAMAnimation01]
+	or a
+	ret z
+	ld a, $2
+	ld [wc90b], a
+	ld a, [wc93b]
+.asm_a52cf
+	sub $1
+	jr nc, .asm_a52d5
+	ld a, $17
+.asm_a52d5
+	ld [wOAMAnimation01_TemplateIdx], a
+	call Func_30a7
+	ld e, a
+	ld c, $3c
+	call Multiply_C_by_E
+	ld a, d
+	ld [wOAMAnimation01_TemplateBank], a
+	call Func_30a7
+	ld e, a
+	ld a, [wOAMAnimation01]
+	ld c, a
+	call Multiply_C_by_E
+	ld hl, wOAMAnimation01_YCoord
+	ld c, d
+	ld b, $0
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld [wOAMAnimation01_XCoord], a
+	ld a, [hli]
+	ld b, a
+	call Func_a5315
+	ld a, [wcdb6]
+	inc a
+	ld [wcdb6], a
+	ld a, [wCustomSpriteDest]
+	dec a
+	ld [wCustomSpriteDest], a
+	ld a, [wOAMAnimation01_TemplateIdx]
+	jr nz, .asm_a52cf
+	ret
+
+Func_a5315: ; a5315 (29:5315)
+	ld hl, wcd90
+	ld e, $8
+.asm_a531a
+	ld a, [hl]
+	or a
+	jr nz, .asm_a533b
+.asm_a531e
+	inc b
+	ld a, b
+	ld [hli], a
+	ld a, [wOAMAnimation01_TemplateIdx]
+	ld [hli], a
+	ld a, [wOAMAnimation01_TemplateBank]
+	ld [hli], a
+	push hl
+	push bc
+	push de
+	call Func_30a7
+	ld c, a
+	ld e, $60
+	call Multiply_C_by_E
+	ld a, d
+	pop de
+	pop bc
+	pop hl
+	ld [hl], a
+	ret
+
+.asm_a533b
+	ld a, $4
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	dec e
+	jr nz, .asm_a531a
+	push bc
+	ld hl, wcd90
+	ld de, wcd94
+	ld bc, $1c
+.asm_a5350
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_a5350
+	pop bc
+	ld hl, wcdac
+	jr .asm_a531e
+
+Func_a535e: ; a535e (29:535e)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld de, wOAMAnimation01_YCoord
+	ld hl, sAddressBook + 1
+	ld a, $0
+	ld [wOAMAnimation01], a
+	ld a, [wcdb4]
+	ld c, a
+	ld b, $0
+.asm_a5379
+	ld a, c
+	cp b
+	jr z, .asm_a539a
+	ld a, [hl]
+	or a
+	jr z, .asm_a539a
+	push hl
+	ld a, $2
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	and $f
+	ld [de], a
+	inc de
+	ld a, b
+	ld [de], a
+	inc de
+	ld a, [wOAMAnimation01]
+	inc a
+	ld [wOAMAnimation01], a
+	pop hl
+.asm_a539a
+	push de
+	ld de, $10
+	add hl, de
+	pop de
+	inc b
+	ld a, b
+	cp $fe
+	jr c, .asm_a5379
+	push af
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	pop af
+	ret
+
+Func_a53ae: ; a53ae (29:53ae)
+	ld a, [wc93d]
+	ld b, a
+	ld a, [wc93c]
+	ld c, a
+	ld de, $18
+	call Multiply_DE_by_BC
+	ld a, [wc93b]
+	ld l, a
+	ld h, $0
+	add hl, de
+	push hl
+	call Func_a5066
+	ld a, [wc93d]
+	ld b, a
+	ld a, [wc93c]
+	ld c, a
+	ld de, $18
+	call Multiply_DE_by_BC
+	ld a, [wc93b]
+	ld l, a
+	ld h, $0
+	add hl, de
+	pop bc
+	ld a, b
+	cpl
+	ld b, a
+	ld a, c
+	cpl
+	ld c, a
+	inc bc
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld de, $6
+	ld a, $29
+	ld [wPrevROMBank], a
+	call Func_0628
+	ld a, b
+	or a
+	jr z, .asm_a53f8
+	ld c, $7f
+.asm_a53f8
+	ld a, c
+	cp $80
+	jr c, .asm_a53ff
+	ld a, $7f
+.asm_a53ff
+	ld c, a
+	call Func_30a7
+	ld e, a
+	call Multiply_C_by_E
+	ld a, $80
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	inc de
+	ld a, d
+	cp $5
+	jr c, .asm_a5417
+	ld a, $4
+.asm_a5417
+	ret
+
+Func_a5418: ; a5418 (29:5418)
+	inc c
+	push bc
+	call Func_a5421
+	pop bc
+	jp Func_a5461
+
+Func_a5421: ; a5421 (29:5421)
+	ld d, $8
+	ld hl, wcd70
+	ld b, $0
+.asm_a5428
+	ld a, [hl]
+	cp c
+	jr nz, .asm_a5454
+	ld [hl], $0
+	ld a, b
+	cp $7
+	ret z
+	push bc
+	ld a, $7
+	sub b
+	add a
+	add a
+	ld c, a
+	ld d, h
+	ld e, l
+	ld a, $4
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+.asm_a5443
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_a5443
+	ld hl, wcd8c
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	pop bc
+	jr Func_a5421
+
+.asm_a5454
+	ld a, $4
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	inc b
+	dec d
+	jr nz, .asm_a5428
+	ret
+
+Func_a5461: ; a5461 (29:5461)
+	ld d, $8
+	ld hl, wcd90
+	ld b, $0
+.asm_a5468
+	ld a, [hl]
+	cp c
+	jr nz, .asm_a5494
+	ld [hl], $0
+	ld a, b
+	cp $7
+	ret z
+	push bc
+	ld a, $7
+	sub b
+	add a
+	add a
+	ld c, a
+	ld d, h
+	ld e, l
+	ld a, $4
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+.asm_a5483
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_a5483
+	ld hl, wcdac
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	pop bc
+	jr Func_a5461
+
+.asm_a5494
+	ld a, $4
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	inc b
+	dec d
+	jr nz, .asm_a5468
+	ret
+
+Func_a54a1:
+	ret
+
+Func_a54a2: ; a54a2 (29:54a2)
+	ld a, [hJoyNew]
+	and $2
+	jr nz, .asm_a54ae
+	ld a, [wc984]
+	and $1f
+	ret nz
+.asm_a54ae
+	call GetPartnerDenjuuMaxHP
+	ld a, [wPartnerDenjuuHPRemaining]
+	cp c
+	ret z
+	jr nc, .asm_a54be
+	inc a
+	ld [wPartnerDenjuuHPRemaining], a
+	jr .asm_a54c2
+
+.asm_a54be
+	ld a, c
+	ld [wPartnerDenjuuHPRemaining], a
+.asm_a54c2
+	ld a, [wca5d]
+	cp $5a
+	jr c, .asm_a54d7
+	ld a, [wcd21]
+	or a
+	jr z, .asm_a54d7
+	callba Func_2c9fa
+.asm_a54d7
+	ret
+
+Func_a54d8:
+	ld a, [wPartnerDenjuuHPRemaining]
+	add b
+	jr nc, .asm_a54e0
+	ld a, $ff
+.asm_a54e0
+	ld [wPartnerDenjuuHPRemaining], a
+	call GetPartnerDenjuuMaxHP
+	ld a, [wPartnerDenjuuHPRemaining]
+	cp c
+	ret z
+	ret c
+	ld a, c
+	ld [wPartnerDenjuuHPRemaining], a
+	ret
+
+Func_a54f1: ; a54f1 (29:54f1)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	call Func_a554e
+	inc hl
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld e, a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	ret
+
+Func_a5509:
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	call Func_a554e
+	inc hl
+	ld a, [hli]
+	ld d, a
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld c, a
+	ld a, [hl]
+	ld b, a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	ret
+
+GetPartnerDenjuuMaxHP: ; a5525 (29:5525)
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	call Func_a554e
+	ld a, BANK(GetPartnerDenjuuMaxHP)
+	ld [wPrevROMBank], a
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld b, a
+	ld a, d
+	ld c, DENJUU_HP
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	ld c, a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	ret
+
+Func_a554b: ; a554b (29:554b)
+	ld a, b
+	jr asm_a5551
+
+Func_a554e: ; a554e (29:554e)
+	ld a, [wcdb4]
+asm_a5551
+	ld hl, sAddressBook
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ret
+
+Func_a5569: ; a5569 (29:5569)
+	callba Func_a8000
+	ret
+
+Func_a5572: ; a5572 (29:5572)
+	ld a, BANK(Func_a5572)
+	ld [wPrevROMBank], a
+	call Func_20f6
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld hl, sAddressBook
+	ld a, [wcafd]
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld a, [hli]
+	ld b, a
+	inc hl
+	ld a, [hl]
+	ld [wOAMAnimation12_Duration + 3], a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	ld a, b
+	call Func_a576c
+	ld a, $0
+	ld [wOAMAnimation12_Duration + 6], a
+	ld a, $0
+	ld [wOAMAnimation12_Duration + 7], a
+	ld a, $0
+	ld [$c216], a
+	ld a, BANK(GFX_e0d28)
+	ld hl, VTilesShared tile $70
+	ld de, GFX_e0d28
+	ld bc, $f0
+	call FarCopy2bpp_2
+	ld a, BANK(Func_a5572)
+	ld [wPrevROMBank], a
+	callba Func_a4cfd
+	call Func_3566
+	ld d, $6
+	ld bc, $14
+	hlbgcoord 0, 12
+	ld a, $5
+	call Func_377b
+	ld d, $1
+	ld bc, $8
+	hlbgcoord 6, 11
+	ld a, $1
+	call Func_377b
+	ld de, GFX_a5d29
+	ld hl, VTilesShared tile $20
+	ld bc, $e0
+	call Copy2bpp_2
+	call Func_a5659
+	call Func_a560a
+	jp IncrementSubroutine
+
+Func_a560a: ; a560a (29:560a)
+	ld a, [wcafd]
+	ld c, a
+	callba Func_a4e02
+	ld hl, wc9e1
+	ld de, wOAMAnimation12_Duration + 8
+	call Func_33e3
+	ld b, $8
+	ld c, $b0
+	hlbgcoord 6, 3
+.asm_a5626
+	di
+	call WaitStat_1f79
+	ld a, c
+	ld [hli], a
+	ei
+	inc c
+	dec b
+	jr nz, .asm_a5626
+	ld b, $8
+	ld hl, VTilesShared tile $30
+	ld de, wOAMAnimation12_Duration + 8
+.asm_a5639
+	ld a, [de]
+	cp $e0
+	jr nz, .asm_a5640
+	ld a, $0
+.asm_a5640
+	inc de
+	push bc
+	push de
+	call LoadCharacter_
+	pop de
+	pop bc
+	dec b
+	jr nz, .asm_a5639
+	ld d, $1
+	ld bc, $8
+	hlbgcoord 6, 3
+	ld a, $1
+	call Func_377b
+	ret
+
+Func_a5659: ; a5659 (29:5659)
+	di
+	call WaitStat_1f79
+	ld a, $aa
+	ld [$9966], a
+	call WaitStat_1f79
+	ld a, $ab
+	ld [$9967], a
+	ei
+	ld a, [wOAMAnimation12_Duration + 3]
+	call Get2DigitBCD
+	hlbgcoord 8, 11
+	di
+	call Func_a5698
+	ei
+	ld c, $ac
+	ld a, [wOAMAnimation12_Duration + 6]
+	bit 7, a
+	jr z, .asm_a5686
+	ld c, $ad
+	cpl
+	inc a
+.asm_a5686
+	ld b, a
+	di
+	call WaitStat_1f79
+	ld a, c
+	ld [hli], a
+	ei
+	ld a, b
+	call Get2DigitBCD
+	di
+	call Func_a56a5
+	ei
+	ret
+
+Func_a5698: ; a5698 (29:5698)
+	ld a, [wCGBPalFadeProgram]
+	and $f
+	add $a0
+	ld c, a
+	call WaitStat_1f79
+	ld a, c
+	ld [hli], a
+Func_a56a5: ; a56a5 (29:56a5)
+	ld a, [wNumCGBPalettesToFade]
+	swap a
+	and $f
+	add $a0
+	ld c, a
+	call WaitStat_1f79
+	ld a, c
+	ld [hli], a
+	ld a, [wNumCGBPalettesToFade]
+	and $f
+	add $a0
+	ld c, a
+	call WaitStat_1f79
+	ld a, c
+	ld [hli], a
+	ret
 
 Func_a56c2:
 	dr $a56c2, $a56cd
@@ -24969,7 +25857,10 @@ Func_a56cd:
 	dr $a56cd, $a572c
 
 Func_a572c:
-	dr $a572c, $a5814
+	dr $a572c, $a576c
+
+Func_a576c:
+	dr $a576c, $a5814
 
 Func_a5814:
 	dr $a5814, $a5822
@@ -24984,7 +25875,10 @@ Func_a594b:
 	dr $a594b, $a5d17
 
 Func_a5d17:
-	dr $a5d17, $a5efd
+	dr $a5d17, $a5d29
+
+GFX_a5d29:
+	dr $a5d29, $a5efd
 
 Func_a5efd:
 	dr $a5efd, $a5f06
@@ -26145,7 +27039,10 @@ GFX_e09d8:: INCBIN "gfx/misc/e09d8.2bpp"
 GFX_e0b08:: INCBIN "gfx/misc/cursor.2bpp"
 GFX_e0b38:: INCBIN "gfx/misc/e0b38.1bpp"
 GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"
-	dr $e0c38, $e1038
+	dr $e0c38, $e0d28
+
+GFX_e0d28: INCBIN "gfx/misc/e0d28.2bpp"
+	dr $e0e18, $e1038
 
 TileMap_e1038:: INCBIN "data/e1038.tilemap"
 	dr $e1118, $e1560
@@ -26165,7 +27062,13 @@ Data_e2c54::
 	dr $e2c54, $e2d14
 
 Data_e2d14::
-	dr $e2d14, $e319c
+	dr $e2d14, $e2d54
+
+GFX_e2d54: INCBIN "gfx/misc/e2d54.w40.interleave.2bpp"
+GFX_e2e94: INCBIN "gfx/misc/e2e94.2bpp"
+GFX_e2eb4: INCBIN "gfx/misc/e2eb4.2bpp"
+
+	dr $e2ed4, $e319c
 
 GFX_e319c:
 	dr $e319c, $e3494
