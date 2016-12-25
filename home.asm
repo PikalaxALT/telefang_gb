@@ -5187,6 +5187,7 @@ Func_31c5: ; 31c5 (0:31c5)
 Func_31e7: ; 31e7 (0:31e7)
 	ld a, b
 	ld [wc9f5], a
+Func_31eb:
 	ld d, $0
 	ld e, a
 REPT 6
