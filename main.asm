@@ -27709,6 +27709,7 @@ Func_a84e6: ; a84e6 (2a:44e6)
 Func_a8508: ; a8508 (2a:4508)
 	ld a, b
 	ld hl, Pointers_aa875
+Func_a850c:
 	ld b, $0
 	ld c, a
 	sla c
@@ -28038,23 +28039,551 @@ CheckCanGenerateEncounters: ; a8788 (2a:4788)
 Func_a87e4:
 	jp Func_a8000
 
-Func_a87e7:
-	dr $a87e7, $a8981
+Func_a87e7: ; a87e7 (2a:47e7)
+	ld hl, Data_a5f9f
+	ld a, [wc904]
+	sub $a
+	cp $28
+	jr c, .asm_a87f5
+	sub $7
+.asm_a87f5
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	call Func_2fe4
+	ld h, b
+	ld l, c
+	ld a, d
+	cpl
+	inc a
+	ld b, a
+	ld a, e
+	cpl
+	inc a
+	ld c, a
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, BANK(GFX_a0000)
+	ld hl, VTilesBG tile $00
+	call FarCopy2bpp_2
+	ld a, BANK(GFX_e27c4)
+	ld hl, VTilesOB tile $00
+	ld de, GFX_e27c4
+	ld bc, $490
+	call FarCopy2bpp_2
+	ld a, BANK(GFX_e2ed4)
+	ld hl, VTilesBG tile $40
+	ld de, GFX_e2ed4
+	ld bc, $c0
+	call FarCopy2bpp_2
+	ld de, $6fa4
+	hlbgcoord 0, 0
+	ld b, $12
+	ld c, $14
+	ld a, $2
+	call Func_33fd
+	ld hl, $6aff
+	ld a, [wc904]
+	call Func_a850c
+	ld d, $2
+	ld b, $0
+	ld c, $bb
+	callba Func_2c7b9
+	ld a, [wc9ca]
+	dec a
+	ld [wc9ca], a
+	ld a, [wc9ca]
+	dec a
+	ld [wc9ca], a
+	call Func_2cc4
+	ld a, $3
+	ld [wOAMAnimation01], a
+	ld a, $10
+	ld [wOAMAnimation01_TemplateBank], a
+	ld a, $41
+	ld [wOAMAnimation01_TemplateIdx], a
+	ld a, $0
+	ld [wOAMAnimation01_Palette], a
+	ld a, [wc906]
+	ld b, a
+	and $7
+	swap a
+	srl a
+	add $34
+	ld [wOAMAnimation01_XCoord], a
+	ld a, b
+	and $f8
+	add $44
+	ld [wOAMAnimation01_YCoord], a
+	ld a, [wc904]
+	sub $a
+	cp $28
+	jr c, .asm_a889d
+	sub $7
+.asm_a889d
+	ld c, $40
+	ld e, a
+	call Multiply_C_by_E
+	ld hl, Data_a9fe9
+	add hl, de
+	ld d, h
+	ld e, l
+	call Func_a88dd
+	ld a, BANK(Func_a87e7)
+	ld [wPrevROMBank], a
+	ld bc, $9
+	call GetCGB_BGLayout_
+	ld bc, $10
+	call GetCGB_OBLayout_
+	ld b, $7
+	call Func_33af
+	ld bc, $225
+	ld a, [wc904]
+	sub $a
+	cp $28
+	jr c, .asm_a88d0
+	sub $7
+.asm_a88d0
+	add c
+	ld c, a
+	jr nc, .asm_a88d5
+	inc b
+.asm_a88d5
+	ld a, $1
+	call Func_10ee
+	jp IncrementSubroutine
 
-Func_a8981:
-	dr $a8981, $a8991
+Func_a88dd: ; a88dd (2a:48dd)
+	ld b, $0
+.asm_a88df
+	ld c, $0
+.asm_a88e1
+	push bc
+	call Func_a893b
+	pop bc
+	jr z, .asm_a892e
+	push de
+	push bc
+	ld a, c
+	swap a
+	srl a
+	add b
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	pop bc
+	push bc
+	hlbgcoord 6, 8
+	ld a, c
+	swap a
+	sla a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, b
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, $29
+	ld bc, $1
+	push hl
+	call FarCopy2bpp_2
+	pop hl
+	ld a, [wCGB]
+	cp $11
+	jr nz, .asm_a892c
+	ld a, $1
+	ld [rVBK], a
+	call WaitStat_1f79
+	ld a, $1
+	ld [hl], a
+	ld a, $0
+	ld [rVBK], a
+.asm_a892c
+	pop bc
+	pop de
+.asm_a892e
+	inc c
+	ld a, $8
+	cp c
+	jr nz, .asm_a88e1
+	inc b
+	ld a, $8
+	cp b
+	jr nz, .asm_a88df
+	ret
 
-Func_a8991:
-	dr $a8991, $a89cb
+Func_a893b: ; a893b (2a:493b)
+	push de
+	ld a, c
+	ld hl, s2_b000
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld d, $1
+	ld a, b
+	or a
+	jr z, .asm_a8951
+.asm_a894c
+	sla d
+	dec a
+	jr nz, .asm_a894c
+.asm_a8951
+	ld a, [wc904]
+	sub $a
+	cp $28
+	jr c, .asm_a895c
+	sub $7
+.asm_a895c
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(s2_b000)
+	ld [MBC3SRamBank], a
+	ld a, [hl]
+	and d
+	pop de
+	push af
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	pop af
+	ret
 
-Func_a89cb:
-	dr $a89cb, $a89dd
+Func_a8981: ; a8981 (2a:4981)
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld bc, $0
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
 
-Func_a89dd:
-	dr $a89dd, $a89e5
+Func_a8991: ; a8991 (2a:4991)
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, $0
+	call PaletteFade_
+	or a
+	ret z
+	call Func_2cc4
+	ld b, $3
+	ld a, [wc984]
+	and $8
+	jr z, .asm_a89ab
+	ld b, $2
+.asm_a89ab
+	ld a, b
+	ld [wOAMAnimation01], a
+	ld a, [wVBlankCounter]
+	and $3
+	jr nz, .asm_a89bc
+	ld hl, VTilesBG tile $40
+	call Func_17ef
+.asm_a89bc
+	ld a, [hJoyNew]
+	and $e
+	jr z, .asm_a89ca
+	ld a, $4
+	call Func_050a
+	jp IncrementSubroutine
 
-Func_a89e5:
-	dr $a89e5, $a8c50
+.asm_a89ca
+	ret
+
+Func_a89cb: ; a89cb (2a:49cb)
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	ld a, $0
+	ld [wc9cf], a
+	ld a, $a
+	ld [wSubroutine], a
+	ret
+
+Func_a89dd: ; a89dd (2a:49dd)
+	jpba Func_a8000 ; same bank
+
+Func_a89e5: ; a89e5 (2a:49e5)
+	ld a, $2
+	ld [wc917], a
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld a, BANK(Func_a89e5)
+	ld [wPrevROMBank], a
+	ld a, [wc912]
+	ld [wcaed], a
+	ld a, [wcdec]
+	ld [wc908], a
+	ld a, $0
+	ld [wcdec], a
+	ld a, [wcdee]
+	ld [$c2dd], a
+	ld a, $0
+	ld [wcdee], a
+	ld a, [wcde1]
+	ld [$c2fd], a
+	ld a, $0
+	ld [wcde1], a
+	ld bc, EVENT_089
+	call CheckEventFlag
+	jr z, .asm_a8a31
+	ld a, $1
+	ld [wcaee], a
+	ld a, [wc90c]
+	ld [wOAMAnimation17_Duration + 9], a
+	jr .asm_a8a3c
+
+.asm_a8a31
+	ld a, $0
+	ld [wcaee], a
+	ld a, [wc90e]
+	ld [wOAMAnimation17_Duration + 9], a
+.asm_a8a3c
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a8a5a
+	ld hl, wOAMAnimation17_Duration + 6
+	ld a, $fc
+	ld [hli], a
+	ld a, $cd
+	ld [hl], a
+	ld a, $4
+	ld [$c2b4], a
+	ld a, $40
+	ld [$c2b5], a
+	ld de, GFX_e1288
+	jr .asm_a8a70
+
+.asm_a8a5a
+	ld hl, wOAMAnimation17_Duration + 6
+	ld a, $bc
+	ld [hli], a
+	ld a, $cd
+	ld [hl], a
+	ld a, $3a
+	ld [$c2b4], a
+	ld a, $0
+	ld [$c2b5], a
+	ld de, GFX_e1208
+.asm_a8a70
+	ld a, BANK(GFX_e1208)
+	ld hl, VTilesShared tile $00
+	ld bc, $80
+	call FarCopy2bpp_2
+	ld a, $0
+	ld [wcae4], a
+	ld [wcae5], a
+	ld [wcae7], a
+	ld [wcaeb], a
+	ld [wcaec], a
+	ld a, $3
+	ld [wcae6], a
+	ld a, BANK(GFX_e0d28)
+	ld hl, VTilesShared tile $70
+	ld de, GFX_e0d28
+	ld bc, $f0
+	call FarCopy2bpp_2
+	ld a, BANK(GFX_e11f8)
+	ld hl, VTilesOB tile $1f
+	ld de, GFX_e11f8
+	ld bc, $10
+	call FarCopy2bpp_2
+	ld a, BANK(GFX_e1560)
+	ld hl, VTilesOB tile $40
+	ld de, GFX_e1560
+	ld bc, $100
+	call FarCopy2bpp_2
+	ld a, BANK(GFX_e1650)
+	ld hl, VTilesShared tile $08
+	ld de, GFX_e1650
+	ld bc, $40
+	call FarCopy2bpp_2
+	ld a, $10
+	ld [wOAMAnimation17_TemplateBank], a
+	ld a, $43
+	ld [wOAMAnimation17_TemplateIdx], a
+	ld a, $0
+	ld [wOAMAnimation17_Palette], a
+	ld a, $34
+	ld [wOAMAnimation17_XCoord], a
+	ld a, $44
+	ld [wOAMAnimation17_YCoord], a
+	ld a, $10
+	ld [wOAMAnimation18_TemplateBank], a
+	ld a, $42
+	ld [wOAMAnimation18_TemplateIdx], a
+	ld a, $0
+	ld [wOAMAnimation18_Palette], a
+	ld a, $6c
+	ld [wOAMAnimation18_XCoord], a
+	ld a, $44
+	ld [wOAMAnimation18_YCoord], a
+	ld a, $10
+	ld [wOAMAnimation19_TemplateBank], a
+	ld a, $44
+	ld [wOAMAnimation19_TemplateIdx], a
+	ld a, $1
+	ld [wOAMAnimation19_Palette], a
+	ld a, $80
+	ld [wOAMAnimation19_XCoord], a
+	ld a, $44
+	ld [wOAMAnimation19_YCoord], a
+	call Func_a8c30
+	ld a, $b0
+	ld [wc91f], a
+	callba Func_2cceb
+	ld a, $c0
+	ld [wc91f], a
+	ld a, $e0
+	ld [wc91e], a
+	ld a, $1
+	ld [wca65], a
+	callba Func_2cce5
+	ld a, BANK(Func_a89e5)
+	ld [wPrevROMBank], a
+	ld bc, $a
+	call GetCGB_BGLayout_
+	ld a, $0
+	ld [wcae3], a
+	call Func_a8e0b
+	jr z, .asm_a8b6f
+	call Func_a8e1f
+	ld d, $c
+	ld b, $0
+	ld c, $b9
+	call Func_33d6
+	call Func_a8c9b
+	call Func_a8d82
+	ld a, $2
+	ld [wcada], a
+	call Func_2cc4
+	call Func_2cc4
+	jr .asm_a8b82
+
+.asm_a8b6f
+	ld a, $1
+	ld [wcae3], a
+	ld d, $c
+	ld b, $0
+	ld c, $b8
+	call Func_33d6
+	ld a, $2
+	ld [wcada], a
+.asm_a8b82
+	ld a, BANK(Func_a89e5)
+	ld [wPrevROMBank], a
+	ld bc, $11
+	call GetCGB_OBLayout_
+	call Func_a8bad
+	callba Func_a5509
+	ld a, b
+	ld [$c2df], a
+	ld a, c
+	ld [$c2de], a
+	ld a, $0
+	ld [wBGPalUpdate], a
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	jp IncrementSubroutine
+
+Func_a8bad: ; a8bad (2a:4bad)
+	ld a, [wc91a]
+	cp $c7
+	jr c, .asm_a8bc2
+	callba Func_2e4ed
+	ld a, BANK(Func_a89e5)
+	ld [wPrevROMBank], a
+	ret
+
+.asm_a8bc2
+	callba Func_2e526
+	ld a, BANK(Func_a89e5)
+	ld [wPrevROMBank], a
+	ret
+
+Func_a8bd0:
+	ld a, $1
+	ld [wc46c], a
+	ld a, $1
+	ld [wc46d], a
+	ld hl, wc460
+	ld a, $21
+	ld [hli], a
+	ld a, $0
+	ld [hli], a
+	ld a, $5f
+	ld [hli], a
+	ld a, $0
+	ld [wcae4], a
+	ld [hl], a
+	ret
+
+Func_a8bed:
+	ld a, $0
+	ld [wcae7], a
+	ld a, $0
+	ld [wc46c], a
+	ld [wc46d], a
+	hlbgcoord 0, 4
+	ld a, $0
+	ld bc, $100
+	call Func_3775
+	ld b, $0
+	ld a, $0
+	ld c, a
+	call Func_a8cc6
+	ld b, $1
+	ld a, $0
+	ld c, a
+	call Func_a8cc6
+	ld b, $2
+	ld a, $0
+	ld c, a
+	call Func_a8cc6
+	ld b, $3
+	ld a, $0
+	ld c, a
+	call Func_a8cc6
+	ld a, $0
+	ld [wOAMAnimation17], a
+	ld a, $0
+	ld [wOAMAnimation18], a
+	ret
+
+Func_a8c30: ; a8c30 (2a:4c30)
+	ld de, $4c38
+	hlbgcoord 0, 0
+	ld b, $4
+	ld c, $14
+	ld a, $0
+	call Func_a8c50
+	call Func_a8c68
+	ld d, $8
+	ld bc, $20
+	hlbgcoord 0, 4
+	ld a, $3
+	call Func_377b
+	ret
 
 Func_a8c50::
 	dr $a8c50, $a8c68
@@ -28066,10 +28595,25 @@ Func_a8c77:
 	dr $a8c77, $a8c86
 
 Func_a8c86::
-	dr $a8c86, $a8d20
+	dr $a8c86, $a8c9b
+
+Func_a8c9b:
+	dr $a8c9b, $a8cc6
+
+Func_a8cc6:
+	dr $a8cc6, $a8d20
 
 Func_a8d20::
-	dr $a8d20, $a8e7e
+	dr $a8d20, $a8d82
+
+Func_a8d82:
+	dr $a8d82, $a8e0b
+
+Func_a8e0b:
+	dr $a8e0b, $a8e1f
+
+Func_a8e1f:
+	dr $a8e1f, $a8e7e
 
 Func_a8e7e:
 	dr $a8e7e, $a8ea3
@@ -28099,7 +28643,10 @@ Func_a98bf:
 	dr $a98bf, $a99f5
 
 Func_a99f5:
-	dr $a99f5, $aa369
+	dr $a99f5, $a9fe9
+
+Data_a9fe9:
+	dr $a9fe9, $aa369
 
 Data_aa369:
 	dr $aa369, $aa417
@@ -28607,10 +29154,76 @@ INCBIN "gfx/sprites/items/065.w16.2bpp"
 INCBIN "gfx/sprites/items/066.w16.2bpp"
 
 SECTION "bank 2B", ROMX, BANK [$2b]
-	dr $ac000, $affc0
+GFX_ac000: INCBIN "gfx/pics/items/ac000.w48.2bpp"
+GFX_ac1e0: INCBIN "gfx/pics/items/ac1e0.w48.2bpp"
+GFX_ac3c0: INCBIN "gfx/pics/items/ac3c0.w48.2bpp"
+GFX_ac5a0: INCBIN "gfx/pics/items/ac5a0.w48.2bpp"
+GFX_ac780: INCBIN "gfx/pics/items/ac780.w48.2bpp"
+GFX_ac960: INCBIN "gfx/pics/items/ac960.w48.2bpp"
+GFX_acb40: INCBIN "gfx/pics/items/acb40.w48.2bpp"
+GFX_acd20: INCBIN "gfx/pics/items/acd20.w48.2bpp"
+GFX_acf00: INCBIN "gfx/pics/items/acf00.w48.2bpp"
+GFX_ad0e0: INCBIN "gfx/pics/items/ad0e0.w48.2bpp"
+GFX_ad2c0: INCBIN "gfx/pics/items/ad2c0.w48.2bpp"
+GFX_ad4a0: INCBIN "gfx/pics/items/ad4a0.w48.2bpp"
+GFX_ad680: INCBIN "gfx/pics/items/ad680.w48.2bpp"
+GFX_ad860: INCBIN "gfx/pics/items/ad860.w48.2bpp"
+GFX_ada40: INCBIN "gfx/pics/items/ada40.w48.2bpp"
+GFX_adc20: INCBIN "gfx/pics/items/adc20.w48.2bpp"
+GFX_ade00: INCBIN "gfx/pics/items/ade00.w48.2bpp"
+GFX_adfe0: INCBIN "gfx/pics/items/adfe0.w48.2bpp"
+GFX_ae1c0: INCBIN "gfx/pics/items/ae1c0.w48.2bpp"
+GFX_ae3a0: INCBIN "gfx/pics/items/ae3a0.w48.2bpp"
+GFX_ae580: INCBIN "gfx/pics/items/ae580.w48.2bpp"
+GFX_ae760: INCBIN "gfx/pics/items/ae760.w48.2bpp"
+GFX_ae940: INCBIN "gfx/pics/items/ae940.w48.2bpp"
+GFX_aeb20: INCBIN "gfx/pics/items/aeb20.w48.2bpp"
+GFX_aed00: INCBIN "gfx/pics/items/aed00.w48.2bpp"
+GFX_aeee0: INCBIN "gfx/pics/items/aeee0.w48.2bpp"
+GFX_af0c0: INCBIN "gfx/pics/items/af0c0.w48.2bpp"
+GFX_af2a0: INCBIN "gfx/pics/items/af2a0.w48.2bpp"
+GFX_af480: INCBIN "gfx/pics/items/af480.w48.2bpp"
+GFX_af660: INCBIN "gfx/pics/items/af660.w48.2bpp"
+GFX_af840: INCBIN "gfx/pics/items/af840.w48.2bpp"
+GFX_afa20: INCBIN "gfx/pics/items/afa20.w48.2bpp"
+GFX_afc00: INCBIN "gfx/pics/items/afc00.w48.2bpp"
+GFX_afde0: INCBIN "gfx/pics/items/afde0.w48.2bpp"
 
 SECTION "bank 2C", ROMX, BANK [$2c]
-	dr $b0000, $b3f28
+GFX_b0000: INCBIN "gfx/pics/items/b0000.w48.2bpp"
+GFX_b01e0: INCBIN "gfx/pics/items/b01e0.w48.2bpp"
+GFX_b03c0: INCBIN "gfx/pics/items/b03c0.w48.2bpp"
+GFX_b05a0: INCBIN "gfx/pics/items/b05a0.w48.2bpp"
+GFX_b0780: INCBIN "gfx/pics/items/b0780.w48.2bpp"
+GFX_b0960: INCBIN "gfx/pics/items/b0960.w48.2bpp"
+GFX_b0b40: INCBIN "gfx/pics/items/b0b40.w48.2bpp"
+GFX_b0d20: INCBIN "gfx/pics/items/b0d20.w48.2bpp"
+GFX_b0f00: INCBIN "gfx/pics/items/b0f00.w48.2bpp"
+GFX_b10e0: INCBIN "gfx/pics/items/b10e0.w48.2bpp"
+GFX_b12c0: INCBIN "gfx/pics/items/b12c0.w48.2bpp"
+GFX_b14a0: INCBIN "gfx/pics/items/b14a0.w48.2bpp"
+GFX_b1680: INCBIN "gfx/pics/items/b1680.w48.2bpp"
+GFX_b1860: INCBIN "gfx/pics/items/b1860.w48.2bpp"
+GFX_b1a40: INCBIN "gfx/pics/items/b1a40.w48.2bpp"
+GFX_b1c20: INCBIN "gfx/pics/items/b1c20.w48.2bpp"
+GFX_b1e00: INCBIN "gfx/pics/items/b1e00.w48.2bpp"
+GFX_b1fe0: INCBIN "gfx/pics/items/b1fe0.w48.2bpp"
+GFX_b21c0: INCBIN "gfx/pics/items/b21c0.w48.2bpp"
+GFX_b23a0: INCBIN "gfx/pics/items/b23a0.w48.2bpp"
+GFX_b2580: INCBIN "gfx/pics/items/b2580.w48.2bpp"
+GFX_b2760: INCBIN "gfx/pics/items/b2760.w48.2bpp"
+GFX_b2940: INCBIN "gfx/pics/items/b2940.w48.2bpp"
+GFX_b2b20: INCBIN "gfx/pics/items/b2b20.w48.2bpp"
+GFX_b2d00: INCBIN "gfx/pics/items/b2d00.w48.2bpp"
+GFX_b2ee0: INCBIN "gfx/pics/items/b2ee0.w48.2bpp"
+GFX_b30c0: INCBIN "gfx/pics/items/b30c0.w48.2bpp"
+GFX_b32a0: INCBIN "gfx/pics/items/b32a0.w48.2bpp"
+GFX_b3480: INCBIN "gfx/pics/items/b3480.w48.2bpp"
+GFX_b3660: INCBIN "gfx/pics/items/b3660.w48.2bpp"
+GFX_b3840: INCBIN "gfx/pics/items/b3840.w48.2bpp"
+GFX_b3a20: INCBIN "gfx/pics/items/b3a20.w48.2bpp"
+GFX_b3c00: INCBIN "gfx/pics/items/b3c00.w48.2bpp"
+GFX_b3de0: INCBIN "gfx/pics/items/b3de0.w48.2bpp"
 
 SECTION "bank 32", ROMX, BANK [$32]
 Func_c8000::
@@ -28935,17 +29548,23 @@ GFX_e09d8:: INCBIN "gfx/misc/e09d8.2bpp"
 GFX_e0b08:: INCBIN "gfx/misc/cursor.2bpp"
 GFX_e0b38:: INCBIN "gfx/misc/e0b38.1bpp"
 GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"
-	dr $e0c38, $e0d28
+	dr $e0c38, $e0cb0
 
+GFX_e0cb0: INCBIN "gfx/misc/e0cb0.1bpp"
 GFX_e0d28: INCBIN "gfx/misc/e0d28.2bpp"
-	dr $e0e18, $e1038
+GFX_e0e18: INCBIN "gfx/misc/e0e18.2bpp"
+GFX_e0eb8: INCBIN "gfx/misc/e0eb8.2bpp"
+	dr $e0f58, $e1038
 
 TileMap_e1038:: INCBIN "data/e1038.tilemap"
-	dr $e1118, $e1560
+	dr $e1118, $e11f8
+GFX_e11f8: INCBIN "gfx/misc/e11f8.2bpp"
+GFX_e1208: INCBIN "gfx/misc/e1208.w32.2bpp"
+GFX_e1288: INCBIN "gfx/misc/e1288.w32.2bpp"
+	dr $e1308, $e1560
 
 GFX_e1560: INCBIN "gfx/misc/e1560.2bpp"
-
-	dr $e1660, $e1690
+GFX_e1650: INCBIN "gfx/misc/e1650.2bpp"
 
 Pointers_e1690::
 	dr $e1690, $e16b4
@@ -28974,7 +29593,9 @@ GFX_e2d54: INCBIN "gfx/misc/e2d54.w40.interleave.2bpp"
 GFX_e2e94: INCBIN "gfx/misc/e2e94.2bpp"
 GFX_e2eb4: INCBIN "gfx/misc/e2eb4.2bpp"
 GFX_e2ed4: INCBIN "gfx/misc/e2ed4.w16.2bpp"
-	dr $e2f94, $e319c
+	dr $e2f94, $e2fa4
+GFX_e2fa4:
+	dr $e2fa4, $e319c
 
 GFX_e319c:
 	dr $e319c, $e3494

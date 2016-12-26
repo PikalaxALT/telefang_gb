@@ -25,7 +25,7 @@ telespeed_obj := $(telefang_obj:.o=_speed.o)
 
 roms := telepower.gbc telespeed.gbc
 
-all: $(roms)
+all: compare
 power: telepower.gbc
 speed: telespeed.gbc
 
