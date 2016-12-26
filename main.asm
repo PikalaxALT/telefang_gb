@@ -23188,18 +23188,48 @@ EnemyTFangerParties::
 INCLUDE "data/tfanger_parties.asm"
 
 SECTION "bank 28", ROMX, BANK [$28]
-rept 16
+GFX_a0000:
 IF DEF(POWER)
-	db $ff
+INCBIN "gfx/maptiles/a0000.power.2bpp"
 ELSE
-	db $00
+INCBIN "gfx/maptiles/a0000.speed.2bpp"
 ENDC
-endr
-rept 16
-	db $ff
-endr
-
-INCBIN "gfx/misc/maptiles.w128.2bpp"
+GFX_a0100: INCBIN "gfx/maptiles/a0100.2bpp"
+GFX_a0130: INCBIN "gfx/maptiles/a0130.2bpp"
+GFX_a0250: INCBIN "gfx/maptiles/a0250.2bpp"
+GFX_a02d0: INCBIN "gfx/maptiles/a02d0.2bpp"
+GFX_a0480: INCBIN "gfx/maptiles/a0480.2bpp"
+GFX_a0600: INCBIN "gfx/maptiles/a0600.2bpp"
+GFX_a0760: INCBIN "gfx/maptiles/a0760.2bpp"
+GFX_a08d0: INCBIN "gfx/maptiles/a08d0.2bpp"
+GFX_a0a00: INCBIN "gfx/maptiles/a0a00.2bpp"
+GFX_a0b60: INCBIN "gfx/maptiles/a0b60.2bpp"
+GFX_a0bf0: INCBIN "gfx/maptiles/a0bf0.2bpp"
+GFX_a0dd0: INCBIN "gfx/maptiles/a0dd0.2bpp"
+GFX_a0f70: INCBIN "gfx/maptiles/a0f70.2bpp"
+GFX_a11b0: INCBIN "gfx/maptiles/a11b0.2bpp"
+GFX_a12f0: INCBIN "gfx/maptiles/a12f0.2bpp"
+GFX_a1330: INCBIN "gfx/maptiles/a1330.2bpp"
+GFX_a13e0: INCBIN "gfx/maptiles/a13e0.2bpp"
+GFX_a14f0: INCBIN "gfx/maptiles/a14f0.2bpp"
+GFX_a15e0: INCBIN "gfx/maptiles/a15e0.2bpp"
+GFX_a16a0: INCBIN "gfx/maptiles/a16a0.2bpp"
+GFX_a17e0: INCBIN "gfx/maptiles/a17e0.2bpp"
+GFX_a18f0: INCBIN "gfx/maptiles/a18f0.2bpp"
+GFX_a19d0: INCBIN "gfx/maptiles/a19d0.2bpp"
+GFX_a1ad0: INCBIN "gfx/maptiles/a1ad0.2bpp"
+GFX_a1b10: INCBIN "gfx/maptiles/a1b10.2bpp"
+GFX_a1c50: INCBIN "gfx/maptiles/a1c50.2bpp"
+GFX_a1e70: INCBIN "gfx/maptiles/a1e70.2bpp"
+GFX_a2180: INCBIN "gfx/maptiles/a2180.2bpp"
+GFX_a2300: INCBIN "gfx/maptiles/a2300.2bpp"
+GFX_a23b0: INCBIN "gfx/maptiles/a23b0.2bpp"
+GFX_a24e0: INCBIN "gfx/maptiles/a24e0.2bpp"
+GFX_a2590: INCBIN "gfx/maptiles/a2590.2bpp"
+GFX_a2760: INCBIN "gfx/maptiles/a2760.2bpp"
+GFX_a2900: INCBIN "gfx/maptiles/a2900.2bpp"
+GFX_a2ac0: INCBIN "gfx/maptiles/a2ac0.2bpp"
+GFX_a3320:
 
 SECTION "bank 29", ROMX, BANK [$29]
 Func_a4000:
@@ -26910,7 +26940,46 @@ Func_a5f9b: ; a5f9b (29:5f9b)
 	ret
 
 Data_a5f9f:
-	dr $a5f9f, $a69a9
+	dw GFX_a0000
+	dw GFX_a0100
+	dw GFX_a0130
+	dw GFX_a0250
+	dw GFX_a02d0
+	dw GFX_a0480
+	dw GFX_a0600
+	dw GFX_a0760
+	dw GFX_a08d0
+	dw GFX_a0a00
+	dw GFX_a0b60
+	dw GFX_a0bf0
+	dw GFX_a0dd0
+	dw GFX_a0f70
+	dw GFX_a11b0
+	dw GFX_a12f0
+	dw GFX_a1330
+	dw GFX_a13e0
+	dw GFX_a14f0
+	dw GFX_a15e0
+	dw GFX_a16a0
+	dw GFX_a17e0
+	dw GFX_a18f0
+	dw GFX_a19d0
+	dw GFX_a1ad0
+	dw GFX_a1b10
+	dw GFX_a1c50
+	dw GFX_a1e70
+	dw GFX_a2180
+	dw GFX_a2300
+	dw GFX_a23b0
+	dw GFX_a24e0
+	dw GFX_a2590
+	dw GFX_a2760
+	dw GFX_a2900
+	dw GFX_a2ac0
+	dw GFX_a3320
+
+Data_a5fe9:
+	dr $a5fe9, $a69a9
 
 Data_a69a9:
 	dr $a69a9, $a6b69
