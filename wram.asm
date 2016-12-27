@@ -1269,9 +1269,9 @@ wca6e:: ds 1
 wca6f:: ds 1
 
 SECTION "Overworld Map", WRAM0
-wOverworldMap::
+wOverworldMap:: ; ca70
 	ds (SCREEN_WIDTH / 2) * ((SCREEN_HEIGHT +- 2) / 2)
-wOverworldMapEnd::
+wOverworldMapEnd:: ; cac0
 
 wcac0:: ds 1
 wcac1:: ds 1

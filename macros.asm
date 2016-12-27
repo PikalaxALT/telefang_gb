@@ -202,3 +202,19 @@ ENDC
 	call GetWordFromTable
 	jp [hl]
 ENDM
+
+overcoord: MACRO
+	ld \1, (\3 * SCREEN_WIDTH / 2) + \2 + wOverworldMap
+ENDM
+
+hlovercoord EQUS "overcoord hl,"
+deovercoord EQUS "overcoord de,"
+bcovercoord EQUS "overcoord bc,"
+
+Aovercoord: MACRO
+	ld a, [(\2 * SCREEN_WIDTH / 2) + \1 + wOverworldMap]
+ENDM
+
+overcoordA: MACRO
+	ld [(\2 * SCREEN_WIDTH / 2) + \1 + wOverworldMap], a
+ENDM
