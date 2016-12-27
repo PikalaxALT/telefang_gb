@@ -31111,37 +31111,947 @@ GFX_b3de0: INCBIN "gfx/pics/items/b3de0.w48.2bpp"
 
 SECTION "bank 32", ROMX, BANK [$32]
 Func_c8000::
-	dr $c8000, $c81bf
+	ld a, [wc98e]
+	or a
+	ret nz
+	ld a, $0
+	ld [wc49c], a
+	call Func_c81bf
+	ld a, [wc9ef]
+	cp $4
+	jr z, .asm_c8018
+	cp $9
+	jr nz, .asm_c806b
+.asm_c8018
+	ld d, a
+	ld a, [wOverworldMapEnd]
+	or a
+	jp z, Func_c81bd
+	ld a, [wTakingAStep]
+	or a
+	jp z, Func_c81bd
+	ld a, [wc915]
+	ld b, a
+	ld a, [wc916]
+	ld c, a
+	ld a, d
+	cp $9
+	jr nz, .asm_c803e
+	push hl
+	call Func_28a9
+	pop hl
+	jr z, .asm_c803e
+	call Func_264f
+.asm_c803e
+	push de
+	call Func_c8222
+	ld a, d
+	ld [hl], a
+	push af
+	push bc
+	call Func_30a7
+	cp $20
+	jr nc, .asm_c8055
+	callba Func_320e1
+.asm_c8055
+	pop bc
+	pop af
+	call Func_252a
+	callba Func_31a31
+	ld a, $b
+	ld [H_SFX_ID], a
+	pop de
+	jp Func_c81bd
 
-Func_c81bf:
-	dr $c81bf, $c8222
+.asm_c806b
+	cp $5
+	jr nz, .asm_c8077
+	ld a, $fe
+	ld [wc49c], a
+	jp Func_c81bd
 
-Func_c8222:
-	dr $c8222, $c8243
+.asm_c8077
+	cp $6
+	jr nz, .asm_c8083
+	ld a, $fc
+	ld [wc49c], a
+	jp Func_c81bd
 
-Func_c8243::
-	dr $c8243, $c8268
+.asm_c8083
+	cp $3
+	jr nz, .asm_c80b1
+	ld a, [wca6e]
+	cp $1
+	jr z, .asm_c8095
+	ld a, [wc499]
+	bit 1, a
+	jr z, .asm_c80a9
+.asm_c8095
+	ld a, [wSubroutine]
+	cp $4
+	jr nz, .asm_c80a9
+	callba Func_31d12
+	ld a, $c
+	ld [H_SFX_ID], a
+.asm_c80a9
+	ld a, $2
+	ld [wc49c], a
+	jp Func_c81bd
 
-Func_c8268::
-	dr $c8268, $c8293
+.asm_c80b1
+	cp $a
+	jr z, .asm_c80f0
+	cp $7
+	jr nz, .asm_c811f
+	ld a, [wc49a]
+	cp $d
+	jr z, .asm_c811f
+	ld a, [wc905]
+	cp $8
+	jr z, .asm_c80f0
+	cp $10
+	jr z, .asm_c80f0
+	ld a, [wc915]
+	ld b, a
+	ld [wc9df], a
+	ld a, [wc916]
+	ld c, a
+	ld [wc9e0], a
+	ld a, $30
+	call Func_252a
+	ld a, $d
+	ld [wc49a], a
+	ld a, $c
+	ld [wc494], a
+	ld a, $5e
+	ld [H_SFX_ID], a
+	jp Func_c81bd
 
-Func_c8293::
-	dr $c8293, $c82a9
+.asm_c80f0
+	ld a, [wc915]
+	ld [wc9df], a
+	ld a, [wc916]
+	ld [wc9e0], a
+	ld a, [wPlayerXCoord]
+	ld [wc48a], a
+	ld a, [wPlayerYCoord]
+	ld [wc48e], a
+	ld a, $e
+	ld [wc49a], a
+	ld a, $0
+	ld [wc495], a
+	ld a, $b
+	ld [wc9f4], a
+	ld a, $11
+	ld [H_SFX_ID], a
+	jp Func_c81bd
 
-Func_c82a9::
-	dr $c82a9, $c82df
+.asm_c811f
+	ld a, [wc499]
+	bit 1, a
+	jr z, .asm_c8146
+	ld a, [wc9ef]
+	cp $1
+	jr z, .asm_c8139
+	cp $2
+	jr nz, .asm_c8146
+	ld a, $1
+	ld [wc900], a
+	jp Func_29ed
 
-Func_c82df::
-	dr $c82df, $c830a
+.asm_c8139
+	ld a, $2
+	ld [wc900], a
+	ld a, $11
+	ld [H_SFX_ID], a
+	jp Func_29ed
 
-Func_c830a:
-	dr $c830a, $c83bc
+.asm_c8146
+	ld b, a
+	ld a, [wc905]
+	cp $7
+	jr nz, .asm_c816c
+	ld a, b
+	cp $c
+	jr z, .asm_c815f
+	cp $d
+	jr z, .asm_c815f
+	cp $f
+	jr z, .asm_c815f
+	cp $e
+	jr nz, Func_c81bd
+.asm_c815f
+	ld [wc494], a
+	ld a, $f
+	ld [wc49a], a
+	ld a, $10
+	ld [wc495], a
+.asm_c816c
+	ld a, [wc9ef]
+	cp $b
+	jr nz, Func_c81bd
+	ld a, $fd
+	ld [wc49c], a
+	ld a, [wc499]
+	bit 1, a
+	jr nz, .asm_c81b9
+	ld a, [wc904]
+	cp $e
+	jr z, Func_c81bd
+	cp $31
+	jr nz, .asm_c8192
+	ld bc, EVENT_20C
+	call CheckEventFlag
+	jr nz, Func_c81bd
+.asm_c8192
+	ld a, [wc9ff]
+	inc a
+	ld [wc9ff], a
+	cp $16
+	jr c, Func_c81bd
+	push de
+	ld a, [wc915]
+	ld b, a
+	ld a, [wc916]
+	ld c, a
+	ld a, $9d
+	ld [hl], a
+	push bc
+	call Func_252a
+	pop de
+	call Func_c830a
+	pop de
+	ld a, $5f
+	ld [H_SFX_ID], a
+	jr Func_c81bd
 
-Func_c83bc:
-	dr $c83bc, $c8621
+.asm_c81b9
+	xor a
+	ld [wc9ff], a
+Func_c81bd: ; c81bd (32:41bd)
+	ld a, [de]
+	ret
+
+Func_c81bf: ; c81bf (32:41bf)
+	ld a, [wPlayerXCoord]
+	add $ff
+	swap a
+	and $f
+	ld [wc915], a
+	ld a, [wPlayerYCoord]
+	add $fa
+	swap a
+	and $f
+	ld [wc916], a
+	ld hl, Data_2516
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	hlcoord 0, 0
+	add hl, de
+	ld a, [wc915]
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [wc9fb]
+	ld d, a
+	ld a, [wc9fa]
+	ld e, a
+	ld a, [hl]
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	call Func_2c05
+	ld c, a
+	ld a, [wc9ef]
+	ld b, a
+	ld a, c
+	ld [wc9ef], a
+	cp b
+	jr z, .asm_c8219
+	ld a, [wc499]
+	or $2
+	ld [wc499], a
+	jr .asm_c8221
+
+.asm_c8219
+	ld a, [wc499]
+	and $fd
+	ld [wc499], a
+.asm_c8221
+	ret
+
+Func_c8222: ; c8222 (32:4222)
+	ld a, [wc905]
+	push hl
+	ld hl, Data_c8232
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld d, [hl]
+	pop hl
+	ret
+
+Data_c8232:
+	db $11
+	db $11
+	db $11
+	db $07
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $11
+	db $07
+
+Func_c8243: ; c8243 (32:4243)
+	ld a, [wBGMapAnchor]
+	ld l, a
+	ld a, [wBGMapAnchor + 1]
+	ld h, a
+	add hl, bc
+	ld a, l
+	ld [wBGMapAnchor], a
+	ld a, h
+	cp $98
+	jr nc, .asm_c8259
+	add $4
+	jr .asm_c825f
+
+.asm_c8259
+	cp $9c
+	jr c, .asm_c825f
+	sub $4
+.asm_c825f
+	and $f
+	or $90
+	ld h, a
+	ld [wBGMapAnchor + 1], a
+	ret
+
+Func_c8268: ; c8268 (32:4268)
+	ld a, [wBGMapAnchor]
+	and $1f
+	add c
+	cp $20
+	jr c, .asm_c8286
+	bit 7, a
+	jr z, .asm_c827e
+	ld a, [wBGMapAnchor]
+	add c
+	add $20
+	jr .asm_c828a
+
+.asm_c827e
+	ld a, [wBGMapAnchor]
+	add c
+	sub $20
+	jr .asm_c828a
+
+.asm_c8286
+	ld a, [wBGMapAnchor]
+	add c
+.asm_c828a
+	ld [wBGMapAnchor], a
+	ld l, a
+	ld a, [wBGMapAnchor + 1]
+	ld h, a
+	ret
+
+Func_c8293: ; c8293 (32:4293)
+	push hl
+	ld hl, Data_2516
+	ld a, e
+	add a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	hlcoord 0, 0
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+Func_c82a9: ; c82a9 (32:42a9)
+	ld c, $a
+	ld a, l
+	and $1f
+	ld [wc981], a
+.asm_c82b1
+	push bc
+	push hl
+	ld a, [de]
+	inc de
+	push de
+	call LoadMetatile
+	pop de
+	pop hl
+	pop bc
+	ld a, [wc981]
+	inc a
+	inc a
+	cp $20
+	jr c, .asm_c82cf
+	ld a, l
+	and $e0
+	ld l, a
+	xor a
+	ld [wc981], a
+	jr .asm_c82d4
+
+.asm_c82cf
+	ld [wc981], a
+	inc hl
+	inc hl
+.asm_c82d4
+	ld a, h
+	cp $9c
+	jr c, .asm_c82db
+	ld h, $98
+.asm_c82db
+	dec c
+	jr nz, .asm_c82b1
+	ret
+
+Func_c82df: ; c82df (32:42df)
+	push hl
+	ld d, $0
+	hlcoord 0, 0
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	ld c, $8
+.asm_c82eb
+	push bc
+	push hl
+	ld a, [de]
+	push de
+	call LoadMetatile
+	pop de
+	ld hl, $a
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	ld bc, $40
+	add hl, bc
+	ld a, h
+	cp $9c
+	jr c, .asm_c8305
+	ld h, $98
+.asm_c8305
+	pop bc
+	dec c
+	jr nz, .asm_c82eb
+	ret
+
+Func_c830a: ; c830a (32:430a)
+	ld bc, EVENT_C02
+	call ToggleEventFlag
+	ld a, [wc904]
+	cp $16
+	jr z, .asm_c8321
+	cp $e
+	jr z, .asm_c832e
+	cp $31
+	jp z, Func_c83b1
+	ret
+
+.asm_c8321
+	ld a, [wc903]
+	cp $7c
+	ret nz
+	ld bc, EVENT_C04
+	call SetEventFlag
+	ret
+
+.asm_c832e
+	ld a, [wc906]
+	cp $21
+	jr nz, .asm_c836c
+	ld a, d
+	cp $1
+	jr nz, .asm_c8345
+	ld a, e
+	cp $6
+	jr nz, .asm_c8345
+	ld bc, EVENT_C05
+	call SetEventFlag
+.asm_c8345
+	ld a, d
+	cp $8
+	jr nz, .asm_c8355
+	ld a, e
+	cp $6
+	jr nz, .asm_c8355
+	ld bc, EVENT_C06
+	call SetEventFlag
+.asm_c8355
+	ld bc, EVENT_C05
+	call CheckEventFlag
+	jr z, .asm_c836b
+	ld bc, EVENT_C06
+	call CheckEventFlag
+	jr z, .asm_c836b
+	ld bc, EVENT_07C
+	call SetEventFlag
+.asm_c836b
+	ret
+
+.asm_c836c
+	cp $13
+	jr nz, .asm_c83a6
+	ld a, d
+	cp $1
+	jr nz, .asm_c8380
+	ld a, e
+	cp $6
+	jr nz, .asm_c8380
+	ld bc, EVENT_C07
+	call SetEventFlag
+.asm_c8380
+	ld a, d
+	cp $8
+	jr nz, .asm_c8390
+	ld a, e
+	cp $6
+	jr nz, .asm_c8390
+	ld bc, EVENT_C08
+	call SetEventFlag
+.asm_c8390
+	ld bc, EVENT_C07
+	call CheckEventFlag
+	jr z, .asm_c836b
+	ld bc, EVENT_C08
+	call CheckEventFlag
+	jr z, .asm_c836b
+	ld bc, EVENT_07D
+	jp SetEventFlag
+
+.asm_c83a6
+	cp $32
+	jr nz, .asm_c83b0
+	ld bc, EVENT_07E
+	jp SetEventFlag
+
+.asm_c83b0
+	ret
+
+Func_c83b1: ; c83b1 (32:43b1)
+	ld a, $17
+	ld [wc49a], a
+	ld a, $60
+	ld [wc493], a
+	ret
+
+Func_c83bc: ; c83bc (32:43bc)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_c83d5
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_c83d5:
+	dw Func_c83dd
+	dw Func_c8417
+	dw Func_c8455
+	dw Func_c858d
+
+Func_c83dd:
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $17
+	ld [hl], a
+	ld bc, EVENT_C02
+	call ResetEventFlag
+	call Func_c864d
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+Func_c8417:
+	call Func_c8602
+	call Func_c8642
+	ld bc, EVENT_C02
+	call CheckEventFlag
+	ret z
+	ld bc, EVENT_C04
+	ld a, [wCurObjectStruct]
+	add $1e
+	ld l, a
+	ld a, [hl]
+	or a
+	jr z, .asm_c8437
+	call CheckEventFlag
+	jr z, .asm_c843d
+	ret
+
+.asm_c8437
+	call CheckEventFlag
+	jr nz, .asm_c843d
+	ret
+
+.asm_c843d
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $2
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, $60
+	ld [H_SFX_ID], a
+	ret
+
+Func_c8455:
+	call Func_c8602
+	call Func_c8642
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	cp $0
+	jr z, .asm_c846c
+	cp $1
+	jr z, .asm_c848c
+	jr .asm_c84e7
+
+.asm_c846c
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $18
+	jr c, .asm_c848b
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+.asm_c848b
+	ret
+
+.asm_c848c
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, hFFFD
+	call Func_2ae7
+	call Func_2ac0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $18
+	jr c, .asm_c84e6
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, $20
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $d
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $f
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, $61
+	ld [H_SFX_ID], a
+.asm_c84e6
+	ret
+
+.asm_c84e7
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, $40
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cpl
+	inc a
+	ld d, a
+	sla d
+	sla d
+	call Func_3058
+	ld b, $0
+	ld c, a
+	bit 7, a
+	jr z, .asm_c850b
+	dec b
+.asm_c850b
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	ld e, a
+	ld d, $0
+	call Multiply_DE_by_BC
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $f
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $d
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld b, d
+	ld c, e
+	sra b
+	rr c
+	sra b
+	rr c
+	sra b
+	rr c
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2af4
+	callba Func_308aa
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	dec a
+	ld [hl], a
+	ret nz
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $3
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, [hl]
+	xor $40
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ret
+
+Func_c858d:
+	call Func_c8602
+	call Func_c8642
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	cp $0
+	jr z, .asm_c85a0
+	jr .asm_c85bf
+
+.asm_c85a0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $b4
+	ret c
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ret
+
+.asm_c85bf
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, $4
+	call Func_2af4
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $f0
+	jr nz, .asm_c8601
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld bc, EVENT_C02
+	call ResetEventFlag
+	ret
+
+.asm_c8601
+	ret
+
+Func_c8602: ; c8602 (32:4602)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wPlayerYCoord]
+	cp $48
+	jr c, .asm_c861c
+	ld a, [wcd21]
+	or a
+	jr z, .asm_c861c
+	ld a, [hl]
+	and $fe
+	ld [hl], a
+	ret
+
+.asm_c861c
+	ld a, [hl]
+	or $1
+	ld [hl], a
+	ret
 
 Func_c8621:
-	dr $c8621, $c8802
+	dr $c8621, $c8642
+
+Func_c8642:
+	dr $c8642, $c864d
+
+Func_c864d:
+	dr $c864d, $c8802
 
 Func_c8802:
 	dr $c8802, $c885f

@@ -3290,7 +3290,7 @@ Func_256e::
 .asm_260e
 	ld a, [wc9c2]
 	cp $13
-	jr nz, .asm_2665
+	jr nz, asm_2665
 	call Func_1fff
 	ld a, $13
 	ld [hSFX_ID], a
@@ -3313,14 +3313,14 @@ Func_256e::
 	ld a, [wc9c4]
 	ld c, a
 	call Func_28a9
-	jr nz, .asm_264f
+	jr nz, Func_264f
 	ld a, $b
 	ld [wc49a], a
 	ld a, $20
 	ld [wc493], a
 	ret
 
-.asm_264f
+Func_264f:
 	ld a, $b
 	ld [wc49a], a
 	ld a, $b8
@@ -3333,7 +3333,7 @@ Func_256e::
 .asm_2664
 	ret
 
-.asm_2665
+asm_2665
 	cp $15
 	jr nz, Func_2690
 	call Func_2809
