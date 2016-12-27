@@ -32044,14 +32044,285 @@ Func_c8602: ; c8602 (32:4602)
 	ld [hl], a
 	ret
 
-Func_c8621:
-	dr $c8621, $c8642
+Func_c8621: ; c8621 (32:4621)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_c863a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_c8642:
-	dr $c8642, $c864d
+Pointers_c863a:
+	dw Func_c866c
+	dw Func_c86cd
+	dw Func_c874e
+	dw Func_c87e8
 
-Func_c864d:
-	dr $c864d, $c8802
+Func_c8642: ; c8642 (32:4642)
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, [hl]
+	and $8
+	jr z, asm_c866b
+Func_c864d: ; c864d (32:464d)
+	ld a, [wCurObjectStruct]
+	add $18
+	ld l, a
+	ld a, [hl]
+	ld de, GFX_e0320
+	cp $0
+	jr asm_c865e
+
+Func_c865b:
+	ld de, GFX_e0320
+asm_c865e
+	push hl
+	ld a, BANK(GFX_e0320)
+	ld hl, VTilesOB tile $7c
+	ld bc, $40
+	call FarCopy2bpp_2
+	pop hl
+asm_c866b
+	ret
+
+Func_c866c:
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $10
+	ld l, a
+	ld a, [hl]
+	cp $1b
+	jr nz, .asm_c868b
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $2
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $3
+	ld [hl], a
+	ret
+
+.asm_c868b
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $10
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $17
+	ld [hl], a
+	ld bc, EVENT_C02
+	call ResetEventFlag
+	ld bc, EVENT_C03
+	call ResetEventFlag
+	call Func_c864d
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, $0
+	ld [hl], a
+Func_c86cd:
+	call Func_c8602
+	ld bc, EVENT_C02
+	call CheckEventFlag
+	jr z, .asm_c86e7
+	ld bc, EVENT_C02
+	call ResetEventFlag
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, $2
+	ld [hl], a
+.asm_c86e7
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, [hl]
+	or a
+	jr z, .asm_c874a
+	dec a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, -$40
+	call Func_2af4
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $10
+	jr nz, .asm_c8710
+	ld bc, EVENT_C03
+	call SetEventFlag
+.asm_c8710
+	cp $11
+	ret nz
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, $40
+	call Func_2af4
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $2
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld bc, EVENT_C03
+	call ResetEventFlag
+.asm_c874a
+	call Func_c8642
+	ret
+
+Func_c874e:
+	call Func_c8602
+	ld bc, $8
+	call Func_2ae7
+	call Func_2ac0
+	callba Func_308aa
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, [hl]
+	cp $10
+	jr c, .asm_c87d0
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $4
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, [hl]
+	cpl
+	ld c, a
+	ld a, [wCurObjectStruct]
+	add $f
+	ld l, a
+	ld a, [hl]
+	cpl
+	ld b, a
+	inc bc
+	sra b
+	rr c
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, c
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $f
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $1
+	jr z, .asm_c87d4
+	cp $3
+	jr c, .asm_c87d0
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+.asm_c87d0
+	call Func_c8642
+	ret
+
+.asm_c87d4
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld b, h
+	ld c, l
+	callba Func_31565
+	ld a, $61
+	ld [H_SFX_ID], a
+	ret
+
+Func_c87e8:
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, EVENT_C03
+	call CheckEventFlag
+	jr z, .asm_c87fd
+	ld a, [hl]
+	or $4
+	ld [hl], a
+	ret
+
+.asm_c87fd
+	ld a, [hl]
+	and $fb
+	ld [hl], a
+	ret
 
 Func_c8802:
 	dr $c8802, $c885f
