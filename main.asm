@@ -29302,6 +29302,7 @@ Func_a910f: ; a910f (2a:510f)
 	add b
 	ld b, a
 	callba Func_2c73e
+Func_a912c:
 	ld a, $b0
 	ld [wc91f], a
 	ld a, $e0
@@ -29635,17 +29636,901 @@ Func_a93c7: ; a93c7 (2a:53c7)
 	ld [wcae7], a
 	ret
 
-Func_a93cf:
-	dr $a93cf, $a98bf
+Func_a93cf: ; a93cf (2a:53cf)
+	ld a, [wcae7]
+	cp $0
+	jp nz, Func_a946f
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	ld a, BANK(GFX_e0f58)
+	hlbgcoord 0, 5
+	ld de, GFX_e0f58
+	ld bc, $e0
+	call FarCopy2bpp_2
+	ld bc, $a
+	call GetCGB_BGLayout_
+	call Func_a8bad
+	ld a, $0
+	ld [wBGPalUpdate], a
+	ld a, $2a
+	ld [wPrevROMBank], a
+	ld a, [wcaed]
+	call GetDenjuuPalette_Pal7
+	ld a, [wcae0]
+	ld c, a
+	call Func_a8d6d
+	ld a, $2
+	ld bc, $1fe
+	call Func_1196
+	ld bc, $e0
+	hlbgcoord 0, 5
+	ld a, $7
+	call Func_378c
+	ld bc, $0
+	ld a, $1
+	call Func_050a
+	ld a, $1
+	ld [wOAMAnimation19_PriorityFlags], a
+	call Func_a92ad
+	call Func_a912c
+	call Func_2cc4
+	ld de, $4c88
+	hlbgcoord 0, 1
+	ld b, $2
+	ld c, $14
+	ld a, $0
+	call Func_a8c50
+	call Func_a92d1
+	ld a, $0
+	ld hl, VTilesShared tile $38
+	call LoadCharacter_
+	ld a, $0
+	ld hl, VTilesShared tile $39
+	call LoadCharacter_
+	ld a, $0
+	ld hl, VTilesShared tile $3a
+	call LoadCharacter_
+	ld c, $b3
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a9469
+	ld c, $b4
+.asm_a9469
+	call Func_a9279
+	jp Func_a93c7
 
-Func_a98bf:
-	dr $a98bf, $a99f5
+Func_a946f: ; a946f (2a:546f)
+	cp $1
+	jr nz, .asm_a948e
+	call Func_2cc4
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, $0
+	call PaletteFade_
+	or a
+	ret z
+	ld a, [wOAMAnimation19_XCoord]
+	ld [wOAMAnimation19_Duration + 1], a
+	call Func_a8bd0
+	jp Func_a93c7
 
-Func_a99f5:
-	dr $a99f5, $a9fe9
+.asm_a948e
+	cp $2
+	jp nz, Func_a9595
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [$c2f5]
+	or a
+	jp nz, Func_a9585
+	ld a, [$c2f3]
+	or a
+	jp nz, Func_a9551
+	ld a, [wc984]
+	and $7
+	jr nz, .asm_a94b5
+	callba Func_3311f
+.asm_a94b5
+	call Func_a97aa
+	call Func_2cc4
+	ld a, [wOAMAnimation19_Duration + 3]
+	ld d, a
+	ld a, [wOAMAnimation19_Duration + 2]
+	ld e, a
+	ld a, [wOAMAnimation19_Duration + 1]
+	ld h, a
+	ld a, [wOAMAnimation19_Duration]
+	ld l, a
+	add hl, de
+	ld a, h
+	ld [wOAMAnimation19_Duration + 1], a
+	ld a, l
+	ld [wOAMAnimation19_Duration], a
+	ld a, [wOAMAnimation19_Duration + 5]
+	ld h, a
+	ld a, [wOAMAnimation19_Duration + 4]
+	ld l, a
+	add hl, de
+	ld a, h
+	ld [wOAMAnimation19_Duration + 5], a
+	ld a, l
+	ld [wOAMAnimation19_Duration + 4], a
+	ld hl, rIE
+	add hl, de
+	ld hl, wOAMAnimation19_Duration + 2
+	ld a, $c0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	ld a, [hJoyLast]
+	and $2
+	jr z, .asm_a9501
+	ld hl, wOAMAnimation19_Duration + 2
+	ld a, $80
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+.asm_a9501
+	ld c, $3
+	ld a, [$c2f7]
+	ld b, a
+	bit 7, a
+	jr nz, .asm_a950d
+	ld c, $7
+.asm_a950d
+	call Func_30a7
+	and c
+	add c
+	add b
+	ld [$c2f7], a
+	ld d, a
+	call Func_3058
+	sra a
+	sra a
+	sra a
+	sra a
+	sra a
+	ld b, a
+	ld a, [wOAMAnimation19_Duration + 5]
+	add b
+	ld [wcae4], a
+	ld a, [wOAMAnimation19_Duration + 1]
+	ld [wOAMAnimation19_XCoord], a
+	ld hl, wc463
+	ld a, [wcae4]
+	ld [hl], a
+	ld a, [wOAMAnimation19_Duration + 5]
+	cp $d0
+	ret nz
+	ld a, $d0
+	ld [wcae4], a
+	ld hl, wc463
+	ld a, [wcae4]
+	ld [hl], a
+	ld a, $1
+	ld [$c2f3], a
+	ret
+
+Func_a9551: ; a9551 (2a:5551)
+	call Func_a97aa
+	ld a, [$c2f3]
+	inc a
+	ld [$c2f3], a
+	cp $28
+	ret c
+	ld a, $43
+	ld [H_SFX_ID], a
+	ld a, $1
+	ld [wc9d9], a
+	ld a, $1
+	ld [$c2f5], a
+	ld a, $0
+	ld [wOAMAnimation19_PriorityFlags], a
+	ld b, $8
+.asm_a9574
+	ld a, BANK(Func_3322a)
+	ld hl, Func_3322a
+	push bc
+	ld d, b
+	swap d
+	call FarCall_HL
+	pop bc
+	dec b
+	jr nz, .asm_a9574
+	ret
+
+Func_a9585: ; a9585 (2a:5585)
+	call Func_a97aa
+	ld a, [$c2f5]
+	inc a
+	ld [$c2f5], a
+	cp $50
+	jp nc, Func_a93c7
+	ret
+
+Func_a9595: ; a9595 (2a:5595)
+	cp $3
+	jr nz, .asm_a95c0
+	call Func_a97c0
+	call Func_a97cf
+	ld a, [wcae0]
+	ld b, a
+	ld a, [$c2b5]
+	dec a
+	add b
+	ld hl, wcdbc
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	dec [hl]
+	ld a, [$c2b7]
+	or a
+	jr z, .asm_a95dc
+	ld a, $4
+	call Func_050a
+	jp Func_a93c7
+
+.asm_a95c0
+	cp $4
+	jp nz, Func_a96b8
+	ld a, BANK(Func_a9595)
+	ld [wPrevROMBank], a
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [$c2b7]
+	or a
+	jr nz, .asm_a961e
+.asm_a95dc
+	ld a, BANK(Func_a9595)
+	ld [wPrevROMBank], a
+	ld a, [$c2b6]
+	call GetDenjuuPalette_Pal6
+	ld a, $0
+	ld [wOAMAnimation19_PriorityFlags], a
+	ld a, $0
+	ld [wcae4], a
+	call Func_a8bd0
+	ld a, [$c2b6]
+	ld c, $0
+	ld de, VTilesBG tile $41
+	call LoadDenjuuPic_
+	ld d, $7
+	ld bc, $8
+	hlbgcoord 22, 5
+	ld a, $6
+	call Func_377b
+	ld a, $0
+	ld [wOAMAnimation18_Duration + 7], a
+	ld a, $0
+	ld [wOAMAnimation18_Duration + 6], a
+	ld a, $1
+	ld [wBGPalUpdate], a
+	jp IncrementSubroutine
+
+.asm_a961e
+	ld a, BANK(GFX_e1308)
+	ld hl, VTilesOB tile $00
+	ld de, GFX_e1308
+	ld bc, $40
+	call FarCopy2bpp_2
+	ld bc, $1f
+	call DecompressGFXByIndex_
+	hlbgcoord 0, 4
+	ld a, $40
+	ld bc, $100
+	call Func_3775
+	ld de, $5548
+	hlbgcoord 7, 7
+	ld b, $4
+	ld c, $6
+	ld a, $6
+	call Func_a8c50
+	ld d, $8
+	ld bc, $20
+	hlbgcoord 0, 4
+	ld a, $6
+	call Func_377b
+	ld bc, $a
+	call GetCGB_BGLayout_
+	ld bc, $11
+	call GetCGB_OBLayout_
+	call Func_a8bad
+	ld a, BANK(Func_a9595)
+	ld [wPrevROMBank], a
+	ld a, $6
+	ld bc, $1db
+	call Func_10ee
+	call Func_3566
+	call Func_a9858
+	call Func_a96e4
+	add $af
+	ld c, a
+	call Func_a9279
+	ld a, $0
+	ld [wOAMAnimation19_PriorityFlags], a
+	ld [wc46c], a
+	ld [wc46d], a
+	ld a, $0
+	ld [wBGPalUpdate], a
+	ld a, $6f
+	ld [wOAMAnimation17_TemplateIdx], a
+	ld a, $6f
+	ld [wOAMAnimation18_TemplateIdx], a
+	ld a, $30
+	ld [wOAMAnimation17_XCoord], a
+	ld a, $70
+	ld [wOAMAnimation18_XCoord], a
+	ld a, $2a
+	ld [wPrevROMBank], a
+	ld bc, $0
+	ld a, $1
+	call Func_050a
+	jp Func_a93c7
+
+Func_a96b8: ; a96b8 (2a:56b8)
+	cp $5
+	jr nz, .asm_a96e3
+	ld a, BANK(Func_a96b8)
+	ld [wPrevROMBank], a
+	ld a, $0
+	call PaletteFade_
+	or a
+	ret z
+	ld a, $0
+	ld [wcae7], a
+	ld a, [$c2b7]
+	or a
+	jp z, IncrementSubroutine
+	ld a, $20
+	ld [wcae7], a
+	ld a, $23
+	ld [wSubroutine], a
+	ld a, $5
+	ld [H_SFX_ID], a
+.asm_a96e3
+	ret
+
+Func_a96e4: ; a96e4 (2a:56e4)
+	or a
+	ret z
+	push hl
+	push bc
+	push af
+	ld a, BANK(Func_a96e4)
+	ld [wPrevROMBank], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld a, [wcdb4]
+	ld c, a
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	ld hl, sAddressBook
+	add hl, bc
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld b, a
+	ld a, d
+	inc hl
+	inc hl
+	push hl
+	push bc
+	ld c, DENJUU_TYPE
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	pop bc
+	call Func_05d9
+	pop hl
+	ld a, b
+	ld [wOAMAnimation18_Duration + 2], a
+	ld a, c
+	ld [wOAMAnimation18_Duration + 3], a
+	pop af
+	push af
+	push hl
+	ld hl, Data_a9787
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hl]
+	ld e, a
+	ld d, $0
+	call Multiply_DE_by_BC
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e
+	pop bc
+	ld a, [bc]
+	ld l, a
+	inc bc
+	ld a, [bc]
+	ld h, a
+	dec bc
+	add hl, de
+	ld d, h
+	ld e, l
+	push bc
+	ld bc, -1998
+	add hl, bc
+	jr nc, .asm_a9763
+	ld de, 1998
+.asm_a9763
+	pop bc
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld a, e
+	ld [bc], a
+	inc bc
+	ld a, d
+	ld [bc], a
+	ld a, $0
+	ld [MBC3SRamEnable], a
+	call Func_a92d1
+	ld a, b
+	ld [$c2df], a
+	ld a, c
+	ld [$c2de], a
+	pop af
+	pop bc
+	pop hl
+	ret
+
+Data_a9787:
+	db 0, 2, 4, 7
+
+Func_a978b:
+	ld b, a
+	ld a, BANK(Func_a978b)
+	ld [wPrevROMBank], a
+	ld a, [wcaed]
+	call Func_05d9
+	push bc
+	callba Func_a5509
+	pop hl
+	ld a, b
+	cp h
+	jr nz, .asm_a97a9
+	ld a, c
+	cp l
+	jr nz, .asm_a97a9
+.asm_a97a9
+	ret
+
+Func_a97aa: ; a97aa (2a:57aa)
+	ld a, [wSubroutine]
+	push af
+	ld a, $4
+	ld [wSubroutine], a
+	callba Func_3079c
+	pop af
+	ld [wSubroutine], a
+	ret
+
+Func_a97c0: ; a97c0 (2a:57c0)
+	ld b, $c
+	ld hl, wOAMAnimation01
+	ld de, $20
+	xor a
+.asm_a97c9
+	ld [hl], a
+	add hl, de
+	dec b
+	jr nz, .asm_a97c9
+	ret
+
+Func_a97cf: ; a97cf (2a:57cf)
+	ld hl, Data_aa0b1
+	ld a, [wcaed]
+	ld b, $0
+	ld c, a
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld a, [wcae0]
+	ld b, a
+	dec b
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a97f0
+	ld a, b
+	add $40
+	ld b, a
+.asm_a97f0
+	ld c, $0
+	ld a, [hli]
+	cp b
+	jr z, .asm_a9801
+	inc c
+	ld a, [hli]
+	cp b
+	jr z, .asm_a9801
+	ld a, $1
+	ld [$c2b7], a
+	ret
+
+.asm_a9801
+	inc hl
+	ld a, [hl]
+	dec a
+	ld [$c2b6], a
+	ld [wc912], a
+	ld c, a
+	ld b, $0
+	ld hl, $f00
+	add hl, bc
+	ld b, h
+	ld c, l
+	call SetEventFlag
+	ld bc, -$100
+	add hl, bc
+	ld b, h
+	ld c, l
+	call SetEventFlag
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+	ld a, BANK(sAddressBook)
+	ld [MBC3SRamBank], a
+	ld a, [wcdb4]
+	ld c, a
+	ld hl, sAddressBook
+	ld b, $0
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	ld a, [wc912]
+	ld [hl], a
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+	ld a, [wc912]
+	call Func_a92a8
+	ld a, $0
+	ld [$c2b7], a
+	ret
+
+Func_a9858: ; a9858 (2a:5858)
+	ld hl, Data_a9a93
+	ld a, [wcaed]
+	ld c, a
+	ld b, $0
+	add hl, bc
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	add hl, bc
+	push hl
+	ld bc, $8
+	add hl, bc
+	ld a, [hl]
+	ld b, a
+	ld a, [wcae0]
+	dec a
+	cp b
+	jr nz, .asm_a9882
+	pop hl
+	ld a, $3
+	or a
+	ret
+
+.asm_a9882
+	pop hl
+	ld a, [wcae0]
+	dec a
+	ld b, a
+	srl a
+	srl a
+	srl a
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, b
+	ld c, $1
+	and $7
+	jr z, .asm_a98a0
+.asm_a989b
+	sla c
+	dec a
+	jr nz, .asm_a989b
+.asm_a98a0
+	ld a, [hl]
+	and c
+	ret z
+	cp $12
+	jr z, .asm_a98b7
+	cp $1d
+	jr z, .asm_a98b7
+	cp $31
+	jr z, .asm_a98b7
+	cp $32
+	jr z, .asm_a98b7
+	cp $33
+	jr nz, .asm_a98bb
+.asm_a98b7
+	ld a, $1
+	or a
+	ret
+
+.asm_a98bb
+	ld a, $2
+	or a
+	ret
+
+Func_a98bf: ; a98bf (2a:58bf)
+	call Func_2cc4
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, [wOAMAnimation18_Duration + 6]
+	cp $e6
+	jr nc, .asm_a9915
+	ld a, $1
+	ld [wc46c], a
+	ld a, $1
+	ld [wc46d], a
+	call Func_a99cf
+	ld b, $0
+	ld a, c
+	or a
+	jr z, .asm_a98e3
+	ld b, $80
+.asm_a98e3
+	ld hl, wc463
+	ld [hl], b
+	ld a, [wOAMAnimation18_Duration + 6]
+	cp $e6
+	jr nz, .asm_a9914
+	ld a, $15
+	ld [H_SFX_ID], a
+	call Func_a9942
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a9909
+	ld a, $2d
+	ld [wc917], a
+	call GetMusicBank
+	ld [H_MusicID], a
+	jr .asm_a9914
+
+.asm_a9909
+	ld a, $2c
+	ld [wc917], a
+	call GetMusicBank
+	ld [H_MusicID], a
+.asm_a9914
+	ret
+
+.asm_a9915
+	ld a, [wc984]
+	and $3
+	jr nz, .asm_a9924
+	callba Func_33303
+.asm_a9924
+	call Func_a97aa
+	ld a, [wTextSubroutine]
+	cp $9
+	jr nz, .asm_a9941
+	ld a, $0
+	ld [$c2b7], a
+	call Func_a91b4
+	ld a, $0
+	ld [wcae7], a
+	ld [wcd00], a
+	call Func_a97c0
+.asm_a9941
+	ret
+
+Func_a9942: ; a9942 (2a:5942)
+	call Func_3566
+	ld bc, $1d
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a9951
+	ld bc, $1e
+.asm_a9951
+	call DecompressGFXByIndex_
+	ld a, BANK(GFX_e1118)
+	hlbgcoord 0, 5
+	ld de, GFX_e1118
+	ld bc, $e0
+	call FarCopy2bpp_2
+	ld bc, $1dd
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a996e
+	ld bc, $1dc
+.asm_a996e
+	ld a, $5
+	call Func_10ee
+	ld a, $0
+	ld [wOAMAnimation19_PriorityFlags], a
+	ld [wc46c], a
+	ld [wc46d], a
+	ld d, $7
+	ld bc, $8
+	hlbgcoord 6, 5
+	ld a, $6
+	call Func_377b
+	ld d, $8
+	ld bc, $6
+	hlbgcoord 0, 4
+	ld a, $5
+	call Func_377b
+	ld d, $8
+	ld bc, $6
+	hlbgcoord 14, 4
+	ld a, $5
+	call Func_377b
+	ld c, $b5
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a99af
+	ld c, $b6
+.asm_a99af
+	call Func_a9279
+	ld a, $1
+	ld [wBGPalUpdate], a
+	ld de, GFX_e1448
+	ld a, [wcaee]
+	or a
+	jr z, .asm_a99c3
+	ld de, GFX_e1348
+.asm_a99c3
+	ld a, BANK(GFX_e1348)
+	hlbgcoord 0, 4
+	ld bc, $100
+	call FarCopy2bpp_2
+	ret
+
+Func_a99cf: ; a99cf (2a:59cf)
+	ld c, $0
+	ld a, [wOAMAnimation18_Duration + 6]
+	inc a
+	ld [wOAMAnimation18_Duration + 6], a
+	cp $55
+	jr nc, .asm_a99e1
+	and $e
+	jr z, .asm_a99f3
+	ret
+
+.asm_a99e1
+	cp $96
+	jr nc, .asm_a99ea
+	and $6
+	jr z, .asm_a99f3
+	ret
+
+.asm_a99ea
+	cp $e6
+	jr nc, .asm_a99f3
+	and $2
+	jr z, .asm_a99f3
+	ret
+
+.asm_a99f3
+	inc c
+	ret
+
+Func_a99f5: ; a99f5 (2a:59f5)
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	call Func_a9a57
+	call Func_2cc4
+	ld a, [hJoyNew]
+	and $2
+	jr nz, .asm_a9a15
+	ld a, [wTextSubroutine]
+	cp $9
+	jr nz, .asm_a9a56
+	ld bc, EVENT_C3E
+	call CheckEventFlag
+	jr nz, .asm_a9a2b
+.asm_a9a15
+	ld a, $0
+	ld [$c2b7], a
+	call Func_a91b4
+	ld a, $0
+	ld [wcae7], a
+	ld [wcd00], a
+	ld a, $4
+	ld [H_SFX_ID], a
+	ret
+
+.asm_a9a2b
+	call Func_a91b4
+	ld a, $19
+	ld [wSubroutine], a
+	ld a, $0
+	ld [wcae7], a
+	ld [wcd00], a
+	ld a, [wc908]
+	ld [wcdec], a
+	ld a, [$c2dd]
+	ld [wcdee], a
+	ld a, [$c2fd]
+	ld [wcde1], a
+	call Func_a920d
+	ld a, $3
+	ld [H_SFX_ID], a
+	ret
+
+.asm_a9a56
+	ret
+
+Func_a9a57: ; a9a57 (2a:5a57)
+	ld a, $1
+	ld [wOAMAnimation17], a
+	ld [wOAMAnimation18], a
+	ld a, [wcae7]
+	or a
+	jr z, .asm_a9a66
+	dec a
+.asm_a9a66
+	ld [wcae7], a
+	ld a, [wc984]
+	ld d, a
+	sla d
+	sla d
+	sla d
+	sla d
+	call Func_3058
+	ld b, $0
+	ld c, a
+	bit 7, a
+	jr z, .asm_a9a80
+	dec b
+.asm_a9a80
+	ld a, [wcae7]
+	ld e, a
+	ld d, $0
+	call Multiply_DE_by_BC
+	ld a, $45
+	add d
+	ld [wOAMAnimation17_YCoord], a
+	ld [wOAMAnimation18_YCoord], a
+	ret
+
+Data_a9a93:
+	dr $a9a93, $a9fe9
 
 Data_a9fe9:
-	dr $a9fe9, $aa369
+	dr $a9fe9, $aa0b1
+
+Data_aa0b1:
+	dr $aa0b1, $aa369
 
 Data_aa369:
 	dr $aa369, $aa417
@@ -30556,14 +31441,16 @@ GFX_e0cb0: INCBIN "gfx/misc/e0cb0.1bpp"
 GFX_e0d28: INCBIN "gfx/misc/e0d28.2bpp"
 GFX_e0e18: INCBIN "gfx/misc/e0e18.2bpp"
 GFX_e0eb8: INCBIN "gfx/misc/e0eb8.2bpp"
-	dr $e0f58, $e1038
-
+GFX_e0f58: INCBIN "gfx/misc/e0f58.2bpp"
 TileMap_e1038:: INCBIN "data/e1038.tilemap"
-	dr $e1118, $e11f8
+GFX_e1118: INCBIN "gfx/misc/e1118.2bpp"
 GFX_e11f8: INCBIN "gfx/misc/e11f8.2bpp"
 GFX_e1208: INCBIN "gfx/misc/e1208.w32.2bpp"
 GFX_e1288: INCBIN "gfx/misc/e1288.w32.2bpp"
-	dr $e1308, $e1560
+GFX_e1308: INCBIN "gfx/misc/e1308.2bpp"
+GFX_e1348: INCBIN "gfx/misc/e1348.2bpp"
+GFX_e1448: INCBIN "gfx/misc/e1448.2bpp"
+	dr $e1548, $e1560
 
 GFX_e1560: INCBIN "gfx/misc/e1560.2bpp"
 GFX_e1650: INCBIN "gfx/misc/e1650.2bpp"
