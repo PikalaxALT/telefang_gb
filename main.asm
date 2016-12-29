@@ -28199,8 +28199,7 @@ Func_a88dd: ; a88dd (2a:48dd)
 	push hl
 	call FarCopy2bpp_2
 	pop hl
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	jr nz, .asm_a892c
 	ld a, $1
 	ld [rVBK], a
@@ -34239,8 +34238,7 @@ Func_c98a9: ; c98a9 (32:58a9)
 	ld a, $90
 	ld [de], a
 	ei
-	ld a, [wCGB]
-	cp $11
+	check_cgb
 	jr nz, .asm_c98d1
 	di
 .asm_c98f1
@@ -34673,11 +34671,9 @@ Func_c9b82: ; c9b82 (32:5b82)
 	jr nz, .asm_c9ba1
 	ret
 
-Data_c9bc6:
-	dr $c9bc6, $ca3c6
+Data_c9bc6: INCLUDE "data/unknown_c9bc6.asm"
 
-Pointers_ca3c6:
-	dr $ca3c6, $cb0c9
+INCLUDE "data/unknown_ca3c6.asm"
 
 SECTION "bank 33", ROMX, BANK [$33]
 Func_cc000:
