@@ -2381,17 +2381,17 @@ Func_7d24d: ; 7d24d (1f:524d)
 	ld [wCurDenjuu], a
 	ld a, [hli]
 	ld [wCurDenjuuLevel], a
-	ld c, $0
+	ld c, DENJUU_HP
 	call Func_7d23d
 	ld [hli], a
 	ld [hli], a
-	ld c, $1
+	ld c, DENJUU_SPEED
 	call Func_7d23d
 	ld [wd491], a
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call Func_7d23d
 	push hl
-	ld hl, Data_7d516
+	ld hl, $5516 ; broken pointer?
 	ld de, $7
 	addntimes_hl_de
 	ld d, $0
@@ -2415,7 +2415,7 @@ Func_7d24d: ; 7d24d (1f:524d)
 	pop hl
 	ld [hli], a
 	inc hl
-	ld c, $a
+	ld c, DENJUU_BASE_YIELD
 	call Func_7d23d
 	inc hl
 	inc hl
@@ -2425,96 +2425,1463 @@ Func_7d24d: ; 7d24d (1f:524d)
 	inc hl
 	inc hl
 	inc hl
-	ld c, $2
+	ld c, DENJUU_ATTACK
 	call Func_7d23d
 	ld [hli], a
-	ld c, $3
+	ld c, DENJUU_DEFENSE
 	call Func_7d23d
 	ld [hli], a
-	ld c, $4
+	ld c, DENJUU_SPATK
 	call Func_7d23d
 	ld [hli], a
-	ld c, $5
+	ld c, DENJUU_SPDEF
 	call Func_7d23d
 	ld [hli], a
 	inc hl
-	ld c, $1
+	ld c, DENJUU_SPEED
 	call Func_7d23d
 	ld [hli], a
 	ld [hl], a
 	ret
 
-Func_7d2c3::
-	dr $7d2c3, $7d516
+Func_7d2c3: ; 7d2c3 (1f:52c3)
+	call OpenSRAMBank2
+	ld a, [wd4b0]
+	ld [wd5a5], a
+	ld [wd5aa], a
+	cp $1
+	ret z
+Func_7d2d2: ; 7d2d2 (1f:52d2)
+	ld a, [wd5aa]
+	ld b, a
+	add a
+	add b
+	srl a
+	srl a
+	ld [wd5aa], a
+	cp $0
+	jr nz, .asm_7d2e8
+	ld a, $1
+	ld [wd5aa], a
+.asm_7d2e8
+	ld a, $0
+	ld [wd5ab], a
+	ld a, $0
+	ld [wd5a3], a
+Func_7d2f2: ; 7d2f2 (1f:52f2)
+	ld a, [wd5aa]
+	ld b, a
+	ld a, [wd5a3]
+	add b
+	ld [wd5a4], a
+	ld hl, wd200
+	ld d, $0
+	ld a, [wd5a3]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	ld hl, wd200
+	ld d, $0
+	ld a, [wd5a4]
+	ld e, a
+	add hl, de
+	ld a, c
+	ld b, a
+	ld a, [hl]
+	cp b
+	jr z, .asm_7d31d
+	jr nc, .asm_7d394
+	jr .asm_7d339
 
-Data_7d516:
-	dr $7d516, $7d55f
+.asm_7d31d
+	ld hl, wd100
+	ld d, $0
+	ld a, [wd5a4]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	ld hl, wd100
+	ld d, $0
+	ld a, [wd5a3]
+	ld e, a
+	add hl, de
+	ld a, c
+	ld b, a
+	ld a, [hl]
+	cp b
+	jr nc, .asm_7d394
+.asm_7d339
+	ld a, [wd5a3]
+	call Func_7d680
+	ld a, [hl]
+	ld [wd5a0], a
+	push hl
+	ld a, [wd5a4]
+	call Func_7d680
+	ld a, [hl]
+	ld b, a
+	ld a, [wd5a0]
+	ld [hl], a
+	pop hl
+	ld a, b
+	ld [hl], a
+	ld hl, wd200
+	ld d, $0
+	ld a, [wd5a3]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	push hl
+	ld hl, wd200
+	ld d, $0
+	ld a, [wd5a4]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	ld a, c
+	ld [hl], a
+	pop hl
+	ld a, b
+	ld [hl], a
+	ld hl, wd100
+	ld d, $0
+	ld a, [wd5a3]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	push hl
+	ld hl, wd100
+	ld d, $0
+	ld a, [wd5a4]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	ld a, c
+	ld [hl], a
+	pop hl
+	ld a, b
+	ld [hl], a
+	ld a, $1
+	ld [wd5ab], a
+.asm_7d394
+	ld a, [wd5a5]
+	ld b, a
+	ld a, [wd5a4]
+	inc a
+	cp b
+	jr nc, .asm_7d3a9
+	ld a, [wd5a3]
+	inc a
+	ld [wd5a3], a
+	jp Func_7d2f2
 
-Func_7d55f:
-	dr $7d55f, $7d56b
+.asm_7d3a9
+	ld a, [wd5ab]
+	cp $1
+	jp z, Func_7d2d2
+	ld a, [wd5aa]
+	cp $2
+	jp nc, Func_7d2d2
+	ret
 
-Func_7d56b:
-	dr $7d56b, $7d59a
+Func_7d3ba:
+	call OpenSRAMBank2
+	ld a, [wd4b0]
+	ld [wd5a5], a
+	ld [wd5aa], a
+	cp $1
+	ret z
+Func_7d3c9: ; 7d3c9 (1f:53c9)
+	ld a, [wd5aa]
+	ld b, a
+	add a
+	add b
+	srl a
+	srl a
+	ld [wd5aa], a
+	cp $0
+	jr nz, .asm_7d3df
+	ld a, $1
+	ld [wd5aa], a
+.asm_7d3df
+	ld a, $0
+	ld [wd5ab], a
+	ld a, $0
+	ld [wd5a3], a
+Func_7d3e9: ; 7d3e9 (1f:53e9)
+	ld a, [wd5aa]
+	ld b, a
+	ld a, [wd5a3]
+	add b
+	ld [wd5a4], a
+	ld a, [wd5a4]
+	call Func_7d680
+	ld a, [hl]
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hl]
+	ld b, a
+	push bc
+	ld a, [wd5a3]
+	call Func_7d680
+	ld a, [hl]
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hl]
+	pop bc
+	cp b
+	jr nc, .asm_7d453
+	ld a, [wd5a3]
+	call Func_7d680
+	ld a, [hl]
+	ld [wd5a0], a
+	push hl
+	ld a, [wd5a4]
+	call Func_7d680
+	ld a, [hl]
+	ld b, a
+	ld a, [wd5a0]
+	ld [hl], a
+	pop hl
+	ld a, b
+	ld [hl], a
+	ld hl, wd200
+	ld d, $0
+	ld a, [wd5a3]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	push hl
+	ld hl, wd200
+	ld d, $0
+	ld a, [wd5a4]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	ld a, c
+	ld [hl], a
+	pop hl
+	ld a, b
+	ld [hl], a
+	ld a, $1
+	ld [wd5ab], a
+.asm_7d453
+	ld a, [wd5a5]
+	ld b, a
+	ld a, [wd5a4]
+	inc a
+	cp b
+	jr nc, .asm_7d468
+	ld a, [wd5a3]
+	inc a
+	ld [wd5a3], a
+	jp Func_7d3e9
 
-Func_7d59a:
-	dr $7d59a, $7d5f1
+.asm_7d468
+	ld a, [wd5ab]
+	cp $1
+	jp z, Func_7d3c9
+	ld a, [wd5aa]
+	cp $2
+	jp nc, Func_7d3c9
+	ret
 
-Func_7d5f1:
-	dr $7d5f1, $7d602
+Func_7d479
+	ld a, $9
+	ld [wd5a8], a
+	ret
 
-Func_7d602:
-	dr $7d602, $7d620
+Func_7d47f:
+	call Random
+	cp $b
+	jr c, .asm_7d4db
+	cp $16
+	jr c, .asm_7d4e1
+	cp $21
+	jr c, .asm_7d4e7
+	cp $2c
+	jr c, .asm_7d4ed
+	cp $37
+	jr c, .asm_7d4f3
+	cp $42
+	jr c, .asm_7d4f9
+	cp $4d
+	jr c, .asm_7d4ff
+	cp $58
+	jr c, .asm_7d505
+	cp $63
+	jr c, .asm_7d50b
+	cp $6e
+	jr c, .asm_7d511
+	cp $79
+	jr c, .asm_7d517
+	cp $84
+	jr c, .asm_7d51d
+	cp $8f
+	jr c, .asm_7d523
+	cp $9a
+	jr c, .asm_7d529
+	cp $a5
+	jr c, .asm_7d52f
+	cp $b0
+	jr c, .asm_7d535
+	cp $bb
+	jr c, .asm_7d53b
+	cp $c6
+	jr c, .asm_7d541
+	cp $d1
+	jr c, .asm_7d547
+	cp $dc
+	jr c, .asm_7d54d
+	cp $e7
+	jr c, .asm_7d553
+	cp $f2
+	jp c, .asm_7d559
+.asm_7d4db
+	ld a, $0
+	ld [wd5a8], a
+	ret
 
-Func_7d620:
-	dr $7d620, $7d688
+.asm_7d4e1
+	ld a, $1
+	ld [wd5a8], a
+	ret
 
-Func_7d688:
-	dr $7d688, $7d694
+.asm_7d4e7
+	ld a, $2
+	ld [wd5a8], a
+	ret
 
-Func_7d694:
-	dr $7d694, $7d6fe
+.asm_7d4ed
+	ld a, $3
+	ld [wd5a8], a
+	ret
 
-Func_7d6fe:
-	dr $7d6fe, $7d796
+.asm_7d4f3
+	ld a, $4
+	ld [wd5a8], a
+	ret
 
-Func_7d796:
-	dr $7d796, $7d8ce
+.asm_7d4f9
+	ld a, $5
+	ld [wd5a8], a
+	ret
 
-Func_7d8ce:
-	dr $7d8ce, $7d905
+.asm_7d4ff
+	ld a, $6
+	ld [wd5a8], a
+	ret
 
-Func_7d905:
-	dr $7d905, $7d949
+.asm_7d505
+	ld a, $7
+	ld [wd5a8], a
+	ret
 
-Func_7d949:
-	dr $7d949, $7d96c
+.asm_7d50b
+	ld a, $8
+	ld [wd5a8], a
+	ret
 
-Func_7d96c:
-	dr $7d96c, $7d97c
+.asm_7d511
+	ld a, $9
+	ld [wd5a8], a
+	ret
 
-Func_7d97c:
-	dr $7d97c, $7d9fd
+.asm_7d517
+	ld a, $a
+	ld [wd5a8], a
+	ret
 
-Func_7d9fd:
-	dr $7d9fd, $7da8d
+.asm_7d51d
+	ld a, $b
+	ld [wd5a8], a
+	ret
 
-Func_7da8d:
-	dr $7da8d, $7dafa
+.asm_7d523
+	ld a, $c
+	ld [wd5a8], a
+	ret
 
-Func_7dafa:
-	dr $7dafa, $7db03
+.asm_7d529
+	ld a, $d
+	ld [wd5a8], a
+	ret
 
-Func_7db03:
-	dr $7db03, $7dc41
+.asm_7d52f
+	ld a, $e
+	ld [wd5a8], a
+	ret
 
-Func_7dc41:
-	dr $7dc41, $7dc46
+.asm_7d535
+	ld a, $f
+	ld [wd5a8], a
+	ret
 
-Func_7dc46:
-	dr $7dc46, $7dc8f
+.asm_7d53b
+	ld a, $10
+	ld [wd5a8], a
+	ret
+
+.asm_7d541
+	ld a, $11
+	ld [wd5a8], a
+	ret
+
+.asm_7d547
+	ld a, $12
+	ld [wd5a8], a
+	ret
+
+.asm_7d54d
+	ld a, $13
+	ld [wd5a8], a
+	ret
+
+.asm_7d553
+	ld a, $14
+	ld [wd5a8], a
+	ret
+
+.asm_7d559
+	ld a, $15
+	ld [wd5a8], a
+	ret
+
+Func_7d55f: ; 7d55f (1f:555f)
+	ld a, $1
+	ld [wd4a2], a
+	ld [wd4a3], a
+	ld [wd4a4], a
+	ret
+
+Func_7d56b: ; 7d56b (1f:556b)
+	push hl
+	ld a, [wCurPhoneGFX]
+	ld e, a
+	ld d, $0
+	sla e
+	rl d
+	ld hl, $5588
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld h, a
+	ld l, e
+	pop de
+	ld bc, $200
+	ld a, $37
+	jp Copy2bpp
+
+	ld e, a
+	ld e, l
+	ld e, a
+	ld e, l
+	ld e, a
+	ld e, l
+	ld e, a
+	ld h, c
+	ld e, a
+	ld h, c
+	ld e, a
+	ld h, c
+	ld e, a
+	ld h, l
+	ld e, a
+	ld h, l
+	ld e, a
+	ld h, l
+Func_7d59a: ; 7d59a (1f:559a)
+	cp $1
+	jr z, .asm_7d5ad
+	cp $2
+	jr z, .asm_7d5b5
+	cp $3
+	jr z, .asm_7d5bd
+	cp $4
+	jr z, .asm_7d5d9
+	jp Func_7d5f0
+
+.asm_7d5ad
+	ld c, $32
+	call Func_3abb
+	jp Func_7d5f0
+
+.asm_7d5b5
+	ld c, $33
+	call Func_3abb
+	jp Func_7d5f0
+
+.asm_7d5bd
+	ld c, $33
+	call Func_3abb
+	ld a, $1f
+	ld b, a
+	ld a, l
+	sub b
+	ld l, a
+	ld c, $34
+	call Func_3abb
+	ld de, $20
+	add hl, de
+	ld c, $35
+	call Func_3abb
+	jp Func_7d5f0
+
+.asm_7d5d9
+	ld c, $33
+	call Func_3abb
+	inc l
+	ld c, $36
+	call Func_3abb
+	dec l
+	ld a, $1f
+	ld b, a
+	ld a, l
+	sub b
+	ld l, a
+	ld c, $37
+	call Func_3abb
+Func_7d5f0: ; 7d5f0 (1f:55f0)
+	ret
+
+Func_7d5f1: ; 7d5f1 (1f:55f1)
+	ld a, [wd4a0]
+	cp $0
+	jr z, .asm_7d600
+	ld b, a
+	ld a, d
+.asm_7d5fa
+	add $3
+	dec b
+	jr nz, .asm_7d5fa
+	ld d, a
+.asm_7d600
+	ld a, d
+	ret
+
+Func_7d602: ; 7d602 (1f:5602)
+	ld a, [wd4a0]
+	ld b, a
+	ld a, [wd4a1]
+	cp b
+	jr z, .asm_7d610
+	ld a, $3
+	jr .asm_7d61c
+
+.asm_7d610
+	ld a, [wd4a1]
+	ld b, a
+	ld a, [wd4b0]
+.asm_7d617
+	sub $3
+	dec b
+	jr nz, .asm_7d617
+.asm_7d61c
+	ld [wd413], a
+	ret
+
+Func_7d620: ; 7d620 (1f:5620)
+	xor a
+	ld [wd4b0], a
+	ld a, $fe
+	ld b, a
+	ld hl, wd000
+.asm_7d62a
+	push hl
+	push bc
+	call OpenSRAMBank2
+	ld hl, $a001
+	ld a, b
+	call Func_3d0e
+	ld a, [hl]
+	ld [wCurDenjuuLevel], a
+	pop bc
+	pop hl
+	ld a, [wCurDenjuuLevel]
+	cp $0
+	jr z, .asm_7d675
+	ld a, $1
+	ld [wd4ec], a
+	push hl
+	ld hl, wd200
+	ld a, [wd4b0]
+	cp $0
+	jr z, .asm_7d657
+.asm_7d653
+	inc hl
+	dec a
+	jr nz, .asm_7d653
+.asm_7d657
+	ld a, [wd4ec]
+	ld [hl], a
+	pop hl
+	push hl
+	ld hl, wd100
+	ld d, $0
+	ld a, [wd4b0]
+	ld e, a
+	add hl, de
+	ld a, [wCurDenjuuLevel]
+	ld [hl], a
+	pop hl
+	ld a, b
+	ld [hli], a
+	ld a, [wd4b0]
+	inc a
+	ld [wd4b0], a
+.asm_7d675
+	ld a, $0
+	cp b
+	jr z, .asm_7d67d
+	dec b
+	jr .asm_7d62a
+
+.asm_7d67d
+	jp Func_7d2c3
+
+Func_7d680: ; 7d680 (1f:5680)
+	ld hl, wd000
+	ld d, $0
+	ld e, a
+	add hl, de
+	ret
+
+Func_7d688: ; 7d688 (1f:5688)
+	ld hl, wd000
+	call Func_7d5f1
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ret
+
+Func_7d694: ; 7d694 (1f:5694)
+	ld a, [wd413]
+	cp $1
+	jr c, .asm_7d6fd
+	ld bc, $b04
+	ld e, $a5
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld bc, $f04
+	ld e, $a6
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld a, [wd413]
+	cp $2
+	jr c, .asm_7d6cc
+	ld bc, $b07
+	ld e, $a5
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld bc, $f07
+	ld e, $a6
+	ld a, $0
+	call LoadStdBGMapLayout_
+	jr .asm_7d6d6
+
+.asm_7d6cc
+	ld bc, $b07
+	ld e, $aa
+	ld a, $0
+	call LoadStdBGMapLayout_
+.asm_7d6d6
+	ld a, [wd413]
+	cp $3
+	jr c, .asm_7d6f3
+	ld bc, $b0a
+	ld e, $a5
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld bc, $f0a
+	ld e, $a6
+	ld a, $0
+	call LoadStdBGMapLayout_
+	jr .asm_7d6fd
+
+.asm_7d6f3
+	ld bc, $b0a
+	ld e, $aa
+	ld a, $0
+	call LoadStdBGMapLayout_
+.asm_7d6fd
+	ret
+
+Func_7d6fe: ; 7d6fe (1f:56fe)
+	ld a, [wd413]
+	cp $1
+	jp c, Func_7d795
+	call OpenSRAMBank2
+	ld d, $0
+	call Func_7d688
+	ld hl, $a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	call OpenSRAMBank2
+	ld hl, VTilesBG tile $40
+	ld de, wc9e1
+	ld b, $6
+	call PlaceString_
+	ld bc, $b03
+	ld e, $a7
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld a, [wd413]
+	cp $2
+	jr c, Func_7d795
+	call OpenSRAMBank2
+	ld d, $1
+	call Func_7d688
+	ld hl, $a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	call OpenSRAMBank2
+	ld hl, VTilesBG tile $48
+	ld de, wc9e1
+	ld b, $6
+	call PlaceString_
+	ld bc, $b06
+	ld e, $a8
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld a, [wd413]
+	cp $3
+	jr c, Func_7d795
+	call OpenSRAMBank2
+	ld d, $2
+	call Func_7d688
+	ld hl, $a006
+	call Func_3d0e
+	push hl
+	pop de
+	call Func_065a
+	call OpenSRAMBank2
+	ld hl, VTilesBG tile $50
+	ld de, wc9e1
+	ld b, $6
+	call PlaceString_
+	ld bc, $b09
+	ld e, $a9
+	ld a, $0
+	call LoadStdBGMapLayout_
+Func_7d795: ; 7d795 (1f:5795)
+	ret
+
+Func_7d796: ; 7d796 (1f:5796)
+	call OpenSRAMBank2
+	ld a, [wd4a0]
+	inc a
+	hlbgcoord 14, 1
+	ld c, $1
+	call Func_1430
+	ld a, [wd44e]
+	cp $1
+	jp z, Func_7d821
+	ld a, [wd413]
+	cp $1
+	jp c, Func_7d820
+	ld d, $0
+	call Func_7d688
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hl]
+	hlbgcoord 13, 4
+	ld c, $1
+	call Func_1430
+	ld a, [wd4a2]
+	hlbgcoord 17, 4
+	ld c, $1
+	call Func_1430
+	ld a, [wd413]
+	cp $2
+	jr c, Func_7d820
+	ld d, $1
+	call Func_7d688
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hl]
+	hlbgcoord 13, 7
+	ld c, $1
+	call Func_1430
+	ld a, [wd4a3]
+	hlbgcoord 17, 7
+	ld c, $1
+	call Func_1430
+	ld a, [wd413]
+	cp $3
+	jr c, Func_7d820
+	ld d, $2
+	call Func_7d688
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hl]
+	hlbgcoord 13, 10
+	ld c, $1
+	call Func_1430
+	ld a, [wd4a4]
+	hlbgcoord 17, 10
+	ld c, $1
+	call Func_1430
+Func_7d820: ; 7d820 (1f:5820)
+	ret
+
+Func_7d821: ; 7d821 (1f:5821)
+	ld a, [wd413]
+	cp $1
+	jp c, Func_7d8cd
+	ld d, $0
+	call Func_7d688
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	ld c, $0
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	hlbgcoord 13, 4
+	ld c, $1
+	call Func_1430
+	ld d, $0
+	call Func_7d688
+	ld hl, $a002
+	call Func_3d0e
+	ld a, [hl]
+	hlbgcoord 17, 4
+	ld c, $1
+	call Func_1430
+	ld a, [wd413]
+	cp $2
+	jr c, Func_7d8cd
+	ld d, $1
+	call Func_7d688
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	ld c, $0
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	hlbgcoord 13, 7
+	ld c, $1
+	call Func_1430
+	ld d, $1
+	call Func_7d688
+	ld hl, $a002
+	call Func_3d0e
+	ld a, [hl]
+	hlbgcoord 17, 7
+	ld c, $1
+	call Func_1430
+	ld a, [wd413]
+	cp $3
+	jr c, Func_7d8cd
+	ld d, $2
+	call Func_7d688
+	ld hl, $a001
+	call Func_3d0e
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	ld c, $0
+	call GetOrCalcStatC_
+	ld a, [wCurDenjuuStat]
+	hlbgcoord 13, 10
+	ld c, $1
+	call Func_1430
+	ld d, $2
+	call Func_7d688
+	ld hl, $a002
+	call Func_3d0e
+	ld a, [hl]
+	hlbgcoord 17, 10
+	ld c, $1
+	call Func_1430
+Func_7d8cd: ; 7d8cd (1f:58cd)
+	ret
+
+Func_7d8ce: ; 7d8ce (1f:58ce)
+	ld a, [wBattleMenuSelection]
+	cp $0
+	jr z, .asm_7d8db
+	cp $1
+	jr z, .asm_7d8e1
+	jr .asm_7d8e7
+
+.asm_7d8db
+	ld a, $50
+	ld b, $18
+	jr .asm_7d8eb
+
+.asm_7d8e1
+	ld a, $50
+	ld b, $30
+	jr .asm_7d8eb
+
+.asm_7d8e7
+	ld a, $50
+	ld b, $48
+.asm_7d8eb
+	ld [wSpriteInitXCoordBuffers], a
+	ld a, b
+	ld [wSpriteInitYCoordBuffers], a
+	ld a, $20
+	ld [wd4ee], a
+	ld a, $0
+	ld [wWhichBattleMenuCursor], a
+	ld a, $d0
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	call InitBattleMenuCursor
+	ret
+
+Func_7d905: ; 7d905 (1f:5905)
+	ld a, $20
+	ld [wd4ee], a
+	ld a, $d4
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	ld a, $1
+	ld [wWhichBattleMenuCursor], a
+	ld a, $64
+	ld [wSpriteInitXCoordBuffers + 1], a
+	ld a, $10
+	ld [wSpriteInitYCoordBuffers + 1], a
+	call InitBattleMenuCursor
+	ld a, $2
+	ld [wWhichBattleMenuCursor], a
+	ld a, $64
+	ld [wSpriteInitXCoordBuffers + 2], a
+	ld a, $28
+	ld [wSpriteInitYCoordBuffers + 2], a
+	call InitBattleMenuCursor
+	ld a, $3
+	ld [wWhichBattleMenuCursor], a
+	ld a, $64
+	ld [wSpriteInitXCoordBuffers + 3], a
+	ld a, $40
+	ld [wSpriteInitYCoordBuffers + 3], a
+	call InitBattleMenuCursor
+	call Func_7d96c
+	ret
+
+Func_7d949: ; 7d949 (1f:5949)
+	cp $0
+	jr z, .asm_7d953
+	cp $1
+	jr z, .asm_7d95a
+	jr .asm_7d961
+
+.asm_7d953
+	ld a, $1
+	ld [wOAMAnimation02_PriorityFlags], a
+	jr .asm_7d966
+
+.asm_7d95a
+	ld a, $1
+	ld [wOAMAnimation03_PriorityFlags], a
+	jr .asm_7d966
+
+.asm_7d961
+	ld a, $1
+	ld [wOAMAnimation04], a
+.asm_7d966
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ret
+
+Func_7d96c: ; 7d96c (1f:596c)
+	xor a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation04], a
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ret
+
+Func_7d97c: ; 7d97c (1f:597c)
+	ld a, [wd4ba]
+	cp $0
+	jr z, .asm_7d9bc
+	ld a, [wd4bb]
+	ld b, a
+	ld a, [wd4a0]
+	cp b
+	jr nz, .asm_7d9bc
+	ld a, [wd4bc]
+	cp $0
+	jr z, .asm_7d99a
+	cp $1
+	jr z, .asm_7d9a6
+	jr .asm_7d9b2
+
+.asm_7d99a
+	ld a, $1
+	ld [wd47c], a
+	ld a, $0
+	call Func_7d949
+	jr .asm_7d9bc
+
+.asm_7d9a6
+	ld a, $1
+	ld [wd47d], a
+	ld a, $1
+	call Func_7d949
+	jr .asm_7d9bc
+
+.asm_7d9b2
+	ld a, $1
+	ld [wd47e], a
+	ld a, $2
+	call Func_7d949
+.asm_7d9bc
+	ld a, [wd4bd]
+	cp $0
+	jr z, .asm_7d9fc
+	ld a, [wd4be]
+	ld b, a
+	ld a, [wd4a0]
+	cp b
+	jr nz, .asm_7d9fc
+	ld a, [wd4bf]
+	cp $0
+	jr z, .asm_7d9da
+	cp $1
+	jr z, .asm_7d9e6
+	jr .asm_7d9f2
+
+.asm_7d9da
+	ld a, $1
+	ld [wd47c], a
+	ld a, $0
+	call Func_7d949
+	jr .asm_7d9fc
+
+.asm_7d9e6
+	ld a, $1
+	ld [wd47d], a
+	ld a, $1
+	call Func_7d949
+	jr .asm_7d9fc
+
+.asm_7d9f2
+	ld a, $1
+	ld [wd47e], a
+	ld a, $2
+	call Func_7d949
+.asm_7d9fc
+	ret
+
+Func_7d9fd: ; 7d9fd (1f:59fd)
+	ld a, [wd42e]
+	cp $1
+	jr z, .asm_7da31
+	cp $2
+	jr z, .asm_7da5e
+	ld a, [wBattleMenuSelection]
+	ld d, a
+	call Func_7d688
+	ld [wPlayerDenjuu1Field0x0d], a
+	call OpenSRAMBank2
+	ld hl, $a000
+	ld a, [wPlayerDenjuu1Field0x0d]
+	call Func_3d0e
+	ld a, [hli]
+	ld [wPlayerDenjuu1], a
+	ld a, [hli]
+	ld [wPlayerDenjuu1Level], a
+	ld a, [hli]
+	ld [wPlayerDenjuu1FD], a
+	ld a, [hl]
+	ld [wPlayerDenjuu1Field0x0c], a
+	jp Func_7da89
+
+.asm_7da31
+	ld a, [wBattleMenuSelection]
+	ld d, a
+	call Func_7d688
+	ld [wPlayerDenjuu2Field0x0d], a
+	call OpenSRAMBank2
+	ld hl, $a000
+	ld a, [wPlayerDenjuu2Field0x0d]
+	call Func_3d0e
+	ld a, [hli]
+	ld [wPlayerDenjuu2], a
+	ld a, [hli]
+	ld [wPlayerDenjuu2Level], a
+	ld a, [hli]
+	ld [wPlayerDenjuu2FD], a
+	ld a, [hl]
+	ld [wPlayerDenjuu2Field0x0c], a
+	ld a, $20
+	ld [wPlayerDenjuu2Field0x08], a
+	jr Func_7da89
+
+.asm_7da5e
+	ld a, [wBattleMenuSelection]
+	ld d, a
+	call Func_7d688
+	ld [wPlayerDenjuu3Field0x0d], a
+	call OpenSRAMBank2
+	ld hl, $a000
+	ld a, [wPlayerDenjuu3Field0x0d]
+	call Func_3d0e
+	ld a, [hli]
+	ld [wPlayerDenjuu3], a
+	ld a, [hli]
+	ld [wPlayerDenjuu3Level], a
+	ld a, [hli]
+	ld [wPlayerDenjuu3FD], a
+	ld a, [hl]
+	ld [wPlayerDenjuu3Field0x0c], a
+	ld a, $20
+	ld [wPlayerDenjuu3Field0x08], a
+Func_7da89: ; 7da89 (1f:5a89)
+	call CloseSRAM
+	ret
+
+Func_7da8d: ; 7da8d (1f:5a8d)
+	ld a, $d6
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	ld a, $4
+	ld [wWhichBattleMenuCursor], a
+	ld a, $50
+	ld [wSpriteInitXCoordBuffers + 4], a
+	ld a, $8
+	ld [wSpriteInitYCoordBuffers + 4], a
+	call InitBattleMenuCursor
+	ret
+
+	ld a, $9a
+	ld [wd437], a
+	ld a, $4
+	ld [wd436], a
+	ld de, $6
+	ld a, $2
+	ld [wd438], a
+	ld a, [wd40d]
+	ld [wd439], a
+	ld b, $38
+	call Func_7dac3
+	ret
+
+Func_7dac3: ; 7dac3 (1f:5ac3)
+	ld a, [wd437]
+	ld h, a
+	ld a, [wd436]
+	ld l, a
+.asm_7dacb
+	ld a, [wd438]
+	cp $0
+	jr z, .asm_7dae1
+	ld c, $0
+	call Func_3abb
+	ld a, [wd438]
+	dec a
+	ld [wd438], a
+	add hl, de
+	jr .asm_7dacb
+
+.asm_7dae1
+	ld a, [wd437]
+	ld h, a
+	ld a, [wd436]
+	ld l, a
+	ld a, [wd439]
+.asm_7daec
+	cp $0
+	jr z, .asm_7daf4
+	dec a
+	add hl, de
+	jr .asm_7daec
+
+.asm_7daf4
+	ld a, b
+	ld c, a
+	call Func_3abb
+	ret
+
+Func_7dafa: ; 7dafa (1f:5afa)
+	ld a, $16
+	ld b, a
+.asm_7dafd
+	xor a
+	ld [hli], a
+	dec b
+	jr nz, .asm_7dafd
+	ret
+
+Func_7db03: ; 7db03 (1f:5b03)
+	ld a, [wd401]
+	cp $5
+	jr z, .asm_7db20
+	cp $6
+	jr z, .asm_7db20
+	cp $7
+	jr z, .asm_7db20
+	call Func_7c61b
+	ld a, [wCGBPalFadeProgram]
+	or a
+	jr z, .asm_7db20
+	ld a, $5
+	ld [wd401], a
+.asm_7db20
+	ld a, [wd401]
+	ld hl, Pointers_7db2a
+	call GetWordFromTable
+	jp [hl]
+
+Pointers_7db2a: ; 7db2a (1f:5b2a)
+	dw Func_7db70
+	dw Func_7db91
+	dw Func_7dbbe
+	dw Func_7dbe1
+	dw Func_7dc22
+	dw Func_7db3a
+	dw Func_7db42
+	dw Func_7db59
+
+Func_7db3a: ; 7db3a (1f:5b3a)
+	ld c, $74
+	call Func_3d02
+	jp Func_7dc41
+
+Func_7db42: ; 7db42 (1f:5b42)
+	call PrintText_
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	call InitSerialData
+	call Func_06bc
+	ld a, $1
+	call Func_050a
+	jp Func_7dc41
+
+Func_7db59: ; 7db59 (1f:5b59)
+	ld a, $1
+	call PaletteFade_
+	or a
+	ret z
+	xor a
+	ld [wd401], a
+	ld [wBattleSubroutine], a
+	ld [wSubroutine], a
+	ld a, $3
+	ld [wGameRoutine], a
+	ret
+
+Func_7db70: ; 7db70 (1f:5b70)
+	ld a, $20
+	ld [wd4ee], a
+	ld bc, $1
+	call DecompressGFXByIndex_
+	ld bc, $14
+	call DecompressGFXByIndex_
+	ld a, [wd407]
+	cp $0
+	jr z, .asm_7db8b
+	jp Func_7dc41
+
+.asm_7db8b
+	ld a, $3
+	ld [wd401], a
+	ret
+
+Func_7db91: ; 7db91 (1f:5b91)
+	ld a, $18
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld c, $10
+	call Func_3d02
+	call Func_06bc
+	ld a, $7f
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	ld a, $0
+	ld [wWhichBattleMenuCursor], a
+	ld a, $50
+	ld [wSpriteInitXCoordBuffers], a
+	ld a, $32
+	ld [wSpriteInitYCoordBuffers], a
+	ld hl, VTilesOB tile $00
+	call InitBattleMenuCursor
+	jp Func_7dc41
+
+Func_7dbbe: ; 7dbbe (1f:5bbe)
+	call PrintText_
+	ld a, [wTextSubroutine]
+	cp $9
+	ret nz
+	ld a, $0
+	ld [wOAMAnimation01], a
+	ld a, $1
+	ld [wSpriteUpdatesEnabled], a
+	ld a, $4
+	call Func_050a
+	ld a, $10
+	ld [wcf96], a
+	ld a, $4
+	ld [wd401], a
+	ret
+
+Func_7dbe1: ; 7dbe1 (1f:5be1)
+	ld a, $19
+	call GetMusicBank
+	ld [H_MusicID], a
+	ld c, $13
+	call Func_3d02
+	ld bc, $105
+	ld e, $8b
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld bc, $100
+	ld e, $85
+	ld a, $0
+	call LoadStdBGMapLayout_
+	ld a, $7e
+	ld [wBattleMenuCursorObjectTemplateIDX], a
+	ld a, $0
+	ld [wWhichBattleMenuCursor], a
+	ld a, $50
+	ld [wSpriteInitXCoordBuffers], a
+	ld a, $32
+	ld [wSpriteInitYCoordBuffers], a
+	ld hl, VTilesOB tile $00
+	call InitBattleMenuCursor
+	ld a, $2
+	ld [wd401], a
+	ret
+
+Func_7dc22: ; 7dc22 (1f:5c22)
+	call Func_06bc
+	xor a
+	ld [wd401], a
+	ld a, $1
+	ld [wSubroutine], a
+	ld a, [wd407]
+	cp $0
+	jr z, .asm_7dc3b
+	ld a, $3
+	ld [wBattleSubroutine], a
+	ret
+
+.asm_7dc3b
+	ld a, $4
+	ld [wBattleSubroutine], a
+	ret
+
+Func_7dc41: ; 7dc41 (1f:5c41)
+	ld hl, wd401
+	inc [hl]
+	ret
+
+Func_7dc46: ; 7dc46 (1f:5c46)
+	ld a, [wd401]
+	cp $f
+	jr z, .asm_7dc51
+	cp $0
+	jr nz, .asm_7dc5f
+.asm_7dc51
+	call Func_7c61b
+	ld a, [wCGBPalFadeProgram]
+	or a
+	jr z, .asm_7dc5f
+	ld a, $b
+	ld [wd401], a
+.asm_7dc5f
+	ld a, [wd401]
+	ld hl, Pointers_7dc69
+	call GetWordFromTable
+	jp [hl]
+
+Pointers_7dc69: ; 7dc69 (1f:5c69)
+	dw Func_7dcd4
+	dw Func_7de6b
+	dw Func_7de97
+	dw Func_7dea3
+	dw Func_7dee6
+	dw Func_7df06
+	dw Func_7dfa0
+	dw Func_7dfd6
+	dw Func_7dfe0
+	dw Func_7de8c
+	dw Func_7dee6
+	dw Func_7dc98
+	dw Func_7dca0
+	dw Func_7dff3
+	dw Func_7e08e
+	dw Func_7dcdf
+	dw Func_7ddb6
+	dw Func_7dcb7
+	dw Func_7dcc1
 
 Data_7dc8f:
-	dr $7dc8f, $7e0ec
+	dr $7dc8f, $7dc98
+
+Func_7dc98:
+	dr $7dc98, $7dca0
+
+Func_7dca0:
+	dr $7dca0, $7dcb7
+
+Func_7dcb7:
+	dr $7dcb7, $7dcc1
+
+Func_7dcc1:
+	dr $7dcc1, $7dcd4
+
+Func_7dcd4:
+	dr $7dcd4, $7dcdf
+
+Func_7dcdf:
+	dr $7dcdf, $7ddb6
+
+Func_7ddb6:
+	dr $7ddb6, $7de6b
+
+Func_7de6b:
+	dr $7de6b, $7de8c
+
+Func_7de8c:
+	dr $7de8c, $7de97
+
+Func_7de97:
+	dr $7de97, $7dea3
+
+Func_7dea3:
+	dr $7dea3, $7dee6
+
+Func_7dee6:
+	dr $7dee6, $7df06
+
+Func_7df06:
+	dr $7df06, $7dfa0
+
+Func_7dfa0:
+	dr $7dfa0, $7dfd6
+
+Func_7dfd6:
+	dr $7dfd6, $7dfe0
+
+Func_7dfe0:
+	dr $7dfe0, $7dff3
+
+Func_7dff3:
+	dr $7dff3, $7e08e
+
+Func_7e08e:
+	dr $7e08e, $7e0ec
 
 Func_7e0ec:
 	dr $7e0ec, $7e0f9
