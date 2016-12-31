@@ -298,8 +298,7 @@ Func_901ad:
 	jp Func_902fa
 
 MemSRAMBank_24: ; 48206 (11:4206)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, [wcfc9]
 	ld [MBC3SRamBank], a
 	ret
@@ -1907,8 +1906,7 @@ Func_90cad: ; 48cad (11:4cad)
 	jp Func_90c71
 
 Func_90cbe:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, c
 	ld [MBC3SRamBank], a
 asm_90cc7

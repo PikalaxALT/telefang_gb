@@ -1,6 +1,5 @@
 CopyROMName: ; f3f (0:0f3f)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
 	ld de, ROMName
@@ -24,8 +23,7 @@ INCLUDE "home/rom_name.asm"
 ROMNameEnd::
 
 CalculateChecksum: ; f71 (0:0f71)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
 	xor a
@@ -53,8 +51,7 @@ CalculateChecksum: ; f71 (0:0f71)
 	ret
 
 ValidateSave::
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
 	ld hl, ROMName
@@ -114,8 +111,7 @@ ValidateSave::
 	ret
 
 DeleteSaveFile::
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
 	ld hl, sSaveFile
@@ -132,8 +128,7 @@ DeleteSaveFile::
 	jp CopyROMName
 
 ClearSRAM::
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, $1
 	ld [MBC3SRamBank], a
 	call ClearSRAMBank

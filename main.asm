@@ -385,8 +385,7 @@ Func_8648: ; 8648 (2:4648)
 	ret
 
 Func_86e2::
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_b000)
 	ld [MBC3SRamBank], a
 .asm_86ec
@@ -402,8 +401,7 @@ Func_86e2::
 	ret
 
 Func_86f9: ; 86f9 (2:46f9)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_b000)
 	ld [MBC3SRamBank], a
 .asm_8703
@@ -1210,8 +1208,7 @@ Func_8f96: ; 8f96 (2:4f96)
 	ret
 
 Func_8fb9:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s1_b000)
 	ld [MBC3SRamBank], a
 	ld de, wd000
@@ -1234,8 +1231,7 @@ Func_8fb9:
 	ld a, c
 	or b
 	jr nz, .asm_8fd7
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_8fe8: ; 8fe8 (2:4fe8)
@@ -1543,8 +1539,7 @@ Func_91c7: ; 91c7 (2:51c7)
 	ret
 
 Func_923b: ; 923b (2:523b)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, [wCurDenjuuLevel]
@@ -1870,8 +1865,7 @@ Func_fa4b:
 	ret
 
 SaveGame: ; fb3e (3:7b3e)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
 	ld hl, wc900
@@ -1906,8 +1900,7 @@ ENDC
 	ret
 
 LoadGame: ; fb8d (3:7b8d)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
 	ld hl, s0_a010
@@ -5384,8 +5377,7 @@ Func_2df11:
 	jr AddOrSubtractMoney
 
 Func_2df1e: ; 2df1e (b:5f1e)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_a000)
 	ld [MBC3SRamBank], a
 	ld hl, wc480
@@ -5407,13 +5399,11 @@ Func_2df1e: ; 2df1e (b:5f1e)
 	ld a, b
 	or c
 	jr nz, .asm_2df47
-	ld a, $0
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_2df55: ; 2df55 (b:5f55)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_a000)
 	ld [MBC3SRamBank], a
 	ld de, wOAMAnimations
@@ -5427,8 +5417,7 @@ Func_2df55: ; 2df55 (b:5f55)
 	ld a, b
 	or c
 	jr nz, .asm_2df68
-	ld a, $0
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld hl, wOAMAnimation15_PriorityFlags
 	ld de, wc480
 	ld b, $20
@@ -5700,15 +5689,13 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	dec a
 	jr nz, .asm_2e130
 .asm_2e135
-	ld a, $a
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, $2
 	ld [MBC3SRamBank], a
 	ld a, [hl]
 	or c
 	ld [hl], a
-	ld a, $0
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 .asm_2e148
@@ -17127,8 +17114,7 @@ Func_391c1: ; 391c1 (e:51c1)
 	rl b
 	ld hl, sAddressBook + 2
 	add hl, bc
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, [hl]
@@ -17164,8 +17150,7 @@ Func_391c1: ; 391c1 (e:51c1)
 .asm_39266
 	ld [hl], a
 .asm_39267
-	ld a, $0
-	ld [MBC3SRamEnable], a
+	disable_sram
 	pop bc
 .asm_3926d
 	ld b, $0
@@ -22637,8 +22622,7 @@ Func_3cd1d: ; 3cd1d (f:4d1d)
 	ret
 
 Func_3cd38: ; 3cd38 (f:4d38)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s2_b200)
 	ld [MBC3SRamBank], a
 	ld bc, EVENT_C01
@@ -22742,8 +22726,7 @@ Func_3cd38: ; 3cd38 (f:4d38)
 	ld a, $34
 	ld [wSubroutine], a
 Func_3ce03: ; 3ce03 (f:4e03)
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld b, $6
 	call Func_3c112
 	xor a
@@ -22936,8 +22919,7 @@ Func_3cf44: ; 3cf44 (f:4f44)
 Func_3cf54: ; 3cf54 (f:4f54)
 	ld a, [wcd09]
 	ld c, a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld hl, sAddressBook + $1
@@ -22957,8 +22939,7 @@ Func_3cf54: ; 3cf54 (f:4f54)
 	jr .asm_3cf87
 
 .asm_3cf78
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld a, [wcd0a]
 	inc a
 	ld b, a
@@ -22967,8 +22948,7 @@ Func_3cf54: ; 3cf54 (f:4f54)
 	ret
 
 .asm_3cf87
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld b, $3
 	call Func_3c112
 	scf
@@ -23230,8 +23210,7 @@ GFX_a3320:
 
 SECTION "bank 29", ROMX, BANK [$29]
 Func_a4000:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, [wc924]
@@ -23341,8 +23320,7 @@ Func_a4000:
 	ld [hli], a
 	xor a
 	ld [hl], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a40b7: ; a40b7 (29:40b7)
@@ -24267,8 +24245,7 @@ Func_a4ba4: ; a4ba4 (29:4ba4)
 	ld e, a
 	ld a, [wc94e]
 	ld d, a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, $7
@@ -24281,8 +24258,7 @@ Func_a4ba4: ; a4ba4 (29:4ba4)
 	dec de
 	push af
 	call Func_a4e12
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, [wc94d]
@@ -24293,8 +24269,7 @@ Func_a4ba4: ; a4ba4 (29:4ba4)
 	ld b, a
 	ld [wCustomSpriteDest], a
 	callba Func_a92a2
-	ld a, $0
-	ld [MBC3SRamEnable], a
+	disable_sram
 	call Func_30a7
 	cp $b4
 	jr nc, .asm_a4c62
@@ -24484,8 +24459,7 @@ Func_a4db0: ; a4db0 (29:4db0)
 
 Func_a4dbb: ; a4dbb (29:4dbb)
 	push bc
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld hl, sAddressBook + 2
@@ -24521,8 +24495,7 @@ Func_a4dbb: ; a4dbb (29:4dbb)
 	ld a, c
 	sub b
 	ld [wOAMAnimation12_Duration + 6], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	pop bc
 	ret
 
@@ -24553,8 +24526,7 @@ Func_a4e12: ; a4e12 (29:4e12)
 asm_a4e25
 	ld de, s2_b200
 	add hl, de
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s2_b200)
 	ld [MBC3SRamBank], a
 	ld de, wc9e1
@@ -24567,8 +24539,7 @@ asm_a4e25
 	jr nz, .asm_a4e38
 	ld a, $e0
 	ld [de], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a4e47: ; a4e47 (29:4e47)
@@ -24654,20 +24625,17 @@ Func_a4ec2: ; a4ec2 (29:4ec2)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_a300)
 	ld [MBC3SRamBank], a
 	ld a, [hl]
 	ld b, a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	or $1
 	ret
 
 Func_a4ef3: ; a4ef3 (29:4ef3)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld de, s3_a300
 	ld hl, sAddressBook + 1
 	ld b, $0
@@ -24701,8 +24669,7 @@ Func_a4ef3: ; a4ef3 (29:4ef3)
 	ld a, b
 	cp $fe
 	jr nz, .asm_a4f09
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a4f37: ; a4f37 (29:4f37)
@@ -24910,8 +24877,7 @@ Func_a5060: ; a5060 (29:5060)
 	and $3
 	ret nz
 Func_a5066:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, $0
 	ld [MBC3LatchClock], a
 	ld a, $1
@@ -24947,8 +24913,7 @@ Func_a5066:
 	ld a, [MBC3RTC]
 	and $1
 	ld [wc93d], a
-	ld a, $0
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a50be: ; a50be (29:50be)
@@ -25221,14 +25186,12 @@ Func_a5245: ; a5245 (29:5245)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s2_b800)
 	ld [MBC3SRamBank], a
 	ld a, [hl]
 	ld [H_FFA2], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld a, $4
 	ld [wMusicBank], a
 	ret
@@ -25349,8 +25312,7 @@ Func_a5315: ; a5315 (29:5315)
 	jr .asm_a531e
 
 Func_a535e: ; a535e (29:535e)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld de, wOAMAnimation01_YCoord
@@ -25395,8 +25357,7 @@ Func_a535e: ; a535e (29:535e)
 	cp $fe
 	jr c, .asm_a5379
 	push af
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	pop af
 	ret
 
@@ -25630,8 +25591,7 @@ Func_a54d8:
 	ret
 
 Func_a54f1: ; a54f1 (29:54f1)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	call Func_a554e
@@ -25640,13 +25600,11 @@ Func_a54f1: ; a54f1 (29:54f1)
 	ld d, a
 	ld a, [hl]
 	ld e, a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a5509:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	call Func_a554e
@@ -25659,13 +25617,11 @@ Func_a5509:
 	ld c, a
 	ld a, [hl]
 	ld b, a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 GetPartnerDenjuuMaxHP: ; a5525 (29:5525)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	call Func_a554e
@@ -25680,8 +25636,7 @@ GetPartnerDenjuuMaxHP: ; a5525 (29:5525)
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	ld c, a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a554b: ; a554b (29:554b)
@@ -25713,8 +25668,7 @@ Func_a5572: ; a5572 (29:5572)
 	ld a, BANK(Func_a5572)
 	ld [wPrevROMBank], a
 	call Func_20f6
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld hl, sAddressBook
@@ -25735,8 +25689,7 @@ Func_a5572: ; a5572 (29:5572)
 	inc hl
 	ld a, [hl]
 	ld [wOAMAnimation12_Duration + 3], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld a, b
 	call Func_a576c
 	ld a, $0
@@ -27597,8 +27550,7 @@ Func_a8459: ; a8459 (2a:4459)
 	call Func_a84a3
 	ld a, $0
 	ld [rVBK], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a847a: ; a847a (2a:447a)
@@ -27617,8 +27569,7 @@ Func_a847a: ; a847a (2a:447a)
 	hlbgcoord 1, 0
 	add hl, de
 	ld de, s3_a300
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_a300)
 	ld [MBC3SRamBank], a
 	ret
@@ -27667,8 +27618,7 @@ Func_a84c5: ; a84c5 (2a:44c5)
 	call Func_a84e6
 	ld a, $0
 	ld [rVBK], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_a84e6: ; a84e6 (2a:44e6)
@@ -28270,16 +28220,14 @@ Func_a893b: ; a893b (2a:493b)
 	sla c
 	rl b
 	add hl, bc
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s2_b000)
 	ld [MBC3SRamBank], a
 	ld a, [hl]
 	and d
 	pop de
 	push af
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	pop af
 	ret
 
@@ -30019,8 +29967,7 @@ Func_a96e4: ; a96e4 (2a:56e4)
 	push af
 	ld a, BANK(Func_a96e4)
 	ld [wPrevROMBank], a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, [wcdb4]
@@ -30091,8 +30038,7 @@ Func_a96e4: ; a96e4 (2a:56e4)
 	ld de, 1998
 .asm_a9763
 	pop bc
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, e
@@ -30100,8 +30046,7 @@ Func_a96e4: ; a96e4 (2a:56e4)
 	inc bc
 	ld a, d
 	ld [bc], a
-	ld a, $0
-	ld [MBC3SRamEnable], a
+	disable_sram
 	call Func_a92d1
 	ld a, b
 	ld [$c2df], a
@@ -30205,8 +30150,7 @@ Func_a97cf: ; a97cf (2a:57cf)
 	ld b, h
 	ld c, l
 	call SetEventFlag
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, [wcdb4]
@@ -30224,8 +30168,7 @@ Func_a97cf: ; a97cf (2a:57cf)
 	add hl, bc
 	ld a, [wc912]
 	ld [hl], a
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld a, [wc912]
 	call Func_a92a8
 	ld a, $0
@@ -33872,8 +33815,7 @@ Func_c9538: ; c9538 (32:5538)
 	ld [wc920], a
 	call Func_30a7
 	ld [wc921], a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	ld a, $0
@@ -33889,8 +33831,7 @@ Func_c9538: ; c9538 (32:5538)
 	call Func_30a7
 	ld [wc906], a
 	ld [sAddressBook + 9], a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 IF DEF(POWER)
@@ -33938,8 +33879,7 @@ ENDC
 	pop de
 	ld c, $0
 	callba Func_a40ef
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	pop af
 	ld [wc906], a
 	callba GetPartnerDenjuuMaxHP
@@ -34424,8 +34364,7 @@ Func_c99ac: ; c99ac (32:59ac)
 	jr .asm_c99ea
 
 .asm_c99ea
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_a000)
 	ld [MBC3SRamBank], a
 	ld de, wOAMAnimation01_PriorityFlags
@@ -34439,8 +34378,7 @@ Func_c99ac: ; c99ac (32:59ac)
 	ld a, b
 	or c
 	jr nz, .asm_c99fd
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ld hl, wOAMAnimation01
 	xor a
 .asm_c9a0e
@@ -34559,8 +34497,7 @@ Func_c9ad5:
 	ld [wc46c], a
 	ld a, $40
 	ld [rSTAT], a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s3_a000)
 	ld [MBC3SRamBank], a
 	ld de, wOAMAnimations
@@ -34574,8 +34511,7 @@ Func_c9ad5:
 	ld a, b
 	or c
 	jr nz, .asm_c9af1
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	jp IncrementSubroutine
 
 Func_c9b01: ; c9b01 (32:5b01)

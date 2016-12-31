@@ -298,8 +298,7 @@ Func_801ad:
 	jp Func_802fa
 
 MemSRAMBank_20: ; 48206 (11:4206)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, [wcfc9]
 	ld [MBC3SRamBank], a
 	ret
@@ -1907,8 +1906,7 @@ Func_80cad: ; 48cad (11:4cad)
 	jp Func_80c71
 
 Func_80cbe:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, c
 	ld [MBC3SRamBank], a
 asm_80cc7

@@ -6,8 +6,7 @@ Start::
 	ld [rIF], a
 	ld [rIE], a
 	ld sp, wStackTop
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, $3
 	ld [MBC3RomBank], a
 	ld a, $0

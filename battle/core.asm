@@ -2980,8 +2980,7 @@ Func_1561e: ; 1561e (5:561e)
 	ld a, [wd43c]
 	ld e, a
 	add hl, de
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s2_b800)
 	ld [MBC3SRamBank], a
 	ld a, [hl]

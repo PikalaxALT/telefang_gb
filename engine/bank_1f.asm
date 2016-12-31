@@ -7346,8 +7346,7 @@ Func_7f77f: ; 7f77f (1f:777f)
 	ret
 
 Func_7f7a7: ; 7f7a7 (1f:77a7)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, $1
 	ld [MBC3SRamBank], a
 	ld hl, $a000
@@ -7362,8 +7361,7 @@ Func_7f7a7: ; 7f7a7 (1f:77a7)
 .asm_7f7c2
 	ld de, wd000
 	call CopyData
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret
 
 Func_7f7ce: ; 7f7ce (1f:77ce)
@@ -7617,8 +7615,7 @@ Func_7f99c: ; 7f99c (1f:799c)
 	ret
 
 Func_7f9ac: ; 7f9ac (1f:79ac)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, $1
 	ld [MBC3SRamBank], a
 	ld hl, $a000
@@ -7635,6 +7632,5 @@ Func_7f9ac: ; 7f9ac (1f:79ac)
 	pop de
 	ld hl, wd000
 	call CopyData
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	ret

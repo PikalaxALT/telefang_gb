@@ -298,8 +298,7 @@ Func_441ad:
 	jp Func_442fa
 
 MemSRAMBank_11: ; 44206 (11:4206)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, [wcfc9]
 	ld [MBC3SRamBank], a
 	ret
@@ -1907,8 +1906,7 @@ Func_44cad: ; 44cad (11:4cad)
 	jp Func_44c71
 
 Func_44cbe:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, c
 	ld [MBC3SRamBank], a
 asm_44cc7

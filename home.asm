@@ -1871,8 +1871,7 @@ PlayMoveAnimation_grp2: ; 1939 (0:1939)
 	dw ParameterDownAnimation ; STATUS_RESET
 
 Func_1a09: ; 1a09 (0:1a09)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(s1_a000)
 	ld [MBC3SRamBank], a
 	ld hl, s1_a000
@@ -6785,8 +6784,7 @@ ClearString: ; 3d5c (0:3d5c)
 
 OpenSRAMBank2::
 	push af
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, BANK(sAddressBook)
 	ld [MBC3SRamBank], a
 	pop af
@@ -6794,8 +6792,7 @@ OpenSRAMBank2::
 
 CloseSRAM::
 	push af
-	ld a, SRAM_DISABLE
-	ld [MBC3SRamEnable], a
+	disable_sram
 	pop af
 	ret
 

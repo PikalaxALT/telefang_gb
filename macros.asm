@@ -218,3 +218,13 @@ ENDM
 overcoordA: MACRO
 	ld [(\2 * SCREEN_WIDTH / 2) + \1 + wOverworldMap], a
 ENDM
+
+enable_sram: MACRO
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
+ENDM
+
+disable_sram: MACRO
+	ld a, SRAM_DISABLE
+	ld [MBC3SRamEnable], a
+ENDM

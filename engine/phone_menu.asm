@@ -4032,8 +4032,7 @@ Func_12279: ; 12279 (4:6279)
 	xor a
 	ld [wcb37], a
 	ld [wcb21], a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld hl, wcdbc
 	ld b, $44
 	ld de, s1_b000
@@ -4168,8 +4167,7 @@ Func_1236b: ; 1236b (4:636b)
 	xor a
 	ld [wcb70], a
 	ld [wcb71], a
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld hl, sAddressBook
 	ld bc, ADDRESS_BOOK_SIZE
 .asm_1237d
@@ -5253,8 +5251,7 @@ Func_12a4e: ; 12a4e (4:6a4e)
 	ret
 
 SetRTC: ; 12a5f (4:6a5f)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3LatchClock], a
 	ld a, $1
@@ -5302,8 +5299,7 @@ SetRTC: ; 12a5f (4:6a5f)
 	jp Rom4_CloseSRAM
 
 GetRTC: ; 12ab9 (4:6ab9)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	xor a
 	ld [MBC3LatchClock], a
 	ld a, $1
@@ -8111,8 +8107,7 @@ Func_13eb5: ; 13eb5 (4:7eb5)
 	jp Func_11a35
 
 Rom4_GetSRAMBankB: ; 13ee7 (4:7ee7)
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	enable_sram
 	ld a, b
 	ld [MBC3SRamBank], a
 	ret
