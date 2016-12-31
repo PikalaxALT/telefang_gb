@@ -36111,65 +36111,1880 @@ Func_cc845: ; cc845 (33:4845)
 	call Func_2acd
 	ret
 
-Func_cc8b0:
-	dr $cc8b0, $cc8be
+Func_cc8b0: ; cc8b0 (33:48b0)
+	ld b, $8
+	call Func_cc0f1
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, c
+	ld [hl], a
+	ret
 
-Func_cc8be:
-	dr $cc8be, $cc9a0
+Func_cc8be: ; cc8be (33:48be)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cc8d7
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_cc9a0:
-	dr $cc9a0, $cc9a5
+Pointers_cc8d7: ; cc8d7 (33:48d7)
+	dw Func_cc8db
+	dw Func_cc965
 
-Func_cc9a5:
-	dr $cc9a5, $ccb0d
+Func_cc8db: ; cc8db (33:48db)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $3d
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $c0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	call Func_30b6
+	ld a, [wCurObjectStruct]
+	ld l, a
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	call Func_2b01
+	call Func_30b6
+	sla c
+	rl b
+	call Func_2af4
+	call Func_30b6
+	sra b
+	rr c
+	sra b
+	rr c
+	call Func_2ada
+	call Func_30b6
+	sra b
+	rr c
+	sra b
+	rr c
+	call Func_2ae7
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ret
 
-Func_ccb0d:
-	dr $ccb0d, $ccb12
+Func_cc965: ; cc965 (33:4965)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $7
+	jr c, .asm_cc992
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $40
+	jr c, .asm_cc992
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
 
-Func_ccb12:
-	dr $ccb12, $ccbd4
+.asm_cc992
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, -6
+	call Func_2ae7
+	call Func_2acd
+	ret
 
-Func_ccbd4:
-	dr $ccbd4, $ccc95
+Func_cc9a0: ; cc9a0 (33:49a0)
+	ld b, $9
+	jp Func_cc0f1
 
-Func_ccc95:
-	dr $ccc95, $ccc9a
+Func_cc9a5: ; cc9a5 (33:49a5)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cc9be
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_ccc9a:
-	dr $ccc9a, $ccde5
+Pointers_cc9be: ; cc9be (33:49be)
+	dw Func_cc9c4
+	dw Func_cca33
+	dw Func_ccae6
 
-Func_ccde5:
-	dr $ccde5, $ccdea
+Func_cc9c4: ; cc9c4 (33:49c4)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $3c
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wBattleTurn]
+	cp $0
+	jr nz, .asm_cca0a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $40
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $40
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	jr .asm_cca22
 
-Func_ccdea:
-	dr $ccdea, $ccdef
+.asm_cca0a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $c0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $80
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+.asm_cca22
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld [hl], $0
+	ret
 
-Func_ccdef:
-	dr $ccdef, $ccffa
+Func_cca33: ; cca33 (33:4a33)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, $8
+	call Func_2ae7
+	call Func_2acd
+	call Func_cc086
+	ld de, Data_ccb07
+	ld a, [wBattleTurn]
+	cp $0
+	jr nz, .asm_cca54
+	ld de, Data_ccb0a
+.asm_cca54
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [de]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, [hl]
+	cp b
+	jr c, .asm_ccac0
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, b
+	ld [hl], a
+	call Func_2e67
+	ld a, [wCurObjectStruct]
+	add $f
+	ld l, a
+	ld a, [hl]
+	bit 7, a
+	jr nz, .asm_ccac0
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, [hli]
+	cpl
+	ld c, a
+	ld a, [hld]
+	cpl
+	ld b, a
+	inc bc
+	sra b
+	rr c
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hld]
+	ld b, a
+	sra b
+	rr c
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $3
+	jr c, .asm_ccac0
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+.asm_ccac0
+	ld a, [wCurObjectStruct]
+	add $8
+	ld l, a
+	ld de, wOAMAnimation01_Duration
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ld a, [wCurObjectStruct]
+	add $c
+	ld l, a
+	ld de, wOAMAnimation01_Duration + 4
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	ld a, [wVBlankCounter]
+	and $3
+	ret nz
+	call Func_ccbcf
+	ret
 
-Func_ccffa:
-	dr $ccffa, $cd008
+Func_ccae6: ; ccae6 (33:4ae6)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $32
+	jr c, .asm_ccafd
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $0
+.asm_ccafd
+	ld a, [wVBlankCounter]
+	and $3
+	ret nz
+	call Func_ccbcf
+	ret
 
-Func_cd008:
-	dr $cd008, $cd12a
+Data_ccb07:
+	db $50, $54, $56
 
-Func_cd12a:
-	dr $cd12a, $cd12f
+Data_ccb0a:
+	db $38, $35, $34
 
-Func_cd12f:
-	dr $cd12f, $cd2ce
+Func_ccb0d: ; ccb0d (33:4b0d)
+	ld b, $a
+	jp Func_cc101
 
-Func_cd2ce:
-	dr $cd2ce, $cd2dc
+Func_ccb12: ; ccb12 (33:4b12)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_ccb2b
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 
-Func_cd2dc:
-	dr $cd2dc, $cd3b7
+Pointers_ccb2b: ; ccb2b (33:4b2b)
+	dw Func_ccb2f
+	dw Func_ccb9d
 
-Func_cd3b7:
-	dr $cd3b7, $cd3bc
+Func_ccb2f: ; ccb2f (33:4b2f)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $3e
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $e0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	call Func_30b6
+	ld a, [wCurObjectStruct]
+	ld l, a
+	sla c
+	rl b
+	sla c
+	rl b
+	call Func_2b01
+	call Func_30b6
+	sla c
+	rl b
+	sla c
+	rl b
+	call Func_2af4
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ret
 
-Func_cd3bc:
-	dr $cd3bc, $cd491
+Func_ccb9d: ; ccb9d (33:4b9d)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $10
+	jr c, .asm_ccbb5
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_ccbb5
+	cp $8
+	jr c, .asm_ccbc1
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [hl]
+	xor $1
+	ld [hl], a
+.asm_ccbc1
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, rIE
+	call Func_2ae7
+	call Func_2acd
+	ret
+
+Func_ccbcf: ; ccbcf (33:4bcf)
+	ld b, $b
+	jp Func_cc0f1
+
+Func_ccbd4: ; ccbd4 (33:4bd4)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_ccbed
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_ccbed: ; ccbed (33:4bed)
+	dw Func_ccbf1
+	dw Func_ccc63
+
+Func_ccbf1: ; ccbf1 (33:4bf1)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $4d
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $80
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	call Func_30b6
+	ld a, [wCurObjectStruct]
+	ld l, a
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	call Func_2b01
+	call Func_30b6
+	sla c
+	rl b
+	sla c
+	rl b
+	call Func_2af4
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ret
+
+Func_ccc63: ; ccc63 (33:4c63)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $20
+	jr c, .asm_ccc7b
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_ccc7b
+	cp $10
+	jr c, .asm_ccc87
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [hl]
+	xor $1
+	ld [hl], a
+.asm_ccc87
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, $3
+	call Func_2ae7
+	call Func_2acd
+	ret
+
+Func_ccc95: ; ccc95 (33:4c95)
+	ld b, $c
+	jp Func_cc0f1
+
+Func_ccc9a: ; ccc9a (33:4c9a)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cccb3
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_cccb3: ; cccb3 (33:4cb3)
+	dw Func_cccb7
+	dw Func_ccd56
+
+Func_cccb7: ; cccb7 (33:4cb7)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $4e
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $10
+	ld l, a
+	ld a, [hl]
+	cp $f
+	jr nz, .asm_ccce7
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $3b
+	ld [hl], a
+.asm_ccce7
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $8
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $30
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	call Func_30b6
+	ld a, [wCurObjectStruct]
+	ld l, a
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	call Func_2b01
+	bit 7, b
+	jr z, .asm_ccd37
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $f8
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+.asm_ccd37
+	call Func_30b6
+	sla c
+	rl b
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2af4
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ret
+
+Func_ccd56: ; ccd56 (33:4d56)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $20
+	jr c, .asm_ccd6e
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_ccd6e
+	cp $16
+	jr c, .asm_ccd7a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [hl]
+	xor $1
+	ld [hl], a
+.asm_ccd7a
+	ld bc, -1
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, [hl]
+	cp $50
+	jr c, .asm_ccd8b
+	ld bc, -4
+.asm_ccd8b
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2ae7
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	cp $8
+	jr c, .asm_ccdb5
+	ld bc, $4
+	ld a, [wCurObjectStruct]
+	add $b
+	ld l, a
+	ld a, [hl]
+	bit 7, a
+	jr z, .asm_ccdae
+	ld bc, -4
+.asm_ccdae
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2ada
+.asm_ccdb5
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2acd
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	cp $12
+	jr nz, .asm_ccde4
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $10
+	ld l, a
+	ld a, [hl]
+	cp $f
+	jr nz, .asm_ccde4
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $3e
+	ld [hl], a
+.asm_ccde4
+	ret
+
+Func_ccde5: ; ccde5 (33:4de5)
+	ld b, $d
+	jp Func_cc0f1
+
+Func_ccdea: ; ccdea (33:4dea)
+	ld b, $f
+	jp Func_cc0f1
+
+Func_ccdef: ; ccdef (33:4def)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cce08
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_cce08: ; cce08 (33:4e08)
+	dw Func_cce14
+	dw Func_cce8c
+	dw Func_cced1
+	dw Func_cce8c
+	dw Func_ccf7a
+	dw Func_ccfce
+
+Func_cce14: ; cce14 (33:4e14)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $53
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	or a
+	jr z, .asm_cce43
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+.asm_cce43
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $c0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	ld a, [wBattleTurn]
+	cp $0
+	jr nz, .asm_cce62
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $40
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+.asm_cce62
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $16
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld [hl], $0
+	ret
+
+Func_cce8c: ; cce8c (33:4e8c)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $10
+	jr c, .asm_cced0
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $85
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	or a
+	jr nz, .asm_cced0
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $38
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+.asm_cced0
+	ret
+
+Func_cced1: ; cced1 (33:4ed1)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld bc, 13
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	or a
+	jr z, .asm_ccee5
+	ld bc, -13
+.asm_ccee5
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2ae7
+	ld bc, 2
+	ld a, [wBattleTurn]
+	cp $0
+	jr nz, .asm_ccef9
+	ld bc, -2
+.asm_ccef9
+	call Func_2ada
+	call Func_2ae7
+	call Func_2acd
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $14
+	jr c, .asm_ccf79
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wBattleTurn]
+	cp $0
+	jr nz, .asm_ccf4f
+	ld hl, wOAMAnimation01_Duration
+	ld a, $80
+	ld [hli], a
+	ld a, $17
+	ld [hl], a
+	ld hl, wOAMAnimation01_Duration + 4
+	ld a, $80
+	ld [hli], a
+	ld a, $6
+	ld [hl], a
+	ld c, $58
+	call Func_cc4a1
+	ld hl, wOAMAnimation01_Duration
+	ld a, $0
+	ld [hli], a
+	ld a, $17
+	ld [hl], a
+	ld hl, wOAMBufferEnd
+	ld bc, $1000
+	call Func_2af4
+	ld c, $59
+	call Func_cc4a1
+	jr .asm_ccf74
+
+.asm_ccf4f
+	ld hl, wOAMAnimation01_Duration
+	ld a, $80
+	ld [hli], a
+	ld a, $11
+	ld [hl], a
+	ld hl, wOAMAnimation01_Duration + 4
+	ld a, $0
+	ld [hli], a
+	ld a, $4
+	ld [hl], a
+	ld c, $56
+	call Func_cc4a1
+	ld hl, wOAMBufferEnd
+	ld bc, $1000
+	call Func_2af4
+	ld c, $57
+	call Func_cc4a1
+.asm_ccf74
+	ld a, $2c
+	ld [H_SFX_ID], a
+.asm_ccf79
+	ret
+
+Func_ccf7a: ; ccf7a (33:4f7a)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	and $3
+	ret nz
+	ld d, $0
+	ld a, [wVBlankCounter]
+	and $4
+	jr nz, .asm_ccf94
+	inc d
+.asm_ccf94
+	ld bc, $180
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	xor d
+	jr z, .asm_ccfa4
+	ld bc, $fe80
+.asm_ccfa4
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2af4
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	cp $3c
+	jr c, .asm_ccfcd
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $2
+.asm_ccfcd
+	ret
+
+Func_ccfce: ; ccfce (33:4fce)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $10
+	jr c, .asm_ccff9
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $0
+	ld a, $20
+	ld [wca60], a
+	ld a, $20
+	ld [wcac2], a
+	ld a, $0
+	ld [wd45b], a
+	ld a, $4b
+	ld [H_SFX_ID], a
+.asm_ccff9
+	ret
+
+Func_ccffa: ; ccffa (33:4ffa)
+	ld b, $e
+	call Func_cc0f1
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, c
+	ld [hl], a
+	ret
+
+Func_cd008: ; cd008 (33:5008)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cd021
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_cd021: ; cd021 (33:5021)
+	dw Func_cd025
+	dw Func_cd0ba
+
+Func_cd025: ; cd025 (33:5025)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $3d
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wBattleTurn]
+	cp $0
+	jr nz, .asm_cd06b
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $40
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	jr .asm_cd083
+
+.asm_cd06b
+	ld a, [wCurObjectStruct]
+	add $a
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $ff
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $80
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+.asm_cd083
+	call Func_30b6
+	ld a, [wCurObjectStruct]
+	ld l, a
+	sla c
+	rl b
+	call Func_2b01
+	call Func_30b6
+	sla c
+	rl b
+	call Func_2af4
+	call Func_30b6
+	sra b
+	rr c
+	sra b
+	rr c
+	call Func_2ada
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ret
+
+Func_cd0ba: ; cd0ba (33:50ba)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $1a
+	jr c, .asm_cd0f9
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $7
+	jr c, .asm_cd122
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, $8
+	ld [wca60], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $3f
+	jr c, .asm_cd122
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_cd0f9
+	cp $10
+	jr nc, .asm_cd122
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wBattleTurn]
+	cp $0
+	jr nz, .asm_cd116
+	ld bc, -13
+	call Func_2ae7
+	ld bc, -8
+	call Func_2ada
+	jr .asm_cd122
+
+.asm_cd116
+	ld bc, -12
+	call Func_2ae7
+	ld bc, $8
+	call Func_2ada
+.asm_cd122
+	ld a, [wCurObjectStruct]
+	ld l, a
+	call Func_2acd
+	ret
+
+Func_cd12a: ; cd12a (33:512a)
+	ld b, $10
+	jp Func_cc0f1
+
+Func_cd12f: ; cd12f (33:512f)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cd148
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_cd148: ; cd148 (33:5148)
+	dw Func_cd14e
+	dw Func_cd1c0
+	dw Func_cd295
+
+Func_cd14e: ; cd14e (33:514e)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $5f
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, $40
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld [hl], $0
+	call Func_cc086
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $1b
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, [hl]
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $1c
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ld a, [wBattleTurn]
+	cp $0
+	jr z, .asm_cd1bf
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $80
+	ld [hl], a
+.asm_cd1bf
+	ret
+
+Func_cd1c0: ; cd1c0 (33:51c0)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $19
+	ld l, a
+	ld a, $40
+	ld [hl], a
+	ld a, [wcac2]
+	cp $ff
+	jr z, .asm_cd210
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, [hl]
+	or a
+	jr nz, .asm_cd209
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $63
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld [hl], $0
+	ret
+
+.asm_cd209
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_cd210
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	or a
+	jr z, .asm_cd21c
+	dec a
+	ld [hl], a
+.asm_cd21c
+	call Func_30a7
+	and $f
+	add $6
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ld d, a
+	call Func_3068
+	ld e, d
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	ld c, a
+	call Multiply_C_by_E_signed
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $1b
+	ld l, a
+	ld a, [hl]
+	sra d
+	sra d
+	sra d
+	add d
+	ld d, a
+	ld a, [wCurObjectStruct]
+	add $3
+	ld l, a
+	ld a, d
+	ld [hl], a
+	call Func_30a7
+	and $f
+	add $6
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ld d, a
+	call Func_3058
+	ld e, d
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	ld c, a
+	call Multiply_C_by_E_signed
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $1c
+	ld l, a
+	ld a, [hl]
+	sra d
+	sra d
+	sra d
+	add d
+	ld d, a
+	ld a, [wCurObjectStruct]
+	add $4
+	ld l, a
+	ld a, d
+	ld [hl], a
+	ret
+
+Func_cd295: ; cd295 (33:5295)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $40
+	jr c, .asm_cd2ad
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_cd2ad
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	add $4
+	ld [hl], a
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ld b, $3
+	jr nc, .asm_cd2c7
+	ld b, $2
+.asm_cd2c7
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ret
+
+Func_cd2ce: ; cd2ce (33:52ce)
+	ld b, $11
+	call Func_cc0f1
+	ld a, [wCurObjectStruct]
+	add $17
+	ld l, a
+	ld a, c
+	ld [hl], a
+	ret
+
+Func_cd2dc: ; cd2dc (33:52dc)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cd2f5
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_cd2f5: ; cd2f5 (33:52f5)
+	dw Func_cd2f9
+	dw Func_cd33b
+
+Func_cd2f9: ; cd2f9 (33:52f9)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $73
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $e
+	ld l, a
+	ld a, $0
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	ret
+
+Func_cd33b: ; cd33b (33:533b)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	call Func_cd39f
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	srl a
+	cp $8
+	jr nc, .asm_cd363
+	ld de, Data_cd3af
+	add e
+	ld e, a
+	ld a, $0
+	adc d
+	ld d, a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, [de]
+	ld [hl], a
+	ret
+
+.asm_cd363
+	cp $20
+	jr c, .asm_cd36e
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_cd36e
+	cp $10
+	ret c
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld bc, -1
+	call Func_2ae7
+	call Func_2ac0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	add $4
+	ld [hl], a
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ld b, $3
+	jr nc, .asm_cd398
+	ld b, $2
+.asm_cd398
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ret
+
+Func_cd39f: ; cd39f (33:539f)
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	cp $a
+	ret nz
+	ld a, $45
+	ld [H_SFX_ID], a
+	ret
+
+Data_cd3af:
+	db $73
+	db $73
+	db $73
+	db $73
+	db $73
+	db $74
+	db $75
+	db $76
+
+Func_cd3b7: ; cd3b7 (33:53b7)
+	ld b, $12
+	jp Func_cc0f1
+
+Func_cd3bc: ; cd3bc (33:53bc)
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [hl]
+	add a
+	ld hl, Pointers_cd3d5
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers_cd3d5: ; cd3d5 (33:53d5)
+	dw Func_cd3db
+	dw Func_cd429
+	dw Func_cd455
+
+Func_cd3db: ; cd3db (33:53db)
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld [hl], $2
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $50
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, $1
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $2
+	ld l, a
+	ld a, $63
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld [hl], $0
+	ld a, [wBattleTurn]
+	cp $0
+	jr z, .asm_cd428
+	ld a, [wCurObjectStruct]
+	add $1
+	ld l, a
+	ld a, $80
+	ld [hl], a
+.asm_cd428
+	ret
+
+Func_cd429: ; cd429 (33:5429)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wd45d]
+	cp $ff
+	jr nz, .asm_cd454
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld [hl], $3
+	ld a, [wCurObjectStruct]
+	add $1a
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld [hl], $0
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld [hl], $0
+	ret
+
+.asm_cd454
+	ret
+
+Func_cd455: ; cd455 (33:5455)
+	ld a, [wCurObjectStruct + 1]
+	ld h, a
+	ld a, [wCurObjectStruct]
+	add $13
+	ld l, a
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp $20
+	ret c
+	cp $60
+	jr c, .asm_cd470
+	ld a, [wCurObjectStruct]
+	ld l, a
+	xor a
+	ld [hl], a
+	ret
+
+.asm_cd470
+	ld a, [wCurObjectStruct]
+	add $15
+	ld l, a
+	ld a, [hl]
+	add $4
+	ld [hl], a
+	ld b, a
+	ld a, [wCurObjectStruct]
+	add $14
+	ld l, a
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ld b, $3
+	jr nc, .asm_cd48a
+	ld b, $2
+.asm_cd48a
+	ld a, [wCurObjectStruct]
+	ld l, a
+	ld a, b
+	ld [hl], a
+	ret
 
 Func_cd491:
 	dr $cd491, $cd496
