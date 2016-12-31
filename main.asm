@@ -41182,34 +41182,34 @@ Pointers_11507b:
 
 SECTION "bank 46", ROMX, BANK [$46]
 Pointers_118000:
-	dr $118000, $11c000
+	dr $118000, $119408
 
 SECTION "bank 47", ROMX, BANK [$47]
 Pointers_11c000:
-	dr $11c000, $120000
+	dr $11c000, $11e3b1
 
 SECTION "bank 48", ROMX, BANK [$48]
 Pointers_120000:
-	dr $120000, $124000
+	dr $120000, $122cdf
 
 SECTION "bank 49", ROMX, BANK [$49]
 Pointers_124000:
-	dr $124000, $128000
+	dr $124000, $126e05
 
 SECTION "bank 4A", ROMX, BANK [$4a]
 Pointers_128000:
 	dr $128000, $1281d9
 
 Pointers_1281d9:
-	dr $1281d9, $12c000
+	dr $1281d9, $12955d
 
 SECTION "bank 4B", ROMX, BANK [$4b]
 Pointers_12c000:
-	dr $12c000, $130000
+	dr $12c000, $12f15d
 
 SECTION "bank 4C", ROMX, BANK [$4c]
 Pointers_130000:
-	dr $130000, $134000
+	dr $130000, $131f82
 
 SECTION "bank 4D", ROMX, BANK [$4d]
 Pointers_134000::
@@ -41221,22 +41221,22 @@ UnknownTZFile29:: INCBIN "gfx/tzfiles/tz_29.2bpp.tz"
 
 SECTION "bank 4E", ROMX, BANK [$4e]
 Pointers_138000:
-	dr $138000, $13c000
+	dr $138000, $13af0a
 
 SECTION "bank 4F", ROMX, BANK [$4f]
 Pointers_13c000:
-	dr $13c000, $140000
+	dr $13c000, $13ee1b
 
 SECTION "bank 50", ROMX, BANK [$50]
 Pointers_140000:
-	dr $140000, $144000
+	dr $140000, $143509
 
 SECTION "bank 51", ROMX, BANK [$51]
 Pointers_144000:
 	dr $144000, $145c9a
 
 Pointers_145c9a:
-	dr $145c9a, $148000
+	dr $145c9a, $147733
 
 SECTION "bank 52", ROMX, BANK [$52]
 INCLUDE "data/map_data_148000.asm"
@@ -41288,25 +41288,25 @@ TilesetMetaattrsPointerTable::
 	dr $178022, $178044
 
 Data_178044::
-	dr $178044, $17c000
+	dr $178044, $17b73d
 
 SECTION "bank 5F", ROMX, BANK [$5f]
-	dr $17c000, $180000
+	dr $17c000, $17fe73
 
 SECTION "bank 60", ROMX, BANK [$60]
-	dr $180000, $184000
+	dr $180000, $183fc0
 
 SECTION "bank 63", ROMX, BANK [$63]
-	dr $18c000, $190000
+	dr $18c000, $18dcc0
 
 SECTION "bank 64", ROMX, BANK [$64]
-	dr $190000, $194000
+	dr $190000, $192df0
 
 SECTION "bank 65", ROMX, BANK [$65]
-	dr $194000, $198000
+	dr $194000, $197de0
 
 SECTION "bank 66", ROMX, BANK [$66]
-	dr $198000, $19c000
+	dr $198000, $19b930
 
 SECTION "bank 67", ROMX, BANK [$67]
 INCLUDE "data/unknown_19c000.asm"
