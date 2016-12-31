@@ -23073,7 +23073,6 @@ Func_3d00e: ; 3d00e (f:500e)
 	ld bc, EVENT_C3D
 	jp ResetEventFlag
 
-Data_3d027:
 INCLUDE "data/unknown_3d027.asm"
 
 MapEncounterTableIndices:
@@ -27894,8 +27893,28 @@ GetMapEncounterTableIndex: ; a85e5 (2a:45e5)
 	pop hl
 	ret
 
-Func_a8608:
-	dr $a8608, $a8631
+Func_a8608: ; a8608 (2a:4608)
+	push hl
+	ld a, [wCurPhoneGFX]
+	cp $3
+	jr c, .asm_a8612
+	sub $3
+.asm_a8612
+	ld hl, Data_3d027
+	cp $0
+	jr z, .asm_a8623
+	ld hl, Data_3d6c7
+	cp $1
+	jr z, .asm_a8623
+	ld hl, Data_3dd67
+.asm_a8623
+	ld a, [wc904]
+	ld e, a
+	call Func_a863f
+	ld b, $f
+	call Func_a8631
+	pop hl
+	ret
 
 Func_a8631:
 	call GetFarByte
