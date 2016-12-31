@@ -26625,7 +26625,7 @@ Func_a5c2b: ; a5c2b (29:5c2b)
 	ld [hl], a
 	ld [hl], a
 	ld e, a
-	ld bc, $5044
+	lb bc, $50, $44
 	call Func_3020
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
@@ -26696,7 +26696,7 @@ Func_a5ca7: ; a5ca7 (29:5ca7)
 	ld [hl], a
 	ld [hl], a
 	ld e, a
-	ld bc, $5044
+	lb bc, $50, $44
 	call Func_3020
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
@@ -26869,7 +26869,7 @@ Func_a5f06: ; a5f06 (29:5f06)
 	ld [H_MusicID], a
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 2], a
-	ld a, $29
+	ld a, BANK(Func_a5f06)
 	ld [wPrevROMBank], a
 	ld bc, $34
 	call GetCGB_BGLayout_
@@ -26887,21 +26887,21 @@ Func_a5f06: ; a5f06 (29:5f06)
 	ld [wPrevROMBank], a
 	ld a, $0
 	ld [rVBK], a
-	ld de, $7784
+	ld de, Tilemap_e3784
 	hlbgcoord 0, 0
-	ld b, $12
-	ld c, $14
+	ld b, SCREEN_HEIGHT
+	ld c, SCREEN_WIDTH
 	call Func_3410
 	ld a, $1
 	ld [rVBK], a
-	ld de, $78ec
+	ld de, Tilemap_e38ec
 	hlbgcoord 0, 0
-	ld b, $12
-	ld c, $14
+	ld b, SCREEN_HEIGHT
+	ld c, SCREEN_WIDTH
 	call Func_3410
 	ld a, $0
 	ld [rVBK], a
-	ld a, $29
+	ld a, BANK(Func_a5f06)
 	ld [wPrevROMBank], a
 	ld bc, $0
 	ld a, $4
@@ -28076,13 +28076,13 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld de, GFX_e2ed4
 	ld bc, $c0
 	call FarCopy2bpp_2
-	ld de, $6fa4
+	ld de, Tilemap_e2fa4
 	hlbgcoord 0, 0
 	ld b, $12
 	ld c, $14
 	ld a, $2
 	call Func_33fd
-	ld hl, $6aff
+	ld hl, Pointers_aaaff
 	ld a, [wc904]
 	call Func_a850c
 	ld d, $2
@@ -28566,7 +28566,7 @@ Func_a8bed:
 	ret
 
 Func_a8c30: ; a8c30 (2a:4c30)
-	ld de, $4c38
+	ld de, Tilemap_e0c38
 	hlbgcoord 0, 0
 	ld b, $4
 	ld c, $14
@@ -28586,7 +28586,7 @@ Func_a8c50: ; a8c50 (2a:4c50)
 	push af
 	ld b, $0
 	call Func_378c
-	ld a, BANK(GFX_e0cb0)
+	ld a, BANK(Tilemap_e0cb0)
 	call FarCopy2bpp_2
 	pop af
 	pop hl
@@ -28598,7 +28598,7 @@ Func_a8c50: ; a8c50 (2a:4c50)
 	ret
 
 Func_a8c68: ; a8c68 (2a:4c68)
-	ld de, GFX_e0cb0
+	ld de, Tilemap_e0cb0
 	hlbgcoord 0, 12
 	ld b, $6
 	ld c, $14
@@ -28606,7 +28606,7 @@ Func_a8c68: ; a8c68 (2a:4c68)
 	jp Func_a8c50
 
 Func_a8c77: ; a8c77 (2a:4c77)
-	ld de, GFX_e0cb0
+	ld de, Tilemap_e0cb0
 	hlbgcoord 0, 12
 	ld b, $6
 	ld c, $14
@@ -28618,7 +28618,7 @@ Func_a8c86: ; a8c86 (2a:4c86)
 	push hl
 	push af
 	ld b, $0
-	ld a, BANK(GFX_e0cb0)
+	ld a, BANK(Tilemap_e0cb0)
 	call FarCopy2bpp_2
 	pop af
 	pop hl
@@ -29671,7 +29671,7 @@ Func_a93cf: ; a93cf (2a:53cf)
 	call Func_a92ad
 	call Func_a912c
 	call Func_2cc4
-	ld de, $4c88
+	ld de, Tilemap_e0c88
 	hlbgcoord 0, 1
 	ld b, $2
 	ld c, $14
@@ -29921,7 +29921,7 @@ Func_a9595: ; a9595 (2a:5595)
 	ld a, $40
 	ld bc, $100
 	call Func_3775
-	ld de, $5548
+	ld de, Tilemap_e1548
 	hlbgcoord 7, 7
 	ld b, $4
 	ld c, $6
@@ -30961,7 +30961,10 @@ OverworldEncounterFlags: ; 4 rows of 64
 	db 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0
 
 Pointers_aa875:
-	dr $aa875, $aacc6
+	dr $aa875, $aaaff
+
+Pointers_aaaff:
+	dr $aaaff, $aacc6
 
 ItemSpriteGFX:
 INCBIN "gfx/sprites/items/000.w16.2bpp"
@@ -41052,12 +41055,16 @@ GFX_e09d8:: INCBIN "gfx/misc/e09d8.2bpp"
 GFX_e0b08:: INCBIN "gfx/misc/cursor.2bpp"
 GFX_e0b38:: INCBIN "gfx/misc/e0b38.1bpp"
 GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"
+Tilemap_e0c38:
 	dr $e0c38, $e0c4e
 
 GFX_e0c4e: INCBIN "gfx/misc/e0c4e.1bpp"
-	dr $e0c56, $e0cb0
+	dr $e0c56, $e0c88
 
-GFX_e0cb0: INCBIN "gfx/misc/e0cb0.1bpp"
+Tilemap_e0c88:
+	dr $e0c88, $e0cb0
+
+Tilemap_e0cb0: INCBIN "gfx/misc/e0cb0.1bpp"
 GFX_e0d28: INCBIN "gfx/misc/e0d28.2bpp"
 GFX_e0e18: INCBIN "gfx/misc/e0e18.2bpp"
 GFX_e0eb8: INCBIN "gfx/misc/e0eb8.2bpp"
@@ -41070,6 +41077,8 @@ GFX_e1288: INCBIN "gfx/misc/e1288.w32.2bpp"
 GFX_e1308: INCBIN "gfx/misc/e1308.2bpp"
 GFX_e1348: INCBIN "gfx/misc/e1348.2bpp"
 GFX_e1448: INCBIN "gfx/misc/e1448.2bpp"
+
+Tilemap_e1548:
 	dr $e1548, $e1560
 
 GFX_e1560: INCBIN "gfx/misc/e1560.2bpp"
@@ -41103,7 +41112,7 @@ GFX_e2e94: INCBIN "gfx/misc/e2e94.2bpp"
 GFX_e2eb4: INCBIN "gfx/misc/e2eb4.2bpp"
 GFX_e2ed4: INCBIN "gfx/misc/e2ed4.w16.2bpp"
 	dr $e2f94, $e2fa4
-GFX_e2fa4:
+Tilemap_e2fa4:
 	dr $e2fa4, $e318c
 
 GFX_e318c: INCBIN "gfx/misc/e318c.2bpp"
@@ -41113,7 +41122,10 @@ GFX_e319c:
 GFX_e3494: INCBIN "gfx/misc/e3494.2bpp"
 GFX_e3514: INCBIN "gfx/misc/e3514.t2.2bpp"
 GFX_e3674: INCBIN "gfx/misc/e3674.2bpp"
-	dr $e3784, $e3a54
+Tilemap_e3784:
+	dr $e3784, $e38ec
+Tilemap_e38ec:
+	dr $e38ec, $e3a54
 
 SECTION "bank 39", ROMX, BANK [$39]
 IF DEF(POWER)
