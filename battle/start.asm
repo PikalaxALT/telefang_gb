@@ -1276,7 +1276,7 @@ Func_7096b:
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wOtherTFangerClass]
-	ld de, $4578
+	ld de, 8 + TFangerNames
 	ld bc, VTilesBG tile $50
 	call GetAndPrintName75LeftAlign_
 	ret
@@ -1299,7 +1299,7 @@ Func_7096b:
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wOtherTFangerClass]
-	ld de, $4578
+	ld de, 8 + TFangerNames
 	ld bc, VTilesBG tile $50
 	call GetAndPrintName75LeftAlign_
 Func_709db: ; 709db (1c:49db)
@@ -1328,7 +1328,7 @@ Func_709dc:
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wEnemyDenjuu1Species]
-	ld de, $4000
+	ld de, DenjuuNames
 	ld bc, VTilesBG tile $50
 	call GetAndPrintName75LeftAlign_
 	ret
@@ -1351,7 +1351,7 @@ Func_709dc:
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wEnemyDenjuu1]
-	ld de, $4000
+	ld de, DenjuuNames
 	ld bc, VTilesBG tile $50
 	call GetAndPrintName75LeftAlign_
 	ret

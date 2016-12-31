@@ -3046,7 +3046,7 @@ Func_756b0: ; 756b0 (1d:56b0)
 	call LoadStdBGMapAttrLayout_
 	ld a, [wCurDenjuuStat]
 	dec a
-	ld de, $4000
+	ld de, $4000 ; overwritten
 	call Func_74066
 	ld a, $15
 	ld [H_SFX_ID], a

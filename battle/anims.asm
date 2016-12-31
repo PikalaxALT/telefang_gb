@@ -3032,11 +3032,11 @@ Func_69891: ; 69891 (1a:5891)
 	ld b, a
 	ld a, [wOAMAnimation02_YCoord]
 	ld c, a
-	ld hl, $4016
+	lb hl, $40, $16
 	ld a, [wBattleTurn]
 	or a
 	jr z, .asm_698bf
-	ld hl, $7016
+	lb hl, $70, $16
 .asm_698bf
 	call Func_6b6f6
 	ret
@@ -3320,11 +3320,11 @@ Func_69ae1: ; 69ae1 (1a:5ae1)
 	ld [wOAMAnimation04 + $19], a
 	add $4
 	ld [wOAMAnimation05 + $19], a
-	ld bc, $3840
+	lb bc, $38, $40
 	ld a, [wBattleTurn]
 	cp $0
 	jr z, .asm_69b15
-	ld bc, $6820
+	lb bc, $68, $20
 .asm_69b15
 	ld a, b
 	ld [wSpriteInitXCoordBuffers + 1], a
@@ -4702,11 +4702,11 @@ Func_6a684: ; 6a684 (1a:6684)
 	jr .asm_6a6a1
 
 Func_6a6dc: ; 6a6dc (1a:66dc)
-	bcbgcoord 0, 2
+	lb bc, $98, $40
 	ld a, [wBattleTurn]
 	cp $0
 	jr z, .asm_6a6e9
-	ld bc, $4860
+	lb bc, $48, $60
 .asm_6a6e9
 	ld hl, $3
 	add hl, de

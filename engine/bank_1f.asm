@@ -2391,15 +2391,9 @@ Func_7d24d: ; 7d24d (1f:524d)
 	ld c, $d
 	call Func_7d23d
 	push hl
-	ld hl, $5516
+	ld hl, Data_7d516
 	ld de, $7
-	cp $0
-	jr z, .asm_7d278
-.asm_7d274
-	add hl, de
-	dec a
-	jr nz, .asm_7d274
-.asm_7d278
+	addntimes_hl_de
 	ld d, $0
 	ld a, [wCurBackground]
 	ld e, a
@@ -2451,7 +2445,10 @@ Func_7d24d: ; 7d24d (1f:524d)
 	ret
 
 Func_7d2c3::
-	dr $7d2c3, $7d55f
+	dr $7d2c3, $7d516
+
+Data_7d516:
+	dr $7d516, $7d55f
 
 Func_7d55f:
 	dr $7d55f, $7d56b

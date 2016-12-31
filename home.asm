@@ -3466,7 +3466,7 @@ Func_272f::
 	ld l, a
 	ld a, [wROMBank]
 	push af
-	ld a, $67
+	ld a, BANK(Pointers_19c000)
 	rst Bankswitch
 	push de
 	ld a, [wc903]
@@ -3483,23 +3483,23 @@ Func_272f::
 	ret
 
 Data_2760::
-	dbw $68, $4000
-	dbw $69, $4000
-	dbw $68, $4000
-	dbw $69, $4000
-	dbw $69, $4000
-	dbw $69, $4000
-	dbw $64, $4000
-	dbw $6a, $4000
-	dbw $6a, $4000
-	dbw $66, $4000
-	dbw $65, $4000
-	dbw $64, $4000
-	dbw $64, $4000
-	dbw $64, $4000
-	dbw $64, $4000
-	dbw $64, $4000
-	dbw $63, $4000
+	dba Data_1a0000
+	dba Data_1a4000
+	dba Data_1a0000
+	dba Data_1a4000
+	dba Data_1a4000
+	dba Data_1a4000
+	dba Data_190000
+	dba Data_1a8000
+	dba Data_1a8000
+	dba Data_198000
+	dba Data_194000
+	dba Data_190000
+	dba Data_190000
+	dba Data_190000
+	dba Data_190000
+	dba Data_190000
+	dba Data_18c000
 
 Func_2793: ; 2793 (0:2793)
 	ld a, [wROMBank]

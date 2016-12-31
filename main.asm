@@ -41303,21 +41303,27 @@ Data_178044::
 	dr $178044, $17b73d
 
 SECTION "bank 5F", ROMX, BANK [$5f]
+Data_17c000:
 	dr $17c000, $17fe73
 
 SECTION "bank 60", ROMX, BANK [$60]
+Data_180000:
 	dr $180000, $183fc0
 
 SECTION "bank 63", ROMX, BANK [$63]
+Data_18c000:
 	dr $18c000, $18dcc0
 
 SECTION "bank 64", ROMX, BANK [$64]
+Data_190000:
 	dr $190000, $192df0
 
 SECTION "bank 65", ROMX, BANK [$65]
+Data_194000:
 	dr $194000, $197de0
 
 SECTION "bank 66", ROMX, BANK [$66]
+Data_198000:
 	dr $198000, $19b930
 
 SECTION "bank 67", ROMX, BANK [$67]
@@ -41581,12 +41587,15 @@ Data_19eb5f:
 	db $4f, $44, $6e, $30, $ff
 
 SECTION "bank 68", ROMX, BANK [$68]
+Data_1a0000:
 	dr $1a0000, $1a4000
 
 SECTION "bank 69", ROMX, BANK [$69]
+Data_1a4000:
 	dr $1a4000, $1a8000
 
 SECTION "bank 6A", ROMX, BANK [$6a]
+Data_1a8000:
 	dr $1a8000, $1ac000
 
 SECTION "bank 75", ROMX, BANK [$75]

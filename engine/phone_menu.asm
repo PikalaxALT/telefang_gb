@@ -2858,7 +2858,7 @@ Func_11a59: ; 11a59 (4:5a59)
 	ld [wca65], a
 	ld a, $78
 	ld [wc91f], a
-	ld hl, $6652
+	ld hl, ItemNames
 	call Get8CharName0B
 	ld d, $b
 	jp Func_11a80
