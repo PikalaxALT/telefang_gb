@@ -6994,6 +6994,7 @@ Func_3eb9
 	jr z, .asm_3edf
 	cp $3
 	jr z, .asm_3ee7
+	; RGB 31, 31, 00
 	ld a, $ff
 	ld [hli], a
 	ld a, $3
@@ -7001,6 +7002,7 @@ Func_3eb9
 	jr .asm_3eed
 
 .asm_3ed7
+	; RGB 00, 24, 31
 	ld a, $0
 	ld [hli], a
 	ld a, $7f
@@ -7008,6 +7010,7 @@ Func_3eb9
 	jr .asm_3eed
 
 .asm_3edf
+	; RGB 31, 16, 31
 	ld a, $1f
 	ld [hli], a
 	ld a, $7e
@@ -7015,6 +7018,7 @@ Func_3eb9
 	jr .asm_3eed
 
 .asm_3ee7
+	; RGB 06, 31, 06
 	ld a, $e6
 	ld [hli], a
 	ld a, $1b

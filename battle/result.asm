@@ -37,13 +37,7 @@ Func_74011: ; 74011 (1d:4011)
 Func_7404f: ; 7404f (1d:404f)
 	ld bc, wCurDenjuuBuffer
 	ld de, $16
-	cp $0
-	jr z, .asm_7405d
-.asm_74059
-	add hl, de
-	dec a
-	jr nz, .asm_74059
-.asm_7405d
+	addntimes_hl_de
 	ld d, $10
 .asm_7405f
 	ld a, [hli]
@@ -2331,13 +2325,7 @@ Func_75169: ; 75169 (1d:5169)
 	call LoadStdBGMapLayout_
 	ld hl, Data_75064
 	ld a, [wCurPhoneGFX]
-	cp $0
-	jr z, .asm_75181
-.asm_7517d
-	inc hl
-	dec a
-	jr nz, .asm_7517d
-.asm_75181
+	inchlntimes
 	ld a, [hl]
 	ld b, a
 	ld a, [wd40c]

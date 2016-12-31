@@ -1346,13 +1346,7 @@ Func_908a:
 Func_90a1:
 	ld hl, wd000
 	call Func_90b1
-	cp $0
-	jr z, .load
-.loop
-	inc hl
-	dec a
-	jr nz, .loop
-.load
+	inchlntimes
 	ld a, [hl]
 	ret
 

@@ -3818,24 +3818,12 @@ Func_69f4d: ; 69f4d (1a:5f4d)
 	pop de
 	ld hl, wSpriteInitXCoordBuffers
 	ld a, [wWhichBattleMenuCursor]
-	cp $0
-	jr z, .asm_69f7a
-.asm_69f76
-	inc hl
-	dec a
-	jr nz, .asm_69f76
-.asm_69f7a
+	inchlntimes
 	ld a, [hl]
 	ld b, a
 	ld hl, wSpriteInitYCoordBuffers
 	ld a, [wWhichBattleMenuCursor]
-	cp $0
-	jr z, .asm_69f8a
-.asm_69f86
-	inc hl
-	dec a
-	jr nz, .asm_69f86
-.asm_69f8a
+	inchlntimes
 	ld a, [hl]
 	ld c, a
 	call Func_3020

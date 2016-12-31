@@ -1152,13 +1152,7 @@ Func_7c855: ; 7c855 (1f:4855)
 Func_7c858: ; 7c858 (1f:4858)
 	ld hl, Data_7dc8f
 	ld a, [wCurPhoneGFX]
-	cp $0
-	jr z, .asm_7c866
-.asm_7c862
-	inc hl
-	dec a
-	jr nz, .asm_7c862
-.asm_7c866
+	inchlntimes
 	ld a, [hl]
 	ld b, a
 	ld a, [wd4b0]
@@ -3007,13 +3001,7 @@ Func_7d620: ; 7d620 (1f:5620)
 	push hl
 	ld hl, wd200
 	ld a, [wd4b0]
-	cp $0
-	jr z, .asm_7d657
-.asm_7d653
-	inc hl
-	dec a
-	jr nz, .asm_7d653
-.asm_7d657
+	inchlntimes
 	ld a, [wd4ec]
 	ld [hl], a
 	pop hl
@@ -3633,11 +3621,7 @@ Func_7db03: ; 7db03 (1f:5b03)
 	ld [wd401], a
 .asm_7db20
 	ld a, [wd401]
-	ld hl, Pointers_7db2a
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7db2a: ; 7db2a (1f:5b2a)
+	jump_table
 	dw Func_7db70
 	dw Func_7db91
 	dw Func_7dbbe
@@ -3795,11 +3779,7 @@ Func_7dc46: ; 7dc46 (1f:5c46)
 	ld [wd401], a
 .asm_7dc5f
 	ld a, [wd401]
-	ld hl, Pointers_7dc69
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7dc69: ; 7dc69 (1f:5c69)
+	jump_table
 	dw Func_7dcd4
 	dw Func_7de6b
 	dw Func_7de97
@@ -3935,13 +3915,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld a, [wd4a7]
 	ld hl, $b200
 	ld de, $6
-	cp $0
-	jr z, .asm_7dd66
-.asm_7dd62
-	add hl, de
-	dec a
-	jr nz, .asm_7dd62
-.asm_7dd66
+	addntimes_hl_de
 	ld d, h
 	ld e, l
 	ld hl, wdc70
@@ -4454,11 +4428,7 @@ Func_7e11a: ; 7e11a (1f:611a)
 	ld [wd401], a
 .asm_7e14a
 	ld a, [wd401]
-	ld hl, Pointers_7e154
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7e154: ; 7e154 (1f:6154)
+	jump_table
 	dw Func_7e1a5
 	dw Func_7e2e9
 	dw Func_7e2fc
@@ -4562,13 +4532,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	ld hl, $b200
 	ld a, [wd4eb]
 	ld de, $6
-	cp $0
-	jr z, .asm_7e231
-.asm_7e22d
-	add hl, de
-	dec a
-	jr nz, .asm_7e22d
-.asm_7e231
+	addntimes_hl_de
 	ld de, wdc70
 	ld bc, $6
 	call CopyData
@@ -4634,13 +4598,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 Func_7e2c2: ; 7e2c2 (1f:62c2)
 	ld hl, wdc60
 	ld a, [wMoveAnimationTimer]
-	cp $0
-	jr z, .asm_7e2d0
-.asm_7e2cc
-	inc hl
-	dec a
-	jr nz, .asm_7e2cc
-.asm_7e2d0
+	inchlntimes
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_7e2d6
@@ -4719,11 +4677,7 @@ Func_7e348: ; 7e348 (1f:6348)
 
 Func_7e358: ; 7e358 (1f:6358)
 	ld a, [wBattleSubroutine]
-	ld hl, Pointers_7e362
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7e362: ; 7e362 (1f:6362)
+	jump_table
 	dw Func_7e36a
 	dw Func_7e36d
 	dw Func_7e370
@@ -4760,11 +4714,7 @@ Func_7e376: ; 7e376 (1f:6376)
 	ld [wd401], a
 .asm_7e399
 	ld a, [wd401]
-	ld hl, Pointers_7e3a3
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7e3a3: ; 7e3a3 (1f:63a3)
+	jump_table
 	dw Func_7e3b9
 	dw Func_7e43a
 	dw Func_7e491
@@ -4917,13 +4867,7 @@ Func_7e4b2: ; 7e4b2 (1f:64b2)
 Func_7e4b4:
 	ld hl, Data_7dc8f
 	ld a, [wCurPhoneGFX]
-	cp $0
-	jr z, .asm_7e4c2
-.asm_7e4be
-	inc hl
-	dec a
-	jr nz, .asm_7e4be
-.asm_7e4c2
+	inchlntimes
 	ld a, [hl]
 	ld b, a
 	ld a, [wd4b0]
@@ -5020,11 +4964,7 @@ Func_7e546: ; 7e546 (1f:6546)
 	ld [wd401], a
 .asm_7e570
 	ld a, [wd401]
-	ld hl, Pointers_7e57a
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7e57a: ; 7e57a (1f:657a)
+	jump_table
 	dw Func_7e598
 	dw Func_7e6dc
 	dw Func_7e708
@@ -5600,13 +5540,7 @@ Func_7ea18: ; 7ea18 (1f:6a18)
 	ld hl, $b200
 	ld a, [wd4eb]
 	ld de, $6
-	cp $0
-	jr z, .asm_7ea4b
-.asm_7ea47
-	add hl, de
-	dec a
-	jr nz, .asm_7ea47
-.asm_7ea4b
+	addntimes_hl_de
 	ld de, wdc70
 	ld bc, $6
 	call CopyData
@@ -5736,13 +5670,7 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	ld a, [wd4a7]
 	ld hl, $b200
 	ld de, $6
-	cp $0
-	jr z, .asm_7eb50
-.asm_7eb4c
-	add hl, de
-	dec a
-	jr nz, .asm_7eb4c
-.asm_7eb50
+	addntimes_hl_de
 	ld d, h
 	ld e, l
 	ld hl, wdc70
@@ -6046,11 +5974,7 @@ Func_7edb9: ; 7edb9 (1f:6db9)
 
 Func_7edba: ; 7edba (1f:6dba)
 	ld a, [wd401]
-	ld hl, Pointers_7edc4
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7edc4: ; 7edc4 (1f:6dc4)
+	jump_table
 	dw Func_7edd8
 	dw Func_7eeaf
 	dw Func_7eecd
@@ -6337,11 +6261,7 @@ Func_7eff8: ; 7eff8 (1f:6ff8)
 
 Func_7f011: ; 7f011 (1f:7011)
 	ld a, [wd401]
-	ld hl, Pointers_7f01b
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7f01b: ; 7f01b (1f:701b)
+	jump_table
 	dw Func_7f023
 	dw Func_7f0a0
 	dw Func_7f0aa
@@ -6424,11 +6344,7 @@ Func_7f0bb: ; 7f0bb (1f:70bb)
 
 Func_7f0c9: ; 7f0c9 (1f:70c9)
 	ld a, [wBattleSubroutine]
-	ld hl, Pointers_7f0d3
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7f0d3: ; 7f0d3 (1f:70d3)
+	jump_table
 	dw Func_7f0d9
 	dw Func_7f0dc
 	dw Func_7f0df
@@ -6471,11 +6387,7 @@ Func_7f0e2: ; 7f0e2 (1f:70e2)
 	ld [wd401], a
 .asm_7f119
 	ld a, [wd401]
-	ld hl, Pointers_7f123
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7f123: ; 7f123 (1f:7123)
+	jump_table
 	dw Func_7f141
 	dw Func_7f1e6
 	dw Func_7f2ef
@@ -6935,11 +6847,7 @@ Func_7f43e: ; 7f43e (1f:743e)
 	ld [wd401], a
 .asm_7f46e
 	ld a, [wd401]
-	ld hl, Pointers_7f478
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7f478: ; 7f478 (1f:7478)
+	jump_table
 	dw Func_7f4d2
 	dw Func_7f50f
 	dw Func_7f532
@@ -7366,11 +7274,7 @@ Func_7f7a7: ; 7f7a7 (1f:77a7)
 
 Func_7f7ce: ; 7f7ce (1f:77ce)
 	ld a, [wd401]
-	ld hl, Pointers_7f7d8
-	call GetWordFromTable
-	jp [hl]
-
-Pointers_7f7d8: ; 7f7d8 (1f:77d8)
+	jump_table
 	dw Func_7f7e8
 	dw Func_7f839
 	dw Func_7f843

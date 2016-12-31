@@ -166,6 +166,16 @@ check_cgb: MACRO
 	cp $11
 ENDM
 
+inchlntimes: MACRO
+	cp $0
+	jr z, .skip\@
+.loop\@
+	inc hl
+	dec a
+	jr nz, .loop\@
+.skip\@
+ENDM
+
 addntimes_hl_de: MACRO
 	cp $0
 	jr z, .skip\@
