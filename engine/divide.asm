@@ -77,11 +77,11 @@ Divide_BC_by_DE: ; 2d9d8 (b:59d8)
 	sbc d
 	ld b, a
 	ccf
-	jr c, .never_jump_here
+	jr c, .half_carry
 	pop bc
 	jr .okay
 
-.never_jump_here
+.half_carry
 	inc sp
 	inc sp
 .okay
