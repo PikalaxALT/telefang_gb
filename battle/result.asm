@@ -521,7 +521,7 @@ Func_743b2: ; 743b2 (1d:43b2)
 	ld b, a
 	ld a, l
 	ld c, a
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, b
 	ld [wd4a6], a
 	ld a, c
@@ -757,7 +757,7 @@ Func_7449f: ; 7449f (1d:449f)
 	ld a, c
 	ld e, a
 	pop bc
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
 	jr z, Func_74595
@@ -885,7 +885,7 @@ Func_74598: ; 74598 (1d:4598)
 	ld a, c
 	ld e, a
 	pop bc
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
 	jr z, Func_7468e
@@ -1013,7 +1013,7 @@ Func_74691: ; 74691 (1d:4691)
 	ld a, c
 	ld e, a
 	pop bc
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
 	jr z, Func_74787
@@ -1674,7 +1674,7 @@ Func_74c3a: ; 74c3a (1d:4c3a)
 	ld a, c
 	ld e, a
 	pop bc
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
 	jr z, .asm_74cb4
@@ -1732,7 +1732,7 @@ Func_74c3a: ; 74c3a (1d:4c3a)
 	ld a, c
 	ld e, a
 	pop bc
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
 	jr z, .asm_74d21
@@ -1790,7 +1790,7 @@ Func_74d23: ; 74d23 (1d:4d23)
 	ld a, c
 	ld e, a
 	pop bc
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
 	jr z, Func_74d8d
@@ -2878,7 +2878,7 @@ Func_75541: ; 75541 (1d:5541)
 	call GetDenjuuPalette_Pal6
 	ld a, [wCurDenjuuBufferSpecies]
 	ld [wCurDenjuu], a
-	ld c, $c
+	ld c, DENJUU_EVO_SPECIES
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	dec a

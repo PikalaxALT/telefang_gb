@@ -4412,117 +4412,7 @@ Func_2d95f: ; 2d95f (b:595f)
 	rr l
 	ret
 
-Func_2d99b: ; 2d99b (b:599b)
-	ld a, b
-	ld [wca68], a
-	xor d
-	ld [wca69], a
-	bit 7, d
-	jp z, Func_2d9ae
-	sub a
-	sub e
-	ld e, a
-	sbc a
-	sub d
-	ld d, a
-Func_2d9ae: ; 2d9ae (b:59ae)
-	bit 7, b
-	jp z, Func_2d9b9
-	sub a
-	sub c
-	ld c, a
-	sbc a
-	sub b
-	ld b, a
-Func_2d9b9: ; 2d9b9 (b:59b9)
-	call Func_2d9d8
-	ret c
-	ld a, [wca69]
-	and $80
-	jp z, Func_2d9cb
-	sub a
-	sub c
-	ld c, a
-	sbc a
-	sub b
-	ld b, a
-Func_2d9cb: ; 2d9cb (b:59cb)
-	ld a, [wca68]
-	and $80
-	ret z
-	sub a
-	sub e
-	ld e, a
-	sbc a
-	sub d
-	ld d, a
-	ret
-
-Func_2d9d8: ; 2d9d8 (b:59d8)
-	ld a, e
-	or d
-	jr nz, .asm_2d9e3
-	ld bc, $0
-	ld d, b
-	ld e, c
-	scf
-	ret
-
-.asm_2d9e3
-	ld l, c
-	ld h, b
-	ld bc, $0
-	or a
-	ld a, $10
-.asm_2d9eb
-	ld [wca6a], a
-	rl l
-	rl h
-	rl c
-	rl b
-	push bc
-	ld a, c
-	sbc e
-	ld c, a
-	ld a, b
-	sbc d
-	ld b, a
-	ccf
-	jr c, .asm_2da03
-	pop bc
-	jr .asm_2da05
-
-.asm_2da03
-	inc sp
-	inc sp
-.asm_2da05
-	ld a, [wca6a]
-	dec a
-	jr nz, .asm_2d9eb
-	ld d, b
-	ld e, c
-	rl l
-	ld c, l
-	rl h
-	ld b, h
-	or a
-	ret
-
-Func_2da15:
-	ld a, c
-	rlca
-	sbc a
-	ld b, a
-	ld a, e
-	rlca
-	sbc a
-	ld d, a
-	jp Func_2d99b
-
-Func_2da20: ; 2da20 (b:5a20)
-	ld b, $0
-	ld d, $0
-	jp Func_2d9d8
+INCLUDE "engine/divide.asm"
 
 Func_2da27: ; 2da27 (b:5a27)
 	push hl
@@ -4827,7 +4717,7 @@ Func_2db98: ; 2db98 (b:5b98)
 	rl b
 	sla c
 	rl b
-	call Func_2d9d8
+	call Divide_BC_by_DE
 	call Func_2dbfb
 .asm_2dbd6
 	sla a
@@ -7641,10 +7531,10 @@ Func_306fe: ; 306fe (c:46fe)
 	ld [wPrevROMBank], a
 	ld a, [wc912]
 	ld b, $0
-	ld c, $d
+	ld c, DENJUU_TYPE
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	cp $3
+	cp AQUATIC
 	ret nz
 	ld bc, EVENT_080
 	call CheckEventFlag
@@ -17134,7 +17024,7 @@ Func_391c1: ; 391c1 (e:51c1)
 	ld b, h
 	ld c, l
 	ld de, $c8
-	callba Func_2d9d8
+	callba Divide_BC_by_DE
 	pop hl
 	ld a, [hl]
 	add c
@@ -19946,7 +19836,7 @@ Func_3a887:
 	ld b, d
 	ld c, e
 	ld de, $c
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld d, c
 	call Func_3058
 	sra d
@@ -25392,7 +25282,7 @@ Func_a53ae: ; a53ae (29:53ae)
 	ld de, $6
 	ld a, $29
 	ld [wPrevROMBank], a
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, b
 	or a
 	jr z, .asm_a53f8

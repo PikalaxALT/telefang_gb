@@ -342,8 +342,8 @@ LoadDenjuuBattleCatchphrase_::
 	rst MemBankswitch
 	ret
 
-Func_0628::
-	homecall_memret Func_2d99b
+Divide_BC_by_DE_signed_::
+	homecall_memret Divide_BC_by_DE_signed
 	ret
 
 Func_0630::

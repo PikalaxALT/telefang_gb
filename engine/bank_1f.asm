@@ -1403,7 +1403,7 @@ Func_7c947: ; 7c947 (1f:4947)
 	ld d, $0
 	ld a, $3
 	ld e, a
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	ld [wd4a1], a
 	call Func_7d602
@@ -3230,7 +3230,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	ld c, $0
+	ld c, DENJUU_HP
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 4
@@ -3254,7 +3254,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	ld c, $0
+	ld c, DENJUU_HP
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 7
@@ -3278,7 +3278,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	ld c, $0
+	ld c, DENJUU_HP
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 10
@@ -5029,7 +5029,7 @@ Func_7e598: ; 7e598 (1f:6598)
 	ld d, $0
 	ld a, $3
 	ld e, a
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	ld [wd4a1], a
 	call Func_7d602

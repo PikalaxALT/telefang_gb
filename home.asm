@@ -3824,7 +3824,7 @@ Func_2928::
 	push af
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2da20)
+	ld a, BANK(Divide_C_by_E)
 	rst Bankswitch
 	push hl
 	ld a, [wFontSourceBank]
@@ -3833,7 +3833,7 @@ Func_2928::
 	sub c
 	ld c, a
 	ld e, $a
-	call Func_2da20
+	call Divide_C_by_E
 	ld b, e
 	pop hl
 	pop af
@@ -3871,7 +3871,7 @@ Func_2928::
 	push af
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2da20)
+	ld a, BANK(Divide_C_by_E)
 	rst Bankswitch
 	push hl
 	ld a, [wFontSourceBank]
@@ -3880,7 +3880,7 @@ Func_2928::
 	sub c
 	ld c, a
 	ld e, $a
-	call Func_2da20
+	call Divide_C_by_E
 	ld a, e
 	ld [wc915], a
 	ld a, c
@@ -6489,7 +6489,7 @@ GetDenjuuSprite: ; 3b3f (0:3b3f)
 
 Func_3b4e: ; 3b4e (0:3b4e)
 	ld hl, Data_9c000
-	ld de, $c6
+	ld de, 2 * 99
 	addntimes_hl_de
 	dec b
 	ld d, $0

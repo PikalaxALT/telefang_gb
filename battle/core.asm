@@ -75,7 +75,7 @@ Func_1407d: ; 1407d (5:407d)
 	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd4e8], a
 	or a
 	jr nz, .asm_14098
@@ -87,17 +87,17 @@ Func_1407d: ; 1407d (5:407d)
 .asm_14098
 	ld d, $1
 	ld a, [wd4e8]
-	call Func_3998
+	call SetHPBarPalette
 	ld a, [wd4e8]
 	ld c, $0
 	hlbgcoord 3, 2
-	jp Func_3957
+	jp DrawHPBar
 
 Func_140ab: ; 140ab (5:40ab)
 	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd4e9], a
 	or a
 	jr nz, .asm_140c6
@@ -109,18 +109,18 @@ Func_140ab: ; 140ab (5:40ab)
 .asm_140c6
 	ld d, $2
 	ld a, [wd4e9]
-	call Func_3998
+	call SetHPBarPalette
 	ld a, [wd4e9]
 	ld c, $1
 	hlbgcoord 6, 10, VWindow
-	jp Func_3957
+	jp DrawHPBar
 
 Func_140d9: ; 140d9 (5:40d9)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x09]
 	ld e, a
 	ld a, [wCurDenjuuBufferField0x05]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd4e8], a
 	or a
 	jr nz, .asm_140f7
@@ -133,14 +133,14 @@ Func_140d9: ; 140d9 (5:40d9)
 	ld a, [wd4e8]
 	ld c, $0
 	hlbgcoord 3, 3
-	jp Func_3957
+	jp DrawHPBar
 
 Func_14102: ; 14102 (5:4102)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferField0x09]
 	ld e, a
 	ld a, [wCurDenjuuBufferField0x05]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd4e9], a
 	or a
 	jr nz, .asm_14120
@@ -153,7 +153,7 @@ Func_14102: ; 14102 (5:4102)
 	ld a, [wd4e9]
 	ld c, $1
 	hlbgcoord 6, 11, VWindow
-	jp Func_3957
+	jp DrawHPBar
 
 GetNthPlayerDenjuu: ; 1412b (5:412b)
 	ld hl, wPlayerDenjuu1
@@ -224,7 +224,7 @@ Func_14178:
 	ld a, [wd433]
 Func_141a5: ; 141a5 (5:41a5)
 	ld c, $0
-	jp Func_3957
+	jp DrawHPBar
 
 Func_141aa:
 	ld bc, $30e
@@ -274,7 +274,7 @@ Func_141f2: ; 141f2 (5:41f2)
 	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd4e8], a
 	cp $0
 	jr nz, .asm_14213
@@ -287,7 +287,7 @@ Func_141f2: ; 141f2 (5:41f2)
 	ld a, [wd4e8]
 	ld c, $0
 	pop hl
-	jp Func_3957
+	jp DrawHPBar
 
 asm_1421c
 	hlbgcoord 13, 14
@@ -303,7 +303,7 @@ Func_1422b: ; 1422b (5:422b)
 	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd4e9], a
 	cp $0
 	jr nz, .asm_1424c
@@ -316,7 +316,7 @@ Func_1422b: ; 1422b (5:422b)
 	ld a, [wd4e9]
 	ld c, $0
 	pop hl
-	jp Func_3957
+	jp DrawHPBar
 
 Func_14255: ; 14255 (5:4255)
 	ld a, [wd42d]
@@ -3665,7 +3665,7 @@ Func_159bc: ; 159bc (5:59bc)
 	ld a, [wCurDenjuuBufferField0x08]
 	ld e, a
 	ld a, [wCurDenjuuBufferField0x06]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd430], a
 	xor a
 	call Func_14178
@@ -3689,7 +3689,7 @@ asm_15bc8
 	ld a, [wCurDenjuuBufferField0x08]
 	ld e, a
 	ld a, [wCurDenjuuBufferField0x06]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd431], a
 	ld a, $1
 	call Func_14178
@@ -3713,7 +3713,7 @@ asm_15bfa
 	ld a, [wCurDenjuuBufferField0x08]
 	ld e, a
 	ld a, [wCurDenjuuBufferField0x06]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd432], a
 	ld a, $2
 	call Func_14178
@@ -3737,7 +3737,7 @@ asm_15c2c
 	ld a, [wCurDenjuuBufferField0x08]
 	ld e, a
 	ld a, [wCurDenjuuBufferField0x06]
-	call Func_3980
+	call CalcHPBarLength
 	ld [wd433], a
 	ld a, $3
 	call Func_14178
@@ -3874,7 +3874,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	ld a, [wPlayerDenjuu2Field0x08]
 	ld e, a
 	ld a, [wPlayerDenjuu2Field0x06]
-	call Func_3980
+	call CalcHPBarLength
 	cp $30
 	jr c, asm_15d83
 	ld a, $a
@@ -3930,7 +3930,7 @@ asm_15d83
 	ld a, [wPlayerDenjuu3Field0x08]
 	ld e, a
 	ld a, [wPlayerDenjuu3Field0x06]
-	call Func_3980
+	call CalcHPBarLength
 	cp $30
 	jr c, asm_15df1
 	ld a, $b
@@ -4020,7 +4020,7 @@ asm_15df1
 	ld a, [wEnemyDenjuu2Field0x08]
 	ld e, a
 	ld a, [wEnemyDenjuu2Field0x06]
-	call Func_3980
+	call CalcHPBarLength
 	cp $30
 	jr c, asm_15ea0
 	ld a, $14
@@ -4076,7 +4076,7 @@ asm_15ea0
 	ld a, [wEnemyDenjuu3Field0x08]
 	ld e, a
 	ld a, [wEnemyDenjuu3Field0x06]
-	call Func_3980
+	call CalcHPBarLength
 	cp $30
 	jr c, asm_15f0e
 	ld a, $15

@@ -1618,7 +1618,7 @@ Func_70bca:
 	ld d, $0
 	ld a, $3
 	ld e, a
-	call Func_0628
+	call Divide_BC_by_DE_signed_
 	ld a, c
 	ld [wd4a1], a
 	ld a, $1
@@ -2847,7 +2847,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	ld c, $0
+	ld c, DENJUU_HP
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 4
@@ -2871,7 +2871,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	ld c, $0
+	ld c, DENJUU_HP
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 7
@@ -2895,7 +2895,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	ld c, $0
+	ld c, DENJUU_HP
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 10
