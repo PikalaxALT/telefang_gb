@@ -125,7 +125,7 @@ PaletteFadeCGB: ; f682 (3:7682)
 	ld a, e
 	ld [wCGBPalFadeBufferPointer + 1], a
 	ld a, [wCurFadeProgram]
-	ld hl, wde00
+	ld hl, wCGB_BGPalFadeComponentBuffer
 	call ApplyCGBFadeToEightPals
 	call CopyFadeBufferToBGPalBuffer
 	ld de, wCGBPalFadeBuffer
@@ -134,7 +134,7 @@ PaletteFadeCGB: ; f682 (3:7682)
 	ld a, e
 	ld [wCGBPalFadeBufferPointer + 1], a
 	ld a, [wCurFadeProgram]
-	ld hl, wCGBPalFadeComponentBuffer
+	ld hl, wCGB_OBPalFadeComponentBuffer
 	call ApplyCGBFadeToEightPals
 	call CopyFadeBufferToOBPalBuffer
 	ld a, [wCurFadePosition]
@@ -212,7 +212,7 @@ BGPaletteFadeCGB: ; f701 (3:7701)
 	sla e
 	rl d
 	add hl, de
-	ld de, wde00
+	ld de, wCGB_BGPalFadeComponentBuffer
 	add hl, de
 	ld a, c
 	ld [wNumCGBPalettesToFade], a
@@ -277,7 +277,7 @@ OBPaletteFadeCGB: ; f763 (3:7763)
 	sla e
 	rl d
 	add hl, de
-	ld de, wCGBPalFadeComponentBuffer
+	ld de, wCGB_OBPalFadeComponentBuffer
 	add hl, de
 	ld a, c
 	ld [wNumCGBPalettesToFade], a

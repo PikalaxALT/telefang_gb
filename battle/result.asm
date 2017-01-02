@@ -377,7 +377,7 @@ Func_74291: ; 74291 (1d:4291)
 	call DecompressGFXByIndex_
 	ld a, $0
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, [wd407]
@@ -1287,7 +1287,7 @@ Func_74957: ; 74957 (1d:4957)
 	ret nz
 	ld a, $7
 	ld bc, $b
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, $28
@@ -2726,7 +2726,7 @@ Func_75456: ; 75456 (1d:5456)
 Func_7545f: ; 7545f (1d:545f)
 	ld a, $0
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ret
@@ -2779,7 +2779,7 @@ Func_754b1: ; 754b1 (1d:54b1)
 	call Func_3eb9
 	ld a, $4
 	ld bc, $5
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, BANK(GFX_e1560)
 	ld hl, VTilesOB tile $40
 	ld de, GFX_e1560
@@ -2787,7 +2787,7 @@ Func_754b1: ; 754b1 (1d:54b1)
 	call FarCopy2bpp_2
 	ld a, $2
 	ld bc, $1fe
-	call Func_1196
+	call LoadNthStdOBPalette
 	lb bc, 0, $0
 	ld e, $70
 	ld a, $0

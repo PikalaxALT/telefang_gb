@@ -375,7 +375,7 @@ Func_8648: ; 8648 (2:4648)
 	call Func_8710
 	ld bc, $348
 	ld a, $7
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, $1
@@ -385,9 +385,7 @@ Func_8648: ; 8648 (2:4648)
 	ret
 
 Func_86e2::
-	enable_sram
-	ld a, BANK(s3_b000)
-	ld [MBC3SRamBank], a
+	enable_sram s3_b000
 .asm_86ec
 	ld a, [hli]
 	ld [de], a
@@ -401,9 +399,7 @@ Func_86e2::
 	ret
 
 Func_86f9: ; 86f9 (2:46f9)
-	enable_sram
-	ld a, BANK(s3_b000)
-	ld [MBC3SRamBank], a
+	enable_sram s3_b000
 .asm_8703
 	ld a, [hli]
 	ld [de], a
@@ -928,7 +924,7 @@ Func_8d7a: ; 8d7a (2:4d7a)
 	call InitBattleMenuCursor
 	ld a, $0
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 .asm_8db8
@@ -1208,9 +1204,7 @@ Func_8f96: ; 8f96 (2:4f96)
 	ret
 
 Func_8fb9:
-	enable_sram
-	ld a, BANK(s1_b000)
-	ld [MBC3SRamBank], a
+	enable_sram s1_b000
 	ld de, wd000
 	ld hl, s1_b000
 	ld a, [wcb70]
@@ -1533,9 +1527,7 @@ Func_91c7: ; 91c7 (2:51c7)
 	ret
 
 Func_923b: ; 923b (2:523b)
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, [wCurDenjuuLevel]
 	hlbgcoord 5, 15
 	ld c, $1
@@ -5264,9 +5256,7 @@ Func_2df11:
 	jr AddOrSubtractMoney
 
 Func_2df1e: ; 2df1e (b:5f1e)
-	enable_sram
-	ld a, BANK(s3_a000)
-	ld [MBC3SRamBank], a
+	enable_sram s3_a000
 	ld hl, wc480
 	ld de, wOAMAnimation15
 	ld b, $20
@@ -5290,9 +5280,7 @@ Func_2df1e: ; 2df1e (b:5f1e)
 	ret
 
 Func_2df55: ; 2df55 (b:5f55)
-	enable_sram
-	ld a, BANK(s3_a000)
-	ld [MBC3SRamBank], a
+	enable_sram s3_a000
 	ld de, wOAMAnimations
 	ld hl, s3_a000
 	ld bc, $300
@@ -5411,7 +5399,7 @@ Func_2dfaf:
 	ld a, $7
 	ld [wSubroutine], a
 	ld a, $4
-	jp Func_122d
+	jp StartFade
 
 Func_2e033:
 	ld a, $8
@@ -5576,9 +5564,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	dec a
 	jr nz, .asm_2e130
 .asm_2e135
-	enable_sram
-	ld a, $2
-	ld [MBC3SRamBank], a
+	enable_sram s2_b000
 	ld a, [hl]
 	or c
 	ld [hl], a
@@ -5599,7 +5585,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	rl b
 	sla c
 	rl b
-	ld hl, $b000
+	ld hl, s2_b000
 	add hl, bc
 	ld a, [wc906]
 	srl a
@@ -6040,7 +6026,7 @@ Func_2e3ff: ; 2e3ff (b:63ff)
 	ld a, BANK(Func_2e3ff)
 	ld [wPrevROMBank], a
 	ld a, $3
-	call Func_1196
+	call LoadNthStdOBPalette
 .asm_2e437
 	ld a, [wc905]
 	cp $2
@@ -6057,7 +6043,7 @@ Func_2e3ff: ; 2e3ff (b:63ff)
 	ld a, BANK(Func_2e3ff)
 	ld [wPrevROMBank], a
 	xor a
-	call Func_1196
+	call LoadNthStdOBPalette
 	ret
 
 Data_2e455:
@@ -6113,7 +6099,7 @@ Func_2e48d: ; 2e48d (b:648d)
 	ld b, h
 	ld c, l
 	pop af
-	jp Func_10ee
+	jp LoadNthStdBGPalette
 
 Data_2e49e:
 	db $40, $40, $40, $43
@@ -6174,16 +6160,16 @@ Func_2e4ed: ; 2e4ed (b:64ed)
 	jr c, .asm_2e516
 .asm_2e50c
 	ld a, d
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
 
 .asm_2e516
 	ld a, $0
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
@@ -7578,7 +7564,7 @@ Func_30741: ; 30741 (c:4741)
 	ld a, BANK(Func_30741)
 	ld [wPrevROMBank], a
 	ld a, $7
-	call Func_1196
+	call LoadNthStdOBPalette
 	pop hl
 	pop bc
 	ret
@@ -8170,7 +8156,7 @@ Func_30a54:
 	ld a, $c
 	ld [wPrevROMBank], a
 	ld a, $3
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, [wcd20]
 	or a
 	jr z, Func_30aea
@@ -11590,7 +11576,7 @@ Func_3202b:
 	ld [wPrevROMBank], a
 	ld a, $5
 	ld bc, $15
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, $a
@@ -12072,7 +12058,7 @@ Func_32294:
 	add $5
 	ld l, a
 	ld a, [hl]
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, [wcd20]
 	or a
 	jr z, .asm_3236e
@@ -13221,7 +13207,7 @@ Func_32a6f: ; 32a6f (c:6a6f)
 	add $5
 	ld l, a
 	ld a, [hl]
-	call Func_1196
+	call LoadNthStdOBPalette
 	ret
 
 Func_32a93: ; 32a93 (c:6a93)
@@ -17001,9 +16987,7 @@ Func_391c1: ; 391c1 (e:51c1)
 	rl b
 	ld hl, sAddressBook + 2
 	add hl, bc
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, [hl]
 	cp $64
 	jr nc, .asm_39267
@@ -19731,7 +19715,7 @@ Func_3a86e: ; 3a86e (e:686e)
 	call FarCopy2bpp_2
 	ld a, $5
 	ld bc, $6
-	call Func_1196
+	call LoadNthStdOBPalette
 	pop hl
 asm_3a886
 	ret
@@ -22380,7 +22364,7 @@ Func_3cc47: ; 3cc47 (f:4c47)
 	ld a, $29
 	ld [wSubroutine], a
 	ld a, $4
-	call Func_122d
+	call StartFade
 	ld b, $2
 	jp Func_3c112
 
@@ -22388,7 +22372,7 @@ Func_3cc5e: ; 3cc5e (f:4c5e)
 	ld a, $18
 	ld [wSubroutine], a
 	ld a, $4
-	call Func_122d
+	call StartFade
 	ld b, $2
 	jp Func_3c112
 
@@ -22397,7 +22381,7 @@ Func_3cc6d: ; 3cc6d (f:4c6d)
 	ld a, $19
 	ld [wSubroutine], a
 	ld a, $4
-	call Func_122d
+	call StartFade
 	ld b, $2
 	jp Func_3c112
 
@@ -22406,7 +22390,7 @@ Func_3cc7f: ; 3cc7f (f:4c7f)
 	ld a, $36
 	ld [wSubroutine], a
 	ld a, $4
-	call Func_122d
+	call StartFade
 	ld b, $2
 	jp Func_3c112
 
@@ -22509,9 +22493,7 @@ Func_3cd1d: ; 3cd1d (f:4d1d)
 	ret
 
 Func_3cd38: ; 3cd38 (f:4d38)
-	enable_sram
-	ld a, BANK(s2_b200)
-	ld [MBC3SRamBank], a
+	enable_sram s2_b200
 	ld bc, EVENT_C01
 	call ResetEventFlag
 	call Func_3cfef
@@ -22734,7 +22716,7 @@ asm_3ced2
 	ld b, h
 	pop de
 	ld a, d
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, [wcd20]
 	or a
 	jr z, .asm_3cef9
@@ -22806,9 +22788,7 @@ Func_3cf44: ; 3cf44 (f:4f44)
 Func_3cf54: ; 3cf54 (f:4f54)
 	ld a, [wcd09]
 	ld c, a
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld hl, sAddressBook + $1
 	ld de, $11
 	ld b, $fe
@@ -22846,7 +22826,7 @@ Func_3cf93: ; 3cf93 (f:4f93)
 	ld a, $30
 	ld [wSubroutine], a
 	ld a, $4
-	call Func_122d
+	call StartFade
 	ld b, $1
 	call Func_3c112
 	ret
@@ -23097,9 +23077,7 @@ GFX_a3320:
 
 SECTION "bank 29", ROMX, BANK [$29]
 Func_a4000:
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, [wc924]
 	inc a
 	ld [wc924], a
@@ -24132,9 +24110,7 @@ Func_a4ba4: ; a4ba4 (29:4ba4)
 	ld e, a
 	ld a, [wc94e]
 	ld d, a
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, $7
 	add e
 	ld e, a
@@ -24145,9 +24121,7 @@ Func_a4ba4: ; a4ba4 (29:4ba4)
 	dec de
 	push af
 	call Func_a4e12
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, [wc94d]
 	ld l, a
 	ld a, [wc94e]
@@ -24346,9 +24320,7 @@ Func_a4db0: ; a4db0 (29:4db0)
 
 Func_a4dbb: ; a4dbb (29:4dbb)
 	push bc
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld hl, sAddressBook + 2
 	ld a, [wcafd]
 	ld c, a
@@ -24413,9 +24385,7 @@ Func_a4e12: ; a4e12 (29:4e12)
 asm_a4e25
 	ld de, s2_b200
 	add hl, de
-	enable_sram
-	ld a, BANK(s2_b200)
-	ld [MBC3SRamBank], a
+	enable_sram s2_b200
 	ld de, wc9e1
 	ld c, $6
 .asm_a4e38
@@ -24512,9 +24482,7 @@ Func_a4ec2: ; a4ec2 (29:4ec2)
 	ld a, $0
 	adc h
 	ld h, a
-	enable_sram
-	ld a, BANK(s3_a300)
-	ld [MBC3SRamBank], a
+	enable_sram s3_a300
 	ld a, [hl]
 	ld b, a
 	disable_sram
@@ -25073,9 +25041,7 @@ Func_a5245: ; a5245 (29:5245)
 	ld a, $0
 	adc h
 	ld h, a
-	enable_sram
-	ld a, BANK(s2_b800)
-	ld [MBC3SRamBank], a
+	enable_sram s2_b800
 	ld a, [hl]
 	ld [H_FFA2], a
 	disable_sram
@@ -25199,9 +25165,7 @@ Func_a5315: ; a5315 (29:5315)
 	jr .asm_a531e
 
 Func_a535e: ; a535e (29:535e)
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld de, wOAMAnimation01_YCoord
 	ld hl, sAddressBook + 1
 	ld a, $0
@@ -25478,9 +25442,7 @@ Func_a54d8:
 	ret
 
 Func_a54f1: ; a54f1 (29:54f1)
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	call Func_a554e
 	inc hl
 	ld a, [hli]
@@ -25491,9 +25453,7 @@ Func_a54f1: ; a54f1 (29:54f1)
 	ret
 
 Func_a5509:
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	call Func_a554e
 	inc hl
 	ld a, [hli]
@@ -25508,9 +25468,7 @@ Func_a5509:
 	ret
 
 GetPartnerDenjuuMaxHP: ; a5525 (29:5525)
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	call Func_a554e
 	ld a, BANK(GetPartnerDenjuuMaxHP)
 	ld [wPrevROMBank], a
@@ -25555,9 +25513,7 @@ Func_a5572: ; a5572 (29:5572)
 	ld a, BANK(Func_a5572)
 	ld [wPrevROMBank], a
 	call Func_20f6
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld hl, sAddressBook
 	ld a, [wcafd]
 	ld c, a
@@ -25854,17 +25810,17 @@ Func_a576c: ; a576c (29:576c)
 	pop bc
 	push bc
 	ld a, $3
-	call Func_10ee
+	call LoadNthStdBGPalette
 	pop bc
 	inc bc
 	ld a, $4
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld bc, $36
 	ld a, $1
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld bc, $55
 	ld a, $5
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, [wCurPhoneGFX]
 	ld e, a
 	ld d, $0
@@ -25873,7 +25829,7 @@ Func_a576c: ; a576c (29:576c)
 	push hl
 	pop bc
 	xor a
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wdd06], a
 	ld b, $5
@@ -26281,10 +26237,10 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	call GetCGB_BGLayout_
 	ld bc, $14
 	ld a, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld bc, $2e5
 	ld a, $5
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $4
 	call Func_050a
 	call Func_a5bb5
@@ -26744,7 +26700,7 @@ Func_a5f06: ; a5f06 (29:5f06)
 	ld [wPrevROMBank], a
 	ld bc, $0
 	ld a, $4
-	call Func_122d
+	call StartFade
 	jp IncrementSubroutine
 
 Func_a5f78: ; a5f78 (29:5f78)
@@ -27456,9 +27412,7 @@ Func_a847a: ; a847a (2a:447a)
 	hlbgcoord 1, 0
 	add hl, de
 	ld de, s3_a300
-	enable_sram
-	ld a, BANK(s3_a300)
-	ld [MBC3SRamBank], a
+	enable_sram s3_a300
 	ret
 
 Func_a84a3: ; a84a3 (2a:44a3)
@@ -28006,7 +27960,7 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	inc b
 .asm_a88d5
 	ld a, $1
-	call Func_10ee
+	call LoadNthStdBGPalette
 	jp IncrementSubroutine
 
 Func_a88dd: ; a88dd (2a:48dd)
@@ -28107,9 +28061,7 @@ Func_a893b: ; a893b (2a:493b)
 	sla c
 	rl b
 	add hl, bc
-	enable_sram
-	ld a, BANK(s2_b000)
-	ld [MBC3SRamBank], a
+	enable_sram s2_b000
 	ld a, [hl]
 	and d
 	pop de
@@ -28609,7 +28561,7 @@ Func_a8d48: ; a8d48 (2a:4d48)
 	ld c, l
 	ld a, d
 	add $3
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	pop bc
@@ -28627,7 +28579,7 @@ Func_a8d6d:
 	ld b, h
 	ld c, l
 	ld a, $1
-	call Func_1196
+	call LoadNthStdOBPalette
 	ret
 
 Func_a8d82: ; a8d82 (2a:4d82)
@@ -29512,7 +29464,7 @@ Func_a93cf: ; a93cf (2a:53cf)
 	call Func_a8d6d
 	ld a, $2
 	ld bc, $1fe
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld bc, $e0
 	hlbgcoord 0, 5
 	ld a, $7
@@ -29795,7 +29747,7 @@ Func_a9595: ; a9595 (2a:5595)
 	ld [wPrevROMBank], a
 	ld a, $6
 	ld bc, $1db
-	call Func_10ee
+	call LoadNthStdBGPalette
 	call Func_3566
 	call Func_a9858
 	call Func_a96e4
@@ -29854,9 +29806,7 @@ Func_a96e4: ; a96e4 (2a:56e4)
 	push af
 	ld a, BANK(Func_a96e4)
 	ld [wPrevROMBank], a
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, [wcdb4]
 	ld c, a
 	ld b, $0
@@ -29925,9 +29875,7 @@ Func_a96e4: ; a96e4 (2a:56e4)
 	ld de, 1998
 .asm_a9763
 	pop bc
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, e
 	ld [bc], a
 	inc bc
@@ -30037,9 +29985,7 @@ Func_a97cf: ; a97cf (2a:57cf)
 	ld b, h
 	ld c, l
 	call SetEventFlag
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, [wcdb4]
 	ld c, a
 	ld hl, sAddressBook
@@ -30218,7 +30164,7 @@ Func_a9942: ; a9942 (2a:5942)
 	ld bc, $1dc
 .asm_a996e
 	ld a, $5
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $0
 	ld [wOAMAnimation19_PriorityFlags], a
 	ld [wc46c], a
@@ -32772,7 +32718,7 @@ Func_c8f4c:
 	call FarCopy2bpp_2
 	ld a, $6
 	ld bc, $6
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, $6e
@@ -33702,9 +33648,7 @@ Func_c9538: ; c9538 (32:5538)
 	ld [wc920], a
 	call Func_30a7
 	ld [wc921], a
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	ld a, $0
 	ld [wcdb4], a
 	ld a, $5
@@ -33718,9 +33662,7 @@ Func_c9538: ; c9538 (32:5538)
 	call Func_30a7
 	ld [wc906], a
 	ld [sAddressBook + 9], a
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 IF DEF(POWER)
 	ld a, CRYPTO
 	ld [sAddressBook], a
@@ -34251,9 +34193,7 @@ Func_c99ac: ; c99ac (32:59ac)
 	jr .asm_c99ea
 
 .asm_c99ea
-	enable_sram
-	ld a, BANK(s3_a000)
-	ld [MBC3SRamBank], a
+	enable_sram s3_a000
 	ld de, wOAMAnimation01_PriorityFlags
 	ld hl, s3_a000
 	ld bc, $140
@@ -34297,7 +34237,7 @@ Func_c99ac: ; c99ac (32:59ac)
 	ld a, BANK(Func_c99ac)
 	ld [wPrevROMBank], a
 	ld a, $10
-	call Func_122d
+	call StartFade
 	ld a, [wc958]
 	or a
 	jr z, .asm_c9a5a
@@ -34384,9 +34324,7 @@ Func_c9ad5:
 	ld [wc46c], a
 	ld a, $40
 	ld [rSTAT], a
-	enable_sram
-	ld a, BANK(s3_a000)
-	ld [MBC3SRamBank], a
+	enable_sram s3_a000
 	ld de, wOAMAnimations
 	ld hl, s3_a000
 	ld bc, $140

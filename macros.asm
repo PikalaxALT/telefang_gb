@@ -232,6 +232,10 @@ ENDM
 enable_sram: MACRO
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
+IF _NARG > 0
+	ld a, BANK(\1)
+	ld [MBC3SRamBank], a
+ENDC
 ENDM
 
 disable_sram: MACRO

@@ -62,7 +62,7 @@ SetHPBarPalette::
 	ld bc, $4
 .load
 	ld a, d
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret

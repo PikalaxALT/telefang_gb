@@ -3058,7 +3058,7 @@ Func_6d872: ; 6d872 (1b:5872)
 	ld [wPrevROMBank], a
 	ld bc, $c9
 	ld a, $0
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, $2d
@@ -3123,7 +3123,7 @@ Func_6d8e6: ; 6d8e6 (1b:58e6)
 	ld [wPrevROMBank], a
 	ld bc, $c9
 	ld a, $0
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, $2d
@@ -3866,7 +3866,7 @@ Func_6de8c: ; 6de8c (1b:5e8c)
 	ld [wPrevROMBank], a
 	ld bc, $c9
 	ld a, $0
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, $2d
@@ -3931,7 +3931,7 @@ Func_6df00: ; 6df00 (1b:5f00)
 	ld [wPrevROMBank], a
 	ld bc, $c9
 	ld a, $0
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, $2d
@@ -5196,7 +5196,7 @@ Func_6e95e: ; 6e95e (1b:695e)
 	ld [wPrevROMBank], a
 	ld bc, $db
 	ld a, $1
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	jp NextMoveAnimationSubroutine
@@ -5576,7 +5576,7 @@ Func_6ec2c: ; 6ec2c (1b:6c2c)
 	ld [wPrevROMBank], a
 	ld bc, $dc
 	ld a, $1
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	jp NextMoveAnimationSubroutine

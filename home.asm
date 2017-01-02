@@ -541,52 +541,7 @@ DecompressGFXByIndex: ; c36 (0:0c36)
 .exit
 	ret
 
-Random::
-	ld a, [wInLinkBattle]
-	cp $2
-	jp z, Func_0d7d
-	push hl
-	push bc
-	ld a, [wRNGState]
-	ld h, a
-	ld a, [wRNGState + 1]
-	ld l, a
-	ld a, [wVBlankCounter]
-	ld b, a
-	swap a
-	inc a
-	srl a
-	add $87
-	ld c, a
-	add hl, bc
-	ld a, l
-	ld [wRNGState], a
-	ld a, h
-	xor l
-	ld [wRNGState + 1], a
-	add l
-	ld [wRandomSample], a
-	pop bc
-	pop hl
-	ret
-
-Func_0d7d: ; d7d (0:0d7d)
-	push hl
-	push bc
-	ld a, BANK(LinkBattleRNs)
-	rst Bankswitch
-	ld a, [wLinkBattleRNIdx]
-	inc a
-	ld [wLinkBattleRNIdx], a
-	ld hl, LinkBattleRNs
-	ld b, $0
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	ld [wRandomSample], a
-	pop bc
-	pop hl
-	ret
+INCLUDE "home/random.asm"
 
 Func_0d97: ; d97 (0:0d97)
 	ld hl, $6
@@ -670,8 +625,8 @@ Func_0df7: ; df7 (0:0df7)
 	add hl, de
 	ld a, [hl]
 	or a
-	jp nz, Func_0e10
-Func_0e10: ; e10 (0:0e10)
+	jp nz, @+2
+	; stuff was commented out in source :/
 	ld hl, $a
 	add hl, de
 	ld a, [hl]
@@ -1470,7 +1425,7 @@ Func_176a: ; 176a (0:176a)
 	ld a, b
 	ld b, h
 	ld c, l
-	jp Func_10ee
+	jp LoadNthStdBGPalette
 
 GetDenjuuPalette_OB::
 	push bc
@@ -1482,7 +1437,7 @@ GetDenjuuPalette_OB::
 	ld a, b
 	ld b, h
 	ld c, l
-	jp Func_1196
+	jp LoadNthStdOBPalette
 
 InvertBits: ; 1784 (0:1784)
 	push de
@@ -1681,10 +1636,10 @@ Func_1887: ; 1887 (0:1887)
 	ld a, $0
 	ld b, h
 	ld c, l
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld bc, $da
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ret
@@ -1763,7 +1718,7 @@ Func_192a: ; 192a (0:192a)
 	push hl
 	pop bc
 	ld a, $1
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ret
 
 PlayMoveAnimation_grp1: ; 1939 (0:1939)
@@ -1871,9 +1826,7 @@ PlayMoveAnimation_grp2: ; 1939 (0:1939)
 	dw ParameterDownAnimation ; STATUS_RESET
 
 Func_1a09: ; 1a09 (0:1a09)
-	enable_sram
-	ld a, BANK(s1_a000)
-	ld [MBC3SRamBank], a
+	enable_sram s1_a000
 	ld hl, s1_a000
 	ld bc, s1_b000 - s1_a000
 .asm_1a19
@@ -2585,7 +2538,7 @@ Func_1f80: ; 1f80 (0:1f80)
 	ld a, b
 	ld [wSubroutine], a
 	ld a, $4
-	jp Func_122d
+	jp StartFade
 
 .check_select
 	ld a, [hJoyNew]
@@ -2606,7 +2559,7 @@ Func_1f80: ; 1f80 (0:1f80)
 	xor a
 	ld [wca5d], a
 	ld a, $4
-	jp Func_122d
+	jp StartFade
 
 .no_select
 	ret
@@ -2977,7 +2930,7 @@ Func_2329::
 
 .asm_234b
 	ld a, $5
-	call Func_122d
+	call StartFade
 	jp IncrementSubroutine
 
 Func_2353::
@@ -3092,7 +3045,7 @@ Func_242b::
 	ld a, $24
 	ld [wSubroutine], a
 	ld a, $4
-	jp Func_122d
+	jp StartFade
 
 .asm_2464
 	ret
@@ -3969,7 +3922,7 @@ Func_29ed::
 	ld a, $7
 	ld [wSubroutine], a
 	ld a, $5
-	call Func_122d
+	call StartFade
 Func_2a65: ; 2a65 (0:2a65)
 	pop af
 	rst Bankswitch
@@ -6751,9 +6704,7 @@ ClearString: ; 3d5c (0:3d5c)
 
 OpenSRAMBank2::
 	push af
-	enable_sram
-	ld a, BANK(sAddressBook)
-	ld [MBC3SRamBank], a
+	enable_sram sAddressBook
 	pop af
 	ret
 

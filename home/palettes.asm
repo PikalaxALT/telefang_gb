@@ -108,7 +108,7 @@ GetCGB_BGLayout: ; 109d (0:109d)
 	pop hl
 	ret
 
-Func_10ee::
+LoadNthStdBGPalette::
 	push hl
 	push bc
 	push de
@@ -222,7 +222,7 @@ GetCGB_OBLayout: ; 1145 (0:1145)
 	pop hl
 	ret
 
-Func_1196::
+LoadNthStdOBPalette::
 	push hl
 	push bc
 	push de
@@ -262,47 +262,47 @@ Func_1196::
 	rst Bankswitch
 	ret
 
-Func_11d1::
-	ld hl, wde00
+ApplyPaletteFadeToBuffer::
+	ld hl, wCGB_BGPalFadeComponentBuffer
 	ld de, wCGB_BGPalsBuffer
-	call Func_11e3
-	ld hl, wCGBPalFadeComponentBuffer
+	call ApplyPaletteFadeToBGBuffer
+	ld hl, wCGB_OBPalFadeComponentBuffer
 	ld de, wCGB_OBPalsBuffer
 	jp Func_11f7
 
-Func_11e3: ; 11e3 (0:11e3)
+ApplyPaletteFadeToBGBuffer: ; 11e3 (0:11e3)
 	ld b, $8
-Func_11e5: ; 11e5 (0:11e5)
+.outer_loop
 	push bc
 	ld b, $4
-Func_11e8: ; 11e8 (0:11e8)
+.inner_loop
 	push bc
-	call Func_120b
+	call CondensePalette
 	pop bc
 	dec b
-	jp nz, Func_11e8
+	jp nz, .inner_loop
 	pop bc
 	dec b
-	jp nz, Func_11e5
+	jp nz, .outer_loop
 	ret
 
 Func_11f7: ; 11f7 (0:11f7)
 	ld b, $8
-Func_11f9: ; 11f9 (0:11f9)
+.outer_loop
 	push bc
 	ld b, $4
-Func_11fc: ; 11fc (0:11fc)
+.inner_loop
 	push bc
-	call Func_120b
+	call CondensePalette
 	pop bc
 	dec b
-	jp nz, Func_11fc
+	jp nz, .inner_loop
 	pop bc
 	dec b
-	jp nz, Func_11f9
+	jp nz, .outer_loop
 	ret
 
-Func_120b: ; 120b (0:120b)
+CondensePalette: ; 120b (0:120b)
 	ld a, [de]
 	ld c, a
 	and $1f
@@ -327,7 +327,7 @@ Func_120b: ; 120b (0:120b)
 	inc de
 	ret
 
-Func_122d: ; 122d (0:122d)
+StartFade: ; 122d (0:122d)
 	ld [wCurFadeTimerReset], a
 	xor a
 	ld [wCurFadeTimer], a
@@ -337,7 +337,7 @@ Func_122d: ; 122d (0:122d)
 	check_cgb
 	ret nz
 	push de
-	call Func_11d1
+	call ApplyPaletteFadeToBuffer
 	pop de
 	ret
 

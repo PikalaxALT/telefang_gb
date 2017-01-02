@@ -531,7 +531,7 @@ Func_7c404:
 	push hl
 	pop bc
 	pop af
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ret
@@ -1443,7 +1443,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	push hl
 	pop bc
 	xor a
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $0
 	call Func_0543
 	ld a, $5
@@ -1523,7 +1523,7 @@ Func_7cb81: ; 7cb81 (1f:4b81)
 	call Func_3cb5
 	ld a, $0
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ld a, [wd43a]
@@ -4379,7 +4379,7 @@ Func_7e0e5: ; 7e0e5 (1f:60e5)
 Func_7e0ec: ; 7e0ec (1f:60ec)
 	xor a
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ret
@@ -4992,7 +4992,7 @@ Func_7e598: ; 7e598 (1f:6598)
 	push hl
 	pop bc
 	xor a
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $5
 	ld [wca65], a
 	xor a
@@ -5136,7 +5136,7 @@ Func_7e6dc: ; 7e6dc (1f:66dc)
 	call Func_3cb5
 	ld a, $0
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	jp Func_7dc41

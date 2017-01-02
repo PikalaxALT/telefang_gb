@@ -99,7 +99,7 @@ LoadStdWindowLayout_:: ; 04fa
 	ret
 
 Func_050a::
-	call Func_122d
+	call StartFade
 	rst MemBankswitch
 	ret
 

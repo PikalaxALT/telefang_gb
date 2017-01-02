@@ -502,7 +502,7 @@ Func_7038c: ; 7038c (1c:438c)
 Func_70394: ; 70394 (1c:4394)
 	ld a, $0
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	ret
@@ -630,7 +630,7 @@ Func_70448: ; 70448 (1c:4448)
 	ld a, BANK(Func_70448)
 	ld [wPrevROMBank], a
 	ld a, [wd459]
-	call Func_1196
+	call LoadNthStdOBPalette
 	pop hl
 	pop bc
 	ret
@@ -738,11 +738,11 @@ Func_70500: ; 70500 (1c:4500)
 	pop bc
 	push bc
 	ld a, $3
-	call Func_10ee
+	call LoadNthStdBGPalette
 	pop bc
 	inc bc
 	ld a, $4
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wdd06], a
 	ret
@@ -973,7 +973,7 @@ Func_70730:
 	call Func_0543
 	ld a, $0
 	ld bc, $4
-	call Func_1196
+	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
 	call Func_70aca
@@ -1545,7 +1545,7 @@ Func_70bca:
 	push hl
 	pop bc
 	xor a
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld hl, VTilesBG tile $40
 	ld a, $20
 	call ClearString
@@ -3087,7 +3087,7 @@ Func_71831:
 	push hl
 	pop bc
 	xor a
-	call Func_10ee
+	call LoadNthStdBGPalette
 	lb bc, 0, 12
 	ld e, $80
 	ld a, $0
@@ -3345,11 +3345,11 @@ Func_71a2f: ; 71a2f (1c:5a2f)
 	pop bc
 	push bc
 	ld a, $3
-	call Func_10ee
+	call LoadNthStdBGPalette
 	pop bc
 	inc bc
 	ld a, $4
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wdd06], a
 	ret

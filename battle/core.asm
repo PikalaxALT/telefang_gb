@@ -392,7 +392,7 @@ Func_142c1: ; 142c1 (5:42c1)
 	ld [wOBPalUpdate], a
 	xor a
 	ld bc, $4
-	jp Func_1196
+	jp LoadNthStdOBPalette
 
 Func_142cd:
 	ld [wd435], a
@@ -2980,9 +2980,7 @@ Func_1561e: ; 1561e (5:561e)
 	ld a, [wd43c]
 	ld e, a
 	add hl, de
-	enable_sram
-	ld a, BANK(s2_b800)
-	ld [MBC3SRamBank], a
+	enable_sram s2_b800
 	ld a, [hl]
 	push af
 	xor a

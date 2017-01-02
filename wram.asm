@@ -5692,7 +5692,7 @@ wddfc:: ds 1
 wddfd:: ds 1
 wddfe:: ds 1
 wddff:: ds 1
-wde00:: ds 1
+wCGB_BGPalFadeComponentBuffer:: ds 1
 wde01:: ds 1
 wde02:: ds 1
 wde03:: ds 1
@@ -5790,7 +5790,7 @@ wde5e:: ds 1
 wde5f:: ds 1
 
 SECTION "RGB Fade Buffer", WRAMX, BANK [$1]
-wCGBPalFadeComponentBuffer::
+wCGB_OBPalFadeComponentBuffer::
 	ds 8 * 12
 
 SECTION "CGB Palette Fade Buffer", WRAMX, BANK [1]

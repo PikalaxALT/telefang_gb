@@ -3757,13 +3757,13 @@ Func_1204e: ; 1204e (4:604e)
 	jp Func_121e0
 
 Data_1207d:
-	db $81, $60
-	db $86, $60
-	db $60, $61
-	db $62, $63
-	db $52, $64
-	db $65, $66
-	db $67, $52
+	dw Data_12081
+	dw Data_12086
+
+Data_12081:
+	db $60, $61, $62, $63, $52
+Data_12086:
+	db $64, $65, $66, $67, $52
 
 Func_1208b: ; 1208b (4:608b)
 	ld a, [wJoyNew]
@@ -4081,7 +4081,7 @@ Func_122d6: ; 122d6 (4:62d6)
 	push hl
 	pop bc
 	ld a, $7
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
@@ -5199,7 +5199,7 @@ Func_12a08:
 	push hl
 	pop bc
 	xor a
-	jp Func_10ee
+	jp LoadNthStdBGPalette
 
 Pointers_12a18:
 	dw Phone1GFX
@@ -5889,7 +5889,7 @@ Func_12efe: ; 12efe (4:6efe)
 	push hl
 	pop bc
 	ld a, $5
-	jp Func_10ee
+	jp LoadNthStdBGPalette
 
 Func_12f14: ; 12f14 (4:6f14)
 	xor a
@@ -6959,9 +6959,9 @@ Func_1371c: ; 1371c (4:771c)
 	call GetDenjuuPalette_Pal6
 	ld hl, $60
 	ld a, [wCurHours]
-	cp $14
+	cp 20 ; 9 PM
 	jr nc, .asm_13764
-	cp $4
+	cp 4 ; 5 AM
 	jr nc, .asm_13767
 .asm_13764
 	ld hl, $380
@@ -6972,14 +6972,14 @@ Func_1371c: ; 1371c (4:771c)
 	pop bc
 	push bc
 	ld a, $3
-	call Func_10ee
+	call LoadNthStdBGPalette
 	pop bc
 	inc bc
 	ld a, $4
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld bc, $36
 	ld a, $1
-	call Func_10ee
+	call LoadNthStdBGPalette
 	ld a, [wcdb3]
 	ld c, a
 	ld b, $0
@@ -6988,7 +6988,7 @@ Func_1371c: ; 1371c (4:771c)
 	push hl
 	pop bc
 	ld a, $5
-	call Func_10ee
+	call LoadNthStdBGPalette
 	jp Func_12a08
 
 Func_13798: ; 13798 (4:7798)
@@ -7898,7 +7898,7 @@ Func_13d5e: ; 13d5e (4:7d5e)
 .asm_13d7c
 	ld c, a
 	ld a, d
-	jp Func_1196
+	jp LoadNthStdOBPalette
 
 Data_13d81:
 	db $5f
