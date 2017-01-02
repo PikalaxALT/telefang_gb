@@ -1296,7 +1296,7 @@ Func_6ca51: ; 6ca51 (1b:4a51)
 	sla d
 	sla d
 	sla d
-	call Func_3058
+	call Sine8_
 	ld e, a
 	ld a, [wca60]
 	ld c, a
@@ -1490,7 +1490,7 @@ Func_6cbf1: ; 6cbf1 (1b:4bf1)
 	sla a
 	sla a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -1712,7 +1712,7 @@ Func_6cdee: ; 6cdee (1b:4dee)
 	inc a
 	ld [hl], a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -2006,7 +2006,7 @@ Func_6d058: ; 6d058 (1b:5058)
 	ld [wd45b], a
 	ld d, a
 	sla d
-	call Func_3058
+	call Sine8_
 	ld e, a
 	ld a, [wca60]
 	ld c, a
@@ -2310,7 +2310,7 @@ Func_6d2cd: ; 6d2cd (1b:52cd)
 	sla d
 	sla d
 	sla d
-	call Func_3058
+	call Sine8_
 	ld e, a
 	ld a, [wca60]
 	ld c, a
@@ -3143,7 +3143,7 @@ Func_6d94e: ; 6d94e (1b:594e)
 	add a
 	add a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra d
 	sra d
 	sra d
@@ -3951,7 +3951,7 @@ Func_6df68: ; 6df68 (1b:5f68)
 	add a
 	add a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra d
 	sra d
 	sra d
@@ -5257,12 +5257,12 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	add hl, de
 	ld d, a
 	ld b, a
-	call Func_3058
+	call Sine8_
 	ld b, d
 	ld a, [wMoveAnimationTimer]
 	add b
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	add b
@@ -5327,13 +5327,13 @@ Func_6e9cb: ; 6e9cb (1b:69cb)
 	cpl
 	ld d, a
 	ld b, a
-	call Func_3058
+	call Sine8_
 	ld b, d
 	ld a, [wMoveAnimationTimer]
 	cpl
 	add b
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	add b
@@ -5458,7 +5458,7 @@ Func_6eae7: ; 6eae7 (1b:6ae7)
 Func_6eb94: ; 6eb94 (1b:6b94)
 	ld a, [wOAMAnimation01 + $14]
 	ld d, a
-	call Func_3086
+	call Cosine16_
 	sla e
 	rl d
 	ld b, h
@@ -5482,7 +5482,7 @@ Func_6eb94: ; 6eb94 (1b:6b94)
 	inc bc
 	ld a, [wOAMAnimation01 + $14]
 	ld d, a
-	call Func_3078
+	call Sine16_
 	sla e
 	rl d
 	ld a, [wOAMAnimation01 + $d]
@@ -5591,7 +5591,7 @@ Func_6ec8b: ; 6ec8b (1b:6c8b)
 	srl a
 	and $3f
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra d
 	sra d
 	sra d
@@ -5627,12 +5627,12 @@ Func_6ec8b: ; 6ec8b (1b:6c8b)
 	ld de, $6
 	add hl, de
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld b, d
 	ld a, [wMoveAnimationTimer]
 	add b
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	add $e8
@@ -5670,13 +5670,13 @@ Func_6ec8b: ; 6ec8b (1b:6c8b)
 	ld de, $6
 	add hl, de
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld b, d
 	ld a, [wMoveAnimationTimer]
 	add b
 	cpl
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	add $4e
@@ -5782,7 +5782,7 @@ Func_6ed6d: ; 6ed6d (1b:6d6d)
 Func_6edfd: ; 6edfd (1b:6dfd)
 	ld a, [wOAMAnimation01 + $14]
 	ld d, a
-	call Func_3086
+	call Cosine16_
 	sla e
 	rl d
 	sla e
@@ -5808,7 +5808,7 @@ Func_6edfd: ; 6edfd (1b:6dfd)
 	inc bc
 	ld a, [wOAMAnimation01 + $14]
 	ld d, a
-	call Func_3078
+	call Sine16_
 	sla e
 	rl d
 	sla e

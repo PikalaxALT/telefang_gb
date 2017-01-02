@@ -5144,7 +5144,7 @@ Func_7e6dc: ; 7e6dc (1f:66dc)
 Func_7e708: ; 7e708 (1f:6708)
 	call Func_3cd0
 	ld a, [wJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_7e71f
 	ld a, [wBattleMenuSelection]
 	cp $0
@@ -5155,7 +5155,7 @@ Func_7e708: ; 7e708 (1f:6708)
 
 .asm_7e71f
 	ld a, [wJoyNew]
-	and $80
+	and D_DOWN
 	jp z, Func_7e743
 	ld a, [wd413]
 	sub $1
@@ -5174,7 +5174,7 @@ Func_7e708: ; 7e708 (1f:6708)
 
 Func_7e743: ; 7e743 (1f:6743)
 	ld a, [wJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7e76c
 	ld a, [wd4a1]
 	cp $0
@@ -5195,7 +5195,7 @@ Func_7e743: ; 7e743 (1f:6743)
 
 .asm_7e76c
 	ld a, [wJoyNew]
-	and $10
+	and D_RIGHT
 	jp z, Func_7e7d1
 	ld a, [wd4a1]
 	cp $0
@@ -6928,7 +6928,7 @@ Func_7f532: ; 7f532 (1f:7532)
 
 Func_7f559: ; 7f559 (1f:7559)
 	ld a, [wJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_7f574
 	ld a, [wd40d]
 	cp $0
@@ -6944,7 +6944,7 @@ Func_7f559: ; 7f559 (1f:7559)
 
 .asm_7f574
 	ld a, [wJoyNew]
-	and $80
+	and D_DOWN
 	jr z, .asm_7f598
 	ld a, [wd40d]
 	cp $7
@@ -7345,7 +7345,7 @@ Func_7f843: ; 7f843 (1f:7843)
 
 Func_7f86a: ; 7f86a (1f:786a)
 	ld a, [wJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_7f885
 	ld a, [wd40d]
 	cp $0
@@ -7361,7 +7361,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 
 .asm_7f885
 	ld a, [wJoyNew]
-	and $80
+	and D_DOWN
 	jr z, .asm_7f8a9
 	ld a, [wd40d]
 	cp $7

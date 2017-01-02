@@ -4076,44 +4076,7 @@ Func_2b36::
 	homecall Func_c82df
 	ret
 
-Multiply_DE_by_BC: ; 2b44 (0:2b44)
-; de *= bc
-	ld hl, 0
-	ld a, $f
-.loop
-	sla e
-	rl d
-	jr nc, .next
-	add hl, bc
-.next
-	add hl, hl
-	dec a
-	jr nz, .loop
-	bit 7, d
-	jr z, .done
-	add hl, bc
-.done
-	ld d, h
-	ld e, l
-	ret
-
-Multiply_C_by_E: ; 2b5c (0:2b5c)
-	ld b, $0
-	ld d, $0
-	jp Multiply_DE_by_BC
-
-Multiply_C_by_E_signed:
-	xor a
-	ld b, a
-	ld d, a
-	bit 7, c
-	jr z, .asm_2b6b
-	dec b
-.asm_2b6b
-	bit 7, e
-	jr z, Multiply_DE_by_BC
-	dec d
-	jr Multiply_DE_by_BC
+INCLUDE "home/multiply.asm"
 
 Func_2b72::
 	call Func_272f
@@ -4929,60 +4892,62 @@ Func_3049::
 	ld a, d
 	ret
 
-Func_3058::
+Sine8_::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2da3a)
+	ld a, BANK(Sine8)
 	rst Bankswitch
 	ld a, d
-	call Func_2da3a
+	call Sine8
 	ld d, a
 	pop af
 	rst Bankswitch
 	ld a, d
 	ret
 
-Func_3068::
+Cosine8_::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2da47)
+	ld a, BANK(Cosine8)
 	rst Bankswitch
 	ld a, d
-	call Func_2da47
+	call Cosine8
 	ld d, a
 	pop af
 	rst Bankswitch
 	ld a, d
 	ret
 
-Func_3078::
+Sine16_::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2da54)
+	ld a, BANK(Sine16)
 	rst Bankswitch
 	ld a, d
-	call Func_2da54
+	call Sine16
 	pop af
 	rst Bankswitch
 	ret
 
-Func_3086::
+Cosine16_::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2da69)
+	ld a, BANK(Cosine16)
 	rst Bankswitch
 	ld a, d
-	call Func_2da69
+	call Cosine16
 	pop af
 	rst Bankswitch
 	ret
 
-Func_3094::
+CalcL1Distance_::
+; a = abs(b - d) + abs(c - e)
+; also stores to wca6a
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2da27)
+	ld a, BANK(CalcL1Distance)
 	rst Bankswitch
-	call Func_2da27
+	call CalcL1Distance
 	ld [wca6a], a
 	pop af
 	rst Bankswitch
@@ -4990,6 +4955,7 @@ Func_3094::
 	ret
 
 Func_30a7: ; 30a7 (0:30a7)
+; Result is returned as signed char to a
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_2d8c1)
@@ -5002,6 +4968,7 @@ Func_30a7: ; 30a7 (0:30a7)
 	ret
 
 Func_30b6::
+; Same as Func_30a7, but result is returned as signed short to bc
 	homecall Func_2d8df
 	ret
 

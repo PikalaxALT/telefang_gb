@@ -851,7 +851,7 @@ Func_686cd: ; 686cd (1a:46cd)
 	inc a
 	ld [hl], a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -1403,7 +1403,7 @@ Func_68b25: ; 68b25 (1a:4b25)
 	inc a
 	ld [hl], a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -4020,7 +4020,7 @@ Func_6a10b: ; 6a10b (1a:610b)
 	ld [wd45b], a
 	ld d, a
 	sla d
-	call Func_3058
+	call Sine8_
 	ld e, a
 	ld a, [wca60]
 	ld c, a
@@ -5009,7 +5009,7 @@ Func_6a8fd: ; 6a8fd (1a:68fd)
 	ld [hl], a
 	add b
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	push af
 	ld a, [wd4c3]

@@ -62,7 +62,7 @@ Divide_BC_by_DE: ; 2d9d8 (b:59d8)
 	ld h, b
 	ld bc, $0
 	or a
-	ld a, $10
+	ld a, 16
 .loop
 	ld [wca6a], a
 	rl l
@@ -77,11 +77,11 @@ Divide_BC_by_DE: ; 2d9d8 (b:59d8)
 	sbc d
 	ld b, a
 	ccf
-	jr c, .half_carry
+	jr c, .save_bc
 	pop bc
 	jr .okay
 
-.half_carry
+.save_bc
 	inc sp
 	inc sp
 .okay

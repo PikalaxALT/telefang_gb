@@ -2582,18 +2582,18 @@ Func_2c445: ; 2c445 (b:4445)
 	call Func_2c4f0
 	call Func_2c533
 	jr z, .asm_2c484
-	ld bc, $c3e
+	ld bc, EVENT_C3E
 	ld a, [wc9d7]
 	or a
 	jr nz, .asm_2c461
 	call ResetEventFlag
-	ld bc, $c3f
+	ld bc, EVENT_C3F
 	call SetEventFlag
 	jr .asm_2c46a
 
 .asm_2c461
 	call SetEventFlag
-	ld bc, $c3f
+	ld bc, EVENT_C3F
 	call ResetEventFlag
 .asm_2c46a
 	ld a, [wSubroutine]
@@ -4302,6 +4302,7 @@ Data_2d215:
 FontGFX: INCBIN "gfx/font/font_2d229.t13.1bpp"
 
 Func_2d8c1: ; 2d8c1 (b:58c1)
+; Return as signed char a
 	push hl
 	ld a, [wc922]
 	inc a
@@ -4323,6 +4324,7 @@ Func_2d8c1: ; 2d8c1 (b:58c1)
 	ret
 
 Func_2d8df: ; 2d8df (b:58df)
+; Return as signed short bc
 	call Func_2d8c1
 	ld b, $0
 	bit 7, a
@@ -4414,7 +4416,8 @@ Func_2d95f: ; 2d95f (b:595f)
 
 INCLUDE "engine/divide.asm"
 
-Func_2da27: ; 2da27 (b:5a27)
+CalcL1Distance: ; 2da27 (b:5a27)
+; a = abs(b - d) + abs(c - e)
 	push hl
 	ld a, b
 	sub d
@@ -4435,7 +4438,7 @@ Func_2da27: ; 2da27 (b:5a27)
 	pop hl
 	ret
 
-Func_2da3a: ; 2da3a (b:5a3a)
+Sine8: ; 2da3a (b:5a3a)
 	ld de, SineWave
 	and $7f
 	add e
@@ -4446,7 +4449,7 @@ Func_2da3a: ; 2da3a (b:5a3a)
 	ld a, [de]
 	ret
 
-Func_2da47: ; 2da47 (b:5a47)
+Cosine8: ; 2da47 (b:5a47)
 	ld de, CosineWave
 	and $7f
 	add e
@@ -4457,7 +4460,7 @@ Func_2da47: ; 2da47 (b:5a47)
 	ld a, [de]
 	ret
 
-Func_2da54: ; 2da54 (b:5a54)
+Sine16: ; 2da54 (b:5a54)
 	ld de, SineWave
 	and $7f
 	add e
@@ -4474,7 +4477,7 @@ Func_2da54: ; 2da54 (b:5a54)
 .asm_2da68
 	ret
 
-Func_2da69: ; 2da69 (b:5a69)
+Cosine16: ; 2da69 (b:5a69)
 	ld de, CosineWave
 	and $7f
 	add e
@@ -4500,10 +4503,10 @@ Func_2da7e: ; 2da7e (b:5a7e)
 	ld [wca01], a
 	push hl
 	ld a, [wca06]
-	call Func_2da3a
+	call Sine8
 	ld [wca02], a
 	ld a, [wca06]
-	call Func_2da47
+	call Cosine8
 	ld [wca03], a
 	ld a, [wca00]
 	ld c, a
@@ -4592,7 +4595,7 @@ Func_2db1c: ; 2db1c (b:5b1c)
 	push de
 	ld a, d
 	ld l, e
-	call Func_2da47
+	call Cosine8
 	ld d, $0
 	ld e, l
 	ld c, a
@@ -4612,7 +4615,7 @@ Func_2db1c: ; 2db1c (b:5b1c)
 	push bc
 	ld a, d
 	ld l, e
-	call Func_2da3a
+	call Sine8
 	ld d, $0
 	ld e, l
 	ld c, a
@@ -4632,7 +4635,7 @@ Func_2db55: ; 2db55 (b:5b55)
 	push de
 	ld a, d
 	ld l, e
-	call Func_2da47
+	call Cosine8
 	ld d, $0
 	ld e, l
 	ld c, a
@@ -4652,7 +4655,7 @@ Func_2db55: ; 2db55 (b:5b55)
 	push bc
 	ld a, d
 	ld l, e
-	call Func_2da3a
+	call Sine8
 	ld d, $0
 	ld e, l
 	ld c, a
@@ -5082,7 +5085,7 @@ Func_2ddd9: ; 2ddd9 (b:5dd9)
 	ld a, [wcad5]
 	add $18
 	ld [wcad5], a
-	call Func_2da3a
+	call Sine8
 	ld e, a
 	call Multiply_C_by_E_signed
 	ld a, [wcad6]
@@ -8533,7 +8536,7 @@ Func_30d14:
 	ld b, a
 	ld a, [wPlayerYCoord]
 	ld c, a
-	jp Func_3094
+	jp CalcL1Distance_
 
 Func_30d2f: ; 30d2f (c:4d2f)
 	ld a, [wCurObjectStruct]
@@ -9123,7 +9126,7 @@ Func_31074: ; 31074 (c:5074)
 	ld l, a
 	ld a, [hl]
 	ld e, a
-	call Func_3094
+	call CalcL1Distance_
 	cp $3
 	jr nc, .asm_310d7
 	push bc
@@ -9133,7 +9136,7 @@ Func_31074: ; 31074 (c:5074)
 	call Func_303a
 	ld [wca6a], a
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld b, $0
 	ld c, a
 	bit 7, a
@@ -9178,7 +9181,7 @@ Func_31074: ; 31074 (c:5074)
 	call Func_2b01
 	ld a, [wca6a]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld b, $0
 	ld c, a
 	bit 7, a
@@ -12241,7 +12244,7 @@ Func_323ff: ; 323ff (c:63ff)
 	ld a, [hl]
 	ld e, a
 	pop bc
-	call Func_3094
+	call CalcL1Distance_
 	push af
 	ld a, [wCurObjectStruct]
 	add $17
@@ -13052,7 +13055,7 @@ Func_3297a: ; 3297a (c:697a)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld c, d
 	ld b, $0
 	bit 7, c
@@ -13069,7 +13072,7 @@ Func_3297a: ; 3297a (c:697a)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld c, d
 	ld b, $0
 	bit 7, c
@@ -13348,9 +13351,9 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	ld [wc9f4], a
 	ld a, $1
 	ld [wcadb], a
-	ld bc, $c39
+	ld bc, EVENT_C39
 	call SetEventFlag
-	ld bc, $c3a
+	ld bc, EVENT_C3A
 	call ResetEventFlag
 	ld a, [wc906]
 	ld e, a
@@ -13655,7 +13658,7 @@ Func_32d5a: ; 32d5a (c:6d5a)
 	ld l, a
 	ld a, $6
 	ld [hl], a
-	ld bc, $c3b
+	ld bc, EVENT_C3B
 	call CheckEventFlag
 	jr nz, .asm_32ddd
 	ld a, [wCurObjectStruct]
@@ -14840,7 +14843,7 @@ Func_33508:
 	inc a
 	ld [hl], a
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	sra d
 	sra d
 	ld a, [wc906]
@@ -14866,7 +14869,7 @@ Func_33508:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra d
 	sra d
 	sra d
@@ -14887,7 +14890,7 @@ Func_33574: ; 33574 (c:7574)
 	ld a, [wc906]
 	cp $16
 	jr nz, .asm_3358e
-	ld bc, $1f4
+	ld bc, EVENT_1F4
 	call CheckEventFlag
 	jr nz, .asm_3358e
 	ld a, [wCurObjectStruct + 1]
@@ -19798,7 +19801,7 @@ Func_3a887:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	sra d
 	ld a, $50
 	add d
@@ -19813,7 +19816,7 @@ Func_3a887:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra d
 	sra d
 	sra d
@@ -19838,7 +19841,7 @@ Func_3a887:
 	ld de, $c
 	call Divide_BC_by_DE_signed_
 	ld d, c
-	call Func_3058
+	call Sine8_
 	sra d
 	sra d
 	sra d
@@ -20016,7 +20019,7 @@ Func_3aa01:
 	ld b, a
 	ld a, [wPlayerYCoord]
 	ld c, a
-	call Func_3094
+	call CalcL1Distance_
 	cp $1e
 	jr nc, .asm_3aac2
 	ld a, [hJoyNew]
@@ -20421,7 +20424,7 @@ Func_3acc9:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $15
@@ -20451,7 +20454,7 @@ Func_3acc9:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $15
@@ -26243,7 +26246,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	add b
 	ld [$c1f4], a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra d
 	sra d
 	sra d
@@ -27224,7 +27227,7 @@ Func_a82b7: ; a82b7 (2a:42b7)
 	cp $9
 	jr nz, .asm_a833e
 	ld a, [wJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_a82f6
 	ld a, [wOAMAnimation01_Duration]
 	cp $8c
@@ -27235,7 +27238,7 @@ Func_a82b7: ; a82b7 (2a:42b7)
 	ld [H_SFX_ID], a
 .asm_a82f6
 	ld a, [wJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_a830e
 	ld a, [wOAMAnimation01_Duration]
 	cp $1c
@@ -27246,7 +27249,7 @@ Func_a82b7: ; a82b7 (2a:42b7)
 	ld [H_SFX_ID], a
 .asm_a830e
 	ld a, [wJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_a8326
 	ld a, [wOAMAnimation01_Duration + 4]
 	cp $14
@@ -27257,7 +27260,7 @@ Func_a82b7: ; a82b7 (2a:42b7)
 	ld [H_SFX_ID], a
 .asm_a8326
 	ld a, [wJoyNew]
-	and $80
+	and D_DOWN
 	jr z, .asm_a833e
 	ld a, [wOAMAnimation01_Duration + 4]
 	cp $84
@@ -27312,7 +27315,7 @@ Func_a837a: ; a837a (2a:437a)
 	cp $9
 	jp nz, Func_a840a
 	ld a, [wJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_a83a9
 	ld a, [wOAMAnimation01_TemplateBank]
 	dec a
@@ -27323,7 +27326,7 @@ Func_a837a: ; a837a (2a:437a)
 	ld [wOAMAnimation01_TemplateBank], a
 .asm_a83a9
 	ld a, [wJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_a83c0
 	ld a, [wOAMAnimation01_TemplateBank]
 	inc a
@@ -27334,14 +27337,14 @@ Func_a837a: ; a837a (2a:437a)
 	ld [wOAMAnimation01_TemplateBank], a
 .asm_a83c0
 	ld a, [wJoyNew]
-	and $40
+	and D_UP
 	jr z, .asm_a83ce
 	ld a, [wOAMAnimation01]
 	dec a
 	ld [wOAMAnimation01], a
 .asm_a83ce
 	ld a, [wJoyNew]
-	and $80
+	and D_DOWN
 	jr z, .asm_a83dc
 	ld a, [wOAMAnimation01]
 	inc a
@@ -28948,7 +28951,7 @@ Func_a8fb5: ; a8fb5 (2a:4fb5)
 	sla d
 	sla d
 	sla d
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -29254,7 +29257,7 @@ Func_a91dc: ; a91dc (2a:51dc)
 	ret
 
 Func_a920d: ; a920d (2a:520d)
-	ld bc, $89
+	ld bc, EVENT_089
 	call CheckEventFlag
 	jr z, .asm_a921c
 	ld a, [wOAMAnimation17_Duration + 9]
@@ -29277,7 +29280,7 @@ Func_a9223: ; a9223 (2a:5223)
 	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, .asm_a9278
-	ld bc, $c3e
+	ld bc, EVENT_C3E
 	call CheckEventFlag
 	jr nz, .asm_a9253
 .asm_a9243
@@ -29631,7 +29634,7 @@ Func_a946f: ; a946f (2a:546f)
 	add b
 	ld [$c2f7], a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -30347,7 +30350,7 @@ Func_a9a57: ; a9a57 (2a:5a57)
 	sla d
 	sla d
 	sla d
-	call Func_3058
+	call Sine8_
 	ld b, $0
 	ld c, a
 	bit 7, a
@@ -31713,7 +31716,7 @@ Func_c8455:
 	ld d, a
 	sla d
 	sla d
-	call Func_3058
+	call Sine8_
 	ld b, $0
 	ld c, a
 	bit 7, a
@@ -33234,7 +33237,7 @@ Func_c9238:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld c, d
 	ld b, $0
 	bit 7, c
@@ -33259,7 +33262,7 @@ Func_c9238:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld c, d
 	ld b, $0
 	bit 7, c
@@ -33496,7 +33499,7 @@ Func_c93fa:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld a, d
 	sra a
 	sra a
@@ -33526,7 +33529,7 @@ Func_c93fa:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $15
@@ -33555,7 +33558,7 @@ Func_c93fa:
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $15
@@ -35111,7 +35114,7 @@ Func_cc34e:
 	sla a
 	and $7f
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -35241,7 +35244,7 @@ Func_cc41d: ; cc41d (33:441d)
 	add b
 	ld [hl], a
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	sra a
 	sra a
 	sra a
@@ -35270,7 +35273,7 @@ Func_cc41d: ; cc41d (33:441d)
 	add b
 	ld [hl], a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	sra a
 	sra a
 	sra a
@@ -37421,7 +37424,7 @@ Func_cd1c0: ; cd1c0 (33:51c0)
 	add b
 	ld [hl], a
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $13
@@ -37456,7 +37459,7 @@ Func_cd1c0: ; cd1c0 (33:51c0)
 	add b
 	ld [hl], a
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $13
@@ -37953,7 +37956,7 @@ Func_cd53f: ; cd53f (33:553f)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $14
@@ -38263,7 +38266,7 @@ Func_cd75d: ; cd75d (33:575d)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $14
@@ -38291,7 +38294,7 @@ Func_cd75d: ; cd75d (33:575d)
 	ld a, [hl]
 	add $10
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld e, d
 	ld a, [wCurObjectStruct]
 	add $14
@@ -38465,7 +38468,7 @@ Func_cd8a2: ; cd8a2 (33:58a2)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld e, d
 	ld d, $0
 	bit 7, e
@@ -38498,7 +38501,7 @@ Func_cd8a2: ; cd8a2 (33:58a2)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld e, d
 	ld d, $0
 	bit 7, e
@@ -40338,7 +40341,7 @@ Func_ce4c6: ; ce4c6 (33:64c6)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3068
+	call Cosine8_
 	ld e, d
 	ld d, $0
 	bit 7, e
@@ -40371,7 +40374,7 @@ Func_ce4c6: ; ce4c6 (33:64c6)
 	ld l, a
 	ld a, [hl]
 	ld d, a
-	call Func_3058
+	call Sine8_
 	ld e, d
 	ld d, $0
 	bit 7, e

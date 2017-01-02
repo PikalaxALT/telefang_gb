@@ -2748,7 +2748,7 @@ Func_119ac: ; 119ac (4:59ac)
 
 Func_119b9: ; 119b9 (4:59b9)
 	ld a, [wJoyNew]
-	and $c0
+	and D_UP | D_DOWN
 	jr nz, asm_119d8
 	ld a, [wcb39]
 	cp $10
@@ -3461,38 +3461,31 @@ asm_11e60
 	jp Func_1221c
 
 Data_11e86:
-	db $96, $5e
-	db $9c, $5e
-	db $a2, $5e
-	db $a8, $5e
-	db $ae, $5e
-	db $b4, $5e
-	db $ba, $5e
-	db $c0, $5e
-	db $01, $11
-	db $02, $12
-	db $00, $10
-	db $21, $31
-	db $22, $32
-	db $20, $30
-	db $41, $42
-	db $40, $41
-	db $42, $40
-	db $51, $61
-	db $52, $62
-	db $50, $60
-	db $71, $81
-	db $72, $82
-	db $70, $80
-	db $91, $a1
-	db $92, $a2
-	db $90, $a0
-	db $b1, $b2
-	db $b0, $b1
-	db $b2, $b0
-	db $c0, $c0
-	db $c0, $c0
-	db $c0, $c0
+	dw Data_11e96
+	dw Data_11e9c
+	dw Data_11ea2
+	dw Data_11ea8
+	dw Data_11eae
+	dw Data_11eb4
+	dw Data_11eba
+	dw Data_11ec0
+
+Data_11e96:
+	db $01, $11, $02, $12, $00, $10
+Data_11e9c:
+	db $21, $31, $22, $32, $20, $30
+Data_11ea2:
+	db $41, $42, $40, $41, $42, $40
+Data_11ea8:
+	db $51, $61, $52, $62, $50, $60
+Data_11eae:
+	db $71, $81, $72, $82, $70, $80
+Data_11eb4:
+	db $91, $a1, $92, $a2, $90, $a0
+Data_11eba:
+	db $b1, $b2, $b0, $b1, $b2, $b0
+Data_11ec0:
+	db $c0, $c0, $c0, $c0, $c0, $c0
 
 Func_11ec6: ; 11ec6 (4:5ec6)
 	ld a, [wcb69]
