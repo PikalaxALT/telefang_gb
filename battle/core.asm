@@ -50,28 +50,28 @@ Func_1402a: ; 1402a (5:402a)
 	ld hl, wd420
 	ret
 
-Func_1404a:
+UpdatePlayerHUD:
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	call Func_1407d
+	call DrawPlayerDenjuuHPBar
 	ld a, [wCurBattleDenjuu]
-	call Func_140d9
+	call DrawPlayerDenjuuPicFacingRight
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, VTilesBG tile $20
-	jp Func_142f9
+	jp PlacePlayerDenjuuNickname
 
-Func_14062:
+UpdateEnemyHUD:
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
-	call Func_140ab
+	call DrawEnemyDenjuuHPBar
 	ld a, [wCurEnemyDenjuu]
-	call Func_14102
+	call DrawEnemyDenjuuPicFacingLeft
 	ld a, [wCurDenjuuBufferSpecies]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $28
 	jp GetAndPrintName75LeftAlign_
 
-Func_1407d: ; 1407d (5:407d)
+DrawPlayerDenjuuHPBar: ; 1407d (5:407d)
 	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
@@ -93,7 +93,7 @@ Func_1407d: ; 1407d (5:407d)
 	hlbgcoord 3, 2
 	jp DrawHPBar
 
-Func_140ab: ; 140ab (5:40ab)
+DrawEnemyDenjuuHPBar: ; 140ab (5:40ab)
 	ld a, [wCurDenjuuBufferMaxHP]
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
@@ -115,7 +115,7 @@ Func_140ab: ; 140ab (5:40ab)
 	hlbgcoord 6, 10, VWindow
 	jp DrawHPBar
 
-Func_140d9: ; 140d9 (5:40d9)
+DrawPlayerDenjuuPicFacingRight: ; 140d9 (5:40d9)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x09]
 	ld e, a
@@ -135,7 +135,7 @@ Func_140d9: ; 140d9 (5:40d9)
 	hlbgcoord 3, 3
 	jp DrawHPBar
 
-Func_14102: ; 14102 (5:4102)
+DrawEnemyDenjuuPicFacingLeft: ; 14102 (5:4102)
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferField0x09]
 	ld e, a
@@ -170,8 +170,8 @@ GetNthDenjuuAnySide: ; 14137 (5:4137)
 	ld bc, $16
 	jp CopyData
 
-Func_1414b:
-	ld bc, $30d
+DrawSupportDenjuuArrivalBar_Pink:
+	lb bc, $3, $d
 	cp $0
 	jr z, .asm_14167
 	cp $1
@@ -198,7 +198,7 @@ Func_1414b:
 	ld a, $0
 	jp LoadStdBGMapAttrLayout_
 
-Func_14178:
+AnimateCurrentArrivalBarFrame:
 	cp $1
 	jr z, .asm_1418d
 	cp $2
@@ -226,8 +226,8 @@ Func_141a5: ; 141a5 (5:41a5)
 	ld c, $0
 	jp DrawHPBar
 
-Func_141aa:
-	ld bc, $30e
+DrawSupportDenjuuArrivalBar_Blue:
+	lb bc, $3, $e
 	cp $0
 	jr z, .asm_141c6
 	cp $1
@@ -254,21 +254,22 @@ Func_141aa:
 	ld a, $0
 	jp LoadStdBGMapLayout_
 
-Func_141d7:
+AnimateCurrentSupportDenjuuHPBarFrame:
 	cp $1
-	jr z, .asm_141ec
+	jr z, .player_2
 	cp $2
-	jr z, asm_1421c
+	jr z, .enemy_1
 	cp $3
-	jr z, asm_14225
+	jr z, .enemy_2
+.player_1
 	hlbgcoord 3, 14
 	ld a, [wCurBattleDenjuu2]
-	jp Func_141f2
+	jp .animate_player
 
-.asm_141ec
+.player_2
 	hlbgcoord 3, 16
 	ld a, [wCurBattleDenjuu3]
-Func_141f2: ; 141f2 (5:41f2)
+.animate_player
 	push hl
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferMaxHP]
@@ -277,27 +278,27 @@ Func_141f2: ; 141f2 (5:41f2)
 	call CalcHPBarLength
 	ld [wd4e8], a
 	cp $0
-	jr nz, .asm_14213
+	jr nz, .player_hp_bar_empty
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
-	jr z, .asm_14213
+	jr z, .player_hp_bar_empty
 	ld a, $1
 	ld [wd4e8], a
-.asm_14213
+.player_hp_bar_empty
 	ld a, [wd4e8]
 	ld c, $0
 	pop hl
 	jp DrawHPBar
 
-asm_1421c
+.enemy_1
 	hlbgcoord 13, 14
 	ld a, [wCurEnemyDenjuu2]
-	jp Func_1422b
+	jp .animate_enemy
 
-asm_14225
+.enemy_2
 	hlbgcoord 13, 16
 	ld a, [wCurEnemyDenjuu3]
-Func_1422b: ; 1422b (5:422b)
+.animate_enemy
 	push hl
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferMaxHP]
@@ -306,19 +307,19 @@ Func_1422b: ; 1422b (5:422b)
 	call CalcHPBarLength
 	ld [wd4e9], a
 	cp $0
-	jr nz, .asm_1424c
+	jr nz, .enemy_hp_bar_empty
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
-	jr z, .asm_1424c
+	jr z, .enemy_hp_bar_empty
 	ld a, $1
 	ld [wd4e9], a
-.asm_1424c
+.enemy_hp_bar_empty
 	ld a, [wd4e9]
 	ld c, $0
 	pop hl
 	jp DrawHPBar
 
-Func_14255: ; 14255 (5:4255)
+ShakePlayerDenjuuHUDFrame: ; 14255 (5:4255)
 	ld a, [wd42d]
 	inc a
 	ld [wd42d], a
@@ -343,7 +344,7 @@ Func_14255: ; 14255 (5:4255)
 	ld [wSCX], a
 	ret
 
-Func_1427e: ; 1427e (5:427e)
+ShakeEnemyDenjuuHUDFrame: ; 1427e (5:427e)
 	ld a, [wd42d]
 	inc a
 	ld [wd42d], a
@@ -418,7 +419,7 @@ Func_142ec:
 	pop af
 	jp GetDenjuuPalette_Pal6
 
-Func_142f9: ; 142f9 (5:42f9)
+PlacePlayerDenjuuNickname: ; 142f9 (5:42f9)
 	push hl
 	push af
 	ld a, $8
@@ -454,7 +455,7 @@ Func_14318:
 	jp LoadStdWindowAttrLayout_
 
 Func_14340:
-	call Func_14255
+	call ShakePlayerDenjuuHUDFrame
 	ld a, [wd45b]
 	inc a
 	ld [wd45b], a
@@ -493,7 +494,7 @@ Func_14340:
 	ret
 
 Func_1438d:
-	call Func_1427e
+	call ShakeEnemyDenjuuHUDFrame
 	ld a, [wd45b]
 	inc a
 	ld [wd45b], a
@@ -865,8 +866,8 @@ Func_1464b: ; 1464b (5:464b)
 	ld [wWX], a
 	call Func_142af
 	call Func_14318
-	call Func_1404a
-	call Func_14062
+	call UpdatePlayerHUD
+	call UpdateEnemyHUD
 	ld a, $e
 	ld [wBattleSubroutine], a
 	ret
@@ -945,7 +946,7 @@ Func_146e2: ; 146e2 (5:46e2)
 Func_146f2: ; 146f2 (5:46f2)
 	call Func_1651b
 	call Func_1657b
-	call Func_1404a
+	call UpdatePlayerHUD
 	call Func_1643a
 	ld a, [wCurBattleDenjuu]
 	ld [wCurMoveTarget], a
@@ -1016,7 +1017,7 @@ Func_14721: ; 14721 (5:4721)
 
 .asm_1477f
 	call Func_1658d
-	call Func_14062
+	call UpdateEnemyHUD
 	ld a, $3d
 	ld [wBattleSubroutine], a
 	ret
@@ -1226,7 +1227,7 @@ Func_148e9: ; 148e9 (5:48e9)
 Func_148fc: ; 148fc (5:48fc)
 	call Func_1654b
 	call Func_1658d
-	call Func_14062
+	call UpdateEnemyHUD
 	call Func_16461
 	ld a, [wCurEnemyDenjuu]
 	ld [wd418], a
@@ -1297,7 +1298,7 @@ Func_1492f: ; 1492f (5:492f)
 
 .asm_1498d
 	call Func_1657b
-	call Func_1404a
+	call UpdatePlayerHUD
 	ld a, $24
 	ld [wBattleSubroutine], a
 	ret
@@ -1817,7 +1818,7 @@ Battle_MoveSelectionMenu: ; 14d1f (5:4d1f)
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	call Func_14062
+	call UpdateEnemyHUD
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, $5
@@ -2268,7 +2269,7 @@ Func_150e0: ; 150e0 (5:50e0)
 	ld e, $92
 	xor a
 	call LoadStdBGMapLayout_
-	call Func_1404a
+	call UpdatePlayerHUD
 	call Func_1643a
 	ld a, $3b
 	ld [wBattleSubroutine], a
@@ -2279,7 +2280,7 @@ Func_150f5: ; 150f5 (5:50f5)
 	ld e, $91
 	xor a
 	call LoadStdWindowLayout_
-	call Func_14062
+	call UpdateEnemyHUD
 	call Func_16461
 	ld a, $a
 	ld [wBattleSubroutine], a
@@ -2568,7 +2569,7 @@ Func_15292: ; 15292 (5:5292)
 
 .asm_15312
 	call Func_1658d
-	call Func_14062
+	call UpdateEnemyHUD
 	ld a, $3d
 	ld [wBattleSubroutine], a
 	ret
@@ -2672,7 +2673,7 @@ Func_15345: ; 15345 (5:5345)
 
 .asm_153c8
 	call Func_1657b
-	call Func_1404a
+	call UpdatePlayerHUD
 	ld a, $24
 	ld [wBattleSubroutine], a
 	ret
@@ -3251,12 +3252,12 @@ Func_15810: ; 15810 (5:5810)
 	cp $2
 	jr z, .asm_15854
 	xor a
-	call Func_1414b
+	call DrawSupportDenjuuArrivalBar_Pink
 	jr .asm_15858
 
 .asm_15854
 	xor a
-	call Func_141aa
+	call DrawSupportDenjuuArrivalBar_Blue
 .asm_15858
 	ld a, $0
 	ld [wWhichBattleMenuCursor], a
@@ -3280,12 +3281,12 @@ Func_15810: ; 15810 (5:5810)
 	cp $2
 	jr z, .asm_15896
 	ld a, $1
-	call Func_1414b
+	call DrawSupportDenjuuArrivalBar_Pink
 	jr .asm_1589b
 
 .asm_15896
 	ld a, $1
-	call Func_141aa
+	call DrawSupportDenjuuArrivalBar_Blue
 .asm_1589b
 	ld a, $1
 	ld [wWhichBattleMenuCursor], a
@@ -3309,12 +3310,12 @@ Func_15810: ; 15810 (5:5810)
 	cp $2
 	jr z, .asm_158d9
 	ld a, $2
-	call Func_1414b
+	call DrawSupportDenjuuArrivalBar_Pink
 	jr .asm_158de
 
 .asm_158d9
 	ld a, $2
-	call Func_141aa
+	call DrawSupportDenjuuArrivalBar_Blue
 .asm_158de
 	ld a, $2
 	ld [wWhichBattleMenuCursor], a
@@ -3338,12 +3339,12 @@ Func_15810: ; 15810 (5:5810)
 	cp $2
 	jr z, .asm_1591c
 	ld a, $3
-	call Func_1414b
+	call DrawSupportDenjuuArrivalBar_Pink
 	jr .asm_15921
 
 .asm_1591c
 	ld a, $3
-	call Func_141aa
+	call DrawSupportDenjuuArrivalBar_Blue
 .asm_15921
 	ld a, $3
 	ld [wWhichBattleMenuCursor], a
@@ -3432,9 +3433,9 @@ Func_159bc: ; 159bc (5:59bc)
 	ld [wd4ad], a
 .asm_159d3
 	ld a, [wCurBattleDenjuu]
-	call Func_140d9
+	call DrawPlayerDenjuuPicFacingRight
 	ld a, [wCurEnemyDenjuu]
-	call Func_14102
+	call DrawEnemyDenjuuPicFacingLeft
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $0
 	jr z, .asm_15a26
@@ -3666,12 +3667,12 @@ Func_159bc: ; 159bc (5:59bc)
 	call CalcHPBarLength
 	ld [wd430], a
 	xor a
-	call Func_14178
+	call AnimateCurrentArrivalBarFrame
 	jp Func_15bc1
 
 .asm_15bbd
 	xor a
-	call Func_141d7
+	call AnimateCurrentSupportDenjuuHPBarFrame
 Func_15bc1: ; 15bc1 (5:5bc1)
 	xor a
 	ld [wWhichBattleMenuCursor], a
@@ -3690,12 +3691,12 @@ asm_15bc8
 	call CalcHPBarLength
 	ld [wd431], a
 	ld a, $1
-	call Func_14178
+	call AnimateCurrentArrivalBarFrame
 	jp Func_15bf2
 
 .asm_15bed
 	ld a, $1
-	call Func_141d7
+	call AnimateCurrentSupportDenjuuHPBarFrame
 Func_15bf2: ; 15bf2 (5:5bf2)
 	ld a, $1
 	ld [wWhichBattleMenuCursor], a
@@ -3714,12 +3715,12 @@ asm_15bfa
 	call CalcHPBarLength
 	ld [wd432], a
 	ld a, $2
-	call Func_14178
+	call AnimateCurrentArrivalBarFrame
 	jp Func_15c24
 
 .asm_15c1f
 	ld a, $2
-	call Func_141d7
+	call AnimateCurrentSupportDenjuuHPBarFrame
 Func_15c24: ; 15c24 (5:5c24)
 	ld a, $2
 	ld [wWhichBattleMenuCursor], a
@@ -3738,12 +3739,12 @@ asm_15c2c
 	call CalcHPBarLength
 	ld [wd433], a
 	ld a, $3
-	call Func_14178
+	call AnimateCurrentArrivalBarFrame
 	jp Func_15c56
 
 .asm_15c51
 	ld a, $3
-	call Func_141d7
+	call AnimateCurrentSupportDenjuuHPBarFrame
 Func_15c56: ; 15c56 (5:5c56)
 	ld a, $3
 	ld [wWhichBattleMenuCursor], a
@@ -4164,8 +4165,8 @@ Func_15f66: ; 15f66 (5:5f66)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_1404a
-	call Func_14062
+	call UpdatePlayerHUD
+	call UpdateEnemyHUD
 	ld a, $2b
 	ld [wBattleSubroutine], a
 	ret
@@ -4356,13 +4357,13 @@ Func_160cb: ; 160cb (5:60cb)
 	call Func_142ec
 	ld a, [wPlayerDenjuu2Field0x0d]
 	ld hl, VTilesBG tile $20
-	call Func_142f9
+	call PlacePlayerDenjuuNickname
 	ld a, [wPlayerDenjuu2MaxHP]
 	ld [wCurDenjuuBufferCurHP], a
 	ld [wCurDenjuuBufferMaxHP], a
-	call Func_1407d
+	call DrawPlayerDenjuuHPBar
 	ld a, $1
-	call Func_140d9
+	call DrawPlayerDenjuuPicFacingRight
 	ld a, $3
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	jp Func_161f5
@@ -4392,13 +4393,13 @@ Func_16108: ; 16108 (5:6108)
 	call Func_142ec
 	ld a, [wPlayerDenjuu3Field0x0d]
 	ld hl, VTilesBG tile $20
-	call Func_142f9
+	call PlacePlayerDenjuuNickname
 	ld a, [wPlayerDenjuu3MaxHP]
 	ld [wCurDenjuuBufferCurHP], a
 	ld [wCurDenjuuBufferMaxHP], a
-	call Func_1407d
+	call DrawPlayerDenjuuHPBar
 	ld a, $2
-	call Func_140d9
+	call DrawPlayerDenjuuPicFacingRight
 	ld a, $3
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	jp Func_161f5
@@ -4420,9 +4421,9 @@ Func_1615f: ; 1615f (5:615f)
 	ld a, [wEnemyDenjuu2MaxHP]
 	ld [wCurDenjuuBufferCurHP], a
 	ld [wCurDenjuuBufferMaxHP], a
-	call Func_140ab
+	call DrawEnemyDenjuuHPBar
 	ld a, $1
-	call Func_14102
+	call DrawEnemyDenjuuPicFacingLeft
 	ld a, $3
 	ld [wEnemyDenjuu2ArrivedStatus], a
 	jr Func_161f5
@@ -4457,9 +4458,9 @@ Func_1619e: ; 1619e (5:619e)
 	ld a, [wEnemyDenjuu3MaxHP]
 	ld [wCurDenjuuBufferCurHP], a
 	ld [wCurDenjuuBufferMaxHP], a
-	call Func_140ab
+	call DrawEnemyDenjuuHPBar
 	ld a, $2
-	call Func_14102
+	call DrawEnemyDenjuuPicFacingLeft
 	ld a, $3
 	ld [wEnemyDenjuu3ArrivedStatus], a
 Func_161f5: ; 161f5 (5:61f5)
@@ -4608,7 +4609,7 @@ Func_16318: ; 16318 (5:6318)
 	ld e, $92
 	xor a
 	call LoadStdBGMapLayout_
-	call Func_1404a
+	call UpdatePlayerHUD
 	jr .asm_16339
 
 .asm_1632d
@@ -4616,7 +4617,7 @@ Func_16318: ; 16318 (5:6318)
 	ld e, $91
 	xor a
 	call LoadStdWindowLayout_
-	call Func_14062
+	call UpdateEnemyHUD
 .asm_16339
 	lb bc, $2, $e
 	ld e, $9a
@@ -5874,7 +5875,7 @@ Func_16c11: ; 16c11 (5:6c11)
 .asm_16c3b
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	call Func_1407d
+	call DrawPlayerDenjuuHPBar
 	ld a, [wd434]
 	dec a
 	ld [wd434], a
@@ -6308,7 +6309,7 @@ Func_16f47: ; 16f47 (5:6f47)
 	jp Func_14000
 
 Func_16f84: ; 16f84 (5:6f84)
-	call Func_1404a
+	call UpdatePlayerHUD
 	lb bc, $1, $5
 	ld e, $92
 	ld a, $0
@@ -6550,7 +6551,7 @@ Func_17122: ; 17122 (5:7122)
 .asm_1714c
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
-	call Func_140ab
+	call DrawEnemyDenjuuHPBar
 	ld a, [wd434]
 	dec a
 	ld [wd434], a
@@ -6916,7 +6917,7 @@ Func_173cf: ; 173cf (5:73cf)
 	jp Func_14000
 
 Func_1740c: ; 1740c (5:740c)
-	call Func_14062
+	call UpdateEnemyHUD
 	lb bc, $1, $1
 	ld e, $91
 	ld a, $0
@@ -7036,7 +7037,7 @@ Func_174b9: ; 174b9 (5:74b9)
 .asm_174dd
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	call Func_1407d
+	call DrawPlayerDenjuuHPBar
 	ld a, [wd434]
 	dec a
 	ld [wd434], a
@@ -7093,7 +7094,7 @@ Func_17521: ; 17521 (5:7521)
 .asm_17545
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
-	call Func_140ab
+	call DrawEnemyDenjuuHPBar
 	ld a, [wd434]
 	dec a
 	ld [wd434], a
@@ -8332,8 +8333,8 @@ Func_17e09: ; 17e09 (5:7e09)
 	ld e, $81
 	ld a, $0
 	call LoadStdWindowLayout_
-	call Func_1404a
-	call Func_14062
+	call UpdatePlayerHUD
+	call UpdateEnemyHUD
 	call Func_1643a
 	call Func_16461
 	xor a
@@ -8502,7 +8503,7 @@ Func_17f13: ; 17f13 (5:7f13)
 .asm_17f68
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	call Func_1407d
+	call DrawPlayerDenjuuHPBar
 	ld a, [wd434]
 	dec a
 	ld [wd434], a
@@ -8552,7 +8553,7 @@ Func_17f13: ; 17f13 (5:7f13)
 .asm_17fc8
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
-	call Func_140ab
+	call DrawEnemyDenjuuHPBar
 	ld a, [wd434]
 	dec a
 	ld [wd434], a
