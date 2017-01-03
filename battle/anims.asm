@@ -3874,7 +3874,7 @@ Func_69faf: ; 69faf (1a:5faf)
 	ld a, $b
 	ld [hl], a
 .asm_69fdc
-	call Func_6b9c6
+	call GetCurOpponentSpecies
 	callba Func_ce606
 	ld a, $ff
 	ld [wcac2], a
@@ -6916,7 +6916,7 @@ Func_6b8e2: ; 6b8e2 (1a:78e2)
 	ld bc, $20
 	add hl, bc
 	ld a, h
-	cp $c2
+	cp wOAMAnimation12 / $100
 	jr nz, .asm_6b8e5
 	ret
 
@@ -7016,6 +7016,8 @@ Func_6b971: ; 6b971 (1a:7971)
 	ld [hl], a
 	ret
 
+; XXX Unreferenced dummy routine
+
 Func_6b97c:
 	ld hl, wOAMAnimation02
 	ld bc, $10
@@ -7067,31 +7069,33 @@ Func_6b9af:
 Func_6b9c5:
 	ret
 
-Func_6b9c6:
-	ld a, [wBattleTurn]
-	or a
-	jr nz, asm_6b9d4
-	jr asm_6b9df
+; XXX End unreferenced dummy routine
 
-Func_6b9ce:
+GetCurOpponentSpecies:
 	ld a, [wBattleTurn]
 	or a
-	jr nz, asm_6b9df
-asm_6b9d4
+	jr nz, get_cur_player_species
+	jr get_cur_enemy_species
+
+GetCurUserSpecies:
+	ld a, [wBattleTurn]
+	or a
+	jr nz, get_cur_enemy_species
+get_cur_player_species
 	ld hl, wPlayerDenjuu1Species
 	ld a, [wCurBattleDenjuu]
-	call Func_6b9ea
+	call GetCurBattleDenjuuSpecies
 	ld c, a
 	ret
 
-asm_6b9df
+get_cur_enemy_species
 	ld hl, wEnemyDenjuu1Species
 	ld a, [wCurEnemyDenjuu]
-	call Func_6b9ea
+	call GetCurBattleDenjuuSpecies
 	ld c, a
 	ret
 
-Func_6b9ea: ; 6b9ea (1a:79ea)
+GetCurBattleDenjuuSpecies: ; 6b9ea (1a:79ea)
 	ld de, $16
 	addntimes_hl_de
 	ld a, [hl]
