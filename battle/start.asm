@@ -914,7 +914,7 @@ Func_70693:
 	jp NextBattleSubroutine
 
 Func_706b6:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -960,7 +960,7 @@ Func_7071e: ; 7071e (1c:471e)
 	ret
 
 Func_70724:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -984,7 +984,7 @@ Func_70730:
 
 Func_70755:
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and D_UP
 	jr z, .asm_70784
@@ -1172,7 +1172,7 @@ Func_708c2:
 	ld [wMoveAnimationTimer], a
 	cp $0
 	jr z, .asm_708d9
-	jp PrintText_
+	jp BattlePrintText
 
 .asm_708d9
 	ld a, [wcb3f]
@@ -1209,7 +1209,7 @@ Func_708c2:
 	jp NextBattleSubroutine
 
 Func_7091d:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1231,7 +1231,7 @@ Func_70929:
 	jp NextBattleSubroutine
 
 Func_70945:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -1714,7 +1714,7 @@ Func_70d39:
 	jp NextBattleSubroutine
 
 Func_70d63:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1729,7 +1729,7 @@ Func_70d63:
 	ret
 
 Func_70d81:
-	call PrintText_
+	call BattlePrintText
 	call Func_3cd0
 	ld a, [wJoyNew]
 	and D_LEFT
@@ -2013,7 +2013,7 @@ Func_70fc8: ; 70fc8 (1c:4fc8)
 	ret
 
 Func_70fdf: ; 70fdf (1c:4fdf)
-	call PrintText_
+	call BattlePrintText
 	ret
 
 Func_70fe3: ; 70fe3 (1c:4fe3)
@@ -2103,7 +2103,7 @@ Func_7106c:
 	ret
 
 Func_71097:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -2117,7 +2117,7 @@ Func_71097:
 
 Func_710ae:
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [wd47c]
 	cp $1
 	jr nz, .okay1
@@ -3189,7 +3189,7 @@ Func_71907:
 	ret
 
 Func_7191b:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -3200,7 +3200,7 @@ Func_7191b:
 	ret
 
 Func_7192e:
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z

@@ -142,7 +142,7 @@ Func_7c11e: ; 7c11e (1f:411e)
 	jp NextBattleSubroutine
 
 Func_7c128: ; 7c128 (1f:4128)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -165,7 +165,7 @@ Func_7c128: ; 7c128 (1f:4128)
 
 Func_7c15a: ; 7c15a (1f:415a)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_7c17b
@@ -240,7 +240,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	ret
 
 Func_7c1ed: ; 7c1ed (1f:41ed)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -250,7 +250,7 @@ Func_7c1ed: ; 7c1ed (1f:41ed)
 	ret
 
 Func_7c1fe: ; 7c1fe (1f:41fe)
-	call PrintText_
+	call BattlePrintText
 	call Func_7c575
 	ld a, [wdc58]
 	cp $1
@@ -274,7 +274,7 @@ Func_7c1fe: ; 7c1fe (1f:41fe)
 	jp NextBattleSubroutine
 
 Func_7c228: ; 7c228 (1f:4228)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -694,7 +694,7 @@ Func_7c52e: ; 7c52e (1f:452e)
 	jp NextBattleSubroutine
 
 Func_7c538: ; 7c538 (1f:4538)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1061,7 +1061,7 @@ Func_7c7bc: ; 7c7bc (1f:47bc)
 	call Func_3eee
 	cp $0
 	jr nz, .asm_7c7c7
-	call PrintText_
+	call BattlePrintText
 	ret
 
 .asm_7c7c7
@@ -1177,7 +1177,7 @@ Func_7c886: ; 7c886 (1f:4886)
 	jp Func_7dc41
 
 Func_7c88e: ; 7c88e (1f:488e)
-	call PrintText_
+	call BattlePrintText
 	call Func_3eee
 	cp $0
 	ret z
@@ -1202,7 +1202,7 @@ Func_7c8b2: ; 7c8b2 (1f:48b2)
 	jp Func_7dc41
 
 Func_7c8ba: ; 7c8ba (1f:48ba)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1213,7 +1213,7 @@ Func_7c8ba: ; 7c8ba (1f:48ba)
 	jp Func_7dc41
 
 Func_7c8d0: ; 7c8d0 (1f:48d0)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -1839,7 +1839,7 @@ Func_7cdae: ; 7cdae (1f:4dae)
 	ret
 
 Func_7ce30: ; 7ce30 (1f:4e30)
-	call PrintText_
+	call BattlePrintText
 	ret
 
 Func_7ce34: ; 7ce34 (1f:4e34)
@@ -1894,7 +1894,7 @@ Func_7ce84: ; 7ce84 (1f:4e84)
 	ret
 
 Func_7cea1: ; 7cea1 (1f:4ea1)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -1947,7 +1947,7 @@ Func_7ceb5: ; 7ceb5 (1f:4eb5)
 
 .asm_7cefa
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, asm_7cf42
@@ -2029,7 +2029,7 @@ Func_7cf96: ; 7cf96 (1f:4f96)
 	ld a, [hl]
 	cp $0
 	jr nz, .asm_7cfa9
-	call PrintText_
+	call BattlePrintText
 	ret
 
 .asm_7cfa9
@@ -2044,7 +2044,7 @@ Func_7cf96: ; 7cf96 (1f:4f96)
 	ret
 
 Func_7cfbd: ; 7cfbd (1f:4fbd)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -3637,7 +3637,7 @@ Func_7db3a: ; 7db3a (1f:5b3a)
 	jp Func_7dc41
 
 Func_7db42: ; 7db42 (1f:5b42)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -3697,7 +3697,7 @@ Func_7db91: ; 7db91 (1f:5b91)
 	jp Func_7dc41
 
 Func_7dbbe: ; 7dbbe (1f:5bbe)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -3811,7 +3811,7 @@ Func_7dc98: ; 7dc98 (1f:5c98)
 	jp Func_7dc41
 
 Func_7dca0: ; 7dca0 (1f:5ca0)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -3856,7 +3856,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld a, [hl]
 	cp $ee
 	jr z, .asm_7dcf3
-	jp PrintText_
+	jp BattlePrintText
 
 .asm_7dcf3
 	ld de, wdc60
@@ -4054,7 +4054,7 @@ Func_7de8c: ; 7de8c (1f:5e8c)
 	ret
 
 Func_7de97: ; 7de97 (1f:5e97)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -4112,7 +4112,7 @@ Func_7dee6: ; 7dee6 (1f:5ee6)
 
 Func_7df06: ; 7df06 (1f:5f06)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $20
 	jr z, .asm_7df2d
@@ -4193,7 +4193,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	jp Func_7dc41
 
 Func_7dfa0: ; 7dfa0 (1f:5fa0)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -4238,7 +4238,7 @@ Func_7dfe0: ; 7dfe0 (1f:5fe0)
 
 Func_7dff3: ; 7dff3 (1f:5ff3)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $20
 	jr z, .asm_7e01a
@@ -4448,7 +4448,7 @@ Func_7e16c: ; 7e16c (1f:616c)
 	jp Func_7dc41
 
 Func_7e174: ; 7e174 (1f:6174)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -4626,7 +4626,7 @@ Func_7e2e9: ; 7e2e9 (1f:62e9)
 	jp Func_7dc41
 
 Func_7e2fc: ; 7e2fc (1f:62fc)
-	call PrintText_
+	call BattlePrintText
 	call Func_3eee
 	cp $ee
 	jr nz, .asm_7e30b
@@ -4647,7 +4647,7 @@ Func_7e319: ; 7e319 (1f:6319)
 	call Func_3eee
 	cp $ee
 	jr z, .asm_7e32a
-	jp PrintText_
+	jp BattlePrintText
 
 .asm_7e32a
 	ld a, [wdc45]
@@ -4773,7 +4773,7 @@ Func_7e412: ; 7e412 (1f:6412)
 	call Func_3eee
 	cp $0
 	jr nz, .asm_7e41d
-	call PrintText_
+	call BattlePrintText
 	ret
 
 .asm_7e41d
@@ -4914,7 +4914,7 @@ Func_7e50d: ; 7e50d (1f:650d)
 	jp Func_7dc41
 
 Func_7e510: ; 7e510 (1f:6510)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -4925,7 +4925,7 @@ Func_7e510: ; 7e510 (1f:6510)
 	jp Func_7dc41
 
 Func_7e526: ; 7e526 (1f:6526)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
@@ -5333,7 +5333,7 @@ Func_7e882: ; 7e882 (1f:6882)
 	ret
 
 Func_7e899: ; 7e899 (1f:6899)
-	call PrintText_
+	call BattlePrintText
 	ret
 
 Func_7e89d: ; 7e89d (1f:689d)
@@ -5392,7 +5392,7 @@ Func_7e8f7: ; 7e8f7 (1f:68f7)
 	ret
 
 Func_7e914: ; 7e914 (1f:6914)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -5418,7 +5418,7 @@ Func_7e92d: ; 7e92d (1f:692d)
 	ret
 
 Func_7e947: ; 7e947 (1f:6947)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -5471,7 +5471,7 @@ Func_7e95b: ; 7e95b (1f:695b)
 
 .asm_7e9a0
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $8
 	jr z, asm_7e9e8
@@ -5582,7 +5582,7 @@ Func_7ea18: ; 7ea18 (1f:6a18)
 	jp Func_7dc41
 
 Func_7eaa5: ; 7eaa5 (1f:6aa5)
-	call PrintText_
+	call BattlePrintText
 	ld hl, wdc60
 	ld d, $0
 	ld a, [wMoveAnimationTimer]
@@ -5603,7 +5603,7 @@ Func_7eaa5: ; 7eaa5 (1f:6aa5)
 	jp Func_7dc41
 
 Func_7eac9: ; 7eac9 (1f:6ac9)
-	call PrintText_
+	call BattlePrintText
 	ld hl, wdb00
 	ld a, [wdc45]
 	add $16
@@ -6090,7 +6090,7 @@ Func_7eeaf: ; 7eeaf (1f:6eaf)
 	jp Func_7dc41
 
 Func_7eecd: ; 7eecd (1f:6ecd)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6130,7 +6130,7 @@ Func_7ef04: ; 7ef04 (1f:6f04)
 	jp Func_7dc41
 
 Func_7ef16: ; 7ef16 (1f:6f16)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6174,7 +6174,7 @@ Func_7ef57: ; 7ef57 (1f:6f57)
 
 Func_7ef67: ; 7ef67 (1f:6f67)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $20
 	jr z, .asm_7ef88
@@ -6325,7 +6325,7 @@ Func_7f0a0: ; 7f0a0 (1f:70a0)
 	jp Func_7dc41
 
 Func_7f0aa: ; 7f0aa (1f:70aa)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6452,7 +6452,7 @@ Func_7f1a3: ; 7f1a3 (1f:71a3)
 	call Func_3eee
 	cp $0
 	jr nz, .asm_7f1ae
-	call PrintText_
+	call BattlePrintText
 	ret
 
 .asm_7f1ae
@@ -6521,7 +6521,7 @@ Func_7f204: ; 7f204 (1f:7204)
 
 Func_7f226: ; 7f226 (1f:7226)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $20
 	jr z, .asm_7f247
@@ -6592,7 +6592,7 @@ Func_7f2a3: ; 7f2a3 (1f:72a3)
 	call Func_3eee
 	cp $0
 	jr nz, .asm_7f2ae
-	call PrintText_
+	call BattlePrintText
 	ret
 
 .asm_7f2ae
@@ -6659,7 +6659,7 @@ Func_7f2ef: ; 7f2ef (1f:72ef)
 	jp Func_7dc41
 
 Func_7f319: ; 7f319 (1f:7319)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6677,7 +6677,7 @@ Func_7f32a: ; 7f32a (1f:732a)
 	jp NextBattleSubroutine
 
 Func_7f338: ; 7f338 (1f:7338)
-	call PrintText_
+	call BattlePrintText
 	call Func_3eee
 	cp $f0
 	ret nz
@@ -6689,7 +6689,7 @@ Func_7f338: ; 7f338 (1f:7338)
 	jp Func_7dc41
 
 Func_7f350: ; 7f350 (1f:7350)
-	call PrintText_
+	call BattlePrintText
 	call Func_3eee
 	cp $0
 	ret z
@@ -6735,7 +6735,7 @@ Func_7f350: ; 7f350 (1f:7350)
 	jp Func_7dc41
 
 Func_7f3a1: ; 7f3a1 (1f:73a1)
-	call PrintText_
+	call BattlePrintText
 	call Func_3eee
 	cp $0
 	ret z
@@ -6785,7 +6785,7 @@ Func_7f3a1: ; 7f3a1 (1f:73a1)
 	jp Func_7dc41
 
 Func_7f3fc: ; 7f3fc (1f:73fc)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -6819,7 +6819,7 @@ Func_7f432: ; 7f432 (1f:7432)
 	ld b, $0
 	ld d, $c
 	ld a, $80
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	jp AnchorMapAndLoadTextPointer_
 
 Func_7f43e: ; 7f43e (1f:743e)
@@ -6909,7 +6909,7 @@ Func_7f50f: ; 7f50f (1f:750f)
 
 Func_7f532: ; 7f532 (1f:7532)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $10
 	jp z, Func_7f559
@@ -6985,7 +6985,7 @@ Func_7f559: ; 7f559 (1f:7559)
 
 Func_7f5c3: ; 7f5c3 (1f:75c3)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $20
 	jr z, .asm_7f5e4
@@ -7100,7 +7100,7 @@ Func_7f655: ; 7f655 (1f:7655)
 	jp Func_7dc41
 
 Func_7f699: ; 7f699 (1f:7699)
-	call PrintText_
+	call BattlePrintText
 	ld hl, wd000
 	ld d, $0
 	ld a, [wMoveAnimationTimer]
@@ -7131,7 +7131,7 @@ Func_7f6c0: ; 7f6c0 (1f:76c0)
 	jp Func_7dc41
 
 Func_7f6d0: ; 7f6d0 (1f:76d0)
-	call PrintText_
+	call BattlePrintText
 	ld hl, wd0ff
 	ld d, $0
 	ld a, [wMoveAnimationTimer]
@@ -7166,7 +7166,7 @@ Func_7f6f7: ; 7f6f7 (1f:76f7)
 	jp Func_7dc41
 
 Func_7f711: ; 7f711 (1f:7711)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -7326,7 +7326,7 @@ Func_7f839: ; 7f839 (1f:7839)
 
 Func_7f843: ; 7f843 (1f:7843)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $10
 	jp z, Func_7f86a
@@ -7402,7 +7402,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 
 Func_7f8d4: ; 7f8d4 (1f:78d4)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and $20
 	jr z, .asm_7f8f5
@@ -7492,7 +7492,7 @@ Func_7f969: ; 7f969 (1f:7969)
 	jp Func_7dc41
 
 Func_7f97c: ; 7f97c (1f:797c)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz

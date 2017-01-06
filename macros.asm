@@ -6,8 +6,19 @@ MemBankswitch EQU $18
 FarCall       EQU $20
 
 text EQUS "db $00,"
-line EQUS "db $fe,"
-done EQUS "db $ff"
+para EQUS "db $e1,"
+line EQUS "db $e2,"
+done EQUS "db $e0"
+
+TX_SPEED: MACRO
+	db "<DELAY>"
+	db \1
+	ENDM
+
+TX_CALL: MACRO
+	db "<CALL>"
+	dw \1
+	ENDM
 
 RGB: MACRO
 	dw ((\3) << 10) + ((\2) << 5) + (\1)

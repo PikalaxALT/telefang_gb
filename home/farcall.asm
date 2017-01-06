@@ -128,7 +128,7 @@ Func_0528::
 	homecall_memret Func_2c7ed
 	ret
 
-PrintText_::
+BattlePrintText::
 	homecall_memret PrintText
 	ret
 

@@ -44,7 +44,7 @@ Func_8032::
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	jp IncrementSubroutine
 
 Func_8061::
@@ -67,7 +67,7 @@ Func_807c::
 	ld a, [hJoyNew]
 	and START
 	jr nz, .start
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -142,7 +142,7 @@ Func_8501::
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	jp IncrementSubroutine
 
 Func_8530::
@@ -165,7 +165,7 @@ Func_854b::
 	ld a, [hJoyNew]
 	and START
 	jr nz, .asm_855a
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -17482,7 +17482,7 @@ Func_3a6b9:
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $d0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call Func_3566
@@ -20605,12 +20605,12 @@ Func_3ce34: ; 3ce34 (f:4e34)
 	ld b, $0
 	ld c, $a6
 	callba Func_2c7ce
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
-	ld a, [wTextBGMapRow]
+	ld [wTextBGMapTop], a
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	ld b, $1
 	call Func_3c112
 	ld a, [wcd10]
@@ -20898,7 +20898,7 @@ MapEncounterTableIndices:
 INCLUDE "data/wild_data_tables_by_map.asm"
 
 SECTION "bank 10", ROMX, BANK [$10]
-INCLUDE "data/unknown_40000.asm"
+INCLUDE "text/std_text_40000.asm"
 
 SECTION "bank 11", ROMX, BANK [$11]
 INCLUDE "audio/engine_11.asm"
@@ -22255,7 +22255,7 @@ Func_a4d6b: ; a4d6b (29:4d6b)
 	ld a, $2
 	ld [wc9cf], a
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $5
@@ -22263,7 +22263,7 @@ Func_a4d6b: ; a4d6b (29:4d6b)
 	ld d, $c
 	call Func_33d6
 	ld a, $2
-	ld [wc9cd], a
+	ld [wTextDelayTimerReset], a
 	ld a, $2
 	ld [wcada], a
 	callba Func_2cce5
@@ -23656,7 +23656,7 @@ Func_a56cd: ; a56cd (29:56cd)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_2cc4
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, .asm_a572b
@@ -23713,7 +23713,7 @@ Func_a572c: ; a572c (29:572c)
 
 Func_a573e:
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $6
@@ -23725,7 +23725,7 @@ Func_a573e:
 	ld [wcada], a
 	callba Func_2cce5
 	callba Func_a8c68
-	jp Func_2cc4
+	jp PrintText_
 
 Func_a576c: ; a576c (29:576c)
 	push af
@@ -24042,14 +24042,14 @@ Func_a594b: ; a594b (29:594b)
 	ld a, $2
 	ld [wFontPaletteMode], a
 	ld a, $d0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld d, $d
 	callba LoadTextPointer
 asm_a59f6
-	call Func_2cc4
+	call PrintText_
 asm_a59f9
 	ld a, [wTextSubroutine]
 	cp $9
@@ -24070,7 +24070,7 @@ Func_a5a0a: ; a5a0a (29:5a0a)
 	ld a, $2
 	ld [wFontPaletteMode], a
 	ld a, $d0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call Func_3566
@@ -24123,7 +24123,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ret
 
 .asm_a5a7f
-	call Func_2cc4
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -24229,7 +24229,7 @@ Func_a5b3f: ; a5b3f (29:5b3f)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_2cc4
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -24267,7 +24267,7 @@ Func_a5b8a: ; a5b8a (29:5b8a)
 	ld a, $2
 	ld [wFontPaletteMode], a
 	ld a, $d0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call Func_3566
@@ -25114,16 +25114,16 @@ Func_a8210: ; a8210 (2a:4210)
 	ld b, $0
 	ld c, $bc
 	callba Func_2c7b9
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
-	ld a, [wTextBGMapRow]
+	ld [wTextBGMapTop], a
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	jr Func_a82b7
 
 Func_a829d: ; a829d (2a:429d)
-	call Func_2cc4
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, Func_a82b7
@@ -25303,7 +25303,7 @@ Func_a840a: ; a840a (2a:440a)
 	ld a, [hJoyNew]
 	and $2
 	jr nz, .asm_a8425
-	call Func_2cc4
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, .asm_a8424
@@ -25871,13 +25871,13 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld b, $0
 	ld c, $bb
 	callba Func_2c7b9
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
-	ld a, [wTextBGMapRow]
+	ld [wTextBGMapTop], a
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
-	call Func_2cc4
+	ld [wTextBGMapTop], a
+	call PrintText_
 	ld a, $3
 	ld [wOAMAnimation01], a
 	ld a, $10
@@ -26057,7 +26057,7 @@ Func_a8991: ; a8991 (2a:4991)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_2cc4
+	call PrintText_
 	ld b, $3
 	ld a, [wc984]
 	and $8
@@ -26223,10 +26223,10 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld [wOAMAnimation19_YCoord], a
 	call Func_a8c30
 	ld a, $b0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	callba Func_2cceb
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $1
@@ -26249,8 +26249,8 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	call Func_a8d82
 	ld a, $2
 	ld [wcada], a
-	call Func_2cc4
-	call Func_2cc4
+	call PrintText_
+	call PrintText_
 	jr .asm_a8b82
 
 .asm_a8b6f
@@ -26758,7 +26758,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 .asm_a8eba
 	call Func_a8f26
 	call Func_a910f
-	call Func_2cc4
+	call PrintText_
 	call Func_a8fca
 	call Func_a8fe4
 	call Func_a9075
@@ -26774,7 +26774,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $1
@@ -27077,7 +27077,7 @@ Func_a910f: ; a910f (2a:510f)
 	callba Func_2c73e
 Func_a912c:
 	ld a, $b0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $0
@@ -27094,7 +27094,7 @@ Func_a912c:
 	ld de, GFX_e0c4e
 	ld bc, $8
 	call FarCopy2bpp_2
-	call Func_2cc4
+	call PrintText_
 	ld a, [wcae0]
 	ld b, a
 	ld a, [wcaee]
@@ -27134,7 +27134,7 @@ Func_a91a3: ; a91a3 (2a:51a3)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_2cc4
+	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, asm_a91db
@@ -27197,7 +27197,7 @@ Func_a9223: ; a9223 (2a:5223)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call Func_a8f26
-	call Func_2cc4
+	call PrintText_
 	ld a, [hJoyNew]
 	and $2
 	jr nz, .asm_a9243
@@ -27238,7 +27238,7 @@ Func_a9223: ; a9223 (2a:5223)
 
 Func_a9279: ; a9279 (2a:5279)
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $1
@@ -27250,7 +27250,7 @@ Func_a9279: ; a9279 (2a:5279)
 	ld [wcada], a
 	callba Func_2cce5
 	call Func_a8c68
-	jp Func_2cc4
+	jp PrintText_
 
 Func_a92a2: ; a92a2 (2a:52a2)
 	ld de, wca53
@@ -27448,7 +27448,7 @@ Func_a93cf: ; a93cf (2a:53cf)
 	ld [wOAMAnimation19_PriorityFlags], a
 	call Func_a92ad
 	call Func_a912c
-	call Func_2cc4
+	call PrintText_
 	ld de, Tilemap_e0c88
 	hlbgcoord 0, 1
 	ld b, $2
@@ -27477,7 +27477,7 @@ Func_a93cf: ; a93cf (2a:53cf)
 Func_a946f: ; a946f (2a:546f)
 	cp $1
 	jr nz, .asm_a948e
-	call Func_2cc4
+	call PrintText_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $0
@@ -27506,7 +27506,7 @@ Func_a946f: ; a946f (2a:546f)
 	callba Func_3311f
 .asm_a94b5
 	call Func_a97aa
-	call Func_2cc4
+	call PrintText_
 	ld a, [wOAMAnimation19_Duration + 3]
 	ld d, a
 	ld a, [wOAMAnimation19_Duration + 2]
@@ -28053,7 +28053,7 @@ Func_a9858: ; a9858 (2a:5858)
 	ret
 
 Func_a98bf: ; a98bf (2a:58bf)
-	call Func_2cc4
+	call PrintText_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wOAMAnimation18_Duration + 6]
@@ -28210,7 +28210,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call Func_a9a57
-	call Func_2cc4
+	call PrintText_
 	ld a, [hJoyNew]
 	and $2
 	jr nz, .asm_a9a15

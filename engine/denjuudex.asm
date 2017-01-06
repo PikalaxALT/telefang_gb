@@ -26,7 +26,7 @@ Func_1143e: ; 1143e (4:543e)
 	ld a, $0
 	ld [wca65], a
 	ld a, $78
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call GetDexCounts
 	ld bc, $48
 	check_cgb
@@ -165,7 +165,7 @@ Func_114ff: ; 114ff (4:54ff)
 	ld a, $4
 	call Func_050a
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call Func_13f70
 	ld a, $4
 	ld [wd411], a
@@ -330,7 +330,7 @@ Func_1169d: ; 1169d (4:569d)
 	ld b, $20
 	call ClearTiles
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call Func_13f70
 	ld a, $1
 	ld [wBGPalUpdate], a

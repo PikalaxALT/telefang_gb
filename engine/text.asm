@@ -30,36 +30,36 @@ TextSubroutine1:
 	ld l, a
 	ld a, [wTextPointer + 1]
 	ld h, a
-	call PrintText_GetNextCharacter
+	call GetTextByte
 	or a
-	jr nz, .not_terminal_char
+	jr nz, .not_space
 	push af
-	ld a, [wc9cb]
-	ld [wc959], a
+	ld a, [wTextBGMapColumn]
+	ld [wPositionOfLastSpaceChar], a
 	pop af
-.not_terminal_char
-	cp $e2
+.not_space
+	cp "<LINE>"
 	jr nz, .asm_2c17b
-	ld a, [wc9cb]
+	ld a, [wTextBGMapColumn]
 	cp $10
 	jr nc, .asm_2c16c
 	ld a, $10
-	ld [wc9cb], a
-	ld a, [wc9ce]
+	ld [wTextBGMapColumn], a
+	ld a, [wTextLine]
 	inc a
-	ld [wc9ce], a
+	ld [wTextLine], a
 	jp Func_2c2ea
 
 .asm_2c16c
 	ld a, $0
-	ld [wc9cb], a
-	ld a, [wc9ce]
+	ld [wTextBGMapColumn], a
+	ld a, [wTextLine]
 	inc a
-	ld [wc9ce], a
+	ld [wTextLine], a
 	jp Func_2c2ea
 
 .asm_2c17b
-	cp $e1
+	cp "<PARA>"
 	jr nz, asm_2c182
 Func_2c17f: ; 2c17f (b:417f)
 	jp Func_2c5c8
@@ -77,15 +77,15 @@ asm_2c182
 	jp Func_2c313
 
 .asm_2c196
-	cp $e3
+	cp "<DELAY>"
 	jr nz, .asm_2c1a6
-	call PrintText_GetNextCharacter
-	ld [wc9cd], a
+	call GetTextByte
+	ld [wTextDelayTimerReset], a
 	call AdvanceTextPointer
 	jp Func_2c313
 
 .asm_2c1a6
-	cp $e5 ; TX_CALL
+	cp "<CALL>"
 	jr nz, .asm_2c1ba
 	ld a, [wTextPointer + 1]
 	ld [wBackupTextPointer + 1], a
@@ -95,7 +95,7 @@ asm_2c182
 	ret
 
 .asm_2c1ba
-	cp $e0 ; TX_RET
+	cp "$"
 	jr nz, .asm_2c1d3
 	ld a, [wBackupTextPointer]
 	ld [wTextPointer], a
@@ -106,34 +106,34 @@ asm_2c182
 	jp Func_2c313
 
 .asm_2c1d3
-	cp $e1
+	cp "<PARA>"
 	jp nc, AdvanceTextPointer
-	ld a, [wc9cc]
+	ld a, [wTextDelayTimer]
 	or a
-	jp z, Func_2c1e3
+	jp z, .reset_delay
 	dec a
-	jp nz, LoadIntowc9cc
-Func_2c1e3: ; 2c1e3 (b:41e3)
+	jp nz, LoadTextDelayTimer
+.reset_delay: ; 2c1e3 (b:41e3)
 	push hl
-	ld a, [wc9cd]
-	ld [wc9cc], a
-	ld a, [wc9cb]
+	ld a, [wTextDelayTimerReset]
+	ld [wTextDelayTimer], a
+	ld a, [wTextBGMapColumn]
 	ld b, a
-	ld a, [wc91f]
+	ld a, [wTextBoxStartTile]
 	add b
-	call Func_35c2
-	call Func_2c22d
+	call GetCurrentTileVRAMAddress
+	call .ld_a_c ; completely useless!!!
 	ld a, c
 	call LoadCharacter
 	pop hl
-	ld a, [wc9cb]
+	ld a, [wTextBGMapColumn]
 	inc a
-	ld [wc9cb], a
+	ld [wTextBGMapColumn], a
 	cp $10
 	jr nz, .asm_2c212
-	ld a, [wc9ce]
+	ld a, [wTextLine]
 	inc a
-	ld [wc9ce], a
+	ld [wTextLine], a
 	jp Func_2c2ea
 
 .asm_2c212
@@ -141,17 +141,17 @@ Func_2c1e3: ; 2c1e3 (b:41e3)
 	jr c, .asm_2c22a
 	call Func_2c2be
 	jr z, .asm_2c22a
-	ld a, [wc9ce]
+	ld a, [wTextLine]
 	inc a
-	ld [wc9ce], a
+	ld [wTextLine], a
 	ld a, $0
-	ld [wc9cb], a
+	ld [wTextBGMapColumn], a
 	jp Func_2c2ea
 
 .asm_2c22a
 	jp Func_2c313
 
-Func_2c22d: ; 2c22d (b:422d)
+.ld_a_c
 	ld a, c
 	ret
 
@@ -159,13 +159,13 @@ Func_2c22f: ; 2c22f (b:422f)
 	ld a, $0
 	ld [wBackupTextPointer + 1], a
 	ld b, $0
-	ld c, $e0
+	ld c, "$"
 	ld de, VTilesShared tile $60
-.asm_2c23b
+.loop
 	push bc
-.asm_2c23c
-	call PrintText_GetNextCharacter
-	cp $e0
+.loop2
+	call GetTextByte
+	cp "$"
 	jr z, .asm_2c25c
 	cp $e5
 	jr nz, .asm_2c27b
@@ -178,7 +178,7 @@ Func_2c22f: ; 2c22f (b:422f)
 	ld l, a
 	ld a, [wTextPointer + 1]
 	ld h, a
-	jr .asm_2c23c
+	jr .loop2
 
 .asm_2c25c
 	ld a, [wBackupTextPointer + 1]
@@ -196,7 +196,7 @@ Func_2c22f: ; 2c22f (b:422f)
 	ld [wTextPointer + 1], a
 	ld a, $0
 	ld [wBackupTextPointer + 1], a
-	jr .asm_2c23c
+	jr .loop2
 
 .asm_2c27b
 	pop bc
@@ -206,7 +206,7 @@ Func_2c22f: ; 2c22f (b:422f)
 	ld c, $1
 	inc b
 	inc b
-	call Func_2c2a4
+	call .PlaceCharacter
 	pop af
 	push hl
 	ld h, d
@@ -220,7 +220,7 @@ Func_2c22f: ; 2c22f (b:422f)
 	inc b
 	ld a, b
 	cp $a
-	jr nz, .asm_2c23b
+	jr nz, .loop
 	ret
 
 .asm_2c299
@@ -231,11 +231,13 @@ Func_2c22f: ; 2c22f (b:422f)
 	ld [wTextPointer + 1], a
 	ret
 
-Func_2c2a4: ; 2c2a4 (b:42a4)
+.PlaceCharacter: ; 2c2a4 (b:42a4)
+; bc: (x, y)
+;  a: char to load
 	push hl
 	push af
 	push bc
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	add c
 	call GetBGMapRow
 	pop bc
@@ -253,11 +255,11 @@ Func_2c2a4: ; 2c2a4 (b:42a4)
 
 Func_2c2be: ; 2c2be (b:42be)
 	ld b, $0
-.asm_2c2c0
-	call PrintText_GetNextCharacter
-	cp $e1
+.loop
+	call GetTextByte
+	cp "<PARA>"
 	jr c, .asm_2c2e2
-	cp $e1
+	cp "<PARA>"
 	jr nz, .asm_2c2d6
 	ld a, b
 	or a
@@ -271,28 +273,28 @@ Func_2c2be: ; 2c2be (b:42be)
 	ret
 
 .asm_2c2d6
-	cp $e2
-	jr nz, .asm_2c2e0
+	cp "<LINE>"
+	jr nz, .loop_
 	ld a, b
 	or a
 	jr nz, .asm_2c2e2
 	xor a
 	ret
 
-.asm_2c2e0
-	jr .asm_2c2c0
+.loop_
+	jr .loop
 
 .asm_2c2e2
 	inc b
 	ld a, b
 	cp $1
-	jr z, .asm_2c2c0
+	jr z, .loop
 	or a
 	ret
 
 Func_2c2ea: ; 2c2ea (b:42ea)
 	call AdvanceTextPointer
-	ld a, [wc9ce]
+	ld a, [wTextLine]
 	cp $2
 	jr nc, .asm_2c2f6
 	jr Func_2c316
@@ -303,12 +305,12 @@ Func_2c2ea: ; 2c2ea (b:42ea)
 	ld a, $2
 	ld [wTextSubroutine], a
 	ld a, $0
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	jr Func_2c316
 
 .asm_2c306
 	ld a, [wCumulativeTextFrameCounter]
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $3
 	ld [wTextSubroutine], a
 	jr Func_2c316
@@ -316,7 +318,7 @@ Func_2c2ea: ; 2c2ea (b:42ea)
 Func_2c313: ; 2c313 (b:4313)
 	call AdvanceTextPointer
 Func_2c316: ; 2c316 (b:4316)
-	ld a, [wc9cd]
+	ld a, [wTextDelayTimerReset]
 	or a
 	jp z, PrintText
 	ld a, [wcad3]
@@ -344,22 +346,22 @@ AdvanceTextPointer: ; 2c337 (b:4337)
 	ld [wTextPointer + 1], a
 	ret
 
-LoadIntowc9cc: ; 2c34a (b:434a)
-	ld [wc9cc], a
+LoadTextDelayTimer: ; 2c34a (b:434a)
+	ld [wTextDelayTimer], a
 	ret
 
 TextSubroutine2: ; 2c34e (b:434e)
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	add $4
 	call GetBGMapRow
 	ld c, $11
 	call GetBGMapColumn
-	ld a, [wc91f]
+	ld a, [wTextBoxStartTile]
 	add $1f
 	ld c, a
-	ld a, [wc9cc]
+	ld a, [wTextDelayTimer]
 	inc a
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	bit 4, a
 	jr nz, .asm_2c372
 	ld a, [wTileWhere0IsLoaded]
@@ -397,7 +399,7 @@ TextSubroutine2: ; 2c34e (b:434e)
 	ret z
 	ld a, $0
 	ld [wcad3], a
-	ld a, [wc91f]
+	ld a, [wTextBoxStartTile]
 	add $1f
 	ld c, a
 	di
@@ -407,7 +409,7 @@ TextSubroutine2: ; 2c34e (b:434e)
 	ld a, $8
 	ld [H_SFX_ID], a
 	ld a, [wCumulativeTextFrameCounter]
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $3
 	ld [wTextSubroutine], a
 	ret
@@ -417,7 +419,7 @@ TextSubroutine4: ; 2c3c7 (b:43c7)
 	ld a, [hJoyLast]
 	and B_BUTTON
 	jr nz, .asm_2c3d8
-	ld a, [wc9cc]
+	ld a, [wTextDelayTimer]
 	ld b, a
 	ld a, [wCumulativeTextFrameCounter]
 	sub b
@@ -428,7 +430,7 @@ TextSubroutine4: ; 2c3c7 (b:43c7)
 	ld a, [wTextSubroutine]
 	cp $3
 	jr z, .asm_2c3f2
-	ld a, [wc9ce]
+	ld a, [wTextLine]
 	and $1
 	jr z, .asm_2c3ef
 	call Func_2ccf6
@@ -444,7 +446,7 @@ TextSubroutine4: ; 2c3c7 (b:43c7)
 	ld a, $1
 	ld [wTextSubroutine], a
 	ld a, $2
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ret
 
 .asm_2c407
@@ -462,7 +464,7 @@ TextSubroutine7: ; 2c413 (b:4413)
 	call Func_2c533
 	jr z, .asm_2c428
 	call Func_2cce5
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld de, Data_2d00f
 	ld b, $6
 	ld c, $1
@@ -556,7 +558,7 @@ TextSubroutine10: ; 2c445 (b:4445)
 	push bc
 	call Func_2c4d5
 	pop bc
-	ld a, [wc959]
+	ld a, [wPositionOfLastSpaceChar]
 	and $f
 	add $2
 	ld c, a
@@ -567,7 +569,7 @@ TextSubroutine10: ; 2c445 (b:4445)
 	ret
 
 Func_2c4d5: ; 2c4d5 (b:44d5)
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	add $4
 	push bc
 	call GetBGMapRow
@@ -608,7 +610,7 @@ Func_2c4f6: ; 2c4f6 (b:44f6)
 	adc d
 	ld d, a
 	ld a, [wTileWhere0IsLoaded]
-	cp $e0
+	cp "$"
 	jr nz, .asm_2c520
 	ld hl, VTilesShared tile $6e
 	jr .asm_2c523
@@ -627,10 +629,10 @@ Data_2c52b:
 	db 1, 0
 
 Func_2c533: ; 2c533 (b:4533)
-	ld a, [wc9cc]
+	ld a, [wTextDelayTimer]
 	or a
 	jr nz, .asm_2c575
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	add $4
 	call GetBGMapRow
 	ld c, $11
@@ -666,25 +668,25 @@ Func_2c533: ; 2c533 (b:4533)
 .asm_2c575
 	dec a
 	jr z, .end_text
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	xor a
 	ret
 
 TextSubroutine0: ; 2c57d (b:457d)
-	ld a, [wc9cc]
+	ld a, [wTextDelayTimer]
 	dec a
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	jr nz, .asm_2c5c7
 	ld a, $4
-	ld [wc9cc], a
-	ld a, [wc9ce]
+	ld [wTextDelayTimer], a
+	ld a, [wTextLine]
 	inc a
-	ld [wc9ce], a
+	ld [wTextLine], a
 	cp $1
 	jr nz, .asm_2c5a7
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	ld de, Data_2d07b
 	ld b, $4
 	ld c, $1
@@ -694,12 +696,12 @@ TextSubroutine0: ; 2c57d (b:457d)
 	ld a, $1
 	ld [wTextSubroutine], a
 	ld a, $0
-	ld [wc9ce], a
+	ld [wTextLine], a
 	ld a, $8
-	ld [wc9cc], a
-	ld a, [wTextBGMapRow]
+	ld [wTextDelayTimer], a
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	ld de, Data_2d00f
 	ld b, $6
 	ld c, $1
@@ -709,12 +711,12 @@ TextSubroutine0: ; 2c57d (b:457d)
 	ret
 
 Func_2c5c8: ; 2c5c8 (b:45c8)
-	call PrintText_GetNextCharacter
+	call GetTextByte
 	ld [wc9cf], a
 	cp $0
 	jr nz, .asm_2c5dd
 	ld a, $0
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $5
 	ld [wTextSubroutine], a
 	ret
@@ -723,7 +725,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	cp $1
 	jr nz, .asm_2c5ec
 	ld a, $3c
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $5
 	ld [wTextSubroutine], a
 	ret
@@ -732,7 +734,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	cp $2
 	jr nz, .asm_2c5fb
 	ld a, $0
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $6
 	ld [wTextSubroutine], a
 	ret
@@ -741,7 +743,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	cp $3
 	jr nz, .asm_2c60a
 	ld a, $0
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $7
 	ld [wTextSubroutine], a
 	ret
@@ -750,7 +752,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	cp $4
 	jr nz, .asm_2c619
 	ld a, $1
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $6
 	ld [wTextSubroutine], a
 	ret
@@ -759,7 +761,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 	cp $a
 	jr nz, .asm_2c630
 	ld a, $0
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $a
 	ld [wTextSubroutine], a
 	call Func_2c4f6
@@ -769,7 +771,7 @@ Func_2c5c8: ; 2c5c8 (b:45c8)
 
 .asm_2c630
 	ld a, $0
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $8
 	ld [wTextSubroutine], a
 	ret
@@ -787,7 +789,7 @@ Func_2c63f: ; 2c63f (b:463f)
 	call Func_2c6d2
 Func_2c64e: ; 2c64e (b:464e)
 	ld a, $c0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $1
@@ -814,14 +816,14 @@ Func_2c64e: ; 2c64e (b:464e)
 	ld a, $7
 	ld [wca65], a
 	xor a
-	ld [wc9cb], a
-	ld [wc9ce], a
+	ld [wTextBGMapColumn], a
+	ld [wTextLine], a
 	ld a, $5
 	ld [wSubroutine], a
 	ld a, $4
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $1
-	ld [wc9cd], a
+	ld [wTextDelayTimerReset], a
 	ld a, $0
 	ld [wcad3], a
 	ld a, $2
@@ -841,9 +843,9 @@ Func_2c64e: ; 2c64e (b:464e)
 .asm_2c6be
 	ld a, $0
 	ld [wTextSubroutine], a
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	add $2
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	call Func_2c9bd
 	call Func_2cc4e
 .asm_2c6d1
@@ -857,7 +859,7 @@ Func_2c6d2: ; 2c6d2 (b:46d2)
 	ld d, $1
 .asm_2c6dd
 	ld a, d
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	ret
 
 Func_2c6e2: ; 2c6e2 (b:46e2)
@@ -880,7 +882,7 @@ Func_2c6e2: ; 2c6e2 (b:46e2)
 	inc de
 	dec b
 	jr nz, .asm_2c6fd
-	ld a, $e0
+	ld a, "$"
 	ld [de], a
 	xor a
 	ld [wc9cf], a
@@ -894,8 +896,8 @@ Func_2c711: ; 2c711 (b:4711)
 	xor a
 	ld [wc9cf], a
 	ld a, $c0
-	ld [wc91f], a
-	ld a, $e0
+	ld [wTextBoxStartTile], a
+	ld a, "$"
 	ld [wTileWhere0IsLoaded], a
 	ld b, $0
 	ld c, $ba
@@ -929,7 +931,7 @@ Func_2c73e: ; 2c73e (b:473e)
 	inc de
 	dec b
 	jr nz, .asm_2c756
-	ld a, $e0
+	ld a, "$"
 	ld [de], a
 	ret
 
@@ -949,7 +951,7 @@ AnchorMapAndLoadTextPointer__: ; 2c76c (b:476c)
 	ld [hl], a
 LoadTextPointer__: ; 2c775 (b:4775)
 	ld a, d
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	ld d, $0
 	ld e, b
 	ld hl, Pointers_2c94f
@@ -970,12 +972,12 @@ LoadTextPointer__: ; 2c775 (b:4775)
 	call PrintText_JumpText
 	call Func_3566
 	xor a
-	ld [wc9cb], a
-	ld [wc9ce], a
+	ld [wTextBGMapColumn], a
+	ld [wTextLine], a
 	ld a, $0
-	ld [wc9cc], a
+	ld [wTextDelayTimer], a
 	ld a, $1
-	ld [wc9cd], a
+	ld [wTextDelayTimerReset], a
 	ld a, $0
 	ld [wcad3], a
 	ld a, $2
@@ -986,7 +988,7 @@ LoadTextPointer__: ; 2c775 (b:4775)
 
 Func_2c7b9:
 	ld a, $d0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call AnchorMapAndLoadTextPointer__
@@ -996,7 +998,7 @@ Func_2c7b9:
 
 Func_2c7ce:
 	ld a, $d0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call Func_3566
@@ -1015,7 +1017,7 @@ Func_2c7ed: ; 2c7ed (b:47ed)
 	ld a, $98
 	ld [hl], a
 	ld a, d
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	ld d, $0
 	ld e, b
 	ld hl, Pointers_2c94f
@@ -1035,12 +1037,12 @@ Func_2c7ed: ; 2c7ed (b:47ed)
 	add hl, de
 	call PrintText_JumpText
 	xor a
-	ld [wc9cb], a
-	ld [wc9ce], a
-	ld [wc9cc], a
+	ld [wTextBGMapColumn], a
+	ld [wTextLine], a
+	ld [wTextDelayTimer], a
 	ld [wcad3], a
 	ld a, $0
-	ld [wc9cd], a
+	ld [wTextDelayTimerReset], a
 	ld [wcada], a
 	ld a, $1
 	ld [wTextSubroutine], a
@@ -1091,8 +1093,8 @@ OverworldIdleHUD: ; 2c84d (b:484d)
 Func_2c883: ; 2c883 (b:4883)
 	push de
 	ld a, $c0
-	ld [wc91f], a
-	ld a, $e0
+	ld [wTextBoxStartTile], a
+	ld a, "$"
 	ld [wTileWhere0IsLoaded], a
 	call Func_2d03
 	ld b, $0
@@ -1184,8 +1186,8 @@ OverworldIdleHudCheck: ; 2c904 (b:4904)
 
 Func_2c92e: ; 2c92e (b:492e)
 	ld a, $c0
-	ld [wc91f], a
-	ld a, $e0
+	ld [wTextBoxStartTile], a
+	ld a, "$"
 	ld [wTileWhere0IsLoaded], a
 	push bc
 	push de
@@ -1227,7 +1229,7 @@ Func_2c98e: ; 2c98e (b:498e)
 	call Func_2cce5
 	ld de, Data_2d00f
 	ld b, $6
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld c, $1
 	call Func_2ca5c
 	ret
@@ -1237,12 +1239,12 @@ Func_2c9a2: ; 2c9a2 (b:49a2)
 	call Func_2ccf6
 	ld de, Data_2d127
 	ld b, $3
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld c, $1
 	call Func_2ca5c
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	dec a
-	ld [wTextBGMapRow], a
+	ld [wTextBGMapTop], a
 	ret
 
 Func_2c9bd: ; 2c9bd (b:49bd)
@@ -1250,7 +1252,7 @@ Func_2c9bd: ; 2c9bd (b:49bd)
 	call Func_2cce5
 	ld de, Data_2d0c3
 	ld b, $2
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld c, $1
 	call Func_2ca5c
 	ret
@@ -1260,7 +1262,7 @@ Func_2c9d1: ; 2c9d1 (b:49d1)
 	call Func_2cd3b
 	ld de, wca00
 	ld b, $4
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	inc a
 	ld c, $2
 	call Func_2ca5c
@@ -1271,7 +1273,7 @@ Func_2c9e6: ; 2c9e6 (b:49e6)
 	call Func_2cceb
 	ld de, Data_2d15d
 	ld b, $4
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld c, $0
 	call Func_2ca5c
 	ret
@@ -1285,7 +1287,7 @@ Func_2c9fe: ; 2c9fe (b:49fe)
 	call Func_2cd63
 	ld de, wca08
 	ld b, $2
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld c, $0
 	call Func_2ca5c
 	ret
@@ -1325,7 +1327,7 @@ Func_2ca48: ; 2ca48 (b:4a48)
 	call Func_2ccf6
 	ld de, Data_2d185
 	ld b, $3
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld c, $c
 	call Func_2ca5c
 	ret
@@ -1396,7 +1398,7 @@ Func_2caa5: ; 2caa5 (b:4aa5)
 	ld [wc987], a
 Func_2cacf:
 	ld a, l
-	and $e0
+	and "$"
 	ld b, a
 	ld c, l
 	ld a, h
@@ -1444,7 +1446,7 @@ Func_2caf9: ; 2caf9 (b:4af9)
 	ld d, $10
 .go
 	ld a, l
-	and $e0
+	and "$"
 	ld b, a
 	ld c, l
 	ld a, h
@@ -1476,7 +1478,7 @@ Func_2caf9: ; 2caf9 (b:4af9)
 	ret
 
 Func_2cb3d: ; 2cb3d (b:4b3d)
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	inc a
 	call GetBGMapRow
 	ld c, $2
@@ -1521,7 +1523,7 @@ Func_2cb8c: ; 2cb8c (b:4b8c)
 	ld a, $8
 	ld [wc987], a
 	ld a, l
-	and $e0
+	and "$"
 	ld b, a
 	ld c, l
 	ld a, h
@@ -1568,7 +1570,7 @@ Func_2cbc8: ; 2cbc8 (b:4bc8)
 	ret
 
 Func_2cbd0: ; 2cbd0 (b:4bd0)
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	add $4
 	ld b, $0
 	sla a
@@ -1582,7 +1584,7 @@ Func_2cbd0: ; 2cbd0 (b:4bd0)
 	sla a
 	rl b
 	ld c, a
-	ld a, [wc91f]
+	ld a, [wTextBoxStartTile]
 	cp $c0
 	jr nz, .asm_2cbf8
 	ld hl, Data_2d0e7
@@ -1591,7 +1593,7 @@ Func_2cbd0: ; 2cbd0 (b:4bd0)
 .asm_2cbf8
 	ld hl, wca00
 .asm_2cbfb
-	ld a, [wc9ce]
+	ld a, [wTextLine]
 	and $1
 	ld de, $0
 	jr z, .asm_2cc08
@@ -1657,7 +1659,7 @@ Func_2cc4e: ; 2cc4e (b:4c4e)
 	ld de, wcadf
 	ld hl, wOAMAnimation01
 	ld b, $18
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	dec a
 	swap a
 	srl a
@@ -1737,14 +1739,14 @@ Func_2cce5: ; 2cce5 (b:4ce5)
 	jp Func_2ccf6
 
 Func_2cceb: ; 2cceb (b:4ceb)
-	ld a, [wc91f]
+	ld a, [wTextBoxStartTile]
 asm_2ccee
-	call Func_35c2
+	call GetCurrentTileVRAMAddress
 	ld b, $80
 	jp Func_2ccfd
 
 Func_2ccf6: ; 2ccf6 (b:4cf6)
-	ld a, [wc91f]
+	ld a, [wTextBoxStartTile]
 	add $10
 	jr asm_2ccee
 
@@ -1811,7 +1813,7 @@ Func_2cd3b: ; 2cd3b (b:4d3b)
 	dec b
 	jr nz, .asm_2cd45
 	ld hl, wca10
-	ld a, [wc91f]
+	ld a, [wTextBoxStartTile]
 	ld b, $10
 .asm_2cd53
 	ld [hli], a

@@ -366,7 +366,7 @@ Func_102cd: ; 102cd (4:42cd)
 	ld [wca65], a
 	call Func_13fdf
 	ld a, $78
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	xor a
 	ld [wcb3e], a
 	ld [wcb38], a
@@ -557,7 +557,7 @@ Func_10452: ; 10452 (4:4452)
 	ld [wca65], a
 	call Func_13fdf
 	ld a, $78
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call PaletteFade8
 	xor a
 	ld [wcb3e], a
@@ -595,7 +595,7 @@ Func_10452: ; 10452 (4:4452)
 	ld b, $10
 	call Func_13fd2
 	ld a, $70
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, [wd480]
 	ld [wd435], a
 	ld hl, DenjuuNames
@@ -617,7 +617,7 @@ Func_10452: ; 10452 (4:4452)
 	ld a, $0
 	ld [wOAMAnimation05_TemplateBank], a
 	ld a, $78
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call PaletteFade8
 	ld a, [wd4a7]
 	call Func_13d8c
@@ -1140,7 +1140,7 @@ Func_10907: ; 10907 (4:4907)
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $2
 	ld [wcad0], a
 	jp IncrementSubroutine
@@ -1162,7 +1162,7 @@ Func_10936: ; 10936 (4:4936)
 	jp IncrementSubroutine
 
 Func_10953: ; 10953 (4:4953)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1221,7 +1221,7 @@ Func_109aa: ; 109aa (4:49aa)
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld a, $2
 	ld [wcad0], a
 	jp IncrementSubroutine
@@ -1240,7 +1240,7 @@ Func_109dc: ; 109dc (4:49dc)
 	jp IncrementSubroutine
 
 Func_109f3: ; 109f3 (4:49f3)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1566,14 +1566,14 @@ Func_10c90:
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call Func_070c
 	ld d, $c
 	call AnchorMapAndLoadTextPointer_
 	jp IncrementSubroutine2
 
 Func_10cb4:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1584,7 +1584,7 @@ Func_10cb4:
 	jp IncrementSubroutine2
 
 Func_10cc9:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1761,7 +1761,7 @@ Func_10e37:
 	jp Func_1396d
 
 Func_10e45:
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2134,7 +2134,7 @@ Func_11119: ; 11119 (4:5119)
 	call Func_3566
 	call Func_13fdf
 	ld a, $40
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	jp IncrementSubroutine2
 
 Func_11133: ; 11133 (4:5133)
@@ -2277,14 +2277,14 @@ Func_11241: ; 11241 (4:5241)
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call Func_070c
 	ld d, $c
 	call AnchorMapAndLoadTextPointer_
 	jp IncrementSubroutine2
 
 Func_11265: ; 11265 (4:5265)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2368,7 +2368,7 @@ Func_11304: ; 11304 (4:5304)
 	call Func_3566
 	call Func_13fdf
 	ld a, $40
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	xor a
 	ld [wc90b], a
 	jp IncrementSubroutine2
@@ -2840,7 +2840,7 @@ Func_11a35: ; 11a35 (4:5a35)
 	xor a
 	ld [wca65], a
 	ld a, $78
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld d, $c
@@ -2857,7 +2857,7 @@ Func_11a59: ; 11a59 (4:5a59)
 	xor a
 	ld [wca65], a
 	ld a, $78
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	ld hl, ItemNames
 	call Get8CharName0B
 	ld d, $b
@@ -4346,8 +4346,8 @@ Func_1249a: ; 1249a (4:649a)
 	ld c, $30
 	ld d, $c
 	call Func_0528
-	call PrintText_
-	jp PrintText_
+	call BattlePrintText
+	jp BattlePrintText
 
 Func_124a9: ; 124a9 (4:64a9)
 	call Func_11b37
@@ -6067,7 +6067,7 @@ Func_13028: ; 13028 (4:7028)
 	ld [wca65], a
 	call Func_13fdf
 	ld a, $40
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	call Func_137af
 	jp IncrementSubroutine2
 
@@ -7028,8 +7028,8 @@ Func_137af: ; 137af (4:77af)
 	ld b, $1
 	ld d, $c
 	call Func_0528
-	call PrintText_
-	jp PrintText_
+	call BattlePrintText
+	jp BattlePrintText
 
 Func_137d9: ; 137d9 (4:77d9)
 	call Func_137df
@@ -8186,8 +8186,8 @@ Func_13f70: ; 13f70 (4:7f70)
 	ld b, $11
 	ld d, $a
 	call Func_0528
-	call PrintText_
-	jp PrintText_
+	call BattlePrintText
+	jp BattlePrintText
 
 Func_13f8c: ; 13f8c (4:7f8c)
 	ld e, $5c

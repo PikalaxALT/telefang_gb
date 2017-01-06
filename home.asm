@@ -4066,7 +4066,7 @@ Func_2b98::
 	jp Func_2726
 
 Func_2ba9::
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	srl a
 	ld c, a
 	ld e, $a
@@ -4075,7 +4075,7 @@ Func_2ba9::
 	add hl, de
 	ld d, h
 	ld e, l
-	ld a, [wTextBGMapRow]
+	ld a, [wTextBGMapTop]
 	ld c, $0
 	srl a
 	srl a
@@ -4244,7 +4244,7 @@ Func_2cb7::
 	homecall Func_3102a
 	ret
 
-Func_2cc4::
+PrintText_::
 	homecall PrintText
 	ret
 
@@ -5626,7 +5626,7 @@ Func_3566: ; 3566 (0:3566)
 	ld a, BANK(GFX_e0b38)
 	rst Bankswitch
 	ld a, [wTileWhere0IsLoaded]
-	call Func_35c2
+	call GetCurrentTileVRAMAddress
 	ld de, GFX_e0b38
 	ld b, $80
 asm_3578
@@ -5673,7 +5673,7 @@ Func_35a3::
 	rst Bankswitch
 	ld a, $f0
 asm_35ac
-	call Func_35c2
+	call GetCurrentTileVRAMAddress
 	ld de, GFX_e0bb8
 	ld b, $80
 	jp asm_3578
@@ -5686,7 +5686,7 @@ Func_35b7::
 	ld a, $b0
 	jr asm_35ac
 
-Func_35c2: ; 35c2 (0:35c2)
+GetCurrentTileVRAMAddress: ; 35c2 (0:35c2)
 	cp $80
 	jr c, .low_bg
 	swap a
@@ -6604,7 +6604,7 @@ Func_3d02::
 	ld b, $0
 	ld d, $c
 	ld a, $60
-	ld [wc91f], a
+	ld [wTextBoxStartTile], a
 	jp AnchorMapAndLoadTextPointer_
 
 Func_3d0e::

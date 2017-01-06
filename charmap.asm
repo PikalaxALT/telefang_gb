@@ -212,3 +212,7 @@
 	defchar "~"
 
 	charmap "$", $e0
+	charmap "<PARA>", $e1
+	charmap "<LINE>", $e2
+	charmap "<DELAY>", $e3
+	charmap "<CALL>", $e5

@@ -936,7 +936,7 @@ wc91b:: ds 1
 wc91c:: ds 1
 wc91d:: ds 1
 wTileWhere0IsLoaded:: ds 1
-wc91f:: ds 1
+wTextBoxStartTile:: ds 1
 wc920:: ds 1
 wc921:: ds 1
 wc922:: ds 1
@@ -993,7 +993,7 @@ wPartnerDenjuuHPRemaining:: ds 1
 wOverworldIdleHUDPage:: ds 1
 wc957:: ds 1
 wc958:: ds 1
-wc959:: ds 1
+wPositionOfLastSpaceChar:: ds 1
 wc95a:: ds 1
 wc95b:: ds 1
 wc95c:: ds 1
@@ -1100,15 +1100,17 @@ wc9c1:: ds 1
 wc9c2:: ds 1
 wc9c3:: ds 1
 wc9c4:: ds 1
+
+SECTION "Text RAM", WRAM0
 wCumulativeTextFrameCounter:: ds 1
 wTextPointer:: dw
 wTextBank:: ds 1
 wTextSubroutine:: ds 1
-wTextBGMapRow:: ds 1
-wc9cb:: ds 1
-wc9cc:: ds 1
-wc9cd:: ds 1
-wc9ce:: ds 1
+wTextBGMapTop:: ds 1
+wTextBGMapColumn:: ds 1
+wTextDelayTimer:: ds 1
+wTextDelayTimerReset:: ds 1
+wTextLine:: ds 1
 wc9cf:: ds 1
 wc9d0:: ds 1
 wBackupTextPointer:: dw

@@ -14,7 +14,7 @@ Func_2d10::
 	ld [wc9cf], a
 	ret
 
-PrintText_GetNextCharacter::
+GetTextByte::
 	ld a, [wROMBank]
 	push af
 	ld a, [wTextBank]

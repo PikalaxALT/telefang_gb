@@ -416,7 +416,7 @@ Func_742c4: ; 742c4 (1d:42c4)
 	ret
 
 Func_742f6: ; 742f6 (1d:42f6)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1090,7 +1090,7 @@ Func_74792: ; 74792 (1d:4792)
 	ret
 
 Func_747d7: ; 747d7 (1d:47d7)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1126,7 +1126,7 @@ Func_747e6: ; 747e6 (1d:47e6)
 	ret
 
 Func_74813: ; 74813 (1d:4813)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1281,7 +1281,7 @@ Func_74942: ; 74942 (1d:4942)
 	ret
 
 Func_74957: ; 74957 (1d:4957)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1627,7 +1627,7 @@ Func_74bdc: ; 74bdc (1d:4bdc)
 	ret
 
 Func_74c2b: ; 74c2b (1d:4c2b)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1923,7 +1923,7 @@ Func_74e4c: ; 74e4c (1d:4e4c)
 	ret
 
 Func_74e64: ; 74e64 (1d:4e64)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -1942,7 +1942,7 @@ Func_74e64: ; 74e64 (1d:4e64)
 
 Func_74e89: ; 74e89 (1d:4e89)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_74ea3
@@ -2030,7 +2030,7 @@ Func_74e89: ; 74e89 (1d:4e89)
 	ret
 
 Func_74f27: ; 74f27 (1d:4f27)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2071,7 +2071,7 @@ Func_74f3d: ; 74f3d (1d:4f3d)
 	ret
 
 Func_74f80: ; 74f80 (1d:4f80)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2298,7 +2298,7 @@ Func_75139: ; 75139 (1d:5139)
 	ret
 
 Func_75144: ; 75144 (1d:5144)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2309,7 +2309,7 @@ Func_75144: ; 75144 (1d:5144)
 	ret
 
 Func_75158: ; 75158 (1d:5158)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2365,7 +2365,7 @@ Func_75169: ; 75169 (1d:5169)
 	ret
 
 Func_751c8: ; 751c8 (1d:51c8)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2396,7 +2396,7 @@ Func_751dc: ; 751dc (1d:51dc)
 
 Func_75202: ; 75202 (1d:5202)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_75229
@@ -2474,7 +2474,7 @@ Func_75202: ; 75202 (1d:5202)
 	ret
 
 Func_75297: ; 75297 (1d:5297)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
@@ -2524,7 +2524,7 @@ Func_752e7: ; 752e7 (1d:52e7)
 
 Func_752f1: ; 752f1 (1d:52f1)
 	call Func_3cd0
-	call PrintText_
+	call BattlePrintText
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_75318
@@ -3045,7 +3045,7 @@ Func_756b0: ; 756b0 (1d:56b0)
 	ret
 
 Func_756e8: ; 756e8 (1d:56e8)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wVBlankCounter]
 	and $3
 	jr nz, .asm_756fa
@@ -3272,7 +3272,7 @@ Func_758ad: ; 758ad (1d:58ad)
 	ret
 
 Func_758bc: ; 758bc (1d:58bc)
-	call PrintText_
+	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
