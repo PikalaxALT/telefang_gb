@@ -142,7 +142,6 @@ Pointers_1281d9:
 	dw Text_129540
 	dw Text_12954f
 
-
 Text_1282f5:
 	db "シンデンジュウのねむる"
 	line "『カクトスいせき』は"
@@ -167,7 +166,7 @@ Text_12835a:
 Text_1283a7:
 	db "テレファングは たのしいですね"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "これからもがんばってください"
 	line ""
@@ -175,7 +174,7 @@ Text_1283a7:
 
 Text_1283ce:
 	db "『ずかん』かんせい おめでとう!"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!!"
 	para 0
 
@@ -371,7 +370,7 @@ Text_12878b:
 	line "ないか......"
 	line "たしかナマエは..."
 	line "『"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "』と"
 	line "いったかな?"
 	line ""
@@ -513,7 +512,7 @@ Text_128a13:
 Text_128a44:
 	db "ふぅ やっとおちついた"
 	line "オレは "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "って"
 	line "いうんだ"
 	line "よろしくな"
@@ -579,7 +578,7 @@ Text_128b42:
 Text_128b5e:
 	db "オレのナマエは"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "って"
 	line "いうんだ"
 	line "オマエのナマエ おしえて"
@@ -657,7 +656,7 @@ Text_128ccc:
 	para 0
 
 Text_128cf4:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "ああ もうダイジョウブだ"
 	para 0
@@ -670,7 +669,7 @@ Text_128d07:
 	para 0
 
 Text_128d27:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "オマエがいなかったら"
 	line "デンジュウカイが どうなって"
@@ -757,7 +756,7 @@ Text_128ef1:
 Text_128f06:
 	db "おやー チミは"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんじゃ"
 	line "ないですか!"
 	line "ゲンキにしてましたか!"
@@ -905,7 +904,7 @@ Text_129289:
 Text_12928f:
 	db "やっときたわね!!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	para 0
 
@@ -977,7 +976,7 @@ Text_129406:
 Text_12941a:
 	db "それじゃあね"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "これからも がんばって!"
 	line ""
@@ -1018,7 +1017,7 @@ Text_1294dd:
 Text_1294f1:
 	db "それじゃあね"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "これからも がんばって!"
 	line ""

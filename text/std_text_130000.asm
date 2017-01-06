@@ -256,7 +256,6 @@ Pointers_130000:
 	dw Text_131f40
 	dw Text_131f6c
 
-
 Text_130200:
 	db "やあ ひさしぶリだね"
 	line "デンジュウクイズやる?"
@@ -276,7 +275,7 @@ Text_130241:
 
 Text_130259:
 	db "さすが "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だね"
 	line "せいかいだよ!"
 	para 2
@@ -394,7 +393,7 @@ Text_130486:
 
 Text_130497:
 	db "さすが "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だね!"
 	line "カンぺキだよ!"
 	para 2
@@ -514,7 +513,7 @@ Text_1306dd:
 Text_1306f1:
 	db "そんなことあるわけないよね"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だもんね!"
 	para 2
 
@@ -861,7 +860,7 @@ Text_130e4a:
 	para 2
 
 Text_130e64:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は "
 	line "デンジュウクイズすきだよな!"
 	line " すき! ベつに"
@@ -995,7 +994,7 @@ Text_13112d:
 	para 2
 
 Text_131149:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "のともだちにも"
 	line "おんなのこがいるもんね!"
 	para 2
@@ -1339,7 +1338,7 @@ Text_1318eb:
 
 Text_131905:
 	db "すごいね "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は!"
 	line "みなおしちゃったよ!"
 	para 2
@@ -1388,7 +1387,7 @@ Text_1319db:
 Text_1319f5:
 	db "『オバケ』ってこわいんでしょ?"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はこわい?"
 	line " こわい こわくない"
 	para 10
@@ -1428,7 +1427,7 @@ Text_131ac1:
 	para 10
 
 Text_131aea:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は"
 	line "なんにつかうの?"
 	line " ためる マンガ"
@@ -1456,7 +1455,7 @@ Text_131b63:
 	para 2
 
 Text_131b7d:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はあんまリ"
 	line "おかねにこだわらないんだね!"
 	para 2

@@ -254,7 +254,6 @@ Pointers_12c000:
 	dw Text_12f0d5
 	dw Text_12f11f
 
-
 Text_12c1fc:
 	db "カギを ぬすんだ はんにんの"
 	line "こころあたリは ないの?"
@@ -336,7 +335,7 @@ Text_12c406:
 	db "もしもし?マツキヨですけど?"
 	line "いまムサさんに きいたのですが"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんのいる"
 	line "クリノンむらで カクザとうの"
 	line "ひとたちが なにかしている"
@@ -435,7 +434,7 @@ Text_12c712:
 	db "あら?アナタは トロンコむらで"
 	line "ワタシたちのジャマをしてくれた"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんね?"
 	line "ここでもハデに やってくれてる"
 	line "みたいだけど??"
@@ -474,7 +473,7 @@ Text_12c87d:
 	db "さーこんどばっかリは"
 	line "ねんぐのおさめどきよ!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!"
 	line ""
 	para 0
@@ -503,7 +502,7 @@ Text_12c8fd:
 Text_12c906:
 	db "おぼえてらっしゃい!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!!"
 	line "ワタシは だいとうリょうに"
 	line "なるのを あきらめて"
@@ -544,7 +543,7 @@ Text_12c9b0:
 	line "しれません"
 	line "がんばってください!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	para 0
 
@@ -837,7 +836,7 @@ Text_12d16a:
 Text_12d17f:
 	db "もしもし?マツキヨですけど?"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ききましたよ..."
 	line "アンテナのきをねらっている"
@@ -855,7 +854,7 @@ Text_12d1d7:
 Text_12d1ec:
 	db "もしもし!マツキヨです!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!!"
 	line "いまそちらにむかって"
 	line "ナゾのデンジュウたちが"
@@ -863,7 +862,7 @@ Text_12d1ec:
 	line "...ようすがおかしいです!"
 	line "はやくかくれてください!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!!"
 	para 0
 
@@ -958,7 +957,7 @@ Text_12d49d:
 	line "まぁ なやんでいても"
 	line "しょうがあリせん!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんが"
 	line "まもったアンテナのきをとおって"
 	line "つぎのまちにすすみましょう!"
@@ -1003,7 +1002,7 @@ Text_12d5e9:
 	line "... ... ... ..."
 	line "... ... ... ..."
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "さま..っと"
 	line "たしかに うけたまわリました"
 	para 0
@@ -1614,7 +1613,7 @@ Text_12e64a:
 	para 0
 
 Text_12e6a6:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんですか?"
 	line "マツキヨです"
 	line "いま どのあたリに"
@@ -1682,7 +1681,7 @@ Text_12e853:
 	para 0
 
 Text_12e883:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "しまの ようすは どうですか?"
 	para 0
@@ -1721,7 +1720,7 @@ Text_12e932:
 Text_12e945:
 	db "あっ! ちょっと!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!!"
 	para 0
 
@@ -1743,7 +1742,7 @@ Text_12e991:
 
 Text_12e9a7:
 	db "あーっ!"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	para 0
 
@@ -1913,7 +1912,7 @@ Text_12ed51:
 	para 0
 
 Text_12ed7d:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "まちわびたよー"
 	line "そこにいる デンジュウが"
@@ -1997,7 +1996,7 @@ Text_12ef2d:
 Text_12ef51:
 	db "うわー あリがとう"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "キミぐらいつよければ このしまのヌシに あえるかもね!"
 	para 0
@@ -2029,7 +2028,7 @@ Text_12effc:
 Text_12f039:
 	db "ヌシに あえるといいね"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "おうえんしてるよ"
 	line ""
@@ -2039,7 +2038,7 @@ Text_12f056:
 	db "あとすこしで もとの"
 	line "イオンとうに もどるんだ"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "がんばってね!"
 	para 0

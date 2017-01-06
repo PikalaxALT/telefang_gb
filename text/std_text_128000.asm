@@ -8,7 +8,6 @@ Pointers_128000:
 	dw Text_12814e
 	dw Text_1281a0
 
-
 Text_128010:
 	db "アンテナのきをまもるのが"
 	line "われらのしめい!"

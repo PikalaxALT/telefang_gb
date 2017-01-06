@@ -31556,7 +31556,7 @@ Func_c9538: ; c9538 (32:5538)
 	ld b, $0
 	call Func_2f76
 	call Func_2f76
-	ld hl, wc92c
+	ld hl, wPlayerName
 	ld de, wcd00
 	ld b, $9
 	call CopyData_Under256Bytes
@@ -31565,7 +31565,7 @@ Func_c9538: ; c9538 (32:5538)
 	ld b, $80
 	call Func_2f76
 	ld hl, wcd00
-	ld de, wc92c
+	ld de, wPlayerName
 	ld b, $9
 	call CopyData_Under256Bytes
 	ld a, [wCurPhoneGFX]

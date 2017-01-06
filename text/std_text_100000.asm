@@ -88,7 +88,6 @@ Pointers_100000:
 	dw Text_100e44
 	dw Text_100e70
 
-
 Text_1000b0:
 	db "あそこのやしき どうやら"
 	line "へイサされたらしいダ"
@@ -165,7 +164,7 @@ Text_100283:
 	db "あーっ!"
 	line "サイキョウTファンガーの"
 	line "『"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん』だよね"
 	line "サインちょうだい サイン!!"
 	para 0
@@ -249,7 +248,7 @@ Text_100444:
 
 Text_100468:
 	db "あー "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "きてくれたんだー"
 	para 0
@@ -607,7 +606,7 @@ Text_100c79:
 
 Text_100c9d:
 	db "やぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "たずねてきてくれたんだ"
 	line "アンテナのきに いじょうは"

@@ -172,7 +172,6 @@ Pointers_11c000:
 	dw Text_11e356
 	dw Text_11e380
 
-
 Text_11c158:
 	db "ここはトロンコむらだプニ"
 	line "ここは ムサさまのきょかが"

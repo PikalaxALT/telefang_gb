@@ -256,7 +256,6 @@ Pointers_11507b:
 	dw Text_117011
 	dw Text_11701e
 
-
 Text_11527b:
 	db "みなみのしまにすんでる"
 	line "おサルさんのうただよ!"
@@ -781,7 +780,7 @@ Text_115e8b:
 	para 2
 
 Text_115ea0:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は ストレスを"
 	line "かんじたことはあるのか?"
 	line " ストレス? ない!"
@@ -1048,7 +1047,7 @@ Text_116474:
 Text_116490:
 	db "ハプニングだ!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db " どうしよう!"
 	line " どうした! ハピニング?"
 	para 10
@@ -1105,7 +1104,7 @@ Text_1165a6:
 Text_1165ce:
 	db "すごくないよ!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db " にもできるよ"
 	para 2
 
@@ -1155,7 +1154,7 @@ Text_1166c1:
 Text_1166d7:
 	db "いつもやさしいよな"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は..."
 	para 2
 
@@ -1459,13 +1458,13 @@ Text_116d18:
 	para 10
 
 Text_116d3c:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "もかったら?"
 	line " かう!かう! またこんど"
 	para 10
 
 Text_116d55:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はほしくないの? ベっつにー ほしいよ!!"
 	para 10
 
@@ -1489,7 +1488,7 @@ Text_116dad:
 	para 2
 
 Text_116dcc:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はヤキュウする? するよ しないなぁ"
 	para 10
 
@@ -1538,7 +1537,7 @@ Text_116ea2:
 
 Text_116ec1:
 	db "おぉー!スゴイ"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	para 2
 
@@ -1582,7 +1581,7 @@ Text_116f86:
 	para 2
 
 Text_116f97:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "ダメじゃん!"
 	para 2
 

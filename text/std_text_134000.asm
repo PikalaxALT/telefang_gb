@@ -256,7 +256,6 @@ Pointers_134000:
 	dw Text_1361e4
 	dw Text_136202
 
-
 Text_134200:
 	db "おもいきって はなすことか!"
 	line "そうだよな!サンキュー!!"
@@ -1124,7 +1123,7 @@ Text_1355c7:
 Text_1355e1:
 	db "そうか!やっとなぞがとけた"
 	line "さすが "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だな!"
 	para 2
 
@@ -1177,7 +1176,7 @@ Text_1356fa:
 	para 2
 
 Text_135719:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は『ゴルフ』に"
 	line "くわしかったリする?"
 	line " ぜんぜん ちょっと"

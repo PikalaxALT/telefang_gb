@@ -399,7 +399,7 @@ Func_1031c: ; 1031c (4:431c)
 Func_10328: ; 10328 (4:4328)
 	ld b, $9
 	ld hl, wOAMAnimationsEnd
-	ld de, wc92c
+	ld de, wPlayerName
 .asm_10330
 	ld a, [hli]
 	ld [de], a

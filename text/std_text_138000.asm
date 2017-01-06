@@ -251,7 +251,6 @@ Pointers_138000:
 	dw Text_13aee3
 	dw Text_13aefe
 
-
 Text_1381f6:
 	db "あっ そういえば"
 	line "『アンテナのき』に いくって"
@@ -518,7 +517,7 @@ Text_13882f:
 	para 0
 
 Text_138863:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "マツキヨです"
 	line "いまは どのあたリを たびして"
@@ -533,7 +532,7 @@ Text_13888c:
 	para 0
 
 Text_1388b4:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "そこにある おおきな"
 	line "みずうみは 『パパルナこ』"
@@ -569,7 +568,7 @@ Text_138955:
 
 Text_138995:
 	db "オレは "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "デンジュウカイで たくさんの"
 	line "トモダチを つくろうと"
 	line "おもって たびしてるんだ!"
@@ -771,7 +770,7 @@ Text_138eca:
 	para 0
 
 Text_138ef0:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "けんきゅうじょへ ようこそ"
 	line "だが やかたの あるじに"
@@ -851,7 +850,7 @@ Text_1390ef:
 	para 0
 
 Text_139136:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "だいじょうぶですか?"
 	line "れんらくが とれなかったので"
@@ -1210,7 +1209,7 @@ Text_13999c:
 Text_1399b1:
 	db "もしもし?"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だけど?"
 	para 0
 
@@ -1253,7 +1252,7 @@ Text_139a58:
 Text_139a66:
 	db "び....びっくリしたぁ"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ワタシですよ マツキヨです"
 	line ""
@@ -1274,7 +1273,7 @@ Text_139aab:
 	line "おかしな じょうたいに"
 	line "なっているそうなのなので"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんに "
 	line "ようすを みてきて"
 	line "ほしいのですが?"
@@ -1465,7 +1464,7 @@ Text_139fe7:
 
 Text_13a002:
 	db "オレは "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だ"
 	line "オマエの ナマエは??"
 	para 0
@@ -1777,7 +1776,7 @@ Text_13a7c5:
 Text_13a7e3:
 	db "オレは ニンゲンだ!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だ!"
 	para 0
 
@@ -1915,14 +1914,14 @@ Text_13ab91:
 	line "いそがしいのでな!"
 	line "きょうリょく あリがとう"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line ""
 	para 0
 
 Text_13abd8:
 	db "もしもし "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ワタシです マツキヨです"
 	line "イオンとうから おかしな"
@@ -1955,14 +1954,14 @@ Text_13acad:
 Text_13acc6:
 	db "よろしく おねがいします"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!"
 	para 0
 
 Text_13acdb:
 	db "おやおや これはこれは"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "こんなところで なにをしている?ここは キミの はいっていい"
 	line "ばしょではないぞ?"

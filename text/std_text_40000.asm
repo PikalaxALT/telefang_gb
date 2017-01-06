@@ -177,7 +177,6 @@ Pointers_40000:
 	dw Text_416b9
 	dw Text_416cf
 
-
 Text_40162:
 	TX_SPEED 0
 	db "あたまは へルメットじょうの"

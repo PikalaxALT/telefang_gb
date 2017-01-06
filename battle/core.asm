@@ -18,7 +18,7 @@ Func_14012: ; 14012 (5:4012)
 	jr asm_14025
 
 Func_14019: ; 14019 (5:4019)
-	ld de, wd460
+	ld de, wBattleDenjuuName
 	ld c, $9
 	jr asm_14025
 

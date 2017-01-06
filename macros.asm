@@ -20,10 +20,14 @@ TX_CALL: MACRO
 	dw \1
 	ENDM
 
+TX_DENJUU: MACRO
+	db "<DENJUU>"
+	db \1
+	ENDM
+
 RGB: MACRO
 	dw ((\3) << 10) + ((\2) << 5) + (\1)
 	ENDM
-
 
 percent EQUS "* $ff / 100"
 

@@ -216,3 +216,4 @@
 	charmap "<LINE>", $e2
 	charmap "<DELAY>", $e3
 	charmap "<CALL>", $e5
+	charmap "<DENJUU>", $e9

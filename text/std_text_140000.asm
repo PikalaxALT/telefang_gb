@@ -253,7 +253,6 @@ Pointers_140000:
 	dw Text_143438
 	dw Text_1434a4
 
-
 Text_1401fa:
 	db "くそう...."
 	line "『シンデンジュウ』"
@@ -263,7 +262,7 @@ Text_1401fa:
 	para 0
 
 Text_140234:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "マツキヨです"
 	line "ムサちょうろうが はなしがあるといっています"
@@ -293,7 +292,7 @@ Text_1402b3:
 Text_1402d4:
 	db "まっています"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	para 0
 
@@ -305,7 +304,7 @@ Text_1402e2:
 
 Text_140305:
 	db "まぁ まて "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "とリあえず おつかれじゃったの"
 	line "オマエのおかげで いろいろと"
 	line "たすかった"
@@ -431,7 +430,7 @@ Text_1406b1:
 	db "そのカノウセイは じゅうぶんに"
 	line "あるじゃろうの..."
 	line "すベての しんそうを しるために"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "よ"
 	line "シンデンジュウのところへ"
 	line "いっては もらえんじゃろうか?"
@@ -622,7 +621,7 @@ Text_140b9d:
 	para 0
 
 Text_140bbb:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "マツキヨです"
 	line "どうですか? シンデンジュウにはあえましたか?"
@@ -636,7 +635,7 @@ Text_140be1:
 Text_140bf8:
 	db "どうしたんですか?"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "いったいなにがあったんですか?"
 	line ""
@@ -656,7 +655,7 @@ Text_140c7d:
 	db "なにを よわきに"
 	line "なっているんですか!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんらしく"
 	line "ないじゃないですか!"
 	line "いちどくらい まけたって"
@@ -707,7 +706,7 @@ Text_140da5:
 Text_140dcd:
 	db "がんばってください"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	para 0
 
@@ -801,7 +800,7 @@ Text_140fad:
 Text_140fe1:
 	db "....がんばれよな"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "...."
 	para 0
 
@@ -926,7 +925,7 @@ Text_141285:
 
 Text_1412ab:
 	db "オレは "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "このせかいの すベてについて"
 	line "シンデンジュウにきいてこいって"
 	line "ムサにいわれて やってきたんだ"
@@ -1096,7 +1095,7 @@ Text_141791:
 Text_1417c4:
 	db "かずは モンダイではない!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ワタシの リソウを"
 	line "リかいするには まだまだ"
@@ -1261,7 +1260,7 @@ Text_141c8a:
 	para 0
 
 Text_141ca3:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!"
 	line "マツキヨです"
 	line "サナエバたちは いったい"
@@ -1278,7 +1277,7 @@ Text_141cca:
 Text_141cf5:
 	db "よかった...ほんとに よかったおつかれさまです "
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "みんな まってます"
 	line "はやく トロンコむらに"
@@ -1392,7 +1391,7 @@ Text_141f3f:
 Text_141f98:
 	db "おかえリなさい"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "おつかれさまでした"
 	line ""
@@ -1406,7 +1405,7 @@ Text_141fb2:
 	para 0
 
 Text_141fda:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "まさか アンタが そんな"
 	line "だいそれたこと してるとは"
@@ -1431,7 +1430,7 @@ Text_142067:
 Text_142075:
 	db "ホッホッホッ"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "よ"
 	line "ほんとうに あリがとう"
 	line "オマエがいてくれたおかげで"
@@ -1479,7 +1478,7 @@ Text_142192:
 
 Text_1421c0:
 	db "おっ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "デンジュウカイに きてたんだ"
 	para 0
 
@@ -1647,7 +1646,7 @@ Text_1425df:
 
 Text_142603:
 	db "あら "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "じゃん"
 	line "デンジュウカイについて"
 	line "ききたいの?"
@@ -1657,7 +1656,7 @@ Text_142603:
 
 Text_14262b:
 	db "あーっ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "アンタ ここにきてたんだー"
 	para 0
 
@@ -1728,7 +1727,7 @@ Text_1427e5:
 
 Text_1427fb:
 	db "うん "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "もね!"
 	line "じゃ バイバーイ"
 	para 0
@@ -1742,7 +1741,7 @@ Text_14280f:
 
 Text_14283f:
 	db "オッス "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "オマエもついにデンジュウカイにくるようになったかー!"
 	line ""
@@ -1880,7 +1879,7 @@ Text_142b82:
 	para 0
 
 Text_142bc1:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ほんとうにあリがとう"
 	line "アンテナのきは つかえるように"
@@ -2039,7 +2038,7 @@ Text_14307c:
 	line "チカラに なってあげてください"
 	line "がんばって!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	para 0
 
@@ -2066,7 +2065,7 @@ Text_143142:
 	line "『Tファンガーたいかい』という"
 	line "イベントをやってるみたいですね"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんも"
 	line "さんかしているんですよね?"
 	line "がんばってください"
@@ -2078,7 +2077,7 @@ Text_14318a:
 	line "あらそいが つづいているという"
 	line "はなしを ききましたよ"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんの"
 	line "チカラで なんとか おわらせる"
 	line "ことが できませんか?"
@@ -2094,7 +2093,7 @@ Text_143209:
 	line "デンジュウたちが めいわくを"
 	line "してるそうですよ"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんの"
 	line "チカラで あらそいを おさめて"
 	line "ください"
@@ -2127,7 +2126,7 @@ Text_1432e2:
 	para 0
 
 Text_14333c:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "『パンセスむら』のデンジュウと"
 	line "れんらくが とれなくなって"
@@ -2166,7 +2165,7 @@ Text_143438:
 	line "このままでは デンジュウカイが"
 	line "きけんです!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くんの"
 	line "チカラで アクマデンジュウを"
 	line "ふういんしてくだい!"
@@ -2180,7 +2179,7 @@ Text_1434a4:
 	line "サナエバが これに かかわって"
 	line "いることは まちがいあリません"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "サナエバのしようとしている"
 	line "ことを とめてください"

@@ -256,7 +256,6 @@ Pointers_118000:
 	dw Text_1193d3
 	dw Text_1193ea
 
-
 Text_118200:
 	db "さいきんなんか キミからのデンワが すくないような きがする"
 	para 4

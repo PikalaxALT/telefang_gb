@@ -253,7 +253,6 @@ Pointers_124000:
 	dw Text_126db7
 	dw Text_126ddb
 
-
 Text_1241fa:
 	db "トリぐみサイコー!"
 	line "トリぐみが バーランにいる"
@@ -1428,7 +1427,7 @@ Text_125ea0:
 	line "パンセスむらのでんせつと"
 	line "なることでしょう"
 	line "Tファンガー"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "パンセスむらをすくう!!"
 	line "すばらしい!!"
 	para 0

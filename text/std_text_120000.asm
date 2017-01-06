@@ -253,7 +253,6 @@ Pointers_120000:
 	dw Text_122c8e
 	dw Text_122c9c
 
-
 Text_1201fa:
 	db "アイテムは みぎのカウンターで"
 	line "おかいもとめ ください。"
@@ -876,7 +875,7 @@ Text_120cc2:
 	para 0
 
 Text_120cdf:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db " みーっけ!"
 	para 0
 
@@ -922,7 +921,7 @@ Text_120df4:
 	para 0
 
 Text_120e10:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ボールを ここまでとばしたのはやっぱリ キミですか?"
 	line ""
@@ -947,7 +946,7 @@ Text_120e63:
 	para 0
 
 Text_120e92:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "キミは デンジュウカイに"
 	line "きょうみが わかないのですか?"
@@ -978,7 +977,7 @@ Text_120f6f:
 	db "ケイタイデンワが おちてる"
 	line "しかもDショットだ..."
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん...."
 	line "デンワに でてくださいよ"
 	para 0
@@ -1004,10 +1003,10 @@ Text_120fd1:
 	para 0
 
 Text_120ff6:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん!"
 	line "たいへんですよ!!"
 	line ""
@@ -1094,7 +1093,7 @@ Text_121222:
 	para 0
 
 Text_121274:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "そうしましょう"
 	line "このデンジュウ わるいかたには"
@@ -1260,7 +1259,7 @@ Text_121773:
 	para 0
 
 Text_121780:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ワタシは このむらで"
 	line "もうすこし しらベたいことが"
@@ -1628,7 +1627,7 @@ Text_12224c:
 
 Text_122278:
 	db "オレには『"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "』"
 	line "ってナマエが あるんだよ!"
 	para 0
@@ -1834,7 +1833,7 @@ Text_12281d:
 	para 0
 
 Text_12284c:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "ワタシは ここにのこって"
 	line "デンジュウカイについて"
@@ -1864,7 +1863,7 @@ Text_1228f0:
 	para 0
 
 Text_122923:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "くん"
 	line "トロンコむらの すいげんちは"
 	line "むらの きたのほうにあリます"
@@ -1918,7 +1917,7 @@ Text_122a87:
 
 Text_122a91:
 	db "あーーーっ!"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "なんでここにいるのよ!"
 	para 0
@@ -1929,7 +1928,7 @@ Text_122aa9:
 	para 0
 
 Text_122ac2:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "なに ぶつくさいってるのよ!"
 	para 0
@@ -1998,7 +1997,7 @@ Text_122c45:
 
 Text_122c74:
 	db "じゃあね "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	para 0
 
 Text_122c7e:

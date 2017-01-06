@@ -100,7 +100,6 @@ Pointers_99068:
 	dw Text_999b0
 	dw Text_999b8
 
-
 Text_99130:
 	db "モシモシ?デンワくれた?"
 	line " したよ してない"
@@ -214,7 +213,7 @@ Text_9933b:
 	para 2
 
 Text_99358:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はスキキライ"
 	line "ある?"
 	line " ある ないよ"
@@ -235,7 +234,7 @@ Text_993a4:
 	para 2
 
 Text_993b2:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "なかなか"
 	line "シブイなあ"
 	para 2
@@ -250,7 +249,7 @@ Text_993ce:
 
 Text_993dd:
 	db "オイ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!オレっておこリんぼうにみえるのか!!"
 	line " もうおこってる みえない"
 	para 10
@@ -314,7 +313,7 @@ Text_994f9:
 	para 2
 
 Text_9950a:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "ゲンキにしてる? カゼひいた ゲンキだよ"
 	para 10
 
@@ -325,7 +324,7 @@ Text_99523:
 
 Text_9953b:
 	db "そうか"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はいつも"
 	line "ゲンキだな"
 	line " うん そうかな?"
@@ -345,7 +344,7 @@ Text_99577:
 
 Text_99583:
 	db "うん!"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "でも"
 	line "カゼひくのか?"
 	para 2
@@ -383,7 +382,7 @@ Text_9960e:
 
 Text_9961c:
 	db "なぁ オレ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "に"
 	line "ホンかリた?"
 	line " うん かしてない"
@@ -419,7 +418,7 @@ Text_996be:
 	para 2
 
 Text_996cc:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は"
 	line "つかってないのか?"
 	para 2
@@ -435,7 +434,7 @@ Text_996ed:
 Text_996fa:
 	db "つかれたー"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "むかえにきて"
 	line " イヤダ! きるよ!"
 	para 10
@@ -447,7 +446,7 @@ Text_99716:
 
 Text_99729:
 	db "あー "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "?"
 	line "モシモシ?おーい"
 	para 2
@@ -465,7 +464,7 @@ Text_99771:
 	para 10
 
 Text_9978b:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はいっつも"
 	line "かってもらってんの?"
 	line " うん ちがうけど"

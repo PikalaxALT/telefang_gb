@@ -256,7 +256,6 @@ Pointers_145c9a:
 	dw Text_147715
 	dw Text_147722
 
-
 Text_145e9a:
 	db "オニギリだぁ!!でも てが"
 	line "ベタベタでうまくできないよぉ"
@@ -372,7 +371,7 @@ Text_1460d7:
 
 Text_1460f5:
 	db "ちぇー "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "のケチ! なんだと! いいもん"
 	para 10
 
@@ -406,7 +405,7 @@ Text_146180:
 
 Text_14619e:
 	db "だよね "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "ここにはいないもんね"
 	line "ただコンタクトを"
 	line "じまんしたかったんだ!!"
@@ -423,7 +422,7 @@ Text_1461f2:
 	line "やリすぎで めが"
 	line "わるくなっちゃったんだ"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "もきをつけて!"
 	para 2
 
@@ -476,7 +475,7 @@ Text_14630f:
 Text_14632b:
 	db "ねえ さっきジテンシャみたよ"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はのれるの?"
 	line " あたリまえじゃん のれない"
 	para 10
@@ -515,7 +514,7 @@ Text_1463ec:
 Text_14640c:
 	db "ミズデッポウがほしいんだけど"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "もってる?"
 	line " もってるよ もってない"
 	para 10
@@ -630,7 +629,7 @@ Text_146672:
 	para 10
 
 Text_146699:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はもってないの? もってるよ もってない"
 	para 10
 
@@ -710,7 +709,7 @@ Text_146830:
 
 Text_146843:
 	db "なんだ"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "も"
 	line "わかってないんじゃないか!"
 	para 2
@@ -726,7 +725,7 @@ Text_146868:
 
 Text_14687e:
 	db "あー"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "?"
 	line "このまえはゴメンネ!"
 	line " なにが? なんかよう?"
@@ -764,7 +763,7 @@ Text_14692c:
 
 Text_146945:
 	db "アハハハ あー"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "? どうしたの? うるさいなあ"
 	para 10
 
@@ -799,7 +798,7 @@ Text_1469f3:
 
 Text_1469ff:
 	db "やあ"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "オイラといっしょに うたおう!"
 	line " いそがしいんだけど いいよ"
@@ -951,7 +950,7 @@ Text_146d08:
 	para 2
 
 Text_146d14:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "もキライ?じゃあたすけてもらえないじゃん!!"
 	para 2
 
@@ -975,7 +974,7 @@ Text_146d60:
 
 Text_146d7f:
 	db "『スゴイ』? "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はオバケへいきなの?コワくない?"
 	line " あってみたいよ ぜんぜん"
 	para 10
@@ -994,7 +993,7 @@ Text_146dd1:
 	para 2
 
 Text_146dde:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はいいなぁ"
 	line "なにかあったらたすけてね"
 	para 2
@@ -1023,7 +1022,7 @@ Text_146e66:
 
 Text_146e73:
 	db "なんで"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は"
 	line "いつもからかうんだよー!"
 	line "びっくリするじゃん!"
@@ -1070,7 +1069,7 @@ Text_146f3c:
 Text_146f46:
 	db "シンパイしてくれるの?"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "とトモダチで"
 	line "よかったよ"
 	para 2
@@ -1101,7 +1100,7 @@ Text_146fda:
 	para 2
 
 Text_146fe7:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "よリ"
 	line "くわしくなるよ!!"
 	para 2
@@ -1112,7 +1111,7 @@ Text_146ff8:
 	para 2
 
 Text_14700f:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はなにかぺット"
 	line "かってる?"
 	line " かってるよ なんにも"
@@ -1146,7 +1145,7 @@ Text_14707b:
 	para 2
 
 Text_147097:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "はかけっこ"
 	line "とくい?"
 	line " うん あんまリ"
@@ -1178,7 +1177,7 @@ Text_14710f:
 Text_14711a:
 	db "ボクのキモチわかるんだ!"
 	line "ってことは"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "も"
 	line "やせなきゃ!"
 	para 2
@@ -1215,7 +1214,7 @@ Text_1471af:
 	para 2
 
 Text_1471be:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は"
 	line "ケンカしたことある?"
 	line " ある ない"
@@ -1365,7 +1364,7 @@ Text_147469:
 
 Text_147481:
 	db "うん "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は"
 	line "ベんきょうがキライなの??"
 	para 2
@@ -1471,7 +1470,7 @@ Text_147629:
 Text_147645:
 	db "ん?オマエこそだれだ??"
 	line " "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db " おしえない"
 	para 10
 
@@ -1490,7 +1489,7 @@ Text_147679:
 Text_147687:
 	db "あー!!そのこえは"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "だろ!!"
 	para 2
 

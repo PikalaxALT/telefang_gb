@@ -4361,7 +4361,7 @@ Func_7e0b9: ; 7e0b9 (1f:60b9)
 	ret
 
 Func_7e0d9: ; 7e0d9 (1f:60d9)
-	ld de, wd460
+	ld de, wBattleDenjuuName
 	ld b, $9
 .asm_7e0de
 	ld a, [hli]

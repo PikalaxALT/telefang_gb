@@ -949,15 +949,7 @@ wc928:: ds 1
 wc929:: ds 1
 wc92a:: ds 1
 wc92b:: ds 1
-wc92c:: ds 1
-wc92d:: ds 1
-wc92e:: ds 1
-wc92f:: ds 1
-wc930:: ds 1
-wc931:: ds 1
-wc932:: ds 1
-wc933:: ds 1
-wc934:: ds 1
+wPlayerName:: ds NAME_LENGTH
 wc935:: ds 1
 wc936:: ds 1
 wc937:: ds 1
@@ -3477,13 +3469,14 @@ wd43d:: ds 1
 wWhichBattleMenuCursor:: ds 1
 wd43f:: ds 1
 wStringBuffer:: ds 8
-wd448:: ds 1
-wd449:: ds 1
-wd44a:: ds 1
-wd44b:: ds 1
-wd44c:: ds 1
-wd44d:: ds 1
-wd44e:: ds 1
+
+
+wEnemyDenjuuName:: ; ds DENJUU_NAME_LENGTH
+	ds 4
+wd44c::
+	ds 2
+wd44e::
+	ds 1
 wDefendingDenjuuType:: ds 1
 wd450:: ds 1
 wd451:: ds 1
@@ -3501,13 +3494,7 @@ wd45c:: ds 1
 wd45d:: ds 1
 wd45e:: ds 1
 wCurDenjuuStat:: ds 1
-wd460:: ds 1
-wd461:: ds 1
-wd462:: ds 1
-wd463:: ds 1
-wd464:: ds 1
-wd465:: ds 1
-wd466:: ds 1
+wBattleDenjuuName:: ds DENJUU_NAME_LENGTH
 wd467:: ds 1
 wd468:: ds 1
 wNotVeryEffective:: ds 1

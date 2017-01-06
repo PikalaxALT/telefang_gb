@@ -78,7 +78,7 @@ Func_74079: ; 74079 (1d:4079)
 	ret
 
 Func_74099: ; 74099 (1d:4099)
-	ld de, wd460
+	ld de, wBattleDenjuuName
 	ld b, $9
 .asm_7409e
 	ld a, [hli]

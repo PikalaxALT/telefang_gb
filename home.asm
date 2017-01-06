@@ -6448,7 +6448,7 @@ Func_3bc1: ; 3bc1 (0:3bc1)
 	ret
 
 PrintNumHL::
-; Print a 16-bit number in hl to [wd448]
+; Print a 16-bit number in hl to [wEnemyDenjuuName]
 get_digit: MACRO
 IF \1 == 1
 	ld a, l
@@ -6482,7 +6482,7 @@ IF \1 > 1
 ENDC
 ENDM
 
-	ld de, wd448
+	ld de, wEnemyDenjuuName
 	ld b, $0
 x = 10000
 y = 0
@@ -6676,7 +6676,7 @@ CloseSRAM::
 	ret
 
 Func_3d7f::
-	ld hl, wd460
+	ld hl, wBattleDenjuuName
 	ld a, $9
 	push hl
 .asm_3d85
@@ -6797,7 +6797,7 @@ Func_3e19::
 	call OpenSRAMBank2
 	call Func_3d7f
 	call CloseSRAM
-	ld hl, wd460
+	ld hl, wBattleDenjuuName
 	ld de, wOAMAnimationsEnd
 	call Func_33e3
 	ld de, wOAMAnimationsEnd

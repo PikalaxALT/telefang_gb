@@ -228,7 +228,6 @@ Pointers_13c000:
 	dw Text_13edd7
 	dw Text_13edf5
 
-
 Text_13c1c8:
 	db "あっ!ニンゲンだ!"
 	line "アンテナのきを おかしく"

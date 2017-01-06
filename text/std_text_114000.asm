@@ -208,7 +208,6 @@ Pointers_114000:
 	dw Text_11507b
 	dw Text_11507b
 
-
 Text_1141a0:
 	TX_CALL wd4b1
 	db "が"
@@ -221,27 +220,27 @@ Text_1141af:
 	para 5
 
 Text_1141bf:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	line "『"
 	TX_CALL wd4b1
 	db "』"
 	para 5
 
 Text_1141ca:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "デンワバンゴウをゲットした!"
 	para 5
 
 Text_1141df:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	line "『"
 	TX_CALL wd4b1
 	db "』"
 	para 5
 
 Text_1141ea:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "たおれた!"
 	para 5
@@ -251,13 +250,13 @@ Text_1141f6:
 	para 5
 
 Text_114205:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "にげだした!"
 	para 5
 
 Text_114212:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	line "『みちくさをしている!』"
 	para 5
 
@@ -284,7 +283,7 @@ Text_114266:
 	para 5
 
 Text_114278:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "のこうげき!"
 	line ""
 	TX_CALL wd4b1
@@ -320,7 +319,7 @@ Text_1142d0:
 	para 5
 
 Text_1142dd:
-	TX_CALL wd448
+	TX_CALL wEnemyDenjuuName
 	db "ポイントの"
 	line "ダメージ!"
 	para 4
@@ -334,28 +333,28 @@ Text_1142f7:
 	para 5
 
 Text_114302:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line ""
-	TX_CALL wd448
+	TX_CALL wEnemyDenjuuName
 	db "ポイントの"
 	line "けいけんちをえた!"
 	para 5
 
 Text_11431b:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "レベルアップした!"
 	para 5
 
 Text_11432b:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "しんかした!"
 	para 5
 
 Text_114338:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "に"
 	line "なった!"
 	para 5
@@ -370,7 +369,7 @@ Text_114350:
 	para 5
 
 Text_114364:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "のこうげき!"
 	line ""
 	TX_CALL wd4b1
@@ -384,13 +383,13 @@ Text_114374:
 	para 4
 
 Text_11438e:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ゆうことをきかない!"
 	para 5
 
 Text_11439f:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "かってにこうげきした!"
 	para 4
@@ -422,43 +421,43 @@ Text_1143f3:
 	para 4
 
 Text_114410:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "すばやさがアップした!"
 	para 5
 
 Text_114422:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "めいちゅうリつがアップした!"
 	para 5
 
 Text_114437:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "かいひリつがアップした!"
 	para 5
 
 Text_11444a:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "こうげきリょくがアップした!"
 	para 5
 
 Text_11445f:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "でんまリょくがアップした!"
 	para 5
 
 Text_114473:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "ぼうぎょリょくがアップした!"
 	para 5
 
 Text_114488:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "たいリょくがかいふくした!"
 	para 5
@@ -492,283 +491,283 @@ Text_1144de:
 	para 5
 
 Text_1144ec:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db " のわざを"
 	line "おぼえた!"
 	para 5
 
 Text_1144fc:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	line "『みちにまよっている!』"
 	para 5
 
 Text_11450e:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "かくれている!"
 	para 5
 
 Text_11451c:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "じゃんぷしている!"
 	para 5
 
 Text_11452c:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ひこうしている!"
 	para 5
 
 Text_11453b:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "こんらんしている!"
 	para 5
 
 Text_11454b:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "まひしている!"
 	para 5
 
 Text_114559:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "のろわれている!"
 	para 5
 
 Text_114568:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ねむっている!"
 	para 5
 
 Text_114576:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ひるんでいる!"
 	para 5
 
 Text_114584:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "けむリにつつまれている!"
 	para 5
 
 Text_114597:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "どくにおかされている!"
 	para 5
 
 Text_1145a9:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "めのまえがみえない!"
 	para 5
 
 Text_1145ba:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "バリアをはっている!"
 	para 5
 
 Text_1145cb:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "けっかいをはられている!"
 	para 5
 
 Text_1145de:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "しもやけになっている!"
 	para 5
 
 Text_1145f0:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "やけどをおっている!"
 	para 5
 
 Text_114601:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "すがたをあらわした!"
 	para 5
 
 Text_114612:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ちゃくちした!"
 	para 5
 
 Text_114620:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "まいおリた!"
 	para 5
 
 Text_11462d:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "こんらんからさめた!"
 	para 5
 
 Text_11463e:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "まひがなおった!"
 	para 5
 
 Text_11464d:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "のろいがとけた!"
 	para 5
 
 Text_11465c:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ねむリからさめた!"
 	para 5
 
 Text_11466c:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "こうげきたいせいにもどった!"
 	para 5
 
 Text_114681:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "まわリのけむリがなくなった!"
 	para 5
 
 Text_114696:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "どくがきえた!"
 	para 5
 
 Text_1146a4:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "めのまえがみえるようになった!"
 	para 5
 
 Text_1146ba:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "バリアのこうかがなくなった!"
 	para 5
 
 Text_1146cf:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "けっかいがきえた!"
 	para 5
 
 Text_1146df:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "しもやけがなおった!"
 	para 5
 
 Text_1146f0:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "やけどがなおった!"
 	para 5
 
 Text_114700:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "みをかくした!"
 	para 5
 
 Text_11470e:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "たかくとびあがった!"
 	para 5
 
 Text_11471f:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "おおぞらにまいあがった!"
 	para 5
 
 Text_114732:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "こんらんした!"
 	para 5
 
 Text_114740:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "まひした!"
 	para 5
 
 Text_11474c:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "のろわれた!"
 	para 5
 
 Text_114759:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ねむリだした!"
 	para 5
 
 Text_114767:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "ひるんだ!"
 	para 5
 
 Text_114773:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "けむリにつつまれた!"
 	para 5
 
 Text_114784:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "どくにおかされた!"
 	para 5
 
 Text_114794:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "めをつむった!"
 	para 5
 
 Text_1147a2:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "バリアをはった!"
 	para 5
 
 Text_1147b1:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "けっかいをはられた!"
 	para 5
 
 Text_1147c2:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "しもやけになった!"
 	line "しゅびリょくダウン!!"
 	para 5
 
 Text_1147de:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "やけどをおった!"
 	line "こうげきリょくダウン!!"
@@ -780,7 +779,7 @@ Text_1147fa:
 	para 4
 
 Text_114812:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "の"
 	line "デンワバンゴウをメモリーした!"
 	para 5
@@ -801,7 +800,7 @@ Text_11485a:
 	para 4
 
 Text_114876:
-	TX_CALL wd448
+	TX_CALL wEnemyDenjuuName
 	db "チル ゲット!"
 	para 5
 
@@ -811,7 +810,7 @@ Text_114882:
 	para 4
 
 Text_114896:
-	TX_CALL wd448
+	TX_CALL wEnemyDenjuuName
 	db "ひきまで よベます"
 	line "SELECTで ステータス"
 	para 4
@@ -978,7 +977,7 @@ Text_114b4e:
 	para 4
 
 Text_114b63:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は しんかできるレベルになっています"
 	para 5
 
@@ -989,7 +988,7 @@ Text_114b7a:
 	para 4
 
 Text_114b94:
-	TX_CALL wd460
+	TX_CALL wBattleDenjuuName
 	db "は"
 	line "しんかしなかった!"
 	para 5
@@ -1279,7 +1278,7 @@ Text_114f77:
 
 Text_114f98:
 	db "あれ? "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "?"
 	line "ほかのトモダチと"
 	line "おもったんだけどなー"
@@ -1287,7 +1286,7 @@ Text_114f98:
 
 Text_114fb6:
 	db "やぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "いまどこいるんだ?"
 	line "まぁ どこでもいいんだけどな"
 	line "ゲンキでやってればね"

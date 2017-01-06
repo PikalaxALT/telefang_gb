@@ -150,10 +150,9 @@ Pointers_158000:
 	dw Text_15b781
 	dw Text_15b7b4
 
-
 Text_15812c:
 	db "おっす "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレだけど..."
 	line "オマエ ネリカラって ヤツに"
 	line "あった?"
@@ -186,7 +185,7 @@ Text_1581e0:
 Text_15822c:
 	db $e9
 	db "ェなぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "ネジロって ほんとに"
 	line "あわてもの なんだぜ!"
 	line "でも テレファングは ほんとに"
@@ -317,7 +316,7 @@ Text_1585c2:
 	line "クリノンむらの あたリには"
 	line "いないデンジュウなんだ!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オマエは もうあったのか?"
 	line ""
 	para 2
@@ -333,7 +332,7 @@ Text_158601:
 
 Text_158650:
 	db "きいたぞ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オマエ デンジュウカイで"
 	line "トモダチの おんなのこに"
 	line "あったんだってー?"
@@ -353,7 +352,7 @@ Text_158699:
 	para 2
 
 Text_1586fe:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレのトモダチで うみに"
 	line "すんでる デンジュウが"
 	line "いるんだけどさ"
@@ -370,7 +369,7 @@ Text_158747:
 	line "きられちゃったよー"
 	line "なんでなんだよー"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "うみが どうなってるのか"
 	line "みてきてよー おねがいだよー"
 	para 2
@@ -393,7 +392,7 @@ Text_1587f0:
 	line "アンテナのきが やばいらしいぜ"
 	line "どういうことなんだろ?"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "ちょっとみてこいよ"
 	line "オレ それがきになって"
 	line "ねむれないんだ"
@@ -453,7 +452,7 @@ Text_1589e0:
 	line "ほしいんだけど"
 	line "チルが たリないんだよー"
 	line "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレのために かってくれよー"
 	line "おねがいだよー"
 	line "たのむよー"
@@ -485,7 +484,7 @@ Text_158a93:
 
 Text_158ae9:
 	db "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "いま フリジアでやってる"
 	line "『Tファンガーたいかい』に"
@@ -539,7 +538,7 @@ Text_158c10:
 
 Text_158ca3:
 	db "よう "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "いま フリジアにいるんだって?"
 	line "そのまちは キカイが"
 	line "いっぱいうってるんだ"
@@ -553,7 +552,7 @@ Text_158ca3:
 
 Text_158d0e:
 	db "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "いま オマエがいる"
 	line "『フリジア』っていうまちは"
 	line "キカイが いっぱいうって"
@@ -578,7 +577,7 @@ Text_158d77:
 
 Text_158dcc:
 	db "なぁなぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "あたらしいケイタイの"
 	line "じょうほうを しいれたから"
 	line "おしえてやるぜ"
@@ -594,7 +593,7 @@ Text_158dcc:
 
 Text_158e43:
 	db "もしもし "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "?"
 	line "オレさー そろそろ あたらしい"
 	line "ケイタイがほしいんだよー"
@@ -606,7 +605,7 @@ Text_158e43:
 	para 2
 
 Text_158e9e:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "いまどこいるんだ??"
 	line "え?バーラン?"
 	line "ってことは トリぐみ"
@@ -633,7 +632,7 @@ Text_158efb:
 
 Text_158f69:
 	db "おい "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "ゲンキでやってるかー?"
 	line "バーランってまちしってるか?"
 	line "そこにいる トリぐみのおさは"
@@ -647,7 +646,7 @@ Text_158f69:
 
 Text_158fd5:
 	db "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "バーランにいる へビぐみの"
 	line "おさって しってるか?"
 	line "けっこう あわてもんらしいぜ"
@@ -661,7 +660,7 @@ Text_158fd5:
 
 Text_159035:
 	db "なあ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "バーランにすんでる"
 	line "トリぐみと へビぐみが"
 	line "ケンカしてるの しってるか?"
@@ -726,7 +725,7 @@ Text_1591df:
 
 Text_159220:
 	db "おっす "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "イオンとうに いるんだって?"
 	line "オマエも ものずきだよなー"
 	line "デンワガイシャどうしが"
@@ -764,7 +763,7 @@ Text_1592d2:
 
 Text_159353:
 	db "よう "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレさー さいきん"
 	line "テレファングでまけてばっかリ"
 	line "なんだよー"
@@ -860,7 +859,7 @@ Text_159622:
 
 Text_159686:
 	db "よう "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オマエが パパルナこに"
 	line "いってるっていうはなしを"
 	line "きいたから デンワしたんだ"
@@ -915,7 +914,7 @@ Text_1597d1:
 
 Text_15984f:
 	db "なー"
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オマエ サナエバグループって"
 	line "しってる??"
 	line "ニンゲンで いちばんさいしょに"
@@ -987,7 +986,7 @@ Text_159a41:
 
 Text_159a9a:
 	db "おい "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "パンセスむらにいる"
 	line "トモダチに れんらくが"
 	line "とれないんだ!"
@@ -1001,7 +1000,7 @@ Text_159a9a:
 
 Text_159afc:
 	db "おーい "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "パンセスむらで なにか"
 	line "おきてるんじゃないか?"
 	line "トモダチから『たすけてー』"
@@ -1034,7 +1033,7 @@ Text_159bbc:
 	para 2
 
 Text_159c1e:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "サナエバグループっていう"
 	line "ヤツらが デンジュウカイの"
 	line "あちこちで トモダチを"
@@ -1112,7 +1111,7 @@ Text_159e33:
 
 Text_159e89:
 	db "おう "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "なんで アンテナのきを"
 	line "おおきくする ひつようが"
 	line "あったんだろうな?"
@@ -1139,7 +1138,7 @@ Text_159f05:
 
 Text_159f72:
 	db "よーう "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "『サナエバグループ』って"
 	line "ところの ヤツらは"
 	line "いいヤツばっかリだなー"
@@ -1153,7 +1152,7 @@ Text_159f72:
 
 Text_159fdc:
 	db "もしもし "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "か?"
 	line "このさいきん ケイタイの"
 	line "ちょうしが わるいんだ"
@@ -1167,7 +1166,7 @@ Text_159fdc:
 	para 2
 
 Text_15a04f:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "ー"
 	line "ケイタイが なんだか"
 	line "へんなんだよー"
@@ -1179,7 +1178,7 @@ Text_15a04f:
 	para 2
 
 Text_15a09c:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "このあいだ しらないヒトから"
 	line "キカイを もらったんだけど"
 	line "よかったのかな??"
@@ -1270,7 +1269,7 @@ Text_15a34e:
 	line "どっちも みてみたいよなー"
 	line "オマエは どうだ?"
 	line "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	para 2
 
 Text_15a3bf:
@@ -1280,7 +1279,7 @@ Text_15a3bf:
 	line "でも なかなか みにいくことが"
 	line "できないんだ"
 	line "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレも よんでくれよ"
 	line "なんとしても このめで"
 	line "みてみたいんだ"
@@ -1289,7 +1288,7 @@ Text_15a3bf:
 
 Text_15a420:
 	db "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレのために フラウラの"
 	line "めずらしい アイテムを"
 	line "かってくれよー"
@@ -1298,7 +1297,7 @@ Text_15a420:
 	line "オマエにかぎって そんなことは"
 	line "ないはずだよな"
 	line "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "?"
 	line "たのしみに してるぜ!"
 	para 2
@@ -1355,7 +1354,7 @@ Text_15a5f4:
 	line "デンジュウカイは いったい"
 	line "どうなるんだ?"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "たのむから ぺぺリやまの"
 	line "アクマを ふういんしてくれー"
@@ -1363,7 +1362,7 @@ Text_15a5f4:
 	para 2
 
 Text_15a655:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "いまどこ? やまの なか??"
 	line "ぺぺリやまの ちょうじょうに"
@@ -1379,7 +1378,7 @@ Text_15a655:
 	para 2
 
 Text_15a6e2:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "!"
 	line "ついに サナエバグループが"
 	line "ほんしょうを あらわして"
@@ -1393,7 +1392,7 @@ Text_15a6e2:
 	para 2
 
 Text_15a756:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレ ニンゲンフシンに"
 	line "なっちゃいそうだよ"
 	line "あのサナエバってヤツ"
@@ -1467,7 +1466,7 @@ Text_15a949:
 
 Text_15a9a2:
 	db "なぁ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレのトモダチが どこに"
 	line "いったか しらないか??"
 	line "ぜんぜん デンワが"
@@ -1599,7 +1598,7 @@ Text_15ad6b:
 	para 2
 
 Text_15adc7:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "いまどこにいるんだ??"
 	line "まよいのもリにいるんだとしたら"
 	line "はなしに きいただけなんだけど"
@@ -1617,7 +1616,7 @@ Text_15ae38:
 	line "きっと サナエバのれんちゅうが"
 	line "なにかやってるんだろうけどな!"
 	line ""
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オレを よんでくれよ"
 	line "そうすれば ヤツらを"
 	line "テレファングで おいかえして"
@@ -1627,7 +1626,7 @@ Text_15ae38:
 
 Text_15aea5:
 	db "よう "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "サナエバってヤツ あいつも"
 	line "Tファンガーらしいぜ"
 	line "しかもけっこう つよいって"
@@ -1669,7 +1668,7 @@ Text_15af98:
 
 Text_15b011:
 	db "おーい "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "いいこときいたから"
 	line "おしえてあげるー"
 	line "『まよいのもリでまよったら"
@@ -1684,7 +1683,7 @@ Text_15b011:
 	para 2
 
 Text_15b09e:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "ヒトをさがしをしてる"
 	line "さいちゅうなんだって?"
 	line "うーんそうだなー"
@@ -1816,7 +1815,7 @@ Text_15b49f:
 	para 2
 
 Text_15b50a:
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line "オマエって やっぱリ"
 	line "すごいヤツだったんだな!"
 	line "ブリオンいせきのところに"
@@ -1832,7 +1831,7 @@ Text_15b50a:
 
 Text_15b586:
 	db "いま "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	db "は"
 	line "デンジュウカイをさわがせた"
 	line "ちょうほんにんのところに"
@@ -1844,7 +1843,7 @@ Text_15b586:
 	line "まけやしないって"
 	line "オレには わかるんだ!"
 	line "まけるなよ "
-	TX_CALL wc92c
+	TX_CALL wPlayerName
 	line ""
 	para 2
 
