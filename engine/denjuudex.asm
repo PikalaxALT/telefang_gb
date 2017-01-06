@@ -21,7 +21,7 @@ Func_1143e: ; 1143e (4:543e)
 	ld b, $38
 	call ClearTiles
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $0
 	ld [wca65], a
@@ -126,7 +126,7 @@ Func_114ff: ; 114ff (4:54ff)
 	ld bc, $e
 	call DecompressGFXByIndex_
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld bc, $16
 	call GetCGB_BGLayout_

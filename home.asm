@@ -2501,7 +2501,7 @@ Func_1f6a: ; 1f6a (0:1f6a)
 	ld l, e
 	jp [hl]
 
-WaitStat_1f79::
+TextWaitStat::
 .asm_1f79
 	ld a, [rSTAT]
 	and $2
@@ -2916,7 +2916,7 @@ Func_231e::
 
 Func_2329::
 	ld a, $e0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $1
 	ld [wcd20], a
@@ -4066,7 +4066,7 @@ Func_2b98::
 	jp Func_2726
 
 Func_2ba9::
-	ld a, [wc9ca]
+	ld a, [wTextBGMapRow]
 	srl a
 	ld c, a
 	ld e, $a
@@ -4075,7 +4075,7 @@ Func_2ba9::
 	add hl, de
 	ld d, h
 	ld e, l
-	ld a, [wc9ca]
+	ld a, [wTextBGMapRow]
 	ld c, $0
 	srl a
 	srl a
@@ -4256,46 +4256,7 @@ OverworldIdleHUD_::
 	homecall OverworldIdleHUD
 	ret
 
-Func_2ceb::
-	homecall Func_2c711, PrintText, PrintText
-	ld a, $0
-	ld [wc9cf], a
-	ret
-
-Func_2d03::
-	homecall Func_3c91b
-	ret
-
-Func_2d10::
-	homecall Func_2c92e, PrintText, PrintText, PrintText
-	ld a, $0
-	ld [wc9cf], a
-	ret
-
-Func_2d2b::
-	ld a, [wROMBank]
-	push af
-	ld a, [wc9c8]
-	rst Bankswitch
-	ld a, [hli]
-	ld c, a
-	pop af
-	rst Bankswitch
-	ld a, c
-	ret
-
-Func_2d39::
-	ld a, [wROMBank]
-	push af
-	ld a, [wc9c8]
-	rst Bankswitch
-	ld a, [hli]
-	ld [wc9c6], a
-	ld a, [hl]
-	ld [wc9c7], a
-	pop af
-	rst Bankswitch
-	ret
+INCLUDE "home/text.asm"
 
 Func_2d4c::
 	homecall Func_33a62
@@ -5607,13 +5568,13 @@ Func_3514::
 	inc b
 .asm_351c
 	di
-	call WaitStat_1f79
+	call TextWaitStat
 	ld [hl], b
 	ei
 	ld a, $1
 	ld [rVBK], a
 	di
-	call WaitStat_1f79
+	call TextWaitStat
 	ld a, $4
 	ld [hl], a
 	ei
@@ -5664,7 +5625,7 @@ Func_3566: ; 3566 (0:3566)
 	push af
 	ld a, BANK(GFX_e0b38)
 	rst Bankswitch
-	ld a, [wc91e]
+	ld a, [wTileWhere0IsLoaded]
 	call Func_35c2
 	ld de, GFX_e0b38
 	ld b, $80
@@ -5836,13 +5797,13 @@ Func_3694: ; 3694 (0:3694)
 	jr nz, .asm_36bc
 .asm_369e
 	di
-	call WaitStat_1f79
+	call TextWaitStat
 	ld a, [de]
 	add $94
 	ld [hl], a
 	ld a, $1
 	ld [rVBK], a
-	call WaitStat_1f79
+	call TextWaitStat
 	ld a, PRIORITY | $6
 	ld [hli], a
 	ld a, $0

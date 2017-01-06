@@ -209,7 +209,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld e, $3b
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $18
 	ld [wSubroutine], a
@@ -1135,7 +1135,7 @@ Func_10907: ; 10907 (4:4907)
 	call Func_050a
 	call Func_13e6e
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $85
 	ld [wca65], a
@@ -1216,7 +1216,7 @@ Func_109aa: ; 109aa (4:49aa)
 	call Func_050a
 	call Func_13e6e
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $85
 	ld [wca65], a
@@ -1561,7 +1561,7 @@ Func_10c90:
 	or a
 	ret z
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $85
 	ld [wca65], a
@@ -2130,7 +2130,7 @@ Func_11119: ; 11119 (4:5119)
 	ld [wcb67], a
 	ld [wcb68], a
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	call Func_13fdf
 	ld a, $40
@@ -2272,7 +2272,7 @@ Func_11241: ; 11241 (4:5241)
 	or a
 	ret z
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $85
 	ld [wca65], a
@@ -2302,7 +2302,7 @@ Func_11276: ; 11276 (4:5276)
 	call ClearObjectAnimationBuffers
 	call Func_13a0b
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld bc, $0
 	ld e, $10
@@ -2364,7 +2364,7 @@ Func_11304: ; 11304 (4:5304)
 	ld [wcb67], a
 	ld [wcb68], a
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	call Func_13fdf
 	ld a, $40
@@ -2836,7 +2836,7 @@ Func_11a35: ; 11a35 (4:5a35)
 	ld b, $8
 	call ClearTiles
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	xor a
 	ld [wca65], a
 	ld a, $78
@@ -2852,7 +2852,7 @@ Func_11a59: ; 11a59 (4:5a59)
 	ld b, $8
 	call ClearTiles
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	xor a
 	ld [wca65], a
@@ -6061,7 +6061,7 @@ Func_13028: ; 13028 (4:7028)
 	ld b, $20
 	call Func_13fd2
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, $85
 	ld [wca65], a

@@ -9,7 +9,7 @@ Func_14005:
 
 Func_1400a:
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	jp Func_3566
 
 Func_14012: ; 14012 (5:4012)

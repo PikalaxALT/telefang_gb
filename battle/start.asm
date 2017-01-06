@@ -782,7 +782,7 @@ Func_70541:
 	ld a, $5
 	ld [wca65], a
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, [wd43a]
 	cp $0
@@ -1565,7 +1565,7 @@ Func_70bca:
 	ld a, [wc907]
 	call Func_7030c
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	call Func_3566
 	ld a, [wd40c]
 	cp $1

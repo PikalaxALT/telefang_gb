@@ -1,6 +1,6 @@
 Func_7c000:
 	ld a, $f0
-	ld [wc91e], a
+	ld [wTileWhere0IsLoaded], a
 	ld a, [wSubroutine]
 	jump_table
 	dw Func_7c019
