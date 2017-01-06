@@ -20961,8 +20961,7 @@ SECTION "bank 26", ROMX, BANK [$26]
 Data_98000:
 INCLUDE "data/unknown_98000.asm"
 
-Pointers_99068:
-INCLUDE "data/unknown_99068.asm"
+INCLUDE "text/std_text_99068.asm"
 
 SECTION "bank 27", ROMX, BANK [$27]
 Data_9c000::
@@ -38934,73 +38933,53 @@ GFX_fc4eb:: INCBIN "gfx/misc/fc4eb.2bpp"
 GFX_fcceb:: INCBIN "gfx/misc/fcceb.2bpp"
 
 SECTION "bank 40", ROMX, BANK [$40]
-Pointers_100000:
-	dr $100000, $100ea5
+INCLUDE "text/std_text_100000.asm"
 
 SECTION "bank 45", ROMX, BANK [$45]
-Pointers_114000:
-	dr $114000, $11507b
-
-Pointers_11507b:
-	dr $11507b, $11702d
+INCLUDE "text/std_text_114000.asm"
+INCLUDE "text/std_text_11507b.asm"
 
 SECTION "bank 46", ROMX, BANK [$46]
-Pointers_118000:
-	dr $118000, $119408
+INCLUDE "text/std_text_118000.asm"
 
 SECTION "bank 47", ROMX, BANK [$47]
-Pointers_11c000:
-	dr $11c000, $11e3b1
+INCLUDE "text/std_text_11c000.asm"
 
 SECTION "bank 48", ROMX, BANK [$48]
-Pointers_120000:
-	dr $120000, $122cdf
+INCLUDE "text/std_text_120000.asm"
 
 SECTION "bank 49", ROMX, BANK [$49]
-Pointers_124000:
-	dr $124000, $126e05
+INCLUDE "text/std_text_124000.asm"
 
 SECTION "bank 4A", ROMX, BANK [$4a]
-Pointers_128000:
-	dr $128000, $1281d9
-
-Pointers_1281d9:
-	dr $1281d9, $12955d
+INCLUDE "text/std_text_128000.asm"
+INCLUDE "text/std_text_1281d9.asm"
 
 SECTION "bank 4B", ROMX, BANK [$4b]
-Pointers_12c000:
-	dr $12c000, $12f15d
+INCLUDE "text/std_text_12c000.asm"
 
 SECTION "bank 4C", ROMX, BANK [$4c]
-Pointers_130000:
-	dr $130000, $131f82
+INCLUDE "text/std_text_130000.asm"
 
 SECTION "bank 4D", ROMX, BANK [$4d]
-Pointers_134000::
-	dr $134000, $13622e
+INCLUDE "text/std_text_134000.asm"
 
 UnknownTZFile30:: INCBIN "gfx/tzfiles/tz_30.2bpp.tz"
 UnknownTZFile31:: INCBIN "gfx/tzfiles/tz_31.2bpp.tz"
 UnknownTZFile29:: INCBIN "gfx/tzfiles/tz_29.2bpp.tz"
 
 SECTION "bank 4E", ROMX, BANK [$4e]
-Pointers_138000:
-	dr $138000, $13af0a
+INCLUDE "text/std_text_138000.asm"
 
 SECTION "bank 4F", ROMX, BANK [$4f]
-Pointers_13c000:
-	dr $13c000, $13ee1b
+INCLUDE "text/std_text_13c000.asm"
 
 SECTION "bank 50", ROMX, BANK [$50]
-Pointers_140000:
-	dr $140000, $143509
+INCLUDE "text/std_text_140000.asm"
 
 SECTION "bank 51", ROMX, BANK [$51]
-Pointers_144000:
-	dr $144000, $145c9a
-
-Pointers_145c9a:
-	dr $145c9a, $147733
+INCLUDE "text/std_text_144000.asm"
+INCLUDE "text/std_text_145c9a.asm"
 
 SECTION "bank 52", ROMX, BANK [$52]
 INCLUDE "data/map_data_148000.asm"
@@ -39026,10 +39005,10 @@ SECTION "bank 55", ROMX, BANK [$55]
 Pointers_154000: INCLUDE "data/unknown_154000.asm"
 
 SECTION "bank 56", ROMX, BANK [$56]
-Pointers_158000: INCLUDE "data/unknown_158000.asm"
+INCLUDE "text/std_text_158000.asm"
 
 SECTION "bank 57", ROMX, BANK [$57]
-Pointers_15c000: INCLUDE "data/unknown_15c000.asm"
+INCLUDE "text/std_text_15c000.asm"
 
 SECTION "bank 59", ROMX, BANK [$59]
 UnknownTZFile32:: INCBIN "gfx/tzfiles/tz_32.2bpp.tz"
