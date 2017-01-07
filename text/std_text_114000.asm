@@ -1,212 +1,212 @@
 Pointers_114000:
-	dw Text_1141a0
-	dw Text_1141af
-	dw Text_1141bf
-	dw Text_1141ca
-	dw Text_1141df
-	dw Text_1141ea
-	dw Text_1141f6
-	dw Text_114205
-	dw Text_114212
-	dw Text_114224
-	dw Text_114239
-	dw Text_114259
-	dw Text_114266
-	dw Text_114278
-	dw Text_114288
-	dw Text_11429e
-	dw Text_1142a7
-	dw Text_1142b9
-	dw Text_1142c1
-	dw Text_1142d0
-	dw Text_1142dd
-	dw Text_1142ed
-	dw Text_1142f7
-	dw Text_114302
-	dw Text_11431b
-	dw Text_11432b
-	dw Text_114338
-	dw Text_114343
-	dw Text_114350
-	dw Text_114364
-	dw Text_114374
-	dw Text_11438e
-	dw Text_11439f
-	dw Text_1143b1
-	dw Text_1143b1
-	dw Text_1143c8
-	dw Text_1143d2
-	dw Text_1143dd
-	dw Text_1143f3
-	dw Text_114410
-	dw Text_114422
-	dw Text_114437
-	dw Text_11444a
-	dw Text_11445f
-	dw Text_114473
-	dw Text_114488
-	dw Text_11449c
-	dw Text_1144a6
-	dw Text_1144ae
-	dw Text_1144b5
-	dw Text_1144c2
-	dw Text_1144de
-	dw Text_1144ec
-	dw Text_1144fc
-	dw Text_11450e
-	dw Text_11451c
-	dw Text_11452c
-	dw Text_11453b
-	dw Text_11454b
-	dw Text_114559
-	dw Text_114568
-	dw Text_114576
-	dw Text_114584
-	dw Text_114597
-	dw Text_1145a9
-	dw Text_1145ba
-	dw Text_1145cb
-	dw Text_1145de
-	dw Text_1145f0
-	dw Text_114601
-	dw Text_114612
-	dw Text_114620
-	dw Text_11462d
-	dw Text_11463e
-	dw Text_11464d
-	dw Text_11465c
-	dw Text_11466c
-	dw Text_114681
-	dw Text_114696
-	dw Text_1146a4
-	dw Text_1146ba
-	dw Text_1146cf
-	dw Text_1146df
-	dw Text_1146f0
-	dw Text_114700
-	dw Text_11470e
-	dw Text_11471f
-	dw Text_114732
-	dw Text_114740
-	dw Text_11474c
-	dw Text_114759
-	dw Text_114767
-	dw Text_114773
-	dw Text_114784
-	dw Text_114794
-	dw Text_1147a2
-	dw Text_1147b1
-	dw Text_1147c2
-	dw Text_1147de
-	dw Text_1147fa
-	dw Text_114812
-	dw Text_114828
-	dw Text_11483d
-	dw Text_11485a
-	dw Text_114876
-	dw Text_114882
-	dw Text_114896
-	dw Text_1148b2
-	dw Text_1148c6
-	dw Text_1148e3
-	dw Text_1148f6
-	dw Text_114912
-	dw Text_11492c
-	dw Text_114946
-	dw Text_11495a
-	dw Text_114969
-	dw Text_114977
-	dw Text_114985
-	dw Text_11499e
-	dw Text_1149b0
-	dw Text_1149c1
-	dw Text_1149e7
-	dw Text_1149f3
-	dw Text_114a02
-	dw Text_114a18
-	dw Text_114a22
-	dw Text_114a38
-	dw Text_114a4c
-	dw Text_114a63
-	dw Text_114a97
-	dw Text_114ab5
-	dw Text_114ace
-	dw Text_114ae2
-	dw Text_114af2
-	dw Text_114afc
-	dw Text_114b12
-	dw Text_114b1c
-	dw Text_114b2b
-	dw Text_114b3c
-	dw Text_114b4e
-	dw Text_114b63
-	dw Text_114b7a
-	dw Text_114b94
-	dw Text_114ba4
-	dw Text_114bc2
-	dw Text_114bcc
-	dw Text_114be8
-	dw Text_114c04
-	dw Text_114c14
-	dw Text_114c21
-	dw Text_114c35
-	dw Text_114c50
-	dw Text_114c60
-	dw Text_114c6e
-	dw Text_114c83
-	dw Text_114c93
-	dw Text_114ca4
-	dw Text_114cba
-	dw Text_114cc3
-	dw Text_114ccd
-	dw Text_114cde
-	dw Text_114cf4
-	dw Text_114d2b
-	dw Text_114d3e
-	dw Text_114d51
-	dw Text_114d64
-	dw Text_114d77
-	dw Text_114d7f
-	dw Text_114d9a
-	dw Text_114dab
-	dw Text_114dbf
-	dw Text_114dd3
-	dw Text_114de8
-	dw Text_114e03
-	dw Text_114e26
-	dw Text_114e33
-	dw Text_114e4a
-	dw Text_114e6e
-	dw Text_114e8f
-	dw Text_114eb4
-	dw Text_114ec1
-	dw Text_114ece
-	dw Text_114eec
-	dw Text_114f0a
-	dw Text_114f1d
-	dw Text_114f35
-	dw Text_114f4a
-	dw Text_114f51
-	dw Text_114f59
-	dw Text_114f61
-	dw Text_114f6b
-	dw Text_114f77
-	dw Text_114f98
-	dw Text_114fb6
-	dw Text_114ff0
-	dw Text_115013
-	dw Text_11505e
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
-	dw Text_11507b
+	dw Text_1141a0 ; 00
+	dw Text_1141af ; 01
+	dw Text_1141bf ; 02
+	dw Text_1141ca ; 03
+	dw Text_1141df ; 04
+	dw Text_1141ea ; 05
+	dw Text_1141f6 ; 06
+	dw Text_114205 ; 07
+	dw Text_114212 ; 08
+	dw Text_114224 ; 09
+	dw Text_114239 ; 0a
+	dw Text_114259 ; 0b
+	dw Text_114266 ; 0c
+	dw Text_114278 ; 0d
+	dw Text_114288 ; 0e
+	dw Text_11429e ; 0f
+	dw Text_1142a7 ; 10
+	dw Text_1142b9 ; 11
+	dw Text_1142c1 ; 12
+	dw Text_1142d0 ; 13
+	dw Text_1142dd ; 14
+	dw Text_1142ed ; 15
+	dw Text_1142f7 ; 16
+	dw Text_114302 ; 17
+	dw Text_11431b ; 18
+	dw Text_11432b ; 19
+	dw Text_114338 ; 1a
+	dw Text_114343 ; 1b
+	dw Text_114350 ; 1c
+	dw Text_114364 ; 1d
+	dw Text_114374 ; 1e
+	dw Text_11438e ; 1f
+	dw Text_11439f ; 20
+	dw Text_1143b1 ; 21
+	dw Text_1143b1 ; 22
+	dw Text_1143c8 ; 23
+	dw Text_1143d2 ; 24
+	dw Text_1143dd ; 25
+	dw Text_1143f3 ; 26
+	dw Text_114410 ; 27
+	dw Text_114422 ; 28
+	dw Text_114437 ; 29
+	dw Text_11444a ; 2a
+	dw Text_11445f ; 2b
+	dw Text_114473 ; 2c
+	dw Text_114488 ; 2d
+	dw Text_11449c ; 2e
+	dw Text_1144a6 ; 2f
+	dw Text_1144ae ; 30
+	dw Text_1144b5 ; 31
+	dw Text_1144c2 ; 32
+	dw Text_1144de ; 33
+	dw Text_1144ec ; 34
+	dw Text_1144fc ; 35
+	dw Text_11450e ; 36
+	dw Text_11451c ; 37
+	dw Text_11452c ; 38
+	dw Text_11453b ; 39
+	dw Text_11454b ; 3a
+	dw Text_114559 ; 3b
+	dw Text_114568 ; 3c
+	dw Text_114576 ; 3d
+	dw Text_114584 ; 3e
+	dw Text_114597 ; 3f
+	dw Text_1145a9 ; 40
+	dw Text_1145ba ; 41
+	dw Text_1145cb ; 42
+	dw Text_1145de ; 43
+	dw Text_1145f0 ; 44
+	dw Text_114601 ; 45
+	dw Text_114612 ; 46
+	dw Text_114620 ; 47
+	dw Text_11462d ; 48
+	dw Text_11463e ; 49
+	dw Text_11464d ; 4a
+	dw Text_11465c ; 4b
+	dw Text_11466c ; 4c
+	dw Text_114681 ; 4d
+	dw Text_114696 ; 4e
+	dw Text_1146a4 ; 4f
+	dw Text_1146ba ; 50
+	dw Text_1146cf ; 51
+	dw Text_1146df ; 52
+	dw Text_1146f0 ; 53
+	dw Text_114700 ; 54
+	dw Text_11470e ; 55
+	dw Text_11471f ; 56
+	dw Text_114732 ; 57
+	dw Text_114740 ; 58
+	dw Text_11474c ; 59
+	dw Text_114759 ; 5a
+	dw Text_114767 ; 5b
+	dw Text_114773 ; 5c
+	dw Text_114784 ; 5d
+	dw Text_114794 ; 5e
+	dw Text_1147a2 ; 5f
+	dw Text_1147b1 ; 60
+	dw Text_1147c2 ; 61
+	dw Text_1147de ; 62
+	dw Text_1147fa ; 63
+	dw Text_114812 ; 64
+	dw Text_114828 ; 65
+	dw Text_11483d ; 66
+	dw Text_11485a ; 67
+	dw Text_114876 ; 68
+	dw Text_114882 ; 69
+	dw Text_114896 ; 6a
+	dw Text_1148b2 ; 6b
+	dw Text_1148c6 ; 6c
+	dw Text_1148e3 ; 6d
+	dw Text_1148f6 ; 6e
+	dw Text_114912 ; 6f
+	dw Text_11492c ; 70
+	dw Text_114946 ; 71
+	dw Text_11495a ; 72
+	dw Text_114969 ; 73
+	dw Text_114977 ; 74
+	dw Text_114985 ; 75
+	dw Text_11499e ; 76
+	dw Text_1149b0 ; 77
+	dw Text_1149c1 ; 78
+	dw Text_1149e7 ; 79
+	dw Text_1149f3 ; 7a
+	dw Text_114a02 ; 7b
+	dw Text_114a18 ; 7c
+	dw Text_114a22 ; 7d
+	dw Text_114a38 ; 7e
+	dw Text_114a4c ; 7f
+	dw Text_114a63 ; 80
+	dw Text_114a97 ; 81
+	dw Text_114ab5 ; 82
+	dw Text_114ace ; 83
+	dw Text_114ae2 ; 84
+	dw Text_114af2 ; 85
+	dw Text_114afc ; 86
+	dw Text_114b12 ; 87
+	dw Text_114b1c ; 88
+	dw Text_114b2b ; 89
+	dw Text_114b3c ; 8a
+	dw Text_114b4e ; 8b
+	dw Text_114b63 ; 8c
+	dw Text_114b7a ; 8d
+	dw Text_114b94 ; 8e
+	dw Text_114ba4 ; 8f
+	dw Text_114bc2 ; 90
+	dw Text_114bcc ; 91
+	dw Text_114be8 ; 92
+	dw Text_114c04 ; 93
+	dw Text_114c14 ; 94
+	dw Text_114c21 ; 95
+	dw Text_114c35 ; 96
+	dw Text_114c50 ; 97
+	dw Text_114c60 ; 98
+	dw Text_114c6e ; 99
+	dw Text_114c83 ; 9a
+	dw Text_114c93 ; 9b
+	dw Text_114ca4 ; 9c
+	dw Text_114cba ; 9d
+	dw Text_114cc3 ; 9e
+	dw Text_114ccd ; 9f
+	dw Text_114cde ; a0
+	dw Text_114cf4 ; a1
+	dw Text_114d2b ; a2
+	dw Text_114d3e ; a3
+	dw Text_114d51 ; a4
+	dw Text_114d64 ; a5
+	dw Text_114d77 ; a6
+	dw Text_114d7f ; a7
+	dw Text_114d9a ; a8
+	dw Text_114dab ; a9
+	dw Text_114dbf ; aa
+	dw Text_114dd3 ; ab
+	dw Text_114de8 ; ac
+	dw Text_114e03 ; ad
+	dw Text_114e26 ; ae
+	dw Text_114e33 ; af
+	dw Text_114e4a ; b0
+	dw Text_114e6e ; b1
+	dw Text_114e8f ; b2
+	dw Text_114eb4 ; b3
+	dw Text_114ec1 ; b4
+	dw Text_114ece ; b5
+	dw Text_114eec ; b6
+	dw Text_114f0a ; b7
+	dw Text_114f1d ; b8
+	dw Text_114f35 ; b9
+	dw Text_114f4a ; ba
+	dw Text_114f51 ; bb
+	dw Text_114f59 ; bc
+	dw Text_114f61 ; bd
+	dw Text_114f6b ; be
+	dw Text_114f77 ; bf
+	dw Text_114f98 ; 0
+	dw Text_114fb6 ; 1
+	dw Text_114ff0 ; 2
+	dw Text_115013 ; 3
+	dw Text_11505e ; 4
+	dw Text_11507b ; 5
+	dw Text_11507b ; 6
+	dw Text_11507b ; 7
+	dw Text_11507b ; 8
+	dw Text_11507b ; 9
+	dw Text_11507b ; a
+	dw Text_11507b ; b
+	dw Text_11507b ; c
+	dw Text_11507b ; d
+	dw Text_11507b ; e
+	dw Text_11507b ; f
 
 Text_1141a0:
 	TX_CALL wBattleStringBuffer

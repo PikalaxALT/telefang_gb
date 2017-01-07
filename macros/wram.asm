@@ -24,7 +24,7 @@ battle_struct: MACRO
 \1FD:: ds 1
 \1MoveTarget:: ds 1
 \1Field0x0c:: ds 1
-\1Field0x0d:: ds 1
+\1AddressBookLocation:: ds 1
 \1Attack:: ds 1
 \1Defense:: ds 1
 \1SpAtk:: ds 1

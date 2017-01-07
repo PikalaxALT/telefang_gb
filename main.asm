@@ -49,7 +49,7 @@ Func_8032::
 
 Func_8061::
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_8069::
@@ -78,7 +78,7 @@ Func_808e::
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine
@@ -147,7 +147,7 @@ Func_8501::
 
 Func_8530::
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_8538::
@@ -176,7 +176,7 @@ Func_855d::
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine
@@ -239,7 +239,7 @@ Func_85dd:
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_85ed:
@@ -259,7 +259,7 @@ Func_85ff:
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine
@@ -648,7 +648,7 @@ Func_88b6:
 	and A_BUTTON
 	ret z
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_88c3:
@@ -663,7 +663,7 @@ Func_88c3:
 
 Func_88d2:
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_88da: ; 88da (2:48da)
@@ -795,9 +795,9 @@ Func_8c81: ; 8c81 (2:4c81)
 	ld bc, $16
 	call GetCGB_BGLayout_
 	ld a, $0
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld a, $0
-	call Func_0543
+	call LoadUnknGfx090
 	ld a, [wcb2b]
 	cp $0
 	jp z, Func_8cac
@@ -896,7 +896,7 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp NextMoveAnimationSubroutine
 
 Func_8d7a: ; 8d7a (2:4d7a)
@@ -1045,7 +1045,7 @@ asm_8e7e
 	ld [H_SFX_ID], a
 asm_8e83
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wcb2b]
 	cp $0
 	jp nz, Func_8e95
@@ -1595,7 +1595,7 @@ asm_928b
 	ld a, [wCurDenjuuLevel]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	sra b
 	rr c
 	push bc
@@ -6138,7 +6138,7 @@ Func_30c0a: ; 30c0a (c:4c0a)
 Func_30c1d: ; 30c1d (c:4c1d)
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
-	ld a, [wd407]
+	ld a, [wBattleResult]
 	or a
 	jr nz, .asm_30c53
 	ld a, [wc9dd]
@@ -15315,7 +15315,7 @@ Func_39598: ; 39598 (e:5598)
 	ld a, $7
 	ld [wSubroutine], a
 	ld a, $4
-	jp Func_050a
+	jp StartFade_
 
 .asm_39631
 	callba Func_c8802
@@ -16805,7 +16805,7 @@ Func_3a145: ; 3a145 (e:6145)
 	ld [wPrevROMBank], a
 	ld bc, $0
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $20
 	ld [wOAMAnimation24_Duration + 1], a
 	ld a, $0
@@ -16817,7 +16817,7 @@ Func_3a15d: ; 3a15d (e:615d)
 	ld [wPrevROMBank], a
 	ld bc, $0
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $0
 	ld [wOAMAnimation24_Duration + 1], a
 	ld a, $0
@@ -17265,7 +17265,7 @@ Func_3a696: ; 3a696 (e:6696)
 
 Func_3a6ac:
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -17314,7 +17314,7 @@ Func_3a705:
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	lb bc, 0, 0
 	ld e, $70
 	ld a, $0
@@ -17376,7 +17376,7 @@ Func_3a705:
 	hlbgcoord 3, 14
 	call PrintPhoneNumber_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -17403,7 +17403,7 @@ Func_3a7d2:
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -18671,7 +18671,7 @@ Func_3c28f: ; 3c28f (f:428f)
 	ld a, $f
 	ld [wPrevROMBank], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld b, $4
 	call Func_3c112
 	xor a
@@ -19381,7 +19381,7 @@ Func_3c76a: ; 3c76a (f:476a)
 	ld a, [wcd0a]
 	ld [wOtherTFangerClass], a
 	ld a, [wcd0b]
-	ld [wd403], a
+	ld [wBattleMode], a
 	ld b, $4
 	call Func_3c112
 	xor a
@@ -19501,7 +19501,7 @@ Func_3c822: ; 3c822 (f:4822)
 	ret
 
 Func_3c843: ; 3c843 (f:4843)
-	ld a, [wd407]
+	ld a, [wBattleResult]
 	or a
 	jr nz, .asm_3c850
 	ld b, $2
@@ -20779,7 +20779,7 @@ INCLUDE "data/unknown_98000.asm"
 INCLUDE "text/std_text_99068.asm"
 
 SECTION "bank 27", ROMX, BANK [$27]
-Data_9c000::
+GrowthRates::
 rept 6
 x = 1
 y = 0
@@ -22494,7 +22494,7 @@ Func_a56a5: ; a56a5 (29:56a5)
 Func_a56c2: ; a56c2 (29:56c2)
 	ld bc, $0
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_a56cd: ; a56cd (29:56cd)
@@ -22540,7 +22540,7 @@ Func_a56cd: ; a56cd (29:56cd)
 	ld a, $0
 	ld [wcad0], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 .asm_a572b
@@ -22801,7 +22801,7 @@ Func_a591b: ; a591b (29:591b)
 Func_a593b: ; a593b (29:593b)
 	ld bc, $0
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $0
 	ld [$c1f6], a
 	jp IncrementSubroutine
@@ -22935,7 +22935,7 @@ Func_a5a31: ; a5a31 (29:5a31)
 	jr z, asm_a5a4a
 .asm_a5a42
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 asm_a5a4a
@@ -22987,7 +22987,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	inc a
 	ld [$c1f6], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $71
 	ld [H_SFX_ID], a
 	ret
@@ -23060,7 +23060,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ld a, $5
 	call LoadNthStdOBPalette
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	call Func_a5bb5
 	ret
 
@@ -23098,7 +23098,7 @@ Func_a5b77: ; a5b77 (29:5b77)
 	cp $1e
 	ret c
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_a5b89:
@@ -23541,7 +23541,7 @@ Func_a5f82: ; a5f82 (29:5f82)
 	and $3
 	ret z
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_a5f9b: ; a5f9b (29:5f9b)
@@ -23893,7 +23893,7 @@ Func_a81a2: ; a81a2 (2a:41a2)
 Func_a8200: ; a8200 (2a:4200)
 	ld bc, $0
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $9
 	ld [wTextSubroutine], a
 	jp IncrementSubroutine
@@ -24060,7 +24060,7 @@ Func_a82b7: ; a82b7 (2a:42b7)
 	ld a, $11
 	ld [wSubroutine], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 .asm_a8367
 	ret
 
@@ -24082,7 +24082,7 @@ Func_a837a: ; a837a (2a:437a)
 	ld a, $11
 	ld [wSubroutine], a
 	ld a, $4
-	jp Func_050a
+	jp StartFade_
 
 .asm_a838a
 	ld a, [wTextSubroutine]
@@ -24893,7 +24893,7 @@ Func_a8981: ; a8981 (2a:4981)
 	ld [wSpriteUpdatesEnabled], a
 	ld bc, $0
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_a8991: ; a8991 (2a:4991)
@@ -24922,7 +24922,7 @@ Func_a8991: ; a8991 (2a:4991)
 	and $e
 	jr z, .asm_a89ca
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 .asm_a89ca
@@ -25575,7 +25575,7 @@ Func_a8e7e: ; a8e7e (2a:4e7e)
 	ld [wSpriteUpdatesEnabled], a
 	ld bc, $0
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wcae3]
 	or a
 	jp z, Func_a8e9d
@@ -25992,7 +25992,7 @@ Func_a91b4: ; a91b4 (2a:51b4)
 	ld a, $1f
 	ld [wSubroutine], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	call Func_a8bed
 	ld a, $c
 	ld [wcae7], a
@@ -26241,7 +26241,7 @@ Func_a9377: ; a9377 (2a:5377)
 	ld de, VTilesBG tile $01
 	call LoadDenjuuPic_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $0
 	ld [wcae7], a
 	jp IncrementSubroutine
@@ -26289,7 +26289,7 @@ Func_a93cf: ; a93cf (2a:53cf)
 	call Func_378c
 	ld bc, $0
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $1
 	ld [wOAMAnimation19_PriorityFlags], a
 	call Func_a92ad
@@ -26489,7 +26489,7 @@ Func_a9595: ; a9595 (2a:5595)
 	or a
 	jr z, .asm_a95dc
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_a93c7
 
 .asm_a95c0
@@ -26590,7 +26590,7 @@ Func_a9595: ; a9595 (2a:5595)
 	ld [wPrevROMBank], a
 	ld bc, $0
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp Func_a93c7
 
 Func_a96b8: ; a96b8 (2a:56b8)
@@ -26651,7 +26651,7 @@ Func_a96e4: ; a96e4 (2a:56e4)
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	pop bc
-	call Func_05d9
+	call GetExpToNextLevel
 	pop hl
 	ld a, b
 	ld [wOAMAnimation18_Duration + 2], a
@@ -26718,7 +26718,7 @@ Func_a978b:
 	ld a, BANK(Func_a978b)
 	ld [wPrevROMBank], a
 	ld a, [wcaed]
-	call Func_05d9
+	call GetExpToNextLevel
 	push bc
 	callba Func_a5509
 	pop hl
@@ -28967,7 +28967,7 @@ Func_c8802: ; c8802 (32:4802)
 	ld a, $7
 	ld [wSubroutine], a
 	ld a, $4
-	jp Func_050a
+	jp StartFade_
 
 Data_c883e:
 	db $2a, $04, $01

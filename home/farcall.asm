@@ -98,7 +98,7 @@ LoadStdWindowLayout_:: ; 04fa
 	rst Bankswitch
 	ret
 
-Func_050a::
+StartFade_::
 	call StartFade
 	rst MemBankswitch
 	ret
@@ -143,7 +143,7 @@ Func_053e::
 	rst MemBankswitch
 	ret
 
-Func_0543::
+LoadUnknGfx090::
 	call Func_39ec
 	rst MemBankswitch
 	ret
@@ -275,12 +275,12 @@ GetDenjuuSprite_::
 	rst MemBankswitch
 	ret
 
-Func_05d9::
+GetExpToNextLevel::
 	push af
-	ld a, BANK(Data_9c000)
+	ld a, BANK(GrowthRates)
 	rst Bankswitch
 	pop af
-	call Func_3b4e
+	call GetExpToNextLevel_
 	rst MemBankswitch
 	ret
 
@@ -369,7 +369,7 @@ Func_0648::
 	ret
 
 PrintPhoneNumber_::
-; abcde = Phone Number
+; abcde = Encrypted Phone Number
 ; hl = VBGMap address
 	homecall_memret_passa PrintPhoneNumber
 	ret
@@ -379,6 +379,7 @@ GetDenjuuNicknameFromAdddressBookOffset_::
 	ret
 
 GetPhoneNumber_::
+; abcde = Encrypted Phone Number
 	homecall_memret_passa GetPhoneNumber
 	ret
 
@@ -431,8 +432,8 @@ Func_06b4::
 	homecall_memret Func_7c61b
 	ret
 
-Func_06bc::
-	homecall_memret Func_74ff2
+BattleResults_ResetLCDCFlags_::
+	homecall_memret BattleResults_ResetLCDCFlags
 	ret
 
 Func_06c4::

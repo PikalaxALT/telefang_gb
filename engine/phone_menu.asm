@@ -220,7 +220,7 @@ Func_1013b: ; 1013b (4:413b)
 	cp $1
 	jr z, .asm_101d3
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $10
@@ -410,7 +410,7 @@ Func_10328: ; 10328 (4:4328)
 
 Func_10339: ; 10339 (4:4339)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine
@@ -626,7 +626,7 @@ Func_10452: ; 10452 (4:4452)
 	call Func_1249a
 	call Func_1265a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_10546: ; 10546 (4:4546)
@@ -649,7 +649,7 @@ Func_10558: ; 10558 (4:4558)
 
 Func_1056a: ; 1056a (4:456a)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, [wd4a7]
@@ -856,7 +856,7 @@ Func_10681: ; 10681 (4:4681)
 	ld a, $4
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $17
 	ld [wSubroutine], a
 	ret
@@ -1004,7 +1004,7 @@ Func_10807: ; 10807 (4:4807)
 	cp $0
 	jr z, .asm_1082b
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $19
 	ld [wSubroutine], a
 	ret
@@ -1132,7 +1132,7 @@ Func_10907: ; 10907 (4:4907)
 	xor a
 	ld [wBGPalUpdate], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	call Func_13e6e
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
@@ -1169,7 +1169,7 @@ Func_10953: ; 10953 (4:4953)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_10969: ; 10969 (4:4969)
@@ -1213,7 +1213,7 @@ Func_109aa: ; 109aa (4:49aa)
 	xor a
 	ld [wBGPalUpdate], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	call Func_13e6e
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
@@ -1247,7 +1247,7 @@ Func_109f3: ; 109f3 (4:49f3)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_10a09: ; 10a09 (4:4a09)
@@ -1433,7 +1433,7 @@ Func_10afc:
 	ld [wcb67], a
 	call Func_13fc6
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $7
 	ld [wSubroutine2], a
 .asm_10b91
@@ -1548,7 +1548,7 @@ Func_10c4a:
 	xor a
 	ld [wBGPalUpdate], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $2
 	ld [wcad0], a
 	ld a, [wcb04]
@@ -1594,7 +1594,7 @@ Func_10cc9:
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine2
 
 .asm_10ce7
@@ -1616,7 +1616,7 @@ Func_10cc9:
 	ld a, $8
 	ld [wc900], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $17
 	ld [wSubroutine], a
 	xor a
@@ -1766,7 +1766,7 @@ Func_10e45:
 	cp $9
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wSubroutine2], a
 	ret
@@ -1978,7 +1978,7 @@ Func_10f82:
 	ld a, b
 	ld [wc90d], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	call Func_13fc6
 	ld a, $17
 	ld [wSubroutine], a
@@ -2261,7 +2261,7 @@ Func_1120c: ; 1120c (4:520c)
 	xor a
 	ld [wBGPalUpdate], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $2
 	ld [wcad0], a
 	jp IncrementSubroutine2
@@ -2289,7 +2289,7 @@ Func_11265: ; 11265 (4:5265)
 	cp $9
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine2
 
 Func_11276: ; 11276 (4:5276)
@@ -5391,7 +5391,7 @@ Func_12b2b: ; 12b2b (4:6b2b)
 
 .asm_12b59
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $1
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -5425,7 +5425,7 @@ Func_12b6c: ; 12b6c (4:6b6c)
 
 .asm_12b9a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $1
 	call GetMusicBank
 	ld [H_MusicID], a

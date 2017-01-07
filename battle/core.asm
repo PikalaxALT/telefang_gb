@@ -1,11 +1,11 @@
-Func_14000:
+BattleCore_IncrementD401:
 	ld hl, wd401
 	inc [hl]
 	ret
 
 Func_14005:
 	ld a, $4
-	jp Func_050a
+	jp StartFade_
 
 Func_1400a:
 	ld a, $f0
@@ -56,7 +56,7 @@ UpdatePlayerHUD:
 	call DrawPlayerDenjuuHPBar
 	ld a, [wCurBattleDenjuu]
 	call DrawPlayerDenjuuPicFacingRight
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, VTilesBG tile $20
 	jp PlacePlayerDenjuuNickname
 
@@ -385,7 +385,7 @@ Func_142af: ; 142af (5:42af)
 
 Func_142ba:
 	xor a
-	call Func_0543
+	call LoadUnknGfx090
 	jp Func_142c1
 
 Func_142c1: ; 142c1 (5:42c1)
@@ -714,7 +714,7 @@ Func_1452d: ; 1452d (5:452d)
 	call LoadStdBGMapAttrLayout_
 	call Func_3f02
 	ld c, $74
-	call Func_3d02
+	call StdBattleTextBox
 	jp NextBattleSubroutine
 
 Func_1454a: ; 1454a (5:454a)
@@ -723,11 +723,11 @@ Func_1454a: ; 1454a (5:454a)
 	cp $9
 	ret nz
 	call InitSerialData
-	call Func_06bc
+	call BattleResults_ResetLCDCFlags_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_14566: ; 14566 (5:4566)
@@ -749,7 +749,7 @@ Func_1457d: ; 1457d (5:457d)
 	ld bc, $17
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $4
 	call GetCGB_OBLayout_
 	ld bc, $10
@@ -811,7 +811,7 @@ Func_145f5: ; 145f5 (5:45f5)
 	ld a, [wPlayerNameEntryBuffer]
 	cp $1
 	jr z, .asm_14627
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $1
 	jr z, .asm_14623
 	ld a, $14
@@ -988,7 +988,7 @@ Func_14721: ; 14721 (5:4721)
 	ld a, [wCurEnemyDenjuu]
 	cp b
 	jr z, .asm_1478b
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $3
 	jr z, .asm_14767
 	cp $2
@@ -1074,7 +1074,7 @@ Func_147bb: ; 147bb (5:47bb)
 Func_147ef: ; 147ef (5:47ef)
 	ld a, [wCurDenjuuBufferField0x12]
 	call Func_148a3
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wCurBattleDenjuu]
 	cp $1
 	jr z, .asm_1480c
@@ -1153,7 +1153,7 @@ Func_1487a: ; 1487a (5:487a)
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $4
 asm_14890
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $3c
 	ld [wMoveAnimationTimer], a
 	ld a, $27
@@ -1269,7 +1269,7 @@ Func_1492f: ; 1492f (5:492f)
 	ld a, [wCurBattleDenjuu]
 	cp b
 	jr z, .asm_14999
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $3
 	jr z, .asm_14975
 	cp $2
@@ -1356,7 +1356,7 @@ Func_149cd: ; 149cd (5:49cd)
 Func_14a01: ; 14a01 (5:4a01)
 	ld a, [wCurDenjuuBufferField0x12]
 	call Func_148a3
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wCurEnemyDenjuu]
 	cp $1
 	jr z, .asm_14a1e
@@ -1434,7 +1434,7 @@ Func_14a8c: ; 14a8c (5:4a8c)
 	ld [H_SFX_ID], a
 	ld c, $4
 asm_14a9f
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $3c
 	ld [wMoveAnimationTimer], a
 	ld a, $29
@@ -1471,7 +1471,7 @@ Func_14aad: ; 14aad (5:4aad)
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $b
 	ld [wBattleSubroutine], a
 	ret
@@ -1509,7 +1509,7 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	ld a, $0
 	ld [wBattleMenuSelection], a
 	ld c, $1f
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2a
 	ld [wBattleSubroutine], a
 	ret
@@ -1869,7 +1869,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	call OpenSRAMBank2
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -1918,11 +1918,11 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	call Func_143df
 	cp $1
 	jr nz, .asm_14e96
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $2
 	jr c, .asm_14e77
 	ld c, $8b
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $1
 	ld [wd411], a
 	call Func_165fe
@@ -1934,7 +1934,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	ld [wd415], a
 	ld [wd457], a
 	ld c, $94
-	call Func_3d02
+	call StdBattleTextBox
 	jr Func_14ec6
 
 .asm_14e87
@@ -1952,11 +1952,11 @@ Func_14ddd: ; 14ddd (5:4ddd)
 Func_14e9d: ; 14e9d (5:4e9d)
 	ld a, [wCurEnemyDenjuu]
 	ld [wd415], a
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $2
 	jr c, .asm_14ebc
 	ld c, $95
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $1
 	ld [wd411], a
 	call Func_165e8
@@ -1965,7 +1965,7 @@ Func_14e9d: ; 14e9d (5:4e9d)
 
 .asm_14ebc
 	ld c, $94
-	call Func_3d02
+	call StdBattleTextBox
 	jr Func_14ec6
 
 .asm_14ec3
@@ -2039,7 +2039,7 @@ Func_14f32: ; 14f32 (5:4f32)
 	ld [wMoveAnimationTimer], a
 	ret nz
 	ld a, $0
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld a, [wBattleTurn]
 	cp $1
 	jr z, .asm_14f59
@@ -2059,14 +2059,14 @@ Func_14f32: ; 14f32 (5:4f32)
 	cp $a
 	jr z, .asm_14f71
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $36
 	ld [wBattleSubroutine], a
 	ret
 
 .asm_14f71
 	ld c, $2e
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $c
 	ld [wBattleSubroutine], a
 	ld a, $22
@@ -2075,7 +2075,7 @@ Func_14f32: ; 14f32 (5:4f32)
 
 Func_14f81: ; 14f81 (5:4f81)
 	call BattlePrintText
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $1
 	jr z, .asm_14fba
 	call Func_3cd0
@@ -2192,7 +2192,7 @@ Func_15051: ; 15051 (5:5051)
 	call GetMoveTargetSide
 	cp $0
 	jr z, .asm_15091
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $1
 	jr z, .asm_15091
 	call Func_3cd0
@@ -2525,7 +2525,7 @@ Func_15292: ; 15292 (5:5292)
 	call Func_143df
 	cp $1
 	jr nz, .asm_1531e
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $3
 	jr z, .asm_152d5
 	cp $2
@@ -2575,7 +2575,7 @@ Func_15292: ; 15292 (5:5292)
 	ret
 
 .asm_1531e
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $3
 	jr z, .asm_1532c
 	cp $2
@@ -2685,7 +2685,7 @@ Func_153d4: ; 153d4 (5:53d4)
 	xor a
 	ld [wd4ea], a
 	ld c, $c
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2a
 	ld [wBattleSubroutine], a
 	ret
@@ -2707,7 +2707,7 @@ Func_153ef: ; 153ef (5:53ef)
 	xor a
 	ld [wd4ea], a
 	ld c, $c
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2a
 	ld [wBattleSubroutine], a
 	ret
@@ -2752,7 +2752,7 @@ Func_15428: ; 15428 (5:5428)
 
 .asm_15451
 	ld c, $c
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2a
 	ld [wBattleSubroutine], a
 	ret
@@ -2761,11 +2761,11 @@ Func_1545c: ; 1545c (5:545c)
 	jp Func_16643
 
 Func_1545f: ; 1545f (5:545f)
-	ld a, [wd412]
+	ld a, [wBattleEnded]
 	cp $1
 	jr z, .asm_15483
 	ld a, $0
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld a, [wBattleTurn]
 	cp $1
 	jr z, .asm_15478
@@ -2775,7 +2775,7 @@ Func_1545f: ; 1545f (5:545f)
 
 .asm_15478
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $36
 	ld [wBattleSubroutine], a
 	ret
@@ -2789,7 +2789,7 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wcb3f]
 	cp $1
 	jp z, Func_15606
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $1
 	jr z, .asm_154f7
 	ld a, [wPlayerDenjuu2ArrivedStatus]
@@ -2884,7 +2884,7 @@ Func_15556: ; 15556 (5:5556)
 	call OpenSRAMBank2
 	ld a, [wPlayerDenjuu2]
 	ld [wd4ce], a
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld [wd43c], a
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
@@ -2904,7 +2904,7 @@ Func_15556: ; 15556 (5:5556)
 	call OpenSRAMBank2
 	ld a, [wPlayerDenjuu3Species]
 	ld [wd4ce], a
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld [wd43c], a
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
@@ -2922,7 +2922,7 @@ Func_15556: ; 15556 (5:5556)
 	cp $ff
 	jr z, .asm_155d0
 	ld [wd4ce], a
-	ld a, [wEnemyDenjuu2Field0x0d]
+	ld a, [wEnemyDenjuu2AddressBookLocation]
 	ld [wd43c], a
 	ld a, [wd46c]
 	ld [wd46e], a
@@ -2935,7 +2935,7 @@ Func_15556: ; 15556 (5:5556)
 	cp $ff
 	jr z, Func_155ed
 	ld [wd4ce], a
-	ld a, [wEnemyDenjuu3Field0x0d]
+	ld a, [wEnemyDenjuu3AddressBookLocation]
 	ld [wd43c], a
 	ld a, [wd46d]
 	ld [wd46e], a
@@ -2944,12 +2944,12 @@ Func_15556: ; 15556 (5:5556)
 	jr Func_1560c
 
 Func_155ed: ; 155ed (5:55ed)
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $1
 	jr z, .asm_15601
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	inc a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld a, $1
 	ld [wdc34], a
 	ret
@@ -3000,7 +3000,7 @@ Func_1561e: ; 1561e (5:561e)
 	ld a, $1
 	ld [wcad0], a
 	ld c, $6d
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $34
 	ld [wBattleSubroutine], a
 	ret
@@ -3048,7 +3048,7 @@ Func_15683: ; 15683 (5:5683)
 	jp Func_157e0
 
 .asm_156ae
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $1
 	jr z, asm_1570f
 	ld a, [wEnemyDenjuu2ArrivedStatus]
@@ -3139,7 +3139,7 @@ Func_15766: ; 15766 (5:5766)
 	cp $ff
 	jr z, .asm_15783
 	ld [wd4ce], a
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld [wd43c], a
 	ld a, [wd46a]
 	ld [wd46e], a
@@ -3152,7 +3152,7 @@ Func_15766: ; 15766 (5:5766)
 	cp $ff
 	jr z, .asm_157a0
 	ld [wd4ce], a
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld [wd43c], a
 	ld a, [wd46b]
 	ld [wd46e], a
@@ -3166,7 +3166,7 @@ Func_15766: ; 15766 (5:5766)
 	jr z, .asm_157c0
 	ld a, [wEnemyDenjuu2Species]
 	ld [wd4ce], a
-	ld a, [wEnemyDenjuu2Field0x0d]
+	ld a, [wEnemyDenjuu2AddressBookLocation]
 	ld [wd43c], a
 	ld a, [wd46c]
 	ld [wd46e], a
@@ -3180,7 +3180,7 @@ Func_15766: ; 15766 (5:5766)
 	jr z, Func_157e0
 	ld a, [wEnemyDenjuu3]
 	ld [wd4ce], a
-	ld a, [wEnemyDenjuu3Field0x0d]
+	ld a, [wEnemyDenjuu3AddressBookLocation]
 	ld [wd43c], a
 	ld a, [wd46d]
 	ld [wd46e], a
@@ -3189,12 +3189,12 @@ Func_15766: ; 15766 (5:5766)
 	jr asm_157f5
 
 Func_157e0: ; 157e0 (5:57e0)
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $1
 	jr z, Func_157ef
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	inc a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ret
 
 Func_157ef: ; 157ef (5:57ef)
@@ -3213,7 +3213,7 @@ Func_157fb: ; 157fb (5:57fb)
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $3f
 	ld [wBattleSubroutine], a
 	ret
@@ -3365,7 +3365,7 @@ Func_15810: ; 15810 (5:5810)
 	ld a, [wPlayerDenjuu1Speed]
 	ld b, a
 	ld [wd43f], a
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $1
 	jr z, .asm_15979
 	ld a, [wPlayerDenjuu2Speed]
@@ -3373,7 +3373,7 @@ Func_15810: ; 15810 (5:5810)
 	jr c, .asm_15965
 	ld [wd43f], a
 .asm_15965
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $2
 	jr z, .asm_15979
 	ld a, [wd43f]
@@ -3390,7 +3390,7 @@ Func_15810: ; 15810 (5:5810)
 	jr c, .asm_15986
 	ld [wd43f], a
 .asm_15986
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $1
 	jr z, .asm_159ae
 	ld a, [wd43f]
@@ -3400,7 +3400,7 @@ Func_15810: ; 15810 (5:5810)
 	jr c, .asm_1599a
 	ld [wd43f], a
 .asm_1599a
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $2
 	jr z, .asm_159ae
 	ld a, [wd43f]
@@ -4172,12 +4172,12 @@ Func_15f66: ; 15f66 (5:5f66)
 	ret
 
 Func_15f79: ; 15f79 (5:5f79)
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $1
 	jr z, asm_15f9b
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	inc a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld a, [wBattleTurn]
 	cp $1
 	jp z, Func_15f95
@@ -4201,7 +4201,7 @@ Func_15fa1: ; 15fa1 (5:5fa1)
 	ld a, $3c
 	ld [wMoveAnimationTimer], a
 	ld c, $69
-	call Func_3d02
+	call StdBattleTextBox
 	jp NextBattleSubroutine
 
 Func_15fb4: ; 15fb4 (5:5fb4)
@@ -4355,7 +4355,7 @@ Func_160cb: ; 160cb (5:60cb)
 	call Func_14012
 	ld a, [wd435]
 	call LoadPlayerDenjuuBattlePic
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld hl, VTilesBG tile $20
 	call PlacePlayerDenjuuNickname
 	ld a, [wPlayerDenjuu2MaxHP]
@@ -4391,7 +4391,7 @@ Func_16108: ; 16108 (5:6108)
 	call Func_14012
 	ld a, [wd435]
 	call LoadPlayerDenjuuBattlePic
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld hl, VTilesBG tile $20
 	call PlacePlayerDenjuuNickname
 	ld a, [wPlayerDenjuu3MaxHP]
@@ -4559,7 +4559,7 @@ Func_16289: ; 16289 (5:6289)
 	call Func_142cd
 .asm_162c2
 	ld c, $2
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $12
 	ld [wBattleSubroutine], a
 	ret
@@ -4572,9 +4572,9 @@ Func_162cd: ; 162cd (5:62cd)
 	ld a, [wd470]
 	cp $1
 	jr z, .asm_162f5
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	inc a
-	ld [wd4e6], a
+	ld [wNumAlivePlayerDenjuu], a
 	lb bc, $1, $5
 	ld e, $8b
 	xor a
@@ -4584,9 +4584,9 @@ Func_162cd: ; 162cd (5:62cd)
 	jr .asm_1630b
 
 .asm_162f5
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	inc a
-	ld [wd4e7], a
+	ld [wNumAliveEnemyDenjuu], a
 	lb bc, $1, $1
 	ld e, $8b
 	xor a
@@ -4646,7 +4646,7 @@ Battle_TryToRun: ; 16360 (5:6360)
 	ld a, [wcb3f]
 	cp $1
 	jp z, Func_163d0
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $0
 	jp nz, Func_163d0
 	call Func_3f0a
@@ -4695,7 +4695,7 @@ Func_163d0: ; 163d0 (5:63d0)
 	ld a, $a
 	ld [wMoveAnimationTimer], a
 	ld c, $24
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $30
 	ld [wBattleSubroutine], a
 	ret
@@ -4903,7 +4903,7 @@ RotateThreeValuesAtBCForwards:
 
 Func_1651b: ; 1651b (5:651b)
 	ld bc, wCurBattleDenjuu
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $3
 	jr z, .asm_16528
 	jp SwapTwoValuesAtBC
@@ -4923,7 +4923,7 @@ Func_1652b:
 
 Func_1653b: ; 1653b (5:653b)
 	ld bc, wCurBattleDenjuu
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $3
 	jr z, .asm_16548
 	jp SwapTwoValuesAtBC
@@ -4933,7 +4933,7 @@ Func_1653b: ; 1653b (5:653b)
 
 Func_1654b: ; 1654b (5:654b)
 	ld bc, wCurEnemyDenjuu
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $3
 	jr z, .asm_16558
 	jp SwapTwoValuesAtBC
@@ -4953,7 +4953,7 @@ Func_1655b:
 
 Func_1656b: ; 1656b (5:656b)
 	ld bc, wCurEnemyDenjuu
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $3
 	jr z, .asm_16578
 	jp SwapTwoValuesAtBC
@@ -5086,13 +5086,13 @@ Func_16643:
 	dw Func_16c11
 	dw Func_16c6e
 	dw Func_16e82
-	dw Func_16f47
+	dw FaintPlayerDenjuu
 	dw Func_16f84
 	dw Func_16f97
 	dw Func_17122
 	dw Func_1717f
 	dw Func_17347
-	dw Func_173cf
+	dw FaintEnemyDenjuu
 	dw Func_1740c
 	dw Func_1741f
 	dw Func_174b9
@@ -5173,10 +5173,10 @@ Func_166a5: ; 166a5 (5:66a5)
 .asm_166fc
 	ld c, $d
 .asm_166fe
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $32
 	ld [wMoveAnimationTimer], a
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
 Func_16709: ; 16709 (5:6709)
 	call BattlePrintText
@@ -5187,7 +5187,7 @@ Func_16709: ; 16709 (5:6709)
 	ld a, [wBattleTurn]
 	cp $1
 	jr z, .asm_1671e
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
 .asm_1671e
 	ld a, $21
@@ -5242,7 +5242,7 @@ Func_16724: ; 16724 (5:6724)
 	jp nz, Func_1679b
 	call Func_170e4
 	ld c, $a
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $f4
 	ld [wdc34], a
 	ld a, $25
@@ -5379,7 +5379,7 @@ Func_16801: ; 16801 (5:6801)
 	jp nz, Func_16892
 	call Func_16bd3
 	ld c, $a
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $25
 	ld [wd401], a
 	ret
@@ -5635,7 +5635,7 @@ Func_16a4b: ; 16a4b (5:6a4b)
 	ld [wd4ef], a
 Func_16a87: ; 16a87 (5:6a87)
 	ld c, $90
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $53
 	ld [H_SFX_ID], a
 	ld a, $0
@@ -5891,10 +5891,10 @@ Func_16c11: ; 16c11 (5:6c11)
 	ld l, a
 	call PrintNumHL
 	ld c, $14
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $3c
 	ld [wd45c], a
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
 Func_16c6e: ; 16c6e (5:6c6e)
 	call BattlePrintText
@@ -5911,7 +5911,7 @@ Func_16c7f: ; 16c7f (5:6c7f)
 	cp $0
 	jr z, .asm_16c91
 	ld c, $70
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $24
 	ld [wd401], a
 	ret
@@ -5921,7 +5921,7 @@ Func_16c7f: ; 16c7f (5:6c7f)
 	cp $0
 	jr z, .asm_16ca3
 	ld c, $6f
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $24
 	ld [wd401], a
 	ret
@@ -5936,7 +5936,7 @@ Func_16c7f: ; 16c7f (5:6c7f)
 
 .asm_16caf
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2b
 	ld [wd401], a
 	ret
@@ -5955,7 +5955,7 @@ Func_16cba: ; 16cba (5:6cba)
 
 .asm_16ccf
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2b
 	ld [wd401], a
 	ret
@@ -6023,7 +6023,7 @@ Func_16cda: ; 16cda (5:6cda)
 	ld a, $f2
 	ld [wdc34], a
 	ld c, $6
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $19
 	ld [wd401], a
 	ret
@@ -6041,8 +6041,8 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	jp Func_16e17
 
 .asm_16d73
-	ld a, [wPlayerDenjuu1Field0x0d]
-	ld [wCurDenjuuBufferField0x0d], a
+	ld a, [wPlayerDenjuu1AddressBookLocation]
+	ld [wCurDenjuuBufferAddressBookLocation], a
 	ld a, [wPlayerDenjuu1Field0x12]
 	cp $7
 	jr z, .asm_16d87
@@ -6061,8 +6061,8 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	jr .asm_16df4
 
 .asm_16d93
-	ld a, [wPlayerDenjuu2Field0x0d]
-	ld [wCurDenjuuBufferField0x0d], a
+	ld a, [wPlayerDenjuu2AddressBookLocation]
+	ld [wCurDenjuuBufferAddressBookLocation], a
 	ld a, [wPlayerDenjuu2Field0x12]
 	cp $7
 	jr z, .asm_16da6
@@ -6081,8 +6081,8 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	jr .asm_16df4
 
 .asm_16db2
-	ld a, [wPlayerDenjuu3Field0x0d]
-	ld [wCurDenjuuBufferField0x0d], a
+	ld a, [wPlayerDenjuu3AddressBookLocation]
+	ld [wCurDenjuuBufferAddressBookLocation], a
 	ld a, [wPlayerDenjuu3Field0x12]
 	cp $7
 	jr z, .asm_16dc5
@@ -6102,7 +6102,7 @@ Func_16d5c: ; 16d5c (5:6d5c)
 
 .asm_16dd1
 	call OpenSRAMBank2
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld a, a
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
@@ -6112,14 +6112,14 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
 	ld c, $4b
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $24
 	ld [wd401], a
 	ret
 
 .asm_16df4
 	call OpenSRAMBank2
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld a, a
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
@@ -6129,7 +6129,7 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
 	ld c, $48
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $24
 	ld [wd401], a
 	ret
@@ -6144,7 +6144,7 @@ Func_16e1d: ; 16e1d (5:6e1d)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
 Func_16e29: ; 16e29 (5:6e29)
 	lb bc, $1, $5
@@ -6164,15 +6164,15 @@ Func_16e29: ; 16e29 (5:6e29)
 	call Func_142cd
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $7
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $57
 	ld [H_SFX_ID], a
 	call Func_1652b
 	ld a, [wCurBattleDenjuu]
 	ld [wCurMoveTarget], a
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	dec a
-	ld [wd4e6], a
+	ld [wNumAlivePlayerDenjuu], a
 	ld a, [wPlayerPartySize]
 	dec a
 	ld [wPlayerPartySize], a
@@ -6206,7 +6206,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	ld [wPlayerDenjuu1ArrivedStatus], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + 2
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $0
@@ -6222,7 +6222,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + 2
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $0
@@ -6238,7 +6238,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + 2
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $0
@@ -6254,10 +6254,10 @@ Func_16e82: ; 16e82 (5:6e82)
 	call Func_142cd
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $5
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wPlayerPartySize]
 	ld b, a
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp b
 	jr z, .asm_16f26
 	call Func_1652b
@@ -6268,36 +6268,36 @@ Func_16e82: ; 16e82 (5:6e82)
 .asm_16f29
 	ld a, [wCurBattleDenjuu]
 	ld [wCurMoveTarget], a
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	dec a
-	ld [wd4e6], a
+	ld [wNumAlivePlayerDenjuu], a
 	ld a, [wPlayerPartySize]
 	dec a
 	ld [wPlayerPartySize], a
 	ld a, [wd4e5]
 	dec a
 	ld [wd4e5], a
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
-Func_16f47: ; 16f47 (5:6f47)
+FaintPlayerDenjuu: ; 16f47 (5:6f47)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, [wd4e6]
+	ld a, [wNumAlivePlayerDenjuu]
 	cp $0
-	jr nz, .asm_16f6b
+	jr nz, .still_got_one_alive
 	ld a, $1
-	ld [wd412], a
+	ld [wBattleEnded], a
 	ld a, $0
-	ld [wd407], a
+	ld [wBattleResult], a
 	xor a
 	ld [wd401], a
 	ld a, $d
 	ld [wBattleSubroutine], a
 	ret
 
-.asm_16f6b
+.still_got_one_alive
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
@@ -6306,7 +6306,7 @@ Func_16f47: ; 16f47 (5:6f47)
 	ld e, $86
 	ld a, $0
 	call LoadStdBGMapLayout_
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
 Func_16f84: ; 16f84 (5:6f84)
 	call UpdatePlayerHUD
@@ -6453,7 +6453,7 @@ Func_1706c: ; 1706c (5:706c)
 	ld a, $1
 	ld [wdc34], a
 	ld c, $90
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $53
 	ld [H_SFX_ID], a
 	ld a, $0
@@ -6569,8 +6569,8 @@ Func_17122: ; 17122 (5:7122)
 	ld a, $3c
 	ld [wd45c], a
 	ld c, $14
-	call Func_3d02
-	jp Func_14000
+	call StdBattleTextBox
+	jp BattleCore_IncrementD401
 
 Func_1717f: ; 1717f (5:717f)
 	call BattlePrintText
@@ -6622,7 +6622,7 @@ Func_171d3: ; 171d3 (5:71d3)
 	ret
 
 asm_171d9
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $0
 	jp nz, Func_17246
 	ld a, [wCurDenjuuBufferField0x12]
@@ -6674,7 +6674,7 @@ Func_17232: ; 17232 (5:7232)
 	ld [wEnemyDenjuu3ArrivedStatus], a
 asm_1723b
 	ld c, $6
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $1b
 	ld [wd401], a
 	ret
@@ -6691,7 +6691,7 @@ Func_17246: ; 17246 (5:7246)
 
 .asm_17258
 	ld a, [wEnemyDenjuu1]
-	ld [wCurDenjuuBufferField0x0d], a
+	ld [wCurDenjuuBufferAddressBookLocation], a
 	ld a, [wEnemyDenjuu1Field0x12]
 	cp $7
 	jr z, .asm_1726b
@@ -6711,7 +6711,7 @@ Func_17246: ; 17246 (5:7246)
 
 .asm_17277
 	ld a, [wEnemyDenjuu2]
-	ld [wCurDenjuuBufferField0x0d], a
+	ld [wCurDenjuuBufferAddressBookLocation], a
 	ld a, [wEnemyDenjuu2Field0x12]
 	cp $7
 	jr z, .asm_1728a
@@ -6731,7 +6731,7 @@ Func_17246: ; 17246 (5:7246)
 
 .asm_17296
 	ld a, [wEnemyDenjuu3]
-	ld [wCurDenjuuBufferField0x0d], a
+	ld [wCurDenjuuBufferAddressBookLocation], a
 	ld a, [wEnemyDenjuu3Field0x12]
 	cp $7
 	jr z, .asm_172a9
@@ -6750,19 +6750,19 @@ Func_17246: ; 17246 (5:7246)
 	jr .asm_172c6
 
 .asm_172b5
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	call Func_142cd
 	ld c, $4b
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $24
 	ld [wd401], a
 	ret
 
 .asm_172c6
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	call Func_142cd
 	ld c, $48
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $24
 	ld [wd401], a
 	ret
@@ -6777,7 +6777,7 @@ Func_172dd: ; 172dd (5:72dd)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
 Func_172e9: ; 172e9 (5:72e9)
 	lb bc, $1, $1
@@ -6796,10 +6796,10 @@ Func_172e9: ; 172e9 (5:72e9)
 	ld a, [wCurDenjuuBuffer]
 	call Func_142cd
 	ld c, $7
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $57
 	ld [H_SFX_ID], a
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	dec a
 	cp $0
 	jr z, .asm_1732c
@@ -6807,9 +6807,9 @@ Func_172e9: ; 172e9 (5:72e9)
 	ld a, [wCurEnemyDenjuu]
 	ld [wd418], a
 .asm_1732c
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	dec a
-	ld [wd4e7], a
+	ld [wNumAliveEnemyDenjuu], a
 	ld a, [wEnemyPartySize]
 	dec a
 	ld [wEnemyPartySize], a
@@ -6857,14 +6857,14 @@ Func_17347: ; 17347 (5:7347)
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142cd
 	ld c, $5
-	call Func_3d02
-	ld a, [wd4e7]
+	call StdBattleTextBox
+	ld a, [wNumAliveEnemyDenjuu]
 	dec a
 	cp $0
 	jr z, .asm_173b7
 	ld a, [wEnemyPartySize]
 	ld b, a
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp b
 	jr z, .asm_173ae
 	call Func_1655b
@@ -6876,36 +6876,36 @@ Func_17347: ; 17347 (5:7347)
 	ld a, [wCurEnemyDenjuu]
 	ld [wd418], a
 .asm_173b7
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	dec a
-	ld [wd4e7], a
+	ld [wNumAliveEnemyDenjuu], a
 	ld a, [wEnemyPartySize]
 	dec a
 	ld [wEnemyPartySize], a
 	ld a, [wd4e5]
 	dec a
 	ld [wd4e5], a
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
-Func_173cf: ; 173cf (5:73cf)
+FaintEnemyDenjuu: ; 173cf (5:73cf)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, [wd4e7]
+	ld a, [wNumAliveEnemyDenjuu]
 	cp $0
-	jr nz, .asm_173f3
+	jr nz, .still_got_one_alive
 	ld a, $1
-	ld [wd412], a
+	ld [wBattleEnded], a
 	ld a, $1
-	ld [wd407], a
+	ld [wBattleResult], a
 	xor a
 	ld [wd401], a
 	ld a, $d
 	ld [wBattleSubroutine], a
 	ret
 
-.asm_173f3
+.still_got_one_alive
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBuffer]
@@ -6914,7 +6914,7 @@ Func_173cf: ; 173cf (5:73cf)
 	ld e, $81
 	ld a, $0
 	call LoadStdWindowLayout_
-	jp Func_14000
+	jp BattleCore_IncrementD401
 
 Func_1740c: ; 1740c (5:740c)
 	call UpdateEnemyHUD
@@ -6968,7 +6968,7 @@ asm_17466
 	cp $1
 	jr z, Func_17478
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $20
 	ld [wd401], a
 	ret
@@ -7146,7 +7146,7 @@ Func_17589: ; 17589 (5:7589)
 .asm_175a4
 	ld c, $1b
 .asm_175a6
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $5b
 	ld [H_SFX_ID], a
 	xor a
@@ -7168,7 +7168,7 @@ Func_175bd: ; 175bd (5:75bd)
 	ret
 
 Func_175ce: ; 175ce (5:75ce)
-	ld a, [wd412]
+	ld a, [wBattleEnded]
 	cp $1
 	jr z, .asm_17608
 	ld a, [wCurMove]
@@ -7294,7 +7294,7 @@ Func_17689: ; 17689 (5:7689)
 	ret nz
 .asm_176ae
 	ld c, $2e
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $22
 	ld [wd401], a
 	ret
@@ -7570,7 +7570,7 @@ Func_178d3: ; 178d3 (5:78d3)
 	call Func_16461
 	pop af
 	call Func_148a8
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wBattleTurn]
 	and a
 	jr z, asm_17933
@@ -7680,7 +7680,7 @@ Func_179a2: ; 179a2 (5:79a2)
 	jr nz, .asm_179c7
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -7706,7 +7706,7 @@ Func_179d7: ; 179d7 (5:79d7)
 	jr z, .asm_179fc
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -7889,7 +7889,7 @@ Func_17aea: ; 17aea (5:7aea)
 	jr z, .asm_17b10
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, sAddressBook + 6
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -7975,7 +7975,7 @@ Func_17b49: ; 17b49 (5:7b49)
 	ld [wEnemyDenjuu3Speed], a
 .asm_17b9e
 	ld c, $27
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_17dcd
 
 Func_17ba6: ; 17ba6 (5:7ba6)
@@ -8041,7 +8041,7 @@ Func_17ba6: ; 17ba6 (5:7ba6)
 	ld [wEnemyDenjuu3SpeedCopy1], a
 .asm_17c13
 	ld c, $28
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_17dcd
 
 Func_17c1b: ; 17c1b (5:7c1b)
@@ -8107,7 +8107,7 @@ Func_17c1b: ; 17c1b (5:7c1b)
 	ld [wEnemyDenjuu3SpeedCopy2], a
 .asm_17c88
 	ld c, $29
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_17dcd
 
 Func_17c90: ; 17c90 (5:7c90)
@@ -8161,7 +8161,7 @@ Func_17c90: ; 17c90 (5:7c90)
 	ld [wEnemyDenjuu3Attack], a
 .asm_17ce5
 	ld c, $2a
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_17dcd
 
 Func_17ced: ; 17ced (5:7ced)
@@ -8233,7 +8233,7 @@ Func_17ced: ; 17ced (5:7ced)
 	ld [wEnemyDenjuu3SpDef], a
 .asm_17d6c
 	ld c, $2b
-	call Func_3d02
+	call StdBattleTextBox
 	jr Func_17dcd
 
 Func_17d73: ; 17d73 (5:7d73)
@@ -8287,7 +8287,7 @@ Func_17d73: ; 17d73 (5:7d73)
 	ld [wEnemyDenjuu3Defense], a
 .asm_17dc8
 	ld c, $2c
-	call Func_3d02
+	call StdBattleTextBox
 Func_17dcd: ; 17dcd (5:7dcd)
 	call CloseSRAM
 	ld a, $1d
@@ -8393,7 +8393,7 @@ Func_17e09: ; 17e09 (5:7e09)
 	jr nc, Func_17ea0
 .asm_17e95
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $20
 	ld [wd401], a
 	ret
@@ -8430,7 +8430,7 @@ Func_17ea0: ; 17ea0 (5:7ea0)
 .asm_17ee2
 	call Func_17aac
 	ld c, $22
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $25
 	ld [wd401], a
 	ret
@@ -8570,7 +8570,7 @@ Func_17fdd: ; 17fdd (5:7fdd)
 	call CopyPlayerDenjuuNameToBattleUserName
 .asm_17fed
 	ld c, $2d
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $25
 	ld [wd401], a
 	ret

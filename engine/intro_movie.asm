@@ -75,7 +75,7 @@ Func_8124: ; 8124 (2:4124)
 	ld bc, $5
 	call GetCGB_OBLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $40
 	ld [wOAMAnimation02 + 2], a
 	ld de, wOAMAnimation02
@@ -146,7 +146,7 @@ Func_81ef: ; 81ef (2:41ef)
 	cp $0
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_8201: ; 8201 (2:4201)
@@ -175,7 +175,7 @@ Func_820b: ; 820b (2:420b)
 	ld bc, $6
 	call GetCGB_OBLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	xor a
 	ld [wSCX], a
 	ld a, $c0
@@ -203,7 +203,7 @@ Func_8264: ; 8264 (2:4264)
 
 .asm_8276
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_827e: ; 827e (2:427e)
@@ -225,7 +225,7 @@ Func_827e: ; 827e (2:427e)
 	ld bc, INTRO_MOVIE_DENJUU_OB_LAYOUT
 	call GetCGB_OBLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $44
 	ld [wOAMAnimation02 + 2], a
 	ld de, wOAMAnimation02
@@ -303,7 +303,7 @@ Func_832f: ; 832f (2:432f)
 
 .asm_8343
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_834b: ; 834b (2:434b)
@@ -335,7 +335,7 @@ Func_835d: ; 835d (2:435d)
 	ld bc, $8
 	call GetCGB_OBLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $c0
 	ld [wcb2c], a
 	xor a
@@ -360,7 +360,7 @@ Func_83b6: ; 83b6 (2:43b6)
 	cp $0
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_83ce: ; 83ce (2:43ce)
@@ -378,7 +378,7 @@ Func_83ce: ; 83ce (2:43ce)
 	ld bc, $24
 	call GetCGB_BGLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $ff
 	ld [wcb2c], a
 	ld a, $8
@@ -399,7 +399,7 @@ Func_8403: ; 8403 (2:4403)
 	cp $0
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_8423: ; 8423 (2:4423)
@@ -417,7 +417,7 @@ Func_8423: ; 8423 (2:4423)
 	ld bc, $25
 	call GetCGB_BGLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $a0
 	ld [wcb2c], a
 	xor a
@@ -446,7 +446,7 @@ Func_8474: ; 8474 (2:4474)
 	cp $0
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine
@@ -475,7 +475,7 @@ Func_8491: ; 8491 (2:4491)
 
 Func_84b9: ; 84b9 (2:44b9)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine

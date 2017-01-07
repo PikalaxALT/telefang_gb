@@ -27,7 +27,7 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	dw InGamePhoneMenu_ ; 0c
 	dw Func_1c80        ; 0d
 	dw GameOverScreen_  ; 0e
-	dw BattleCore1F_        ; 0f
+	dw BattleCore1F_    ; 0f
 
 OpeningLogos_:
 	ld a, BANK(OpeningLogos)

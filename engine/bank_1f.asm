@@ -71,7 +71,7 @@ Func_7c081: ; 7c081 (1f:4081)
 	xor a
 	ld [wd43a], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c08d: ; 7c08d (1f:408d)
@@ -129,9 +129,9 @@ Func_7c0b9: ; 7c0b9 (1f:40b9)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld c, $91
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c11e: ; 7c11e (1f:411e)
@@ -149,7 +149,7 @@ Func_7c128: ; 7c128 (1f:4128)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $0
-	call Func_0543
+	call LoadUnknGfx090
 	ld a, $20
 	ld [wd4ee], a
 	call Func_7e0ec
@@ -160,7 +160,7 @@ Func_7c128: ; 7c128 (1f:4128)
 	ld [wd411], a
 	call Func_3cb5
 	ld c, $92
-	call Func_3d02
+	call StdBattleTextBox
 	jp NextBattleSubroutine
 
 Func_7c15a: ; 7c15a (1f:415a)
@@ -218,7 +218,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	cp $1
 	jr z, .asm_7c1d0
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
 	ld a, $10
@@ -234,7 +234,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $f
 	ld [wBattleSubroutine], a
 	ret
@@ -270,7 +270,7 @@ Func_7c1fe: ; 7c1fe (1f:41fe)
 
 .asm_7c220
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c228: ; 7c228 (1f:4228)
@@ -350,7 +350,7 @@ ENDC
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c2db: ; 7c2db (1f:42db)
@@ -420,7 +420,7 @@ Func_7c2e5: ; 7c2e5 (1f:42e5)
 	ld a, $1
 	ld [wd458], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c35e: ; 7c35e (1f:435e)
@@ -459,7 +459,7 @@ Func_7c35e: ; 7c35e (1f:435e)
 
 Func_7c399: ; 7c399 (1f:4399)
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c3a1: ; 7c3a1 (1f:43a1)
@@ -575,7 +575,7 @@ Func_7c443: ; 7c443 (1f:4443)
 
 Func_7c459: ; 7c459 (1f:4459)
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c461: ; 7c461 (1f:4461)
@@ -683,7 +683,7 @@ Func_7c46b: ; 7c46b (1f:446b)
 	call Func_7f432
 .asm_7c526
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c52e: ; 7c52e (1f:452e)
@@ -703,7 +703,7 @@ Func_7c538: ; 7c538 (1f:4538)
 	ld a, $10
 	ld [wcf96], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_7c553: ; 7c553 (1f:4553)
@@ -1043,7 +1043,7 @@ Func_7c75f: ; 7c75f (1f:475f)
 	ld [wWY], a
 	call Func_3566
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $a
 	ld [wd401], a
 	ret
@@ -1054,7 +1054,7 @@ Func_7c7ad: ; 7c7ad (1f:47ad)
 	or a
 	ret z
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7c7bc: ; 7c7bc (1f:47bc)
@@ -1173,7 +1173,7 @@ Func_7c858: ; 7c858 (1f:4858)
 
 Func_7c886: ; 7c886 (1f:4886)
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7c88e: ; 7c88e (1f:488e)
@@ -1198,7 +1198,7 @@ Func_7c8af: ; 7c8af (1f:48af)
 
 Func_7c8b2: ; 7c8b2 (1f:48b2)
 	ld c, $79
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7c8ba: ; 7c8ba (1f:48ba)
@@ -1209,7 +1209,7 @@ Func_7c8ba: ; 7c8ba (1f:48ba)
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
 	ld c, $96
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7c8d0: ; 7c8d0 (1f:48d0)
@@ -1242,7 +1242,7 @@ Func_7c8f1: ; 7c8f1 (1f:48f1)
 	or a
 	jr z, .asm_7c90f
 	ld c, $74
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $c
 	ld [wd401], a
 .asm_7c90f
@@ -1297,9 +1297,9 @@ Func_7c947: ; 7c947 (1f:4947)
 	ld a, $2
 	ld [wd4e5], a
 	ld a, $1
-	ld [wd4e6], a
+	ld [wNumAlivePlayerDenjuu], a
 	ld a, $1
-	ld [wd4e7], a
+	ld [wNumAliveEnemyDenjuu], a
 	xor a
 	ld [wd5d0], a
 	ld [wd5d1], a
@@ -1316,7 +1316,7 @@ Func_7c947: ; 7c947 (1f:4947)
 	ld [wCurBattleDenjuu3], a
 	ld [wCurEnemyDenjuu3], a
 	xor a
-	ld [wd412], a
+	ld [wBattleEnded], a
 	ld [wd4ea], a
 	xor a
 	ld [wSCX], a
@@ -1411,7 +1411,7 @@ Func_7c947: ; 7c947 (1f:4947)
 Func_7ca9c: ; 7ca9c (1f:4a9c)
 	call CloseSRAM
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $12
 	ld [wd401], a
 	ret
@@ -1430,7 +1430,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	ld bc, $12
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $15
 	call DecompressGFXByIndex_
 	ld hl, VTilesShared tile $00
@@ -1445,7 +1445,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	xor a
 	call LoadNthStdBGPalette
 	ld a, $0
-	call Func_0543
+	call LoadUnknGfx090
 	ld a, $5
 	ld [wca65], a
 	ld hl, VTilesBG tile $40
@@ -1502,7 +1502,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $1
 	ld [wd401], a
 	ret
@@ -1558,7 +1558,7 @@ Func_7cbd4: ; 7cbd4 (1f:4bd4)
 	ld l, a
 	call PrintNumHL
 	ld c, $6a
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7cbe4: ; 7cbe4 (1f:4be4)
@@ -1799,7 +1799,7 @@ Func_7cdae: ; 7cdae (1f:4dae)
 	ld [wd4be], a
 	ld [wd4bf], a
 	ld c, $6a
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wd429]
 	cp $1
 	jr nz, .asm_7ce03
@@ -1833,7 +1833,7 @@ Func_7cdae: ; 7cdae (1f:4dae)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wd401], a
 	ret
@@ -1844,7 +1844,7 @@ Func_7ce30: ; 7ce30 (1f:4e30)
 
 Func_7ce34: ; 7ce34 (1f:4e34)
 	ld c, $1e
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7e0f9
@@ -1971,7 +1971,7 @@ Func_7cf0d: ; 7cf0d (1f:4f0d)
 	call Func_7d96c
 	call Func_7d8ce
 	ld c, $6a
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $4
 	ld [wd401], a
 	ret
@@ -2015,7 +2015,7 @@ asm_7cf4e
 	ld a, [wd42e]
 	ld [wdc34], a
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $11
 	ld [wd401], a
 	ret
@@ -2052,7 +2052,7 @@ Func_7cfbd: ; 7cfbd (1f:4fbd)
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $b
 	ld [wd401], a
 	ret
@@ -2066,7 +2066,7 @@ Func_7cfd9: ; 7cfd9 (1f:4fd9)
 	dec b
 	jr nz, .asm_7cfde
 	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	ld hl, sAddressBook + $0
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
@@ -2083,7 +2083,7 @@ Func_7cfd9: ; 7cfd9 (1f:4fd9)
 	cp $1
 	jr z, .asm_7d054
 	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld hl, sAddressBook + $0
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
@@ -2100,7 +2100,7 @@ Func_7cfd9: ; 7cfd9 (1f:4fd9)
 	cp $2
 	jr z, .asm_7d054
 	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld hl, sAddressBook + $0
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
@@ -2243,7 +2243,7 @@ Func_7d12f: ; 7d12f (1f:512f)
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7d13c: ; 7d13c (1f:513c)
@@ -2254,9 +2254,9 @@ Func_7d13c: ; 7d13c (1f:513c)
 	ld a, $2
 	ld [wd4e5], a
 	ld a, $1
-	ld [wd4e6], a
+	ld [wNumAlivePlayerDenjuu], a
 	ld a, $1
-	ld [wd4e7], a
+	ld [wNumAliveEnemyDenjuu], a
 	ld a, [wd42e]
 	ld [wPlayerPartySize], a
 	ld hl, wPlayerDenjuu1Species
@@ -2314,7 +2314,7 @@ Func_7d1d3: ; 7d1d3 (1f:51d3)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_06bc
+	call BattleResults_ResetLCDCFlags_
 	xor a
 	ld [wd401], a
 	ld [wBattleSubroutine], a
@@ -3474,10 +3474,10 @@ Func_7d9fd: ; 7d9fd (1f:59fd)
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_7d688
-	ld [wPlayerDenjuu1Field0x0d], a
+	ld [wPlayerDenjuu1AddressBookLocation], a
 	call OpenSRAMBank2
 	ld hl, $a000
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu1], a
@@ -3493,10 +3493,10 @@ Func_7d9fd: ; 7d9fd (1f:59fd)
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_7d688
-	ld [wPlayerDenjuu2Field0x0d], a
+	ld [wPlayerDenjuu2AddressBookLocation], a
 	call OpenSRAMBank2
 	ld hl, $a000
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu2], a
@@ -3514,10 +3514,10 @@ Func_7d9fd: ; 7d9fd (1f:59fd)
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_7d688
-	ld [wPlayerDenjuu3Field0x0d], a
+	ld [wPlayerDenjuu3AddressBookLocation], a
 	call OpenSRAMBank2
 	ld hl, $a000
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu3], a
@@ -3633,7 +3633,7 @@ Func_7db03: ; 7db03 (1f:5b03)
 
 Func_7db3a: ; 7db3a (1f:5b3a)
 	ld c, $74
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7db42: ; 7db42 (1f:5b42)
@@ -3642,9 +3642,9 @@ Func_7db42: ; 7db42 (1f:5b42)
 	cp $9
 	ret nz
 	call InitSerialData
-	call Func_06bc
+	call BattleResults_ResetLCDCFlags_
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7db59: ; 7db59 (1f:5b59)
@@ -3667,7 +3667,7 @@ Func_7db70: ; 7db70 (1f:5b70)
 	call DecompressGFXByIndex_
 	ld bc, $14
 	call DecompressGFXByIndex_
-	ld a, [wd407]
+	ld a, [wBattleResult]
 	cp $0
 	jr z, .asm_7db8b
 	jp Func_7dc41
@@ -3682,8 +3682,8 @@ Func_7db91: ; 7db91 (1f:5b91)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $10
-	call Func_3d02
-	call Func_06bc
+	call StdBattleTextBox
+	call BattleResults_ResetLCDCFlags_
 	ld a, $7f
 	ld [wBattleMenuCursorObjectTemplateIDX], a
 	ld a, $0
@@ -3706,7 +3706,7 @@ Func_7dbbe: ; 7dbbe (1f:5bbe)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
@@ -3718,7 +3718,7 @@ Func_7dbe1: ; 7dbe1 (1f:5be1)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $13
-	call Func_3d02
+	call StdBattleTextBox
 	ld bc, $105
 	ld e, $8b
 	ld a, $0
@@ -3742,12 +3742,12 @@ Func_7dbe1: ; 7dbe1 (1f:5be1)
 	ret
 
 Func_7dc22: ; 7dc22 (1f:5c22)
-	call Func_06bc
+	call BattleResults_ResetLCDCFlags_
 	xor a
 	ld [wd401], a
 	ld a, $1
 	ld [wSubroutine], a
-	ld a, [wd407]
+	ld a, [wBattleResult]
 	cp $0
 	jr z, .asm_7dc3b
 	ld a, $3
@@ -3807,7 +3807,7 @@ Data_7dc8f:
 
 Func_7dc98: ; 7dc98 (1f:5c98)
 	ld c, $74
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7dca0: ; 7dca0 (1f:5ca0)
@@ -3817,7 +3817,7 @@ Func_7dca0: ; 7dca0 (1f:5ca0)
 	ret nz
 	call InitSerialData
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $11
 	ld [wd401], a
 	ret
@@ -3841,7 +3841,7 @@ Func_7dcc1: ; 7dcc1 (1f:5cc1)
 
 Func_7dcd4: ; 7dcd4 (1f:5cd4)
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $f
 	ld [wd401], a
 	ret
@@ -3948,7 +3948,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld a, $ee
 	ld [wdc34], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wd401], a
 	ret
@@ -3965,7 +3965,7 @@ Func_7ddb6: ; 7ddb6 (1f:5db6)
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $0
 	ld e, $70
 	ld a, $0
@@ -4023,7 +4023,7 @@ Func_7ddb6: ; 7ddb6 (1f:5db6)
 	ld c, l
 	call SetEventFlag
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $1
 	ld [wd401], a
 	ret
@@ -4034,7 +4034,7 @@ Func_7de6b: ; 7de6b (1f:5e6b)
 	or a
 	ret z
 	call Func_0704
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
 	jr z, .asm_7de86
 	ld bc, $201
@@ -4048,7 +4048,7 @@ Func_7de6b: ; 7de6b (1f:5e6b)
 
 Func_7de8c: ; 7de8c (1f:5e8c)
 	ld c, $3
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2
 	ld [wd401], a
 	ret
@@ -4101,7 +4101,7 @@ Func_7dee6: ; 7dee6 (1f:5ee6)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld c, $63
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7e0f9
@@ -4184,7 +4184,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	jr nz, .asm_7df86
 	ld c, $65
 .asm_7df8e
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
@@ -4201,7 +4201,7 @@ Func_7dfa0: ; 7dfa0 (1f:5fa0)
 	cp $0
 	jr nz, .asm_7dfc9
 	ld c, $8f
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7e0f9
@@ -4214,7 +4214,7 @@ Func_7dfa0: ; 7dfa0 (1f:5fa0)
 
 .asm_7dfc9
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp Func_7dc41
@@ -4300,7 +4300,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	cp $1
 	jr z, .asm_7e079
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -4310,7 +4310,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	ld a, $4
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $7
@@ -4373,7 +4373,7 @@ Func_7e0d9: ; 7e0d9 (1f:60d9)
 
 Func_7e0e5: ; 7e0e5 (1f:60e5)
 	xor a
-	call Func_0543
+	call LoadUnknGfx090
 	jp Func_7e0ec
 
 Func_7e0ec: ; 7e0ec (1f:60ec)
@@ -4444,7 +4444,7 @@ Func_7e11a: ; 7e11a (1f:611a)
 
 Func_7e16c: ; 7e16c (1f:616c)
 	ld c, $74
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7e174: ; 7e174 (1f:6174)
@@ -4454,7 +4454,7 @@ Func_7e174: ; 7e174 (1f:6174)
 	ret nz
 	call InitSerialData
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $a
 	ld [wd401], a
 	ret
@@ -4477,7 +4477,7 @@ Func_7e195: ; 7e195 (1f:6195)
 
 Func_7e1a5: ; 7e1a5 (1f:61a5)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $9
 	ld [wd401], a
 	ret
@@ -4494,7 +4494,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $0
 	ld e, $70
 	ld a, $0
@@ -4579,7 +4579,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	ld a, [wd4eb]
 	call PrintStringWithPlayerDenjuuAsBattleUser
 	ld c, $9
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wd493]
 	hlbgcoord 10, 2
 	ld c, $1
@@ -4588,7 +4588,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	xor a
 	ld [wMoveAnimationTimer], a
 	ld a, $6
@@ -4637,7 +4637,7 @@ Func_7e2fc: ; 7e2fc (1f:62fc)
 	cp $9
 	ret nz
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7e319: ; 7e319 (1f:6319)
@@ -4654,7 +4654,7 @@ Func_7e319: ; 7e319 (1f:6319)
 	inc a
 	ld [wdc45], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp Func_7dc41
@@ -4755,7 +4755,7 @@ Func_7e3b9: ; 7e3b9 (1f:63b9)
 	ld [wWY], a
 	call Func_3566
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $9
 	ld [wd401], a
 	ret
@@ -4766,7 +4766,7 @@ Func_7e403: ; 7e403 (1f:6403)
 	or a
 	ret z
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7e412: ; 7e412 (1f:6412)
@@ -4905,9 +4905,9 @@ Func_7e4e2: ; 7e4e2 (1f:64e2)
 
 Func_7e500: ; 7e500 (1f:6500)
 	ld c, $7c
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7e50d: ; 7e50d (1f:650d)
@@ -4921,7 +4921,7 @@ Func_7e510: ; 7e510 (1f:6510)
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
 	ld c, $96
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7e526: ; 7e526 (1f:6526)
@@ -4959,7 +4959,7 @@ Func_7e546: ; 7e546 (1f:6546)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld c, $74
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $5
 	ld [wd401], a
 .asm_7e570
@@ -4983,7 +4983,7 @@ Func_7e546: ; 7e546 (1f:6546)
 
 Func_7e598: ; 7e598 (1f:6598)
 	ld a, $0
-	call Func_0543
+	call LoadUnknGfx090
 	ld a, [wCurPhoneGFX]
 	ld e, a
 	ld d, $0
@@ -5038,7 +5038,7 @@ Func_7e613: ; 7e613 (1f:6613)
 	xor a
 	ld [wd43a], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $e
 	ld [wd401], a
 	ret
@@ -5057,7 +5057,7 @@ Func_7e622: ; 7e622 (1f:6622)
 	ld bc, $12
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $15
 	call DecompressGFXByIndex_
 	ld hl, VTilesShared tile $00
@@ -5098,7 +5098,7 @@ Func_7e622: ; 7e622 (1f:6622)
 	call Func_7d6fe
 	call Func_7d905
 	ld c, $75
-	call Func_3d02
+	call StdBattleTextBox
 	call OpenSRAMBank2
 	ld a, [wBattleMenuSelection]
 	ld d, a
@@ -5115,7 +5115,7 @@ Func_7e622: ; 7e622 (1f:6622)
 	call GetDenjuuPalette_Pal6
 	call CloseSRAM
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $1
 	ld [wd401], a
 	ret
@@ -5306,7 +5306,7 @@ Func_7e840: ; 7e840 (1f:6840)
 	ld [wd4be], a
 	ld [wd4bf], a
 	ld c, $75
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $0
 	ld [wd411], a
 	call Func_3cb5
@@ -5327,7 +5327,7 @@ Func_7e882: ; 7e882 (1f:6882)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $d
 	ld [wd401], a
 	ret
@@ -5342,7 +5342,7 @@ Func_7e89d: ; 7e89d (1f:689d)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld c, $1e
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7e0f9
@@ -5400,7 +5400,7 @@ Func_7e914: ; 7e914 (1f:6914)
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7e92d: ; 7e92d (1f:692d)
@@ -5408,7 +5408,7 @@ Func_7e92d: ; 7e92d (1f:692d)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_06bc
+	call BattleResults_ResetLCDCFlags_
 	xor a
 	ld [wd401], a
 	ld [wBattleSubroutine], a
@@ -5495,7 +5495,7 @@ Func_7e9b3: ; 7e9b3 (1f:69b3)
 	call Func_7d96c
 	call Func_7d8ce
 	ld c, $75
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2
 	ld [wd401], a
 	ret
@@ -5521,7 +5521,7 @@ asm_7e9f4
 	xor a
 	ld [wd45b], a
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7ea18: ; 7ea18 (1f:6a18)
@@ -5576,7 +5576,7 @@ Func_7ea18: ; 7ea18 (1f:6a18)
 	call PrintStringWithPlayerDenjuuAsBattleUser
 	call CloseSRAM
 	ld c, $72
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wMoveAnimationTimer], a
 	jp Func_7dc41
@@ -5691,7 +5691,7 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7eb85: ; 7eb85 (1f:6b85)
@@ -6019,7 +6019,7 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $0
 	ld e, $70
 	ld a, $0
@@ -6060,7 +6060,7 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	ld a, [wd480]
 	call Func_7e0a7
 	ld c, $3
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $28
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -6070,7 +6070,7 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	call Func_1430
 	call Func_7e0ec
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7eeaf: ; 7eeaf (1f:6eaf)
@@ -6079,7 +6079,7 @@ Func_7eeaf: ; 7eeaf (1f:6eaf)
 	or a
 	ret z
 	call Func_0704
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
 	jr z, .asm_7eeca
 	ld bc, $201
@@ -6126,7 +6126,7 @@ Func_7ef04: ; 7ef04 (1f:6f04)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld c, $64
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7ef16: ; 7ef16 (1f:6f16)
@@ -6138,7 +6138,7 @@ Func_7ef16: ; 7ef16 (1f:6f16)
 	cp $0
 	jr nz, .asm_7ef40
 	ld c, $8f
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7e0f9
@@ -6151,7 +6151,7 @@ Func_7ef16: ; 7ef16 (1f:6f16)
 
 .asm_7ef40
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp Func_7dc41
@@ -6230,7 +6230,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	cp $1
 	jr z, .asm_7efe8
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -6238,7 +6238,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 
 .asm_7efe8
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $6
@@ -6275,7 +6275,7 @@ Func_7f023: ; 7f023 (1f:7023)
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $0
 	ld e, $70
 	ld a, $0
@@ -6305,7 +6305,7 @@ Func_7f023: ; 7f023 (1f:7023)
 	pop af
 	call GetDenjuuPalette_Pal7
 	ld c, $9
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wd493]
 	hlbgcoord 10, 2
 	ld c, $1
@@ -6314,7 +6314,7 @@ Func_7f023: ; 7f023 (1f:7023)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f0a0: ; 7f0a0 (1f:70a0)
@@ -6330,7 +6330,7 @@ Func_7f0aa: ; 7f0aa (1f:70aa)
 	cp $9
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f0bb: ; 7f0bb (1f:70bb)
@@ -6436,7 +6436,7 @@ Func_7f141: ; 7f141 (1f:7141)
 	ld c, $72
 	call Func_7f432
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $b
 	ld [wd401], a
 	ret
@@ -6664,7 +6664,7 @@ Func_7f319: ; 7f319 (1f:7319)
 	cp $9
 	ret nz
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f32a: ; 7f32a (1f:732a)
@@ -6792,7 +6792,7 @@ Func_7f3fc: ; 7f3fc (1f:73fc)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f412: ; 7f412 (1f:7412)
@@ -6840,7 +6840,7 @@ Func_7f43e: ; 7f43e (1f:743e)
 	ld a, $5
 	ld [H_SFX_ID], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $4
 	ld [wdc4a], a
 	ld a, $c
@@ -6885,9 +6885,9 @@ Func_7f4d2: ; 7f4d2 (1f:74d2)
 	ld a, $10
 	ld [wcf96], a
 	ld c, $7f
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f50f: ; 7f50f (1f:750f)
@@ -6974,7 +6974,7 @@ Func_7f559: ; 7f559 (1f:7559)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld c, $1e
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wBattleMenuSelection], a
 	call Func_7f77f
@@ -7039,7 +7039,7 @@ Func_7f619: ; 7f619 (1f:7619)
 	ld [wSpriteUpdatesEnabled], a
 	call Func_7f757
 	ld c, $7f
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2
 	ld [wd401], a
 	ret
@@ -7096,7 +7096,7 @@ Func_7f655: ; 7f655 (1f:7655)
 	ld a, $f0
 	ld [wdc34], a
 	ld c, $84
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7f699: ; 7f699 (1f:7699)
@@ -7162,7 +7162,7 @@ Func_7f6f7: ; 7f6f7 (1f:76f7)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld c, $85
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7f711: ; 7f711 (1f:7711)
@@ -7173,7 +7173,7 @@ Func_7f711: ; 7f711 (1f:7711)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f727: ; 7f727 (1f:7727)
@@ -7310,11 +7310,11 @@ Func_7f7e8: ; 7f7e8 (1f:77e8)
 	ld [wd411], a
 	call Func_3cb5
 	ld c, $86
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f839: ; 7f839 (1f:7839)
@@ -7391,7 +7391,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld c, $1e
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wBattleMenuSelection], a
 	call Func_7f77f
@@ -7460,7 +7460,7 @@ Func_7f92d: ; 7f92d (1f:792d)
 	ld [wSpriteUpdatesEnabled], a
 	call Func_7f757
 	ld c, $86
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2
 	ld [wd401], a
 	ret
@@ -7488,7 +7488,7 @@ Func_7f969: ; 7f969 (1f:7969)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld c, $87
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7dc41
 
 Func_7f97c: ; 7f97c (1f:797c)
@@ -7499,7 +7499,7 @@ Func_7f97c: ; 7f97c (1f:797c)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp Func_7dc41
 
 Func_7f992: ; 7f992 (1f:7992)

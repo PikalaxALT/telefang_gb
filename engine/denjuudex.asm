@@ -111,7 +111,7 @@ DexMainScreenJoypadAction: ; 1147c (4:547c)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine2
 
 .asm_114fe
@@ -163,7 +163,7 @@ Func_114ff: ; 114ff (4:54ff)
 	ld a, $1
 	ld [wcb2b], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $c0
 	ld [wTextBoxStartTile], a
 	call Func_13f70
@@ -201,7 +201,7 @@ Func_115ae: ; 115ae (4:55ae)
 	ld a, $4
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine2
 
 .asm_115d1
@@ -297,7 +297,7 @@ Func_11644: ; 11644 (4:5644)
 	call Func_13eb5
 	call Func_13f8c
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ret
 
 Func_11690: ; 11690 (4:5690)

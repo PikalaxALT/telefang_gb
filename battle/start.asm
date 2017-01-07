@@ -37,7 +37,7 @@ Func_70016: ; 70016 (1c:4016)
 	ld hl, sAddressBook
 	ld de, $10
 	ld a, [wAddressBookIndexOfPartnerDenjuu]
-	ld [wPlayerDenjuu1Field0x0d], a
+	ld [wPlayerDenjuu1AddressBookLocation], a
 	addntimes_hl_de
 	ld a, [hli]
 	ld [wPlayerDenjuu1Species], a
@@ -83,7 +83,7 @@ Func_70016: ; 70016 (1c:4016)
 	ld [wd4cb], a
 	ld [wd4cc], a
 	ld [wd4cd], a
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $1
 	jr z, .tfanger
 	cp $2
@@ -284,11 +284,11 @@ Func_70016: ; 70016 (1c:4016)
 	ld a, $2
 	ld [wd4e5], a
 	ld a, $1
-	ld [wd4e6], a
+	ld [wNumAlivePlayerDenjuu], a
 	ld a, $1
-	ld [wd4e7], a
+	ld [wNumAliveEnemyDenjuu], a
 	xor a
-	ld [wd412], a
+	ld [wBattleEnded], a
 	ld [wBattleSubroutine], a
 	ld [wd43a], a
 	ld a, $10
@@ -496,7 +496,7 @@ Func_70380: ; 70380 (1c:4380)
 
 Func_7038c: ; 7038c (1c:438c)
 	ld a, $0
-	call Func_0543
+	call LoadUnknGfx090
 	jp Func_70394
 
 Func_70394: ; 70394 (1c:4394)
@@ -707,7 +707,7 @@ BattleStart_Init:
 	ld bc, $f
 	call DecompressGFXByIndex_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	call Func_70500
 	jp NextBattleSubroutine
 
@@ -815,7 +815,7 @@ Func_70541:
 	ld a, $12
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $0
 	jr z, .asm_7062c
 	cp $2
@@ -843,7 +843,7 @@ Func_70541:
 	call Get8CharName75
 	call Func_70357
 	ld c, $71
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7068b
 
 .asm_7062c
@@ -871,16 +871,16 @@ Func_70541:
 	ld hl, DenjuuNames
 	call Get8CharName75
 	call Func_70357
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $2
 	jr z, .asm_7067b
 	ld c, $b
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7068b
 
 .asm_7067b
 	ld c, $71
-	call Func_3d02
+	call StdBattleTextBox
 	jp Func_7068b
 
 Func_70683:
@@ -889,7 +889,7 @@ Func_70683:
 	ld [wd45e], a
 Func_7068b: ; 7068b (1c:468b)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_70693:
@@ -918,7 +918,7 @@ Func_706b6:
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $0
 	jp z, Func_7071e
 	cp $2
@@ -949,7 +949,7 @@ Func_706b6:
 	call Get8CharName75
 	call Func_70357
 	ld c, $23
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $52
 	ld [H_SFX_ID], a
 	jp NextBattleSubroutine
@@ -968,9 +968,9 @@ Func_70724:
 
 Func_70730:
 	ld c, $26
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $0
-	call Func_0543
+	call LoadUnknGfx090
 	ld a, $0
 	ld bc, $4
 	call LoadNthStdOBPalette
@@ -1092,7 +1092,7 @@ Func_70755:
 
 .asm_7082a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 .asm_70832
@@ -1109,7 +1109,7 @@ Func_70755:
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
 	ld c, $11
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $9
 	ld [wBattleSubroutine], a
 	ret
@@ -1178,7 +1178,7 @@ Func_708c2:
 	ld a, [wcb3f]
 	cp $1
 	jr z, .asm_70915
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $0
 	jr nz, .asm_70915
 	call Func_70a99
@@ -1196,7 +1196,7 @@ Func_708c2:
 .asm_70902
 	call CloseSRAM
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $d
@@ -1205,7 +1205,7 @@ Func_708c2:
 
 .asm_70915
 	ld c, $12
-	call Func_3d02
+	call StdBattleTextBox
 	jp NextBattleSubroutine
 
 Func_7091d:
@@ -1222,7 +1222,7 @@ Func_70929:
 	ld a, $1
 	ld [wMoveAnimationTimer], a
 	ld c, $96
-	call Func_3d02
+	call StdBattleTextBox
 	jp NextBattleSubroutine
 
 .asm_7093d
@@ -1388,7 +1388,7 @@ Func_70a4d:
 	ld [sAddressBook + $22], a
 	ld [sAddressBook + $32], a
 	ld a, $0
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 .asm_70a98
 	ret
 
@@ -1493,7 +1493,7 @@ Func_70b53:
 	ld [wd4ba], a
 	ld [wd4bb], a
 	ld [wd4bc], a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld [wd435], a
 	ld [wMoveAnimationTimer], a
 	ld a, $1
@@ -1513,7 +1513,7 @@ Func_70b53:
 
 Func_70bae: ; 70bae (1c:4bae)
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_70bb6:
@@ -1532,7 +1532,7 @@ Func_70bca:
 	ld bc, $12
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld bc, $15
 	call DecompressGFXByIndex_
 	ld hl, VTilesShared tile $00
@@ -1591,7 +1591,7 @@ Func_70bca:
 	ld l, a
 	call PrintNumHL
 	ld c, $6a
-	call Func_3d02
+	call StdBattleTextBox
 	ld bc, $0
 	ld e, $95
 	ld a, $0
@@ -1658,7 +1658,7 @@ Func_70cb9: ; 70cb9 (1c:4cb9)
 .asm_70cef
 	ld c, $6b
 .asm_70cf1
-	call Func_3d02
+	call StdBattleTextBox
 asm_70cf4
 	ld de, String_70b4b
 	ld hl, VTilesBG tile $10
@@ -1676,7 +1676,7 @@ asm_70cf4
 	call Func_1430
 	call CloseSRAM
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	jp NextBattleSubroutine
 
 Func_70d22:
@@ -1721,7 +1721,7 @@ Func_70d63:
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $c
@@ -1844,7 +1844,7 @@ Func_70e59: ; 70e59 (1c:4e59)
 	cp $0
 	jr nz, .asm_70e83
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $4
@@ -1859,7 +1859,7 @@ Func_70e59: ; 70e59 (1c:4e59)
 	ld a, [wBattleMenuSelection]
 	ld [wd4bc], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wBattleMenuSelection]
 	cp $0
 	jp z, Func_70eab
@@ -1976,7 +1976,7 @@ Func_70f60: ; 70f60 (1c:4f60)
 	ld [wd4bb], a
 	ld [wd4bc], a
 	ld c, $6a
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wd429]
 	cp $1
 	jr nz, .asm_70fb9
@@ -2007,7 +2007,7 @@ Func_70fc8: ; 70fc8 (1c:4fc8)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $9
 	ld [wBattleSubroutine], a
 	ret
@@ -2018,7 +2018,7 @@ Func_70fdf: ; 70fdf (1c:4fdf)
 
 Func_70fe3: ; 70fe3 (1c:4fe3)
 	ld c, $1e
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_703a2
@@ -2211,7 +2211,7 @@ Func_710ae:
 	ld a, [wd42b]
 	ld [wd429], a
 	ld c, $6a
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $6
 	ld [wBattleSubroutine], a
 	ret
@@ -2248,7 +2248,7 @@ Func_710ae:
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	xor a
 	ld [wOAMAnimation01], a
 	ld [wOAMAnimation05], a
@@ -2625,10 +2625,10 @@ Func_71477: ; 71477 (1c:5477)
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_71738
-	ld [wPlayerDenjuu2Field0x0d], a
+	ld [wPlayerDenjuu2AddressBookLocation], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $01
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu2Level], a
@@ -2637,7 +2637,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld a, [hl]
 	ld [wPlayerDenjuu2Field0x0c], a
 	ld hl, sAddressBook + $08
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
@@ -2658,10 +2658,10 @@ Func_71477: ; 71477 (1c:5477)
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_71738
-	ld [wPlayerDenjuu3Field0x0d], a
+	ld [wPlayerDenjuu3AddressBookLocation], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $01
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu3Level], a
@@ -2670,7 +2670,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld a, [hl]
 	ld [wPlayerDenjuu3Field0x0c], a
 	ld hl, sAddressBook + $08
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
@@ -3055,7 +3055,7 @@ Func_717f7: ; 717f7 (1c:57f7)
 
 Func_71815:
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -3075,8 +3075,8 @@ Func_71831:
 	ld bc, $17
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
-	call Func_06bc
+	call LoadBackgroundPalette
+	call BattleResults_ResetLCDCFlags_
 	call Func_71a2f
 	call Func_057e
 	ld a, [wCurPhoneGFX]
@@ -3135,19 +3135,19 @@ Func_71831:
 	jr c, .asm_718c6
 .asm_718bf
 	ld c, $66
-	call Func_3d02
+	call StdBattleTextBox
 	jr .asm_718cb
 
 .asm_718c6
 	ld c, $67
-	call Func_3d02
+	call StdBattleTextBox
 .asm_718cb
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, [wPlayerNameEntryBuffer]
 	cp $1
 	jr z, .asm_718e6
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $1
 	jr z, .asm_718e2
 	ld a, $14
@@ -3207,7 +3207,7 @@ Func_7192e:
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -3235,7 +3235,7 @@ Func_71957:
 	ld bc, $17
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld a, [wCurBattleDenjuu]
 	ld hl, wPlayerDenjuu1
 	call Func_71a70
@@ -3307,7 +3307,7 @@ Func_71a11:
 	xor a
 	ld [wcad0], a
 	ld a, $1
-	call Func_050a
+	call StartFade_
 	ld a, $0
 	ld [wd401], a
 	ld a, $31

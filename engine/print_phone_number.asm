@@ -473,7 +473,7 @@ Func_a4232: ; a4232 (29:4232)
 	ret
 
 PrintPhoneNumber: ; a42a3 (29:42a3)
-; abcde = Phone Number
+; abcde = Encrypted Phone Number
 ; hl = VBGMap address
 	push hl
 	call GetPhoneNumber
@@ -531,6 +531,7 @@ PrintPhoneNumber: ; a42a3 (29:42a3)
 	ret
 
 GetPhoneNumber: ; a42e5 (29:42e5)
+; abcde = Encrypted Phone Number
 	push af
 	call DecryptPhoneNumber
 	pop af
@@ -543,46 +544,46 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld d, h
 	ld e, l
 	ld hl, wMapHeader
-	ld a, $60
+	ld a, $60 ; 0
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer]
 	ld b, a
 	ld a, [de]
 	inc de
-	ld c, $78
+	ld c, $78 ; #
 	bit 0, a
-	jr z, .asm_a4309
-	ld c, $7c
-.asm_a4309
+	jr z, .okay1
+	ld c, $7c ; *
+.okay1
 	swap a
 	and $7
 	or a
-	jr nz, .asm_a4313
+	jr nz, .no_shuffle
 	ld a, c
 	ld c, b
 	ld b, a
-.asm_a4313
+.no_shuffle
 	ld a, b
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-	ld a, $7a
+	ld a, $7a ; -
 	ld [hli], a
 	ld a, [de]
 	inc de
-	ld c, $78
+	ld c, $78 ; #
 	bit 0, a
-	jr z, .asm_a4324
-	ld c, $7c
-.asm_a4324
+	jr z, .okay2
+	ld c, $7c ; *
+.okay2
 	swap a
 	and $7
 	cp $3
-	jr z, .asm_a4364
+	jr z, .c_slot_3
 	cp $2
-	jr z, .asm_a4354
+	jr z, .c_slot_2
 	cp $1
-	jr z, .asm_a4344
+	jr z, .c_slot_1
 	ld a, c
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 1]
@@ -591,9 +592,9 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 3]
 	ld [hli], a
-	jr .asm_a4372
+	jr .next
 
-.asm_a4344
+.c_slot_1
 	ld a, [wPhoneNumberDecryptionBuffer + 1]
 	ld [hli], a
 	ld a, c
@@ -602,9 +603,9 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 3]
 	ld [hli], a
-	jr .asm_a4372
+	jr .next
 
-.asm_a4354
+.c_slot_2
 	ld a, [wPhoneNumberDecryptionBuffer + 1]
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 2]
@@ -613,9 +614,9 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 3]
 	ld [hli], a
-	jr .asm_a4372
+	jr .next
 
-.asm_a4364
+.c_slot_3
 	ld a, [wPhoneNumberDecryptionBuffer + 1]
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 2]
@@ -624,25 +625,25 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-.asm_a4372
-	ld a, $7a
+.next
+	ld a, $7a ; -
 	ld [hli], a
 	ld a, [de]
-	ld c, $78
+	ld c, $78 ; #
 	bit 0, a
-	jr z, .asm_a437e
-	ld c, $7c
-.asm_a437e
+	jr z, .okay3
+	ld c, $7c ; *
+.okay3
 	swap a
 	and $7
 	cp $4
-	jr z, .asm_a43e2
+	jr z, .c_slot_8
 	cp $3
-	jr z, .asm_a43ce
+	jr z, .c_slot_7
 	cp $2
-	jr z, .asm_a43ba
+	jr z, .c_slot_6
 	cp $1
-	jr z, .asm_a43a6
+	jr z, .c_slot_5
 	ld a, c
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 4]
@@ -653,9 +654,9 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 7]
 	ld [hli], a
-	jr .asm_a43f4
+	jr .done
 
-.asm_a43a6
+.c_slot_5
 	ld a, [wPhoneNumberDecryptionBuffer + 4]
 	ld [hli], a
 	ld a, c
@@ -666,9 +667,9 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 7]
 	ld [hli], a
-	jr .asm_a43f4
+	jr .done
 
-.asm_a43ba
+.c_slot_6
 	ld a, [wPhoneNumberDecryptionBuffer + 4]
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 5]
@@ -679,9 +680,9 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 7]
 	ld [hli], a
-	jr .asm_a43f4
+	jr .done
 
-.asm_a43ce
+.c_slot_7
 	ld a, [wPhoneNumberDecryptionBuffer + 4]
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 5]
@@ -692,9 +693,9 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 7]
 	ld [hli], a
-	jr .asm_a43f4
+	jr .done
 
-.asm_a43e2
+.c_slot_8
 	ld a, [wPhoneNumberDecryptionBuffer + 4]
 	ld [hli], a
 	ld a, [wPhoneNumberDecryptionBuffer + 5]
@@ -705,7 +706,7 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-.asm_a43f4
+.done
 	ld de, wMapHeader
 	ret
 
@@ -831,15 +832,15 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld [wPhoneNumberDecryptionBuffer + 6], a
 	ld a, b
 	ld [wPhoneNumberDecryptionBuffer + 7], a
-	ld b, $8
+	ld b, 8
 	ld hl, wPhoneNumberDecryptionBuffer
-.double_add_96_loop
+.convert_to_tile_loop
 	ld a, [hl]
-	add a
-	add $60
+	add a ; each digit is 2 tiles high
+	add $60 ; where top 0 is loaded
 	ld [hli], a
 	dec b
-	jr nz, .double_add_96_loop
+	jr nz, .convert_to_tile_loop
 	ret
 
 .DecryptionKey1:
@@ -968,7 +969,7 @@ INCLUDE "data/unknown_a4888.asm"
 LoadPhoneNumberDigitTiles: ; a49b8 (29:49b8)
 	ld hl, VTilesBG tile $60
 	ld de, GFX_a49c4
-	ld bc, $200
+	ld bc, $200 ; $1e0 (last two tiles are garbage taken from the next function)
 	jp Copy2bpp_2
 
 GFX_a49c4: INCBIN "gfx/misc/a49c4.w24.interleave.2bpp"

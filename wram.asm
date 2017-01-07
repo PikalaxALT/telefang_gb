@@ -3406,14 +3406,18 @@ wd3ff:: ds 1
 wBattleSubroutine:: ds 1
 wd401:: ds 1
 wCurWildDenjuuEncounterTableIndex:: ds 1
-wd403:: ds 1
+wBattleMode::
+; 0 - wild
+; 1 - tfanger
+; 2 - boss denjuu
+	ds 1
 wd404:: ds 1
 wd405:: ds 1
 wOtherTFangerClass:: ds 1
-wd407:: ds 1
+wBattleResult:: ds 1
 wd408:: ds 1
 wd409:: ds 1
-wd40a:: ds 1
+BattleResults_CurBattleDenjuu:: ds 1
 wd40b:: ds 1
 wd40c:: ds 1
 wd40d:: ds 1
@@ -3421,7 +3425,7 @@ wd40e:: ds 1
 wd40f:: ds 1
 wd410:: ds 1
 wd411:: ds 1
-wd412:: ds 1
+wBattleEnded:: ds 1
 wd413:: ds 1
 wBattleMenuSelection:: ds 1
 wd415:: ds 1
@@ -3556,8 +3560,7 @@ wd4a1:: ds 1
 wd4a2:: ds 1
 wd4a3:: ds 1
 wd4a4:: ds 1
-wd4a5:: ds 1
-wd4a6:: ds 1
+wExperiencePointsToNextLevel:: dw
 wd4a7:: ds 1
 wd4a8:: ds 1
 wd4a9:: ds 1
@@ -3565,8 +3568,7 @@ wd4aa:: ds 1
 wLegendaryInParty:: ds 1
 wd4ac:: ds 1
 wd4ad:: ds 1
-wd4ae:: ds 1
-wd4af:: ds 1
+wExperiencePointsAfterAward:: dw
 wd4b0:: ds 1
 wBattleStringBuffer:: ds 1
 wd4b2:: ds 1
@@ -3592,7 +3594,7 @@ wd4c5:: ds 1
 wd4c6:: ds 1
 wd4c7:: ds 1
 wd4c8:: ds 1
-wd4c9:: ds 1
+wLearnedMove:: ds 1
 wd4ca:: ds 1
 wd4cb:: ds 1
 wd4cc:: ds 1
@@ -3621,8 +3623,8 @@ wd4e2:: ds 1
 wd4e3:: ds 1
 wd4e4:: ds 1
 wd4e5:: ds 1
-wd4e6:: ds 1
-wd4e7:: ds 1
+wNumAlivePlayerDenjuu:: ds 1
+wNumAliveEnemyDenjuu:: ds 1
 wd4e8:: ds 1
 wd4e9:: ds 1
 wd4ea:: ds 1
@@ -3668,16 +3670,13 @@ wd5a8:: ds 1
 wd5a9:: ds 1
 wd5aa:: ds 1
 wd5ab:: ds 1
-wd5ac:: ds 1
-wd5ad:: ds 1
-wd5ae:: ds 1
+wDenjuu1LeveledUp:: ds 1
+wDenjuu2LeveledUp:: ds 1
+wDenjuu3LeveledUp:: ds 1
 wd5af:: ds 1
-wd5b0:: ds 1
-wd5b1:: ds 1
-wd5b2:: ds 1
-wd5b3:: ds 1
-wd5b4:: ds 1
-wd5b5:: ds 1
+wDenjuu1ExpGain:: dw
+wDenjuu2ExpGain:: dw
+wDenjuu3ExpGain:: dw
 wd5b6:: ds 1
 wd5b7:: ds 1
 wd5b8:: ds 1
@@ -3696,8 +3695,7 @@ wd5c4:: ds 1
 wd5c5:: ds 1
 wPlayerPartySize:: ds 1
 wEnemyPartySize:: ds 1
-wd5c8:: ds 1
-wd5c9:: ds 1
+wExperiencePointsBeforeAward:: dw
 wPlayerDenjuu1AttackedOnItsOwn:: ds 1
 wPlayerDenjuu2AttackedOnItsOwn:: ds 1
 wPlayerDenjuu3AttackedOnItsOwn:: ds 1

@@ -102,7 +102,7 @@ Func_8a1a:
 
 Func_8a2e:
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_8a36:
@@ -151,7 +151,7 @@ Func_8a63:
 	ld a, $9
 	ld [H_SFX_ID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine
@@ -169,7 +169,7 @@ Func_8a63:
 	or b
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $11
@@ -245,7 +245,7 @@ Func_8b37:
 	and A_BUTTON | START
 	ret z
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_8b44:

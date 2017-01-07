@@ -62,7 +62,7 @@ Func_936c: ; 936c (2:536c)
 
 Func_9376: ; 9376 (2:5376)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_937e: ; 937e (2:537e)
@@ -115,7 +115,7 @@ Func_93bd: ; 93bd (2:53bd)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $60
 	ld [wc3e4], a
 	xor a
@@ -127,7 +127,7 @@ Func_9406: ; 9406 (2:5406)
 	and $1
 	jr z, .asm_9417
 	ld a, $0
-	call Func_050a
+	call StartFade_
 	ld a, $14
 	ld [wSubroutine], a
 	ret
@@ -138,7 +138,7 @@ Func_9406: ; 9406 (2:5406)
 	ld [wc3e4], a
 	ret nz
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	jp IncrementSubroutine
 
 Func_9427: ; 9427 (2:5427)
@@ -292,7 +292,7 @@ Func_9535: ; 9535 (2:5535)
 
 Func_9557: ; 9557 (2:5557)
 	ld a, $0
-	call Func_050a
+	call StartFade_
 	ld a, $28
 	ld [wSubroutine], a
 	ret

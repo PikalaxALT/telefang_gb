@@ -7179,8 +7179,7 @@ SECTION "SRAM 2", SRAM, BANK [2]
 ; Field 01 = level (db)
 ; Field 02 = FD (db)
 ; Field 03 = ??
-; Field 04 = ??
-; Field 05 = ??
+; Field 04 = EXP half points (dw)
 ; Field 06 = ??
 ; Field 07 = ??
 ; Field 08 = ??

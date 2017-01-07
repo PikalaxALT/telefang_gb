@@ -1455,7 +1455,7 @@ InvertBits: ; 1784 (0:1784)
 	pop de
 	ret
 
-Func_1796::
+AnimateStatUpArrows::
 	push hl
 	pop de
 	di
@@ -2653,7 +2653,7 @@ Func_2021: ; 2021 (0:2021)
 	ld a, $0
 	ld [wOtherTFangerClass], a
 	ld a, $0
-	ld [wd403], a
+	ld [wBattleMode], a ; wild
 Func_20b1: ; 20b1 (0:20b1)
 	call Func_20f6
 	ld a, [wSubroutine]
@@ -4528,7 +4528,7 @@ Func_2ea0::
 	ld a, [hli]
 	ld c, a
 	ld a, $1
-	ld [wd403], a
+	ld [wBattleMode], a ; tfanger
 	ld a, [hli]
 	ld [wc9dc], a
 	ld a, [hli]
@@ -4540,7 +4540,7 @@ Func_2ea0::
 	or a
 	jr nz, .asm_2ef3
 	ld a, $2
-	ld [wd403], a
+	ld [wBattleMode], a ; boss denjuu
 .asm_2ef3
 	ld l, a
 	ld a, [wOtherTFangerClass]
@@ -6368,8 +6368,8 @@ GetDenjuuSprite: ; 3b3f (0:3b3f)
 	ld [wd409], a
 	ret
 
-Func_3b4e: ; 3b4e (0:3b4e)
-	ld hl, Data_9c000
+GetExpToNextLevel_: ; 3b4e (0:3b4e)
+	ld hl, GrowthRates
 	ld de, 2 * 99
 	addntimes_hl_de
 	dec b
@@ -6600,7 +6600,7 @@ NextMoveAnimationSubroutine: ; 3cfd (0:3cfd)
 	inc [hl]
 	ret
 
-Func_3d02::
+StdBattleTextBox::
 	ld b, $0
 	ld d, $c
 	ld a, $60
@@ -6861,7 +6861,7 @@ LoadEnemyTFangerParty: ; 3e68 (0:3e68)
 	ld [wEnemyDenjuu3Field0x0c], a
 	ret
 
-Func_3eb9
+LoadBackgroundPalette
 	ld hl, wCGB_BGPalsBuffer
 	ld b, $0
 	ld c, a

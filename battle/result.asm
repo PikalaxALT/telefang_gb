@@ -1,13 +1,13 @@
 BattleResult:
 	ld a, [wSubroutine]
 	jump_table
-	dw Func_7400e
-	dw Func_74011
+	dw .BattleResult
+	dw .FinishBattleResult
 
-Func_7400e: ; 7400e (1d:400e)
-	jp Func_740ee
+.BattleResult: ; 7400e (1d:400e)
+	jp BattleResult__
 
-Func_74011: ; 74011 (1d:4011)
+.FinishBattleResult: ; 74011 (1d:4011)
 	xor a
 	ld [MBC3SRamEnable], a
 	ld a, $0
@@ -34,17 +34,17 @@ Func_74011: ; 74011 (1d:4011)
 	ld [wGameRoutine], a
 	ret
 
-Func_7404f: ; 7404f (1d:404f)
+CopyNthDenjuuToBuffer: ; 7404f (1d:404f)
 	ld bc, wCurDenjuuBuffer
 	ld de, $16
 	addntimes_hl_de
 	ld d, $10
-.asm_7405f
+.copy
 	ld a, [hli]
 	ld [bc], a
 	inc bc
 	dec d
-	jr nz, .asm_7405f
+	jr nz, .copy
 	ret
 
 Func_74066:
@@ -52,45 +52,45 @@ Func_74066:
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
-	call Func_74079
-	call Func_74099
+	call FixTerminatorCharacter
+	call CopyToBattleUserName
 	ret
 
-Func_74079: ; 74079 (1d:4079)
+FixTerminatorCharacter: ; 74079 (1d:4079)
 	ld hl, wd420
 	ld a, $8
 	ld [wMoveAnimationTimer], a
-.asm_74081
+.loop
 	ld a, [bc]
 	cp $c0
-	jr z, .asm_74092
+	jr z, .done
 	ld [hl], a
 	inc hl
 	inc bc
 	ld a, [wMoveAnimationTimer]
 	dec a
 	ld [wMoveAnimationTimer], a
-	jr nz, .asm_74081
-.asm_74092
-	ld a, $e0
+	jr nz, .loop
+.done
+	ld a, "$"
 	ld [hl], a
 	ld hl, wd420
 	ret
 
-Func_74099: ; 74099 (1d:4099)
+CopyToBattleUserName: ; 74099 (1d:4099)
 	ld de, wBattleUserName
 	ld b, $9
-.asm_7409e
+.copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_7409e
+	jr nz, .copy
 	ret
 
-Func_740a5: ; 740a5 (1d:40a5)
+CheckLearnedMove: ; 740a5 (1d:40a5)
 	xor a
-	ld [wd4c9], a
+	ld [wLearnedMove], a
 	push hl
 	ld a, [hld]
 	ld b, a
@@ -109,7 +109,7 @@ Func_740a5: ; 740a5 (1d:40a5)
 	ld c, DENJUU_MOVE3
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd4c9], a
+	ld [wLearnedMove], a
 	jr .asm_740ed
 
 .asm_740cc
@@ -131,35 +131,38 @@ Func_740a5: ; 740a5 (1d:40a5)
 	ld c, DENJUU_MOVE4
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
-	ld [wd4c9], a
+	ld [wLearnedMove], a
 .asm_740ed
 	ret
 
-Func_740ee: ; 740ee (1d:40ee)
+BattleResult__: ; 740ee (1d:40ee)
 	ld a, [wBattleSubroutine]
 	jump_table
-	dw Func_7410e
-	dw Func_74111
+	dw .HandleBattleRexult
+	dw .CheckBattleResult
+	; WON
 	dw Func_74120
 	dw Func_74142
 	dw Func_74145
-	dw Func_741e4
+	dw DenjuuWantsToJoinTeam
+
+	; LOST
 	dw Func_741e7
 	dw Func_74216
 	dw Func_74219
 	dw Func_74220
-	dw Func_74233
+	dw ReturnToGameOverScreen
 
-Func_7410e: ; 7410e (1d:410e)
-	jp Func_74243
+.HandleBattleRexult: ; 7410e (1d:410e)
+	jp HandleBattleRexult
 
-Func_74111: ; 74111 (1d:4111)
-	ld a, [wd407]
+.CheckBattleResult: ; 74111 (1d:4111)
+	ld a, [wBattleResult]
 	or a
-	jr z, .asm_7411a
+	jr z, .lost_battle
 	jp NextBattleSubroutine
 
-.asm_7411a
+.lost_battle
 	ld a, $6
 	ld [wBattleSubroutine], a
 	ret
@@ -189,7 +192,7 @@ Func_74142: ; 74142 (1d:4142)
 Func_74145: ; 74145 (1d:4145)
 	xor a
 	ld [wd401], a
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $2
 	jp z, Func_741de
 	ld a, [wPlayerNameEntryBuffer]
@@ -245,7 +248,7 @@ Func_74145: ; 74145 (1d:4145)
 	ld a, $0
 	or a
 	jp nz, NextBattleSubroutine
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	or a
 	jp nz, NextBattleSubroutine
 	ld a, [wd40c]
@@ -268,8 +271,8 @@ Func_741de: ; 741de (1d:41de)
 	ld [wBattleSubroutine], a
 	ret
 
-Func_741e4: ; 741e4 (1d:41e4)
-	jp Func_75040
+DenjuuWantsToJoinTeam: ; 741e4 (1d:41e4)
+	jp DenjuuWantsToJoinTeam_
 
 Func_741e7: ; 741e7 (1d:41e7)
 	xor a
@@ -280,10 +283,10 @@ Func_741e7: ; 741e7 (1d:41e7)
 	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr nz, .asm_7420a
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $1
 	jr z, .asm_7420a
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $2
 	jr z, .asm_7420a
 	jp NextBattleSubroutine
@@ -319,7 +322,7 @@ Func_74220: ; 74220 (1d:4220)
 .asm_74230
 	jp NextBattleSubroutine
 
-Func_74233: ; 74233 (1d:4233)
+ReturnToGameOverScreen: ; 74233 (1d:4233)
 	xor a
 	ld [wBattleSubroutine], a
 	ld [wSubroutine], a
@@ -328,34 +331,38 @@ Func_74233: ; 74233 (1d:4233)
 	ld [wGameRoutine], a
 	ret
 
-Func_74243: ; 74243 (1d:4243)
+HandleBattleRexult: ; 74243 (1d:4243)
 	ld a, [wd401]
 	jump_table
-	dw Func_74291
-	dw Func_742c4
-	dw Func_742f6
-	dw Func_747d7
-	dw Func_74827
-	dw Func_74957
-	dw Func_74f3d
-Func_7425a: ; 7425a (1d:425a)
-	dw Func_74f80
-	dw Func_74fc2
-	dw Func_74fd4
-	dw Func_74fe8
-	dw Func_7449f
-	dw Func_74b86
-	dw Func_7497d
-	dw Func_74942
-	dw Func_74bdc
-	dw Func_74c2b
-	dw Func_747e6
-	dw Func_74813
-	dw Func_74d96
-	dw Func_74e64
-	dw Func_74e89
-	dw Func_74f27
-	dw Func_74c3a
+	dw BattleResults_CheckBattleResult ; 00
+	; WON
+	dw PlayVictoryMusic_LoadWinObject_PrintVictoryMessage ; 01
+	dw PrintWonBattleMessageAndCalculateExperienceYield ; 02
+	dw WaitWonExperienceText ; 03
+	dw PrintLevelUpText ; 04
+	dw WaitLevelUpText ; 05
+
+	; LOST
+	dw PlayDefeatedMusic_LoadLostObject_PrintDefeatedMessage ; 06
+	dw PrintLostBattleMessageAndPenalizePlayer ; 07
+	dw LostBattle_StartFadeOut ; 08
+	dw LostBattle_WaitFadeOut ; 09
+	dw LostBattle_Finish ; 0a
+
+	; MISC
+	dw BattleResults_AwardExperiencePoints ; 0b
+	dw ShowStatChangesAfterLevelUp ; 0c
+	dw PrepareLevelUpScreenLayout ; 0d
+	dw ResetBattleResultsLayoutForNextLevelUp ; 0e
+	dw BattleResults_CheckLearnedMove ; 0f
+	dw WaitLearnedMoveText ; 10
+	dw BattleResults_EarnMoneyFromVictory ; 11
+	dw BattleResults_WaitPayoutText ; 12
+	dw CheckDenjuuEvolved ; 13
+	dw HandleDenjuuEvolution ; 14
+	dw Func_74e89 ; 15
+	dw Func_74f27 ; 16
+	dw Func_74c3a ; 17
 
 String_7427d:
 	db "すばやさ"
@@ -368,7 +375,7 @@ String_74289:
 String_7428d:
 	db "でんぼう"
 
-Func_74291: ; 74291 (1d:4291)
+BattleResults_CheckBattleResult: ; 74291 (1d:4291)
 	ld a, $20
 	ld [wd4ee], a
 	ld bc, $1
@@ -380,26 +387,26 @@ Func_74291: ; 74291 (1d:4291)
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, [wd407]
+	ld a, [wBattleResult]
 	cp $0
-	jr z, .asm_742be
+	jr z, .lost
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
 	ret
 
-.asm_742be
+.lost
 	ld a, $6
 	ld [wd401], a
 	ret
 
-Func_742c4: ; 742c4 (1d:42c4)
+PlayVictoryMusic_LoadWinObject_PrintVictoryMessage: ; 742c4 (1d:42c4)
 	ld a, $18
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld c, $10
-	call Func_3d02
-	call Func_74ff2
+	ld c, $10 ; Caught the E-monster!
+	call StdBattleTextBox
+	call BattleResults_ResetLCDCFlags
 	ld a, $7f
 	ld [wBattleMenuCursorObjectTemplateIDX], a
 	ld a, $0
@@ -415,7 +422,7 @@ Func_742c4: ; 742c4 (1d:42c4)
 	ld [wd401], a
 	ret
 
-Func_742f6: ; 742f6 (1d:42f6)
+PrintWonBattleMessageAndCalculateExperienceYield: ; 742f6 (1d:42f6)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -424,20 +431,20 @@ Func_742f6: ; 742f6 (1d:42f6)
 	ld [wOAMAnimation01], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wd4e6]
-	ld [wd40a], a
+	ld a, [wNumAlivePlayerDenjuu]
+	ld [BattleResults_CurBattleDenjuu], a
 	xor a
-	ld [wd5ac], a
-	ld [wd5ad], a
-	ld [wd5ae], a
-	ld a, [wd403]
+	ld [wDenjuu1LeveledUp], a
+	ld [wDenjuu2LeveledUp], a
+	ld [wDenjuu3LeveledUp], a
+	ld a, [wBattleMode]
 	cp $0
-	jr z, .asm_74329
+	jr z, .wild
 	cp $1
-	jr z, .asm_74338
+	jr z, .tfanger
 	cp $2
-	jp z, Func_74392
-.asm_74329
+	jp z, .boss_denjuu
+.wild
 	ld h, $0
 	ld a, [wEnemyDenjuu1Level]
 	ld l, a
@@ -445,9 +452,9 @@ Func_742f6: ; 742f6 (1d:42f6)
 	ld d, $0
 	ld e, a
 	add hl, de
-	jp Func_743b2
+	jp .done
 
-.asm_74338
+.tfanger
 	ld a, [wEnemyDenjuu1]
 	ld b, $0
 	ld c, DENJUU_TYPE
@@ -455,15 +462,15 @@ Func_742f6: ; 742f6 (1d:42f6)
 	ld a, [wEnemyDenjuu1Level]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	sra b
 	rr c
 	sra b
 	rr c
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	push bc
 	pop hl
 	ld h, $0
@@ -473,15 +480,15 @@ Func_742f6: ; 742f6 (1d:42f6)
 	ld d, $0
 	ld e, a
 	add hl, de
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld d, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld e, a
 	add hl, de
 	ld a, h
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, l
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld h, $0
 	ld a, [wEnemyDenjuu3Level]
 	ld l, a
@@ -489,14 +496,14 @@ Func_742f6: ; 742f6 (1d:42f6)
 	ld d, $0
 	ld e, a
 	add hl, de
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld d, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld e, a
 	add hl, de
-	jr Func_743b2
+	jr .done
 
-Func_74392: ; 74392 (1d:4392)
+.boss_denjuu
 	ld a, [wEnemyDenjuu1]
 	ld b, $0
 	ld c, DENJUU_TYPE
@@ -504,7 +511,7 @@ Func_74392: ; 74392 (1d:4392)
 	ld a, [wEnemyDenjuu1Level]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	sra b
 	rr c
 	sra b
@@ -513,8 +520,8 @@ Func_74392: ; 74392 (1d:4392)
 	ld h, a
 	ld a, c
 	ld l, a
-Func_743b2: ; 743b2 (1d:43b2)
-	ld a, [wd4e6]
+.done
+	ld a, [wNumAlivePlayerDenjuu]
 	ld d, $0
 	ld e, a
 	ld a, h
@@ -523,153 +530,153 @@ Func_743b2: ; 743b2 (1d:43b2)
 	ld c, a
 	call Divide_BC_by_DE_signed_
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $3
-	jr z, .asm_743d2
+	jr z, .okay_denjuu_1
 	cp $5
-	jr nz, .asm_7440d
-.asm_743d2
+	jr nz, .try_denjuu_2
+.okay_denjuu_1
 	ld a, [wPlayerDenjuu1Level]
 	ld b, a
 	ld a, [wEnemyDenjuu1Level]
 	cp b
-	jr c, .asm_743eb
+	jr c, .denjuu_1_normal_yield
 	sub b
 	ld h, $0
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
 	add hl, bc
-	jr .asm_743f3
+	jr .do_denjuu_1_exp
 
-.asm_743eb
-	ld a, [wd4a6]
+.denjuu_1_normal_yield
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld h, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld l, a
-.asm_743f3
+.do_denjuu_1_exp
 	ld a, h
 	cp $0
-	jr nz, .asm_74400
+	jr nz, .denjuu_1_exp_ok
 	ld a, l
 	cp $2
-	jr nc, .asm_74400
+	jr nc, .denjuu_1_exp_ok
 	ld a, $2
 	ld l, a
-.asm_74400
+.denjuu_1_exp_ok
 	ld a, h
-	ld [wd5b1], a
+	ld [wDenjuu1ExpGain + 1], a
 	ld a, l
-	ld [wd5b0], a
+	ld [wDenjuu1ExpGain], a
 	ld a, $9
 	ld [wPlayerDenjuu1ArrivedStatus], a
-.asm_7440d
+.try_denjuu_2
 	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $3
-	jr z, .asm_74418
+	jr z, .okay_denjuu_2
 	cp $5
-	jr nz, .asm_74453
-.asm_74418
+	jr nz, .try_denjuu_3
+.okay_denjuu_2
 	ld a, [wPlayerDenjuu2Level]
 	ld b, a
 	ld a, [wEnemyDenjuu2Level]
 	cp b
-	jr c, .asm_74431
+	jr c, .denjuu_2_normal_yield
 	sub b
 	ld h, $0
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
 	add hl, bc
-	jr .asm_74439
+	jr .do_denjuu_2_exp
 
-.asm_74431
-	ld a, [wd4a6]
+.denjuu_2_normal_yield
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld h, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld l, a
-.asm_74439
+.do_denjuu_2_exp
 	ld a, h
 	cp $0
-	jr nz, .asm_74446
+	jr nz, .denjuu_2_exp_ok
 	ld a, l
 	cp $2
-	jr nc, .asm_74446
+	jr nc, .denjuu_2_exp_ok
 	ld a, $2
 	ld l, a
-.asm_74446
+.denjuu_2_exp_ok
 	ld a, h
-	ld [wd5b3], a
+	ld [wDenjuu2ExpGain + 1], a
 	ld a, l
-	ld [wd5b2], a
+	ld [wDenjuu2ExpGain], a
 	ld a, $9
 	ld [wPlayerDenjuu2ArrivedStatus], a
-.asm_74453
+.try_denjuu_3
 	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $3
-	jr z, .asm_7445e
+	jr z, .okay_denjuu_3
 	cp $5
-	jr nz, .asm_74499
-.asm_7445e
+	jr nz, .done_calculating_exp
+.okay_denjuu_3
 	ld a, [wPlayerDenjuu3Level]
 	ld b, a
 	ld a, [wEnemyDenjuu3Level]
 	cp b
-	jr c, .asm_74477
+	jr c, .denjuu_3_normal_yield
 	sub b
 	ld h, $0
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
 	add hl, bc
-	jr .asm_7447f
+	jr .do_denjuu_3_exp
 
-.asm_74477
-	ld a, [wd4a6]
+.denjuu_3_normal_yield
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld h, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld l, a
-.asm_7447f
+.do_denjuu_3_exp
 	ld a, h
 	cp $0
-	jr nz, .asm_7448c
+	jr nz, .denju_3_exp_ok
 	ld a, l
 	cp $2
-	jr nc, .asm_7448c
+	jr nc, .denju_3_exp_ok
 	ld a, $2
 	ld l, a
-.asm_7448c
+.denju_3_exp_ok
 	ld a, h
-	ld [wd5b5], a
+	ld [wDenjuu3ExpGain + 1], a
 	ld a, l
-	ld [wd5b4], a
+	ld [wDenjuu3ExpGain], a
 	ld a, $9
 	ld [wPlayerDenjuu3ArrivedStatus], a
-.asm_74499
+.done_calculating_exp
 	ld a, $b
 	ld [wd401], a
 	ret
 
-Func_7449f: ; 7449f (1d:449f)
+BattleResults_AwardExperiencePoints: ; 7449f (1d:449f)
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $9
-	jp nz, Func_74598
+	jp nz, AwardExp_Denjuu2
 	ld a, $0
-	ld [wd40a], a
-	ld a, [wd40a]
+	ld [BattleResults_CurBattleDenjuu], a
+	ld a, [BattleResults_CurBattleDenjuu]
 	ld hl, wPlayerDenjuu1
-	call Func_7404f
+	call CopyNthDenjuuToBuffer
 	call OpenSRAMBank2
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, sAddressBook + $6
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -678,36 +685,36 @@ Func_7449f: ; 7449f (1d:449f)
 	call OpenSRAMBank2
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld a, [wPlayerDenjuu1Level]
-	cp $63
-	jp z, Func_74595
+	cp 99
+	jp z, .no_level_up
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $2
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
-	cp $64
-	jr nc, .asm_744e7
+	cp 100
+	jr nc, .skip_fd_up
 	inc a
 	ld [hl], a
-.asm_744e7
+.skip_fd_up
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	push hl
 	ld a, [hli]
 	ld e, a
 	ld a, e
-	ld [wd5c8], a
+	ld [wExperiencePointsBeforeAward], a
 	ld a, [hl]
 	ld d, a
 	ld a, d
-	ld [wd5c9], a
+	ld [wExperiencePointsBeforeAward + 1], a
 	push de
 	pop hl
-	ld a, [wd5b1]
+	ld a, [wDenjuu1ExpGain + 1]
 	ld b, a
-	ld a, [wd5b0]
+	ld a, [wDenjuu1ExpGain]
 	ld c, a
 	add hl, bc
 	ld a, h
@@ -720,23 +727,23 @@ Func_7449f: ; 7449f (1d:449f)
 	ld a, b
 	ld [hl], a
 	ld a, b
-	ld [wd4af], a
+	ld [wExperiencePointsAfterAward + 1], a
 	ld a, c
-	ld [wd4ae], a
+	ld [wExperiencePointsAfterAward], a
 	push bc
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
 	srl h
 	rr l
-	ld a, [wd5c9]
+	ld a, [wExperiencePointsBeforeAward + 1]
 	ld b, a
-	ld a, [wd5c8]
+	ld a, [wExperiencePointsBeforeAward]
 	ld c, a
 	srl b
 	rr c
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	pop hl
 	call PrintNumHL
@@ -747,11 +754,11 @@ Func_7449f: ; 7449f (1d:449f)
 	ld a, [wCurDenjuuBufferLevel]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld a, b
 	ld d, a
 	ld a, c
@@ -760,44 +767,44 @@ Func_7449f: ; 7449f (1d:449f)
 	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
-	jr z, Func_74595
+	jr z, .no_level_up
 	ld a, $1
-	ld [wd5ac], a
+	ld [wDenjuu1LeveledUp], a
 	ld a, $a
 	ld [wPlayerDenjuu1ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	pop de
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hl], a
-Func_74595: ; 74595 (1d:4595)
-	jp Func_74792
+.no_level_up
+	jp PrintExperienceGainedMessage
 
-Func_74598: ; 74598 (1d:4598)
+AwardExp_Denjuu2: ; 74598 (1d:4598)
 	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $9
-	jp nz, Func_74691
+	jp nz, AwardExp_Denjuu3
 	ld a, $1
-	ld [wd40a], a
-	ld a, [wd40a]
+	ld [BattleResults_CurBattleDenjuu], a
+	ld a, [BattleResults_CurBattleDenjuu]
 	ld hl, wPlayerDenjuu1Species
-	call Func_7404f
+	call CopyNthDenjuuToBuffer
 	call OpenSRAMBank2
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, sAddressBook + $6
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -806,36 +813,36 @@ Func_74598: ; 74598 (1d:4598)
 	call OpenSRAMBank2
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld a, [wPlayerDenjuu2Level]
-	cp $63
-	jp z, Func_7468e
+	cp 99
+	jp z, .no_level_up
 	call OpenSRAMBank2
-	ld hl, sAddressBook + $2
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld hl, sAddressBook + $2 ; FD
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
-	cp $64
-	jr nc, .asm_745e0
+	cp 100
+	jr nc, .skip_fd_up
 	inc a
 	ld [hl], a
-.asm_745e0
+.skip_fd_up
 	call OpenSRAMBank2
-	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld hl, sAddressBook + $4 ; exp
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	push hl
 	ld a, [hli]
 	ld e, a
 	ld a, e
-	ld [wd5c8], a
+	ld [wExperiencePointsBeforeAward], a
 	ld a, [hl]
 	ld d, a
 	ld a, d
-	ld [wd5c9], a
+	ld [wExperiencePointsBeforeAward + 1], a
 	push de
 	pop hl
-	ld a, [wd5b3]
+	ld a, [wDenjuu2ExpGain + 1]
 	ld b, a
-	ld a, [wd5b2]
+	ld a, [wDenjuu2ExpGain]
 	ld c, a
 	add hl, bc
 	ld a, h
@@ -848,23 +855,23 @@ Func_74598: ; 74598 (1d:4598)
 	ld a, b
 	ld [hl], a
 	ld a, b
-	ld [wd4af], a
+	ld [wExperiencePointsAfterAward + 1], a
 	ld a, c
-	ld [wd4ae], a
+	ld [wExperiencePointsAfterAward], a
 	push bc
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
 	srl h
 	rr l
-	ld a, [wd5c9]
+	ld a, [wExperiencePointsBeforeAward + 1]
 	ld b, a
-	ld a, [wd5c8]
+	ld a, [wExperiencePointsBeforeAward]
 	ld c, a
 	srl b
 	rr c
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	pop hl
 	call PrintNumHL
@@ -875,11 +882,11 @@ Func_74598: ; 74598 (1d:4598)
 	ld a, [wCurDenjuuBufferLevel]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld a, b
 	ld d, a
 	ld a, c
@@ -888,44 +895,44 @@ Func_74598: ; 74598 (1d:4598)
 	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
-	jr z, Func_7468e
+	jr z, .no_level_up
 	ld a, $1
-	ld [wd5ad], a
+	ld [wDenjuu2LeveledUp], a
 	ld a, $a
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	pop de
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hl], a
-Func_7468e: ; 7468e (1d:468e)
-	jp Func_74792
+.no_level_up: ; 7468e (1d:468e)
+	jp PrintExperienceGainedMessage
 
-Func_74691: ; 74691 (1d:4691)
+AwardExp_Denjuu3: ; 74691 (1d:4691)
 	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $9
-	jp nz, Func_74789
+	jp nz, .done
 	ld a, $2
-	ld [wd40a], a
-	ld a, [wd40a]
+	ld [BattleResults_CurBattleDenjuu], a
+	ld a, [BattleResults_CurBattleDenjuu]
 	ld hl, wPlayerDenjuu1
-	call Func_7404f
+	call CopyNthDenjuuToBuffer
 	call OpenSRAMBank2
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, sAddressBook + $6
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -935,10 +942,10 @@ Func_74691: ; 74691 (1d:4691)
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld a, [wPlayerDenjuu3Level]
 	cp 99
-	jp z, Func_74787
+	jp z, .no_level_up
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $2
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp 100
@@ -948,22 +955,22 @@ Func_74691: ; 74691 (1d:4691)
 .asm_746d9
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	push hl
 	ld a, [hli]
 	ld e, a
 	ld a, e
-	ld [wd5c8], a
+	ld [wExperiencePointsBeforeAward], a
 	ld a, [hl]
 	ld d, a
 	ld a, d
-	ld [wd5c9], a
+	ld [wExperiencePointsBeforeAward + 1], a
 	push de
 	pop hl
-	ld a, [wd5b5]
+	ld a, [wDenjuu3ExpGain + 1]
 	ld b, a
-	ld a, [wd5b4]
+	ld a, [wDenjuu3ExpGain]
 	ld c, a
 	add hl, bc
 	ld a, h
@@ -976,23 +983,23 @@ Func_74691: ; 74691 (1d:4691)
 	ld a, b
 	ld [hl], a
 	ld a, b
-	ld [wd4af], a
+	ld [wExperiencePointsAfterAward + 1], a
 	ld a, c
-	ld [wd4ae], a
+	ld [wExperiencePointsAfterAward], a
 	push bc
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
 	srl h
 	rr l
-	ld a, [wd5c9]
+	ld a, [wExperiencePointsBeforeAward + 1]
 	ld b, a
-	ld a, [wd5c8]
+	ld a, [wExperiencePointsBeforeAward]
 	ld c, a
 	srl b
 	rr c
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	pop hl
 	call PrintNumHL
@@ -1003,11 +1010,11 @@ Func_74691: ; 74691 (1d:4691)
 	ld a, [wCurDenjuuBufferLevel]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld a, b
 	ld d, a
 	ld a, c
@@ -1016,80 +1023,80 @@ Func_74691: ; 74691 (1d:4691)
 	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
-	jr z, Func_74787
+	jr z, .no_level_up
 	ld a, $1
-	ld [wd5ae], a
+	ld [wDenjuu3LeveledUp], a
 	ld a, $a
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	pop de
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hl], a
-Func_74787: ; 74787 (1d:4787)
-	jr Func_74792
+.no_level_up: ; 74787 (1d:4787)
+	jr PrintExperienceGainedMessage
 
-Func_74789: ; 74789 (1d:4789)
+.done
 	call CloseSRAM
 	ld a, $11
 	ld [wd401], a
 	ret
 
-Func_74792: ; 74792 (1d:4792)
-	ld a, [wd40a]
+PrintExperienceGainedMessage: ; 74792 (1d:4792)
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
-	jr z, .asm_7479f
+	jr z, .denjuu1
 	cp $1
-	jr z, .asm_747ad
-	jr .asm_747bb
+	jr z, .denjuu2
+	jr .denjuu3
 
-.asm_7479f
+.denjuu1
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $9
-	jr nz, .asm_747c9
+	jr nz, .print
 	ld a, $3
 	ld [wPlayerDenjuu1ArrivedStatus], a
-	jr .asm_747c9
+	jr .print
 
-.asm_747ad
+.denjuu2
 	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $9
-	jr nz, .asm_747c9
+	jr nz, .print
 	ld a, $3
 	ld [wPlayerDenjuu2ArrivedStatus], a
-	jr .asm_747c9
+	jr .print
 
-.asm_747bb
+.denjuu3
 	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $9
-	jr nz, .asm_747c9
+	jr nz, .print
 	ld a, $3
 	ld [wPlayerDenjuu3ArrivedStatus], a
-	jr .asm_747c9
+	jr .print
 
-.asm_747c9
+.print
 	call CloseSRAM
 	ld c, $17
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $3
 	ld [wd401], a
 	ret
 
-Func_747d7: ; 747d7 (1d:47d7)
+WaitWonExperienceText: ; 747d7 (1d:47d7)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -1098,7 +1105,7 @@ Func_747d7: ; 747d7 (1d:47d7)
 	ld [wd401], a
 	ret
 
-Func_747e6: ; 747e6 (1d:47e6)
+BattleResults_EarnMoneyFromVictory: ; 747e6 (1d:47e6)
 	ld b, $0
 	ld a, [wEnemyDenjuu1Level]
 	ld c, a
@@ -1112,7 +1119,7 @@ Func_747e6: ; 747e6 (1d:47e6)
 	ld l, a
 	call PrintNumHL
 	ld c, $68
-	call Func_3d02
+	call StdBattleTextBox
 	pop de
 	ld a, d
 	ld b, a
@@ -1125,7 +1132,7 @@ Func_747e6: ; 747e6 (1d:47e6)
 	ld [wd401], a
 	ret
 
-Func_74813: ; 74813 (1d:4813)
+BattleResults_WaitPayoutText: ; 74813 (1d:4813)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -1136,7 +1143,7 @@ Func_74813: ; 74813 (1d:4813)
 	ld [wd401], a
 	ret
 
-Func_74827: ; 74827 (1d:4827)
+PrintLevelUpText: ; 74827 (1d:4827)
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $a
 	jr nz, .asm_74860
@@ -1145,12 +1152,12 @@ Func_74827: ; 74827 (1d:4827)
 	ld [wPlayerDenjuu1Level], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $1
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [wPlayerDenjuu1Level]
 	ld [hl], a
 	ld hl, sAddressBook + $2
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	inc a
@@ -1161,7 +1168,7 @@ Func_74827: ; 74827 (1d:4827)
 	ld [wPlayerDenjuu1FD], a
 .asm_74859
 	ld a, $0
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	jr .asm_748df
 
 .asm_74860
@@ -1172,12 +1179,12 @@ Func_74827: ; 74827 (1d:4827)
 	inc a
 	ld [wPlayerDenjuu2Level], a
 	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld hl, sAddressBook + $1
 	call GetNthAddressBookAttributeAddr
 	ld a, [wPlayerDenjuu2Level]
 	ld [hl], a
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld hl, sAddressBook + $2
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
@@ -1189,7 +1196,7 @@ Func_74827: ; 74827 (1d:4827)
 	ld [wPlayerDenjuu2FD], a
 .asm_74892
 	ld a, $1
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	jr .asm_748df
 
 .asm_74899
@@ -1200,12 +1207,12 @@ Func_74827: ; 74827 (1d:4827)
 	inc a
 	ld [wPlayerDenjuu3Level], a
 	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld hl, sAddressBook + $1
 	call GetNthAddressBookAttributeAddr
 	ld a, [wPlayerDenjuu3Level]
 	ld [hl], a
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld hl, sAddressBook + $2
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
@@ -1217,21 +1224,21 @@ Func_74827: ; 74827 (1d:4827)
 	ld [wPlayerDenjuu3FD], a
 .asm_748cb
 	ld a, $2
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	jr .asm_748df
 
 .asm_748d2
 	xor a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	call CloseSRAM
 	ld a, $13
 	ld [wd401], a
 	ret
 
 .asm_748df
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	ld hl, wPlayerDenjuu1Species
-	call Func_7404f
+	call CopyNthDenjuuToBuffer
 	lb bc, 1, 5
 	ld e, $8b
 	ld a, $0
@@ -1256,11 +1263,11 @@ Func_74827: ; 74827 (1d:4827)
 	ld a, $8
 	ld hl, VTilesBG tile $20
 	call ClearString
-	ld a, [wCurDenjuuBufferField0x0d]
+	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, VTilesBG tile $20
 	call PrintStringWithPlayerDenjuuAsBattleUser
 	ld c, $18
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $1a
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -1269,7 +1276,7 @@ Func_74827: ; 74827 (1d:4827)
 	ld [wd401], a
 	ret
 
-Func_74942: ; 74942 (1d:4942)
+ResetBattleResultsLayoutForNextLevelUp: ; 74942 (1d:4942)
 	lb bc, 1, 5
 	ld e, $92
 	ld a, $0
@@ -1280,7 +1287,7 @@ Func_74942: ; 74942 (1d:4942)
 	ld [wd401], a
 	ret
 
-Func_74957: ; 74957 (1d:4957)
+WaitLevelUpText: ; 74957 (1d:4957)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -1291,14 +1298,14 @@ Func_74957: ; 74957 (1d:4957)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld a, $38
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld a, $d
 	ld [wd401], a
 	ret
 
-Func_7497d: ; 7497d (1d:497d)
+PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld de, String_7427d
 	ld hl, VTilesBG tile $40
 	ld b, $4
@@ -1327,9 +1334,9 @@ Func_7497d: ; 7497d (1d:497d)
 	ld e, $8f
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	ld hl, wPlayerDenjuu1
-	call Func_7404f
+	call CopyNthDenjuuToBuffer
 	ld a, [wCurDenjuuBufferLevel]
 	hlbgcoord 16, 2
 	ld c, $0
@@ -1536,37 +1543,37 @@ Func_7497d: ; 7497d (1d:497d)
 	ld [wd401], a
 	ret
 
-Func_74b86: ; 74b86 (1d:4b86)
+ShowStatChangesAfterLevelUp: ; 74b86 (1d:4b86)
 	ld a, [wVBlankCounter]
 	and $7
-	jr nz, .asm_74b93
+	jr nz, .no_animate
 	ld hl, VTilesBG tile $10
-	call Func_1796
-.asm_74b93
+	call AnimateStatUpArrows
+.no_animate
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
-	jr z, .asm_74ba5
+	jr z, .denjuu1
 	cp $1
-	jr z, .asm_74bac
-	jr .asm_74bb3
+	jr z, .denjuu2
+	jr .denjuu3
 
-.asm_74ba5
+.denjuu1
 	ld a, $3
 	ld [wPlayerDenjuu1ArrivedStatus], a
-	jr .asm_74bb8
+	jr .done
 
-.asm_74bac
+.denjuu2
 	ld a, $3
 	ld [wPlayerDenjuu2ArrivedStatus], a
-	jr .asm_74bb8
+	jr .done
 
-.asm_74bb3
+.denjuu3
 	ld a, $3
 	ld [wPlayerDenjuu3ArrivedStatus], a
-.asm_74bb8
+.done
 	lb bc, 10, 0
 	ld e, $9f
 	ld a, $0
@@ -1583,50 +1590,50 @@ Func_74b86: ; 74b86 (1d:4b86)
 	ld [wd401], a
 	ret
 
-Func_74bdc: ; 74bdc (1d:4bdc)
-	ld a, [wd40a]
+BattleResults_CheckLearnedMove: ; 74bdc (1d:4bdc)
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
-	jr z, .asm_74be9
+	jr z, .Denjuu1
 	cp $1
-	jr z, .asm_74bf1
-	jr .asm_74bf9
+	jr z, .Denjuu2
+	jr .Denjuu3
 
-.asm_74be9
+.Denjuu1
 	ld hl, wPlayerDenjuu1Level
-	call Func_740a5
-	jr .asm_74bff
+	call CheckLearnedMove
+	jr .okay
 
-.asm_74bf1
+.Denjuu2
 	ld hl, wPlayerDenjuu2Level
-	call Func_740a5
-	jr .asm_74bff
+	call CheckLearnedMove
+	jr .okay
 
-.asm_74bf9
+.Denjuu3
 	ld hl, wPlayerDenjuu3Level
-	call Func_740a5
-.asm_74bff
-	ld a, [wd4c9]
+	call CheckLearnedMove
+.okay
+	ld a, [wLearnedMove]
 	cp $0
-	jr z, .asm_74c25
+	jr z, .skip_learn_move
 	ld [wd435], a
 	ld hl, MoveNames
 	call Get8CharName75
 	ld bc, wStringBuffer
-	call Func_74079
-	call Func_74099
+	call FixTerminatorCharacter
+	call CopyToBattleUserName
 	ld c, $34
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
 	ret
 
-.asm_74c25
+.skip_learn_move
 	ld a, $17
 	ld [wd401], a
 	ret
 
-Func_74c2b: ; 74c2b (1d:4c2b)
+WaitLearnedMoveText: ; 74c2b (1d:4c2b)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -1636,26 +1643,26 @@ Func_74c2b: ; 74c2b (1d:4c2b)
 	ret
 
 Func_74c3a: ; 74c3a (1d:4c3a)
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
-	jr z, .asm_74c48
+	jr z, .denjuu1
 	cp $1
-	jr z, .asm_74cb7
-	jp Func_74d23
+	jr z, .denjuu2
+	jp .denjuu3
 
-.asm_74c48
+.denjuu1
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
 	ld b, a
 	ld a, b
-	ld [wd4af], a
+	ld [wExperiencePointsAfterAward + 1], a
 	ld a, c
-	ld [wd4ae], a
+	ld [wExperiencePointsAfterAward], a
 	push bc
 	ld a, [wPlayerDenjuu1]
 	ld b, $0
@@ -1664,11 +1671,11 @@ Func_74c3a: ; 74c3a (1d:4c3a)
 	ld a, [wPlayerDenjuu1Level]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld a, b
 	ld d, a
 	ld a, c
@@ -1677,44 +1684,44 @@ Func_74c3a: ; 74c3a (1d:4c3a)
 	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
-	jr z, .asm_74cb4
+	jr z, .done
 	ld a, $a
 	ld [wPlayerDenjuu1ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	pop de
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hl], a
-.asm_74cb4
-	jp Func_74d8d
+.done
+	jp .finished
 
-.asm_74cb7
+.denjuu2
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
 	ld b, a
 	ld a, b
-	ld [wd4af], a
+	ld [wExperiencePointsAfterAward + 1], a
 	ld a, c
-	ld [wd4ae], a
+	ld [wExperiencePointsAfterAward], a
 	push bc
 	ld a, [wPlayerDenjuu2]
 	ld c, DENJUU_TYPE
@@ -1722,11 +1729,11 @@ Func_74c3a: ; 74c3a (1d:4c3a)
 	ld a, [wPlayerDenjuu2Level]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld a, b
 	ld d, a
 	ld a, c
@@ -1735,44 +1742,44 @@ Func_74c3a: ; 74c3a (1d:4c3a)
 	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
-	jr z, .asm_74d21
+	jr z, .done2
 	ld a, $a
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	pop de
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hl], a
-.asm_74d21
-	jr Func_74d8d
+.done2
+	jr .finished
 
-Func_74d23: ; 74d23 (1d:4d23)
+.denjuu3: ; 74d23 (1d:4d23)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
 	ld b, a
 	ld a, b
-	ld [wd4af], a
+	ld [wExperiencePointsAfterAward + 1], a
 	ld a, c
-	ld [wd4ae], a
+	ld [wExperiencePointsAfterAward], a
 	push bc
 	ld a, [wPlayerDenjuu3Species]
 	ld c, DENJUU_TYPE
@@ -1780,11 +1787,11 @@ Func_74d23: ; 74d23 (1d:4d23)
 	ld a, [wPlayerDenjuu3Level]
 	ld b, a
 	ld a, [wCurDenjuuStat]
-	call Func_05d9
+	call GetExpToNextLevel
 	ld a, b
-	ld [wd4a6], a
+	ld [wExperiencePointsToNextLevel + 1], a
 	ld a, c
-	ld [wd4a5], a
+	ld [wExperiencePointsToNextLevel], a
 	ld a, b
 	ld d, a
 	ld a, c
@@ -1793,105 +1800,105 @@ Func_74d23: ; 74d23 (1d:4d23)
 	call Divide_BC_by_DE_signed_
 	ld a, c
 	cp $0
-	jr z, Func_74d8d
+	jr z, .finished
 	ld a, $a
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wd4af]
+	ld a, [wExperiencePointsAfterAward + 1]
 	ld h, a
-	ld a, [wd4ae]
+	ld a, [wExperiencePointsAfterAward]
 	ld l, a
-	ld a, [wd4a6]
+	ld a, [wExperiencePointsToNextLevel + 1]
 	ld b, a
-	ld a, [wd4a5]
+	ld a, [wExperiencePointsToNextLevel]
 	ld c, a
-	call Func_75007
+	call Subtract_HL_BC
 	push de
 	ld hl, sAddressBook + $4
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	pop de
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hl], a
-Func_74d8d: ; 74d8d (1d:4d8d)
+.finished
 	call CloseSRAM
 	ld a, $4
 	ld [wd401], a
 	ret
 
-Func_74d96: ; 74d96 (1d:4d96)
+CheckDenjuuEvolved: ; 74d96 (1d:4d96)
 	call OpenSRAMBank2
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
-	jr z, .asm_74dab
+	jr z, .denjuu_1
 	cp $1
-	jr z, .asm_74dd5
+	jr z, .denjuu_2
 	cp $2
-	jr z, .asm_74e01
-	jp Func_74e4c
+	jr z, .denjuu_3
+	jp .finish
 
-.asm_74dab
-	ld a, [wd5ac]
+.denjuu_1
+	ld a, [wDenjuu1LeveledUp]
 	cp $0
-	jp z, Func_74e4c
+	jp z, .finish
 	ld a, [wPlayerDenjuu1]
 	ld c, DENJUU_EVO_LEVEL
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	ld b, a
 	cp $0
-	jp z, Func_74e4c
+	jp z, .finish
 	ld a, [wPlayerDenjuu1Level]
 	cp b
-	jp c, Func_74e4c
+	jp c, .finish
 	ld a, $b
 	ld [wPlayerDenjuu1ArrivedStatus], a
-	ld a, [wPlayerDenjuu1Field0x0d]
-	jr .asm_74e2b
+	ld a, [wPlayerDenjuu1AddressBookLocation]
+	jr .prep_text
 
-.asm_74dd5
-	ld a, [wd5ad]
+.denjuu_2
+	ld a, [wDenjuu2LeveledUp]
 	cp $0
-	jr z, Func_74e4c
+	jr z, .finish
 	ld a, [wPlayerDenjuu2]
 	ld c, DENJUU_EVO_LEVEL
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	ld b, a
 	cp $0
-	jr z, Func_74e4c
+	jr z, .finish
 	ld a, [wPlayerDenjuu2Level]
 	cp b
-	jr c, Func_74e4c
+	jr c, .finish
 	ld a, $b
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld a, $1
-	ld [wd40a], a
-	ld a, [wPlayerDenjuu2Field0x0d]
-	jr .asm_74e2b
+	ld [BattleResults_CurBattleDenjuu], a
+	ld a, [wPlayerDenjuu2AddressBookLocation]
+	jr .prep_text
 
-.asm_74e01
-	ld a, [wd5ae]
+.denjuu_3
+	ld a, [wDenjuu3LeveledUp]
 	cp $0
-	jr z, Func_74e4c
+	jr z, .finish
 	ld a, [wPlayerDenjuu3Species]
 	ld c, DENJUU_EVO_LEVEL
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	ld b, a
 	cp $0
-	jr z, Func_74e4c
+	jr z, .finish
 	ld a, [wPlayerDenjuu3Level]
 	cp b
-	jr c, Func_74e4c
+	jr c, .finish
 	ld a, $b
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	ld a, $2
-	ld [wd40a], a
-	ld a, [wPlayerDenjuu3Field0x0d]
-.asm_74e2b
+	ld [BattleResults_CurBattleDenjuu], a
+	ld a, [wPlayerDenjuu3AddressBookLocation]
+.prep_text
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $6
 	call GetNthAddressBookAttributeAddr
@@ -1901,34 +1908,34 @@ Func_74d96: ; 74d96 (1d:4d96)
 	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
 	ld c, $8c
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
 	ret
 
-Func_74e4c: ; 74e4c (1d:4e4c)
-	ld a, [wd40a]
+.finish
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $2
-	jr nc, .asm_74e5b
-	ld a, [wd40a]
+	jr nc, .next
+	ld a, [BattleResults_CurBattleDenjuu]
 	inc a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ret
 
-.asm_74e5b
+.next
 	call CloseSRAM
 	ld a, $8
 	ld [wd401], a
 	ret
 
-Func_74e64: ; 74e64 (1d:4e64)
+HandleDenjuuEvolution: ; 74e64 (1d:4e64)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
 	ld c, $8d
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7546d
@@ -1985,7 +1992,7 @@ Func_74e89: ; 74e89 (1d:4e89)
 	cp $0
 	jr z, .asm_74f11
 .asm_74edb
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
 	jr z, .asm_74ee8
 	cp $1
@@ -2007,7 +2014,7 @@ Func_74e89: ; 74e89 (1d:4e89)
 	ld [wPlayerDenjuu3ArrivedStatus], a
 .asm_74efb
 	ld c, $8e
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wOAMAnimation01], a
 	ld a, $1
@@ -2022,9 +2029,9 @@ Func_74e89: ; 74e89 (1d:4e89)
 	ld [wOAMAnimation01], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	inc a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld a, $13
 	ld [wd401], a
 	ret
@@ -2034,19 +2041,19 @@ Func_74f27: ; 74f27 (1d:4f27)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	inc a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld a, $13
 	ld [wd401], a
 	ret
 
-Func_74f3d: ; 74f3d (1d:4f3d)
+PlayDefeatedMusic_LoadLostObject_PrintDefeatedMessage: ; 74f3d (1d:4f3d)
 	ld a, $19
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $13
-	call Func_3d02
+	call StdBattleTextBox
 	lb bc, $1, $5
 	ld e, $8b
 	ld a, $0
@@ -2070,7 +2077,7 @@ Func_74f3d: ; 74f3d (1d:4f3d)
 	ld [wd401], a
 	ret
 
-Func_74f80: ; 74f80 (1d:4f80)
+PrintLostBattleMessageAndPenalizePlayer: ; 74f80 (1d:4f80)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -2091,7 +2098,7 @@ Func_74f80: ; 74f80 (1d:4f80)
 	ld [wMoney], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $2
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	srl a
@@ -2102,9 +2109,9 @@ Func_74f80: ; 74f80 (1d:4f80)
 	ld [wd401], a
 	ret
 
-Func_74fc2: ; 74fc2 (1d:4fc2)
+LostBattle_StartFadeOut: ; 74fc2 (1d:4fc2)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, [wd401]
@@ -2112,7 +2119,7 @@ Func_74fc2: ; 74fc2 (1d:4fc2)
 	ld [wd401], a
 	ret
 
-Func_74fd4: ; 74fd4 (1d:4fd4)
+LostBattle_WaitFadeOut: ; 74fd4 (1d:4fd4)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -2124,13 +2131,13 @@ Func_74fd4: ; 74fd4 (1d:4fd4)
 	ld [wd401], a
 	ret
 
-Func_74fe8: ; 74fe8 (1d:4fe8)
+LostBattle_Finish: ; 74fe8 (1d:4fe8)
 	xor a
 	ld [wd401], a
-	call Func_74ff2
+	call BattleResults_ResetLCDCFlags
 	jp NextBattleSubroutine
 
-Func_74ff2: ; 74ff2 (1d:4ff2)
+BattleResults_ResetLCDCFlags: ; 74ff2 (1d:4ff2)
 	ld a, [wLCDC]
 	res 5, a
 	ld [wLCDC], a
@@ -2141,7 +2148,7 @@ Func_74ff2: ; 74ff2 (1d:4ff2)
 	ld [wc46c], a
 	ret
 
-Func_75007: ; 75007 (1d:5007)
+Subtract_HL_BC: ; 75007 (1d:5007)
 	ld a, l
 	sub c
 	ld e, a
@@ -2182,7 +2189,7 @@ Func_75024:
 	sub b
 	ret
 
-Func_75040: ; 75040 (1d:5040)
+DenjuuWantsToJoinTeam_: ; 75040 (1d:5040)
 	ld a, [wd401]
 	jump_table
 	dw Func_7506d
@@ -2212,7 +2219,7 @@ Func_7506d:
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	lb bc, 0, $0
 	ld e, $70
 	ld a, $0
@@ -2253,7 +2260,7 @@ Func_7506d:
 	ld a, [wd480]
 	call Func_74066
 	ld c, $6c
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $28
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -2264,7 +2271,7 @@ Func_7506d:
 	ld a, $0
 	call Func_75456
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -2283,7 +2290,7 @@ Func_75113:
 	ld a, $0
 	call LoadStdBGMapLayout_
 .asm_7512b
-	ld a, [wd403]
+	ld a, [wBattleMode]
 	cp $1
 	jp z, Func_75139
 	ld a, $9
@@ -2292,7 +2299,7 @@ Func_75113:
 
 Func_75139: ; 75139 (1d:5139)
 	ld c, $3
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2
 	ld [wd401], a
 	ret
@@ -2303,7 +2310,7 @@ Func_75144: ; 75144 (1d:5144)
 	cp $9
 	ret nz
 	ld c, $3
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2
 	ld [wd401], a
 	ret
@@ -2359,7 +2366,7 @@ Func_75169: ; 75169 (1d:5169)
 
 .asm_751bd
 	ld c, $6e
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $a
 	ld [wd401], a
 	ret
@@ -2382,7 +2389,7 @@ Func_751dc: ; 751dc (1d:51dc)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld c, $63
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7546d
@@ -2463,7 +2470,7 @@ Func_75202: ; 75202 (1d:5202)
 	ld [hl], a
 	ld c, $65
 .asm_75282
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $0
 	ld [wOAMAnimation01], a
 	ld a, $1
@@ -2482,7 +2489,7 @@ Func_75297: ; 75297 (1d:5297)
 	cp $0
 	jr nz, .asm_752c1
 	ld c, $8f
-	call Func_3d02
+	call StdBattleTextBox
 	xor a
 	ld [wd40d], a
 	call Func_7546d
@@ -2495,7 +2502,7 @@ Func_75297: ; 75297 (1d:5297)
 
 .asm_752c1
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, [wd401]
@@ -2588,7 +2595,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	cp $1
 	jr z, .asm_7537e
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -2596,7 +2603,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 
 .asm_7537e
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, $7
@@ -2707,23 +2714,23 @@ Func_753f8: ; 753f8 (1d:53f8)
 	dec c
 	jr nz, .asm_7543e
 	ld a, $0
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	jr .asm_75452
 
 .asm_7544d
 	ld a, $1
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 .asm_75452
 	call CloseSRAM
 	ret
 
 Func_75456: ; 75456 (1d:5456)
 	ld a, $0
-	call Func_0543
-	call Func_7545f
+	call LoadUnknGfx090
+	call .LoadPalette
 	ret
 
-Func_7545f: ; 7545f (1d:545f)
+.LoadPalette: ; 7545f (1d:545f)
 	ld a, $0
 	ld bc, $4
 	call LoadNthStdOBPalette
@@ -2776,7 +2783,7 @@ Func_754b1: ; 754b1 (1d:54b1)
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	ld a, $4
 	ld bc, $5
 	call LoadNthStdBGPalette
@@ -2800,7 +2807,7 @@ Func_754b1: ; 754b1 (1d:54b1)
 	ld a, $8
 	call ClearString
 	ld a, $0
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	ld a, $2b
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -2812,7 +2819,7 @@ Func_754b1: ; 754b1 (1d:54b1)
 	ld hl, VTilesBG tile $10
 	call ClearString
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -2832,7 +2839,7 @@ Func_75541: ; 75541 (1d:5541)
 	cp $b
 	jr nz, .asm_7554f
 	ld a, $0
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	jr .asm_75571
 
 .asm_7554f
@@ -2840,7 +2847,7 @@ Func_75541: ; 75541 (1d:5541)
 	cp $b
 	jr nz, .asm_7555d
 	ld a, $1
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	jr .asm_75571
 
 .asm_7555d
@@ -2848,7 +2855,7 @@ Func_75541: ; 75541 (1d:5541)
 	cp $b
 	jr nz, .asm_7556b
 	ld a, $2
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 	jr .asm_75571
 
 .asm_7556b
@@ -2857,9 +2864,9 @@ Func_75541: ; 75541 (1d:5541)
 	ret
 
 .asm_75571
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	ld hl, wPlayerDenjuu1Species
-	call Func_7404f
+	call CopyNthDenjuuToBuffer
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_74066
 	ld a, [wCurDenjuuBuffer]
@@ -3039,7 +3046,7 @@ Func_756b0: ; 756b0 (1d:56b0)
 	ld a, $15
 	ld [H_SFX_ID], a
 	ld c, $1a
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, $2
 	ld [wd401], a
 	ret
@@ -3058,7 +3065,7 @@ Func_756e8: ; 756e8 (1d:56e8)
 	cp $9
 	ret nz
 	call Func_757b4
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
 	jr z, .asm_75718
 	cp $1
@@ -3070,7 +3077,7 @@ Func_756e8: ; 756e8 (1d:56e8)
 	ld [wPlayerDenjuu1ArrivedStatus], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $0
-	ld a, [wPlayerDenjuu1Field0x0d]
+	ld a, [wPlayerDenjuu1AddressBookLocation]
 	call GetNthAddressBookAttributeAddr
 	ld a, [wCurDenjuuStat]
 	dec a
@@ -3083,7 +3090,7 @@ Func_756e8: ; 756e8 (1d:56e8)
 	ld a, $3
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu2Field0x0d]
+	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld hl, sAddressBook + $0
 	call GetNthAddressBookAttributeAddr
 	ld a, [wCurDenjuuStat]
@@ -3096,7 +3103,7 @@ Func_756e8: ; 756e8 (1d:56e8)
 	ld a, $3
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu3Field0x0d]
+	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld hl, sAddressBook + $0
 	call GetNthAddressBookAttributeAddr
 	ld a, [wCurDenjuuStat]
@@ -3110,7 +3117,7 @@ Func_756e8: ; 756e8 (1d:56e8)
 
 Func_75770: ; 75770 (1d:5770)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, [wd401]
@@ -3177,7 +3184,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	ld bc, $e
 	call GetCGB_BGLayout_
 	ld a, $28
-	call Func_3eb9
+	call LoadBackgroundPalette
 	lb bc, 0, $0
 	ld e, $70
 	ld a, $0
@@ -3246,7 +3253,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	ld a, [wd4eb]
 	call PrintStringWithPlayerDenjuuAsBattleUser
 	ld c, $9
-	call Func_3d02
+	call StdBattleTextBox
 	ld a, [wd493]
 	hlbgcoord 10, 2
 	ld c, $1
@@ -3255,7 +3262,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -3283,7 +3290,7 @@ Func_758bc: ; 758bc (1d:58bc)
 
 Func_758cd: ; 758cd (1d:58cd)
 	ld a, $4
-	call Func_050a
+	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	ld a, [wd401]
@@ -3347,7 +3354,7 @@ Func_758f8: ; 758f8 (1d:58f8)
 	cp $2
 	jp z, Func_7597b
 	dec a
-	ld [wd40a], a
+	ld [BattleResults_CurBattleDenjuu], a
 .asm_7593c
 	push bc
 	ld hl, wd000
@@ -3384,7 +3391,7 @@ Func_758f8: ; 758f8 (1d:58f8)
 	ld [wd4eb], a
 .asm_75972
 	inc c
-	ld a, [wd40a]
+	ld a, [BattleResults_CurBattleDenjuu]
 	ld b, a
 	ld a, c
 	cp b
