@@ -36,7 +36,7 @@ Func_70016: ; 70016 (1c:4016)
 	call OpenSRAMBank2
 	ld hl, sAddressBook
 	ld de, $10
-	ld a, [wcdb4]
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	ld [wPlayerDenjuu1Field0x0d], a
 	addntimes_hl_de
 	ld a, [hli]
@@ -127,7 +127,7 @@ Func_70016: ; 70016 (1c:4016)
 	sla a
 	ld a, a
 	ld [wEnemyDenjuu3Field0x08], a
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	cp $1
 	jp z, .skip_field_c_enemy_3
 	call Func_702a1
@@ -157,7 +157,7 @@ Func_70016: ; 70016 (1c:4016)
 	sla a
 	ld a, a
 	ld [wEnemyDenjuu2Field0x08], a
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	cp $1
 	jp z, .skip_field_c_enemy_2
 	call Func_702a1
@@ -172,7 +172,7 @@ Func_70016: ; 70016 (1c:4016)
 	ld c, l
 	call SetEventFlag
 .enemy_has_only_one
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	cp $1
 	jp z, .skip_field_c_enemy_1
 	call Func_702a1
@@ -484,7 +484,7 @@ Func_70360: ; 70360 (1c:4360)
 	ret
 
 Func_70380: ; 70380 (1c:4380)
-	ld de, wd4b1
+	ld de, wBattleStringBuffer
 	ld b, $9
 .asm_70385
 	ld a, [hli]
@@ -1186,8 +1186,8 @@ Func_708c2:
 	jr z, .asm_70915
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $02
-	ld a, [wcdb4]
-	call Func_3d0e
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $1
 	jr c, .asm_70902
@@ -1601,7 +1601,7 @@ Func_70bca:
 	ld d, a
 	call Func_71738
 	ld hl, sAddressBook + $00
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wd490], a
 	push af
@@ -2039,7 +2039,7 @@ Func_70ffd:
 	ld d, a
 	call Func_71738
 	ld hl, sAddressBook + $00
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wd490], a
 	push af
@@ -2313,7 +2313,7 @@ Func_7122c: ; 7122c (1c:522c)
 	ld b, a
 	ld hl, wd000
 .asm_7123d
-	ld a, [wcdb4]
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	cp b
 	jr z, .asm_7129f
 	push hl
@@ -2321,7 +2321,7 @@ Func_7122c: ; 7122c (1c:522c)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $01
 	ld a, b
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wCurDenjuuLevel], a
 	pop bc
@@ -2333,7 +2333,7 @@ Func_7122c: ; 7122c (1c:522c)
 	push bc
 	ld a, b
 	ld hl, sAddressBook + $08
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	ld a, [wd5a8]
@@ -2451,7 +2451,7 @@ Func_7131f: ; 7131f (1c:531f)
 	ld d, $0
 	call Func_71738
 	ld hl, sAddressBook + $08
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	ld a, [wd5a8]
@@ -2462,7 +2462,7 @@ Func_7131f: ; 7131f (1c:531f)
 	ld d, $1
 	call Func_71738
 	ld hl, sAddressBook + $08
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	ld a, [wd5a8]
@@ -2473,7 +2473,7 @@ Func_7131f: ; 7131f (1c:531f)
 	ld d, $2
 	call Func_71738
 	ld hl, sAddressBook + $08
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	ld a, [wd5a8]
@@ -2629,7 +2629,7 @@ Func_71477: ; 71477 (1c:5477)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $01
 	ld a, [wPlayerDenjuu2Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu2Level], a
 	ld a, [hli]
@@ -2638,7 +2638,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld [wPlayerDenjuu2Field0x0c], a
 	ld hl, sAddressBook + $08
 	ld a, [wPlayerDenjuu2Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	ld a, [wd5a8]
@@ -2662,7 +2662,7 @@ Func_71477: ; 71477 (1c:5477)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $01
 	ld a, [wPlayerDenjuu3Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu3Level], a
 	ld a, [hli]
@@ -2671,7 +2671,7 @@ Func_71477: ; 71477 (1c:5477)
 	ld [wPlayerDenjuu3Field0x0c], a
 	ld hl, sAddressBook + $08
 	ld a, [wPlayerDenjuu3Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	ld a, [wd5a8]
@@ -2794,7 +2794,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $0
 	call Func_71738
 	ld hl, sAddressBook + $01
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 4
 	ld c, $1
@@ -2809,7 +2809,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $1
 	call Func_71738
 	ld hl, sAddressBook + $01
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 7
 	ld c, $1
@@ -2824,7 +2824,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $2
 	call Func_71738
 	ld hl, sAddressBook + $01
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 10
 	ld c, $1
@@ -2843,7 +2843,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $0
 	call Func_71738
 	ld hl, sAddressBook + $01
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -2856,7 +2856,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $0
 	call Func_71738
 	ld hl, sAddressBook + $02
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 4
 	ld c, $1
@@ -2867,7 +2867,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $1
 	call Func_71738
 	ld hl, sAddressBook + $01
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -2880,7 +2880,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $1
 	call Func_71738
 	ld hl, sAddressBook + $02
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 7
 	ld c, $1
@@ -2891,7 +2891,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $2
 	call Func_71738
 	ld hl, sAddressBook + $01
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -2904,7 +2904,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld d, $2
 	call Func_71738
 	ld hl, sAddressBook + $02
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 10
 	ld c, $1
@@ -2958,12 +2958,12 @@ Func_71744: ; 71744 (1c:5744)
 	ld d, $0
 	call Func_71738
 	ld hl, sAddressBook + $06
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	ld hl, VTilesBG tile $40
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $6
 	call PlaceString_
 	lb bc, 11, 3
@@ -2977,12 +2977,12 @@ Func_71744: ; 71744 (1c:5744)
 	ld d, $1
 	call Func_71738
 	ld hl, sAddressBook + $06
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	ld hl, VTilesBG tile $48
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $6
 	call PlaceString_
 	lb bc, 11, 6
@@ -2996,12 +2996,12 @@ Func_71744: ; 71744 (1c:5744)
 	ld d, $2
 	call Func_71738
 	ld hl, sAddressBook + $06
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	ld hl, VTilesBG tile $50
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $6
 	call PlaceString_
 	lb bc, 11, 9
@@ -3127,7 +3127,7 @@ Func_71831:
 	call GetDenjuuPalette_Pal6
 	ld hl, VTilesBG tile $20
 	ld a, [wd43c]
-	call Func_3e19
+	call PrintStringWithPlayerDenjuuAsBattleUser
 	ld a, [wd46e]
 	cp $2
 	jr c, .asm_718bf
@@ -3144,7 +3144,7 @@ Func_71831:
 .asm_718cb
 	ld a, $1
 	call Func_050a
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	cp $1
 	jr z, .asm_718e6
 	ld a, [wd403]

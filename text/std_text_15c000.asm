@@ -112,7 +112,7 @@ Text_15c0d4:
 	line "ツノナスに『でんち』を"
 	line "くっつけると いいこと"
 	line "あるんだぜ!"
-	para 2
+	txfn 2
 
 Text_15c101:
 	TX_DENJUU OSHE
@@ -120,7 +120,7 @@ Text_15c101:
 	line "あのねー コキアに"
 	line "『アンテナ』をくっつけると"
 	line "ちょこっと つよくなるんだぜ"
-	para 2
+	txfn 2
 
 Text_15c131:
 	TX_DENJUU KESHI
@@ -130,7 +130,7 @@ Text_15c131:
 	line "『クレーン』をくっつけて"
 	line "あげるとつよくなるんだってー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c170:
 	TX_DENJUU CRYPTO
@@ -139,7 +139,7 @@ Text_15c170:
 	line "なんだか つよくなるんだよね"
 	line "よわっちいカンジがするんだけどそんなこと いったら"
 	line "おこられるかな?"
-	para 2
+	txfn 2
 
 Text_15c1b9:
 	TX_DENJUU MONSTERA
@@ -147,7 +147,7 @@ Text_15c1b9:
 	line "すきなんだよ"
 	line "くっつけたら すごいことに"
 	line "なるぜ!"
-	para 2
+	txfn 2
 
 Text_15c1e2:
 	TX_DENJUU FUNGUS
@@ -159,7 +159,7 @@ Text_15c1e2:
 	line "かいぞうで くっつけたら"
 	line "いいことあるかもね"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c234:
 	TX_DENJUU HIOUGI
@@ -167,7 +167,7 @@ Text_15c234:
 	line "なんかキーワードらしいよ"
 	line "どういうことなんだろうね?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c262:
 	TX_DENJUU PUNICA
@@ -179,7 +179,7 @@ Text_15c262:
 	line "いるかな?"
 	line "かれには『スパナ』がいいカンジ"
 	line "らしいよ"
-	para 2
+	txfn 2
 
 Text_15c29c:
 	TX_DENJUU GUMI
@@ -187,7 +187,7 @@ Text_15c29c:
 	line "『バケツ』はプニカって"
 	line "なぞのことばだよね"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c2bb:
 	TX_DENJUU SUGURI
@@ -198,7 +198,7 @@ Text_15c2bb:
 	line "グミには『ビデオ』が"
 	line "いけてるらしいよ"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c2ed:
 	TX_DENJUU GANRAIKOU
@@ -211,7 +211,7 @@ Text_15c2ed:
 	line "あいつらって『マウス』が"
 	line "すきらしいよ"
 	line "やっぱ ネコににてるからかな?"
-	para 2
+	txfn 2
 
 Text_15c346:
 	TX_DENJUU BYAKUBU
@@ -221,7 +221,7 @@ Text_15c346:
 	line "あがるんだって"
 	line "なんとなく そんなふんいき"
 	line "するよねー"
-	para 2
+	txfn 2
 
 Text_15c388:
 	TX_DENJUU TELOPEA
@@ -231,7 +231,7 @@ Text_15c388:
 	line "でも ビャクブって"
 	line "ノコギリよリもいたそうな"
 	line "キバをもってるんだよねー"
-	para 2
+	txfn 2
 
 Text_15c3d7:
 	TX_DENJUU MANTEA
@@ -241,7 +241,7 @@ Text_15c3d7:
 	line "あのデンジュウって『ギア』を"
 	line "つけると ちょっとだけつよく"
 	line "なるんだってさ"
-	para 2
+	txfn 2
 
 Text_15c421:
 	TX_DENJUU IXORA
@@ -254,7 +254,7 @@ Text_15c421:
 	line "いいらしいよ"
 	line "ためしてみたらどう??"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c46b:
 	TX_DENJUU MYRTUS
@@ -265,7 +265,7 @@ Text_15c46b:
 	line "そのデンジュウ『アイロン』を"
 	line "つけると つよくなるらしいよ"
 	line "ホントかウソか しらないけどさ"
-	para 2
+	txfn 2
 
 Text_15c4be:
 	TX_DENJUU LYCHNIS
@@ -277,7 +277,7 @@ Text_15c4be:
 	line "もってるんだったら"
 	line "くっつけてあげなよー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c510:
 	TX_DENJUU LAPEIROUSIA
@@ -287,7 +287,7 @@ Text_15c510:
 	line "なんで すきなのかは だれも"
 	line "しらないんだけどさー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c549:
 	TX_DENJUU BUBARIA
@@ -300,7 +300,7 @@ Text_15c549:
 	line "そのデンジュウから"
 	line "デンワバンゴウを もらうことが"
 	line "あったら つけてみなよー"
-	para 2
+	txfn 2
 
 Text_15c5b1:
 	TX_DENJUU ANGIOS
@@ -312,7 +312,7 @@ Text_15c5b1:
 	line "ほしがるよねー"
 	line "なに かんがえてるんだろ.."
 	line ""
-	para 2
+	txfn 2
 
 Text_15c603:
 	TX_DENJUU GYMNOS
@@ -326,7 +326,7 @@ Text_15c603:
 	line "まだ みたこと なかったら"
 	line "わからないかな??"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c678:
 	TX_DENJUU LIRIOPE
@@ -341,7 +341,7 @@ Text_15c678:
 	line "なげれそうなぐらい ごつい"
 	line "ヤツなんだけどなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c6de:
 	TX_DENJUU WARATAH
@@ -355,7 +355,7 @@ Text_15c6de:
 	line "やっぱリ うみのデンジュウって"
 	line "こわいのかな?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c752:
 	TX_DENJUU SORGHUM
@@ -367,7 +367,7 @@ Text_15c752:
 	line "トモダチにいるんだったら"
 	line "くっつけてあげなよー"
 	line "つよくなるかもよ?"
-	para 2
+	txfn 2
 
 Text_15c7b4:
 	TX_DENJUU ERYNGO
@@ -377,7 +377,7 @@ Text_15c7b4:
 	line "おこのみらしいよ"
 	line "なんだか かっこいいよねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c7f8:
 	TX_DENJUU NORIUTSUGI
@@ -390,7 +390,7 @@ Text_15c7f8:
 	line "じつは『マシンガン』をつけると"
 	line "いいことあるんだってさ"
 	line "いがいだよなー"
-	para 2
+	txfn 2
 
 Text_15c851:
 	TX_DENJUU PAMPAS
@@ -400,7 +400,7 @@ Text_15c851:
 	line "3.2.1....ブッブー"
 	line "こたえは ノリウツギでしたー"
 	line "おぼえておきなよー"
-	para 2
+	txfn 2
 
 Text_15c8a4:
 	TX_DENJUU RHODANTHE
@@ -412,14 +412,14 @@ Text_15c8a4:
 	line "ワタシには かんがえられません"
 	line "なんであんなモノを"
 	line "つけたがるんでしょう...."
-	para 2
+	txfn 2
 
 Text_15c910:
 	TX_DENJUU LICORICE
 	db "ローダンセってデンジュウさー"
 	line "『ミキサー』が すきなんだって"
 	line "なんだか うごきがにてるもんなーわかるきがするよ"
-	para 2
+	txfn 2
 
 Text_15c94b:
 	TX_DENJUU VIBURNUM
@@ -429,7 +429,7 @@ Text_15c94b:
 	line "すごかったリして..."
 	line "そんなことはないかなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c992:
 	TX_DENJUU FUNNEL
@@ -440,7 +440,7 @@ Text_15c992:
 	line "でも あいつ テレビは"
 	line "どうなんだろうな?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15c9cf:
 	TX_DENJUU VANDA
@@ -448,7 +448,7 @@ Text_15c9cf:
 	line "『ノコギリ』さがしてるんだって"
 	line "つけてあげたら きっと"
 	line "よろこぶよ"
-	para 2
+	txfn 2
 
 Text_15ca03:
 	TX_DENJUU UIKYOU
@@ -460,7 +460,7 @@ Text_15ca03:
 	line "デンワバンゴウを "
 	line "しってるんだったら ためしてね"
 	line ""
-	para 2
+	txfn 2
 
 Text_15ca67:
 	TX_DENJUU OBANA
@@ -474,7 +474,7 @@ Text_15ca67:
 	db "の"
 	line "トモダチに いるのかな??"
 	line ""
-	para 2
+	txfn 2
 
 Text_15cab6:
 	TX_DENJUU FIREKOKKO
@@ -484,7 +484,7 @@ Text_15cab6:
 	line "あの『ブィーン』っていう"
 	line "おとがすきなのかな?"
 	line "どっちにしても いがいだよなー"
-	para 2
+	txfn 2
 
 Text_15cb02:
 	TX_DENJUU RAYGOTEN
@@ -494,7 +494,7 @@ Text_15cb02:
 	line "もっと もえたいのかな??"
 	line "まさか そんなことはないよなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15cb47:
 	TX_DENJUU DRILARMOR
@@ -504,7 +504,7 @@ Text_15cb47:
 	line "いいらしいんだよ"
 	line "もし トモダチになったら"
 	line "くっつけてあげたら?"
-	para 2
+	txfn 2
 
 Text_15cb93:
 	TX_DENJUU CHAMELAN
@@ -514,7 +514,7 @@ Text_15cb93:
 	line "『ドリル』がカラダに"
 	line "くっついてるだけじゃ"
 	line "ものたリないのかな??"
-	para 2
+	txfn 2
 
 Text_15cbd9:
 	TX_DENJUU CRYPTOARM
@@ -529,7 +529,7 @@ Text_15cbd9:
 	line "ところで オレのくっつけたい"
 	line "モノは わかってるかなー?"
 	line "しんぱいだなー...."
-	para 2
+	txfn 2
 
 Text_15cc54:
 	TX_DENJUU SHELLSTERA
@@ -542,7 +542,7 @@ Text_15cc54:
 	line "クリプトアームだよ"
 	line "でも トモダチに いる?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15cca6:
 	TX_DENJUU FUNGEIST
@@ -552,7 +552,7 @@ Text_15cca6:
 	line "あいつ...とぶきかよ.."
 	line "じつはもう とベたリして.."
 	line ""
-	para 2
+	txfn 2
 
 Text_15cce8:
 	TX_DENJUU BALLTAMUS
@@ -562,14 +562,14 @@ Text_15cce8:
 	line "しれないけどなー"
 	line "へっへっへっ オレを"
 	line "トモダチにして よかったろ?"
-	para 2
+	txfn 2
 
 Text_15cd37:
 	TX_DENJUU BURENICA
 	db "ボルタマスってデンジュウなー"
 	line "『ミサイル』つけたいんだってさあんなこわいモノ つけるなって"
 	line "おもうのは オレだけなのかなー"
-	para 2
+	txfn 2
 
 Text_15cd78:
 	TX_DENJUU GERON
@@ -577,7 +577,7 @@ Text_15cd78:
 	line "『ランス』をつけると ちょっと"
 	line "つよくなるんだってねー"
 	line "わかんないもんだよねー"
-	para 2
+	txfn 2
 
 Text_15cdb3:
 	TX_DENJUU BERZELIA
@@ -586,7 +586,7 @@ Text_15cdb3:
 	line "いったいナニモノなんだろうな?"
 	line "カラダのなかでどうなってるのかスゴイきょうみあるよ"
 	line ""
-	para 2
+	txfn 2
 
 Text_15cdf8:
 	TX_DENJUU NIGELLA
@@ -596,7 +596,7 @@ Text_15cdf8:
 	line "どうなんだろう?"
 	line "ホントかなー?"
 	line "どうなんだろうなー?"
-	para 2
+	txfn 2
 
 Text_15ce3c:
 	TX_DENJUU MUSA
@@ -607,7 +607,7 @@ Text_15ce3c:
 	line "はなししってる??"
 	line "みためからして とがったモノを"
 	line "とばすの すきそうだもんなー"
-	para 2
+	txfn 2
 
 Text_15cea0:
 	TX_DENJUU NETARO
@@ -617,7 +617,7 @@ Text_15cea0:
 	line "『プロぺラエンジン』を"
 	line "つけてみたいって いってたのを"
 	line "きいたよ"
-	para 2
+	txfn 2
 
 Text_15cee2:
 	TX_DENJUU NEJIRO
@@ -627,7 +627,7 @@ Text_15cee2:
 	line "かんがえてなさそうだけど"
 	line "そういうモノって あるんだなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15cf25:
 	TX_DENJUU GODETIA
@@ -640,7 +640,7 @@ Text_15cf25:
 	line "そんなあぶないモノ あげても"
 	line "いいものかなー?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15cf73:
 	TX_DENJUU CURCUMA
@@ -652,7 +652,7 @@ Text_15cf73:
 	line "おいておくと"
 	line "いいかもねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15cfc4:
 	TX_DENJUU TESSEN
@@ -661,7 +661,7 @@ Text_15cfc4:
 	line "いるんだけどね"
 	line "こいつ『ビームガン』ずきなんだほんとに『ビームガン』が"
 	line "いいらしいんだよ"
-	para 2
+	txfn 2
 
 Text_15d010:
 	TX_DENJUU HELIOPSIS
@@ -673,7 +673,7 @@ Text_15d010:
 	line "やっぱ かっこいいヤツは"
 	line "あいしょうがいいアイテムも"
 	line "ちがうよなー"
-	para 2
+	txfn 2
 
 Text_15d070:
 	TX_DENJUU HAGUMANOKI
@@ -682,7 +682,7 @@ Text_15d070:
 	line "へリオプシスってのがいるんだけどいかにも キカイずきって"
 	line "カンジの ヤツなんだ"
 	line "ほんとだって!"
-	para 2
+	txfn 2
 
 Text_15d0b9:
 	TX_DENJUU GILERTH
@@ -692,7 +692,7 @@ Text_15d0b9:
 	line "デンジュウなんだって"
 	line "どんなデンジュウか"
 	line "オレは みたことないんだけどさ"
-	para 2
+	txfn 2
 
 Text_15d102:
 	TX_DENJUU RAYGIRTH
@@ -704,7 +704,7 @@ Text_15d102:
 	line "どんなヤツか"
 	line "みておいてくれよ"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d156:
 	TX_DENJUU ARMARU
@@ -714,7 +714,7 @@ Text_15d156:
 	line "つかえないけど ほしいって"
 	line "タイプなんじゃないかなー"
 	line "ぜったいそうだよなー"
-	para 2
+	txfn 2
 
 Text_15d1a9:
 	TX_DENJUU CHAMERAID
@@ -730,7 +730,7 @@ Text_15d1a9:
 	line "はなしだったよ"
 	line "きいたはなしだから ウソかも"
 	line "しれないけどさー"
-	para 2
+	txfn 2
 
 Text_15d216:
 	TX_DENJUU CRYPTORIDE
@@ -739,7 +739,7 @@ Text_15d216:
 	line "なんか こわくない??"
 	line "そうでもないのかな..."
 	line ""
-	para 2
+	txfn 2
 
 Text_15d25e:
 	TX_DENJUU WORMITERALA
@@ -747,7 +747,7 @@ Text_15d25e:
 	line "『モバイル』がおきにいリだって"
 	line "けっこう おしゃれな"
 	line "デンジュウだよねー"
-	para 2
+	txfn 2
 
 Text_15d292:
 	TX_DENJUU FUNGBLADE
@@ -756,7 +756,7 @@ Text_15d292:
 	line "いうヤツなんだ"
 	line "いえに すいどうが とおって"
 	line "いるのかなー?"
-	para 2
+	txfn 2
 
 Text_15d2e4:
 	TX_DENJUU BULLTAMUS
@@ -766,7 +766,7 @@ Text_15d2e4:
 	line "やっぱ カッコいいヤツは"
 	line "すきなモノも ちがうよなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d324:
 	TX_DENJUU PUNEEDLE
@@ -778,7 +778,7 @@ Text_15d324:
 	line "ほかのキカイを バラバラにして"
 	line "あそんでるんだろうなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d380:
 	TX_DENJUU KERORIN
@@ -788,7 +788,7 @@ Text_15d380:
 	line "きいたんだ"
 	line "なにか こわれたのかなー?"
 	line "ダイジョウブかなー"
-	para 2
+	txfn 2
 
 Text_15d3c3:
 	TX_DENJUU SUGULAI
@@ -797,7 +797,7 @@ Text_15d3c3:
 	line "あいつ『コンピュータ』を"
 	line "つかいこなせるのかな?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d409:
 	TX_DENJUU CORTOS
@@ -807,7 +807,7 @@ Text_15d409:
 	line "でも そんなフンイキの"
 	line "デンジュウだよねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d44a:
 	TX_DENJUU GAIURUS
@@ -819,7 +819,7 @@ Text_15d44a:
 	db "なら"
 	line "それぐらいは しってるよなー?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d48a:
 	TX_DENJUU MIDOTOR
@@ -831,7 +831,7 @@ Text_15d48a:
 	line "そして オレにもなにか"
 	line "プレゼントしてくれよなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d4e5:
 	TX_DENJUU OCTOR
@@ -843,7 +843,7 @@ Text_15d4e5:
 	line "いけないよなー"
 	line "ってことで オレにも"
 	line "なにか ちょうだいねー"
-	para 2
+	txfn 2
 
 Text_15d545:
 	TX_DENJUU HITODEIGHT
@@ -854,7 +854,7 @@ Text_15d545:
 	line "アイツって はたらきものっぽい"
 	line "カンジだからなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d59c:
 	TX_DENJUU GHOSBOAR
@@ -864,7 +864,7 @@ Text_15d59c:
 	line "きっと『ゼンマイ』でうごく"
 	line "なにかを もってるんだぜ!"
 	line "きっとそうだって!"
-	para 2
+	txfn 2
 
 Text_15d5ea:
 	TX_DENJUU RASENMAI
@@ -876,7 +876,7 @@ Text_15d5ea:
 	line "ごっついヤツは ごっつい"
 	line "アイテムにきょうみが"
 	line "あるんだろうねー"
-	para 2
+	txfn 2
 
 Text_15d64e:
 	TX_DENJUU SCORPIL
@@ -885,7 +885,7 @@ Text_15d64e:
 	line "すきなんだってー"
 	line "あれって ながめるモノなのかなボクは つかいかたを"
 	line "よくしらないんだけどさー"
-	para 2
+	txfn 2
 
 Text_15d69a:
 	TX_DENJUU ARMCRAB
@@ -897,7 +897,7 @@ Text_15d69a:
 	line "いたら くっつけてあげてよー"
 	line "うるさくって かなわないやー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d6f7:
 	TX_DENJUU ANGIORN
@@ -909,7 +909,7 @@ Text_15d6f7:
 	line "あれって『レンジ』がないと"
 	line "だめなんでしょー?"
 	line "へっへー オレってものしリ!"
-	para 2
+	txfn 2
 
 Text_15d75f:
 	TX_DENJUU GYMRACE
@@ -921,13 +921,13 @@ Text_15d75f:
 	line "こんどよんでくれたときにでも"
 	line "おしえてよねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d7c0:
 	TX_DENJUU LIRIONPU
 	db "『アンテナ』がけいけんちアップのデンジュウって けっこう"
 	line "いるんだけど ヂムレースっていうデンジュウも そうなんだー"
-	para 2
+	txfn 2
 
 Text_15d7fe:
 	TX_DENJUU WHITAH
@@ -939,7 +939,7 @@ Text_15d7fe:
 	line "しらないけど なかよくは"
 	line "なれるかもねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d857:
 	TX_DENJUU POTZAL
@@ -952,7 +952,7 @@ Text_15d857:
 	line "でも これでわかったんだから"
 	line "わすれないでね!"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d8b3:
 	TX_DENJUU ARANEIDA
@@ -961,7 +961,7 @@ Text_15d8b3:
 	line "『ドリル』なんだ"
 	line "なにか はっくつでもするのか?うーん...きになる..."
 	line ""
-	para 2
+	txfn 2
 
 Text_15d8fa:
 	TX_DENJUU GADHORO
@@ -975,7 +975,7 @@ Text_15d8fa:
 	line "『ゼンマイ』でうごいてるんじゃ"
 	line "ないかってことなんだ..."
 	line "かんがえすぎかな?"
-	para 2
+	txfn 2
 
 Text_15d975:
 	TX_DENJUU CLIOGERA
@@ -989,7 +989,7 @@ Text_15d975:
 	line "ボクは それを かいに"
 	line "いけないからさー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15d9e8:
 	TX_DENJUU GUST
@@ -999,7 +999,7 @@ Text_15d9e8:
 	line "あいつ じつは スポーツマン"
 	line "なんだなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15da29:
 	TX_DENJUU REIGE
@@ -1009,7 +1009,7 @@ Text_15da29:
 	line "きっと じぶんがドリルみたいに"
 	line "クルクルまわってるから"
 	line "きょうみあるんだろうね"
-	para 2
+	txfn 2
 
 Text_15da7d:
 	TX_DENJUU TOGERUKA
@@ -1017,7 +1017,7 @@ Text_15da7d:
 	line "レイゲの イチバンほしいモノは"
 	line "『ミキサー』っていうアイテム"
 	line "らしいんだ"
-	para 2
+	txfn 2
 
 Text_15dab3:
 	TX_DENJUU RAIGALEON
@@ -1027,7 +1027,7 @@ Text_15dab3:
 	line "きのなかに すんでるから"
 	line "せいかつするのに"
 	line "ひつようなのかもねー"
-	para 2
+	txfn 2
 
 Text_15dafa:
 	TX_DENJUU GADORKUMA
@@ -1037,7 +1037,7 @@ Text_15dafa:
 	line "だから『ドライバー』とかに"
 	line "きょうみが わくんだろうねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15db40:
 	TX_DENJUU ABIRAS
@@ -1051,7 +1051,7 @@ Text_15db40:
 	line "..............."
 	line "..さすがにそれはないか..."
 	line ""
-	para 2
+	txfn 2
 
 Text_15dbba:
 	TX_DENJUU ALPHAGOS
@@ -1061,7 +1061,7 @@ Text_15dbba:
 	line "こいつに『ネジ』をくっつけると"
 	line "けいけんちふえるんだってさ"
 	line ""
-	para 2
+	txfn 2
 
 Text_15dc04:
 	TX_DENJUU KIYORUKA
@@ -1073,7 +1073,7 @@ Text_15dc04:
 	line "やっぱリ ちょっと"
 	line "こわめなんだよねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15dc62:
 	TX_DENJUU GYMGARTH
@@ -1085,7 +1085,7 @@ Text_15dc62:
 	line "キヨールカってデンジュウに"
 	line "とっても けっこう"
 	line "だいじなモノなのかなー?"
-	para 2
+	txfn 2
 
 Text_15dcc9:
 	TX_DENJUU BAIONPU
@@ -1094,7 +1094,7 @@ Text_15dcc9:
 	line "すきなキカイも『クレーン』で"
 	line "やっぱリごっついんだー!"
 	line "デンジュウにプレゼントするときはみためで えらぶといいかもね!"
-	para 2
+	txfn 2
 
 Text_15dd1d:
 	TX_DENJUU WARUTAH
@@ -1108,7 +1108,7 @@ Text_15dd1d:
 	line "けっこうきになってたリ"
 	line "するんだけどなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15dd81:
 	TX_DENJUU GUNTZATL
@@ -1117,14 +1117,14 @@ Text_15dd81:
 	line "できそうな ふんいきがするんだよなぜかって?"
 	line "それは ヤツがすきなアイテムが"
 	line "『モバイル』だからさ!"
-	para 2
+	txfn 2
 
 Text_15ddce:
 	TX_DENJUU ARAKUIDA
 	db "『アンテナ』ずきなデンジュウってかわったヤツがおおいんだよ"
 	line "ガンツァトルもかわったヤツ"
 	line "なんだけどねー"
-	para 2
+	txfn 2
 
 Text_15de05:
 	TX_DENJUU BADHORO
@@ -1136,7 +1136,7 @@ Text_15de05:
 	line "すきなデンジュウって"
 	line "キケンな かおリがするよね"
 	line "あーこわい こわい"
-	para 2
+	txfn 2
 
 Text_15de65:
 	TX_DENJUU LAMPGERA
@@ -1148,7 +1148,7 @@ Text_15de65:
 	line "こんなキケンなモノを"
 	line "ほしがるなんて ぜったいやばい"
 	line "ヤツなんだって!"
-	para 2
+	txfn 2
 
 Text_15dec6:
 	TX_DENJUU TEMPEST
@@ -1158,7 +1158,7 @@ Text_15dec6:
 	line "なんか...ヤバめのかおリが"
 	line "するよねー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15df00:
 	TX_DENJUU ZUDOON
@@ -1172,7 +1172,7 @@ Text_15df00:
 	line "ほしいなんていってたような"
 	line "きがするなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15df6f:
 	TX_DENJUU HIYU
@@ -1186,7 +1186,7 @@ Text_15df6f:
 	line "あーっはっはっはっは...."
 	line "おもしろくなかったリしてー.."
 	line ""
-	para 2
+	txfn 2
 
 Text_15dfe4:
 	TX_DENJUU GAMAZUMI
@@ -1196,7 +1196,7 @@ Text_15dfe4:
 	line "『でんち』がほしいらしいよー"
 	line "なんだかジミだよねぇ?"
 	line ""
-	para 2
+	txfn 2
 
 Text_15e027:
 	TX_DENJUU PAPAVER
@@ -1205,7 +1205,7 @@ Text_15e027:
 	line "あのなかにうつる じぶんじしんをみて うっとリしてるのかなー?"
 	line "..そうぞうしちゃったよ..."
 	line ""
-	para 2
+	txfn 2
 
 Text_15e077:
 	TX_DENJUU GAMURU
@@ -1215,7 +1215,7 @@ Text_15e077:
 	line "あそんでるんだって!"
 	line "かけてもいいよ!"
 	line ""
-	para 2
+	txfn 2
 
 Text_15e0b3:
 	TX_DENJUU BOUVARDI
@@ -1225,7 +1225,7 @@ Text_15e0b3:
 	line "かんがえつかないぜ"
 	line "ガルムっていうデンジュウも"
 	line "おなじようなこといってたなー"
-	para 2
+	txfn 2
 
 Text_15e103:
 	TX_DENJUU GAULTHERIA
@@ -1235,7 +1235,7 @@ Text_15e103:
 	line "いきぎれしたときに"
 	line "つかってるんだろうなー"
 	line ""
-	para 2
+	txfn 2
 
 Text_15e148:
 	TX_DENJUU EASYDOG
@@ -1247,4 +1247,4 @@ Text_15e148:
 	line "なんで あのデンジュウは"
 	line "あんなにかっこいいのかなー"
 	line ""
-	para 2
+	txfn 2

@@ -1,4 +1,4 @@
-Func_7c000:
+BattleCore1F:
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	ld a, [wSubroutine]
@@ -1096,7 +1096,7 @@ Func_7c7e4: ; 7c7e4 (1f:47e4)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $1
 	ld a, b
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	pop bc
 	pop hl
@@ -1488,7 +1488,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	ld d, a
 	call Func_7d688
 	ld hl, sAddressBook + $0
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wd490], a
 	push af
@@ -1865,7 +1865,7 @@ Func_7ce4e: ; 7ce4e (1f:4e4e)
 	ld d, a
 	call Func_7d688
 	ld hl, sAddressBook + $0
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wd490], a
 	push af
@@ -2068,7 +2068,7 @@ Func_7cfd9: ; 7cfd9 (1f:4fd9)
 	call OpenSRAMBank2
 	ld a, [wPlayerDenjuu1Field0x0d]
 	ld hl, sAddressBook + $0
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wd5d0], a
 	ld a, [hli]
@@ -2085,7 +2085,7 @@ Func_7cfd9: ; 7cfd9 (1f:4fd9)
 	call OpenSRAMBank2
 	ld a, [wPlayerDenjuu2Field0x0d]
 	ld hl, sAddressBook + $0
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wd5d5], a
 	ld a, [hli]
@@ -2102,7 +2102,7 @@ Func_7cfd9: ; 7cfd9 (1f:4fd9)
 	call OpenSRAMBank2
 	ld a, [wPlayerDenjuu3Field0x0d]
 	ld hl, sAddressBook + $0
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wd5da], a
 	ld a, [hli]
@@ -2345,7 +2345,7 @@ Func_7d1ed: ; 7d1ed (1f:51ed)
 	ld d, a
 	call Func_7d688
 	ld hl, sAddressBook + $0
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wCurDenjuu], a
 	ld a, [hli]
@@ -2618,7 +2618,7 @@ Func_7d3e9: ; 7d3e9 (1f:53e9)
 	call Func_7d680
 	ld a, [hl]
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	push bc
@@ -2626,7 +2626,7 @@ Func_7d3e9: ; 7d3e9 (1f:53e9)
 	call Func_7d680
 	ld a, [hl]
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	pop bc
 	cp b
@@ -2988,7 +2988,7 @@ Func_7d620: ; 7d620 (1f:5620)
 	call OpenSRAMBank2
 	ld hl, $a001
 	ld a, b
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wCurDenjuuLevel], a
 	pop bc
@@ -3105,13 +3105,13 @@ Func_7d6fe: ; 7d6fe (1f:56fe)
 	ld d, $0
 	call Func_7d688
 	ld hl, $a006
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	call OpenSRAMBank2
 	ld hl, VTilesBG tile $40
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $6
 	call PlaceString_
 	ld bc, $b03
@@ -3125,13 +3125,13 @@ Func_7d6fe: ; 7d6fe (1f:56fe)
 	ld d, $1
 	call Func_7d688
 	ld hl, $a006
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	call OpenSRAMBank2
 	ld hl, VTilesBG tile $48
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $6
 	call PlaceString_
 	ld bc, $b06
@@ -3145,13 +3145,13 @@ Func_7d6fe: ; 7d6fe (1f:56fe)
 	ld d, $2
 	call Func_7d688
 	ld hl, $a006
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	call OpenSRAMBank2
 	ld hl, VTilesBG tile $50
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $6
 	call PlaceString_
 	ld bc, $b09
@@ -3177,7 +3177,7 @@ Func_7d796: ; 7d796 (1f:5796)
 	ld d, $0
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 4
 	ld c, $1
@@ -3192,7 +3192,7 @@ Func_7d796: ; 7d796 (1f:5796)
 	ld d, $1
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 7
 	ld c, $1
@@ -3207,7 +3207,7 @@ Func_7d796: ; 7d796 (1f:5796)
 	ld d, $2
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 10
 	ld c, $1
@@ -3226,7 +3226,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld d, $0
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -3239,7 +3239,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld d, $0
 	call Func_7d688
 	ld hl, $a002
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 4
 	ld c, $1
@@ -3250,7 +3250,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld d, $1
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -3263,7 +3263,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld d, $1
 	call Func_7d688
 	ld hl, $a002
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 7
 	ld c, $1
@@ -3274,7 +3274,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld d, $2
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -3287,7 +3287,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld d, $2
 	call Func_7d688
 	ld hl, $a002
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 10
 	ld c, $1
@@ -3478,7 +3478,7 @@ Func_7d9fd: ; 7d9fd (1f:59fd)
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wPlayerDenjuu1Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu1], a
 	ld a, [hli]
@@ -3497,7 +3497,7 @@ Func_7d9fd: ; 7d9fd (1f:59fd)
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wPlayerDenjuu2Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu2], a
 	ld a, [hli]
@@ -3518,7 +3518,7 @@ Func_7d9fd: ; 7d9fd (1f:59fd)
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wPlayerDenjuu3Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wPlayerDenjuu3], a
 	ld a, [hli]
@@ -3906,7 +3906,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld [wd4a7], a
 	ld a, [wd4a7]
 	ld hl, $a000
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld d, h
 	ld e, l
 	ld hl, wdc60
@@ -3926,7 +3926,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld [wdc45], a
 	ld a, [wd4a7]
 	ld hl, $a000
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wd480], a
 	ld a, [hli]
@@ -4072,7 +4072,7 @@ Func_7dea3: ; 7dea3 (1f:5ea3)
 	call OpenSRAMBank2
 	ld hl, $a00a
 	ld a, [wd4a7]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -4083,7 +4083,7 @@ Func_7dea3: ; 7dea3 (1f:5ea3)
 	ld b, a
 	ld a, [hl]
 	hlbgcoord 3, 14
-	call Func_0650
+	call PrintPhoneNumber_
 	call OpenSRAMBank2
 	ld a, [wd4a7]
 	ld hl, $b800
@@ -4175,7 +4175,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wd4a7]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, $10
 .asm_7df86
 	ld [hl], $0
@@ -4361,7 +4361,7 @@ Func_7e0b9: ; 7e0b9 (1f:60b9)
 	ret
 
 Func_7e0d9: ; 7e0d9 (1f:60d9)
-	ld de, wBattleDenjuuName
+	ld de, wBattleUserName
 	ld b, $9
 .asm_7e0de
 	ld a, [hli]
@@ -4518,13 +4518,13 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	jr .asm_7e208
 
 .asm_7e202
-	ld a, [wcdb4]
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	ld [wd4eb], a
 .asm_7e208
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wd4eb]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld de, wdc60
 	ld bc, $10
 	call CopyData
@@ -4539,7 +4539,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wd4eb]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	ld a, [hli]
 	ld [wd492], a
@@ -4577,7 +4577,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	call ClearString
 	ld hl, VTilesBG tile $58
 	ld a, [wd4eb]
-	call Func_3e19
+	call PrintStringWithPlayerDenjuuAsBattleUser
 	ld c, $9
 	call Func_3d02
 	ld a, [wd493]
@@ -4803,7 +4803,7 @@ Func_7e43a: ; 7e43a (1f:643a)
 	ld b, $0
 	ld hl, wd000
 .asm_7e449
-	ld a, [wcdb4]
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	cp b
 	jr z, .asm_7e469
 	push hl
@@ -4811,7 +4811,7 @@ Func_7e43a: ; 7e43a (1f:643a)
 	call OpenSRAMBank2
 	ld hl, $a001
 	ld a, b
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	pop bc
 	pop hl
@@ -5104,7 +5104,7 @@ Func_7e622: ; 7e622 (1f:6622)
 	ld d, a
 	call Func_7d688
 	ld hl, $a000
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wd490], a
 	push af
@@ -5363,7 +5363,7 @@ Func_7e8c1: ; 7e8c1 (1f:68c1)
 	ld d, a
 	call Func_7d688
 	ld hl, $a000
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld [wd490], a
 	push af
@@ -5532,7 +5532,7 @@ Func_7ea18: ; 7ea18 (1f:6a18)
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wd4eb]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld de, wdc60
 	ld bc, $10
 	call CopyData
@@ -5547,7 +5547,7 @@ Func_7ea18: ; 7ea18 (1f:6a18)
 	call OpenSRAMBank2
 	ld hl, $a000
 	ld a, [wd4eb]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	ld a, [hli]
 	ld [wd492], a
@@ -5573,7 +5573,7 @@ Func_7ea18: ; 7ea18 (1f:6a18)
 	call ClearString
 	ld hl, VTilesBG tile $58
 	ld a, [wd4eb]
-	call Func_3e19
+	call PrintStringWithPlayerDenjuuAsBattleUser
 	call CloseSRAM
 	ld c, $72
 	call Func_3d02
@@ -5661,7 +5661,7 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	ld [wd4a7], a
 	ld a, [wd4a7]
 	ld hl, $a000
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld d, h
 	ld e, l
 	ld hl, wdc60
@@ -5725,7 +5725,7 @@ Func_7eb93: ; 7eb93 (1f:6b93)
 	ld d, a
 	call Func_7d688
 	ld hl, $a000
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wCurDenjuu], a
 	ld a, [hli]
@@ -5746,7 +5746,7 @@ Func_7ebe3: ; 7ebe3 (1f:6be3)
 	ld b, $0
 	ld hl, wd000
 .asm_7ebec
-	ld a, [wcdb4]
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	cp b
 	jr z, .asm_7ec0e
 	push hl
@@ -5754,7 +5754,7 @@ Func_7ebe3: ; 7ebe3 (1f:6be3)
 	call OpenSRAMBank2
 	ld hl, $a001
 	ld a, b
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	pop bc
 	pop hl
@@ -5803,7 +5803,7 @@ Func_7ec45: ; 7ec45 (1f:6c45)
 	call Func_7d680
 	ld a, [hl]
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	ld b, a
 	push bc
@@ -5811,7 +5811,7 @@ Func_7ec45: ; 7ec45 (1f:6c45)
 	call Func_7d680
 	ld a, [hl]
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	pop bc
 	cp b
@@ -5918,7 +5918,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld d, $0
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 4
 	ld c, $1
@@ -5926,7 +5926,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld d, $0
 	call Func_7d688
 	ld hl, $a002
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 4
 	ld c, $1
@@ -5937,7 +5937,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld d, $1
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 7
 	ld c, $1
@@ -5945,7 +5945,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld d, $1
 	call Func_7d688
 	ld hl, $a002
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 7
 	ld c, $1
@@ -5956,7 +5956,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld d, $2
 	call Func_7d688
 	ld hl, $a001
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 13, 10
 	ld c, $1
@@ -5964,7 +5964,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld d, $2
 	call Func_7d688
 	ld hl, $a002
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	hlbgcoord 17, 10
 	ld c, $1
@@ -5990,7 +5990,7 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	call OpenSRAMBank2
 	ld a, [wd4a7]
 	ld hl, $a000
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld [wd480], a
 	ld a, [hli]
@@ -6104,7 +6104,7 @@ Func_7eed9: ; 7eed9 (1f:6ed9)
 	call OpenSRAMBank2
 	ld hl, $a00a
 	ld a, [wd4a7]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -6115,7 +6115,7 @@ Func_7eed9: ; 7eed9 (1f:6ed9)
 	ld b, a
 	ld a, [hl]
 	hlbgcoord 3, 14
-	call Func_0650
+	call PrintPhoneNumber_
 	call CloseSRAM
 	jp Func_7dc41
 

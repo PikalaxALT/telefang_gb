@@ -12,109 +12,109 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	jp [hl]
 
 .GameRoutines
-	dw OpeningLogos_
-	dw TitleScreen_
-	dw Func_1c26
-	dw TopPhoneMenu_
-	dw PlayIntroMovie_
-	dw RunOverworld_
-	dw StartBattle_
-	dw DoBattle_
-	dw BattleResult_
-	dw Func_1c65
-	dw Func_1c6e
-	dw InGamePhoneMenu_
-	dw InGamePhoneMenu_
-	dw Func_1c80
-	dw GameOverScreen_
-	dw Func_1c92
+	dw OpeningLogos_    ; 00
+	dw TitleScreen_     ; 01
+	dw Func_1c26        ; 02
+	dw TopPhoneMenu_    ; 03
+	dw PlayIntroMovie_  ; 04
+	dw RunOverworld_    ; 05
+	dw StartBattle_     ; 06
+	dw DoBattle_        ; 07
+	dw BattleResult_    ; 08
+	dw Func_1c65        ; 09
+	dw Func_1c6e        ; 0a
+	dw InGamePhoneMenu_ ; 0b
+	dw InGamePhoneMenu_ ; 0c
+	dw Func_1c80        ; 0d
+	dw GameOverScreen_  ; 0e
+	dw BattleCore1F_        ; 0f
 
-OpeningLogos_::
+OpeningLogos_:
 	ld a, BANK(OpeningLogos)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp OpeningLogos
 
-TitleScreen_::
+TitleScreen_:
 	ld a, BANK(TitleScreen)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp TitleScreen
 
-Func_1c26::
+Func_1c26:
 	ld a, BANK(Func_8000)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp Func_8000
 
-TopPhoneMenu_::
+TopPhoneMenu_:
 	ld a, BANK(TopPhoneMenu)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp TopPhoneMenu
 
-PlayIntroMovie_::
+PlayIntroMovie_:
 	ld a, BANK(PlayIntroMovie)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp PlayIntroMovie
 
-RunOverworld_::
-	ld a, $b
+RunOverworld_:
+	ld a, BANK(PrintText)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp RunOverworld
 
-StartBattle_::
+StartBattle_:
 	ld a, BANK(StartBattle)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp StartBattle
 
-DoBattle_::
+DoBattle_:
 	ld a, BANK(DoBattle)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp DoBattle
 
-BattleResult_::
+BattleResult_:
 	ld a, BANK(BattleResult)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp BattleResult
 
-Func_1c65::
+Func_1c65:
 	ld a, BANK(Func_8b8b)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp Func_8b8b
 
-Func_1c6e::
+Func_1c6e:
 	ld a, BANK(Func_8b24)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp Func_8824
 
-InGamePhoneMenu_::
+InGamePhoneMenu_:
 	ld a, BANK(InGamePhoneMenu)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp InGamePhoneMenu
 
-Func_1c80::
+Func_1c80:
 	ld a, BANK(Func_84cf)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp Func_84cf
 
-GameOverScreen_::
+GameOverScreen_:
 	ld a, BANK(GameOverScreen)
 	ld [wPrevROMBank], a
 	rst Bankswitch
 	jp GameOverScreen
 
-Func_1c92::
-	ld a, BANK(Func_7c000)
+BattleCore1F_:
+	ld a, BANK(BattleCore1F)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_7c000
+	jp BattleCore1F

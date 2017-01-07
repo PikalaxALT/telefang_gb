@@ -257,15 +257,15 @@ Pointers_14d472::
 	dw Data_14db8c
 
 Data_14d672:
-	dw $ffff
+	dw -1
 
 Data_14d674:
-	dw $fefe
+	dw -EVENT_102
 	db $00, $32, $05
 	dw Data_14d67e
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d67e:
 	dw Data_14d686
@@ -286,15 +286,15 @@ Data_14d686:
 	db $ff
 
 Data_14d68d:
-	dw $ffff
+	dw -1
 
 Data_14d68f:
-	dw $fdfe
+	dw -EVENT_202
 	db $00, $35, $05
 	dw Data_14d699
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d699:
 	dw Data_14d6a1
@@ -315,21 +315,21 @@ Data_14d6a1:
 	db $ff
 
 Data_14d6a8:
-	dw $ffff
+	dw -1
 
 Data_14d6aa:
-	dw $ffff
+	dw -1
 
 Data_14d6ac:
-	dw $ffff
+	dw -1
 
 Data_14d6ae:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $33, $5e
 	dw Data_14d6b8
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d6b8:
 	dw Data_14d6bb
@@ -341,20 +341,20 @@ Data_14d6bb:
 	db $ff
 
 Data_14d6be:
-	dw $ffff
+	dw -1
 
 Data_14d6c0:
-	dw $fcfe
+	dw -EVENT_302
 	db $01, $11, $05
 	dw Data_14d6d2
 	db $12
 
-	dw $fbfe
+	dw -EVENT_402
 	db $01, $86, $05
 	dw Data_14d6e3
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d6d2:
 	dw Data_14d6dc
@@ -397,12 +397,12 @@ Data_14d6ed:
 	db $ff
 
 Data_14d6f4:
-	dw $fafe
+	dw -EVENT_502
 	db $01, $22, $05
 	dw Data_14d6fe
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d6fe:
 	dw Data_14d708
@@ -425,12 +425,12 @@ Data_14d708:
 	db $ff
 
 Data_14d70f:
-	dw $f9fe
+	dw -EVENT_602
 	db $01, $42, $05
 	dw Data_14d719
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d719:
 	dw Data_14d71c
@@ -446,15 +446,15 @@ Data_14d71c:
 	db $ff
 
 Data_14d723:
-	dw $ffff
+	dw -1
 
 Data_14d725:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $24, $5e
 	dw Data_14d72f
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d72f:
 	dw Data_14d732
@@ -466,15 +466,15 @@ Data_14d732:
 	db $ff
 
 Data_14d735:
-	dw $ffff
+	dw -1
 
 Data_14d737:
-	dw $f8fe
+	dw -EVENT_702
 	db $01, $61, $05
 	dw Data_14d741
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d741:
 	dw Data_14d74b
@@ -497,15 +497,15 @@ Data_14d74b:
 	db $ff
 
 Data_14d752:
-	dw $ffff
+	dw -1
 
 Data_14d754:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $22, $5e
 	dw Data_14d75e
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d75e:
 	dw Data_14d761
@@ -517,18 +517,18 @@ Data_14d761:
 	db $ff
 
 Data_14d764:
-	dw $ffff
+	dw -1
 
 Data_14d766:
-	dw $ffff
+	dw -1
 
 Data_14d768:
-	dw $f7fe
+	dw -EVENT_802
 	db $01, $22, $05
 	dw Data_14d772
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d772:
 	dw Data_14d77c
@@ -551,18 +551,18 @@ Data_14d77c:
 	db $ff
 
 Data_14d783:
-	dw $ffff
+	dw -1
 
 Data_14d785:
-	dw $ffff
+	dw -1
 
 Data_14d787:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $34, $5e
 	dw Data_14d791
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d791:
 	dw Data_14d794
@@ -574,15 +574,15 @@ Data_14d794:
 	db $ff
 
 Data_14d797:
-	dw $ffff
+	dw -1
 
 Data_14d799:
-	dw $f6fe
+	dw -EVENT_902
 	db $01, $13, $05
 	dw Data_14d7a3
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d7a3:
 	dw Data_14d7ad
@@ -605,12 +605,12 @@ Data_14d7ad:
 	db $ff
 
 Data_14d7b4:
-	dw $f5fe
+	dw -EVENT_A02
 	db $01, $22, $05
 	dw Data_14d7be
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d7be:
 	dw Data_14d7c6
@@ -631,12 +631,12 @@ Data_14d7c6:
 	db $ff
 
 Data_14d7cd:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $72, $5e
 	dw Data_14d7d7
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d7d7:
 	dw Data_14d7df
@@ -653,18 +653,18 @@ Data_14d7df:
 	db $ff
 
 Data_14d7e2:
-	dw $ffff
+	dw -1
 
 Data_14d7e4:
-	dw $ffff
+	dw -1
 
 Data_14d7e6:
-	dw $f4fe
+	dw -EVENT_B02
 	db $01, $13, $05
 	dw Data_14d7f0
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d7f0:
 	dw Data_14d7f3
@@ -680,12 +680,12 @@ Data_14d7f3:
 	db $ff
 
 Data_14d7fa:
-	dw $f3fe
+	dw -EVENT_C02
 	db $01, $22, $05
 	dw Data_14d804
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d804:
 	dw Data_14d80e
@@ -708,30 +708,30 @@ Data_14d80e:
 	db $ff
 
 Data_14d815:
-	dw $ffff
+	dw -1
 
 Data_14d817:
-	dw $ffff
+	dw -1
 
 Data_14d819:
-	dw $ffff
+	dw -1
 
 Data_14d81b:
-	dw $ffff
+	dw -1
 
 Data_14d81d:
-	dw $ffff
+	dw -1
 
 Data_14d81f:
-	dw $ffff
+	dw -1
 
 Data_14d821:
-	dw $f2fe
+	dw -EVENT_D02
 	db $01, $73, $05
 	dw Data_14d82b
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d82b:
 	dw Data_14d835
@@ -754,20 +754,20 @@ Data_14d835:
 	db $ff
 
 Data_14d83c:
-	dw $ffff
+	dw -1
 
 Data_14d83e:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $32, $5e
 	dw Data_14d850
 	db $42
 
-	dw $f1fe
+	dw -EVENT_SEEN_OSHE
 	db $01, $55, $05
 	dw Data_14d85b
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d850:
 	dw Data_14d858
@@ -797,18 +797,18 @@ Data_14d85e:
 	db $ff
 
 Data_14d865:
-	dw $ffff
+	dw -1
 
 Data_14d867:
-	dw $ffff
+	dw -1
 
 Data_14d869:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $33, $5e
 	dw Data_14d873
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d873:
 	dw Data_14d87d
@@ -827,30 +827,30 @@ Data_14d87d:
 	db $ff
 
 Data_14d880:
-	dw $ffff
+	dw -1
 
 Data_14d882:
-	dw $ffff
+	dw -1
 
 Data_14d884:
-	dw $ffff
+	dw -1
 
 Data_14d886:
-	dw $ffff
+	dw -1
 
 Data_14d888:
-	dw $ffff
+	dw -1
 
 Data_14d88a:
-	dw $ffff
+	dw -1
 
 Data_14d88c:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $12, $5e
 	dw Data_14d896
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d896:
 	dw Data_14d8a0
@@ -869,18 +869,18 @@ Data_14d8a0:
 	db $ff
 
 Data_14d8a3:
-	dw $ffff
+	dw -1
 
 Data_14d8a5:
-	dw $ffff
+	dw -1
 
 Data_14d8a7:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $32, $5e
 	dw Data_14d8b1
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d8b1:
 	dw Data_14d8b9
@@ -897,12 +897,12 @@ Data_14d8b9:
 	db $ff
 
 Data_14d8bc:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $32, $5e
 	dw Data_14d8c6
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d8c6:
 	dw Data_14d8ce
@@ -919,12 +919,12 @@ Data_14d8ce:
 	db $ff
 
 Data_14d8d1:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $24, $5e
 	dw Data_14d8db
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d8db:
 	dw Data_14d8e5
@@ -943,32 +943,32 @@ Data_14d8e5:
 	db $ff
 
 Data_14d8e8:
-	dw $ffff
+	dw -1
 
 Data_14d8ea:
-	dw $ffff
+	dw -1
 
 Data_14d8ec:
-	dw $fe08
+	dw -EVENT_1F8
 	db $10, $44, $5c
-	dw $0
+	dw 0
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d8f6:
-	dw $ffff
+	dw -1
 
 Data_14d8f8:
-	dw $ffff
+	dw -1
 
 Data_14d8fa:
-	dw $f0fe
+	dw -EVENT_CAUGHT_OSHE
 	db $01, $72, $05
 	dw Data_14d904
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d904:
 	dw Data_14d90d
@@ -990,12 +990,12 @@ Data_14d90d:
 	db $ff
 
 Data_14d914:
-	dw $effe
+	dw -$1002
 	db $01, $63, $05
 	dw Data_14d91e
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d91e:
 	dw Data_14d928
@@ -1018,15 +1018,15 @@ Data_14d928:
 	db $ff
 
 Data_14d92f:
-	dw $ffff
+	dw -1
 
 Data_14d931:
-	dw $eefe
+	dw -$1102
 	db $01, $16, $05
 	dw Data_14d93b
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d93b:
 	dw Data_14d945
@@ -1049,15 +1049,15 @@ Data_14d945:
 	db $ff
 
 Data_14d94c:
-	dw $ffff
+	dw -1
 
 Data_14d94e:
-	dw $edfe
+	dw -$1202
 	db $01, $42, $05
 	dw Data_14d958
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d958:
 	dw Data_14d95b
@@ -1073,12 +1073,12 @@ Data_14d95b:
 	db $ff
 
 Data_14d962:
-	dw $ecfe
+	dw -$1302
 	db $01, $11, $05
 	dw Data_14d96c
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d96c:
 	dw Data_14d976
@@ -1101,21 +1101,21 @@ Data_14d976:
 	db $ff
 
 Data_14d97d:
-	dw $ffff
+	dw -1
 
 Data_14d97f:
-	dw $ffff
+	dw -1
 
 Data_14d981:
-	dw $ffff
+	dw -1
 
 Data_14d983:
-	dw $ebfe
+	dw -$1402
 	db $01, $41, $05
 	dw Data_14d98d
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d98d:
 	dw Data_14d997
@@ -1138,24 +1138,24 @@ Data_14d997:
 	db $ff
 
 Data_14d99e:
-	dw $ffff
+	dw -1
 
 Data_14d9a0:
-	dw $ffff
+	dw -1
 
 Data_14d9a2:
-	dw $ffff
+	dw -1
 
 Data_14d9a4:
-	dw $ffff
+	dw -1
 
 Data_14d9a6:
-	dw $eafe
+	dw -$1502
 	db $01, $81, $05
 	dw Data_14d9b0
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d9b0:
 	dw Data_14d9ba
@@ -1178,15 +1178,15 @@ Data_14d9ba:
 	db $ff
 
 Data_14d9c1:
-	dw $ffff
+	dw -1
 
 Data_14d9c3:
-	dw $e9fe
+	dw -$1602
 	db $01, $23, $05
 	dw Data_14d9cd
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d9cd:
 	dw Data_14d9d0
@@ -1202,12 +1202,12 @@ Data_14d9d0:
 	db $ff
 
 Data_14d9d7:
-	dw $e8fe
+	dw -$1702
 	db $01, $41, $05
 	dw Data_14d9e1
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14d9e1:
 	dw Data_14d9e4
@@ -1223,15 +1223,15 @@ Data_14d9e4:
 	db $ff
 
 Data_14d9eb:
-	dw $ffff
+	dw -1
 
 Data_14d9ed:
-	dw $2fb
+	dw EVENT_2FB
 	db $00, $24, $5e
 	dw Data_14d9f7
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14d9f7:
 	dw Data_14d9ff
@@ -1248,21 +1248,21 @@ Data_14d9ff:
 	db $ff
 
 Data_14da02:
-	dw $ffff
+	dw -1
 
 Data_14da04:
-	dw $ffff
+	dw -1
 
 Data_14da06:
-	dw $ffff
+	dw -1
 
 Data_14da08:
-	dw $e7fe
+	dw -$1802
 	db $01, $21, $05
 	dw Data_14da12
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14da12:
 	dw Data_14da1a
@@ -1283,24 +1283,24 @@ Data_14da1a:
 	db $ff
 
 Data_14da21:
-	dw $ffff
+	dw -1
 
 Data_14da23:
-	dw $ffff
+	dw -1
 
 Data_14da25:
-	dw $ffff
+	dw -1
 
 Data_14da27:
-	dw $ffff
+	dw -1
 
 Data_14da29:
-	dw $e6fe
+	dw -$1902
 	db $01, $11, $05
 	dw Data_14da33
 	db $12
 
-	dw $ffff
+	dw -1
 
 Data_14da33:
 	dw Data_14da3d
@@ -1323,496 +1323,496 @@ Data_14da3d:
 	db $ff
 
 Data_14da44:
-	dw $ffff
+	dw -1
 
 Data_14da46:
-	dw $ffff
+	dw -1
 
 Data_14da48:
-	dw $ffff
+	dw -1
 
 Data_14da4a:
-	dw $ffff
+	dw -1
 
 Data_14da4c:
-	dw $ffff
+	dw -1
 
 Data_14da4e:
-	dw $ffff
+	dw -1
 
 Data_14da50:
-	dw $ffff
+	dw -1
 
 Data_14da52:
-	dw $ffff
+	dw -1
 
 Data_14da54:
-	dw $ffff
+	dw -1
 
 Data_14da56:
-	dw $ffff
+	dw -1
 
 Data_14da58:
-	dw $ffff
+	dw -1
 
 Data_14da5a:
-	dw $ffff
+	dw -1
 
 Data_14da5c:
-	dw $ffff
+	dw -1
 
 Data_14da5e:
-	dw $ffff
+	dw -1
 
 Data_14da60:
-	dw $ffff
+	dw -1
 
 Data_14da62:
-	dw $ffff
+	dw -1
 
 Data_14da64:
-	dw $ffff
+	dw -1
 
 Data_14da66:
-	dw $ffff
+	dw -1
 
 Data_14da68:
-	dw $ffff
+	dw -1
 
 Data_14da6a:
-	dw $ffff
+	dw -1
 
 Data_14da6c:
-	dw $ffff
+	dw -1
 
 Data_14da6e:
-	dw $ffff
+	dw -1
 
 Data_14da70:
-	dw $ffff
+	dw -1
 
 Data_14da72:
-	dw $ffff
+	dw -1
 
 Data_14da74:
-	dw $ffff
+	dw -1
 
 Data_14da76:
-	dw $ffff
+	dw -1
 
 Data_14da78:
-	dw $ffff
+	dw -1
 
 Data_14da7a:
-	dw $ffff
+	dw -1
 
 Data_14da7c:
-	dw $ffff
+	dw -1
 
 Data_14da7e:
-	dw $ffff
+	dw -1
 
 Data_14da80:
-	dw $ffff
+	dw -1
 
 Data_14da82:
-	dw $ffff
+	dw -1
 
 Data_14da84:
-	dw $ffff
+	dw -1
 
 Data_14da86:
-	dw $ffff
+	dw -1
 
 Data_14da88:
-	dw $ffff
+	dw -1
 
 Data_14da8a:
-	dw $ffff
+	dw -1
 
 Data_14da8c:
-	dw $ffff
+	dw -1
 
 Data_14da8e:
-	dw $ffff
+	dw -1
 
 Data_14da90:
-	dw $ffff
+	dw -1
 
 Data_14da92:
-	dw $ffff
+	dw -1
 
 Data_14da94:
-	dw $ffff
+	dw -1
 
 Data_14da96:
-	dw $ffff
+	dw -1
 
 Data_14da98:
-	dw $ffff
+	dw -1
 
 Data_14da9a:
-	dw $ffff
+	dw -1
 
 Data_14da9c:
-	dw $ffff
+	dw -1
 
 Data_14da9e:
-	dw $ffff
+	dw -1
 
 Data_14daa0:
-	dw $ffff
+	dw -1
 
 Data_14daa2:
-	dw $ffff
+	dw -1
 
 Data_14daa4:
-	dw $ffff
+	dw -1
 
 Data_14daa6:
-	dw $ffff
+	dw -1
 
 Data_14daa8:
-	dw $ffff
+	dw -1
 
 Data_14daaa:
-	dw $ffff
+	dw -1
 
 Data_14daac:
-	dw $ffff
+	dw -1
 
 Data_14daae:
-	dw $ffff
+	dw -1
 
 Data_14dab0:
-	dw $ffff
+	dw -1
 
 Data_14dab2:
-	dw $ffff
+	dw -1
 
 Data_14dab4:
-	dw $ffff
+	dw -1
 
 Data_14dab6:
-	dw $ffff
+	dw -1
 
 Data_14dab8:
-	dw $ffff
+	dw -1
 
 Data_14daba:
-	dw $ffff
+	dw -1
 
 Data_14dabc:
-	dw $ffff
+	dw -1
 
 Data_14dabe:
-	dw $ffff
+	dw -1
 
 Data_14dac0:
-	dw $ffff
+	dw -1
 
 Data_14dac2:
-	dw $ffff
+	dw -1
 
 Data_14dac4:
-	dw $ffff
+	dw -1
 
 Data_14dac6:
-	dw $ffff
+	dw -1
 
 Data_14dac8:
-	dw $ffff
+	dw -1
 
 Data_14daca:
-	dw $ffff
+	dw -1
 
 Data_14dacc:
-	dw $ffff
+	dw -1
 
 Data_14dace:
-	dw $ffff
+	dw -1
 
 Data_14dad0:
-	dw $ffff
+	dw -1
 
 Data_14dad2:
-	dw $ffff
+	dw -1
 
 Data_14dad4:
-	dw $ffff
+	dw -1
 
 Data_14dad6:
-	dw $ffff
+	dw -1
 
 Data_14dad8:
-	dw $ffff
+	dw -1
 
 Data_14dada:
-	dw $ffff
+	dw -1
 
 Data_14dadc:
-	dw $ffff
+	dw -1
 
 Data_14dade:
-	dw $ffff
+	dw -1
 
 Data_14dae0:
-	dw $ffff
+	dw -1
 
 Data_14dae2:
-	dw $ffff
+	dw -1
 
 Data_14dae4:
-	dw $ffff
+	dw -1
 
 Data_14dae6:
-	dw $ffff
+	dw -1
 
 Data_14dae8:
-	dw $ffff
+	dw -1
 
 Data_14daea:
-	dw $ffff
+	dw -1
 
 Data_14daec:
-	dw $ffff
+	dw -1
 
 Data_14daee:
-	dw $ffff
+	dw -1
 
 Data_14daf0:
-	dw $ffff
+	dw -1
 
 Data_14daf2:
-	dw $ffff
+	dw -1
 
 Data_14daf4:
-	dw $ffff
+	dw -1
 
 Data_14daf6:
-	dw $ffff
+	dw -1
 
 Data_14daf8:
-	dw $ffff
+	dw -1
 
 Data_14dafa:
-	dw $ffff
+	dw -1
 
 Data_14dafc:
-	dw $ffff
+	dw -1
 
 Data_14dafe:
-	dw $ffff
+	dw -1
 
 Data_14db00:
-	dw $ffff
+	dw -1
 
 Data_14db02:
-	dw $ffff
+	dw -1
 
 Data_14db04:
-	dw $ffff
+	dw -1
 
 Data_14db06:
-	dw $ffff
+	dw -1
 
 Data_14db08:
-	dw $ffff
+	dw -1
 
 Data_14db0a:
-	dw $ffff
+	dw -1
 
 Data_14db0c:
-	dw $ffff
+	dw -1
 
 Data_14db0e:
-	dw $ffff
+	dw -1
 
 Data_14db10:
-	dw $ffff
+	dw -1
 
 Data_14db12:
-	dw $ffff
+	dw -1
 
 Data_14db14:
-	dw $ffff
+	dw -1
 
 Data_14db16:
-	dw $ffff
+	dw -1
 
 Data_14db18:
-	dw $ffff
+	dw -1
 
 Data_14db1a:
-	dw $ffff
+	dw -1
 
 Data_14db1c:
-	dw $ffff
+	dw -1
 
 Data_14db1e:
-	dw $ffff
+	dw -1
 
 Data_14db20:
-	dw $ffff
+	dw -1
 
 Data_14db22:
-	dw $ffff
+	dw -1
 
 Data_14db24:
-	dw $ffff
+	dw -1
 
 Data_14db26:
-	dw $ffff
+	dw -1
 
 Data_14db28:
-	dw $ffff
+	dw -1
 
 Data_14db2a:
-	dw $ffff
+	dw -1
 
 Data_14db2c:
-	dw $ffff
+	dw -1
 
 Data_14db2e:
-	dw $ffff
+	dw -1
 
 Data_14db30:
-	dw $ffff
+	dw -1
 
 Data_14db32:
-	dw $ffff
+	dw -1
 
 Data_14db34:
-	dw $ffff
+	dw -1
 
 Data_14db36:
-	dw $ffff
+	dw -1
 
 Data_14db38:
-	dw $ffff
+	dw -1
 
 Data_14db3a:
-	dw $ffff
+	dw -1
 
 Data_14db3c:
-	dw $ffff
+	dw -1
 
 Data_14db3e:
-	dw $ffff
+	dw -1
 
 Data_14db40:
-	dw $ffff
+	dw -1
 
 Data_14db42:
-	dw $ffff
+	dw -1
 
 Data_14db44:
-	dw $ffff
+	dw -1
 
 Data_14db46:
-	dw $ffff
+	dw -1
 
 Data_14db48:
-	dw $ffff
+	dw -1
 
 Data_14db4a:
-	dw $ffff
+	dw -1
 
 Data_14db4c:
-	dw $ffff
+	dw -1
 
 Data_14db4e:
-	dw $ffff
+	dw -1
 
 Data_14db50:
-	dw $ffff
+	dw -1
 
 Data_14db52:
-	dw $ffff
+	dw -1
 
 Data_14db54:
-	dw $ffff
+	dw -1
 
 Data_14db56:
-	dw $ffff
+	dw -1
 
 Data_14db58:
-	dw $ffff
+	dw -1
 
 Data_14db5a:
-	dw $ffff
+	dw -1
 
 Data_14db5c:
-	dw $ffff
+	dw -1
 
 Data_14db5e:
-	dw $ffff
+	dw -1
 
 Data_14db60:
-	dw $ffff
+	dw -1
 
 Data_14db62:
-	dw $ffff
+	dw -1
 
 Data_14db64:
-	dw $ffff
+	dw -1
 
 Data_14db66:
-	dw $ffff
+	dw -1
 
 Data_14db68:
-	dw $ffff
+	dw -1
 
 Data_14db6a:
-	dw $ffff
+	dw -1
 
 Data_14db6c:
-	dw $ffff
+	dw -1
 
 Data_14db6e:
-	dw $ffff
+	dw -1
 
 Data_14db70:
-	dw $ffff
+	dw -1
 
 Data_14db72:
-	dw $ffff
+	dw -1
 
 Data_14db74:
-	dw $ffff
+	dw -1
 
 Data_14db76:
-	dw $ffff
+	dw -1
 
 Data_14db78:
-	dw $ffff
+	dw -1
 
 Data_14db7a:
-	dw $ffff
+	dw -1
 
 Data_14db7c:
-	dw $ffff
+	dw -1
 
 Data_14db7e:
-	dw $ffff
+	dw -1
 
 Data_14db80:
-	dw $ffff
+	dw -1
 
 Data_14db82:
-	dw $ffff
+	dw -1
 
 Data_14db84:
-	dw $ffff
+	dw -1
 
 Data_14db86:
-	dw $ffff
+	dw -1
 
 Data_14db88:
-	dw $ffff
+	dw -1
 
 Data_14db8a:
-	dw $ffff
+	dw -1
 
 Data_14db8c:
-	dw $ffff
+	dw -1

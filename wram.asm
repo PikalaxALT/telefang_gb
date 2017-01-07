@@ -939,8 +939,8 @@ wTileWhere0IsLoaded:: ds 1
 wTextBoxStartTile:: ds 1
 wc920:: ds 1
 wc921:: ds 1
-wc922:: ds 1
-wc923:: ds 1
+wOverworldRandomCounter:: ds 1
+wOverworldRandomSeed:: ds 1
 wc924:: ds 1
 wc925:: ds 1
 wc926:: ds 1
@@ -974,9 +974,8 @@ wc949:: ds 1
 wc94a:: ds 1
 wc94b:: ds 1
 wc94c:: ds 1
-wc94d:: ds 1
-wc94e:: ds 1
-wc94f:: ds 1
+wPhoneCallDenjuuAddressBookPointer:: dw
+wPhoneCallRingtoneTimer:: ds 1
 wEncounterStepCounter:: dw
 wc952:: ds 1
 wc953:: ds 1
@@ -1103,7 +1102,7 @@ wTextBGMapColumn:: ds 1
 wTextDelayTimer:: ds 1
 wTextDelayTimerReset:: ds 1
 wTextLine:: ds 1
-wc9cf:: ds 1
+wTextSubfunction:: ds 1
 wc9d0:: ds 1
 wBackupTextPointer:: dw
 wc9d3:: ds 1
@@ -1120,7 +1119,7 @@ wc9dd:: ds 1
 wc9de:: ds 1
 wc9df:: ds 1
 wc9e0:: ds 1
-wc9e1:: ds 1
+wBattlePlayerDenjuuName:: ds 1
 wc9e2:: ds 1
 wc9e3:: ds 1
 wc9e4:: ds 1
@@ -1148,7 +1147,7 @@ wc9fb:: ds 1
 wBGMapAnchor:: dw
 wc9fe:: ds 1
 wc9ff:: ds 1
-wca00:: ds 1
+wMapHeader:: ds 1
 wca01:: ds 1
 wca02:: ds 1
 wca03:: ds 1
@@ -1164,7 +1163,7 @@ wca0c:: ds 1
 wca0d:: ds 1
 wca0e:: ds 1
 wca0f:: ds 1
-wca10:: ds 1
+wPhoneNumberDecryptionBuffer:: ds 1
 wca11:: ds 1
 wca12:: ds 1
 wca13:: ds 1
@@ -1241,7 +1240,7 @@ wca59:: ds 1
 wca5a:: ds 1
 wca5b:: ds 1
 wca5c:: ds 1
-wca5d:: ds 1
+wNumIdleFrames:: ds 1
 wca5e:: ds 1
 wca5f:: ds 1
 wca60:: ds 1
@@ -1254,7 +1253,7 @@ wca66:: ds 1
 wca67:: ds 1
 wca68:: ds 1
 wca69:: ds 1
-wca6a:: ds 1
+wMathBuffer3:: ds 1
 wCustomSpriteDest:: ds 2
 wSpriteDestIsCustom:: ds 1
 wca6e:: ds 1
@@ -1841,7 +1840,7 @@ wccfc:: ds 1
 wccfd:: ds 1
 wccfe:: ds 1
 wccff:: ds 1
-wcd00:: ds 1
+wPlayerNameEntryBuffer:: ds 1
 wcd01:: ds 1
 wcd02:: ds 1
 wcd03:: ds 1
@@ -2021,10 +2020,10 @@ wcdb0:: ds 1
 wFontPaletteMode:: ds 1
 wcdb2:: ds 1
 wcdb3:: ds 1
-wcdb4:: ds 1
+wAddressBookIndexOfPartnerDenjuu:: ds 1
 wCurPhoneGFX:: ds 1
 wcdb6:: ds 1
-wcdb7:: ds 1
+wTextJoyNew:: ds 1
 wcdb8:: ds 1
 wcdb9:: ds 1
 wcdba:: ds 1
@@ -3471,7 +3470,7 @@ wd43f:: ds 1
 wStringBuffer:: ds 8
 
 
-wEnemyDenjuuName:: ; ds DENJUU_NAME_LENGTH
+wBattleTargetName:: ; ds DENJUU_NAME_LENGTH
 	ds 4
 wd44c::
 	ds 2
@@ -3494,7 +3493,7 @@ wd45c:: ds 1
 wd45d:: ds 1
 wd45e:: ds 1
 wCurDenjuuStat:: ds 1
-wBattleDenjuuName:: ds DENJUU_NAME_LENGTH
+wBattleUserName:: ds DENJUU_NAME_LENGTH
 wd467:: ds 1
 wd468:: ds 1
 wNotVeryEffective:: ds 1
@@ -3569,7 +3568,7 @@ wd4ad:: ds 1
 wd4ae:: ds 1
 wd4af:: ds 1
 wd4b0:: ds 1
-wd4b1:: ds 1
+wBattleStringBuffer:: ds 1
 wd4b2:: ds 1
 wd4b3:: ds 1
 wd4b4:: ds 1

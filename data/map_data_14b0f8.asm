@@ -257,47 +257,47 @@ Pointers_14b0f8::
 	dw Data_14b987
 
 Data_14b2f8:
-	dw $ffff
+	dw -1
 
 Data_14b2fa:
-	dw $ffff
+	dw -1
 
 Data_14b2fc:
-	dw $ffff
+	dw -1
 
 Data_14b2fe:
-	dw $ffff
+	dw -1
 
 Data_14b300:
-	dw $ffff
+	dw -1
 
 Data_14b302:
-	dw $ffff
+	dw -1
 
 Data_14b304:
-	dw $ffff
+	dw -1
 
 Data_14b306:
-	dw $ffff
+	dw -1
 
 Data_14b308:
-	dw $ffff
+	dw -1
 
 Data_14b30a:
 
 IF DEF(POWER)
-	dw $b2fe
+	dw -$4d02
 	db $00, $22, $35
 	dw Data_14b325
 	db $52
 ELSE
-	dw $b2fe
+	dw -$4d02
 	db $00, $22, $52
 	dw Data_14b314
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b314:
 	dw Data_14b31e
@@ -340,23 +340,23 @@ Data_14b32f:
 	db $ff
 
 Data_14b336:
-	dw $ffff
+	dw -1
 
 Data_14b338:
 
 IF DEF(POWER)
-	dw $b1fe
+	dw -$4e02
 	db $00, $72, $36
 	dw Data_14b353
 	db $52
 ELSE
-	dw $b1fe
+	dw -$4e02
 	db $00, $72, $54
 	dw Data_14b342
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b342:
 	dw Data_14b34c
@@ -399,35 +399,35 @@ Data_14b35d:
 	db $ff
 
 Data_14b364:
-	dw $ffff
+	dw -1
 
 Data_14b366:
-	dw $ffff
+	dw -1
 
 Data_14b368:
-	dw $ffff
+	dw -1
 
 Data_14b36a:
-	dw $ffff
+	dw -1
 
 Data_14b36c:
-	dw $ffff
+	dw -1
 
 Data_14b36e:
 
 IF DEF(POWER)
-	dw $b0fe
+	dw -$4f02
 	db $00, $22, $20
 	dw Data_14b389
 	db $52
 ELSE
-	dw $b0fe
+	dw -$4f02
 	db $00, $22, $57
 	dw Data_14b378
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b378:
 	dw Data_14b382
@@ -470,32 +470,32 @@ Data_14b393:
 	db $ff
 
 Data_14b39a:
-	dw $ffff
+	dw -1
 
 Data_14b39c:
-	dw $ffff
+	dw -1
 
 Data_14b39e:
-	dw $ffff
+	dw -1
 
 Data_14b3a0:
-	dw $ffff
+	dw -1
 
 Data_14b3a2:
 
 IF DEF(POWER)
-	dw $affe
+	dw -$5002
 	db $00, $71, $24
 	dw Data_14b3bd
 	db $52
 ELSE
-	dw $affe
+	dw -$5002
 	db $00, $71, $51
 	dw Data_14b3ac
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b3ac:
 	dw Data_14b3b6
@@ -538,21 +538,21 @@ Data_14b3c7:
 	db $ff
 
 Data_14b3ce:
-	dw $ffff
+	dw -1
 
 Data_14b3d0:
-	dw $ffff
+	dw -1
 
 Data_14b3d2:
-	dw $ffff
+	dw -1
 
 Data_14b3d4:
-	dw $aefe
+	dw -$5102
 	db $00, $21, $3b
 	dw Data_14b3de
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b3de:
 	dw Data_14b3e8
@@ -575,29 +575,29 @@ Data_14b3e8:
 	db $ff
 
 Data_14b3ef:
-	dw $ffff
+	dw -1
 
 Data_14b3f1:
-	dw $ffff
+	dw -1
 
 Data_14b3f3:
-	dw $ffff
+	dw -1
 
 Data_14b3f5:
 
 IF DEF(POWER)
-	dw $adfe
+	dw -$5202
 	db $00, $25, $3a
 	dw Data_14b40e
 	db $52
 ELSE
-	dw $adfe
+	dw -$5202
 	db $00, $25, $3d
 	dw Data_14b3ff
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b3ff:
 	dw Data_14b407
@@ -636,32 +636,32 @@ Data_14b416:
 	db $ff
 
 Data_14b41d:
-	dw $ffff
+	dw -1
 
 Data_14b41f:
-	dw $ffff
+	dw -1
 
 Data_14b421:
-	dw $ffff
+	dw -1
 
 Data_14b423:
-	dw $ffff
+	dw -1
 
 Data_14b425:
 
 IF DEF(POWER)
-	dw $acfe
+	dw -$5302
 	db $00, $14, $3a
 	dw Data_14b440
 	db $52
 ELSE
-	dw $acfe
+	dw -$5302
 	db $00, $14, $3d
 	dw Data_14b42f
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b42f:
 	dw Data_14b439
@@ -704,12 +704,12 @@ Data_14b44a:
 	db $ff
 
 Data_14b451:
-	dw $abfe
+	dw -$5402
 	db $00, $63, $3b
 	dw Data_14b45b
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b45b:
 	dw Data_14b45e
@@ -725,47 +725,47 @@ Data_14b45e:
 	db $ff
 
 Data_14b465:
-	dw $ffff
+	dw -1
 
 Data_14b467:
-	dw $ffff
+	dw -1
 
 Data_14b469:
-	dw $ffff
+	dw -1
 
 Data_14b46b:
-	dw $ffff
+	dw -1
 
 Data_14b46d:
-	dw $ffff
+	dw -1
 
 Data_14b46f:
-	dw $ffff
+	dw -1
 
 Data_14b471:
-	dw $ffff
+	dw -1
 
 Data_14b473:
-	dw $ffff
+	dw -1
 
 Data_14b475:
-	dw $ffff
+	dw -1
 
 Data_14b477:
 
 IF DEF(POWER)
-	dw $aafe
+	dw -$5502
 	db $00, $23, $24
 	dw Data_14b490
 	db $52
 ELSE
-	dw $aafe
+	dw -$5502
 	db $00, $23, $51
 	dw Data_14b481
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b481:
 	dw Data_14b489
@@ -804,74 +804,74 @@ Data_14b498:
 	db $ff
 
 Data_14b49f:
-	dw $ffff
+	dw -1
 
 Data_14b4a1:
-	dw $ffff
+	dw -1
 
 Data_14b4a3:
-	dw $ffff
+	dw -1
 
 Data_14b4a5:
-	dw $ffff
+	dw -1
 
 Data_14b4a7:
-	dw $ffff
+	dw -1
 
 Data_14b4a9:
-	dw $ffff
+	dw -1
 
 Data_14b4ab:
-	dw $ffff
+	dw -1
 
 Data_14b4ad:
-	dw $ffff
+	dw -1
 
 Data_14b4af:
-	dw $ffff
+	dw -1
 
 Data_14b4b1:
-	dw $ffff
+	dw -1
 
 Data_14b4b3:
-	dw $ffff
+	dw -1
 
 Data_14b4b5:
-	dw $ffff
+	dw -1
 
 Data_14b4b7:
-	dw $ffff
+	dw -1
 
 Data_14b4b9:
-	dw $ffff
+	dw -1
 
 Data_14b4bb:
-	dw $ffff
+	dw -1
 
 Data_14b4bd:
-	dw $ffff
+	dw -1
 
 Data_14b4bf:
-	dw $ffff
+	dw -1
 
 Data_14b4c1:
-	dw $ffff
+	dw -1
 
 Data_14b4c3:
 
 IF DEF(POWER)
-	dw $a9fe
+	dw -$5602
 	db $00, $32, $20
 	dw Data_14b4de
 	db $52
 ELSE
-	dw $a9fe
+	dw -$5602
 	db $00, $32, $57
 	dw Data_14b4cd
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b4cd:
 	dw Data_14b4d7
@@ -914,32 +914,32 @@ Data_14b4e8:
 	db $ff
 
 Data_14b4ef:
-	dw $ffff
+	dw -1
 
 Data_14b4f1:
-	dw $ffff
+	dw -1
 
 Data_14b4f3:
-	dw $ffff
+	dw -1
 
 Data_14b4f5:
-	dw $ffff
+	dw -1
 
 Data_14b4f7:
 
 IF DEF(POWER)
-	dw $a8fe
+	dw -$5702
 	db $00, $51, $36
 	dw Data_14b512
 	db $52
 ELSE
-	dw $a8fe
+	dw -$5702
 	db $00, $51, $54
 	dw Data_14b501
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b501:
 	dw Data_14b50b
@@ -982,26 +982,26 @@ Data_14b51c:
 	db $ff
 
 Data_14b523:
-	dw $ffff
+	dw -1
 
 Data_14b525:
-	dw $ffff
+	dw -1
 
 Data_14b527:
 
 IF DEF(POWER)
-	dw $a7fe
+	dw -$5802
 	db $00, $14, $35
 	dw Data_14b542
 	db $52
 ELSE
-	dw $a7fe
+	dw -$5802
 	db $00, $14, $52
 	dw Data_14b531
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b531:
 	dw Data_14b53b
@@ -1046,18 +1046,18 @@ Data_14b54c:
 Data_14b553:
 
 IF DEF(POWER)
-	dw $a6fe
+	dw -$5902
 	db $00, $54, $36
 	dw Data_14b567
 	db $52
 ELSE
-	dw $a6fe
+	dw -$5902
 	db $00, $54, $54
 	dw Data_14b55d
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b55d:
 	dw Data_14b560
@@ -1086,32 +1086,32 @@ Data_14b56a:
 	db $ff
 
 Data_14b571:
-	dw $ffff
+	dw -1
 
 Data_14b573:
-	dw $ffff
+	dw -1
 
 Data_14b575:
-	dw $ffff
+	dw -1
 
 Data_14b577:
-	dw $ffff
+	dw -1
 
 Data_14b579:
 
 IF DEF(POWER)
-	dw $a5fe
+	dw -$5a02
 	db $00, $12, $20
 	dw Data_14b592
 	db $52
 ELSE
-	dw $a5fe
+	dw -$5a02
 	db $00, $12, $57
 	dw Data_14b583
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b583:
 	dw Data_14b58b
@@ -1150,32 +1150,32 @@ Data_14b59a:
 	db $ff
 
 Data_14b5a1:
-	dw $ffff
+	dw -1
 
 Data_14b5a3:
-	dw $ffff
+	dw -1
 
 Data_14b5a5:
-	dw $ffff
+	dw -1
 
 Data_14b5a7:
-	dw $ffff
+	dw -1
 
 Data_14b5a9:
 
 IF DEF(POWER)
-	dw $a4fe
+	dw -$5b02
 	db $00, $24, $24
 	dw Data_14b5c2
 	db $52
 ELSE
-	dw $a4fe
+	dw -$5b02
 	db $00, $24, $51
 	dw Data_14b5b3
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b5b3:
 	dw Data_14b5bb
@@ -1214,18 +1214,18 @@ Data_14b5ca:
 	db $ff
 
 Data_14b5d1:
-	dw $ffff
+	dw -1
 
 Data_14b5d3:
-	dw $ffff
+	dw -1
 
 Data_14b5d5:
-	dw $a3fe
+	dw -$5c02
 	db $00, $62, $3b
 	dw Data_14b5df
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b5df:
 	dw Data_14b5e9
@@ -1248,35 +1248,35 @@ Data_14b5e9:
 	db $ff
 
 Data_14b5f0:
-	dw $ffff
+	dw -1
 
 Data_14b5f2:
-	dw $ffff
+	dw -1
 
 Data_14b5f4:
-	dw $ffff
+	dw -1
 
 Data_14b5f6:
-	dw $ffff
+	dw -1
 
 Data_14b5f8:
-	dw $ffff
+	dw -1
 
 Data_14b5fa:
 
 IF DEF(POWER)
-	dw $a2fe
+	dw -$5d02
 	db $00, $84, $3a
 	dw Data_14b615
 	db $52
 ELSE
-	dw $a2fe
+	dw -$5d02
 	db $00, $84, $3d
 	dw Data_14b604
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b604:
 	dw Data_14b60e
@@ -1319,26 +1319,26 @@ Data_14b61f:
 	db $ff
 
 Data_14b626:
-	dw $ffff
+	dw -1
 
 Data_14b628:
-	dw $ffff
+	dw -1
 
 Data_14b62a:
 
 IF DEF(POWER)
-	dw $a1fe
+	dw -$5e02
 	db $00, $85, $35
 	dw Data_14b63e
 	db $52
 ELSE
-	dw $a1fe
+	dw -$5e02
 	db $00, $85, $52
 	dw Data_14b634
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b634:
 	dw Data_14b637
@@ -1367,51 +1367,51 @@ Data_14b641:
 	db $ff
 
 Data_14b648:
-	dw $ffff
+	dw -1
 
 Data_14b64a:
-	dw $ffff
+	dw -1
 
 Data_14b64c:
-	dw $ffff
+	dw -1
 
 Data_14b64e:
-	dw $ffff
+	dw -1
 
 Data_14b650:
-	dw $ffff
+	dw -1
 
 Data_14b652:
-	dw $ffff
+	dw -1
 
 Data_14b654:
-	dw $ffff
+	dw -1
 
 Data_14b656:
-	dw $ffff
+	dw -1
 
 Data_14b658:
-	dw $ffff
+	dw -1
 
 Data_14b65a:
-	dw $ffff
+	dw -1
 
 Data_14b65c:
-	dw $ffff
+	dw -1
 
 Data_14b65e:
-	dw $ffff
+	dw -1
 
 Data_14b660:
-	dw $ffff
+	dw -1
 
 Data_14b662:
-	dw $a0fe
+	dw -$5f02
 	db $00, $56, $3b
 	dw Data_14b66c
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b66c:
 	dw Data_14b676
@@ -1434,68 +1434,68 @@ Data_14b676:
 	db $ff
 
 Data_14b67d:
-	dw $ffff
+	dw -1
 
 Data_14b67f:
-	dw $ffff
+	dw -1
 
 Data_14b681:
-	dw $ffff
+	dw -1
 
 Data_14b683:
-	dw $ffff
+	dw -1
 
 Data_14b685:
-	dw $ffff
+	dw -1
 
 Data_14b687:
-	dw $ffff
+	dw -1
 
 Data_14b689:
-	dw $ffff
+	dw -1
 
 Data_14b68b:
-	dw $ffff
+	dw -1
 
 Data_14b68d:
-	dw $ffff
+	dw -1
 
 Data_14b68f:
-	dw $ffff
+	dw -1
 
 Data_14b691:
-	dw $ffff
+	dw -1
 
 Data_14b693:
-	dw $ffff
+	dw -1
 
 Data_14b695:
-	dw $ffff
+	dw -1
 
 Data_14b697:
-	dw $ffff
+	dw -1
 
 Data_14b699:
-	dw $ffff
+	dw -1
 
 Data_14b69b:
-	dw $ffff
+	dw -1
 
 Data_14b69d:
 
 IF DEF(POWER)
-	dw $9ffe
+	dw -$6002
 	db $00, $71, $36
 	dw Data_14b6b8
 	db $52
 ELSE
-	dw $9ffe
+	dw -$6002
 	db $00, $71, $54
 	dw Data_14b6a7
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b6a7:
 	dw Data_14b6b1
@@ -1538,41 +1538,41 @@ Data_14b6c2:
 	db $ff
 
 Data_14b6c9:
-	dw $ffff
+	dw -1
 
 Data_14b6cb:
-	dw $ffff
+	dw -1
 
 Data_14b6cd:
-	dw $ffff
+	dw -1
 
 Data_14b6cf:
-	dw $ffff
+	dw -1
 
 Data_14b6d1:
-	dw $ffff
+	dw -1
 
 Data_14b6d3:
-	dw $ffff
+	dw -1
 
 Data_14b6d5:
-	dw $ffff
+	dw -1
 
 Data_14b6d7:
 
 IF DEF(POWER)
-	dw $9efe
+	dw -$6102
 	db $00, $14, $20
 	dw Data_14b6f0
 	db $52
 ELSE
-	dw $9efe
+	dw -$6102
 	db $00, $14, $57
 	dw Data_14b6e1
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b6e1:
 	dw Data_14b6e9
@@ -1611,41 +1611,41 @@ Data_14b6f8:
 	db $ff
 
 Data_14b6ff:
-	dw $ffff
+	dw -1
 
 Data_14b701:
-	dw $ffff
+	dw -1
 
 Data_14b703:
-	dw $ffff
+	dw -1
 
 Data_14b705:
-	dw $ffff
+	dw -1
 
 Data_14b707:
-	dw $ffff
+	dw -1
 
 Data_14b709:
-	dw $ffff
+	dw -1
 
 Data_14b70b:
-	dw $ffff
+	dw -1
 
 Data_14b70d:
 
 IF DEF(POWER)
-	dw $9dfe
+	dw -$6202
 	db $00, $41, $20
 	dw Data_14b726
 	db $52
 ELSE
-	dw $9dfe
+	dw -$6202
 	db $00, $41, $57
 	dw Data_14b717
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b717:
 	dw Data_14b71f
@@ -1686,18 +1686,18 @@ Data_14b72e:
 Data_14b735:
 
 IF DEF(POWER)
-	dw $9cfe
+	dw -$6302
 	db $00, $12, $24
 	dw Data_14b750
 	db $52
 ELSE
-	dw $9cfe
+	dw -$6302
 	db $00, $12, $51
 	dw Data_14b73f
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b73f:
 	dw Data_14b749
@@ -1740,38 +1740,38 @@ Data_14b75a:
 	db $ff
 
 Data_14b761:
-	dw $ffff
+	dw -1
 
 Data_14b763:
-	dw $ffff
+	dw -1
 
 Data_14b765:
-	dw $ffff
+	dw -1
 
 Data_14b767:
-	dw $ffff
+	dw -1
 
 Data_14b769:
-	dw $ffff
+	dw -1
 
 Data_14b76b:
-	dw $ffff
+	dw -1
 
 Data_14b76d:
 
 IF DEF(POWER)
-	dw $9bfe
+	dw -$6402
 	db $00, $41, $3a
 	dw Data_14b786
 	db $52
 ELSE
-	dw $9bfe
+	dw -$6402
 	db $00, $41, $3d
 	dw Data_14b777
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b777:
 	dw Data_14b77f
@@ -1810,15 +1810,15 @@ Data_14b78e:
 	db $ff
 
 Data_14b795:
-	dw $ffff
+	dw -1
 
 Data_14b797:
-	dw $9afe
+	dw -$6502
 	db $00, $83, $3b
 	dw Data_14b7a1
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b7a1:
 	dw Data_14b7a4
@@ -1834,12 +1834,12 @@ Data_14b7a4:
 	db $ff
 
 Data_14b7ab:
-	dw $99fe
+	dw -$6602
 	db $00, $83, $3b
 	dw Data_14b7b5
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b7b5:
 	dw Data_14b7b8
@@ -1855,32 +1855,32 @@ Data_14b7b8:
 	db $ff
 
 Data_14b7bf:
-	dw $ffff
+	dw -1
 
 Data_14b7c1:
-	dw $ffff
+	dw -1
 
 Data_14b7c3:
-	dw $ffff
+	dw -1
 
 Data_14b7c5:
-	dw $ffff
+	dw -1
 
 Data_14b7c7:
 
 IF DEF(POWER)
-	dw $a2fe
+	dw -$5d02
 	db $00, $81, $20
 	dw Data_14b7e2
 	db $52
 ELSE
-	dw $a2fe
+	dw -$5d02
 	db $00, $81, $57
 	dw Data_14b7d1
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b7d1:
 	dw Data_14b7db
@@ -1923,23 +1923,23 @@ Data_14b7ec:
 	db $ff
 
 Data_14b7f3:
-	dw $ffff
+	dw -1
 
 Data_14b7f5:
 
 IF DEF(POWER)
-	dw $a1fe
+	dw -$5e02
 	db $00, $56, $20
 	dw Data_14b80e
 	db $52
 ELSE
-	dw $a1fe
+	dw -$5e02
 	db $00, $56, $57
 	dw Data_14b7ff
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b7ff:
 	dw Data_14b807
@@ -1978,35 +1978,35 @@ Data_14b816:
 	db $ff
 
 Data_14b81d:
-	dw $ffff
+	dw -1
 
 Data_14b81f:
-	dw $ffff
+	dw -1
 
 Data_14b821:
-	dw $ffff
+	dw -1
 
 Data_14b823:
-	dw $ffff
+	dw -1
 
 Data_14b825:
-	dw $ffff
+	dw -1
 
 Data_14b827:
 
 IF DEF(POWER)
-	dw $a0fe
+	dw -$5f02
 	db $00, $55, $36
 	dw Data_14b83b
 	db $52
 ELSE
-	dw $a0fe
+	dw -$5f02
 	db $00, $55, $54
 	dw Data_14b831
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b831:
 	dw Data_14b834
@@ -2035,26 +2035,26 @@ Data_14b83e:
 	db $ff
 
 Data_14b845:
-	dw $ffff
+	dw -1
 
 Data_14b847:
-	dw $ffff
+	dw -1
 
 Data_14b849:
 
 IF DEF(POWER)
-	dw $9ffe
+	dw -$6002
 	db $00, $45, $36
 	dw Data_14b85d
 	db $52
 ELSE
-	dw $9ffe
+	dw -$6002
 	db $00, $45, $54
 	dw Data_14b853
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b853:
 	dw Data_14b856
@@ -2083,27 +2083,27 @@ Data_14b860:
 	db $ff
 
 Data_14b867:
-	dw $ffff
+	dw -1
 
 Data_14b869:
-	dw $ffff
+	dw -1
 
 Data_14b86b:
-	dw $ffff
+	dw -1
 
 Data_14b86d:
-	dw $ffff
+	dw -1
 
 Data_14b86f:
-	dw $ffff
+	dw -1
 
 Data_14b871:
-	dw $9efe
+	dw -$6102
 	db $00, $52, $3b
 	dw Data_14b87b
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b87b:
 	dw Data_14b87e
@@ -2119,35 +2119,35 @@ Data_14b87e:
 	db $ff
 
 Data_14b885:
-	dw $ffff
+	dw -1
 
 Data_14b887:
-	dw $ffff
+	dw -1
 
 Data_14b889:
-	dw $ffff
+	dw -1
 
 Data_14b88b:
-	dw $ffff
+	dw -1
 
 Data_14b88d:
-	dw $ffff
+	dw -1
 
 Data_14b88f:
 
 IF DEF(POWER)
-	dw $9dfe
+	dw -$6202
 	db $00, $45, $3a
 	dw Data_14b8a3
 	db $52
 ELSE
-	dw $9dfe
+	dw -$6202
 	db $00, $45, $3d
 	dw Data_14b899
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b899:
 	dw Data_14b89c
@@ -2176,24 +2176,24 @@ Data_14b8a6:
 	db $ff
 
 Data_14b8ad:
-	dw $ffff
+	dw -1
 
 Data_14b8af:
-	dw $ffff
+	dw -1
 
 Data_14b8b1:
-	dw $ffff
+	dw -1
 
 Data_14b8b3:
-	dw $ffff
+	dw -1
 
 Data_14b8b5:
-	dw $9cfe
+	dw -$6302
 	db $00, $45, $3b
 	dw Data_14b8bf
 	db $52
 
-	dw $ffff
+	dw -1
 
 Data_14b8bf:
 	dw Data_14b8c2
@@ -2209,26 +2209,26 @@ Data_14b8c2:
 	db $ff
 
 Data_14b8c9:
-	dw $ffff
+	dw -1
 
 Data_14b8cb:
-	dw $ffff
+	dw -1
 
 Data_14b8cd:
 
 IF DEF(POWER)
-	dw $9bfe
+	dw -$6402
 	db $00, $52, $20
 	dw Data_14b8e1
 	db $52
 ELSE
-	dw $9bfe
+	dw -$6402
 	db $00, $52, $57
 	dw Data_14b8d7
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b8d7:
 	dw Data_14b8da
@@ -2257,32 +2257,32 @@ Data_14b8e4:
 	db $ff
 
 Data_14b8eb:
-	dw $ffff
+	dw -1
 
 Data_14b8ed:
-	dw $ffff
+	dw -1
 
 Data_14b8ef:
-	dw $ffff
+	dw -1
 
 Data_14b8f1:
-	dw $ffff
+	dw -1
 
 Data_14b8f3:
 
 IF DEF(POWER)
-	dw $9afe
+	dw -$6502
 	db $00, $52, $24
 	dw Data_14b907
 	db $52
 ELSE
-	dw $9afe
+	dw -$6502
 	db $00, $52, $51
 	dw Data_14b8fd
 	db $52
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_14b8fd:
 	dw Data_14b900
@@ -2311,181 +2311,181 @@ Data_14b90a:
 	db $ff
 
 Data_14b911:
-	dw $ffff
+	dw -1
 
 Data_14b913:
-	dw $ffff
+	dw -1
 
 Data_14b915:
-	dw $ffff
+	dw -1
 
 Data_14b917:
-	dw $ffff
+	dw -1
 
 Data_14b919:
-	dw $ffff
+	dw -1
 
 Data_14b91b:
-	dw $ffff
+	dw -1
 
 Data_14b91d:
-	dw $ffff
+	dw -1
 
 Data_14b91f:
-	dw $ffff
+	dw -1
 
 Data_14b921:
-	dw $ffff
+	dw -1
 
 Data_14b923:
-	dw $ffff
+	dw -1
 
 Data_14b925:
-	dw $ffff
+	dw -1
 
 Data_14b927:
-	dw $ffff
+	dw -1
 
 Data_14b929:
-	dw $ffff
+	dw -1
 
 Data_14b92b:
-	dw $ffff
+	dw -1
 
 Data_14b92d:
-	dw $ffff
+	dw -1
 
 Data_14b92f:
-	dw $ffff
+	dw -1
 
 Data_14b931:
-	dw $ffff
+	dw -1
 
 Data_14b933:
-	dw $ffff
+	dw -1
 
 Data_14b935:
-	dw $ffff
+	dw -1
 
 Data_14b937:
-	dw $ffff
+	dw -1
 
 Data_14b939:
-	dw $ffff
+	dw -1
 
 Data_14b93b:
-	dw $ffff
+	dw -1
 
 Data_14b93d:
-	dw $ffff
+	dw -1
 
 Data_14b93f:
-	dw $ffff
+	dw -1
 
 Data_14b941:
-	dw $ffff
+	dw -1
 
 Data_14b943:
-	dw $ffff
+	dw -1
 
 Data_14b945:
-	dw $ffff
+	dw -1
 
 Data_14b947:
-	dw $ffff
+	dw -1
 
 Data_14b949:
-	dw $ffff
+	dw -1
 
 Data_14b94b:
-	dw $ffff
+	dw -1
 
 Data_14b94d:
-	dw $ffff
+	dw -1
 
 Data_14b94f:
-	dw $ffff
+	dw -1
 
 Data_14b951:
-	dw $ffff
+	dw -1
 
 Data_14b953:
-	dw $ffff
+	dw -1
 
 Data_14b955:
-	dw $ffff
+	dw -1
 
 Data_14b957:
-	dw $ffff
+	dw -1
 
 Data_14b959:
-	dw $ffff
+	dw -1
 
 Data_14b95b:
-	dw $ffff
+	dw -1
 
 Data_14b95d:
-	dw $ffff
+	dw -1
 
 Data_14b95f:
-	dw $ffff
+	dw -1
 
 Data_14b961:
-	dw $ffff
+	dw -1
 
 Data_14b963:
-	dw $ffff
+	dw -1
 
 Data_14b965:
-	dw $ffff
+	dw -1
 
 Data_14b967:
-	dw $ffff
+	dw -1
 
 Data_14b969:
-	dw $ffff
+	dw -1
 
 Data_14b96b:
-	dw $ffff
+	dw -1
 
 Data_14b96d:
-	dw $ffff
+	dw -1
 
 Data_14b96f:
-	dw $ffff
+	dw -1
 
 Data_14b971:
-	dw $ffff
+	dw -1
 
 Data_14b973:
-	dw $ffff
+	dw -1
 
 Data_14b975:
-	dw $ffff
+	dw -1
 
 Data_14b977:
-	dw $ffff
+	dw -1
 
 Data_14b979:
-	dw $ffff
+	dw -1
 
 Data_14b97b:
-	dw $ffff
+	dw -1
 
 Data_14b97d:
-	dw $ffff
+	dw -1
 
 Data_14b97f:
-	dw $ffff
+	dw -1
 
 Data_14b981:
-	dw $ffff
+	dw -1
 
 Data_14b983:
-	dw $ffff
+	dw -1
 
 Data_14b985:
-	dw $ffff
+	dw -1
 
 Data_14b987:
-	dw $ffff
+	dw -1

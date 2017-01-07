@@ -259,51 +259,51 @@ Pointers_148180:
 	dw Data_14956c
 
 Data_148200:
-	dw $cafa
+	dw -$3506
 	db $26, $44, $58
-	dw $0
+	dw 0
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14820a:
-	dw $ffff
+	dw -1
 
 Data_14820c:
-	dw $ffff
+	dw -1
 
 Data_14820e:
-	dw $ffff
+	dw -1
 
 Data_148210:
-	dw $ffff
+	dw -1
 
 Data_148212:
-	dw $ffff
+	dw -1
 
 Data_148214:
-	dw $ffff
+	dw -1
 
 Data_148216:
-	dw $ffff
+	dw -1
 
 Data_148218:
-	dw $ffff
+	dw -1
 
 Data_14821a:
-	dw $ffff
+	dw -1
 
 Data_14821c:
-	dw $ffff
+	dw -1
 
 Data_14821e:
-	dw $ffff
+	dw -1
 
 Data_148220:
-	dw $ffff
+	dw -1
 
 Data_148222:
-	dw $d004
+	dw -$2ffc
 	db $10, $23, $5e
 	dw Data_148234
 	db $42
@@ -313,7 +313,7 @@ Data_148222:
 	dw Data_148238
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_148234:
 	dw Data_148237
@@ -332,48 +332,48 @@ Data_14823b:
 	db $ff
 
 Data_14823e:
-	dw $ffff
+	dw -1
 
 Data_148240:
-	dw $ffff
+	dw -1
 
 Data_148242:
-	dw $ffff
+	dw -1
 
 Data_148244:
-	dw $ffff
+	dw -1
 
 Data_148246:
-	dw $ffff
+	dw -1
 
 Data_148248:
-	dw $ffff
+	dw -1
 
 Data_14824a:
-	dw $ffff
+	dw -1
 
 Data_14824c:
-	dw $ffff
+	dw -1
 
 Data_14824e:
-	dw $ffff
+	dw -1
 
 Data_148250:
-	dw $ffff
+	dw -1
 
 Data_148252:
-	dw $ffff
+	dw -1
 
 Data_148254:
-	dw $ffff
+	dw -1
 
 Data_148256:
-	dw $109
+	dw EVENT_109
 	db $10, $44, $5b
 	dw Data_148260
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_148260:
 	dw Data_148263
@@ -383,43 +383,43 @@ Data_148263:
 	db $ff
 
 Data_148264:
-	dw $ffff
+	dw -1
 
 Data_148266:
-	dw $509
+	dw EVENT_509
 	db $10, $63, $5b
-	dw $0
+	dw 0
 	db $40
 
 IF DEF(POWER)
-	dw $509
+	dw EVENT_509
 	db $d1, $64, $37
-	dw $0
+	dw 0
 	db $48
 ELSE
-	dw $509
+	dw EVENT_509
 	db $d1, $64, $38
-	dw $0
+	dw 0
 	db $48
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_148278:
-	dw $ffff
+	dw -1
 
 Data_14827a:
-	dw $f401
+	dw -EVENT_BFF
 	db $20, $00, $39
-	dw $0
+	dw 0
 	db $00
 
-	dw $f401
+	dw -EVENT_BFF
 	db $20, $00, $39
-	dw $0
+	dw 0
 	db $00
 
-	dw $ffff
+	dw -1
 
 Data_14828c:
 	dw $2cfb
@@ -427,12 +427,12 @@ Data_14828c:
 	dw Data_14829e
 	db $02
 
-	dw $d404
+	dw -$2bfc
 	db $00, $66, $03
 	dw Data_1482a6
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14829e:
 	dw Data_1482a1
@@ -455,36 +455,36 @@ Data_1482a9:
 	db $ff
 
 Data_1482ac:
-	dw $ffff
+	dw -1
 
 Data_1482ae:
-	dw $ffff
+	dw -1
 
 Data_1482b0:
-	dw $ffff
+	dw -1
 
 Data_1482b2:
-	dw $ffff
+	dw -1
 
 Data_1482b4:
-	dw $ffff
+	dw -1
 
 Data_1482b6:
-	dw $ffff
+	dw -1
 
 Data_1482b8:
-	dw $ffff
+	dw -1
 
 Data_1482ba:
-	dw $ffff
+	dw -1
 
 Data_1482bc:
-	dw $fb
+	dw EVENT_0FB
 	db $00, $83, $1c
 	dw Data_1482c6
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1482c6:
 	dw Data_1482c9
@@ -496,12 +496,12 @@ Data_1482c9:
 	db $ff
 
 Data_1482cc:
-	dw $e5fe
+	dw -$1a02
 	db $01, $75, $05
 	dw Data_1482d6
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1482d6:
 	dw Data_1482d9
@@ -517,34 +517,34 @@ Data_1482d9:
 	db $ff
 
 Data_1482e0:
-	dw $ffff
+	dw -1
 
 Data_1482e2:
-	dw $ffff
+	dw -1
 
 Data_1482e4:
-	dw $ffff
+	dw -1
 
 Data_1482e6:
-	dw $ffff
+	dw -1
 
 Data_1482e8:
-	dw $d308
+	dw -$2cf8
 	db $d0, $53, $5d
 	dw Data_148302
 	db $4a
 
-	dw $f401
+	dw -EVENT_BFF
 	db $20, $00, $39
-	dw $0
+	dw 0
 	db $00
 
-	dw $f401
+	dw -EVENT_BFF
 	db $20, $00, $39
-	dw $0
+	dw 0
 	db $00
 
-	dw $ffff
+	dw -1
 
 Data_148302:
 	dw Data_148305
@@ -559,7 +559,7 @@ Data_148306:
 	dw Data_148310
 	db $4a
 
-	dw $ffff
+	dw -1
 
 Data_148310:
 	dw Data_148313
@@ -569,39 +569,39 @@ Data_148313:
 	db $ff
 
 Data_148314:
-	dw $ffff
+	dw -1
 
 Data_148316:
-	dw $ffff
+	dw -1
 
 Data_148318:
-	dw $ffff
+	dw -1
 
 Data_14831a:
-	dw $ffff
+	dw -1
 
 Data_14831c:
-	dw $ffff
+	dw -1
 
 Data_14831e:
-	dw $ffff
+	dw -1
 
 Data_148320:
-	dw $ffff
+	dw -1
 
 Data_148322:
-	dw $ffff
+	dw -1
 
 Data_148324:
-	dw $ffff
+	dw -1
 
 Data_148326:
-	dw $e4fe
+	dw -$1b02
 	db $01, $22, $05
 	dw Data_148330
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148330:
 	dw Data_148333
@@ -617,12 +617,12 @@ Data_148333:
 	db $ff
 
 Data_14833a:
-	dw $e3fe
+	dw -$1c02
 	db $01, $25, $05
 	dw Data_148344
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148344:
 	dw Data_148347
@@ -638,15 +638,15 @@ Data_148347:
 	db $ff
 
 Data_14834e:
-	dw $ffff
+	dw -1
 
 Data_148350:
-	dw $e2fe
+	dw -$1d02
 	db $01, $74, $05
 	dw Data_14835a
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14835a:
 	dw Data_14835d
@@ -667,12 +667,12 @@ Data_148364:
 	dw Data_148376
 	db $02
 
-	dw $d404
+	dw -$2bfc
 	db $00, $25, $03
 	dw Data_14837e
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148376:
 	dw Data_148379
@@ -695,30 +695,30 @@ Data_148381:
 	db $ff
 
 Data_148384:
-	dw $ffff
+	dw -1
 
 Data_148386:
-	dw $ffff
+	dw -1
 
 Data_148388:
-	dw $ffff
+	dw -1
 
 Data_14838a:
-	dw $ffff
+	dw -1
 
 Data_14838c:
-	dw $ffff
+	dw -1
 
 Data_14838e:
-	dw $ffff
+	dw -1
 
 Data_148390:
-	dw $b1fb
+	dw -$4e05
 	db $00, $43, $60
 	dw Data_14839a
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_14839a:
 	dw Data_14839d
@@ -730,12 +730,12 @@ Data_14839d:
 	db $ff
 
 Data_1483a0:
-	dw $fa08
+	dw -EVENT_5F8
 	db $10, $51, $5c
 	dw Data_1483aa
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_1483aa:
 	dw Data_1483ad
@@ -745,30 +745,30 @@ Data_1483ad:
 	db $ff
 
 Data_1483ae:
-	dw $ffff
+	dw -1
 
 Data_1483b0:
-	dw $ffff
+	dw -1
 
 Data_1483b2:
-	dw $ffff
+	dw -1
 
 Data_1483b4:
-	dw $ffff
+	dw -1
 
 Data_1483b6:
-	dw $ffff
+	dw -1
 
 Data_1483b8:
-	dw $ffff
+	dw -1
 
 Data_1483ba:
-	dw $e1fe
+	dw -$1e02
 	db $01, $73, $05
 	dw Data_1483c4
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1483c4:
 	dw Data_1483c7
@@ -784,24 +784,24 @@ Data_1483c7:
 	db $ff
 
 Data_1483ce:
-	dw $ffff
+	dw -1
 
 Data_1483d0:
-	dw $ffff
+	dw -1
 
 Data_1483d2:
-	dw $ffff
+	dw -1
 
 Data_1483d4:
-	dw $ffff
+	dw -1
 
 Data_1483d6:
-	dw $a09
+	dw EVENT_A09
 	db $10, $51, $5c
 	dw Data_1483e0
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_1483e0:
 	dw Data_1483e3
@@ -811,10 +811,10 @@ Data_1483e3:
 	db $ff
 
 Data_1483e4:
-	dw $ffff
+	dw -1
 
 Data_1483e6:
-	dw $a6fb
+	dw -$5905
 	db $00, $11, $17
 	dw Data_1483f8
 	db $02
@@ -824,7 +824,7 @@ Data_1483e6:
 	dw Data_148403
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1483f8:
 	dw Data_148400
@@ -855,7 +855,7 @@ Data_14840b:
 	db $ff
 
 Data_14840e:
-	dw $a6fb
+	dw -$5905
 	db $0b, $44, $17
 	dw Data_148420
 	db $02
@@ -865,7 +865,7 @@ Data_14840e:
 	dw Data_148426
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148420:
 	dw Data_148423
@@ -886,12 +886,12 @@ Data_148429:
 	db $ff
 
 Data_14842c:
-	dw $0
+	dw 0
 	db $00, $46, $3d
 	dw Data_148436
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148436:
 	dw Data_14843e
@@ -910,22 +910,22 @@ Data_14843e:
 	db $ff
 
 Data_148443:
-	dw $7fb
+	dw EVENT_7FB
 	db $0b, $34, $3d
 	dw Data_14845d
 	db $02
 
-	dw $f904
+	dw -EVENT_6FC
 	db $0b, $24, $3d
 	dw Data_148463
 	db $02
 
-	dw $7fb
+	dw EVENT_7FB
 	db $0c, $44, $3d
 	dw Data_148469
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14845d:
 	dw Data_148460
@@ -955,18 +955,18 @@ Data_14846c:
 	db $ff
 
 Data_14846f:
-	dw $ffff
+	dw -1
 
 Data_148471:
-	dw $ffff
+	dw -1
 
 Data_148473:
-	dw $e0fe
+	dw -$1f02
 	db $01, $84, $05
 	dw Data_14847d
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14847d:
 	dw Data_148480
@@ -982,12 +982,12 @@ Data_148480:
 	db $ff
 
 Data_148487:
-	dw $dffe
+	dw -$2002
 	db $01, $54, $05
 	dw Data_148491
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148491:
 	dw Data_148494
@@ -1003,15 +1003,15 @@ Data_148494:
 	db $ff
 
 Data_14849b:
-	dw $ffff
+	dw -1
 
 Data_14849d:
-	dw $defe
+	dw -$2102
 	db $01, $23, $05
 	dw Data_1484a7
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1484a7:
 	dw Data_1484aa
@@ -1027,12 +1027,12 @@ Data_1484aa:
 	db $ff
 
 Data_1484b1:
-	dw $0
+	dw 0
 	db $0b, $61, $09
 	dw Data_1484bb
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1484bb:
 	dw Data_1484be
@@ -1049,12 +1049,12 @@ Data_1484c1:
 	dw Data_1484d3
 	db $02
 
-	dw $d404
+	dw -$2bfc
 	db $00, $51, $03
 	dw Data_1484db
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1484d3:
 	dw Data_1484d6
@@ -1082,12 +1082,12 @@ Data_1484e1:
 	dw Data_1484f3
 	db $02
 
-	dw $d404
+	dw -$2bfc
 	db $0b, $64, $03
 	dw Data_1484fb
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1484f3:
 	dw Data_1484f6
@@ -1110,18 +1110,18 @@ Data_1484fe:
 	db $ff
 
 Data_148501:
-	dw $ffff
+	dw -1
 
 Data_148503:
-	dw $ffff
+	dw -1
 
 Data_148505:
-	dw $0
+	dw 0
 	db $0b, $73, $03
 	dw Data_14850f
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14850f:
 	dw Data_148512
@@ -1133,31 +1133,31 @@ Data_148512:
 	db $ff
 
 Data_148515:
-	dw $ffff
+	dw -1
 
 Data_148517:
-	dw $ffff
+	dw -1
 
 Data_148519:
-	dw $b5fb
+	dw -$4a05
 	db $13, $81, $0c
-	dw $0
+	dw 0
 	db $00
 
-	dw $ffff
+	dw -1
 
 Data_148523:
-	dw $7fb
+	dw EVENT_7FB
 	db $00, $14, $3d
 	dw Data_148535
 	db $02
 
-	dw $f904
+	dw -EVENT_6FC
 	db $00, $14, $3d
 	dw Data_148544
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148535:
 	dw Data_14853f
@@ -1194,37 +1194,37 @@ Data_14854e:
 	db $ff
 
 Data_148551:
-	dw $f508
+	dw -EVENT_AF8
 	db $0b, $45, $3d
 	dw Data_148583
 	db $02
 
-	dw $f908
+	dw -EVENT_6F8
 	db $0b, $35, $3d
 	dw Data_148589
 	db $02
 
-	dw $f904
+	dw -EVENT_6FC
 	db $0b, $35, $3d
 	dw Data_14858f
 	db $02
 
-	dw $f508
+	dw -EVENT_AF8
 	db $0c, $55, $3d
 	dw Data_148595
 	db $02
 
-	dw $f908
+	dw -EVENT_6F8
 	db $0c, $65, $3d
 	dw Data_14859d
 	db $02
 
-	dw $f904
+	dw -EVENT_6FC
 	db $0c, $65, $3d
 	dw Data_1485a3
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148583:
 	dw Data_148586
@@ -1283,12 +1283,12 @@ Data_1485a6:
 	db $ff
 
 Data_1485a9:
-	dw $0
+	dw 0
 	db $0b, $75, $3d
 	dw Data_1485b3
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1485b3:
 	dw Data_1485b6
@@ -1302,15 +1302,15 @@ Data_1485b6:
 	db $ff
 
 Data_1485bb:
-	dw $ffff
+	dw -1
 
 Data_1485bd:
-	dw $ddfe
+	dw -$2202
 	db $01, $22, $05
 	dw Data_1485c7
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1485c7:
 	dw Data_1485ca
@@ -1326,17 +1326,17 @@ Data_1485ca:
 	db $ff
 
 Data_1485d1:
-	dw $dcfe
+	dw -$2302
 	db $01, $22, $05
 	dw Data_1485e3
 	db $02
 
-	dw $dbfe
+	dw -$2402
 	db $01, $44, $05
 	dw Data_1485ed
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1485e3:
 	dw Data_1485e6
@@ -1370,12 +1370,12 @@ Data_1485f5:
 	db $ff
 
 Data_1485fc:
-	dw $dafe
+	dw -$2502
 	db $01, $46, $05
 	dw Data_148606
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148606:
 	dw Data_148609
@@ -1391,17 +1391,17 @@ Data_148609:
 	db $ff
 
 Data_148610:
-	dw $dfb
+	dw EVENT_DFB
 	db $00, $55, $41
 	dw Data_148622
 	db $02
 
-	dw $f304
+	dw -EVENT_CFC
 	db $00, $55, $41
 	dw Data_14862f
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148622:
 	dw Data_14862a
@@ -1434,20 +1434,20 @@ Data_148637:
 	db $ff
 
 Data_14863a:
-	dw $ffff
+	dw -1
 
 Data_14863c:
-	dw $dfb
+	dw EVENT_DFB
 	db $00, $55, $41
 	dw Data_14864e
 	db $02
 
-	dw $f304
+	dw -EVENT_CFC
 	db $00, $55, $41
 	dw Data_148659
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14864e:
 	dw Data_148656
@@ -1478,13 +1478,13 @@ Data_148661:
 	db $ff
 
 Data_148664:
-	dw $ffff
+	dw -1
 
 Data_148666:
-	dw $ffff
+	dw -1
 
 Data_148668:
-	dw $a6fb
+	dw -$5905
 	db $00, $13, $17
 	dw Data_14867a
 	db $02
@@ -1494,7 +1494,7 @@ Data_148668:
 	dw Data_148689
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14867a:
 	dw Data_148686
@@ -1533,7 +1533,7 @@ Data_148695:
 	db $ff
 
 Data_148698:
-	dw $a6fb
+	dw -$5905
 	db $01, $36, $13
 	dw Data_1486aa
 	db $02
@@ -1543,7 +1543,7 @@ Data_148698:
 	dw Data_1486b5
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1486aa:
 	dw Data_1486b2
@@ -1574,7 +1574,7 @@ Data_1486bd:
 	db $ff
 
 Data_1486c0:
-	dw $a6fb
+	dw -$5905
 	db $0c, $33, $17
 	dw Data_1486d2
 	db $02
@@ -1584,7 +1584,7 @@ Data_1486c0:
 	dw Data_1486d8
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1486d2:
 	dw Data_1486d5
@@ -1605,22 +1605,22 @@ Data_1486db:
 	db $ff
 
 Data_1486de:
-	dw $b1fb
+	dw -$4e05
 	db $c1, $16, $17
 	dw Data_1486f8
 	db $0a
 
-	dw $b1fb
+	dw -$4e05
 	db $cb, $26, $17
 	dw Data_1486fe
 	db $0a
 
-	dw $b1fb
+	dw -$4e05
 	db $10, $34, $5f
 	dw Data_148704
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_1486f8:
 	dw Data_1486fb
@@ -1648,17 +1648,17 @@ Data_148707:
 	db $ff
 
 Data_148708:
-	dw $7fb
+	dw EVENT_7FB
 	db $0c, $46, $3d
 	dw Data_14871a
 	db $02
 
-	dw $f904
+	dw -EVENT_6FC
 	db $0c, $46, $3d
 	dw Data_148722
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14871a:
 	dw Data_14871d
@@ -1681,30 +1681,30 @@ Data_148725:
 	db $ff
 
 Data_148728:
-	dw $ffff
+	dw -1
 
 Data_14872a:
-	dw $7fb
+	dw EVENT_7FB
 	db $01, $12, $3d
 	dw Data_14874c
 	db $02
 
-	dw $f904
+	dw -EVENT_6FC
 	db $01, $12, $3d
 	dw Data_14875b
 	db $02
 
-	dw $7fb
+	dw EVENT_7FB
 	db $0b, $76, $3d
 	dw Data_148768
 	db $02
 
-	dw $f904
+	dw -EVENT_6FC
 	db $0b, $76, $3d
 	dw Data_14876e
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14874c:
 	dw Data_148756
@@ -1759,7 +1759,7 @@ Data_148771:
 	db $ff
 
 Data_148774:
-	dw $ffff
+	dw -1
 
 Data_148776:
 	dw $47fb
@@ -1767,12 +1767,12 @@ Data_148776:
 	dw Data_148788
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $00, $53, $3b
 	dw Data_148795
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148788:
 	dw Data_148790
@@ -1810,7 +1810,7 @@ Data_1487a0:
 	dw Data_1487c2
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0b, $33, $3b
 	dw Data_1487ca
 	db $02
@@ -1820,12 +1820,12 @@ Data_1487a0:
 	dw Data_1487d0
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0c, $63, $1f
 	dw Data_1487d8
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1487c2:
 	dw Data_1487c5
@@ -1873,12 +1873,12 @@ Data_1487de:
 	dw Data_1487f0
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $00, $53, $3b
 	dw Data_1487fb
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1487f0:
 	dw Data_1487f8
@@ -1909,20 +1909,20 @@ Data_148803:
 	db $ff
 
 Data_148806:
-	dw $ffff
+	dw -1
 
 Data_148808:
-	dw $dfb
+	dw EVENT_DFB
 	db $0c, $85, $41
 	dw Data_14881a
 	db $02
 
-	dw $f304
+	dw -EVENT_CFC
 	db $0c, $85, $41
 	dw Data_148822
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14881a:
 	dw Data_14881d
@@ -1945,17 +1945,17 @@ Data_148825:
 	db $ff
 
 Data_148828:
-	dw $dfb
+	dw EVENT_DFB
 	db $01, $25, $41
 	dw Data_14883a
 	db $02
 
-	dw $f304
+	dw -EVENT_CFC
 	db $01, $25, $41
 	dw Data_148849
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14883a:
 	dw Data_148844
@@ -1992,24 +1992,24 @@ Data_148853:
 	db $ff
 
 Data_148856:
-	dw $ffff
+	dw -1
 
 Data_148858:
-	dw $ffff
+	dw -1
 
 Data_14885a:
-	dw $ffff
+	dw -1
 
 Data_14885c:
-	dw $ffff
+	dw -1
 
 Data_14885e:
-	dw $a6fb
+	dw -$5905
 	db $0b, $41, $07
 	dw Data_148868
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148868:
 	dw Data_14886b
@@ -2021,16 +2021,16 @@ Data_14886b:
 	db $ff
 
 Data_14886e:
-	dw $ffff
+	dw -1
 
 Data_148870:
-	dw $ffff
+	dw -1
 
 Data_148872:
-	dw $ffff
+	dw -1
 
 Data_148874:
-	dw $ffff
+	dw -1
 
 Data_148876:
 	dw $47fb
@@ -2038,7 +2038,7 @@ Data_148876:
 	dw Data_148898
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $00, $34, $3b
 	dw Data_14889e
 	db $02
@@ -2048,12 +2048,12 @@ Data_148876:
 	dw Data_1488a4
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $01, $64, $1f
 	dw Data_1488aa
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148898:
 	dw Data_14889b
@@ -2097,12 +2097,12 @@ Data_1488b0:
 	dw Data_1488c2
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $00, $53, $3b
 	dw Data_1488cf
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1488c2:
 	dw Data_1488ca
@@ -2140,12 +2140,12 @@ Data_1488da:
 	dw Data_1488ec
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $01, $53, $1f
 	dw Data_1488f9
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1488ec:
 	dw Data_1488f4
@@ -2183,12 +2183,12 @@ Data_148904:
 	dw Data_148916
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $00, $53, $3b
 	dw Data_148923
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148916:
 	dw Data_14891e
@@ -2226,7 +2226,7 @@ Data_14892e:
 	dw Data_148950
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $00, $25, $3b
 	dw Data_14895d
 	db $02
@@ -2236,12 +2236,12 @@ Data_14892e:
 	dw Data_148968
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $01, $14, $3b
 	dw Data_148975
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148950:
 	dw Data_148958
@@ -2304,16 +2304,16 @@ Data_14897d:
 	db $ff
 
 Data_148980:
-	dw $ffff
+	dw -1
 
 Data_148982:
-	dw $ffff
+	dw -1
 
 Data_148984:
-	dw $ffff
+	dw -1
 
 Data_148986:
-	dw $ffff
+	dw -1
 
 Data_148988:
 	dw $74ff
@@ -2321,7 +2321,7 @@ Data_148988:
 	dw Data_148992
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148992:
 	dw Data_14899c
@@ -2346,7 +2346,7 @@ Data_14899c:
 	db $ff
 
 Data_1489a5:
-	dw $a6fb
+	dw -$5905
 	db $01, $43, $1c
 	dw Data_1489cf
 	db $02
@@ -2356,7 +2356,7 @@ Data_1489a5:
 	dw Data_1489d5
 	db $02
 
-	dw $a6fb
+	dw -$5905
 	db $00, $36, $1c
 	dw Data_1489db
 	db $02
@@ -2366,12 +2366,12 @@ Data_1489a5:
 	dw Data_1489e6
 	db $02
 
-	dw $0
+	dw 0
 	db $93, $81, $10
-	dw $0
+	dw 0
 	db $08
 
-	dw $ffff
+	dw -1
 
 Data_1489cf:
 	dw Data_1489d2
@@ -2420,19 +2420,19 @@ Data_1489ee:
 	db $ff
 
 Data_1489f1:
-	dw $ffff
+	dw -1
 
 Data_1489f3:
-	dw $ffff
+	dw -1
 
 Data_1489f5:
-	dw $ffff
+	dw -1
 
 Data_1489f7:
-	dw $ffff
+	dw -1
 
 Data_1489f9:
-	dw $ffff
+	dw -1
 
 Data_1489fb:
 	dw $6dfb
@@ -2440,7 +2440,7 @@ Data_1489fb:
 	dw Data_148a05
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148a05:
 	dw Data_148a08
@@ -2450,7 +2450,7 @@ Data_148a08:
 	db $ff
 
 Data_148a09:
-	dw $ffff
+	dw -1
 
 Data_148a0b:
 	dw $47fb
@@ -2458,12 +2458,12 @@ Data_148a0b:
 	dw Data_148a1d
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0c, $75, $1f
 	dw Data_148a25
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148a1d:
 	dw Data_148a20
@@ -2491,7 +2491,7 @@ Data_148a2b:
 	dw Data_148a4d
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0b, $43, $1f
 	dw Data_148a55
 	db $02
@@ -2501,12 +2501,12 @@ Data_148a2b:
 	dw Data_148a5b
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0c, $76, $1f
 	dw Data_148a61
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148a4d:
 	dw Data_148a50
@@ -2552,32 +2552,32 @@ Data_148a67:
 	dw Data_148ad9
 	db $02
 
-	dw $9f08
+	dw -$60f8
 	db $0b, $32, $1f
 	dw Data_148adf
 	db $02
 
-	dw $a708
+	dw -$58f8
 	db $0b, $32, $1f
 	dw Data_148ae5
 	db $02
 
-	dw $ad08
+	dw -$52f8
 	db $0b, $42, $1f
 	dw Data_148aeb
 	db $02
 
-	dw $b508
+	dw -$4af8
 	db $0b, $42, $1f
 	dw Data_148af1
 	db $02
 
-	dw $b908
+	dw -$46f8
 	db $0b, $32, $1f
 	dw Data_148af7
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0b, $32, $1f
 	dw Data_148afd
 	db $02
@@ -2587,37 +2587,37 @@ Data_148a67:
 	dw Data_148b03
 	db $02
 
-	dw $9f08
+	dw -$60f8
 	db $0c, $62, $1f
 	dw Data_148b09
 	db $02
 
-	dw $a708
+	dw -$58f8
 	db $0c, $62, $1f
 	dw Data_148b0f
 	db $02
 
-	dw $ad08
+	dw -$52f8
 	db $0c, $52, $1f
 	dw Data_148b15
 	db $02
 
-	dw $b508
+	dw -$4af8
 	db $0c, $52, $1f
 	dw Data_148b1b
 	db $02
 
-	dw $b908
+	dw -$46f8
 	db $0c, $62, $1f
 	dw Data_148b21
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0c, $62, $1f
 	dw Data_148b27
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148ad9:
 	dw Data_148adc
@@ -2746,7 +2746,7 @@ Data_148b2a:
 	db $ff
 
 Data_148b2d:
-	dw $0
+	dw 0
 	db $0b, $42, $0a
 	dw Data_148b47
 	db $02
@@ -2756,12 +2756,12 @@ Data_148b2d:
 	dw Data_148b4f
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $00, $54, $24
 	dw Data_148b5c
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148b47:
 	dw Data_148b4a
@@ -2805,10 +2805,10 @@ Data_148b64:
 	db $ff
 
 Data_148b67:
-	dw $ffff
+	dw -1
 
 Data_148b69:
-	dw $98fb
+	dw -$6705
 	db $00, $35, $0e
 	dw Data_148b7b
 	db $02
@@ -2818,7 +2818,7 @@ Data_148b69:
 	dw Data_148b88
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148b7b:
 	dw Data_148b83
@@ -2851,20 +2851,20 @@ Data_148b90:
 	db $ff
 
 Data_148b93:
-	dw $0
+	dw 0
 	db $52, $14, $0d
-	dw $0
+	dw 0
 	db $08
 
-	dw $ffff
+	dw -1
 
 Data_148b9d:
-	dw $0
+	dw 0
 	db $0b, $25, $04
 	dw Data_148ba7
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148ba7:
 	dw Data_148baa
@@ -2876,7 +2876,7 @@ Data_148baa:
 	db $ff
 
 Data_148bad:
-	dw $a6fb
+	dw -$5905
 	db $0b, $15, $04
 	dw Data_148bcf
 	db $02
@@ -2886,7 +2886,7 @@ Data_148bad:
 	dw Data_148bd5
 	db $02
 
-	dw $a6fb
+	dw -$5905
 	db $00, $11, $1c
 	dw Data_148bdb
 	db $02
@@ -2896,7 +2896,7 @@ Data_148bad:
 	dw Data_148be6
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148bcf:
 	dw Data_148bd2
@@ -2945,7 +2945,7 @@ Data_148bee:
 	db $ff
 
 Data_148bf1:
-	dw $a6fb
+	dw -$5905
 	db $01, $31, $1c
 	dw Data_148c03
 	db $02
@@ -2955,7 +2955,7 @@ Data_148bf1:
 	dw Data_148c09
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148c03:
 	dw Data_148c06
@@ -2976,10 +2976,10 @@ Data_148c0c:
 	db $ff
 
 Data_148c0f:
-	dw $ffff
+	dw -1
 
 Data_148c11:
-	dw $ffff
+	dw -1
 
 Data_148c13:
 	dw $35fb
@@ -2987,7 +2987,7 @@ Data_148c13:
 	dw Data_148c1d
 	db $0a
 
-	dw $ffff
+	dw -1
 
 Data_148c1d:
 	dw Data_148c20
@@ -2997,7 +2997,7 @@ Data_148c20:
 	db $ff
 
 Data_148c21:
-	dw $ffff
+	dw -1
 
 Data_148c23:
 	dw $6ffb
@@ -3010,7 +3010,7 @@ Data_148c23:
 	dw Data_148c39
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148c35:
 	dw Data_148c38
@@ -3032,17 +3032,17 @@ Data_148c3d:
 	dw Data_148c57
 	db $02
 
-	dw $9608
+	dw -$69f8
 	db $00, $74, $07
 	dw Data_148c5b
 	db $02
 
-	dw $9604
+	dw -$69fc
 	db $00, $74, $02
 	dw Data_148c63
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148c57:
 	dw Data_148c5a
@@ -3077,7 +3077,7 @@ Data_148c69:
 	dw Data_148c8b
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $00, $53, $1f
 	dw Data_148c98
 	db $02
@@ -3087,12 +3087,12 @@ Data_148c69:
 	dw Data_148ca3
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0b, $26, $1f
 	dw Data_148cab
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148c8b:
 	dw Data_148c93
@@ -3145,12 +3145,12 @@ Data_148cae:
 	db $ff
 
 Data_148cb1:
-	dw $0
+	dw 0
 	db $01, $76, $1f
 	dw Data_148cbb
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148cbb:
 	dw Data_148cc5
@@ -3171,7 +3171,7 @@ Data_148cc5:
 Data_148cc8:
 	dw $3dfb
 	db $10, $41, $3e
-	dw $0
+	dw 0
 	db $40
 
 	dw $77fb
@@ -3179,12 +3179,12 @@ Data_148cc8:
 	dw Data_148ce2
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $01, $16, $06
 	dw Data_148cf3
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148ce2:
 	dw Data_148cee
@@ -3232,17 +3232,17 @@ Data_148d04:
 	dw Data_148d1e
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $0c, $44, $24
 	dw Data_148d24
 	db $02
 
-	dw $0
+	dw 0
 	db $01, $55, $06
 	dw Data_148d2a
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148d1e:
 	dw Data_148d21
@@ -3284,22 +3284,22 @@ Data_148d37:
 	dw Data_148d59
 	db $02
 
-	dw $ed04
+	dw -$12fc
 	db $00, $31, $24
 	dw Data_148d5f
 	db $02
 
-	dw $0
+	dw 0
 	db $01, $51, $06
 	dw Data_148d65
 	db $02
 
-	dw $0
+	dw 0
 	db $0b, $55, $12
 	dw Data_148d6b
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148d59:
 	dw Data_148d5c
@@ -3338,7 +3338,7 @@ Data_148d6e:
 	db $ff
 
 Data_148d71:
-	dw $98fb
+	dw -$6705
 	db $01, $46, $3f
 	dw Data_148d93
 	db $02
@@ -3348,7 +3348,7 @@ Data_148d71:
 	dw Data_148da2
 	db $02
 
-	dw $98fb
+	dw -$6705
 	db $0b, $82, $0d
 	dw Data_148daf
 	db $02
@@ -3358,7 +3358,7 @@ Data_148d71:
 	dw Data_148dbc
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148d93:
 	dw Data_148d9d
@@ -3425,7 +3425,7 @@ Data_148dc4:
 	db $ff
 
 Data_148dc7:
-	dw $98fb
+	dw -$6705
 	db $00, $35, $24
 	dw Data_148de9
 	db $02
@@ -3435,7 +3435,7 @@ Data_148dc7:
 	dw Data_148df9
 	db $02
 
-	dw $98fb
+	dw -$6705
 	db $01, $12, $3f
 	dw Data_148e07
 	db $02
@@ -3445,7 +3445,7 @@ Data_148dc7:
 	dw Data_148e14
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148de9:
 	dw Data_148df4
@@ -3516,29 +3516,29 @@ Data_148e1e:
 	db $ff
 
 Data_148e21:
-	dw $a0fb
+	dw -$5f05
 	db $12, $33, $1d
-	dw $0
+	dw 0
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_148e2b:
-	dw $ffff
+	dw -1
 
 Data_148e2d:
-	dw $ffff
+	dw -1
 
 Data_148e2f:
-	dw $ffff
+	dw -1
 
 Data_148e31:
-	dw $4fb
+	dw EVENT_4FB
 	db $01, $42, $07
 	dw Data_148e3b
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148e3b:
 	dw Data_148e3e
@@ -3550,10 +3550,10 @@ Data_148e3e:
 	db $ff
 
 Data_148e41:
-	dw $ffff
+	dw -1
 
 Data_148e43:
-	dw $ffff
+	dw -1
 
 Data_148e45:
 	dw $70fb
@@ -3566,7 +3566,7 @@ Data_148e45:
 	dw Data_148e5b
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148e57:
 	dw Data_148e5a
@@ -3590,12 +3590,12 @@ Data_148e61:
 	dw Data_148e73
 	db $02
 
-	dw $9604
+	dw -$69fc
 	db $01, $25, $08
 	dw Data_148e80
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148e73:
 	dw Data_148e7d
@@ -3630,7 +3630,7 @@ Data_148e8a:
 	db $ff
 
 Data_148e8d:
-	dw $ffff
+	dw -1
 
 Data_148e8f:
 	dw $47fb
@@ -3638,7 +3638,7 @@ Data_148e8f:
 	dw Data_148eb1
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0b, $33, $1f
 	dw Data_148eb7
 	db $02
@@ -3648,12 +3648,12 @@ Data_148e8f:
 	dw Data_148ebd
 	db $02
 
-	dw $b904
+	dw -$46fc
 	db $0c, $53, $3b
 	dw Data_148ec3
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148eb1:
 	dw Data_148eb4
@@ -3692,12 +3692,12 @@ Data_148ec6:
 	db $ff
 
 Data_148ec9:
-	dw $0
+	dw 0
 	db $01, $72, $06
 	dw Data_148ed3
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148ed3:
 	dw Data_148edf
@@ -3725,17 +3725,17 @@ Data_148ee4:
 	dw Data_148efe
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $0c, $45, $24
 	dw Data_148f06
 	db $02
 
-	dw $0
+	dw 0
 	db $92, $84, $02
-	dw $0
+	dw 0
 	db $08
 
-	dw $ffff
+	dw -1
 
 Data_148efe:
 	dw Data_148f01
@@ -3760,12 +3760,12 @@ Data_148f09:
 	db $ff
 
 Data_148f0e:
-	dw $0
+	dw 0
 	db $0c, $53, $24
 	dw Data_148f18
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148f18:
 	dw Data_148f1b
@@ -3779,26 +3779,26 @@ Data_148f1b:
 	db $ff
 
 Data_148f20:
-	dw $9dfb
+	dw -$6205
 	db $10, $44, $1e
-	dw $a
+	dw EVENT_00A
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_148f2a:
-	dw $ffff
+	dw -1
 
 Data_148f2c:
-	dw $9ffb
+	dw -$6005
 	db $10, $74, $5a
-	dw $0
+	dw 0
 	db $4a
 
-	dw $ffff
+	dw -1
 
 Data_148f36:
-	dw $ffff
+	dw -1
 
 Data_148f38:
 	dw $37fb
@@ -3806,7 +3806,7 @@ Data_148f38:
 	dw Data_148f42
 	db $0a
 
-	dw $ffff
+	dw -1
 
 Data_148f42:
 	dw Data_148f45
@@ -3821,7 +3821,7 @@ Data_148f46:
 	dw Data_148f50
 	db $0a
 
-	dw $ffff
+	dw -1
 
 Data_148f50:
 	dw Data_148f53
@@ -3831,16 +3831,16 @@ Data_148f53:
 	db $ff
 
 Data_148f54:
-	dw $ffff
+	dw -1
 
 Data_148f56:
-	dw $ffff
+	dw -1
 
 Data_148f58:
-	dw $ffff
+	dw -1
 
 Data_148f5a:
-	dw $ffff
+	dw -1
 
 Data_148f5c:
 	dw $6afb
@@ -3848,12 +3848,12 @@ Data_148f5c:
 	dw Data_148f6e
 	db $02
 
-	dw $9604
+	dw -$69fc
 	db $00, $84, $08
 	dw Data_148f79
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148f6e:
 	dw Data_148f76
@@ -3884,12 +3884,12 @@ Data_148f81:
 	db $ff
 
 Data_148f84:
-	dw $0
+	dw 0
 	db $0c, $63, $09
 	dw Data_148f8e
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148f8e:
 	dw Data_148f91
@@ -3903,47 +3903,47 @@ Data_148f91:
 	db $ff
 
 Data_148f96:
-	dw $ffff
+	dw -1
 
 Data_148f98:
-	dw $ffff
+	dw -1
 
 Data_148f9a:
 	dw $7b08
 	db $10, $44, $39
-	dw $0
+	dw 0
 	db $42
 
 	dw $3b09
 	db $10, $44, $5b
-	dw $0
+	dw 0
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_148fac:
-	dw $0
+	dw 0
 	db $20, $44, $39
-	dw $0
+	dw 0
 	db $00
 
-	dw $ffff
+	dw -1
 
 Data_148fb6:
-	dw $ffff
+	dw -1
 
 Data_148fb8:
-	dw $e904
+	dw -$16fc
 	db $0b, $45, $2d
 	dw Data_148fca
 	db $02
 
-	dw $e904
+	dw -$16fc
 	db $0c, $55, $2d
 	dw Data_148fd0
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148fca:
 	dw Data_148fcd
@@ -3964,24 +3964,24 @@ Data_148fd3:
 	db $ff
 
 Data_148fd6:
-	dw $ffff
+	dw -1
 
 Data_148fd8:
-	dw $ffff
+	dw -1
 
 Data_148fda:
-	dw $ffff
+	dw -1
 
 Data_148fdc:
-	dw $ffff
+	dw -1
 
 Data_148fde:
-	dw $cc08
+	dw -$33f8
 	db $10, $41, $3d
 	dw Data_148fe8
 	db $42
 
-	dw $ffff
+	dw -1
 
 Data_148fe8:
 	dw Data_148feb
@@ -3991,7 +3991,7 @@ Data_148feb:
 	db $ff
 
 Data_148fec:
-	dw $ffff
+	dw -1
 
 Data_148fee:
 	dw $72fb
@@ -3999,7 +3999,7 @@ Data_148fee:
 	dw Data_148ff8
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_148ff8:
 	dw Data_148ffb
@@ -4009,7 +4009,7 @@ Data_148ffb:
 	db $ff
 
 Data_148ffc:
-	dw $ffff
+	dw -1
 
 Data_148ffe:
 	dw $6afb
@@ -4017,7 +4017,7 @@ Data_148ffe:
 	dw Data_149020
 	db $02
 
-	dw $9604
+	dw -$69fc
 	db $0b, $14, $0a
 	dw Data_149026
 	db $02
@@ -4027,12 +4027,12 @@ Data_148ffe:
 	dw Data_14902c
 	db $02
 
-	dw $9604
+	dw -$69fc
 	db $0c, $84, $08
 	dw Data_149034
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_149020:
 	dw Data_149023
@@ -4073,10 +4073,10 @@ Data_149037:
 	db $ff
 
 Data_14903a:
-	dw $ffff
+	dw -1
 
 Data_14903c:
-	dw $ffff
+	dw -1
 
 Data_14903e:
 	dw $73ff
@@ -4084,12 +4084,12 @@ Data_14903e:
 	dw Data_149050
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $00, $44, $22
 	dw Data_149061
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_149050:
 	dw Data_14905a
@@ -4133,7 +4133,7 @@ Data_14906e:
 	dw Data_149090
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $0b, $81, $25
 	dw Data_14909a
 	db $02
@@ -4143,12 +4143,12 @@ Data_14906e:
 	dw Data_1490a0
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $01, $16, $3e
 	dw Data_1490b1
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_149090:
 	dw Data_149093
@@ -4209,15 +4209,15 @@ Data_1490bb:
 	db $ff
 
 Data_1490be:
-	dw $ffff
+	dw -1
 
 Data_1490c0:
-	dw $e904
+	dw -$16fc
 	db $01, $16, $19
 	dw Data_1490ca
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1490ca:
 	dw Data_1490d2
@@ -4236,13 +4236,13 @@ Data_1490d2:
 	db $ff
 
 Data_1490d7:
-	dw $ffff
+	dw -1
 
 Data_1490d9:
-	dw $ffff
+	dw -1
 
 Data_1490db:
-	dw $ffff
+	dw -1
 
 Data_1490dd:
 	dw $38fb
@@ -4250,12 +4250,12 @@ Data_1490dd:
 	dw Data_149117
 	db $02
 
-	dw $f601
+	dw -EVENT_9FF
 	db $00, $22, $3a
 	dw Data_14911d
 	db $02
 
-	dw $fe04
+	dw -EVENT_1FC
 	db $00, $22, $3a
 	dw Data_149123
 	db $02
@@ -4280,7 +4280,7 @@ Data_1490dd:
 	dw Data_149149
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_149117:
 	dw Data_14911a
@@ -4398,7 +4398,7 @@ ELSE
 	db $02
 ENDC
 
-	dw $ffff
+	dw -1
 
 Data_149177:
 	dw Data_14917a
@@ -4481,10 +4481,10 @@ Data_1491ae:
 	db $ff
 
 Data_1491b5:
-	dw $ffff
+	dw -1
 
 Data_1491b7:
-	dw $ffff
+	dw -1
 
 Data_1491b9:
 	dw $73fb
@@ -4492,7 +4492,7 @@ Data_1491b9:
 	dw Data_1491c3
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1491c3:
 	dw Data_1491c6
@@ -4511,7 +4511,7 @@ Data_1491cb:
 	dw Data_1491d5
 	db $0a
 
-	dw $ffff
+	dw -1
 
 Data_1491d5:
 	dw Data_1491d8
@@ -4543,7 +4543,7 @@ Data_1491db:
 	dw Data_14920f
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1491fd:
 	dw Data_149200
@@ -4582,15 +4582,15 @@ Data_149212:
 	db $ff
 
 Data_149215:
-	dw $ffff
+	dw -1
 
 Data_149217:
-	dw $82fb
+	dw -$7d05
 	db $10, $65, $22
-	dw $0
+	dw 0
 	db $00
 
-	dw $ffff
+	dw -1
 
 Data_149221:
 	dw $70ff
@@ -4598,7 +4598,7 @@ Data_149221:
 	dw Data_149243
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $0b, $81, $44
 	dw Data_14924d
 	db $02
@@ -4608,12 +4608,12 @@ Data_149221:
 	dw Data_149253
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $01, $15, $22
 	dw Data_149264
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_149243:
 	dw Data_149246
@@ -4679,7 +4679,7 @@ Data_149271:
 	dw Data_149293
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $00, $41, $25
 	dw Data_1492a2
 	db $02
@@ -4689,12 +4689,12 @@ Data_149271:
 	dw Data_1492ad
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $0c, $16, $3e
 	dw Data_1492c0
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_149293:
 	dw Data_14929b
@@ -4769,7 +4769,7 @@ Data_1492cc:
 	db $ff
 
 Data_1492cf:
-	dw $ffff
+	dw -1
 
 Data_1492d1:
 	dw $26fb
@@ -4777,7 +4777,7 @@ Data_1492d1:
 	dw Data_1492db
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1492db:
 	dw Data_1492de
@@ -4787,12 +4787,12 @@ Data_1492de:
 	db $ff
 
 Data_1492df:
-	dw $e904
+	dw -$16fc
 	db $01, $13, $3a
 	dw Data_1492e9
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1492e9:
 	dw Data_1492f1
@@ -4811,15 +4811,15 @@ Data_1492f1:
 	db $ff
 
 Data_1492f6:
-	dw $e904
+	dw -$16fc
 	db $90, $86, $5f
-	dw $0
+	dw 0
 	db $4a
 
-	dw $ffff
+	dw -1
 
 Data_149300:
-	dw $ffff
+	dw -1
 
 Data_149302:
 	dw $3bfb
@@ -4853,7 +4853,7 @@ ELSE
 	dw Data_149344
 	db $02
 ENDC
-	dw $ffff
+	dw -1
 
 Data_149324:
 	dw Data_149327
@@ -4960,7 +4960,7 @@ Data_149366:
 	dw Data_1493a8
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_149388:
 	dw Data_14938b
@@ -5019,9 +5019,9 @@ Data_1493ab:
 	db $ff
 
 Data_1493b4:
-	dw $c508
+	dw -$3af8
 	db $10, $35, $3a
-	dw $0
+	dw 0
 	db $4a
 
 	dw $38fb
@@ -5029,17 +5029,17 @@ Data_1493b4:
 	dw Data_1493f6
 	db $02
 
-	dw $f601
+	dw -EVENT_9FF
 	db $01, $34, $3f
 	dw Data_1493fc
 	db $02
 
-	dw $fe08
+	dw -EVENT_1F8
 	db $01, $34, $3f
 	dw Data_149402
 	db $02
 
-	dw $fe04
+	dw -EVENT_1FC
 	db $01, $34, $3f
 	dw Data_149408
 	db $02
@@ -5049,17 +5049,17 @@ Data_1493b4:
 	dw Data_14940e
 	db $02
 
-	dw $f601
+	dw -EVENT_9FF
 	db $01, $64, $3f
 	dw Data_149414
 	db $02
 
-	dw $fe04
+	dw -EVENT_1FC
 	db $01, $64, $3f
 	dw Data_14941a
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1493f6:
 	dw Data_1493f9
@@ -5150,17 +5150,17 @@ Data_149420:
 	dw Data_149486
 	db $02
 
-	dw $f601
+	dw -EVENT_9FF
 	db $0b, $43, $03
 	dw Data_14948c
 	db $02
 
-	dw $fe04
+	dw -EVENT_1FC
 	db $0b, $43, $03
 	dw Data_149492
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14945a:
 	dw Data_14945d
@@ -5246,7 +5246,7 @@ Data_149495:
 	db $ff
 
 Data_149498:
-	dw $ffff
+	dw -1
 
 Data_14949a:
 	dw $6afb
@@ -5254,7 +5254,7 @@ Data_14949a:
 	dw Data_1494a4
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1494a4:
 	dw Data_1494a7
@@ -5271,12 +5271,12 @@ Data_1494aa:
 	dw Data_1494bc
 	db $02
 
-	dw $9604
+	dw -$69fc
 	db $00, $86, $08
 	dw Data_1494c7
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1494bc:
 	dw Data_1494c4
@@ -5307,7 +5307,7 @@ Data_1494cf:
 	db $ff
 
 Data_1494d2:
-	dw $ffff
+	dw -1
 
 Data_1494d4:
 	dw $6cff
@@ -5315,12 +5315,12 @@ Data_1494d4:
 	dw Data_1494e6
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $01, $61, $44
 	dw Data_1494f9
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_1494e6:
 	dw Data_1494f2
@@ -5368,12 +5368,12 @@ Data_149508:
 	dw Data_14951a
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $00, $83, $22
 	dw Data_14952b
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14951a:
 	dw Data_149524
@@ -5417,12 +5417,12 @@ Data_149538:
 	dw Data_14954a
 	db $02
 
-	dw $8904
+	dw -$76fc
 	db $01, $81, $25
 	dw Data_14955d
 	db $02
 
-	dw $ffff
+	dw -1
 
 Data_14954a:
 	dw Data_149556
@@ -5465,4 +5465,4 @@ Data_149569:
 	db $ff
 
 Data_14956c:
-	dw $ffff
+	dw -1

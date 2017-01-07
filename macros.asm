@@ -6,7 +6,7 @@ MemBankswitch EQU $18
 FarCall       EQU $20
 
 text EQUS "db $00,"
-para EQUS "db $e1,"
+txfn EQUS "db $e1,"
 line EQUS "db $e2,"
 done EQUS "db $e0"
 

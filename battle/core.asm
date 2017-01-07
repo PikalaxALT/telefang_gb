@@ -13,17 +13,17 @@ Func_1400a:
 	jp Func_3566
 
 Func_14012: ; 14012 (5:4012)
-	ld de, wd4b1
+	ld de, wBattleStringBuffer
 	ld c, $9
 	jr asm_14025
 
-Func_14019: ; 14019 (5:4019)
-	ld de, wBattleDenjuuName
+CopyBattleUserName: ; 14019 (5:4019)
+	ld de, wBattleUserName
 	ld c, $9
 	jr asm_14025
 
 Func_14020:
-	ld de, wd4b1
+	ld de, wBattleStringBuffer
 	ld c, $11
 asm_14025
 	ld b, $0
@@ -401,9 +401,9 @@ Func_142cd:
 	call Get8CharName75
 	ld bc, wStringBuffer
 	call Func_1402a
-	jp Func_14019
+	jp CopyBattleUserName
 
-Func_142df:
+LoadEnemyDenjuuBattlePic:
 	push af
 	ld c, $0
 	ld de, VTilesShared tile $00
@@ -411,7 +411,7 @@ Func_142df:
 	pop af
 	jp GetDenjuuPalette_Pal7
 
-Func_142ec:
+LoadPlayerDenjuuBattlePic:
 	push af
 	ld c, $1
 	ld de, VTilesShared tile $38
@@ -427,16 +427,16 @@ PlacePlayerDenjuuNickname: ; 142f9 (5:42f9)
 	call OpenSRAMBank2
 	pop af
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	pop hl
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $6
 	jp PlaceString_
 
-Func_14318:
+LoadBattleMainLayout:
 	lb bc, $1, $0
 	ld e, $86
 	ld a, $0
@@ -799,16 +799,16 @@ Func_145d6: ; 145d6 (5:45d6)
 
 Func_145f5: ; 145f5 (5:45f5)
 	ld a, [wEnemyDenjuu1]
-	call Func_142df
+	call LoadEnemyDenjuuBattlePic
 	ld a, [wPlayerDenjuu1]
-	call Func_142ec
+	call LoadPlayerDenjuuBattlePic
 	ld a, $60
 	ld [wSCX], a
 	ld a, $b8
 	ld [wWX], a
 	call Func_142af
 	call Func_14005
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	cp $1
 	jr z, .asm_14627
 	ld a, [wd403]
@@ -865,7 +865,7 @@ Func_1464b: ; 1464b (5:464b)
 	ld a, $58
 	ld [wWX], a
 	call Func_142af
-	call Func_14318
+	call LoadBattleMainLayout
 	call UpdatePlayerHUD
 	call UpdateEnemyHUD
 	ld a, $e
@@ -1028,7 +1028,7 @@ Func_14721: ; 14721 (5:4721)
 	ret
 
 .asm_14791
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	ld a, [wcb3f]
 	or a
 	jp z, Func_147bb
@@ -1150,7 +1150,7 @@ Func_1487a: ; 1487a (5:487a)
 	call Func_14020
 	ld a, $5c
 	ld [H_SFX_ID], a
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $4
 asm_14890
 	call Func_3d02
@@ -1871,10 +1871,10 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	call OpenSRAMBank2
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	ld a, [wCurDenjuuBufferField0x12]
 	cp $4
 	jr nz, .asm_14e23
@@ -2887,10 +2887,10 @@ Func_15556: ; 15556 (5:5556)
 	ld a, [wPlayerDenjuu2Field0x0d]
 	ld [wd43c], a
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	ld a, [wd46a]
 	ld [wd46e], a
 	ld a, $ff
@@ -2907,10 +2907,10 @@ Func_15556: ; 15556 (5:5556)
 	ld a, [wPlayerDenjuu3Field0x0d]
 	ld [wd43c], a
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	ld a, [wd46b]
 	ld [wd46e], a
 	ld a, $ff
@@ -4354,7 +4354,7 @@ Func_160cb: ; 160cb (5:60cb)
 	call Func_1402a
 	call Func_14012
 	ld a, [wd435]
-	call Func_142ec
+	call LoadPlayerDenjuuBattlePic
 	ld a, [wPlayerDenjuu2Field0x0d]
 	ld hl, VTilesBG tile $20
 	call PlacePlayerDenjuuNickname
@@ -4390,7 +4390,7 @@ Func_16108: ; 16108 (5:6108)
 	call Func_1402a
 	call Func_14012
 	ld a, [wd435]
-	call Func_142ec
+	call LoadPlayerDenjuuBattlePic
 	ld a, [wPlayerDenjuu3Field0x0d]
 	ld hl, VTilesBG tile $20
 	call PlacePlayerDenjuuNickname
@@ -4413,7 +4413,7 @@ Func_1615f: ; 1615f (5:615f)
 	call Func_1402a
 	call Func_14012
 	ld a, [wd435]
-	call Func_142df
+	call LoadEnemyDenjuuBattlePic
 	ld a, [wd435]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $28
@@ -4450,7 +4450,7 @@ Func_1619e: ; 1619e (5:619e)
 	call Func_1402a
 	call Func_14012
 	ld a, [wd435]
-	call Func_142df
+	call LoadEnemyDenjuuBattlePic
 	ld a, [wd435]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $28
@@ -4551,7 +4551,7 @@ Func_16289: ; 16289 (5:6289)
 	ld a, [wd470]
 	cp $1
 	jr z, .asm_162bc
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	jr .asm_162c2
 
 .asm_162bc
@@ -4655,8 +4655,8 @@ Battle_TryToRun: ; 16360 (5:6360)
 	jr z, Func_163d0
 	call OpenSRAMBank2
 	ld hl, sAddressBook + 2
-	ld a, [wcdb4]
-	call Func_3d0e
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $1
 	jr c, .asm_1638d
@@ -4965,7 +4965,7 @@ Func_1657b: ; 1657b (5:657b)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	call Func_142ec
+	call LoadPlayerDenjuuBattlePic
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
@@ -4974,7 +4974,7 @@ Func_1658d: ; 1658d (5:658d)
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	call Func_142df
+	call LoadEnemyDenjuuBattlePic
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
@@ -5131,7 +5131,7 @@ Func_166a5: ; 166a5 (5:66a5)
 	ld a, [wBattleTurn]
 	cp $0
 	jr nz, .asm_166dd
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferArrivedStatus]
@@ -6105,11 +6105,11 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld a, a
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
-	call Func_3d7f
+	call GetDenjuuNicknameFromAdddressBookOffset_
+	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
 	ld c, $4b
 	call Func_3d02
@@ -6122,11 +6122,11 @@ Func_16d5c: ; 16d5c (5:6d5c)
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld a, a
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
-	call Func_3d7f
+	call GetDenjuuNicknameFromAdddressBookOffset_
+	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
 	ld c, $48
 	call Func_3d02
@@ -6162,7 +6162,7 @@ Func_16e29: ; 16e29 (5:6e29)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142cd
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $7
 	call Func_3d02
 	ld a, $57
@@ -6207,7 +6207,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + 2
 	ld a, [wPlayerDenjuu1Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $0
 	jr z, .asm_16ec6
@@ -6223,7 +6223,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + 2
 	ld a, [wPlayerDenjuu2Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $0
 	jr z, .asm_16ee3
@@ -6239,7 +6239,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + 2
 	ld a, [wPlayerDenjuu3Field0x0d]
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	ld a, [hl]
 	cp $0
 	jr z, .asm_16f00
@@ -6252,7 +6252,7 @@ Func_16e82: ; 16e82 (5:6e82)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
 	call Func_142cd
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $5
 	call Func_3d02
 	ld a, [wPlayerPartySize]
@@ -6301,7 +6301,7 @@ Func_16f47: ; 16f47 (5:6f47)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferSpecies]
-	call Func_142ec
+	call LoadPlayerDenjuuBattlePic
 	lb bc, $1, $0
 	ld e, $86
 	ld a, $0
@@ -6909,7 +6909,7 @@ Func_173cf: ; 173cf (5:73cf)
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBuffer]
-	call Func_142df
+	call LoadEnemyDenjuuBattlePic
 	lb bc, $0, $8
 	ld e, $81
 	ld a, $0
@@ -7682,12 +7682,12 @@ Func_179a2: ; 179a2 (5:79a2)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	call OpenSRAMBank2
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	jr .asm_179d3
 
 .asm_179c7
@@ -7708,12 +7708,12 @@ Func_179d7: ; 179d7 (5:79d7)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	call OpenSRAMBank2
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	jr .asm_17a08
 
 .asm_179fc
@@ -7891,12 +7891,12 @@ Func_17aea: ; 17aea (5:7aea)
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBufferField0x0d]
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	call OpenSRAMBank2
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	jr .asm_17b1c
 
 .asm_17b10
@@ -8567,7 +8567,7 @@ Func_17fdd: ; 17fdd (5:7fdd)
 	ld a, [wBattleTurn]
 	cp $1
 	jr z, .asm_17fed
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 .asm_17fed
 	ld c, $2d
 	call Func_3d02

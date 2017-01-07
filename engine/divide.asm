@@ -64,7 +64,7 @@ Divide_BC_by_DE: ; 2d9d8 (b:59d8)
 	or a
 	ld a, 16
 .loop
-	ld [wca6a], a
+	ld [wMathBuffer3], a
 	rl l
 	rl h
 	rl c
@@ -85,7 +85,7 @@ Divide_BC_by_DE: ; 2d9d8 (b:59d8)
 	inc sp
 	inc sp
 .okay
-	ld a, [wca6a]
+	ld a, [wMathBuffer3]
 	dec a
 	jr nz, .loop
 	ld d, b

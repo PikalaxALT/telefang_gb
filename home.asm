@@ -1889,7 +1889,7 @@ Func_1a8e::
 	rl b
 	ld hl, Data_2e8fa
 	add hl, bc
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld c, $4
 .loop
 	ld a, [wROMBank]
@@ -1910,7 +1910,7 @@ Func_1a8e::
 	ld hl, VTilesBG + $40 tiles
 	ld b, $4
 	call ClearTiles
-	ld de, wc9e1
+	ld de, wBattlePlayerDenjuuName
 	ld b, $4
 	ld hl, VTilesBG + $40 tiles
 	jp PlaceString_
@@ -2433,7 +2433,7 @@ RunOverworld: ; 1ea1 (0:1ea1)
 	ld a, [wc98e]
 	or a
 	jr nz, .asm_1ee2
-	homecall Func_a5060, Func_a50be, Func_a4e47, Func_a4ba4, Func_a5245, Func_a54a2
+	homecall Func_a5060, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, Func_a5245, Func_a54a2
 	callba OverworldIdleHudCheck
 	callba Func_2e4b2
 .asm_1ee2
@@ -2523,7 +2523,7 @@ Func_1f80: ; 1f80 (0:1f80)
 	or a
 	jr nz, .check_select
 	xor a
-	ld [wca5d], a
+	ld [wNumIdleFrames], a
 	call Func_2411
 	ld b, $c
 	ld a, [wc904]
@@ -2557,7 +2557,7 @@ Func_1f80: ; 1f80 (0:1f80)
 	ld a, $17
 	ld [wSubroutine], a
 	xor a
-	ld [wca5d], a
+	ld [wNumIdleFrames], a
 	ld a, $4
 	jp StartFade
 
@@ -2566,7 +2566,7 @@ Func_1f80: ; 1f80 (0:1f80)
 
 Func_1fff: ; 1fff (0:1fff)
 	ld a, $0
-	ld [wc94f], a
+	ld [wPhoneCallRingtoneTimer], a
 	ld [wcad0], a
 	jp Func_342a
 
@@ -2603,7 +2603,7 @@ Func_2021: ; 2021 (0:2021)
 	cp $c
 	ret nc
 .try_generate
-	ld a, [wc94f]
+	ld a, [wPhoneCallRingtoneTimer]
 	or a
 	ret nz
 	call Func_2107
@@ -2659,7 +2659,7 @@ Func_20b1: ; 20b1 (0:20b1)
 	ld a, [wSubroutine]
 	cp $5
 	ret z
-	call Func_30a7
+	call OverworldRandom8_
 	and $3
 	ld b, a
 	homecall Func_c9868
@@ -2673,7 +2673,7 @@ Func_20b1: ; 20b1 (0:20b1)
 	call GetMusicBank
 	ld [hMusicID], a
 	ld a, $0
-	ld [wca5d], a
+	ld [wNumIdleFrames], a
 	ld a, $0
 	ld [wEncounterStepCounter], a
 	ld [wEncounterStepCounter + 1], a
@@ -2695,7 +2695,7 @@ Func_20f6: ; 20f6 (0:20f6)
 	ret
 
 Func_2107: ; 2107 (0:2107)
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr nz, .asm_2121
 	ld a, [wSubroutine]
@@ -2732,7 +2732,7 @@ Func_2134::
 	ld a, $0
 	ld [wcd20], a
 	ld a, $0
-	ld [wca5d], a
+	ld [wNumIdleFrames], a
 	ld a, $0
 	ld [wcd21], a
 	ld a, [wc92a]
@@ -2741,12 +2741,12 @@ Func_2134::
 	ld c, a
 	ld a, [wVBlankCounter]
 	ld b, a
-	ld a, [wc922]
+	ld a, [wOverworldRandomCounter]
 	add b
-	ld [wc922], a
-	ld a, [wc923]
+	ld [wOverworldRandomCounter], a
+	ld a, [wOverworldRandomSeed]
 	add b
-	ld [wc923], a
+	ld [wOverworldRandomSeed], a
 	homecall Func_a52b2
 	ld a, $0
 	ld [wFontPaletteMode], a
@@ -2782,12 +2782,12 @@ Func_21db::
 	ld a, $0
 	ld [wc947], a
 	ld [wcd20], a
-	ld [wca5d], a
+	ld [wNumIdleFrames], a
 	call Func_2264
 	call Func_3255
 	call Func_241e
 	ld a, $0
-	ld [wc9cf], a
+	ld [wTextSubfunction], a
 	ld [wOverworldIdleHUDPage], a
 	ld [wcd21], a
 	ld a, [wc900]
@@ -2866,10 +2866,10 @@ Func_2264: ; 2264 (0:2264)
 	ld a, $c
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jp nz, Func_22d2
-	ld hl, wcd00
+	ld hl, wPlayerNameEntryBuffer
 	ld b, $20
 	call Func_2f76
 Func_22d2: ; 22d2 (0:22d2)
@@ -2940,7 +2940,7 @@ Func_2353::
 	call PaletteFade
 	or a
 	ret z
-	ld a, [wc9cf]
+	ld a, [wTextSubfunction]
 	or a
 	jp z, IncrementSubroutine
 	ld a, $5
@@ -3225,7 +3225,7 @@ Func_256e::
 	ld h, a
 	ld a, [hl]
 	ld [wc9f4], a
-	call Func_30a7
+	call OverworldRandom8_
 	cp $40
 	jr nc, .asm_25fe
 	ld a, [wc9c3]
@@ -3277,7 +3277,7 @@ Func_264f:
 	ld [wc49a], a
 	ld a, $b8
 	ld [wc493], a
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr z, .asm_2664
 	ld a, $8
@@ -3898,7 +3898,7 @@ Func_29ed::
 	ld a, [wc900]
 	cp $2
 	jr z, .asm_2a48
-	ld a, [wcd00]
+	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr nz, .asm_2a48
 	ld a, [wc904]
@@ -3913,7 +3913,7 @@ Func_29ed::
 	ld [hSFX_ID], a
 .asm_2a48
 	ld a, $0
-	ld [wc94f], a
+	ld [wPhoneCallRingtoneTimer], a
 	ld [wcad0], a
 	ld [wcafe], a
 	call Func_1bd1
@@ -4262,8 +4262,8 @@ Func_2d4c::
 	homecall Func_33a62
 	ret
 
-Func_2d59::
-	call Func_2ddb
+GetMapHeaderAddress::
+	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4344,7 +4344,7 @@ Func_2d59::
 	ld a, b
 	jr .asm_2d94
 
-Func_2ddb: ; 2ddb (0:2ddb)
+GetMapHeaderBank: ; 2ddb (0:2ddb)
 	push bc
 	ld bc, EVENT_20B
 	call CheckEventFlag
@@ -4395,26 +4395,26 @@ Data_2e09::
 	dw Pointers_14c668
 	dw Pointers_14d472 ; bank 53
 
-Func_2e2b::
-	call Func_2ddb
+CopyMapHeader::
+	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
-	ld hl, wca00
+	ld hl, wMapHeader
 	ld b, $8
-.asm_2e39
+.copy
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec b
-	jr nz, .asm_2e39
+	jr nz, .copy
 	pop af
 	rst Bankswitch
 	ret
 
 Func_2e42::
-	call Func_2ddb
+	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4469,8 +4469,8 @@ Func_2e85::
 	homecall Func_3226b
 	ret
 
-Func_2e92::
-	call Func_2ddb
+GetMapByte::
+	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4483,7 +4483,7 @@ Func_2e92::
 
 Func_2ea0::
 	push hl
-	call Func_2ddb
+	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4561,7 +4561,7 @@ Func_2ea0::
 
 Func_2f0a::
 	push hl
-	call Func_2ddb
+	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4856,34 +4856,34 @@ Cosine16_::
 
 CalcL1Distance_::
 ; a = abs(b - d) + abs(c - e)
-; also stores to wca6a
+; also stores to wMathBuffer3
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(CalcL1Distance)
 	rst Bankswitch
 	call CalcL1Distance
-	ld [wca6a], a
+	ld [wMathBuffer3], a
 	pop af
 	rst Bankswitch
-	ld a, [wca6a]
+	ld a, [wMathBuffer3]
 	ret
 
-Func_30a7: ; 30a7 (0:30a7)
+OverworldRandom8_: ; 30a7 (0:30a7)
 ; Result is returned as signed char to a
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_2d8c1)
+	ld a, BANK(OverworldRandom8)
 	rst Bankswitch
-	call Func_2d8c1
+	call OverworldRandom8
 	ld d, a
 	pop af
 	rst Bankswitch
 	ld a, d
 	ret
 
-Func_30b6::
-; Same as Func_30a7, but result is returned as signed short to bc
-	homecall Func_2d8df
+OverworldRandom16_::
+; Same as OverworldRandom8_, but result is returned as signed short to bc
+	homecall OverworldRandom16
 	ret
 
 GetOverworldSprite_SizeHL::
@@ -5283,9 +5283,9 @@ Func_32ff: ; 32ff (0:32ff)
 	inc a
 	ld [wca69], a
 	jr nz, .no_overflow
-	ld a, [wca6a]
+	ld a, [wMathBuffer3]
 	inc a
-	ld [wca6a], a
+	ld [wMathBuffer3], a
 .no_overflow
 	dec bc
 	ld a, b
@@ -5328,7 +5328,7 @@ Func_3363: ; 3363 (0:3363)
 	ld a, [wca69]
 	ld [de], a
 	inc de
-	ld a, [wca6a]
+	ld a, [wMathBuffer3]
 	ld [de], a
 	pop de
 	ret
@@ -5529,9 +5529,9 @@ CopyTile: ; 34ba (0:34ba)
 
 Func_34dc: ; 34dc (0:34dc)
 	ld b, a
-	ld a, [wc923]
+	ld a, [wOverworldRandomSeed]
 	add b
-	ld [wc923], a
+	ld [wOverworldRandomSeed], a
 	ld a, [wc945]
 	or a
 	ret z
@@ -6448,7 +6448,7 @@ Func_3bc1: ; 3bc1 (0:3bc1)
 	ret
 
 PrintNumHL::
-; Print a 16-bit number in hl to [wEnemyDenjuuName]
+; Print a 16-bit number in hl to [wBattleTargetName]
 get_digit: MACRO
 IF \1 == 1
 	ld a, l
@@ -6482,7 +6482,7 @@ IF \1 > 1
 ENDC
 ENDM
 
-	ld de, wEnemyDenjuuName
+	ld de, wBattleTargetName
 	ld b, $0
 x = 10000
 y = 0
@@ -6607,7 +6607,7 @@ Func_3d02::
 	ld [wTextBoxStartTile], a
 	jp AnchorMapAndLoadTextPointer_
 
-Func_3d0e::
+GetNthAddressBookAttributeAddr::
 	push hl
 	ld c, a
 	ld e, $10
@@ -6675,18 +6675,18 @@ CloseSRAM::
 	pop af
 	ret
 
-Func_3d7f::
-	ld hl, wBattleDenjuuName
+CopyPlayerDenjuuNameToBattleUserName::
+	ld hl, wBattleUserName
 	ld a, $9
 	push hl
-.asm_3d85
+.clear
 	ld [hl], $0
 	inc hl
 	dec a
-	jr nz, .asm_3d85
+	jr nz, .clear
 	ld bc, $7
 	pop de
-	ld hl, wc9e1
+	ld hl, wBattlePlayerDenjuuName
 	jp CopyData
 
 Func_3d95::
@@ -6784,20 +6784,20 @@ Func_3e00: ; 3e00 (0:3e00)
 	ld [wd43d], a
 	ret
 
-Func_3e19::
+PrintStringWithPlayerDenjuuAsBattleUser::
 	push hl
 	push af
 	call OpenSRAMBank2
 	pop af
 	ld hl, sAddressBook + 6
-	call Func_3d0e
+	call GetNthAddressBookAttributeAddr
 	push hl
 	pop de
-	call Func_065a
+	call GetDenjuuNicknameFromAdddressBookOffset_
 	call OpenSRAMBank2
-	call Func_3d7f
+	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
-	ld hl, wBattleDenjuuName
+	ld hl, wBattleUserName
 	ld de, wOAMAnimationsEnd
 	call Func_33e3
 	ld de, wOAMAnimationsEnd

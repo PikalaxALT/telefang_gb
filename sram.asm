@@ -7175,6 +7175,18 @@ s1_bffe:: ds 1
 s1_bfff:: ds 1
 
 SECTION "SRAM 2", SRAM, BANK [2]
+; Field 00 = species (db)
+; Field 01 = level (db)
+; Field 02 = FD (db)
+; Field 03 = ??
+; Field 04 = ??
+; Field 05 = ??
+; Field 06 = ??
+; Field 07 = ??
+; Field 08 = ??
+; Field 09 = ??
+; Field 10 = Phone Number (5 bytes)
+; Field 15 = ??
 sAddressBook:: ds $10 * ADDRESS_BOOK_SIZE
 
 s2_afe0:: ds 1
@@ -7721,7 +7733,7 @@ s2_b1fc:: ds 1
 s2_b1fd:: ds 1
 s2_b1fe:: ds 1
 s2_b1ff:: ds 1
-s2_b200:: ds 1
+sOwnedDenjuuNicknames:: ds 1
 s2_b201:: ds 1
 s2_b202:: ds 1
 s2_b203:: ds 1

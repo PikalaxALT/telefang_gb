@@ -5617,7 +5617,7 @@ Func_6adfd: ; 6adfd (1a:6dfd)
 	ld a, $0
 	ld [wd45b], a
 	ld b, $0
-	call Func_30a7
+	call OverworldRandom8_
 	and $7
 	ld c, a
 	call Func_6ae9e
@@ -5650,7 +5650,7 @@ Func_6ae43: ; 6ae43 (1a:6e43)
 	ld a, $0
 	ld [wd45b], a
 	ld b, $0
-	call Func_30a7
+	call OverworldRandom8_
 	and $7
 	ld c, a
 	call Func_6ae9e
@@ -5783,7 +5783,7 @@ Func_6af32: ; 6af32 (1a:6f32)
 	ld a, $0
 	ld [wd45b], a
 	ld b, $0
-	call Func_30a7
+	call OverworldRandom8_
 	and $f
 	ld c, a
 	call Func_6afd3
@@ -5816,7 +5816,7 @@ Func_6af78: ; 6af78 (1a:6f78)
 	ld a, $0
 	ld [wd45b], a
 	ld b, $0
-	call Func_30a7
+	call OverworldRandom8_
 	and $f
 	ld c, a
 	call Func_6afd3

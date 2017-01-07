@@ -1606,11 +1606,11 @@ Func_10cc9:
 	jr nz, .asm_10d21
 	call Func_13e4c
 	ld b, a
-	ld a, [wcdb4]
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	cp b
 	jr z, .asm_10d1d
 	ld a, b
-	ld [wcdb4], a
+	ld [wAddressBookIndexOfPartnerDenjuu], a
 	call Func_13a30
 	ld [wc912], a
 	ld a, $8
@@ -5316,7 +5316,7 @@ GetRTC: ; 12ab9 (4:6ab9)
 	jp Rom4_CloseSRAM
 
 Func_12aef:
-	ld hl, wca00
+	ld hl, wMapHeader
 	ld de, wcb08
 	ld b, $e
 .loop
@@ -6237,7 +6237,7 @@ Func_1318a:
 	call Func_13e4c
 	ld d, a
 	call Rom4_CloseSRAM
-	ld a, [wcdb4]
+	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	cp d
 	jr z, .asm_1319d
 	ld c, d
@@ -6409,7 +6409,7 @@ Func_132b0:
 	push af
 	call Rom4_CloseSRAM
 	pop af
-	call Func_0667
+	call GetPhoneNumber_
 	jp Func_12aef
 
 Func_132d9: ; 132d9 (4:72d9)
@@ -7918,9 +7918,9 @@ Func_13d8c: ; 13d8c (4:7d8c)
 	ld b, $0
 	ld de, $6
 	call Multiply_DE_by_BC
-	ld hl, s2_b200
+	ld hl, sOwnedDenjuuNicknames
 	add hl, de
-	ld b, BANK(s2_b200)
+	ld b, BANK(sOwnedDenjuuNicknames)
 	call Rom4_GetSRAMBankB
 	ld de, wc3a9
 	ld bc, $6
@@ -7956,11 +7956,11 @@ Func_13dca: ; 13dca (4:7dca)
 	ld b, $0
 	ld de, $6
 	call Multiply_DE_by_BC
-	ld hl, s2_b200
+	ld hl, sOwnedDenjuuNicknames
 	add hl, de
 	push hl
 	pop de
-	ld b, BANK(s2_b200)
+	ld b, BANK(sOwnedDenjuuNicknames)
 	call Rom4_GetSRAMBankB
 	ld hl, wOAMAnimationsEnd
 	ld bc, $6
@@ -8111,8 +8111,8 @@ Rom4_CloseSRAM: ; 13ef1 (4:7ef1)
 	ret
 
 Func_13ef6: ; 13ef6 (4:7ef6)
-	call Func_069c
-	ld hl, wc9e1
+	call GetDenjuuNicknameC_
+	ld hl, wBattlePlayerDenjuuName
 	ld de, wOAMAnimationsEnd
 	call Func_33e3
 	ld hl, VTilesBG tile $40
@@ -8127,8 +8127,8 @@ Func_13f15: ; 13f15 (4:7f15)
 	call Func_13e4c
 Func_13f18: ; 13f18 (4:7f18)
 	ld c, a
-	call Func_069c
-	ld hl, wc9e1
+	call GetDenjuuNicknameC_
+	ld hl, wBattlePlayerDenjuuName
 	ld de, wc3a0
 	call Func_33e3
 	ld hl, VTilesBG tile $78

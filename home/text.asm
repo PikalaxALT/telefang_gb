@@ -1,7 +1,7 @@
 Func_2ceb::
-	homecall Func_2c711, PrintText, PrintText
+	homecall PrintItemNameAndPrice, PrintText, PrintText
 	ld a, $0
-	ld [wc9cf], a
+	ld [wTextSubfunction], a
 	ret
 
 Func_2d03::
@@ -11,7 +11,7 @@ Func_2d03::
 Func_2d10::
 	homecall Func_2c92e, PrintText, PrintText, PrintText
 	ld a, $0
-	ld [wc9cf], a
+	ld [wTextSubfunction], a
 	ret
 
 GetTextByte::

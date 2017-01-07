@@ -259,7 +259,7 @@ Text_1401fa:
 	line "『いのちの き』"
 	line "これは いったいなんなんだよ!オレには わかんねーぞ!!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140234:
 	TX_CALL wPlayerName
@@ -268,39 +268,39 @@ Text_140234:
 	line "ムサちょうろうが はなしがあるといっています"
 	line "いそいで トロンコむらまで"
 	line "かえってきてください!"
-	para 0
+	txfn 0
 
 Text_140273:
 	db "なんのはなしだよ もう!"
 	line "めんどくさい!!"
-	para 0
+	txfn 0
 
 Text_14028a:
 	db "なにやら『シンデンジュウ』に"
 	line "ついて はなしがあるといって"
 	line "いますが...?"
 	line ""
-	para 0
+	txfn 0
 
 Text_1402b3:
 	db "『シンデンジュウ』!"
 	line "わかった トロンコむらまで"
 	line "かえるよ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1402d4:
 	db "まっています"
 	line ""
 	TX_CALL wPlayerName
 	db "くん"
-	para 0
+	txfn 0
 
 Text_1402e2:
 	db "もどってきたぜ!"
 	line "さあ シンデンジュウのはなしをきかせてくれよ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140305:
 	db "まぁ まて "
@@ -310,21 +310,21 @@ Text_140305:
 	line "たすかった"
 	line "あリがとう"
 	line ""
-	para 0
+	txfn 0
 
 Text_14033c:
 	db "へへ あらたまって おれいを"
 	line "いわれるとな..."
 	line "でも こっちは いそいでるんだ"
 	line "はやくはなしを きかせてくれよ"
-	para 0
+	txfn 0
 
 Text_140376:
 	db "うむ まだ すベてがおわった"
 	line "わけではないからの"
 	line "さて 『シンデンジュウ』に"
 	line "ついて はなそうかの"
-	para 0
+	txfn 0
 
 Text_1403a9:
 	db "『シンデンジュウ』とは"
@@ -335,44 +335,44 @@ Text_1403a9:
 	line "まもリつづけていた "
 	line "そんざいなのじゃ"
 	line ""
-	para 0
+	txfn 0
 
 Text_140401:
 	db "そういえば アクマデンジュウの"
 	line "ヤツも 『シンデンジュウ』に"
 	line "ふういんされたとか "
 	line "いってたもんなぁ"
-	para 0
+	txfn 0
 
 Text_140435:
 	db "じゃが おぬしらニンゲンが"
 	line "このせかいに はいってきたときながいねむリに ついて"
 	line "しまったのじゃ"
-	para 0
+	txfn 0
 
 Text_140467:
 	db "なんで ねちゃったんだよ?"
 	line "おきてれば いいじゃん?"
-	para 0
+	txfn 0
 
 Text_140483:
 	db "ネムリにつくまえ"
 	line "『シンデンジュウ』は ワシに"
 	line "こういったんじゃ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1404a6:
 	db "シンデンジュウ"
 	line "ワタシに ようとは いったい?"
-	para 0
+	txfn 0
 
 Text_1404bf:
 	db "ムサよ...このせかいに"
 	line "あたらしい しゅぞく"
 	line "『ニンゲン』が はいって"
 	line "きたではないか"
-	para 0
+	txfn 0
 
 Text_1404ed:
 	db "ニンゲンが このせかいへ"
@@ -382,7 +382,7 @@ Text_1404ed:
 	line "しる ワタシを ニンゲンが"
 	line "ほおっておいてくれるとは"
 	line "かぎらない"
-	para 0
+	txfn 0
 
 Text_14054f:
 	db "そこで ワタシは ここカクトスでねむリに つくことにする"
@@ -390,25 +390,25 @@ Text_14054f:
 	line "カクトスに だれも"
 	line "ちかづけないでくれ....."
 	line ""
-	para 0
+	txfn 0
 
 Text_140597:
 	db "オレたち ニンゲンのせいで"
 	line "シンデンジュウは すがたを"
 	line "かくしたんだな..."
 	line ""
-	para 0
+	txfn 0
 
 Text_1405c0:
 	db "すベてのニンゲンの せいでは"
 	line "ないのだがな..."
 	line "だが シンデンジュウの よそうはあたってしまったがの..."
-	para 0
+	txfn 0
 
 Text_1405f8:
 	db "ムサは サナエバのことを"
 	line "しっているのか??"
-	para 0
+	txfn 0
 
 Text_140610:
 	db "うむ... ..."
@@ -419,12 +419,12 @@ Text_140610:
 	line "シンデンジュウの ところまでは"
 	line "たどリつく ことは できないと"
 	line "おもっておったのだが..."
-	para 0
+	txfn 0
 
 Text_140695:
 	db "だれかが ウラで サナエバを"
 	line "あやつってるとか..?"
-	para 0
+	txfn 0
 
 Text_1406b1:
 	db "そのカノウセイは じゅうぶんに"
@@ -434,26 +434,26 @@ Text_1406b1:
 	db "よ"
 	line "シンデンジュウのところへ"
 	line "いっては もらえんじゃろうか?"
-	para 0
+	txfn 0
 
 Text_1406ff:
 	db "おう トモダチのくらすせかいが"
 	line "ヤバイんだから!"
 	line "オレに できることなら"
 	line "なんでもやるぜ!"
-	para 0
+	txfn 0
 
 Text_14072e:
 	db "よし わかった"
 	line "ならば これをもっていくがよい"
 	line "そろそろ かえどきじゃろう"
 	line ""
-	para 0
+	txfn 0
 
 Text_140756:
 	db "『あたらしいDショット』"
 	line "をてにいれた"
-	para 0
+	txfn 0
 
 Text_14076b:
 	db "シンデンジュウは ぺぺリやまの"
@@ -463,28 +463,28 @@ Text_14076b:
 	line "ゆくすえは オマエに"
 	line "かかっておる たのんだぞ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1407c8:
 	db "あっ!カイじゃねーか"
 	line "オマエ こんなところで"
 	line "なにしてるんだよ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1407eb:
 	db "それは こっちのセリフだな"
 	line "ここが どういうところか"
 	line "わかって いるんだろうな?"
 	line ""
-	para 0
+	txfn 0
 
 Text_140816:
 	db "『シンデンジュウ』のねむる"
 	line "いせきだろ??"
 	line "わかってないと ここまで"
 	line "これないぜ?"
-	para 0
+	txfn 0
 
 Text_140841:
 	db "いちおう わかっている"
@@ -493,20 +493,20 @@ Text_140841:
 	line "ここからさきに すすむことは"
 	line "できない"
 	line "さっさと かえるんだな!"
-	para 0
+	txfn 0
 
 Text_140882:
 	db "かってにきめつけるなよ"
 	line "なんなら オレたちの チカラを"
 	line "みせてやっても いいぜ?"
 	line ""
-	para 0
+	txfn 0
 
 Text_1408ad:
 	db "ふっ...オマエたちの チカラのなさを おもいしらせてやる"
 	line "いくぞっ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1408d3:
 	db "なかなかやるな..."
@@ -514,12 +514,12 @@ Text_1408d3:
 	line "やはリ アイツらは オレがたおすそして シンデンジュウを"
 	line "まもるんだ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140914:
 	db "まてよ カイ!"
 	line "いっしょにやれば...."
-	para 0
+	txfn 0
 
 Text_14092a:
 	db "ひとリで いっちまった"
@@ -528,42 +528,42 @@ Text_14092a:
 	line "まぁいいや"
 	line "オレたちは オレたちでいくぜ"
 	line "どうせ もくてきはいっしょだ!"
-	para 0
+	txfn 0
 
 Text_14097c:
 	db "あーーーーーーっ!"
 	line "アクマデンジュウ!"
 	line "オマエ ここで なにしてる!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1409a1:
 	db "ん?オマエは...."
 	line "ふっ...はっはっはっはっ"
 	line "ワタシを ふういんしようとして"
 	line "しっぱいした コゾウではないか"
-	para 0
+	txfn 0
 
 Text_1409db:
 	db "う...うるさいっ!"
 	line "こんどは しっぱいしない!"
 	line "かくごしろよ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1409fe:
 	db "なんだ?"
 	line "オマエも さっき ボロボロに"
 	line "してやった コゾウのように"
 	line "なリたいのか??"
-	para 0
+	txfn 0
 
 Text_140a2a:
 	db "コゾウ??"
 	line "まさか カイと テレファングを"
 	line "したのか??"
 	line ""
-	para 0
+	txfn 0
 
 Text_140a49:
 	db "あの コゾウは カイという"
@@ -574,12 +574,12 @@ Text_140a49:
 	line "もらった このあたらしい"
 	line "チカラでな!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140aa1:
 	db "オマエが サナエバに"
 	line "このばしょを おしえたのか!?"
-	para 0
+	txfn 0
 
 Text_140abd:
 	db "とリひきしたのだ"
@@ -590,7 +590,7 @@ Text_140abd:
 	line "つかえるものは なんでも"
 	line "つかわないとな!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140b14:
 	db "もう ゆるさないぞ!"
@@ -599,12 +599,12 @@ Text_140b14:
 	line "ふういんしてやる!"
 	line "オレと テレファングしやがれ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140b50:
 	db "チクショウ..."
 	line "なんで かてないんだ!"
-	para 0
+	txfn 0
 
 Text_140b66:
 	db "ふっ..."
@@ -613,24 +613,24 @@ Text_140b66:
 	line "わかったら ワタシの"
 	line "まえに にどと あらわれるな!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140b9d:
 	db "チクショウ...チクショウ.."
 	line "............"
-	para 0
+	txfn 0
 
 Text_140bbb:
 	TX_CALL wPlayerName
 	db "くん"
 	line "マツキヨです"
 	line "どうですか? シンデンジュウにはあえましたか?"
-	para 0
+	txfn 0
 
 Text_140be1:
 	db "マツキヨ...オレって"
 	line "むリょくだな..."
-	para 0
+	txfn 0
 
 Text_140bf8:
 	db "どうしたんですか?"
@@ -639,7 +639,7 @@ Text_140bf8:
 	db "くん"
 	line "いったいなにがあったんですか?"
 	line ""
-	para 0
+	txfn 0
 
 Text_140c1a:
 	db "アクマデンジュウのヤツが"
@@ -649,7 +649,7 @@ Text_140c1a:
 	line "テレファングをいどんだんだけど"
 	line "かてなかったんだ..."
 	line "オレ...どうしたらいいんだよ"
-	para 0
+	txfn 0
 
 Text_140c7d:
 	db "なにを よわきに"
@@ -662,111 +662,111 @@ Text_140c7d:
 	line "いいんです!"
 	line "さいごに もくひょうを"
 	line "たっせいすれば いいんですから"
-	para 0
+	txfn 0
 
 Text_140cd6:
 	db "ひとリで かてないのならば"
 	line "ふたリで たたかいを"
 	line "いどんだっていいんです"
 	line ""
-	para 0
+	txfn 0
 
 Text_140cfd:
 	db "ふたリで...."
 	line "そうだ カイを さがせば..."
 	line "アイツとふたリで"
 	line "アクマデンジュウにいどめば.."
-	para 0
+	txfn 0
 
 Text_140d30:
 	db "カイくんが そこに"
 	line "きているのですか?"
 	line "それは きょうリょくを"
 	line "たのむベきですよ!"
-	para 0
+	txfn 0
 
 Text_140d5b:
 	db "ただ アイツが きょうリょくしてくれるかどうか..."
-	para 0
+	txfn 0
 
 Text_140d77:
 	db "やってみないとわかリません"
 	line "カイくんだって おなじことを"
 	line "かんがえているかもしれません"
 	line ""
-	para 0
+	txfn 0
 
 Text_140da5:
 	db "よしっ!カイをさがしてみるよ"
 	line "そして きょうリょくするように"
 	line "せっとくする"
 	line ""
-	para 0
+	txfn 0
 
 Text_140dcd:
 	db "がんばってください"
 	line ""
 	TX_CALL wPlayerName
 	db "くん"
-	para 0
+	txfn 0
 
 Text_140dde:
 	db "あいててて...."
 	line "チクショウ...みてやがれ.."
-	para 0
+	txfn 0
 
 Text_140df9:
 	db "カイ!"
 	line "だいじょうぶか?"
-	para 0
+	txfn 0
 
 Text_140e07:
 	db "う..うるさい!"
 	line "なにをしにきたんだ!"
 	line "ボロボロの オレを わらいに"
 	line "きたのか?"
-	para 0
+	txfn 0
 
 Text_140e31:
 	db "なんで オマエを わらなくちゃ"
 	line "いけないんだよ"
 	line "オレは オマエに たのみごとを"
 	line "しにきたんだ"
-	para 0
+	txfn 0
 
 Text_140e61:
 	db "たのみごと?"
 	line "オマエが オレに なにをたのむというんだ...."
 	line ""
-	para 0
+	txfn 0
 
 Text_140e83:
 	db "アクマデンジュウを たおすのを"
 	line "てつだってくれ!"
 	line "オレと いっしょに ヤツを"
 	line "たおそうぜ!"
-	para 0
+	txfn 0
 
 Text_140eb2:
 	db "なにを いいだすかとおもえば"
 	line "そんなことを..."
 	line "オレが 『きょうリょくする』と"
 	line "いうとおもったか..?"
-	para 0
+	txfn 0
 
 Text_140ee8:
 	db "ひとリじゃ アイツに"
 	line "かてないんだ! たのむ!"
-	para 0
+	txfn 0
 
 Text_140f01:
 	db "ふっ...ムリだな..."
 	line "きょうリょくはできない"
-	para 0
+	txfn 0
 
 Text_140f1b:
 	db "オレは きょうリょくする"
-	para 0
+	txfn 0
 
 Text_140f29:
 	db "オレひとリじゃあ カイを"
@@ -774,82 +774,82 @@ Text_140f29:
 	line "オレは カイを まもる!"
 	line "トモダチをまもるためならオレはどんなことも やるぜ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140f66:
 	db "よしっ!"
 	line "これで ヤツに かてるかも"
 	line "しれない!"
 	line ""
-	para 0
+	txfn 0
 
 Text_140f81:
 	db "ふっ...トモダチ..か.."
 	line "こんなヤツを トモダチって"
 	line "いってくれるとはな..."
 	line ""
-	para 0
+	txfn 0
 
 Text_140fad:
 	db "カイ! すこしのあいだ"
 	line "このデンジュウをかリるぞ!"
 	line "ぜったいに アクマデンジュウを"
 	line "たおしてくるぜ!"
-	para 0
+	txfn 0
 
 Text_140fe1:
 	db "....がんばれよな"
 	line ""
 	TX_CALL wPlayerName
 	db "...."
-	para 0
+	txfn 0
 
 Text_140ff5:
 	db "ヂムノスのデンワバンゴウを"
 	line "てにいれた"
-	para 0
+	txfn 0
 
 Text_14100a:
 	db "アンヂオスのデンワバンゴウを"
 	line "てにいれた"
-	para 0
+	txfn 0
 
 Text_141020:
 	db "おっしゃー!"
 	line "アクマデンジュウを たおしに"
 	line "いくぜ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_14103d:
 	db "なんだ またきたのか"
 	line "にどと ワタシの めのまえに"
 	line "あらわれるなと いっただろう"
 	line ""
-	para 0
+	txfn 0
 
 Text_141068:
 	db "うるさい"
 	line "こんどの オレたちは"
 	line "ひとあじ ちがうぜ!"
 	line "オレと テレファングしやがれ!"
-	para 0
+	txfn 0
 
 Text_141094:
 	db "ふっ...なんどやっても"
 	line "おなじことだ"
 	line "いくぞっ!!!!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1410b3:
 	db "うっ...ふかく..."
 	line "まさか やられるとは..."
-	para 0
+	txfn 0
 
 Text_1410ce:
 	db "へっへー こんどは にがさないぜきっちリ ふういんしてやる!"
-	para 0
+	txfn 0
 
 Text_1410ee:
 	db "オマエごときに ワタシが"
@@ -858,22 +858,22 @@ Text_1410ee:
 	line "いつか シンデンジュウのヤツに"
 	line "かリを かえしてやる!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141131:
 	db "『オマエに このつぎはない!』"
-	para 0
+	txfn 0
 
 Text_141142:
 	db "シンデンジュウ!"
 	line "オマエ めざめたのか!"
-	para 0
+	txfn 0
 
 Text_141158:
 	db "『いちどでは こリないみたいだなこのばで オマエのそんざいを"
 	line "けしてやろうか?』"
 	line ""
-	para 0
+	txfn 0
 
 Text_141183:
 	db "す すまなかった"
@@ -882,46 +882,46 @@ Text_141183:
 	line "もう にどと デンジュウカイを"
 	line "さわがすような まねはしない!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1411cb:
 	db "『では こんかいだけは"
 	line "みのがしてやろう"
 	line "だが つぎは ないぞ!』"
 	line ""
-	para 0
+	txfn 0
 
 Text_1411ef:
 	db "『さて ニンゲンよ"
 	line "ワタシのもとまで くるがいい"
 	line "この デンジュウカイの すベてをおしえてやろう』"
-	para 0
+	txfn 0
 
 Text_141222:
 	db "おいっ! オマエ どこから"
 	line "しゃベってるんだよ!"
 	line "おーーーい!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141244:
 	db "こえが きこえなくなった..."
 	line "まぁいいや さきにすすめば"
 	line "あえるだろ"
 	line ""
-	para 0
+	txfn 0
 
 Text_14126a:
 	db "やっと ついた..."
 	line "オマエが シンデンジュウか?"
-	para 0
+	txfn 0
 
 Text_141285:
 	db "いかにも"
 	line "このせかいの しゅごしゃ"
 	line "シンデンジュウとは ワタシの"
 	line "ことだ"
-	para 0
+	txfn 0
 
 Text_1412ab:
 	db "オレは "
@@ -929,19 +929,19 @@ Text_1412ab:
 	line "このせかいの すベてについて"
 	line "シンデンジュウにきいてこいって"
 	line "ムサにいわれて やってきたんだ"
-	para 0
+	txfn 0
 
 Text_1412e3:
 	db "ムサにか..."
 	line "ならば はなさねばなるまい"
 	line "すベては 『いのちの き』が"
 	line "かんけいしている..."
-	para 0
+	txfn 0
 
 Text_141315:
 	db "なんなんだよ その"
 	line "『いのちの き』って?"
-	para 0
+	txfn 0
 
 Text_14132c:
 	db "このせかいを ささえる"
@@ -952,18 +952,18 @@ Text_14132c:
 	line "われら デンジュウは すベて"
 	line "その きから うまれてきたのだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_141386:
 	db "だが その 『いのちの き』からある いっぴきの デンジュウがうまれたのだ"
 	line "そのデンジュウはアンテナのきがなにかに はんのうすることに"
 	line "いちはやく きがついたのだ"
-	para 0
+	txfn 0
 
 Text_1413d9:
 	db "それって...もしかして"
 	line "ケイタイデンワ?"
-	para 0
+	txfn 0
 
 Text_1413f0:
 	db "そうだ そのケイタイデンワが"
@@ -977,11 +977,11 @@ Text_1413f0:
 	line "ニンゲンのしょうねんをつかい"
 	line "それをくいとめようとしたのだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_14148a:
 	db "それって カイのことじゃ..?"
-	para 0
+	txfn 0
 
 Text_14149b:
 	db "あのしょうねんは カイという"
@@ -992,7 +992,7 @@ Text_14149b:
 	line "だが かれを せめないでほしい"
 	line "われわれのことを おもって"
 	line "したことなのだから..."
-	para 0
+	txfn 0
 
 Text_14150c:
 	db "カイを せめるなんて"
@@ -1001,19 +1001,19 @@ Text_14150c:
 	line "それで そのデンジュウは"
 	line "いま どこにいるんだよ?"
 	line ""
-	para 0
+	txfn 0
 
 Text_14154e:
 	db "サナエバのそばで サナエバを"
 	line "あやつリ じぶんの やぼうを"
 	line "たっせいしようとしている..."
 	line ""
-	para 0
+	txfn 0
 
 Text_14157e:
 	db "やっぱリ サナエバは"
 	line "あやつられていたんだ!"
-	para 0
+	txfn 0
 
 Text_141596:
 	db "そのとおリだ"
@@ -1021,24 +1021,24 @@ Text_141596:
 	line "デンジュウを たおせば"
 	line "この デンジュウカイにへいわがもどるのだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1415ce:
 	db "おっしゃー!"
 	line "そのやくめ オレにやらしてくれよ"
-	para 0
+	txfn 0
 
 Text_1415e7:
 	db "あいては キョウテキだぞ"
 	line "それでも いくのか?"
-	para 0
+	txfn 0
 
 Text_141600:
 	db "あったリまえだよ"
 	line "どんなにつよくたって"
 	line "カンケイないぜ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_14161f:
 	db "ならば たのむ!"
@@ -1049,20 +1049,20 @@ Text_14161f:
 	line "ヤツらの やぼうを"
 	line "くいとめてくれ!!!!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141674:
 	db "はっはっはっはっはっ"
 	line "いよいよだ!"
 	line "いよいよ 『いのちの き』を"
 	line "てにいれることが できるのだ"
-	para 0
+	txfn 0
 
 Text_1416a5:
 	db "まてっ サナエバ!"
 	line "オマエの あくじも ここまでだここから さきには いかせない"
 	line ""
-	para 0
+	txfn 0
 
 Text_1416d0:
 	db "あくじ? キミは ワタシが"
@@ -1071,7 +1071,7 @@ Text_1416d0:
 	line "ワタシは ニンゲンのために"
 	line "『いのちの き』をつかおうと"
 	line "してるのだよ!"
-	para 0
+	txfn 0
 
 Text_14171c:
 	db "ニンゲンは すでに シンカの"
@@ -1083,14 +1083,14 @@ Text_14171c:
 	line "『チョウジンルイ』を"
 	line "つくリだせる!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141791:
 	db "その あたらしいニンゲンを"
 	line "つくリだすのに いったい"
 	line "どれだけの デンジュウを"
 	line "くるしめるんだよ!"
-	para 0
+	txfn 0
 
 Text_1417c4:
 	db "かずは モンダイではない!"
@@ -1101,7 +1101,7 @@ Text_1417c4:
 	line "リかいするには まだまだ"
 	line "コドモなのだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1417f8:
 	db "オレは むずかしいことは"
@@ -1112,7 +1112,7 @@ Text_1417f8:
 	line "ことを だまってみすごすことは"
 	line "できない!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141850:
 	db "いいだろう!"
@@ -1121,36 +1121,36 @@ Text_141850:
 	line "ならば じつリょくで"
 	line "だまらせてやるっ!"
 	line "テレファングだ!!!!"
-	para 0
+	txfn 0
 
 Text_14188e:
 	db "こ...こんなヤツに ワタシの"
 	line "ユメが こわされるなんて..."
-	para 0
+	txfn 0
 
 Text_1418af:
 	db "へっ!オマエの やぼうも"
 	line "ここで おわリだな!"
-	para 0
+	txfn 0
 
 Text_1418c8:
 	db "サナエバ...オマエのやくめは"
 	line "ここまでだ"
 	line "ごくろうだったな"
 	line ""
-	para 0
+	txfn 0
 
 Text_1418e9:
 	db "ワタシの やくめが"
 	line "ここまでというのは...."
-	para 0
+	txfn 0
 
 Text_141902:
 	db "うっ..なにをするのですか"
 	line "ワタシは アナタの のぞむ"
 	line "ままにしたではないですか!"
 	line ""
-	para 0
+	txfn 0
 
 Text_14192e:
 	db "ワタシからの おれいだよ"
@@ -1161,12 +1161,12 @@ Text_14192e:
 	line "ことができる"
 	line "『いのちの き』を つかい"
 	line "ニンゲンカイと デンジュウカイをしはいしてやる"
-	para 0
+	txfn 0
 
 Text_1419a9:
 	db "サナエバ! アイツは"
 	line "なにものなんだ!"
-	para 0
+	txfn 0
 
 Text_1419be:
 	db "アイツのことは"
@@ -1174,19 +1174,19 @@ Text_1419be:
 	line "ニンゲンカイとデンジュウカイを"
 	line "シハイしようだなんて..."
 	line "まさか そんなことを かんがえていたとは..."
-	para 0
+	txfn 0
 
 Text_141a0c:
 	db "ヤツを とめないと..."
 	line "ブリオンいせきのなかへ"
 	line "はいるぞ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141a2d:
 	db "やっと おいついたぞ"
 	line "かくごしろよ!"
-	para 0
+	txfn 0
 
 Text_141a41:
 	db "ふふふ すこし"
@@ -1202,7 +1202,7 @@ Text_141a41:
 	line "ちょうてんに くんリん...."
 	line "いや 2つのセカイの『カミ』となるのだ!!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141add:
 	db "2つのセカイの 『カミ』だって?なにを ふざけたことを"
@@ -1210,7 +1210,7 @@ Text_141add:
 	line "オマエは すベてを"
 	line "じぶんの おもいどおリに"
 	line "したいだけじゃないか!"
-	para 0
+	txfn 0
 
 Text_141b25:
 	db "ふははははは"
@@ -1221,7 +1221,7 @@ Text_141b25:
 	line "そして シハイするものは"
 	line "ワタシいがいは あリえないのだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_141b7d:
 	db "そんなことは ゼッタイに"
@@ -1229,18 +1229,18 @@ Text_141b7d:
 	line "オレは トモダチになった"
 	line "デンジュウたちやニンゲンカイのトモダチやカゾクを オマエの"
 	line "やぼうから まもる!!"
-	para 0
+	txfn 0
 
 Text_141bca:
 	db "オレと テレファングしやがれ!"
-	para 0
+	txfn 0
 
 Text_141bdb:
 	db "ワ...ワタシの やぼうが"
 	line "こんな ニンゲンによって"
 	line "やぶられるとは...."
 	line ""
-	para 0
+	txfn 0
 
 Text_141c04:
 	db "だがな 『いのちの き』が"
@@ -1252,12 +1252,12 @@ Text_141c04:
 	line "みておれ ニンゲン!"
 	line "われは ふたたび オマエたちの"
 	line "まえに あらわれるだろう!!"
-	para 0
+	txfn 0
 
 Text_141c8a:
 	db ".......ふぅ"
 	line "やっと おわったな...."
-	para 0
+	txfn 0
 
 Text_141ca3:
 	TX_CALL wPlayerName
@@ -1265,14 +1265,14 @@ Text_141ca3:
 	line "マツキヨです"
 	line "サナエバたちは いったい"
 	line "どうなったんですか?"
-	para 0
+	txfn 0
 
 Text_141cca:
 	db "あぁ マツキヨ"
 	line "ぜんぶ おわったよ"
 	line "アイツらの たくらみは"
 	line "ぜんぶ ぶっこわしたよ"
-	para 0
+	txfn 0
 
 Text_141cf5:
 	db "よかった...ほんとに よかったおつかれさまです "
@@ -1282,100 +1282,100 @@ Text_141cf5:
 	line "みんな まってます"
 	line "はやく トロンコむらに"
 	line "かえってきてください"
-	para 0
+	txfn 0
 
 Text_141d37:
 	db "はやく カギをかえしに"
 	line "いかないと..."
-	para 0
+	txfn 0
 
 Text_141d4d:
 	db "はやく カギをかえしに"
 	line "いかないと..."
-	para 0
+	txfn 0
 
 Text_141d63:
 	db "うわーい カギを とリかえして"
 	line "くれたダスね"
 	line "あリがとう!!"
 	line "これは おれいのしるしダス!"
-	para 0
+	txfn 0
 
 Text_141d92:
 	db "『かいぞうしよう1』"
 	line "をてにいれた"
-	para 0
+	txfn 0
 
 Text_141da5:
 	db "『じっけんしよう1』"
 	line "をてにいれた"
-	para 0
+	txfn 0
 
 Text_141db8:
 	db "うわっ! これって"
 	line "デンジュウを シンカさせるのに"
 	line "ぜったいいる アイテムじゃん"
 	line "こんなの もらっていいの??"
-	para 0
+	txfn 0
 
 Text_141df1:
 	db "いいんダス!"
-	para 0
+	txfn 0
 	db "これは オラのきもちダスー!"
-	para 0
+	txfn 0
 	db "それと どうくつのなかに"
 	line "あったものは じゆうにつかって"
 	line "くれて かまわないダス"
 	line ""
 	line "あと アンテナのきは じゆうに"
 	line "つかってくれて かまわないダス"
-	para 0
+	txfn 0
 
 Text_141e54:
 	db "サンキュー!!"
 	line "あリがたく もらっとくよ!!"
-	para 0
+	txfn 0
 
 Text_141e6c:
 	db "おれいを いうのは こっちの"
 	line "ほうダス!"
 	line "ほんとうに あリがとうダスー!"
 	line ""
-	para 0
-	para 0
+	txfn 0
+	txfn 0
 
 Text_141e95:
 	db "おねがいだから はかせには"
 	line "ワタシの いばしょを"
 	line "おしえないで おいてくれ!!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141ebf:
 	db "はかせの ぼうそうを"
 	line "とめてくれたんだ!"
 	line "あリがとう!!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141ede:
 	db "『あたらしいDショット』"
 	line "をてにいれた"
-	para 0
+	txfn 0
 
 Text_141ef3:
 	db "どんどん タバスコのジャマを"
 	line "したまえ!"
 	line "どんどんな どんどん!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141f16:
 	db "この デンジュウカイの "
 	line "ゆくすえは オマエに"
 	line "かかっておる! たのんだぞ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_141f3f:
 	db "シンデンジュウのねむる"
@@ -1386,7 +1386,7 @@ Text_141f3f:
 	line "そのもリで まちかまえて"
 	line "います"
 	line "きをつけて いってください"
-	para 0
+	txfn 0
 
 Text_141f98:
 	db "おかえリなさい"
@@ -1395,14 +1395,14 @@ Text_141f98:
 	db "くん"
 	line "おつかれさまでした"
 	line ""
-	para 0
+	txfn 0
 
 Text_141fb2:
 	db "サンキュー マツキヨ"
 	line "オマエが いろいろおしえて"
 	line "くれたから たすかったよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_141fda:
 	TX_CALL wPlayerName
@@ -1414,18 +1414,18 @@ Text_141fda:
 	line "..............."
 	line "でも アンタのこと ちょっと"
 	line "みなおしたわ"
-	para 0
+	txfn 0
 
 Text_14203f:
 	db "うわっ!"
 	line "ミヨに ほめられるなんて"
 	line "なんだか きもちわるいな"
 	line "やめてくれよ!"
-	para 0
+	txfn 0
 
 Text_142067:
 	db "なによー まったくもう!"
-	para 0
+	txfn 0
 
 Text_142075:
 	db "ホッホッホッ"
@@ -1436,11 +1436,11 @@ Text_142075:
 	line "オマエがいてくれたおかげで"
 	line "2つのセカイがすくわれた"
 	line ""
-	para 0
+	txfn 0
 
 Text_1420aa:
 	db "へへ...なんかてれるな.."
-	para 0
+	txfn 0
 
 Text_1420ba:
 	db "いや てれることはないぞ!"
@@ -1449,7 +1449,7 @@ Text_1420ba:
 	line "いまこそ サイキョウの"
 	line "『Tファンガー』をなのる"
 	line "ときじゃろう!"
-	para 0
+	txfn 0
 
 Text_1420ff:
 	db "じゃが サイキョウの"
@@ -1460,32 +1460,32 @@ Text_1420ff:
 	line "してこそのTファンガーじゃ!"
 	line "その もくひょうをもとに"
 	line "さらにしょうじんするのじゃぞ"
-	para 0
+	txfn 0
 
 Text_142169:
 	db "おっしゃー"
 	line "まだまだトモダチを ふやすぞ!"
 	line "みんな!"
 	line "オレと テレファングだ!"
-	para 0
+	txfn 0
 
 Text_142192:
 	db "Dショットのことで"
 	line "わからないことがあるのか?"
 	line "オレが おしえてやるよ"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_1421c0:
 	db "おっ "
 	TX_CALL wPlayerName
 	line "デンジュウカイに きてたんだ"
-	para 0
+	txfn 0
 
 Text_1421d7:
 	db "ウメキチじゃん!"
 	line "オマエも このむらにきてたんだ"
-	para 0
+	txfn 0
 
 Text_1421f1:
 	db "オマエがここにきたってことは"
@@ -1493,18 +1493,18 @@ Text_1421f1:
 	line "いれたってことだよな"
 	line "つかいかたしってるか??"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_14222e:
 	db "それじゃあ Dショットについて"
 	line "おしえてやるよ"
-	para 0
+	txfn 0
 
 Text_142247:
 	db "まず 『デンワちょう』からだ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_14226e:
 	db "これは テレファングで"
@@ -1515,85 +1515,85 @@ Text_14226e:
 	line "デンジュウたちを よぶことが"
 	line "できるんだぜ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1422c3:
 	db "つぎは『ちゃくれき』だ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_1422e7:
 	db "『ちゃくれき』は"
 	line "どのデンジュウから デンワが"
 	line "かかってきたかを みることが"
 	line "できるんだ"
-	para 0
+	txfn 0
 
 Text_142315:
 	db "つぎは『アイテム』だ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142338:
 	db "『アイテム』は デンジュウたちのシンカにつかう アイテムを"
 	line "みることが できるんだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_142364:
 	db "つぎは『メール』だ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142386:
 	db "『メール』は Dショットの"
 	line "でんげんを きっているあいだに"
 	line "かかってきた デンジュウの"
 	line "メッセージが はいってるんだ"
-	para 0
+	txfn 0
 
 Text_1423c2:
 	db "つぎは『セーブ』だ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_1423e4:
 	db "『セーブ』は いまの"
 	line "しんこうじょうきょうを "
 	line "ほぞんするのに つかうんだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_14240c:
 	db "つぎは 『オプション』だ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142431:
 	db "まず『マナーモード』"
 	line "これを『ON』にしておくと"
 	line "デンワがかかってきたときに"
 	line "ちゃくしんおんが ならないんだ"
-	para 0
+	txfn 0
 
 Text_142469:
 	db "つぎに『とけいひょうじ』"
 	line "これを『ON』にしておくと"
 	line "がめんじょうに とけいが"
 	line "ひょうじされるんだ"
-	para 0
+	txfn 0
 
 Text_14249c:
 	db "つぎに『カラー』"
 	line "これはバックライトのいろが"
 	line "かわるんだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1424bb:
 	db "さいごに『せんとうアニメ』"
@@ -1601,26 +1601,26 @@ Text_1424bb:
 	line "テレファングちゅうの"
 	line "こうげきエフェクトを"
 	line "みなくていいんだ"
-	para 0
+	txfn 0
 
 Text_1424f5:
 	db "つぎは『Dメロ』だ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142517:
 	db "これは デンワが かかって"
 	line "きたときになる おとを"
 	line "えらんだリ つくったリ"
 	line "することができるんだ"
-	para 0
+	txfn 0
 
 Text_142549:
 	db "つぎは『ずかん』だ"
 	line "これについて ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_14256b:
 	db "これは トモダチになった"
@@ -1629,20 +1629,20 @@ Text_14256b:
 	line "これを ぜんぶうめることが"
 	line "できたら たいしたもんだぜ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1425aa:
 	db "Dショットで できることって"
 	line "これぐらいかな"
 	line "いまもっている きしゅいがいにもいろいろと あるらしいぜ"
-	para 0
+	txfn 0
 
 Text_1425df:
 	db "それじゃ がんばって"
 	line "たくさんの デンジュウと"
 	line "トモダチに なれよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_142603:
 	db "あら "
@@ -1651,31 +1651,31 @@ Text_142603:
 	line "デンジュウカイについて"
 	line "ききたいの?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 	line ""
 
 Text_14262b:
 	db "あーっ "
 	TX_CALL wPlayerName
 	line "アンタ ここにきてたんだー"
-	para 0
+	txfn 0
 
 Text_142642:
 	db "なんだよ エリカも"
 	line "デンジュウカイに きてんたんだ"
 	line "ちょうしはどうだ?"
 	line ""
-	para 0
+	txfn 0
 
 Text_142668:
 	db "トモダチ どんどんふえてるよー"
 	line "どう?デンジュウカイは?"
-	para 0
+	txfn 0
 
 Text_142686:
 	db "たのしいよ!"
 	line "オレも トモダチがふえてるよ"
-	para 0
+	txfn 0
 
 Text_14269d:
 	db "それはよかったわね"
@@ -1684,7 +1684,7 @@ Text_14269d:
 	line "どれくらい しってるの?"
 	line "よければ おしえるけど??"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_1426e0:
 	db "それじゃ おしえてあげるわ"
@@ -1697,12 +1697,12 @@ Text_1426e0:
 	line "オトナは おカネを はらって"
 	line "このデンジュウカイに くるのよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_142759:
 	db "その『サナエバグループ』って"
 	line "なんなんだ?"
-	para 0
+	txfn 0
 
 Text_142770:
 	db "もともとは セイヤクガイシャを"
@@ -1711,33 +1711,33 @@ Text_142770:
 	line "いろいろな ぶんやに てを"
 	line "のばしている カイシャよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1427b9:
 	db "んー むずかしくて"
 	line "よくわかんないな....."
 	line "でも おしえてくれて"
 	line "サンキューな!"
-	para 0
+	txfn 0
 
 Text_1427e5:
 	db "んじゃがんばって トモダチ"
 	line "ふやせよな!"
-	para 0
+	txfn 0
 
 Text_1427fb:
 	db "うん "
 	TX_CALL wPlayerName
 	db "もね!"
 	line "じゃ バイバーイ"
-	para 0
+	txfn 0
 
 Text_14280f:
 	db "ゲンキにやってるか?"
 	line "『シンカ』について わからない"
 	line "ことが できたのか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_14283f:
 	db "オッス "
@@ -1745,39 +1745,39 @@ Text_14283f:
 	db "!"
 	line "オマエもついにデンジュウカイにくるようになったかー!"
 	line ""
-	para 0
+	txfn 0
 
 Text_142865:
 	db "よう タケオ!"
 	line "へっへー オレも"
 	line "デンジュウカイのトモダチが"
 	line "できたぜ!"
-	para 0
+	txfn 0
 
 Text_14288b:
 	db "そっかー オマエも なかなか"
 	line "やるもんだな"
 	line "オマエはトモダチを"
 	line "『シンカ』させたリ してるか?"
-	para 0
+	txfn 0
 
 Text_1428bc:
 	db "『シンカ』??"
 	line "なんだそれ??"
-	para 0
+	txfn 0
 
 Text_1428cd:
 	db "それじゃあ"
 	line "『シンカ』について おしえて"
 	line "やるよ"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_1428f0:
 	db "『しぜんシンカ』について"
 	line "ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_14290e:
 	db "『しぜんシンカ』は"
@@ -1788,13 +1788,13 @@ Text_14290e:
 	line "『しぜんデンジュウ』しか"
 	line "おこなうことができないんだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_14295e:
 	db "『かいぞうシンカ』について"
 	line "ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_14297d:
 	db "『かいぞうシンカ』は"
@@ -1805,13 +1805,13 @@ Text_14297d:
 	line "『ぶんめいデンジュウ』で"
 	line "おこなうことができるんだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1429d8:
 	db "『じっけんシンカ』について"
 	line "ききたいか?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_1429f7:
 	db "『じっけんシンカ』は "
@@ -1823,19 +1823,19 @@ Text_1429f7:
 	line "シンカなんだ"
 	line "これは『ぶんめいデンジュウ』がおこなえる シンカなんだ"
 	line ""
-	para 0
+	txfn 0
 
 Text_142a66:
 	db "シンカのこと わかったかな?"
 	line "わからなかったら また"
 	line "こえを かけてくれよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_142a8e:
 	db "それじゃあ がんばって"
 	line "トモダチを ふやしてくれよな"
-	para 0
+	txfn 0
 
 Text_142aaa:
 	db "いまのボクには キミだけが"
@@ -1844,21 +1844,21 @@ Text_142aaa:
 	line "つかって きを もとどおリに"
 	line "してくれ! たのんだよ!"
 	line ""
-	para 0
+	txfn 0
 
 Text_142aea:
 	db "アンテナのきが もとどおリに"
 	line "なったみたいだね"
 	line "あリがとう!!"
 	line ""
-	para 0
+	txfn 0
 
 Text_142b0c:
 	db "なーに どうってことないよ"
 	line "これで おっさんも ここから"
 	line "でられるな!"
 	line "よかったじゃん!"
-	para 0
+	txfn 0
 
 Text_142b3a:
 	db "うん そのことなんだけどね"
@@ -1867,7 +1867,7 @@ Text_142b3a:
 	line "アンテナのきをまもっていくよ"
 	line "それぐらいしかできないからね"
 	line ""
-	para 0
+	txfn 0
 
 Text_142b82:
 	db "そっか アンテナのきを"
@@ -1876,7 +1876,7 @@ Text_142b82:
 	line "おっさんのこと みなおすよ"
 	line "がんばってくれよな"
 	line ""
-	para 0
+	txfn 0
 
 Text_142bc1:
 	TX_CALL wPlayerName
@@ -1890,12 +1890,12 @@ Text_142bc1:
 	line "おきてるらしいから きをつけて"
 	line "それじゃあ がんばって"
 	line "たびをつづけてくれよ"
-	para 0
+	txfn 0
 
 Text_142c38:
 	db "おう それじゃーな!"
 	line "おっさんもゲンキで!"
-	para 0
+	txfn 0
 
 Text_142c4f:
 	db "ここでは テレファングを"
@@ -1904,14 +1904,14 @@ Text_142c4f:
 	line "そして ボクはテレファングの"
 	line "センセイの『たかピー』だ"
 	line "よろしくね"
-	para 0
+	txfn 0
 
 Text_142c92:
 	db "『いわやま』にすむ"
 	line "デンジュウが あいてのときに"
 	line "ついて ききたい?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142cbf:
 	db "『いわやま』にすむ"
@@ -1924,14 +1924,14 @@ Text_142cbf:
 	line "ぎゃくに 『そら』に"
 	line "すむ デンジュウを"
 	line "つかうと ふリになるんだ"
-	para 0
+	txfn 0
 
 Text_142d32:
 	db "つぎに 『そうげん』にすむ"
 	line "デンジュウが あいてのときに"
 	line "ついて ききたい?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142d63:
 	db "『そうげん』にすむ"
@@ -1944,14 +1944,14 @@ Text_142d63:
 	line "ぎゃくに 『いわやま』に"
 	line "すむ デンジュウを"
 	line "つかうと ふリになるんだ"
-	para 0
+	txfn 0
 
 Text_142dd7:
 	db "つぎに 『しんリん』にすむ"
 	line "デンジュウが あいてのときに"
 	line "ついて ききたい?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142e08:
 	db "『しんリん』にすむ"
@@ -1964,14 +1964,14 @@ Text_142e08:
 	line "ぎゃくに 『みずベ』に"
 	line "すむ デンジュウを"
 	line "つかうと ふリになるんだ"
-	para 0
+	txfn 0
 
 Text_142e7a:
 	db "つぎに 『みずベ』にすむ"
 	line "デンジュウが あいてのときに"
 	line "ついて ききたい?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142eaa:
 	db "『みずベ』にすむ"
@@ -1984,14 +1984,14 @@ Text_142eaa:
 	line "ぎゃくに 『さばく』に"
 	line "すむ デンジュウを"
 	line "つかうと ふリになるんだ"
-	para 0
+	txfn 0
 
 Text_142f1d:
 	db "つぎに 『そら』にすむ"
 	line "デンジュウが あいてのときに"
 	line "ついて ききたい?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142f4c:
 	db "『そら』にすむ"
@@ -2004,14 +2004,14 @@ Text_142f4c:
 	line "ぎゃくに 『しんリん』に"
 	line "すむ デンジュウを"
 	line "つかうと ふリになるんだ"
-	para 0
+	txfn 0
 
 Text_142fbf:
 	db "『さばく』にすむ"
 	line "デンジュウが あいてのときに"
 	line "ついて ききたい?"
 	line " はい  いいえ"
-	para 10
+	txfn 10
 
 Text_142feb:
 	db "つぎに 『さばく』にすむ"
@@ -2024,14 +2024,14 @@ Text_142feb:
 	line "ぎゃくに 『そうげん』に"
 	line "すむ デンジュウを"
 	line "つかうと ふリになるんだ"
-	para 0
+	txfn 0
 
 Text_143062:
 	db "がんばって トモダチ"
 	line "あつめてねー"
 	line "バイバーイ"
 	line ""
-	para 0
+	txfn 0
 
 Text_14307c:
 	db "『クリノンむら』の かたがたの"
@@ -2040,7 +2040,7 @@ Text_14307c:
 	line ""
 	TX_CALL wPlayerName
 	db "くん"
-	para 0
+	txfn 0
 
 Text_1430aa:
 	db "『イーリス』のかいがんで"
@@ -2049,7 +2049,7 @@ Text_1430aa:
 	line "たすけてあげると なにか"
 	line "いいことがかもしれません!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1430ef:
 	db "『パームかい』のアンテナのきが"
@@ -2058,7 +2058,7 @@ Text_1430ef:
 	line "くわしくは うみのデンジュウに"
 	line "きくとわかるとおもいます"
 	line "なんとか してあげてください!"
-	para 0
+	txfn 0
 
 Text_143142:
 	db "『フリジア』で"
@@ -2069,7 +2069,7 @@ Text_143142:
 	db "くんも"
 	line "さんかしているんですよね?"
 	line "がんばってください"
-	para 0
+	txfn 0
 
 Text_14318a:
 	db "『バーラン』というさばくの"
@@ -2084,7 +2084,7 @@ Text_14318a:
 	line "リょうほうの おさに はなしを"
 	line "きいてみるといいとおもいますよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_143209:
 	db "『イオンとう』で"
@@ -2099,7 +2099,7 @@ Text_143209:
 	line "ください"
 	line "よろしくたのみましたよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_143270:
 	db "イオンとうの もリのおくで"
@@ -2112,7 +2112,7 @@ Text_143270:
 	line "トモダチのデンジュウもつよく"
 	line "なるかもしれませんよ"
 	line ""
-	para 0
+	txfn 0
 
 Text_1432e2:
 	db "『パパルナこ』で"
@@ -2123,7 +2123,7 @@ Text_1432e2:
 	line "そのくろいかげが なんなのか"
 	line "たしかめてきてくださいね"
 	line ""
-	para 0
+	txfn 0
 
 Text_14333c:
 	TX_CALL wPlayerName
@@ -2135,7 +2135,7 @@ Text_14333c:
 	line "なにがおきているのか"
 	line "たしかめてきてください"
 	line ""
-	para 0
+	txfn 0
 
 Text_14338d:
 	db "『トリパむら』にある"
@@ -2146,7 +2146,7 @@ Text_14338d:
 	line "デンジュウたちのために"
 	line "トリパむらの アンテナのきを"
 	line "もとにもどしてあげてください"
-	para 0
+	txfn 0
 
 Text_1433f9:
 	db "『フラウラむら』で なにやら"
@@ -2155,7 +2155,7 @@ Text_1433f9:
 	line "くわしくは むらのデンジュウに"
 	line "きいてください"
 	line ""
-	para 0
+	txfn 0
 
 Text_143438:
 	db "『ぺぺリやま』に "
@@ -2170,7 +2170,7 @@ Text_143438:
 	line "チカラで アクマデンジュウを"
 	line "ふういんしてくだい!"
 	line ""
-	para 0
+	txfn 0
 
 Text_1434a4:
 	db "『イオンとう』の ちかから"
@@ -2183,4 +2183,4 @@ Text_1434a4:
 	db "くん"
 	line "サナエバのしようとしている"
 	line "ことを とめてください"
-	para 0
+	txfn 0

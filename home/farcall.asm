@@ -368,16 +368,18 @@ Func_0648::
 	homecall_memret Func_a4000
 	ret
 
-Func_0650::
-	homecall_memret_passa Func_a42a3
+PrintPhoneNumber_::
+; abcde = Phone Number
+; hl = VBGMap address
+	homecall_memret_passa PrintPhoneNumber
 	ret
 
-Func_065a::
-	homecall Func_a4e12
+GetDenjuuNicknameFromAdddressBookOffset_::
+	homecall GetDenjuuNicknameFromAdddressBookOffset
 	ret
 
-Func_0667::
-	homecall_memret_passa Func_a42e5
+GetPhoneNumber_::
+	homecall_memret_passa GetPhoneNumber
 	ret
 
 Func_0671::
@@ -410,8 +412,8 @@ LoadEnemyTFangerParty_::
 	rst MemBankswitch
 	ret
 
-Func_069c::
-	homecall_memret Func_a4e02
+GetDenjuuNicknameC_::
+	homecall_memret GetDenjuuNicknameC
 	ret
 
 Func_06a4::

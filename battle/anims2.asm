@@ -2398,7 +2398,7 @@ Func_6d36d: ; 6d36d (1b:536d)
 	jr nc, .asm_6d394
 	and $3
 	ret nz
-	call Func_30a7
+	call OverworldRandom8_
 	and $1
 	add $3b
 	ld c, a
@@ -2723,7 +2723,7 @@ Func_6d60a: ; 6d60a (1b:560a)
 	jr nc, .asm_6d631
 	and $3
 	ret nz
-	call Func_30a7
+	call OverworldRandom8_
 	and $1
 	add $3b
 	ld c, a
@@ -4483,7 +4483,7 @@ Func_6e37e: ; 6e37e (1b:637e)
 	ld [hl], a
 .asm_6e3cd
 	ld hl, wOAMBufferEnd
-	call Func_30b6
+	call OverworldRandom16_
 	sla c
 	rl b
 	sla c
@@ -4493,7 +4493,7 @@ Func_6e37e: ; 6e37e (1b:637e)
 	sla c
 	rl b
 	call Func_2b01
-	call Func_30b6
+	call OverworldRandom16_
 	sla c
 	rl b
 	sla c
@@ -4769,7 +4769,7 @@ Func_6e608: ; 6e608 (1b:6608)
 	ret c
 	xor a
 	ld [wd45b], a
-	call Func_30a7
+	call OverworldRandom8_
 	ld a, d
 	and $3
 	add $7b
