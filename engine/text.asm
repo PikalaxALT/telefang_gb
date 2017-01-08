@@ -810,7 +810,7 @@ Func_2c64e: ; 2c64e (b:464e)
 	rl h
 	add hl, de
 	call PrintText_JumpText
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $7
 	ld [wca65], a
 	xor a
@@ -968,7 +968,7 @@ LoadTextPointer__: ; 2c775 (b:4775)
 	rl h
 	add hl, de
 	call PrintText_JumpText
-	call Func_3566
+	call LoadSpecialFontTiles
 	xor a
 	ld [wTextBGMapColumn], a
 	ld [wTextLine], a
@@ -999,7 +999,7 @@ Func_2c7ce:
 	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld d, $3
 	call AnchorMapAndLoadTextPointer__
 	ld a, $7

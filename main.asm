@@ -40,7 +40,7 @@ Func_8032::
 	call GetCGB_BGLayout_
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
@@ -138,7 +138,7 @@ Func_8501::
 	call GetCGB_BGLayout_
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
@@ -791,7 +791,7 @@ Func_8c81: ; 8c81 (2:4c81)
 	call DecompressGFXByIndex_
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld bc, $16
 	call GetCGB_BGLayout_
 	ld a, $0
@@ -3200,7 +3200,7 @@ Func_2e03c: ; 2e03c (b:603c)
 	and $3f
 	ld [wMapNumber], a
 	call Func_2793
-	ld a, [wc903]
+	ld a, [wMapNumber3]
 	cp $ff
 	ret nz
 	jr Func_2e03c
@@ -3211,7 +3211,7 @@ Func_2e050: ; 2e050 (b:6050)
 	and $3f
 	ld [wMapNumber], a
 	call Func_2793
-	ld a, [wc903]
+	ld a, [wMapNumber3]
 	cp $ff
 	ret nz
 	jr Func_2e050
@@ -3313,9 +3313,9 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	jr nc, .asm_2e148
 	call Func_2e179
 	ld a, [wMapNumber]
-	ld [wc913], a
+	ld [wMapNumber2], a
 	ld a, [wMapGroup]
-	ld [wc914], a
+	ld [wMapGroup2], a
 	cp $6
 	jr c, .asm_2e107
 	sub $4
@@ -3324,7 +3324,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	sla a
 	sla a
 	sla a
-	ld hl, wc960
+	ld hl, wMiniMapClearedSections
 	add l
 	ld l, a
 	ld a, $0
@@ -3398,9 +3398,9 @@ Func_2e179: ; 2e179 (b:6179)
 	cp $8
 	jr nz, .asm_2e1b8
 	ld b, $1e
-	ld a, [wc960]
+	ld a, [wMiniMapClearedSections]
 	or b
-	ld [wc960], a
+	ld [wMiniMapClearedSections], a
 	ld b, $a
 	ld a, [wc961]
 	or b
@@ -3427,9 +3427,9 @@ Func_2e179: ; 2e179 (b:6179)
 	cp $f
 	jr nz, .asm_2e1d5
 	ld b, $80
-	ld a, [wc960]
+	ld a, [wMiniMapClearedSections]
 	or b
-	ld [wc960], a
+	ld [wMiniMapClearedSections], a
 	ld b, $1
 	ld a, [wc968]
 	or b
@@ -3872,11 +3872,11 @@ Func_2e466: ; 2e466 (b:6466)
 	ld [wPrevROMBank], a
 	ld b, $0
 	call GetCGB_BGLayout_
-	jp Func_2e48b
+	jp LoadTextBoxPaletteBG7
 
-Func_2e48b: ; 2e48b (b:648b)
+LoadTextBoxPaletteBG7: ; 2e48b (b:648b)
 	ld b, $7
-Func_2e48d: ; 2e48d (b:648d)
+LoadTextBoxPalette: ; 2e48d (b:648d)
 	push bc
 	ld a, [wcdb3]
 	ld c, a
@@ -3975,23 +3975,23 @@ Func_2e526: ; 2e526 (b:6526)
 	cp $24
 	jr c, .asm_2e547
 .asm_2e53e
-	call Func_2e48b
+	call LoadTextBoxPaletteBG7
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
 
 .asm_2e547
 	ld b, $0
-	call Func_2e48d
+	call LoadTextBoxPalette
 	ld b, $1
-	call Func_2e48d
+	call LoadTextBoxPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
 
 .asm_2e557
 	ld b, $5
-	call Func_2e48d
+	call LoadTextBoxPalette
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ret
@@ -4066,14 +4066,14 @@ Pointers_2e5a1:
 	dba RunMinimap
 	dba RunMinimap
 	dba FadeOutMinimapForOverworld
-	dba Func_a87e4
+	dba FadeOutOverworldForMinimap_____
 	dba Func_a87e7
 	dba Func_a8981
 	dba Func_a8991
 	dba Func_a89cb
 	dbw $0e, Func_24c9
 	dbw $0e, Func_24d8
-	dba Func_a89dd
+	dba FadeOutOverworldForMinimap______
 	dba Func_a89e5
 	dba Func_a8e7e
 	dba Func_a8ea3
@@ -4084,25 +4084,25 @@ Pointers_2e5a1:
 	dba Func_a93cf
 	dba Func_a98bf
 	dba Func_a99f5
-	dba Func_a5569
+	dba FadeOutOverworldForMinimap__
 	dba Func_a5572
 	dba Func_a56c2
 	dba Func_a56cd
 	dba Func_a572c
-	dba Func_a5814
+	dba FadeOutOverworldForMinimap___
 	dba Func_a5822
 	dba Func_a593b
 	dba Func_a594b
 	dba Func_a5d17
 	dba Func_c9b17
 	dba Func_c9b01
-	dba Func_3a0f4
+	dba FadeOutOverworldForMinimap_
 	dba Func_3a0fd
 	dba Func_3a175
 	dba Func_3a1bc
 	dba Func_3a696
 	dba Func_a837a
-	dba Func_a5efd
+	dba FadeOutOverworldForMinimap____
 	dba Func_a5f06
 	dba Func_a5f78
 	dba Func_a5f82
@@ -6434,7 +6434,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	and $1
 	jr nz, .asm_30e06
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jp z, Func_30ece
 .asm_30e06
 	call Func_30d14
@@ -11074,7 +11074,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	ld h, a
 .asm_32b16
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jp z, Func_32bcc
 	ld a, $0
 	ld [hJoyNew], a
@@ -11531,7 +11531,7 @@ Func_32e28: ; 32e28 (c:6e28)
 	cp $3
 	ret nz
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wc497]
 	cp $1
@@ -14499,7 +14499,7 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	ret nz
 .asm_39008
 	ld a, [hJoyLast]
-	and $2
+	and B_BUTTON
 	jr z, .asm_3901b
 	ld bc, EVENT_1DD
 	call CheckEventFlag
@@ -15837,7 +15837,7 @@ Func_39a94: ; 39a94 (e:5a94)
 	ld [wc496], a
 	ld b, $7
 	ld a, [hJoyLast]
-	and $10
+	and D_RIGHT
 	jr z, .asm_39ab3
 	ld b, $8
 .asm_39ab3
@@ -15869,7 +15869,7 @@ Func_39ad0: ; 39ad0 (e:5ad0)
 	ld [wc496], a
 	ld b, $5
 	ld a, [hJoyLast]
-	and $80
+	and D_DOWN
 	jr z, .asm_39aef
 	ld b, $6
 .asm_39aef
@@ -16769,7 +16769,7 @@ Func_3a095: ; 3a095 (e:6095)
 	callba Func_30497
 	ret
 
-Func_3a0f4: ; 3a0f4 (e:60f4)
+FadeOutOverworldForMinimap_: ; 3a0f4 (e:60f4)
 	callba FadeOutOverworldForMinimap
 	ret
 
@@ -17300,7 +17300,7 @@ Func_3a6b9:
 	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -17794,7 +17794,7 @@ Func_3aa01:
 	cp $1e
 	jr nc, .asm_3aac2
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_3aac2
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
@@ -18388,7 +18388,7 @@ Func_3c05e: ; 3c05e (f:405e)
 	and $2
 	jr z, .asm_3c0cb
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, Func_3c109
 .asm_3c0cb
 	ld a, b
@@ -20917,7 +20917,7 @@ OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
 	call Func_342a
 .asm_a4c05
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, $0
 	ld [wPhoneCallRingtoneTimer], a
@@ -22214,7 +22214,7 @@ Func_a54a1:
 
 Func_a54a2: ; a54a2 (29:54a2)
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_a54ae
 	ld a, [wc984]
 	and $1f
@@ -22323,7 +22323,7 @@ get_address_book_pointer
 	add hl, bc
 	ret
 
-Func_a5569: ; a5569 (29:5569)
+FadeOutOverworldForMinimap__: ; a5569 (29:5569)
 	callba FadeOutOverworldForMinimap
 	ret
 
@@ -22367,7 +22367,7 @@ Func_a5572: ; a5572 (29:5572)
 	ld a, BANK(Func_a5572)
 	ld [wPrevROMBank], a
 	callba Func_a4cfd
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld d, $6
 	ld bc, $14
 	hlbgcoord 0, 12
@@ -22509,7 +22509,7 @@ Func_a56cd: ; a56cd (29:56cd)
 	ld a, [wOAMAnimation12_Duration + 6]
 	push af
 	callba Func_a4cfd
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, [wOAMAnimation12_Duration + 6]
 	add $40
 	ld b, a
@@ -22651,10 +22651,10 @@ Func_a576c: ; a576c (29:576c)
 	ld a, $1
 	ld [wdd06], a
 	ld b, $5
-	call Func_33af
+	call LoadTextBoxPalette_
 	ret
 
-Func_a5814: ; a5814 (29:5814)
+FadeOutOverworldForMinimap___: ; a5814 (29:5814)
 	callba FadeOutOverworldForMinimap
 	ld a, $0
 	ld [$c1f6], a
@@ -22891,7 +22891,7 @@ Func_a594b: ; a594b (29:594b)
 	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld d, $d
 	callba LoadTextPointer
 asm_a59f6
@@ -22919,7 +22919,7 @@ Func_a5a0a: ; a5a0a (29:5a0a)
 	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld d, $d
 	callba AnchorMapAndLoadTextPointer
 	ret
@@ -23116,7 +23116,7 @@ Func_a5b8a: ; a5b8a (29:5b8a)
 	ld [wTextBoxStartTile], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, BANK(Func_a5b8a)
 	ld [wPrevROMBank], a
 	ld d, $d
@@ -23378,7 +23378,7 @@ Func_a5e27: ; a5e27 (29:5e27)
 	call UpdateSound
 	call ReadJoypad
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_a5e59
 	xor a
 	ld [rVBK], a
@@ -23471,7 +23471,7 @@ Func_a5ef1: ; a5ef1 (29:5ef1)
 	jr nz, .asm_a5ef6
 	ret
 
-Func_a5efd: ; a5efd (29:5efd)
+FadeOutOverworldForMinimap____: ; a5efd (29:5efd)
 	callba FadeOutOverworldForMinimap
 	ret
 
@@ -23600,480 +23600,7 @@ UnknownTZFile43:: INCBIN "gfx/tzfiles/tz_43.2bpp.tz"
 UnknownTZFile44:: INCBIN "gfx/tzfiles/tz_44.2bpp.tz"
 
 SECTION "bank 2A", ROMX, BANK [$2a]
-FadeOutOverworldForMinimap:
-	ld a, $1
-	call PaletteFade_
-	or a
-	ret z
-	ld a, $7
-	ld [wWX], a
-	ld a, $90
-	ld [wWY], a
-	ld hl, wBGMapAnchor
-	ld a, $0
-	ld [hli], a
-	ld a, $98
-	ld [hl], a
-	ld a, $0
-	ld [wSCX], a
-	ld a, $0
-	ld [wSCY], a
-	call ClearBGMapAndAttrs
-	call ClearBGWindowAndAttrs
-	call ClearObjectAnimationBuffers
-	ld a, $1
-	ld [wSpriteUpdatesEnabled], a
-	ld a, [wc9f4]
-	ld [wc9f5], a
-	ld a, [wca51]
-	ld [wca50], a
-	ld a, $0
-	ld [wca64], a
-	jp IncrementSubroutine
-
-LoadMinimapGFX: ; a8046 (2a:4046)
-	ld a, BANK(GFX_e1d64)
-	ld hl, VTilesBG tile $00
-	ld de, GFX_e1d64
-	ld bc, $800
-	call FarCopy2bpp_2
-	ld a, BANK(GFX_e2564)
-	ld hl, VTilesShared tile $00
-	ld de, GFX_e2564
-	ld bc, $260
-	call FarCopy2bpp_2
-	ld a, BANK(GFX_e27c4)
-	ld hl, VTilesOB tile $00
-	ld de, GFX_e27c4
-	ld bc, $490
-	call FarCopy2bpp_2
-	ld a, BANK(GFX_e2ed4)
-	ld hl, VTilesShared tile $40
-	ld de, GFX_e2ed4
-	ld bc, $c0
-	call FarCopy2bpp_2
-	call Func_a81a2
-	ld a, $3
-	ld [wOAMAnimation01], a
-	ld a, $10
-	ld [wOAMAnimation01_TemplateBank], a
-	ld a, $38
-	ld [wOAMAnimation01_TemplateIdx], a
-	ld a, $6
-	ld [wOAMAnimation01_Palette], a
-	ld a, [wc913]
-	srl a
-	srl a
-	srl a
-	ld e, a
-	ld a, [wc913]
-	and $7
-	ld d, a
-	sla a
-	sla a
-	sla a
-	ld b, a
-	ld a, [wc914]
-	cp $6
-	jr c, .asm_a80b5
-	sub $4
-.asm_a80b5
-	ld c, a
-	and $1
-	jr z, .asm_a80c0
-	ld a, $8
-	add d
-	ld d, a
-	ld a, $40
-.asm_a80c0
-	add b
-	add $14
-	ld [wOAMAnimation01_Duration], a
-	ld [wOAMAnimation01_XCoord], a
-	ld a, [wc913]
-	and $f8
-	ld b, a
-	ld a, c
-	and $4
-	jr z, .asm_a80da
-	ld a, $8
-	add e
-	ld e, a
-	ld a, $40
-.asm_a80da
-	add b
-	add $c
-	ld [wOAMAnimation01_Duration + 4], a
-	ld [wOAMAnimation01_YCoord], a
-	ld hl, wOAMBufferEnd
-	ld de, wOAMAnimation02
-	ld b, $20
-	call CopyData_Under256Bytes
-	ld a, $41
-	ld [wOAMAnimation02_TemplateIdx], a
-	ld a, $0
-	ld [wOAMAnimation02_Palette], a
-	ld bc, $8
-	call GetCGB_BGLayout_
-	ld bc, $10
-	call GetCGB_OBLayout_
-	ld b, $7
-	call Func_33af
-	jp IncrementSubroutine
-
-Func_a810c: ; a810c (2a:410c)
-	call Func_a8168
-	ret z
-	hlbgcoord 2, 1
-	ld de, GFX_e1b64
-	ld a, c
-	swap a
-	add e
-	ld e, a
-	ld a, $0
-	adc d
-	ld d, a
-	ld a, b
-	add e
-	ld e, a
-	ld a, $0
-	adc d
-	ld d, a
-	ld a, c
-	swap a
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	ld a, c
-	swap a
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	ld a, b
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	push hl
-	push de
-	ld a, BANK(GFX_e1b64)
-	ld bc, $1
-	call FarCopy2bpp_2
-	pop de
-	ld hl, $100
-	add hl, de
-	ld d, h
-	ld e, l
-	pop hl
-	check_cgb
-	ret nz
-	ld a, $1
-	ld [rVBK], a
-	ld a, BANK(GFX_e16b4)
-	ld bc, $1
-	call FarCopy2bpp_2
-	ld a, $0
-	ld [rVBK], a
-	ret
-
-Func_a8168: ; a8168 (2a:4168)
-	dec b
-	dec c
-	ld d, $0
-	ld a, b
-	cp $8
-	jr c, .asm_a8172
-	inc d
-.asm_a8172
-	ld a, c
-	cp $8
-	jr c, .asm_a8179
-	inc d
-	inc d
-.asm_a8179
-	ld a, d
-	sla a
-	sla a
-	sla a
-	ld hl, wc960
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	ld a, c
-	and $7
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	ld a, b
-	and $7
-	ld d, $1
-	or a
-	jr z, .asm_a819f
-.asm_a819a
-	sla d
-	dec a
-	jr nz, .asm_a819a
-.asm_a819f
-	ld a, [hl]
-	and d
-	ret
-
-Func_a81a2: ; a81a2 (2a:41a2)
-	hlbgcoord 0, 0
-	ld de, GFX_e19fc
-	ld b, $12
-.asm_a81aa
-	push bc
-	push hl
-	ld bc, $14
-	ld a, BANK(GFX_e19fc)
-	call FarCopy2bpp_2
-	pop hl
-	ld a, $20
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	pop bc
-	dec b
-	jr nz, .asm_a81aa
-	check_cgb
-	jr nz, .asm_a81f0
-	hlbgcoord 0, 0
-	ld b, $12
-	ld a, $1
-	ld [rVBK], a
-.asm_a81d1
-	ld c, $14
-.asm_a81d3
-	di
-.asm_a81d4
-	ld a, [rSTAT]
-	and $2
-	jr nz, .asm_a81d4
-	ld a, $6
-	ld [hli], a
-	ei
-	dec c
-	jr nz, .asm_a81d3
-	ld a, $c
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	dec b
-	jr nz, .asm_a81d1
-	ld a, $0
-	ld [rVBK], a
-.asm_a81f0
-	ld c, $10
-.asm_a81f2
-	ld b, $10
-.asm_a81f4
-	push bc
-	call Func_a810c
-	pop bc
-	dec b
-	jr nz, .asm_a81f4
-	dec c
-	jr nz, .asm_a81f2
-	ret
-
-FadeToMinimap: ; a8200 (2a:4200)
-	ld bc, $0
-	ld a, $4
-	call StartFade_
-	ld a, $9
-	ld [wTextSubroutine], a
-	jp IncrementSubroutine
-
-RunMinimap: ; a8210 (2a:4210)
-	ld a, $0
-	call PaletteFade_
-	or a
-	ret z
-	ld a, $6
-	ld [wOAMAnimation01_Palette], a
-	ld a, [wTextSubroutine]
-	cp $9
-	jp nz, Func_a829d
-	ld a, [hJoyNew]
-	and A_BUTTON
-	jp z, Func_a82b7
-	ld a, [wOAMAnimation01_Duration + 4]
-	sub $c
-	sla a
-	ld b, a
-	ld a, [wOAMAnimation01_Duration]
-	sub $14
-	srl a
-	srl a
-	srl a
-	add b
-	ld b, a
-	call GetLandmarkName
-	ld a, [wOAMAnimation01_Duration]
-	sub $14
-	srl a
-	srl a
-	srl a
-	inc a
-	ld b, a
-	ld a, [wOAMAnimation01_Duration + 4]
-	sub $c
-	srl a
-	srl a
-	srl a
-	inc a
-	ld c, a
-	call Func_a8168
-	jr nz, .asm_a8269
-	ld a, $5
-	ld [H_SFX_ID], a
-	jr Func_a82b7
-
-.asm_a8269
-	ld a, $7
-	ld [H_SFX_ID], a
-	ld d, $2
-	ld a, [wOAMAnimation01_Duration + 4]
-	cp $4c
-	jr nc, .asm_a8279
-	ld d, $c
-.asm_a8279
-	push de
-	ld b, d
-	ld c, $4
-	call Func_a8459
-	pop de
-	ld b, $0
-	ld c, $bc
-	callba Func_2c7b9
-	ld a, [wTextBGMapTop]
-	dec a
-	ld [wTextBGMapTop], a
-	ld a, [wTextBGMapTop]
-	dec a
-	ld [wTextBGMapTop], a
-	jr Func_a82b7
-
-Func_a829d: ; a829d (2a:429d)
-	call PrintText_
-	ld a, [wTextSubroutine]
-	cp $9
-	jr nz, Func_a82b7
-	ld b, $2
-	ld a, [wOAMAnimation01_Duration + 4]
-	cp $4c
-	jr nc, .asm_a82b2
-	ld b, $c
-.asm_a82b2
-	ld c, $4
-	call Func_a84c5
-Func_a82b7: ; a82b7 (2a:42b7)
-	ld a, $1
-	ld [wSpriteUpdatesEnabled], a
-	ld a, [wc984]
-	srl a
-	and $7
-	add $38
-	ld [wOAMAnimation01_TemplateIdx], a
-	ld b, $3
-	ld a, [wc984]
-	and $8
-	jr z, .asm_a82d3
-	ld b, $2
-.asm_a82d3
-	ld a, b
-	ld [wOAMAnimation02_PriorityFlags], a
-	ld a, [wTextSubroutine]
-	cp $9
-	jr nz, .asm_a833e
-	ld a, [wJoyNew]
-	and D_RIGHT
-	jr z, .asm_a82f6
-	ld a, [wOAMAnimation01_Duration]
-	cp $8c
-	jr nc, .asm_a82f6
-	add $8
-	ld [wOAMAnimation01_Duration], a
-	ld a, $2
-	ld [H_SFX_ID], a
-.asm_a82f6
-	ld a, [wJoyNew]
-	and D_LEFT
-	jr z, .asm_a830e
-	ld a, [wOAMAnimation01_Duration]
-	cp $1c
-	jr c, .asm_a830e
-	sub $8
-	ld [wOAMAnimation01_Duration], a
-	ld a, $2
-	ld [H_SFX_ID], a
-.asm_a830e
-	ld a, [wJoyNew]
-	and D_UP
-	jr z, .asm_a8326
-	ld a, [wOAMAnimation01_Duration + 4]
-	cp $14
-	jr c, .asm_a8326
-	sub $8
-	ld [wOAMAnimation01_Duration + 4], a
-	ld a, $2
-	ld [H_SFX_ID], a
-.asm_a8326
-	ld a, [wJoyNew]
-	and D_DOWN
-	jr z, .asm_a833e
-	ld a, [wOAMAnimation01_Duration + 4]
-	cp $84
-	jr nc, .asm_a833e
-	add $8
-	ld [wOAMAnimation01_Duration + 4], a
-	ld a, $2
-	ld [H_SFX_ID], a
-.asm_a833e
-	ld a, [wOAMAnimation01_Duration]
-	ld [wOAMAnimation01_XCoord], a
-	ld a, [wOAMAnimation01_Duration + 4]
-	ld [wOAMAnimation01_YCoord], a
-	ld a, [wVBlankCounter]
-	and $3
-	jr nz, .asm_a8357
-	ld hl, VTilesShared tile $40
-	call Func_17ef
-.asm_a8357
-	ld a, [hJoyNew]
-	and START | B_BUTTON
-	jr z, .asm_a8367
-	ld a, $11
-	ld [wSubroutine], a
-	ld a, $4
-	call StartFade_
-.asm_a8367
-	ret
-
-FadeOutMinimapForOverworld: ; a8368 (2a:4368)
-	ld a, $1
-	call PaletteFade_
-	or a
-	ret z
-	ld a, $0
-	ld [wTextSubfunction], a
-	ld a, $a
-	ld [wSubroutine], a
-	ret
+INCLUDE "engine/minimap.asm"
 
 Func_a837a: ; a837a (2a:437a)
 	ld a, [hJoyNew]
@@ -24125,7 +23652,7 @@ Func_a837a: ; a837a (2a:437a)
 	ld [wOAMAnimation01], a
 .asm_a83dc
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_a83f7
 	ld a, [wOAMAnimation01_TemplateBank]
 	ld b, a
@@ -24147,7 +23674,7 @@ Func_a837a: ; a837a (2a:437a)
 
 Func_a840a: ; a840a (2a:440a)
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_a8425
 	call PrintText_
 	ld a, [wTextSubroutine]
@@ -24660,7 +24187,7 @@ CheckCanGenerateEncounters: ; a8788 (2a:4788)
 	jr z, .nope
 	ret
 
-Func_a87e4:
+FadeOutOverworldForMinimap_____:
 	jp FadeOutOverworldForMinimap
 
 Func_a87e7: ; a87e7 (2a:47e7)
@@ -24764,7 +24291,7 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld bc, $10
 	call GetCGB_OBLayout_
 	ld b, $7
-	call Func_33af
+	call LoadTextBoxPalette_
 	ld bc, $225
 	ld a, [wMapGroup]
 	sub $a
@@ -24939,7 +24466,7 @@ Func_a89cb: ; a89cb (2a:49cb)
 	ld [wSubroutine], a
 	ret
 
-Func_a89dd: ; a89dd (2a:49dd)
+FadeOutOverworldForMinimap______: ; a89dd (2a:49dd)
 	jpba FadeOutOverworldForMinimap ; same bank
 
 Func_a89e5: ; a89e5 (2a:49e5)
@@ -25615,7 +25142,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 	or a
 	jr nz, .asm_a8f11
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_a8f11
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -25637,7 +25164,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 	call Func_a8c68
 .asm_a8f11
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jp z, Func_a8f25
 	ld a, $4
 	ld [H_SFX_ID], a
@@ -25855,7 +25382,7 @@ Func_a9095: ; a9095 (2a:5095)
 	ld [wcaeb], a
 .asm_a90ac
 	ld a, [hJoyLast]
-	and $20
+	and D_LEFT
 	jr nz, .asm_a90b7
 	ld a, $18
 	ld [wcae8], a
@@ -25867,7 +25394,7 @@ Func_a9095: ; a9095 (2a:5095)
 	ld [wcae8], a
 .asm_a90c1
 	ld a, [hJoyLast]
-	and $10
+	and D_RIGHT
 	jr nz, .asm_a90cc
 	ld a, $18
 	ld [wcae9], a
@@ -25879,7 +25406,7 @@ Func_a9095: ; a9095 (2a:5095)
 	ld [wcae9], a
 .asm_a90d6
 	ld a, [hJoyLast]
-	and $20
+	and D_LEFT
 	jr nz, .asm_a90e4
 	ld a, [wcaea]
 	and $df
@@ -25893,7 +25420,7 @@ Func_a9095: ; a9095 (2a:5095)
 	ld [wcaea], a
 .asm_a90f2
 	ld a, [hJoyLast]
-	and $10
+	and D_RIGHT
 	jr nz, .asm_a9100
 	ld a, [wcaea]
 	and $ef
@@ -26045,7 +25572,7 @@ Func_a9223: ; a9223 (2a:5223)
 	call Func_a8f26
 	call PrintText_
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_a9243
 	ld a, [wTextSubroutine]
 	cp $9
@@ -26383,7 +25910,7 @@ Func_a946f: ; a946f (2a:546f)
 	ld a, $ff
 	ld [hl], a
 	ld a, [hJoyLast]
-	and $2
+	and B_BUTTON
 	jr z, .asm_a9501
 	ld hl, wOAMAnimation19_Duration + 2
 	ld a, $80
@@ -26566,7 +26093,7 @@ Func_a9595: ; a9595 (2a:5595)
 	ld a, $6
 	ld bc, $1db
 	call LoadNthStdBGPalette
-	call Func_3566
+	call LoadSpecialFontTiles
 	call Func_a9858
 	call Func_a96e4
 	add $af
@@ -26962,7 +26489,7 @@ Func_a98bf: ; a98bf (2a:58bf)
 	ret
 
 Func_a9942: ; a9942 (2a:5942)
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld bc, $1d
 	ld a, [wcaee]
 	or a
@@ -27058,7 +26585,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	call Func_a9a57
 	call PrintText_
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_a9a15
 	ld a, [wTextSubroutine]
 	cp $9
@@ -28665,7 +28192,7 @@ Func_c830a: ; c830a (32:430a)
 	ret
 
 .asm_c8321
-	ld a, [wc903]
+	ld a, [wMapNumber3]
 	cp $7c
 	ret nz
 	ld bc, EVENT_C04
@@ -29522,7 +29049,7 @@ Func_c8898:
 	ld a, [wCurObjectStruct]
 	add $18
 	ld l, a
-	ld a, [wc903]
+	ld a, [wMapNumber3]
 	cp $7b
 	jr z, .asm_c88e0
 	cp $7d
@@ -38154,19 +37681,168 @@ Tilemap_e1548:
 GFX_e1560: INCBIN "gfx/misc/e1560.2bpp"
 GFX_e1650: INCBIN "gfx/misc/e1650.2bpp"
 
-Pointers_e1690::
-	dr $e1690, $e16b4
+Pointers_e1690:
+	dw Data_e16c0
+	dw Data_e16c0
+	dw Data_e16f1
+	dw Data_e1722
+	dw Data_e16f1
+	dw Data_e1723
+	dw Data_e172a
+	dw Data_e172b
+	dw Data_e172c
+	dw Data_e172d
+	dw Data_e172e
+	dw Data_e172f
+	dw Data_e1730
+	dw Data_e1731
+	dw Data_e1732
+	dw Data_e1733
+	dw Data_e1734
+	dw Data_e1735
+	dw Data_e1736
+	dw Data_e1737
+	dw Data_e1738
+	dw Data_e1739
+	dw Data_e173a
+	dw Data_e173b
 
-GFX_e16b4:
-	dr $e16b4, $e197c
+Data_e16c0:
+	db 8
+	db $0f, 0
+	dw GFX_e17bc, $91b0
 
-GFX_e197c:: INCBIN "gfx/misc/e197c.2bpp"
-GFX_e19fc::
-	dr $e19fc, $e1b64
+	db $0f, 0
+	dw GFX_e17fc, $91e0
 
-GFX_e1b64:
-	dr $e1b64, $e1d64
+	db $0f, 1
+	dw GFX_e183c, $9240
 
+	db $0f, 1
+	dw GFX_e187c, $9440
+
+	db $1f, 2
+	dw GFX_e18bc, $9400
+
+	db $1f, 2
+	dw GFX_e191c, $96a0
+
+	db $1f, 2
+	dw GFX_e18dc, $91a0
+
+	db $1f, 2
+	dw GFX_e193c, $96b0
+
+Data_e16f1:
+	db 8
+	db $0f, 0
+	dw GFX_e17bc, $9160
+
+	db $0f, 0
+	dw GFX_e17fc, $9190
+
+	db $0f, 1
+	dw GFX_e183c, $9170
+
+	db $0f, 1
+	dw GFX_e187c, $91a0
+
+	db $1f, 2
+	dw GFX_e18bc, $91b0
+
+	db $1f, 2
+	dw GFX_e191c, $91d0
+
+	db $1f, 2
+	dw GFX_e18dc, $91c0
+
+	db $1f, 2
+	dw GFX_e193c, $91e0
+
+Data_e1722:
+	db 0
+
+Data_e1723:
+	db 1
+	db $1f, 0
+	dw GFX_e177c, $9270
+
+Data_e172a:
+	db 0
+
+Data_e172b:
+	db 0
+
+Data_e172c:
+	db 0
+
+Data_e172d:
+	db 0
+
+Data_e172e:
+	db 0
+
+Data_e172f:
+	db 0
+
+Data_e1730:
+	db 0
+
+Data_e1731:
+	db 0
+
+Data_e1732:
+	db 0
+
+Data_e1733:
+	db 0
+
+Data_e1734:
+	db 0
+
+Data_e1735:
+	db 0
+
+Data_e1736:
+	db 0
+
+Data_e1737:
+	db 0
+
+Data_e1738:
+	db 0
+
+Data_e1739:
+	db 0
+
+Data_e173a:
+	db 0
+
+Data_e173b:
+	db 0
+
+GFX_e173c: INCBIN "gfx/overworld/e173c.2bpp"
+GFX_e175c: INCBIN "gfx/overworld/e175c.2bpp"
+GFX_e177c: INCBIN "gfx/overworld/e177c.2bpp"
+GFX_e179c: INCBIN "gfx/overworld/e179c.2bpp"
+GFX_e17bc: INCBIN "gfx/overworld/e17bc.2bpp"
+GFX_e17dc: INCBIN "gfx/overworld/e17dc.2bpp"
+GFX_e17fc: INCBIN "gfx/overworld/e17fc.2bpp"
+GFX_e181c: INCBIN "gfx/overworld/e181c.2bpp"
+GFX_e183c: INCBIN "gfx/overworld/e183c.2bpp"
+GFX_e185c: INCBIN "gfx/overworld/e185c.2bpp"
+GFX_e187c: INCBIN "gfx/overworld/e187c.2bpp"
+GFX_e189c: INCBIN "gfx/overworld/e189c.2bpp"
+GFX_e18bc: INCBIN "gfx/overworld/e18bc.2bpp"
+GFX_e18dc: INCBIN "gfx/overworld/e18dc.2bpp"
+GFX_e18fc: INCBIN "gfx/overworld/e18fc.2bpp"
+GFX_e191c: INCBIN "gfx/overworld/e191c.2bpp"
+GFX_e193c: INCBIN "gfx/overworld/e193c.2bpp"
+GFX_e195c: INCBIN "gfx/overworld/e195c.2bpp"
+
+GFX_e197c: INCBIN "gfx/misc/e197c.2bpp"
+GFX_e19fc: INCBIN "gfx/misc/e19fc.tilemap"
+GFX_e1b64: INCBIN "gfx/misc/minimap.tilemap"
 GFX_e1d64: INCBIN "gfx/misc/e1d64.2bpp"
 GFX_e2564: INCBIN "gfx/misc/e2564.2bpp"
 GFX_e27c4: INCBIN "gfx/misc/e27c4.w64.t7.2bpp"

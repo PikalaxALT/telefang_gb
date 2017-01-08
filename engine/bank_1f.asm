@@ -79,7 +79,7 @@ Func_7c08d: ; 7c08d (1f:408d)
 	call PaletteFade_
 	or a
 	ret z
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $c3
 	ld [wLCDC], a
 	xor a
@@ -617,7 +617,7 @@ Func_7c46b: ; 7c46b (1f:446b)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	call Func_3f02
 	ld a, [wdc4a]
 	cp $0
@@ -1041,7 +1041,7 @@ Func_7c75f: ; 7c75f (1f:475f)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $4
 	call StartFade_
 	ld a, $a
@@ -4114,7 +4114,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7df2d
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -4132,7 +4132,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 
 .asm_7df2d
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_7df4e
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -4150,13 +4150,13 @@ Func_7df06: ; 7df06 (1f:5f06)
 
 .asm_7df4e
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_7df56
 	jr .asm_7df6e
 
 .asm_7df56
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -4240,7 +4240,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7e01a
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -4258,7 +4258,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 
 .asm_7e01a
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_7e03b
 	ld a, $2
 	ld [H_SFX_ID], a
@@ -4276,7 +4276,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 
 .asm_7e03b
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_7e04f
 	xor a
 	ld [wOAMAnimation01], a
@@ -4287,7 +4287,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 
 .asm_7e04f
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -4753,7 +4753,7 @@ Func_7e3b9: ; 7e3b9 (1f:63b9)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $4
 	call StartFade_
 	ld a, $9
@@ -5241,7 +5241,7 @@ Func_7e743: ; 7e743 (1f:6743)
 
 Func_7e7d1: ; 7e7d1 (1f:67d1)
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jp z, Func_7e840
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -5291,7 +5291,7 @@ Func_7e83d: ; 7e83d (1f:683d)
 
 Func_7e840: ; 7e840 (1f:6840)
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_7e874
 	xor a
 	ld [wd47c], a
@@ -5314,7 +5314,7 @@ Func_7e840: ; 7e840 (1f:6840)
 
 .asm_7e874
 	ld a, [hJoyNew]
-	and $8
+	and START
 	jp z, Func_7e882
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -5322,7 +5322,7 @@ Func_7e840: ; 7e840 (1f:6840)
 
 Func_7e882: ; 7e882 (1f:6882)
 	ld a, [hJoyNew]
-	and $4
+	and SELECT
 	jp z, Func_7e899
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -5430,7 +5430,7 @@ Func_7e947: ; 7e947 (1f:6947)
 
 Func_7e95b: ; 7e95b (1f:695b)
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7e976
 	ld a, [wd40d]
 	cp $0
@@ -5446,7 +5446,7 @@ Func_7e95b: ; 7e95b (1f:695b)
 
 .asm_7e976
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_7e997
 	ld a, [wd40d]
 	cp $1
@@ -5465,7 +5465,7 @@ Func_7e95b: ; 7e95b (1f:695b)
 
 .asm_7e997
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_7e9a0
 	jp Func_7e9b3
 
@@ -5473,7 +5473,7 @@ Func_7e95b: ; 7e95b (1f:695b)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $8
+	and START
 	jr z, asm_7e9e8
 	ld a, [wd40d]
 	cp $0
@@ -5502,7 +5502,7 @@ Func_7e9b3: ; 7e9b3 (1f:69b3)
 
 asm_7e9e8
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wd40d]
 	cp $1
@@ -6176,7 +6176,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7ef88
 	ld a, [wd40d]
 	cp $0
@@ -6190,7 +6190,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 
 .asm_7ef88
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_7efa3
 	ld a, [wd40d]
 	cp $1
@@ -6204,7 +6204,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 
 .asm_7efa3
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_7efbd
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -6217,7 +6217,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 
 .asm_7efbd
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -6432,7 +6432,7 @@ Func_7f141: ; 7f141 (1f:7141)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld c, $72
 	call Func_7f432
 	ld a, $4
@@ -6523,7 +6523,7 @@ Func_7f226: ; 7f226 (1f:7226)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7f247
 	ld a, [wd40d]
 	cp $0
@@ -6539,7 +6539,7 @@ Func_7f226: ; 7f226 (1f:7226)
 
 .asm_7f247
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_7f268
 	ld a, [wd40d]
 	cp $1
@@ -6558,7 +6558,7 @@ Func_7f226: ; 7f226 (1f:7226)
 
 .asm_7f268
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_7f27a
 .asm_7f26e
 	ld a, $1
@@ -6569,7 +6569,7 @@ Func_7f226: ; 7f226 (1f:7226)
 
 .asm_7f27a
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wd40d]
 	cp $1
@@ -6911,7 +6911,7 @@ Func_7f532: ; 7f532 (1f:7532)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jp z, Func_7f559
 	ld a, [wcfc0]
 	cp $0
@@ -6964,7 +6964,7 @@ Func_7f559: ; 7f559 (1f:7559)
 
 .asm_7f598
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wcfc0]
 	cp $0
@@ -6987,7 +6987,7 @@ Func_7f5c3: ; 7f5c3 (1f:75c3)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7f5e4
 	ld a, [wBattleMenuSelection]
 	cp $0
@@ -7003,7 +7003,7 @@ Func_7f5c3: ; 7f5c3 (1f:75c3)
 
 .asm_7f5e4
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_7f605
 	ld a, [wBattleMenuSelection]
 	cp $1
@@ -7022,10 +7022,10 @@ Func_7f5c3: ; 7f5c3 (1f:75c3)
 
 .asm_7f605
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jp nz, Func_7f619
 	ld a, [hJoyNew]
-	and $8
+	and START
 	jr z, asm_7f635
 	ld a, [wd40d]
 	cp $0
@@ -7046,7 +7046,7 @@ Func_7f619: ; 7f619 (1f:7619)
 
 asm_7f635
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wBattleMenuSelection]
 	cp $1
@@ -7328,7 +7328,7 @@ Func_7f843: ; 7f843 (1f:7843)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jp z, Func_7f86a
 	ld a, [wcfc0]
 	cp $0
@@ -7381,7 +7381,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 
 .asm_7f8a9
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wcfc0]
 	cp $0
@@ -7404,7 +7404,7 @@ Func_7f8d4: ; 7f8d4 (1f:78d4)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
-	and $20
+	and D_LEFT
 	jr z, .asm_7f8f5
 	ld a, [wBattleMenuSelection]
 	cp $0
@@ -7420,7 +7420,7 @@ Func_7f8d4: ; 7f8d4 (1f:78d4)
 
 .asm_7f8f5
 	ld a, [hJoyNew]
-	and $10
+	and D_RIGHT
 	jr z, .asm_7f917
 	ld a, [wBattleMenuSelection]
 	cp $1
@@ -7440,13 +7440,13 @@ Func_7f8d4: ; 7f8d4 (1f:78d4)
 
 .asm_7f917
 	ld a, [hJoyNew]
-	and $2
+	and B_BUTTON
 	jr z, .asm_7f920
 	jp Func_7f92d
 
 .asm_7f920
 	ld a, [hJoyNew]
-	and $8
+	and START
 	jr z, asm_7f949
 	ld a, [wd40d]
 	cp $0
@@ -7467,7 +7467,7 @@ Func_7f92d: ; 7f92d (1f:792d)
 
 asm_7f949
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	ret z
 	ld a, [wBattleMenuSelection]
 	cp $1

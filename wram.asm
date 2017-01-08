@@ -909,7 +909,7 @@ wc8ff:: ds 1
 wc900:: ds 1
 wc901:: ds 1
 wc902:: ds 1
-wc903:: ds 1
+wMapNumber3:: ds 1
 wMapGroup:: ds 1
 wc905:: ds 1
 wMapNumber:: ds 1
@@ -924,8 +924,8 @@ wc90e:: ds 1
 wc90f:: ds 1
 wMoney:: dw
 wc912:: ds 1
-wc913:: ds 1
-wc914:: ds 1
+wMapNumber2:: ds 1
+wMapGroup2:: ds 1
 wc915:: ds 1
 wc916:: ds 1
 wc917:: ds 1
@@ -991,7 +991,8 @@ wc95c:: ds 1
 wc95d:: ds 1
 wc95e:: ds 1
 wc95f:: ds 1
-wc960:: ds 1
+
+wMiniMapClearedSections:: ds 1 ; flag_array 256
 wc961:: ds 1
 wc962:: ds 1
 wc963:: ds 1
@@ -1023,6 +1024,8 @@ wc97c:: ds 1
 wc97d:: ds 1
 wc97e:: ds 1
 wc97f:: ds 1
+wMiniMapClearedSectionsEnd::
+
 wc980:: ds 1
 wc981:: ds 1
 wc982:: ds 1

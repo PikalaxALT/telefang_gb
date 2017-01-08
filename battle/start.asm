@@ -783,7 +783,7 @@ Func_70541:
 	ld [wca65], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, [wd43a]
 	cp $0
 	jr z, .asm_705d3
@@ -1566,7 +1566,7 @@ Func_70bca:
 	call Func_7030c
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jp z, Func_70cb9

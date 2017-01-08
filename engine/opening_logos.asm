@@ -124,7 +124,7 @@ Func_93bd: ; 93bd (2:53bd)
 
 Func_9406: ; 9406 (2:5406)
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jr z, .asm_9417
 	ld a, $0
 	call StartFade_

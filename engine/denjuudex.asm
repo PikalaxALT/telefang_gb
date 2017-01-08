@@ -22,7 +22,7 @@ Func_1143e: ; 1143e (4:543e)
 	call ClearTiles
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $0
 	ld [wca65], a
 	ld a, $78
@@ -127,7 +127,7 @@ Func_114ff: ; 114ff (4:54ff)
 	call DecompressGFXByIndex_
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld bc, $16
 	call GetCGB_BGLayout_
 	ld bc, $3

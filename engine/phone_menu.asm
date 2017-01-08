@@ -210,7 +210,7 @@ Func_1013b: ; 1013b (4:413b)
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $18
 	ld [wSubroutine], a
 	jp Func_12cd3
@@ -1136,7 +1136,7 @@ Func_10907: ; 10907 (4:4907)
 	call Func_13e6e
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
@@ -1217,7 +1217,7 @@ Func_109aa: ; 109aa (4:49aa)
 	call Func_13e6e
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
@@ -1562,7 +1562,7 @@ Func_10c90:
 	ret z
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
@@ -2131,7 +2131,7 @@ Func_11119: ; 11119 (4:5119)
 	ld [wcb68], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	call Func_13fdf
 	ld a, $40
 	ld [wTextBoxStartTile], a
@@ -2273,7 +2273,7 @@ Func_11241: ; 11241 (4:5241)
 	ret z
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $85
 	ld [wca65], a
 	ld a, $a0
@@ -2303,7 +2303,7 @@ Func_11276: ; 11276 (4:5276)
 	call Func_13a0b
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld bc, $0
 	ld e, $10
 	call Phone_LoadStdBGMapTileAndAttrLayout
@@ -2365,7 +2365,7 @@ Func_11304: ; 11304 (4:5304)
 	ld [wcb68], a
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	call Func_13fdf
 	ld a, $40
 	ld [wTextBoxStartTile], a
@@ -2853,7 +2853,7 @@ Func_11a59: ; 11a59 (4:5a59)
 	call ClearTiles
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	xor a
 	ld [wca65], a
 	ld a, $78
@@ -6062,7 +6062,7 @@ Func_13028: ; 13028 (4:7028)
 	call Func_13fd2
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
-	call Func_3566
+	call LoadSpecialFontTiles
 	ld a, $85
 	ld [wca65], a
 	call Func_13fdf
