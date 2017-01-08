@@ -1151,7 +1151,7 @@ Func_7c855: ; 7c855 (1f:4855)
 
 Func_7c858: ; 7c858 (1f:4858)
 	ld hl, Data_7dc8f
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	inchlntimes
 	ld a, [hl]
 	ld b, a
@@ -1393,7 +1393,7 @@ Func_7c947: ; 7c947 (1f:4947)
 	ld a, c
 	jr nz, .asm_7ca70
 	ld a, b
-	ld [wd40c], a
+	ld [wNumDenjuuInAddressBook], a
 	call Func_7d620
 	ld a, [wd4b0]
 	dec a
@@ -1435,7 +1435,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	call DecompressGFXByIndex_
 	ld hl, VTilesShared tile $00
 	call Func_7d56b
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	ld hl, $390
@@ -1478,7 +1478,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	inc a
 	hlbgcoord 17, 1
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	call Func_7d694
 	call Func_7d796
 	call Func_7d6fe
@@ -2858,7 +2858,7 @@ Func_7d55f: ; 7d55f (1f:555f)
 
 Func_7d56b: ; 7d56b (1f:556b)
 	push hl
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	sla e
@@ -3167,7 +3167,7 @@ Func_7d796: ; 7d796 (1f:5796)
 	inc a
 	hlbgcoord 14, 1
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd44e]
 	cp $1
 	jp z, Func_7d821
@@ -3181,11 +3181,11 @@ Func_7d796: ; 7d796 (1f:5796)
 	ld a, [hl]
 	hlbgcoord 13, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd4a2]
 	hlbgcoord 17, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $2
 	jr c, Func_7d820
@@ -3196,11 +3196,11 @@ Func_7d796: ; 7d796 (1f:5796)
 	ld a, [hl]
 	hlbgcoord 13, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd4a3]
 	hlbgcoord 17, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $3
 	jr c, Func_7d820
@@ -3211,11 +3211,11 @@ Func_7d796: ; 7d796 (1f:5796)
 	ld a, [hl]
 	hlbgcoord 13, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd4a4]
 	hlbgcoord 17, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 Func_7d820: ; 7d820 (1f:5820)
 	ret
 
@@ -3235,7 +3235,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $0
 	call Func_7d688
 	ld hl, $a002
@@ -3243,7 +3243,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [hl]
 	hlbgcoord 17, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $2
 	jr c, Func_7d8cd
@@ -3259,7 +3259,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $1
 	call Func_7d688
 	ld hl, $a002
@@ -3267,7 +3267,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [hl]
 	hlbgcoord 17, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $3
 	jr c, Func_7d8cd
@@ -3283,7 +3283,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $2
 	call Func_7d688
 	ld hl, $a002
@@ -3291,7 +3291,7 @@ Func_7d821: ; 7d821 (1f:5821)
 	ld a, [hl]
 	hlbgcoord 17, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 Func_7d8cd: ; 7d8cd (1f:58cd)
 	ret
 
@@ -3903,8 +3903,8 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	cp $0
 	jr nz, .asm_7dd36
 	ld a, b
-	ld [wd4a7], a
-	ld a, [wd4a7]
+	ld [wFirstEmptySlotInAddressBook], a
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $a000
 	call GetNthAddressBookAttributeAddr
 	ld d, h
@@ -3912,7 +3912,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld hl, wdc60
 	ld bc, $10
 	call CopyData
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $b200
 	ld de, $6
 	addntimes_hl_de
@@ -3924,20 +3924,20 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld a, [wdc45]
 	add $16
 	ld [wdc45], a
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $a000
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
-	ld [wd480], a
+	ld [wRecruitedDenjuuSpecies], a
 	ld a, [hli]
-	ld [wd481], a
+	ld [wRecruitedDenjuuLevel], a
 	inc hl
 	ld a, $14
-	ld [wd482], a
+	ld [wRecruitedDenjuuInitialFD], a
 	ld a, [hl]
-	ld [wd483], a
+	ld [wRecruitedDenjuuField0x03], a
 	ld b, $0
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld c, a
 	ld hl, $f00
 	add hl, bc
@@ -3986,10 +3986,10 @@ Func_7ddb6: ; 7ddb6 (1f:5db6)
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, VTilesBG tile $10
-	call Func_3d95
-	ld a, [wd480]
+	call GetCurDenjuuKanjiDescription
+	ld a, [wRecruitedDenjuuSpecies]
 	push af
 	ld c, $0
 	ld de, VTilesShared tile $00
@@ -3999,23 +3999,23 @@ Func_7ddb6: ; 7ddb6 (1f:5db6)
 	ld hl, VTilesBG tile $58
 	ld a, $8
 	call ClearString
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $58
 	call GetAndPrintName75CenterAlign
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	call Func_7e0a7
 	ld a, $28
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, [wd481]
+	ld a, [wRecruitedDenjuuLevel]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, $0
 	call Func_7e0e5
 	ld b, $0
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld c, a
 	ld hl, $f00
 	add hl, bc
@@ -4071,7 +4071,7 @@ Func_7dea3: ; 7dea3 (1f:5ea3)
 	ld [wcd24], a
 	call OpenSRAMBank2
 	ld hl, $a00a
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld e, a
@@ -4085,7 +4085,7 @@ Func_7dea3: ; 7dea3 (1f:5ea3)
 	hlbgcoord 3, 14
 	call PrintPhoneNumber_
 	call OpenSRAMBank2
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $b800
 	ld b, $0
 	ld c, a
@@ -4174,7 +4174,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	ld [wd40d], a
 	call OpenSRAMBank2
 	ld hl, $a000
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call GetNthAddressBookAttributeAddr
 	ld a, $10
 .asm_7df86
@@ -4332,7 +4332,7 @@ Func_7e08e: ; 7e08e (1f:608e)
 	ret
 
 Func_7e0a7: ; 7e0a7 (1f:60a7)
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
@@ -4511,7 +4511,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jr z, .asm_7e202
 	call Func_06c4
@@ -4553,9 +4553,9 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	dec a
 	jr nz, .asm_7e252
 	call CloseSRAM
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	dec a
-	ld [wd40c], a
+	ld [wNumDenjuuInAddressBook], a
 	ld a, [wd4eb]
 	ld c, a
 	call Func_06a4
@@ -4564,7 +4564,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	call SaveGame_
 	ld a, [wd492]
 	ld de, VTilesBG tile $10
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld a, [wd492]
 	push af
 	ld c, $0
@@ -4583,7 +4583,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	ld a, [wd493]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, $2e
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -4866,7 +4866,7 @@ Func_7e4b2: ; 7e4b2 (1f:64b2)
 
 Func_7e4b4:
 	ld hl, Data_7dc8f
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	inchlntimes
 	ld a, [hl]
 	ld b, a
@@ -4984,7 +4984,7 @@ Func_7e546: ; 7e546 (1f:6546)
 Func_7e598: ; 7e598 (1f:6598)
 	ld a, $0
 	call LoadUnknGfx090
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	ld hl, $390
@@ -5092,7 +5092,7 @@ Func_7e622: ; 7e622 (1f:6622)
 	inc a
 	hlbgcoord 17, 1
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	call Func_7ecb2
 	call Func_7ed1c
 	call Func_7d6fe
@@ -5560,9 +5560,9 @@ Func_7ea18: ; 7ea18 (1f:6a18)
 	inc hl
 	dec a
 	jr nz, .asm_7ea6c
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	dec a
-	ld [wd40c], a
+	ld [wNumDenjuuInAddressBook], a
 	ld a, [wd4eb]
 	ld c, a
 	call Func_06a4
@@ -5658,8 +5658,8 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	cp $0
 	jr nz, .asm_7eb20
 	ld a, b
-	ld [wd4a7], a
-	ld a, [wd4a7]
+	ld [wFirstEmptySlotInAddressBook], a
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $a000
 	call GetNthAddressBookAttributeAddr
 	ld d, h
@@ -5667,7 +5667,7 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	ld hl, wdc60
 	ld bc, $10
 	call CopyData
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $b200
 	ld de, $6
 	addntimes_hl_de
@@ -5680,7 +5680,7 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	add $16
 	ld [wdc45], a
 	call OpenSRAMBank2
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $b800
 	ld b, $0
 	ld c, a
@@ -5911,7 +5911,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	inc a
 	hlbgcoord 14, 1
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $1
 	jp c, Func_7edb9
@@ -5922,7 +5922,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld a, [hl]
 	hlbgcoord 13, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $0
 	call Func_7d688
 	ld hl, $a002
@@ -5930,7 +5930,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld a, [hl]
 	hlbgcoord 17, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $2
 	jr c, Func_7edb9
@@ -5941,7 +5941,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld a, [hl]
 	hlbgcoord 13, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $1
 	call Func_7d688
 	ld hl, $a002
@@ -5949,7 +5949,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld a, [hl]
 	hlbgcoord 17, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $3
 	jr c, Func_7edb9
@@ -5960,7 +5960,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld a, [hl]
 	hlbgcoord 13, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $2
 	call Func_7d688
 	ld hl, $a002
@@ -5968,7 +5968,7 @@ Func_7ed1c: ; 7ed1c (1f:6d1c)
 	ld a, [hl]
 	hlbgcoord 17, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 Func_7edb9: ; 7edb9 (1f:6db9)
 	ret
 
@@ -5988,21 +5988,21 @@ Func_7edba: ; 7edba (1f:6dba)
 
 Func_7edd8: ; 7edd8 (1f:6dd8)
 	call OpenSRAMBank2
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, $a000
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
-	ld [wd480], a
+	ld [wRecruitedDenjuuSpecies], a
 	ld a, [hli]
-	ld [wd481], a
+	ld [wRecruitedDenjuuLevel], a
 	inc hl
 	ld a, $14
-	ld [wd482], a
+	ld [wRecruitedDenjuuInitialFD], a
 	ld a, [hl]
-	ld [wd483], a
+	ld [wRecruitedDenjuuField0x03], a
 	call CloseSRAM
 	ld b, $0
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld c, a
 	ld hl, $f00
 	add hl, bc
@@ -6040,10 +6040,10 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, VTilesBG tile $10
-	call Func_3d95
-	ld a, [wd480]
+	call GetCurDenjuuKanjiDescription
+	ld a, [wRecruitedDenjuuSpecies]
 	push af
 	ld c, $0
 	ld de, VTilesShared tile $00
@@ -6053,21 +6053,21 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	ld hl, VTilesBG tile $58
 	ld a, $8
 	call ClearString
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $58
 	call GetAndPrintName75CenterAlign
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	call Func_7e0a7
 	ld c, $3
 	call StdBattleTextBox
 	ld a, $28
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, [wd481]
+	ld a, [wRecruitedDenjuuLevel]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	call Func_7e0ec
 	ld a, $4
 	call StartFade_
@@ -6103,7 +6103,7 @@ Func_7eed9: ; 7eed9 (1f:6ed9)
 	call LoadStdBGMapLayout_
 	call OpenSRAMBank2
 	ld hl, $a00a
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld e, a
@@ -6296,7 +6296,7 @@ Func_7f023: ; 7f023 (1f:7023)
 	ld [wcd24], a
 	ld a, [wd492]
 	ld de, VTilesBG tile $10
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld a, [wd492]
 	push af
 	ld c, $0
@@ -6309,7 +6309,7 @@ Func_7f023: ; 7f023 (1f:7023)
 	ld a, [wd493]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, $2e
 	call GetMusicBank
 	ld [H_MusicID], a

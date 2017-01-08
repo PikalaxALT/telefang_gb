@@ -24,7 +24,7 @@ Func_a4000:
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, $6000
+	ld hl, $10000 - (sAddressBook + $0)
 	add hl, bc
 	srl h
 	rr l
@@ -48,13 +48,13 @@ Func_a4000:
 	pop de
 	pop hl
 	ld [hli], a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld [hli], a
 	pop af
 	ld [wPrevROMBank], a
 	push hl
 	ld l, e
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sla a
 	or d
 	ld h, a

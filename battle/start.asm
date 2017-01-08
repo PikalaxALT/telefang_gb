@@ -224,7 +224,7 @@ Func_70016: ; 70016 (1c:4016)
 	ld b, h
 	ld c, l
 	call SetEventFlag
-	ld a, [wc907]
+	ld a, [wDShotReceptionLevel]
 	cp $4
 	jr c, .okay
 	ld a, $3
@@ -270,8 +270,8 @@ Func_70016: ; 70016 (1c:4016)
 	ld a, c
 	jr nz, .load_player_contacts_loop
 	ld a, b
-	ld [wd40c], a
-	ld a, [wd40c]
+	ld [wNumDenjuuInAddressBook], a
+	ld a, [wNumDenjuuInAddressBook]
 	ld b, a
 	dec b
 	ld a, [wd42b]
@@ -777,7 +777,7 @@ Func_70541:
 	ld a, $0
 	call LoadStdBGMapLayout_
 	hlbgcoord 16, 2
-	ld a, [wc907]
+	ld a, [wDShotReceptionLevel]
 	call Func_7030c
 	ld a, $5
 	ld [wca65], a
@@ -805,7 +805,7 @@ Func_70541:
 	ld a, [wEnemyDenjuu1Level]
 	hlbgcoord 11, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	jp Func_7068b
 
 .asm_705d3
@@ -838,7 +838,7 @@ Func_70541:
 	call GetAndPrintName75CenterAlign
 	ld a, [wOtherTFangerClass]
 	dec a
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, TFangerNames + 8
 	call Get8CharName75
 	call Func_70357
@@ -865,9 +865,9 @@ Func_70541:
 	ld a, [wEnemyDenjuu1Level]
 	hlbgcoord 11, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wEnemyDenjuu1]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	call Func_70357
@@ -942,9 +942,9 @@ Func_706b6:
 	ld a, [wEnemyDenjuu1Level]
 	hlbgcoord 11, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wEnemyDenjuu1Species]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	call Func_70357
@@ -1216,7 +1216,7 @@ Func_7091d:
 	jp NextBattleSubroutine
 
 Func_70929:
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $50
 	jr c, .asm_7093d
 	ld a, $1
@@ -1258,7 +1258,7 @@ Func_7096b:
 	ld a, [wOtherTFangerClass]
 	hlbgcoord 0, 0
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_709a9
@@ -1310,7 +1310,7 @@ Func_709dc:
 	inc a
 	hlbgcoord 0, 0
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_70a1a
@@ -1494,13 +1494,13 @@ Func_70b53:
 	ld [wd4bb], a
 	ld [wd4bc], a
 	ld [BattleResults_CurBattleDenjuu], a
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [wMoveAnimationTimer], a
 	ld a, $1
 	ld [wd415], a
 	ld a, $1
 	ld [wd42e], a
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jp z, Func_70bae
 	ld a, [wd404]
@@ -1537,7 +1537,7 @@ Func_70bca:
 	call DecompressGFXByIndex_
 	ld hl, VTilesShared tile $00
 	call Func_717c8
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	ld hl, $390
@@ -1562,12 +1562,12 @@ Func_70bca:
 	ld a, $0
 	call LoadStdBGMapLayout_
 	hlbgcoord 2, 4
-	ld a, [wc907]
+	ld a, [wDShotReceptionLevel]
 	call Func_7030c
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call Func_3566
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jp z, Func_70cb9
 	ld a, [wd404]
@@ -1642,7 +1642,7 @@ Func_70cb9: ; 70cb9 (1c:4cb9)
 	ld hl, VTilesBG tile $18
 	ld b, $8
 	call PlaceString_
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jr z, .asm_70ceb
 	ld a, [wd404]
@@ -1668,12 +1668,12 @@ asm_70cf4
 	inc a
 	hlbgcoord 17, 1
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd4a0]
 	inc a
 	hlbgcoord 14, 1
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	call CloseSRAM
 	ld a, $1
 	call StartFade_
@@ -1693,7 +1693,7 @@ Func_70d22:
 	jp NextBattleSubroutine
 
 Func_70d39:
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jr z, .asm_70d60
 	ld a, [wd404]
@@ -1837,7 +1837,7 @@ Func_70e59: ; 70e59 (1c:4e59)
 	jp z, Func_70f60
 	ld a, $3
 	ld [H_SFX_ID], a
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jr nz, .asm_70e83
 	ld a, [wd429]
@@ -2062,7 +2062,7 @@ Func_71033:
 	ld e, $8c
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jr z, .asm_71066
 	ld a, [wd404]
@@ -2139,7 +2139,7 @@ Func_710ae:
 	ld a, [wd42b]
 	cp $0
 	jp z, .check_a_b
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $0
 	jp z, .check_a_b
 	ld a, [hJoyNew]
@@ -2784,7 +2784,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	inc a
 	hlbgcoord 14, 1
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd44e]
 	cp $1
 	jr z, .asm_71657
@@ -2798,11 +2798,11 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hl]
 	hlbgcoord 13, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd4a2]
 	hlbgcoord 17, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $2
 	jr c, .asm_71656
@@ -2813,11 +2813,11 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hl]
 	hlbgcoord 13, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd4a3]
 	hlbgcoord 17, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $3
 	jr c, .asm_71656
@@ -2828,11 +2828,11 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hl]
 	hlbgcoord 13, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd4a4]
 	hlbgcoord 17, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 .asm_71656
 	ret
 
@@ -2852,7 +2852,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $0
 	call Func_71738
 	ld hl, sAddressBook + $02
@@ -2860,7 +2860,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hl]
 	hlbgcoord 17, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $2
 	jr c, Func_71703
@@ -2876,7 +2876,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $1
 	call Func_71738
 	ld hl, sAddressBook + $02
@@ -2884,7 +2884,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hl]
 	hlbgcoord 17, 7
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wd413]
 	cp $3
 	jr c, Func_71703
@@ -2900,7 +2900,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 13, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld d, $2
 	call Func_71738
 	ld hl, sAddressBook + $02
@@ -2908,7 +2908,7 @@ Func_715ce: ; 715ce (1c:55ce)
 	ld a, [hl]
 	hlbgcoord 17, 10
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 Func_71703: ; 71703 (1c:5703)
 	ret
 
@@ -2933,7 +2933,7 @@ Func_71715:
 	add hl, de
 	hlbgcoord 13, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wPlayerDenjuu1Field0x08]
 	ld bc, $4
 	ld hl, $0
@@ -2941,7 +2941,7 @@ Func_71715:
 	add hl, bc
 	hlbgcoord 17, 4
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ret
 
 Func_71738: ; 71738 (1c:5738)
@@ -3011,7 +3011,7 @@ Func_71744: ; 71744 (1c:5744)
 
 Func_717c8: ; 717c8 (1c:57c8)
 	push hl
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	sla e
@@ -3079,7 +3079,7 @@ Func_71831:
 	call BattleResults_ResetLCDCFlags_
 	call Func_71a2f
 	call Func_057e
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	ld hl, $390

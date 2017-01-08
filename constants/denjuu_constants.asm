@@ -1,176 +1,176 @@
 	const_def
 
-	const TSUNONASU
-	const KOCHIA
-	const OSHE
-	const KESHI
-	const CRYPTO
-	const MONSTERA
-	const FUNGUS
-	const HIOUGI
-	const PUNICA
-	const GUMI
-	const SUGURI
-	const GANRAIKOU
-	const BYAKUBU
-	const TELOPEA
-	const MANTEA
-	const IXORA
-	const MYRTUS
-	const LYCHNIS
-	const LAPEIROUSIA
-	const BUBARIA
-	const ANGIOS
-	const GYMNOS
-	const LIRIOPE
-	const WARATAH
-	const SORGHUM
-	const ERYNGO
-	const NORIUTSUGI
-	const PAMPAS
-	const RHODANTHE
-	const LICORICE
-	const VIBURNUM
-	const FUNNEL
-	const VANDA
-	const UIKYOU
-	const OBANA
-	const FIREKOKKO
-	const RAYGOTEN
-	const DRILARMOR
-	const CHAMELAN
-	const CRYPTOARM
-	const SHELLSTERA
-	const FUNGEIST
-	const BALLTAMUS
-	const BURENICA
-	const GERON
-	const BERZELIA
-	const NIGELLA
-	const MUSA
-	const NETARO
-	const NEJIRO
-	const GODETIA
-	const CURCUMA
-	const TESSEN
-	const HELIOPSIS
-	const HAGUMANOKI
-	const GILERTH
-	const RAYGIRTH
-	const ARMARU
-	const CHAMERAID
-	const CRYPTORIDE
-	const WORMITERALA
-	const FUNGBLADE
-	const BULLTAMUS
-	const PUNEEDLE
-	const KERORIN
-	const SUGULAI
-	const CORTOS
-	const GAIURUS
-	const MIDOTOR
-	const OCTOR
-	const HITODEIGHT
-	const GHOSBOAR
-	const RASENMAI
-	const SCORPIL
-	const ARMCRAB
-	const ANGIORN
-	const GYMRACE
-	const LIRIONPU
-	const WHITAH
-	const POTZAL
-	const ARANEIDA
-	const GADHORO
-	const CLIOGERA
-	const GUST
-	const REIGE
-	const TOGERUKA
-	const RAIGALEON
-	const GADORKUMA
-	const ABIRAS
-	const ALPHAGOS
-	const KIYORUKA
-	const GYMGARTH
-	const BAIONPU
-	const WARUTAH
-	const GUNTZATL
-	const ARAKUIDA
-	const BADHORO
-	const LAMPGERA
-	const TEMPEST
-	const ZUDOON
-	const HIYU
-	const GAMAZUMI
-	const PAPAVER
-	const GAMURU
-	const BOUVARDI
-	const GAULTHERIA
-	const DIPSACUS
-	const KAYA
-	const DENFARE
-	const ANGIEON
-	const EASYDOG
-	const TRICERARMOR
-	const CRYPTOSNIPE
-	const FUNGBOOST
-	const VEENICA
-	const SAIGULIGER
-	const ARMEDURUS
-	const OCTORIFLE
-	const ERASERBOAR
-	const SPEARNEEDLE
-	const GILGIERTH
-	const UNIARMOR
-	const CRYPTOBURN
-	const FUNGMACHINE
-	const PUNISTO
-	const SUGULINE
-	const MACHURUS
-	const OCTAGUN
-	const MUMMYBOAR
-	const KINGPIN
-	const BEEBALM
-	const SALAL
-	const ENISHIDA
-	const TULBAGHIA
-	const KIRINGIKU
-	const ANGILANCE
-	const GYMGANON
-	const SAIOPE
-	const WATTAH
-	const QUETZAKING
-	const ARAKUDABARAN
-	const PUNKHORO
-	const VIKINGURIN
-	const STORM
-	const MUTOOM
-	const GYPSOPHI
-	const RUSCUS
-	const MAORAN
-	const ZEA
-	const GONUM
-	const ANGIPOWER
-	const GYMZYRUS
-	const CANONOPE
-	const CALM
-	const RYUUGUU
-	const GIGAGIGERTH
-	const BARRIARM
-	const CRYPTOKNIGHT
-	const FUNGWAR
-	const BASHOU
-	const ANGIGORGO
-	const GYMBARON
-	const LIRIMONARCH
-	const ENTEIOH
-	const GOLAKING
-	const KANZOU
-	const ORNITHOGALUM
-	const GENTIANA
-	const YARROW
-	const ANGIOROS
-	const GYMZATAN
-	const DOOMSDAY
-	const DENDEL
-	const TELETEL
+	const TSUNONASU    ; 00
+	const KOCHIA       ; 01
+	const OSHE         ; 02
+	const KESHI        ; 03
+	const CRYPTO       ; 04
+	const MONSTERA     ; 05
+	const FUNGUS       ; 06
+	const HIOUGI       ; 07
+	const PUNICA       ; 08
+	const GUMI         ; 09
+	const SUGURI       ; 0a
+	const GANRAIKOU    ; 0b
+	const BYAKUBU      ; 0c
+	const TELOPEA      ; 0d
+	const MANTEA       ; 0e
+	const IXORA        ; 0f
+	const MYRTUS       ; 10
+	const LYCHNIS      ; 11
+	const LAPEIROUSIA  ; 12
+	const BUBARIA      ; 13
+	const ANGIOS       ; 14
+	const GYMNOS       ; 15
+	const LIRIOPE      ; 16
+	const WARATAH      ; 17
+	const SORGHUM      ; 18
+	const ERYNGO       ; 19
+	const NORIUTSUGI   ; 1a
+	const PAMPAS       ; 1b
+	const RHODANTHE    ; 1c
+	const LICORICE     ; 1d
+	const VIBURNUM     ; 1e
+	const FUNNEL       ; 1f
+	const VANDA        ; 20
+	const UIKYOU       ; 21
+	const OBANA        ; 22
+	const FIREKOKKO    ; 23
+	const RAYGOTEN     ; 24
+	const DRILARMOR    ; 25
+	const CHAMELAN     ; 26
+	const CRYPTOARM    ; 27
+	const SHELLSTERA   ; 28
+	const FUNGEIST     ; 29
+	const BALLTAMUS    ; 2a
+	const BURENICA     ; 2b
+	const GERON        ; 2c
+	const BERZELIA     ; 2d
+	const NIGELLA      ; 2e
+	const MUSA         ; 2f
+	const NETARO       ; 30
+	const NEJIRO       ; 31
+	const GODETIA      ; 32
+	const CURCUMA      ; 33
+	const TESSEN       ; 34
+	const HELIOPSIS    ; 35
+	const HAGUMANOKI   ; 36
+	const GILERTH      ; 37
+	const RAYGIRTH     ; 38
+	const ARMARU       ; 39
+	const CHAMERAID    ; 3a
+	const CRYPTORIDE   ; 3b
+	const WORMITERALA  ; 3c
+	const FUNGBLADE    ; 3d
+	const BULLTAMUS    ; 3e
+	const PUNEEDLE     ; 3f
+	const KERORIN      ; 40
+	const SUGULAI      ; 41
+	const CORTOS       ; 42
+	const GAIURUS      ; 43
+	const MIDOTOR      ; 44
+	const OCTOR        ; 45
+	const HITODEIGHT   ; 46
+	const GHOSBOAR     ; 47
+	const RASENMAI     ; 48
+	const SCORPIL      ; 49
+	const ARMCRAB      ; 4a
+	const ANGIORN      ; 4b
+	const GYMRACE      ; 4c
+	const LIRIONPU     ; 4d
+	const WHITAH       ; 4e
+	const POTZAL       ; 4f
+	const ARANEIDA     ; 50
+	const GADHORO      ; 51
+	const CLIOGERA     ; 52
+	const GUST         ; 53
+	const REIGE        ; 54
+	const TOGERUKA     ; 55
+	const RAIGALEON    ; 56
+	const GADORKUMA    ; 57
+	const ABIRAS       ; 58
+	const ALPHAGOS     ; 59
+	const KIYORUKA     ; 5a
+	const GYMGARTH     ; 5b
+	const BAIONPU      ; 5c
+	const WARUTAH      ; 5d
+	const GUNTZATL     ; 5e
+	const ARAKUIDA     ; 5f
+	const BADHORO      ; 60
+	const LAMPGERA     ; 61
+	const TEMPEST      ; 62
+	const ZUDOON       ; 63
+	const HIYU         ; 64
+	const GAMAZUMI     ; 65
+	const PAPAVER      ; 66
+	const GAMURU       ; 67
+	const BOUVARDI     ; 68
+	const GAULTHERIA   ; 69
+	const DIPSACUS     ; 6a
+	const KAYA         ; 6b
+	const DENFARE      ; 6c
+	const ANGIEON      ; 6d
+	const EASYDOG      ; 6e
+	const TRICERARMOR  ; 6f
+	const CRYPTOSNIPE  ; 70
+	const FUNGBOOST    ; 71
+	const VEENICA      ; 72
+	const SAIGULIGER   ; 73
+	const ARMEDURUS    ; 74
+	const OCTORIFLE    ; 75
+	const ERASERBOAR   ; 76
+	const SPEARNEEDLE  ; 77
+	const GILGIERTH    ; 78
+	const UNIARMOR     ; 79
+	const CRYPTOBURN   ; 7a
+	const FUNGMACHINE  ; 7b
+	const PUNISTO      ; 7c
+	const SUGULINE     ; 7d
+	const MACHURUS     ; 7e
+	const OCTAGUN      ; 7f
+	const MUMMYBOAR    ; 80
+	const KINGPIN      ; 81
+	const BEEBALM      ; 82
+	const SALAL        ; 83
+	const ENISHIDA     ; 84
+	const TULBAGHIA    ; 85
+	const KIRINGIKU    ; 86
+	const ANGILANCE    ; 87
+	const GYMGANON     ; 88
+	const SAIOPE       ; 89
+	const WATTAH       ; 8a
+	const QUETZAKING   ; 8b
+	const ARAKUDABARAN ; 8c
+	const PUNKHORO     ; 8d
+	const VIKINGURIN   ; 8e
+	const STORM        ; 8f
+	const MUTOOM       ; 90
+	const GYPSOPHI     ; 91
+	const RUSCUS       ; 92
+	const MAORAN       ; 93
+	const ZEA          ; 94
+	const GONUM        ; 95
+	const ANGIPOWER    ; 96
+	const GYMZYRUS     ; 97
+	const CANONOPE     ; 98
+	const CALM         ; 99
+	const RYUUGUU      ; 9a
+	const GIGAGIGERTH  ; 9b
+	const BARRIARM     ; 9c
+	const CRYPTOKNIGHT ; 9d
+	const FUNGWAR      ; 9e
+	const BASHOU       ; 9f
+	const ANGIGORGO    ; a0
+	const GYMBARON     ; a1
+	const LIRIMONARCH  ; a2
+	const ENTEIOH      ; a3
+	const GOLAKING     ; a4
+	const KANZOU       ; a5
+	const ORNITHOGALUM ; a6
+	const GENTIANA     ; a7
+	const YARROW       ; a8
+	const ANGIOROS     ; a9
+	const GYMZATAN     ; aa
+	const DOOMSDAY     ; ab
+	const DENDEL       ; ac
+	const TELETEL      ; ad

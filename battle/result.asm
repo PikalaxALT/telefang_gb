@@ -47,8 +47,8 @@ CopyNthDenjuuToBuffer: ; 7404f (1d:404f)
 	jr nz, .copy
 	ret
 
-Func_74066:
-	ld [wd435], a
+CopyDenjuuSpeciesNameToUserNameBuffer:
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
@@ -138,20 +138,18 @@ CheckLearnedMove: ; 740a5 (1d:40a5)
 BattleResult__: ; 740ee (1d:40ee)
 	ld a, [wBattleSubroutine]
 	jump_table
-	dw .HandleBattleRexult
-	dw .CheckBattleResult
+	dw .HandleBattleRexult ; 0
+	dw .CheckBattleResult ; 1
 	; WON
-	dw Func_74120
-	dw Func_74142
-	dw Func_74145
-	dw DenjuuWantsToJoinTeam
-
-	; LOST
-	dw Func_741e7
-	dw Func_74216
-	dw Func_74219
-	dw Func_74220
-	dw ReturnToGameOverScreen
+	dw .CheckAnyDenjuuEvolved ; 2
+	dw .EvolveDenjuu ; 3
+	dw CheckDenjuuWantsToJoinTeam ; 4
+	dw DenjuuWantsToJoinTeam ; 5
+	dw Func_741e7 ; 6
+	dw Func_74216 ; 7
+	dw Func_74219 ; 8
+	dw Func_74220 ; 9
+	dw ReturnToGameOverScreen ; a
 
 .HandleBattleRexult: ; 7410e (1d:410e)
 	jp HandleBattleRexult
@@ -167,106 +165,106 @@ BattleResult__: ; 740ee (1d:40ee)
 	ld [wBattleSubroutine], a
 	ret
 
-Func_74120: ; 74120 (1d:4120)
+.CheckAnyDenjuuEvolved: ; 74120 (1d:4120)
 	xor a
 	ld [wd401], a
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $b
-	jr z, .asm_7413f
+	jr z, .no_denjuu_evolved
 	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $b
-	jr z, .asm_7413f
+	jr z, .no_denjuu_evolved
 	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $b
-	jr z, .asm_7413f
+	jr z, .no_denjuu_evolved
 	ld a, $4
 	ld [wBattleSubroutine], a
 	ret
 
-.asm_7413f
+.no_denjuu_evolved
 	jp NextBattleSubroutine
 
-Func_74142: ; 74142 (1d:4142)
-	jp Func_7548f
+.EvolveDenjuu: ; 74142 (1d:4142)
+	jp EvolveDenjuu
 
-Func_74145: ; 74145 (1d:4145)
+CheckDenjuuWantsToJoinTeam: ; 74145 (1d:4145)
 	xor a
 	ld [wd401], a
 	ld a, [wBattleMode]
 	cp $2
-	jp z, Func_741de
+	jp z, .skip_recruiting_denjuu
 	ld a, [wPlayerNameEntryBuffer]
 	or a
-	jp nz, Func_741de
+	jp nz, .skip_recruiting_denjuu
 	ld a, [wCurEnemyDenjuu]
 	cp $1
-	jr z, .asm_74179
+	jr z, .denjuu_2
 	cp $2
-	jr z, .asm_7418e
+	jr z, .denjuu_3
 	ld a, [wEnemyDenjuu1ArrivedStatus]
 	cp $8
-	jp z, Func_741de
+	jp z, .skip_recruiting_denjuu
 	ld a, [wEnemyDenjuu1Species]
 	ld b, a
 	ld a, [wEnemyDenjuu1Level]
 	ld c, a
 	ld a, [wEnemyDenjuu1Field0x0c]
 	ld d, a
-	jr .asm_741a1
+	jr .check_wants_to_join
 
-.asm_74179
+.denjuu_2
 	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $8
-	jr z, Func_741de
+	jr z, .skip_recruiting_denjuu
 	ld a, [wEnemyDenjuu2]
 	ld b, a
 	ld a, [wEnemyDenjuu2Level]
 	ld c, a
 	ld a, [wEnemyDenjuu2Field0x0c]
 	ld d, a
-	jr .asm_741a1
+	jr .check_wants_to_join
 
-.asm_7418e
+.denjuu_3
 	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $8
-	jr z, Func_741de
+	jr z, .skip_recruiting_denjuu
 	ld a, [wEnemyDenjuu3Species]
 	ld b, a
 	ld a, [wEnemyDenjuu3Level]
 	ld c, a
 	ld a, [wEnemyDenjuu3Field0x0c]
 	ld d, a
-.asm_741a1
+.check_wants_to_join
 	ld a, b
-	ld [wd480], a
+	ld [wRecruitedDenjuuSpecies], a
 	ld a, c
-	ld [wd481], a
-	ld a, $14
-	ld [wd482], a
+	ld [wRecruitedDenjuuLevel], a
+	ld a, 20
+	ld [wRecruitedDenjuuInitialFD], a
 	ld a, d
-	ld [wd483], a
+	ld [wRecruitedDenjuuField0x03], a
 	ld a, $0
 	or a
 	jp nz, NextBattleSubroutine
 	ld a, [wBattleMode]
 	or a
 	jp nz, NextBattleSubroutine
-	ld a, [wd40c]
-	cp $fe
-	jr nc, Func_741de
-	call Func_753f8
+	ld a, [wNumDenjuuInAddressBook]
+	cp ADDRESS_BOOK_SIZE
+	jr nc, .skip_recruiting_denjuu
+	call CheckIfDenjuuSpeciesInAddressBook
 	or a
-	jr z, .asm_741d6
+	jr z, .high_chance
 	call Random
-	cp $10
+	cp $10 ; 6.25%
 	jp c, NextBattleSubroutine
-	jr Func_741de
+	jr .skip_recruiting_denjuu
 
-.asm_741d6
+.high_chance
 	call Random
-	cp $99
+	cp $99 ; 60%
 	jp c, NextBattleSubroutine
-Func_741de: ; 741de (1d:41de)
+.skip_recruiting_denjuu: ; 741de (1d:41de)
 	ld a, $8
 	ld [wBattleSubroutine], a
 	ret
@@ -312,7 +310,7 @@ Func_74219: ; 74219 (1d:4219)
 Func_74220: ; 74220 (1d:4220)
 	xor a
 	ld [wd401], a
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	or a
 	jr z, .asm_74230
 	ld a, $8
@@ -1340,7 +1338,7 @@ PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld a, [wCurDenjuuBufferLevel]
 	hlbgcoord 16, 2
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wCurDenjuuBufferLevel]
 	ld b, a
 	ld a, [wCurDenjuuBufferSpecies]
@@ -1349,7 +1347,7 @@ PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 16, 4
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wCurDenjuuStat]
 	push af
 	ld a, [wCurDenjuuBufferLevel]
@@ -1382,7 +1380,7 @@ PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 16, 7
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wCurDenjuuStat]
 	push af
 	ld a, [wCurDenjuuBufferLevel]
@@ -1415,7 +1413,7 @@ PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 16, 9
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wCurDenjuuStat]
 	push af
 	ld a, [wCurDenjuuBufferLevel]
@@ -1448,7 +1446,7 @@ PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 16, 11
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wCurDenjuuStat]
 	push af
 	ld a, [wCurDenjuuBufferLevel]
@@ -1481,7 +1479,7 @@ PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 16, 13
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wCurDenjuuStat]
 	push af
 	ld a, [wCurDenjuuBufferLevel]
@@ -1514,7 +1512,7 @@ PrepareLevelUpScreenLayout: ; 7497d (1d:497d)
 	ld a, [wCurDenjuuStat]
 	hlbgcoord 16, 15
 	ld c, $0
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, [wCurDenjuuStat]
 	push af
 	ld a, [wCurDenjuuBufferLevel]
@@ -1615,7 +1613,7 @@ BattleResults_CheckLearnedMove: ; 74bdc (1d:4bdc)
 	ld a, [wLearnedMove]
 	cp $0
 	jr z, .skip_learn_move
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, MoveNames
 	call Get8CharName75
 	ld bc, wStringBuffer
@@ -2192,7 +2190,7 @@ Func_75024:
 DenjuuWantsToJoinTeam_: ; 75040 (1d:5040)
 	ld a, [wd401]
 	jump_table
-	dw Func_7506d
+	dw SetUpRecruitmentScreenLayout
 	dw Func_75113
 	dw Func_75158
 	dw Func_75169
@@ -2211,7 +2209,7 @@ Data_75064:
 	db 70, 140, 240
 	db 70, 140, 240
 
-Func_7506d:
+SetUpRecruitmentScreenLayout:
 	ld bc, $16
 	call DecompressGFXByIndex_
 	ld bc, $9
@@ -2240,10 +2238,10 @@ Func_7506d:
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, VTilesBG tile $10
-	call Func_3d95
-	ld a, [wd480]
+	call GetCurDenjuuKanjiDescription
+	ld a, [wRecruitedDenjuuSpecies]
 	push af
 	ld c, $0
 	ld de, VTilesShared tile $00
@@ -2253,21 +2251,21 @@ Func_7506d:
 	ld hl, VTilesBG tile $58
 	ld a, $8
 	call ClearString
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $58
 	call GetAndPrintName75CenterAlign
-	ld a, [wd480]
-	call Func_74066
+	ld a, [wRecruitedDenjuuSpecies]
+	call CopyDenjuuSpeciesNameToUserNameBuffer
 	ld c, $6c
 	call StdBattleTextBox
 	ld a, $28
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, [wd481]
+	ld a, [wRecruitedDenjuuLevel]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, $0
 	call Func_75456
 	ld a, $4
@@ -2282,7 +2280,7 @@ Func_75113:
 	call PaletteFade_
 	or a
 	ret z
-	call Func_753f8
+	call CheckIfDenjuuSpeciesInAddressBook
 	cp $0
 	jr z, .asm_7512b
 	lb bc, $2, $1
@@ -2331,21 +2329,21 @@ Func_75169: ; 75169 (1d:5169)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld hl, Data_75064
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	inchlntimes
 	ld a, [hl]
 	ld b, a
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp b
 	jr nc, .asm_751bd
 	ld bc, $18
 	call DecompressGFXByIndex_
-	call Func_753ad
+	call CopyRecruitedDenjuuToAddressBook
 	ld a, $0
 	ld [wcd24], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $a
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld e, a
@@ -2464,7 +2462,7 @@ Func_75202: ; 75202 (1d:5202)
 	ld [wd40d], a
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $1
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call GetNthAddressBookAttributeAddr
 	ld a, $0
 	ld [hl], a
@@ -2626,35 +2624,35 @@ Func_7538e: ; 7538e (1d:538e)
 	ld [wGameRoutine], a
 	ret
 
-Func_753ad: ; 753ad (1d:53ad)
+CopyRecruitedDenjuuToAddressBook: ; 753ad (1d:53ad)
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $1
 	ld de, $10
 	ld b, $0
-.asm_753b8
+.loop
 	add hl, de
 	inc b
 	ld a, [hl]
 	cp $0
-	jr nz, .asm_753b8
+	jr nz, .loop
 	ld a, b
-	ld [wd4a7], a
-	ld a, [wd4a7]
+	ld [wFirstEmptySlotInAddressBook], a
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, sAddressBook + $0
 	call GetNthAddressBookAttributeAddr
 	push hl
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld [hli], a
-	ld a, [wd481]
+	ld a, [wRecruitedDenjuuLevel]
 	ld [hli], a
-	ld a, [wd482]
+	ld a, [wRecruitedDenjuuInitialFD]
 	ld [hli], a
-	ld a, [wd483]
+	ld a, [wRecruitedDenjuuField0x03]
 	ld [hli], a
 	pop hl
 	call Func_0648
 	call OpenSRAMBank2
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	ld hl, sAddressBook + $8
 	call GetNthAddressBookAttributeAddr
 	push hl
@@ -2665,19 +2663,19 @@ Func_753ad: ; 753ad (1d:53ad)
 	call CloseSRAM
 	ret
 
-Func_753f8: ; 753f8 (1d:53f8)
+CheckIfDenjuuSpeciesInAddressBook: ; 753f8 (1d:53f8)
 	ld b, $0
 	ld hl, wd000
 	ld a, $0
 	ld [wd4b0], a
-.asm_75402
+.loop
 	ld a, [wcb3f]
 	cp $0
-	jr z, .asm_7540f
-	ld a, [wd4a7]
+	jr z, .go
+	ld a, [wFirstEmptySlotInAddressBook]
 	cp b
-	jr z, .asm_7542d
-.asm_7540f
+	jr z, .next
+.go
 	push hl
 	push bc
 	call OpenSRAMBank2
@@ -2690,37 +2688,37 @@ Func_753f8: ; 753f8 (1d:53f8)
 	pop bc
 	pop hl
 	cp $0
-	jr z, .asm_7542d
+	jr z, .next
 	ld a, d
 	ld [hli], a
 	ld a, [wd4b0]
 	inc a
 	ld [wd4b0], a
-.asm_7542d
+.next
 	inc b
-	ld a, $fe
+	ld a, ADDRESS_BOOK_SIZE
 	cp b
-	jr nz, .asm_75402
+	jr nz, .loop
 	ld hl, wd000
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld b, a
 	ld a, [wd4b0]
 	ld c, a
-.asm_7543e
+.loop2
 	ld a, [hl]
 	cp b
-	jr z, .asm_7544d
+	jr z, .found_it
 	inc hl
 	dec c
-	jr nz, .asm_7543e
+	jr nz, .loop2
 	ld a, $0
 	ld [BattleResults_CurBattleDenjuu], a
-	jr .asm_75452
+	jr .done
 
-.asm_7544d
+.found_it
 	ld a, $1
 	ld [BattleResults_CurBattleDenjuu], a
-.asm_75452
+.done
 	call CloseSRAM
 	ret
 
@@ -2757,11 +2755,11 @@ Func_7546d: ; 7546d (1d:546d)
 	ld [wBattleMenuCursorObjectTemplateIDX], a
 	jp InitBattleMenuCursor
 
-Func_7548f: ; 7548f (1d:548f)
+EvolveDenjuu: ; 7548f (1d:548f)
 	ld a, [wd401]
 	jump_table
-	dw Func_754b1
-	dw Func_75534
+	dw EvolveDenjuu_SetUpLayout
+	dw EvolveDenjuu_WaitFadeIn
 	dw Func_756e8
 	dw Func_75770
 	dw Func_75782
@@ -2773,7 +2771,7 @@ Func_7548f: ; 7548f (1d:548f)
 	dw Func_75610
 	dw Func_75632
 
-Func_754b1: ; 754b1 (1d:54b1)
+EvolveDenjuu_SetUpLayout: ; 754b1 (1d:54b1)
 	ld bc, $16
 	call DecompressGFXByIndex_
 	ld bc, $9
@@ -2825,7 +2823,7 @@ Func_754b1: ; 754b1 (1d:54b1)
 	ld [wd401], a
 	ret
 
-Func_75534: ; 75534 (1d:5534)
+EvolveDenjuu_WaitFadeIn: ; 75534 (1d:5534)
 	ld a, $0
 	call PaletteFade_
 	or a
@@ -2837,41 +2835,41 @@ Func_75534: ; 75534 (1d:5534)
 Func_75541: ; 75541 (1d:5541)
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $b
-	jr nz, .asm_7554f
+	jr nz, .check_denjuu2
 	ld a, $0
 	ld [BattleResults_CurBattleDenjuu], a
-	jr .asm_75571
+	jr .go_ahead
 
-.asm_7554f
+.check_denjuu2
 	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $b
-	jr nz, .asm_7555d
+	jr nz, .check_denjuu3
 	ld a, $1
 	ld [BattleResults_CurBattleDenjuu], a
-	jr .asm_75571
+	jr .go_ahead
 
-.asm_7555d
+.check_denjuu3
 	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $b
-	jr nz, .asm_7556b
+	jr nz, .nope
 	ld a, $2
 	ld [BattleResults_CurBattleDenjuu], a
-	jr .asm_75571
+	jr .go_ahead
 
-.asm_7556b
+.nope
 	ld a, $3
 	ld [wd401], a
 	ret
 
-.asm_75571
+.go_ahead
 	ld a, [BattleResults_CurBattleDenjuu]
 	ld hl, wPlayerDenjuu1Species
 	call CopyNthDenjuuToBuffer
 	ld a, [wCurDenjuuBufferSpecies]
-	call Func_74066
+	call CopyDenjuuSpeciesNameToUserNameBuffer
 	ld a, [wCurDenjuuBuffer]
 	ld de, VTilesBG tile $10
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	lb bc, $6, $5
 	ld e, $8b
 	ld a, $0
@@ -2897,7 +2895,7 @@ Func_75541: ; 75541 (1d:5541)
 	call GetDenjuuPalette_Pal7
 	ld a, $1
 	ld [wBGPalUpdate], a
-	ld a, [wCurDenjuuBuffer]
+	ld a, [wCurDenjuuBufferSpecies]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $58
 	call GetAndPrintName75CenterAlign
@@ -2906,7 +2904,7 @@ Func_75541: ; 75541 (1d:5541)
 	ld a, [wCurDenjuuBufferLevel]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld b, $0
 	ld a, [wCurDenjuuStat]
 	dec a
@@ -3021,7 +3019,7 @@ Func_75693: ; 75693 (1d:5693)
 	ld a, [wCurDenjuuStat]
 	dec a
 	ld de, VTilesBG tile $10
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld a, $9
 	ld [wd401], a
 	ret
@@ -3042,7 +3040,7 @@ Func_756b0: ; 756b0 (1d:56b0)
 	ld a, [wCurDenjuuStat]
 	dec a
 	ld de, $4000 ; overwritten
-	call Func_74066
+	call CopyDenjuuSpeciesNameToUserNameBuffer
 	ld a, $15
 	ld [H_SFX_ID], a
 	ld c, $1a
@@ -3055,9 +3053,9 @@ Func_756e8: ; 756e8 (1d:56e8)
 	call BattlePrintText
 	ld a, [wVBlankCounter]
 	and $3
-	jr nz, .asm_756fa
+	jr nz, .skip
 	callba Func_33303
-.asm_756fa
+.skip
 	call Func_7567d
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -3201,7 +3199,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jr z, .asm_75824
 	call Func_758f8
@@ -3228,9 +3226,9 @@ Func_757d9: ; 757d9 (1d:57d9)
 	dec a
 	jr nz, .asm_75842
 	call CloseSRAM
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	dec a
-	ld [wd40c], a
+	ld [wNumDenjuuInAddressBook], a
 	ld a, [wd4eb]
 	ld c, a
 	call Func_06a4
@@ -3238,7 +3236,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	ld [wcd24], a
 	ld a, [wd492]
 	ld de, VTilesBG tile $10
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld a, [wd492]
 	push af
 	ld c, $0
@@ -3257,7 +3255,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	ld a, [wd493]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld a, $2e
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -3350,7 +3348,7 @@ Func_758f8: ; 758f8 (1d:58f8)
 	ld c, $0
 	ld a, $0
 	ld [wd4eb], a
-	ld a, [wd40c]
+	ld a, [wNumDenjuuInAddressBook]
 	cp $2
 	jp z, Func_7597b
 	dec a

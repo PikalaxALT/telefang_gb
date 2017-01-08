@@ -144,7 +144,7 @@ Func_053e::
 	ret
 
 LoadUnknGfx090::
-	call Func_39ec
+	call LoadUnknGfx090_
 	rst MemBankswitch
 	ret
 
@@ -156,7 +156,7 @@ Get8CharName75::
 	ret
 
 Get8CharName0B::
-	ld a, $b
+	ld a, BANK(ItemNames)
 	rst Bankswitch
 	call Get8CharName
 	rst MemBankswitch
@@ -242,7 +242,7 @@ LoadKanji_::
 	rst MemBankswitch
 	ret
 
-Func_05ac::
+LoadButtonGFX_::
 	call LoadButtonGFX
 	rst MemBankswitch
 	ret
@@ -477,7 +477,7 @@ Func_06e4::
 	ret
 
 Func_0704::
-	homecall_memret Func_753f8
+	homecall_memret CheckIfDenjuuSpeciesInAddressBook
 	ret
 
 Func_070c::

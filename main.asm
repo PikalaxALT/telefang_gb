@@ -846,9 +846,9 @@ Func_8cde: ; 8cde (2:4cde)
 Func_8cf5: ; 8cf5 (2:4cf5)
 	ld a, [wCurDenjuu]
 	ld de, VTilesBG tile $20
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld a, [wd499]
-	call Func_05ac
+	call LoadButtonGFX_
 	ld a, [wd499]
 	call Func_05b1
 	ld hl, VTilesBG tile $30
@@ -1082,9 +1082,9 @@ Func_8e98: ; 8e98 (2:4e98)
 	ld [wBGPalUpdate], a
 	ld a, [wCurDenjuu]
 	ld de, VTilesBG tile $20
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld a, [wd499]
-	call Func_05ac
+	call LoadButtonGFX_
 	ld a, [wd499]
 	call Func_05b1
 	ld hl, VTilesBG tile $30
@@ -1916,9 +1916,9 @@ ENDC
 	xor a
 	ld [MBC3SRamEnable], a
 	ld a, [wc926]
-	ld [wc904], a
+	ld [wMapGroup], a
 	ld a, [wc927]
-	ld [wc906], a
+	ld [wMapNumber], a
 	ld a, [wc928]
 	ld [wc901], a
 	ld a, [wc929]
@@ -3121,26 +3121,26 @@ Func_2dfaf:
 	ld a, [wJoyNew]
 	and D_LEFT
 	jr z, .asm_2dfc8
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	inc a
-	ld [wc904], a
+	ld [wMapGroup], a
 	cp $35
 	jr c, .asm_2dff7
 	ld a, $0
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr .asm_2dff7
 
 .asm_2dfc8
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_2dfe1
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	dec a
-	ld [wc904], a
+	ld [wMapGroup], a
 	cp $2
 	jr nc, .asm_2dff7
 	ld a, $34
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr .asm_2dff7
 
 .asm_2dfe1
@@ -3159,7 +3159,7 @@ Func_2dfaf:
 	push af
 	push hl
 	push bc
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	hlbgcoord 1, 0, VWindow
 	call Func_353b
 	pop bc
@@ -3168,7 +3168,7 @@ Func_2dfaf:
 	push af
 	push hl
 	push bc
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	hlbgcoord 4, 0, VWindow
 	call Func_353b
 	pop bc
@@ -3195,10 +3195,10 @@ Func_2e033:
 	ret
 
 Func_2e03c: ; 2e03c (b:603c)
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	inc a
 	and $3f
-	ld [wc906], a
+	ld [wMapNumber], a
 	call Func_2793
 	ld a, [wc903]
 	cp $ff
@@ -3206,10 +3206,10 @@ Func_2e03c: ; 2e03c (b:603c)
 	jr Func_2e03c
 
 Func_2e050: ; 2e050 (b:6050)
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	dec a
 	and $3f
-	ld [wc906], a
+	ld [wMapNumber], a
 	call Func_2793
 	ld a, [wc903]
 	cp $ff
@@ -3300,7 +3300,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	or a
 	ret nz
 .asm_2e0de
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $2
 	ret c
 	cp $32
@@ -3308,13 +3308,13 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	cp $2b
 	ret nc
 .asm_2e0eb
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $a
 	jr nc, .asm_2e148
 	call Func_2e179
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld [wc913], a
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld [wc914], a
 	cp $6
 	jr c, .asm_2e107
@@ -3330,7 +3330,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld b, a
 	srl a
 	srl a
@@ -3374,7 +3374,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	rl b
 	ld hl, s2_b000
 	add hl, bc
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	srl a
 	srl a
 	srl a
@@ -3383,14 +3383,14 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	and $7
 	jr .asm_2e129
 
 Func_2e179: ; 2e179 (b:6179)
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld b, a
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld c, a
 	cp $2
 	jr nz, .asm_2e1b8
@@ -3473,23 +3473,23 @@ Func_2e204: ; 2e204 (b:6204)
 	ld b, a
 	and $1
 	jr nz, .asm_2e217
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	add b
 	and $3f
-	ld [wc906], a
+	ld [wMapNumber], a
 	jr .asm_2e227
 
 .asm_2e217
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	and $f8
 	ld c, a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	add b
 	and $7
 	or c
-	ld [wc906], a
+	ld [wMapNumber], a
 .asm_2e227
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $2
 	jr z, .asm_2e23c
 	cp $3
@@ -3504,49 +3504,49 @@ Func_2e204: ; 2e204 (b:6204)
 	ld a, $8
 	cp b
 	jr nz, .asm_2e252
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $8
 	jr nc, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	add $2
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 .asm_2e252
 	ld a, $1
 	cp b
 	jr nz, asm_2e296
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	and $7
 	jr nz, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	add $1
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 .asm_2e268
 	ld a, $8
 	cp b
 	jr nz, .asm_2e27e
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $7
 	jr nc, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	add $2
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 .asm_2e27e
 	ld a, $ff
 	cp b
 	jr nz, asm_2e296
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	and $7
 	cp $7
 	jr nz, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $1
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 asm_2e296
@@ -3556,56 +3556,56 @@ asm_2e297
 	ld a, $f8
 	cp b
 	jr nz, .asm_2e2ad
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $38
 	jr c, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $2
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 .asm_2e2ad
 	ld a, $1
 	cp b
 	jr nz, asm_2e296
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	and $7
 	jr nz, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	add $1
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 Func_2e2c3: ; 2e2c3 (b:62c3)
 	ld a, $f8
 	cp b
 	jr nz, .asm_2e2d9
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $38
 	jr c, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $2
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 .asm_2e2d9
 	ld a, $ff
 	cp b
 	jr nz, asm_2e296
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	and $7
 	cp $7
 	jr nz, asm_2e296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $1
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr asm_2e296
 
 Func_2e2f1: ; 2e2f1 (b:62f1)
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $3
 	jr nz, .asm_2e337
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $23
 	jr nz, .asm_2e337
 	ld a, [wc954]
@@ -3669,7 +3669,7 @@ Func_2e33e: ; 2e33e (b:633e)
 	ret nz
 	ld a, [wc917]
 	ld b, a
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $2e
 	jr nz, .asm_2e359
 	ld a, $33
@@ -3681,7 +3681,7 @@ Func_2e33e: ; 2e33e (b:633e)
 	cp $6
 	jr nz, .asm_2e370
 	ld c, a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $10
 	jr nc, .asm_2e36f
 	ld a, $24
@@ -3727,7 +3727,7 @@ Func_2e33e: ; 2e33e (b:633e)
 .asm_2e3a5
 	cp $e
 	jr nz, .asm_2e3b8
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $6
 	jr z, .asm_2e3b4
 	ld a, $b
@@ -4060,12 +4060,12 @@ Pointers_2e5a1:
 	dbw $0e, Func_2503
 	dbw $0e, Func_21db
 	dbw $0e, Func_2122
-	dba Func_a8000
-	dba Func_a8046
-	dba Func_a8200
-	dba Func_a8210
-	dba Func_a8210
-	dba Func_a8368
+	dba FadeOutOverworldForMinimap
+	dba LoadMinimapGFX
+	dba FadeToMinimap
+	dba RunMinimap
+	dba RunMinimap
+	dba FadeOutMinimapForOverworld
 	dba Func_a87e4
 	dba Func_a87e7
 	dba Func_a8981
@@ -4719,10 +4719,10 @@ Func_30326: ; 30326 (c:4326)
 	ret
 
 Func_3033a: ; 3033a (c:433a)
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr nz, .asm_30349
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $10
 	jr nc, .asm_30349
 	ret
@@ -6066,10 +6066,10 @@ Func_30b7f: ; 30b7f (c:4b7f)
 	ld a, d
 	and $80
 	jp nz, Func_30bc9
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr nz, .asm_30bc1
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $10
 	jr nc, .asm_30bc1
 	ld a, [wPlayerYCoord]
@@ -6453,10 +6453,10 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld bc, EVENT_C39
 	call CheckEventFlag
 	jr nz, .asm_30e33
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr nz, .asm_30e33
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $10
 	jr nc, .asm_30e33
 	ld e, $26
@@ -8067,7 +8067,7 @@ Func_31763:
 	ld [hl], $0
 	ld a, $69
 	ld [H_SFX_ID], a
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $a
 	jr nc, .asm_31803
 	ld a, $5e
@@ -11128,7 +11128,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	call SetEventFlag
 	ld bc, EVENT_C3A
 	call ResetEventFlag
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld e, a
 	ld c, $6
 	call Multiply_C_by_E
@@ -11345,7 +11345,7 @@ Func_32cf5:
 	ld h, a
 	ld bc, EVENT_C3A
 	call SetEventFlag
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld e, a
 	ld c, $6
 	call Multiply_C_by_E
@@ -11594,7 +11594,7 @@ Func_32e9c:
 	call ResetEventFlag
 	ld bc, EVENT_C3A
 	call ResetEventFlag
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld e, a
 	ld c, $6
 	call Multiply_C_by_E
@@ -12288,7 +12288,7 @@ Func_33303:
 	ld hl, wc480
 	ld b, $18
 	call Func_33886
-	jp z, Func_3333c
+	jp z, .nope
 	ld a, [wCurObjectStruct]
 	ld l, a
 	ld a, [wCurObjectStruct + 1]
@@ -12314,7 +12314,7 @@ Func_33303:
 	ld l, a
 	ld a, $10
 	ld [hl], a
-Func_3333c: ; 3333c (c:733c)
+.nope
 	ret
 
 Func_3333d: ; 3333d (c:733d)
@@ -12548,7 +12548,7 @@ Func_33496:
 	ld l, a
 	ld a, $40
 	ld [hl], a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $16
 	jr z, .asm_334e2
 	cp $e
@@ -12619,7 +12619,7 @@ Func_33508:
 	call Cosine8_
 	sra d
 	sra d
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $16
 	jr z, .asm_33540
 	cp $e
@@ -12660,7 +12660,7 @@ Func_33508:
 	ret
 
 Func_33574: ; 33574 (c:7574)
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $16
 	jr nz, .asm_3358e
 	ld bc, EVENT_1F4
@@ -15288,15 +15288,15 @@ Func_39598: ; 39598 (e:5598)
 	jr z, .asm_39631
 	cp $10
 	jr z, .asm_395ff
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	dec a
-	ld [wc904], a
+	ld [wMapGroup], a
 	jr .asm_39606
 
 .asm_395ff
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	inc a
-	ld [wc904], a
+	ld [wMapGroup], a
 .asm_39606
 	ld a, $2
 	ld [wc900], a
@@ -15660,7 +15660,7 @@ Func_398db:
 
 Func_39917: ; 39917 (e:5917)
 	push af
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld [wc90f], a
 	pop bc
 	callba Func_2e1fd
@@ -16770,7 +16770,7 @@ Func_3a095: ; 3a095 (e:6095)
 	ret
 
 Func_3a0f4: ; 3a0f4 (e:60f4)
-	callba Func_a8000
+	callba FadeOutOverworldForMinimap
 	ret
 
 Func_3a0fd: ; 3a0fd (e:60fd)
@@ -17335,10 +17335,10 @@ Func_3a705:
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, VTilesBG tile $10
-	call Func_3d95
-	ld a, [wd480]
+	call GetCurDenjuuKanjiDescription
+	ld a, [wRecruitedDenjuuSpecies]
 	push af
 	ld c, $0
 	ld de, VTilesShared tile $00
@@ -17348,21 +17348,21 @@ Func_3a705:
 	ld hl, VTilesBG tile $58
 	ld a, $8
 	call ClearString
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $58
 	call GetAndPrintName75CenterAlign
-	ld a, [wd481]
+	ld a, [wRecruitedDenjuuLevel]
 	hlbgcoord 10, 2
 	ld c, $1
-	call Func_1430
+	call Print2DigitBCD_2
 	ld bc, $20e
 	ld e, $ab
 	ld a, $0
 	call LoadStdBGMapLayout_
 	call OpenSRAMBank2
 	ld hl, sAddressBook + $a
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call GetNthAddressBookAttributeAddr
 	ld a, [hli]
 	ld e, a
@@ -18649,9 +18649,9 @@ Func_3c263: ; 3c263 (f:4263)
 
 Func_3c28f: ; 3c28f (f:428f)
 	ld a, [wcd09]
-	ld [wc904], a
+	ld [wMapGroup], a
 	ld a, [wcd0a]
-	ld [wc906], a
+	ld [wMapNumber], a
 	ld a, [wcd0b]
 	ld b, a
 	inc a
@@ -18686,15 +18686,15 @@ Func_3c28f: ; 3c28f (f:428f)
 	ret
 
 Func_3c2d9: ; 3c2d9 (f:42d9)
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld [wca69], a
 	ld a, $0
 	ld [wc958], a
 	callba Func_c99ac
 	ld a, [wcd09]
-	ld [wc904], a
+	ld [wMapGroup], a
 	ld a, [wcd0a]
-	ld [wc906], a
+	ld [wMapNumber], a
 	ld a, [wcd0b]
 	ld b, a
 	inc a
@@ -20135,9 +20135,9 @@ IF DEF(POWER)
 ELSE
 	ld a, $6
 ENDC
-	ld [wd480], a
+	ld [wRecruitedDenjuuSpecies], a
 	ld a, $5
-	ld [wd481], a
+	ld [wRecruitedDenjuuLevel], a
 	ld a, $34
 	ld [wSubroutine], a
 	ld b, $2
@@ -20328,7 +20328,7 @@ Func_3cd38: ; 3cd38 (f:4d38)
 	ld a, l
 	and $ff
 	ld c, a
-	ld [wd4a7], a
+	ld [wFirstEmptySlotInAddressBook], a
 	push bc
 	callba Func_a40ef
 	pop bc
@@ -20355,7 +20355,7 @@ Func_3cd38: ; 3cd38 (f:4d38)
 	pop hl
 	ld a, c
 	ld [hli], a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld [hli], a
 	ld a, [wcd09]
 	ld c, a
@@ -20376,9 +20376,9 @@ Func_3cd38: ; 3cd38 (f:4d38)
 	ld [hl], a
 	call Func_2411
 	ld a, [wcd0a]
-	ld [wd480], a
+	ld [wRecruitedDenjuuSpecies], a
 	ld a, [wcd0b]
-	ld [wd481], a
+	ld [wRecruitedDenjuuLevel], a
 	ld a, $34
 	ld [wSubroutine], a
 Func_3ce03: ; 3ce03 (f:4e03)
@@ -20416,7 +20416,7 @@ Func_3ce0f: ; 3ce0f (f:4e0f)
 
 Func_3ce34: ; 3ce34 (f:4e34)
 	callba Func_a8576
-	callba Func_a8508
+	callba GetLandmarkName
 	ld b, $0
 	ld c, $a6
 	callba Func_2c7ce
@@ -20476,7 +20476,7 @@ Func_3ce97: ; 3ce97 (f:4e97)
 
 Func_3ceb6: ; 3ceb6 (f:4eb6)
 	ld a, [wcd09]
-	ld [wc907], a
+	ld [wDShotReceptionLevel], a
 	ld b, $0
 	callba Func_a503b
 	ld b, $2
@@ -20620,7 +20620,7 @@ Func_3cf93: ; 3cf93 (f:4f93)
 
 Func_3cfa6: ; 3cfa6 (f:4fa6)
 	ld a, [wcd09]
-	ld [wCurPhoneGFX], a
+	ld [wDShotLevel], a
 	ld b, $2
 	call Func_3c112
 	scf
@@ -20874,13 +20874,13 @@ OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
 	jr nz, .asm_a4bc8
 	call Func_2107
 	jr nz, .asm_a4bc8
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr z, .asm_a4bc8
 	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jp nz, .asm_a4bc8
-	ld a, [wc907]
+	ld a, [wDShotReceptionLevel]
 	or a
 	jr nz, .asm_a4bd8
 .asm_a4bc8
@@ -21232,7 +21232,7 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ret
 
 .asm_a4e5c
-	ld a, [wc907]
+	ld a, [wDShotReceptionLevel]
 	cp $2
 	ret c
 	ld a, [wc9de]
@@ -21243,7 +21243,7 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ld a, [wc49a]
 	cp $0
 	ret nz
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	ret z
 	ld a, $0
@@ -21522,9 +21522,9 @@ Func_a502a: ; a502a (29:502a)
 	ret z
 	callba Func_a8608
 	ld a, b
-	ld [wc907], a
+	ld [wDShotReceptionLevel], a
 Func_a503b: ; a503b (29:503b)
-	ld a, [wc907]
+	ld a, [wDShotReceptionLevel]
 	swap a
 	ld c, a
 	ld b, $0
@@ -21534,14 +21534,14 @@ Func_a503b: ; a503b (29:503b)
 	ld e, c
 	sla c
 	rl b
-	ld hl, GFX_e04d8
+	ld hl, ReceptionBarsGFX
 	add hl, bc
 	add hl, de
 	ld d, h
 	ld e, l
 	ld hl, VTilesShared tile $1a
 	ld bc, $60
-	ld a, BANK(GFX_e04d8)
+	ld a, BANK(ReceptionBarsGFX)
 	call FarCopy2bpp_2
 	ret
 
@@ -22324,7 +22324,7 @@ get_address_book_pointer
 	ret
 
 Func_a5569: ; a5569 (29:5569)
-	callba Func_a8000
+	callba FadeOutOverworldForMinimap
 	ret
 
 Func_a5572: ; a5572 (29:5572)
@@ -22392,7 +22392,7 @@ Func_a560a: ; a560a (29:560a)
 	callba GetDenjuuNicknameC
 	ld hl, wBattlePlayerDenjuuName
 	ld de, wOAMAnimation12_Duration + 8
-	call Func_33e3
+	call CenterAlignDenjuuName_
 	ld b, $8
 	ld c, $b0
 	hlbgcoord 6, 3
@@ -22639,7 +22639,7 @@ Func_a576c: ; a576c (29:576c)
 	ld bc, $55
 	ld a, $5
 	call LoadNthStdBGPalette
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	ld hl, $390
@@ -22655,7 +22655,7 @@ Func_a576c: ; a576c (29:576c)
 	ret
 
 Func_a5814: ; a5814 (29:5814)
-	callba Func_a8000
+	callba FadeOutOverworldForMinimap
 	ld a, $0
 	ld [$c1f6], a
 	ret
@@ -23472,7 +23472,7 @@ Func_a5ef1: ; a5ef1 (29:5ef1)
 	ret
 
 Func_a5efd: ; a5efd (29:5efd)
-	callba Func_a8000
+	callba FadeOutOverworldForMinimap
 	ret
 
 Func_a5f06: ; a5f06 (29:5f06)
@@ -23600,7 +23600,7 @@ UnknownTZFile43:: INCBIN "gfx/tzfiles/tz_43.2bpp.tz"
 UnknownTZFile44:: INCBIN "gfx/tzfiles/tz_44.2bpp.tz"
 
 SECTION "bank 2A", ROMX, BANK [$2a]
-Func_a8000:
+FadeOutOverworldForMinimap:
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -23631,7 +23631,7 @@ Func_a8000:
 	ld [wca64], a
 	jp IncrementSubroutine
 
-Func_a8046: ; a8046 (2a:4046)
+LoadMinimapGFX: ; a8046 (2a:4046)
 	ld a, BANK(GFX_e1d64)
 	ld hl, VTilesBG tile $00
 	ld de, GFX_e1d64
@@ -23890,7 +23890,7 @@ Func_a81a2: ; a81a2 (2a:41a2)
 	jr nz, .asm_a81f2
 	ret
 
-Func_a8200: ; a8200 (2a:4200)
+FadeToMinimap: ; a8200 (2a:4200)
 	ld bc, $0
 	ld a, $4
 	call StartFade_
@@ -23898,7 +23898,7 @@ Func_a8200: ; a8200 (2a:4200)
 	ld [wTextSubroutine], a
 	jp IncrementSubroutine
 
-Func_a8210: ; a8210 (2a:4210)
+RunMinimap: ; a8210 (2a:4210)
 	ld a, $0
 	call PaletteFade_
 	or a
@@ -23909,7 +23909,7 @@ Func_a8210: ; a8210 (2a:4210)
 	cp $9
 	jp nz, Func_a829d
 	ld a, [hJoyNew]
-	and $1
+	and A_BUTTON
 	jp z, Func_a82b7
 	ld a, [wOAMAnimation01_Duration + 4]
 	sub $c
@@ -23922,7 +23922,7 @@ Func_a8210: ; a8210 (2a:4210)
 	srl a
 	add b
 	ld b, a
-	call Func_a8508
+	call GetLandmarkName
 	ld a, [wOAMAnimation01_Duration]
 	sub $14
 	srl a
@@ -24055,7 +24055,7 @@ Func_a82b7: ; a82b7 (2a:42b7)
 	call Func_17ef
 .asm_a8357
 	ld a, [hJoyNew]
-	and $a
+	and START | B_BUTTON
 	jr z, .asm_a8367
 	ld a, $11
 	ld [wSubroutine], a
@@ -24064,7 +24064,7 @@ Func_a82b7: ; a82b7 (2a:42b7)
 .asm_a8367
 	ret
 
-Func_a8368: ; a8368 (2a:4368)
+FadeOutMinimapForOverworld: ; a8368 (2a:4368)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -24077,7 +24077,7 @@ Func_a8368: ; a8368 (2a:4368)
 
 Func_a837a: ; a837a (2a:437a)
 	ld a, [hJoyNew]
-	and $8
+	and START
 	jr z, .asm_a838a
 	ld a, $11
 	ld [wSubroutine], a
@@ -24310,10 +24310,10 @@ Func_a84e6: ; a84e6 (2a:44e6)
 	jr nz, Func_a84e6
 	ret
 
-Func_a8508: ; a8508 (2a:4508)
+GetLandmarkName: ; a8508 (2a:4508)
 	ld a, b
 	ld hl, Pointers_aa875
-Func_a850c:
+GetLandmarkName_:
 	ld b, $0
 	ld c, a
 	sla c
@@ -24325,38 +24325,38 @@ Func_a850c:
 	ld de, wMapHeader
 	push hl
 	ld c, $10
-.asm_a851d
+.find_end
 	dec c
 	ld a, [hli]
-	cp $e0
-	jr nz, .asm_a851d
+	cp "$"
+	jr nz, .find_end
 	srl c
 	ld a, c
 	or a
-	jr z, .asm_a8530
+	jr z, .skip
 	ld a, $0
-.asm_a852b
+.clear
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_a852b
-.asm_a8530
+	jr nz, .clear
+.skip
 	pop hl
-.asm_a8531
+.copy
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp $e0
-	jr nz, .asm_a8531
+	cp "$"
+	jr nz, .copy
 	ret
 
 Func_a8539: ; a8539 (2a:4539)
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $a
 	jr c, .asm_a8562
 	cp $b
 	jr nz, .asm_a8551
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $38
 	jr nz, .asm_a854e
 	ld c, $5
@@ -24396,19 +24396,19 @@ Func_a8539: ; a8539 (2a:4539)
 	ret
 
 Func_a8576: ; a8576 (2a:4576)
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	srl a
 	srl a
 	srl a
 	ld e, a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	and $7
 	ld d, a
 	sla a
 	sla a
 	sla a
 	ld b, a
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $6
 	jr c, .asm_a8596
 	sub $4
@@ -24433,7 +24433,7 @@ Func_a8576: ; a8576 (2a:4576)
 	ld b, a
 	ret
 
-Func_a85ae: ; a85ae (2a:45ae)
+CenterAlignDenjuuName: ; a85ae (2a:45ae)
 	push hl
 	push de
 	ld c, $8
@@ -24449,7 +24449,7 @@ Func_a85ae: ; a85ae (2a:45ae)
 	dec c
 	jr z, .size_done
 	ld a, [hli]
-	cp $e0
+	cp "$"
 	jr nz, .get_size
 	srl c
 	ld a, c
@@ -24470,7 +24470,7 @@ Func_a85ae: ; a85ae (2a:45ae)
 	dec c
 	ret z
 	inc de
-	cp $e0
+	cp "$"
 	jr nz, .copy
 	ld a, $0
 .right_pad
@@ -24483,7 +24483,7 @@ Func_a85ae: ; a85ae (2a:45ae)
 GetMapEncounterTableIndex: ; a85e5 (2a:45e5)
 	push hl
 	ld hl, MapEncounterTableIndices
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld d, a
 	ld e, $0
 	srl d
@@ -24491,7 +24491,7 @@ GetMapEncounterTableIndex: ; a85e5 (2a:45e5)
 	srl d
 	rr e
 	add hl, de
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	add l
 	ld l, a
 	ld a, $0
@@ -24504,28 +24504,28 @@ GetMapEncounterTableIndex: ; a85e5 (2a:45e5)
 
 Func_a8608: ; a8608 (2a:4608)
 	push hl
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	cp $3
-	jr c, .asm_a8612
+	jr c, .okay
 	sub $3
-.asm_a8612
+.okay
 	ld hl, Data_3d027
 	cp $0
-	jr z, .asm_a8623
+	jr z, .got_phone_level
 	ld hl, Data_3d6c7
 	cp $1
-	jr z, .asm_a8623
+	jr z, .got_phone_level
 	ld hl, Data_3dd67
-.asm_a8623
-	ld a, [wc904]
+.got_phone_level
+	ld a, [wMapGroup]
 	ld e, a
-	call Func_a863f
-	ld b, $f
-	call Func_a8631
+	call PointToServiceDataTable
+	ld b, BANK(Data_3d027)
+	call GetServiceByte
 	pop hl
 	ret
 
-Func_a8631:
+GetServiceByte:
 	call GetFarByte
 	ld a, b
 	bit 0, c
@@ -24536,14 +24536,14 @@ Func_a8631:
 	ld b, a
 	ret
 
-Func_a863f:
+PointToServiceDataTable:
 	ld d, $0
 REPT 5
 	sla e
 	rl d
 ENDR
 	add hl, de
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld c, a
 	srl a
 	add l
@@ -24555,16 +24555,16 @@ ENDR
 
 Func_a8663: ; a8663 (2a:4663)
 	ld hl, Data_aa417
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $2
 	jr c, .asm_a867d
 	cp $6
 	jr nc, .asm_a867d
 	sub $2
 	ld e, a
-	call Func_a863f
+	call PointToServiceDataTable
 	ld b, BANK(Data_aa417)
-	call Func_a8631
+	call GetServiceByte
 	ret
 
 .asm_a867d
@@ -24599,7 +24599,7 @@ CheckCanGenerateEncounters: ; a8788 (2a:4788)
 ; b = 0: generates encounters
 ; b = 1: suppresses encounters
 	ld b, $0
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $16
 	jr z, .check_c906_1
 	cp $17
@@ -24618,7 +24618,7 @@ CheckCanGenerateEncounters: ; a8788 (2a:4788)
 	dec a
 	jr nz, .addntimes
 .skip_addntimes
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	add l
 	ld l, a
 	ld a, $0
@@ -24637,7 +24637,7 @@ CheckCanGenerateEncounters: ; a8788 (2a:4788)
 	ret
 
 .check_c906_1
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $19
 	jr z, .nope
 	cp $1b
@@ -24649,23 +24649,23 @@ CheckCanGenerateEncounters: ; a8788 (2a:4788)
 	ret
 
 .check_c906_2
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $35
 	jr z, .nope
 	ret
 
 .check_c906_3
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $34
 	jr z, .nope
 	ret
 
 Func_a87e4:
-	jp Func_a8000
+	jp FadeOutOverworldForMinimap
 
 Func_a87e7: ; a87e7 (2a:47e7)
 	ld hl, Data_a5f9f
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $a
 	cp $28
 	jr c, .asm_a87f5
@@ -24711,8 +24711,8 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld a, $2
 	call Func_33fd
 	ld hl, Pointers_aaaff
-	ld a, [wc904]
-	call Func_a850c
+	ld a, [wMapGroup]
+	call GetLandmarkName_
 	ld d, $2
 	ld b, $0
 	ld c, $bb
@@ -24732,7 +24732,7 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld [wOAMAnimation01_TemplateIdx], a
 	ld a, $0
 	ld [wOAMAnimation01_Palette], a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld b, a
 	and $7
 	swap a
@@ -24743,7 +24743,7 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	and $f8
 	add $44
 	ld [wOAMAnimation01_YCoord], a
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $a
 	cp $28
 	jr c, .asm_a889d
@@ -24766,7 +24766,7 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld b, $7
 	call Func_33af
 	ld bc, $225
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $a
 	cp $28
 	jr c, .asm_a88d0
@@ -24864,7 +24864,7 @@ Func_a893b: ; a893b (2a:493b)
 	dec a
 	jr nz, .asm_a894c
 .asm_a8951
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	sub $a
 	cp $28
 	jr c, .asm_a895c
@@ -24940,7 +24940,7 @@ Func_a89cb: ; a89cb (2a:49cb)
 	ret
 
 Func_a89dd: ; a89dd (2a:49dd)
-	jpba Func_a8000 ; same bank
+	jpba FadeOutOverworldForMinimap ; same bank
 
 Func_a89e5: ; a89e5 (2a:49e5)
 	ld a, $2
@@ -27574,10 +27574,482 @@ OverworldEncounterFlags: ; 4 rows of 64
 	db 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0
 
 Pointers_aa875:
-	dr $aa875, $aaaff
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaae3
+	dw String_aaae3
+	dw String_aaae3
+	dw String_aaae3
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaae3
+	dw String_aaae3
+	dw String_aaae3
+	dw String_aaae3
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaaf7
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaaeb
+	dw String_aaaeb
+	dw String_aaaf7
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaace
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaaeb
+	dw String_aaaeb
+	dw String_aaaf7
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaab4
+	dw String_aaaeb
+	dw String_aaaeb
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaadb
+	dw String_aaac1
+	dw String_aaac1
+	dw String_aaac1
+	dw String_aaaeb
+	dw String_aaaeb
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaac1
+	dw String_aaac1
+	dw String_aaac1
+	dw String_aaaeb
+	dw String_aaaeb
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaac7
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaa83
+	dw String_aaa83
+	dw String_aaa7c
+	dw String_aaa7c
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaa83
+	dw String_aaa83
+	dw String_aaa7c
+	dw String_aaa7c
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaa75
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaa83
+	dw String_aaa83
+	dw String_aaa83
+	dw String_aaa7c
+	dw String_aaa7c
+	dw String_aaa7c
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaa83
+	dw String_aaa83
+	dw String_aaa83
+	dw String_aaa7c
+	dw String_aaa7c
+	dw String_aaa7c
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaaa3
+	dw String_aaa83
+	dw String_aaa91
+	dw String_aaaba
+	dw String_aaaba
+	dw String_aaaba
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaaba
+	dw String_aaaba
+	dw String_aaaba
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaaba
+	dw String_aaaba
+	dw String_aaaba
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaaae
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa97
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaa91
+	dw String_aaa91
+
+String_aaa75:
+	db "トロンコむら$"
+
+String_aaa7c:
+	db "クリノンむら$"
+
+String_aaa83:
+	db "うみのみえるまち イーリス$"
+
+String_aaa91:
+	db "パームかい$"
+
+String_aaa97:
+	db "キカイのまち フリジア$"
+
+String_aaaa3:
+	db "すなのまち バーラン$"
+
+String_aaaae:
+	db "イオンとう$"
+
+String_aaab4:
+	db "パパルナこ$"
+
+String_aaaba:
+	db "パンセスむら$"
+
+String_aaac1:
+	db "トリパむら$"
+
+String_aaac7:
+	db "フラウラむら$"
+
+String_aaace:
+	db "あくまのやま ぺぺリやま$"
+
+String_aaadb:
+	db "イクソスのもリ$"
+
+String_aaae3:
+	db "カクトスいせき$"
+
+String_aaaeb:
+	db "どくのみずうみ ミケス$"
+
+String_aaaf7:
+	db "ブリオンいせき$"
 
 Pointers_aaaff:
-	dr $aaaff, $aacc6
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab69
+	dw String_aab75
+	dw String_aab83
+	dw String_aab90
+	dw String_aab9d
+	dw String_aaba9
+	dw String_aabb3
+	dw String_aabbe
+	dw String_aabc9
+	dw String_aabd4
+	dw String_aabdf
+	dw String_aabea
+	dw String_aabf4
+	dw String_aabfe
+	dw String_aac0a
+	dw String_aac16
+	dw String_aac22
+	dw String_aac2a
+	dw String_aac32
+	dw String_aac3a
+	dw String_aac42
+	dw String_aac4a
+	dw String_aac52
+	dw String_aac5a
+	dw String_aac62
+	dw String_aac69
+	dw String_aac70
+	dw String_aac77
+	dw String_aac7e
+	dw String_aac85
+	dw String_aac8c
+	dw String_aac93
+	dw String_aac9a
+	dw String_aaca1
+	dw String_aaca8
+	dw String_aacaf
+	dw String_aacb6
+	dw String_aacb6
+	dw String_aacb6
+	dw String_aacb6
+	dw String_aacb6
+	dw String_aacba
+	dw String_aacc0
+
+String_aab69:
+	db "トロンコむら すいげん$"
+
+String_aab75:
+	db "オーキッドなかのしま4かい$"
+
+String_aab83:
+	db "クリノンむら ちか1かい$"
+
+String_aab90:
+	db "クリノンむら ちか2かい$"
+
+String_aab9d:
+	db "クラフトけんきゅうじょ$"
+
+String_aaba9:
+	db "ディメンザのやしき$"
+
+String_aabb3:
+	db "アンテナのき 1かい$"
+
+String_aabbe:
+	db "アンテナのき 2かい$"
+
+String_aabc9:
+	db "アンテナのき 3かい$"
+
+String_aabd4:
+	db "アンテナのき 4かい$"
+
+String_aabdf:
+	db "アンテナのき 5かい$"
+
+String_aabea:
+	db "ぺぺリやま ふもと$"
+
+String_aabf4:
+	db "ぺぺリやま ふもと$"
+
+String_aabfe:
+	db "ぺぺリやま ちゅうふく$"
+
+String_aac0a:
+	db "ぺぺリやま ちゅうふく$"
+
+String_aac16:
+	db "ぺぺリやま さんちょう$"
+
+String_aac22:
+	db "カクトスいせき$"
+
+String_aac2a:
+	db "カクトスいせき$"
+
+String_aac32:
+	db "カクトスいせき$"
+
+String_aac3a:
+	db "カクトスいせき$"
+
+String_aac42:
+	db "カクトスいせき$"
+
+String_aac4a:
+	db "カクトスいせき$"
+
+String_aac52:
+	db "カクトスいせき$"
+
+String_aac5a:
+	db "カクトスいせき$"
+
+String_aac62:
+	db "ブリオン 1$"
+
+String_aac69:
+	db "ブリオン 2$"
+
+String_aac70:
+	db "ブリオン 3$"
+
+String_aac77:
+	db "ブリオン 4$"
+
+String_aac7e:
+	db "ブリオン 5$"
+
+String_aac85:
+	db "ブリオン 6$"
+
+String_aac8c:
+	db "ブリオン 7$"
+
+String_aac93:
+	db "ブリオン 8$"
+
+String_aac9a:
+	db "ブリオン 9$"
+
+String_aaca1:
+	db "みずのほこら$"
+
+String_aaca8:
+	db "もリのほこら$"
+
+String_aacaf:
+	db "すなのほこら$"
+
+String_aacb6:
+	db "1かい$"
+
+String_aacba:
+	db "ちか1かい$"
+
+String_aacc0:
+	db "ちか2かい$"
 
 ItemSpriteGFX:
 INCBIN "gfx/sprites/items/000.w16.2bpp"
@@ -27906,7 +28378,7 @@ Func_c8000::
 	ld a, [wc499]
 	bit 1, a
 	jr nz, .asm_c81b9
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $e
 	jr z, Func_c81bd
 	cp $31
@@ -28183,7 +28655,7 @@ Func_c82df: ; c82df (32:42df)
 Func_c830a: ; c830a (32:430a)
 	ld bc, EVENT_C02
 	call ToggleEventFlag
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $16
 	jr z, .asm_c8321
 	cp $e
@@ -28201,7 +28673,7 @@ Func_c830a: ; c830a (32:430a)
 	ret
 
 .asm_c832e
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $21
 	jr nz, .asm_c836c
 	ld a, d
@@ -28941,7 +29413,7 @@ Func_c8802: ; c8802 (32:4802)
 	ld e, $a
 	ld a, [wc90f]
 	ld d, a
-	ld [wc906], a
+	ld [wMapNumber], a
 	ld hl, Data_c883e
 .asm_c8813
 	ld a, [hli]
@@ -29333,7 +29805,7 @@ Func_c8def:
 	ld bc, EVENT_C3C
 	call CheckEventFlag
 	ret z
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld e, a
 	ld c, $6
 	call Multiply_C_by_E
@@ -30415,14 +30887,14 @@ Func_c9538: ; c9538 (32:5538)
 	ld de, wPlayerName
 	ld b, $9
 	call CopyData_Under256Bytes
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	push af
 	xor a
 	ld hl, wPlayerNameEntryBuffer
 	ld b, $0
 	call Func_2f76
 	pop af
-	ld [wCurPhoneGFX], a
+	ld [wDShotLevel], a
 	pop bc
 	pop de
 	ld a, b
@@ -30443,11 +30915,11 @@ Func_c9538: ; c9538 (32:5538)
 	ld a, $70
 	ld [wc929], a
 	ld a, $2b
-	ld [wc904], a
+	ld [wMapGroup], a
 	ld a, $2b
 	ld [wc926], a
 	ld a, $9
-	ld [wc906], a
+	ld [wMapNumber], a
 	ld a, $9
 	ld [wc927], a
 	ld a, $0
@@ -30475,10 +30947,10 @@ Func_c9538: ; c9538 (32:5538)
 	ld [sAddressBook + 2], a
 	ld a, $0
 	ld [sAddressBook + 8], a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	push af
 	call OverworldRandom8_
-	ld [wc906], a
+	ld [wMapNumber], a
 	ld [sAddressBook + 9], a
 	enable_sram sAddressBook
 IF DEF(POWER)
@@ -30528,7 +31000,7 @@ ENDC
 	callba Func_a40ef
 	disable_sram
 	pop af
-	ld [wc906], a
+	ld [wMapNumber], a
 	callba GetPartnerDenjuuMaxHP
 	ld a, c
 	ld [wPartnerDenjuuHPRemaining], a
@@ -30596,7 +31068,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld a, $ff
 	ld [wc9f5], a
 	call Func_c81bf
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $6
 	jr c, .asm_c972b
 	ld a, [wc905]
@@ -37641,7 +38113,7 @@ TileMap_e03f0:: INCBIN "gfx/misc/e03f0.tilemap"
 GFX_e0418:: INCBIN "gfx/misc/e0418.w24.2bpp"
 GFX_e0478:: INCBIN "gfx/misc/e0478.w24.2bpp"
 
-GFX_e04d8:: INCBIN "gfx/misc/reception_bars.w24.2bpp"
+ReceptionBarsGFX:: INCBIN "gfx/misc/reception_bars.w24.2bpp"
 
 GFX_e06b8:: INCBIN "gfx/misc/e06b8.2bpp"
 GFX_e0778:: INCBIN "gfx/misc/e0778.w24.2bpp"

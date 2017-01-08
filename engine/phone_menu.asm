@@ -52,7 +52,7 @@ IF DEF(POWER)
 ELSE
 	ld a, $3
 ENDC
-	ld [wCurPhoneGFX], a
+	ld [wDShotLevel], a
 	jp IncrementSubroutine
 
 Func_1006e: ; 1006e (4:406e)
@@ -596,13 +596,13 @@ Func_10452: ; 10452 (4:4452)
 	call Func_13fd2
 	ld a, $70
 	ld [wTextBoxStartTile], a
-	ld a, [wd480]
-	ld [wd435], a
+	ld a, [wRecruitedDenjuuSpecies]
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld d, $c
 	call Func_11a80
-	ld a, [wd480]
+	ld a, [wRecruitedDenjuuSpecies]
 	call Func_13d46
 	ld a, $c
 	ld [wd411], a
@@ -619,7 +619,7 @@ Func_10452: ; 10452 (4:4452)
 	ld a, $78
 	ld [wTextBoxStartTile], a
 	call PaletteFade8
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call Func_13d8c
 	call Func_127b7
 	ld d, $c
@@ -652,7 +652,7 @@ Func_1056a: ; 1056a (4:456a)
 	call StartFade_
 	ld a, $10
 	ld [wcf96], a
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call Func_13dca
 	jp IncrementSubroutine
 
@@ -2831,7 +2831,7 @@ asm_11a20
 	ret
 
 Func_11a35: ; 11a35 (4:5a35)
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, VTilesBG tile $78
 	ld b, $8
 	call ClearTiles
@@ -2847,7 +2847,7 @@ Func_11a35: ; 11a35 (4:5a35)
 	jp Func_11a80
 
 Func_11a59: ; 11a59 (4:5a59)
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, VTilesBG tile $78
 	ld b, $8
 	call ClearTiles
@@ -2874,7 +2874,7 @@ Func_11a80: ; 11a80 (4:5a80)
 	jr nz, .asm_11a86
 	ld hl, wStringBuffer
 	ld de, wOAMAnimationsEnd
-	call Func_33e3
+	call CenterAlignDenjuuName_
 	pop de
 	jp Func_1249a
 
@@ -4541,7 +4541,7 @@ asm_12612
 	call Func_127b7
 	cp $0
 	jr nz, .asm_1262c
-	ld a, [wd4a7]
+	ld a, [wFirstEmptySlotInAddressBook]
 	call Func_13d8c
 	call Func_12794
 	ld d, $c
@@ -5071,7 +5071,7 @@ LoadPhoneKeypad: ; 1293b (4:693b)
 	jr z, .asm_12948
 	ld hl, Pointers_1299a
 .asm_12948
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	call Rom4_PointToWordInTable
 	ld a, [hli]
 	ld h, [hl]
@@ -5153,7 +5153,7 @@ Pointers_129bc:
 	dw GFX_1eec00
 
 Func_129c4: ; 129c4 (4:69c4)
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	sla e
@@ -5191,7 +5191,7 @@ Func_129c4: ; 129c4 (4:69c4)
 	jp Copy2bpp
 
 Func_12a08:
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	ld hl, $39 tiles
@@ -5432,7 +5432,7 @@ Func_12b6c: ; 12b6c (4:6b6c)
 	jp IncrementSubroutine2
 
 Func_12baa: ; 12baa (4:6baa)
-	ld a, [wc907]
+	ld a, [wDShotReceptionLevel]
 	dec a
 	add $2f
 	ld [wOAMAnimation16_TemplateIdx], a
@@ -7538,7 +7538,7 @@ GetDexCounts: ; 13a4e (4:7a4e)
 	ret
 
 Func_13b3a: ; 13b3a (4:7b3a)
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	ld hl, Data_13b70
@@ -8114,7 +8114,7 @@ Func_13ef6: ; 13ef6 (4:7ef6)
 	call GetDenjuuNicknameC_
 	ld hl, wBattlePlayerDenjuuName
 	ld de, wOAMAnimationsEnd
-	call Func_33e3
+	call CenterAlignDenjuuName_
 	ld hl, VTilesBG tile $40
 	ld b, $6
 	call Func_13fd2
@@ -8130,7 +8130,7 @@ Func_13f18: ; 13f18 (4:7f18)
 	call GetDenjuuNicknameC_
 	ld hl, wBattlePlayerDenjuuName
 	ld de, wc3a0
-	call Func_33e3
+	call CenterAlignDenjuuName_
 	ld hl, VTilesBG tile $78
 	ld b, $6
 	call ClearTiles

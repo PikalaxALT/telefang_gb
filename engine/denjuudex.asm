@@ -156,7 +156,7 @@ Func_114ff: ; 114ff (4:54ff)
 	call GetAndPrintName75CenterAlign
 	ld a, [wDexCurDenjuu]
 	ld de, VTilesBG tile $20
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld hl, VTilesShared tile $40
 	ld b, $20
 	call ClearTiles
@@ -325,7 +325,7 @@ Func_1169d: ; 1169d (4:569d)
 	call GetAndPrintName75CenterAlign
 	ld a, [wDexCurDenjuu]
 	ld de, VTilesBG tile $20
-	call Func_3d95
+	call GetCurDenjuuKanjiDescription
 	ld hl, VTilesShared tile $40
 	ld b, $20
 	call ClearTiles

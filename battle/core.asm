@@ -396,7 +396,7 @@ Func_142c1: ; 142c1 (5:42c1)
 	jp LoadNthStdOBPalette
 
 Func_142cd:
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
@@ -561,7 +561,7 @@ UseMove:
 	call GetOrCalcStatC_
 	ld a, [wCurDenjuuStat]
 	ld hl, MoveNames
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [wCurMove], a
 	call Get8CharName75
 	ld bc, wStringBuffer
@@ -973,7 +973,7 @@ Func_14721: ; 14721 (5:4721)
 	ld a, [wCurBattleDenjuu]
 	call GetNthPlayerDenjuu
 	ld a, [wCurDenjuuBuffer]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jr nz, .asm_14791
@@ -1254,7 +1254,7 @@ Func_1492f: ; 1492f (5:492f)
 	ld a, [wCurEnemyDenjuu]
 	call GetNthEnemyDenjuu
 	ld a, [wCurDenjuuBuffer]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld a, [wCurDenjuuBufferArrivedStatus]
 	cp $5
 	jr nz, .asm_1499f
@@ -4347,13 +4347,13 @@ Func_16099: ; 16099 (5:6099)
 	jp z, Func_1619e
 Func_160cb: ; 160cb (5:60cb)
 	ld a, [wPlayerDenjuu2]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
 	call Func_1402a
 	call Func_14012
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	call LoadPlayerDenjuuBattlePic
 	ld a, [wPlayerDenjuu2AddressBookLocation]
 	ld hl, VTilesBG tile $20
@@ -4383,13 +4383,13 @@ Func_16108: ; 16108 (5:6108)
 	ld [wCurBattleDenjuu3], a
 .asm_16122
 	ld a, [wPlayerDenjuu3Species]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
 	call Func_1402a
 	call Func_14012
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	call LoadPlayerDenjuuBattlePic
 	ld a, [wPlayerDenjuu3AddressBookLocation]
 	ld hl, VTilesBG tile $20
@@ -4406,15 +4406,15 @@ Func_16108: ; 16108 (5:6108)
 
 Func_1615f: ; 1615f (5:615f)
 	ld a, [wEnemyDenjuu2]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
 	call Func_1402a
 	call Func_14012
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	call LoadEnemyDenjuuBattlePic
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $28
 	call GetAndPrintName75LeftAlign_
@@ -4443,15 +4443,15 @@ Func_1619e: ; 1619e (5:619e)
 	ld [wCurEnemyDenjuu3], a
 .asm_161b8
 	ld a, [wEnemyDenjuu3Species]
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld bc, wStringBuffer
 	call Func_1402a
 	call Func_14012
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	call LoadEnemyDenjuuBattlePic
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $28
 	call GetAndPrintName75LeftAlign_
@@ -4555,7 +4555,7 @@ Func_16289: ; 16289 (5:6289)
 	jr .asm_162c2
 
 .asm_162bc
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	call Func_142cd
 .asm_162c2
 	ld c, $2

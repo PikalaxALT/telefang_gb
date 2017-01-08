@@ -8,7 +8,7 @@ hBGMapYPixel EQU $ff8e
 hBGMapXPixel EQU $ff8f
 hBGMapAddr EQU $ff90
 hVBlankOccurred EQU $ff92
-hFF93 EQU $ff93
+hIE_Backup EQU $ff93
 hFF94 EQU $ff94
 hFF95 EQU $ff95
 hFF96 EQU $ff96

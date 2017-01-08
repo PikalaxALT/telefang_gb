@@ -178,16 +178,16 @@ Func_07b2::
 
 DisableLCD: ; 7df (0:07df)
 	ld a, [rIE]
-	ld [hFF93], a
+	ld [hIE_Backup], a
 	res 0, a
-.asm_07e5
+.wait_ly
 	ld a, [rLY]
 	cp $91
-	jr nz, .asm_07e5
+	jr nz, .wait_ly
 	ld a, [wLCDC]
 	and $7f
 	ld [rLCDC], a
-	ld a, [hFF93]
+	ld a, [hIE_Backup]
 	ld [rIE], a
 	ret
 
@@ -1071,7 +1071,7 @@ Func_13d7::
 	pop hl
 	ret
 
-Func_1430::
+Print2DigitBCD_2::
 	push hl
 	push de
 	push bc
@@ -1084,12 +1084,12 @@ Func_1430::
 	pop bc
 	ld a, c
 	cp $1
-	jp nz, Func_144c
+	jp nz, .asm_144c
 	ld a, $1
 	ld [wFontSourceAddr], a
-	jp Func_146d
+	jp .asm_146d
 
-Func_144c: ; 144c (0:144c)
+.asm_144c
 	ld a, [wFontSourceBank]
 	and $f
 	or a
@@ -1104,12 +1104,12 @@ Func_144c: ; 144c (0:144c)
 	call WaitStatAndLoad
 	ld a, $1
 	ld [wFontSourceAddr], a
-	jr Func_146d
+	jr .asm_146d
 
 .asm_1468
 	ld a, $ff
 	call WaitStatAndLoad
-Func_146d: ; 146d (0:146d)
+.asm_146d
 	ld a, [wNumCGBPalettesToFade]
 	and $f0
 	or a
@@ -1925,7 +1925,7 @@ asm_1ace
 	push de
 	ld a, PHONE_GFX
 	rst Bankswitch
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	ld d, $0
 	sla e
@@ -2425,18 +2425,18 @@ CompressedGFXAddresses:
 RunOverworld: ; 1ea1 (0:1ea1)
 	ld a, [wSubroutine]
 	cp $0
-	jr z, .asm_1ee2
+	jr z, .skip
 	cp $a
-	jr z, .asm_1ee2
+	jr z, .skip
 	cp $2e
 	jp z, Func_1f6a
 	ld a, [wc98e]
 	or a
-	jr nz, .asm_1ee2
+	jr nz, .skip
 	homecall Func_a5060, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, Func_a5245, Func_a54a2
 	callba OverworldIdleHudCheck
 	callba Func_2e4b2
-.asm_1ee2
+.skip
 	call Func_1f24
 	homecall Func_2e064
 	ld a, [wc98e]
@@ -2447,10 +2447,10 @@ RunOverworld: ; 1ea1 (0:1ea1)
 	call c, Func_34dc
 	ld a, [wSubroutine]
 	cp $4
-	jr z, .asm_1f07
+	jr z, .quit
 	cp $5
 	ret nz
-.asm_1f07
+.quit
 	ret
 
 Func_1f08: ; 1f08 (0:1f08)
@@ -2472,14 +2472,14 @@ Func_1f08: ; 1f08 (0:1f08)
 Func_1f24: ; 1f24 (0:1f24)
 	ld a, [wc918]
 	or a
-	jr z, .asm_1f36
+	jr z, .skip_joypad_reset
 	dec a
 	ld [wc918], a
 	xor a
 	ld [hJoyLast], a
 	ld [hJoyNew], a
 	ld [wJoyNew], a
-.asm_1f36
+.skip_joypad_reset
 	call Func_3880
 	call Func_200a
 	call Func_2021
@@ -2526,10 +2526,10 @@ Func_1f80: ; 1f80 (0:1f80)
 	ld [wNumIdleFrames], a
 	call Func_2411
 	ld b, $c
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $a
 	jr c, .asm_1fbe
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr z, .asm_1fbe
 	ld b, $12
@@ -2547,9 +2547,9 @@ Func_1f80: ; 1f80 (0:1f80)
 	ld a, [wc935]
 	or a
 	jr nz, .no_select
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld [wc926], a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld [wc927], a
 	callba Func_c97d2
 	call Func_20f6
@@ -2588,7 +2588,7 @@ Func_2021: ; 2021 (0:2021)
 	ld a, [wc91d]
 	or a
 	jp nz, Func_20b1
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	ret z
 	cp $32
@@ -2843,7 +2843,7 @@ Func_2264: ; 2264 (0:2264)
 	ld [wc9de], a
 	ld [wc935], a
 	ld [wc91a], a
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr nz, .asm_2296
 	ld a, $1
@@ -2851,7 +2851,7 @@ Func_2264: ; 2264 (0:2264)
 	ld a, $1
 	ld [wc935], a
 .asm_2296
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $32
 	jr nc, .asm_22a6
 	cp $2b
@@ -2923,7 +2923,7 @@ Func_2329::
 	ld a, [wc958]
 	or a
 	jr z, .asm_234b
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld [wca69], a
 	callba Func_c99ac
 	ret
@@ -3458,7 +3458,7 @@ Func_2793: ; 2793 (0:2793)
 	push af
 	ld a, BANK(Pointers_19c000)
 	rst Bankswitch
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld b, a
 	add a
 	add b
@@ -3473,7 +3473,7 @@ Func_2793: ; 2793 (0:2793)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	add l
 	ld l, a
 	ld a, $0
@@ -3562,20 +3562,20 @@ Func_2809: ; 2809 (0:2809)
 .check_flag
 	call CheckEventFlag
 	jr nz, .quit_false
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $a
 	jr nz, .asm_284c
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	cp $1c
 	jr z, .check_set_flag
 .asm_284c
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $e
 	jr z, .check_set_flag
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $f
 	jr z, .check_set_flag
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $34
 	jr nz, .skip_flag_check
 .check_set_flag
@@ -3670,7 +3670,7 @@ Func_28a9: ; 28a9 (0:28a9)
 
 Func_28dd: ; 28dd (0:28dd)
 	ld hl, Pointers_19e8ed
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	add a
 	add l
 	ld l, a
@@ -3874,10 +3874,10 @@ Func_29ed::
 	call Func_2a68
 	jp z, Func_2a65
 	ld a, [hli]
-	ld [wc904], a
+	ld [wMapGroup], a
 	ld [wc926], a
 	ld a, [hli]
-	ld [wc906], a
+	ld [wMapNumber], a
 	ld [wc927], a
 	ld a, [hl]
 	ld b, a
@@ -3901,7 +3901,7 @@ Func_29ed::
 	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr nz, .asm_2a48
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr nz, .asm_2a44
 	ld a, $13
@@ -3929,7 +3929,7 @@ Func_2a65: ; 2a65 (0:2a65)
 	ret
 
 Func_2a68: ; 2a68 (0:2a68)
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld b, a
 	add a
 	add b
@@ -5259,9 +5259,9 @@ Func_32ff: ; 32ff (0:32ff)
 	ld [hl], a
 	ld hl, Data_14c000
 	ld bc, $148
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	ld d, a
-	ld a, [wc906]
+	ld a, [wMapNumber]
 	ld e, a
 .loop
 	ld a, [hli]
@@ -5365,8 +5365,8 @@ Func_33d6::
 	homecall Func_2c7ed
 	ret
 
-Func_33e3::
-	homecall Func_a85ae
+CenterAlignDenjuuName_::
+	homecall CenterAlignDenjuuName
 	ret
 
 Func_33f0::
@@ -6031,7 +6031,7 @@ Func_37d5: ; 37d5 (0:37d5)
 	call Copy2bpp_2
 	ld hl, VTilesShared
 	ld de, GFX_e01f0
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $a
 	jr nc, .asm_37f8
 	ld de, GFX_e00c0
@@ -6142,7 +6142,7 @@ Func_3881::
 INCLUDE "home/pcm.asm"
 INCLUDE "home/hp_bar.asm"
 
-Func_39ec: ; 39ec (0:39ec)
+LoadUnknGfx090_: ; 39ec (0:39ec)
 	push af
 	ld a, BANK(UnknGFX_090)
 	rst Bankswitch
@@ -6157,7 +6157,7 @@ Func_39ec: ; 39ec (0:39ec)
 
 Get8CharName: ; 3a01 (0:3a01)
 	ld d, $0
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	ld e, a
 REPT 3
 	sla e
@@ -6170,7 +6170,7 @@ ENDR
 
 Get4CharName: ; 3a1d (0:3a1d)
 	ld d, $0
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	ld e, a
 REPT 2
 	sla e
@@ -6288,7 +6288,7 @@ Data_3ac2::
 	db $0
 
 GetAndPrintName75LeftAlign: ; 3ac3 (0:3ac3)
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	push bc
 	push de
 	pop hl
@@ -6303,7 +6303,7 @@ GetAndPrintName75LeftAlign: ; 3ac3 (0:3ac3)
 	jp PlaceString_
 
 GetAndPrintName75CenterAlign::
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	push bc
 	push de
 	ld hl, wc3a0
@@ -6321,14 +6321,14 @@ GetAndPrintName75CenterAlign::
 	call ClearString
 	ld hl, wStringBuffer
 	ld de, wc3a0
-	call Func_33e3
+	call CenterAlignDenjuuName_
 	ld de, wc3a0
 	pop hl
 	ld b, $8
 	jp PlaceString_
 
 Func_3b09: ; 3b09 (0:3b09)
-	ld [wd435], a
+	ld [wNamedObjectIndexBuffer], a
 	push bc
 	push de
 	pop hl
@@ -6402,7 +6402,7 @@ Func_3b74: ; 3b74 (0:3b74)
 	ld [wd4ec], a
 	ld hl, Data_3b6b
 	ld d, $0
-	ld a, [wCurPhoneGFX]
+	ld a, [wDShotLevel]
 	ld e, a
 	add hl, de
 	ld a, [hl]
@@ -6527,7 +6527,7 @@ ChooseWildDenjuuEncounter: ; 3c57 (0:3c57)
 	ret
 
 LoadDenjuuBattleCatchphrase: ; 3c8b (0:3c8b)
-	ld a, [wd435]
+	ld a, [wNamedObjectIndexBuffer]
 	cp $0
 	jr z, .first_string
 	ld e, a
@@ -6689,32 +6689,32 @@ CopyPlayerDenjuuNameToBattleUserName::
 	ld hl, wBattlePlayerDenjuuName
 	jp CopyData
 
-Func_3d95::
-	cp $14
+GetCurDenjuuKanjiDescription::
+	cp ANGIOS
 	jr c, .asm_3dcb
-	cp $23
+	cp FIREKOKKO
 	jr c, .asm_3dcf
-	cp $37
+	cp GILERTH
 	jr c, .asm_3dd3
-	cp $4b
+	cp ANGIORN
 	jr c, .asm_3dd7
-	cp $5a
+	cp KIYORUKA
 	jr c, .asm_3ddb
-	cp $6e
+	cp EASYDOG
 	jr c, .asm_3ddf
-	cp $78
+	cp GILGIERTH
 	jr c, .asm_3de3
-	cp $87
+	cp ANGILANCE
 	jr c, .asm_3de7
-	cp $96
+	cp ANGIPOWER
 	jr c, .asm_3deb
-	cp $9b
+	cp GIGAGIGERTH
 	jr c, .asm_3def
-	cp $a0
+	cp ANGIGORGO
 	jr c, .asm_3df3
-	cp $a9
+	cp ANGIOROS
 	jr c, .asm_3df7
-	cp $ac
+	cp DENDEL
 	jr c, .asm_3dfb
 	jr .asm_3deb
 
@@ -6799,7 +6799,7 @@ PrintStringWithPlayerDenjuuAsBattleUser::
 	call CloseSRAM
 	ld hl, wBattleUserName
 	ld de, wOAMAnimationsEnd
-	call Func_33e3
+	call CenterAlignDenjuuName_
 	ld de, wOAMAnimationsEnd
 	ld b, $8
 	pop hl

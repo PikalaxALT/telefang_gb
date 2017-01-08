@@ -1161,7 +1161,7 @@ CloseIdleOverworldHUD: ; 2c8b1 (b:48b1)
 OverworldIdleHudCheck: ; 2c904 (b:4904)
 	call Func_2107
 	jr nz, .finish
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr z, .finish
 	ld a, [wNumIdleFrames]
@@ -1383,7 +1383,7 @@ LoadTextbox_Tilemap: ; 2caa5 (b:4aa5)
 	ld c, 10
 	cp $0
 	jr nz, .asm_2cac0
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr z, .asm_2cacb
 	ld c, 20
@@ -1438,7 +1438,7 @@ LoadTextbox_Attr: ; 2caf9 (b:4af9)
 	ld d, 10
 	cp $0
 	jr nz, .load_16_attr
-	ld a, [wc904]
+	ld a, [wMapGroup]
 	cp $b
 	jr z, .go_attr
 	ld d, 20

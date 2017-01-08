@@ -910,10 +910,10 @@ wc900:: ds 1
 wc901:: ds 1
 wc902:: ds 1
 wc903:: ds 1
-wc904:: ds 1
+wMapGroup:: ds 1
 wc905:: ds 1
-wc906:: ds 1
-wc907:: ds 1
+wMapNumber:: ds 1
+wDShotReceptionLevel:: ds 1
 wc908:: ds 1
 wc909:: ds 1
 wc90a:: ds 1
@@ -2021,7 +2021,7 @@ wFontPaletteMode:: ds 1
 wcdb2:: ds 1
 wcdb3:: ds 1
 wAddressBookIndexOfPartnerDenjuu:: ds 1
-wCurPhoneGFX:: ds 1
+wDShotLevel:: ds 1
 wcdb6:: ds 1
 wTextJoyNew:: ds 1
 wcdb8:: ds 1
@@ -3419,7 +3419,7 @@ wd408:: ds 1
 wd409:: ds 1
 BattleResults_CurBattleDenjuu:: ds 1
 wd40b:: ds 1
-wd40c:: ds 1
+wNumDenjuuInAddressBook:: ds 1
 wd40d:: ds 1
 wd40e:: ds 1
 wd40f:: ds 1
@@ -3460,7 +3460,7 @@ wd431:: ds 1
 wd432:: ds 1
 wd433:: ds 1
 wd434:: ds 1
-wd435:: ds 1
+wNamedObjectIndexBuffer:: ds 1
 wd436:: ds 1
 wd437:: ds 1
 wd438:: ds 1
@@ -3523,10 +3523,10 @@ wd47c:: ds 1
 wd47d:: ds 1
 wd47e:: ds 1
 wd47f:: ds 1
-wd480:: ds 1
-wd481:: ds 1
-wd482:: ds 1
-wd483:: ds 1
+wRecruitedDenjuuSpecies:: ds 1
+wRecruitedDenjuuLevel:: ds 1
+wRecruitedDenjuuInitialFD:: ds 1
+wRecruitedDenjuuField0x03:: ds 1
 wd484:: ds 1
 wd485:: ds 1
 wd486:: ds 1
@@ -3561,7 +3561,7 @@ wd4a2:: ds 1
 wd4a3:: ds 1
 wd4a4:: ds 1
 wExperiencePointsToNextLevel:: dw
-wd4a7:: ds 1
+wFirstEmptySlotInAddressBook:: ds 1
 wd4a8:: ds 1
 wd4a9:: ds 1
 wd4aa:: ds 1
