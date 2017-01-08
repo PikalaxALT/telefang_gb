@@ -209,8 +209,8 @@ Func_0583::
 	rst MemBankswitch
 	ret
 
-Func_0588::
-	call Func_3882
+PlayPCM_::
+	call PlayPCM
 	rst MemBankswitch
 	ret
 
@@ -327,10 +327,10 @@ Func_0609::
 	rst Bankswitch
 	ret
 
-Func_0616::
+AnimateObject_::
 	ld a, [wROMBank]
 	push af
-	call Func_0df7
+	call AnimateObject
 	pop af
 	rst Bankswitch
 	ret

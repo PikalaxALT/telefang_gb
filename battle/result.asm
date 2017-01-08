@@ -399,7 +399,7 @@ BattleResults_CheckBattleResult: ; 74291 (1d:4291)
 	ret
 
 PlayVictoryMusic_LoadWinObject_PrintVictoryMessage: ; 742c4 (1d:42c4)
-	ld a, $18
+	ld a, MUSIC_18
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $10 ; Caught the E-monster!
@@ -1266,7 +1266,7 @@ PrintLevelUpText: ; 74827 (1d:4827)
 	call PrintStringWithPlayerDenjuuAsBattleUser
 	ld c, $18
 	call StdBattleTextBox
-	ld a, $1a
+	ld a, MUSIC_1A
 	call GetMusicBank
 	ld [H_MusicID], a
 	call CloseSRAM
@@ -2047,7 +2047,7 @@ Func_74f27: ; 74f27 (1d:4f27)
 	ret
 
 PlayDefeatedMusic_LoadLostObject_PrintDefeatedMessage: ; 74f3d (1d:4f3d)
-	ld a, $19
+	ld a, MUSIC_19
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $13
@@ -2259,7 +2259,7 @@ SetUpRecruitmentScreenLayout:
 	call CopyDenjuuSpeciesNameToUserNameBuffer
 	ld c, $6c
 	call StdBattleTextBox
-	ld a, $28
+	ld a, MUSIC_28
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wRecruitedDenjuuLevel]
@@ -2382,7 +2382,7 @@ Func_751c8: ; 751c8 (1d:51c8)
 
 Func_751dc: ; 751dc (1d:51dc)
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -2806,7 +2806,7 @@ EvolveDenjuu_SetUpLayout: ; 754b1 (1d:54b1)
 	call ClearString
 	ld a, $0
 	ld [BattleResults_CurBattleDenjuu], a
-	ld a, $2b
+	ld a, MUSIC_2B
 	call GetMusicBank
 	ld [H_MusicID], a
 	lb bc, $6, $5
@@ -3256,7 +3256,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	hlbgcoord 10, 2
 	ld c, $1
 	call Print2DigitBCD_2
-	ld a, $2e
+	ld a, MUSIC_2E
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4

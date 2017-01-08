@@ -99,8 +99,7 @@ wGameRoutine:: ds 1
 wSubroutine:: ds 1
 wSubroutine2:: ds 1
 wc3e3:: ds 1
-wc3e4:: ds 1
-wc3e5:: ds 1
+wLogoAndTitleScreenTimer:: ds 2 ; bigdw
 wc3e6:: ds 1
 wc3e7:: ds 1
 wCGB:: ds 1 ; c3e8

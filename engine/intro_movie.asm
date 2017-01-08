@@ -85,11 +85,11 @@ Func_8124: ; 8124 (2:4124)
 	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld [wSCX], a
-	ld a, $37
+	ld a, MUSIC_37
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld b, $1
-	call Func_3768
+	call homecall_ret_2e562
 	jp IncrementSubroutine
 
 Func_8191: ; 8191 (2:4191)
@@ -193,7 +193,7 @@ Func_820b: ; 820b (2:420b)
 
 Func_8264: ; 8264 (2:4264)
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld a, [wcb2c]
 	cp $0
 	jr z, .asm_8276
@@ -266,7 +266,7 @@ Func_82cd: ; 82cd (2:42cd)
 
 Func_8303: ; 8303 (2:4303)
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld a, [wcb2c]
 	cp $0
 	jr z, .asm_8315
@@ -353,7 +353,7 @@ Func_835d: ; 835d (2:435d)
 
 Func_83b6: ; 83b6 (2:43b6)
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld a, [wcb2c]
 	dec a
 	ld [wcb2c], a
@@ -471,7 +471,7 @@ Func_8491: ; 8491 (2:4491)
 	ld [wc46d], a
 	ld [wc46c], a
 	ld b, $0
-	jp Func_3768
+	jp homecall_ret_2e562
 
 Func_84b9: ; 84b9 (2:44b9)
 	ld a, $4

@@ -812,7 +812,7 @@ Func_70541:
 	xor a
 	ld [wd40e], a
 	ld [wd40d], a
-	ld a, $12
+	ld a, MUSIC_12
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wBattleMode]

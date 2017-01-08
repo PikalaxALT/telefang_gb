@@ -65,10 +65,10 @@ PushGFXRegisters::
 .skip
 	ret
 
-Func_02d0: ; 2d0 (0:02d0)
+SoftResetCheck: ; 2d0 (0:02d0)
 	ld a, [hJoyLast]
-	and $f
-	cp $f
+	and A_BUTTON | B_BUTTON | START | SELECT
+	cp A_BUTTON | B_BUTTON | START | SELECT
 	ret nz
 	ld a, [wGameRoutine]
 	cp $0
@@ -115,7 +115,7 @@ InitSoundData: ; 439 (0:0439)
 
 UpdateSound: ; 464 (0:0464)
 	ld a, [wMusicBank]
-	add MUSIC_00
+	add MUSIC_BANK_00
 	ld [MBC3RomBank], a
 	call UpdateSound_20
 	ld a, [wROMBank]
@@ -600,127 +600,7 @@ Func_0d97: ; d97 (0:0d97)
 	ld [hl], a
 	ret
 
-Data_0dee::
-	db BANK(Pointers_33ac4)
-	db BANK(Pointers_33ac4)
-	db BANK(Pointers_33ac4)
-
-Data_0df1::
-	dw Pointers_33ac4
-	dw Pointers_33ac4
-	dw Pointers_33ac4
-
-Func_0df7: ; df7 (0:0df7)
-	ld hl, $1
-	add hl, de
-	ld a, [hl]
-	and $f
-	ld hl, Data_0dee
-	ld b, $0
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	rst Bankswitch
-	ld hl, $6
-	add hl, de
-	ld a, [hl]
-	or a
-	jp nz, @+2
-	; stuff was commented out in source :/
-	ld hl, $a
-	add hl, de
-	ld a, [hl]
-	cp $ff
-	ret z
-	ld hl, $8
-	add hl, de
-	ld a, [hl]
-	or a
-	jr z, .asm_0e23
-	dec a
-	ld [hl], a
-	ret
-
-.asm_0e23
-	ld a, $1
-	ld [wSpriteUpdatesEnabled], a
-	ld hl, $1
-	add hl, de
-	ld a, [hl]
-	and $f
-	ld hl, Data_0df1
-	ld b, $0
-	ld c, a
-	sla c
-	rl b
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	push hl
-	ld hl, $7
-	add hl, de
-	ld a, [hl]
-	pop hl
-	ld c, a
-	ld b, $0
-	sla c
-	rl b
-	add hl, bc
-	ld a, [hli]
-	ld b, [hl]
-	ld c, a
-Func_0e4f: ; e4f (0:0e4f)
-	ld hl, $9
-	add hl, de
-	ld a, [hl]
-	ld h, $0
-	ld l, a
-	add hl, bc
-	ld a, [hl]
-	cp $fe
-	jr z, .asm_0e71
-	cp $ff
-	jr z, .asm_0e64
-	jp Func_0e7f
-
-.asm_0e64
-	ld hl, $a
-	add hl, de
-	ld [hl], $ff
-	ld hl, $6
-	add hl, de
-	ld [hl], $0
-	ret
-
-.asm_0e71
-	inc hl
-	ld a, [hl]
-	sla a
-	sla a
-	ld hl, $9
-	add hl, de
-	ld [hl], a
-	jp Func_0e4f
-
-Func_0e7f: ; e7f (0:0e7f)
-	ld a, [hli]
-	dec a
-	push hl
-	ld hl, $8
-	add hl, de
-	ld [hl], a
-	pop hl
-	ld a, [hl]
-	ld hl, $2
-	add hl, de
-	ld [hl], a
-	ld hl, $9
-	add hl, de
-	ld a, [hl]
-	add $2
-	ld [hl], a
-	ret
+INCLUDE "home/objects.asm"
 
 GetWordFromTable::
 	ld b, $0
@@ -1380,7 +1260,7 @@ GetMusicBank::
 	jr nc, .asm_160a
 	sub $f
 	push af
-	ld a, MUSIC_01 - MUSIC_00
+	ld a, MUSIC_BANK_01 - MUSIC_BANK_00
 	jp Func_161b
 
 .asm_160a
@@ -1388,13 +1268,13 @@ GetMusicBank::
 	jr nc, .asm_1616
 	sub $1f
 	push af
-	ld a, MUSIC_02 - MUSIC_00
+	ld a, MUSIC_BANK_02 - MUSIC_BANK_00
 	jp Func_161b
 
 .asm_1616
 	sub $2f
 	push af
-	ld a, MUSIC_03 - MUSIC_00
+	ld a, MUSIC_BANK_03 - MUSIC_BANK_00
 Func_161b: ; 161b (0:161b)
 	ld [wMusicBank], a
 	pop af
@@ -1713,7 +1593,7 @@ LoadButtonGFX: ; 190b (0:190b)
 Func_192a: ; 192a (0:192a)
 	ld e, a
 	ld d, $0
-	ld hl, Func_02d0
+	ld hl, $2d0
 	add hl, de
 	push hl
 	pop bc
@@ -5529,8 +5409,8 @@ Func_373e::
 	rst Bankswitch
 	ret
 
-Func_3768::
-	homecall Func_2e562
+homecall_ret_2e562::
+	homecall ret_2e562
 	ret
 
 Func_3775::
@@ -6174,7 +6054,7 @@ Func_3cd0::
 	push hl
 	pop de
 	push de
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld hl, $6

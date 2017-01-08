@@ -196,7 +196,7 @@ Func_115ae: ; 115ae (4:55ae)
 	call Func_17ef
 .asm_115be
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr z, .asm_115d1
 	ld a, $4
 	ld [H_SFX_ID], a

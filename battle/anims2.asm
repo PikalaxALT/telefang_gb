@@ -6192,7 +6192,7 @@ Data_6f0cf:
 
 Func_6f0ff: ; 6f0ff (1b:70ff)
 	push de
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	pop de
@@ -6209,7 +6209,7 @@ Func_6f0ff: ; 6f0ff (1b:70ff)
 
 Func_6f11a:
 	push de
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	pop de
@@ -6223,7 +6223,7 @@ Func_6f11a:
 	jp Func_6f1c2
 
 Func_6f133: ; 6f133 (1b:7133)
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret

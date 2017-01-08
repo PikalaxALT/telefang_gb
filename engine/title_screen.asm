@@ -6,8 +6,8 @@ TitleScreen: ; 893f (2:493f)
 	dw Func_8a1a
 	dw Func_8a2e
 	dw Func_8a36
-	dw Func_8a45
-	dw Func_8a63
+	dw TitleScreen_PlayPCM_StartMusic_StartTimer
+	dw TitleScreen_AnimateObjects_WaitButton
 	dw Func_8ac3
 	dw Func_8acd
 	dw Func_8b03
@@ -37,7 +37,7 @@ Func_896f:
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld b, $0
-	call Func_3768
+	call homecall_ret_2e562
 	jp IncrementSubroutine
 
 Func_899e:
@@ -114,40 +114,40 @@ Func_8a36:
 	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
-Func_8a45:
+TitleScreen_PlayPCM_StartMusic_StartTimer:
 	ld a, $1
-	ld [H_FFA9], a
+	ld [H_PCM_ID], a
 	di
-	call Func_0588
+	call PlayPCM_
 	ei
-	ld a, $36
+	ld a, MUSIC_TITLE_SCREEN
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, $2
-	ld [wc3e4], a
+	ld a, 512 / $100
+	ld [wLogoAndTitleScreenTimer], a
 	xor a
-	ld [wc3e5], a
+	ld [wLogoAndTitleScreenTimer + 1], a
 	jp IncrementSubroutine
 
-Func_8a63:
+TitleScreen_AnimateObjects_WaitButton:
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld de, wOAMAnimation03
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation04
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wOAMAnimation05], a
 	ld a, [wVBlankCounter]
 	and $7
-	jr nz, .asm_8a88
+	jr nz, .no_flash
 	ld a, [wOAMAnimation02]
 	xor $1
 	ld [wOAMAnimation02], a
-.asm_8a88
+.no_flash
 	ld a, [hJoyNew]
-	and $9
-	jr z, .asm_8aa0
+	and A_BUTTON | START
+	jr z, .count_down
 	ld a, $9
 	ld [H_SFX_ID], a
 	ld a, $4
@@ -156,16 +156,16 @@ Func_8a63:
 	ld [wcf96], a
 	jp IncrementSubroutine
 
-.asm_8aa0
-	ld a, [wc3e4]
+.count_down
+	ld a, [wLogoAndTitleScreenTimer]
 	ld b, a
-	ld a, [wc3e5]
+	ld a, [wLogoAndTitleScreenTimer + 1]
 	ld c, a
 	dec bc
 	ld a, b
-	ld [wc3e4], a
+	ld [wLogoAndTitleScreenTimer], a
 	ld a, c
-	ld [wc3e5], a
+	ld [wLogoAndTitleScreenTimer + 1], a
 	or b
 	ret nz
 	ld a, $4

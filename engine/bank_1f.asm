@@ -346,7 +346,7 @@ ENDC
 	call Func_3cb5
 	xor a
 	ld [wd458], a
-	ld a, $27
+	ld a, MUSIC_27
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $1
@@ -1498,7 +1498,7 @@ Func_7caaa: ; 7caaa (1f:4aaa)
 	pop af
 	call GetDenjuuPalette_Pal6
 	call CloseSRAM
-	ld a, $13
+	ld a, MUSIC_13
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
@@ -3678,7 +3678,7 @@ Func_7db70: ; 7db70 (1f:5b70)
 	ret
 
 Func_7db91: ; 7db91 (1f:5b91)
-	ld a, $18
+	ld a, MUSIC_18
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $10
@@ -3714,7 +3714,7 @@ Func_7dbbe: ; 7dbbe (1f:5bbe)
 	ret
 
 Func_7dbe1: ; 7dbe1 (1f:5be1)
-	ld a, $19
+	ld a, MUSIC_19
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $13
@@ -4005,7 +4005,7 @@ Func_7ddb6: ; 7ddb6 (1f:5db6)
 	call GetAndPrintName75CenterAlign
 	ld a, [wRecruitedDenjuuSpecies]
 	call Func_7e0a7
-	ld a, $28
+	ld a, MUSIC_28
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wRecruitedDenjuuLevel]
@@ -4096,7 +4096,7 @@ Func_7dea3: ; 7dea3 (1f:5ea3)
 
 Func_7dee6: ; 7dee6 (1f:5ee6)
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -4584,7 +4584,7 @@ Func_7e1b0: ; 7e1b0 (1f:61b0)
 	hlbgcoord 10, 2
 	ld c, $1
 	call Print2DigitBCD_2
-	ld a, $2e
+	ld a, MUSIC_2E
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
@@ -6061,7 +6061,7 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	call Func_7e0a7
 	ld c, $3
 	call StdBattleTextBox
-	ld a, $28
+	ld a, MUSIC_28
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wRecruitedDenjuuLevel]
@@ -6121,7 +6121,7 @@ Func_7eed9: ; 7eed9 (1f:6ed9)
 
 Func_7ef04: ; 7ef04 (1f:6f04)
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -6310,7 +6310,7 @@ Func_7f023: ; 7f023 (1f:7023)
 	hlbgcoord 10, 2
 	ld c, $1
 	call Print2DigitBCD_2
-	ld a, $2e
+	ld a, MUSIC_2E
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4

@@ -30,7 +30,7 @@ hFFA5 EQU $ffa5
 hFFA6 EQU $ffa6
 hFFA7 EQU $ffa7
 hFFA8 EQU $ffa8
-hFFA9 EQU $ffa9
+hPCM_ID EQU $ffa9
 hFFAA EQU $ffaa
 hFFAB EQU $ffab
 hFFAC EQU $ffac

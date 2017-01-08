@@ -1,50 +1,50 @@
 OpeningLogos: ; 9300 (2:5300)
 	ld a, [wSubroutine]
 	jump_table
-	dw Func_937e
-	dw Func_9390
-	dw Func_93bd
-	dw Func_9362
-	dw Func_9406
-	dw Func_936c
-	dw Func_9427
-	dw Func_9376
-	dw Func_9362
-	dw Func_9406
-	dw Func_936c
-	dw Func_945c
-	dw Func_9376
-	dw Func_9362
-	dw Func_9406
-	dw Func_936c
-	dw Func_9491
-	dw Func_9376
-	dw Func_9362
-	dw Func_9406
-	dw Func_936c
-	dw Func_94c5
-	dw Func_9376
-	dw Func_94dc
-	dw Func_94ed
-	dw Func_94ed
-	dw Func_94ed
-	dw Func_94ed
-	dw Func_94ed
-	dw Func_94ed
-	dw Func_94ed
-	dw Func_94ed
-	dw Func_937e
-	dw Func_94ee
-	dw Func_9503
-	dw Func_951f
-	dw Func_9376
-	dw Func_9362
-	dw Func_9535
-	dw Func_9376
-	dw Func_936c
-	dw Func_9562
-	dw Func_9568
-	dw Func_9573
+	dw Func_937e ; 00
+	dw Func_9390 ; 01
+	dw Func_93bd ; 02
+	dw Func_9362 ; 03
+	dw Func_9406 ; 04
+	dw Func_936c ; 05
+	dw Func_9427 ; 06
+	dw Func_9376 ; 07
+	dw Func_9362 ; 08
+	dw Func_9406 ; 09
+	dw Func_936c ; 0a
+	dw Func_945c ; 0b
+	dw Func_9376 ; 0c
+	dw Func_9362 ; 0d
+	dw Func_9406 ; 0e
+	dw Func_936c ; 0f
+	dw Func_9491 ; 10
+	dw Func_9376 ; 11
+	dw Func_9362 ; 12
+	dw Func_9406 ; 13
+	dw Func_936c ; 14
+	dw Func_94c5 ; 15
+	dw Func_9376 ; 16
+	dw Func_94dc ; 17
+	dw Func_94ed ; 18
+	dw Func_94ed ; 19
+	dw Func_94ed ; 1a
+	dw Func_94ed ; 1b
+	dw Func_94ed ; 1c
+	dw Func_94ed ; 1d
+	dw Func_94ed ; 1e
+	dw Func_94ed ; 1f
+	dw Func_937e ; 20
+	dw Func_94ee ; 21
+	dw Func_9503 ; 22
+	dw Func_951f ; 23
+	dw Func_9376 ; 24
+	dw Func_9362 ; 25
+	dw Func_9535 ; 26
+	dw Func_9376 ; 27
+	dw Func_936c ; 28
+	dw Func_9562 ; 29
+	dw SoftReset_StopMusic ; 2a
+	dw SoftReset ; 2b
 
 Func_9362: ; 9362 (2:5362)
 	ld a, $0
@@ -117,7 +117,7 @@ Func_93bd: ; 93bd (2:53bd)
 	ld a, $4
 	call StartFade_
 	ld a, $60
-	ld [wc3e4], a
+	ld [wLogoAndTitleScreenTimer], a
 	xor a
 	ld [wc475], a
 	jp IncrementSubroutine
@@ -133,9 +133,9 @@ Func_9406: ; 9406 (2:5406)
 	ret
 
 .asm_9417
-	ld a, [wc3e4]
+	ld a, [wLogoAndTitleScreenTimer]
 	dec a
-	ld [wc3e4], a
+	ld [wLogoAndTitleScreenTimer], a
 	ret nz
 	ld a, $4
 	call StartFade_
@@ -157,7 +157,7 @@ Func_9427: ; 9427 (2:5427)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, $60
-	ld [wc3e4], a
+	ld [wLogoAndTitleScreenTimer], a
 	ld a, $1
 	ld [wc475], a
 	ld bc, $11
@@ -180,7 +180,7 @@ Func_945c: ; 945c (2:545c)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, $60
-	ld [wc3e4], a
+	ld [wLogoAndTitleScreenTimer], a
 	ld a, $2
 	ld [wc475], a
 	ld bc, $11
@@ -203,7 +203,7 @@ Func_9491: ; 9491 (2:5491)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, $60
-	ld [wc3e4], a
+	ld [wLogoAndTitleScreenTimer], a
 	ld a, $3
 	ld [wc475], a
 	ld bc, $11
@@ -272,21 +272,21 @@ Func_951f: ; 951f (2:551f)
 
 Func_9535: ; 9535 (2:5535)
 	ld a, [hJoyNew]
-	and $9
+	and A_BUTTON | START
 	jp nz, Func_9557
-	ld a, [wc3e4]
+	ld a, [wLogoAndTitleScreenTimer]
 	ld h, a
-	ld a, [wc3e5]
+	ld a, [wLogoAndTitleScreenTimer + 1]
 	ld l, a
 	inc hl
 	ld a, h
-	ld [wc3e4], a
+	ld [wLogoAndTitleScreenTimer], a
 	ld a, l
-	ld [wc3e5], a
-	cp $58
+	ld [wLogoAndTitleScreenTimer + 1], a
+	cp 600 % $100
 	ret nz
 	ld a, h
-	cp $2
+	cp 600 / $100
 	ret nz
 	jp IncrementSubroutine
 
@@ -302,13 +302,13 @@ Func_9562: ; 9562 (2:5562)
 	ld [wSubroutine], a
 	ret
 
-Func_9568: ; 9568 (2:5568)
+SoftReset_StopMusic: ; 9568 (2:5568)
 	ld a, $1
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
 
-Func_9573: ; 9573 (2:5573)
+SoftReset: ; 9573 (2:5573)
 	di
 	call DisableLCD
 	xor a
@@ -355,5 +355,5 @@ Func_9573: ; 9573 (2:5573)
 	xor a
 	ld [wSubroutine], a
 	ld b, $0
-	call Func_3768
+	call homecall_ret_2e562
 	ret

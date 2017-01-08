@@ -127,7 +127,7 @@ Func_100fa: ; 100fa (4:40fa)
 	jp IncrementSubroutine
 
 Func_10108: ; 10108 (4:4108)
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
@@ -303,7 +303,7 @@ Phone_Load: ; 10232 (4:4232)
 	ld [wSubroutine], a
 	call LoadGame_
 	ld b, $1
-	call Func_3768
+	call homecall_ret_2e562
 	ld a, $1
 	ld [wc900], a
 	ret
@@ -343,7 +343,7 @@ Func_1028a: ; 1028a (4:428a)
 
 Func_102aa: ; 102aa (4:42aa)
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	jp SelectTime
 
 Func_102b3: ; 102b3 (4:42b3)
@@ -392,7 +392,7 @@ Func_102cd: ; 102cd (4:42cd)
 
 Func_1031c: ; 1031c (4:431c)
 	ld de, wOAMAnimation02_PriorityFlags
-	call Func_0616
+	call AnimateObject_
 	call Func_128ff
 	jp Func_124a9
 
@@ -434,7 +434,7 @@ Func_10346: ; 10346 (4:4346)
 	xor a
 	ld [wSubroutine], a
 	ld b, $1
-	call Func_3768
+	call homecall_ret_2e562
 	call ClearSRAM
 	call DeleteSaveFile
 	call Func_1a09
@@ -458,9 +458,9 @@ Func_1037f: ; 1037f (4:437f)
 
 Func_103a5: ; 103a5 (4:43a5)
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03_PriorityFlags
-	call Func_0616
+	call AnimateObject_
 	jp Func_12bbc
 
 Func_103b4: ; 103b4 (4:43b4)
@@ -475,7 +475,7 @@ Func_103b4: ; 103b4 (4:43b4)
 	ld bc, $30f
 	ld e, $20
 	call Phone_LoadStdBGMapTileAndAttrLayout
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	call Func_11927
@@ -498,7 +498,7 @@ Func_103e2: ; 103e2 (4:43e2)
 
 Func_10400: ; 10400 (4:4400)
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp Func_13c8f
@@ -634,16 +634,16 @@ Func_10546: ; 10546 (4:4546)
 	call PaletteFade_
 	or a
 	ret z
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
 
 Func_10558: ; 10558 (4:4558)
 	ld de, wOAMAnimation02_PriorityFlags
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation05
-	call Func_0616
+	call AnimateObject_
 	call Func_12921
 	jp Func_12582
 
@@ -674,7 +674,7 @@ Phone_Save: ; 1057d (4:457d)
 	cp $0
 	jr z, .asm_105b0
 	ld b, $0
-	call Func_3768
+	call homecall_ret_2e562
 	call SaveGame_
 	xor a
 	ld [wSubroutine], a
@@ -682,7 +682,7 @@ Phone_Save: ; 1057d (4:457d)
 
 .asm_105b0
 	ld b, $1
-	call Func_3768
+	call homecall_ret_2e562
 	ld a, $5
 	ld [wGameRoutine], a
 	ld a, $a
@@ -758,7 +758,7 @@ Func_10642: ; 10642 (4:4642)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
@@ -906,7 +906,7 @@ Func_10743: ; 10743 (4:4743)
 .asm_10764
 	ld de, wOAMAnimation01
 	call Func_099c
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -1019,7 +1019,7 @@ Func_1082e: ; 1082e (4:482e)
 	call Func_135ef
 	ld de, wOAMAnimation01
 	call Func_099c
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -1188,7 +1188,7 @@ Func_10969: ; 10969 (4:4969)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -1266,7 +1266,7 @@ Func_10a09: ; 10a09 (4:4a09)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -1462,7 +1462,7 @@ Func_10bbd:
 
 Func_10bc0:
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp Func_131a0
@@ -1664,7 +1664,7 @@ Func_10d30:
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	xor a
@@ -1707,9 +1707,9 @@ Func_10d86:
 
 Func_10dd3:
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $c
@@ -1740,7 +1740,7 @@ Func_10dec:
 	ld bc, $12
 	call DecompressGFXByIndex_
 .asm_10e20
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $1
@@ -1755,7 +1755,7 @@ Func_10dec:
 
 Func_10e37:
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp Func_1396d
@@ -1831,7 +1831,7 @@ Func_10e8e:
 
 Func_10ed2:
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	jp Func_1208b
 
 Func_10edb:
@@ -1988,7 +1988,7 @@ Func_10f82:
 
 Func_1100c:
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 	ld e, $2d
 	call Func_13951
@@ -2029,7 +2029,7 @@ InGamePhone_Save: ; 11023 (4:5023)
 
 .Menu: ; 11056 (4:5056)
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	jp Phone_SaveMenu_JoypadAction
 
 .Delay: ; 1105f (4:505f)
@@ -2094,9 +2094,9 @@ Func_110d6:
 
 Func_110d9:
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	call Func_0616
+	call AnimateObject_
 	jp Func_12e00
 
 Func_110e8:
@@ -2222,9 +2222,9 @@ Func_111dd: ; 111dd (4:51dd)
 	cp $1
 	jr z, .asm_111f0
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	call Func_0616
+	call AnimateObject_
 .asm_111f0
 	jp Func_12f59
 
@@ -2316,7 +2316,7 @@ Func_11276: ; 11276 (4:5276)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	xor a
@@ -2457,9 +2457,9 @@ Func_113d6: ; 113d6 (4:53d6)
 	cp $1
 	jr z, .asm_113e9
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	call Func_0616
+	call AnimateObject_
 .asm_113e9
 	jp Func_13028
 
@@ -2650,7 +2650,7 @@ Func_11910: ; 11910 (4:5910)
 
 Func_11913: ; 11913 (4:5913)
 	ld a, [wJoyNew]
-	and $c0
+	and D_UP | D_DOWN
 	jr nz, asm_11932
 	ld a, [wcb39]
 	cp $10
@@ -2694,7 +2694,7 @@ Func_11939: ; 11939 (4:5939)
 
 Func_11960:
 	ld a, [hJoyNew]
-	and $c0
+	and D_UP | D_DOWN
 	jr nz, .asm_1197e
 	ld a, [wcb39]
 	cp $10
@@ -3828,7 +3828,7 @@ Func_1208b: ; 1208b (4:608b)
 	call LoadPhoneKeypad
 	call Func_1bd1
 	call Func_11ee9
-	ld a, $32
+	ld a, MUSIC_32
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -6434,9 +6434,9 @@ Func_132d9: ; 132d9 (4:72d9)
 	ld [wOAMAnimation02_TemplateBank], a
 	ld [wOAMAnimation03_TemplateBank], a
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	jp Func_0616
+	jp AnimateObject_
 
 Func_13312: ; 13312 (4:7312)
 	ld a, $40
@@ -6453,9 +6453,9 @@ Func_13312: ; 13312 (4:7312)
 	ld [wOAMAnimation02_TemplateBank], a
 	ld [wOAMAnimation03_TemplateBank], a
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	jp Func_0616
+	jp AnimateObject_
 
 Func_13340: ; 13340 (4:7340)
 	ld a, $90
@@ -6472,9 +6472,9 @@ Func_13340: ; 13340 (4:7340)
 	ld [wOAMAnimation02_TemplateBank], a
 	ld [wOAMAnimation03_TemplateBank], a
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	jp Func_0616
+	jp AnimateObject_
 
 Func_1336e: ; 1336e (4:736e)
 	ld a, $40
@@ -6499,9 +6499,9 @@ Func_1336e: ; 1336e (4:736e)
 	ld [wOAMAnimation02_TemplateBank], a
 	ld [wOAMAnimation03_TemplateBank], a
 	ld de, wOAMAnimation02
-	call Func_0616
+	call AnimateObject_
 	ld de, wOAMAnimation03
-	jp Func_0616
+	jp AnimateObject_
 
 Func_133ab: ; 133ab (4:73ab)
 	ld hl, Data_133c0

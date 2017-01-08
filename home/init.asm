@@ -80,7 +80,7 @@ Start::
 	ld a, [wVBlankCounter]
 	inc a
 	ld [wVBlankCounter], a
-	call Func_02d0
+	call SoftResetCheck
 	ld a, [wcb3f]
 	or a
 	jr z, .skip2

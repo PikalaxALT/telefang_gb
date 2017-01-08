@@ -235,7 +235,7 @@ Func_85c6:
 	jp IncrementSubroutine
 
 Func_85dd:
-	ld a, $1b
+	ld a, MUSIC_1B
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $4
@@ -339,7 +339,7 @@ Func_8648: ; 8648 (2:4648)
 	or a
 	ret nz
 	ld a, [hJoyNew]
-	and $f3
+	and ($FF ^ (START | SELECT))
 	jr z, .asm_86a7
 	xor a
 	ld [wcb74], a
@@ -1038,7 +1038,7 @@ Func_8e64: ; 8e64 (2:4e64)
 
 Func_8e79: ; 8e79 (2:4e79)
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 asm_8e7e
 	ld a, $3
@@ -3902,7 +3902,7 @@ Func_2e4b2: ; 2e4b2 (b:64b2)
 	cp $16
 	jr nc, .asm_2e4ec
 	ld a, [hJoyLast]
-	and $f3
+	and ($FF ^ (START | SELECT))
 	jr z, .asm_2e4d3
 	ld a, [wc91a]
 	cp $c7
@@ -3996,7 +3996,7 @@ Func_2e526: ; 2e526 (b:6526)
 	ld [wBGPalUpdate], a
 	ret
 
-Func_2e562: ; 2e562 (b:6562)
+ret_2e562: ; 2e562 (b:6562)
 	ret
 
 Func_2e563:
@@ -17398,7 +17398,7 @@ Func_3a7c3:
 
 Func_3a7d2:
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 	ld a, $3
 	ld [H_SFX_ID], a
@@ -18614,7 +18614,7 @@ Func_3c247: ; 3c247 (f:4247)
 
 Func_3c254: ; 3c254 (f:4254)
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_3c25c
 	xor a
 	ret
@@ -20565,7 +20565,7 @@ Func_3cf28: ; 3cf28 (f:4f28)
 Func_3cf44: ; 3cf44 (f:4f44)
 	call Func_2928
 	ld a, [hJoyNew]
-	and $fe
+	and ($FF ^ A_BUTTON)
 	ld [hJoyNew], a
 	ld b, $1
 	call Func_3c112
@@ -20757,16 +20757,16 @@ INCLUDE "battle/result.asm"
 SECTION "bank 1F", ROMX, BANK [$1f]
 INCLUDE "engine/bank_1f.asm"
 
-SECTION "bank 20", ROMX, BANK [$20]
+SECTION "bank 20", ROMX, BANK [MUSIC_BANK_00]
 INCLUDE "audio/engine_20.asm"
 
-SECTION "bank 21", ROMX, BANK [$21]
+SECTION "bank 21", ROMX, BANK [MUSIC_BANK_01]
 INCLUDE "audio/engine_21.asm"
 
-SECTION "bank 22", ROMX, BANK [$22]
+SECTION "bank 22", ROMX, BANK [MUSIC_BANK_02]
 INCLUDE "audio/engine_22.asm"
 
-SECTION "bank 23", ROMX, BANK [$23]
+SECTION "bank 23", ROMX, BANK [MUSIC_BANK_03]
 INCLUDE "audio/engine_23.asm"
 
 SECTION "bank 24", ROMX, BANK [$24]
@@ -22931,7 +22931,7 @@ Func_a5a31: ; a5a31 (29:5a31)
 	cp $78
 	jr nc, .asm_a5a42
 	ld a, [hJoyNew]
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr z, asm_a5a4a
 .asm_a5a42
 	ld a, $4
@@ -23538,7 +23538,7 @@ Func_a5f82: ; a5f82 (29:5f82)
 
 .asm_a5f8e
 	ld a, [hJoyLast]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 	ld a, $4
 	call StartFade_

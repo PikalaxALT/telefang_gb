@@ -1,4 +1,4 @@
-Func_3882: ; 3882 (0:3882)
+PlayPCM: ; 3882 (0:3882)
 	push af
 	push bc
 	push de
@@ -23,7 +23,7 @@ Func_3882: ; 3882 (0:3882)
 GetPCMPointer: ; 38a3 (0:38a3)
 	ld hl, Pointer_3951
 	ld d, $0
-	ld a, [hFFA9]
+	ld a, [hPCM_ID]
 	dec a
 	ld e, a
 	add hl, de
@@ -127,7 +127,7 @@ ResetAudioRegistersAfterPCM: ; 393d (0:393d)
 	xor a
 	ld [rNR12], a
 	ld [rNR22], a
-	ld [hFFA9], a
+	ld [hPCM_ID], a
 	ld a, $ff
 	ld [rNR13], a
 	ld [rNR23], a
