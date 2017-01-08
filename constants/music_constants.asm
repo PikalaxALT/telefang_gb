@@ -64,19 +64,3 @@
 	const MUSIC_3D
 	const MUSIC_3E
     const music_3F
-	const MUSIC_40
-	const MUSIC_41
-	const MUSIC_42
-	const MUSIC_43
-	const MUSIC_44
-	const MUSIC_45
-	const MUSIC_46
-	const MUSIC_47
-	const MUSIC_48
-	const MUSIC_49
-	const MUSIC_4A
-	const MUSIC_4B
-	const MUSIC_4C
-	const MUSIC_4D
-	const MUSIC_4E
-    const music_4F

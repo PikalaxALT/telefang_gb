@@ -25,7 +25,7 @@ hMusicID EQU $ffa0
 hSFX_ID EQU $ffa1
 hFFA2 EQU $ffa2
 hFFA3 EQU $ffa3
-hFFA4 EQU $ffa4
+hMusicCommand EQU $ffa4
 hFFA5 EQU $ffa5
 hFFA6 EQU $ffa6
 hFFA7 EQU $ffa7

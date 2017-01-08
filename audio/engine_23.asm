@@ -4,16 +4,16 @@ UpdateSound_23:
 	push de
 	push hl
 	ld a, [H_MusicID]
-	cp $1
-	jp z, Func_8c629
+	cp MUSIC_NONE
+	jp z, PlayMusicNone_23
 	or a
-	jr z, .asm_8c018
+	jr z, .music_already_playing
 	call PlayMusic_23
 	xor a
 	ld [H_MusicID], a
 	jr .asm_8c03e
 
-.asm_8c018
+.music_already_playing
 	ld a, [wcfc0]
 	or a
 	jr z, .asm_8c022
@@ -84,14 +84,14 @@ UpdateSound_23:
 .asm_8c093
 	ld a, [wcf98]
 	sub $22
-	jr c, .asm_8c0a7
+	jr c, .reset_registers
 	ld [wcf98], a
 	ld [rNR50], a
 	ld a, [wcf96]
 	ld [wcf97], a
 	jr .asm_8c0e9
 
-.asm_8c0a7
+.reset_registers
 	xor a
 	ld [rNR50], a
 	ld [wcf96], a
@@ -503,7 +503,7 @@ asm_8c341
 	jp z, Func_8c4e8
 asm_8c34e
 	ld a, [bc]
-	ld [H_FFA4], a
+	ld [H_MusicCommand], a
 	inc bc
 	cp $ef
 	jr nz, .asm_8c35d
@@ -515,19 +515,19 @@ asm_8c34e
 	and $f0
 	cp $f0
 	jr nz, .asm_8c368
-	call Func_8c71d
+	call RunMusicCommandSet2_23
 	jr asm_8c341
 
 .asm_8c368
 	cp $e0
 	jr nz, .asm_8c371
-	call Func_8c723
+	call RunMusicCommandSet1_23
 	jr asm_8c341
 
 .asm_8c371
 	cp $d0
 	jr nz, asm_8c39f
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	ld hl, $9
 	add hl, de
@@ -555,10 +555,10 @@ Func_8c39e:
 	ret
 
 asm_8c39f
-	call Func_8c561
+	call StoreMusicPointer_23
 	ld hl, $3
 	add hl, de
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	ld b, a
 	inc b
@@ -577,7 +577,7 @@ asm_8c39f
 	ld a, [hl]
 	cp $1
 	jp z, Func_8c89a
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f0
 	cp $c0
 	jr z, asm_8c381
@@ -683,7 +683,7 @@ asm_8c455
 	inc hl
 	ld [hl], $0
 .asm_8c466
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	ld hl, $9
 	add hl, de
 	ld b, [hl]
@@ -764,19 +764,19 @@ asm_8c4dc
 Func_8c4e8: ; 484e8 (11:44e8)
 	ld a, [bc]
 	inc bc
-	ld [H_FFA4], a
+	ld [H_MusicCommand], a
 	cp $e0
 	jp z, Func_8c549
 	and $f0
 	cp $f0
 	jr nz, .asm_8c4fd
-	call Func_8c71d
+	call RunMusicCommandSet2_23
 	jr asm_8c4dc
 
 .asm_8c4fd
 	cp $e0
 	jr nz, .asm_8c506
-	call Func_8c723
+	call RunMusicCommandSet1_23
 	jr asm_8c4dc
 
 .asm_8c506
@@ -784,7 +784,7 @@ Func_8c4e8: ; 484e8 (11:44e8)
 	add hl, de
 	ld a, [hli]
 	ld [hl], a
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f0
 	jr z, .asm_8c533
 	add $20
@@ -797,16 +797,16 @@ Func_8c4e8: ; 484e8 (11:44e8)
 	inc bc
 	ld [hli], a
 	call Func_8cb6c
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	ld [hl], a
 	or $80
 	call Func_8cb76
-	jr Func_8c561
+	jr StoreMusicPointer_23
 
 .asm_8c533
-	call Func_8c561
-	ld a, [H_FFA4]
+	call StoreMusicPointer_23
+	ld a, [H_MusicCommand]
 	and $f
 	swap a
 	call Func_8cba0
@@ -822,7 +822,7 @@ Func_8c549: ; 48549 (11:4549)
 	ld hl, $4
 	add hl, de
 	ld [hl], a
-	call Func_8c561
+	call StoreMusicPointer_23
 	xor a
 	call Func_8cb39
 	ld a, $ff
@@ -830,7 +830,7 @@ Func_8c549: ; 48549 (11:4549)
 	ld a, $8f
 	jp Func_8cb76
 
-Func_8c561: ; 48561 (11:4561)
+StoreMusicPointer_23: ; 48561 (11:4561)
 	ld hl, $1
 	add hl, de
 	ld [hl], c
@@ -852,7 +852,7 @@ Data_8c569:
 	dw  $7ba,  $774,  $6e9,  $5d2,  $39d, -1, -1, -1
 	dw  $7be,  $77b,  $6f9,  $5ed,  $3dc, -1, -1, -1
 
-Func_8c629: ; 48629 (11:4629)
+PlayMusicNone_23: ; 48629 (11:4629)
 	xor a
 	ld [rNR52], a
 	ld [rNR50], a
@@ -966,73 +966,72 @@ Pointers_8c6d9:
 	dw wcf00
 	dw wcf40
 
-Pointers_8c6dd:
-	dw Func_8c894
-	dw Func_8c840
-	dw Func_8c846
-	dw Func_8c84f
-	dw Func_8c864
-	dw Func_8c865
-	dw Func_8c866
-	dw Func_8c867
-	dw Func_8c858
-	dw Func_8c894
-	dw Func_8c86d
-	dw Func_8c877
-	dw Func_8c88b
-	dw Func_8c894
-	dw Func_8c894
-	dw Func_8c894
+MusicCommandPointers1_23:
+	dw MusicCommandUnmapped_23
+	dw MusicCommandE1_23
+	dw MusicCommandE2_23
+	dw MusicCommandE3_23
+	dw MusicCommandE4_23
+	dw MusicCommandE5_23
+	dw MusicCommandE6_23
+	dw MusicCommandE7_23
+	dw MusicCommandE8_23
+	dw MusicCommandUnmapped_23
+	dw MusicCommandEA_23
+	dw MusicCommandEB_23
+	dw MusicCommandEC_23
+	dw MusicCommandUnmapped_23
+	dw MusicCommandUnmapped_23
+	dw MusicCommandUnmapped_23
+MusicCommandPointers2_23:
+	dw MusicCommandF0_23
+	dw MusicCommandF1_23
+	dw MusicCommandF2_23
+	dw MusicCommandF3_23
+	dw MusicCommandF4_23
+	dw MusicCommandF5_23
+	dw MusicCommandF6_23
+	dw MusicCommandF7_23
+	dw MusicCommandF8_23
+	dw MusicCommandF9_23
+	dw MusicCommandFA_23
+	dw MusicCommandFB_23
+	dw MusicCommandFC_23
+	dw MusicCommandFD_23
+	dw MusicCommandFE_23
+	dw MusicCommandFF_23
 
-Pointers_8c6fd:
-	dw Func_8c738
-	dw Func_8c73d
-	dw Func_8c742
-	dw Func_8c749
-	dw Func_8c754
-	dw Func_8c75f
-	dw Func_8c76f
-	dw Func_8c777
-	dw Func_8c780
-	dw Func_8c786
-	dw Func_8c799
-	dw Func_8c7b6
-	dw Func_8c7c9
-	dw Func_8c7d2
-	dw Func_8c7d8
-	dw Func_8c7de
+RunMusicCommandSet2_23: ; 4871d (11:471d)
+	ld hl, MusicCommandPointers2_23
+	jp RunMusicCommand_23
 
-Func_8c71d: ; 4871d (11:471d)
-	ld hl, Pointers_8c6fd
-	jp Func_8c729
+RunMusicCommandSet1_23: ; 48723 (11:4723)
+	ld hl, MusicCommandPointers1_23
+	jp RunMusicCommand_23
 
-Func_8c723: ; 48723 (11:4723)
-	ld hl, Pointers_8c6dd
-	jp Func_8c729
-
-Func_8c729: ; 48729 (11:4729)
-	ld a, [H_FFA4]
+RunMusicCommand_23: ; 48729 (11:4729)
+	ld a, [H_MusicCommand]
 	and $f
 	add a
 	add l
 	ld l, a
-	jr nc, .asm_8c734
+	jr nc, .okay
 	inc h
-.asm_8c734
+.okay
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
-Func_8c738: ; 48738 (11:4738)
+MusicCommandF0_23: ; 48738 (11:4738)
 	ld hl, $1a
 	jr asm_8c74c
 
-Func_8c73d: ; 4873d (11:473d)
+MusicCommandF1_23: ; 4873d (11:473d)
 	ld hl, $1a
 	jr asm_8c757
 
-Func_8c742: ; 48742 (11:4742)
+MusicCommandF2_23: ; 48742 (11:4742)
 	ld a, [bc]
 	ld l, a
 	inc bc
@@ -1041,7 +1040,7 @@ Func_8c742: ; 48742 (11:4742)
 	ld c, l
 	ret
 
-Func_8c749: ; 48749 (11:4749)
+MusicCommandF3_23: ; 48749 (11:4749)
 	ld hl, $1d
 asm_8c74c
 	ld a, [bc]
@@ -1053,7 +1052,7 @@ asm_8c74c
 	ld [hl], b
 	ret
 
-Func_8c754: ; 48754 (11:4754)
+MusicCommandF4_23: ; 48754 (11:4754)
 	ld hl, $1d
 asm_8c757
 	add hl, de
@@ -1065,7 +1064,7 @@ asm_8c757
 	ld b, [hl]
 	ret
 
-Func_8c75f: ; 4875f (11:475f)
+MusicCommandF5_23: ; 4875f (11:475f)
 	ld a, [bc]
 	inc bc
 	push af
@@ -1081,7 +1080,7 @@ Func_8c75f: ; 4875f (11:475f)
 	ld c, a
 	ret
 
-Func_8c76f: ; 4876f (11:476f)
+MusicCommandF6_23: ; 4876f (11:476f)
 	ld hl, $20
 	add hl, de
 	ld c, [hl]
@@ -1089,16 +1088,16 @@ Func_8c76f: ; 4876f (11:476f)
 	ld b, [hl]
 	ret
 
-Func_8c777: ; 48777 (11:4777)
+MusicCommandF7_23: ; 48777 (11:4777)
 	ld hl, $5
 	call Func_8c895
 	jp Func_8cb25
 
-Func_8c780: ; 48780 (11:4780)
+MusicCommandF8_23: ; 48780 (11:4780)
 	ld hl, $24
 	jp Func_8c895
 
-Func_8c786: ; 48786 (11:4786)
+MusicCommandF9_23: ; 48786 (11:4786)
 	ld a, [bc]
 	inc bc
 	ld hl, $14
@@ -1114,7 +1113,7 @@ Func_8c786: ; 48786 (11:4786)
 	ld [hl], a
 	ret
 
-Func_8c799: ; 48799 (11:4799)
+MusicCommandFA_23: ; 48799 (11:4799)
 	ld a, [bc]
 	inc bc
 	push af
@@ -1135,7 +1134,7 @@ Func_8c799: ; 48799 (11:4799)
 	ld [hl], a
 	ret
 
-Func_8c7b6: ; 487b6 (11:47b6)
+MusicCommandFB_23: ; 487b6 (11:47b6)
 	ld hl, $10
 	add hl, de
 	ld a, [bc]
@@ -1150,9 +1149,9 @@ Func_8c7b6: ; 487b6 (11:47b6)
 	ld a, [bc]
 	inc bc
 	ld [hl], a
-	jp Func_8c88b
+	jp MusicCommandEC_23
 
-Func_8c7c9: ; 487c9 (11:47c9)
+MusicCommandFC_23: ; 487c9 (11:47c9)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
@@ -1160,15 +1159,15 @@ Func_8c7c9: ; 487c9 (11:47c9)
 	ld [hl], a
 	ret
 
-Func_8c7d2: ; 487d2 (11:47d2)
+MusicCommandFD_23: ; 487d2 (11:47d2)
 	ld hl, $3
 	jp Func_8c895
 
-Func_8c7d8: ; 487d8 (11:47d8)
+MusicCommandFE_23: ; 487d8 (11:47d8)
 	ld hl, $23
 	jp Func_8c895
 
-Func_8c7de: ; 487de (11:47de)
+MusicCommandFF_23: ; 487de (11:47de)
 	ld hl, $0
 	add hl, de
 	xor a
@@ -1232,22 +1231,22 @@ Func_8c7de: ; 487de (11:47de)
 	ld a, [hl]
 	jp Func_8cb76
 
-Func_8c840: ; 48840 (11:4840)
+MusicCommandE1_23: ; 48840 (11:4840)
 	ld hl, $3
 	jp Func_8c895
 
-Func_8c846: ; 48846 (11:4846)
+MusicCommandE2_23: ; 48846 (11:4846)
 	ld hl, $a
 	call Func_8c895
 	ld [rNR43], a
 	ret
 
-Func_8c84f: ; 4884f (11:484f)
+MusicCommandE3_23: ; 4884f (11:484f)
 	ld hl, $6
 	call Func_8c895
 	jp Func_8cb2f
 
-Func_8c858: ; 48858 (11:4858)
+MusicCommandE8_23: ; 48858 (11:4858)
 	ld hl, wcfb0
 	ld a, [H_FFA3]
 	add l
@@ -1257,22 +1256,22 @@ Func_8c858: ; 48858 (11:4858)
 	ld [hl], a
 	ret
 
-Func_8c864: ; 48864 (11:4864)
+MusicCommandE4_23: ; 48864 (11:4864)
 	ret
 
-Func_8c865: ; 48865 (11:4865)
+MusicCommandE5_23: ; 48865 (11:4865)
 	ret
 
-Func_8c866: ; 48866 (11:4866)
+MusicCommandE6_23: ; 48866 (11:4866)
 	ret
 
-Func_8c867: ; 48867 (11:4867)
+MusicCommandE7_23: ; 48867 (11:4867)
 	ld a, [bc]
 	inc bc
 	ld [wcf99], a
 	ret
 
-Func_8c86d: ; 4886d (11:486d)
+MusicCommandEA_23: ; 4886d (11:486d)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
@@ -1280,7 +1279,7 @@ Func_8c86d: ; 4886d (11:486d)
 	ld [hl], a
 	jr asm_8c87f
 
-Func_8c877: ; 48877 (11:4877)
+MusicCommandEB_23: ; 48877 (11:4877)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
@@ -1296,7 +1295,7 @@ asm_8c87f
 	ld [hl], a
 	ret
 
-Func_8c88b: ; 4888b (11:488b)
+MusicCommandEC_23: ; 4888b (11:488b)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
@@ -1304,7 +1303,7 @@ Func_8c88b: ; 4888b (11:488b)
 	ld [hl], a
 	ret
 
-Func_8c894: ; 48894 (11:4894)
+MusicCommandUnmapped_23: ; 48894 (11:4894)
 	ret
 
 Func_8c895: ; 48895 (11:4895)
@@ -1329,7 +1328,7 @@ Func_8c89a: ; 4889a (11:489a)
 	ld [rNR51], a
 	ld [wcf95], a
 .asm_8c8b5
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f0
 	swap a
 	add a
@@ -1970,7 +1969,7 @@ asm_8ccf7
 	ld hl, $b
 	add hl, de
 	ld [hl], $ff
-	call Func_8c866
+	call MusicCommandE6_23
 	ld a, [H_FFA3]
 	cp $5
 	jr nz, .asm_8cd3f

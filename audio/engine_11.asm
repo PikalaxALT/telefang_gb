@@ -503,7 +503,7 @@ asm_44341
 	jp z, Func_444e8
 asm_4434e
 	ld a, [bc]
-	ld [H_FFA4], a
+	ld [H_MusicCommand], a
 	inc bc
 	cp $ef
 	jr nz, .asm_4435d
@@ -527,7 +527,7 @@ asm_4434e
 .asm_44371
 	cp $d0
 	jr nz, asm_4439f
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	ld hl, $9
 	add hl, de
@@ -558,7 +558,7 @@ asm_4439f
 	call Func_44561
 	ld hl, $3
 	add hl, de
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	ld b, a
 	inc b
@@ -577,7 +577,7 @@ asm_4439f
 	ld a, [hl]
 	cp $1
 	jp z, Func_4489a
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f0
 	cp $c0
 	jr z, asm_44381
@@ -683,7 +683,7 @@ asm_44455
 	inc hl
 	ld [hl], $0
 .asm_44466
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	ld hl, $9
 	add hl, de
 	ld b, [hl]
@@ -764,7 +764,7 @@ asm_444dc
 Func_444e8: ; 444e8 (11:44e8)
 	ld a, [bc]
 	inc bc
-	ld [H_FFA4], a
+	ld [H_MusicCommand], a
 	cp $e0
 	jp z, Func_44549
 	and $f0
@@ -784,7 +784,7 @@ Func_444e8: ; 444e8 (11:44e8)
 	add hl, de
 	ld a, [hli]
 	ld [hl], a
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f0
 	jr z, .asm_44533
 	add $20
@@ -797,7 +797,7 @@ Func_444e8: ; 444e8 (11:44e8)
 	inc bc
 	ld [hli], a
 	call Func_44b6c
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	ld [hl], a
 	or $80
@@ -806,7 +806,7 @@ Func_444e8: ; 444e8 (11:44e8)
 
 .asm_44533
 	call Func_44561
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	swap a
 	call Func_44ba0
@@ -1011,7 +1011,7 @@ Func_44723: ; 44723 (11:4723)
 	jp Func_44729
 
 Func_44729: ; 44729 (11:4729)
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f
 	add a
 	add l
@@ -1329,7 +1329,7 @@ Func_4489a: ; 4489a (11:489a)
 	ld [rNR51], a
 	ld [wcf95], a
 .asm_448b5
-	ld a, [H_FFA4]
+	ld a, [H_MusicCommand]
 	and $f0
 	swap a
 	add a
