@@ -24,9 +24,9 @@
 	const MUSIC_15
 	const MUSIC_16
 	const MUSIC_17
-	const MUSIC_18
-	const MUSIC_19
-	const MUSIC_1A
+	const MUSIC_WON_BATTLE
+	const MUSIC_LOST_BATTLE
+	const MUSIC_LEVEL_UP
 	const MUSIC_GAME_OVER
 	const MUSIC_1C
 	const MUSIC_1D
@@ -43,7 +43,7 @@
 	const MUSIC_28
 	const MUSIC_29
 	const MUSIC_2A
-	const MUSIC_2B
+	const MUSIC_EVOLUTION
 	const MUSIC_2C
 	const MUSIC_2D
 	const MUSIC_2E

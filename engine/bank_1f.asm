@@ -3678,7 +3678,7 @@ Func_7db70: ; 7db70 (1f:5b70)
 	ret
 
 Func_7db91: ; 7db91 (1f:5b91)
-	ld a, MUSIC_18
+	ld a, MUSIC_WON_BATTLE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $10
@@ -3714,7 +3714,7 @@ Func_7dbbe: ; 7dbbe (1f:5bbe)
 	ret
 
 Func_7dbe1: ; 7dbe1 (1f:5be1)
-	ld a, MUSIC_19
+	ld a, MUSIC_LOST_BATTLE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $13

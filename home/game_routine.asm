@@ -21,7 +21,7 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	dw StartBattle_     ; 06
 	dw DoBattle_        ; 07
 	dw BattleResult_    ; 08
-	dw Func_1c65        ; 09
+	dw StatsScreen_     ; 09
 	dw Func_1c6e        ; 0a
 	dw InGamePhoneMenu_ ; 0b
 	dw InGamePhoneMenu_ ; 0c
@@ -83,11 +83,11 @@ BattleResult_:
 	rst Bankswitch
 	jp BattleResult
 
-Func_1c65:
-	ld a, BANK(Func_8b8b)
+StatsScreen_:
+	ld a, BANK(StatsScreen)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp Func_8b8b
+	jp StatsScreen
 
 Func_1c6e:
 	ld a, BANK(Func_8b24)

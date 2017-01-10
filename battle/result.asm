@@ -138,7 +138,7 @@ CheckLearnedMove: ; 740a5 (1d:40a5)
 BattleResult__: ; 740ee (1d:40ee)
 	ld a, [wBattleSubroutine]
 	jump_table
-	dw .HandleBattleRexult ; 0
+	dw .HandleBattleResult ; 0
 	dw .CheckBattleResult ; 1
 	; WON
 	dw .CheckAnyDenjuuEvolved ; 2
@@ -151,8 +151,8 @@ BattleResult__: ; 740ee (1d:40ee)
 	dw Func_74220 ; 9
 	dw ReturnToGameOverScreen ; a
 
-.HandleBattleRexult: ; 7410e (1d:410e)
-	jp HandleBattleRexult
+.HandleBattleResult: ; 7410e (1d:410e)
+	jp HandleBattleResult
 
 .CheckBattleResult: ; 74111 (1d:4111)
 	ld a, [wBattleResult]
@@ -329,7 +329,7 @@ ReturnToGameOverScreen: ; 74233 (1d:4233)
 	ld [wGameRoutine], a
 	ret
 
-HandleBattleRexult: ; 74243 (1d:4243)
+HandleBattleResult: ; 74243 (1d:4243)
 	ld a, [wd401]
 	jump_table
 	dw BattleResults_CheckBattleResult ; 00
@@ -358,9 +358,9 @@ HandleBattleRexult: ; 74243 (1d:4243)
 	dw BattleResults_WaitPayoutText ; 12
 	dw CheckDenjuuEvolved ; 13
 	dw HandleDenjuuEvolution ; 14
-	dw Func_74e89 ; 15
-	dw Func_74f27 ; 16
-	dw Func_74c3a ; 17
+	dw AskEvolveDenjuu ; 15
+	dw WaitDenjuuDidNotEvolveText ; 16
+	dw HandleBattleResult_SaveExperienceGained ; 17
 
 String_7427d:
 	db "すばやさ"
@@ -399,7 +399,7 @@ BattleResults_CheckBattleResult: ; 74291 (1d:4291)
 	ret
 
 PlayVictoryMusic_LoadWinObject_PrintVictoryMessage: ; 742c4 (1d:42c4)
-	ld a, MUSIC_18
+	ld a, MUSIC_WON_BATTLE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $10 ; Caught the E-monster!
@@ -1266,7 +1266,7 @@ PrintLevelUpText: ; 74827 (1d:4827)
 	call PrintStringWithPlayerDenjuuAsBattleUser
 	ld c, $18
 	call StdBattleTextBox
-	ld a, MUSIC_1A
+	ld a, MUSIC_LEVEL_UP
 	call GetMusicBank
 	ld [H_MusicID], a
 	call CloseSRAM
@@ -1640,7 +1640,7 @@ WaitLearnedMoveText: ; 74c2b (1d:4c2b)
 	ld [wd401], a
 	ret
 
-Func_74c3a: ; 74c3a (1d:4c3a)
+HandleBattleResult_SaveExperienceGained: ; 74c3a (1d:4c3a)
 	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
 	jr z, .denjuu1
@@ -1945,42 +1945,42 @@ HandleDenjuuEvolution: ; 74e64 (1d:4e64)
 	ld [wd401], a
 	ret
 
-Func_74e89: ; 74e89 (1d:4e89)
+AskEvolveDenjuu: ; 74e89 (1d:4e89)
 	call Func_3cd0
 	call BattlePrintText
 	ld a, [hJoyNew]
 	and D_LEFT
-	jr z, .asm_74ea3
+	jr z, .check_right
 	ld a, [wd40d]
 	cp $0
-	jr z, .asm_74ea3
+	jr z, .check_right
 	ld a, $0
 	ld [wd40d], a
-	jr .asm_74eb5
+	jr .move_cursor
 
-.asm_74ea3
+.check_right
 	ld a, [hJoyNew]
 	and D_RIGHT
-	jr z, .asm_74ebd
+	jr z, .check_b_button
 	ld a, [wd40d]
 	cp $1
-	jr z, .asm_74ebd
+	jr z, .check_b_button
 	ld a, $1
 	ld [wd40d], a
-.asm_74eb5
+.move_cursor
 	ld a, $2
 	ld [H_SFX_ID], a
 	jp Func_7546d
 
-.asm_74ebd
+.check_b_button
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_74eca
+	jr z, .check_a_button
 	ld a, $3
 	ld [H_SFX_ID], a
-	jr .asm_74edb
+	jr .dont_evolve_denjuu
 
-.asm_74eca
+.check_a_button
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
@@ -1988,29 +1988,29 @@ Func_74e89: ; 74e89 (1d:4e89)
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $0
-	jr z, .asm_74f11
-.asm_74edb
+	jr z, .go_ahead_and_evolve
+.dont_evolve_denjuu
 	ld a, [BattleResults_CurBattleDenjuu]
 	cp $0
-	jr z, .asm_74ee8
+	jr z, .Denjuu1
 	cp $1
-	jr z, .asm_74eef
-	jr .asm_74ef6
+	jr z, .Denjuu2
+	jr .Denjuu3
 
-.asm_74ee8
+.Denjuu1
 	ld a, $3
 	ld [wPlayerDenjuu1ArrivedStatus], a
-	jr .asm_74efb
+	jr .done_no_evolve
 
-.asm_74eef
+.Denjuu2
 	ld a, $3
 	ld [wPlayerDenjuu2ArrivedStatus], a
-	jr .asm_74efb
+	jr .done_no_evolve
 
-.asm_74ef6
+.Denjuu3
 	ld a, $3
 	ld [wPlayerDenjuu3ArrivedStatus], a
-.asm_74efb
+.done_no_evolve
 	ld c, $8e
 	call StdBattleTextBox
 	xor a
@@ -2022,7 +2022,7 @@ Func_74e89: ; 74e89 (1d:4e89)
 	ld [wd401], a
 	ret
 
-.asm_74f11
+.go_ahead_and_evolve
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
@@ -2034,7 +2034,7 @@ Func_74e89: ; 74e89 (1d:4e89)
 	ld [wd401], a
 	ret
 
-Func_74f27: ; 74f27 (1d:4f27)
+WaitDenjuuDidNotEvolveText: ; 74f27 (1d:4f27)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -2047,7 +2047,7 @@ Func_74f27: ; 74f27 (1d:4f27)
 	ret
 
 PlayDefeatedMusic_LoadLostObject_PrintDefeatedMessage: ; 74f3d (1d:4f3d)
-	ld a, MUSIC_19
+	ld a, MUSIC_LOST_BATTLE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld c, $13
@@ -2755,414 +2755,7 @@ Func_7546d: ; 7546d (1d:546d)
 	ld [wBattleMenuCursorObjectTemplateIDX], a
 	jp InitBattleMenuCursor
 
-EvolveDenjuu: ; 7548f (1d:548f)
-	ld a, [wd401]
-	jump_table
-	dw EvolveDenjuu_SetUpLayout
-	dw EvolveDenjuu_WaitFadeIn
-	dw Func_756e8
-	dw Func_75770
-	dw Func_75782
-	dw Func_75791
-	dw Func_75541
-	dw Func_755f6
-	dw Func_75693
-	dw Func_756b0
-	dw Func_75610
-	dw Func_75632
-
-EvolveDenjuu_SetUpLayout: ; 754b1 (1d:54b1)
-	ld bc, $16
-	call DecompressGFXByIndex_
-	ld bc, $9
-	call DecompressGFXByIndex_
-	ld bc, $19
-	call DecompressGFXByIndex_
-	ld bc, $e
-	call GetCGB_BGLayout_
-	ld a, $28
-	call LoadBackgroundPalette
-	ld a, $4
-	ld bc, $5
-	call LoadNthStdBGPalette
-	ld a, BANK(GFX_e1560)
-	ld hl, VTilesOB tile $40
-	ld de, GFX_e1560
-	ld bc, $10 tiles
-	call FarCopy2bpp_2
-	ld a, $2
-	ld bc, $1fe
-	call LoadNthStdOBPalette
-	lb bc, 0, $0
-	ld e, $70
-	ld a, $0
-	call LoadStdBGMapLayout_
-	lb bc, 0, $0
-	ld e, $70
-	ld a, $0
-	call LoadStdBGMapAttrLayout_
-	ld hl, VTilesBG tile $58
-	ld a, $8
-	call ClearString
-	ld a, $0
-	ld [BattleResults_CurBattleDenjuu], a
-	ld a, MUSIC_2B
-	call GetMusicBank
-	ld [H_MusicID], a
-	lb bc, $6, $5
-	ld e, $8b
-	ld a, $0
-	call LoadStdBGMapLayout_
-	ld a, $c
-	ld hl, VTilesBG tile $10
-	call ClearString
-	ld a, $4
-	call StartFade_
-	ld a, [wd401]
-	inc a
-	ld [wd401], a
-	ret
-
-EvolveDenjuu_WaitFadeIn: ; 75534 (1d:5534)
-	ld a, $0
-	call PaletteFade_
-	or a
-	ret z
-	ld a, $6
-	ld [wd401], a
-	ret
-
-Func_75541: ; 75541 (1d:5541)
-	ld a, [wPlayerDenjuu1ArrivedStatus]
-	cp $b
-	jr nz, .check_denjuu2
-	ld a, $0
-	ld [BattleResults_CurBattleDenjuu], a
-	jr .go_ahead
-
-.check_denjuu2
-	ld a, [wPlayerDenjuu2ArrivedStatus]
-	cp $b
-	jr nz, .check_denjuu3
-	ld a, $1
-	ld [BattleResults_CurBattleDenjuu], a
-	jr .go_ahead
-
-.check_denjuu3
-	ld a, [wPlayerDenjuu3ArrivedStatus]
-	cp $b
-	jr nz, .nope
-	ld a, $2
-	ld [BattleResults_CurBattleDenjuu], a
-	jr .go_ahead
-
-.nope
-	ld a, $3
-	ld [wd401], a
-	ret
-
-.go_ahead
-	ld a, [BattleResults_CurBattleDenjuu]
-	ld hl, wPlayerDenjuu1Species
-	call CopyNthDenjuuToBuffer
-	ld a, [wCurDenjuuBufferSpecies]
-	call CopyDenjuuSpeciesNameToUserNameBuffer
-	ld a, [wCurDenjuuBuffer]
-	ld de, VTilesBG tile $10
-	call GetCurDenjuuKanjiDescription
-	lb bc, $6, $5
-	ld e, $8b
-	ld a, $0
-	call LoadStdBGMapLayout_
-	ld a, [wCurDenjuuBuffer]
-	push af
-	ld c, $0
-	ld de, VTilesShared tile $00
-	call LoadDenjuuPic_
-	pop af
-	call GetDenjuuPalette_Pal6
-	ld a, [wCurDenjuuBufferSpecies]
-	ld [wCurDenjuu], a
-	ld c, DENJUU_EVO_SPECIES
-	call GetOrCalcStatC_
-	ld a, [wCurDenjuuStat]
-	dec a
-	push af
-	ld c, $0
-	ld de, VTilesBG tile $20
-	call LoadDenjuuPic_
-	pop af
-	call GetDenjuuPalette_Pal7
-	ld a, $1
-	ld [wBGPalUpdate], a
-	ld a, [wCurDenjuuBufferSpecies]
-	ld de, DenjuuNames
-	ld bc, VTilesBG tile $58
-	call GetAndPrintName75CenterAlign
-	ld a, $0
-	ld [wd44c], a
-	ld a, [wCurDenjuuBufferLevel]
-	hlbgcoord 10, 2
-	ld c, $1
-	call Print2DigitBCD_2
-	ld b, $0
-	ld a, [wCurDenjuuStat]
-	dec a
-	ld c, a
-	ld hl, DENJUU_DEX_CAUGHT_FLAGS
-	add hl, bc
-	ld b, h
-	ld c, l
-	call SetEventFlag
-	ld a, $7
-	ld [wd401], a
-	ret
-
-Func_755f6: ; 755f6 (1d:55f6)
-	lb bc, 0, $4
-	ld e, $a0
-	ld a, $0
-	call LoadStdBGMapLayout_
-	lb bc, 0, $5
-	ld e, $92
-	ld a, $0
-	call LoadStdBGMapAttrLayout_
-	ld a, $a
-	ld [wd401], a
-	ret
-
-Func_75610: ; 75610 (1d:5610)
-	ld a, $1
-	ld [wc46c], a
-	ld a, $1
-	ld [wc46d], a
-	ld hl, wc460
-	ld a, $21
-	ld [hli], a
-	ld a, $0
-	ld [hli], a
-	ld a, $5f
-	ld [hli], a
-	ld a, $0
-	ld [wd4cf], a
-	ld [hl], a
-	ld a, $b
-	ld [wd401], a
-	ret
-
-Func_75632: ; 75632 (1d:5632)
-	call Func_75657
-	cp $0
-	jr z, .asm_75640
-	ld a, $0
-	ld [wd4cf], a
-	jr .asm_75645
-
-.asm_75640
-	ld a, $80
-	ld [wd4cf], a
-.asm_75645
-	ld a, [wd4cf]
-	ld [wc463], a
-	ld a, [wd44c]
-	cp $e6
-	ret c
-	ld a, $8
-	ld [wd401], a
-	ret
-
-Func_75657: ; 75657 (1d:5657)
-	ld c, $0
-	ld a, [wd44c]
-	inc a
-	ld [wd44c], a
-	cp $55
-	jr nc, .asm_75669
-	and $e
-	jr z, .asm_7567b
-	ret
-
-.asm_75669
-	cp $96
-	jr nc, .asm_75672
-	and $6
-	jr z, .asm_7567b
-	ret
-
-.asm_75672
-	cp $e6
-	jr nc, .asm_7567b
-	and $2
-	jr z, .asm_7567b
-	ret
-
-.asm_7567b
-	inc c
-	ret
-
-Func_7567d: ; 7567d (1d:567d)
-	ld a, [wSubroutine]
-	push af
-	ld a, $4
-	ld [wSubroutine], a
-	callba Func_3079c
-	pop af
-	ld [wSubroutine], a
-	ret
-
-Func_75693: ; 75693 (1d:5693)
-	ld a, [wCurDenjuuStat]
-	dec a
-	ld de, DenjuuNames
-	ld bc, VTilesBG tile $58
-	call GetAndPrintName75CenterAlign
-	ld a, [wCurDenjuuStat]
-	dec a
-	ld de, VTilesBG tile $10
-	call GetCurDenjuuKanjiDescription
-	ld a, $9
-	ld [wd401], a
-	ret
-
-Func_756b0: ; 756b0 (1d:56b0)
-	lb bc, 0, $4
-	ld e, $a2
-	ld a, $0
-	call LoadStdBGMapLayout_
-	lb bc, $6, $5
-	ld e, $a1
-	ld a, $0
-	call LoadStdBGMapLayout_
-	lb bc, $6, $5
-	ld e, $8b
-	ld a, $0
-	call LoadStdBGMapAttrLayout_
-	ld a, [wCurDenjuuStat]
-	dec a
-	ld de, $4000 ; overwritten
-	call CopyDenjuuSpeciesNameToUserNameBuffer
-	ld a, $15
-	ld [H_SFX_ID], a
-	ld c, $1a
-	call StdBattleTextBox
-	ld a, $2
-	ld [wd401], a
-	ret
-
-Func_756e8: ; 756e8 (1d:56e8)
-	call BattlePrintText
-	ld a, [wVBlankCounter]
-	and $3
-	jr nz, .skip
-	callba Func_33303
-.skip
-	call Func_7567d
-	ld a, $1
-	ld [wSpriteUpdatesEnabled], a
-	ld a, [wTextSubroutine]
-	cp $9
-	ret nz
-	call Func_757b4
-	ld a, [BattleResults_CurBattleDenjuu]
-	cp $0
-	jr z, .asm_75718
-	cp $1
-	jr z, .asm_75736
-	jr .asm_75751
-
-.asm_75718
-	ld a, $3
-	ld [wPlayerDenjuu1ArrivedStatus], a
-	call OpenSRAMBank2
-	ld hl, sAddressBook + $0
-	ld a, [wPlayerDenjuu1AddressBookLocation]
-	call GetNthAddressBookAttributeAddr
-	ld a, [wCurDenjuuStat]
-	dec a
-	ld [wPlayerDenjuu1Species], a
-	ld [hl], a
-	ld [wc912], a
-	jr .asm_7576a
-
-.asm_75736
-	ld a, $3
-	ld [wPlayerDenjuu2ArrivedStatus], a
-	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu2AddressBookLocation]
-	ld hl, sAddressBook + $0
-	call GetNthAddressBookAttributeAddr
-	ld a, [wCurDenjuuStat]
-	dec a
-	ld [wPlayerDenjuu2Species], a
-	ld [hl], a
-	jr .asm_7576a
-
-.asm_75751
-	ld a, $3
-	ld [wPlayerDenjuu3ArrivedStatus], a
-	call OpenSRAMBank2
-	ld a, [wPlayerDenjuu3AddressBookLocation]
-	ld hl, sAddressBook + $0
-	call GetNthAddressBookAttributeAddr
-	ld a, [wCurDenjuuStat]
-	dec a
-	ld [wPlayerDenjuu3], a
-	ld [hl], a
-.asm_7576a
-	ld a, $6
-	ld [wd401], a
-	ret
-
-Func_75770: ; 75770 (1d:5770)
-	ld a, $4
-	call StartFade_
-	ld a, $10
-	ld [wcf96], a
-	ld a, [wd401]
-	inc a
-	ld [wd401], a
-	ret
-
-Func_75782: ; 75782 (1d:5782)
-	ld a, $1
-	call PaletteFade_
-	or a
-	ret z
-	ld a, [wd401]
-	inc a
-	ld [wd401], a
-	ret
-
-Func_75791: ; 75791 (1d:5791)
-	ld a, $0
-	ld [wc46c], a
-	ld a, $0
-	ld [wc46d], a
-	ld hl, wc460
-	ld a, $0
-	ld [hli], a
-	ld a, $0
-	ld [hli], a
-	ld a, $0
-	ld [hli], a
-	ld a, $0
-	ld [wd4cf], a
-	ld [hl], a
-	xor a
-	ld [wd401], a
-	jp NextBattleSubroutine
-
-Func_757b4: ; 757b4 (1d:57b4)
-	ld b, $c
-	ld hl, wOAMAnimation01
-	ld de, $20
-	xor a
-.asm_757bd
-	ld [hl], a
-	add hl, de
-	dec b
-	jr nz, .asm_757bd
-	ret
+INCLUDE "battle/evolution.asm"
 
 Func_757c3: ; 757c3 (1d:57c3)
 	ld a, [wd401]

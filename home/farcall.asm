@@ -253,10 +253,10 @@ Func_05b1::
 	ret
 
 Func_05b6::
-	ld a, BANK(Func_8b8b)
+	ld a, BANK(StatsScreen)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	call Func_8b8b
+	call StatsScreen
 	rst MemBankswitch
 	ret
 
