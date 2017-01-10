@@ -387,10 +387,10 @@ Func_116e7: ; 116e7 (4:56e7)
 Func_1175d: ; 1175d (4:575d)
 	xor a
 	ld [wOAMAnimation17_PriorityFlags], a
-	ld [wOAMAnimation18], a
-	ld [wOAMAnimation19], a
-	ld [wOAMAnimation20], a
-	ld [wOAMAnimation21], a
+	ld [wOAMAnimation18_PriorityFlags], a
+	ld [wOAMAnimation19_PriorityFlags], a
+	ld [wOAMAnimation20_PriorityFlags], a
+	ld [wOAMAnimation21_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret

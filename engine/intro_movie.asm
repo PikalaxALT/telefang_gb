@@ -77,7 +77,7 @@ Func_8124: ; 8124 (2:4124)
 	ld a, $4
 	call StartFade_
 	ld a, $40
-	ld [wOAMAnimation02 + 2], a
+	ld [wOAMAnimation02_TemplateIdx], a
 	ld de, wOAMAnimation02
 	ld bc, $b068
 	call Func_8638
@@ -134,7 +134,7 @@ Func_81bf: ; 81bf (2:41bf)
 	ld a, $80
 	ld [wcb2c], a
 	ld a, $41
-	ld [wOAMAnimation02 + 2], a
+	ld [wOAMAnimation02_TemplateIdx], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
@@ -227,7 +227,7 @@ Func_827e: ; 827e (2:427e)
 	ld a, $4
 	call StartFade_
 	ld a, $44
-	ld [wOAMAnimation02 + 2], a
+	ld [wOAMAnimation02_TemplateIdx], a
 	ld de, wOAMAnimation02
 	ld bc, $c068
 	call Func_8638

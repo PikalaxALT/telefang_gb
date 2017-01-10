@@ -391,7 +391,7 @@ Func_102cd: ; 102cd (4:42cd)
 	jp IncrementSubroutine
 
 Func_1031c: ; 1031c (4:431c)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call AnimateObject_
 	call Func_128ff
 	jp Func_124a9
@@ -443,11 +443,11 @@ Func_10346: ; 10346 (4:4346)
 Func_1037f: ; 1037f (4:437f)
 	ld a, $4
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	ld a, $3
 	ld [wd411], a
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0609
 	xor a
 	ld [wcb41], a
@@ -459,7 +459,7 @@ Func_1037f: ; 1037f (4:437f)
 Func_103a5: ; 103a5 (4:43a5)
 	ld de, wOAMAnimation02
 	call AnimateObject_
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call AnimateObject_
 	jp Func_12bbc
 
@@ -567,7 +567,7 @@ Func_10452: ; 10452 (4:4452)
 	call Func_128ff
 	ld a, $2
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	ld a, $2
 	ld [wcb28], a
@@ -613,7 +613,7 @@ Func_10452: ; 10452 (4:4452)
 	ld a, $40
 	ld [wOAMAnimation05_YCoord], a
 	ld a, $1
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $0
 	ld [wOAMAnimation05_TemplateBank], a
 	ld a, $78
@@ -640,7 +640,7 @@ Func_10546: ; 10546 (4:4546)
 	jp IncrementSubroutine
 
 Func_10558: ; 10558 (4:4558)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call AnimateObject_
 	ld de, wOAMAnimation05
 	call AnimateObject_
@@ -1686,7 +1686,7 @@ Func_10d86:
 	ld a, $10
 	ld [wOAMAnimation03_XCoord], a
 	ld a, $1
-	ld [wOAMAnimation03], a
+	ld [wOAMAnimation03_PriorityFlags], a
 	ld a, $0
 	ld [wOAMAnimation03_TemplateBank], a
 	ld a, $d
@@ -2206,8 +2206,8 @@ Func_11177: ; 11177 (4:5177)
 	ld [wOAMAnimation02_YCoord], a
 	ld [wOAMAnimation03_YCoord], a
 	ld a, $1
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
 	ld a, [wcb68]
 	cp $1
 	jr nz, .asm_111da
@@ -2442,13 +2442,13 @@ Func_11370: ; 11370 (4:5370)
 	ld [wOAMAnimation03_YCoord], a
 	ld a, $1
 	ld [wOAMAnimation02_PriorityFlags], a
-	ld [wOAMAnimation03], a
+	ld [wOAMAnimation03_PriorityFlags], a
 	ld a, [wcb68]
 	cp $1
 	jr nz, .asm_113d3
 	xor a
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
 .asm_113d3
 	jp IncrementSubroutine2
 
@@ -3330,7 +3330,7 @@ Func_11d7e: ; 11d7e (4:5d7e)
 	ld a, [wVBlankCounter]
 	and $f
 	jr nz, .asm_11da5
-	ld a, [wOAMAnimation02]
+	ld a, [wOAMAnimation02_PriorityFlags]
 	xor $1
 	ld [wOAMAnimation02_PriorityFlags], a
 .asm_11da5
@@ -6599,7 +6599,7 @@ Func_134aa: ; 134aa (4:74aa)
 	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld b, $c
-	ld hl, wOAMAnimation02_PriorityFlags
+	ld hl, wOAMAnimation02
 	call Func_13798
 	ld a, [wcb39]
 	cp $0
@@ -6612,7 +6612,7 @@ Func_134aa: ; 134aa (4:74aa)
 	ld b, $0
 	ld de, $20
 	call Multiply_DE_by_BC
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	add hl, de
 	ld a, [wcb39]
 	ld b, a
@@ -7300,7 +7300,7 @@ Func_1396d: ; 1396d (4:796d)
 	ld bc, $57
 .asm_1399f
 	call DecompressGFXByIndex_
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	jp Func_099c
 
 .asm_139a8
@@ -7784,7 +7784,7 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	ld bc, $104
 	ld e, $5b
 	call Phone_LoadStdBGMapTileAndAttrLayout
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_099c
 	ld a, $1e
 	ld [wSubroutine], a
@@ -8194,11 +8194,11 @@ Func_13f8c: ; 13f8c (4:7f8c)
 	call Func_13951
 	ld a, $4
 	ld [wd411], a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_0609
 	ld a, $b
 	ld [wd411], a
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	call Func_0609
 	call Func_13312
 	call Func_13139
@@ -8219,9 +8219,9 @@ Func_13fb5: ; 13fb5 (4:7fb5)
 	jp Rom4_CloseSRAM
 
 Func_13fc6: ; 13fc6 (4:7fc6)
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_099c
-	ld de, wOAMAnimation03_PriorityFlags
+	ld de, wOAMAnimation03
 	jp Func_099c
 
 Func_13fd2: ; 13fd2 (4:7fd2)

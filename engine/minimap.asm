@@ -52,7 +52,7 @@ LoadMinimapGFX: ; a8046 (2a:4046)
 	call FarCopy2bpp_2
 	call LoadMinimapTilemap
 	ld a, $3
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $10
 	ld [wOAMAnimation01_TemplateBank], a
 	ld a, $38

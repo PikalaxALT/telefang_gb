@@ -84,17 +84,17 @@ Func_21db::
 	cp $3
 	jr nz, .asm_2213
 	ld a, $0
-	ld [wc496], a
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 14], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, $10
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $1
 	ld [wc900], a
 .asm_2213
 	cp $8
 	jr nz, .asm_221c
 	ld a, $0
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 .asm_221c
 	call Func_3395
 	call Func_225b
@@ -240,30 +240,30 @@ Func_2353::
 Func_236c: ; 236c (0:236c)
 	ld a, BANK(Func_38f8d)
 	ld [wPrevROMBank], a
-	ld a, [wc49b]
+	ld a, [wPlayerObjectStruct_Duration + 19]
 	ld b, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	sub b
-	ld [wPlayerXCoord], a
-	ld a, [wc49c]
+	ld [wPlayerObjectStruct_XCoord], a
+	ld a, [wPlayerObjectStruct_Duration + 20]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	sub b
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 	homecall Func_38f8d
 	ld a, [wSubroutine]
 	cp $4
 	jr nz, .asm_23bc
-	ld a, [wc49b]
+	ld a, [wPlayerObjectStruct_Duration + 19]
 	ld b, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	add b
-	ld [wPlayerXCoord], a
-	ld a, [wc49c]
+	ld [wPlayerObjectStruct_XCoord], a
+	ld a, [wPlayerObjectStruct_Duration + 20]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add b
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 	homecall Func_30000
 .asm_23bc
 	rst MemBankswitch
@@ -289,9 +289,9 @@ Func_23d1::
 	ret
 
 Func_23e2: ; 23e2 (0:23e2)
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld [wc901], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld [wc902], a
 	ld a, $7
 	ld [wWX], a

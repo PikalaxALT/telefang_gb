@@ -851,7 +851,7 @@ Func_2c64e: ; 2c64e (b:464e)
 
 SetOverworldTextboxPosition: ; 2c6d2 (b:46d2)
 	ld d, $a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48
 	jr c, .asm_2c6dd
 	ld d, $1
@@ -1065,7 +1065,7 @@ OverworldIdleHUD: ; 2c84d (b:484d)
 	ld l, a
 	ld a, [wMoney + 1]
 	ld h, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48 ; halfway up/down the screen
 	jr nc, .on_top
 	ld d, $e
@@ -1650,11 +1650,11 @@ GetBGMapColumn: ; 2cc32 (b:4c32)
 	ret
 
 Func_2cc4e: ; 2cc4e (b:4c4e)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld de, wOAMAnimation15
 	ld b, $8
 	call CopyData_Under256Bytes
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld de, wOAMAnimation16
 	ld b, $8
 	call CopyData_Under256Bytes
@@ -1700,11 +1700,11 @@ Func_2cc4e: ; 2cc4e (b:4c4e)
 	dec b
 	jr nz, .asm_2cc75
 	ld hl, wOAMAnimation15
-	ld de, wc480
+	ld de, wPlayerObjectStruct
 	ld b, $8
 	call CopyData_Under256Bytes
 	ld hl, wOAMAnimation16
-	ld de, wc4a0
+	ld de, wPartnerDenjuuObjectStruct
 	ld b, $8
 	call CopyData_Under256Bytes
 	ld a, $1
@@ -1727,11 +1727,11 @@ Func_2ccb9: ; 2ccb9 (b:4cb9)
 	dec b
 	jr nz, .asm_2ccc1
 	ld hl, wOAMAnimation15
-	ld de, wc480
+	ld de, wPlayerObjectStruct
 	ld b, $1
 	call CopyData_Under256Bytes
 	ld hl, wOAMAnimation16
-	ld de, wc4a0
+	ld de, wPartnerDenjuuObjectStruct
 	ld b, $1
 	call CopyData_Under256Bytes
 	ret

@@ -426,7 +426,7 @@ PrintWonBattleMessageAndCalculateExperienceYield: ; 742f6 (1d:42f6)
 	cp $9
 	ret nz
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wNumAlivePlayerDenjuu]
@@ -2014,7 +2014,7 @@ Func_74e89: ; 74e89 (1d:4e89)
 	ld c, $8e
 	call StdBattleTextBox
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd401]
@@ -2024,7 +2024,7 @@ Func_74e89: ; 74e89 (1d:4e89)
 
 .asm_74f11
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [BattleResults_CurBattleDenjuu]
@@ -2081,7 +2081,7 @@ PrintLostBattleMessageAndPenalizePlayer: ; 74f80 (1d:4f80)
 	cp $9
 	ret nz
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wMoney + 1]
@@ -2470,7 +2470,7 @@ Func_75202: ; 75202 (1d:5202)
 .asm_75282
 	call StdBattleTextBox
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd401]
@@ -2570,7 +2570,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	and B_BUTTON
 	jr z, .asm_75353
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -2585,7 +2585,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -3154,7 +3154,7 @@ Func_75791: ; 75791 (1d:5791)
 
 Func_757b4: ; 757b4 (1d:57b4)
 	ld b, $c
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	ld de, $20
 	xor a
 .asm_757bd

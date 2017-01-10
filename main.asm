@@ -199,88 +199,7 @@ Func_8584::
 	ld [wSubroutine], a
 	ret
 
-GameOverScreen: ; 858e (2:458e)
-	ld a, [wSubroutine]
-	jump_table
-	dw Func_85a8
-	dw Func_85c6
-	dw Func_85dd
-	dw Func_85ed
-	dw Func_85f7
-	dw Func_85ff
-	dw Func_8611
-	dw Func_8626
-
-Func_85a8:
-	call ClearBGMapAndAttrs
-	call ClearBGWindowAndAttrs
-	call ClearObjectAnimationBuffers
-	ld bc, $42
-	call DecompressGFXByIndex_
-	ld bc, $43
-	call DecompressGFXByIndex_
-	ld bc, $7
-	call GetCGB_BGLayout_
-	jp IncrementSubroutine
-
-Func_85c6:
-	lb bc, $0, $0
-	ld e, $72
-	ld a, $0
-	call LoadStdBGMapLayout_
-	lb bc, $0, $0
-	ld e, $72
-	ld a, $0
-	call LoadStdBGMapAttrLayout_
-	jp IncrementSubroutine
-
-Func_85dd:
-	ld a, MUSIC_1B
-	call GetMusicBank
-	ld [H_MusicID], a
-	ld a, $4
-	call StartFade_
-	jp IncrementSubroutine
-
-Func_85ed:
-	ld a, $2
-	call PaletteFade_
-	or a
-	ret z
-	jp IncrementSubroutine
-
-Func_85f7:
-	ld a, [hJoyNew]
-	and START
-	ret z
-	jp IncrementSubroutine
-
-Func_85ff:
-	ld a, $3
-	ld [H_SFX_ID], a
-	ld a, $4
-	call StartFade_
-	ld a, $10
-	ld [wcf96], a
-	jp IncrementSubroutine
-
-Func_8611:
-	ld a, $1
-	call PaletteFade_
-	or a
-	ret z
-	ld bc, $0
-	call GetCGB_BGLayout_
-	ld a, $1
-	ld [wBGPalUpdate], a
-	jp IncrementSubroutine
-
-Func_8626:
-	ld a, $0
-	ld [wGameRoutine], a
-	xor a
-	ld [wSubroutine], a
-	ret
+INCLUDE "engine/game_over.asm"
 
 Func_8630::
 	ld hl, $0
@@ -3044,12 +2963,12 @@ Func_2df11:
 
 Func_2df1e: ; 2df1e (b:5f1e)
 	enable_sram s3_a000
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld de, wOAMAnimation15
 	ld b, $20
 	call CopyData_Under256Bytes
-	ld hl, wc4a0
-	ld de, wOAMAnimation16_PriorityFlags
+	ld hl, wPartnerDenjuuObjectStruct
+	ld de, wOAMAnimation16
 	ld b, $20
 	call CopyData_Under256Bytes
 	ld de, wOAMBufferEnd
@@ -3080,12 +2999,12 @@ Func_2df55: ; 2df55 (b:5f55)
 	or c
 	jr nz, .asm_2df68
 	disable_sram
-	ld hl, wOAMAnimation15_PriorityFlags
-	ld de, wc480
+	ld hl, wOAMAnimation15
+	ld de, wPlayerObjectStruct
 	ld b, $20
 	call CopyData_Under256Bytes
-	ld hl, wOAMAnimation16_PriorityFlags
-	ld de, wc4a0
+	ld hl, wOAMAnimation16
+	ld de, wPartnerDenjuuObjectStruct
 	ld b, $20
 	call CopyData_Under256Bytes
 	ld de, $20
@@ -3220,9 +3139,9 @@ Func_2e064: ; 2e064 (b:6064)
 	ld a, [wSubroutine]
 	cp $6
 	ret z
-	ld hl, wc480
-	ld de, wOAMAnimation15_PriorityFlags
-	ld a, [wc49a]
+	ld hl, wPlayerObjectStruct
+	ld de, wOAMAnimation15
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $14
 	jr nz, .asm_2e080
 	ld a, [wOAMAnimation16 + $1f]
@@ -3231,9 +3150,9 @@ Func_2e064: ; 2e064 (b:6064)
 	jr .asm_2e087
 
 .asm_2e080
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 .asm_2e087
 	sub b
 	ld b, a
@@ -3258,7 +3177,7 @@ Func_2e064: ; 2e064 (b:6064)
 	inc de
 	ld a, [hli]
 	ld [de], a
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld de, wOAMAnimation16
 	bit 7, b
 	jr z, .asm_2e0ae
@@ -3281,13 +3200,13 @@ Func_2e064: ; 2e064 (b:6064)
 	inc de
 	ld a, [hli]
 	ld [de], a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $14
 	jr z, .asm_2e0d1
 	ld hl, wOAMAnimation16 + $1e
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld [hli], a
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	ld [hl], a
 .asm_2e0d1
 	ret
@@ -4257,7 +4176,7 @@ Func_30000:
 	jp Func_30009
 
 Func_30009: ; 30009 (c:4009)
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, h
 	ld [wCurObjectStruct + 1], a
 	ld a, l
@@ -4386,12 +4305,12 @@ Func_30090:
 	ld a, [de]
 	ld b, a
 	inc de
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	add b
 	ld [hli], a
 	ld a, [de]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add b
 	ld [hli], a
 	ld a, [wc900]
@@ -4496,9 +4415,9 @@ Func_30090:
 	ld a, [wd409]
 	ld [wc9db], a
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $a8
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	call Func_30240
 	jp Func_30741
 
@@ -4510,11 +4429,11 @@ Data_301c1:
 
 Func_301c3:
 	ld hl, wCurObjectStruct
-	ld a, wc4a0 % $100
+	ld a, wPartnerDenjuuObjectStruct % $100
 	ld [hli], a
-	ld a, wc4a0 / $100
+	ld a, wPartnerDenjuuObjectStruct / $100
 	ld [hl], a
-	ld a, [wc494]
+	ld a, [wPlayerObjectStruct_Duration + 12]
 	cp $3
 	jr z, .asm_30207
 	cp $2
@@ -4523,55 +4442,55 @@ Func_301c3:
 	jr z, .asm_301f1
 	ld a, $3
 	ld [wca50], a
-	ld a, [wPlayerXCoord]
-	ld [wPartnerDenjuuXCoord], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
+	ld [wPartnerDenjuuObjectStruct_XCoord], a
+	ld a, [wPlayerObjectStruct_YCoord]
 	add $ed
 	ld a, a
-	ld [wPartnerDenjuuYCoord], a
+	ld [wPartnerDenjuuObjectStruct_YCoord], a
 	jr .asm_30231
 
 .asm_301f1
 	ld a, $0
 	ld [wca50], a
-	ld a, [wPlayerXCoord]
-	ld [wPartnerDenjuuXCoord], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
+	ld [wPartnerDenjuuObjectStruct_XCoord], a
+	ld a, [wPlayerObjectStruct_YCoord]
 	add $13
 	ld a, a
-	ld [wPartnerDenjuuYCoord], a
+	ld [wPartnerDenjuuObjectStruct_YCoord], a
 	jr .asm_30231
 
 .asm_30207
 	ld a, $6
 	ld [wca50], a
-	ld a, [wPlayerYCoord]
-	ld [wPartnerDenjuuYCoord], a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
+	ld [wPartnerDenjuuObjectStruct_YCoord], a
+	ld a, [wPlayerObjectStruct_XCoord]
 	add $13
 	ld a, a
-	ld [wPartnerDenjuuXCoord], a
+	ld [wPartnerDenjuuObjectStruct_XCoord], a
 	jr .asm_30231
 
 .asm_3021d
 	ld a, $6
 	ld [wca50], a
-	ld a, [wPlayerYCoord]
-	ld [wPartnerDenjuuYCoord], a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
+	ld [wPartnerDenjuuObjectStruct_YCoord], a
+	ld a, [wPlayerObjectStruct_XCoord]
 	add $ed
 	ld a, a
-	ld [wPartnerDenjuuXCoord], a
+	ld [wPartnerDenjuuObjectStruct_XCoord], a
 .asm_30231
-	ld a, [wc482]
+	ld a, [wPlayerObjectStruct_TemplateIdx]
 	add $2
 	xor $1
-	ld [wc4a2], a
+	ld [wPartnerDenjuuObjectStruct_TemplateIdx], a
 	call Func_302a8
 	jr Func_30240
 
 Func_30240: ; 30240 (c:4240)
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, $ff
 	ld [wca51], a
 	call Func_3024f
@@ -4632,7 +4551,7 @@ Func_3024f: ; 3024f (c:424f)
 	ret
 
 Func_302a8: ; 302a8 (c:42a8)
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, h
 	ld [wCurObjectStruct + 1], a
 	ld a, l
@@ -4652,7 +4571,7 @@ Func_302a8: ; 302a8 (c:42a8)
 	xor a
 .asm_302c9
 	ld c, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld e, a
 	ld hl, wc990
 	call Func_30326
@@ -4673,7 +4592,7 @@ Func_302a8: ; 302a8 (c:42a8)
 	xor a
 .asm_302ee
 	ld c, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld e, a
 	ld hl, wc9a0
 	call Func_30326
@@ -4690,12 +4609,12 @@ Func_302a8: ; 302a8 (c:42a8)
 	inc b
 .asm_30311
 	ld a, b
-	ld [wc4a2], a
+	ld [wPartnerDenjuuObjectStruct_TemplateIdx], a
 .asm_30315
 	ld hl, wc9b0
 	ld a, $0
 	call Func_2f76
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, $0
 	ld [wc947], a
 	ret
@@ -4750,7 +4669,7 @@ Func_3033a: ; 3033a (c:433a)
 	ld [hli], a
 	dec b
 	jr nz, .asm_3036c
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld [hl], a
 	ld hl, wc9a0
 	ld a, [hl]
@@ -4763,7 +4682,7 @@ Func_3033a: ; 3033a (c:433a)
 	ld [hli], a
 	dec b
 	jr nz, .asm_30380
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld [hl], a
 	ld hl, wc9b0
 	ld de, wc9b1
@@ -5040,10 +4959,10 @@ x = x + 10
 ENDR
 
 Func_30528: ; 30528 (c:4528)
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	call Func_2acd
 	call Func_308b0
-	ld a, [wc4b6]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 14]
 	ld b, a
 	ld hl, Data_30563
 	add l
@@ -5051,15 +4970,15 @@ Func_30528: ; 30528 (c:4528)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	add [hl]
-	ld [wPartnerDenjuuYCoord], a
+	ld [wPartnerDenjuuObjectStruct_YCoord], a
 	inc b
 	ld a, b
 	cp $12
 	jr c, .asm_3055f
 	ld a, $1
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	call Func_31576
 	ld hl, wCurObjectStruct
 	ld a, $a0
@@ -5068,7 +4987,7 @@ Func_30528: ; 30528 (c:4528)
 	ld [hl], a
 	call Func_302a8
 .asm_3055f
-	ld [wc4b6], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 14], a
 	ret
 
 Data_30563:
@@ -5076,37 +4995,37 @@ Data_30563:
 	db -18, -17, -16, -15, -13, -10,  -7,  -4,   0
 
 Func_30575: ; 30575 (c:4575)
-	ld a, [wc4b6]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 14]
 	ld b, a
 	cp $ff
 	jr z, .asm_30596
 	inc b
-	ld a, [wc4b5]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 13]
 	inc a
 	cp b
 	jr c, .asm_30592
 	xor a
-	ld [wc4b5], a
-	ld a, [wc4a0]
+	ld [wPartnerDenjuuObjectStruct_Duration + 13], a
+	ld a, [wPartnerDenjuuObjectStruct_PriorityFlags]
 	xor $1
-	ld [wc4a0], a
+	ld [wPartnerDenjuuObjectStruct_PriorityFlags], a
 	ret
 
 .asm_30592
-	ld [wc4b5], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 13], a
 	ret
 
 .asm_30596
-	ld a, [wc4a0]
+	ld a, [wPartnerDenjuuObjectStruct_PriorityFlags]
 	and $fe
-	ld [wc4a0], a
+	ld [wPartnerDenjuuObjectStruct_PriorityFlags], a
 	ret
 
 Func_3059f: ; 3059f (c:459f)
 	ld a, $10
-	ld [wc4b0], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 8], a
 	call Func_323ff
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	jr nz, .asm_305d7
 	ld b, $2
 	ld a, c
@@ -5122,7 +5041,7 @@ Func_3059f: ; 3059f (c:459f)
 	ld a, b
 	ld [hl], a
 	call Func_3024f
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	call Func_304c9
 	ld d, a
 	ld a, [wCurObjectStruct + 1]
@@ -5142,8 +5061,8 @@ Func_3059f: ; 3059f (c:459f)
 	jp Func_302a8
 
 Func_305e4: ; 305e4 (c:45e4)
-	ld hl, wc4a0
-	ld a, [wc4b6]
+	ld hl, wPartnerDenjuuObjectStruct
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 14]
 	cp $0
 	jr z, .asm_30601
 	cp $1
@@ -5166,15 +5085,15 @@ Func_305e4: ; 305e4 (c:45e4)
 	ld a, $74
 	ld [H_SFX_ID], a
 .asm_30613
-	ld hl, wc4a0
-	ld a, [wc4b9]
+	ld hl, wPartnerDenjuuObjectStruct
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 17]
 	or $1
-	ld [wc4b9], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 17], a
 	ld bc, hFFF8
 	call Func_2ae7
 	call Func_2ac0
 	call Func_308b0
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	cp $e0
 	jr c, .asm_3063a
 	ld a, [wCurObjectStruct]
@@ -5235,30 +5154,30 @@ Func_30689: ; 30689 (c:4689)
 	ret
 
 .asm_30696
-	ld a, [wc4b9]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 17]
 	or $1
-	ld [wc4b9], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 17], a
 	ld bc, $8
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	call Func_2ae7
 	call Func_2ac0
 	call Func_308b0
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, [wCurObjectStruct]
 	add $14
 	ld l, a
 	ld a, [hl]
 	ld b, a
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	cp $d0
 	jr nc, .asm_306fd
 	cp b
 	jr c, .asm_306fd
-	ld a, [wc4b9]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 17]
 	and $fe
-	ld [wc4b9], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 17], a
 	ld a, b
-	ld [wPartnerDenjuuYCoord], a
+	ld [wPartnerDenjuuObjectStruct_YCoord], a
 	ld a, [wCurObjectStruct]
 	add $e
 	ld l, a
@@ -5289,13 +5208,13 @@ Func_30689: ; 30689 (c:4689)
 	ret
 
 Func_306fe: ; 306fe (c:46fe)
-	ld a, [wc4b9]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 17]
 	and $fe
-	ld [wc4b9], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 17], a
 	ld a, $1
 	ld [wc900], a
 	ld a, $1
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	call Func_31576
 	ld hl, wCurObjectStruct
 	ld a, $a0
@@ -5372,10 +5291,10 @@ Data_30778:
 
 Func_30784: ; 30784 (c:4784)
 	ld b, $c
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	call Func_307a9
 	ld b, $1
-	ld hl, wOAMAnimation13_PriorityFlags
+	ld hl, wOAMAnimation13
 	call Func_307a9
 	ld b, $1
 	ld hl, wOAMAnimation14
@@ -5383,7 +5302,7 @@ Func_30784: ; 30784 (c:4784)
 
 Func_3079c:
 	ld b, $c
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	jp Func_307a9
 
 Func_307a4: ; 307a4 (c:47a4)
@@ -5633,17 +5552,17 @@ asm_30917
 
 Func_30918:
 	ld b, $c
-	ld hl, wOAMAnimation01_PriorityFlags
+	ld hl, wOAMAnimation01
 	jr asm_3092b
 
 Func_3091f:
 	ld b, $c
-	ld hl, wOAMAnimation12_PriorityFlags
+	ld hl, wOAMAnimation12
 	jr asm_30941
 
 Func_30926:
 	ld b, $8
-	ld hl, wOAMAnimation17_PriorityFlags
+	ld hl, wOAMAnimation17
 asm_3092b
 	ld de, $20
 .asm_3092e
@@ -5663,7 +5582,7 @@ asm_3092b
 
 Func_3093c:
 	ld b, $8
-	ld hl, wOAMAnimation24_PriorityFlags
+	ld hl, wOAMAnimation24
 asm_30941
 	ld de, -$20
 .asm_30944
@@ -5809,10 +5728,10 @@ Func_309f3: ; 309f3 (c:49f3)
 	ret
 
 Func_30a09:
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $14
 	ret z
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $4
@@ -6072,7 +5991,7 @@ Func_30b7f: ; 30b7f (c:4b7f)
 	ld a, [wMapNumber]
 	cp $10
 	jr nc, .asm_30bc1
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48
 	jr nc, .asm_30bc1
 	ld a, $0
@@ -6119,9 +6038,9 @@ Func_30bc9: ; 30bc9 (c:4bc9)
 	ld a, $3
 	ld [hl], a
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $2d
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	jp Func_33c9
 
 Func_30c0a: ; 30c0a (c:4c0a)
@@ -6305,9 +6224,9 @@ Func_30d14:
 	ld l, a
 	ld a, [hl]
 	ld e, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld c, a
 	jp CalcL1Distance_
 
@@ -6424,7 +6343,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld a, [wc98e]
 	or a
 	jp nz, Func_30ece
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
 	jp nz, Func_30ece
 	ld a, [wCurObjectStruct]
@@ -6477,7 +6396,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld d, a
 	ld a, [de]
 	ld b, a
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	cp b
 	jr nz, Func_30ece
 .asm_30e52
@@ -6486,9 +6405,9 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $8
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld a, $0
 	ld [hJoyNew], a
 	ld a, [wCurObjectStruct]
@@ -6539,7 +6458,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld [hl], a
 	call Func_30b4e
 	ld a, $3c
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld a, $10
 	ld [H_SFX_ID], a
 .asm_30ecd
@@ -6787,7 +6706,7 @@ Func_3102a: ; 3102a (c:502a)
 	ld l, a
 	ld a, [hl]
 	ld b, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	sub b
 	jr c, .asm_31042
 	cpl
@@ -6800,7 +6719,7 @@ Func_3102a: ; 3102a (c:502a)
 	ld l, a
 	ld a, [hl]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	sub b
 	jr c, .asm_31054
 	cpl
@@ -7151,10 +7070,10 @@ Func_31241: ; 31241 (c:5241)
 	ld a, [hl]
 	or a
 	jr nz, .asm_312b8
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48
 	jr c, .asm_31290
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld b, a
 	cp $68
 	jr nc, .asm_31269
@@ -7222,7 +7141,7 @@ Func_31241: ; 31241 (c:5241)
 .asm_312b8
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $3
@@ -7277,7 +7196,7 @@ Func_31241: ; 31241 (c:5241)
 	ld l, a
 	ld a, [hl]
 	ld b, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	sub b
 	jr nc, .asm_31326
 	cpl
@@ -7302,14 +7221,14 @@ Func_31334:
 	ret
 
 Func_3133d: ; 3133d (c:533d)
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld d, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	call Func_3134f
 	ret nz
-	ld a, [wPartnerDenjuuXCoord]
+	ld a, [wPartnerDenjuuObjectStruct_XCoord]
 	ld d, a
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 Func_3134f: ; 3134f (c:534f)
 	add $3
 	ld e, a
@@ -7671,7 +7590,7 @@ Func_31565:
 	jr asm_31598
 
 Func_31576: ; 31576 (c:5576)
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, [wca5f]
 	cp $2
 	jp z, Func_31d15
@@ -7680,7 +7599,7 @@ Func_31576: ; 31576 (c:5576)
 	jr asm_31598
 
 Func_31588:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 Func_3158b:
 	ld a, [wca5e]
 	cp $2
@@ -7846,7 +7765,7 @@ Func_3162e: ; 3162e (c:562e)
 	inc a
 	ld [hl], a
 .asm_31690
-	ld de, wc488
+	ld de, wPlayerObjectStruct_Duration
 	ld a, [wCurObjectStruct]
 	add $8
 	ld l, a
@@ -7857,7 +7776,7 @@ Func_3162e: ; 3162e (c:562e)
 	inc de
 	dec b
 	jr nz, .asm_3169b
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jr z, .asm_316c3
 	ld a, [wc9f4]
@@ -7886,7 +7805,7 @@ Func_3162e: ; 3162e (c:562e)
 	ld l, a
 	ld a, $2
 	ld [hl], a
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	add a
 	add a
 	ld de, Data_316f6
@@ -7970,9 +7889,9 @@ Func_31726: ; 31726 (c:5726)
 	call Func_28a9
 	jr z, .asm_31762
 	ld a, $c
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $a8
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 .asm_31762
 	ret
 
@@ -8103,7 +8022,7 @@ Data_31828:
 	db $0a, $09, $07, $06, $04, $02, $00, $fe, $fc
 
 Func_31843: ; 31843 (c:5843)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld b, $3
 	call Func_33870
 	jr z, .asm_31871
@@ -8112,7 +8031,7 @@ Func_31843: ; 31843 (c:5843)
 	ld a, [wCurObjectStruct]
 	add $17
 	ld l, a
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	ld [hl], a
 	ld a, [wCurObjectStruct]
 	add $1e
@@ -8418,11 +8337,11 @@ Func_319f6:
 	ret
 
 Func_31a31:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	jr Func_31a39
 
 Func_31a36:
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 Func_31a39: ; 31a39 (c:5a39)
 	push hl
 	ld b, $5
@@ -8628,7 +8547,7 @@ Func_31b19:
 	ld a, [wCurObjectStruct]
 	ld l, a
 	ld [hl], $3
-	ld de, wPlayerXCoord
+	ld de, wPlayerObjectStruct_XCoord
 	ld a, [wCurObjectStruct]
 	add $3
 	ld l, a
@@ -8653,7 +8572,7 @@ Func_31b19:
 	ret
 
 Func_31bb3:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld b, $6
 	call Func_338f0
 	jp Func_31c7b
@@ -8713,7 +8632,7 @@ Func_31bde:
 	call Func_31c6d
 	ld a, $2
 	ld [wca5f], a
-	ld a, [wc4b1]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 9]
 	cp $4
 	jr z, .asm_31c17
 	cp $9
@@ -8748,9 +8667,9 @@ Func_31bde:
 	ld l, a
 	ld a, b
 	ld [hl], a
-	ld a, [wc4a0]
+	ld a, [wPartnerDenjuuObjectStruct_PriorityFlags]
 	ld [wOAMAnimation14_PriorityFlags], a
-	ld de, wPartnerDenjuuXCoord
+	ld de, wPartnerDenjuuObjectStruct_XCoord
 	ld a, [wCurObjectStruct]
 	add $3
 	ld l, a
@@ -8759,7 +8678,7 @@ Func_31bde:
 	inc de
 	ld a, [de]
 	ld [hl], a
-	ld a, [wc4b9]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 17]
 	and $1
 	jr nz, .asm_31c66
 	ret
@@ -8784,7 +8703,7 @@ Func_31c6d: ; 31c6d (c:5c6d)
 	ret
 
 Func_31c7b: ; 31c7b (c:5c7b)
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld b, $7
 	jp Func_338f9
 
@@ -8875,11 +8794,11 @@ Func_31ce7:
 	ret
 
 Func_31d0d:
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	jr Func_31d15
 
 Func_31d12:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 Func_31d15: ; 31d15 (c:5d15)
 	push hl
 	ld b, $9
@@ -9121,7 +9040,7 @@ Func_31e63: ; 31e63 (c:5e63)
 Func_31e97: ; 31e97 (c:5e97)
 	call Func_30926
 	ret z
-	ld de, wc480
+	ld de, wPlayerObjectStruct
 	ld b, $a
 	call Func_3389c
 	ld a, [wCurObjectStruct + 1]
@@ -9148,7 +9067,7 @@ Func_31e97: ; 31e97 (c:5e97)
 	ld a, [wCurObjectStruct]
 	add $17
 	ld l, a
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	ld [hl], a
 	ld hl, Data_31f24
 	call Func_31e63
@@ -9418,7 +9337,7 @@ Func_32079: ; 32079 (c:6079)
 
 .asm_320ac
 	push af
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld b, $d
 	call Func_33870
 	jr z, .asm_320d6
@@ -11046,7 +10965,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	ld d, a
 	ld a, [de]
 	ld b, a
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	cp b
 	jp nz, Func_32bb1
 	ld a, [wCurObjectStruct]
@@ -11106,15 +11025,15 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	ld a, [wCurObjectStruct]
 	ld l, a
 	ld [hl], $0
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	or $4
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	ld a, $9
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $0
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld hl, Data_2698
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	add l
 	ld l, a
 	ld a, $0
@@ -11252,7 +11171,7 @@ Func_32bf4: ; 32bf4 (c:6bf4)
 	inc a
 	ld [hl], a
 .asm_32c58
-	ld de, wc488
+	ld de, wPlayerObjectStruct_Duration
 	ld a, [wCurObjectStruct]
 	add $8
 	ld l, a
@@ -11265,16 +11184,16 @@ Func_32bf4: ; 32bf4 (c:6bf4)
 	jr nz, .asm_32c63
 	ld a, $1
 	ld [wcadb], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $4f
 	jr z, .asm_32c79
 	cp $50
 	jr nz, .asm_32c8e
 .asm_32c79
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	cp $3
 	jr nz, .asm_32c8e
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	cp $63
 	jr c, .asm_32c8e
 	ld a, $0
@@ -11282,7 +11201,7 @@ Func_32bf4: ; 32bf4 (c:6bf4)
 	jr .asm_32c8e
 
 .asm_32c8e
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jr z, .asm_32cb0
 	ld a, [wc9f4]
@@ -11454,14 +11373,14 @@ Func_32d5a: ; 32d5a (c:6d5a)
 	ld l, a
 	ld a, b
 	ld [hl], a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $1e
 	ld l, a
 	ld a, b
 	ld [hl], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $1f
@@ -11533,7 +11452,7 @@ Func_32e28: ; 32e28 (c:6e28)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	cp $1
 	ret nz
 	ld a, [wCurObjectStruct + 1]
@@ -11574,9 +11493,9 @@ Func_32e28: ; 32e28 (c:6e28)
 	ld l, a
 	ld a, $b
 	ld [hl], a
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	and $fb
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	ld a, $0
 	ld [wcadb], a
 	ld a, $e
@@ -11801,9 +11720,9 @@ Func_32ec9: ; 32ec9 (c:6ec9)
 	ld a, $b
 	ld [hl], a
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $8
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	call Func_32e9c
 	ret
 
@@ -11979,7 +11898,7 @@ Func_330ec:
 	ret
 
 Func_3311f:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld b, $16
 	call Func_33886
 	jr z, .asm_3317c
@@ -12146,7 +12065,7 @@ Func_331d8:
 
 Func_3322a:
 	push de
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld b, $17
 	call Func_33886
 	pop de
@@ -12285,7 +12204,7 @@ Func_332ad:
 	ret
 
 Func_33303:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld b, $18
 	call Func_33886
 	jp z, .nope
@@ -12867,7 +12786,7 @@ Func_336bd: ; 336bd (c:76bd)
 	ld h, a
 	ld a, [wCurObjectStruct]
 	ld l, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48
 	jr nc, .asm_336d7
 	ld a, [wcd21]
@@ -12890,9 +12809,9 @@ Func_336dc: ; 336dc (c:76dc)
 
 Func_336e5: ; 336e5 (c:76e5)
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $40
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld b, $40
 	ld c, $0
 	call Func_341d
@@ -12964,7 +12883,7 @@ Func_3375f:
 	ld bc, $80
 	call FarCopy2bpp_2
 	pop de
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld b, $10
 	ld c, $0
 .asm_33776
@@ -13238,12 +13157,12 @@ Func_3389c: ; 3389c (c:789c)
 	ret
 
 Func_338f0: ; 338f0 (c:78f0)
-	ld de, wc480
+	ld de, wPlayerObjectStruct
 	ld hl, wOAMAnimation13
 	jp Func_3389c
 
 Func_338f9: ; 338f9 (c:78f9)
-	ld de, wc4a0
+	ld de, wPartnerDenjuuObjectStruct
 	ld hl, wOAMAnimation14
 	call Func_3389c
 	ld a, $0
@@ -14454,24 +14373,24 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	ld [wc9f4], a
 .asm_38fa6
 	ld a, $3
-	ld [wc480], a
+	ld [wPlayerObjectStruct_PriorityFlags], a
 	ld bc, EVENT_1C2
 	call CheckEventFlag
 	jr z, .asm_38fb8
 	ld a, $2
-	ld [wc480], a
+	ld [wPlayerObjectStruct_PriorityFlags], a
 .asm_38fb8
-	ld a, [wc488]
+	ld a, [wPlayerObjectStruct_Duration]
 	ld [wc9f0], a
-	ld a, [wc48c]
+	ld a, [wPlayerObjectStruct_Duration + 4]
 	ld [wc9f2], a
-	ld a, [wc489]
+	ld a, [wPlayerObjectStruct_Duration + 1]
 	ld [wc9f1], a
-	ld a, [wc48d]
+	ld a, [wPlayerObjectStruct_Duration + 5]
 	ld [wc9f3], a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld [wc985], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld [wc986], a
 	ld a, $0
 	ld [wOverworldMapEnd], a
@@ -14482,7 +14401,7 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	dec a
 	ld [wTakingAStep], a
 .asm_38fee
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	ld hl, Pointers_39045
 	add a
 	ld d, $0
@@ -14491,7 +14410,7 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $14
 	jr nc, .asm_39008
 	ld a, [wPlayerNameEntryBuffer]
@@ -14515,12 +14434,12 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	ld [wc919], a
 	ld a, [wc985]
 	ld b, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	cp b
 	jr nz, .asm_39043
 	ld a, [wc986]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp b
 	jr nz, .asm_39043
 	ld a, $0
@@ -14558,7 +14477,7 @@ Pointers_39045:
 	dw Func_39497
 
 Func_39075: ; 39075 (e:5075)
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	cp $0
 	jr z, .asm_3908a
 	cp $1
@@ -14568,19 +14487,19 @@ Func_39075: ; 39075 (e:5075)
 	cp $3
 	jp z, Func_391c1
 .asm_3908a
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	inc a
-	ld [wc496], a
-	ld de, wc480
+	ld [wPlayerObjectStruct_Duration + 14], a
+	ld de, wPlayerObjectStruct
 	callba Func_337c2
 	ld a, $0
-	ld [wc482], a
+	ld [wPlayerObjectStruct_TemplateIdx], a
 	ld a, d
-	ld [wc494], a
+	ld [wPlayerObjectStruct_Duration + 12], a
 	cp $3
 	jr nz, .asm_390b0
 	ld a, $1
-	ld [wc482], a
+	ld [wPlayerObjectStruct_TemplateIdx], a
 	ld a, $2
 .asm_390b0
 	ld b, a
@@ -14590,86 +14509,86 @@ Func_39075: ; 39075 (e:5075)
 	ld a, d
 	cp $2
 	jr nc, .asm_390ca
-	ld a, [wPlayerYCoord]
-	ld [wc493], a
+	ld a, [wPlayerObjectStruct_YCoord]
+	ld [wPlayerObjectStruct_Duration + 11], a
 	callba Func_301c3
 	ret
 
 .asm_390ca
-	ld a, [wPlayerXCoord]
-	ld [wc493], a
+	ld a, [wPlayerObjectStruct_XCoord]
+	ld [wPlayerObjectStruct_Duration + 11], a
 	callba Func_301c3
 	ret
 
 .asm_390d9
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	inc a
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	cp $40
 	jr c, .asm_390eb
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	inc a
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 .asm_390eb
-	ld a, [wc494]
+	ld a, [wPlayerObjectStruct_Duration + 12]
 	cp $3
 	jr z, .asm_39114
 	cp $2
 	jr z, .asm_3912e
 	cp $0
 	jr z, .asm_39148
-	ld a, [wc493]
-	ld [wPlayerYCoord], a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 11]
+	ld [wPlayerObjectStruct_YCoord], a
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	cp $20
 	jr nc, .asm_39113
 	and $8
 	jr z, .asm_39113
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add $fd
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 .asm_39113
 	ret
 
 .asm_39114
-	ld a, [wc493]
-	ld [wPlayerXCoord], a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 11]
+	ld [wPlayerObjectStruct_XCoord], a
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	cp $20
 	jr nc, .asm_3912d
 	and $8
 	jr z, .asm_3912d
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	add $3
-	ld [wPlayerXCoord], a
+	ld [wPlayerObjectStruct_XCoord], a
 .asm_3912d
 	ret
 
 .asm_3912e
-	ld a, [wc493]
-	ld [wPlayerXCoord], a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 11]
+	ld [wPlayerObjectStruct_XCoord], a
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	cp $20
 	jr nc, .asm_39147
 	and $8
 	jr z, .asm_39147
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	add $fd
-	ld [wPlayerXCoord], a
+	ld [wPlayerObjectStruct_XCoord], a
 .asm_39147
 	ret
 
 .asm_39148
-	ld a, [wc493]
-	ld [wPlayerYCoord], a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 11]
+	ld [wPlayerObjectStruct_YCoord], a
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	cp $20
 	jr nc, .asm_39161
 	and $8
 	jr z, .asm_39161
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add $3
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 .asm_39161
 	ret
 
@@ -14714,9 +14633,9 @@ Func_39162: ; 39162 (e:5162)
 .asm_391b4
 	ld b, $0
 	call Func_33c9
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	inc a
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ret
 
 Func_391c1: ; 391c1 (e:51c1)
@@ -14828,7 +14747,7 @@ Func_391c1: ; 391c1 (e:51c1)
 .asm_39285
 	call Func_33c9
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ret
 
 Data_3928e:
@@ -14846,13 +14765,13 @@ Data_3928e:
 Func_39298: ; 39298 (e:5298)
 	callba Func_c81bf
 	ld a, $10
-	ld [wc490], a
+	ld [wPlayerObjectStruct_Duration + 8], a
 	ld hl, wCurObjectStruct
 	ld a, $80
 	ld [hli], a
 	ld a, $c4
 	ld [hl], a
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld a, [wc98c]
 	ld d, a
 	ld a, [wc98d]
@@ -14860,7 +14779,7 @@ Func_39298: ; 39298 (e:5298)
 	xor a
 	ld [wc98c], a
 	ld [wc98d], a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	push af
 	push de
 	callba Func_323e8
@@ -14876,14 +14795,14 @@ Func_39298: ; 39298 (e:5298)
 	ld [wc98d], a
 	pop af
 	ld d, a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp d
 	jr z, .asm_392fa
 	call Func_3982c
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $ff
-	ld [wc494], a
+	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, $0
 	ld [wc9ef], a
 	call Func_2c94
@@ -14903,8 +14822,8 @@ Func_39298: ; 39298 (e:5298)
 	ld a, a
 	ld [wc9f4], a
 	ld a, d
-	ld [wc482], a
-	ld a, [wc499]
+	ld [wPlayerObjectStruct_TemplateIdx], a
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp z, Func_39321
 	ld a, [wc9f4]
@@ -14920,12 +14839,12 @@ Data_39322:
 	db $24, $58
 
 Func_3932a: ; 3932a (e:532a)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2acd
 	ld a, $0
 	ld [wTakingAStep], a
 	call Func_39bfa
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	ld b, a
 	ld hl, Data_3938d
 	add l
@@ -14933,21 +14852,21 @@ Func_3932a: ; 3932a (e:532a)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add [hl]
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 	inc b
 	ld a, b
 	cp $12
 	jr c, .asm_3936d
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	callba Func_c81bf
 	call Func_39371
 	callba Func_31588
 	call Func_2c94
 .asm_3936d
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ret
 
 Func_39371: ; 39371 (e:5371)
@@ -14980,14 +14899,14 @@ Func_3939f: ; 3939f (e:539f)
 	ld [wTakingAStep], a
 	ld a, $2
 	ld [wc919], a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	or a
 	jr z, .asm_393c4
 	dec a
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	or a
 	ret nz
-	ld hl, wc48e
+	ld hl, wPlayerObjectStruct_Duration + 6
 	ld a, $80
 	ld [hli], a
 	ld a, $ff
@@ -14997,11 +14916,11 @@ Func_3939f: ; 3939f (e:539f)
 	ret
 
 .asm_393c4
-	ld hl, wc480
-	ld a, [wc49a]
+	ld hl, wPlayerObjectStruct
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $16
 	jr nz, .asm_393e5
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	cp $1
 	jr c, .asm_393e5
 	ld bc, -$20
@@ -15012,14 +14931,14 @@ Func_3939f: ; 3939f (e:539f)
 	call Func_2b01
 	call Func_39c1c
 .asm_393e5
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld bc, $10
 	call Func_2ae7
 	call Func_2ac0
 	call Func_39c2f
-	ld a, [wc48a]
+	ld a, [wPlayerObjectStruct_Duration + 2]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	sub b
 	jr c, .asm_39478
 	cp $10
@@ -15030,33 +14949,33 @@ Func_3939f: ; 3939f (e:539f)
 	ld a, $3f
 	ld [H_SFX_ID], a
 	xor a
-	ld a, [wc48a]
-	ld [wPlayerYCoord], a
+	ld a, [wPlayerObjectStruct_Duration + 2]
+	ld [wPlayerObjectStruct_YCoord], a
 	call Func_39bd5
 	callba Func_31588
 	ld b, $2
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $16
 	jr nz, .asm_3942b
 	ld b, $4
 .asm_3942b
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	inc a
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	cp b
 	jr nz, .asm_39456
 	ld a, $0
 	ld [wc9f4], a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $16
 	jr nz, .asm_39446
 	ld a, $9
 	ld [wc9f4], a
 .asm_39446
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $1c
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld a, $0
 	ld [wc919], a
 	ret
@@ -15065,20 +14984,20 @@ Func_3939f: ; 3939f (e:539f)
 	cp $2
 	jr c, .asm_39461
 	ld a, $2
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	jr .asm_39466
 
 .asm_39461
 	ld a, $c
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 .asm_39466
 	ld a, $a
 	ld [wc9f4], a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $16
 	jr nz, .asm_39477
 	ld a, $60
-	ld [wc48a], a
+	ld [wPlayerObjectStruct_Duration + 2], a
 .asm_39477
 	ret
 
@@ -15086,34 +15005,34 @@ Func_3939f: ; 3939f (e:539f)
 	ret
 
 Func_39479: ; 39479 (e:5479)
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	dec a
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	jr nz, .asm_39487
 	ld a, $9
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 .asm_39487
 	ret
 
 Func_39488: ; 39488 (e:5488)
-	ld a, [wc493]
+	ld a, [wPlayerObjectStruct_Duration + 11]
 	dec a
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	jr nz, .asm_39496
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 .asm_39496
 	ret
 
 Func_39497: ; 39497 (e:5497)
 	ld a, $0
-	ld [wc49c], a
-	ld a, [wc493]
+	ld [wPlayerObjectStruct_Duration + 20], a
+	ld a, [wPlayerObjectStruct_Duration + 11]
 	dec a
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	jr nz, .asm_394d9
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, [wcd51]
 	ld [wcd03], a
 	ld b, a
@@ -15150,7 +15069,7 @@ Func_39497: ; 39497 (e:5497)
 	ret
 
 Func_394ea: ; 394ea (e:54ea)
-	ld a, [wc493]
+	ld a, [wPlayerObjectStruct_Duration + 11]
 	ld hl, Data_39517
 	add l
 	ld l, a
@@ -15161,16 +15080,16 @@ Func_394ea: ; 394ea (e:54ea)
 	ld a, [wc9f4]
 	sub b
 	ld [wc9f4], a
-	ld a, [wc493]
+	ld a, [wPlayerObjectStruct_Duration + 11]
 	inc a
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	cp $14
 	jr c, .asm_39516
 	ld a, [wc9f4]
 	add $9
 	ld [wc9f4], a
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 .asm_39516
 	ret
 
@@ -15187,7 +15106,7 @@ Data_39517:
 	db  0,  0
 
 Func_3952b: ; 3952b (e:552b)
-	ld a, [wc493]
+	ld a, [wPlayerObjectStruct_Duration + 11]
 	ld hl, Data_39517
 	add l
 	ld l, a
@@ -15198,23 +15117,23 @@ Func_3952b: ; 3952b (e:552b)
 	ld a, [wc9f4]
 	add b
 	ld [wc9f4], a
-	ld a, [wc493]
+	ld a, [wPlayerObjectStruct_Duration + 11]
 	inc a
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	cp $14
 	jr c, .asm_3954f
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 .asm_3954f
 	ret
 
 Func_39550: ; 39550 (e:5550)
-	ld a, [wc494]
+	ld a, [wPlayerObjectStruct_Duration + 12]
 	dec a
-	ld [wc494], a
+	ld [wPlayerObjectStruct_Duration + 12], a
 	jr nz, .asm_39595
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, [wc9df]
 	ld b, a
 	ld a, [wc915]
@@ -15225,14 +15144,14 @@ Func_39550: ; 39550 (e:5550)
 	ld a, [wc916]
 	cp b
 	jp nz, Func_3966d
-	ld a, [wPlayerXCoord]
-	ld [wc48a], a
-	ld a, [wPlayerYCoord]
-	ld [wc48e], a
+	ld a, [wPlayerObjectStruct_XCoord]
+	ld [wPlayerObjectStruct_Duration + 2], a
+	ld a, [wPlayerObjectStruct_YCoord]
+	ld [wPlayerObjectStruct_Duration + 6], a
 	ld a, $e
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $0
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, $b
 	ld [wc9f4], a
 	ld a, $11
@@ -15243,37 +15162,37 @@ Func_39550: ; 39550 (e:5550)
 	jp Func_3966d
 
 Func_39598: ; 39598 (e:5598)
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	add $2
 	cp $40
 	jr nc, .asm_395a4
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 .asm_395a4
 	ld a, [wc9df]
 	swap a
 	and $f0
 	add $8
 	ld e, a
-	ld a, [wc48a]
+	ld a, [wPlayerObjectStruct_Duration + 2]
 	ld c, a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	ld b, a
 	call Func_3013
 	ld a, l
-	ld [wPlayerXCoord], a
+	ld [wPlayerObjectStruct_XCoord], a
 	call Func_39be9
 	ld a, [wc9e0]
 	inc a
 	and $f
 	swap a
 	ld e, a
-	ld a, [wc48e]
+	ld a, [wPlayerObjectStruct_Duration + 6]
 	ld c, a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	ld b, a
 	call Func_3013
 	ld a, l
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 	call Func_39bd5
 	ld a, [wc984]
 	and $3
@@ -15324,16 +15243,16 @@ Func_39598: ; 39598 (e:5598)
 Func_3963a: ; 3963a (e:563a)
 	ld a, $0
 	ld [wc989], a
-	ld a, [wc495]
+	ld a, [wPlayerObjectStruct_Duration + 13]
 	dec a
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	jr nz, .asm_3964e
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ret
 
 .asm_3964e
-	ld a, [wc494]
+	ld a, [wPlayerObjectStruct_Duration + 12]
 	cp $c
 	jr z, .asm_39665
 	cp $d
@@ -15524,11 +15443,11 @@ Func_397e7:
 	cp $e
 	jr nz, .asm_3981b
 .asm_3980e
-	ld [wc494], a
+	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, $f
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $10
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 .asm_3981b
 	ret
 
@@ -15578,39 +15497,39 @@ Func_3982c: ; 3982c (e:582c)
 Func_3985b: ; 3985b (e:585b)
 	callba Func_2c89f
 	call Func_39876
-	ld a, [wc48a]
+	ld a, [wPlayerObjectStruct_Duration + 2]
 	or a
 	ret z
-	ld a, [wc48b]
+	ld a, [wPlayerObjectStruct_Duration + 3]
 	bit 7, a
 	jp nz, Func_3996e
 	jp Func_399d1
 
 Func_39876: ; 39876 (e:5876)
 	ld a, $1
-	ld [wc497], a
+	ld [wPlayerObjectStruct_Duration + 15], a
 	call Func_39b28
 Func_3987e:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2ac0
 	call Func_39c2f
 	ld a, $1
 	call Func_39ad0
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $f0
 	jr nc, .asm_39897
 	cp $10
 	jr nc, .asm_398b7
 .asm_39897
 	ld a, $10
-	ld [wPlayerYCoord], a
-	ld hl, wc48c
+	ld [wPlayerObjectStruct_YCoord], a
+	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, $0
 	ld [hli], a
 	ld a, $4
 	ld [hl], a
 	ld a, $1
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $f8
 	call Func_39917
 	callba Func_33908
@@ -15620,36 +15539,36 @@ Func_3987e:
 Func_398b8: ; 398b8 (e:58b8)
 	callba Func_2c89f
 	call Func_398d3
-	ld a, [wc48a]
+	ld a, [wPlayerObjectStruct_Duration + 2]
 	or a
 	ret z
-	ld a, [wc48b]
+	ld a, [wPlayerObjectStruct_Duration + 3]
 	bit 7, a
 	jp nz, Func_3996e
 	jp Func_399d1
 
 Func_398d3: ; 398d3 (e:58d3)
 	ld a, $3
-	ld [wc497], a
+	ld [wPlayerObjectStruct_Duration + 15], a
 	call Func_39b28
 Func_398db:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2ac0
 	call Func_39c2f
 	ld a, $3
 	call Func_39ad0
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $81
 	jr c, .asm_39916
 	ld a, $81
-	ld [wPlayerYCoord], a
-	ld hl, wc48c
+	ld [wPlayerObjectStruct_YCoord], a
+	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, $40
 	ld [hli], a
 	ld a, $20
 	ld [hl], a
 	ld a, $2
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld bc, $200
 	call Func_2b0e
 	ld a, $8
@@ -15685,10 +15604,10 @@ Func_39917: ; 39917 (e:5917)
 Func_39950: ; 39950 (e:5950)
 	callba Func_2c89f
 	call Func_3996b
-	ld a, [wc48e]
+	ld a, [wPlayerObjectStruct_Duration + 6]
 	or a
 	ret z
-	ld a, [wc48f]
+	ld a, [wPlayerObjectStruct_Duration + 7]
 	bit 7, a
 	jp nz, Func_3987e
 	jp Func_398db
@@ -15696,32 +15615,32 @@ Func_39950: ; 39950 (e:5950)
 Func_3996b: ; 3996b (e:596b)
 	call Func_39b1b
 Func_3996e: ; 3996e (e:596e)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2ab3
 	call Func_39c1c
 	ld a, $2
 	call Func_39a94
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	cp $f0
 	jr nc, .asm_39987
 	cp $8
 	jr nc, .asm_399b2
 .asm_39987
 	ld a, $8
-	ld [wPlayerXCoord], a
-	ld hl, wc488
+	ld [wPlayerObjectStruct_XCoord], a
+	ld hl, wPlayerObjectStruct_Duration
 	ld a, $0
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $f
 	jr z, .asm_399a0
 	cp $0
 	jr nz, .asm_399b2
 .asm_399a0
 	ld a, $3
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $ff
 	call Func_39917
 	callba Func_33920
@@ -15731,10 +15650,10 @@ Func_3996e: ; 3996e (e:596e)
 Func_399b3: ; 399b3 (e:59b3)
 	callba Func_2c89f
 	call Func_399ce
-	ld a, [wc48e]
+	ld a, [wPlayerObjectStruct_Duration + 6]
 	or a
 	ret z
-	ld a, [wc48f]
+	ld a, [wPlayerObjectStruct_Duration + 7]
 	bit 7, a
 	jp nz, Func_3987e
 	jp Func_398db
@@ -15742,29 +15661,29 @@ Func_399b3: ; 399b3 (e:59b3)
 Func_399ce: ; 399ce (e:59ce)
 	call Func_39b0c
 Func_399d1: ; 399d1 (e:59d1)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2ab3
 	call Func_39c1c
 	ld a, $0
 	call Func_39a94
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	cp $99
 	jr c, .asm_39a23
 	ld a, $99
-	ld [wPlayerXCoord], a
-	ld hl, wc488
+	ld [wPlayerObjectStruct_XCoord], a
+	ld hl, wPlayerObjectStruct_Duration
 	ld a, $40
 	ld [hli], a
 	ld a, $26
 	ld [hl], a
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $f
 	jr z, .asm_399ff
 	cp $0
 	jr nz, .asm_39a23
 .asm_399ff
 	ld a, $4
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld bc, $14
 	call Func_2b1b
 	ld a, [wBGMapAnchor + 1]
@@ -15834,7 +15753,7 @@ Func_39a94: ; 39a94 (e:5a94)
 	cp $10
 	jr nc, .asm_39ab7
 	ld a, $0
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ld b, $7
 	ld a, [hJoyLast]
 	and D_RIGHT
@@ -15842,14 +15761,14 @@ Func_39a94: ; 39a94 (e:5a94)
 	ld b, $8
 .asm_39ab3
 	ld a, b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 .asm_39ab7
 	ld a, [wc985]
-	ld [wPlayerXCoord], a
+	ld [wPlayerObjectStruct_XCoord], a
 	ld a, [wc9f0]
-	ld [wc488], a
+	ld [wPlayerObjectStruct_Duration], a
 	ld a, [wc9f1]
-	ld [wc489], a
+	ld [wPlayerObjectStruct_Duration + 1], a
 	ret
 
 .asm_39aca
@@ -15866,7 +15785,7 @@ Func_39ad0: ; 39ad0 (e:5ad0)
 	cp $e
 	jr nc, .asm_39af3
 	ld a, $0
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ld b, $5
 	ld a, [hJoyLast]
 	and D_DOWN
@@ -15874,14 +15793,14 @@ Func_39ad0: ; 39ad0 (e:5ad0)
 	ld b, $6
 .asm_39aef
 	ld a, b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 .asm_39af3
 	ld a, [wc986]
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 	ld a, [wc9f2]
-	ld [wc48c], a
+	ld [wPlayerObjectStruct_Duration + 4], a
 	ld a, [wc9f3]
-	ld [wc48d], a
+	ld [wPlayerObjectStruct_Duration + 5], a
 	ret
 
 .asm_39b06
@@ -15890,21 +15809,21 @@ Func_39ad0: ; 39ad0 (e:5ad0)
 	ret
 
 Func_39b0c: ; 39b0c (e:5b0c)
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	res 0, a
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	ld a, $0
-	ld [wc497], a
+	ld [wPlayerObjectStruct_Duration + 15], a
 	jr Func_39b28
 
 Func_39b1b: ; 39b1b (e:5b1b)
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	set 0, a
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	ld a, $2
-	ld [wc497], a
+	ld [wPlayerObjectStruct_Duration + 15], a
 Func_39b28: ; 39b28 (e:5b28)
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	ld hl, Pointers_39bca
 	add a
 	ld d, $0
@@ -15913,9 +15832,9 @@ Func_39b28: ; 39b28 (e:5b28)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wc493]
+	ld a, [wPlayerObjectStruct_Duration + 11]
 	inc a
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld d, a
 	srl d
 	srl d
@@ -15946,7 +15865,7 @@ Func_39b28: ; 39b28 (e:5b28)
 	jr .asm_39b7f
 
 .asm_39b6f
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp z, .asm_39b7f
 	ld a, [wc9f4]
@@ -15954,7 +15873,7 @@ Func_39b28: ; 39b28 (e:5b28)
 	ld [wc9f4], a
 .asm_39b7f
 	ld a, d
-	ld [wc482], a
+	ld [wPlayerObjectStruct_TemplateIdx], a
 	ld a, [wc9ef]
 	cp $7
 	jr z, .asm_39b99
@@ -15985,7 +15904,7 @@ Func_39b28: ; 39b28 (e:5b28)
 	ld e, a
 	ld d, $0
 	add hl, de
-	ld de, wc48a
+	ld de, wPlayerObjectStruct_Duration + 2
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -16015,7 +15934,7 @@ Func_39bd5: ; 39bd5 (e:5bd5)
 	rr b
 	sra a
 	rr b
-	ld hl, wc48c
+	ld hl, wPlayerObjectStruct_Duration + 4
 	ld [hl], b
 	inc hl
 	ld [hl], a
@@ -16029,15 +15948,15 @@ Func_39be9: ; 39be9 (e:5be9)
 	rr b
 	sra a
 	rr b
-	ld hl, wc488
+	ld hl, wPlayerObjectStruct_Duration
 	ld [hl], b
 	inc hl
 	ld [hl], a
 	ret
 
 Func_39bfa: ; 39bfa (e:5bfa)
-	ld de, wPlayerXCoord
-	ld hl, wc488
+	ld de, wPlayerObjectStruct_XCoord
+	ld hl, wPlayerObjectStruct_Duration
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -16060,8 +15979,8 @@ Func_39bfa: ; 39bfa (e:5bfa)
 	ret
 
 Func_39c1c: ; 39c1c (e:5c1c)
-	ld de, wPlayerXCoord
-	ld hl, wc488
+	ld de, wPlayerObjectStruct_XCoord
+	ld hl, wPlayerObjectStruct_Duration
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -16073,8 +15992,8 @@ Func_39c1c: ; 39c1c (e:5c1c)
 	ret
 
 Func_39c2f: ; 39c2f (e:5c2f)
-	ld de, wPlayerYCoord
-	ld hl, wc48c
+	ld de, wPlayerObjectStruct_YCoord
+	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -16086,32 +16005,32 @@ Func_39c2f: ; 39c2f (e:5c2f)
 	ret
 
 Func_39c42: ; 39c42 (e:5c42)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld bc, -$40
 	call Func_2af4
 	jr asm_39c6c
 
 Func_39c4d: ; 39c4d (e:5c4d)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld bc, $40
 	call Func_2af4
 	jr asm_39c6c
 
 Func_39c58: ; 39c58 (e:5c58)
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld bc, -$40
 	call Func_2b01
 	jr asm_39c6c
 
 Func_39c63:
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld bc, $40
 	call Func_2b01
 asm_39c6c
 	ld a, $12
 	ld [wTakingAStep], a
 	call Func_39bfa
-	ld a, [wc496]
+	ld a, [wPlayerObjectStruct_Duration + 14]
 	ld b, a
 	ld hl, Data_39ca4
 	add l
@@ -16119,20 +16038,20 @@ asm_39c6c
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add [hl]
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 	inc b
 	ld a, b
 	cp $1a
 	jr c, .asm_39ca0
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	callba Func_31588
 	ld a, $0
 	ld [wc9ef], a
 .asm_39ca0
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ret
 
 Data_39ca4:
@@ -16174,7 +16093,7 @@ Func_39ce0: ; 39ce0 (e:5ce0)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	add [hl]
 	add $ff
 	ld b, a
@@ -16188,7 +16107,7 @@ Func_39ce0: ; 39ce0 (e:5ce0)
 	ld [wc9c3], a
 	push af
 	inc hl
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add [hl]
 	add -6
 	ld b, a
@@ -16335,7 +16254,7 @@ Func_39d64:
 	cp $8
 	jr c, .asm_39dfd
 .asm_39de7
-	ld hl, wc48e
+	ld hl, wPlayerObjectStruct_Duration + 6
 	ld a, $e0
 	ld [hli], a
 	ld a, $ff
@@ -16349,7 +16268,7 @@ Func_39d64:
 	cp $8
 	jr c, .asm_39de7
 .asm_39dfd
-	ld hl, wc48e
+	ld hl, wPlayerObjectStruct_Duration + 6
 	ld a, $20
 	ld [hli], a
 	ld a, $0
@@ -16443,7 +16362,7 @@ Func_39e09:
 	cp $8
 	jr c, .asm_39ea2
 .asm_39e8c
-	ld hl, wc48a
+	ld hl, wPlayerObjectStruct_Duration + 2
 	ld a, $e0
 	ld [hli], a
 	ld a, $ff
@@ -16457,7 +16376,7 @@ Func_39e09:
 	cp $8
 	jr c, .asm_39e8c
 .asm_39ea2
-	ld hl, wc48a
+	ld hl, wPlayerObjectStruct_Duration + 2
 	ld a, $20
 	ld [hli], a
 	ld a, $0
@@ -16481,13 +16400,13 @@ Data_39eb6:
 	db  0,  5
 
 Func_39ebe: ; 39ebe (e:5ebe)
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld d, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add $3
 	ld e, a
 	ld b, $8
-	ld hl, wOAMAnimation17_PriorityFlags
+	ld hl, wOAMAnimation17
 .asm_39ecd
 	ld a, [hl]
 	and $6
@@ -16605,13 +16524,13 @@ Func_39f3e: ; 39f3e (e:5f3e)
 .asm_39f7b
 	ld a, [wc980]
 	ld bc, $e0
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2af4
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	push af
 	call Func_39bfa
 	pop de
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	sub d
 	ld d, a
 	callba Func_304b0
@@ -16630,7 +16549,7 @@ Func_39f9d: ; 39f9d (e:5f9d)
 
 Func_39fab: ; 39fab (e:5fab)
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $0
 	ld [wc98e], a
 	jpba Func_a502a
@@ -16668,13 +16587,13 @@ Func_39fbd: ; 39fbd (e:5fbd)
 .asm_3a004
 	ld a, [wc980]
 	ld bc, -$e2
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2af4
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	push af
 	call Func_39bfa
 	pop de
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	sub d
 	ld d, a
 	callba Func_304b0
@@ -16715,13 +16634,13 @@ Func_3a026: ; 3a026 (e:6026)
 .asm_3a073
 	ld a, [wc980]
 	ld bc, rNR30
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2b01
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	push af
 	call Func_39bfa
 	pop de
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	sub d
 	ld d, a
 	callba Func_30497
@@ -16757,13 +16676,13 @@ Func_3a095: ; 3a095 (e:6095)
 .asm_3a0d2
 	ld a, [wc980]
 	ld bc, $e7
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	call Func_2b01
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	push af
 	call Func_39bfa
 	pop de
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	sub d
 	ld d, a
 	callba Func_30497
@@ -17786,9 +17705,9 @@ Func_3aa01:
 	ld l, a
 	ld a, [hl]
 	ld e, a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld b, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld c, a
 	call CalcL1Distance_
 	cp $1e
@@ -17823,9 +17742,9 @@ Func_3aa01:
 	ld a, [de]
 	call Func_3aad6
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $44
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 .asm_3aac2
 	ret
 
@@ -18314,7 +18233,7 @@ Func_3c050: ; 3c050 (f:4050)
 	ld a, [wc98e]
 	or a
 	ret nz
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
 	ret nz
 	ld hl, wcd50
@@ -18350,7 +18269,7 @@ Func_3c05e: ; 3c05e (f:405e)
 	add hl, bc
 	ld b, BANK(Data_14c000)
 	call Func_2f34
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	bit 0, a
 	jr z, .asm_3c092
 	xor $2
@@ -18640,9 +18559,9 @@ Func_3c263: ; 3c263 (f:4263)
 	inc a
 	ld [wc940], a
 .asm_3c282
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	and $fd
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	xor a
 	ld [wPlayerNameEntryBuffer], a
 	ret
@@ -18720,7 +18639,7 @@ Func_3c314: ; 3c314 (f:4314)
 	ld d, $1
 .asm_3c31f
 	ld a, d
-	ld [wc482], a
+	ld [wPlayerObjectStruct_TemplateIdx], a
 	ld a, b
 	ld hl, Data_3c356
 	add l
@@ -18730,7 +18649,7 @@ Func_3c314: ; 3c314 (f:4314)
 	ld h, a
 	ld a, [hl]
 	ld [wc9f4], a
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp z, Func_3c341
 	ld a, [wc9f4]
@@ -18745,7 +18664,7 @@ Func_3c341: ; 3c341 (f:4341)
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wc497], a
+	ld [wPlayerObjectStruct_Duration + 15], a
 	ld b, $2
 	call Func_3c112
 	scf
@@ -18758,12 +18677,12 @@ Data_3c35a:
 	db $00, $03, $02, $01
 
 Func_3c35e: ; 3c35e (f:435e)
-	ld hl, wc48a
+	ld hl, wPlayerObjectStruct_Duration + 2
 	ld a, $0
 	ld [hli], a
 	ld a, $0
 	ld [hl], a
-	ld hl, wc48e
+	ld hl, wPlayerObjectStruct_Duration + 6
 	ld a, $0
 	ld [hli], a
 	ld a, $0
@@ -18774,9 +18693,9 @@ asm_3c375
 	ld a, $10
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ld a, $14
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $0
 	ld [wc9ef], a
 	scf
@@ -18793,13 +18712,13 @@ Func_3c38b: ; 3c38b (f:438b)
 	adc h
 	ld h, a
 	ld a, [hli]
-	ld [wc48a], a
+	ld [wPlayerObjectStruct_Duration + 2], a
 	ld a, [hli]
-	ld [wc48b], a
+	ld [wPlayerObjectStruct_Duration + 3], a
 	ld a, [hli]
-	ld [wc48e], a
+	ld [wPlayerObjectStruct_Duration + 6], a
 	ld a, [hl]
-	ld [wc48f], a
+	ld [wPlayerObjectStruct_Duration + 7], a
 	ld a, $10
 	ld [H_SFX_ID], a
 	ld b, $2
@@ -18814,22 +18733,22 @@ Data_3c3b7
 
 Func_3c3c7: ; 3c3c7 (f:43c7)
 	ld a, [wcd09]
-	ld [wc494], a
+	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, [wcd0a]
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ld a, $15
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $ff
-	ld [wc497], a
+	ld [wPlayerObjectStruct_Duration + 15], a
 	ld b, $3
 	call Func_3c112
 	scf
 	ret
 
 Func_3c3e4: ; 3c3e4 (f:43e4)
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	or $20
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	jr Func_3c3c7
 
 Func_3c3ee: ; 3c3ee (f:43ee)
@@ -18970,11 +18889,11 @@ Func_3c4b7: ; 3c4b7 (f:44b7)
 
 Func_3c4d4: ; 3c4d4 (f:44d4)
 	ld hl, wCurObjectStruct
-	ld a, wc4a0 % $100
+	ld a, wPartnerDenjuuObjectStruct % $100
 	ld [hli], a
-	ld a, wc4a0 / $100
+	ld a, wPartnerDenjuuObjectStruct / $100
 	ld [hl], a
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	call Func_2cb7
 	ld d, $2
 	ld a, b
@@ -18984,7 +18903,7 @@ Func_3c4d4: ; 3c4d4 (f:44d4)
 	ld d, $3
 .asm_3c4ee
 	ld a, d
-	ld [wc4a2], a
+	ld [wPartnerDenjuuObjectStruct_TemplateIdx], a
 	ld hl, Data_3c356
 	ld a, b
 	add a
@@ -19007,7 +18926,7 @@ Func_3c50a: ; 3c50a (f:450a)
 	ld d, $3
 .asm_3c515
 	ld a, d
-	ld [wc4a2], a
+	ld [wPartnerDenjuuObjectStruct_TemplateIdx], a
 	ld a, b
 	ld hl, Data_3c356
 	add l
@@ -19026,12 +18945,12 @@ Func_3c50a: ; 3c50a (f:450a)
 	ret
 
 Func_3c536: ; 3c536 (f:4536)
-	ld hl, wc4aa
+	ld hl, wPartnerDenjuuObjectStruct_Duration + 2
 	ld a, $0
 	ld [hli], a
 	ld a, $0
 	ld [hl], a
-	ld hl, wc4ae
+	ld hl, wPartnerDenjuuObjectStruct_Duration + 6
 	ld a, $0
 	ld [hli], a
 	ld a, $0
@@ -19046,7 +18965,7 @@ Func_3c552: ; 3c552 (f:4552)
 	ld [hli], a
 	ld a, $c4
 	ld [hl], a
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, [wCurObjectStruct]
 	add $3
 	ld l, a
@@ -19072,9 +18991,9 @@ Func_3c552: ; 3c552 (f:4552)
 	inc a
 	ld [hl], a
 	ld a, $0
-	ld [wc4b6], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 14], a
 	ld a, $7
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	scf
 	ret
 
@@ -19083,22 +19002,22 @@ Func_3c596: ; 3c596 (f:4596)
 	or a
 	jr z, .asm_3c5b3
 	ld a, $0
-	ld [wc4b5], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 13], a
 	ld a, [wcd09]
-	ld [wc4b6], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 14], a
 	ld a, $8
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	ld b, $2
 	call Func_3c112
 	scf
 	ret
 
 .asm_3c5b3
-	ld a, [wc4a0]
+	ld a, [wPartnerDenjuuObjectStruct_PriorityFlags]
 	or $1
-	ld [wc4a0], a
+	ld [wPartnerDenjuuObjectStruct_PriorityFlags], a
 	ld a, $1
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	ld b, $2
 	call Func_3c112
 	scf
@@ -19480,7 +19399,7 @@ Func_3c80f: ; 3c80f (f:480f)
 Func_3c822: ; 3c822 (f:4822)
 	ld a, [wcd09]
 	ld b, a
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	bit 0, a
 	jr z, .asm_3c82f
 	xor $2
@@ -19702,7 +19621,7 @@ Func_3c943: ; 3c943 (f:4943)
 	ret
 
 Func_3c962: ; 3c962 (f:4962)
-	ld a, [wc4b4]
+	ld a, [wPartnerDenjuuObjectStruct_Duration + 12]
 	cp $ff
 	jr z, .asm_3c96b
 	xor a
@@ -19720,7 +19639,7 @@ Func_3c972: ; 3c972 (f:4972)
 	ret
 
 Func_3c977: ; 3c977 (f:4977)
-	ld a, [wc494]
+	ld a, [wPlayerObjectStruct_Duration + 12]
 	cp $ff
 	jr z, .asm_3c980
 	xor a
@@ -19743,13 +19662,13 @@ Func_3c987: ; 3c987 (f:4987)
 	adc h
 	ld h, a
 	ld a, [hli]
-	ld [wc4aa], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 2], a
 	ld a, [hli]
-	ld [wc4ab], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 3], a
 	ld a, [hli]
-	ld [wc4ae], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 6], a
 	ld a, [hl]
-	ld [wc4af], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 7], a
 	ld a, $10
 	ld [H_SFX_ID], a
 	ld b, $2
@@ -19851,13 +19770,13 @@ Func_3ca32: ; 3ca32 (f:4a32)
 Func_3ca46: ; 3ca46 (f:4a46)
 	call Func_3c552
 	ld a, [wcd09]
-	ld [wc4b4], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 12], a
 	ld a, [wcd0a]
-	ld [wc4b6], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 14], a
 	ld a, $9
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	ld a, $ff
-	ld [wc4b7], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 15], a
 	ld b, $3
 	call Func_3c112
 	scf
@@ -19919,11 +19838,11 @@ Func_3caa8: ; 3caa8 (f:4aa8)
 
 Func_3cabc: ; 3cabc (f:4abc)
 	ld hl, wCurObjectStruct
-	ld a, wc4a0 % $100
+	ld a, wPartnerDenjuuObjectStruct % $100
 	ld [hli], a
-	ld a, wc4a0 / $100
+	ld a, wPartnerDenjuuObjectStruct / $100
 	ld [hl], a
-	ld hl, wc4a0
+	ld hl, wPartnerDenjuuObjectStruct
 	ld a, [wcd09]
 	ld b, a
 	inc a
@@ -19952,15 +19871,15 @@ Func_3cabc: ; 3cabc (f:4abc)
 
 Func_3caf0: ; 3caf0 (f:4af0)
 	ld hl, wCurObjectStruct
-	ld a, wc480 % $100
+	ld a, wPlayerObjectStruct % $100
 	ld [hli], a
-	ld a, wc480 / $100
+	ld a, wPlayerObjectStruct / $100
 	ld [hl], a
-	ld hl, wc480
+	ld hl, wPlayerObjectStruct
 	ld de, wcd09
 	call Func_2d4c
-	ld de, wPlayerXCoord
-	ld hl, wc488
+	ld de, wPlayerObjectStruct_XCoord
+	ld hl, wPlayerObjectStruct_Duration
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -20042,9 +19961,9 @@ Func_3cb46: ; 3cb46 (f:4b46)
 	cp $3
 	jp nc, Func_3cc47
 .asm_3cb8e
-	ld a, [wPartnerDenjuuXCoord]
+	ld a, [wPartnerDenjuuObjectStruct_XCoord]
 	ld d, a
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	sub $8
 	ld e, a
 	callba Func_3375f
@@ -20183,28 +20102,28 @@ Func_3cc7f: ; 3cc7f (f:4c7f)
 
 Func_3cc91: ; 3cc91 (f:4c91)
 	ld a, $16
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $9
 	ld [wc9f4], a
-	ld hl, wc48c
+	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, $0
 	ld [hli], a
 	ld a, $fc
 	ld [hl], a
-	ld hl, wc488
+	ld hl, wPlayerObjectStruct_Duration
 	ld a, $0
 	ld [hli], a
 	ld a, $16
 	ld [hl], a
-	ld hl, wPlayerXCoord
+	ld hl, wPlayerObjectStruct_XCoord
 	ld a, $58
 	ld [hli], a
 	ld a, $0
 	ld [hl], a
 	ld a, $20
-	ld [wc48e], a
+	ld [wPlayerObjectStruct_Duration + 6], a
 	ld a, $52
-	ld [wc48a], a
+	ld [wPlayerObjectStruct_Duration + 2], a
 	callba Func_39c2f
 	ld a, $1
 	ld [wTakingAStep], a
@@ -20902,7 +20821,7 @@ OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
 	ret
 
 .asm_a4be7
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
 	ret nz
 	ld a, [wVBlankCounter]
@@ -21240,7 +21159,7 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ret nz
 	call Func_2107
 	ret nz
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
 	ret nz
 	ld a, [wMapGroup]
@@ -21885,7 +21804,7 @@ Func_a52b2: ; a52b2 (29:52b2)
 	ret z
 	ld [wCustomSpriteDest], a
 	call Func_a535e
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	or a
 	ret z
 	ld a, $2
@@ -21905,7 +21824,7 @@ Func_a52b2: ; a52b2 (29:52b2)
 	ld [wOAMAnimation01_TemplateBank], a
 	call OverworldRandom8_
 	ld e, a
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	ld c, a
 	call Multiply_C_by_E
 	ld hl, wOAMAnimation01_YCoord
@@ -21987,7 +21906,7 @@ Func_a535e: ; a535e (29:535e)
 	ld de, wOAMAnimation01_YCoord
 	ld hl, sAddressBook + 1
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	ld c, a
 	ld b, $0
@@ -22012,9 +21931,9 @@ Func_a535e: ; a535e (29:535e)
 	ld a, b
 	ld [de], a
 	inc de
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	inc a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	pop hl
 .asm_a539a
 	push de
@@ -22358,7 +22277,7 @@ Func_a5572: ; a5572 (29:5572)
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 7], a
 	ld a, $0
-	ld [$c216], a
+	ld [wOAMAnimation12_Duration + 14], a
 	ld a, BANK(GFX_e0d28)
 	ld hl, VTilesShared tile $70
 	ld de, GFX_e0d28
@@ -22657,7 +22576,7 @@ Func_a576c: ; a576c (29:576c)
 FadeOutOverworldForMinimap___: ; a5814 (29:5814)
 	callba FadeOutOverworldForMinimap
 	ld a, $0
-	ld [$c1f6], a
+	ld [wOAMAnimation11_Duration + 14], a
 	ret
 
 Func_a5822: ; a5822 (29:5822)
@@ -22781,7 +22700,7 @@ Func_a58c4: ; a58c4 (29:58c4)
 
 Func_a591b: ; a591b (29:591b)
 	ld b, a
-	ld a, [$c1f6]
+	ld a, [wOAMAnimation11_Duration + 14]
 	cp $2
 	jr c, .asm_a5931
 	call Func_a5e27
@@ -22793,7 +22712,7 @@ Func_a591b: ; a591b (29:591b)
 
 .asm_a5931
 	inc a
-	ld [$c1f6], a
+	ld [wOAMAnimation11_Duration + 14], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -22803,7 +22722,7 @@ Func_a593b: ; a593b (29:593b)
 	ld a, $4
 	call StartFade_
 	ld a, $0
-	ld [$c1f6], a
+	ld [wOAMAnimation11_Duration + 14], a
 	jp IncrementSubroutine
 
 Func_a594b: ; a594b (29:594b)
@@ -22942,7 +22861,7 @@ asm_a5a4a
 	ret
 
 Func_a5a4b: ; a5a4b (29:5a4b)
-	ld a, [$c1f6]
+	ld a, [wOAMAnimation11_Duration + 14]
 	cp $0
 	jr z, .asm_a5a64
 	cp $1
@@ -22963,9 +22882,9 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ld b, $0
 	ld c, $a0
 	call Func_a5b8a
-	ld a, [$c1f6]
+	ld a, [wOAMAnimation11_Duration + 14]
 	inc a
-	ld [$c1f6], a
+	ld [wOAMAnimation11_Duration + 14], a
 	ret
 
 .asm_a5a7f
@@ -22983,9 +22902,9 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 .asm_a5a94
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 2], a
-	ld a, [$c1f6]
+	ld a, [wOAMAnimation11_Duration + 14]
 	inc a
-	ld [$c1f6], a
+	ld [wOAMAnimation11_Duration + 14], a
 	ld a, $4
 	call StartFade_
 	ld a, $71
@@ -23010,15 +22929,15 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ld a, [wOAMAnimation12_Duration + 2]
 	and $1
 	jr z, .asm_a5ad2
-	ld a, [$c1f5]
+	ld a, [wOAMAnimation11_Duration + 13]
 	inc a
-	ld [$c1f5], a
+	ld [wOAMAnimation11_Duration + 13], a
 .asm_a5ad2
-	ld a, [$c1f5]
+	ld a, [wOAMAnimation11_Duration + 13]
 	ld b, a
-	ld a, [$c1f4]
+	ld a, [wOAMAnimation11_Duration + 12]
 	add b
-	ld [$c1f4], a
+	ld [wOAMAnimation11_Duration + 12], a
 	ld d, a
 	call Sine8_
 	sra d
@@ -23034,9 +22953,9 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	add sp, $2
 	ld a, $0
 	ld [wSCY], a
-	ld a, [$c1f6]
+	ld a, [wOAMAnimation11_Duration + 14]
 	inc a
-	ld [$c1f6], a
+	ld [wOAMAnimation11_Duration + 14], a
 	hlbgcoord 0, 0
 	ld a, $1
 	ld bc, $240
@@ -23079,16 +22998,16 @@ Func_a5b3f: ; a5b3f (29:5b3f)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, [$c0b5]
+	ld a, [wOAMAnimation01_Duration + 13]
 	cp $4
 	ret nc
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 2], a
-	ld a, [$c1f6]
+	ld a, [wOAMAnimation11_Duration + 14]
 	inc a
-	ld [$c1f6], a
+	ld [wOAMAnimation11_Duration + 14], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ret
 
 Func_a5b77: ; a5b77 (29:5b77)
@@ -23125,7 +23044,7 @@ Func_a5b8a: ; a5b8a (29:5b8a)
 
 Func_a5bb5: ; a5bb5 (29:5bb5)
 	ld a, $3
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $10
 	ld [wOAMAnimation01_TemplateBank], a
 	ld a, $f0
@@ -23135,9 +23054,9 @@ Func_a5bb5: ; a5bb5 (29:5bb5)
 	ld a, $4
 	ld [wOAMAnimation01_TemplateIdx], a
 	ld a, $e8
-	ld [$c0b7], a
+	ld [wOAMAnimation01_Duration + 15], a
 	ld a, $fa
-	ld [$c0b5], a
+	ld [wOAMAnimation01_Duration + 13], a
 	ld a, $3
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $10
@@ -23149,9 +23068,9 @@ Func_a5bb5: ; a5bb5 (29:5bb5)
 	ld a, $e0
 	ld [wOAMAnimation02_TemplateIdx], a
 	ld a, $98
-	ld [$c0d7], a
+	ld [wOAMAnimation02_Duration + 15], a
 	ld a, $b4
-	ld [$c0d5], a
+	ld [wOAMAnimation02_Duration + 13], a
 	call Func_a5c0a
 	call Func_a5c2b
 	call Func_a5ca7
@@ -23640,23 +23559,23 @@ Func_a837a: ; a837a (2a:437a)
 	ld a, [wJoyNew]
 	and D_UP
 	jr z, .asm_a83ce
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	dec a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 .asm_a83ce
 	ld a, [wJoyNew]
 	and D_DOWN
 	jr z, .asm_a83dc
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	inc a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 .asm_a83dc
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_a83f7
 	ld a, [wOAMAnimation01_TemplateBank]
 	ld b, a
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	ld c, a
 	ld a, $2
 	ld [wTextSubfunction], a
@@ -23668,7 +23587,7 @@ Func_a837a: ; a837a (2a:437a)
 	ld a, [wOAMAnimation01_TemplateBank]
 	call Func_a842e
 	hlbgcoord 7, 0
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	call Func_a842e
 	ret
 
@@ -23681,9 +23600,9 @@ Func_a840a: ; a840a (2a:440a)
 	cp $9
 	jr nz, .asm_a8424
 	call ClearBGMapAndAttrs
-	ld a, [wOAMAnimation01]
+	ld a, [wOAMAnimation01_PriorityFlags]
 	inc a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 .asm_a8424
 	ret
 
@@ -24156,7 +24075,7 @@ CheckCanGenerateEncounters: ; a8788 (2a:4788)
 	ld a, b
 	or a
 	ret z
-	ld a, [wOAMAnimation13]
+	ld a, [wOAMAnimation13_PriorityFlags]
 	and $1
 	ret z
 .yup
@@ -24252,7 +24171,7 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld [wTextBGMapTop], a
 	call PrintText_
 	ld a, $3
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $10
 	ld [wOAMAnimation01_TemplateBank], a
 	ld a, $41
@@ -24438,7 +24357,7 @@ Func_a8991: ; a8991 (2a:4991)
 	ld b, $2
 .asm_a89ab
 	ld a, b
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, [wVBlankCounter]
 	and $3
 	jr nz, .asm_a89bc
@@ -24483,11 +24402,11 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld a, $0
 	ld [wcdec], a
 	ld a, [wcdee]
-	ld [$c2dd], a
+	ld [wOAMAnimation18_Duration + 21], a
 	ld a, $0
 	ld [wcdee], a
 	ld a, [wcde1]
-	ld [$c2fd], a
+	ld [wOAMAnimation19_Duration + 21], a
 	ld a, $0
 	ld [wcde1], a
 	ld bc, EVENT_089
@@ -24514,9 +24433,9 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld a, $cd
 	ld [hl], a
 	ld a, $4
-	ld [$c2b4], a
+	ld [wOAMAnimation17_Duration + 12], a
 	ld a, $40
-	ld [$c2b5], a
+	ld [wOAMAnimation17_Duration + 13], a
 	ld de, GFX_e1288
 	jr .asm_a8a70
 
@@ -24527,9 +24446,9 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld a, $cd
 	ld [hl], a
 	ld a, $3a
-	ld [$c2b4], a
+	ld [wOAMAnimation17_Duration + 12], a
 	ld a, $0
-	ld [$c2b5], a
+	ld [wOAMAnimation17_Duration + 13], a
 	ld de, GFX_e1208
 .asm_a8a70
 	ld a, BANK(GFX_e1208)
@@ -24643,9 +24562,9 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	call Func_a8bad
 	callba Func_a5509
 	ld a, b
-	ld [$c2df], a
+	ld [wOAMAnimation18_Duration + 23], a
 	ld a, c
-	ld [$c2de], a
+	ld [wOAMAnimation18_Duration + 22], a
 	ld a, $0
 	ld [wBGPalUpdate], a
 	ld a, $1
@@ -24711,9 +24630,9 @@ Func_a8bed:
 	ld c, a
 	call Func_a8cc6
 	ld a, $0
-	ld [wOAMAnimation17], a
+	ld [wOAMAnimation17_PriorityFlags], a
 	ld a, $0
-	ld [wOAMAnimation18], a
+	ld [wOAMAnimation18_PriorityFlags], a
 	ret
 
 Func_a8c30: ; a8c30 (2a:4c30)
@@ -24802,7 +24721,7 @@ Func_a8c9b: ; a8c9b (2a:4c9b)
 Func_a8cc6: ; a8cc6 (2a:4cc6)
 	call Func_a8d48
 	ld d, $2b
-	ld a, [$c2b5]
+	ld a, [wOAMAnimation17_Duration + 13]
 	add c
 	dec a
 	cp $22
@@ -24894,7 +24813,7 @@ Func_a8d48: ; a8d48 (2a:4d48)
 	push bc
 	ld a, BANK(Func_a8d48)
 	ld [wPrevROMBank], a
-	ld a, [$c2b5]
+	ld a, [wOAMAnimation17_Duration + 13]
 	dec c
 	add c
 	ld c, a
@@ -24913,7 +24832,7 @@ Func_a8d48: ; a8d48 (2a:4d48)
 	ret
 
 Func_a8d6d:
-	ld a, [$c2b5]
+	ld a, [wOAMAnimation17_Duration + 13]
 	dec c
 	add c
 	ld c, a
@@ -25008,7 +24927,7 @@ Func_a8daa: ; a8daa (2a:4daa)
 	jr z, .asm_a8e0a
 .asm_a8e03
 	inc b
-	ld a, [$c2b4]
+	ld a, [wOAMAnimation17_Duration + 12]
 	cp b
 	jr nz, .asm_a8df5
 .asm_a8e0a
@@ -25019,7 +24938,7 @@ Func_a8e0b: ; a8e0b (2a:4e0b)
 	ld h, a
 	ld a, [wOAMAnimation17_Duration + 6]
 	ld l, a
-	ld a, [$c2b4]
+	ld a, [wOAMAnimation17_Duration + 12]
 	ld b, a
 .asm_a8e17
 	ld a, [hli]
@@ -25083,7 +25002,7 @@ Func_a8e1f: ; a8e1f (2a:4e1f)
 	or a
 	jr nz, .asm_a8e73
 	inc b
-	ld a, [$c2b4]
+	ld a, [wOAMAnimation17_Duration + 12]
 	cp b
 	jr nz, .asm_a8e68
 .asm_a8e73
@@ -25188,9 +25107,9 @@ Func_a8f26: ; a8f26 (2a:4f26)
 	ld c, $0
 .asm_a8f3a
 	ld a, b
-	ld [wOAMAnimation17], a
+	ld [wOAMAnimation17_PriorityFlags], a
 	ld a, c
-	ld [wOAMAnimation18], a
+	ld [wOAMAnimation18_PriorityFlags], a
 	ld a, [wSubroutine]
 	cp $1e
 	jr z, .asm_a8f7a
@@ -25218,9 +25137,9 @@ Func_a8f26: ; a8f26 (2a:4f26)
 
 .asm_a8f7a
 	ld a, $1
-	ld [wOAMAnimation17], a
+	ld [wOAMAnimation17_PriorityFlags], a
 	ld a, $1
-	ld [wOAMAnimation18], a
+	ld [wOAMAnimation18_PriorityFlags], a
 	ld a, $34
 	ld [wOAMAnimation17_XCoord], a
 	ld a, $6c
@@ -25444,7 +25363,7 @@ Func_a910f: ; a910f (2a:510f)
 	ld a, [wcae0]
 	ld b, a
 	dec b
-	ld a, [$c2b5]
+	ld a, [wOAMAnimation17_Duration + 13]
 	add b
 	ld b, a
 	callba GetItemName
@@ -25546,9 +25465,9 @@ Func_a91dc: ; a91dc (2a:51dc)
 	ld [wSubroutine], a
 	ld a, [wc908]
 	ld [wcdec], a
-	ld a, [$c2dd]
+	ld a, [wOAMAnimation18_Duration + 21]
 	ld [wcdee], a
-	ld a, [$c2fd]
+	ld a, [wOAMAnimation19_Duration + 21]
 	ld [wcde1], a
 	call Func_a920d
 	ret
@@ -25593,15 +25512,15 @@ Func_a9223: ; a9223 (2a:5223)
 	ld a, [wcae0]
 	ld c, a
 	dec c
-	ld a, [$c2b5]
+	ld a, [wOAMAnimation17_Duration + 13]
 	add c
 	ld c, a
 	ld hl, VTilesOB tile $00
 	call Func_a8d20
 	ld a, $0
 	ld [wcae7], a
-	ld [wOAMAnimation17], a
-	ld [wOAMAnimation18], a
+	ld [wOAMAnimation17_PriorityFlags], a
+	ld [wOAMAnimation18_PriorityFlags], a
 	ld a, $20
 	ld [wSubroutine], a
 	ld a, $3
@@ -25867,10 +25786,10 @@ Func_a946f: ; a946f (2a:546f)
 	jp nz, Func_a9595
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [$c2f5]
+	ld a, [wOAMAnimation19_Duration + 13]
 	or a
 	jp nz, Func_a9585
-	ld a, [$c2f3]
+	ld a, [wOAMAnimation19_Duration + 11]
 	or a
 	jp nz, Func_a9551
 	ld a, [wc984]
@@ -25919,7 +25838,7 @@ Func_a946f: ; a946f (2a:546f)
 	ld [hl], a
 .asm_a9501
 	ld c, $3
-	ld a, [$c2f7]
+	ld a, [wOAMAnimation19_Duration + 15]
 	ld b, a
 	bit 7, a
 	jr nz, .asm_a950d
@@ -25929,7 +25848,7 @@ Func_a946f: ; a946f (2a:546f)
 	and c
 	add c
 	add b
-	ld [$c2f7], a
+	ld [wOAMAnimation19_Duration + 15], a
 	ld d, a
 	call Sine8_
 	sra a
@@ -25955,14 +25874,14 @@ Func_a946f: ; a946f (2a:546f)
 	ld a, [wcae4]
 	ld [hl], a
 	ld a, $1
-	ld [$c2f3], a
+	ld [wOAMAnimation19_Duration + 11], a
 	ret
 
 Func_a9551: ; a9551 (2a:5551)
 	call Func_a97aa
-	ld a, [$c2f3]
+	ld a, [wOAMAnimation19_Duration + 11]
 	inc a
-	ld [$c2f3], a
+	ld [wOAMAnimation19_Duration + 11], a
 	cp $28
 	ret c
 	ld a, $43
@@ -25970,7 +25889,7 @@ Func_a9551: ; a9551 (2a:5551)
 	ld a, $1
 	ld [wc9d9], a
 	ld a, $1
-	ld [$c2f5], a
+	ld [wOAMAnimation19_Duration + 13], a
 	ld a, $0
 	ld [wOAMAnimation19_PriorityFlags], a
 	ld b, $8
@@ -25988,9 +25907,9 @@ Func_a9551: ; a9551 (2a:5551)
 
 Func_a9585: ; a9585 (2a:5585)
 	call Func_a97aa
-	ld a, [$c2f5]
+	ld a, [wOAMAnimation19_Duration + 13]
 	inc a
-	ld [$c2f5], a
+	ld [wOAMAnimation19_Duration + 13], a
 	cp $50
 	jp nc, Func_a93c7
 	ret
@@ -26002,7 +25921,7 @@ Func_a9595: ; a9595 (2a:5595)
 	call Func_a97cf
 	ld a, [wcae0]
 	ld b, a
-	ld a, [$c2b5]
+	ld a, [wOAMAnimation17_Duration + 13]
 	dec a
 	add b
 	ld hl, wcdbc
@@ -26012,7 +25931,7 @@ Func_a9595: ; a9595 (2a:5595)
 	adc h
 	ld h, a
 	dec [hl]
-	ld a, [$c2b7]
+	ld a, [wOAMAnimation17_Duration + 15]
 	or a
 	jr z, .asm_a95dc
 	ld a, $4
@@ -26030,20 +25949,20 @@ Func_a9595: ; a9595 (2a:5595)
 	ret z
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [$c2b7]
+	ld a, [wOAMAnimation17_Duration + 15]
 	or a
 	jr nz, .asm_a961e
 .asm_a95dc
 	ld a, BANK(Func_a9595)
 	ld [wPrevROMBank], a
-	ld a, [$c2b6]
+	ld a, [wOAMAnimation17_Duration + 14]
 	call GetDenjuuPalette_Pal6
 	ld a, $0
 	ld [wOAMAnimation19_PriorityFlags], a
 	ld a, $0
 	ld [wcae4], a
 	call Func_a8bd0
-	ld a, [$c2b6]
+	ld a, [wOAMAnimation17_Duration + 14]
 	ld c, $0
 	ld de, VTilesBG tile $41
 	call LoadDenjuuPic_
@@ -26131,7 +26050,7 @@ Func_a96b8: ; a96b8 (2a:56b8)
 	ret z
 	ld a, $0
 	ld [wcae7], a
-	ld a, [$c2b7]
+	ld a, [wOAMAnimation17_Duration + 15]
 	or a
 	jp z, IncrementSubroutine
 	ld a, $20
@@ -26229,9 +26148,9 @@ Func_a96e4: ; a96e4 (2a:56e4)
 	disable_sram
 	call Func_a92d1
 	ld a, b
-	ld [$c2df], a
+	ld [wOAMAnimation18_Duration + 23], a
 	ld a, c
-	ld [$c2de], a
+	ld [wOAMAnimation18_Duration + 22], a
 	pop af
 	pop bc
 	pop hl
@@ -26309,14 +26228,14 @@ Func_a97cf: ; a97cf (2a:57cf)
 	cp b
 	jr z, .asm_a9801
 	ld a, $1
-	ld [$c2b7], a
+	ld [wOAMAnimation17_Duration + 15], a
 	ret
 
 .asm_a9801
 	inc hl
 	ld a, [hl]
 	dec a
-	ld [$c2b6], a
+	ld [wOAMAnimation17_Duration + 14], a
 	ld [wc912], a
 	ld c, a
 	ld b, $0
@@ -26350,7 +26269,7 @@ Func_a97cf: ; a97cf (2a:57cf)
 	ld a, [wc912]
 	call Func_a92a8
 	ld a, $0
-	ld [$c2b7], a
+	ld [wOAMAnimation17_Duration + 15], a
 	ret
 
 Func_a9858: ; a9858 (2a:5858)
@@ -26479,7 +26398,7 @@ Func_a98bf: ; a98bf (2a:58bf)
 	cp $9
 	jr nz, .asm_a9941
 	ld a, $0
-	ld [$c2b7], a
+	ld [wOAMAnimation17_Duration + 15], a
 	call Func_a91b4
 	ld a, $0
 	ld [wcae7], a
@@ -26595,7 +26514,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	jr nz, .asm_a9a2b
 .asm_a9a15
 	ld a, $0
-	ld [$c2b7], a
+	ld [wOAMAnimation17_Duration + 15], a
 	call Func_a91b4
 	ld a, $0
 	ld [wcae7], a
@@ -26613,9 +26532,9 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld [wPlayerNameEntryBuffer], a
 	ld a, [wc908]
 	ld [wcdec], a
-	ld a, [$c2dd]
+	ld a, [wOAMAnimation18_Duration + 21]
 	ld [wcdee], a
-	ld a, [$c2fd]
+	ld a, [wOAMAnimation19_Duration + 21]
 	ld [wcde1], a
 	call Func_a920d
 	ld a, $3
@@ -26627,8 +26546,8 @@ Func_a99f5: ; a99f5 (2a:59f5)
 
 Func_a9a57: ; a9a57 (2a:5a57)
 	ld a, $1
-	ld [wOAMAnimation17], a
-	ld [wOAMAnimation18], a
+	ld [wOAMAnimation17_PriorityFlags], a
+	ld [wOAMAnimation18_PriorityFlags], a
 	ld a, [wcae7]
 	or a
 	jr z, .asm_a9a66
@@ -27725,7 +27644,7 @@ Func_c8000::
 	or a
 	ret nz
 	ld a, $0
-	ld [wc49c], a
+	ld [wPlayerObjectStruct_Duration + 20], a
 	call Func_c81bf
 	ld a, [wc9ef]
 	cp $4
@@ -27777,14 +27696,14 @@ Func_c8000::
 	cp $5
 	jr nz, .asm_c8077
 	ld a, $fe
-	ld [wc49c], a
+	ld [wPlayerObjectStruct_Duration + 20], a
 	jp Func_c81bd
 
 .asm_c8077
 	cp $6
 	jr nz, .asm_c8083
 	ld a, $fc
-	ld [wc49c], a
+	ld [wPlayerObjectStruct_Duration + 20], a
 	jp Func_c81bd
 
 .asm_c8083
@@ -27793,7 +27712,7 @@ Func_c8000::
 	ld a, [wca6e]
 	cp $1
 	jr z, .asm_c8095
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 1, a
 	jr z, .asm_c80a9
 .asm_c8095
@@ -27805,7 +27724,7 @@ Func_c8000::
 	ld [H_SFX_ID], a
 .asm_c80a9
 	ld a, $2
-	ld [wc49c], a
+	ld [wPlayerObjectStruct_Duration + 20], a
 	jp Func_c81bd
 
 .asm_c80b1
@@ -27813,7 +27732,7 @@ Func_c8000::
 	jr z, .asm_c80f0
 	cp $7
 	jr nz, .asm_c811f
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $d
 	jr z, .asm_c811f
 	ld a, [wc905]
@@ -27830,9 +27749,9 @@ Func_c8000::
 	ld a, $30
 	call Func_252a
 	ld a, $d
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $c
-	ld [wc494], a
+	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, $5e
 	ld [H_SFX_ID], a
 	jp Func_c81bd
@@ -27842,14 +27761,14 @@ Func_c8000::
 	ld [wc9df], a
 	ld a, [wc916]
 	ld [wc9e0], a
-	ld a, [wPlayerXCoord]
-	ld [wc48a], a
-	ld a, [wPlayerYCoord]
-	ld [wc48e], a
+	ld a, [wPlayerObjectStruct_XCoord]
+	ld [wPlayerObjectStruct_Duration + 2], a
+	ld a, [wPlayerObjectStruct_YCoord]
+	ld [wPlayerObjectStruct_Duration + 6], a
 	ld a, $e
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $0
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, $b
 	ld [wc9f4], a
 	ld a, $11
@@ -27857,7 +27776,7 @@ Func_c8000::
 	jp Func_c81bd
 
 .asm_c811f
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 1, a
 	jr z, .asm_c8146
 	ld a, [wc9ef]
@@ -27891,18 +27810,18 @@ Func_c8000::
 	cp $e
 	jr nz, Func_c81bd
 .asm_c815f
-	ld [wc494], a
+	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, $f
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $10
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 .asm_c816c
 	ld a, [wc9ef]
 	cp $b
 	jr nz, Func_c81bd
 	ld a, $fd
-	ld [wc49c], a
-	ld a, [wc499]
+	ld [wPlayerObjectStruct_Duration + 20], a
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 1, a
 	jr nz, .asm_c81b9
 	ld a, [wMapGroup]
@@ -27943,12 +27862,12 @@ Func_c81bd: ; c81bd (32:41bd)
 	ret
 
 Func_c81bf: ; c81bf (32:41bf)
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	add $ff
 	swap a
 	and $f
 	ld [wc915], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	add $fa
 	swap a
 	and $f
@@ -27989,15 +27908,15 @@ Func_c81bf: ; c81bf (32:41bf)
 	ld [wc9ef], a
 	cp b
 	jr z, .asm_c8219
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	or $2
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	jr .asm_c8221
 
 .asm_c8219
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	and $fd
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 .asm_c8221
 	ret
 
@@ -28273,9 +28192,9 @@ Func_c830a: ; c830a (32:430a)
 
 Func_c83b1: ; c83b1 (32:43b1)
 	ld a, $17
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $60
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ret
 
 Func_c83bc: ; c83bc (32:43bc)
@@ -28637,7 +28556,7 @@ Func_c8602: ; c8602 (32:4602)
 	ld h, a
 	ld a, [wCurObjectStruct]
 	ld l, a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48
 	jr c, .asm_c861c
 	ld a, [wcd21]
@@ -29081,7 +29000,7 @@ Func_c88ec:
 	ld a, [wc98e]
 	or a
 	ret nz
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $e
 	ret z
 	ld a, [wCurObjectStruct + 1]
@@ -29296,7 +29215,7 @@ Func_c8dba:
 	ld [wc9d8], a
 Func_c8def:
 	ld bc, EVENT_1D7
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $4e
 	push af
 	call c, ResetEventFlag
@@ -29386,7 +29305,7 @@ Func_c8e9e: ; c8e9e (32:4e9e)
 	ld a, [wc9d8]
 	cp $2
 	jr z, .asm_c8eb0
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48
 	ret c
 	ld a, [wc9d8]
@@ -29765,7 +29684,7 @@ Func_c90ad:
 	ld l, a
 	ld [hl], b
 .asm_c9120
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $3
@@ -29778,7 +29697,7 @@ Func_c90ad:
 .asm_c9130
 	cp $10
 	ret nc
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $4
@@ -30073,7 +29992,7 @@ Func_c9238:
 	ld l, a
 	ld [hl], b
 .asm_c931a
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $3
@@ -30086,7 +30005,7 @@ Func_c9238:
 .asm_c932a
 	cp $8
 	ret nc
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld b, a
 	ld a, [wCurObjectStruct]
 	add $4
@@ -30565,23 +30484,23 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld a, BANK(Func_c96ba)
 	ld [wPrevROMBank], a
 	ld a, [wc901]
-	ld [wPlayerXCoord], a
+	ld [wPlayerObjectStruct_XCoord], a
 	ld hl, Func_39be6
 	call Func_c97cd
 	ld a, [wc902]
-	ld [wPlayerYCoord], a
+	ld [wPlayerObjectStruct_YCoord], a
 	ld hl, Func_39bd2
 	call Func_c97cd
 	ld a, $0
-	ld [wc49b], a
+	ld [wPlayerObjectStruct_Duration + 19], a
 	ld a, $0
-	ld [wc49c], a
+	ld [wPlayerObjectStruct_Duration + 20], a
 	ld a, $3
-	ld [wc480], a
+	ld [wPlayerObjectStruct_PriorityFlags], a
 	ld a, $10
-	ld [wc481], a
+	ld [wPlayerObjectStruct_TemplateBank], a
 	ld a, $3
-	ld [wc485], a
+	ld [wPlayerObjectStruct_Palette], a
 	ld a, $0
 	ld [wc9c1], a
 	ld a, $0
@@ -30617,7 +30536,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	and $80
 	jr z, .asm_c9745
 	ld a, $1
-	ld [wc482], a
+	ld [wPlayerObjectStruct_TemplateIdx], a
 .asm_c9745
 	ld hl, wBGMapAnchor
 	ld a, $0
@@ -30636,32 +30555,32 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld [wc98e], a
 	callba Func_31bb3
 	ld a, $0
-	ld [wc4ba], a
+	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	ld a, $0
-	ld [wc496], a
+	ld [wPlayerObjectStruct_Duration + 14], a
 	ld a, $0
-	ld [wc495], a
+	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, [wc900]
 	cp $2
 	jr z, .asm_c978d
 	ld a, $0
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	jp Func_c97bf
 
 .asm_c978d
 	ld a, $a
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $9
 	ld [wc9f4], a
-	ld hl, wc48c
+	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, $0
 	ld [hli], a
 	ld a, $fc
 	ld [hl], a
 	ld a, $20
-	ld [wc48e], a
-	ld a, [wPlayerYCoord]
-	ld [wc48a], a
+	ld [wPlayerObjectStruct_Duration + 6], a
+	ld a, [wPlayerObjectStruct_YCoord]
+	ld [wPlayerObjectStruct_Duration + 2], a
 	ld hl, Func_39c2f
 	call Func_c97cd
 	ld a, $1
@@ -30685,12 +30604,12 @@ Func_c97d2: ; c97d2 (32:57d2)
 	ld a, [wc953]
 	or a
 	jr nz, .asm_c9814
-	ld a, [wPlayerXCoord]
+	ld a, [wPlayerObjectStruct_XCoord]
 	ld [wc928], a
-	ld a, [wPlayerYCoord]
+	ld a, [wPlayerObjectStruct_YCoord]
 	ld [wc929], a
 	ld b, $80
-	ld a, [wc482]
+	ld a, [wPlayerObjectStruct_TemplateIdx]
 	cp $1
 	jr z, .asm_c97ef
 	ld b, $0
@@ -30698,12 +30617,12 @@ Func_c97d2: ; c97d2 (32:57d2)
 	ld a, [wc9f4]
 	or b
 	ld [wc94b], a
-	ld a, [wPartnerDenjuuXCoord]
+	ld a, [wPartnerDenjuuObjectStruct_XCoord]
 	ld [wc948], a
-	ld a, [wPartnerDenjuuYCoord]
+	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	ld [wc949], a
 	ld b, $80
-	ld a, [wc4a2]
+	ld a, [wPartnerDenjuuObjectStruct_TemplateIdx]
 	cp $3
 	jr z, .asm_c980d
 	ld b, $0
@@ -31011,7 +30930,7 @@ Func_c99ac: ; c99ac (32:59ac)
 
 .asm_c99ea
 	enable_sram s3_a000
-	ld de, wOAMAnimation01_PriorityFlags
+	ld de, wOAMAnimation01
 	ld hl, s3_a000
 	ld bc, $140
 .asm_c99fd
@@ -31233,7 +31152,7 @@ Func_c9b82: ; c9b82 (32:5b82)
 	srl h
 	rr l
 	ld b, l
-	ld hl, wOAMAnimation06_PriorityFlags
+	ld hl, wOAMAnimation06
 	ld a, [wc957]
 	or a
 	jr z, .asm_c9b9f
@@ -31276,7 +31195,7 @@ Func_cc000:
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld b, $12
-	ld hl, wOAMAnimation07_PriorityFlags
+	ld hl, wOAMAnimation07
 .asm_cc00a
 	ld a, [hl]
 	and $2
@@ -31418,7 +31337,7 @@ Func_cc0c5: ; cc0c5 (33:40c5)
 
 Func_cc0db: ; cc0db (33:40db)
 	ld b, $12
-	ld hl, wOAMAnimation24_PriorityFlags
+	ld hl, wOAMAnimation24
 	ld de, hFFE0
 .asm_cc0e3
 	ld a, [hl]
@@ -31440,7 +31359,7 @@ Func_cc0f1: ; cc0f1 (33:40f1)
 	push bc
 	call Func_cc0c5
 	pop bc
-	ld de, wOAMAnimation01_PriorityFlags
+	ld de, wOAMAnimation01
 	jr z, .asm_cc100
 	jr asm_cc111
 

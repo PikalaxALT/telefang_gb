@@ -757,44 +757,44 @@ Func_685f9:
 	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $60
-	ld [$c0d9], a
+	ld [wOAMAnimation02_Duration + 17], a
 	ld a, [wBattleTurn]
 	or a
 	jr z, .asm_68611
 	ld a, $18
-	ld [$c0d9], a
+	ld [wOAMAnimation02_Duration + 17], a
 .asm_68611
 	ld a, $10
 	ld de, wOAMAnimation03
 	call Func_6b28c
 	ld a, $70
-	ld [$c0f9], a
+	ld [wOAMAnimation03_Duration + 17], a
 	ld a, [wBattleTurn]
 	or a
 	jr z, .asm_68629
 	ld a, $28
-	ld [$c0f9], a
+	ld [wOAMAnimation03_Duration + 17], a
 .asm_68629
 	ld a, $10
 	ld de, wOAMAnimation04
 	call Func_6b28c
 	ld a, $80
-	ld [$c119], a
+	ld [wOAMAnimation04_Duration + 17], a
 	ld a, [wBattleTurn]
 	or a
 	jr z, .asm_68641
 	ld a, $38
-	ld [$c119], a
+	ld [wOAMAnimation04_Duration + 17], a
 .asm_68641
 	call Random
 	sla a
-	ld [$c0d8], a
+	ld [wOAMAnimation02_Duration + 16], a
 	call Random
 	sla a
-	ld [$c0f8], a
+	ld [wOAMAnimation03_Duration + 16], a
 	call Random
 	sla a
-	ld [$c118], a
+	ld [wOAMAnimation04_Duration + 16], a
 	ld de, wOAMAnimation02
 	call Func_686cd
 	ld de, wOAMAnimation03
@@ -1369,9 +1369,9 @@ Func_68a89:
 	ld a, $48
 	ld [wOAMAnimation05 + $1a], a
 	xor a
-	ld [wOAMAnimation03], a
-	ld [wOAMAnimation04], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation04_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $4c
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
@@ -1519,7 +1519,7 @@ Func_68bdd:
 	ld a, [wOAMAnimation02_XCoord]
 	ld [wOAMAnimation02_Duration + 9], a
 	ld a, [wOAMAnimation02_YCoord]
-	ld [$c0d3], a
+	ld [wOAMAnimation02_Duration + 11], a
 	jp NextMoveAnimationSubroutine
 
 Func_68bfe:
@@ -1567,7 +1567,7 @@ Func_68bfe:
 	ld a, [wOAMAnimation03_XCoord]
 	ld [wOAMAnimation03_Duration + 9], a
 	ld a, [wOAMAnimation03_YCoord]
-	ld [$c0f3], a
+	ld [wOAMAnimation03_Duration + 11], a
 	jp NextMoveAnimationSubroutine
 
 Func_68c70:
@@ -1615,7 +1615,7 @@ Func_68c70:
 	ld a, [wOAMAnimation04_XCoord]
 	ld [wOAMAnimation04_Duration + 9], a
 	ld a, [wOAMAnimation04_YCoord]
-	ld [$c113], a
+	ld [wOAMAnimation04_Duration + 11], a
 	jp NextMoveAnimationSubroutine
 
 Func_68ce2:
@@ -2005,7 +2005,7 @@ MegaLauncherAnimation: ; 68fdc (1a:4fdc)
 
 Func_68ff2:
 	ld a, $19
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
@@ -2014,7 +2014,7 @@ Func_68ff2:
 	jp NextMoveAnimationSubroutine
 
 Func_69007:
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b4ef
 	ld a, [wMoveAnimationTimer]
 	dec a
@@ -2022,7 +2022,7 @@ Func_69007:
 	or a
 	ret nz
 	ld a, $1a
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $49
 	ld [H_SFX_ID], a
@@ -2065,7 +2065,7 @@ Func_69058:
 	jp NextMoveAnimationSubroutine
 
 Func_6906d:
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b4ef
 	ld a, [wMoveAnimationTimer]
 	dec a
@@ -2080,19 +2080,19 @@ Func_6906d:
 	jp NextMoveAnimationSubroutine
 
 Func_6908c:
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	jp Func_6b4bb
 
 Func_69092:
 	ld a, $c
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
 Func_690a2:
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	jp Func_6b4bb
 
 MegaRifleAnimation: ; 690a8 (1a:50a8)
@@ -2128,7 +2128,7 @@ Func_690db:
 	or a
 	ret nz
 	ld a, $b
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $49
 	ld [H_SFX_ID], a
@@ -2155,7 +2155,7 @@ Func_6910a:
 
 Func_69123:
 	ld a, $c
-	ld de, wOAMAnimation02_PriorityFlags
+	ld de, wOAMAnimation02
 	call Func_6b28c
 	ld a, $42
 	ld [H_SFX_ID], a
@@ -3162,8 +3162,8 @@ Func_69975: ; 69975 (1a:5975)
 Func_69995: ; 69995 (1a:5995)
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
 	ld de, wOAMAnimation04
 	jp Func_6b4bb
 
@@ -3219,8 +3219,8 @@ Func_699f9: ; 699f9 (1a:59f9)
 Func_69a19: ; 69a19 (1a:5a19)
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
 	ld de, wOAMAnimation04
 	jp Func_6b4bb
 
@@ -3276,7 +3276,7 @@ Func_69a7d: ; 69a7d (1a:5a7d)
 Func_69a9e: ; 69a9e (1a:5a9e)
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02], a
+	ld [wOAMAnimation02_PriorityFlags], a
 	ld de, wOAMAnimation03
 	jp Func_6b4bb
 
@@ -3481,7 +3481,7 @@ Func_69c5e: ; 69c5e (1a:5c5e)
 
 .asm_69c8b
 	xor a
-	ld [wOAMAnimation02], a
+	ld [wOAMAnimation02_PriorityFlags], a
 .asm_69c8f
 	ld a, [wOAMAnimation03 + $1a]
 	cp $0
@@ -3492,7 +3492,7 @@ Func_69c5e: ; 69c5e (1a:5c5e)
 
 .asm_69c9c
 	xor a
-	ld [wOAMAnimation03], a
+	ld [wOAMAnimation03_PriorityFlags], a
 .asm_69ca0
 	ld a, [wOAMAnimation04 + $1a]
 	cp $0
@@ -3503,7 +3503,7 @@ Func_69c5e: ; 69c5e (1a:5c5e)
 
 .asm_69cad
 	xor a
-	ld [wOAMAnimation04], a
+	ld [wOAMAnimation04_PriorityFlags], a
 .asm_69cb1
 	ld a, [wOAMAnimation05 + $1a]
 	cp $0
@@ -3514,7 +3514,7 @@ Func_69c5e: ; 69c5e (1a:5c5e)
 
 .asm_69cbe
 	xor a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	jr .asm_69cc5
 
 .asm_69cc4
@@ -4232,10 +4232,10 @@ Func_6a2f1: ; 6a2f1 (1a:62f1)
 	call Func_69efb
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
-	ld [wOAMAnimation04], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation04_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld de, wOAMAnimation02
 	call Func_6b4ef
 	ld de, wOAMAnimation03
@@ -4495,9 +4495,9 @@ Func_6a558: ; 6a558 (1a:6558)
 	call Func_6a5f1
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
-	ld [wOAMAnimation04], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation04_PriorityFlags], a
 	ld a, [wOAMAnimation02 + $19]
 	inc a
 	inc a
@@ -4633,11 +4633,11 @@ Func_6a678: ; 6a678 (1a:6678)
 Func_6a684: ; 6a684 (1a:6684)
 	ld a, [wVBlankCounter]
 	and $1
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
-	ld [wOAMAnimation04], a
-	ld [wOAMAnimation05], a
-	ld [wOAMAnimation06], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation04_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
+	ld [wOAMAnimation06_PriorityFlags], a
 	ld de, wOAMAnimation02
 	ld b, $5
 .asm_6a69d
@@ -5941,11 +5941,11 @@ Func_6aff0: ; 6aff0 (1a:6ff0)
 	ld [wOAMAnimation05 + $13], a
 	ld [wOAMAnimation06 + $13], a
 	xor a
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
-	ld [wOAMAnimation04], a
-	ld [wOAMAnimation05], a
-	ld [wOAMAnimation06], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation04_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
+	ld [wOAMAnimation06_PriorityFlags], a
 	ld a, $14
 	ld [wMoveAnimationTimer], a
 	ld a, $11
@@ -6185,11 +6185,11 @@ Func_6b1c1: ; 6b1c1 (1a:71c1)
 	ld [wOAMAnimation05 + $13], a
 	ld [wOAMAnimation06 + $13], a
 	xor a
-	ld [wOAMAnimation02], a
-	ld [wOAMAnimation03], a
-	ld [wOAMAnimation04], a
-	ld [wOAMAnimation05], a
-	ld [wOAMAnimation06], a
+	ld [wOAMAnimation02_PriorityFlags], a
+	ld [wOAMAnimation03_PriorityFlags], a
+	ld [wOAMAnimation04_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
+	ld [wOAMAnimation06_PriorityFlags], a
 	ld a, $14
 	ld [wMoveAnimationTimer], a
 	ld a, $11

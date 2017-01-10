@@ -137,13 +137,13 @@ TitleScreen_AnimateObjects_WaitButton:
 	ld de, wOAMAnimation04
 	call AnimateObject_
 	ld a, $1
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, [wVBlankCounter]
 	and $7
 	jr nz, .no_flash
-	ld a, [wOAMAnimation02]
+	ld a, [wOAMAnimation02_PriorityFlags]
 	xor $1
-	ld [wOAMAnimation02], a
+	ld [wOAMAnimation02_PriorityFlags], a
 .no_flash
 	ld a, [hJoyNew]
 	and A_BUTTON | START

@@ -1626,7 +1626,7 @@ Battle_MenuSelection: ; 14bc6 (5:4bc6)
 
 .try_to_run
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $57
@@ -1814,7 +1814,7 @@ Battle_MoveSelectionMenu: ; 14d1f (5:4d1f)
 	ld a, [wWX]
 	ld [hl], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -2131,7 +2131,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	ld [wPlayerDenjuu3MoveTarget], a
 .asm_14fea
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wCurEnemyDenjuu]
@@ -2144,7 +2144,7 @@ Func_14f81: ; 14f81 (5:4f81)
 
 .asm_15003
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
@@ -2158,7 +2158,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	and B_BUTTON
 	ret z
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wCurBattleDenjuu]
@@ -2224,7 +2224,7 @@ Func_15051: ; 15051 (5:5051)
 	and A_BUTTON
 	jr z, .asm_150aa
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
@@ -2253,7 +2253,7 @@ Func_15051: ; 15051 (5:5051)
 
 .asm_150c8
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	lb bc, $0, $c
@@ -4538,7 +4538,7 @@ Func_16289: ; 16289 (5:6289)
 	cp $1e
 	ret c
 	xor a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $10

@@ -1077,7 +1077,7 @@ Func_70755:
 	ld a, $3
 	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd40e]
@@ -1103,7 +1103,7 @@ Func_70755:
 	ld a, $57
 	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $1e
@@ -1164,7 +1164,7 @@ Func_70857:
 
 Func_708c2:
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wMoveAnimationTimer]
@@ -1776,7 +1776,7 @@ Func_70d81:
 	xor a
 	ld [wBattleMenuSelection], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld hl, VTilesBG tile $40
@@ -2087,8 +2087,8 @@ Func_7106c:
 	or a
 	ret z
 	ld a, $0
-	ld [wOAMAnimation01], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation01_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call Func_71467
@@ -2250,8 +2250,8 @@ Func_710ae:
 	ld a, $4
 	call StartFade_
 	xor a
-	ld [wOAMAnimation01], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation01_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call Func_71467
@@ -2601,7 +2601,7 @@ Func_71446: ; 71446 (1c:5446)
 
 .asm_7145c
 	ld a, $1
-	ld [wOAMAnimation04], a
+	ld [wOAMAnimation04_PriorityFlags], a
 .asm_71461
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -2611,7 +2611,7 @@ Func_71467: ; 71467 (1c:5467)
 	xor a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld [wOAMAnimation03_PriorityFlags], a
-	ld [wOAMAnimation04], a
+	ld [wOAMAnimation04_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret

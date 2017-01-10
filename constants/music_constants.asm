@@ -27,7 +27,7 @@
 	const MUSIC_18
 	const MUSIC_19
 	const MUSIC_1A
-	const MUSIC_1B
+	const MUSIC_GAME_OVER
 	const MUSIC_1C
 	const MUSIC_1D
 	const MUSIC_1E

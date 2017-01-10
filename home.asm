@@ -261,8 +261,8 @@ ClearObjectAnimationBuffers::
 	ld bc, wOAMAnimationsEnd - wOAMAnimations
 	ld hl, wOAMAnimations
 	call ClearMemory3
-	ld bc, wc4c0 - wc480
-	ld hl, wc480
+	ld bc, wc4c0 - wPlayerObjectStruct
+	ld hl, wPlayerObjectStruct
 	jp ClearMemory3
 
 Func_099c::
@@ -2391,7 +2391,7 @@ TextWaitStat::
 Func_1f80: ; 1f80 (0:1f80)
 	call Func_2107
 	ret nz
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
 	ret nz
 	homecall Func_a501e
@@ -2488,7 +2488,7 @@ Func_2021: ; 2021 (0:2021)
 	ret nz
 	call Func_2107
 	ret nz
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	or a
 	ret nz
 	ld a, [wTakingAStep]
@@ -2654,14 +2654,14 @@ x = x + $20
 ENDR
 
 Func_256e::
-	ld a, [wc49a]
+	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
 	jp nz, Func_2690
 	call Func_26b1
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jp z, Func_2690
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp nz, Func_26ff
 	ld a, [wc9c1]
@@ -2682,17 +2682,17 @@ Func_256e::
 	jp z, Func_2690
 	ld a, $0
 	ld [wc9c1], a
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	set 2, a
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 	callba Func_31600
 	callba Func_3162e
 	ld a, $9
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $0
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld hl, Data_2698
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	add l
 	ld l, a
 	ld a, $0
@@ -2742,21 +2742,21 @@ Func_256e::
 	call Func_28a9
 	jr nz, Func_264f
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $20
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ret
 
 Func_264f:
 	ld a, $b
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $b8
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr z, .asm_2664
 	ld a, $8
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 .asm_2664
 	ret
 
@@ -2852,7 +2852,7 @@ Func_26ff: ; 26ff (0:26ff)
 	or a
 	jr nz, asm_272e
 	ld hl, Data_2698
-	ld a, [wc497]
+	ld a, [wPlayerObjectStruct_Duration + 15]
 	add l
 	ld l, a
 	ld a, $0
@@ -2863,15 +2863,15 @@ Func_26ff: ; 26ff (0:26ff)
 	ld a, a
 	ld [wc9f4], a
 	ld a, $11
-	ld [wc49a], a
+	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $c
-	ld [wc493], a
+	ld [wPlayerObjectStruct_Duration + 11], a
 	ld a, $68
 	ld [hSFX_ID], a
 Func_2726::
-	ld a, [wc499]
+	ld a, [wPlayerObjectStruct_Duration + 17]
 	res 2, a
-	ld [wc499], a
+	ld [wPlayerObjectStruct_Duration + 17], a
 asm_272e
 	ret
 
@@ -3702,9 +3702,9 @@ Func_2c94::
 	ld a, BANK(Func_302a8)
 	rst Bankswitch
 	ld hl, wCurObjectStruct
-	ld a, wc4a0 % $100
+	ld a, wPartnerDenjuuObjectStruct % $100
 	ld [hli], a
-	ld a, wc4a0 / $100
+	ld a, wPartnerDenjuuObjectStruct / $100
 	ld [hl], a
 	call Func_302a8
 	pop af

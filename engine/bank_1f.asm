@@ -122,10 +122,10 @@ Func_7c0b9: ; 7c0b9 (1f:40b9)
 	ld [wWX], a
 	ld [wWY], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld [wOAMAnimation03_PriorityFlags], a
-	ld [wOAMAnimation04], a
+	ld [wOAMAnimation04_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld c, $91
@@ -210,7 +210,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -229,7 +229,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	ld a, $4
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -432,7 +432,7 @@ Func_7c35e: ; 7c35e (1f:435e)
 	ld [wBattleSubroutine], a
 	ld [wd401], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -471,7 +471,7 @@ Func_7c3a1: ; 7c3a1 (1f:43a1)
 
 Func_7c3ab: ; 7c3ab (1f:43ab)
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -1638,7 +1638,7 @@ Func_7cc1f: ; 7cc1f (1f:4c1f)
 	xor a
 	ld [wBattleMenuSelection], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld hl, VTilesBG tile $40
@@ -2004,8 +2004,8 @@ asm_7cf4e
 	ld a, $3
 	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation01_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
@@ -2331,8 +2331,8 @@ Func_7d1ed: ; 7d1ed (1f:51ed)
 	ld a, $1
 	ld [wd456], a
 	ld a, $0
-	ld [wOAMAnimation01], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation01_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call Func_7d96c
@@ -3377,7 +3377,7 @@ Func_7d949: ; 7d949 (1f:5949)
 
 .asm_7d961
 	ld a, $1
-	ld [wOAMAnimation04], a
+	ld [wOAMAnimation04_PriorityFlags], a
 .asm_7d966
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -3387,7 +3387,7 @@ Func_7d96c: ; 7d96c (1f:596c)
 	xor a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld [wOAMAnimation03_PriorityFlags], a
-	ld [wOAMAnimation04], a
+	ld [wOAMAnimation04_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -3702,7 +3702,7 @@ Func_7dbbe: ; 7dbbe (1f:5bbe)
 	cp $9
 	ret nz
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $4
@@ -4186,7 +4186,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 .asm_7df8e
 	call StdBattleTextBox
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call CloseSRAM
@@ -4279,7 +4279,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	and B_BUTTON
 	jr z, .asm_7e04f
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -4292,7 +4292,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	ld a, $3
 	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -4954,7 +4954,7 @@ Func_7e546: ; 7e546 (1f:6546)
 	or a
 	jr z, .asm_7e570
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -5218,7 +5218,7 @@ Func_7e743: ; 7e743 (1f:6743)
 	xor a
 	ld [wBattleMenuSelection], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld hl, VTilesBG tile $40
@@ -5338,7 +5338,7 @@ Func_7e899: ; 7e899 (1f:6899)
 
 Func_7e89d: ; 7e89d (1f:689d)
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld c, $1e
@@ -5511,8 +5511,8 @@ asm_7e9f4
 	ld a, $3
 	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation01_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call Func_7d96c
@@ -5711,8 +5711,8 @@ Func_7eb93: ; 7eb93 (1f:6b93)
 	ld a, $1
 	ld [wd456], a
 	ld a, $0
-	ld [wOAMAnimation01], a
-	ld [wOAMAnimation05], a
+	ld [wOAMAnimation01_PriorityFlags], a
+	ld [wOAMAnimation05_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call Func_7d96c
@@ -6209,7 +6209,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -6222,7 +6222,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	ld a, $3
 	ld [H_SFX_ID], a
 	ld a, $0
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -6578,7 +6578,7 @@ Func_7f226: ; 7f226 (1f:7226)
 	ld [H_SFX_ID], a
 .asm_7f28b
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd40d]
@@ -7055,7 +7055,7 @@ asm_7f641
 	ld a, $3
 	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -7476,7 +7476,7 @@ asm_7f955
 	ld a, $3
 	ld [H_SFX_ID], a
 	xor a
-	ld [wOAMAnimation01], a
+	ld [wOAMAnimation01_PriorityFlags], a
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
