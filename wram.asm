@@ -1084,8 +1084,7 @@ wc9f4:: ds 1
 wc9f5:: ds 1
 wCurTilesetMetatilesPointer:: dw
 wCurTilesetMetaattrsPointer:: dw
-wc9fa:: ds 1
-wc9fb:: ds 1
+wCurTilesetCollisionPointer:: dw
 wBGMapAnchor:: dw
 wc9fe:: ds 1
 wc9ff:: ds 1

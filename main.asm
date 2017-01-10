@@ -4945,9 +4945,9 @@ Func_304d7: ; 304d7 (c:44d7)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld d, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld e, a
 	ret
 
@@ -16145,9 +16145,9 @@ Func_39ce0: ; 39ce0 (e:5ce0)
 	ld b, a
 	push af
 	push hl
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld h, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld l, a
 	ld a, b
 	add l
@@ -16179,9 +16179,9 @@ Func_39d64:
 	jr c, .asm_39d88
 	cp $b
 	jr nc, .asm_39d88
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld h, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld l, a
 	ld a, b
 	add l
@@ -16204,9 +16204,9 @@ Func_39d64:
 .asm_39d94
 	add hl, de
 	ld d, [hl]
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld h, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld l, a
 	ld a, d
 	add l
@@ -16219,9 +16219,9 @@ Func_39d64:
 	jr z, .asm_39dad
 	inc c
 .asm_39dad
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld h, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld l, a
 	ld a, b
 	add l
@@ -16287,9 +16287,9 @@ Func_39e09:
 	jr c, .asm_39e2d
 	cp $b
 	jr nc, .asm_39e2d
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld h, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld l, a
 	ld a, b
 	add l
@@ -16312,9 +16312,9 @@ Func_39e09:
 .asm_39e39
 	add hl, de
 	ld d, [hl]
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld h, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld l, a
 	ld a, d
 	add l
@@ -16327,9 +16327,9 @@ Func_39e09:
 	jr z, .asm_39e52
 	inc c
 .asm_39e52
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld h, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld l, a
 	ld a, b
 	add l
@@ -16693,7 +16693,7 @@ FadeOutOverworldForMinimap_: ; 3a0f4 (e:60f4)
 	ret
 
 Func_3a0fd: ; 3a0fd (e:60fd)
-	ld a, $e
+	ld a, BANK(Func_3a0fd)
 	ld [wPrevROMBank], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -16720,7 +16720,7 @@ Func_3a0fd: ; 3a0fd (e:60fd)
 	jp IncrementSubroutine
 
 Func_3a145: ; 3a145 (e:6145)
-	ld a, $e
+	ld a, BANK(Func_3a145)
 	ld [wPrevROMBank], a
 	ld bc, $0
 	ld a, $4
@@ -16732,7 +16732,7 @@ Func_3a145: ; 3a145 (e:6145)
 	ret
 
 Func_3a15d: ; 3a15d (e:615d)
-	ld a, $e
+	ld a, BANK(Func_3a15d)
 	ld [wPrevROMBank], a
 	ld bc, $0
 	ld a, $4
@@ -27890,9 +27890,9 @@ Func_c81bf: ; c81bf (32:41bf)
 	ld a, $0
 	adc h
 	ld h, a
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld d, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld e, a
 	ld a, [hl]
 	add e
@@ -37938,14 +37938,7 @@ UnknownTZFile41:: INCBIN "gfx/tzfiles/tz_41.2bpp.tz"
 UnknownTZFile42:: INCBIN "gfx/tzfiles/tz_42.2bpp.tz"
 
 SECTION "bank 5E", ROMX, BANK [$5e]
-TilesetMetatilesPointerTable::
-	dr $178000, $178022
-
-TilesetMetaattrsPointerTable::
-	dr $178022, $178044
-
-Data_178044::
-	dr $178044, $17b73d
+INCLUDE "tilesets/data.asm"
 
 SECTION "bank 5F", ROMX, BANK [$5f]
 Data_17c000:

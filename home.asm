@@ -2958,12 +2958,12 @@ Func_2793: ; 2793 (0:2793)
 	ld [wMapNumber3], a
 	ld a, [wc905]
 	ld b, a
-	call Func_27c7
+	call .LoadTilesetPointers
 	pop af
 	rst Bankswitch
 	ret
 
-Func_27c7: ; 27c7 (0:27c7)
+.LoadTilesetPointers: ; 27c7 (0:27c7)
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(TilesetMetatilesPointerTable)
@@ -2992,7 +2992,7 @@ Func_27c7: ; 27c7 (0:27c7)
 	ld [wCurTilesetMetaattrsPointer], a
 	ld a, [hl]
 	ld [wCurTilesetMetaattrsPointer + 1], a
-	ld hl, Data_178044
+	ld hl, TilesetCollisionPointerTable
 	ld a, b
 	add l
 	ld l, a
@@ -3000,9 +3000,9 @@ Func_27c7: ; 27c7 (0:27c7)
 	adc h
 	ld h, a
 	ld a, [hli]
-	ld [wc9fa], a
+	ld [wCurTilesetCollisionPointer], a
 	ld a, [hl]
-	ld [wc9fb], a
+	ld [wCurTilesetCollisionPointer + 1], a
 	pop af
 	rst Bankswitch
 	ret
@@ -3212,9 +3212,9 @@ Func_2928::
 	ld [wFontSourceBank], a
 .loop
 	ld b, [hl]
-	ld a, [wc9fb]
+	ld a, [wCurTilesetCollisionPointer + 1]
 	ld d, a
-	ld a, [wc9fa]
+	ld a, [wCurTilesetCollisionPointer]
 	ld e, a
 	ld a, b
 	add e
