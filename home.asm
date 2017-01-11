@@ -2459,7 +2459,7 @@ Func_200a: ; 200a (0:200a)
 	add $a1
 	ld c, a
 	ld b, $0
-	call Func_33c9
+	call PrintMapObjectText_
 	ld a, $0
 	ld [wcdb6], a
 	ret
@@ -2789,7 +2789,7 @@ Func_2690: ; 2690 (0:2690)
 Func_2691: ; 2691 (0:2691)
 	ld b, $0
 	ld c, $9b
-	jp Func_33c9
+	jp PrintMapObjectText_
 
 Data_2698::
 	db $2c
@@ -2844,7 +2844,7 @@ Func_26b1: ; 26b1 (0:26b1)
 .asm_26f6
 	ld b, $0
 	ld c, $9a
-	call Func_33c9
+	call PrintMapObjectText_
 	jr .asm_26f1
 
 Func_26ff: ; 26ff (0:26ff)
@@ -3956,7 +3956,7 @@ GetMapByte::
 	rst Bankswitch
 	ret
 
-Func_2ea0::
+LoadMapObjectTextIdxs::
 	push hl
 	call GetMapHeaderBank
 	ld a, [wROMBank]
@@ -4005,9 +4005,9 @@ Func_2ea0::
 	ld a, $1
 	ld [wBattleMode], a ; tfanger
 	ld a, [hli]
-	ld [wc9dc], a
+	ld [wMapEnemyEventFlag], a
 	ld a, [hli]
-	ld [wc9dd], a
+	ld [wMapEnemyEventFlag + 1], a
 	ld a, [hli]
 	ld [wCurWildDenjuuEncounterTableIndex], a
 	ld a, [hl]
@@ -4832,8 +4832,8 @@ Func_33bc::
 	homecall Func_2c6e2
 	ret
 
-Func_33c9: ; 33c9 (0:33c9)
-	homecall Func_2c63f
+PrintMapObjectText_: ; 33c9 (0:33c9)
+	homecall PrintMapObjectText
 	ret
 
 Func_33d6::

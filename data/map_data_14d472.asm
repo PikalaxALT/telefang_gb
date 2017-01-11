@@ -277,12 +277,10 @@ Data_14d67e:
 	db $32
 
 Data_14d686:
-	db $8b
-	db $6e
-	db $02
-	db $01
-	db $19
-	db $03
+	db $8b, $6e
+	dw EVENT_102
+	db $19, MITSUBA
+
 	db $ff
 
 Data_14d68d:
@@ -306,12 +304,10 @@ Data_14d699:
 	db $35
 
 Data_14d6a1:
-	db $8b
-	db $6f
-	db $03
-	db $01
-	db $1a
-	db $03
+	db $8b, $6f
+	dw EVENT_103
+	db $1a, MITSUBA
+
 	db $ff
 
 Data_14d6a8:
@@ -336,8 +332,7 @@ Data_14d6b8:
 	db $01
 
 Data_14d6bb:
-	db $0b
-	db $70
+	db $0b, $70
 	db $ff
 
 Data_14d6be:
@@ -368,12 +363,10 @@ Data_14d6d2:
 	db $11
 
 Data_14d6dc:
-	db $8b
-	db $71
-	db $04
-	db $01
-	db $1b
-	db $03
+	db $8b, $71
+	dw EVENT_104
+	db $1b, MITSUBA
+
 	db $ff
 
 Data_14d6e3:
@@ -388,12 +381,10 @@ Data_14d6e3:
 	db $86
 
 Data_14d6ed:
-	db $8b
-	db $72
-	db $05
-	db $01
-	db $1c
-	db $03
+	db $8b, $72
+	dw EVENT_105
+	db $1c, MITSUBA
+
 	db $ff
 
 Data_14d6f4:
@@ -416,12 +407,10 @@ Data_14d6fe:
 	db $22
 
 Data_14d708:
-	db $8b
-	db $73
-	db $06
-	db $01
-	db $1d
-	db $03
+	db $8b, $73
+	dw EVENT_106
+	db $1d, MITSUBA
+
 	db $ff
 
 Data_14d70f:
@@ -437,12 +426,10 @@ Data_14d719:
 	db $01
 
 Data_14d71c:
-	db $8b
-	db $74
-	db $07
-	db $01
-	db $34
-	db $03
+	db $8b, $74
+	dw EVENT_107
+	db $34, MITSUBA
+
 	db $ff
 
 Data_14d723:
@@ -461,8 +448,7 @@ Data_14d72f:
 	db $01
 
 Data_14d732:
-	db $0b
-	db $75
+	db $0b, $75
 	db $ff
 
 Data_14d735:
@@ -488,12 +474,10 @@ Data_14d741:
 	db $61
 
 Data_14d74b:
-	db $8b
-	db $76
-	db $08
-	db $01
-	db $35
-	db $03
+	db $8b, $76
+	dw EVENT_108
+	db $35, MITSUBA
+
 	db $ff
 
 Data_14d752:
@@ -512,8 +496,7 @@ Data_14d75e:
 	db $01
 
 Data_14d761:
-	db $0b
-	db $77
+	db $0b, $77
 	db $ff
 
 Data_14d764:
@@ -542,12 +525,10 @@ Data_14d772:
 	db $22
 
 Data_14d77c:
-	db $8b
-	db $78
-	db $09
-	db $01
-	db $36
-	db $03
+	db $8b, $78
+	dw EVENT_109
+	db $36, MITSUBA
+
 	db $ff
 
 Data_14d783:
@@ -569,8 +550,7 @@ Data_14d791:
 	db $01
 
 Data_14d794:
-	db $0b
-	db $79
+	db $0b, $79
 	db $ff
 
 Data_14d797:
@@ -596,12 +576,10 @@ Data_14d7a3:
 	db $13
 
 Data_14d7ad:
-	db $8b
-	db $7a
-	db $0a
-	db $01
-	db $37
-	db $03
+	db $8b, $7a
+	dw EVENT_10A
+	db $37, MITSUBA
+
 	db $ff
 
 Data_14d7b4:
@@ -622,12 +600,10 @@ Data_14d7be:
 	db $22
 
 Data_14d7c6:
-	db $8b
-	db $7b
-	db $0b
-	db $01
-	db $38
-	db $03
+	db $8b, $7b
+	dw EVENT_10B
+	db $38, MITSUBA
+
 	db $ff
 
 Data_14d7cd:
@@ -648,8 +624,7 @@ Data_14d7d7:
 	db $72
 
 Data_14d7df:
-	db $0b
-	db $7c
+	db $0b, $7c
 	db $ff
 
 Data_14d7e2:
@@ -671,12 +646,10 @@ Data_14d7f0:
 	db $01
 
 Data_14d7f3:
-	db $8b
-	db $7d
-	db $0c
-	db $01
-	db $39
-	db $03
+	db $8b, $7d
+	dw EVENT_10C
+	db $39, MITSUBA
+
 	db $ff
 
 Data_14d7fa:
@@ -699,12 +672,10 @@ Data_14d804:
 	db $22
 
 Data_14d80e:
-	db $8b
-	db $7e
-	db $0d
-	db $01
-	db $3a
-	db $03
+	db $8b, $7e
+	dw EVENT_10D
+	db $3a, MITSUBA
+
 	db $ff
 
 Data_14d815:
@@ -745,12 +716,10 @@ Data_14d82b:
 	db $73
 
 Data_14d835:
-	db $8b
-	db $7f
-	db $0e
-	db $01
-	db $3b
-	db $03
+	db $8b, $7f
+	dw EVENT_10E
+	db $3b, MITSUBA
+
 	db $ff
 
 Data_14d83c:
@@ -779,8 +748,7 @@ Data_14d850:
 	db $32
 
 Data_14d858:
-	db $0b
-	db $80
+	db $0b, $80
 	db $ff
 
 Data_14d85b:
@@ -788,12 +756,10 @@ Data_14d85b:
 	db $01
 
 Data_14d85e:
-	db $8b
-	db $81
-	db $0f
-	db $01
-	db $3c
-	db $03
+	db $8b, $81
+	dw EVENT_10F
+	db $3c, MITSUBA
+
 	db $ff
 
 Data_14d865:
@@ -822,8 +788,7 @@ Data_14d873:
 	db $33
 
 Data_14d87d:
-	db $0b
-	db $82
+	db $0b, $82
 	db $ff
 
 Data_14d880:
@@ -864,8 +829,7 @@ Data_14d896:
 	db $12
 
 Data_14d8a0:
-	db $0b
-	db $83
+	db $0b, $83
 	db $ff
 
 Data_14d8a3:
@@ -892,8 +856,7 @@ Data_14d8b1:
 	db $32
 
 Data_14d8b9:
-	db $0b
-	db $84
+	db $0b, $84
 	db $ff
 
 Data_14d8bc:
@@ -914,8 +877,7 @@ Data_14d8c6:
 	db $32
 
 Data_14d8ce:
-	db $0b
-	db $85
+	db $0b, $85
 	db $ff
 
 Data_14d8d1:
@@ -938,8 +900,7 @@ Data_14d8db:
 	db $24
 
 Data_14d8e5:
-	db $0b
-	db $86
+	db $0b, $86
 	db $ff
 
 Data_14d8e8:
@@ -981,12 +942,10 @@ Data_14d904:
 	db $22
 
 Data_14d90d:
-	db $8b
-	db $87
-	db $10
-	db $01
-	db $3d
-	db $03
+	db $8b, $87
+	dw EVENT_110
+	db $3d, MITSUBA
+
 	db $ff
 
 Data_14d914:
@@ -1009,12 +968,10 @@ Data_14d91e:
 	db $63
 
 Data_14d928:
-	db $8b
-	db $88
-	db $11
-	db $01
-	db $3a
-	db $03
+	db $8b, $88
+	dw EVENT_111
+	db $3a, MITSUBA
+
 	db $ff
 
 Data_14d92f:
@@ -1040,12 +997,10 @@ Data_14d93b:
 	db $16
 
 Data_14d945:
-	db $8b
-	db $89
-	db $12
-	db $01
-	db $19
-	db $03
+	db $8b, $89
+	dw EVENT_112
+	db $19, MITSUBA
+
 	db $ff
 
 Data_14d94c:
@@ -1064,12 +1019,10 @@ Data_14d958:
 	db $01
 
 Data_14d95b:
-	db $8b
-	db $8a
-	db $13
-	db $01
-	db $1d
-	db $03
+	db $8b, $8a
+	dw EVENT_113
+	db $1d, MITSUBA
+
 	db $ff
 
 Data_14d962:
@@ -1092,12 +1045,10 @@ Data_14d96c:
 	db $11
 
 Data_14d976:
-	db $8b
-	db $8b
-	db $14
-	db $01
-	db $34
-	db $03
+	db $8b, $8b
+	dw EVENT_114
+	db $34, MITSUBA
+
 	db $ff
 
 Data_14d97d:
@@ -1129,12 +1080,10 @@ Data_14d98d:
 	db $41
 
 Data_14d997:
-	db $8b
-	db $8c
-	db $15
-	db $01
-	db $1b
-	db $03
+	db $8b, $8c
+	dw EVENT_115
+	db $1b, MITSUBA
+
 	db $ff
 
 Data_14d99e:
@@ -1169,12 +1118,10 @@ Data_14d9b0:
 	db $81
 
 Data_14d9ba:
-	db $8b
-	db $8d
-	db $16
-	db $01
-	db $35
-	db $03
+	db $8b, $8d
+	dw EVENT_116
+	db $35, MITSUBA
+
 	db $ff
 
 Data_14d9c1:
@@ -1193,12 +1140,10 @@ Data_14d9cd:
 	db $01
 
 Data_14d9d0:
-	db $8b
-	db $8e
-	db $17
-	db $01
-	db $19
-	db $03
+	db $8b, $8e
+	dw EVENT_117
+	db $19, MITSUBA
+
 	db $ff
 
 Data_14d9d7:
@@ -1214,12 +1159,10 @@ Data_14d9e1:
 	db $01
 
 Data_14d9e4:
-	db $8b
-	db $8f
-	db $18
-	db $01
-	db $1c
-	db $03
+	db $8b, $8f
+	dw EVENT_118
+	db $1c, MITSUBA
+
 	db $ff
 
 Data_14d9eb:
@@ -1243,8 +1186,7 @@ Data_14d9f7:
 	db $24
 
 Data_14d9ff:
-	db $0b
-	db $90
+	db $0b, $90
 	db $ff
 
 Data_14da02:
@@ -1274,12 +1216,10 @@ Data_14da12:
 	db $21
 
 Data_14da1a:
-	db $8b
-	db $91
-	db $19
-	db $01
-	db $3d
-	db $03
+	db $8b, $91
+	dw EVENT_119
+	db $3d, MITSUBA
+
 	db $ff
 
 Data_14da21:
@@ -1314,12 +1254,10 @@ Data_14da33:
 	db $11
 
 Data_14da3d:
-	db $8b
-	db $92
-	db $1a
-	db $01
-	db $1a
-	db $03
+	db $8b, $92
+	dw EVENT_11A
+	db $1a, MITSUBA
+
 	db $ff
 
 Data_14da44:

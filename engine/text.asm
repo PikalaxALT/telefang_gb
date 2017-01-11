@@ -776,7 +776,7 @@ HandleTextSubfunction: ; 2c5c8 (b:45c8)
 Func_2c63b: ; 2c63b (b:463b)
 	xor a
 	ld [wTextSubfunction], a
-Func_2c63f: ; 2c63f (b:463f)
+PrintMapObjectText: ; 2c63f (b:463f)
 	ld a, [wc9d8]
 	cp $2
 	jr z, .asm_2c64b

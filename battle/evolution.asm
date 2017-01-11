@@ -143,7 +143,7 @@ EvolveDenjuu_SetUpCurDenjuuEvolution: ; 75541 (1d:5541)
 	ld bc, VTilesBG tile $58
 	call GetAndPrintName75CenterAlign
 	ld a, $0
-	ld [wd44c], a
+	ld [wEvolutionTimer], a
 	ld a, [wCurDenjuuBufferLevel]
 	hlbgcoord 10, 2
 	ld c, $1
@@ -207,7 +207,7 @@ EvolveDenjuu_RunEvolutionAnimation: ; 75632 (1d:5632)
 .asm_75645
 	ld a, [wd4cf]
 	ld [wc463], a
-	ld a, [wd44c]
+	ld a, [wEvolutionTimer]
 	cp $e6
 	ret c
 	ld a, $8
@@ -216,9 +216,9 @@ EvolveDenjuu_RunEvolutionAnimation: ; 75632 (1d:5632)
 
 Func_75657: ; 75657 (1d:5657)
 	ld c, $0
-	ld a, [wd44c]
+	ld a, [wEvolutionTimer]
 	inc a
-	ld [wd44c], a
+	ld [wEvolutionTimer], a
 	cp $55
 	jr nc, .asm_75669
 	and $e

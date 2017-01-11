@@ -327,8 +327,7 @@ Data_148238:
 	db $01
 
 Data_14823b:
-	db $04
-	db $91
+	db $04, $91
 	db $ff
 
 Data_14823e:
@@ -439,8 +438,7 @@ Data_14829e:
 	db $01
 
 Data_1482a1:
-	db $04
-	db $82
+	db $04, $82
 	db $04
 	db $83
 	db $ff
@@ -450,8 +448,7 @@ Data_1482a6:
 	db $01
 
 Data_1482a9:
-	db $04
-	db $84
+	db $04, $84
 	db $ff
 
 Data_1482ac:
@@ -491,8 +488,7 @@ Data_1482c6:
 	db $01
 
 Data_1482c9:
-	db $0b
-	db $6c
+	db $0b, $6c
 	db $ff
 
 Data_1482cc:
@@ -508,12 +504,10 @@ Data_1482d6:
 	db $01
 
 Data_1482d9:
-	db $8b
-	db $93
-	db $1b
-	db $01
-	db $1e
-	db $03
+	db $8b, $93
+	dw EVENT_11B
+	db $1e, MITSUBA
+
 	db $ff
 
 Data_1482e0:
@@ -608,12 +602,10 @@ Data_148330:
 	db $01
 
 Data_148333:
-	db $8b
-	db $94
-	db $1c
-	db $01
-	db $1f
-	db $03
+	db $8b, $94
+	dw EVENT_11C
+	db $1f, MITSUBA
+
 	db $ff
 
 Data_14833a:
@@ -629,12 +621,10 @@ Data_148344:
 	db $01
 
 Data_148347:
-	db $8b
-	db $95
-	db $1d
-	db $01
-	db $20
-	db $03
+	db $8b, $95
+	dw EVENT_11D
+	db $20, MITSUBA
+
 	db $ff
 
 Data_14834e:
@@ -653,12 +643,10 @@ Data_14835a:
 	db $01
 
 Data_14835d:
-	db $8b
-	db $96
-	db $1e
-	db $01
-	db $3e
-	db $03
+	db $8b, $96
+	dw EVENT_11E
+	db $3e, MITSUBA
+
 	db $ff
 
 Data_148364:
@@ -679,8 +667,7 @@ Data_148376:
 	db $01
 
 Data_148379:
-	db $04
-	db $85
+	db $04, $85
 	db $04
 	db $86
 	db $ff
@@ -690,8 +677,7 @@ Data_14837e:
 	db $01
 
 Data_148381:
-	db $04
-	db $87
+	db $04, $87
 	db $ff
 
 Data_148384:
@@ -725,8 +711,7 @@ Data_14839a:
 	db $00
 
 Data_14839d:
-	db $02
-	db $1f
+	db $02, $1f
 	db $ff
 
 Data_1483a0:
@@ -775,12 +760,10 @@ Data_1483c4:
 	db $01
 
 Data_1483c7:
-	db $8b
-	db $97
-	db $1f
-	db $01
-	db $3f
-	db $03
+	db $8b, $97
+	dw EVENT_11F
+	db $3f, MITSUBA
+
 	db $ff
 
 Data_1483ce:
@@ -836,8 +819,7 @@ Data_1483f8:
 	db $16
 
 Data_148400:
-	db $02
-	db $0e
+	db $02, $0e
 	db $ff
 
 Data_148403:
@@ -850,8 +832,7 @@ Data_148403:
 	db $16
 
 Data_14840b:
-	db $02
-	db $0f
+	db $02, $0f
 	db $ff
 
 Data_14840e:
@@ -872,8 +853,7 @@ Data_148420:
 	db $00
 
 Data_148423:
-	db $02
-	db $10
+	db $02, $10
 	db $ff
 
 Data_148426:
@@ -881,8 +861,7 @@ Data_148426:
 	db $00
 
 Data_148429:
-	db $02
-	db $10
+	db $02, $10
 	db $ff
 
 Data_14842c:
@@ -903,8 +882,7 @@ Data_148436:
 	db $76
 
 Data_14843e:
-	db $0b
-	db $10
+	db $0b, $10
 	db $0b
 	db $11
 	db $ff
@@ -932,8 +910,7 @@ Data_14845d:
 	db $01
 
 Data_148460:
-	db $0b
-	db $12
+	db $0b, $12
 	db $ff
 
 Data_148463:
@@ -941,8 +918,7 @@ Data_148463:
 	db $01
 
 Data_148466:
-	db $0b
-	db $13
+	db $0b, $13
 	db $ff
 
 Data_148469:
@@ -950,8 +926,7 @@ Data_148469:
 	db $00
 
 Data_14846c:
-	db $0b
-	db $14
+	db $0b, $14
 	db $ff
 
 Data_14846f:
@@ -973,12 +948,10 @@ Data_14847d:
 	db $01
 
 Data_148480:
-	db $8b
-	db $98
-	db $20
-	db $01
-	db $40
-	db $03
+	db $8b, $98
+	dw EVENT_120
+	db $40, MITSUBA
+
 	db $ff
 
 Data_148487:
@@ -994,12 +967,10 @@ Data_148491:
 	db $01
 
 Data_148494:
-	db $8b
-	db $99
-	db $21
-	db $01
-	db $41
-	db $03
+	db $8b, $99
+	dw EVENT_121
+	db $41, MITSUBA
+
 	db $ff
 
 Data_14849b:
@@ -1018,12 +989,10 @@ Data_1484a7:
 	db $01
 
 Data_1484aa:
-	db $8b
-	db $9a
-	db $22
-	db $01
-	db $42
-	db $03
+	db $8b, $9a
+	dw EVENT_122
+	db $42, MITSUBA
+
 	db $ff
 
 Data_1484b1:
@@ -1039,8 +1008,7 @@ Data_1484bb:
 	db $01
 
 Data_1484be:
-	db $04
-	db $92
+	db $04, $92
 	db $ff
 
 Data_1484c1:
@@ -1061,8 +1029,7 @@ Data_1484d3:
 	db $01
 
 Data_1484d6:
-	db $04
-	db $8b
+	db $04, $8b
 	db $04
 	db $8c
 	db $ff
@@ -1072,8 +1039,7 @@ Data_1484db:
 	db $01
 
 Data_1484de:
-	db $04
-	db $8d
+	db $04, $8d
 	db $ff
 
 Data_1484e1:
@@ -1094,8 +1060,7 @@ Data_1484f3:
 	db $01
 
 Data_1484f6:
-	db $04
-	db $8e
+	db $04, $8e
 	db $04
 	db $8f
 	db $ff
@@ -1105,8 +1070,7 @@ Data_1484fb:
 	db $01
 
 Data_1484fe:
-	db $04
-	db $90
+	db $04, $90
 	db $ff
 
 Data_148501:
@@ -1128,8 +1092,7 @@ Data_14850f:
 	db $01
 
 Data_148512:
-	db $02
-	db $0a
+	db $02, $0a
 	db $ff
 
 Data_148515:
@@ -1171,8 +1134,7 @@ Data_148535:
 	db $16
 
 Data_14853f:
-	db $0b
-	db $15
+	db $0b, $15
 	db $0b
 	db $17
 	db $ff
@@ -1189,8 +1151,7 @@ Data_148544:
 	db $16
 
 Data_14854e:
-	db $0b
-	db $16
+	db $0b, $16
 	db $ff
 
 Data_148551:
@@ -1231,8 +1192,7 @@ Data_148583:
 	db $01
 
 Data_148586:
-	db $0b
-	db $1c
+	db $0b, $1c
 	db $ff
 
 Data_148589:
@@ -1240,8 +1200,7 @@ Data_148589:
 	db $01
 
 Data_14858c:
-	db $0b
-	db $1d
+	db $0b, $1d
 	db $ff
 
 Data_14858f:
@@ -1249,8 +1208,7 @@ Data_14858f:
 	db $01
 
 Data_148592:
-	db $0b
-	db $1b
+	db $0b, $1b
 	db $ff
 
 Data_148595:
@@ -1258,8 +1216,7 @@ Data_148595:
 	db $00
 
 Data_148598:
-	db $0b
-	db $18
+	db $0b, $18
 	db $0b
 	db $19
 	db $ff
@@ -1269,8 +1226,7 @@ Data_14859d:
 	db $00
 
 Data_1485a0:
-	db $0b
-	db $1a
+	db $0b, $1a
 	db $ff
 
 Data_1485a3:
@@ -1278,8 +1234,7 @@ Data_1485a3:
 	db $00
 
 Data_1485a6:
-	db $0b
-	db $1b
+	db $0b, $1b
 	db $ff
 
 Data_1485a9:
@@ -1295,8 +1250,7 @@ Data_1485b3:
 	db $01
 
 Data_1485b6:
-	db $0b
-	db $0e
+	db $0b, $0e
 	db $0b
 	db $0f
 	db $ff
@@ -1317,12 +1271,10 @@ Data_1485c7:
 	db $01
 
 Data_1485ca:
-	db $8b
-	db $9b
-	db $23
-	db $01
-	db $43
-	db $03
+	db $8b, $9b
+	dw EVENT_123
+	db $43, MITSUBA
+
 	db $ff
 
 Data_1485d1:
@@ -1343,12 +1295,10 @@ Data_1485e3:
 	db $01
 
 Data_1485e6:
-	db $8b
-	db $9c
-	db $24
-	db $01
-	db $1f
-	db $03
+	db $8b, $9c
+	dw EVENT_124
+	db $1f, MITSUBA
+
 	db $ff
 
 Data_1485ed:
@@ -1361,12 +1311,10 @@ Data_1485ed:
 	db $44
 
 Data_1485f5:
-	db $8b
-	db $9d
-	db $25
-	db $01
-	db $3e
-	db $03
+	db $8b, $9d
+	dw EVENT_125
+	db $3e, MITSUBA
+
 	db $ff
 
 Data_1485fc:
@@ -1382,12 +1330,10 @@ Data_148606:
 	db $01
 
 Data_148609:
-	db $8b
-	db $9e
-	db $26
-	db $01
-	db $1e
-	db $03
+	db $8b, $9e
+	dw EVENT_126
+	db $1e, MITSUBA
+
 	db $ff
 
 Data_148610:
@@ -1413,8 +1359,7 @@ Data_148622:
 	db $53
 
 Data_14862a:
-	db $0b
-	db $00
+	db $0b, $00
 	db $0b
 	db $01
 	db $ff
@@ -1429,8 +1374,7 @@ Data_14862f:
 	db $53
 
 Data_148637:
-	db $0b
-	db $02
+	db $0b, $02
 	db $ff
 
 Data_14863a:
@@ -1459,8 +1403,7 @@ Data_14864e:
 	db $53
 
 Data_148656:
-	db $0b
-	db $05
+	db $0b, $05
 	db $ff
 
 Data_148659:
@@ -1473,8 +1416,7 @@ Data_148659:
 	db $53
 
 Data_148661:
-	db $0b
-	db $06
+	db $0b, $06
 	db $ff
 
 Data_148664:
@@ -1510,8 +1452,7 @@ Data_14867a:
 	db $16
 
 Data_148686:
-	db $02
-	db $08
+	db $02, $08
 	db $ff
 
 Data_148689:
@@ -1528,8 +1469,7 @@ Data_148689:
 	db $16
 
 Data_148695:
-	db $02
-	db $09
+	db $02, $09
 	db $ff
 
 Data_148698:
@@ -1555,8 +1495,7 @@ Data_1486aa:
 	db $86
 
 Data_1486b2:
-	db $02
-	db $15
+	db $02, $15
 	db $ff
 
 Data_1486b5:
@@ -1569,8 +1508,7 @@ Data_1486b5:
 	db $86
 
 Data_1486bd:
-	db $02
-	db $16
+	db $02, $16
 	db $ff
 
 Data_1486c0:
@@ -1591,8 +1529,7 @@ Data_1486d2:
 	db $00
 
 Data_1486d5:
-	db $02
-	db $0c
+	db $02, $0c
 	db $ff
 
 Data_1486d8:
@@ -1600,8 +1537,7 @@ Data_1486d8:
 	db $00
 
 Data_1486db:
-	db $02
-	db $0d
+	db $02, $0d
 	db $ff
 
 Data_1486de:
@@ -1627,8 +1563,7 @@ Data_1486f8:
 	db $00
 
 Data_1486fb:
-	db $02
-	db $12
+	db $02, $12
 	db $ff
 
 Data_1486fe:
@@ -1636,8 +1571,7 @@ Data_1486fe:
 	db $00
 
 Data_148701:
-	db $02
-	db $11
+	db $02, $11
 	db $ff
 
 Data_148704:
@@ -1665,8 +1599,7 @@ Data_14871a:
 	db $01
 
 Data_14871d:
-	db $0b
-	db $1e
+	db $0b, $1e
 	db $0b
 	db $1f
 	db $ff
@@ -1676,8 +1609,7 @@ Data_148722:
 	db $01
 
 Data_148725:
-	db $0b
-	db $20
+	db $0b, $20
 	db $ff
 
 Data_148728:
@@ -1718,8 +1650,7 @@ Data_14874c:
 	db $52
 
 Data_148756:
-	db $0b
-	db $21
+	db $0b, $21
 	db $0b
 	db $22
 	db $ff
@@ -1736,8 +1667,7 @@ Data_14875b:
 	db $52
 
 Data_148765:
-	db $0b
-	db $23
+	db $0b, $23
 	db $ff
 
 Data_148768:
@@ -1745,8 +1675,7 @@ Data_148768:
 	db $00
 
 Data_14876b:
-	db $0b
-	db $24
+	db $0b, $24
 	db $ff
 
 Data_14876e:
@@ -1754,8 +1683,7 @@ Data_14876e:
 	db $00
 
 Data_148771:
-	db $0b
-	db $25
+	db $0b, $25
 	db $ff
 
 Data_148774:
@@ -1784,8 +1712,7 @@ Data_148788:
 	db $33
 
 Data_148790:
-	db $04
-	db $21
+	db $04, $21
 	db $04
 	db $22
 	db $ff
@@ -1800,8 +1727,7 @@ Data_148795:
 	db $33
 
 Data_14879d:
-	db $04
-	db $23
+	db $04, $23
 	db $ff
 
 Data_1487a0:
@@ -1832,8 +1758,7 @@ Data_1487c2:
 	db $01
 
 Data_1487c5:
-	db $04
-	db $24
+	db $04, $24
 	db $04
 	db $25
 	db $ff
@@ -1843,8 +1768,7 @@ Data_1487ca:
 	db $01
 
 Data_1487cd:
-	db $04
-	db $26
+	db $04, $26
 	db $ff
 
 Data_1487d0:
@@ -1852,8 +1776,7 @@ Data_1487d0:
 	db $01
 
 Data_1487d3:
-	db $04
-	db $24
+	db $04, $24
 	db $04
 	db $25
 	db $ff
@@ -1863,8 +1786,7 @@ Data_1487d8:
 	db $01
 
 Data_1487db:
-	db $04
-	db $26
+	db $04, $26
 	db $ff
 
 Data_1487de:
@@ -1890,8 +1812,7 @@ Data_1487f0:
 	db $33
 
 Data_1487f8:
-	db $04
-	db $27
+	db $04, $27
 	db $ff
 
 Data_1487fb:
@@ -1904,8 +1825,7 @@ Data_1487fb:
 	db $33
 
 Data_148803:
-	db $04
-	db $28
+	db $04, $28
 	db $ff
 
 Data_148806:
@@ -1929,8 +1849,7 @@ Data_14881a:
 	db $00
 
 Data_14881d:
-	db $04
-	db $fa
+	db $04, $fa
 	db $04
 	db $fb
 	db $ff
@@ -1940,8 +1859,7 @@ Data_148822:
 	db $00
 
 Data_148825:
-	db $04
-	db $fc
+	db $04, $fc
 	db $ff
 
 Data_148828:
@@ -1969,8 +1887,7 @@ Data_14883a:
 	db $22
 
 Data_148844:
-	db $04
-	db $f1
+	db $04, $f1
 	db $04
 	db $f2
 	db $ff
@@ -1987,8 +1904,7 @@ Data_148849:
 	db $22
 
 Data_148853:
-	db $04
-	db $f3
+	db $04, $f3
 	db $ff
 
 Data_148856:
@@ -2016,8 +1932,7 @@ Data_148868:
 	db $01
 
 Data_14886b:
-	db $02
-	db $1b
+	db $02, $1b
 	db $ff
 
 Data_14886e:
@@ -2060,8 +1975,7 @@ Data_148898:
 	db $01
 
 Data_14889b:
-	db $04
-	db $1c
+	db $04, $1c
 	db $ff
 
 Data_14889e:
@@ -2069,8 +1983,7 @@ Data_14889e:
 	db $01
 
 Data_1488a1:
-	db $04
-	db $1d
+	db $04, $1d
 	db $ff
 
 Data_1488a4:
@@ -2078,8 +1991,7 @@ Data_1488a4:
 	db $01
 
 Data_1488a7:
-	db $04
-	db $1c
+	db $04, $1c
 	db $ff
 
 Data_1488aa:
@@ -2087,8 +1999,7 @@ Data_1488aa:
 	db $01
 
 Data_1488ad:
-	db $04
-	db $1d
+	db $04, $1d
 	db $ff
 
 Data_1488b0:
@@ -2114,8 +2025,7 @@ Data_1488c2:
 	db $33
 
 Data_1488ca:
-	db $04
-	db $19
+	db $04, $19
 	db $04
 	db $1a
 	db $ff
@@ -2130,8 +2040,7 @@ Data_1488cf:
 	db $33
 
 Data_1488d7:
-	db $04
-	db $1b
+	db $04, $1b
 	db $ff
 
 Data_1488da:
@@ -2157,8 +2066,7 @@ Data_1488ec:
 	db $33
 
 Data_1488f4:
-	db $04
-	db $16
+	db $04, $16
 	db $04
 	db $17
 	db $ff
@@ -2173,8 +2081,7 @@ Data_1488f9:
 	db $33
 
 Data_148901:
-	db $04
-	db $18
+	db $04, $18
 	db $ff
 
 Data_148904:
@@ -2200,8 +2107,7 @@ Data_148916:
 	db $33
 
 Data_14891e:
-	db $04
-	db $1e
+	db $04, $1e
 	db $04
 	db $1f
 	db $ff
@@ -2216,8 +2122,7 @@ Data_148923:
 	db $33
 
 Data_14892b:
-	db $04
-	db $20
+	db $04, $20
 	db $ff
 
 Data_14892e:
@@ -2253,8 +2158,7 @@ Data_148950:
 	db $23
 
 Data_148958:
-	db $04
-	db $10
+	db $04, $10
 	db $04
 	db $11
 	db $ff
@@ -2269,8 +2173,7 @@ Data_14895d:
 	db $23
 
 Data_148965:
-	db $04
-	db $12
+	db $04, $12
 	db $ff
 
 Data_148968:
@@ -2283,8 +2186,7 @@ Data_148968:
 	db $16
 
 Data_148970:
-	db $04
-	db $13
+	db $04, $13
 	db $04
 	db $14
 	db $ff
@@ -2299,8 +2201,7 @@ Data_148975:
 	db $16
 
 Data_14897d:
-	db $04
-	db $15
+	db $04, $15
 	db $ff
 
 Data_148980:
@@ -2335,12 +2236,10 @@ Data_148992:
 	db $63
 
 Data_14899c:
-	db $82
-	db $13
-	db $8c
-	db $00
-	db $01
-	db $00
+	db $82, $13
+	dw EVENT_08C
+	db $01, $00
+
 	db $02
 	db $14
 	db $ff
@@ -2378,8 +2277,7 @@ Data_1489cf:
 	db $01
 
 Data_1489d2:
-	db $02
-	db $02
+	db $02, $02
 	db $ff
 
 Data_1489d5:
@@ -2387,8 +2285,7 @@ Data_1489d5:
 	db $01
 
 Data_1489d8:
-	db $02
-	db $03
+	db $02, $03
 	db $ff
 
 Data_1489db:
@@ -2401,8 +2298,7 @@ Data_1489db:
 	db $86
 
 Data_1489e3:
-	db $02
-	db $04
+	db $02, $04
 	db $ff
 
 Data_1489e6:
@@ -2415,8 +2311,7 @@ Data_1489e6:
 	db $86
 
 Data_1489ee:
-	db $02
-	db $05
+	db $02, $05
 	db $ff
 
 Data_1489f1:
@@ -2470,8 +2365,7 @@ Data_148a1d:
 	db $01
 
 Data_148a20:
-	db $04
-	db $03
+	db $04, $03
 	db $04
 	db $04
 	db $ff
@@ -2481,8 +2375,7 @@ Data_148a25:
 	db $01
 
 Data_148a28:
-	db $04
-	db $05
+	db $04, $05
 	db $ff
 
 Data_148a2b:
@@ -2513,8 +2406,7 @@ Data_148a4d:
 	db $00
 
 Data_148a50:
-	db $04
-	db $06
+	db $04, $06
 	db $04
 	db $07
 	db $ff
@@ -2524,8 +2416,7 @@ Data_148a55:
 	db $00
 
 Data_148a58:
-	db $04
-	db $08
+	db $04, $08
 	db $ff
 
 Data_148a5b:
@@ -2533,8 +2424,7 @@ Data_148a5b:
 	db $01
 
 Data_148a5e:
-	db $04
-	db $0a
+	db $04, $0a
 	db $ff
 
 Data_148a61:
@@ -2542,8 +2432,7 @@ Data_148a61:
 	db $01
 
 Data_148a64:
-	db $04
-	db $0c
+	db $04, $0c
 	db $ff
 
 Data_148a67:
@@ -2624,8 +2513,7 @@ Data_148ad9:
 	db $00
 
 Data_148adc:
-	db $04
-	db $0d
+	db $04, $0d
 	db $ff
 
 Data_148adf:
@@ -2633,8 +2521,7 @@ Data_148adf:
 	db $00
 
 Data_148ae2:
-	db $04
-	db $0e
+	db $04, $0e
 	db $ff
 
 Data_148ae5:
@@ -2642,8 +2529,7 @@ Data_148ae5:
 	db $00
 
 Data_148ae8:
-	db $04
-	db $0e
+	db $04, $0e
 	db $ff
 
 Data_148aeb:
@@ -2651,8 +2537,7 @@ Data_148aeb:
 	db $00
 
 Data_148aee:
-	db $04
-	db $0d
+	db $04, $0d
 	db $ff
 
 Data_148af1:
@@ -2660,8 +2545,7 @@ Data_148af1:
 	db $00
 
 Data_148af4:
-	db $04
-	db $0d
+	db $04, $0d
 	db $ff
 
 Data_148af7:
@@ -2669,8 +2553,7 @@ Data_148af7:
 	db $00
 
 Data_148afa:
-	db $04
-	db $0e
+	db $04, $0e
 	db $ff
 
 Data_148afd:
@@ -2678,8 +2561,7 @@ Data_148afd:
 	db $00
 
 Data_148b00:
-	db $04
-	db $0f
+	db $04, $0f
 	db $ff
 
 Data_148b03:
@@ -2687,8 +2569,7 @@ Data_148b03:
 	db $00
 
 Data_148b06:
-	db $04
-	db $0d
+	db $04, $0d
 	db $ff
 
 Data_148b09:
@@ -2696,8 +2577,7 @@ Data_148b09:
 	db $00
 
 Data_148b0c:
-	db $04
-	db $0e
+	db $04, $0e
 	db $ff
 
 Data_148b0f:
@@ -2705,8 +2585,7 @@ Data_148b0f:
 	db $00
 
 Data_148b12:
-	db $04
-	db $0e
+	db $04, $0e
 	db $ff
 
 Data_148b15:
@@ -2714,8 +2593,7 @@ Data_148b15:
 	db $00
 
 Data_148b18:
-	db $04
-	db $0d
+	db $04, $0d
 	db $ff
 
 Data_148b1b:
@@ -2723,8 +2601,7 @@ Data_148b1b:
 	db $00
 
 Data_148b1e:
-	db $04
-	db $0d
+	db $04, $0d
 	db $ff
 
 Data_148b21:
@@ -2732,8 +2609,7 @@ Data_148b21:
 	db $00
 
 Data_148b24:
-	db $04
-	db $0e
+	db $04, $0e
 	db $ff
 
 Data_148b27:
@@ -2741,8 +2617,7 @@ Data_148b27:
 	db $00
 
 Data_148b2a:
-	db $04
-	db $0f
+	db $04, $0f
 	db $ff
 
 Data_148b2d:
@@ -2768,8 +2643,7 @@ Data_148b47:
 	db $00
 
 Data_148b4a:
-	db $02
-	db $4e
+	db $02, $4e
 	db $02
 	db $4f
 	db $ff
@@ -2784,8 +2658,7 @@ Data_148b4f:
 	db $56
 
 Data_148b57:
-	db $02
-	db $50
+	db $02, $50
 	db $02
 	db $51
 	db $ff
@@ -2800,8 +2673,7 @@ Data_148b5c:
 	db $56
 
 Data_148b64:
-	db $02
-	db $52
+	db $02, $52
 	db $ff
 
 Data_148b67:
@@ -2830,8 +2702,7 @@ Data_148b7b:
 	db $65
 
 Data_148b83:
-	db $02
-	db $22
+	db $02, $22
 	db $02
 	db $23
 	db $ff
@@ -2846,8 +2717,7 @@ Data_148b88:
 	db $65
 
 Data_148b90:
-	db $02
-	db $24
+	db $02, $24
 	db $ff
 
 Data_148b93:
@@ -2871,8 +2741,7 @@ Data_148ba7:
 	db $01
 
 Data_148baa:
-	db $02
-	db $0b
+	db $02, $0b
 	db $ff
 
 Data_148bad:
@@ -2903,8 +2772,7 @@ Data_148bcf:
 	db $00
 
 Data_148bd2:
-	db $02
-	db $07
+	db $02, $07
 	db $ff
 
 Data_148bd5:
@@ -2912,8 +2780,7 @@ Data_148bd5:
 	db $00
 
 Data_148bd8:
-	db $02
-	db $07
+	db $02, $07
 	db $ff
 
 Data_148bdb:
@@ -2926,8 +2793,7 @@ Data_148bdb:
 	db $81
 
 Data_148be3:
-	db $02
-	db $06
+	db $02, $06
 	db $ff
 
 Data_148be6:
@@ -2940,8 +2806,7 @@ Data_148be6:
 	db $81
 
 Data_148bee:
-	db $02
-	db $06
+	db $02, $06
 	db $ff
 
 Data_148bf1:
@@ -2962,8 +2827,7 @@ Data_148c03:
 	db $00
 
 Data_148c06:
-	db $02
-	db $00
+	db $02, $00
 	db $ff
 
 Data_148c09:
@@ -2971,8 +2835,7 @@ Data_148c09:
 	db $00
 
 Data_148c0c:
-	db $02
-	db $01
+	db $02, $01
 	db $ff
 
 Data_148c0f:
@@ -3056,8 +2919,7 @@ Data_148c5b:
 	db $00
 
 Data_148c5e:
-	db $02
-	db $7e
+	db $02, $7e
 	db $02
 	db $7f
 	db $ff
@@ -3067,8 +2929,7 @@ Data_148c63:
 	db $00
 
 Data_148c66:
-	db $02
-	db $7e
+	db $02, $7e
 	db $ff
 
 Data_148c69:
@@ -3104,8 +2965,7 @@ Data_148c8b:
 	db $33
 
 Data_148c93:
-	db $04
-	db $00
+	db $04, $00
 	db $04
 	db $01
 	db $ff
@@ -3120,8 +2980,7 @@ Data_148c98:
 	db $33
 
 Data_148ca0:
-	db $04
-	db $02
+	db $04, $02
 	db $ff
 
 Data_148ca3:
@@ -3129,8 +2988,7 @@ Data_148ca3:
 	db $01
 
 Data_148ca6:
-	db $02
-	db $a9
+	db $02, $a9
 	db $02
 	db $aa
 	db $ff
@@ -3140,8 +2998,7 @@ Data_148cab:
 	db $01
 
 Data_148cae:
-	db $02
-	db $ab
+	db $02, $ab
 	db $ff
 
 Data_148cb1:
@@ -3164,8 +3021,7 @@ Data_148cbb:
 	db $46
 
 Data_148cc5:
-	db $02
-	db $a8
+	db $02, $a8
 	db $ff
 
 Data_148cc8:
@@ -3200,8 +3056,7 @@ Data_148ce2:
 	db $14
 
 Data_148cee:
-	db $02
-	db $57
+	db $02, $57
 	db $02
 	db $58
 	db $ff
@@ -3220,8 +3075,7 @@ Data_148cf3:
 	db $14
 
 Data_148cff:
-	db $02
-	db $59
+	db $02, $59
 	db $02
 	db $5a
 	db $ff
@@ -3249,8 +3103,7 @@ Data_148d1e:
 	db $01
 
 Data_148d21:
-	db $02
-	db $5b
+	db $02, $5b
 	db $ff
 
 Data_148d24:
@@ -3258,8 +3111,7 @@ Data_148d24:
 	db $01
 
 Data_148d27:
-	db $02
-	db $5c
+	db $02, $5c
 	db $ff
 
 Data_148d2a:
@@ -3274,8 +3126,7 @@ Data_148d2a:
 	db $56
 
 Data_148d34:
-	db $02
-	db $5d
+	db $02, $5d
 	db $ff
 
 Data_148d37:
@@ -3306,8 +3157,7 @@ Data_148d59:
 	db $01
 
 Data_148d5c:
-	db $02
-	db $5e
+	db $02, $5e
 	db $ff
 
 Data_148d5f:
@@ -3315,8 +3165,7 @@ Data_148d5f:
 	db $01
 
 Data_148d62:
-	db $02
-	db $5f
+	db $02, $5f
 	db $ff
 
 Data_148d65:
@@ -3324,8 +3173,7 @@ Data_148d65:
 	db $00
 
 Data_148d68:
-	db $02
-	db $60
+	db $02, $60
 	db $ff
 
 Data_148d6b:
@@ -3333,8 +3181,7 @@ Data_148d6b:
 	db $01
 
 Data_148d6e:
-	db $02
-	db $61
+	db $02, $61
 	db $ff
 
 Data_148d71:
@@ -3372,8 +3219,7 @@ Data_148d93:
 	db $16
 
 Data_148d9d:
-	db $02
-	db $25
+	db $02, $25
 	db $02
 	db $26
 	db $ff
@@ -3390,8 +3236,7 @@ Data_148da2:
 	db $16
 
 Data_148dac:
-	db $02
-	db $27
+	db $02, $27
 	db $ff
 
 Data_148daf:
@@ -3404,8 +3249,7 @@ Data_148daf:
 	db $22
 
 Data_148db7:
-	db $02
-	db $28
+	db $02, $28
 	db $02
 	db $29
 	db $ff
@@ -3420,8 +3264,7 @@ Data_148dbc:
 	db $22
 
 Data_148dc4:
-	db $02
-	db $2a
+	db $02, $2a
 	db $ff
 
 Data_148dc7:
@@ -3460,8 +3303,7 @@ Data_148de9:
 	db $36
 
 Data_148df4:
-	db $02
-	db $2b
+	db $02, $2b
 	db $02
 	db $2c
 	db $ff
@@ -3479,8 +3321,7 @@ Data_148df9:
 	db $36
 
 Data_148e04:
-	db $02
-	db $2d
+	db $02, $2d
 	db $ff
 
 Data_148e07:
@@ -3495,8 +3336,7 @@ Data_148e07:
 	db $82
 
 Data_148e11:
-	db $02
-	db $2e
+	db $02, $2e
 	db $ff
 
 Data_148e14:
@@ -3511,8 +3351,7 @@ Data_148e14:
 	db $82
 
 Data_148e1e:
-	db $02
-	db $2f
+	db $02, $2f
 	db $ff
 
 Data_148e21:
@@ -3545,8 +3384,7 @@ Data_148e3b:
 	db $01
 
 Data_148e3e:
-	db $04
-	db $63
+	db $04, $63
 	db $ff
 
 Data_148e41:
@@ -3580,8 +3418,7 @@ Data_148e5b:
 	db $01
 
 Data_148e5e:
-	db $02
-	db $a1
+	db $02, $a1
 	db $ff
 
 Data_148e61:
@@ -3609,8 +3446,7 @@ Data_148e73:
 	db $75
 
 Data_148e7d:
-	db $02
-	db $80
+	db $02, $80
 	db $ff
 
 Data_148e80:
@@ -3625,8 +3461,7 @@ Data_148e80:
 	db $75
 
 Data_148e8a:
-	db $02
-	db $81
+	db $02, $81
 	db $ff
 
 Data_148e8d:
@@ -3660,8 +3495,7 @@ Data_148eb1:
 	db $01
 
 Data_148eb4:
-	db $02
-	db $a4
+	db $02, $a4
 	db $ff
 
 Data_148eb7:
@@ -3669,8 +3503,7 @@ Data_148eb7:
 	db $01
 
 Data_148eba:
-	db $02
-	db $a5
+	db $02, $a5
 	db $ff
 
 Data_148ebd:
@@ -3678,8 +3511,7 @@ Data_148ebd:
 	db $01
 
 Data_148ec0:
-	db $02
-	db $a6
+	db $02, $a6
 	db $ff
 
 Data_148ec3:
@@ -3687,8 +3519,7 @@ Data_148ec3:
 	db $01
 
 Data_148ec6:
-	db $02
-	db $a7
+	db $02, $a7
 	db $ff
 
 Data_148ec9:
@@ -3713,8 +3544,7 @@ Data_148ed3:
 	db $76
 
 Data_148edf:
-	db $02
-	db $62
+	db $02, $62
 	db $02
 	db $63
 	db $ff
@@ -3742,8 +3572,7 @@ Data_148efe:
 	db $01
 
 Data_148f01:
-	db $02
-	db $64
+	db $02, $64
 	db $02
 	db $65
 	db $ff
@@ -3753,8 +3582,7 @@ Data_148f06:
 	db $01
 
 Data_148f09:
-	db $02
-	db $66
+	db $02, $66
 	db $02
 	db $67
 	db $ff
@@ -3772,8 +3600,7 @@ Data_148f18:
 	db $00
 
 Data_148f1b:
-	db $02
-	db $68
+	db $02, $68
 	db $02
 	db $69
 	db $ff
@@ -3865,8 +3692,7 @@ Data_148f6e:
 	db $24
 
 Data_148f76:
-	db $02
-	db $82
+	db $02, $82
 	db $ff
 
 Data_148f79:
@@ -3879,8 +3705,7 @@ Data_148f79:
 	db $24
 
 Data_148f81:
-	db $02
-	db $83
+	db $02, $83
 	db $ff
 
 Data_148f84:
@@ -3896,8 +3721,7 @@ Data_148f8e:
 	db $00
 
 Data_148f91:
-	db $02
-	db $a2
+	db $02, $a2
 	db $02
 	db $a3
 	db $ff
@@ -3950,8 +3774,7 @@ Data_148fca:
 	db $01
 
 Data_148fcd:
-	db $04
-	db $b3
+	db $04, $b3
 	db $ff
 
 Data_148fd0:
@@ -3959,8 +3782,7 @@ Data_148fd0:
 	db $01
 
 Data_148fd3:
-	db $04
-	db $b3
+	db $04, $b3
 	db $ff
 
 Data_148fd6:
@@ -4039,8 +3861,7 @@ Data_149020:
 	db $01
 
 Data_149023:
-	db $02
-	db $87
+	db $02, $87
 	db $ff
 
 Data_149026:
@@ -4048,8 +3869,7 @@ Data_149026:
 	db $01
 
 Data_149029:
-	db $02
-	db $88
+	db $02, $88
 	db $ff
 
 Data_14902c:
@@ -4057,8 +3877,7 @@ Data_14902c:
 	db $00
 
 Data_14902f:
-	db $02
-	db $84
+	db $02, $84
 	db $02
 	db $85
 	db $ff
@@ -4068,8 +3887,7 @@ Data_149034:
 	db $00
 
 Data_149037:
-	db $02
-	db $86
+	db $02, $86
 	db $ff
 
 Data_14903a:
@@ -4103,12 +3921,10 @@ Data_149050:
 	db $46
 
 Data_14905a:
-	db $82
-	db $72
-	db $8d
-	db $00
-	db $6a
-	db $00
+	db $82, $72
+	dw EVENT_08D
+	db $6a, $00
+
 	db $ff
 
 Data_149061:
@@ -4123,8 +3939,7 @@ Data_149061:
 	db $46
 
 Data_14906b:
-	db $02
-	db $7b
+	db $02, $7b
 	db $ff
 
 Data_14906e:
@@ -4155,12 +3970,10 @@ Data_149090:
 	db $01
 
 Data_149093:
-	db $82
-	db $72
-	db $8e
-	db $00
-	db $6b
-	db $00
+	db $82, $72
+	dw EVENT_08E
+	db $6b, $00
+
 	db $ff
 
 Data_14909a:
@@ -4168,8 +3981,7 @@ Data_14909a:
 	db $01
 
 Data_14909d:
-	db $02
-	db $73
+	db $02, $73
 	db $ff
 
 Data_1490a0:
@@ -4184,12 +3996,10 @@ Data_1490a0:
 	db $14
 
 Data_1490aa:
-	db $82
-	db $72
-	db $8f
-	db $00
-	db $6c
-	db $00
+	db $82, $72
+	dw EVENT_08F
+	db $6c, $00
+
 	db $ff
 
 Data_1490b1:
@@ -4204,8 +4014,7 @@ Data_1490b1:
 	db $14
 
 Data_1490bb:
-	db $02
-	db $74
+	db $02, $74
 	db $ff
 
 Data_1490be:
@@ -4229,8 +4038,7 @@ Data_1490ca:
 	db $86
 
 Data_1490d2:
-	db $04
-	db $ad
+	db $04, $ad
 	db $04
 	db $ae
 	db $ff
@@ -4287,8 +4095,7 @@ Data_149117:
 	db $01
 
 Data_14911a:
-	db $04
-	db $4a
+	db $04, $4a
 	db $ff
 
 Data_14911d:
@@ -4296,8 +4103,7 @@ Data_14911d:
 	db $01
 
 Data_149120:
-	db $04
-	db $4b
+	db $04, $4b
 	db $ff
 
 Data_149123:
@@ -4305,8 +4111,7 @@ Data_149123:
 	db $01
 
 Data_149126:
-	db $04
-	db $4c
+	db $04, $4c
 	db $ff
 
 Data_149129:
@@ -4314,12 +4119,10 @@ Data_149129:
 	db $01
 
 Data_14912c:
-	db $84
-	db $4d
-	db $ba
-	db $00
-	db $75
-	db $00
+	db $84, $4d
+	dw EVENT_0BA
+	db $75, $00
+
 	db $ff
 
 Data_149133:
@@ -4327,12 +4130,10 @@ Data_149133:
 	db $01
 
 Data_149136:
-	db $84
-	db $4e
-	db $ba
-	db $00
-	db $75
-	db $00
+	db $84, $4e
+	dw EVENT_0BA
+	db $75, $00
+
 	db $04
 	db $4f
 	db $ff
@@ -4342,12 +4143,10 @@ Data_14913f:
 	db $01
 
 Data_149142:
-	db $84
-	db $50
-	db $bb
-	db $00
-	db $74
-	db $00
+	db $84, $50
+	dw EVENT_0BB
+	db $74, $00
+
 	db $ff
 
 Data_149149:
@@ -4355,12 +4154,10 @@ Data_149149:
 	db $01
 
 Data_14914c:
-	db $84
-	db $51
-	db $bb
-	db $00
-	db $74
-	db $00
+	db $84, $51
+	dw EVENT_0BB
+	db $74, $00
+
 	db $04
 	db $52
 	db $ff
@@ -4405,12 +4202,10 @@ Data_149177:
 	db $01
 
 Data_14917a:
-	db $84
-	db $53
-	db $bc
-	db $00
-	db $79
-	db $00
+	db $84, $53
+	dw EVENT_0BC
+	db $79, $00
+
 	db $ff
 
 Data_149181:
@@ -4418,12 +4213,10 @@ Data_149181:
 	db $01
 
 Data_149184:
-	db $84
-	db $54
-	db $bc
-	db $00
-	db $79
-	db $00
+	db $84, $54
+	dw EVENT_0BC
+	db $79, $00
+
 	db $04
 	db $55
 	db $ff
@@ -4433,12 +4226,10 @@ Data_14918d:
 	db $01
 
 Data_149190:
-	db $84
-	db $56
-	db $bd
-	db $00
-	db $77
-	db $00
+	db $84, $56
+	dw EVENT_0BD
+	db $77, $00
+
 	db $ff
 
 Data_149197:
@@ -4446,12 +4237,10 @@ Data_149197:
 	db $01
 
 Data_14919a:
-	db $84
-	db $57
-	db $bd
-	db $00
-	db $77
-	db $00
+	db $84, $57
+	dw EVENT_0BD
+	db $77, $00
+
 	db $ff
 
 Data_1491a1:
@@ -4459,12 +4248,10 @@ Data_1491a1:
 	db $01
 
 Data_1491a4:
-	db $84
-	db $56
-	db $bd
-	db $00
-	db $77
-	db $00
+	db $84, $56
+	dw EVENT_0BD
+	db $77, $00
+
 	db $ff
 
 Data_1491ab:
@@ -4472,12 +4259,10 @@ Data_1491ab:
 	db $01
 
 Data_1491ae:
-	db $84
-	db $57
-	db $bd
-	db $00
-	db $77
-	db $00
+	db $84, $57
+	dw EVENT_0BD
+	db $77, $00
+
 	db $ff
 
 Data_1491b5:
@@ -4499,8 +4284,7 @@ Data_1491c3:
 	db $00
 
 Data_1491c6:
-	db $02
-	db $93
+	db $02, $93
 	db $02
 	db $94
 	db $ff
@@ -4518,8 +4302,7 @@ Data_1491d5:
 	db $01
 
 Data_1491d8:
-	db $02
-	db $92
+	db $02, $92
 	db $ff
 
 Data_1491db:
@@ -4550,8 +4333,7 @@ Data_1491fd:
 	db $01
 
 Data_149200:
-	db $02
-	db $89
+	db $02, $89
 	db $ff
 
 Data_149203:
@@ -4559,8 +4341,7 @@ Data_149203:
 	db $01
 
 Data_149206:
-	db $02
-	db $8c
+	db $02, $8c
 	db $ff
 
 Data_149209:
@@ -4568,8 +4349,7 @@ Data_149209:
 	db $01
 
 Data_14920c:
-	db $02
-	db $89
+	db $02, $89
 	db $ff
 
 Data_14920f:
@@ -4577,8 +4357,7 @@ Data_14920f:
 	db $01
 
 Data_149212:
-	db $02
-	db $8c
+	db $02, $8c
 	db $ff
 
 Data_149215:
@@ -4620,12 +4399,10 @@ Data_149243:
 	db $01
 
 Data_149246:
-	db $82
-	db $72
-	db $90
-	db $00
-	db $6d
-	db $00
+	db $82, $72
+	dw EVENT_090
+	db $6d, $00
+
 	db $ff
 
 Data_14924d:
@@ -4633,8 +4410,7 @@ Data_14924d:
 	db $01
 
 Data_149250:
-	db $02
-	db $75
+	db $02, $75
 	db $ff
 
 Data_149253:
@@ -4649,12 +4425,10 @@ Data_149253:
 	db $16
 
 Data_14925d:
-	db $82
-	db $72
-	db $91
-	db $00
-	db $6e
-	db $00
+	db $82, $72
+	dw EVENT_091
+	db $6e, $00
+
 	db $ff
 
 Data_149264:
@@ -4669,8 +4443,7 @@ Data_149264:
 	db $16
 
 Data_14926e:
-	db $02
-	db $76
+	db $02, $76
 	db $ff
 
 Data_149271:
@@ -4706,12 +4479,10 @@ Data_149293:
 	db $41
 
 Data_14929b:
-	db $82
-	db $72
-	db $92
-	db $00
-	db $6f
-	db $00
+	db $82, $72
+	dw EVENT_092
+	db $6f, $00
+
 	db $ff
 
 Data_1492a2:
@@ -4724,8 +4495,7 @@ Data_1492a2:
 	db $41
 
 Data_1492aa:
-	db $02
-	db $77
+	db $02, $77
 	db $ff
 
 Data_1492ad:
@@ -4742,12 +4512,10 @@ Data_1492ad:
 	db $14
 
 Data_1492b9:
-	db $82
-	db $72
-	db $93
-	db $00
-	db $70
-	db $00
+	db $82, $72
+	dw EVENT_093
+	db $70, $00
+
 	db $ff
 
 Data_1492c0:
@@ -4764,8 +4532,7 @@ Data_1492c0:
 	db $14
 
 Data_1492cc:
-	db $02
-	db $78
+	db $02, $78
 	db $ff
 
 Data_1492cf:
@@ -4804,8 +4571,7 @@ Data_1492e9:
 	db $73
 
 Data_1492f1:
-	db $04
-	db $a9
+	db $04, $a9
 	db $04
 	db $aa
 	db $ff
@@ -4860,12 +4626,10 @@ Data_149324:
 	db $01
 
 Data_149327:
-	db $84
-	db $38
-	db $b4
-	db $00
-	db $7a
-	db $00
+	db $84, $38
+	dw EVENT_0B4
+	db $7a, $00
+
 	db $ff
 
 Data_14932e:
@@ -4873,12 +4637,10 @@ Data_14932e:
 	db $01
 
 Data_149331:
-	db $84
-	db $39
-	db $b4
-	db $00
-	db $7a
-	db $00
+	db $84, $39
+	dw EVENT_0B4
+	db $7a, $00
+
 	db $04
 	db $3a
 	db $ff
@@ -4888,12 +4650,10 @@ Data_14933a:
 	db $01
 
 Data_14933d:
-	db $84
-	db $3b
-	db $b5
-	db $00
-	db $7b
-	db $00
+	db $84, $3b
+	dw EVENT_0B5
+	db $7b, $00
+
 	db $ff
 
 Data_149344:
@@ -4901,12 +4661,10 @@ Data_149344:
 	db $01
 
 Data_149347:
-	db $84
-	db $3c
-	db $b5
-	db $00
-	db $7b
-	db $00
+	db $84, $3c
+	dw EVENT_0B5
+	db $7b, $00
+
 	db $04
 	db $3d
 	db $ff
@@ -4916,12 +4674,10 @@ Data_149350:
 	db $01
 
 Data_149353:
-	db $84
-	db $3b
-	db $b5
-	db $00
-	db $7b
-	db $00
+	db $84, $3b
+	dw EVENT_0B5
+	db $7b, $00
+
 	db $ff
 
 Data_14935a:
@@ -4929,12 +4685,10 @@ Data_14935a:
 	db $01
 
 Data_14935d:
-	db $84
-	db $3c
-	db $b5
-	db $00
-	db $7b
-	db $00
+	db $84, $3c
+	dw EVENT_0B5
+	db $7b, $00
+
 	db $04
 	db $3d
 	db $ff
@@ -4967,12 +4721,10 @@ Data_149388:
 	db $01
 
 Data_14938b:
-	db $84
-	db $3e
-	db $b6
-	db $00
-	db $79
-	db $00
+	db $84, $3e
+	dw EVENT_0B6
+	db $79, $00
+
 	db $ff
 
 Data_149392:
@@ -4980,12 +4732,10 @@ Data_149392:
 	db $01
 
 Data_149395:
-	db $84
-	db $3f
-	db $b6
-	db $00
-	db $79
-	db $00
+	db $84, $3f
+	dw EVENT_0B6
+	db $79, $00
+
 	db $04
 	db $40
 	db $ff
@@ -4995,12 +4745,10 @@ Data_14939e:
 	db $01
 
 Data_1493a1:
-	db $84
-	db $41
-	db $b7
-	db $00
-	db $7a
-	db $00
+	db $84, $41
+	dw EVENT_0B7
+	db $7a, $00
+
 	db $ff
 
 Data_1493a8:
@@ -5008,12 +4756,10 @@ Data_1493a8:
 	db $01
 
 Data_1493ab:
-	db $84
-	db $42
-	db $b7
-	db $00
-	db $7a
-	db $00
+	db $84, $42
+	dw EVENT_0B7
+	db $7a, $00
+
 	db $04
 	db $43
 	db $ff
@@ -5066,8 +4812,7 @@ Data_1493f6:
 	db $01
 
 Data_1493f9:
-	db $04
-	db $33
+	db $04, $33
 	db $ff
 
 Data_1493fc:
@@ -5075,8 +4820,7 @@ Data_1493fc:
 	db $01
 
 Data_1493ff:
-	db $04
-	db $33
+	db $04, $33
 	db $ff
 
 Data_149402:
@@ -5084,8 +4828,7 @@ Data_149402:
 	db $01
 
 Data_149405:
-	db $04
-	db $34
+	db $04, $34
 	db $ff
 
 Data_149408:
@@ -5093,8 +4836,7 @@ Data_149408:
 	db $01
 
 Data_14940b:
-	db $04
-	db $33
+	db $04, $33
 	db $ff
 
 Data_14940e:
@@ -5102,8 +4844,7 @@ Data_14940e:
 	db $01
 
 Data_149411:
-	db $04
-	db $35
+	db $04, $35
 	db $ff
 
 Data_149414:
@@ -5111,8 +4852,7 @@ Data_149414:
 	db $01
 
 Data_149417:
-	db $04
-	db $36
+	db $04, $36
 	db $ff
 
 Data_14941a:
@@ -5120,8 +4860,7 @@ Data_14941a:
 	db $01
 
 Data_14941d:
-	db $04
-	db $37
+	db $04, $37
 	db $ff
 
 Data_149420:
@@ -5167,12 +4906,10 @@ Data_14945a:
 	db $01
 
 Data_14945d:
-	db $84
-	db $44
-	db $b8
-	db $00
-	db $78
-	db $00
+	db $84, $44
+	dw EVENT_0B8
+	db $78, $00
+
 	db $ff
 
 Data_149464:
@@ -5180,12 +4917,10 @@ Data_149464:
 	db $01
 
 Data_149467:
-	db $84
-	db $45
-	db $b8
-	db $00
-	db $78
-	db $00
+	db $84, $45
+	dw EVENT_0B8
+	db $78, $00
+
 	db $04
 	db $46
 	db $ff
@@ -5195,12 +4930,10 @@ Data_149470:
 	db $01
 
 Data_149473:
-	db $84
-	db $47
-	db $b9
-	db $00
-	db $7d
-	db $00
+	db $84, $47
+	dw EVENT_0B9
+	db $7d, $00
+
 	db $ff
 
 Data_14947a:
@@ -5208,12 +4941,10 @@ Data_14947a:
 	db $01
 
 Data_14947d:
-	db $84
-	db $48
-	db $b9
-	db $00
-	db $7d
-	db $00
+	db $84, $48
+	dw EVENT_0B9
+	db $7d, $00
+
 	db $04
 	db $49
 	db $ff
@@ -5223,8 +4954,7 @@ Data_149486:
 	db $01
 
 Data_149489:
-	db $04
-	db $58
+	db $04, $58
 	db $ff
 
 Data_14948c:
@@ -5232,8 +4962,7 @@ Data_14948c:
 	db $01
 
 Data_14948f:
-	db $04
-	db $59
+	db $04, $59
 	db $ff
 
 Data_149492:
@@ -5241,8 +4970,7 @@ Data_149492:
 	db $01
 
 Data_149495:
-	db $04
-	db $5a
+	db $04, $5a
 	db $ff
 
 Data_149498:
@@ -5261,8 +4989,7 @@ Data_1494a4:
 	db $01
 
 Data_1494a7:
-	db $02
-	db $8f
+	db $02, $8f
 	db $ff
 
 Data_1494aa:
@@ -5288,8 +5015,7 @@ Data_1494bc:
 	db $26
 
 Data_1494c4:
-	db $02
-	db $8d
+	db $02, $8d
 	db $ff
 
 Data_1494c7:
@@ -5302,8 +5028,7 @@ Data_1494c7:
 	db $26
 
 Data_1494cf:
-	db $02
-	db $8e
+	db $02, $8e
 	db $ff
 
 Data_1494d2:
@@ -5336,12 +5061,10 @@ Data_1494e6:
 	db $66
 
 Data_1494f2:
-	db $82
-	db $72
-	db $94
-	db $00
-	db $71
-	db $00
+	db $82, $72
+	dw EVENT_094
+	db $71, $00
+
 	db $ff
 
 Data_1494f9:
@@ -5358,8 +5081,7 @@ Data_1494f9:
 	db $66
 
 Data_149505:
-	db $02
-	db $79
+	db $02, $79
 	db $ff
 
 Data_149508:
@@ -5387,12 +5109,10 @@ Data_14951a:
 	db $43
 
 Data_149524:
-	db $82
-	db $72
-	db $95
-	db $00
-	db $72
-	db $00
+	db $82, $72
+	dw EVENT_095
+	db $72, $00
+
 	db $ff
 
 Data_14952b:
@@ -5407,8 +5127,7 @@ Data_14952b:
 	db $43
 
 Data_149535:
-	db $02
-	db $7a
+	db $02, $7a
 	db $ff
 
 Data_149538:
@@ -5438,12 +5157,10 @@ Data_14954a:
 	db $41
 
 Data_149556:
-	db $82
-	db $72
-	db $96
-	db $00
-	db $73
-	db $00
+	db $82, $72
+	dw EVENT_096
+	db $73, $00
+
 	db $ff
 
 Data_14955d:
@@ -5460,8 +5177,7 @@ Data_14955d:
 	db $41
 
 Data_149569:
-	db $02
-	db $7d
+	db $02, $7d
 	db $ff
 
 Data_14956c:

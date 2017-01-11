@@ -1056,8 +1056,7 @@ wc9d8:: ds 1
 wc9d9:: ds 1
 wCurBackground:: ds 1
 wc9db:: ds 1
-wc9dc:: ds 1
-wc9dd:: ds 1
+wMapEnemyEventFlag:: dw
 wc9de:: ds 1
 wc9df:: ds 1
 wc9e0:: ds 1
@@ -3417,7 +3416,7 @@ wStringBuffer:: ds 8
 
 wBattleTargetName:: ; ds DENJUU_NAME_LENGTH
 	ds 4
-wd44c::
+wEvolutionTimer::
 	ds 2
 wd44e::
 	ds 1
