@@ -123,7 +123,7 @@ Func_225b: ; 225b (0:225b)
 	ret
 
 Func_2264: ; 2264 (0:2264)
-	call Func_2793
+	call LoadTilesetRegisters
 	ld a, $5e
 	ld [wCurTilesetBank], a
 	callba Func_2e0d2
@@ -185,7 +185,7 @@ Func_22d2: ; 22d2 (0:22d2)
 	ld [hli], a
 	dec c
 	jr nz, .asm_2301
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $4
 	jr nz, .asm_231a
 	ld bc, EVENT_448
@@ -376,7 +376,7 @@ Func_24ad::
 	call PaletteFade
 	or a
 	ret z
-	call Func_2793
+	call LoadTilesetRegisters
 	homecall Func_c981a
 	ld a, $0
 	ld [wSubroutine], a

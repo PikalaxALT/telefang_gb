@@ -3689,7 +3689,7 @@ Func_31e12:
 	ld a, c
 	cp $8
 	jr nc, .asm_31e62
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $10
 	jr z, .asm_31e5c
 	cp $3
@@ -4019,7 +4019,7 @@ Func_3202b:
 
 Func_32079: ; 32079 (c:6079)
 	cp $ff
-	jr nz, .asm_320ac
+	jr nz, .not_null
 	ld a, [wcd51]
 	ld [wcd03], a
 	ld b, a
@@ -4045,12 +4045,12 @@ Func_32079: ; 32079 (c:6079)
 .asm_320ab
 	ret
 
-.asm_320ac
+.not_null
 	push af
 	ld hl, wPlayerObjectStruct
 	ld b, $d
 	call Func_33870
-	jr z, .asm_320d6
+	jr z, .nope
 	ld a, [wc9c3]
 	swap a
 	ld d, a
@@ -4067,7 +4067,7 @@ Func_32079: ; 32079 (c:6079)
 	ld [hl], a
 	jp Func_33a62
 
-.asm_320d6
+.nope
 	pop af
 	ret
 
@@ -7776,18 +7776,18 @@ Func_3385b: ; 3385b (c:785b)
 Func_33870: ; 33870 (c:7870)
 	ld a, [wc98e]
 	or a
-	jr nz, .asm_33883
+	jr nz, .nope
 	push hl
 	push bc
 	call Func_3091f
 	pop bc
 	pop de
-	jr z, .asm_33882
+	jr z, .nope2
 	call Func_3389c
-.asm_33882
+.nope2
 	ret
 
-.asm_33883
+.nope
 	ld d, h
 	ld e, l
 	ret

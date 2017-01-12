@@ -2246,7 +2246,7 @@ Func_2e03c: ; 2e03c (b:603c)
 	inc a
 	and $3f
 	ld [wMapNumber], a
-	call Func_2793
+	call LoadTilesetRegisters
 	ld a, [wMapNumber3]
 	cp $ff
 	ret nz
@@ -2257,7 +2257,7 @@ Func_2e050: ; 2e050 (b:6050)
 	dec a
 	and $3f
 	ld [wMapNumber], a
-	call Func_2793
+	call LoadTilesetRegisters
 	ld a, [wMapNumber3]
 	cp $ff
 	ret nz
@@ -2724,7 +2724,7 @@ Func_2e33e: ; 2e33e (b:633e)
 
 .asm_2e359
 	ld hl, Data_2e3c8
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $6
 	jr nz, .asm_2e370
 	ld c, a
@@ -2806,7 +2806,7 @@ Data_2e3c8:
 
 Func_2e3dc: ; 2e3dc (b:63dc)
 	ld hl, Data_2e3ee
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	add l
 	ld l, a
 	ld a, $0
@@ -2839,7 +2839,7 @@ Func_2e3ff: ; 2e3ff (b:63ff)
 	ld a, BANK(Func_2e3ff)
 	ld [wPrevROMBank], a
 	ld hl, Data_2e455
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	add l
 	ld l, a
 	ld a, $0
@@ -2849,7 +2849,7 @@ Func_2e3ff: ; 2e3ff (b:63ff)
 	ld b, $0
 	call GetCGB_OBLayout_
 	callba Func_30741
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $6
 	jr z, .asm_2e437
 	ld a, [wcdba]
@@ -2861,7 +2861,7 @@ Func_2e3ff: ; 2e3ff (b:63ff)
 	ld a, $3
 	call LoadNthStdOBPalette
 .asm_2e437
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $2
 	ret nc
 	ld a, [wc93b]
@@ -2900,7 +2900,7 @@ Data_2e455:
 
 Func_2e466: ; 2e466 (b:6466)
 	ld hl, Data_2e49e
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	add l
 	ld l, a
 	ld a, $0
@@ -4172,7 +4172,7 @@ Func_39598: ; 39598 (e:5598)
 	ld [wc9f4], a
 	cp $1a
 	ret nz
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $8
 	jr z, .asm_39631
 	cp $10
@@ -4400,7 +4400,7 @@ Func_397e7:
 	cpl
 .asm_397f1
 	ld [wNumIdleFrames], a
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $7
 	jr nz, .asm_3981b
 	ld a, [wc9ef]
@@ -4560,7 +4560,7 @@ Func_39917: ; 39917 (e:5917)
 	ld [wc980], a
 	ld a, $1
 	ld [wc98e], a
-	call Func_2793
+	call LoadTilesetRegisters
 	ld a, $c
 	ld hl, Func_2b98
 	call FarCall_HL
@@ -16705,7 +16705,7 @@ Func_c8000::
 	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $d
 	jr z, .asm_c811f
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $8
 	jr z, .asm_c80f0
 	cp $10
@@ -16767,7 +16767,7 @@ Func_c8000::
 
 .asm_c8146
 	ld b, a
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $7
 	jr nz, .asm_c816c
 	ld a, b
@@ -16891,7 +16891,7 @@ Func_c81bf: ; c81bf (32:41bf)
 	ret
 
 Func_c8222: ; c8222 (32:4222)
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	push hl
 	ld hl, Data_c8232
 	add l
@@ -19487,7 +19487,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld a, [wMapGroup]
 	cp $6
 	jr c, .asm_c972b
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $0
 	jr z, .asm_c972b
 	ld a, [wc916]
@@ -19609,7 +19609,7 @@ Func_c981a: ; c981a (32:581a)
 	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr nz, .asm_c9867
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $2
 	jr z, .asm_c982b
 	cp $4
@@ -19982,22 +19982,22 @@ Func_c9a73: ; c9a73 (32:5a73)
 	jr z, .asm_c9ac6
 	ld a, [wcd20]
 	jr nz, .asm_c9a8a
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $7
 	jr z, .asm_c9ac6
 .asm_c9a8a
 	ld b, $8
 	callba Func_2e1fd
-	call Func_2793
+	call LoadTilesetRegisters
 	call Func_272f
-	ld b, $14
+	ld b, 20
 	ld de, wcae3
 	ld a, [wc9ec]
 	ld c, a
 	call FarCopyData_Under256Bytes
 	ld b, $f8
 	callba Func_2e1fd
-	call Func_2793
+	call LoadTilesetRegisters
 	call Func_272f
 	ret
 
@@ -26916,28 +26916,853 @@ Data_17c000:
 
 SECTION "bank 60", ROMX, BANK [$60]
 Data_180000:
-	dr $180000, $183fc0
+INCBIN "maps/180000.blk"
+INCBIN "maps/180050.blk"
+INCBIN "maps/1800a0.blk"
+INCBIN "maps/1800f0.blk"
+INCBIN "maps/180140.blk"
+INCBIN "maps/180190.blk"
+INCBIN "maps/1801e0.blk"
+INCBIN "maps/180230.blk"
+INCBIN "maps/180280.blk"
+INCBIN "maps/1802d0.blk"
+INCBIN "maps/180320.blk"
+INCBIN "maps/180370.blk"
+INCBIN "maps/1803c0.blk"
+INCBIN "maps/180410.blk"
+INCBIN "maps/180460.blk"
+INCBIN "maps/1804b0.blk"
+INCBIN "maps/180500.blk"
+INCBIN "maps/180550.blk"
+INCBIN "maps/1805a0.blk"
+INCBIN "maps/1805f0.blk"
+INCBIN "maps/180640.blk"
+INCBIN "maps/180690.blk"
+INCBIN "maps/1806e0.blk"
+INCBIN "maps/180730.blk"
+INCBIN "maps/180780.blk"
+INCBIN "maps/1807d0.blk"
+INCBIN "maps/180820.blk"
+INCBIN "maps/180870.blk"
+INCBIN "maps/1808c0.blk"
+INCBIN "maps/180910.blk"
+INCBIN "maps/180960.blk"
+INCBIN "maps/1809b0.blk"
+INCBIN "maps/180a00.blk"
+INCBIN "maps/180a50.blk"
+INCBIN "maps/180aa0.blk"
+INCBIN "maps/180af0.blk"
+INCBIN "maps/180b40.blk"
+INCBIN "maps/180b90.blk"
+INCBIN "maps/180be0.blk"
+INCBIN "maps/180c30.blk"
+INCBIN "maps/180c80.blk"
+INCBIN "maps/180cd0.blk"
+INCBIN "maps/180d20.blk"
+INCBIN "maps/180d70.blk"
+INCBIN "maps/180dc0.blk"
+INCBIN "maps/180e10.blk"
+INCBIN "maps/180e60.blk"
+INCBIN "maps/180eb0.blk"
+INCBIN "maps/180f00.blk"
+INCBIN "maps/180f50.blk"
+INCBIN "maps/180fa0.blk"
+INCBIN "maps/180ff0.blk"
+INCBIN "maps/181040.blk"
+INCBIN "maps/181090.blk"
+INCBIN "maps/1810e0.blk"
+INCBIN "maps/181130.blk"
+INCBIN "maps/181180.blk"
+INCBIN "maps/1811d0.blk"
+INCBIN "maps/181220.blk"
+INCBIN "maps/181270.blk"
+INCBIN "maps/1812c0.blk"
+INCBIN "maps/181310.blk"
+INCBIN "maps/181360.blk"
+INCBIN "maps/1813b0.blk"
+INCBIN "maps/181400.blk"
+INCBIN "maps/181450.blk"
+INCBIN "maps/1814a0.blk"
+INCBIN "maps/1814f0.blk"
+INCBIN "maps/181540.blk"
+INCBIN "maps/181590.blk"
+INCBIN "maps/1815e0.blk"
+INCBIN "maps/181630.blk"
+INCBIN "maps/181680.blk"
+INCBIN "maps/1816d0.blk"
+INCBIN "maps/181720.blk"
+INCBIN "maps/181770.blk"
+INCBIN "maps/1817c0.blk"
+INCBIN "maps/181810.blk"
+INCBIN "maps/181860.blk"
+INCBIN "maps/1818b0.blk"
+INCBIN "maps/181900.blk"
+INCBIN "maps/181950.blk"
+INCBIN "maps/1819a0.blk"
+INCBIN "maps/1819f0.blk"
+INCBIN "maps/181a40.blk"
+INCBIN "maps/181a90.blk"
+INCBIN "maps/181ae0.blk"
+INCBIN "maps/181b30.blk"
+INCBIN "maps/181b80.blk"
+INCBIN "maps/181bd0.blk"
+INCBIN "maps/181c20.blk"
+INCBIN "maps/181c70.blk"
+INCBIN "maps/181cc0.blk"
+INCBIN "maps/181d10.blk"
+INCBIN "maps/181d60.blk"
+INCBIN "maps/181db0.blk"
+INCBIN "maps/181e00.blk"
+INCBIN "maps/181e50.blk"
+INCBIN "maps/181ea0.blk"
+INCBIN "maps/181ef0.blk"
+INCBIN "maps/181f40.blk"
+INCBIN "maps/181f90.blk"
+INCBIN "maps/181fe0.blk"
+INCBIN "maps/182030.blk"
+INCBIN "maps/182080.blk"
+INCBIN "maps/1820d0.blk"
+INCBIN "maps/182120.blk"
+INCBIN "maps/182170.blk"
+INCBIN "maps/1821c0.blk"
+INCBIN "maps/182210.blk"
+INCBIN "maps/182260.blk"
+INCBIN "maps/1822b0.blk"
+INCBIN "maps/182300.blk"
+INCBIN "maps/182350.blk"
+INCBIN "maps/1823a0.blk"
+INCBIN "maps/1823f0.blk"
+INCBIN "maps/182440.blk"
+INCBIN "maps/182490.blk"
+INCBIN "maps/1824e0.blk"
+INCBIN "maps/182530.blk"
+INCBIN "maps/182580.blk"
+INCBIN "maps/1825d0.blk"
+INCBIN "maps/182620.blk"
+INCBIN "maps/182670.blk"
+INCBIN "maps/1826c0.blk"
+INCBIN "maps/182710.blk"
+INCBIN "maps/182760.blk"
+INCBIN "maps/1827b0.blk"
+INCBIN "maps/182800.blk"
+INCBIN "maps/182850.blk"
+INCBIN "maps/1828a0.blk"
+INCBIN "maps/1828f0.blk"
+INCBIN "maps/182940.blk"
+INCBIN "maps/182990.blk"
+INCBIN "maps/1829e0.blk"
+INCBIN "maps/182a30.blk"
+INCBIN "maps/182a80.blk"
+INCBIN "maps/182ad0.blk"
+INCBIN "maps/182b20.blk"
+INCBIN "maps/182b70.blk"
+INCBIN "maps/182bc0.blk"
+INCBIN "maps/182c10.blk"
+INCBIN "maps/182c60.blk"
+INCBIN "maps/182cb0.blk"
+INCBIN "maps/182d00.blk"
+INCBIN "maps/182d50.blk"
+INCBIN "maps/182da0.blk"
+INCBIN "maps/182df0.blk"
+INCBIN "maps/182e40.blk"
+INCBIN "maps/182e90.blk"
+INCBIN "maps/182ee0.blk"
+INCBIN "maps/182f30.blk"
+INCBIN "maps/182f80.blk"
+INCBIN "maps/182fd0.blk"
+INCBIN "maps/183020.blk"
+INCBIN "maps/183070.blk"
+INCBIN "maps/1830c0.blk"
+INCBIN "maps/183110.blk"
+INCBIN "maps/183160.blk"
+INCBIN "maps/1831b0.blk"
+INCBIN "maps/183200.blk"
+INCBIN "maps/183250.blk"
+INCBIN "maps/1832a0.blk"
+INCBIN "maps/1832f0.blk"
+INCBIN "maps/183340.blk"
+INCBIN "maps/183390.blk"
+INCBIN "maps/1833e0.blk"
+INCBIN "maps/183430.blk"
+INCBIN "maps/183480.blk"
+INCBIN "maps/1834d0.blk"
+INCBIN "maps/183520.blk"
+INCBIN "maps/183570.blk"
+INCBIN "maps/1835c0.blk"
+INCBIN "maps/183610.blk"
+INCBIN "maps/183660.blk"
+INCBIN "maps/1836b0.blk"
+INCBIN "maps/183700.blk"
+INCBIN "maps/183750.blk"
+INCBIN "maps/1837a0.blk"
+INCBIN "maps/1837f0.blk"
+INCBIN "maps/183840.blk"
+INCBIN "maps/183890.blk"
+INCBIN "maps/1838e0.blk"
+INCBIN "maps/183930.blk"
+INCBIN "maps/183980.blk"
+INCBIN "maps/1839d0.blk"
+INCBIN "maps/183a20.blk"
+INCBIN "maps/183a70.blk"
+INCBIN "maps/183ac0.blk"
+INCBIN "maps/183b10.blk"
+INCBIN "maps/183b60.blk"
+INCBIN "maps/183bb0.blk"
+INCBIN "maps/183c00.blk"
+INCBIN "maps/183c50.blk"
+INCBIN "maps/183ca0.blk"
+INCBIN "maps/183cf0.blk"
+INCBIN "maps/183d40.blk"
+INCBIN "maps/183d90.blk"
+INCBIN "maps/183de0.blk"
+INCBIN "maps/183e30.blk"
+INCBIN "maps/183e80.blk"
+INCBIN "maps/183ed0.blk"
+INCBIN "maps/183f20.blk"
+INCBIN "maps/183f70.blk"
 
 SECTION "bank 63", ROMX, BANK [$63]
 Data_18c000:
-	dr $18c000, $18dcc0
+INCBIN "maps/18c000.blk"
+INCBIN "maps/18c050.blk"
+INCBIN "maps/18c0a0.blk"
+INCBIN "maps/18c0f0.blk"
+INCBIN "maps/18c140.blk"
+INCBIN "maps/18c190.blk"
+INCBIN "maps/18c1e0.blk"
+INCBIN "maps/18c230.blk"
+INCBIN "maps/18c280.blk"
+INCBIN "maps/18c2d0.blk"
+INCBIN "maps/18c320.blk"
+INCBIN "maps/18c370.blk"
+INCBIN "maps/18c3c0.blk"
+INCBIN "maps/18c410.blk"
+INCBIN "maps/18c460.blk"
+INCBIN "maps/18c4b0.blk"
+INCBIN "maps/18c500.blk"
+INCBIN "maps/18c550.blk"
+INCBIN "maps/18c5a0.blk"
+INCBIN "maps/18c5f0.blk"
+INCBIN "maps/18c640.blk"
+INCBIN "maps/18c690.blk"
+INCBIN "maps/18c6e0.blk"
+INCBIN "maps/18c730.blk"
+INCBIN "maps/18c780.blk"
+INCBIN "maps/18c7d0.blk"
+INCBIN "maps/18c820.blk"
+INCBIN "maps/18c870.blk"
+INCBIN "maps/18c8c0.blk"
+INCBIN "maps/18c910.blk"
+INCBIN "maps/18c960.blk"
+INCBIN "maps/18c9b0.blk"
+INCBIN "maps/18ca00.blk"
+INCBIN "maps/18ca50.blk"
+INCBIN "maps/18caa0.blk"
+INCBIN "maps/18caf0.blk"
+INCBIN "maps/18cb40.blk"
+INCBIN "maps/18cb90.blk"
+INCBIN "maps/18cbe0.blk"
+INCBIN "maps/18cc30.blk"
+INCBIN "maps/18cc80.blk"
+INCBIN "maps/18ccd0.blk"
+INCBIN "maps/18cd20.blk"
+INCBIN "maps/18cd70.blk"
+INCBIN "maps/18cdc0.blk"
+INCBIN "maps/18ce10.blk"
+INCBIN "maps/18ce60.blk"
+INCBIN "maps/18ceb0.blk"
+INCBIN "maps/18cf00.blk"
+INCBIN "maps/18cf50.blk"
+INCBIN "maps/18cfa0.blk"
+INCBIN "maps/18cff0.blk"
+INCBIN "maps/18d040.blk"
+INCBIN "maps/18d090.blk"
+INCBIN "maps/18d0e0.blk"
+INCBIN "maps/18d130.blk"
+INCBIN "maps/18d180.blk"
+INCBIN "maps/18d1d0.blk"
+INCBIN "maps/18d220.blk"
+INCBIN "maps/18d270.blk"
+INCBIN "maps/18d2c0.blk"
+INCBIN "maps/18d310.blk"
+INCBIN "maps/18d360.blk"
+INCBIN "maps/18d3b0.blk"
+INCBIN "maps/18d400.blk"
+INCBIN "maps/18d450.blk"
+INCBIN "maps/18d4a0.blk"
+INCBIN "maps/18d4f0.blk"
+INCBIN "maps/18d540.blk"
+INCBIN "maps/18d590.blk"
+INCBIN "maps/18d5e0.blk"
+INCBIN "maps/18d630.blk"
+INCBIN "maps/18d680.blk"
+INCBIN "maps/18d6d0.blk"
+INCBIN "maps/18d720.blk"
+INCBIN "maps/18d770.blk"
+INCBIN "maps/18d7c0.blk"
+INCBIN "maps/18d810.blk"
+INCBIN "maps/18d860.blk"
+INCBIN "maps/18d8b0.blk"
+INCBIN "maps/18d900.blk"
+INCBIN "maps/18d950.blk"
+INCBIN "maps/18d9a0.blk"
+INCBIN "maps/18d9f0.blk"
+INCBIN "maps/18da40.blk"
+INCBIN "maps/18da90.blk"
+INCBIN "maps/18dae0.blk"
+INCBIN "maps/18db30.blk"
+INCBIN "maps/18db80.blk"
+INCBIN "maps/18dbd0.blk"
+INCBIN "maps/18dc20.blk"
+INCBIN "maps/18dc70.blk"
 
 SECTION "bank 64", ROMX, BANK [$64]
 Data_190000:
-	dr $190000, $192df0
+INCBIN "maps/190000.blk"
+INCBIN "maps/190050.blk"
+INCBIN "maps/1900a0.blk"
+INCBIN "maps/1900f0.blk"
+INCBIN "maps/190140.blk"
+INCBIN "maps/190190.blk"
+INCBIN "maps/1901e0.blk"
+INCBIN "maps/190230.blk"
+INCBIN "maps/190280.blk"
+INCBIN "maps/1902d0.blk"
+INCBIN "maps/190320.blk"
+INCBIN "maps/190370.blk"
+INCBIN "maps/1903c0.blk"
+INCBIN "maps/190410.blk"
+INCBIN "maps/190460.blk"
+INCBIN "maps/1904b0.blk"
+INCBIN "maps/190500.blk"
+INCBIN "maps/190550.blk"
+INCBIN "maps/1905a0.blk"
+INCBIN "maps/1905f0.blk"
+INCBIN "maps/190640.blk"
+INCBIN "maps/190690.blk"
+INCBIN "maps/1906e0.blk"
+INCBIN "maps/190730.blk"
+INCBIN "maps/190780.blk"
+INCBIN "maps/1907d0.blk"
+INCBIN "maps/190820.blk"
+INCBIN "maps/190870.blk"
+INCBIN "maps/1908c0.blk"
+INCBIN "maps/190910.blk"
+INCBIN "maps/190960.blk"
+INCBIN "maps/1909b0.blk"
+INCBIN "maps/190a00.blk"
+INCBIN "maps/190a50.blk"
+INCBIN "maps/190aa0.blk"
+INCBIN "maps/190af0.blk"
+INCBIN "maps/190b40.blk"
+INCBIN "maps/190b90.blk"
+INCBIN "maps/190be0.blk"
+INCBIN "maps/190c30.blk"
+INCBIN "maps/190c80.blk"
+INCBIN "maps/190cd0.blk"
+INCBIN "maps/190d20.blk"
+INCBIN "maps/190d70.blk"
+INCBIN "maps/190dc0.blk"
+INCBIN "maps/190e10.blk"
+INCBIN "maps/190e60.blk"
+INCBIN "maps/190eb0.blk"
+INCBIN "maps/190f00.blk"
+INCBIN "maps/190f50.blk"
+INCBIN "maps/190fa0.blk"
+INCBIN "maps/190ff0.blk"
+INCBIN "maps/191040.blk"
+INCBIN "maps/191090.blk"
+INCBIN "maps/1910e0.blk"
+INCBIN "maps/191130.blk"
+INCBIN "maps/191180.blk"
+INCBIN "maps/1911d0.blk"
+INCBIN "maps/191220.blk"
+INCBIN "maps/191270.blk"
+INCBIN "maps/1912c0.blk"
+INCBIN "maps/191310.blk"
+INCBIN "maps/191360.blk"
+INCBIN "maps/1913b0.blk"
+INCBIN "maps/191400.blk"
+INCBIN "maps/191450.blk"
+INCBIN "maps/1914a0.blk"
+INCBIN "maps/1914f0.blk"
+INCBIN "maps/191540.blk"
+INCBIN "maps/191590.blk"
+INCBIN "maps/1915e0.blk"
+INCBIN "maps/191630.blk"
+INCBIN "maps/191680.blk"
+INCBIN "maps/1916d0.blk"
+INCBIN "maps/191720.blk"
+INCBIN "maps/191770.blk"
+INCBIN "maps/1917c0.blk"
+INCBIN "maps/191810.blk"
+INCBIN "maps/191860.blk"
+INCBIN "maps/1918b0.blk"
+INCBIN "maps/191900.blk"
+INCBIN "maps/191950.blk"
+INCBIN "maps/1919a0.blk"
+INCBIN "maps/1919f0.blk"
+INCBIN "maps/191a40.blk"
+INCBIN "maps/191a90.blk"
+INCBIN "maps/191ae0.blk"
+INCBIN "maps/191b30.blk"
+INCBIN "maps/191b80.blk"
+INCBIN "maps/191bd0.blk"
+INCBIN "maps/191c20.blk"
+INCBIN "maps/191c70.blk"
+INCBIN "maps/191cc0.blk"
+INCBIN "maps/191d10.blk"
+INCBIN "maps/191d60.blk"
+INCBIN "maps/191db0.blk"
+INCBIN "maps/191e00.blk"
+INCBIN "maps/191e50.blk"
+INCBIN "maps/191ea0.blk"
+INCBIN "maps/191ef0.blk"
+INCBIN "maps/191f40.blk"
+INCBIN "maps/191f90.blk"
+INCBIN "maps/191fe0.blk"
+INCBIN "maps/192030.blk"
+INCBIN "maps/192080.blk"
+INCBIN "maps/1920d0.blk"
+INCBIN "maps/192120.blk"
+INCBIN "maps/192170.blk"
+INCBIN "maps/1921c0.blk"
+INCBIN "maps/192210.blk"
+INCBIN "maps/192260.blk"
+INCBIN "maps/1922b0.blk"
+INCBIN "maps/192300.blk"
+INCBIN "maps/192350.blk"
+INCBIN "maps/1923a0.blk"
+INCBIN "maps/1923f0.blk"
+INCBIN "maps/192440.blk"
+INCBIN "maps/192490.blk"
+INCBIN "maps/1924e0.blk"
+INCBIN "maps/192530.blk"
+INCBIN "maps/192580.blk"
+INCBIN "maps/1925d0.blk"
+INCBIN "maps/192620.blk"
+INCBIN "maps/192670.blk"
+INCBIN "maps/1926c0.blk"
+INCBIN "maps/192710.blk"
+INCBIN "maps/192760.blk"
+INCBIN "maps/1927b0.blk"
+INCBIN "maps/192800.blk"
+INCBIN "maps/192850.blk"
+INCBIN "maps/1928a0.blk"
+INCBIN "maps/1928f0.blk"
+INCBIN "maps/192940.blk"
+INCBIN "maps/192990.blk"
+INCBIN "maps/1929e0.blk"
+INCBIN "maps/192a30.blk"
+INCBIN "maps/192a80.blk"
+INCBIN "maps/192ad0.blk"
+INCBIN "maps/192b20.blk"
+INCBIN "maps/192b70.blk"
+INCBIN "maps/192bc0.blk"
+INCBIN "maps/192c10.blk"
+INCBIN "maps/192c60.blk"
+INCBIN "maps/192cb0.blk"
+INCBIN "maps/192d00.blk"
+INCBIN "maps/192d50.blk"
+INCBIN "maps/192da0.blk"
 
 SECTION "bank 65", ROMX, BANK [$65]
 Data_194000:
-	dr $194000, $197de0
+INCBIN "maps/194000.blk"
+INCBIN "maps/194050.blk"
+INCBIN "maps/1940a0.blk"
+INCBIN "maps/1940f0.blk"
+INCBIN "maps/194140.blk"
+INCBIN "maps/194190.blk"
+INCBIN "maps/1941e0.blk"
+INCBIN "maps/194230.blk"
+INCBIN "maps/194280.blk"
+INCBIN "maps/1942d0.blk"
+INCBIN "maps/194320.blk"
+INCBIN "maps/194370.blk"
+INCBIN "maps/1943c0.blk"
+INCBIN "maps/194410.blk"
+INCBIN "maps/194460.blk"
+INCBIN "maps/1944b0.blk"
+INCBIN "maps/194500.blk"
+INCBIN "maps/194550.blk"
+INCBIN "maps/1945a0.blk"
+INCBIN "maps/1945f0.blk"
+INCBIN "maps/194640.blk"
+INCBIN "maps/194690.blk"
+INCBIN "maps/1946e0.blk"
+INCBIN "maps/194730.blk"
+INCBIN "maps/194780.blk"
+INCBIN "maps/1947d0.blk"
+INCBIN "maps/194820.blk"
+INCBIN "maps/194870.blk"
+INCBIN "maps/1948c0.blk"
+INCBIN "maps/194910.blk"
+INCBIN "maps/194960.blk"
+INCBIN "maps/1949b0.blk"
+INCBIN "maps/194a00.blk"
+INCBIN "maps/194a50.blk"
+INCBIN "maps/194aa0.blk"
+INCBIN "maps/194af0.blk"
+INCBIN "maps/194b40.blk"
+INCBIN "maps/194b90.blk"
+INCBIN "maps/194be0.blk"
+INCBIN "maps/194c30.blk"
+INCBIN "maps/194c80.blk"
+INCBIN "maps/194cd0.blk"
+INCBIN "maps/194d20.blk"
+INCBIN "maps/194d70.blk"
+INCBIN "maps/194dc0.blk"
+INCBIN "maps/194e10.blk"
+INCBIN "maps/194e60.blk"
+INCBIN "maps/194eb0.blk"
+INCBIN "maps/194f00.blk"
+INCBIN "maps/194f50.blk"
+INCBIN "maps/194fa0.blk"
+INCBIN "maps/194ff0.blk"
+INCBIN "maps/195040.blk"
+INCBIN "maps/195090.blk"
+INCBIN "maps/1950e0.blk"
+INCBIN "maps/195130.blk"
+INCBIN "maps/195180.blk"
+INCBIN "maps/1951d0.blk"
+INCBIN "maps/195220.blk"
+INCBIN "maps/195270.blk"
+INCBIN "maps/1952c0.blk"
+INCBIN "maps/195310.blk"
+INCBIN "maps/195360.blk"
+INCBIN "maps/1953b0.blk"
+INCBIN "maps/195400.blk"
+INCBIN "maps/195450.blk"
+INCBIN "maps/1954a0.blk"
+INCBIN "maps/1954f0.blk"
+INCBIN "maps/195540.blk"
+INCBIN "maps/195590.blk"
+INCBIN "maps/1955e0.blk"
+INCBIN "maps/195630.blk"
+INCBIN "maps/195680.blk"
+INCBIN "maps/1956d0.blk"
+INCBIN "maps/195720.blk"
+INCBIN "maps/195770.blk"
+INCBIN "maps/1957c0.blk"
+INCBIN "maps/195810.blk"
+INCBIN "maps/195860.blk"
+INCBIN "maps/1958b0.blk"
+INCBIN "maps/195900.blk"
+INCBIN "maps/195950.blk"
+INCBIN "maps/1959a0.blk"
+INCBIN "maps/1959f0.blk"
+INCBIN "maps/195a40.blk"
+INCBIN "maps/195a90.blk"
+INCBIN "maps/195ae0.blk"
+INCBIN "maps/195b30.blk"
+INCBIN "maps/195b80.blk"
+INCBIN "maps/195bd0.blk"
+INCBIN "maps/195c20.blk"
+INCBIN "maps/195c70.blk"
+INCBIN "maps/195cc0.blk"
+INCBIN "maps/195d10.blk"
+INCBIN "maps/195d60.blk"
+INCBIN "maps/195db0.blk"
+INCBIN "maps/195e00.blk"
+INCBIN "maps/195e50.blk"
+INCBIN "maps/195ea0.blk"
+INCBIN "maps/195ef0.blk"
+INCBIN "maps/195f40.blk"
+INCBIN "maps/195f90.blk"
+INCBIN "maps/195fe0.blk"
+INCBIN "maps/196030.blk"
+INCBIN "maps/196080.blk"
+INCBIN "maps/1960d0.blk"
+INCBIN "maps/196120.blk"
+INCBIN "maps/196170.blk"
+INCBIN "maps/1961c0.blk"
+INCBIN "maps/196210.blk"
+INCBIN "maps/196260.blk"
+INCBIN "maps/1962b0.blk"
+INCBIN "maps/196300.blk"
+INCBIN "maps/196350.blk"
+INCBIN "maps/1963a0.blk"
+INCBIN "maps/1963f0.blk"
+INCBIN "maps/196440.blk"
+INCBIN "maps/196490.blk"
+INCBIN "maps/1964e0.blk"
+INCBIN "maps/196530.blk"
+INCBIN "maps/196580.blk"
+INCBIN "maps/1965d0.blk"
+INCBIN "maps/196620.blk"
+INCBIN "maps/196670.blk"
+INCBIN "maps/1966c0.blk"
+INCBIN "maps/196710.blk"
+INCBIN "maps/196760.blk"
+INCBIN "maps/1967b0.blk"
+INCBIN "maps/196800.blk"
+INCBIN "maps/196850.blk"
+INCBIN "maps/1968a0.blk"
+INCBIN "maps/1968f0.blk"
+INCBIN "maps/196940.blk"
+INCBIN "maps/196990.blk"
+INCBIN "maps/1969e0.blk"
+INCBIN "maps/196a30.blk"
+INCBIN "maps/196a80.blk"
+INCBIN "maps/196ad0.blk"
+INCBIN "maps/196b20.blk"
+INCBIN "maps/196b70.blk"
+INCBIN "maps/196bc0.blk"
+INCBIN "maps/196c10.blk"
+INCBIN "maps/196c60.blk"
+INCBIN "maps/196cb0.blk"
+INCBIN "maps/196d00.blk"
+INCBIN "maps/196d50.blk"
+INCBIN "maps/196da0.blk"
+INCBIN "maps/196df0.blk"
+INCBIN "maps/196e40.blk"
+INCBIN "maps/196e90.blk"
+INCBIN "maps/196ee0.blk"
+INCBIN "maps/196f30.blk"
+INCBIN "maps/196f80.blk"
+INCBIN "maps/196fd0.blk"
+INCBIN "maps/197020.blk"
+INCBIN "maps/197070.blk"
+INCBIN "maps/1970c0.blk"
+INCBIN "maps/197110.blk"
+INCBIN "maps/197160.blk"
+INCBIN "maps/1971b0.blk"
+INCBIN "maps/197200.blk"
+INCBIN "maps/197250.blk"
+INCBIN "maps/1972a0.blk"
+INCBIN "maps/1972f0.blk"
+INCBIN "maps/197340.blk"
+INCBIN "maps/197390.blk"
+INCBIN "maps/1973e0.blk"
+INCBIN "maps/197430.blk"
+INCBIN "maps/197480.blk"
+INCBIN "maps/1974d0.blk"
+INCBIN "maps/197520.blk"
+INCBIN "maps/197570.blk"
+INCBIN "maps/1975c0.blk"
+INCBIN "maps/197610.blk"
+INCBIN "maps/197660.blk"
+INCBIN "maps/1976b0.blk"
+INCBIN "maps/197700.blk"
+INCBIN "maps/197750.blk"
+INCBIN "maps/1977a0.blk"
+INCBIN "maps/1977f0.blk"
+INCBIN "maps/197840.blk"
+INCBIN "maps/197890.blk"
+INCBIN "maps/1978e0.blk"
+INCBIN "maps/197930.blk"
+INCBIN "maps/197980.blk"
+INCBIN "maps/1979d0.blk"
+INCBIN "maps/197a20.blk"
+INCBIN "maps/197a70.blk"
+INCBIN "maps/197ac0.blk"
+INCBIN "maps/197b10.blk"
+INCBIN "maps/197b60.blk"
+INCBIN "maps/197bb0.blk"
+INCBIN "maps/197c00.blk"
+INCBIN "maps/197c50.blk"
+INCBIN "maps/197ca0.blk"
+INCBIN "maps/197cf0.blk"
+INCBIN "maps/197d40.blk"
+INCBIN "maps/197d90.blk"
 
 SECTION "bank 66", ROMX, BANK [$66]
 Data_198000:
-	dr $198000, $19b930
+INCBIN "maps/198000.blk"
+INCBIN "maps/198050.blk"
+INCBIN "maps/1980a0.blk"
+INCBIN "maps/1980f0.blk"
+INCBIN "maps/198140.blk"
+INCBIN "maps/198190.blk"
+INCBIN "maps/1981e0.blk"
+INCBIN "maps/198230.blk"
+INCBIN "maps/198280.blk"
+INCBIN "maps/1982d0.blk"
+INCBIN "maps/198320.blk"
+INCBIN "maps/198370.blk"
+INCBIN "maps/1983c0.blk"
+INCBIN "maps/198410.blk"
+INCBIN "maps/198460.blk"
+INCBIN "maps/1984b0.blk"
+INCBIN "maps/198500.blk"
+INCBIN "maps/198550.blk"
+INCBIN "maps/1985a0.blk"
+INCBIN "maps/1985f0.blk"
+INCBIN "maps/198640.blk"
+INCBIN "maps/198690.blk"
+INCBIN "maps/1986e0.blk"
+INCBIN "maps/198730.blk"
+INCBIN "maps/198780.blk"
+INCBIN "maps/1987d0.blk"
+INCBIN "maps/198820.blk"
+INCBIN "maps/198870.blk"
+INCBIN "maps/1988c0.blk"
+INCBIN "maps/198910.blk"
+INCBIN "maps/198960.blk"
+INCBIN "maps/1989b0.blk"
+INCBIN "maps/198a00.blk"
+INCBIN "maps/198a50.blk"
+INCBIN "maps/198aa0.blk"
+INCBIN "maps/198af0.blk"
+INCBIN "maps/198b40.blk"
+INCBIN "maps/198b90.blk"
+INCBIN "maps/198be0.blk"
+INCBIN "maps/198c30.blk"
+INCBIN "maps/198c80.blk"
+INCBIN "maps/198cd0.blk"
+INCBIN "maps/198d20.blk"
+INCBIN "maps/198d70.blk"
+INCBIN "maps/198dc0.blk"
+INCBIN "maps/198e10.blk"
+INCBIN "maps/198e60.blk"
+INCBIN "maps/198eb0.blk"
+INCBIN "maps/198f00.blk"
+INCBIN "maps/198f50.blk"
+INCBIN "maps/198fa0.blk"
+INCBIN "maps/198ff0.blk"
+INCBIN "maps/199040.blk"
+INCBIN "maps/199090.blk"
+INCBIN "maps/1990e0.blk"
+INCBIN "maps/199130.blk"
+INCBIN "maps/199180.blk"
+INCBIN "maps/1991d0.blk"
+INCBIN "maps/199220.blk"
+INCBIN "maps/199270.blk"
+INCBIN "maps/1992c0.blk"
+INCBIN "maps/199310.blk"
+INCBIN "maps/199360.blk"
+INCBIN "maps/1993b0.blk"
+INCBIN "maps/199400.blk"
+INCBIN "maps/199450.blk"
+INCBIN "maps/1994a0.blk"
+INCBIN "maps/1994f0.blk"
+INCBIN "maps/199540.blk"
+INCBIN "maps/199590.blk"
+INCBIN "maps/1995e0.blk"
+INCBIN "maps/199630.blk"
+INCBIN "maps/199680.blk"
+INCBIN "maps/1996d0.blk"
+INCBIN "maps/199720.blk"
+INCBIN "maps/199770.blk"
+INCBIN "maps/1997c0.blk"
+INCBIN "maps/199810.blk"
+INCBIN "maps/199860.blk"
+INCBIN "maps/1998b0.blk"
+INCBIN "maps/199900.blk"
+INCBIN "maps/199950.blk"
+INCBIN "maps/1999a0.blk"
+INCBIN "maps/1999f0.blk"
+INCBIN "maps/199a40.blk"
+INCBIN "maps/199a90.blk"
+INCBIN "maps/199ae0.blk"
+INCBIN "maps/199b30.blk"
+INCBIN "maps/199b80.blk"
+INCBIN "maps/199bd0.blk"
+INCBIN "maps/199c20.blk"
+INCBIN "maps/199c70.blk"
+INCBIN "maps/199cc0.blk"
+INCBIN "maps/199d10.blk"
+INCBIN "maps/199d60.blk"
+INCBIN "maps/199db0.blk"
+INCBIN "maps/199e00.blk"
+INCBIN "maps/199e50.blk"
+INCBIN "maps/199ea0.blk"
+INCBIN "maps/199ef0.blk"
+INCBIN "maps/199f40.blk"
+INCBIN "maps/199f90.blk"
+INCBIN "maps/199fe0.blk"
+INCBIN "maps/19a030.blk"
+INCBIN "maps/19a080.blk"
+INCBIN "maps/19a0d0.blk"
+INCBIN "maps/19a120.blk"
+INCBIN "maps/19a170.blk"
+INCBIN "maps/19a1c0.blk"
+INCBIN "maps/19a210.blk"
+INCBIN "maps/19a260.blk"
+INCBIN "maps/19a2b0.blk"
+INCBIN "maps/19a300.blk"
+INCBIN "maps/19a350.blk"
+INCBIN "maps/19a3a0.blk"
+INCBIN "maps/19a3f0.blk"
+INCBIN "maps/19a440.blk"
+INCBIN "maps/19a490.blk"
+INCBIN "maps/19a4e0.blk"
+INCBIN "maps/19a530.blk"
+INCBIN "maps/19a580.blk"
+INCBIN "maps/19a5d0.blk"
+INCBIN "maps/19a620.blk"
+INCBIN "maps/19a670.blk"
+INCBIN "maps/19a6c0.blk"
+INCBIN "maps/19a710.blk"
+INCBIN "maps/19a760.blk"
+INCBIN "maps/19a7b0.blk"
+INCBIN "maps/19a800.blk"
+INCBIN "maps/19a850.blk"
+INCBIN "maps/19a8a0.blk"
+INCBIN "maps/19a8f0.blk"
+INCBIN "maps/19a940.blk"
+INCBIN "maps/19a990.blk"
+INCBIN "maps/19a9e0.blk"
+INCBIN "maps/19aa30.blk"
+INCBIN "maps/19aa80.blk"
+INCBIN "maps/19aad0.blk"
+INCBIN "maps/19ab20.blk"
+INCBIN "maps/19ab70.blk"
+INCBIN "maps/19abc0.blk"
+INCBIN "maps/19ac10.blk"
+INCBIN "maps/19ac60.blk"
+INCBIN "maps/19acb0.blk"
+INCBIN "maps/19ad00.blk"
+INCBIN "maps/19ad50.blk"
+INCBIN "maps/19ada0.blk"
+INCBIN "maps/19adf0.blk"
+INCBIN "maps/19ae40.blk"
+INCBIN "maps/19ae90.blk"
+INCBIN "maps/19aee0.blk"
+INCBIN "maps/19af30.blk"
+INCBIN "maps/19af80.blk"
+INCBIN "maps/19afd0.blk"
+INCBIN "maps/19b020.blk"
+INCBIN "maps/19b070.blk"
+INCBIN "maps/19b0c0.blk"
+INCBIN "maps/19b110.blk"
+INCBIN "maps/19b160.blk"
+INCBIN "maps/19b1b0.blk"
+INCBIN "maps/19b200.blk"
+INCBIN "maps/19b250.blk"
+INCBIN "maps/19b2a0.blk"
+INCBIN "maps/19b2f0.blk"
+INCBIN "maps/19b340.blk"
+INCBIN "maps/19b390.blk"
+INCBIN "maps/19b3e0.blk"
+INCBIN "maps/19b430.blk"
+INCBIN "maps/19b480.blk"
+INCBIN "maps/19b4d0.blk"
+INCBIN "maps/19b520.blk"
+INCBIN "maps/19b570.blk"
+INCBIN "maps/19b5c0.blk"
+INCBIN "maps/19b610.blk"
+INCBIN "maps/19b660.blk"
+INCBIN "maps/19b6b0.blk"
+INCBIN "maps/19b700.blk"
+INCBIN "maps/19b750.blk"
+INCBIN "maps/19b7a0.blk"
+INCBIN "maps/19b7f0.blk"
+INCBIN "maps/19b840.blk"
+INCBIN "maps/19b890.blk"
+INCBIN "maps/19b8e0.blk"
 
 SECTION "bank 67", ROMX, BANK [$67]
 INCLUDE "data/unknown_19c000.asm"
 
 Pointers_19e8ed::
+macro_19e8ed: MACRO
+	db \1
+	dn \2, \3
+	db \4, \5
+	ENDM
+
 	dw Data_19e957
 	dw Data_19e958
 	dw Data_19e959
@@ -26999,20 +27824,24 @@ Data_19e958:
 	db $ff
 
 Data_19e959:
-	db $43, $83, $01, $36, $ff
+	macro_19e8ed $43, 8, 3, EVENT_001, $36
+	db $ff
 
 Data_19e95e:
 	db $ff
 
 Data_19e95f:
-	db $94, $85, $00, $37, $a2, $66, $03, $37
+	macro_19e8ed $94, 8, 5, EVENT_000, $37
+	macro_19e8ed $a2, 6, 6, EVENT_003, $37
 	db $ff
 
 Data_19e968:
-	db $1d, $16, $02, $36, $ff
+	macro_19e8ed $1d, 1, 6, EVENT_002, $36
+	db $ff
 
 Data_19e96d:
-	db $4c, $11, $05, $30, $ff
+	macro_19e8ed $4c, 1, 1, EVENT_005, $30
+	db $ff
 
 Data_19e972:
 	db $ff
@@ -27024,60 +27853,88 @@ Data_19e974:
 	db $ff
 
 Data_19e975:
-	db $6a, $16, $0a, $00, $71, $11, $0b, $01
-	db $71, $81, $0c, $02, $74, $24, $0d, $03
-	db $76, $86, $0e, $04, $7b, $12, $0f, $05
-	db $7d, $65, $10, $08, $7e, $25, $11, $07
-	db $65, $24, $12, $30, $ff
+	macro_19e8ed $6a, 1, 6, EVENT_00A, $00
+	macro_19e8ed $71, 1, 1, EVENT_00B, $01
+	macro_19e8ed $71, 8, 1, EVENT_00C, $02
+	macro_19e8ed $74, 2, 4, EVENT_00D, $03
+	macro_19e8ed $76, 8, 6, EVENT_00E, $04
+	macro_19e8ed $7b, 1, 2, EVENT_00F, $05
+	macro_19e8ed $7d, 6, 5, EVENT_010, $08
+	macro_19e8ed $7e, 2, 5, EVENT_011, $07
+	macro_19e8ed $65, 2, 4, EVENT_012, $30
+	db $ff
 
 Data_19e99a:
-	db $84, $86, $13, $09, $86, $16, $14, $0a
-	db $89, $16, $15, $30, $8b, $16, $16, $0c
-	db $93, $86, $17, $0d, $94, $16, $18, $0e
+	macro_19e8ed $84, 8, 6, EVENT_013, $09
+	macro_19e8ed $86, 1, 6, EVENT_014, $0a
+	macro_19e8ed $89, 1, 6, EVENT_015, $30
+	macro_19e8ed $8b, 1, 6, EVENT_016, $0c
+	macro_19e8ed $93, 8, 6, EVENT_017, $0d
+	macro_19e8ed $94, 1, 6, EVENT_018, $0e
 	db $ff
 
 Data_19e9b3:
 	db $ff
 
 Data_19e9b4:
-	db $16, $16, $19, $0f, $17, $86, $1a, $10
-	db $20, $33, $1b, $11, $26, $56, $1c, $12
+	macro_19e8ed $16, 1, 6, EVENT_019, $0f
+	macro_19e8ed $17, 8, 6, EVENT_01A, $10
+	macro_19e8ed $20, 3, 3, EVENT_01B, $11
+	macro_19e8ed $26, 5, 6, EVENT_01C, $12
 	db $ff
 
 Data_19e9c5:
-	db $2f, $51, $1d, $13, $33, $42, $1e, $14
-	db $33, $24, $1f, $15, $33, $64, $20, $16
-	db $34, $54, $21, $17, $39, $44, $22, $18
-	db $39, $24, $23, $19, $39, $64, $24, $1a
+	macro_19e8ed $2f, 5, 1, EVENT_01D, $13
+	macro_19e8ed $33, 4, 2, EVENT_01E, $14
+	macro_19e8ed $33, 2, 4, EVENT_01F, $15
+	macro_19e8ed $33, 6, 4, EVENT_020, $16
+	macro_19e8ed $34, 5, 4, EVENT_021, $17
+	macro_19e8ed $39, 4, 4, EVENT_022, $18
+	macro_19e8ed $39, 2, 4, EVENT_023, $19
+	macro_19e8ed $39, 6, 4, EVENT_024, $1a
 	db $ff
 
 Data_19e9e6:
-	db $40, $32, $25, $1b, $40, $62, $26, $1c
-	db $41, $32, $27, $1d, $41, $24, $28, $1e
-	db $41, $54, $29, $1f, $4a, $53, $2a, $20
-	db $52, $81, $2b, $21, $ff
+	macro_19e8ed $40, 3, 2, EVENT_025, $1b
+	macro_19e8ed $40, 6, 2, EVENT_026, $1c
+	macro_19e8ed $41, 3, 2, EVENT_027, $1d
+	macro_19e8ed $41, 2, 4, EVENT_028, $1e
+	macro_19e8ed $41, 5, 4, EVENT_029, $1f
+	macro_19e8ed $4a, 5, 3, EVENT_02A, $20
+	macro_19e8ed $52, 8, 1, EVENT_02B, $21
+	db $ff
 
 Data_19ea03:
 	db $ff
 
 Data_19ea04:
-	db $66, $44, $2c, $22, $6e, $83, $6f, $23
-	db $71, $16, $70, $24, $72, $11, $71, $22
+	macro_19e8ed $66, 4, 4, EVENT_02C, $22
+	macro_19e8ed $6e, 8, 3, EVENT_06F, $23
+	macro_19e8ed $71, 1, 6, EVENT_070, $24
+	macro_19e8ed $72, 1, 1, EVENT_071, $22
 	db $ff
 
 Data_19ea15:
-	db $76, $11, $72, $26, $76, $14, $73, $27
-	db $87, $26, $74, $28, $87, $76, $75, $29
-	db $8b, $51, $76, $2a, $ff
+	macro_19e8ed $76, 1, 1, EVENT_072, $26
+	macro_19e8ed $76, 1, 4, EVENT_073, $27
+	macro_19e8ed $87, 2, 6, EVENT_074, $28
+	macro_19e8ed $87, 7, 6, EVENT_075, $29
+	macro_19e8ed $8b, 5, 1, EVENT_076, $2a
+	db $ff
 
 Data_19ea2a:
-	db $99, $13, $2d, $23, $9b, $33, $2e, $24
-	db $a2, $35, $2f, $24, $a2, $65, $30, $26
-	db $ad, $86, $77, $27, $ff
+	macro_19e8ed $99, 1, 3, EVENT_02D, $23
+	macro_19e8ed $9b, 3, 3, EVENT_02E, $24
+	macro_19e8ed $a2, 3, 5, EVENT_02F, $24
+	macro_19e8ed $a2, 6, 5, EVENT_030, $26
+	macro_19e8ed $ad, 8, 6, EVENT_077, $27
+	db $ff
 
 Data_19ea3f:
-	db $b5, $16, $81, $28, $b7, $76, $82, $29
-	db $bc, $43, $83, $2a, $ff
+	macro_19e8ed $b5, 1, 6, EVENT_081, $28
+	macro_19e8ed $b7, 7, 6, EVENT_082, $29
+	macro_19e8ed $bc, 4, 3, EVENT_083, $2a
+	db $ff
 
 Data_19ea4c:
 	db $ff
@@ -27089,35 +27946,50 @@ Data_19ea4e:
 	db $ff
 
 Data_19ea4f:
-	db $24, $61, $31, $27, $2d, $14, $32, $28
+	macro_19e8ed $24, 6, 1, EVENT_031, $27
+	macro_19e8ed $2d, 1, 4, EVENT_032, $28
 	db $ff
 
 Data_19ea58:
-	db $30, $13, $33, $29, $3f, $84, $34, $2a
+	macro_19e8ed $30, 1, 3, EVENT_033, $29
+	macro_19e8ed $3f, 8, 4, EVENT_034, $2a
 	db $ff
 
 Data_19ea61:
-	db $49, $83, $85, $2b, $4e, $83, $86, $2c
-	db $53, $83, $35, $2d, $55, $41, $36, $2e
-	db $56, $41, $37, $2f, $57, $41, $38, $01
-	db $58, $41, $39, $34, $ff
+	macro_19e8ed $49, 8, 3, EVENT_085, $2b
+	macro_19e8ed $4e, 8, 3, EVENT_086, $2c
+	macro_19e8ed $53, 8, 3, EVENT_035, $2d
+	macro_19e8ed $55, 4, 1, EVENT_036, $2e
+	macro_19e8ed $56, 4, 1, EVENT_037, $2f
+	macro_19e8ed $57, 4, 1, EVENT_038, $01
+	macro_19e8ed $58, 4, 1, EVENT_039, $34
+	db $ff
 
 Data_19ea7e:
-	db $67, $83, $3a, $1d, $6a, $83, $3b, $37
-	db $6f, $83, $3c, $1d, $78, $13, $3d, $37
-	db $79, $83, $3e, $1d, $7a, $13, $3f, $37
-	db $7a, $15, $40, $1d, $7b, $83, $41, $37
+	macro_19e8ed $67, 8, 3, EVENT_03A, $1d
+	macro_19e8ed $6a, 8, 3, EVENT_03B, $37
+	macro_19e8ed $6f, 8, 3, EVENT_03C, $1d
+	macro_19e8ed $78, 1, 3, EVENT_03D, $37
+	macro_19e8ed $79, 8, 3, EVENT_03E, $1d
+	macro_19e8ed $7a, 1, 3, EVENT_03F, $37
+	macro_19e8ed $7a, 1, 5, EVENT_040, $1d
+	macro_19e8ed $7b, 8, 3, EVENT_041, $37
 	db $ff
 
 Data_19ea9f:
-	db $8c, $22, $42, $1d, $8c, $42, $43, $38
-	db $8c, $62, $44, $1d, $8c, $82, $45, $38
-	db $8c, $24, $46, $1d, $8c, $44, $47, $38
-	db $8c, $64, $48, $1d, $8c, $84, $49, $38
+	macro_19e8ed $8c, 2, 2, EVENT_042, $1d
+	macro_19e8ed $8c, 4, 2, EVENT_043, $38
+	macro_19e8ed $8c, 6, 2, EVENT_044, $1d
+	macro_19e8ed $8c, 8, 2, EVENT_045, $38
+	macro_19e8ed $8c, 2, 4, EVENT_046, $1d
+	macro_19e8ed $8c, 4, 4, EVENT_047, $38
+	macro_19e8ed $8c, 6, 4, EVENT_048, $1d
+	macro_19e8ed $8c, 8, 4, EVENT_049, $38
 	db $ff
 
 Data_19eac0:
-	db $ac, $42, $4a, $35, $ff
+	macro_19e8ed $ac, 4, 2, EVENT_04A, $35
+	db $ff
 
 Data_19eac5:
 	db $ff
@@ -27126,36 +27998,51 @@ Data_19eac6:
 	db $ff
 
 Data_19eac7:
-	db $25, $32, $4b, $1d, $25, $72, $4c, $0a
-	db $25, $54, $4d, $35, $45, $81, $4e, $36
+	macro_19e8ed $25, 3, 2, EVENT_04B, $1d
+	macro_19e8ed $25, 7, 2, EVENT_04C, $0a
+	macro_19e8ed $25, 5, 4, EVENT_04D, $35
+	macro_19e8ed $45, 8, 1, EVENT_04E, $36
 	db $ff
 
 Data_19ead8:
-	db $55, $54, $4f, $37, $61, $15, $50, $38
-	db $81, $31, $51, $39, $ff
+	macro_19e8ed $55, 5, 4, EVENT_04F, $37
+	macro_19e8ed $61, 1, 5, EVENT_050, $38
+	macro_19e8ed $81, 3, 1, EVENT_051, $39
+	db $ff
 
 Data_19eae5:
-	db $8d, $23, $52, $40, $8d, $43, $53, $41
-	db $8d, $73, $54, $40, $96, $33, $55, $41
-	db $96, $53, $56, $40, $96, $44, $57, $41
-	db $a2, $22, $58, $40, $a2, $72, $59, $40
-	db $a2, $45, $5a, $41, $ff
+	macro_19e8ed $8d, 2, 3, EVENT_052, $40
+	macro_19e8ed $8d, 4, 3, EVENT_053, $41
+	macro_19e8ed $8d, 7, 3, EVENT_054, $40
+	macro_19e8ed $96, 3, 3, EVENT_055, $41
+	macro_19e8ed $96, 5, 3, EVENT_056, $40
+	macro_19e8ed $96, 4, 4, EVENT_057, $41
+	macro_19e8ed $a2, 2, 2, EVENT_058, $40
+	macro_19e8ed $a2, 7, 2, EVENT_059, $40
+	macro_19e8ed $a2, 4, 5, EVENT_05A, $41
+	db $ff
 
 Data_19eb0a:
-	db $a7, $42, $5b, $21, $aa, $42, $5c, $1f
-	db $b0, $55, $5d, $07, $b6, $42, $5e, $1e
-	db $bb, $42, $5f, $39, $be, $55, $60, $39
-	db $c3, $55, $61, $39, $ff
+	macro_19e8ed $a7, 4, 2, EVENT_05B, $21
+	macro_19e8ed $aa, 4, 2, EVENT_05C, $1f
+	macro_19e8ed $b0, 5, 5, EVENT_05D, $07
+	macro_19e8ed $b6, 4, 2, EVENT_05E, $1e
+	macro_19e8ed $bb, 4, 2, EVENT_05F, $39
+	macro_19e8ed $be, 5, 5, EVENT_060, $39
+	macro_19e8ed $c3, 5, 5, EVENT_061, $39
+	db $ff
 
 Data_19eb27:
-	db $07, $41, $62, $41, $11, $41, $63, $41
+	macro_19e8ed $07, 4, 1, EVENT_062, $41
+	macro_19e8ed $11, 4, 1, EVENT_063, $41
 	db $ff
 
 Data_19eb30:
 	db $ff
 
 Data_19eb31:
-	db $27, $41, $64, $42, $2b, $41, $65, $42
+	macro_19e8ed $27, 4, 1, EVENT_064, $42
+	macro_19e8ed $2b, 4, 1, EVENT_065, $42
 	db $ff
 
 Data_19eb3a:
@@ -27174,7 +28061,7 @@ Data_19eb3e:
 	db $ff
 
 Data_19eb3f:
-	db $56, $43, $84, $ff
+	macro_19e8ed $56, 4, 3, EVENT_084, $ff
 
 Data_19eb43:
 	db $ff
@@ -27183,28 +28070,590 @@ Data_19eb44:
 	db $ff
 
 Data_19eb45:
-	db $02, $44, $66, $34, $0d, $75, $67, $35
-	db $15, $11, $68, $36, $ff
+	macro_19e8ed $02, 4, 4, EVENT_066, $34
+	macro_19e8ed $0d, 7, 5, EVENT_067, $35
+	macro_19e8ed $15, 1, 1, EVENT_068, $36
+	db $ff
 
 Data_19eb52:
-	db $23, $61, $69, $20, $26, $81, $6a, $23
-	db $2f, $41, $6b, $0b, $ff
+	macro_19e8ed $23, 6, 1, EVENT_069, $20
+	macro_19e8ed $26, 8, 1, EVENT_06A, $23
+	macro_19e8ed $2f, 4, 1, EVENT_06B, $0b
+	db $ff
 
 Data_19eb5f:
-	db $42, $45, $6c, $3f, $4e, $53, $6d, $3c
-	db $4f, $44, $6e, $30, $ff
+	macro_19e8ed $42, 4, 5, EVENT_06C, $3f
+	macro_19e8ed $4e, 5, 3, EVENT_06D, $3c
+	macro_19e8ed $4f, 4, 4, EVENT_06E, $30
+	db $ff
 
 SECTION "bank 68", ROMX, BANK [$68]
 Data_1a0000:
-	dr $1a0000, $1a4000
+INCBIN "maps/1a0000.blk"
+INCBIN "maps/1a0050.blk"
+INCBIN "maps/1a00a0.blk"
+INCBIN "maps/1a00f0.blk"
+INCBIN "maps/1a0140.blk"
+INCBIN "maps/1a0190.blk"
+INCBIN "maps/1a01e0.blk"
+INCBIN "maps/1a0230.blk"
+INCBIN "maps/1a0280.blk"
+INCBIN "maps/1a02d0.blk"
+INCBIN "maps/1a0320.blk"
+INCBIN "maps/1a0370.blk"
+INCBIN "maps/1a03c0.blk"
+INCBIN "maps/1a0410.blk"
+INCBIN "maps/1a0460.blk"
+INCBIN "maps/1a04b0.blk"
+INCBIN "maps/1a0500.blk"
+INCBIN "maps/1a0550.blk"
+INCBIN "maps/1a05a0.blk"
+INCBIN "maps/1a05f0.blk"
+INCBIN "maps/1a0640.blk"
+INCBIN "maps/1a0690.blk"
+INCBIN "maps/1a06e0.blk"
+INCBIN "maps/1a0730.blk"
+INCBIN "maps/1a0780.blk"
+INCBIN "maps/1a07d0.blk"
+INCBIN "maps/1a0820.blk"
+INCBIN "maps/1a0870.blk"
+INCBIN "maps/1a08c0.blk"
+INCBIN "maps/1a0910.blk"
+INCBIN "maps/1a0960.blk"
+INCBIN "maps/1a09b0.blk"
+INCBIN "maps/1a0a00.blk"
+INCBIN "maps/1a0a50.blk"
+INCBIN "maps/1a0aa0.blk"
+INCBIN "maps/1a0af0.blk"
+INCBIN "maps/1a0b40.blk"
+INCBIN "maps/1a0b90.blk"
+INCBIN "maps/1a0be0.blk"
+INCBIN "maps/1a0c30.blk"
+INCBIN "maps/1a0c80.blk"
+INCBIN "maps/1a0cd0.blk"
+INCBIN "maps/1a0d20.blk"
+INCBIN "maps/1a0d70.blk"
+INCBIN "maps/1a0dc0.blk"
+INCBIN "maps/1a0e10.blk"
+INCBIN "maps/1a0e60.blk"
+INCBIN "maps/1a0eb0.blk"
+INCBIN "maps/1a0f00.blk"
+INCBIN "maps/1a0f50.blk"
+INCBIN "maps/1a0fa0.blk"
+INCBIN "maps/1a0ff0.blk"
+INCBIN "maps/1a1040.blk"
+INCBIN "maps/1a1090.blk"
+INCBIN "maps/1a10e0.blk"
+INCBIN "maps/1a1130.blk"
+INCBIN "maps/1a1180.blk"
+INCBIN "maps/1a11d0.blk"
+INCBIN "maps/1a1220.blk"
+INCBIN "maps/1a1270.blk"
+INCBIN "maps/1a12c0.blk"
+INCBIN "maps/1a1310.blk"
+INCBIN "maps/1a1360.blk"
+INCBIN "maps/1a13b0.blk"
+INCBIN "maps/1a1400.blk"
+INCBIN "maps/1a1450.blk"
+INCBIN "maps/1a14a0.blk"
+INCBIN "maps/1a14f0.blk"
+INCBIN "maps/1a1540.blk"
+INCBIN "maps/1a1590.blk"
+INCBIN "maps/1a15e0.blk"
+INCBIN "maps/1a1630.blk"
+INCBIN "maps/1a1680.blk"
+INCBIN "maps/1a16d0.blk"
+INCBIN "maps/1a1720.blk"
+INCBIN "maps/1a1770.blk"
+INCBIN "maps/1a17c0.blk"
+INCBIN "maps/1a1810.blk"
+INCBIN "maps/1a1860.blk"
+INCBIN "maps/1a18b0.blk"
+INCBIN "maps/1a1900.blk"
+INCBIN "maps/1a1950.blk"
+INCBIN "maps/1a19a0.blk"
+INCBIN "maps/1a19f0.blk"
+INCBIN "maps/1a1a40.blk"
+INCBIN "maps/1a1a90.blk"
+INCBIN "maps/1a1ae0.blk"
+INCBIN "maps/1a1b30.blk"
+INCBIN "maps/1a1b80.blk"
+INCBIN "maps/1a1bd0.blk"
+INCBIN "maps/1a1c20.blk"
+INCBIN "maps/1a1c70.blk"
+INCBIN "maps/1a1cc0.blk"
+INCBIN "maps/1a1d10.blk"
+INCBIN "maps/1a1d60.blk"
+INCBIN "maps/1a1db0.blk"
+INCBIN "maps/1a1e00.blk"
+INCBIN "maps/1a1e50.blk"
+INCBIN "maps/1a1ea0.blk"
+INCBIN "maps/1a1ef0.blk"
+INCBIN "maps/1a1f40.blk"
+INCBIN "maps/1a1f90.blk"
+INCBIN "maps/1a1fe0.blk"
+INCBIN "maps/1a2030.blk"
+INCBIN "maps/1a2080.blk"
+INCBIN "maps/1a20d0.blk"
+INCBIN "maps/1a2120.blk"
+INCBIN "maps/1a2170.blk"
+INCBIN "maps/1a21c0.blk"
+INCBIN "maps/1a2210.blk"
+INCBIN "maps/1a2260.blk"
+INCBIN "maps/1a22b0.blk"
+INCBIN "maps/1a2300.blk"
+INCBIN "maps/1a2350.blk"
+INCBIN "maps/1a23a0.blk"
+INCBIN "maps/1a23f0.blk"
+INCBIN "maps/1a2440.blk"
+INCBIN "maps/1a2490.blk"
+INCBIN "maps/1a24e0.blk"
+INCBIN "maps/1a2530.blk"
+INCBIN "maps/1a2580.blk"
+INCBIN "maps/1a25d0.blk"
+INCBIN "maps/1a2620.blk"
+INCBIN "maps/1a2670.blk"
+INCBIN "maps/1a26c0.blk"
+INCBIN "maps/1a2710.blk"
+INCBIN "maps/1a2760.blk"
+INCBIN "maps/1a27b0.blk"
+INCBIN "maps/1a2800.blk"
+INCBIN "maps/1a2850.blk"
+INCBIN "maps/1a28a0.blk"
+INCBIN "maps/1a28f0.blk"
+INCBIN "maps/1a2940.blk"
+INCBIN "maps/1a2990.blk"
+INCBIN "maps/1a29e0.blk"
+INCBIN "maps/1a2a30.blk"
+INCBIN "maps/1a2a80.blk"
+INCBIN "maps/1a2ad0.blk"
+INCBIN "maps/1a2b20.blk"
+INCBIN "maps/1a2b70.blk"
+INCBIN "maps/1a2bc0.blk"
+INCBIN "maps/1a2c10.blk"
+INCBIN "maps/1a2c60.blk"
+INCBIN "maps/1a2cb0.blk"
+INCBIN "maps/1a2d00.blk"
+INCBIN "maps/1a2d50.blk"
+INCBIN "maps/1a2da0.blk"
+INCBIN "maps/1a2df0.blk"
+INCBIN "maps/1a2e40.blk"
+INCBIN "maps/1a2e90.blk"
+INCBIN "maps/1a2ee0.blk"
+INCBIN "maps/1a2f30.blk"
+INCBIN "maps/1a2f80.blk"
+INCBIN "maps/1a2fd0.blk"
+INCBIN "maps/1a3020.blk"
+INCBIN "maps/1a3070.blk"
+INCBIN "maps/1a30c0.blk"
+INCBIN "maps/1a3110.blk"
+INCBIN "maps/1a3160.blk"
+INCBIN "maps/1a31b0.blk"
+INCBIN "maps/1a3200.blk"
+INCBIN "maps/1a3250.blk"
+INCBIN "maps/1a32a0.blk"
+INCBIN "maps/1a32f0.blk"
+INCBIN "maps/1a3340.blk"
+INCBIN "maps/1a3390.blk"
+INCBIN "maps/1a33e0.blk"
+INCBIN "maps/1a3430.blk"
+INCBIN "maps/1a3480.blk"
+INCBIN "maps/1a34d0.blk"
+INCBIN "maps/1a3520.blk"
+INCBIN "maps/1a3570.blk"
+INCBIN "maps/1a35c0.blk"
+INCBIN "maps/1a3610.blk"
+INCBIN "maps/1a3660.blk"
+INCBIN "maps/1a36b0.blk"
+INCBIN "maps/1a3700.blk"
+INCBIN "maps/1a3750.blk"
+INCBIN "maps/1a37a0.blk"
+INCBIN "maps/1a37f0.blk"
+INCBIN "maps/1a3840.blk"
+INCBIN "maps/1a3890.blk"
+INCBIN "maps/1a38e0.blk"
+INCBIN "maps/1a3930.blk"
+INCBIN "maps/1a3980.blk"
+INCBIN "maps/1a39d0.blk"
+INCBIN "maps/1a3a20.blk"
+INCBIN "maps/1a3a70.blk"
+INCBIN "maps/1a3ac0.blk"
+INCBIN "maps/1a3b10.blk"
+INCBIN "maps/1a3b60.blk"
+INCBIN "maps/1a3bb0.blk"
 
 SECTION "bank 69", ROMX, BANK [$69]
 Data_1a4000:
-	dr $1a4000, $1a8000
+INCBIN "maps/1a4000.blk"
+INCBIN "maps/1a4050.blk"
+INCBIN "maps/1a40a0.blk"
+INCBIN "maps/1a40f0.blk"
+INCBIN "maps/1a4140.blk"
+INCBIN "maps/1a4190.blk"
+INCBIN "maps/1a41e0.blk"
+INCBIN "maps/1a4230.blk"
+INCBIN "maps/1a4280.blk"
+INCBIN "maps/1a42d0.blk"
+INCBIN "maps/1a4320.blk"
+INCBIN "maps/1a4370.blk"
+INCBIN "maps/1a43c0.blk"
+INCBIN "maps/1a4410.blk"
+INCBIN "maps/1a4460.blk"
+INCBIN "maps/1a44b0.blk"
+INCBIN "maps/1a4500.blk"
+INCBIN "maps/1a4550.blk"
+INCBIN "maps/1a45a0.blk"
+INCBIN "maps/1a45f0.blk"
+INCBIN "maps/1a4640.blk"
+INCBIN "maps/1a4690.blk"
+INCBIN "maps/1a46e0.blk"
+INCBIN "maps/1a4730.blk"
+INCBIN "maps/1a4780.blk"
+INCBIN "maps/1a47d0.blk"
+INCBIN "maps/1a4820.blk"
+INCBIN "maps/1a4870.blk"
+INCBIN "maps/1a48c0.blk"
+INCBIN "maps/1a4910.blk"
+INCBIN "maps/1a4960.blk"
+INCBIN "maps/1a49b0.blk"
+INCBIN "maps/1a4a00.blk"
+INCBIN "maps/1a4a50.blk"
+INCBIN "maps/1a4aa0.blk"
+INCBIN "maps/1a4af0.blk"
+INCBIN "maps/1a4b40.blk"
+INCBIN "maps/1a4b90.blk"
+INCBIN "maps/1a4be0.blk"
+INCBIN "maps/1a4c30.blk"
+INCBIN "maps/1a4c80.blk"
+INCBIN "maps/1a4cd0.blk"
+INCBIN "maps/1a4d20.blk"
+INCBIN "maps/1a4d70.blk"
+INCBIN "maps/1a4dc0.blk"
+INCBIN "maps/1a4e10.blk"
+INCBIN "maps/1a4e60.blk"
+INCBIN "maps/1a4eb0.blk"
+INCBIN "maps/1a4f00.blk"
+INCBIN "maps/1a4f50.blk"
+INCBIN "maps/1a4fa0.blk"
+INCBIN "maps/1a4ff0.blk"
+INCBIN "maps/1a5040.blk"
+INCBIN "maps/1a5090.blk"
+INCBIN "maps/1a50e0.blk"
+INCBIN "maps/1a5130.blk"
+INCBIN "maps/1a5180.blk"
+INCBIN "maps/1a51d0.blk"
+INCBIN "maps/1a5220.blk"
+INCBIN "maps/1a5270.blk"
+INCBIN "maps/1a52c0.blk"
+INCBIN "maps/1a5310.blk"
+INCBIN "maps/1a5360.blk"
+INCBIN "maps/1a53b0.blk"
+INCBIN "maps/1a5400.blk"
+INCBIN "maps/1a5450.blk"
+INCBIN "maps/1a54a0.blk"
+INCBIN "maps/1a54f0.blk"
+INCBIN "maps/1a5540.blk"
+INCBIN "maps/1a5590.blk"
+INCBIN "maps/1a55e0.blk"
+INCBIN "maps/1a5630.blk"
+INCBIN "maps/1a5680.blk"
+INCBIN "maps/1a56d0.blk"
+INCBIN "maps/1a5720.blk"
+INCBIN "maps/1a5770.blk"
+INCBIN "maps/1a57c0.blk"
+INCBIN "maps/1a5810.blk"
+INCBIN "maps/1a5860.blk"
+INCBIN "maps/1a58b0.blk"
+INCBIN "maps/1a5900.blk"
+INCBIN "maps/1a5950.blk"
+INCBIN "maps/1a59a0.blk"
+INCBIN "maps/1a59f0.blk"
+INCBIN "maps/1a5a40.blk"
+INCBIN "maps/1a5a90.blk"
+INCBIN "maps/1a5ae0.blk"
+INCBIN "maps/1a5b30.blk"
+INCBIN "maps/1a5b80.blk"
+INCBIN "maps/1a5bd0.blk"
+INCBIN "maps/1a5c20.blk"
+INCBIN "maps/1a5c70.blk"
+INCBIN "maps/1a5cc0.blk"
+INCBIN "maps/1a5d10.blk"
+INCBIN "maps/1a5d60.blk"
+INCBIN "maps/1a5db0.blk"
+INCBIN "maps/1a5e00.blk"
+INCBIN "maps/1a5e50.blk"
+INCBIN "maps/1a5ea0.blk"
+INCBIN "maps/1a5ef0.blk"
+INCBIN "maps/1a5f40.blk"
+INCBIN "maps/1a5f90.blk"
+INCBIN "maps/1a5fe0.blk"
+INCBIN "maps/1a6030.blk"
+INCBIN "maps/1a6080.blk"
+INCBIN "maps/1a60d0.blk"
+INCBIN "maps/1a6120.blk"
+INCBIN "maps/1a6170.blk"
+INCBIN "maps/1a61c0.blk"
+INCBIN "maps/1a6210.blk"
+INCBIN "maps/1a6260.blk"
+INCBIN "maps/1a62b0.blk"
+INCBIN "maps/1a6300.blk"
+INCBIN "maps/1a6350.blk"
+INCBIN "maps/1a63a0.blk"
+INCBIN "maps/1a63f0.blk"
+INCBIN "maps/1a6440.blk"
+INCBIN "maps/1a6490.blk"
+INCBIN "maps/1a64e0.blk"
+INCBIN "maps/1a6530.blk"
+INCBIN "maps/1a6580.blk"
+INCBIN "maps/1a65d0.blk"
+INCBIN "maps/1a6620.blk"
+INCBIN "maps/1a6670.blk"
+INCBIN "maps/1a66c0.blk"
+INCBIN "maps/1a6710.blk"
+INCBIN "maps/1a6760.blk"
+INCBIN "maps/1a67b0.blk"
+INCBIN "maps/1a6800.blk"
+INCBIN "maps/1a6850.blk"
+INCBIN "maps/1a68a0.blk"
+INCBIN "maps/1a68f0.blk"
+INCBIN "maps/1a6940.blk"
+INCBIN "maps/1a6990.blk"
+INCBIN "maps/1a69e0.blk"
+INCBIN "maps/1a6a30.blk"
+INCBIN "maps/1a6a80.blk"
+INCBIN "maps/1a6ad0.blk"
+INCBIN "maps/1a6b20.blk"
+INCBIN "maps/1a6b70.blk"
+INCBIN "maps/1a6bc0.blk"
+INCBIN "maps/1a6c10.blk"
+INCBIN "maps/1a6c60.blk"
+INCBIN "maps/1a6cb0.blk"
+INCBIN "maps/1a6d00.blk"
+INCBIN "maps/1a6d50.blk"
+INCBIN "maps/1a6da0.blk"
+INCBIN "maps/1a6df0.blk"
+INCBIN "maps/1a6e40.blk"
+INCBIN "maps/1a6e90.blk"
+INCBIN "maps/1a6ee0.blk"
+INCBIN "maps/1a6f30.blk"
+INCBIN "maps/1a6f80.blk"
+INCBIN "maps/1a6fd0.blk"
+INCBIN "maps/1a7020.blk"
+INCBIN "maps/1a7070.blk"
+INCBIN "maps/1a70c0.blk"
+INCBIN "maps/1a7110.blk"
+INCBIN "maps/1a7160.blk"
+INCBIN "maps/1a71b0.blk"
+INCBIN "maps/1a7200.blk"
+INCBIN "maps/1a7250.blk"
+INCBIN "maps/1a72a0.blk"
+INCBIN "maps/1a72f0.blk"
+INCBIN "maps/1a7340.blk"
+INCBIN "maps/1a7390.blk"
 
 SECTION "bank 6A", ROMX, BANK [$6a]
 Data_1a8000:
-	dr $1a8000, $1ac000
+INCBIN "maps/1a8000.blk"
+INCBIN "maps/1a8050.blk"
+INCBIN "maps/1a80a0.blk"
+INCBIN "maps/1a80f0.blk"
+INCBIN "maps/1a8140.blk"
+INCBIN "maps/1a8190.blk"
+INCBIN "maps/1a81e0.blk"
+INCBIN "maps/1a8230.blk"
+INCBIN "maps/1a8280.blk"
+INCBIN "maps/1a82d0.blk"
+INCBIN "maps/1a8320.blk"
+INCBIN "maps/1a8370.blk"
+INCBIN "maps/1a83c0.blk"
+INCBIN "maps/1a8410.blk"
+INCBIN "maps/1a8460.blk"
+INCBIN "maps/1a84b0.blk"
+INCBIN "maps/1a8500.blk"
+INCBIN "maps/1a8550.blk"
+INCBIN "maps/1a85a0.blk"
+INCBIN "maps/1a85f0.blk"
+INCBIN "maps/1a8640.blk"
+INCBIN "maps/1a8690.blk"
+INCBIN "maps/1a86e0.blk"
+INCBIN "maps/1a8730.blk"
+INCBIN "maps/1a8780.blk"
+INCBIN "maps/1a87d0.blk"
+INCBIN "maps/1a8820.blk"
+INCBIN "maps/1a8870.blk"
+INCBIN "maps/1a88c0.blk"
+INCBIN "maps/1a8910.blk"
+INCBIN "maps/1a8960.blk"
+INCBIN "maps/1a89b0.blk"
+INCBIN "maps/1a8a00.blk"
+INCBIN "maps/1a8a50.blk"
+INCBIN "maps/1a8aa0.blk"
+INCBIN "maps/1a8af0.blk"
+INCBIN "maps/1a8b40.blk"
+INCBIN "maps/1a8b90.blk"
+INCBIN "maps/1a8be0.blk"
+INCBIN "maps/1a8c30.blk"
+INCBIN "maps/1a8c80.blk"
+INCBIN "maps/1a8cd0.blk"
+INCBIN "maps/1a8d20.blk"
+INCBIN "maps/1a8d70.blk"
+INCBIN "maps/1a8dc0.blk"
+INCBIN "maps/1a8e10.blk"
+INCBIN "maps/1a8e60.blk"
+INCBIN "maps/1a8eb0.blk"
+INCBIN "maps/1a8f00.blk"
+INCBIN "maps/1a8f50.blk"
+INCBIN "maps/1a8fa0.blk"
+INCBIN "maps/1a8ff0.blk"
+INCBIN "maps/1a9040.blk"
+INCBIN "maps/1a9090.blk"
+INCBIN "maps/1a90e0.blk"
+INCBIN "maps/1a9130.blk"
+INCBIN "maps/1a9180.blk"
+INCBIN "maps/1a91d0.blk"
+INCBIN "maps/1a9220.blk"
+INCBIN "maps/1a9270.blk"
+INCBIN "maps/1a92c0.blk"
+INCBIN "maps/1a9310.blk"
+INCBIN "maps/1a9360.blk"
+INCBIN "maps/1a93b0.blk"
+INCBIN "maps/1a9400.blk"
+INCBIN "maps/1a9450.blk"
+INCBIN "maps/1a94a0.blk"
+INCBIN "maps/1a94f0.blk"
+INCBIN "maps/1a9540.blk"
+INCBIN "maps/1a9590.blk"
+INCBIN "maps/1a95e0.blk"
+INCBIN "maps/1a9630.blk"
+INCBIN "maps/1a9680.blk"
+INCBIN "maps/1a96d0.blk"
+INCBIN "maps/1a9720.blk"
+INCBIN "maps/1a9770.blk"
+INCBIN "maps/1a97c0.blk"
+INCBIN "maps/1a9810.blk"
+INCBIN "maps/1a9860.blk"
+INCBIN "maps/1a98b0.blk"
+INCBIN "maps/1a9900.blk"
+INCBIN "maps/1a9950.blk"
+INCBIN "maps/1a99a0.blk"
+INCBIN "maps/1a99f0.blk"
+INCBIN "maps/1a9a40.blk"
+INCBIN "maps/1a9a90.blk"
+INCBIN "maps/1a9ae0.blk"
+INCBIN "maps/1a9b30.blk"
+INCBIN "maps/1a9b80.blk"
+INCBIN "maps/1a9bd0.blk"
+INCBIN "maps/1a9c20.blk"
+INCBIN "maps/1a9c70.blk"
+INCBIN "maps/1a9cc0.blk"
+INCBIN "maps/1a9d10.blk"
+INCBIN "maps/1a9d60.blk"
+INCBIN "maps/1a9db0.blk"
+INCBIN "maps/1a9e00.blk"
+INCBIN "maps/1a9e50.blk"
+INCBIN "maps/1a9ea0.blk"
+INCBIN "maps/1a9ef0.blk"
+INCBIN "maps/1a9f40.blk"
+INCBIN "maps/1a9f90.blk"
+INCBIN "maps/1a9fe0.blk"
+INCBIN "maps/1aa030.blk"
+INCBIN "maps/1aa080.blk"
+INCBIN "maps/1aa0d0.blk"
+INCBIN "maps/1aa120.blk"
+INCBIN "maps/1aa170.blk"
+INCBIN "maps/1aa1c0.blk"
+INCBIN "maps/1aa210.blk"
+INCBIN "maps/1aa260.blk"
+INCBIN "maps/1aa2b0.blk"
+INCBIN "maps/1aa300.blk"
+INCBIN "maps/1aa350.blk"
+INCBIN "maps/1aa3a0.blk"
+INCBIN "maps/1aa3f0.blk"
+INCBIN "maps/1aa440.blk"
+INCBIN "maps/1aa490.blk"
+INCBIN "maps/1aa4e0.blk"
+INCBIN "maps/1aa530.blk"
+INCBIN "maps/1aa580.blk"
+INCBIN "maps/1aa5d0.blk"
+INCBIN "maps/1aa620.blk"
+INCBIN "maps/1aa670.blk"
+INCBIN "maps/1aa6c0.blk"
+INCBIN "maps/1aa710.blk"
+INCBIN "maps/1aa760.blk"
+INCBIN "maps/1aa7b0.blk"
+INCBIN "maps/1aa800.blk"
+INCBIN "maps/1aa850.blk"
+INCBIN "maps/1aa8a0.blk"
+INCBIN "maps/1aa8f0.blk"
+INCBIN "maps/1aa940.blk"
+INCBIN "maps/1aa990.blk"
+INCBIN "maps/1aa9e0.blk"
+INCBIN "maps/1aaa30.blk"
+INCBIN "maps/1aaa80.blk"
+INCBIN "maps/1aaad0.blk"
+INCBIN "maps/1aab20.blk"
+INCBIN "maps/1aab70.blk"
+INCBIN "maps/1aabc0.blk"
+INCBIN "maps/1aac10.blk"
+INCBIN "maps/1aac60.blk"
+INCBIN "maps/1aacb0.blk"
+INCBIN "maps/1aad00.blk"
+INCBIN "maps/1aad50.blk"
+INCBIN "maps/1aada0.blk"
+INCBIN "maps/1aadf0.blk"
+INCBIN "maps/1aae40.blk"
+INCBIN "maps/1aae90.blk"
+INCBIN "maps/1aaee0.blk"
+INCBIN "maps/1aaf30.blk"
+INCBIN "maps/1aaf80.blk"
+INCBIN "maps/1aafd0.blk"
+INCBIN "maps/1ab020.blk"
+INCBIN "maps/1ab070.blk"
+INCBIN "maps/1ab0c0.blk"
+INCBIN "maps/1ab110.blk"
+INCBIN "maps/1ab160.blk"
+INCBIN "maps/1ab1b0.blk"
+INCBIN "maps/1ab200.blk"
+INCBIN "maps/1ab250.blk"
+INCBIN "maps/1ab2a0.blk"
+INCBIN "maps/1ab2f0.blk"
+INCBIN "maps/1ab340.blk"
+INCBIN "maps/1ab390.blk"
+INCBIN "maps/1ab3e0.blk"
+INCBIN "maps/1ab430.blk"
+INCBIN "maps/1ab480.blk"
+INCBIN "maps/1ab4d0.blk"
+INCBIN "maps/1ab520.blk"
+INCBIN "maps/1ab570.blk"
+INCBIN "maps/1ab5c0.blk"
+INCBIN "maps/1ab610.blk"
+INCBIN "maps/1ab660.blk"
+INCBIN "maps/1ab6b0.blk"
+INCBIN "maps/1ab700.blk"
+INCBIN "maps/1ab750.blk"
+INCBIN "maps/1ab7a0.blk"
+INCBIN "maps/1ab7f0.blk"
+INCBIN "maps/1ab840.blk"
+INCBIN "maps/1ab890.blk"
+INCBIN "maps/1ab8e0.blk"
+INCBIN "maps/1ab930.blk"
+INCBIN "maps/1ab980.blk"
+INCBIN "maps/1ab9d0.blk"
+INCBIN "maps/1aba20.blk"
+INCBIN "maps/1aba70.blk"
+INCBIN "maps/1abac0.blk"
+INCBIN "maps/1abb10.blk"
+INCBIN "maps/1abb60.blk"
+INCBIN "maps/1abbb0.blk"
+INCBIN "maps/1abc00.blk"
+INCBIN "maps/1abc50.blk"
+INCBIN "maps/1abca0.blk"
+INCBIN "maps/1abcf0.blk"
+INCBIN "maps/1abd40.blk"
+INCBIN "maps/1abd90.blk"
+INCBIN "maps/1abde0.blk"
+INCBIN "maps/1abe30.blk"
+INCBIN "maps/1abe80.blk"
 
 SECTION "bank 75", ROMX, BANK [$75]
 DenjuuNames::

@@ -850,7 +850,7 @@ wc901:: ds 1
 wc902:: ds 1
 wMapNumber3:: ds 1
 wMapGroup:: ds 1
-wc905:: ds 1
+wCurTilesetIdx:: ds 1
 wMapNumber:: ds 1
 wDShotReceptionLevel:: ds 1
 wc908:: ds 1

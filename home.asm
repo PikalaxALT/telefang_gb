@@ -2475,7 +2475,7 @@ Func_2021: ; 2021 (0:2021)
 	jr nc, .try_generate
 	cp $2b
 	ret nc
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $2
 	ret z
 	cp $4
@@ -2876,7 +2876,7 @@ asm_272e
 	ret
 
 Func_272f::
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	ld hl, Data_2760
 	ld b, a
 	add a
@@ -2899,7 +2899,7 @@ Func_272f::
 	ld a, [wMapNumber3]
 	ld b, $0
 	ld c, a
-	ld de, $50
+	ld de, 80
 	push hl
 	call Multiply_DE_by_BC
 	pop hl
@@ -2928,7 +2928,7 @@ Data_2760::
 	dba Data_190000
 	dba Data_18c000
 
-Func_2793: ; 2793 (0:2793)
+LoadTilesetRegisters: ; 2793 (0:2793)
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Pointers_19c000)
@@ -2944,7 +2944,7 @@ Func_2793: ; 2793 (0:2793)
 	adc h
 	ld h, a
 	ld a, [hli]
-	ld [wc905], a
+	ld [wCurTilesetIdx], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2956,7 +2956,7 @@ Func_2793: ; 2793 (0:2793)
 	ld h, a
 	ld a, [hl]
 	ld [wMapNumber3], a
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	ld b, a
 	call .LoadTilesetPointers
 	pop af
@@ -3110,15 +3110,15 @@ Func_28a9: ; 28a9 (0:28a9)
 	ld a, BANK(Pointers_19e8ed)
 	rst Bankswitch
 	call Func_28dd
-.asm_28b4
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_28d8
+	jr z, .dont_set_flag
 	call Func_28ee
-	jr nz, .asm_28b4
+	jr nz, .loop
 	ld a, [de]
 	and c
-	jr nz, .asm_28d8
+	jr nz, .dont_set_flag
 	ld a, [de]
 	or c
 	ld [de], a
@@ -3136,7 +3136,7 @@ Func_28a9: ; 28a9 (0:28a9)
 	or $1
 	ret
 
-.asm_28d8
+.dont_set_flag
 	pop af
 	rst Bankswitch
 	pop bc
@@ -3158,20 +3158,26 @@ Func_28dd: ; 28dd (0:28dd)
 	ret
 
 Func_28ee: ; 28ee (0:28ee)
+; hl pointed from Pointers_19e8ed
+; a = Map Number
+; Returns:
+; de - Event flag address
+; c - Event flag bit
+; b - ??
 	ld d, a
 	ld a, [wMapNumber3]
 	cp d
-	jr nz, .asm_2922
+	jr nz, .nope_inc3
 	ld a, [hli]
 	ld d, a
 	and $f
 	cp c
-	jr nz, .asm_2923
+	jr nz, .nope_inc2
 	ld a, d
 	swap a
 	and $f
 	cp b
-	jr nz, .asm_2923
+	jr nz, .nope_inc2
 	ld a, [hli]
 	ld b, a
 	srl a
@@ -3188,15 +3194,15 @@ Func_28ee: ; 28ee (0:28ee)
 	and $7
 	ld b, [hl]
 	ret z
-.asm_291c
+.event_bit_loop
 	sla c
 	dec a
-	jr nz, .asm_291c
+	jr nz, .event_bit_loop
 	ret
 
-.asm_2922
+.nope_inc3
 	inc hl
-.asm_2923
+.nope_inc2
 	inc hl
 	inc hl
 	or $1
@@ -3272,12 +3278,12 @@ Func_2928::
 	pop hl
 	ld a, [de]
 	and c
-	jr nz, .bitmasked_0x13
+	jr nz, .event_flag_set
 	ld a, $1
 	ld [wc94c], a
 	jr .done_0x13
 
-.bitmasked_0x13
+.event_flag_set
 	inc [hl]
 	jr .done_0x13
 
@@ -3514,12 +3520,12 @@ Func_2b72::
 	rst Bankswitch
 	decoord 0, 0
 	ld b, $50
-.asm_2b82
+.copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_2b82
+	jr nz, .copy
 	pop af
 	rst Bankswitch
 	call Func_32ff
@@ -3744,7 +3750,7 @@ GetMapHeaderAddress::
 	ld a, b
 	rst Bankswitch
 	ld hl, Pointers_148000
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $3
 	jr c, .asm_2da2
 	cp $4
@@ -3764,7 +3770,7 @@ GetMapHeaderAddress::
 	call CheckEventFlag
 	pop bc
 	jr z, .asm_2d91
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $6
 	jr nz, .asm_2d91
 	ld hl, Pointers_18ba1
@@ -3784,7 +3790,7 @@ GetMapHeaderAddress::
 	ret
 
 .asm_2da2
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $0
 	jr z, .asm_2db2
 	cp $2
@@ -3827,7 +3833,7 @@ GetMapHeaderBank: ; 2ddb (0:2ddb)
 	jr nz, .asm_2df5
 .asm_2de5
 	ld b, BANK(Pointers_148000)
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $6
 	jr z, .asm_2df2
 	cp $b
@@ -3838,7 +3844,7 @@ GetMapHeaderBank: ; 2ddb (0:2ddb)
 	ret
 
 .asm_2df5
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	cp $3
 	jr c, .asm_2e06
 	cp $4
@@ -4900,7 +4906,7 @@ HandleOverworldGFX: ; 3442 (0:3442)
 	push af
 	ld a, BANK(Pointers_e1690)
 	rst Bankswitch
-	ld a, [wc905]
+	ld a, [wCurTilesetIdx]
 	ld hl, Pointers_e1690
 	add a
 	add l

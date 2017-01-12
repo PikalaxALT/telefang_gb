@@ -784,7 +784,7 @@ PrintMapObjectText: ; 2c63f (b:463f)
 	ld [wc9d8], a
 .asm_2c64b
 	call SetOverworldTextboxPosition
-Func_2c64e: ; 2c64e (b:464e)
+PrintStandardText: ; 2c64e (b:464e)
 ; Jump to standard text (b, c)
 	ld a, $c0
 	ld [wTextBoxStartTile], a
@@ -886,7 +886,7 @@ Func_2c6e2: ; 2c6e2 (b:46e2)
 	ld [wTextSubfunction], a
 	ld b, $0
 	ld c, $bf
-	jp Func_2c64e
+	jp PrintStandardText
 
 PrintItemNameAndPrice: ; 2c711 (b:4711)
 	push bc
