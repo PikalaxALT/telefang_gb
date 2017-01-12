@@ -1814,7 +1814,7 @@ Func_2cd3b: ; 2cd3b (b:4d3b)
 	inc de
 	dec b
 	jr nz, .loop1
-	ld hl, wPhoneNumberDecryptionBuffer
+	ld hl, wPhoneNumberBuffer
 	ld a, [wTextBoxStartTile]
 	ld b, $10
 .loop2

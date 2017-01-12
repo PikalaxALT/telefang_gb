@@ -224,46 +224,46 @@ Func_a412e: ; a412e (29:412e)
 	pop bc
 	ret
 
-Func_a4162: ; a4162 (29:4162)
+CompressStandardPhoneNumber: ; a4162 (29:4162)
 	ld e, $e
 	call Multiply_C_by_E
-	ld hl, Data_a69a9
+	ld hl, StoryPhoneNumbers
 	add hl, de
 	ld c, $e
 	ld de, wMapHeader
-.asm_a4170
-	ld b, BANK(Data_a69a9) ; same bank
+.copy
+	ld b, BANK(StoryPhoneNumbers) ; same bank
 	call GetFarByte
 	ld a, b
 	ld [de], a
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_a4170
+	jr nz, .copy
 	ld hl, wMapHeader
-	call Func_a4187
+	call CompressPhoneNumber
 	ld a, b
 	or $80
 	ld b, a
 	ret
 
-Func_a4187: ; a4187 (29:4187)
+CompressPhoneNumber: ; a4187 (29:4187)
 	push hl
-	call Func_a4202
+	call ValidateDecompressedPhoneNumber
 	pop hl
-	jr nz, .asm_a41a1
+	jr nz, .nope
 	push hl
-	call Func_a4232
+	call IsPatternOfHashesAndAsterisksValid
 	pop hl
-	jr nz, .asm_a41a1
+	jr nz, .nope
 	ld a, e
 	ld [wca69], a
-	call Func_a41a7
+	call .CompressNumericPortionOfPhoneNumber
 	xor a
 	ld a, [wca69]
 	ret
 
-.asm_a41a1
+.nope
 	xor a
 	ld e, a
 	ld d, a
@@ -271,7 +271,7 @@ Func_a4187: ; a4187 (29:4187)
 	ld b, a
 	ret
 
-Func_a41a7: ; a41a7 (29:41a7)
+.CompressNumericPortionOfPhoneNumber: ; a41a7 (29:41a7)
 	inc hl
 	ld a, $8
 	ld [wCustomSpriteDest], a
@@ -279,23 +279,23 @@ Func_a41a7: ; a41a7 (29:41a7)
 	ld c, $0
 	ld d, $0
 	ld e, $0
-.asm_a41b5
+.loop
 	ld a, [hli]
-	cp $78
-	jr nc, .asm_a41b5
+	cp $78 ; #
+	jr nc, .loop
 	push hl
 	push bc
 	push de
 	ld b, a
 	ld a, [wCustomSpriteDest]
 	cp $8
-	jr nz, .asm_a41cc
+	jr nz, .okay
 	ld a, b
-	cp $6e
-	jr nz, .asm_a41cc
-	ld b, $6a
-.asm_a41cc
-	ld hl, Data_a4888
+	cp $6e ; 7
+	jr nz, .okay
+	ld b, $6a ; 5
+.okay
+	ld hl, PhoneNumber_MultiplesOfPowersOfTen ; because why try to do 32-bit multiplication?
 	ld a, [wCustomSpriteDest]
 	dec a
 	add a
@@ -308,14 +308,14 @@ Func_a41a7: ; a41a7 (29:41a7)
 	ld h, [hl]
 	ld l, a
 	ld a, b
-	sub $60
-	jr nz, .asm_a41e7
+	sub $60 ; 0
+	jr nz, .not_zero
 	pop de
 	pop bc
 	pop hl
-	jr .asm_a41f8
+	jr .next
 
-.asm_a41e7
+.not_zero
 	srl a
 	dec a
 	add a
@@ -327,86 +327,86 @@ Func_a41a7: ; a41a7 (29:41a7)
 	ld h, a
 	pop de
 	pop bc
-	call DecryptPhoneNumberByte
+	call Add32
 	pop hl
-.asm_a41f8
+.next
 	ld a, [wCustomSpriteDest]
 	dec a
 	ld [wCustomSpriteDest], a
-	jr nz, .asm_a41b5
+	jr nz, .loop
 	ret
 
-Func_a4202: ; a4202 (29:4202)
+ValidateDecompressedPhoneNumber: ; a4202 (29:4202)
 	ld a, [hli]
-	cp $60
-	jr nz, .asm_a421f
+	cp $60 ; 0
+	jr nz, .nope
 	ld b, $2
-	call Func_a4220
-	jr nz, .asm_a421f
+	call .ContainsExactlyOneHash
+	jr nz, .nope
 	inc hl
 	ld b, $4
-	call Func_a4220
-	jr nz, .asm_a421f
+	call .ContainsExactlyOneHash
+	jr nz, .nope
 	inc hl
 	ld b, $5
-	call Func_a4220
-	jr nz, .asm_a421f
+	call .ContainsExactlyOneHash
+	jr nz, .nope
 	ret
 
-.asm_a421f
+.nope
 	ret
 
-Func_a4220: ; a4220 (29:4220)
+.ContainsExactlyOneHash: ; a4220 (29:4220)
 	ld c, $0
-.asm_a4222
+.count_78
 	ld a, [hli]
-	cp $78
-	jr c, .asm_a4228
+	cp $78 ; #
+	jr c, .next
 	inc c
-.asm_a4228
+.next
 	dec b
-	jr nz, .asm_a4222
+	jr nz, .count_78
 	ld a, c
 	cp $1
-	jr nz, .asm_a4231
+	jr nz, .useless
 	ret
 
-.asm_a4231
+.useless
 	ret
 
-Func_a4232: ; a4232 (29:4232)
+IsPatternOfHashesAndAsterisksValid: ; a4232 (29:4232)
 	ld b, $0
 	ld c, $0
 	ld d, $0
 	inc hl
 	ld a, [hli]
-	cp $78
-	jr nc, .asm_a4243
+	cp $78 ; #
+	jr nc, .hash_or_asterisk
 	ld b, $10
 	ld a, [hli]
-	jr .asm_a4244
+	jr .okay
 
-.asm_a4243
+.hash_or_asterisk
 	inc hl
-.asm_a4244
-	cp $78
-	jr z, .asm_a4249
+.okay
+	cp $78 ; #
+	jr z, .is_hash
 	inc b
-.asm_a4249
+.is_hash
 	inc hl
 	ld e, $4
-.asm_a424c
+.loop
 	ld a, [hli]
 	cp $78
-	jr nc, .asm_a425a
+	jr nc, .hash_or_asterisk_2
 	dec e
-	jr z, .asm_a42a0
+	jr z, .done_section
 	ld a, c
 	add $10
 	ld c, a
-	jr .asm_a424c
+	jr .loop
 
-.asm_a425a
+.hash_or_asterisk_2
 	push af
 	ld a, e
 	dec a
@@ -417,23 +417,23 @@ Func_a4232: ; a4232 (29:4232)
 	ld h, a
 	pop af
 	cp $78
-	jr z, .asm_a4269
+	jr z, .is_hash_2
 	inc c
-.asm_a4269
+.is_hash_2
 	inc hl
 	ld e, $5
-.asm_a426c
+.loop2
 	ld a, [hli]
 	cp $78
-	jr nc, .asm_a427a
+	jr nc, .hash_or_asterisk_3
 	dec e
-	jr z, .asm_a42a0
+	jr z, .done_section
 	ld a, d
 	add $10
 	ld d, a
-	jr .asm_a426c
+	jr .loop2
 
-.asm_a427a
+.hash_or_asterisk_3
 	push af
 	ld a, e
 	add l
@@ -443,32 +443,32 @@ Func_a4232: ; a4232 (29:4232)
 	ld h, a
 	pop af
 	cp $78
-	jr z, .asm_a4288
+	jr z, .is_hash_3
 	inc d
-.asm_a4288
+.is_hash_3
 	ld e, $0
-	ld hl, Data_a4588
-.asm_a428d
+	ld hl, PhoneSpecialCharacterPositionCodes
+.loop3
 	ld a, [hli]
 	cp b
-	jr nz, .asm_a429b
+	jr nz, .next_1
 	ld a, [hli]
 	cp c
-	jr nz, .asm_a429c
+	jr nz, .next_2
 	ld a, [hli]
 	cp d
-	jr nz, .asm_a429d
+	jr nz, .next_3
 	xor a
 	ret
 
-.asm_a429b
+.next_1
 	inc hl
-.asm_a429c
+.next_2
 	inc hl
-.asm_a429d
+.next_3
 	inc e
-	jr nz, .asm_a428d
-.asm_a42a0
+	jr nz, .loop3
+.done_section
 	or $1
 	ret
 
@@ -531,11 +531,12 @@ PrintPhoneNumber: ; a42a3 (29:42a3)
 	ret
 
 GetPhoneNumber: ; a42e5 (29:42e5)
-; abcde = Encrypted Phone Number
+; bcde = Phone number, 32-bit
+; a = Which symbol position set
 	push af
-	call DecryptPhoneNumber
+	call ConvertPhoneNumberToBCD
 	pop af
-	ld hl, Data_a4588
+	ld hl, PhoneSpecialCharacterPositionCodes
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -546,7 +547,7 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld hl, wMapHeader
 	ld a, $60 ; 0
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer]
+	ld a, [wPhoneNumberBuffer]
 	ld b, a
 	ld a, [de]
 	inc de
@@ -586,42 +587,42 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	jr z, .c_slot_1
 	ld a, c
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 1]
+	ld a, [wPhoneNumberBuffer + 1]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 2]
+	ld a, [wPhoneNumberBuffer + 2]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 3]
+	ld a, [wPhoneNumberBuffer + 3]
 	ld [hli], a
 	jr .next
 
 .c_slot_1
-	ld a, [wPhoneNumberDecryptionBuffer + 1]
+	ld a, [wPhoneNumberBuffer + 1]
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 2]
+	ld a, [wPhoneNumberBuffer + 2]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 3]
+	ld a, [wPhoneNumberBuffer + 3]
 	ld [hli], a
 	jr .next
 
 .c_slot_2
-	ld a, [wPhoneNumberDecryptionBuffer + 1]
+	ld a, [wPhoneNumberBuffer + 1]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 2]
+	ld a, [wPhoneNumberBuffer + 2]
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 3]
+	ld a, [wPhoneNumberBuffer + 3]
 	ld [hli], a
 	jr .next
 
 .c_slot_3
-	ld a, [wPhoneNumberDecryptionBuffer + 1]
+	ld a, [wPhoneNumberBuffer + 1]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 2]
+	ld a, [wPhoneNumberBuffer + 2]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 3]
+	ld a, [wPhoneNumberBuffer + 3]
 	ld [hli], a
 	ld a, c
 	ld [hli], a
@@ -646,63 +647,63 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	jr z, .c_slot_5
 	ld a, c
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 4]
+	ld a, [wPhoneNumberBuffer + 4]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 5]
+	ld a, [wPhoneNumberBuffer + 5]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 6]
+	ld a, [wPhoneNumberBuffer + 6]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 7]
+	ld a, [wPhoneNumberBuffer + 7]
 	ld [hli], a
 	jr .done
 
 .c_slot_5
-	ld a, [wPhoneNumberDecryptionBuffer + 4]
+	ld a, [wPhoneNumberBuffer + 4]
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 5]
+	ld a, [wPhoneNumberBuffer + 5]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 6]
+	ld a, [wPhoneNumberBuffer + 6]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 7]
+	ld a, [wPhoneNumberBuffer + 7]
 	ld [hli], a
 	jr .done
 
 .c_slot_6
-	ld a, [wPhoneNumberDecryptionBuffer + 4]
+	ld a, [wPhoneNumberBuffer + 4]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 5]
+	ld a, [wPhoneNumberBuffer + 5]
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 6]
+	ld a, [wPhoneNumberBuffer + 6]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 7]
+	ld a, [wPhoneNumberBuffer + 7]
 	ld [hli], a
 	jr .done
 
 .c_slot_7
-	ld a, [wPhoneNumberDecryptionBuffer + 4]
+	ld a, [wPhoneNumberBuffer + 4]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 5]
+	ld a, [wPhoneNumberBuffer + 5]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 6]
+	ld a, [wPhoneNumberBuffer + 6]
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 7]
+	ld a, [wPhoneNumberBuffer + 7]
 	ld [hli], a
 	jr .done
 
 .c_slot_8
-	ld a, [wPhoneNumberDecryptionBuffer + 4]
+	ld a, [wPhoneNumberBuffer + 4]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 5]
+	ld a, [wPhoneNumberBuffer + 5]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 6]
+	ld a, [wPhoneNumberBuffer + 6]
 	ld [hli], a
-	ld a, [wPhoneNumberDecryptionBuffer + 7]
+	ld a, [wPhoneNumberBuffer + 7]
 	ld [hli], a
 	ld a, c
 	ld [hli], a
@@ -710,12 +711,12 @@ GetPhoneNumber: ; a42e5 (29:42e5)
 	ld de, wMapHeader
 	ret
 
-DecryptPhoneNumber: ; a43f8 (29:43f8)
+ConvertPhoneNumberToBCD: ; a43f8 (29:43f8)
 	push bc
 	ld a, b
 	and $3
 	ld b, a
-	ld hl, .DecryptionKey1
+	ld hl, .MinusTenMillion
 	ld a, $ff
 	ld [wCustomSpriteDest], a
 .decrypt_loop1
@@ -724,7 +725,7 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld [wCustomSpriteDest], a
 	push bc
 	push de
-	call DecryptPhoneNumberByte
+	call Add32
 	jr z, .decrypt_next1
 	add sp, $4
 	jr .decrypt_loop1
@@ -742,8 +743,8 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld [wCustomSpriteDest], a
 .negative
 	ld a, [wCustomSpriteDest]
-	ld [wPhoneNumberDecryptionBuffer], a
-	ld hl, .DecryptionKey2
+	ld [wPhoneNumberBuffer], a
+	ld hl, .MinusOneMillion
 	ld a, $ff
 	ld [wCustomSpriteDest], a
 .decrypt_loop2
@@ -752,7 +753,7 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld [wCustomSpriteDest], a
 	push bc
 	push de
-	call DecryptPhoneNumberByte
+	call Add32
 	jr z, .decrypt_next2
 	add sp, $4
 	jr .decrypt_loop2
@@ -761,8 +762,8 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	pop de
 	pop bc
 	ld a, [wCustomSpriteDest]
-	ld [wPhoneNumberDecryptionBuffer + 1], a
-	ld hl, .DecryptionKey3
+	ld [wPhoneNumberBuffer + 1], a
+	ld hl, .MinusHundredThousand
 	ld a, $ff
 	ld [wCustomSpriteDest], a
 .decrypt_loop3
@@ -771,7 +772,7 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld [wCustomSpriteDest], a
 	push bc
 	push de
-	call DecryptPhoneNumberByte
+	call Add32
 	jr z, .decrypt_next3
 	add sp, $4
 	jr .decrypt_loop3
@@ -780,8 +781,8 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	pop de
 	pop bc
 	ld a, [wCustomSpriteDest]
-	ld [wPhoneNumberDecryptionBuffer + 2], a
-	ld hl, .DecryptionKey4
+	ld [wPhoneNumberBuffer + 2], a
+	ld hl, .MinusTenThousand
 	ld a, $ff
 	ld [wCustomSpriteDest], a
 .decrypt_loop4
@@ -790,7 +791,7 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld [wCustomSpriteDest], a
 	push bc
 	push de
-	call DecryptPhoneNumberByte
+	call Add32
 	jr z, .decrypt_next4
 	add sp, $4
 	jr .decrypt_loop4
@@ -799,7 +800,7 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	pop hl
 	add sp, $2
 	ld a, [wCustomSpriteDest]
-	ld [wPhoneNumberDecryptionBuffer + 3], a
+	ld [wPhoneNumberBuffer + 3], a
 	ld bc, -1000
 	ld a, $ff
 .bcd_thousands
@@ -808,7 +809,7 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld e, l
 	add hl, bc
 	jr c, .bcd_thousands
-	ld [wPhoneNumberDecryptionBuffer + 4], a
+	ld [wPhoneNumberBuffer + 4], a
 	ld h, d
 	ld l, e
 	ld bc, -100
@@ -819,7 +820,7 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	ld e, l
 	add hl, bc
 	jr c, .bcd_hundreds
-	ld [wPhoneNumberDecryptionBuffer + 5], a
+	ld [wPhoneNumberBuffer + 5], a
 	ld a, e
 	ld c, -10
 	ld d, $ff
@@ -829,11 +830,11 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	add c
 	jr c, .bcd_tens
 	ld a, d
-	ld [wPhoneNumberDecryptionBuffer + 6], a
+	ld [wPhoneNumberBuffer + 6], a
 	ld a, b
-	ld [wPhoneNumberDecryptionBuffer + 7], a
+	ld [wPhoneNumberBuffer + 7], a
 	ld b, 8
-	ld hl, wPhoneNumberDecryptionBuffer
+	ld hl, wPhoneNumberBuffer
 .convert_to_tile_loop
 	ld a, [hl]
 	add a ; each digit is 2 tiles high
@@ -843,19 +844,22 @@ DecryptPhoneNumber: ; a43f8 (29:43f8)
 	jr nz, .convert_to_tile_loop
 	ret
 
-.DecryptionKey1:
-	db $80, $69, $67, $ff
+.MinusTenMillion:
+	dl 4, -10000000
 
-.DecryptionKey2:
-	db $c0, $bd, $f0, $ff
+.MinusOneMillion:
+	dl 4, -1000000
 
-.DecryptionKey3:
-	db $60, $79, $fe, $ff
+.MinusHundredThousand:
+	dl 4, -100000
 
-.DecryptionKey4:
-	db $f0, $d8, $ff, $ff
+.MinusTenThousand:
+	dl 4, -10000
 
-DecryptPhoneNumberByte: ; a44e5 (29:44e5)
+Add32: ; a44e5 (29:44e5)
+; add hl[:4] + (bcde)
+; value at hl is little-endian
+; store 40-bit result to ([wMathBuffer3]bcde)
 	ld a, [hli]
 	add e
 	ld e, a
@@ -960,10 +964,10 @@ Func_a4560: ; a4560 (29:4560)
 	jr nz, .asm_a456a
 	ret
 
-Data_a4588:
+PhoneSpecialCharacterPositionCodes:
 INCLUDE "data/unknown_a4588.asm"
 
-Data_a4888:
+PhoneNumber_MultiplesOfPowersOfTen:
 INCLUDE "data/unknown_a4888.asm"
 
 LoadPhoneNumberDigitTiles: ; a49b8 (29:49b8)

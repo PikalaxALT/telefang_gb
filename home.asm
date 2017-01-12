@@ -1887,17 +1887,17 @@ Func_1afc::
 	call CopyData
 	ret
 
-Func_1b4d: ; 1b4d (0:1b4d)
+IsSpecialPhoneNumber: ; 1b4d (0:1b4d)
 	xor a
 	ld [wcb20], a
-	ld hl, Data_a6b69
+	ld hl, SpecialPhoneNumbers
 	ld b, $e
-.asm_1b56
+.number_loop
 	push bc
 	push hl
-	call Func_1b77
+	call .IsPhoneNumberInArray
 	cp $0
-	jr z, .asm_1b72
+	jr z, .match
 	ld a, [wcb20]
 	inc a
 	ld [wcb20], a
@@ -1906,34 +1906,34 @@ Func_1b4d: ; 1b4d (0:1b4d)
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_1b56
+	jr nz, .number_loop
 	ld c, $1
 	ret
 
-.asm_1b72
+.match
 	pop hl
 	pop bc
 	ld c, $0
 	ret
 
-Func_1b77: ; 1b77 (0:1b77)
+.IsPhoneNumberInArray: ; 1b77 (0:1b77)
 	ld b, $e
 	ld de, wd200
-.asm_1b7c
+.loop
 	push bc
 	ld a, [hli]
 	ld b, a
 	ld a, [de]
 	inc de
 	cp b
-	jr nz, .asm_1b8b
+	jr nz, .nope
 	pop bc
 	dec b
-	jr nz, .asm_1b7c
+	jr nz, .loop
 	ld a, $0
 	ret
 
-.asm_1b8b
+.nope
 	pop bc
 	ld a, $1
 	ret
@@ -5363,8 +5363,8 @@ Func_36f3:
 	rst Bankswitch
 	ret
 
-Func_3720::
-	homecall Func_a4187
+CompressPhoneNumber_::
+	homecall CompressPhoneNumber
 	ret
 
 FarCopy2bpp_2: ; 372d (0:372d)

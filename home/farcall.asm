@@ -421,10 +421,10 @@ Func_06a4::
 	homecall_memret Func_a5418
 	ret
 
-Func_06ac::
-	ld a, BANK(Data_a6b69)
+IsSpecialPhoneNumber_::
+	ld a, BANK(SpecialPhoneNumbers)
 	rst Bankswitch
-	call Func_1b4d
+	call IsSpecialPhoneNumber
 	rst MemBankswitch
 	ret
 

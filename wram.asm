@@ -1103,7 +1103,7 @@ wca0c:: ds 1
 wca0d:: ds 1
 wca0e:: ds 1
 wca0f:: ds 1
-wPhoneNumberDecryptionBuffer:: ds 1
+wPhoneNumberBuffer:: ds 1
 wca11:: ds 1
 wca12:: ds 1
 wca13:: ds 1

@@ -870,7 +870,7 @@ Func_10681: ; 10681 (4:4681)
 	ld a, $ff
 	ld [wcb66], a
 	call Func_11d40
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld bc, $d
@@ -900,7 +900,7 @@ Func_10743: ; 10743 (4:4743)
 	jr z, .asm_10764
 .asm_10758
 	call Func_13e37
-	ld bc, $307
+	lb bc, 3, 7
 	call Func_119df
 	call Func_135ef
 .asm_10764
@@ -973,20 +973,20 @@ Func_107d9: ; 107d9 (4:47d9)
 	ld [wcb2c], a
 	cp $0
 	ret nz
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
 
 Func_107ee: ; 107ee (4:47ee)
-	ld a, $65
+	ld a, $65 ; no call
 	ld [H_SFX_ID], a
 	ld a, [wcb43]
 	cp $0
-	jr z, .asm_107ff
-	ld a, $66
+	jr z, .got_sfx
+	ld a, $66 ; ring ring
 	ld [H_SFX_ID], a
-.asm_107ff
+.got_sfx
 	ld a, $80
 	ld [wcb2c], a
 	jp IncrementSubroutine
@@ -1014,7 +1014,7 @@ Func_10807: ; 10807 (4:4807)
 
 Func_1082e: ; 1082e (4:482e)
 	call Func_13e37
-	ld bc, $307
+	lb bc, 3, 7
 	call Func_119df
 	call Func_135ef
 	ld de, wOAMAnimation01
@@ -1028,7 +1028,7 @@ Func_1082e: ; 1082e (4:482e)
 
 Func_1084e: ; 1084e (4:484e)
 	call Func_13f38
-	ld bc, $306
+	lb bc, 3, 6
 	call Func_119df
 	ld a, [wcd22]
 	inc a
@@ -1041,14 +1041,14 @@ Func_1084e: ; 1084e (4:484e)
 
 Func_10866: ; 10866 (4:4866)
 	call Func_13f3d
-	ld bc, $308
+	lb bc, 3, 8
 	call Func_119df
 	jp IncrementSubroutine
 
 Func_10872: ; 10872 (4:4872)
 	ld e, $12
 	call Func_13951
-	ld bc, $307
+	lb bc, 3, 7
 	call Func_119df
 	ld a, $5
 	ld [wSubroutine], a
@@ -1056,7 +1056,7 @@ Func_10872: ; 10872 (4:4872)
 
 Func_10883: ; 10883 (4:4883)
 	call Func_13f3d
-	ld bc, $308
+	lb bc, 3, 8
 	call Func_119df
 	ld a, [wcd22]
 	dec a
@@ -1069,7 +1069,7 @@ Func_10883: ; 10883 (4:4883)
 
 Func_1089c: ; 1089c (4:489c)
 	call Func_13f38
-	ld bc, $306
+	lb bc, 3, 6
 	call Func_119df
 	ld a, $d
 	ld [wSubroutine], a
@@ -1542,7 +1542,7 @@ Func_10c4a:
 	call Func_1371c
 	call Func_13f15
 	ld e, $1c
-	lb bc, $6, $3
+	lb bc, 6, 3
 	ld a, $0
 	call LoadStdBGMapLayout_
 	xor a
@@ -1899,7 +1899,7 @@ Func_10f4d:
 	call Func_11a59
 	ld e, $31
 	call Func_13951
-	lb bc, $1, $d
+	lb bc, 1, 13
 	ld e, $2f
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -2184,7 +2184,7 @@ Func_11177: ; 11177 (4:5177)
 	call DecompressGFXByIndex_
 	ld e, $3c
 	call Func_13951
-	lb bc, $1, $b
+	lb bc, 1, 11
 	ld e, $22
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -2255,7 +2255,7 @@ Func_1120c: ; 1120c (4:520c)
 	pop af
 	call Func_13f18
 	ld e, $1c
-	lb bc, $6, $3
+	lb bc, 6, 3
 	ld a, $0
 	call LoadStdBGMapLayout_
 	xor a
@@ -2419,7 +2419,7 @@ Func_11370: ; 11370 (4:5370)
 	call DecompressGFXByIndex_
 	ld e, $3d
 	call Func_13951
-	lb bc, $1, $b
+	lb bc, 1, 11
 	ld e, $22
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -2901,11 +2901,11 @@ Func_11aaf: ; 11aaf (4:5aaf)
 	jr z, .asm_11af9
 	ld a, $4
 	ld [H_SFX_ID], a
-	lb bc, $1, $6
+	lb bc, 1, 6
 	ld e, $30
 	ld a, $0
 	call LoadStdBGMapLayout_
-	lb bc, $1, $6
+	lb bc, 1, 6
 	ld e, $35
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
@@ -3388,7 +3388,7 @@ Func_11dcb: ; 11dcb (4:5dcb)
 	ret
 
 .asm_11e0c
-	lb bc, $1, $6
+	lb bc, 1, 6
 	ld e, $30
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -4131,7 +4131,7 @@ Phone_SaveMenu_JoypadAction: ; 122ea (4:62ea)
 
 .save
 	call SaveGame_
-	lb bc, $1, $6
+	lb bc, 1, 6
 	ld e, $33
 	ld a, $0
 	call LoadStdBGMapLayout_
@@ -5717,7 +5717,7 @@ Func_12dc7: ; 12dc7 (4:6dc7)
 	jr z, .asm_12dd2
 	ld e, $18
 .asm_12dd2
-	lb bc, $4, $a
+	lb bc, 4, 10
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld e, $19
@@ -5726,7 +5726,7 @@ Func_12dc7: ; 12dc7 (4:6dc7)
 	jr z, .asm_12de5
 	ld e, $18
 .asm_12de5
-	lb bc, $4, $c
+	lb bc, 4, 12
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld e, $19
@@ -6765,22 +6765,22 @@ Func_1360a: ; 1360a (4:760a)
 	ld [wcb22], a
 	call Func_1359c
 	ld hl, wd200
-	call Func_3720
+	call CompressPhoneNumber_
 	ld a, e
 	cp $0
-	jr nz, .asm_13633
+	jr nz, .number_valid
 	ld a, d
 	cp $0
-	jr nz, .asm_13633
+	jr nz, .number_valid
 	ld a, c
 	cp $0
-	jr nz, .asm_13633
+	jr nz, .number_valid
 	ld a, b
 	cp $0
-	jr nz, .asm_13633
-	jr .asm_1369a
+	jr nz, .number_valid
+	jr .number_invalid
 
-.asm_13633
+.number_valid
 	ld hl, wd300
 	ld a, e
 	ld [hli], a
@@ -6795,17 +6795,17 @@ Func_1360a: ; 1360a (4:760a)
 	ld [hli], a
 	ld b, BANK(sAddressBook)
 	call Rom4_GetSRAMBankB
-	ld b, $fe
+	ld b, ADDRESS_BOOK_SIZE
 	ld hl, sAddressBook
 	ld c, $0
-.asm_13650
+.loop
 	push bc
 	push hl
 	ld de, $1
 	add hl, de
 	ld a, [hl]
 	cp $0
-	jr z, .asm_1368d
+	jr z, .next
 	pop hl
 	push hl
 	ld de, $a
@@ -6815,19 +6815,19 @@ Func_1360a: ; 1360a (4:760a)
 	ld b, a
 	ld a, [de]
 	cp b
-	jr nz, .asm_1368d
+	jr nz, .next
 	inc de
 	ld a, [hli]
 	ld b, a
 	ld a, [de]
 	cp b
-	jr nz, .asm_1368d
+	jr nz, .next
 	inc de
 	ld a, [hli]
 	ld b, a
 	ld a, [de]
 	cp b
-	jr nz, .asm_1368d
+	jr nz, .next
 	inc de
 	ld a, [hli]
 	ld [wcb22], a
@@ -6836,32 +6836,32 @@ Func_1360a: ; 1360a (4:760a)
 	ld a, [de]
 	and $3
 	cp b
-	jr nz, .asm_1368d
+	jr nz, .next
 	inc de
 	ld a, [hl]
 	ld b, a
 	ld a, [de]
 	cp b
-	jr z, .asm_136a7
-.asm_1368d
+	jr z, .denjuu_in_address_book
+.next
 	pop hl
 	ld de, $10
 	add hl, de
 	pop bc
 	inc c
 	dec b
-	jr nz, .asm_13650
+	jr nz, .loop
 	call Rom4_CloseSRAM
-.asm_1369a
-	call Func_06ac
+.number_invalid
+	call IsSpecialPhoneNumber_
 	ld a, c
 	cp $0
-	jr z, .asm_136c6
+	jr z, .special
 	xor a
 	ld [wcb43], a
 	ret
 
-.asm_136a7
+.denjuu_in_address_book
 	pop hl
 	pop bc
 	ld a, c
@@ -6870,16 +6870,16 @@ Func_1360a: ; 1360a (4:760a)
 	ld [wcb01], a
 	ld a, [wcb22]
 	bit 7, a
-	jr z, .asm_136bd
+	jr z, .done_good
 	ld a, $1
 	ld [wcb03], a
-.asm_136bd
+.done_good
 	call Rom4_CloseSRAM
 	ld a, $1
 	ld [wcb43], a
 	ret
 
-.asm_136c6
+.special
 	ld a, $2
 	ld [wcb43], a
 	ld a, [wcb20]
