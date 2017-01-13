@@ -214,7 +214,7 @@ Func_2329::
 	or a
 	jr z, .asm_234b
 	ld a, [wMapGroup]
-	ld [wca69], a
+	ld [wWhichPhoneNumberSymbolCode], a
 	callba Func_c99ac
 	ret
 
@@ -352,7 +352,7 @@ Func_2465::
 .asm_2481
 	cp $ff
 	ret nz
-	ld a, [wca69]
+	ld a, [wWhichPhoneNumberSymbolCode]
 	or a
 	jr nz, .asm_24a5
 	ld bc, $1
@@ -362,7 +362,7 @@ Func_2465::
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld [wca69], a
+	ld [wWhichPhoneNumberSymbolCode], a
 	call BlackDMGPals
 	ret
 

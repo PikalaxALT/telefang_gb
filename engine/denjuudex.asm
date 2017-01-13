@@ -366,19 +366,19 @@ Func_116e7: ; 116e7 (4:56e7)
 	add $20
 	ld [wOAMAnimation20_TemplateIdx], a
 	ld de, wOAMAnimation17
-	ld bc, $2020
+	lb bc, $20, $20
 	call Func_11789
 	ld de, wOAMAnimation18
-	ld bc, $2820
+	lb bc, $28, $20
 	call Func_11789
 	ld de, wOAMAnimation19
-	ld bc, $3820
+	lb bc, $38, $20
 	call Func_11789
 	ld de, wOAMAnimation20
-	ld bc, $4020
+	lb bc, $40, $20
 	call Func_11789
 	ld de, wOAMAnimation21
-	ld bc, Func_3020
+	lb bc, $30, $20
 	call Func_11789
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -428,7 +428,7 @@ Func_11799: ; 11799 (4:5799)
 	ld a, [wcb3c]
 	cp $0
 	jr nz, .asm_117b4
-	ld bc, $306
+	lb bc, 3, 6
 	call Func_11939
 	ld a, [wcb38]
 	cp $3
@@ -452,7 +452,7 @@ Func_117c4: ; 117c4 (4:57c4)
 	ld a, [wcb3c]
 	cp $0
 	jr nz, .asm_117df
-	ld bc, $308
+	lb bc, 3, 8
 	call Func_11939
 	ld a, [wcb38]
 	cp $0

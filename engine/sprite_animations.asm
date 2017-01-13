@@ -4021,10 +4021,10 @@ Func_32079: ; 32079 (c:6079)
 	cp $ff
 	jr nz, .not_null
 	ld a, [wcd51]
-	ld [wcd03], a
+	ld [wScriptNumber + 1], a
 	ld b, a
 	ld a, [wcd50]
-	ld [wcd02], a
+	ld [wScriptNumber], a
 	cp $ff
 	jr nz, .asm_32093
 	ld a, b
@@ -4036,8 +4036,8 @@ Func_32079: ; 32079 (c:6079)
 	ld a, $0
 	ld [wcd10], a
 	ld a, $0
-	ld [wcd01], a
-	ld hl, wcd06
+	ld [wScriptBank], a
+	ld hl, wScriptOffset
 	ld a, $0
 	ld [hli], a
 	ld a, $0
@@ -6250,6 +6250,7 @@ Func_32ec9: ; 32ec9 (c:6ec9)
 	ld a, [hl]
 	or $40
 	ld [hl], a
+
 	ld a, [wCurObjectStruct]
 	add $15
 	ld l, a
@@ -6274,6 +6275,7 @@ Func_32ec9: ; 32ec9 (c:6ec9)
 	ld l, a
 	ld a, b
 	ld [hl], a
+
 	ld a, [wCurObjectStruct]
 	add $15
 	ld l, a
@@ -6298,6 +6300,7 @@ Func_32ec9: ; 32ec9 (c:6ec9)
 	ld l, a
 	ld a, b
 	ld [hl], a
+
 	ld a, [wCurObjectStruct]
 	add $15
 	ld l, a
@@ -6758,7 +6761,7 @@ Func_331d8:
 	ld [hl], a
 	ld e, a
 	lb bc, $50, $44
-	call Func_3020
+	call AddVector_
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, [wCurObjectStruct]
@@ -6883,7 +6886,7 @@ Func_332ad:
 	ld [hl], a
 	ld e, a
 	lb bc, $50, $44
-	call Func_3020
+	call AddVector_
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, [wCurObjectStruct]

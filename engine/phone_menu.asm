@@ -256,14 +256,14 @@ Func_101ec: ; 101ec (4:41ec)
 Func_101f7: ; 101f7 (4:41f7)
 	ld e, $1f
 	call Func_13f3f
-	ld bc, $307
+	lb bc, 3, 7
 	call Func_11939
 	jp IncrementSubroutine
 
 Func_10205: ; 10205 (4:4205)
 	ld e, $12
 	call Func_13f3f
-	ld bc, $307
+	lb bc, 3, 7
 	call Func_11939
 	ld a, $8
 	ld [wSubroutine], a
@@ -278,7 +278,7 @@ Func_10216: ; 10216 (4:4216)
 Func_10221: ; 10221 (4:4221)
 	ld e, $1e
 	call Func_13f3f
-	ld bc, $306
+	lb bc, 3, 6
 	call Func_11939
 	ld a, $b
 	ld [wSubroutine], a
@@ -5301,15 +5301,15 @@ GetRTC: ; 12ab9 (4:6ab9)
 	nop
 	nop
 	nop
-	ld a, $8
+	ld a, RTC_S
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
 	ld [wCurSeconds], a
-	ld a, $9
+	ld a, RTC_M
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
 	ld [wCurMinutes], a
-	ld a, $a
+	ld a, RTC_H
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
 	ld [wCurHours], a
@@ -6791,7 +6791,7 @@ Func_1360a: ; 1360a (4:760a)
 	set 7, b
 	ld a, b
 	ld [hli], a
-	ld a, [wca69]
+	ld a, [wWhichPhoneNumberSymbolCode]
 	ld [hli], a
 	ld b, BANK(sAddressBook)
 	call Rom4_GetSRAMBankB

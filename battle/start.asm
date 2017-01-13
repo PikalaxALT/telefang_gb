@@ -720,7 +720,7 @@ Func_70500: ; 70500 (1c:4500)
 	sla e
 	rl d
 	ld hl, $60
-	ld a, [wc93b]
+	ld a, [wRTC_Hrs]
 	cp $14
 	jr nc, .asm_7051e
 	cp $4
@@ -3327,7 +3327,7 @@ Func_71a2f: ; 71a2f (1c:5a2f)
 	sla e
 	rl d
 	ld hl, $60
-	ld a, [wc93b]
+	ld a, [wRTC_Hrs]
 	cp $14
 	jr nc, .asm_71a4d
 	cp $4

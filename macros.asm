@@ -1,6 +1,7 @@
 INCLUDE "macros/enum.asm"
 INCLUDE "macros/wram.asm"
 INCLUDE "macros/sound.asm"
+INCLUDE "macros/scripting.asm"
 
 Bankswitch    EQU $10
 MemBankswitch EQU $18

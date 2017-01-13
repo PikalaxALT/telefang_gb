@@ -3826,7 +3826,7 @@ Func_69f4d: ; 69f4d (1a:5f4d)
 	inchlntimes
 	ld a, [hl]
 	ld c, a
-	call Func_3020
+	call AddVector_
 	pop de
 	ld hl, $3
 	add hl, de

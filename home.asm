@@ -2313,7 +2313,7 @@ RunOverworld: ; 1ea1 (0:1ea1)
 	ld a, [wc98e]
 	or a
 	jr nz, .skip
-	homecall Func_a5060, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, Func_a5245, Func_a54a2
+	homecall OverworldGetRTCEveryFourFrames, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, Func_a5245, Func_a54a2
 	callba OverworldIdleHudCheck
 	callba Func_2e4b2
 .skip
@@ -4085,26 +4085,26 @@ Func_2f34::
 	rst Bankswitch
 	ret
 
-Func_2f43::
+CopyScriptToBuffer::
 	ld a, [wROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
-	ld a, [wcd02]
+	ld a, [wScriptNumber]
 	ld e, a
-	ld a, [wcd03]
+	ld a, [wScriptNumber + 1]
 	ld d, a
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wcd07]
+	ld a, [wScriptOffset + 1]
 	ld d, a
-	ld a, [wcd06]
+	ld a, [wScriptOffset]
 	ld e, a
 	add hl, de
-	ld de, wcd08
+	ld de, wScriptBuffer
 	ld b, $8
 	call CopyData_Under256Bytes
 	pop af
@@ -4255,8 +4255,8 @@ Func_3013::
 	homecall Func_2d95f
 	ret
 
-Func_3020::
-	homecall Func_2db1c
+AddVector_::
+	homecall AddVector
 	ret
 
 Func_302d::
@@ -4733,7 +4733,7 @@ Func_32ff: ; 32ff (0:32ff)
 	rst Bankswitch
 	ld a, $ff
 	ld [wca68], a
-	ld hl, wca69
+	ld hl, wWhichPhoneNumberSymbolCode
 	ld a, $0
 	ld [hli], a
 	ld a, $0
@@ -4760,9 +4760,9 @@ Func_32ff: ; 32ff (0:32ff)
 	inc hl
 	inc hl
 	inc hl
-	ld a, [wca69]
+	ld a, [wWhichPhoneNumberSymbolCode]
 	inc a
-	ld [wca69], a
+	ld [wWhichPhoneNumberSymbolCode], a
 	jr nz, .no_overflow
 	ld a, [wMathBuffer3]
 	inc a
@@ -4806,7 +4806,7 @@ Func_3363: ; 3363 (0:3363)
 	ld a, $0
 	adc d
 	ld d, a
-	ld a, [wca69]
+	ld a, [wWhichPhoneNumberSymbolCode]
 	ld [de], a
 	inc de
 	ld a, [wMathBuffer3]

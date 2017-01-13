@@ -3,7 +3,7 @@ Divide_BC_by_DE_signed: ; 2d99b (b:599b)
 	ld a, b
 	ld [wca68], a
 	xor d
-	ld [wca69], a
+	ld [wWhichPhoneNumberSymbolCode], a
 	bit 7, d
 	jp z, .de_positive
 	sub a
@@ -24,7 +24,7 @@ Divide_BC_by_DE_signed: ; 2d99b (b:599b)
 .bc_positive
 	call Divide_BC_by_DE
 	ret c
-	ld a, [wca69]
+	ld a, [wWhichPhoneNumberSymbolCode]
 	and $80
 	jp z, .quotient_positive
 	sub a

@@ -893,11 +893,11 @@ wc935:: ds 1
 wc936:: ds 1
 wc937:: ds 1
 wc938:: ds 1
-wc939:: ds 1
-wc93a:: ds 1
-wc93b:: ds 1
-wc93c:: ds 1
-wc93d:: ds 1
+wRTC_Secs:: ds 1
+wRTC_Mins:: ds 1
+wRTC_Hrs:: ds 1
+wRTC_DayLo:: ds 1
+wRTC_DayHi:: ds 1
 wc93e:: ds 1
 wc93f:: ds 1
 wc940:: ds 1
@@ -1192,7 +1192,7 @@ wca65:: ds 1
 wca66:: ds 1
 wca67:: ds 1
 wca68:: ds 1
-wca69:: ds 1
+wWhichPhoneNumberSymbolCode:: ds 1
 wMathBuffer3:: ds 1
 wCustomSpriteDest:: ds 2
 wSpriteDestIsCustom:: ds 1
@@ -1781,21 +1781,14 @@ wccfd:: ds 1
 wccfe:: ds 1
 wccff:: ds 1
 wPlayerNameEntryBuffer:: ds 1
-wcd01:: ds 1
-wcd02:: ds 1
-wcd03:: ds 1
+wScriptBank:: ds 1
+wScriptNumber:: dw
 wcd04:: ds 1
 wcd05:: ds 1
-wcd06:: ds 1
-wcd07:: ds 1
-wcd08:: ds 1
-wcd09:: ds 1
-wcd0a:: ds 1
-wcd0b:: ds 1
-wcd0c:: ds 1
-wcd0d:: ds 1
-wcd0e:: ds 1
-wcd0f:: ds 1
+wScriptOffset:: dw
+
+wScriptBuffer:: ds 8
+
 wcd10:: ds 1
 wcd11:: ds 1
 wcd12:: ds 1

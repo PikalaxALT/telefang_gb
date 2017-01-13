@@ -9,7 +9,7 @@ Func_a4000:
 	ld [wc925], a
 .asm_a401a
 	push hl
-	call Func_a40b7
+	call .GenerateUnique11BitID
 	pop hl
 	ld b, h
 	ld c, l
@@ -110,7 +110,8 @@ Func_a4000:
 	disable_sram
 	ret
 
-Func_a40b7: ; a40b7 (29:40b7)
+.GenerateUnique11BitID: ; a40b7 (29:40b7)
+.outer_loop
 	call OverworldRandom8_
 	and $3
 	ld b, a
@@ -119,11 +120,11 @@ Func_a40b7: ; a40b7 (29:40b7)
 	ld e, a
 	ld hl, sAddressBook + 1
 	ld bc, ADDRESS_BOOK_SIZE
-.asm_a40c8
+.loop
 	push hl
 	ld a, [hl]
 	or a
-	jr z, .asm_a40e0
+	jr z, .next
 	ld a, $6
 	add l
 	ld l, a
@@ -132,14 +133,14 @@ Func_a40b7: ; a40b7 (29:40b7)
 	ld h, a
 	ld a, [hli]
 	cp e
-	jr nz, .asm_a40e0
+	jr nz, .next
 	ld a, [hl]
 	cp d
-	jr nz, .asm_a40e0
+	jr nz, .next
 	pop hl
-	jr Func_a40b7
+	jr .outer_loop
 
-.asm_a40e0
+.next
 	pop hl
 	ld a, $10
 	add l
@@ -150,7 +151,7 @@ Func_a40b7: ; a40b7 (29:40b7)
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_a40c8
+	jr nz, .loop
 	ret
 
 Func_a40ef: ; a40ef (29:40ef)
@@ -159,7 +160,7 @@ Func_a40ef: ; a40ef (29:40ef)
 	ld b, $0
 	sla c
 	rl b
-	ld hl, $b200
+	ld hl, sOwnedDenjuuNicknames
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -183,7 +184,7 @@ Func_a40ef: ; a40ef (29:40ef)
 
 Func_a4121: ; a4121 (29:4121)
 	ld a, c
-	ld hl, $b800
+	ld hl, s2_b800
 	add l
 	ld l, a
 	ld a, $0
@@ -257,10 +258,10 @@ CompressPhoneNumber: ; a4187 (29:4187)
 	pop hl
 	jr nz, .nope
 	ld a, e
-	ld [wca69], a
+	ld [wWhichPhoneNumberSymbolCode], a
 	call .CompressNumericPortionOfPhoneNumber
 	xor a
-	ld a, [wca69]
+	ld a, [wWhichPhoneNumberSymbolCode]
 	ret
 
 .nope
