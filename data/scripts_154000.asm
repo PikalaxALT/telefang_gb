@@ -8,7 +8,7 @@ Data_154004:
 	script_3c $45, $20
 	script_2a 
 	script_5b 
-	script_06 
+	script_end 
 
 Data_154011:
 	script_3e $43
@@ -17,4 +17,4 @@ Data_154011:
 	script_3c $55, $20
 	script_2a 
 	script_5b 
-	script_06 
+	script_end 

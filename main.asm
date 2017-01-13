@@ -4022,7 +4022,7 @@ Func_39497: ; 39497 (e:5497)
 	ld a, $1
 	ld [wPlayerNameEntryBuffer], a
 	ld a, $0
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ld a, $0
 	ld [wScriptBank], a
 	ld hl, wScriptOffset
@@ -4442,28 +4442,28 @@ Func_3982c: ; 3982c (e:582c)
 	ld c, $0
 	ld a, [wc9f4]
 	cp $2d
-	jr c, .asm_39838
+	jr c, .no_sub_2d
 	ld c, $2d
 	sub c
-.asm_39838
+.no_sub_2d
 	cp $24
-	jr c, .asm_39840
+	jr c, .no_sub_24
 	ld c, $0
 	sub $24
-.asm_39840
+.no_sub_24
 	cp $1b
-	jr c, .asm_39847
+	jr c, .no_sub_1b
 	ld c, $1b
 	sub c
-.asm_39847
+.no_sub_1b
 	ld b, $0
 	sub $3
-	jr c, .asm_39855
+	jr c, .less_3_or_less_6
 	ld b, $3
 	sub $3
-	jr c, .asm_39855
+	jr c, .less_3_or_less_6
 	ld b, $6
-.asm_39855
+.less_3_or_less_6
 	ld a, b
 	add c
 	ld [wc9f4], a
@@ -6983,7 +6983,7 @@ Func_3ac38:
 	ld a, $1
 	ld [wPlayerNameEntryBuffer], a
 	ld a, $0
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ld a, $0
 	ld [wScriptBank], a
 	ld hl, wScriptOffset
@@ -7573,7 +7573,7 @@ Func_a4db0: ; a4db0 (29:4db0)
 	ld a, $1
 	ld [wc900], a
 	ld a, $8
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ret
 
 Func_a4dbb: ; a4dbb (29:4dbb)
@@ -17256,7 +17256,7 @@ Func_c981a: ; c981a (32:581a)
 	ld a, $1
 	ld [wPlayerNameEntryBuffer], a
 	ld a, $0
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ld a, $1
 	ld [wScriptBank], a
 	ld hl, wScriptOffset

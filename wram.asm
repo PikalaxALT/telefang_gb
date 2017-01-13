@@ -1789,7 +1789,7 @@ wScriptOffset:: dw
 
 wScriptBuffer:: ds 8
 
-wcd10:: ds 1
+wScriptDelay:: ds 1
 wcd11:: ds 1
 wcd12:: ds 1
 wcd13:: ds 1

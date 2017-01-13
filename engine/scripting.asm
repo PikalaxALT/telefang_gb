@@ -2,7 +2,7 @@ Func_3c000: ; 3c000 (f:4000)
 	ld a, [wSubroutine]
 	cp $4
 	ret nz
-	ld a, [wcd10]
+	ld a, [wScriptDelay]
 	or a
 	jr nz, asm_3c019
 Func_3c00c: ; 3c00c (f:400c)
@@ -10,12 +10,12 @@ Func_3c00c: ; 3c00c (f:400c)
 	or a
 	jp z, Func_3c050
 asm_3c013
-	ld a, [wcd10]
+	ld a, [wScriptDelay]
 	or a
 	jr z, asm_3c01e
 asm_3c019
 	dec a
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ret
 
 asm_3c01e
@@ -63,19 +63,19 @@ Func_3c050: ; 3c050 (f:4050)
 	cp $0
 	ret nz
 	ld hl, wcd50
-Func_3c05e: ; 3c05e (f:405e)
+.loop
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	ld a, $ff
 	cp c
-	jr nz, .asm_3c06b
+	jr nz, .okay
 	cp b
-	jr nz, .asm_3c06b
+	jr nz, .okay
 	ret
 
-.asm_3c06b
+.okay
 	push hl
 	push bc
 	ld hl, EVENT_400
@@ -85,7 +85,7 @@ Func_3c05e: ; 3c05e (f:405e)
 	call CheckEventFlag
 	pop bc
 	push bc
-	jp nz, Func_3c109
+	jp nz, .next
 	ld h, b
 	ld l, c
 	add hl, bc
@@ -97,9 +97,9 @@ Func_3c05e: ; 3c05e (f:405e)
 	call Func_2f34
 	ld a, [wPlayerObjectStruct_Duration + 15]
 	bit 0, a
-	jr z, .asm_3c092
+	jr z, .skip_flip_flag
 	xor $2
-.asm_3c092
+.skip_flip_flag
 	ld hl, Data_3c10e
 	add l
 	ld l, a
@@ -108,37 +108,37 @@ Func_3c05e: ; 3c05e (f:405e)
 	ld h, a
 	ld a, [hl]
 	and d
-	jr z, Func_3c109
+	jr z, .next
 	ld a, b
 	and $1
-	jr z, .asm_3c0c0
+	jr z, .skip_checks
 	ld a, [wc98e]
 	or a
-	jr nz, Func_3c109
+	jr nz, .next
 	ld a, [wc915]
 	ld e, a
 	ld a, c
 	swap a
 	and $f
 	cp e
-	jr nz, Func_3c109
+	jr nz, .next
 	ld a, [wc916]
 	ld e, a
 	ld a, c
 	and $f
 	cp e
-	jr nz, Func_3c109
-.asm_3c0c0
+	jr nz, .next
+.skip_checks
 	ld a, b
 	and $2
-	jr z, .asm_3c0cb
+	jr z, .force_a_button
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, Func_3c109
-.asm_3c0cb
+	jr z, .next
+.force_a_button
 	ld a, b
 	and $4
-	jr nz, .asm_3c0dd
+	jr nz, .force_script
 	pop bc
 	push bc
 	ld hl, EVENT_800
@@ -146,8 +146,8 @@ Func_3c05e: ; 3c05e (f:405e)
 	ld b, h
 	ld c, l
 	call CheckEventFlag
-	jr z, Func_3c109
-.asm_3c0dd
+	jr z, .next
+.force_script
 	pop bc
 	ld a, b
 	ld [wScriptNumber + 1], a
@@ -156,7 +156,7 @@ Func_3c05e: ; 3c05e (f:405e)
 	ld a, $1
 	ld [wPlayerNameEntryBuffer], a
 	ld a, $0
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ld a, $0
 	ld [wScriptBank], a
 	ld hl, wScriptOffset
@@ -168,10 +168,10 @@ Func_3c05e: ; 3c05e (f:405e)
 	callba Func_3982c
 	ret
 
-Func_3c109: ; 3c109 (f:4109)
+.next
 	pop bc
 	pop hl
-	jp Func_3c05e
+	jp .loop
 
 Data_3c10e:
 x = 0
@@ -207,7 +207,7 @@ ScriptCommandPointers:
 	dw Func_3c222 ; 01
 	dw Func_3c222 ; 02
 	dw Func_3c23d ; 03
-	dw Func_3c247 ; 04
+	dw Script_Sleep ; 04
 	dw Script_WaitButton ; 05
 	dw Script_End ; 06
 	dw Func_3c28f ; 07
@@ -333,12 +333,12 @@ Func_3c222: ; 3c222 (f:4222)
 	call PrintMapObjectText_
 	ld b, $3
 	call AdvanceScriptPointer
-	ld a, [wcd10]
+	ld a, [wScriptDelay]
 	or a
-	jr nz, .asm_3c23b
+	jr nz, .start_delay
 	ld a, $8
-	ld [wcd10], a
-.asm_3c23b
+	ld [wScriptDelay], a
+.start_delay
 	xor a
 	ret
 
@@ -349,9 +349,9 @@ Func_3c23d: ; 3c23d (f:423d)
 	scf
 	ret
 
-Func_3c247: ; 3c247 (f:4247)
+Script_Sleep: ; 3c247 (f:4247)
 	ld a, [wScriptBuffer + 1]
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ld b, $2
 	call AdvanceScriptPointer
 	xor a
@@ -378,7 +378,7 @@ Script_End: ; 3c263 (f:4263)
 	ld [wc918], a
 	call Func_225b
 	ld a, $8
-	ld [wcd10], a
+	ld [wScriptDelay], a
 	ld a, [wc940]
 	or a
 	jr nz, .asm_3c282
@@ -2173,12 +2173,12 @@ Func_3ce34: ; 3ce34 (f:4e34)
 	ld [wTextBGMapTop], a
 	ld b, $1
 	call AdvanceScriptPointer
-	ld a, [wcd10]
+	ld a, [wScriptDelay]
 	or a
-	jr nz, .asm_3ce6e
+	jr nz, .start_delay
 	ld a, $8
-	ld [wcd10], a
-.asm_3ce6e
+	ld [wScriptDelay], a
+.start_delay
 	xor a
 	ret
 

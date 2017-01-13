@@ -35,9 +35,9 @@ script_05: MACRO
 	db script_05_command
 	ENDM
 
-	enum script_06_command
-script_06: MACRO
-	db script_06_command
+	enum script_end_command
+script_end: MACRO
+	db script_end_command
 	ENDM
 
 	enum script_07_command
@@ -324,9 +324,9 @@ script_2f: MACRO
 	db \7
 	ENDM
 
-	enum script_30_command
-script_30: MACRO
-	db script_30_command
+	enum script_jump_command
+script_jump: MACRO
+	db script_jump_command
 	bigdw \1 ; script offset
 	ENDM
 
@@ -346,23 +346,23 @@ script_32: MACRO
 	db \3
 	ENDM
 
-	enum script_33_command
-script_33: MACRO
-	db script_33_command
+	enum script_load_battle_command
+script_load_battle: MACRO
+	db script_load_battle_command
 	db \1
 	db \2
 	db \3
 	ENDM
 
-	enum script_34_command
-script_34: MACRO
-	db script_34_command
+	enum script_set_event_command
+script_set_event: MACRO
+	db script_set_event_command
 	bigdw \1
 	ENDM
 
-	enum script_35_command
-script_35: MACRO
-	db script_35_command
+	enum script_reset_event_command
+script_reset_event: MACRO
+	db script_reset_event_command
 	bigdw \1
 	ENDM
 
@@ -380,29 +380,29 @@ script_37: MACRO
 	db \2
 	ENDM
 
-	enum script_38_command
-script_38: MACRO
-	db script_38_command
+	enum script_jump_if_command
+script_jump_if: MACRO
+	db script_jump_if_command
 	bigdw \1
 	db \2 ; script offset
 	ENDM
 
-	enum script_39_command
-script_39: MACRO
-	db script_39_command
+	enum script_jump_if_not_command
+script_jump_if_not: MACRO
+	db script_jump_if_not_command
 	bigdw \1
 	db \2 ; script offset
 	ENDM
 
-	enum script_3a_command
-script_3a: MACRO
-	db script_3a_command
+	enum script_give_money_command
+script_give_money: MACRO
+	db script_give_money_command
 	bigdw \1
 	ENDM
 
-	enum script_3b_command
-script_3b: MACRO
-	db script_3b_command
+	enum script_take_money_command
+script_take_money: MACRO
+	db script_take_money_command
 	bigdw \1
 	ENDM
 
@@ -459,15 +459,15 @@ script_43: MACRO
 	db \2
 	ENDM
 
-	enum script_44_command
-script_44: MACRO
-	db script_44_command
+	enum script_playsfx_command
+script_playsfx: MACRO
+	db script_playsfx_command
 	db \1
 	ENDM
 
-	enum script_45_command
-script_45: MACRO
-	db script_45_command
+	enum script_playmusic_command
+script_playmusic: MACRO
+	db script_playmusic_command
 	db \1
 	ENDM
 
@@ -545,12 +545,12 @@ script_51: MACRO
 	enum script_52_command
 script_52: MACRO
 	db script_52_command
-	db \1
 	ENDM
 
 	enum script_53_command
 script_53: MACRO
 	db script_53_command
+	db \1
 	ENDM
 
 	enum script_54_command
@@ -584,9 +584,9 @@ script_58: MACRO
 	db script_58_command
 	ENDM
 
-	enum script_59_command
-script_59: MACRO
-	db script_59_command
+	enum script_give_denjuu_command
+script_give_denjuu: MACRO
+	db script_give_denjuu_command
 	db \1
 	db \2
 	db \3
@@ -618,9 +618,9 @@ script_5d: MACRO
 	db script_5d_command
 	ENDM
 
-	enum script_5e_command
-script_5e: MACRO
-	db script_5e_command
+	enum script_dshot_signal_strength_command
+script_dshot_signal_strength: MACRO
+	db script_dshot_signal_strength_command
 	db \1
 	ENDM
 
@@ -662,7 +662,6 @@ script_63: MACRO
 script_64: MACRO
 	db script_64_command
 	db \1
-	db \2
 	ENDM
 
 	enum script_65_command
@@ -690,9 +689,9 @@ script_68: MACRO
 	db \3
 	ENDM
 
-	enum script_69_command
-script_69: MACRO
-	db script_69_command
+	enum script_if_own_denjuu_command
+script_if_own_denjuu: MACRO
+	db script_if_own_denjuu_command
 	db \1
 	db \2 ; script offset
 	ENDM
@@ -702,9 +701,9 @@ script_6a: MACRO
 	db script_6a_command
 	ENDM
 
-	enum script_6b_command
-script_6b: MACRO
-	db script_6b_command
+	enum script_upgrade_dshot_command
+script_upgrade_dshot: MACRO
+	db script_upgrade_dshot_command
 	db \1
 	ENDM
 
@@ -720,9 +719,9 @@ script_6d: MACRO
 	db \1 ; script offset
 	ENDM
 
-	enum script_6e_command
-script_6e: MACRO
-	db script_6e_command
+	enum script_if_dex_complete_command
+script_if_dex_complete: MACRO
+	db script_if_dex_complete_command
 	db \1 ; script offset
 	ENDM
 
