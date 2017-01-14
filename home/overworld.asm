@@ -126,8 +126,8 @@ Func_2264: ; 2264 (0:2264)
 	call LoadTilesetRegisters
 	ld a, $5e
 	ld [wCurTilesetBank], a
-	callba Func_2e0d2
-	call Func_3388
+	callba SetVisitedMapSectionFlag
+	call LoadTilesetGFX_
 	call Func_37d5
 	ld a, $0
 	ld [wc9de], a
@@ -195,7 +195,7 @@ Func_22d2: ; 22d2 (0:22d2)
 	call CheckEventFlag
 	ret nz
 .asm_231a
-	call Func_3435
+	call PlayMapMusic_
 	ret
 
 Func_231e::
@@ -368,7 +368,7 @@ Func_2465::
 
 .asm_24a5
 	ld a, $0
-	ld [wc917], a
+	ld [wMapMusic], a
 	jp Func_23c3
 
 Func_24ad::
@@ -388,7 +388,7 @@ Func_24c9::
 	or a
 	ret z
 	ld a, $0
-	ld [wc917], a
+	ld [wMapMusic], a
 	jp Func_23d1
 
 Func_24d8::
@@ -404,6 +404,6 @@ Func_24d8::
 	res 5, a
 	ld [wLCDC], a
 	ld a, $0
-	ld [wc917], a
+	ld [wMapMusic], a
 	ret
 

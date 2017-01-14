@@ -33,7 +33,7 @@ Func_896f:
 	call DecompressGFXByIndex_
 	xor a
 	ld [wc900], a
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld b, $0

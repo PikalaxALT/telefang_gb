@@ -85,7 +85,7 @@ Func_8124: ; 8124 (2:4124)
 	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld [wSCX], a
-	ld a, MUSIC_37
+	ld a, MUSIC_OPENING_MOVIE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld b, $1

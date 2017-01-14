@@ -7220,7 +7220,7 @@ s2_affc:: ds 1
 s2_affd:: ds 1
 s2_affe:: ds 1
 s2_afff:: ds 1
-s2_b000:: ds 1
+sIndoorVisitedMapSectionFlags:: ds 1
 s2_b001:: ds 1
 s2_b002:: ds 1
 s2_b003:: ds 1

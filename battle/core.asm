@@ -628,7 +628,7 @@ Func_14460: ; 14460 (5:4460)
 	jump_table
 	dw Func_1457d
 	dw Func_145a9
-	dw Func_145f5
+	dw StartBattleMusic
 	dw Func_1463e
 	dw Func_14681
 	dw Battle_DrawMenuOrAttackOnYourOwn
@@ -797,7 +797,7 @@ Func_145d6: ; 145d6 (5:45d6)
 	ld [wc46c], a
 	ret
 
-Func_145f5: ; 145f5 (5:45f5)
+StartBattleMusic: ; 145f5 (5:45f5)
 	ld a, [wEnemyDenjuu1]
 	call LoadEnemyDenjuuBattlePic
 	ld a, [wPlayerDenjuu1]
@@ -814,22 +814,22 @@ Func_145f5: ; 145f5 (5:45f5)
 	ld a, [wBattleMode]
 	cp $1
 	jr z, .asm_14623
-	ld a, $14
+	ld a, MUSIC_WILD_DENJUU_BATTLE
 	jr .asm_14635
 
 .asm_14623
-	ld a, $15
+	ld a, MUSIC_TFANGER_BATTLE
 	jr .asm_14635
 
 .asm_14627
 	ld bc, EVENT_1F7
 	call CheckEventFlag
 	jr nz, .asm_14633
-	ld a, $16
+	ld a, MUSIC_BOSS_BATTLE
 	jr .asm_14635
 
 .asm_14633
-	ld a, $17
+	ld a, MUSIC_DOOMSDAY_BATTLE
 .asm_14635
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -2965,7 +2965,7 @@ Func_15606: ; 15606 (5:5606)
 Func_1560c: ; 1560c (5:560c)
 	xor a
 	ld [wd401], a
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $3a

@@ -2548,8 +2548,8 @@ Func_20b1: ; 20b1 (0:20b1)
 	ld [wc91d], a
 	ld a, $6
 	ld [wSubroutine], a
-	ld a, $1
-	ld [wc917], a
+	ld a, MUSIC_NONE
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [hMusicID], a
 	ld a, $0
@@ -4818,8 +4818,8 @@ AppendScriptIndexToBuffer: ; 3363 (0:3363)
 	add sp, $4
 	jr finish_collecting_map_scripts
 
-Func_3388: ; 3388 (0:3388)
-	homecall Func_2e3dc
+LoadTilesetGFX_: ; 3388 (0:3388)
+	homecall LoadTilesetGFX
 	ret
 
 Func_3395: ; 3395 (0:3395)
@@ -4882,8 +4882,8 @@ Func_342a: ; 342a (0:342a)
 	ld [wcafe], a
 	ret
 
-Func_3435: ; 3435 (0:3435)
-	homecall Func_2e33e
+PlayMapMusic_: ; 3435 (0:3435)
+	homecall PlayMapMusic
 	ret
 
 HandleOverworldGFX: ; 3442 (0:3442)

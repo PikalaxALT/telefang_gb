@@ -3,27 +3,27 @@
 	const MUSIC_00
 	const MUSIC_NONE
 	const MUSIC_02
-	const MUSIC_03
-	const MUSIC_04
-	const MUSIC_05
-	const MUSIC_06
-	const MUSIC_07
-	const MUSIC_08
-	const MUSIC_09
-	const MUSIC_0A
-	const MUSIC_0B
+	const MUSIC_OVERWORLD
+	const MUSIC_CACTOS_RUINS
+	const MUSIC_ION_ISLAND
+	const MUSIC_BARRAN_DESERT
+	const MUSIC_PALM_SEA
+	const MUSIC_PEPPERI_MOUNTAIN
+	const MUSIC_CAVES
+	const MUSIC_CRAFT_RESEARCH_CENTER
+	const MUSIC_BURION_RUINS
 	const MUSIC_0C
 	const MUSIC_0D
 	const MUSIC_0E
 	const MUSIC_0F
 	const MUSIC_10
 	const MUSIC_11
-	const MUSIC_12
+	const MUSIC_BATTLE_START
 	const MUSIC_13
-	const MUSIC_14
-	const MUSIC_15
-	const MUSIC_16
-	const MUSIC_17
+	const MUSIC_WILD_DENJUU_BATTLE
+	const MUSIC_TFANGER_BATTLE
+	const MUSIC_BOSS_BATTLE
+	const MUSIC_DOOMSDAY_BATTLE
 	const MUSIC_WON_BATTLE
 	const MUSIC_LOST_BATTLE
 	const MUSIC_LEVEL_UP
@@ -34,13 +34,13 @@
     const music_1F
 	const MUSIC_20
 	const MUSIC_21
-	const MUSIC_22
+	const MUSIC_KAI_ENCOUNTER
 	const MUSIC_23
-	const MUSIC_24
+	const MUSIC_SHOP
 	const MUSIC_25
 	const MUSIC_26
 	const MUSIC_27
-	const MUSIC_28
+	const MUSIC_GOT_PHONE_NUMBER
 	const MUSIC_29
 	const MUSIC_2A
 	const MUSIC_EVOLUTION
@@ -50,13 +50,13 @@
     const music_2F
 	const MUSIC_30
 	const MUSIC_31
-	const MUSIC_32
-	const MUSIC_33
+	const MUSIC_DSHOT_MENU
+	const MUSIC_HOUSE
 	const MUSIC_34
-	const MUSIC_35
+	const MUSIC_WARP
 	const MUSIC_TITLE_SCREEN
-	const MUSIC_37
-	const MUSIC_38
+	const MUSIC_OPENING_MOVIE
+	const MUSIC_THE_END
 	const MUSIC_39
 	const MUSIC_3A
 	const MUSIC_3B

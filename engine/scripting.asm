@@ -1214,7 +1214,7 @@ Script_PlaySFX: ; 3c802 (f:4802)
 
 Script_PlayMusic: ; 3c80f (f:480f)
 	ld a, [wScriptBuffer + 1]
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld b, $2
@@ -2160,7 +2160,7 @@ Func_3ce0f: ; 3ce0f (f:4e0f)
 	ret
 
 Func_3ce34: ; 3ce34 (f:4e34)
-	callba Func_a8576
+	callba GetCurrentLandmark
 	callba GetLandmarkName
 	ld b, $0
 	ld c, $a6
@@ -2187,7 +2187,7 @@ Func_3ce70: ; 3ce70 (f:4e70)
 	or a
 	jr nz, .skip_music_and_sfx
 	ld a, MUSIC_02
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, SFX_54
@@ -2209,8 +2209,8 @@ Func_3ce97: ; 3ce97 (f:4e97)
 	ld a, SFX_01
 	ld [H_SFX_ID], a
 	ld a, $ff
-	ld [wc917], a
-	call Func_3435
+	ld [wMapMusic], a
+	call PlayMapMusic_
 .skip_music_and_sfx
 	ld a, $0
 	ld [wcad0], a

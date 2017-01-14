@@ -325,77 +325,77 @@ Func_7029e: ; 7029e (1c:429e)
 
 Func_702a1: ; 702a1 (1c:42a1)
 	call Random
-	cp $14
-	jr c, .asm_702d4
-	cp $28
-	jr c, .asm_702d8
-	cp $3c
-	jr c, .asm_702dc
-	cp $50
-	jr c, .asm_702e0
-	cp $64
-	jr c, .asm_702e4
-	cp $78
-	jr c, .asm_702e8
-	cp $8c
-	jr c, .asm_702ec
-	cp $a0
-	jr c, .asm_702f0
-	cp $b4
-	jr c, .asm_702f4
-	cp $c8
-	jr c, .asm_702f8
-	cp $dc
-	jr c, .asm_702fc
-	cp $f0
-	jr c, .asm_70300
-.asm_702d4
+	cp 20
+	jr c, .zero
+	cp 40
+	jr c, .one
+	cp 60
+	jr c, .two
+	cp 80
+	jr c, .three
+	cp 100
+	jr c, .four
+	cp 120
+	jr c, .five
+	cp 140
+	jr c, .six
+	cp 160
+	jr c, .seven
+	cp 180
+	jr c, .eight
+	cp 200
+	jr c, .nine
+	cp 220
+	jr c, .ten
+	cp 240
+	jr c, .eleven
+.zero
 	ld a, $0
-	jr .asm_70302
+	jr .finish
 
-.asm_702d8
+.one
 	ld a, $1
-	jr .asm_70302
+	jr .finish
 
-.asm_702dc
+.two
 	ld a, $2
-	jr .asm_70302
+	jr .finish
 
-.asm_702e0
+.three
 	ld a, $3
-	jr .asm_70302
+	jr .finish
 
-.asm_702e4
+.four
 	ld a, $4
-	jr .asm_70302
+	jr .finish
 
-.asm_702e8
+.five
 	ld a, $5
-	jr .asm_70302
+	jr .finish
 
-.asm_702ec
+.six
 	ld a, $6
-	jr .asm_70302
+	jr .finish
 
-.asm_702f0
+.seven
 	ld a, $7
-	jr .asm_70302
+	jr .finish
 
-.asm_702f4
+.eight
 	ld a, $8
-	jr .asm_70302
+	jr .finish
 
-.asm_702f8
+.nine
 	ld a, $9
-	jr .asm_70302
+	jr .finish
 
-.asm_702fc
+.ten
 	ld a, $a
-	jr .asm_70302
+	jr .finish
 
-.asm_70300
+.eleven
 	ld a, $b
-.asm_70302
+.finish
 	ret
 
 ClearBattleStruct: ; 70303 (1c:4303)
@@ -812,7 +812,7 @@ Func_70541:
 	xor a
 	ld [wd40e], a
 	ld [wd40d], a
-	ld a, MUSIC_12
+	ld a, MUSIC_BATTLE_START
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wBattleMode]
@@ -3150,22 +3150,22 @@ Func_71831:
 	ld a, [wBattleMode]
 	cp $1
 	jr z, .asm_718e2
-	ld a, $14
+	ld a, MUSIC_WILD_DENJUU_BATTLE
 	jr .asm_718f4
 
 .asm_718e2
-	ld a, $15
+	ld a, MUSIC_TFANGER_BATTLE
 	jr .asm_718f4
 
 .asm_718e6
 	ld bc, EVENT_1F7
 	call CheckEventFlag
 	jr nz, .asm_718f2
-	ld a, $16
+	ld a, MUSIC_BOSS_BATTLE
 	jr .asm_718f4
 
 .asm_718f2
-	ld a, $17
+	ld a, MUSIC_DOOMSDAY_BATTLE
 .asm_718f4
 	call GetMusicBank
 	ld [H_MusicID], a

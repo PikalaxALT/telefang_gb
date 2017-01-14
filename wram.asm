@@ -867,7 +867,7 @@ wMapNumber2:: ds 1
 wMapGroup2:: ds 1
 wPlayerXTile:: ds 1
 wPlayerYTile:: ds 1
-wc917:: ds 1
+wMapMusic:: ds 1
 wc918:: ds 1
 wc919:: ds 1
 wc91a:: ds 1

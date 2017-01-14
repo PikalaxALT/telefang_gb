@@ -127,7 +127,7 @@ Func_100fa: ; 100fa (4:40fa)
 	jp IncrementSubroutine
 
 Func_10108: ; 10108 (4:4108)
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
@@ -200,7 +200,7 @@ Func_1013b: ; 1013b (4:413b)
 	ret
 
 .asm_10192
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, SFX_03
@@ -475,7 +475,7 @@ Func_103b4: ; 103b4 (4:43b4)
 	ld bc, $30f
 	ld e, $20
 	call Phone_LoadStdBGMapTileAndAttrLayout
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	call Func_11927
@@ -634,7 +634,7 @@ Func_10546: ; 10546 (4:4546)
 	call PaletteFade_
 	or a
 	ret z
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
@@ -758,7 +758,7 @@ Func_10642: ; 10642 (4:4642)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
@@ -906,7 +906,7 @@ Func_10743: ; 10743 (4:4743)
 .asm_10764
 	ld de, wOAMAnimation01
 	call Func_099c
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -997,7 +997,7 @@ Func_10807: ; 10807 (4:4807)
 	ld [wcb2c], a
 	cp $0
 	ret nz
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wcb43]
@@ -1019,7 +1019,7 @@ Func_1082e: ; 1082e (4:482e)
 	call Func_135ef
 	ld de, wOAMAnimation01
 	call Func_099c
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -1188,7 +1188,7 @@ Func_10969: ; 10969 (4:4969)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -1266,7 +1266,7 @@ Func_10a09: ; 10a09 (4:4a09)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -1664,7 +1664,7 @@ Func_10d30:
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	xor a
@@ -1700,7 +1700,7 @@ Func_10d86:
 	xor a
 	ld [wcb67], a
 	call Func_138e2
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine2
@@ -1740,7 +1740,7 @@ Func_10dec:
 	ld bc, $12
 	call DecompressGFXByIndex_
 .asm_10e20
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $1
@@ -1807,7 +1807,7 @@ Func_10e8e:
 	call Func_13931
 	ld e, $35
 	call Func_13939
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	xor a
@@ -2074,7 +2074,7 @@ Func_1109b:
 	call Func_0609
 	xor a
 	ld [wCurOptionHover], a
-	call Func_12d63
+	call OptionsMenu_UpdateCursorObjects
 	jp IncrementSubroutine2
 
 Func_110bb:
@@ -2316,7 +2316,7 @@ Func_11276: ; 11276 (4:5276)
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	xor a
@@ -3828,7 +3828,7 @@ Func_1208b: ; 1208b (4:608b)
 	call LoadPhoneKeypad
 	call Func_1bd1
 	call Func_11ee9
-	ld a, MUSIC_32
+	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $5
@@ -5392,7 +5392,7 @@ Func_12b2b: ; 12b2b (4:6b2b)
 .asm_12b59
 	ld a, $4
 	call StartFade_
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $c
@@ -5426,7 +5426,7 @@ Func_12b6c: ; 12b6c (4:6b6c)
 .asm_12b9a
 	ld a, $4
 	call StartFade_
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine2
@@ -5447,7 +5447,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, [hJoyNew]
 	and D_UP
 	jr z, .asm_12be6
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, SFX_02
@@ -5465,7 +5465,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, [hJoyNew]
 	and D_DOWN
 	jr z, .asm_12c08
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, SFX_02
@@ -5580,7 +5580,7 @@ Func_12cb1: ; 12cb1 (4:6cb1)
 	and A_BUTTON
 	jr z, asm_12cd2
 Func_12cb7: ; 12cb7 (4:6cb7)
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	call ClearObjectAnimationBuffers
@@ -5649,46 +5649,85 @@ Func_12d32: ; 12d32 (4:6d32)
 	ret
 
 Data_12d3b:
-	db      $03, $04, $05, $06, $07, $08, $09, $0a, $0b
-	db $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b
-	db $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c, $2d, $2e
-	db $32, $33, $34, $35, $36, $37, $38, $39
+	db MUSIC_OVERWORLD
+	db MUSIC_CACTOS_RUINS
+	db MUSIC_ION_ISLAND
+	db MUSIC_BARRAN_DESERT
+	db MUSIC_PALM_SEA
+	db MUSIC_PEPPERI_MOUNTAIN
+	db MUSIC_CAVES
+	db MUSIC_CRAFT_RESEARCH_CENTER
+	db MUSIC_BURION_RUINS
+	db MUSIC_BATTLE_START
+	db MUSIC_13
+	db MUSIC_WILD_DENJUU_BATTLE
+	db MUSIC_TFANGER_BATTLE
+	db MUSIC_BOSS_BATTLE
+	db MUSIC_DOOMSDAY_BATTLE
+	db MUSIC_WON_BATTLE
+	db MUSIC_LOST_BATTLE
+	db MUSIC_LEVEL_UP
+	db MUSIC_GAME_OVER
+	db MUSIC_KAI_ENCOUNTER
+	db MUSIC_23
+	db MUSIC_SHOP
+	db MUSIC_25
+	db MUSIC_26
+	db MUSIC_27
+	db MUSIC_GOT_PHONE_NUMBER
+	db MUSIC_29
+	db MUSIC_2A
+	db MUSIC_EVOLUTION
+	db MUSIC_2C
+	db MUSIC_2D
+	db MUSIC_2E
+	db MUSIC_DSHOT_MENU
+	db MUSIC_HOUSE
+	db MUSIC_34
+	db MUSIC_WARP
+	db MUSIC_TITLE_SCREEN
+	db MUSIC_OPENING_MOVIE
+	db MUSIC_THE_END
+	db MUSIC_39
 
-Func_12d63: ; 12d63 (4:6d63)
+OptionsMenu_UpdateCursorObjects: ; 12d63 (4:6d63)
 	ld b, $48
 	ld c, $50
 	ld d, $1
 	ld a, [wCurOptionHover]
 	cp $0
-	jr z, .asm_12d9a
+	jr z, .zero
 	cp $1
-	jr z, .asm_12d94
+	jr z, .one
 	cp $2
-	jr z, .asm_12d8c
+	jr z, .two
 	cp $3
-	jr z, .asm_12d84
+	jr z, .three
 	ld b, $88
 	ld c, $90
 	ld d, $0
-	jr .asm_12d9a
+	jr .zero
 
-.asm_12d84
+.three
 	ld b, $78
 	ld c, $80
 	ld d, $1
-	jr .asm_12d9a
+	jr .zero
 
-.asm_12d8c
+.two
 	ld b, $68
 	ld c, $70
 	ld d, $1
-	jr .asm_12d9a
+	jr .zero
 
-.asm_12d94
+.one
 	ld b, $58
 	ld c, $60
 	ld d, $1
-.asm_12d9a
+.zero
+	; b - first arrow Y coord
+	; c - left/right arrows Y coord
+	; d - left/right arrows visible
 	ld a, $8
 	ld [wOAMAnimation02_XCoord], a
 	ld a, $28
@@ -5755,7 +5794,7 @@ OptionsMenuJoyAction: ; 12e00 (4:6e00)
 .wrap_up
 	dec a
 	ld [wCurOptionHover], a
-	jp Func_12d63
+	jp OptionsMenu_UpdateCursorObjects
 
 .not_up
 	ld a, [wJoyNew]
@@ -5770,7 +5809,7 @@ OptionsMenuJoyAction: ; 12e00 (4:6e00)
 .wrap_down
 	inc a
 	ld [wCurOptionHover], a
-	jp Func_12d63
+	jp OptionsMenu_UpdateCursorObjects
 
 .not_down
 	ld a, [wCurOptionHover]
@@ -5948,7 +5987,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	ld [wcb6d], a
 	ld a, $8
 	ld [wcb2c], a
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	call Func_13fc6
@@ -6332,7 +6371,7 @@ Func_13243: ; 13243 (4:7243)
 	ld [wcb67], a
 	ld a, $10
 	ld [wcb2c], a
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $9

@@ -513,7 +513,7 @@ Func_883e:
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
@@ -2346,34 +2346,34 @@ Func_2e064: ; 2e064 (b:6064)
 .asm_2e0d1
 	ret
 
-Func_2e0d2: ; 2e0d2 (b:60d2)
+SetVisitedMapSectionFlag: ; 2e0d2 (b:60d2)
 	ld a, [wScriptBank]
 	cp $1
-	jr z, .asm_2e0de
+	jr z, .script_mode_okay
 	ld a, [wPlayerNameEntryBuffer]
 	or a
 	ret nz
-.asm_2e0de
+.script_mode_okay
 	ld a, [wMapGroup]
 	cp $2
 	ret c
 	cp $32
-	jr nc, .asm_2e0eb
+	jr nc, .map_group_okay
 	cp $2b
 	ret nc
-.asm_2e0eb
+.map_group_okay
 	ld a, [wMapGroup]
 	cp $a
-	jr nc, .asm_2e148
+	jr nc, .indoor_map_group
 	call Func_2e179
 	ld a, [wMapNumber]
 	ld [wMapNumber2], a
 	ld a, [wMapGroup]
 	ld [wMapGroup2], a
 	cp $6
-	jr c, .asm_2e107
+	jr c, .okay3
 	sub $4
-.asm_2e107
+.okay3
 	sub $2
 	sla a
 	sla a
@@ -2395,29 +2395,29 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	adc h
 	ld h, a
 	ld a, b
-.asm_2e129
+.get_bit
 	and $7
 	ld c, $1
 	or a
-	jr z, .asm_2e135
-.asm_2e130
+	jr z, .set
+.shift
 	sla c
 	dec a
-	jr nz, .asm_2e130
-.asm_2e135
-	enable_sram s2_b000
+	jr nz, .shift
+.set
+	enable_sram sIndoorVisitedMapSectionFlags
 	ld a, [hl]
 	or c
 	ld [hl], a
 	disable_sram
 	ret
 
-.asm_2e148
+.indoor_map_group
 	sub $a
 	cp $28
-	jr c, .asm_2e150
+	jr c, .map_group_okay2
 	sub $7
-.asm_2e150
+.map_group_okay2
 	ld c, a
 	ld b, $0
 	sla c
@@ -2426,7 +2426,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	rl b
 	sla c
 	rl b
-	ld hl, s2_b000
+	ld hl, sIndoorVisitedMapSectionFlags
 	add hl, bc
 	ld a, [wMapNumber]
 	srl a
@@ -2439,7 +2439,7 @@ Func_2e0d2: ; 2e0d2 (b:60d2)
 	ld h, a
 	ld a, [wMapNumber]
 	and $7
-	jr .asm_2e129
+	jr .get_bit
 
 Func_2e179: ; 2e179 (b:6179)
 	ld a, [wMapNumber]
@@ -2447,10 +2447,10 @@ Func_2e179: ; 2e179 (b:6179)
 	ld a, [wMapGroup]
 	ld c, a
 	cp $2
-	jr nz, .asm_2e1b8
+	jr nz, .not_2_8
 	ld a, b
 	cp $8
-	jr nz, .asm_2e1b8
+	jr nz, .not_2_8
 	ld b, $1e
 	ld a, [wMiniMapClearedSections]
 	or b
@@ -2473,13 +2473,13 @@ Func_2e179: ; 2e179 (b:6179)
 	ld [wc964], a
 	ret
 
-.asm_2e1b8
+.not_2_8
 	ld a, c
 	cp $2
-	jr nz, .asm_2e1d5
+	jr nz, .not_2_f
 	ld a, b
 	cp $f
-	jr nz, .asm_2e1d5
+	jr nz, .not_2_f
 	ld b, $80
 	ld a, [wMiniMapClearedSections]
 	or b
@@ -2490,37 +2490,37 @@ Func_2e179: ; 2e179 (b:6179)
 	ld [wc968], a
 	ret
 
-.asm_2e1d5
+.not_2_f
 	ld a, c
 	cp $3
-	jr nz, .asm_2e1e9
+	jr nz, .not_3_f
 	ld a, b
 	cp $f
-	jr nz, .asm_2e1e9
+	jr nz, .not_3_f
 	ld b, $c0
 	ld a, [wc968]
 	or b
 	ld [wc968], a
 	ret
 
-.asm_2e1e9
+.not_3_f
 	ld a, c
 	cp $5
-	jr nz, .asm_2e1fc
+	jr nz, .not_5_27
 	ld a, b
 	cp $27
-	jr nz, .asm_2e1fc
+	jr nz, .not_5_27
 	ld b, $80
 	ld a, [wc97d]
 	or b
 	ld [wc97d], a
-.asm_2e1fc
+.not_5_27
 	ret
 
 Func_2e1fd:
 	ld a, b
 	call Func_2e204
-	jp Func_2e0d2
+	jp SetVisitedMapSectionFlag
 
 Func_2e204: ; 2e204 (b:6204)
 	call Func_2e2f1
@@ -2714,104 +2714,119 @@ x = x ^ 1
 	ld a, b
 	ret
 
-Func_2e33e: ; 2e33e (b:633e)
+PlayMapMusic: ; 2e33e (b:633e)
 	ld a, [wc958]
 	or a
 	ret nz
 	ld bc, EVENT_210
 	call CheckEventFlag
 	ret nz
-	ld a, [wc917]
+	ld a, [wMapMusic]
 	ld b, a
 	ld a, [wMapGroup]
 	cp $2e
-	jr nz, .asm_2e359
-	ld a, $33
-	jr .asm_2e3bb
+	jr nz, .not_house
+	ld a, MUSIC_HOUSE
+	jr .compare
 
-.asm_2e359
+.not_house
 	ld hl, Data_2e3c8
 	ld a, [wCurTilesetIdx]
 	cp $6
-	jr nz, .asm_2e370
+	jr nz, .not_shop
 	ld c, a
 	ld a, [wMapNumber]
 	cp $10
-	jr nc, .asm_2e36f
-	ld a, $24
-	jr .asm_2e3bb
+	jr nc, .not_shop2
+	ld a, MUSIC_SHOP
+	jr .compare
 
-.asm_2e36f
+.not_shop2
 	ld a, c
-.asm_2e370
+.not_shop
 	add l
 	ld l, a
 	ld a, $0
 	adc h
 	ld h, a
 	ld a, [hl]
-	cp $3
-	jr nz, .asm_2e3bb
+	cp MUSIC_OVERWORLD
+	jr nz, .compare
 	push bc
 	callba Func_a8539
 	ld a, c
 	cp $5
-	jr nz, .asm_2e38d
-	ld a, $6
-	jr .asm_2e3ba
+	jr nz, .not_barran
+	ld a, MUSIC_BARRAN_DESERT
+	jr .pop_cp
 
-.asm_2e38d
+.not_barran
 	cp $6
-	jr nz, .asm_2e395
-	ld a, $5
-	jr .asm_2e3ba
+	jr nz, .not_ion
+	ld a, MUSIC_ION_ISLAND
+	jr .pop_cp
 
-.asm_2e395
+.not_ion
 	cp $3
-	jr nz, .asm_2e39d
-	ld a, $7
-	jr .asm_2e3ba
+	jr nz, .not_palm
+	ld a, MUSIC_PALM_SEA
+	jr .pop_cp
 
-.asm_2e39d
+.not_palm
 	cp $b
-	jr nz, .asm_2e3a5
-	ld a, $8
-	jr .asm_2e3ba
+	jr nz, .not_pepperi
+	ld a, MUSIC_PEPPERI_MOUNTAIN
+	jr .pop_cp
 
-.asm_2e3a5
+.not_pepperi
 	cp $e
-	jr nz, .asm_2e3b8
+	jr nz, .default_overworld_music
 	ld a, [wMapGroup]
 	cp $6
-	jr z, .asm_2e3b4
-	ld a, $b
-	jr .asm_2e3ba
+	jr z, .not_burion
+	ld a, MUSIC_BURION_RUINS
+	jr .pop_cp
 
-.asm_2e3b4
-	ld a, $2a
-	jr .asm_2e3ba
+.not_burion
+	ld a, MUSIC_2A
+	jr .pop_cp
 
-.asm_2e3b8
-	ld a, $3
-.asm_2e3ba
+.default_overworld_music
+	ld a, MUSIC_OVERWORLD
+.pop_cp
 	pop bc
-.asm_2e3bb
+.compare
 	cp b
-	jr z, .asm_2e3c7
-	ld [wc917], a
+	jr z, .dont_play
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
-.asm_2e3c7
+.dont_play
 	ret
 
 Data_2e3c8:
-	db $03, $03, $03, $0a
-	db $03, $09, $33, $09
-	db $08, $04, $0b, $0b
-	db $33, $33, $23, $0a
-	db $0a, $05, $06, $07
+	db MUSIC_OVERWORLD
+	db MUSIC_OVERWORLD
+	db MUSIC_OVERWORLD
+	db MUSIC_CRAFT_RESEARCH_CENTER
+	db MUSIC_OVERWORLD
+	db MUSIC_CAVES
+	db MUSIC_HOUSE
+	db MUSIC_CAVES
+	db MUSIC_PEPPERI_MOUNTAIN
+	db MUSIC_CACTOS_RUINS
+	db MUSIC_BURION_RUINS
+	db MUSIC_BURION_RUINS
+	db MUSIC_HOUSE
+	db MUSIC_HOUSE
+	db MUSIC_23
+	db MUSIC_CRAFT_RESEARCH_CENTER
+	db MUSIC_CRAFT_RESEARCH_CENTER
+	db MUSIC_ION_ISLAND
+	db MUSIC_BARRAN_DESERT
+	db MUSIC_PALM_SEA
 
-Func_2e3dc: ; 2e3dc (b:63dc)
+LoadTilesetGFX: ; 2e3dc (b:63dc)
 	ld hl, Data_2e3ee
 	ld a, [wCurTilesetIdx]
 	add l
@@ -4573,7 +4588,7 @@ Func_39917: ; 39917 (e:5917)
 	ld a, [wcafe]
 	or a
 	ret nz
-	call Func_3435
+	call PlayMapMusic_
 	ret
 
 Func_39950: ; 39950 (e:5950)
@@ -6275,7 +6290,7 @@ Func_3a705:
 	inc a
 	ld [wd401], a
 	ld a, $28
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 	ret
@@ -8282,16 +8297,16 @@ Func_a5245: ; a5245 (29:5245)
 	inc a
 	ld [wcafe], a
 	ld a, $0
-	ld [wc917], a
+	ld [wMapMusic], a
 	ld a, $1
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 	ret
 
 .asm_a5275
 	ld a, $0
-	ld [wc917], a
+	ld [wMapMusic], a
 	ld a, $5
 	ld [wcafe], a
 	ld a, [wcafd]
@@ -8317,7 +8332,7 @@ Func_a5245: ; a5245 (29:5245)
 .asm_a52ab
 	xor a
 	ld [wcafe], a
-	jp Func_3435
+	jp PlayMapMusic_
 
 Func_a52b2: ; a52b2 (29:52b2)
 	ld a, $0
@@ -9921,7 +9936,7 @@ FadeOutOverworldForMinimap____: ; a5efd (29:5efd)
 
 Func_a5f06: ; a5f06 (29:5f06)
 	ld a, $2b
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $0
@@ -10345,7 +10360,7 @@ Func_a84e6: ; a84e6 (2a:44e6)
 
 GetLandmarkName: ; a8508 (2a:4508)
 	ld a, b
-	ld hl, Pointers_aa875
+	ld hl, OutdoorLandmarkNames
 GetLandmarkName_:
 	ld b, $0
 	ld c, a
@@ -10386,20 +10401,20 @@ GetLandmarkName_:
 Func_a8539: ; a8539 (2a:4539)
 	ld a, [wMapGroup]
 	cp $a
-	jr c, .asm_a8562
+	jr c, .group_0_to_9
 	cp $b
-	jr nz, .asm_a8551
+	jr nz, .ten_or_greater_equal_twelve
 	ld a, [wMapNumber]
 	cp $38
-	jr nz, .asm_a854e
+	jr nz, .not_b_38
 	ld c, $5
 	ret
 
-.asm_a854e
+.not_b_38
 	ld c, $0
 	ret
 
-.asm_a8551
+.ten_or_greater_equal_twelve
 	ld hl, Pointers_aa6e5
 	ld b, $0
 	ld c, a
@@ -10413,8 +10428,8 @@ Func_a8539: ; a8539 (2a:4539)
 	ld c, a
 	ret
 
-.asm_a8562
-	call Func_a8576
+.group_0_to_9
+	call GetCurrentLandmark
 	ld hl, Pointers_aa4d5
 	ld b, $0
 	ld c, a
@@ -10428,38 +10443,41 @@ Func_a8539: ; a8539 (2a:4539)
 	ld c, a
 	ret
 
-Func_a8576: ; a8576 (2a:4576)
+GetCurrentLandmark: ; a8576 (2a:4576)
+; e = ([wMapNumber] >> 3)
 	ld a, [wMapNumber]
 	srl a
 	srl a
 	srl a
 	ld e, a
+; d = ([wMapNumber] & $7)
 	ld a, [wMapNumber]
 	and $7
 	ld d, a
+; b = (d << 3)
 	sla a
 	sla a
 	sla a
 	ld b, a
 	ld a, [wMapGroup]
 	cp $6
-	jr c, .asm_a8596
+	jr c, .under_6
 	sub $4
-.asm_a8596
+.under_6
 	ld c, a
 	and $1
-	jr z, .asm_a859f
+	jr z, .not_bit_0
 	ld a, $8
 	add d
 	ld d, a
-.asm_a859f
+.not_bit_0
 	ld a, c
 	and $4
-	jr z, .asm_a85a8
+	jr z, .not_bit_3
 	ld a, $8
 	add e
 	ld e, a
-.asm_a85a8
+.not_bit_3
 	swap e
 	ld a, d
 	add e
@@ -10743,7 +10761,7 @@ Func_a87e7: ; a87e7 (2a:47e7)
 	ld c, $14
 	ld a, $2
 	call Func_33fd
-	ld hl, Pointers_aaaff
+	ld hl, IndoorLandmarkNames
 	ld a, [wMapGroup]
 	call GetLandmarkName_
 	ld d, $2
@@ -10882,7 +10900,7 @@ Func_a88dd: ; a88dd (2a:48dd)
 Func_a893b: ; a893b (2a:493b)
 	push de
 	ld a, c
-	ld hl, s2_b000
+	ld hl, sIndoorVisitedMapSectionFlags
 	add l
 	ld l, a
 	ld a, $0
@@ -10912,7 +10930,7 @@ Func_a893b: ; a893b (2a:493b)
 	sla c
 	rl b
 	add hl, bc
-	enable_sram s2_b000
+	enable_sram sIndoorVisitedMapSectionFlags
 	ld a, [hl]
 	and d
 	pop de
@@ -10977,7 +10995,7 @@ FadeOutOverworldForMinimap______: ; a89dd (2a:49dd)
 
 Func_a89e5: ; a89e5 (2a:49e5)
 	ld a, $2
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, BANK(Func_a89e5)
@@ -12030,7 +12048,7 @@ Func_a91b4: ; a91b4 (2a:51b4)
 	ld a, $c
 	ld [wcae7], a
 	ld a, $2
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 asm_a91db
@@ -12961,14 +12979,14 @@ Func_a98bf: ; a98bf (2a:58bf)
 	or a
 	jr z, .asm_a9909
 	ld a, $2d
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 	jr .asm_a9914
 
 .asm_a9909
 	ld a, $2c
-	ld [wc917], a
+	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
 .asm_a9914
@@ -13606,313 +13624,313 @@ OverworldEncounterFlags: ; 4 rows of 64
 	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0
 	db 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0
 
-Pointers_aa875:
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaae3
-	dw String_aaae3
-	dw String_aaae3
-	dw String_aaae3
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaae3
-	dw String_aaae3
-	dw String_aaae3
-	dw String_aaae3
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaaf7
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaaeb
-	dw String_aaaeb
-	dw String_aaaf7
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaace
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaaeb
-	dw String_aaaeb
-	dw String_aaaf7
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaab4
-	dw String_aaaeb
-	dw String_aaaeb
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaadb
-	dw String_aaac1
-	dw String_aaac1
-	dw String_aaac1
-	dw String_aaaeb
-	dw String_aaaeb
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaac1
-	dw String_aaac1
-	dw String_aaac1
-	dw String_aaaeb
-	dw String_aaaeb
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaac7
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaa83
-	dw String_aaa83
-	dw String_aaa7c
-	dw String_aaa7c
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaa83
-	dw String_aaa83
-	dw String_aaa7c
-	dw String_aaa7c
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaa75
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaa83
-	dw String_aaa83
-	dw String_aaa83
-	dw String_aaa7c
-	dw String_aaa7c
-	dw String_aaa7c
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaa83
-	dw String_aaa83
-	dw String_aaa83
-	dw String_aaa7c
-	dw String_aaa7c
-	dw String_aaa7c
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaaa3
-	dw String_aaa83
-	dw String_aaa91
-	dw String_aaaba
-	dw String_aaaba
-	dw String_aaaba
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaaba
-	dw String_aaaba
-	dw String_aaaba
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaaba
-	dw String_aaaba
-	dw String_aaaba
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaaae
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa97
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaa91
-	dw String_aaa91
+OutdoorLandmarkNames:
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Cactos
+	dw .Cactos
+	dw .Cactos
+	dw .Cactos
+	dw .Paparuna
+	dw .Paparuna
+	dw .Paparuna
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Cactos
+	dw .Cactos
+	dw .Cactos
+	dw .Cactos
+	dw .Paparuna
+	dw .Paparuna
+	dw .Paparuna
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Paparuna
+	dw .Paparuna
+	dw .Paparuna
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Brion
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Paparuna
+	dw .Paparuna
+	dw .Paparuna
+	dw .Mikesu
+	dw .Mikesu
+	dw .Brion
+	dw .Toronko
+	dw .Toronko
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Peperi
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Paparuna
+	dw .Paparuna
+	dw .Paparuna
+	dw .Mikesu
+	dw .Mikesu
+	dw .Brion
+	dw .Toronko
+	dw .Toronko
+	dw .Flaura
+	dw .Flaura
+	dw .Flaura
+	dw .Flaura
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Paparuna
+	dw .Paparuna
+	dw .Paparuna
+	dw .Mikesu
+	dw .Mikesu
+	dw .Toronko
+	dw .Toronko
+	dw .Toronko
+	dw .Toronko
+	dw .Flaura
+	dw .Flaura
+	dw .Flaura
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Ikusosu
+	dw .Toripa
+	dw .Toripa
+	dw .Toripa
+	dw .Mikesu
+	dw .Mikesu
+	dw .Toronko
+	dw .Toronko
+	dw .Toronko
+	dw .Toronko
+	dw .Flaura
+	dw .Flaura
+	dw .Flaura
+	dw .Barran
+	dw .Barran
+	dw .Barran
+	dw .Barran
+	dw .Toripa
+	dw .Toripa
+	dw .Toripa
+	dw .Mikesu
+	dw .Mikesu
+	dw .Toronko
+	dw .Toronko
+	dw .Toronko
+	dw .Flaura
+	dw .Flaura
+	dw .Flaura
+	dw .Flaura
+	dw .Barran
+	dw .Barran
+	dw .Barran
+	dw .Barran
+	dw .Barran
+	dw .Iris
+	dw .Iris
+	dw .Kurinon
+	dw .Kurinon
+	dw .Toronko
+	dw .Toronko
+	dw .Toronko
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Frijia
+	dw .Frijia
+	dw .Barran
+	dw .Barran
+	dw .Barran
+	dw .Iris
+	dw .Iris
+	dw .Kurinon
+	dw .Kurinon
+	dw .Toronko
+	dw .Toronko
+	dw .Toronko
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Frijia
+	dw .Frijia
+	dw .Barran
+	dw .Barran
+	dw .Iris
+	dw .Iris
+	dw .Iris
+	dw .Kurinon
+	dw .Kurinon
+	dw .Kurinon
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Frijia
+	dw .Frijia
+	dw .Barran
+	dw .Barran
+	dw .Iris
+	dw .Iris
+	dw .Iris
+	dw .Kurinon
+	dw .Kurinon
+	dw .Kurinon
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Frijia
+	dw .Frijia
+	dw .Frijia
+	dw .Barran
+	dw .Barran
+	dw .Barran
+	dw .Iris
+	dw .PalmSea
+	dw .Pansesu
+	dw .Pansesu
+	dw .Pansesu
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Frijia
+	dw .Frijia
+	dw .Frijia
+	dw .Frijia
+	dw .PalmSea
+	dw .PalmSea
+	dw .PalmSea
+	dw .PalmSea
+	dw .Pansesu
+	dw .Pansesu
+	dw .Pansesu
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Frijia
+	dw .Frijia
+	dw .Frijia
+	dw .Frijia
+	dw .PalmSea
+	dw .PalmSea
+	dw .PalmSea
+	dw .PalmSea
+	dw .Pansesu
+	dw .Pansesu
+	dw .Pansesu
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Ion
+	dw .Frijia
+	dw .Frijia
+	dw .Frijia
+	dw .Frijia
+	dw .PalmSea
+	dw .PalmSea
+	dw .PalmSea
+	dw .PalmSea
 
-String_aaa75:
+.Toronko:
 	db "トロンコむら$"
 
-String_aaa7c:
+.Kurinon:
 	db "クリノンむら$"
 
-String_aaa83:
+.Iris:
 	db "うみのみえるまち イーリス$"
 
-String_aaa91:
+.PalmSea:
 	db "パームかい$"
 
-String_aaa97:
+.Frijia:
 	db "キカイのまち フリジア$"
 
-String_aaaa3:
+.Barran:
 	db "すなのまち バーラン$"
 
-String_aaaae:
+.Ion:
 	db "イオンとう$"
 
-String_aaab4:
+.Paparuna:
 	db "パパルナこ$"
 
-String_aaaba:
+.Pansesu:
 	db "パンセスむら$"
 
-String_aaac1:
+.Toripa:
 	db "トリパむら$"
 
-String_aaac7:
+.Flaura:
 	db "フラウラむら$"
 
-String_aaace:
+.Peperi:
 	db "あくまのやま ぺぺリやま$"
 
-String_aaadb:
+.Ikusosu:
 	db "イクソスのもリ$"
 
-String_aaae3:
+.Cactos:
 	db "カクトスいせき$"
 
-String_aaaeb:
+.Mikesu:
 	db "どくのみずうみ ミケス$"
 
-String_aaaf7:
+.Brion:
 	db "ブリオンいせき$"
 
-Pointers_aaaff:
+IndoorLandmarkNames:
 	dw String_aab69
 	dw String_aab69
 	dw String_aab69
@@ -16956,7 +16974,7 @@ Func_c9538: ; c9538 (32:5538)
 	ld a, $9
 	ld [wc927], a
 	ld a, $0
-	ld [wc917], a
+	ld [wMapMusic], a
 	ld a, [wOverworldRandomCounter]
 	ld c, a
 	ld a, [wVBlankCounter]

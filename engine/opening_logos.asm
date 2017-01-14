@@ -303,7 +303,7 @@ Func_9562: ; 9562 (2:5562)
 	ret
 
 SoftReset_StopMusic: ; 9568 (2:5568)
-	ld a, $1
+	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine

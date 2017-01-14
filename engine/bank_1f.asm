@@ -4005,7 +4005,7 @@ Func_7ddb6: ; 7ddb6 (1f:5db6)
 	call GetAndPrintName75CenterAlign
 	ld a, [wRecruitedDenjuuSpecies]
 	call Func_7e0a7
-	ld a, MUSIC_28
+	ld a, MUSIC_GOT_PHONE_NUMBER
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wRecruitedDenjuuLevel]
@@ -6061,7 +6061,7 @@ Func_7edd8: ; 7edd8 (1f:6dd8)
 	call Func_7e0a7
 	ld c, $3
 	call StdBattleTextBox
-	ld a, MUSIC_28
+	ld a, MUSIC_GOT_PHONE_NUMBER
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wRecruitedDenjuuLevel]

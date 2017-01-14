@@ -1,339 +1,341 @@
-	dw Data_150290
-	dw Data_150292
-	dw Data_150292
-	dw Data_150292
-	dw Data_1502dd
-	dw Data_1502dd
-	dw Data_1502e3
-	dw Data_1502e5
-	dw Data_1502e5
-	dw Data_1502e5
-	dw Data_150330
-	dw Data_150330
-	dw Data_15035c
-	dw Data_15035e
-	dw Data_15035e
-	dw Data_15035e
-	dw Data_1503a9
-	dw Data_1503a9
-	dw Data_1503d5
-	dw Data_1503d7
-	dw Data_1503d7
-	dw Data_1503d7
-	dw Data_150422
-	dw Data_150422
-	dw Data_15044e
-	dw Data_150450
-	dw Data_150450
-	dw Data_150450
-	dw Data_15049b
-	dw Data_15049b
-	dw Data_1504c7
-	dw Data_1504c9
-	dw Data_1504c9
-	dw Data_1504c9
-	dw Data_150514
-	dw Data_150514
-	dw Data_150540
-	dw Data_150542
-	dw Data_150542
-	dw Data_150542
-	dw Data_15058d
-	dw Data_15058d
-	dw Data_1505b9
-	dw Data_1505bb
-	dw Data_1505bb
-	dw Data_1505bb
-	dw Data_150606
-	dw Data_150606
-	dw Data_150632
-	dw Data_150634
-	dw Data_150634
-	dw Data_150634
-	dw Data_15067f
-	dw Data_15067f
-	dw Data_1506ab
-	dw Data_1506ad
-	dw Data_1506ad
-	dw Data_1506ad
-	dw Data_1506f8
-	dw Data_1506f8
-	dw Data_150724
-	dw Data_150726
-	dw Data_150726
-	dw Data_150726
-	dw Data_150771
-	dw Data_150771
-	dw Data_15079d
-	dw Data_15079f
-	dw Data_15079f
-	dw Data_15079f
-	dw Data_1507ea
-	dw Data_1507ea
-	dw Data_150816
-	dw Data_15096a
-	dw Data_150a86
-	dw Data_150b9a
-	dw Data_150b9a
-	dw Data_150ba2
-	dw Data_150bbc
-	dw Data_150bd6
-	dw Data_150c38
-	dw Data_150c7b
-	dw Data_150c7b
-	dw Data_150cd8
-	dw Data_150d92
-	dw Data_150d92
-	dw Data_150d99
-	dw Data_150d99
-	dw Data_150d9f
-	dw Data_150d9f
-	dw Data_150d9f
-	dw Data_150ecc
-	dw Data_150ef3
-	dw Data_150fe8
-	dw Data_151011
-	dw Data_151011
-	dw Data_151011
-	dw Data_151060
-	dw Data_1510f3
-	dw Data_151168
-	dw Data_1511a4
-	dw Data_1511b2
-	dw Data_15122e
-	dw Data_15122e
-	dw Data_151244
-	dw Data_151244
-	dw Data_15135e
-	dw Data_151384
-	dw Data_151384
-	dw Data_1513a6
-	dw Data_1513ac
-	dw Data_1513b2
-	dw Data_1513b8
-	dw Data_1513be
-	dw Data_1513c4
-	dw Data_1513ca
-	dw Data_1513d0
-	dw Data_1513d6
-	dw Data_1513dc
-	dw Data_1513e2
-	dw Data_1513e9
-	dw Data_1513ef
-	dw Data_1513f5
-	dw Data_151403
-	dw Data_151403
-	dw Data_151403
-	dw Data_1514b0
-	dw Data_1514b0
-	dw Data_151511
-	dw Data_151525
-	dw Data_151525
-	dw Data_151525
-	dw Data_151537
-	dw Data_151544
-	dw Data_151557
-	dw Data_15156e
-	dw Data_15156e
-	dw Data_151586
-	dw Data_151586
-	dw Data_15167a
-	dw Data_15167a
-	dw Data_1516dd
-	dw Data_151730
-	dw Data_15177b
-	dw Data_1517b4
-	dw Data_151807
-	dw Data_151807
-	dw Data_151846
-	dw Data_151846
-	dw Data_151846
-	dw Data_15187b
-	dw Data_1518d5
-	dw Data_1518d5
-	dw Data_15193a
-	dw Data_15193a
-	dw Data_15193a
-	dw Data_15199e
-	dw Data_15199e
-	dw Data_15199e
-	dw Data_1519a6
-	dw Data_1519a6
-	dw Data_1519a6
-	dw Data_1519a6
-	dw Data_151a26
-	dw Data_151a26
-	dw Data_151a26
-	dw Data_151a26
-	dw Data_151a2e
-	dw Data_151a2e
-	dw Data_151a2e
-	dw Data_151a6f
-	dw Data_151a6f
-	dw Data_151a6f
-	dw Data_151a77
-	dw Data_151a77
-	dw Data_151a77
-	dw Data_151a77
-	dw Data_151b0a
-	dw Data_151b0a
-	dw Data_151b0a
-	dw Data_151b0a
-	dw Data_151b12
-	dw Data_151b12
-	dw Data_151b12
-	dw Data_151b61
-	dw Data_151b61
-	dw Data_151b61
-	dw Data_151b61
-	dw Data_151bbc
-	dw Data_151bbc
-	dw Data_151bdb
-	dw Data_151bdb
-	dw Data_151c7a
-	dw Data_151cee
-	dw Data_151cee
-	dw Data_151cf6
-	dw Data_151cf6
-	dw Data_151d53
-	dw Data_151d56
-	dw Data_151d59
-	dw Data_151e41
-	dw Data_151eac
-	dw Data_151f54
-	dw Data_151fbb
-	dw Data_15203f
-	dw Data_15203f
-	dw Data_1520d3
-	dw Data_1520d3
-	dw Data_1520f1
-	dw Data_152160
-	dw Data_152160
-	dw Data_1521b0
-	dw Data_152254
-	dw Data_152257
-	dw Data_15238d
-	dw Data_15238d
-	dw Data_15239a
-	dw Data_15239a
-	dw Data_1523a7
-	dw Data_1523a7
-	dw Data_1523f6
-	dw Data_15244a
-	dw Data_152476
-	dw Data_1524a2
-	dw Data_1524bf
-	dw Data_1524dc
-	dw Data_1524f9
-	dw Data_152525
-	dw Data_152542
-	dw Data_152577
-	dw Data_152594
-	dw Data_1525c0
-	dw Data_1525e4
-	dw Data_152624
-	dw Data_152624
-	dw Data_1526e8
-	dw Data_152704
-	dw Data_152723
-	dw Data_15274c
-	dw Data_15274c
-	dw Data_15274c
-	dw Data_1527ba
-	dw Data_1527ba
-	dw Data_1527cd
-	dw Data_1527cd
-	dw Data_15292c
-	dw Data_1529b4
-	dw Data_1529b4
-	dw Data_152a2e
-	dw Data_152a2e
-	dw Data_152b40
-	dw Data_152b40
-	dw Data_152ba1
-	dw Data_152ba1
-	dw Data_152bda
-	dw Data_152bda
-	dw Data_152cf5
-	dw Data_152dbb
-	dw Data_152dbb
-	dw Data_152e12
-	dw Data_152e12
-	dw Data_152ec4
-	dw Data_152fe4
-	dw Data_152fe4
-	dw Data_1530f8
-	dw Data_1530f8
-	dw Data_15317c
-	dw Data_15321b
-	dw Data_15321b
-	dw Data_15330c
-	dw Data_153316
-	dw Data_153320
-	dw Data_153320
-	dw Data_153320
-	dw Data_153379
-	dw Data_153379
-	dw Data_153385
-	dw Data_153385
-	dw Data_153391
-	dw Data_153391
-	dw Data_1533a4
-	dw Data_1533ac
-	dw Data_1533d1
-	dw Data_153495
-	dw Data_153495
-	dw Data_15354f
-	dw Data_15354f
-	dw Data_1535a8
-	dw Data_1535a8
-	dw Data_153613
-	dw Data_153613
-	dw Data_153613
-	dw Data_15361b
-	dw Data_15361b
-	dw Data_15361b
-	dw Data_15365e
-	dw Data_15365e
-	dw Data_15365e
-	dw Data_15365e
-	dw Data_1536c1
-	dw Data_15379b
-	dw Data_1537b8
-	dw Data_1537d5
-	dw Data_153801
-	dw Data_15382d
-	dw Data_153862
-	dw Data_15387f
-	dw Data_1538ab
-	dw Data_1538c8
-	dw Data_1538f4
-	dw Data_153911
-	dw Data_1539be
-	dw Data_1539be
-	dw Data_153a41
-	dw Data_153b46
-	dw Data_153beb
-	dw Data_153bf1
-	dw Data_153bf1
-	dw Data_153bf1
-	dw Data_153c91
-	dw Data_153c94
-	dw Data_153d7c
-	dw Data_153d7c
-	dw Data_153d86
-	dw Data_153ec2
-	dw Data_153ec2
-	dw Data_153ed9
-	dw Data_153ee3
+	dw Script_150290
+	dw Script_150292
+	dw Script_150292
+	dw Script_150292
+	dw Script_1502dd
+	dw Script_1502dd
+	dw Script_1502e3
+	dw Script_1502e5
+	dw Script_1502e5
+	dw Script_1502e5
+	dw Script_150330
+	dw Script_150330
+	dw Script_15035c
+	dw Script_15035e
+	dw Script_15035e
+	dw Script_15035e
+	dw Script_1503a9
+	dw Script_1503a9
+	dw Script_1503d5
+	dw Script_1503d7
+	dw Script_1503d7
+	dw Script_1503d7
+	dw Script_150422
+	dw Script_150422
+	dw Script_15044e
+	dw Script_150450
+	dw Script_150450
+	dw Script_150450
+	dw Script_15049b
+	dw Script_15049b
+	dw Script_1504c7
+	dw Script_1504c9
+	dw Script_1504c9
+	dw Script_1504c9
+	dw Script_150514
+	dw Script_150514
+	dw Script_150540
+	dw Script_150542
+	dw Script_150542
+	dw Script_150542
+	dw Script_15058d
+	dw Script_15058d
+	dw Script_1505b9
+	dw Script_1505bb
+	dw Script_1505bb
+	dw Script_1505bb
+	dw Script_150606
+	dw Script_150606
+	dw Script_150632
+	dw Script_150634
+	dw Script_150634
+	dw Script_150634
+	dw Script_15067f
+	dw Script_15067f
+	dw Script_1506ab
+	dw Script_1506ad
+	dw Script_1506ad
+	dw Script_1506ad
+	dw Script_1506f8
+	dw Script_1506f8
+	dw Script_150724
+	dw Script_150726
+	dw Script_150726
+	dw Script_150726
+	dw Script_150771
+	dw Script_150771
+	dw Script_15079d
+	dw Script_15079f
+	dw Script_15079f
+	dw Script_15079f
+	dw Script_1507ea
+	dw Script_1507ea
+	dw Script_150816
+	dw Script_15096a
+	dw Script_150a86
+	dw Script_150b9a
+	dw Script_150b9a
+	dw Script_150ba2
+	dw Script_150bbc
+	dw Script_150bd6
+	dw Script_150c38
+	dw Script_150c7b
+	dw Script_150c7b
+	dw Script_150cd8
+	dw Script_150d92
+	dw Script_150d92
+	dw Script_150d99
+	dw Script_150d99
+	dw Script_150d9f
+	dw Script_150d9f
+	dw Script_150d9f
+	dw Script_150ecc
+	dw Script_150ef3
+	dw Script_150fe8
+	dw Script_151011
+	dw Script_151011
+	dw Script_151011
+	dw Script_151060
+	dw Script_1510f3
+	dw Script_151168
+	dw Script_1511a4
+	dw Script_1511b2
+	dw Script_15122e
+	dw Script_15122e
+	dw Script_151244
+	dw Script_151244
+	dw Script_15135e
+	dw Script_151384
+	dw Script_151384
+	dw Script_1513a6
+	dw Script_1513ac
+	dw Script_1513b2
+	dw Script_1513b8
+	dw Script_1513be
+	dw Script_1513c4
+	dw Script_1513ca
+	dw Script_1513d0
+	dw Script_1513d6
+	dw Script_1513dc
+	dw Script_1513e2
+	dw Script_1513e9
+	dw Script_1513ef
+	dw Script_1513f5
+	dw Script_151403
+	dw Script_151403
+	dw Script_151403
+	dw Script_1514b0
+	dw Script_1514b0
+	dw Script_151511
+	dw Script_151525
+	dw Script_151525
+	dw Script_151525
+	dw Script_151537
+	dw Script_151544
+	dw Script_151557
+	dw Script_15156e
+	dw Script_15156e
+	dw Script_151586
+	dw Script_151586
+	dw Script_15167a
+	dw Script_15167a
+	dw Script_1516dd
+	dw Script_151730
+	dw Script_15177b
+	dw Script_1517b4
+	dw Script_151807
+	dw Script_151807
+	dw Script_151846
+	dw Script_151846
+	dw Script_151846
+	dw Script_15187b
+	dw Script_1518d5
+	dw Script_1518d5
+	dw Script_15193a
+	dw Script_15193a
+	dw Script_15193a
+	dw Script_15199e
+	dw Script_15199e
+	dw Script_15199e
+	dw Script_1519a6
+	dw Script_1519a6
+	dw Script_1519a6
+	dw Script_1519a6
+	dw Script_151a26
+	dw Script_151a26
+	dw Script_151a26
+	dw Script_151a26
+	dw Script_151a2e
+	dw Script_151a2e
+	dw Script_151a2e
+	dw Script_151a6f
+	dw Script_151a6f
+	dw Script_151a6f
+	dw Script_151a77
+	dw Script_151a77
+	dw Script_151a77
+	dw Script_151a77
+	dw Script_151b0a
+	dw Script_151b0a
+	dw Script_151b0a
+	dw Script_151b0a
+	dw Script_151b12
+	dw Script_151b12
+	dw Script_151b12
+	dw Script_151b61
+	dw Script_151b61
+	dw Script_151b61
+	dw Script_151b61
+	dw Script_151bbc
+	dw Script_151bbc
+	dw Script_151bdb
+	dw Script_151bdb
+	dw Script_151c7a
+	dw Script_151cee
+	dw Script_151cee
+	dw Script_151cf6
+	dw Script_151cf6
+	dw Script_151d53
+	dw Script_151d56
+	dw Script_151d59
+	dw Script_151e41
+	dw Script_151eac
+	dw Script_151f54
+	dw Script_151fbb
+	dw Script_15203f
+	dw Script_15203f
+	dw Script_1520d3
+	dw Script_1520d3
+	dw Script_1520f1
+	dw Script_152160
+	dw Script_152160
+	dw Script_1521b0
+	dw Script_152254
+	dw Script_152257
+	dw Script_15238d
+	dw Script_15238d
+	dw Script_15239a
+	dw Script_15239a
+	dw Script_1523a7
+	dw Script_1523a7
+	dw Script_1523f6
+	dw Script_15244a
+	dw Script_152476
+	dw Script_1524a2
+	dw Script_1524bf
+	dw Script_1524dc
+	dw Script_1524f9
+	dw Script_152525
+	dw Script_152542
+	dw Script_152577
+	dw Script_152594
+	dw Script_1525c0
+	dw Script_1525e4
+	dw Script_152624
+	dw Script_152624
+	dw Script_1526e8
+	dw Script_152704
+	dw Script_152723
+	dw Script_15274c
+	dw Script_15274c
+	dw Script_15274c
+	dw Script_1527ba
+	dw Script_1527ba
+	dw Script_1527cd
+	dw Script_1527cd
+	dw Script_15292c
+	dw Script_1529b4
+	dw Script_1529b4
+	dw Script_152a2e
+	dw Script_152a2e
+	dw Script_152b40
+	dw Script_152b40
+	dw Script_152ba1
+	dw Script_152ba1
+	dw Script_152bda
+	dw Script_152bda
+	dw Script_152cf5
+	dw Script_152dbb
+	dw Script_152dbb
+	dw Script_152e12
+	dw Script_152e12
+	dw Script_152ec4
+	dw Script_152fe4
+	dw Script_152fe4
+	dw Script_1530f8
+	dw Script_1530f8
+	dw Script_15317c
+	dw Script_15321b
+	dw Script_15321b
+	dw Script_15330c
+	dw Script_153316
+	dw Script_153320
+	dw Script_153320
+	dw Script_153320
+	dw Script_153379
+	dw Script_153379
+	dw Script_153385
+	dw Script_153385
+	dw Script_153391
+	dw Script_153391
+	dw Script_1533a4
+	dw Script_1533ac
+	dw Script_1533d1
+	dw Script_153495
+	dw Script_153495
+	dw Script_15354f
+	dw Script_15354f
+	dw Script_1535a8
+	dw Script_1535a8
+	dw Script_153613
+	dw Script_153613
+	dw Script_153613
+	dw Script_15361b
+	dw Script_15361b
+	dw Script_15361b
+	dw Script_15365e
+	dw Script_15365e
+	dw Script_15365e
+	dw Script_15365e
+	dw Script_1536c1
+	dw Script_15379b
+	dw Script_1537b8
+	dw Script_1537d5
+	dw Script_153801
+	dw Script_15382d
+	dw Script_153862
+	dw Script_15387f
+	dw Script_1538ab
+	dw Script_1538c8
+	dw Script_1538f4
+	dw Script_153911
+	dw Script_1539be
+	dw Script_1539be
+	dw Script_153a41
+	dw Script_153b46
+	dw Script_153beb
+	dw Script_153bf1
+	dw Script_153bf1
+	dw Script_153bf1
+	dw Script_153c91
+	dw Script_153c94
+	dw Script_153d7c
+	dw Script_153d7c
+	dw Script_153d86
+	dw Script_153ec2
+	dw Script_153ec2
+	dw Script_153ed9
+	dw Script_153ee3
 
-Data_150290:
+Script_150290:
 	script_0d $0
 
-Data_150292:
-	script_jump_if EVENT_C39, $4
+Script_150292:
+	script_jump_if EVENT_C39, Script_150297
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_150297:
+	script_jump_if EVENT_C3A, Script_1502af
 	script_01 $3, $0
 	script_04 $8
 	script_10 $44, $40
@@ -344,13 +346,18 @@ Data_150292:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $301
+
+Script_1502af:
+	script_56 $3, $1
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_1502c2
+	script_jump_if_not EVENT_C3B, Script_1502c5
 	script_01 $3, $4
-	script_jump $5
+	script_jump Script_1502c5
+
+Script_1502c2:
 	script_set_event EVENT_C3B
+Script_1502c5:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -362,18 +369,22 @@ Data_150292:
 	script_15
 	script_end
 
-Data_1502dd:
+
+Script_1502dd:
 	script_04 $8
 	script_01 $3, $5
 	script_end
 
-Data_1502e3:
+
+Script_1502e3:
 	script_0d $0
 
-Data_1502e5:
-	script_jump_if EVENT_C39, $4
+Script_1502e5:
+	script_jump_if EVENT_C39, Script_1502ea
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_1502ea:
+	script_jump_if EVENT_C3A, Script_150302
 	script_01 $3, $6
 	script_04 $8
 	script_10 $44, $40
@@ -384,13 +395,18 @@ Data_1502e5:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $307
+
+Script_150302:
+	script_56 $3, $7
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_150315
+	script_jump_if_not EVENT_C3B, Script_150318
 	script_01 $3, $a
-	script_jump $5
+	script_jump Script_150318
+
+Script_150315:
 	script_set_event EVENT_C3B
+Script_150318:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -402,33 +418,45 @@ Data_1502e5:
 	script_15
 	script_end
 
-Data_150330:
-	script_jump_if EVENT_1D7, $4
+
+Script_150330:
+	script_jump_if EVENT_1D7, Script_150335
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_150335:
+	script_jump_if_not EVENT_C39, Script_15033f
 	script_04 $4
 	script_01 $3, $b
 	script_end
+
+Script_15033f:
 	script_01 $3, $c
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_150354
 	script_04 $8
 	script_reset_event EVENT_089
-	script_jump_if_not EVENT_08A, $a
+	script_jump_if_not EVENT_08A, Script_150358
 	script_4d $1
 	script_end
+
+Script_150354:
 	script_01 $3, $d
 	script_end
+
+Script_150358:
 	script_01 $3, $e
 	script_end
 
-Data_15035c:
+
+Script_15035c:
 	script_0d $0
 
-Data_15035e:
-	script_jump_if EVENT_C39, $4
+Script_15035e:
+	script_jump_if EVENT_C39, Script_150363
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_150363:
+	script_jump_if EVENT_C3A, Script_15037b
 	script_01 $3, $f
 	script_04 $8
 	script_10 $44, $40
@@ -439,13 +467,18 @@ Data_15035e:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $310
+
+Script_15037b:
+	script_56 $3, $10
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_15038e
+	script_jump_if_not EVENT_C3B, Script_150391
 	script_01 $3, $13
-	script_jump $5
+	script_jump Script_150391
+
+Script_15038e:
 	script_set_event EVENT_C3B
+Script_150391:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -457,33 +490,45 @@ Data_15035e:
 	script_15
 	script_end
 
-Data_1503a9:
-	script_jump_if EVENT_1D7, $4
+
+Script_1503a9:
+	script_jump_if EVENT_1D7, Script_1503ae
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_1503ae:
+	script_jump_if_not EVENT_C39, Script_1503b8
 	script_04 $4
 	script_01 $3, $14
 	script_end
+
+Script_1503b8:
 	script_01 $3, $15
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_1503cd
 	script_04 $8
 	script_set_event EVENT_089
-	script_jump_if_not EVENT_08B, $a
+	script_jump_if_not EVENT_08B, Script_1503d1
 	script_4d $1
 	script_end
+
+Script_1503cd:
 	script_01 $3, $16
 	script_end
+
+Script_1503d1:
 	script_01 $3, $17
 	script_end
 
-Data_1503d5:
+
+Script_1503d5:
 	script_0d $0
 
-Data_1503d7:
-	script_jump_if EVENT_C39, $4
+Script_1503d7:
+	script_jump_if EVENT_C39, Script_1503dc
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_1503dc:
+	script_jump_if EVENT_C3A, Script_1503f4
 	script_01 $3, $18
 	script_04 $8
 	script_10 $44, $40
@@ -494,13 +539,18 @@ Data_1503d7:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $319
+
+Script_1503f4:
+	script_56 $3, $19
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_150407
+	script_jump_if_not EVENT_C3B, Script_15040a
 	script_01 $3, $1c
-	script_jump $5
+	script_jump Script_15040a
+
+Script_150407:
 	script_set_event EVENT_C3B
+Script_15040a:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -512,33 +562,45 @@ Data_1503d7:
 	script_15
 	script_end
 
-Data_150422:
-	script_jump_if EVENT_1D7, $4
+
+Script_150422:
+	script_jump_if EVENT_1D7, Script_150427
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_150427:
+	script_jump_if_not EVENT_C39, Script_150431
 	script_04 $4
 	script_01 $3, $1d
 	script_end
+
+Script_150431:
 	script_01 $3, $1e
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_150446
 	script_04 $8
 	script_set_event EVENT_089
-	script_jump_if_not EVENT_08B, $a
+	script_jump_if_not EVENT_08B, Script_15044a
 	script_4d $1
 	script_end
+
+Script_150446:
 	script_01 $3, $1f
 	script_end
+
+Script_15044a:
 	script_01 $3, $20
 	script_end
 
-Data_15044e:
+
+Script_15044e:
 	script_0d $0
 
-Data_150450:
-	script_jump_if EVENT_C39, $4
+Script_150450:
+	script_jump_if EVENT_C39, Script_150455
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_150455:
+	script_jump_if EVENT_C3A, Script_15046d
 	script_01 $3, $21
 	script_04 $8
 	script_10 $44, $40
@@ -549,13 +611,18 @@ Data_150450:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $322
+
+Script_15046d:
+	script_56 $3, $22
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_150480
+	script_jump_if_not EVENT_C3B, Script_150483
 	script_01 $3, $25
-	script_jump $5
+	script_jump Script_150483
+
+Script_150480:
 	script_set_event EVENT_C3B
+Script_150483:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -567,33 +634,45 @@ Data_150450:
 	script_15
 	script_end
 
-Data_15049b:
-	script_jump_if EVENT_1D7, $4
+
+Script_15049b:
+	script_jump_if EVENT_1D7, Script_1504a0
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_1504a0:
+	script_jump_if_not EVENT_C39, Script_1504aa
 	script_04 $4
 	script_01 $3, $26
 	script_end
+
+Script_1504aa:
 	script_01 $3, $27
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_1504bf
 	script_04 $8
 	script_reset_event EVENT_089
-	script_jump_if_not EVENT_08A, $a
+	script_jump_if_not EVENT_08A, Script_1504c3
 	script_4d $1
 	script_end
+
+Script_1504bf:
 	script_01 $3, $28
 	script_end
+
+Script_1504c3:
 	script_01 $3, $29
 	script_end
 
-Data_1504c7:
+
+Script_1504c7:
 	script_0d $0
 
-Data_1504c9:
-	script_jump_if EVENT_C39, $4
+Script_1504c9:
+	script_jump_if EVENT_C39, Script_1504ce
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_1504ce:
+	script_jump_if EVENT_C3A, Script_1504e6
 	script_01 $3, $2a
 	script_04 $8
 	script_10 $44, $40
@@ -604,13 +683,18 @@ Data_1504c9:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $32b
+
+Script_1504e6:
+	script_56 $3, $2b
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_1504f9
+	script_jump_if_not EVENT_C3B, Script_1504fc
 	script_01 $3, $2e
-	script_jump $5
+	script_jump Script_1504fc
+
+Script_1504f9:
 	script_set_event EVENT_C3B
+Script_1504fc:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -622,33 +706,45 @@ Data_1504c9:
 	script_15
 	script_end
 
-Data_150514:
-	script_jump_if EVENT_1D7, $4
+
+Script_150514:
+	script_jump_if EVENT_1D7, Script_150519
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_150519:
+	script_jump_if_not EVENT_C39, Script_150523
 	script_04 $4
 	script_01 $3, $2f
 	script_end
+
+Script_150523:
 	script_01 $3, $30
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_150538
 	script_04 $8
 	script_set_event EVENT_089
-	script_jump_if_not EVENT_08B, $a
+	script_jump_if_not EVENT_08B, Script_15053c
 	script_4d $1
 	script_end
+
+Script_150538:
 	script_01 $3, $31
 	script_end
+
+Script_15053c:
 	script_01 $3, $32
 	script_end
 
-Data_150540:
+
+Script_150540:
 	script_0d $0
 
-Data_150542:
-	script_jump_if EVENT_C39, $4
+Script_150542:
+	script_jump_if EVENT_C39, Script_150547
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_150547:
+	script_jump_if EVENT_C3A, Script_15055f
 	script_01 $3, $33
 	script_04 $8
 	script_10 $44, $40
@@ -659,13 +755,18 @@ Data_150542:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $334
+
+Script_15055f:
+	script_56 $3, $34
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_150572
+	script_jump_if_not EVENT_C3B, Script_150575
 	script_01 $3, $37
-	script_jump $5
+	script_jump Script_150575
+
+Script_150572:
 	script_set_event EVENT_C3B
+Script_150575:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -677,33 +778,45 @@ Data_150542:
 	script_15
 	script_end
 
-Data_15058d:
-	script_jump_if EVENT_1D7, $4
+
+Script_15058d:
+	script_jump_if EVENT_1D7, Script_150592
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_150592:
+	script_jump_if_not EVENT_C39, Script_15059c
 	script_04 $4
 	script_01 $3, $38
 	script_end
+
+Script_15059c:
 	script_01 $3, $39
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_1505b1
 	script_04 $8
 	script_reset_event EVENT_089
-	script_jump_if_not EVENT_08A, $a
+	script_jump_if_not EVENT_08A, Script_1505b5
 	script_4d $1
 	script_end
+
+Script_1505b1:
 	script_01 $3, $3a
 	script_end
+
+Script_1505b5:
 	script_01 $3, $3b
 	script_end
 
-Data_1505b9:
+
+Script_1505b9:
 	script_0d $0
 
-Data_1505bb:
-	script_jump_if EVENT_C39, $4
+Script_1505bb:
+	script_jump_if EVENT_C39, Script_1505c0
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_1505c0:
+	script_jump_if EVENT_C3A, Script_1505d8
 	script_01 $3, $3c
 	script_04 $8
 	script_10 $44, $40
@@ -714,13 +827,18 @@ Data_1505bb:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $33d
+
+Script_1505d8:
+	script_56 $3, $3d
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_1505eb
+	script_jump_if_not EVENT_C3B, Script_1505ee
 	script_01 $3, $40
-	script_jump $5
+	script_jump Script_1505ee
+
+Script_1505eb:
 	script_set_event EVENT_C3B
+Script_1505ee:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -732,33 +850,45 @@ Data_1505bb:
 	script_15
 	script_end
 
-Data_150606:
-	script_jump_if EVENT_1D7, $4
+
+Script_150606:
+	script_jump_if EVENT_1D7, Script_15060b
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_15060b:
+	script_jump_if_not EVENT_C39, Script_150615
 	script_04 $4
 	script_01 $3, $41
 	script_end
+
+Script_150615:
 	script_01 $3, $42
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_15062a
 	script_04 $8
 	script_reset_event EVENT_089
-	script_jump_if_not EVENT_08A, $a
+	script_jump_if_not EVENT_08A, Script_15062e
 	script_4d $1
 	script_end
+
+Script_15062a:
 	script_01 $3, $43
 	script_end
+
+Script_15062e:
 	script_01 $3, $44
 	script_end
 
-Data_150632:
+
+Script_150632:
 	script_0d $0
 
-Data_150634:
-	script_jump_if EVENT_C39, $4
+Script_150634:
+	script_jump_if EVENT_C39, Script_150639
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_150639:
+	script_jump_if EVENT_C3A, Script_150651
 	script_01 $3, $45
 	script_04 $8
 	script_10 $44, $40
@@ -769,13 +899,18 @@ Data_150634:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $346
+
+Script_150651:
+	script_56 $3, $46
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_150664
+	script_jump_if_not EVENT_C3B, Script_150667
 	script_01 $3, $49
-	script_jump $5
+	script_jump Script_150667
+
+Script_150664:
 	script_set_event EVENT_C3B
+Script_150667:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -787,33 +922,45 @@ Data_150634:
 	script_15
 	script_end
 
-Data_15067f:
-	script_jump_if EVENT_1D7, $4
+
+Script_15067f:
+	script_jump_if EVENT_1D7, Script_150684
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_150684:
+	script_jump_if_not EVENT_C39, Script_15068e
 	script_04 $4
 	script_01 $3, $4a
 	script_end
+
+Script_15068e:
 	script_01 $3, $4b
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_1506a3
 	script_04 $8
 	script_reset_event EVENT_089
-	script_jump_if_not EVENT_08A, $a
+	script_jump_if_not EVENT_08A, Script_1506a7
 	script_4d $1
 	script_end
+
+Script_1506a3:
 	script_01 $3, $4c
 	script_end
+
+Script_1506a7:
 	script_01 $3, $4d
 	script_end
 
-Data_1506ab:
+
+Script_1506ab:
 	script_0d $0
 
-Data_1506ad:
-	script_jump_if EVENT_C39, $4
+Script_1506ad:
+	script_jump_if EVENT_C39, Script_1506b2
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_1506b2:
+	script_jump_if EVENT_C3A, Script_1506ca
 	script_01 $3, $4e
 	script_04 $8
 	script_10 $44, $40
@@ -824,13 +971,18 @@ Data_1506ad:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $34f
+
+Script_1506ca:
+	script_56 $3, $4f
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_1506dd
+	script_jump_if_not EVENT_C3B, Script_1506e0
 	script_01 $3, $52
-	script_jump $5
+	script_jump Script_1506e0
+
+Script_1506dd:
 	script_set_event EVENT_C3B
+Script_1506e0:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -842,33 +994,45 @@ Data_1506ad:
 	script_15
 	script_end
 
-Data_1506f8:
-	script_jump_if EVENT_1D7, $4
+
+Script_1506f8:
+	script_jump_if EVENT_1D7, Script_1506fd
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_1506fd:
+	script_jump_if_not EVENT_C39, Script_150707
 	script_04 $4
 	script_01 $3, $53
 	script_end
+
+Script_150707:
 	script_01 $3, $54
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_15071c
 	script_04 $8
 	script_set_event EVENT_089
-	script_jump_if_not EVENT_08B, $a
+	script_jump_if_not EVENT_08B, Script_150720
 	script_4d $1
 	script_end
+
+Script_15071c:
 	script_01 $3, $55
 	script_end
+
+Script_150720:
 	script_01 $3, $56
 	script_end
 
-Data_150724:
+
+Script_150724:
 	script_0d $0
 
-Data_150726:
-	script_jump_if EVENT_C39, $4
+Script_150726:
+	script_jump_if EVENT_C39, Script_15072b
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_15072b:
+	script_jump_if EVENT_C3A, Script_150743
 	script_01 $3, $57
 	script_04 $8
 	script_10 $44, $40
@@ -879,13 +1043,18 @@ Data_150726:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $358
+
+Script_150743:
+	script_56 $3, $58
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_150756
+	script_jump_if_not EVENT_C3B, Script_150759
 	script_01 $3, $5b
-	script_jump $5
+	script_jump Script_150759
+
+Script_150756:
 	script_set_event EVENT_C3B
+Script_150759:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -897,33 +1066,45 @@ Data_150726:
 	script_15
 	script_end
 
-Data_150771:
-	script_jump_if EVENT_1D7, $4
+
+Script_150771:
+	script_jump_if EVENT_1D7, Script_150776
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_150776:
+	script_jump_if_not EVENT_C39, Script_150780
 	script_04 $4
 	script_01 $3, $5c
 	script_end
+
+Script_150780:
 	script_01 $3, $5d
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_150795
 	script_04 $8
 	script_reset_event EVENT_089
-	script_jump_if_not EVENT_08A, $a
+	script_jump_if_not EVENT_08A, Script_150799
 	script_4d $1
 	script_end
+
+Script_150795:
 	script_01 $3, $5e
 	script_end
+
+Script_150799:
 	script_01 $3, $5f
 	script_end
 
-Data_15079d:
+
+Script_15079d:
 	script_0d $0
 
-Data_15079f:
-	script_jump_if EVENT_C39, $4
+Script_15079f:
+	script_jump_if EVENT_C39, Script_1507a4
 	script_end
-	script_jump_if EVENT_C3A, $17
+
+Script_1507a4:
+	script_jump_if EVENT_C3A, Script_1507bc
 	script_01 $3, $60
 	script_04 $8
 	script_10 $44, $40
@@ -934,13 +1115,18 @@ Data_15079f:
 	script_04 $8
 	script_0d $1
 	script_end
-	script_56 $361
+
+Script_1507bc:
+	script_56 $3, $61
 	script_04 $8
-	script_jump_if_not EVENT_C3E, $d
-	script_jump_if_not EVENT_C3B, $c
+	script_jump_if_not EVENT_C3E, Script_1507cf
+	script_jump_if_not EVENT_C3B, Script_1507d2
 	script_01 $3, $64
-	script_jump $5
+	script_jump Script_1507d2
+
+Script_1507cf:
 	script_set_event EVENT_C3B
+Script_1507d2:
 	script_reset_event EVENT_C39
 	script_reset_event EVENT_C3A
 	script_set_event EVENT_C3C
@@ -952,27 +1138,37 @@ Data_15079f:
 	script_15
 	script_end
 
-Data_1507ea:
-	script_jump_if EVENT_1D7, $4
+
+Script_1507ea:
+	script_jump_if EVENT_1D7, Script_1507ef
 	script_end
-	script_jump_if_not EVENT_C39, $9
+
+Script_1507ef:
+	script_jump_if_not EVENT_C39, Script_1507f9
 	script_04 $4
 	script_01 $3, $65
 	script_end
+
+Script_1507f9:
 	script_01 $3, $66
 	script_04 $8
-	script_jump_if_not EVENT_088, $f
+	script_jump_if_not EVENT_088, Script_15080e
 	script_04 $8
 	script_reset_event EVENT_089
-	script_jump_if_not EVENT_08A, $a
+	script_jump_if_not EVENT_08A, Script_150812
 	script_4d $1
 	script_end
+
+Script_15080e:
 	script_01 $3, $67
 	script_end
+
+Script_150812:
 	script_01 $3, $68
 	script_end
 
-Data_150816:
+
+Script_150816:
 	script_17 $0
 	script_3e $4a
 	script_3f $88
@@ -1013,7 +1209,7 @@ Data_150816:
 	script_2a
 	script_01 $3, $6b
 	script_04 $14
-	script_playmusic MUSIC_23
+	script_playmusic MUSIC_SHOP
 	script_21 $0, $5a, $94
 	script_60 $5a
 	script_23 $0, $84, $32
@@ -1043,7 +1239,7 @@ Data_150816:
 	script_0d $2
 	script_57 $0
 	script_25 $0
-	script_playmusic MUSIC_33
+	script_playmusic MUSIC_WARP
 	script_0e
 	script_04 $32
 	script_01 $3, $70
@@ -1116,10 +1312,11 @@ Data_150816:
 	script_14
 	script_end
 
-Data_15096a:
+
+Script_15096a:
 	script_4d $64
 	script_21 $0, $59, $55
-	script_playmusic MUSIC_29
+	script_playmusic MUSIC_2A
 	script_dshot_signal_strength $4
 	script_4c $1
 	script_set_event EVENT_1C3
@@ -1242,7 +1439,8 @@ Data_15096a:
 	script_14
 	script_end
 
-Data_150a86:
+
+Script_150a86:
 	script_reset_event EVENT_1C3
 	script_reset_event EVENT_1C2
 	script_21 $0, $59, $45
@@ -1254,13 +1452,14 @@ Data_150a86:
 	script_22 $0, $0
 	script_04 $14
 	script_01 $3, $8b
-	script_jump_if_not EVENT_C3F, $62
+	script_jump_if_not EVENT_C3F, Script_150b07
 	script_04 $14
 	script_23 $1, $74, $32
 	script_57 $1
 	script_01 $3, $8c
 	script_04 $14
 	script_22 $1, $1
+Script_150ab8:
 	script_04 $14
 	script_01 $3, $8d
 	script_22 $1, $2
@@ -1287,8 +1486,9 @@ Data_150a86:
 	script_22 $1, $1
 	script_04 $14
 	script_01 $3, $93
-	script_jump_if EVENT_C3F, $b6
+	script_jump_if EVENT_C3F, Script_150ab8
 	script_04 $14
+Script_150b07:
 	script_01 $3, $94
 	script_04 $14
 	script_01 $3, $95
@@ -1346,17 +1546,19 @@ Data_150a86:
 	script_04 $32
 	script_set_event EVENT_SEEN_MUSA
 	script_set_event EVENT_08C
-	script_12 EVENT_05D
+	script_12 $5d
 	script_14
 	script_end
 
-Data_150b9a:
+
+Script_150b9a:
 	script_3d $3
 	script_04 $a
 	script_01 $3, $a2
 	script_end
 
-Data_150ba2:
+
+Script_150ba2:
 	script_28 $3
 	script_04 $32
 	script_01 $3, $a3
@@ -1366,11 +1568,12 @@ Data_150ba2:
 	script_04 $32
 	script_10 $30, $32
 	script_2a
-	script_13 EVENT_04D
-	script_13 EVENT_04E
+	script_13 $4d
+	script_13 $4e
 	script_end
 
-Data_150bbc:
+
+Script_150bbc:
 	script_28 $3
 	script_04 $32
 	script_01 $3, $a5
@@ -1380,13 +1583,14 @@ Data_150bbc:
 	script_04 $32
 	script_10 $40, $32
 	script_2a
-	script_13 EVENT_04D
-	script_13 EVENT_04E
+	script_13 $4d
+	script_13 $4e
 	script_end
 
-Data_150bd6:
+
+Script_150bd6:
 	script_04 $4
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_01 $3, $a7
 	script_04 $14
 	script_3c $85, $32
@@ -1421,18 +1625,19 @@ Data_150bd6:
 	script_23 $0, $80, $32
 	script_57 $0
 	script_25 $0
-	script_playmusic MUSIC_03
-	script_13 EVENT_04F
-	script_13 EVENT_04B
-	script_13 EVENT_04C
-	script_13 EVENT_04D
-	script_13 EVENT_04E
+	script_playmusic MUSIC_OVERWORLD
+	script_13 $4f
+	script_13 $4b
+	script_13 $4c
+	script_13 $4d
+	script_13 $4e
 	script_14
 	script_end
 
-Data_150c38:
+
+Script_150c38:
 	script_04 $4
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_01 $3, $aa
 	script_0d $3
 	script_04 $a
@@ -1461,10 +1666,11 @@ Data_150c38:
 	script_14
 	script_end
 
-Data_150c7b:
+
+Script_150c7b:
 	script_0d $0
 	script_04 $4
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_28 $0
 	script_04 $32
 	script_01 $3, $ad
@@ -1494,15 +1700,16 @@ Data_150c7b:
 	script_0d $2
 	script_04 $50
 	script_01 $3, $b0
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_set_event EVENT_1C4
-	script_13 EVENT_051
-	script_13 EVENT_052
+	script_13 $51
+	script_13 $52
 	script_14
 	script_end
 
-Data_150cd8:
-	script_jump_if EVENT_1C4, $12
+
+Script_150cd8:
+	script_jump_if EVENT_1C4, Script_150ceb
 	script_22 $0, $2
 	script_04 $32
 	script_28 $0
@@ -1510,7 +1717,9 @@ Data_150cd8:
 	script_3d $0
 	script_01 $3, $b1
 	script_end
-	script_playmusic MUSIC_25
+
+Script_150ceb:
+	script_playmusic MUSIC_26
 	script_3d $0
 	script_28 $0
 	script_04 $32
@@ -1523,7 +1732,7 @@ Data_150cd8:
 	script_01 $3, $b4
 	script_04 $1e
 	script_load_battle $0, $0, $2
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_3e $74
 	script_04 $a
 	script_22 $0, $2
@@ -1571,38 +1780,43 @@ Data_150cd8:
 	script_04 $32
 	script_01 $3, $bd
 	script_04 $4
-	script_give_denjuu $3, NEJIRO, 6, $23, $3
+	script_give_denjuu $3, NEJIRO, $6, $23, $3
 	script_04 $32
 	script_01 $3, $be
 	script_26 $0, $2
 	script_04 $64
 	script_25 $0
 	script_04 $a
-	script_13 EVENT_054
-	script_13 EVENT_055
+	script_13 $54
+	script_13 $55
 	script_14
 	script_end
 
-Data_150d92:
+
+Script_150d92:
 	script_04 $a
 	script_01 $3, $bf
 	script_14
 	script_end
 
-Data_150d99:
+
+Script_150d99:
 	script_04 $a
 	script_01 $3, $c0
 	script_end
 
-Data_150d9f:
+
+Script_150d9f:
 	script_4a $2
 	script_0c $4a
 	script_03
 	script_0d $10
 	script_42 $32, $2a
-	script_jump $6
+	script_jump Script_150db0
+
 	script_10 $62, $32
 	script_2a
+Script_150db0:
 	script_10 $52, $32
 	script_2a
 	script_0d $3
@@ -1626,7 +1840,7 @@ Data_150d9f:
 	script_04 $14
 	script_01 $3, $c4
 	script_04 $32
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_21 $0, $5f, $47
 	script_60 $5f
 	script_23 $0, $41, $30
@@ -1678,7 +1892,7 @@ Data_150d9f:
 	script_load_battle $2, $28, $1
 	script_66 $60
 	script_60 $5f
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_04 $4
 	script_01 $3, $cd
 	script_23 $1, $47, $78
@@ -1692,7 +1906,7 @@ Data_150d9f:
 	script_57 $0
 	script_04 $a
 	script_25 $0
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_04 $1e
 	script_0d $3
 	script_28 $2
@@ -1717,14 +1931,15 @@ Data_150d9f:
 	script_01 $3, $d3
 	script_0b $2, $24, $43
 	script_reset_event EVENT_08C
-	script_12 EVENT_05B
-	script_13 EVENT_058
-	script_13 EVENT_059
-	script_13 EVENT_05A
+	script_12 $5b
+	script_13 $58
+	script_13 $59
+	script_13 $5a
 	script_14
 	script_end
 
-Data_150ecc:
+
+Script_150ecc:
 	script_04 $3
 	script_5c $0
 	script_05
@@ -1738,18 +1953,22 @@ Data_150ecc:
 	script_01 $3, $d5
 	script_04 $14
 	script_01 $3, $d6
-	script_13 EVENT_04F
-	script_13 EVENT_04B
-	script_13 EVENT_04C
-	script_12 EVENT_05C
+	script_13 $4f
+	script_13 $4b
+	script_13 $4c
+	script_12 $5c
 	script_14
 	script_end
 
-Data_150ef3:
+
+Script_150ef3:
 	script_04 $3
-	script_61 $30, $5
-	script_jump $5
+	script_61 $30, Script_150efb
+	script_jump Script_150efe
+
+Script_150efb:
 	script_set_event EVENT_1C3
+Script_150efe:
 	script_21 $0, $59, $35
 	script_60 $59
 	script_21 $1, $2a, $44
@@ -1770,7 +1989,7 @@ Data_150ef3:
 	script_playmusic MUSIC_02
 	script_04 $3
 	script_set_event EVENT_210
-	script_playmusic MUSIC_29
+	script_playmusic MUSIC_2A
 	script_4d $3
 	script_0b $8, $c, $56
 	script_21 $0, $59, $35
@@ -1821,33 +2040,40 @@ Data_150ef3:
 	script_23 $0, $46, $32
 	script_57 $1
 	script_57 $0
-	script_61 $30, $7
+	script_61 $30, Script_150fb8
 	script_25 $1
-	script_jump $6
+	script_jump Script_150fbc
+
+Script_150fb8:
 	script_23 $1, $57, $32
+Script_150fbc:
 	script_23 $0, $47, $32
 	script_57 $1
 	script_57 $0
 	script_25 $1
 	script_25 $0
 	script_reset_event EVENT_210
-	script_playmusic MUSIC_03
+	script_playmusic MUSIC_OVERWORLD
 	script_reset_event EVENT_1C3
 	script_3f $57
 	script_set_event EVENT_1CB
 	script_set_event EVENT_1CC
 	script_17 $1
-	script_12 EVENT_12B
+	script_12 $12b
 	script_set_event EVENT_1F8
-	script_13 EVENT_05D
+	script_13 $5d
 	script_reset_event EVENT_210
 	script_14
 	script_end
 
-Data_150fe8:
-	script_61 $30, $5
-	script_jump $5
+
+Script_150fe8:
+	script_61 $30, Script_150fee
+	script_jump Script_150ff1
+
+Script_150fee:
 	script_set_event EVENT_1C3
+Script_150ff1:
 	script_1c $3
 	script_3d $1
 	script_04 $a
@@ -1864,14 +2090,17 @@ Data_150fe8:
 	script_reset_event EVENT_1C3
 	script_end
 
-Data_151011:
+
+Script_151011:
 	script_3d $2
-	script_jump_if EVENT_1C7, $d
+	script_jump_if EVENT_1C7, Script_151021
 	script_28 $2
 	script_04 $32
 	script_3d $2
 	script_01 $3, $e8
 	script_end
+
+Script_151021:
 	script_28 $2
 	script_04 $32
 	script_3d $2
@@ -1880,7 +2109,7 @@ Data_151011:
 	script_28 $2
 	script_04 $32
 	script_01 $3, $ea
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_04 $32
 	script_01 $3, $eb
 	script_04 $1e
@@ -1893,19 +2122,20 @@ Data_151011:
 	script_04 $64
 	script_25 $2
 	script_04 $a
-	script_12 EVENT_064
-	script_13 EVENT_05E
-	script_13 EVENT_05F
-	script_13 EVENT_060
+	script_12 $64
+	script_13 $5e
+	script_13 $5f
+	script_13 $60
 	script_14
 	script_end
 
-Data_151060:
+
+Script_151060:
 	script_10 $44, $32
 	script_2a
 	script_21 $0, $5a, $94
 	script_60 $5a
-	script_playmusic MUSIC_23
+	script_playmusic MUSIC_SHOP
 	script_22 $0, $2
 	script_23 $0, $84, $32
 	script_57 $0
@@ -1960,12 +2190,13 @@ Data_151060:
 	script_23 $0, $40, $78
 	script_57 $0
 	script_25 $0
-	script_playmusic MUSIC_03
+	script_playmusic MUSIC_OVERWORLD
 	script_set_event EVENT_1C7
 	script_14
 	script_end
 
-Data_1510f3:
+
+Script_1510f3:
 	script_4c $0
 	script_04 $32
 	script_28 $0
@@ -2021,15 +2252,18 @@ Data_1510f3:
 	script_14
 	script_end
 
-Data_151168:
-	script_jump_if EVENT_1CA, $f
+
+Script_151168:
+	script_jump_if EVENT_1CA, Script_151178
 	script_3d $0
 	script_28 $0
 	script_04 $32
 	script_3d $0
 	script_01 $9, $7
 	script_end
-	script_playmusic MUSIC_25
+
+Script_151178:
+	script_playmusic MUSIC_26
 	script_3d $0
 	script_0e
 	script_04 $32
@@ -2050,7 +2284,8 @@ Data_151168:
 	script_14
 	script_end
 
-Data_1511a4:
+
+Script_1511a4:
 	script_04 $4
 	script_5c $0
 	script_05
@@ -2061,9 +2296,10 @@ Data_1511a4:
 	script_14
 	script_end
 
-Data_1511b2:
+
+Script_1511b2:
 	script_04 $4
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_10 $43, $32
 	script_3c $33, $32
 	script_2a
@@ -2116,26 +2352,29 @@ Data_1511b2:
 	script_playsfx SFX_0A
 	script_01 $9, $11
 	script_36 $30, $1
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_set_event EVENT_1EF
-	script_12 EVENT_118
+	script_12 $118
 	script_14
 	script_end
 
-Data_15122e:
-	script_jump_if_not EVENT_1EF, $14
+
+Script_15122e:
+	script_jump_if_not EVENT_1EF, Script_151243
 	script_01 $9, $12
 	script_37 $30, $1
 	script_set_event EVENT_1F0
 	script_67
-	script_13 EVENT_066
-	script_13 EVENT_067
+	script_13 $66
+	script_13 $67
 	script_14
+Script_151243:
 	script_end
 
-Data_151244:
+
+Script_151244:
 	script_04 $4
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_23 $0, $63, $30
 	script_57 $0
 	script_04 $14
@@ -2196,7 +2435,7 @@ Data_151244:
 	script_3f $62
 	script_22 $0, $1
 	script_1c $1
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_04 $14
 	script_01 $9, $19
 	script_28 $0
@@ -2219,7 +2458,7 @@ Data_151244:
 	script_57 $0
 	script_25 $0
 	script_04 $50
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_01 $9, $1e
 	script_04 $14
 	script_playsfx SFX_0A
@@ -2235,10 +2474,10 @@ Data_151244:
 	script_1d
 	script_04 $32
 	script_01 $9, $21
-	script_13 EVENT_068
-	script_13 EVENT_069
-	script_13 EVENT_118
-	script_12 EVENT_06A
+	script_13 $68
+	script_13 $69
+	script_13 $118
+	script_12 $6a
 	script_set_event EVENT_097
 	script_set_event EVENT_098
 	script_set_event EVENT_099
@@ -2250,7 +2489,8 @@ Data_151244:
 	script_14
 	script_end
 
-Data_15135e:
+
+Script_15135e:
 	script_04 $4
 	script_5c $0
 	script_05
@@ -2258,18 +2498,19 @@ Data_15135e:
 	script_0e
 	script_04 $32
 	script_01 $9, $22
-	script_13 EVENT_06A
-	script_12 EVENT_10D
-	script_12 EVENT_10E
-	script_12 EVENT_10F
-	script_12 EVENT_110
-	script_12 EVENT_111
+	script_13 $6a
+	script_12 $10d
+	script_12 $10e
+	script_12 $10f
+	script_12 $110
+	script_12 $111
 	script_reset_event EVENT_1F8
 	script_set_event EVENT_1F9
 	script_14
 	script_end
 
-Data_151384:
+
+Script_151384:
 	script_04 $32
 	script_playsfx SFX_0A
 	script_01 $9, $23
@@ -2277,81 +2518,96 @@ Data_151384:
 	script_set_event EVENT_1CE
 	script_37 $30, $1
 	script_67
-	script_13 EVENT_06B
-	script_13 EVENT_06C
-	script_12 EVENT_07B
-	script_12 EVENT_07C
-	script_12 EVENT_07D
+	script_13 $6b
+	script_13 $6c
+	script_12 $7b
+	script_12 $7c
+	script_12 $7d
 	script_14
 	script_end
 
-Data_1513a6:
+
+Script_1513a6:
 	script_04 $a
 	script_01 $9, $24
 	script_end
 
-Data_1513ac:
+
+Script_1513ac:
 	script_04 $a
 	script_01 $9, $25
 	script_end
 
-Data_1513b2:
+
+Script_1513b2:
 	script_04 $a
 	script_01 $9, $26
 	script_end
 
-Data_1513b8:
+
+Script_1513b8:
 	script_04 $a
 	script_01 $9, $27
 	script_end
 
-Data_1513be:
+
+Script_1513be:
 	script_04 $a
 	script_01 $9, $28
 	script_end
 
-Data_1513c4:
+
+Script_1513c4:
 	script_04 $a
 	script_01 $9, $29
 	script_end
 
-Data_1513ca:
+
+Script_1513ca:
 	script_04 $a
 	script_01 $9, $2a
 	script_end
 
-Data_1513d0:
+
+Script_1513d0:
 	script_04 $a
 	script_01 $9, $2b
 	script_end
 
-Data_1513d6:
+
+Script_1513d6:
 	script_04 $a
 	script_01 $9, $2c
 	script_end
 
-Data_1513dc:
+
+Script_1513dc:
 	script_04 $a
 	script_01 $9, $2d
 	script_end
 
-Data_1513e2:
+
+Script_1513e2:
 	script_04 $a
 	script_01 $9, $2e
 	script_end
+
 	script_end
 
-Data_1513e9:
+
+Script_1513e9:
 	script_04 $a
 	script_01 $9, $2f
 	script_end
 
-Data_1513ef:
+
+Script_1513ef:
 	script_04 $a
 	script_01 $9, $30
 	script_end
 
-Data_1513f5:
+
+Script_1513f5:
 	script_0d $3
 	script_04 $a
 	script_01 $9, $31
@@ -2360,8 +2616,9 @@ Data_1513f5:
 	script_14
 	script_end
 
-Data_151403:
-	script_jump_if EVENT_1CF, $4b
+
+Script_151403:
+	script_jump_if EVENT_1CF, Script_15144f
 	script_04 $14
 	script_3d $0
 	script_28 $0
@@ -2394,7 +2651,8 @@ Data_151403:
 	script_04 $32
 	script_01 $9, $39
 	script_set_event EVENT_1CF
-	script_5a $31, $1, $11
+Script_15144f:
+	script_5a $31, $1, Script_151461
 	script_3d $0
 	script_04 $32
 	script_28 $0
@@ -2402,10 +2660,12 @@ Data_151403:
 	script_01 $9, $3a
 	script_04 $1e
 	script_end
+
+Script_151461:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $3b
-	script_jump_if EVENT_C3F, $46
+	script_jump_if EVENT_C3F, Script_1514af
 	script_3d $0
 	script_04 $32
 	script_28 $0
@@ -2425,16 +2685,18 @@ Data_151403:
 	script_04 $64
 	script_25 $0
 	script_04 $a
-	script_13 EVENT_07B
-	script_13 EVENT_07C
-	script_13 EVENT_07D
+	script_13 $7b
+	script_13 $7c
+	script_13 $7d
 	script_reset_event EVENT_1F9
 	script_set_event EVENT_1FA
 	script_set_event EVENT_1D8
 	script_14
+Script_1514af:
 	script_end
 
-Data_1514b0:
+
+Script_1514b0:
 	script_3d $0
 	script_04 $14
 	script_28 $0
@@ -2475,50 +2737,57 @@ Data_1514b0:
 	script_04 $64
 	script_25 $0
 	script_set_event EVENT_1D2
-	script_13 EVENT_07E
-	script_13 EVENT_07F
+	script_13 $7e
+	script_13 $7f
 	script_end
 
-Data_151511:
-	script_jump_if EVENT_1D2, $9
+
+Script_151511:
+	script_jump_if EVENT_1D2, Script_15151b
 	script_04 $a
 	script_01 $9, $4a
 	script_end
+
+Script_15151b:
 	script_04 $32
 	script_01 $9, $4b
 	script_set_event EVENT_1D1
 	script_14
 	script_end
 
-Data_151525:
+
+Script_151525:
 	script_3d $0
 	script_04 $a
 	script_01 $9, $4c
-	script_playmusic MUSIC_35
+	script_playmusic MUSIC_OPENING_MOVIE
 	script_04 $5
 	script_68 $5, $1f, $57
 	script_04 $8
 	script_end
 
-Data_151537:
+
+Script_151537:
 	script_04 $a
-	script_playmusic MUSIC_35
+	script_playmusic MUSIC_OPENING_MOVIE
 	script_04 $5
 	script_68 $5, $26, $42
 	script_04 $8
 	script_end
 
-Data_151544:
+
+Script_151544:
 	script_04 $a
-	script_playmusic MUSIC_34
+	script_playmusic MUSIC_TITLE_SCREEN
 	script_04 $14
 	script_01 $9, $4d
-	script_12 EVENT_086
-	script_13 EVENT_085
+	script_12 $86
+	script_13 $85
 	script_set_event EVENT_20C
 	script_end
 
-Data_151557:
+
+Script_151557:
 	script_04 $32
 	script_5c $0
 	script_05
@@ -2526,25 +2795,27 @@ Data_151557:
 	script_0e
 	script_04 $32
 	script_01 $9, $4e
-	script_13 EVENT_086
-	script_12 EVENT_087
-	script_12 EVENT_088
+	script_13 $86
+	script_12 $87
+	script_12 $88
 	script_14
 	script_end
 
-Data_15156e:
+
+Script_15156e:
 	script_01 $9, $4f
 	script_set_event EVENT_1D3
 	script_set_event EVENT_1D4
 	script_set_event EVENT_1D5
 	script_set_event EVENT_1D6
 	script_67
-	script_13 EVENT_087
-	script_13 EVENT_088
+	script_13 $87
+	script_13 $88
 	script_14
 	script_end
 
-Data_151586:
+
+Script_151586:
 	script_04 $4
 	script_21 $0, $5b, $aa
 	script_60 $5b
@@ -2567,7 +2838,7 @@ Data_151586:
 	script_04 $32
 	script_0d $0
 	script_1c $0
-	script_playmusic MUSIC_22
+	script_playmusic MUSIC_23
 	script_04 $6
 	script_3d $0
 	script_04 $14
@@ -2602,7 +2873,7 @@ Data_151586:
 	script_04 $32
 	script_4d $4
 	script_load_battle $b, $25, $1
-	script_playmusic MUSIC_22
+	script_playmusic MUSIC_23
 	script_60 $5b
 	script_66 $37
 	script_04 $14
@@ -2647,16 +2918,17 @@ Data_151586:
 	script_set_event EVENT_096
 	script_65 $60
 	script_66 $61
-	script_13 EVENT_089
-	script_13 EVENT_08A
+	script_13 $89
+	script_13 $8a
 	script_reset_event EVENT_1FA
 	script_set_event EVENT_1FB
 	script_14
 	script_end
 
-Data_15167a:
+
+Script_15167a:
 	script_04 $3
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_3d $1
 	script_28 $1
 	script_04 $32
@@ -2692,16 +2964,17 @@ Data_15167a:
 	script_23 $1, $68, $32
 	script_57 $1
 	script_25 $1
-	script_playmusic MUSIC_03
+	script_playmusic MUSIC_OVERWORLD
 	script_04 $14
 	script_01 $9, $65
-	script_13 EVENT_08B
-	script_13 EVENT_08C
-	script_12 EVENT_096
+	script_13 $8b
+	script_13 $8c
+	script_12 $96
 	script_14
 	script_end
 
-Data_1516dd:
+
+Script_1516dd:
 	script_10 $65, $32
 	script_3c $75, $32
 	script_2a
@@ -2738,7 +3011,8 @@ Data_1516dd:
 	script_14
 	script_end
 
-Data_151730:
+
+Script_151730:
 	script_10 $64, $32
 	script_23 $0, $82, $32
 	script_3c $74, $32
@@ -2771,7 +3045,8 @@ Data_151730:
 	script_14
 	script_end
 
-Data_15177b:
+
+Script_15177b:
 	script_3f $40
 	script_10 $44, $32
 	script_3c $43, $32
@@ -2797,7 +3072,8 @@ Data_15177b:
 	script_14
 	script_end
 
-Data_1517b4:
+
+Script_1517b4:
 	script_10 $26, $32
 	script_3c $36, $32
 	script_2a
@@ -2834,7 +3110,8 @@ Data_1517b4:
 	script_14
 	script_end
 
-Data_151807:
+
+Script_151807:
 	script_28 $2
 	script_04 $32
 	script_01 $9, $6e
@@ -2858,12 +3135,13 @@ Data_151807:
 	script_04 $50
 	script_25 $3
 	script_04 $1
-	script_13 EVENT_091
-	script_13 EVENT_092
+	script_13 $91
+	script_13 $92
 	script_14
 	script_end
 
-Data_151846:
+
+Script_151846:
 	script_3d $0
 	script_04 $32
 	script_01 $9, $73
@@ -2882,15 +3160,16 @@ Data_151846:
 	script_04 $50
 	script_25 $0
 	script_04 $1
-	script_13 EVENT_093
-	script_13 EVENT_094
-	script_13 EVENT_095
+	script_13 $93
+	script_13 $94
+	script_13 $95
 	script_14
 	script_end
 
-Data_15187b:
+
+Script_15187b:
 	script_set_event EVENT_210
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_04 $14
 	script_28 $0
 	script_04 $32
@@ -2919,16 +3198,17 @@ Data_15187b:
 	script_04 $14
 	script_01 $9, $7c
 	script_0d $3
-	script_playmusic MUSIC_0A
-	script_12 EVENT_116
-	script_12 EVENT_117
+	script_playmusic MUSIC_CRAFT_RESEARCH_CENTER
+	script_12 $116
+	script_12 $117
 	script_reset_event EVENT_1FB
 	script_set_event EVENT_1FC
 	script_reset_event EVENT_210
 	script_14
 	script_end
 
-Data_1518d5:
+
+Script_1518d5:
 	script_01 $9, $7d
 	script_21 $0, $1f, $40
 	script_60 $1f
@@ -2963,15 +3243,16 @@ Data_1518d5:
 	script_0d $2
 	script_04 $14
 	script_01 $9, $83
-	script_13 EVENT_097
-	script_13 EVENT_098
-	script_12 EVENT_099
-	script_12 EVENT_09A
-	script_12 EVENT_09B
+	script_13 $97
+	script_13 $98
+	script_12 $99
+	script_12 $9a
+	script_12 $9b
 	script_14
 	script_end
 
-Data_15193a:
+
+Script_15193a:
 	script_3d $0
 	script_28 $0
 	script_04 $32
@@ -3003,26 +3284,28 @@ Data_15193a:
 	script_28 $0
 	script_04 $32
 	script_01 $9, $8d
-	script_13 EVENT_099
-	script_13 EVENT_09A
-	script_13 EVENT_09B
-	script_12 EVENT_09C
-	script_12 EVENT_09D
-	script_12 EVENT_09E
-	script_12 EVENT_09F
-	script_12 EVENT_0A0
-	script_12 EVENT_0A1
-	script_12 EVENT_0A2
+	script_13 $99
+	script_13 $9a
+	script_13 $9b
+	script_12 $9c
+	script_12 $9d
+	script_12 $9e
+	script_12 $9f
+	script_12 $a0
+	script_12 $a1
+	script_12 $a2
 	script_14
 	script_end
 
-Data_15199e:
+
+Script_15199e:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $8e
 	script_end
 
-Data_1519a6:
+
+Script_1519a6:
 	script_3d $0
 	script_04 $14
 	script_dshot_signal_strength $3
@@ -3031,7 +3314,7 @@ Data_1519a6:
 	script_0e
 	script_04 $32
 	script_01 $9, $90
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_28 $0
 	script_04 $32
 	script_01 $9, $91
@@ -3062,30 +3345,32 @@ Data_1519a6:
 	script_01 $9, $97
 	script_04 $14
 	script_01 $9, $98
-	script_13 EVENT_09F
-	script_13 EVENT_0A0
-	script_13 EVENT_0A1
-	script_13 EVENT_0A2
-	script_13 EVENT_09C
-	script_13 EVENT_09D
-	script_13 EVENT_09E
-	script_12 EVENT_0A7
-	script_12 EVENT_0A8
-	script_12 EVENT_0A9
-	script_12 EVENT_0A3
-	script_12 EVENT_0A4
-	script_12 EVENT_0A5
-	script_12 EVENT_0A6
+	script_13 $9f
+	script_13 $a0
+	script_13 $a1
+	script_13 $a2
+	script_13 $9c
+	script_13 $9d
+	script_13 $9e
+	script_12 $a7
+	script_12 $a8
+	script_12 $a9
+	script_12 $a3
+	script_12 $a4
+	script_12 $a5
+	script_12 $a6
 	script_14
 	script_end
 
-Data_151a26:
+
+Script_151a26:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $99
 	script_end
 
-Data_151a2e:
+
+Script_151a2e:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $9a
@@ -3101,26 +3386,28 @@ Data_151a2e:
 	script_28 $0
 	script_04 $32
 	script_01 $9, $9c
-	script_13 EVENT_0A7
-	script_13 EVENT_0A8
-	script_13 EVENT_0A9
-	script_12 EVENT_0AA
-	script_12 EVENT_0AB
-	script_12 EVENT_0AC
-	script_12 EVENT_0AD
-	script_12 EVENT_0AE
-	script_12 EVENT_0AF
-	script_12 EVENT_0B0
+	script_13 $a7
+	script_13 $a8
+	script_13 $a9
+	script_12 $aa
+	script_12 $ab
+	script_12 $ac
+	script_12 $ad
+	script_12 $ae
+	script_12 $af
+	script_12 $b0
 	script_14
 	script_end
 
-Data_151a6f:
+
+Script_151a6f:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $9d
 	script_end
 
-Data_151a77:
+
+Script_151a77:
 	script_3d $0
 	script_04 $a
 	script_3d $0
@@ -3160,34 +3447,36 @@ Data_151a77:
 	script_01 $9, $a9
 	script_04 $14
 	script_01 $9, $aa
-	script_13 EVENT_0AD
-	script_13 EVENT_0AE
-	script_13 EVENT_0AF
-	script_13 EVENT_0B0
-	script_13 EVENT_0A3
-	script_13 EVENT_0A4
-	script_13 EVENT_0A5
-	script_13 EVENT_0A6
-	script_13 EVENT_0AA
-	script_13 EVENT_0AB
-	script_13 EVENT_0AC
-	script_12 EVENT_0B5
-	script_12 EVENT_0B6
-	script_12 EVENT_0B7
-	script_12 EVENT_0B1
-	script_12 EVENT_0B2
-	script_12 EVENT_0B3
-	script_12 EVENT_0B4
+	script_13 $ad
+	script_13 $ae
+	script_13 $af
+	script_13 $b0
+	script_13 $a3
+	script_13 $a4
+	script_13 $a5
+	script_13 $a6
+	script_13 $aa
+	script_13 $ab
+	script_13 $ac
+	script_12 $b5
+	script_12 $b6
+	script_12 $b7
+	script_12 $b1
+	script_12 $b2
+	script_12 $b3
+	script_12 $b4
 	script_14
 	script_end
 
-Data_151b0a:
+
+Script_151b0a:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $ab
 	script_end
 
-Data_151b12:
+
+Script_151b12:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $ac
@@ -3212,27 +3501,30 @@ Data_151b12:
 	script_36 $3b, $1
 	script_36 $3e, $1
 	script_0b $5, $b, $43
-	script_13 EVENT_0B5
-	script_13 EVENT_0B6
-	script_13 EVENT_0B7
-	script_12 EVENT_0B9
-	script_12 EVENT_0B8
-	script_12 EVENT_0BA
-	script_12 EVENT_0BB
+	script_13 $b5
+	script_13 $b6
+	script_13 $b7
+	script_12 $b9
+	script_12 $b8
+	script_12 $ba
+	script_12 $bb
 	script_end
 
-Data_151b61:
+
+Script_151b61:
 	script_04 $14
 	script_3d $0
 	script_04 $14
 	script_01 $9, $b3
-	script_jump_if EVENT_C3E, $f
+	script_jump_if EVENT_C3E, Script_151b7a
 	script_3d $0
 	script_04 $1e
 	script_3d $0
 	script_04 $32
 	script_01 $9, $b4
 	script_end
+
+Script_151b7a:
 	script_04 $14
 	script_playsfx SFX_0A
 	script_01 $9, $b5
@@ -3246,20 +3538,21 @@ Data_151b61:
 	script_set_event EVENT_1E4
 	script_set_event EVENT_1D9
 	script_17 $5
-	script_13 EVENT_0B1
-	script_13 EVENT_0B2
-	script_13 EVENT_0B3
-	script_13 EVENT_0B4
-	script_13 EVENT_0B8
-	script_13 EVENT_0B9
-	script_13 EVENT_0BA
-	script_13 EVENT_0BB
+	script_13 $b1
+	script_13 $b2
+	script_13 $b3
+	script_13 $b4
+	script_13 $b8
+	script_13 $b9
+	script_13 $ba
+	script_13 $bb
 	script_0b $3, $3b, $43
 	script_reset_event EVENT_1FC
 	script_set_event EVENT_1FD
 	script_end
 
-Data_151bbc:
+
+Script_151bbc:
 	script_04 $5
 	script_5c $0
 	script_05
@@ -3272,12 +3565,13 @@ Data_151bbc:
 	script_01 $9, $b8
 	script_04 $32
 	script_01 $9, $b9
-	script_13 EVENT_0BC
-	script_13 EVENT_0BD
+	script_13 $bc
+	script_13 $bd
 	script_14
 	script_end
 
-Data_151bdb:
+
+Script_151bdb:
 	script_10 $45, $32
 	script_3c $44, $32
 	script_2a
@@ -3339,16 +3633,17 @@ Data_151bdb:
 	script_set_event EVENT_0BB
 	script_set_event EVENT_0BC
 	script_set_event EVENT_0BD
-	script_13 EVENT_0BE
-	script_13 EVENT_0BF
-	script_12 EVENT_0C0
+	script_13 $be
+	script_13 $bf
+	script_12 $c0
 	script_14
 	script_end
 
-Data_151c7a:
+
+Script_151c7a:
 	script_set_event EVENT_210
 	script_04 $3
-	script_playmusic MUSIC_23
+	script_playmusic MUSIC_SHOP
 	script_04 $14
 	script_0e
 	script_04 $32
@@ -3388,21 +3683,23 @@ Data_151c7a:
 	script_57 $0
 	script_25 $0
 	script_reset_event EVENT_210
-	script_playmusic MUSIC_33
-	script_12 EVENT_0C3
-	script_12 EVENT_0C4
-	script_13 EVENT_0C1
-	script_13 EVENT_0C2
+	script_playmusic MUSIC_WARP
+	script_12 $c3
+	script_12 $c4
+	script_13 $c1
+	script_13 $c2
 	script_14
 	script_end
 
-Data_151cee:
+
+Script_151cee:
 	script_3d $0
 	script_04 $14
 	script_01 $9, $d3
 	script_end
 
-Data_151cf6:
+
+Script_151cf6:
 	script_3d $0
 	script_0e
 	script_04 $32
@@ -3434,24 +3731,27 @@ Data_151cf6:
 	script_26 $0, $2
 	script_04 $50
 	script_25 $0
-	script_13 EVENT_0C3
-	script_13 EVENT_0C4
-	script_12 EVENT_0C5
-	script_12 EVENT_0C6
-	script_12 EVENT_0C7
+	script_13 $c3
+	script_13 $c4
+	script_12 $c5
+	script_12 $c6
+	script_12 $c7
 	script_14
 	script_end
 
-Data_151d53:
-	script_jump $8
 
-Data_151d56:
-	script_jump $5
+Script_151d53:
+	script_jump Script_151d5c
 
-Data_151d59:
+
+Script_151d56:
+	script_jump Script_151d5c
+
+
+Script_151d59:
 	script_set_event EVENT_218
 	script_3d $0
-	script_if_own_denjuu LAMPGERA, $28 ; .end
+	script_if_own_denjuu $61, Script_151d87
 	script_04 $14
 	script_01 $9, $dd
 	script_0e
@@ -3467,14 +3767,17 @@ Data_151d59:
 	script_28 $0
 	script_04 $14
 	script_01 $9, $e1
-.end
 	script_end
+
+Script_151d87:
 	script_3d $0
-	script_61 $62, $a
+	script_61 $62, Script_151d94
 	script_3d $0
 	script_04 $14
 	script_01 $9, $e2
 	script_end
+
+Script_151d94:
 	script_04 $14
 	script_01 $9, $e3
 	script_1d
@@ -3545,23 +3848,24 @@ Data_151d59:
 	script_reset_event EVENT_0BC
 	script_reset_event EVENT_0BD
 	script_14
-	script_13 EVENT_0C5
-	script_13 EVENT_0C6
-	script_13 EVENT_0C7
-	script_12 EVENT_0C8
+	script_13 $c5
+	script_13 $c6
+	script_13 $c7
+	script_12 $c8
 	script_end
 
-Data_151e41:
-	script_jump_if_not EVENT_0B4, $60
-	script_jump_if_not EVENT_0B5, $5c
-	script_jump_if_not EVENT_0B6, $58
-	script_jump_if_not EVENT_0B7, $54
-	script_jump_if_not EVENT_0B8, $50
-	script_jump_if_not EVENT_0B9, $4c
-	script_jump_if_not EVENT_0BA, $48
-	script_jump_if_not EVENT_0BB, $44
-	script_jump_if_not EVENT_0BC, $40
-	script_jump_if_not EVENT_0BD, $3c
+
+Script_151e41:
+	script_jump_if_not EVENT_0B4, Script_151ea2
+	script_jump_if_not EVENT_0B5, Script_151ea2
+	script_jump_if_not EVENT_0B6, Script_151ea2
+	script_jump_if_not EVENT_0B7, Script_151ea2
+	script_jump_if_not EVENT_0B8, Script_151ea2
+	script_jump_if_not EVENT_0B9, Script_151ea2
+	script_jump_if_not EVENT_0BA, Script_151ea2
+	script_jump_if_not EVENT_0BB, Script_151ea2
+	script_jump_if_not EVENT_0BC, Script_151ea2
+	script_jump_if_not EVENT_0BD, Script_151ea2
 	script_0e
 	script_04 $32
 	script_01 $9, $ee
@@ -3588,12 +3892,15 @@ Data_151e41:
 	script_set_event EVENT_1FE
 	script_14
 	script_end
+
+Script_151ea2:
 	script_04 $32
 	script_01 $9, $f4
 	script_0b $4, $3d, $63
 	script_end
 
-Data_151eac:
+
+Script_151eac:
 	script_set_event EVENT_1E0
 	script_10 $55, $32
 	script_2a
@@ -3634,9 +3941,9 @@ Data_151eac:
 	script_0e
 	script_04 $32
 	script_01 $9, $fd
-	script_jump_if_not EVENT_1E0, $33
-	script_jump_if_not EVENT_1E1, $2f
-	script_jump_if_not EVENT_1E2, $2b
+	script_jump_if_not EVENT_1E0, Script_151f46
+	script_jump_if_not EVENT_1E1, Script_151f46
+	script_jump_if_not EVENT_1E2, Script_151f46
 	script_28 $0
 	script_04 $32
 	script_01 $a, $0
@@ -3646,13 +3953,15 @@ Data_151eac:
 	script_26 $0, $2
 	script_04 $50
 	script_25 $0
-	script_12 EVENT_0CC
-	script_12 EVENT_0CD
-	script_jump_if_not EVENT_1E0, $d
-	script_jump_if_not EVENT_1E1, $9
-	script_jump_if_not EVENT_1E2, $5
+	script_12 $cc
+	script_12 $cd
+	script_jump_if_not EVENT_1E0, Script_151f46
+	script_jump_if_not EVENT_1E1, Script_151f46
+	script_jump_if_not EVENT_1E2, Script_151f46
 	script_14
 	script_end
+
+Script_151f46:
 	script_04 $14
 	script_01 $a, $2
 	script_26 $0, $2
@@ -3661,7 +3970,8 @@ Data_151eac:
 	script_14
 	script_end
 
-Data_151f54:
+
+Script_151f54:
 	script_set_event EVENT_1E1
 	script_10 $35, $32
 	script_2a
@@ -3683,9 +3993,9 @@ Data_151f54:
 	script_57 $0
 	script_load_battle $7, $0, $2
 	script_04 $14
-	script_jump_if_not EVENT_1E0, $25
-	script_jump_if_not EVENT_1E1, $21
-	script_jump_if_not EVENT_1E2, $1d
+	script_jump_if_not EVENT_1E0, Script_151fad
+	script_jump_if_not EVENT_1E1, Script_151fad
+	script_jump_if_not EVENT_1E2, Script_151fad
 	script_04 $32
 	script_01 $a, $8
 	script_0e
@@ -3694,10 +4004,12 @@ Data_151f54:
 	script_26 $0, $2
 	script_04 $50
 	script_25 $0
-	script_12 EVENT_0CC
-	script_12 EVENT_0CD
+	script_12 $cc
+	script_12 $cd
 	script_14
 	script_end
+
+Script_151fad:
 	script_04 $14
 	script_01 $a, $a
 	script_26 $0, $2
@@ -3706,7 +4018,8 @@ Data_151f54:
 	script_14
 	script_end
 
-Data_151fbb:
+
+Script_151fbb:
 	script_set_event EVENT_1E2
 	script_10 $84, $32
 	script_2a
@@ -3741,9 +4054,9 @@ Data_151fbb:
 	script_0e
 	script_04 $32
 	script_01 $a, $13
-	script_jump_if_not EVENT_1E0, $25
-	script_jump_if_not EVENT_1E1, $21
-	script_jump_if_not EVENT_1E2, $1d
+	script_jump_if_not EVENT_1E0, Script_15202f
+	script_jump_if_not EVENT_1E1, Script_15202f
+	script_jump_if_not EVENT_1E2, Script_15202f
 	script_04 $32
 	script_01 $a, $14
 	script_0e
@@ -3752,10 +4065,12 @@ Data_151fbb:
 	script_26 $0, $2
 	script_04 $50
 	script_25 $0
-	script_12 EVENT_0CC
-	script_12 EVENT_0CD
+	script_12 $cc
+	script_12 $cd
 	script_14
 	script_end
+
+Script_15202f:
 	script_28 $0
 	script_04 $14
 	script_01 $a, $16
@@ -3765,7 +4080,8 @@ Data_151fbb:
 	script_14
 	script_end
 
-Data_15203f:
+
+Script_15203f:
 	script_3d $0
 	script_0e
 	script_04 $32
@@ -3822,12 +4138,13 @@ Data_15203f:
 	script_reset_event EVENT_1FE
 	script_set_event EVENT_1FF
 	script_67
-	script_13 EVENT_0CC
-	script_13 EVENT_0CD
+	script_13 $cc
+	script_13 $cd
 	script_14
 	script_end
 
-Data_1520d3:
+
+Script_1520d3:
 	script_04 $4
 	script_5c $0
 	script_05
@@ -3839,12 +4156,13 @@ Data_1520d3:
 	script_01 $a, $29
 	script_04 $14
 	script_01 $a, $2a
-	script_13 EVENT_0CE
-	script_13 EVENT_0CF
+	script_13 $ce
+	script_13 $cf
 	script_14
 	script_end
 
-Data_1520f1:
+
+Script_1520f1:
 	script_3d $0
 	script_04 $14
 	script_01 $a, $2b
@@ -3888,12 +4206,13 @@ Data_1520f1:
 	script_23 $0, $30, $32
 	script_57 $0
 	script_25 $0
-	script_12 EVENT_0D1
-	script_12 EVENT_0D2
+	script_12 $d1
+	script_12 $d2
 	script_14
 	script_end
 
-Data_152160:
+
+Script_152160:
 	script_3d $0
 	script_04 $a
 	script_28 $0
@@ -3923,17 +4242,18 @@ Data_152160:
 	script_28 $0
 	script_04 $32
 	script_01 $a, $40
-	script_13 EVENT_0D1
-	script_13 EVENT_0D2
-	script_12 EVENT_112
-	script_12 EVENT_113
-	script_12 EVENT_0D3
+	script_13 $d1
+	script_13 $d2
+	script_12 $112
+	script_12 $113
+	script_12 $d3
 	script_14
 	script_end
 
-Data_1521b0:
+
+Script_1521b0:
 	script_04 $4
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_10 $16, $32
 	script_3c $17, $32
 	script_2a
@@ -4000,15 +4320,17 @@ Data_1521b0:
 	script_25 $0
 	script_04 $14
 	script_01 $a, $45
-	script_playmusic MUSIC_03
+	script_playmusic MUSIC_OVERWORLD
 	script_set_event EVENT_07B
 	script_14
 	script_end
 
-Data_152254:
-	script_jump $a
 
-Data_152257:
+Script_152254:
+	script_jump Script_15225f
+
+
+Script_152257:
 	script_10 $43, $32
 	script_3c $44, $32
 	script_2a
@@ -4032,7 +4354,7 @@ Data_152257:
 	script_0d $1
 	script_04 $28
 	script_01 $a, $46
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_21 $0, $5d, $56
 	script_60 $5d
 	script_22 $0, $3
@@ -4111,49 +4433,52 @@ Data_152257:
 	script_set_event EVENT_1F4
 	script_reset_event EVENT_07B
 	script_17 $7
-	script_12 EVENT_0DD
-	script_12 EVENT_0DE
-	script_12 EVENT_0DF
-	script_12 EVENT_0E0
-	script_12 EVENT_0E1
-	script_12 EVENT_0E2
-	script_12 EVENT_0E3
-	script_12 EVENT_0E4
-	script_12 EVENT_0E5
-	script_12 EVENT_0E6
+	script_12 $dd
+	script_12 $de
+	script_12 $df
+	script_12 $e0
+	script_12 $e1
+	script_12 $e2
+	script_12 $e3
+	script_12 $e4
+	script_12 $e5
+	script_12 $e6
 	script_0b $3, $f, $43
-	script_13 EVENT_0D4
-	script_13 EVENT_0D5
-	script_13 EVENT_112
-	script_13 EVENT_113
-	script_12 EVENT_0D6
-	script_12 EVENT_0D7
-	script_12 EVENT_0D8
-	script_12 EVENT_0D9
-	script_12 EVENT_114
-	script_12 EVENT_115
+	script_13 $d4
+	script_13 $d5
+	script_13 $112
+	script_13 $113
+	script_12 $d6
+	script_12 $d7
+	script_12 $d8
+	script_12 $d9
+	script_12 $114
+	script_12 $115
 	script_reset_event EVENT_1FF
 	script_set_event EVENT_200
 	script_14
 	script_end
 
-Data_15238d:
+
+Script_15238d:
 	script_04 $a
-	script_playmusic MUSIC_35
+	script_playmusic MUSIC_OPENING_MOVIE
 	script_04 $5
 	script_68 $7, $e, $54
 	script_04 $8
 	script_end
 
-Data_15239a:
+
+Script_15239a:
 	script_04 $a
-	script_playmusic MUSIC_35
+	script_playmusic MUSIC_OPENING_MOVIE
 	script_04 $5
 	script_68 $3, $16, $54
 	script_04 $8
 	script_end
 
-Data_1523a7:
+
+Script_1523a7:
 	script_3d $1
 	script_04 $14
 	script_28 $1
@@ -4185,15 +4510,16 @@ Data_1523a7:
 	script_26 $1, $2
 	script_04 $50
 	script_25 $1
-	script_12 EVENT_0DC
-	script_13 EVENT_0DA
-	script_13 EVENT_0DB
+	script_12 $dc
+	script_13 $da
+	script_13 $db
 	script_14
 	script_end
 
-Data_1523f6:
+
+Script_1523f6:
 	script_04 $4
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_21 $0, $39, $53
 	script_60 $39
 	script_26 $0, $2
@@ -4224,159 +4550,190 @@ Data_1523f6:
 	script_26 $0, $2
 	script_04 $50
 	script_25 $0
-	script_playmusic MUSIC_03
+	script_playmusic MUSIC_OVERWORLD
 	script_set_event EVENT_1EE
 	script_14
 	script_end
 
-Data_15244a:
+
+Script_15244a:
 	script_04 $a
 	script_01 $a, $67
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1EC, $e
+	script_jump_if_not EVENT_1EE, Script_152475
+	script_jump_if_not EVENT_1EC, Script_152462
 	script_0b $4, $31, $54
-	script_12 EVENT_0E8
-	script_13 EVENT_0E7
+	script_12 $e8
+	script_13 $e7
 	script_end
+
+Script_152462:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_152475:
 	script_end
 
-Data_152476:
+
+Script_152476:
 	script_04 $a
 	script_01 $a, $68
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1EA, $e
+	script_jump_if_not EVENT_1EE, Script_1524a1
+	script_jump_if_not EVENT_1EA, Script_15248e
 	script_set_event EVENT_1EB
 	script_reset_event EVENT_1EA
 	script_0b $4, $32, $72
 	script_end
+
+Script_15248e:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1524a1:
 	script_end
 
-Data_1524a2:
+
+Script_1524a2:
 	script_04 $a
 	script_01 $a, $69
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_1524be
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1524be:
 	script_end
 
-Data_1524bf:
+
+Script_1524bf:
 	script_04 $a
 	script_01 $a, $6a
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_1524db
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1524db:
 	script_end
 
-Data_1524dc:
+
+Script_1524dc:
 	script_04 $a
 	script_01 $a, $6b
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_1524f8
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1524f8:
 	script_end
 
-Data_1524f9:
+
+Script_1524f9:
 	script_04 $a
 	script_01 $a, $6c
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1E9, $e
+	script_jump_if_not EVENT_1EE, Script_152524
+	script_jump_if_not EVENT_1E9, Script_152511
 	script_set_event EVENT_1EA
 	script_reset_event EVENT_1E9
 	script_0b $4, $32, $76
 	script_end
+
+Script_152511:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_152524:
 	script_end
 
-Data_152525:
+
+Script_152525:
 	script_04 $a
 	script_01 $a, $6d
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_152541
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_152541:
 	script_end
 
-Data_152542:
+
+Script_152542:
 	script_04 $a
 	script_01 $a, $6e
-	script_jump_if_not EVENT_1EE, $2e
-	script_jump_if EVENT_1E9, $17
-	script_jump_if EVENT_1EA, $13
-	script_jump_if EVENT_1EB, $f
-	script_jump_if EVENT_1EC, $b
+	script_jump_if_not EVENT_1EE, Script_152576
+	script_jump_if EVENT_1E9, Script_152563
+	script_jump_if EVENT_1EA, Script_152563
+	script_jump_if EVENT_1EB, Script_152563
+	script_jump_if EVENT_1EC, Script_152563
 	script_set_event EVENT_1E9
 	script_0b $4, $32, $22
 	script_end
+
+Script_152563:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_152576:
 	script_end
 
-Data_152577:
+
+Script_152577:
 	script_04 $a
 	script_01 $a, $6f
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_152593
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_152593:
 	script_end
 
-Data_152594:
+
+Script_152594:
 	script_04 $a
 	script_01 $a, $70
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1EB, $e
+	script_jump_if_not EVENT_1EE, Script_1525bf
+	script_jump_if_not EVENT_1EB, Script_1525ac
 	script_set_event EVENT_1EC
 	script_reset_event EVENT_1EB
 	script_0b $4, $32, $26
 	script_end
+
+Script_1525ac:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1525bf:
 	script_end
 
-Data_1525c0:
+
+Script_1525c0:
 	script_04 $a
 	script_21 $0, $39, $53
 	script_60 $39
@@ -4394,10 +4751,11 @@ Data_1525c0:
 	script_15
 	script_end
 
-Data_1525e4:
+
+Script_1525e4:
 	script_3f $44
 	script_1c $3
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_04 $a
 	script_21 $0, $39, $53
 	script_60 $39
@@ -4416,7 +4774,7 @@ Data_1525e4:
 	script_04 $32
 	script_01 $a, $75
 	script_reset_event EVENT_1EE
-	script_playmusic MUSIC_0A
+	script_playmusic MUSIC_CRAFT_RESEARCH_CENTER
 	script_04 $5
 	script_68 $f, $33, $56
 	script_04 $8
@@ -4424,9 +4782,10 @@ Data_1525e4:
 	script_14
 	script_end
 
-Data_152624:
+
+Script_152624:
 	script_04 $4
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_3f $57
 	script_10 $56, $32
 	script_2a
@@ -4493,23 +4852,24 @@ Data_152624:
 	script_0e
 	script_04 $32
 	script_01 $a, $84
-	script_playmusic MUSIC_35
+	script_playmusic MUSIC_OPENING_MOVIE
 	script_04 $5
 	script_68 $4, $31, $54
 	script_04 $8
-	script_13 EVENT_0E9
-	script_13 EVENT_0EA
+	script_13 $e9
+	script_13 $ea
 	script_set_event EVENT_1E8
 	script_17 $8
-	script_12 EVENT_0EB
-	script_12 EVENT_13F
-	script_12 EVENT_140
+	script_12 $eb
+	script_12 $13f
+	script_12 $140
 	script_reset_event EVENT_200
 	script_set_event EVENT_201
 	script_14
 	script_end
 
-Data_1526e8:
+
+Script_1526e8:
 	script_04 $4
 	script_5c $0
 	script_05
@@ -4522,11 +4882,12 @@ Data_1526e8:
 	script_0e
 	script_04 $32
 	script_01 $a, $87
-	script_12 EVENT_0EC
+	script_12 $ec
 	script_14
 	script_end
 
-Data_152704:
+
+Script_152704:
 	script_04 $5
 	script_5c $0
 	script_05
@@ -4541,11 +4902,12 @@ Data_152704:
 	script_0e
 	script_04 $32
 	script_01 $a, $8a
-	script_12 EVENT_0ED
+	script_12 $ed
 	script_14
 	script_end
 
-Data_152723:
+
+Script_152723:
 	script_04 $5
 	script_5c $0
 	script_05
@@ -4568,7 +4930,8 @@ Data_152723:
 	script_14
 	script_end
 
-Data_15274c:
+
+Script_15274c:
 	script_3d $0
 	script_04 $14
 	script_28 $0
@@ -4606,28 +4969,32 @@ Data_15274c:
 	script_04 $32
 	script_01 $a, $9c
 	script_36 $25, $1
-	script_13 EVENT_0EE
-	script_13 EVENT_0EF
-	script_13 EVENT_0F0
-	script_12 EVENT_0F1
-	script_12 EVENT_0F2
-	script_12 EVENT_121
-	script_12 EVENT_122
-	script_12 EVENT_123
+	script_13 $ee
+	script_13 $ef
+	script_13 $f0
+	script_12 $f1
+	script_12 $f2
+	script_12 $121
+	script_12 $122
+	script_12 $123
 	script_14
 	script_end
 
-Data_1527ba:
+
+Script_1527ba:
 	script_04 $a
 	script_01 $a, $9d
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1527c8
 	script_0b $10, $3b, $56
 	script_end
+
+Script_1527c8:
 	script_10 $42, $32
 	script_2a
 	script_end
 
-Data_1527cd:
+
+Script_1527cd:
 	script_10 $46, $32
 	script_3c $47, $32
 	script_2a
@@ -4672,7 +5039,7 @@ Data_1527cd:
 	script_playsfx SFX_0A
 	script_01 $a, $9f
 	script_37 $25, $1
-	script_playmusic MUSIC_39
+	script_playmusic MUSIC_3B
 	script_21 $0, $5c, $47
 	script_60 $5c
 	script_3d $0
@@ -4737,7 +5104,7 @@ Data_1527cd:
 	script_0d $1
 	script_1c $1
 	script_04 $32
-	script_playmusic MUSIC_22
+	script_playmusic MUSIC_23
 	script_21 $0, $5b, $47
 	script_60 $5b
 	script_22 $0, $3
@@ -4764,19 +5131,19 @@ Data_1527cd:
 	script_04 $5
 	script_25 $0
 	script_01 $a, $b1
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_04 $14
 	script_01 $a, $b2
-	script_13 EVENT_0F3
-	script_13 EVENT_0F4
-	script_13 EVENT_0F1
-	script_13 EVENT_0F2
-	script_13 EVENT_121
-	script_13 EVENT_122
-	script_13 EVENT_123
-	script_12 EVENT_124
-	script_12 EVENT_125
-	script_12 EVENT_126
+	script_13 $f3
+	script_13 $f4
+	script_13 $f1
+	script_13 $f2
+	script_13 $121
+	script_13 $122
+	script_13 $123
+	script_12 $124
+	script_12 $125
+	script_12 $126
 	script_4d $3
 	script_0b $3, $3e, $42
 	script_0d $3
@@ -4784,11 +5151,12 @@ Data_1527cd:
 	script_04 $14
 	script_01 $a, $b3
 	script_67
-	script_12 EVENT_0F5
+	script_12 $f5
 	script_14
 	script_end
 
-Data_15292c:
+
+Script_15292c:
 	script_04 $14
 	script_01 $a, $b4
 	script_10 $55, $32
@@ -4842,8 +5210,8 @@ Data_15292c:
 	script_28 $0
 	script_04 $32
 	script_01 $a, $c4
-	script_12 EVENT_0F8
-	script_12 EVENT_0F9
+	script_12 $f8
+	script_12 $f9
 	script_0b $2, $3f, $23
 	script_17 $a
 	script_reset_event EVENT_202
@@ -4851,9 +5219,10 @@ Data_15292c:
 	script_14
 	script_end
 
-Data_1529b4:
+
+Script_1529b4:
 	script_04 $4
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_28 $0
 	script_04 $32
 	script_01 $a, $c5
@@ -4903,14 +5272,15 @@ Data_1529b4:
 	script_04 $50
 	script_25 $0
 	script_25 $1
-	script_13 EVENT_0F6
-	script_13 EVENT_0F7
+	script_13 $f6
+	script_13 $f7
 	script_14
 	script_end
 
-Data_152a2e:
+
+Script_152a2e:
 	script_04 $4
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_21 $0, $50, $45
 	script_60 $50
 	script_26 $0, $4
@@ -4943,7 +5313,7 @@ Data_152a2e:
 	script_04 $14
 	script_01 $a, $d8
 	script_load_battle $c, $0, $2
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_26 $0, $ff
 	script_28 $0
 	script_04 $32
@@ -4975,10 +5345,10 @@ Data_152a2e:
 	script_0e
 	script_04 $32
 	script_01 $a, $df
-	script_13 EVENT_0F8
-	script_13 EVENT_0F9
-	script_12 EVENT_0FA
-	script_12 EVENT_0FB
+	script_13 $f8
+	script_13 $f9
+	script_12 $fa
+	script_12 $fb
 	script_set_event EVENT_0DF
 	script_set_event EVENT_0E0
 	script_set_event EVENT_0E1
@@ -5018,9 +5388,10 @@ Data_152a2e:
 	script_14
 	script_end
 
-Data_152b40:
+
+Script_152b40:
 	script_04 $4
-	script_playmusic MUSIC_39
+	script_playmusic MUSIC_3B
 	script_28 $0
 	script_04 $1e
 	script_28 $0
@@ -5055,15 +5426,16 @@ Data_152b40:
 	script_23 $0, $94, $32
 	script_57 $0
 	script_25 $0
-	script_playmusic MUSIC_08
-	script_13 EVENT_0FA
-	script_13 EVENT_0FB
-	script_12 EVENT_0FC
-	script_12 EVENT_0FD
+	script_playmusic MUSIC_PEPPERI_MOUNTAIN
+	script_13 $fa
+	script_13 $fb
+	script_12 $fc
+	script_12 $fd
 	script_14
 	script_end
 
-Data_152ba1:
+
+Script_152ba1:
 	script_04 $5
 	script_5c $0
 	script_05
@@ -5080,20 +5452,21 @@ Data_152ba1:
 	script_04 $14
 	script_01 $a, $eb
 	script_17 $b
-	script_12 EVENT_0FE
-	script_12 EVENT_0FF
-	script_13 EVENT_0FC
-	script_13 EVENT_0FD
+	script_12 $fe
+	script_12 $ff
+	script_13 $fc
+	script_13 $fd
 	script_reset_event EVENT_203
 	script_set_event EVENT_204
 	script_reset_event EVENT_1F6
 	script_14
 	script_end
 
-Data_152bda:
+
+Script_152bda:
 	script_04 $4
 	script_set_event EVENT_210
-	script_playmusic MUSIC_39
+	script_playmusic MUSIC_3B
 	script_3d $0
 	script_04 $14
 	script_01 $a, $ec
@@ -5126,7 +5499,7 @@ Data_152bda:
 	script_load_battle $d, $0, $2
 	script_66 $58
 	script_04 $3
-	script_playmusic MUSIC_39
+	script_playmusic MUSIC_3B
 	script_04 $14
 	script_28 $0
 	script_04 $32
@@ -5202,18 +5575,22 @@ Data_152bda:
 	script_set_event EVENT_11A
 	script_0b $4, $16, $46
 	script_17 $c
-	script_12 EVENT_100
+	script_12 $100
 	script_reset_event EVENT_204
-	script_6c EVENT_12B
-	script_13 EVENT_0FE
-	script_13 EVENT_0FF
+	script_6c $12b
+	script_13 $fe
+	script_13 $ff
 	script_14
 	script_end
 
-Data_152cf5:
-	script_61 $30, $5
-	script_jump $5
+
+Script_152cf5:
+	script_61 $30, Script_152cfb
+	script_jump Script_152cfe
+
+Script_152cfb:
 	script_set_event EVENT_1C3
+Script_152cfe:
 	script_04 $14
 	script_0e
 	script_04 $32
@@ -5287,16 +5664,17 @@ Data_152cf5:
 	script_2a
 	script_reset_event EVENT_1C3
 	script_upgrade_dshot $2
-	script_12 EVENT_101
-	script_12 EVENT_102
-	script_12 EVENT_119
+	script_12 $101
+	script_12 $102
+	script_12 $119
 	script_14
 	script_end
 
-Data_152dbb:
+
+Script_152dbb:
 	script_04 $4
 	script_0d $3
-	script_playmusic MUSIC_22
+	script_playmusic MUSIC_23
 	script_04 $14
 	script_0e
 	script_04 $32
@@ -5314,7 +5692,7 @@ Data_152dbb:
 	script_04 $14
 	script_01 $c, $22
 	script_load_battle $c, $25, $1
-	script_playmusic MUSIC_22
+	script_playmusic MUSIC_23
 	script_04 $14
 	script_01 $c, $23
 	script_04 $14
@@ -5322,19 +5700,20 @@ Data_152dbb:
 	script_23 $0, $40, $32
 	script_57 $0
 	script_25 $0
-	script_playmusic MUSIC_03
+	script_playmusic MUSIC_OVERWORLD
 	script_04 $14
 	script_01 $c, $25
-	script_12 EVENT_103
-	script_12 EVENT_104
-	script_13 EVENT_101
-	script_13 EVENT_102
+	script_12 $103
+	script_12 $104
+	script_13 $101
+	script_13 $102
 	script_14
 	script_end
 
-Data_152e12:
+
+Script_152e12:
 	script_04 $4
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_set_event EVENT_1F1
 	script_0e
 	script_04 $32
@@ -5404,15 +5783,16 @@ Data_152e12:
 	script_04 $14
 	script_01 $c, $3d
 	script_reset_event EVENT_1F1
-	script_12 EVENT_105
-	script_12 EVENT_146
-	script_12 EVENT_147
-	script_13 EVENT_103
-	script_13 EVENT_104
+	script_12 $105
+	script_12 $146
+	script_12 $147
+	script_13 $103
+	script_13 $104
 	script_14
 	script_end
 
-Data_152ec4:
+
+Script_152ec4:
 	script_10 $31, $32
 	script_2a
 	script_3f $30
@@ -5454,7 +5834,7 @@ Data_152ec4:
 	script_58
 	script_0d $0
 	script_1c $0
-	script_playmusic MUSIC_22
+	script_playmusic MUSIC_23
 	script_04 $14
 	script_01 $c, $3e
 	script_0e
@@ -5532,15 +5912,16 @@ Data_152ec4:
 	script_04 $32
 	script_01 $c, $4f
 	script_0b $20, $1a, $42
-	script_12 EVENT_106
-	script_12 EVENT_107
-	script_13 EVENT_146
-	script_13 EVENT_147
+	script_12 $106
+	script_12 $107
+	script_13 $146
+	script_13 $147
 	script_14
 	script_end
 
-Data_152fe4:
-	script_playmusic MUSIC_25
+
+Script_152fe4:
+	script_playmusic MUSIC_26
 	script_set_event EVENT_215
 	script_3d $0
 	script_04 $14
@@ -5588,10 +5969,10 @@ Data_152fe4:
 	script_01 $c, $5c
 	script_04 $50
 	script_01 $c, $5d
-	script_12 EVENT_108
-	script_12 EVENT_109
-	script_13 EVENT_106
-	script_13 EVENT_107
+	script_12 $108
+	script_12 $109
+	script_13 $106
+	script_13 $107
 	script_set_event EVENT_129
 	script_set_event EVENT_12A
 	script_set_event EVENT_12B
@@ -5644,8 +6025,9 @@ Data_152fe4:
 	script_14
 	script_end
 
-Data_1530f8:
-	script_playmusic MUSIC_29
+
+Script_1530f8:
+	script_playmusic MUSIC_2A
 	script_04 $14
 	script_01 $c, $5e
 	script_04 $14
@@ -5692,20 +6074,21 @@ Data_1530f8:
 	script_01 $c, $70
 	script_set_event EVENT_1F3
 	script_0b $3, $2, $56
-	script_12 EVENT_10A
-	script_13 EVENT_108
-	script_13 EVENT_109
-	script_13 EVENT_119
-	script_12 EVENT_12B
+	script_12 $10a
+	script_13 $108
+	script_13 $109
+	script_13 $119
+	script_12 $12b
 	script_17 $d
 	script_set_event EVENT_206
 	script_14
 	script_end
 
-Data_15317c:
+
+Script_15317c:
 	script_0d $3
 	script_04 $4
-	script_playmusic MUSIC_39
+	script_playmusic MUSIC_3B
 	script_04 $14
 	script_01 $c, $71
 	script_0e
@@ -5735,7 +6118,7 @@ Data_15317c:
 	script_0e
 	script_04 $32
 	script_01 $c, $7a
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_21 $1, $58, $50
 	script_66 $58
 	script_26 $1, $2
@@ -5767,15 +6150,16 @@ Data_15317c:
 	script_04 $14
 	script_01 $c, $81
 	script_0b $22, $3b, $56
-	script_12 EVENT_10B
-	script_12 EVENT_10C
+	script_12 $10b
+	script_12 $10c
 	script_14
 	script_end
 
-Data_15321b:
+
+Script_15321b:
 	script_set_event EVENT_210
 	script_04 $4
-	script_playmusic MUSIC_25
+	script_playmusic MUSIC_26
 	script_04 $4
 	script_set_event EVENT_1F7
 	script_0e
@@ -5822,9 +6206,9 @@ Data_15321b:
 	script_04 $14
 	script_01 $c, $8d
 	script_set_event EVENT_1F5
-	script_13 EVENT_10B
-	script_13 EVENT_10C
-	script_12 EVENT_11A
+	script_13 $10b
+	script_13 $10c
+	script_12 $11a
 	script_set_event EVENT_14E
 	script_set_event EVENT_14F
 	script_set_event EVENT_150
@@ -5868,21 +6252,24 @@ Data_15321b:
 	script_14
 	script_end
 
-Data_15330c:
+
+Script_15330c:
 	script_04 $14
 	script_01 $c, $8e
 	script_10 $45, $32
 	script_2a
 	script_end
 
-Data_153316:
+
+Script_153316:
 	script_04 $14
 	script_01 $c, $8f
 	script_10 $55, $32
 	script_2a
 	script_end
 
-Data_153320:
+
+Script_153320:
 	script_3d $0
 	script_28 $0
 	script_04 $32
@@ -5912,17 +6299,18 @@ Data_153320:
 	script_17 $2
 	script_04 $14
 	script_0b $4, $19, $66
-	script_13 EVENT_10D
-	script_13 EVENT_10E
-	script_13 EVENT_10F
-	script_13 EVENT_110
-	script_13 EVENT_111
-	script_12 EVENT_06B
-	script_12 EVENT_06C
+	script_13 $10d
+	script_13 $10e
+	script_13 $10f
+	script_13 $110
+	script_13 $111
+	script_12 $6b
+	script_12 $6c
 	script_14
 	script_end
 
-Data_153379:
+
+Script_153379:
 	script_3d $0
 	script_04 $14
 	script_28 $0
@@ -5930,7 +6318,8 @@ Data_153379:
 	script_01 $c, $97
 	script_end
 
-Data_153385:
+
+Script_153385:
 	script_3d $0
 	script_04 $14
 	script_28 $0
@@ -5938,27 +6327,33 @@ Data_153385:
 	script_01 $c, $98
 	script_end
 
-Data_153391:
+
+Script_153391:
 	script_04 $5
 	script_playsfx SFX_0A
 	script_01 $c, $99
 	script_upgrade_dshot $1
 	script_17 $4
-	script_13 EVENT_116
-	script_13 EVENT_117
+	script_13 $116
+	script_13 $117
 	script_14
 	script_end
 
-Data_1533a4:
+
+Script_1533a4:
 	script_3d $0
 	script_04 $14
 	script_01 $c, $9a
 	script_end
 
-Data_1533ac:
-	script_61 $30, $5
-	script_jump $5
+
+Script_1533ac:
+	script_61 $30, Script_1533b2
+	script_jump Script_1533b5
+
+Script_1533b2:
 	script_set_event EVENT_1C3
+Script_1533b5:
 	script_1c $1
 	script_3d $1
 	script_04 $a
@@ -5973,7 +6368,8 @@ Data_1533ac:
 	script_reset_event EVENT_1C3
 	script_end
 
-Data_1533d1:
+
+Script_1533d1:
 	script_4c $1
 	script_21 $0, $59, $34
 	script_21 $1, $2a, $44
@@ -6022,7 +6418,7 @@ Data_1533d1:
 	script_04 $32
 	script_01 $c, $a6
 	script_04 $32
-	script_playmusic MUSIC_38
+	script_playmusic MUSIC_3A
 	script_6a
 	script_25 $0
 	script_25 $1
@@ -6031,37 +6427,40 @@ Data_1533d1:
 	script_set_event EVENT_207
 	script_set_event EVENT_216
 	script_set_event EVENT_20B
-	script_12 EVENT_13A
-	script_13 EVENT_114
-	script_13 EVENT_115
-	script_13 EVENT_11B
-	script_13 EVENT_11C
-	script_13 EVENT_11D
-	script_13 EVENT_11E
-	script_13 EVENT_11F
-	script_13 EVENT_120
-	script_13 EVENT_056
-	script_13 EVENT_057
-	script_12 EVENT_136
-	script_12 EVENT_137
-	script_12 EVENT_13B
-	script_12 EVENT_13C
-	script_12 EVENT_13D
-	script_12 EVENT_13E
-	script_12 EVENT_143
-	script_12 EVENT_144
-	script_12 EVENT_145
+	script_12 $13a
+	script_13 $114
+	script_13 $115
+	script_13 $11b
+	script_13 $11c
+	script_13 $11d
+	script_13 $11e
+	script_13 $11f
+	script_13 $120
+	script_13 $56
+	script_13 $57
+	script_12 $136
+	script_12 $137
+	script_12 $13b
+	script_12 $13c
+	script_12 $13d
+	script_12 $13e
+	script_12 $143
+	script_12 $144
+	script_12 $145
 	script_17 $e
 	script_14
 	script_end
 
-Data_153495:
+
+Script_153495:
 	script_3d $3
-	script_jump_if_not EVENT_20D, $f
+	script_jump_if_not EVENT_20D, Script_1534a7
 	script_04 $14
 	script_01 $c, $a7
-	script_jump_if EVENT_C3E, $24
-	script_jump $a4
+	script_jump_if EVENT_C3E, Script_1534c5
+	script_jump Script_153549
+
+Script_1534a7:
 	script_set_event EVENT_20D
 	script_04 $14
 	script_01 $c, $a8
@@ -6069,38 +6468,46 @@ Data_153495:
 	script_01 $c, $a9
 	script_04 $14
 	script_01 $c, $aa
-	script_jump_if EVENT_C3F, $6
-	script_jump $8b
+	script_jump_if EVENT_C3F, Script_1534c0
+	script_jump Script_153549
+
+Script_1534c0:
 	script_04 $14
 	script_01 $c, $ab
+Script_1534c5:
 	script_04 $14
 	script_01 $c, $ac
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1534d3
 	script_04 $14
 	script_01 $c, $ad
+Script_1534d3:
 	script_04 $14
 	script_01 $c, $ae
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1534e1
 	script_04 $14
 	script_01 $c, $af
+Script_1534e1:
 	script_04 $14
 	script_01 $c, $b0
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1534ef
 	script_04 $14
 	script_01 $c, $b1
+Script_1534ef:
 	script_04 $14
 	script_01 $c, $b2
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1534fd
 	script_04 $14
 	script_01 $c, $b3
+Script_1534fd:
 	script_04 $14
 	script_01 $c, $b4
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_15350b
 	script_04 $14
 	script_01 $c, $b5
+Script_15350b:
 	script_04 $14
 	script_01 $c, $b6
-	script_jump_if EVENT_C3F, $17
+	script_jump_if EVENT_C3F, Script_153528
 	script_04 $14
 	script_01 $c, $b7
 	script_04 $14
@@ -6109,30 +6516,36 @@ Data_153495:
 	script_01 $c, $b9
 	script_04 $14
 	script_01 $c, $ba
+Script_153528:
 	script_04 $14
 	script_01 $c, $bb
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_153536
 	script_04 $14
 	script_01 $c, $bc
+Script_153536:
 	script_04 $14
 	script_01 $c, $bd
-	script_jump_if EVENT_C3F, $d
+	script_jump_if EVENT_C3F, Script_153549
 	script_04 $14
 	script_01 $c, $be
 	script_04 $14
 	script_01 $c, $bf
+Script_153549:
 	script_04 $14
 	script_01 $c, $c0
 	script_end
 
-Data_15354f:
-	script_jump_if EVENT_217, $13
+
+Script_15354f:
+	script_jump_if EVENT_217, Script_153563
 	script_3d $2
 	script_28 $2
 	script_04 $14
 	script_01 $c, $c1
-	script_jump_if EVENT_C3E, $28
-	script_jump $3c
+	script_jump_if EVENT_C3E, Script_153585
+	script_jump Script_15359d
+
+Script_153563:
 	script_set_event EVENT_217
 	script_3d $2
 	script_28 $2
@@ -6148,7 +6561,8 @@ Data_15354f:
 	script_01 $c, $c5
 	script_04 $14
 	script_01 $c, $c6
-	script_jump_if EVENT_C3F, $17
+Script_153585:
+	script_jump_if EVENT_C3F, Script_15359d
 	script_04 $14
 	script_01 $c, $c7
 	script_04 $14
@@ -6157,20 +6571,24 @@ Data_15354f:
 	script_01 $c, $c9
 	script_04 $14
 	script_01 $c, $ca
+Script_15359d:
 	script_04 $14
 	script_01 $c, $cb
 	script_04 $14
 	script_01 $c, $cc
 	script_end
 
-Data_1535a8:
+
+Script_1535a8:
 	script_3d $2
-	script_jump_if_not EVENT_20F, $11
+	script_jump_if_not EVENT_20F, Script_1535bc
 	script_28 $2
 	script_04 $32
 	script_01 $c, $cd
-	script_jump_if EVENT_C3E, $1f
-	script_jump $53
+	script_jump_if EVENT_C3E, Script_1535d5
+	script_jump Script_15360d
+
+Script_1535bc:
 	script_set_event EVENT_20F
 	script_28 $2
 	script_04 $32
@@ -6181,37 +6599,43 @@ Data_1535a8:
 	script_01 $c, $d0
 	script_04 $14
 	script_01 $c, $d1
+Script_1535d5:
 	script_04 $14
 	script_01 $c, $d2
-	script_jump_if EVENT_C3F, $32
+	script_jump_if EVENT_C3F, Script_15360d
 	script_04 $14
 	script_01 $c, $d3
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1535ec
 	script_04 $14
 	script_01 $c, $d4
+Script_1535ec:
 	script_04 $14
 	script_01 $c, $d5
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1535fa
 	script_04 $14
 	script_01 $c, $d6
+Script_1535fa:
 	script_04 $14
 	script_01 $c, $d7
-	script_jump_if EVENT_C3F, $d
+	script_jump_if EVENT_C3F, Script_15360d
 	script_04 $14
 	script_01 $c, $d8
 	script_04 $14
 	script_01 $c, $d9
+Script_15360d:
 	script_04 $14
 	script_01 $c, $da
 	script_end
 
-Data_153613:
+
+Script_153613:
 	script_3d $0
 	script_04 $14
 	script_01 $c, $db
 	script_end
 
-Data_15361b:
+
+Script_15361b:
 	script_3d $0
 	script_28 $0
 	script_04 $32
@@ -6234,112 +6658,157 @@ Data_15361b:
 	script_0b $3, $35, $25
 	script_set_event EVENT_1F2
 	script_17 $9
-	script_13 EVENT_124
-	script_13 EVENT_125
-	script_13 EVENT_126
+	script_13 $124
+	script_13 $125
+	script_13 $126
 	script_reset_event EVENT_201
 	script_set_event EVENT_202
 	script_14
 	script_end
 
-Data_15365e:
+
+Script_15365e:
 	script_3d $0
 	script_28 $0
 	script_04 $32
 	script_01 $c, $e2
 	script_04 $14
 	script_01 $c, $e3
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_153675
 	script_04 $14
 	script_01 $c, $e4
+Script_153675:
 	script_04 $14
 	script_01 $c, $e5
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_153683
 	script_04 $14
 	script_01 $c, $e6
+Script_153683:
 	script_04 $14
 	script_01 $c, $e7
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_153691
 	script_04 $14
 	script_01 $c, $e8
+Script_153691:
 	script_04 $14
 	script_01 $c, $e9
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_15369f
 	script_04 $14
 	script_01 $c, $ea
+Script_15369f:
 	script_04 $14
 	script_01 $c, $eb
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1536ad
 	script_04 $14
 	script_01 $c, $ec
+Script_1536ad:
 	script_04 $14
 	script_01 $c, $ed
-	script_jump_if EVENT_C3F, $8
+	script_jump_if EVENT_C3F, Script_1536bb
 	script_04 $14
 	script_01 $c, $ee
+Script_1536bb:
 	script_04 $14
 	script_01 $c, $ef
 	script_end
 
-Data_1536c1:
+
+Script_1536c1:
 	script_1c $3
-	script_61 $30, $5
-	script_jump $5
+	script_61 $30, Script_1536c9
+	script_jump Script_1536cc
+
+Script_1536c9:
 	script_set_event EVENT_1C3
+Script_1536cc:
 	script_04 $14
 	script_28 $0
 	script_04 $32
-	script_jump_if EVENT_1F8, $43
-	script_jump_if EVENT_1F9, $45
-	script_jump_if EVENT_1FA, $47
-	script_jump_if EVENT_1FB, $49
-	script_jump_if EVENT_1FC, $4b
-	script_jump_if EVENT_1FD, $4d
-	script_jump_if EVENT_1FE, $4f
-	script_jump_if EVENT_1FF, $51
-	script_jump_if EVENT_200, $53
-	script_jump_if EVENT_201, $55
-	script_jump_if EVENT_202, $57
-	script_jump_if EVENT_203, $59
-	script_jump_if EVENT_204, $5b
-	script_jump_if EVENT_205, $5d
-	script_jump_if EVENT_206, $5f
-	script_jump_if EVENT_219, $61
-	script_jump_if EVENT_207, $5d
+	script_jump_if EVENT_1F8, Script_153716
+	script_jump_if EVENT_1F9, Script_15371c
+	script_jump_if EVENT_1FA, Script_153722
+	script_jump_if EVENT_1FB, Script_153728
+	script_jump_if EVENT_1FC, Script_15372e
+	script_jump_if EVENT_1FD, Script_153734
+	script_jump_if EVENT_1FE, Script_15373a
+	script_jump_if EVENT_1FF, Script_153740
+	script_jump_if EVENT_200, Script_153746
+	script_jump_if EVENT_201, Script_15374c
+	script_jump_if EVENT_202, Script_153752
+	script_jump_if EVENT_203, Script_153758
+	script_jump_if EVENT_204, Script_15375e
+	script_jump_if EVENT_205, Script_153764
+	script_jump_if EVENT_206, Script_15376a
+	script_jump_if EVENT_219, Script_153770
+	script_jump_if EVENT_207, Script_153770
+Script_153716:
 	script_01 $c, $f0
-	script_jump $75
+	script_jump Script_15378f
+
+Script_15371c:
 	script_01 $c, $f1
-	script_jump $6f
+	script_jump Script_15378f
+
+Script_153722:
 	script_01 $c, $f2
-	script_jump $69
+	script_jump Script_15378f
+
+Script_153728:
 	script_01 $c, $f3
-	script_jump $63
+	script_jump Script_15378f
+
+Script_15372e:
 	script_01 $c, $f4
-	script_jump $5d
+	script_jump Script_15378f
+
+Script_153734:
 	script_01 $c, $f5
-	script_jump $57
+	script_jump Script_15378f
+
+Script_15373a:
 	script_01 $c, $f6
-	script_jump $51
+	script_jump Script_15378f
+
+Script_153740:
 	script_01 $c, $f7
-	script_jump $4b
+	script_jump Script_15378f
+
+Script_153746:
 	script_01 $c, $f8
-	script_jump $45
+	script_jump Script_15378f
+
+Script_15374c:
 	script_01 $c, $f9
-	script_jump $3f
+	script_jump Script_15378f
+
+Script_153752:
 	script_01 $c, $fa
-	script_jump $39
+	script_jump Script_15378f
+
+Script_153758:
 	script_01 $c, $fb
-	script_jump $33
+	script_jump Script_15378f
+
+Script_15375e:
 	script_01 $c, $fc
-	script_jump $2d
+	script_jump Script_15378f
+
+Script_153764:
 	script_01 $14, $0
-	script_jump $27
+	script_jump Script_15378f
+
+Script_15376a:
 	script_01 $14, $1
-	script_jump $21
-	script_jump_if EVENT_219, $5
-	script_if_dex_complete $7
+	script_jump Script_15378f
+
+Script_153770:
+	script_jump_if EVENT_219, Script_153776
+	script_if_dex_complete Script_15377c
+Script_153776:
 	script_01 $14, $2
-	script_jump $15
+	script_jump Script_15378f
+
+Script_15377c:
 	script_04 $14
 	script_01 $14, $3
 	script_4d $9
@@ -6348,6 +6817,7 @@ Data_1536c1:
 	script_04 $a
 	script_01 $14, $4
 	script_set_event EVENT_219
+Script_15378f:
 	script_10 $46, $32
 	script_2a
 	script_10 $47, $32
@@ -6355,154 +6825,185 @@ Data_1536c1:
 	script_reset_event EVENT_1C3
 	script_end
 
-Data_15379b:
+
+Script_15379b:
 	script_04 $a
 	script_01 $14, $5
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_1537b7
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1537b7:
 	script_end
 
-Data_1537b8:
+
+Script_1537b8:
 	script_04 $a
 	script_01 $14, $6
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_1537d4
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1537d4:
 	script_end
 
-Data_1537d5:
+
+Script_1537d5:
 	script_04 $a
 	script_01 $14, $7
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1E9, $e
+	script_jump_if_not EVENT_1EE, Script_153800
+	script_jump_if_not EVENT_1E9, Script_1537ed
 	script_set_event EVENT_1EA
 	script_reset_event EVENT_1E9
 	script_0b $4, $30, $75
 	script_end
+
+Script_1537ed:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_153800:
 	script_end
 
-Data_153801:
+
+Script_153801:
 	script_04 $a
 	script_01 $14, $8
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1EC, $e
+	script_jump_if_not EVENT_1EE, Script_15382c
+	script_jump_if_not EVENT_1EC, Script_153819
 	script_0b $4, $31, $54
-	script_12 EVENT_0E8
-	script_13 EVENT_0E7
+	script_12 $e8
+	script_13 $e7
 	script_end
+
+Script_153819:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_15382c:
 	script_end
 
-Data_15382d:
+
+Script_15382d:
 	script_04 $a
 	script_01 $14, $9
-	script_jump_if_not EVENT_1EE, $2e
-	script_jump_if EVENT_1E9, $17
-	script_jump_if EVENT_1EA, $13
-	script_jump_if EVENT_1EB, $f
-	script_jump_if EVENT_1EC, $b
+	script_jump_if_not EVENT_1EE, Script_153861
+	script_jump_if EVENT_1E9, Script_15384e
+	script_jump_if EVENT_1EA, Script_15384e
+	script_jump_if EVENT_1EB, Script_15384e
+	script_jump_if EVENT_1EC, Script_15384e
 	script_set_event EVENT_1E9
 	script_0b $4, $38, $73
 	script_end
+
+Script_15384e:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_153861:
 	script_end
 
-Data_153862:
+
+Script_153862:
 	script_04 $a
 	script_01 $14, $a
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_15387e
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_15387e:
 	script_end
 
-Data_15387f:
+
+Script_15387f:
 	script_04 $a
 	script_01 $14, $b
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1EA, $e
+	script_jump_if_not EVENT_1EE, Script_1538aa
+	script_jump_if_not EVENT_1EA, Script_153897
 	script_set_event EVENT_1EB
 	script_reset_event EVENT_1EA
 	script_0b $4, $30, $22
 	script_end
+
+Script_153897:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1538aa:
 	script_end
 
-Data_1538ab:
+
+Script_1538ab:
 	script_04 $a
 	script_01 $14, $c
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_1538c7
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1538c7:
 	script_end
 
-Data_1538c8:
+
+Script_1538c8:
 	script_04 $a
 	script_01 $14, $d
-	script_jump_if_not EVENT_1EE, $25
-	script_jump_if_not EVENT_1EB, $e
+	script_jump_if_not EVENT_1EE, Script_1538f3
+	script_jump_if_not EVENT_1EB, Script_1538e0
 	script_set_event EVENT_1EC
 	script_reset_event EVENT_1EB
 	script_0b $4, $30, $72
 	script_end
+
+Script_1538e0:
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_1538f3:
 	script_end
 
-Data_1538f4:
+
+Script_1538f4:
 	script_04 $a
 	script_01 $14, $e
-	script_jump_if_not EVENT_1EE, $16
+	script_jump_if_not EVENT_1EE, Script_153910
 	script_reset_event EVENT_1E9
 	script_reset_event EVENT_1EA
 	script_reset_event EVENT_1EB
 	script_reset_event EVENT_1EC
 	script_0b $4, $31, $57
-	script_12 EVENT_0E7
+	script_12 $e7
+Script_153910:
 	script_end
 
-Data_153911:
+
+Script_153911:
 	script_10 $54, $32
 	script_3c $55, $32
 	script_23 $0, $44, $32
@@ -6580,7 +7081,8 @@ Data_153911:
 	script_14
 	script_end
 
-Data_1539be:
+
+Script_1539be:
 	script_21 $0, $50, $44
 	script_60 $50
 	script_26 $0, $2
@@ -6633,12 +7135,13 @@ Data_1539be:
 	script_26 $0, $2
 	script_04 $50
 	script_25 $0
-	script_13 EVENT_137
-	script_13 EVENT_138
+	script_13 $137
+	script_13 $138
 	script_14
 	script_end
 
-Data_153a41:
+
+Script_153a41:
 	script_21 $0, $54, $44
 	script_5f $ae
 	script_3d $0
@@ -6748,7 +7251,8 @@ Data_153a41:
 	script_14
 	script_end
 
-Data_153b46:
+
+Script_153b46:
 	script_21 $0, $54, $44
 	script_5f $af
 	script_3d $0
@@ -6820,14 +7324,16 @@ Data_153b46:
 	script_14
 	script_end
 
-Data_153beb:
-	script_set_event EVENT_208
-	script_jump $5
 
-Data_153bf1:
+Script_153beb:
+	script_set_event EVENT_208
+	script_jump Script_153bf4
+
+
+Script_153bf1:
 	script_set_event EVENT_209
 	script_3d $0
-	script_playmusic MUSIC_22
+	script_playmusic MUSIC_23
 	script_0e
 	script_04 $32
 	script_01 $14, $52
@@ -6870,37 +7376,41 @@ Data_153bf1:
 	script_0e
 	script_04 $32
 	script_01 $14, $60
-	script_jump_if EVENT_208, $7
-	script_jump_if EVENT_209, $21
+	script_jump_if EVENT_208, Script_153c5b
+	script_jump_if EVENT_209, Script_153c79
+Script_153c5b:
 	script_23 $0, $54, $32
 	script_57 $0
 	script_23 $0, $50, $32
 	script_57 $0
 	script_25 $0
-	script_13 EVENT_13B
-	script_13 EVENT_13C
-	script_13 EVENT_13D
-	script_13 EVENT_13E
-	script_playmusic MUSIC_03
+	script_13 $13b
+	script_13 $13c
+	script_13 $13d
+	script_13 $13e
+	script_playmusic MUSIC_OVERWORLD
 	script_14
 	script_end
+
+Script_153c79:
 	script_23 $0, $40, $32
 	script_57 $0
 	script_25 $0
-	script_13 EVENT_13B
-	script_13 EVENT_13C
-	script_13 EVENT_13D
-	script_13 EVENT_13E
-	script_playmusic MUSIC_03
+	script_13 $13b
+	script_13 $13c
+	script_13 $13d
+	script_13 $13e
+	script_playmusic MUSIC_OVERWORLD
 	script_14
 	script_end
 
-Data_153c91:
+
+Script_153c91:
 	script_set_event EVENT_20A
 
-Data_153c94:
+Script_153c94:
 	script_3d $0
-	script_playmusic MUSIC_26
+	script_playmusic MUSIC_27
 	script_28 $0
 	script_04 $32
 	script_01 $14, $61
@@ -6928,7 +7438,7 @@ Data_153c94:
 	script_28 $0
 	script_04 $32
 	script_01 $14, $67
-	script_jump_if EVENT_C3F, $20
+	script_jump_if EVENT_C3F, Script_153cf3
 	script_0e
 	script_04 $32
 	script_01 $14, $68
@@ -6941,8 +7451,10 @@ Data_153c94:
 	script_28 $0
 	script_04 $32
 	script_01 $14, $6b
-	script_jump $44
-	script_jump_if_not EVENT_20A, $1a
+	script_jump Script_153d35
+
+Script_153cf3:
+	script_jump_if_not EVENT_20A, Script_153d0e
 	script_0d $2
 	script_04 $a
 	script_0d $0
@@ -6953,7 +7465,9 @@ Data_153c94:
 	script_04 $a
 	script_0d $1
 	script_04 $28
-	script_jump $16
+	script_jump Script_153d22
+
+Script_153d0e:
 	script_0d $1
 	script_04 $a
 	script_0d $3
@@ -6964,6 +7478,7 @@ Data_153c94:
 	script_04 $a
 	script_0d $0
 	script_04 $28
+Script_153d22:
 	script_01 $14, $6c
 	script_64 $0
 	script_04 $14
@@ -6973,53 +7488,59 @@ Data_153c94:
 	script_0e
 	script_04 $32
 	script_01 $14, $6e
+Script_153d35:
 	script_3d $0
 	script_04 $14
 	script_01 $14, $6f
-	script_jump_if_not EVENT_20A, $21
+	script_jump_if_not EVENT_20A, Script_153d5e
 	script_0d $3
 	script_04 $14
 	script_01 $14, $70
 	script_0d $1
 	script_04 $14
 	script_01 $14, $71
-	script_playmusic MUSIC_03
-	script_13 EVENT_13F
-	script_13 EVENT_140
-	script_12 EVENT_141
-	script_12 EVENT_142
+	script_playmusic MUSIC_OVERWORLD
+	script_13 $13f
+	script_13 $140
+	script_12 $141
+	script_12 $142
 	script_14
 	script_end
+
+Script_153d5e:
 	script_0d $2
 	script_04 $14
 	script_01 $14, $72
 	script_0d $0
 	script_04 $14
 	script_01 $14, $73
-	script_playmusic MUSIC_03
-	script_13 EVENT_13F
-	script_13 EVENT_140
-	script_12 EVENT_141
-	script_12 EVENT_142
+	script_playmusic MUSIC_OVERWORLD
+	script_13 $13f
+	script_13 $140
+	script_12 $141
+	script_12 $142
 	script_14
 	script_end
 
-Data_153d7c:
+
+Script_153d7c:
 	script_3d $0
 	script_28 $0
 	script_04 $32
 	script_01 $14, $74
 	script_end
 
-Data_153d86:
+
+Script_153d86:
 	script_playmusic MUSIC_02
-	script_setvar $00
+	script_setvar $0
 	script_04 $3
+Script_153d8c:
 	script_playsfx SFX_47
 	script_43 $0, $32
 	script_04 $1e
 	script_incvar
-	script_if_not_equal $3, $f7
+	script_if_not_equal $3, Script_153d8c
 	script_21 $0, $d, $41
 	script_04 $14
 	script_01 $14, $75
@@ -7027,12 +7548,13 @@ Data_153d86:
 	script_04 $32
 	script_22 $0, $1
 	script_04 $50
-	script_setvar $00
+	script_setvar $0
+Script_153dac:
 	script_playsfx SFX_47
 	script_43 $0, $32
 	script_04 $1e
 	script_incvar
-	script_if_not_equal $3, $f7
+	script_if_not_equal $3, Script_153dac
 	script_21 $1, $d, $41
 	script_04 $14
 	script_01 $14, $76
@@ -7040,7 +7562,7 @@ Data_153d86:
 	script_04 $32
 	script_22 $1, $1
 	script_04 $32
-	script_playmusic MUSIC_34
+	script_playmusic MUSIC_TITLE_SCREEN
 	script_04 $50
 	script_28 $0
 	script_28 $1
@@ -7070,12 +7592,12 @@ Data_153d86:
 	script_28 $1
 	script_04 $32
 	script_01 $14, $7e
-	script_jump_if EVENT_C3F, $5e
+	script_jump_if EVENT_C3F, Script_153e6d
 	script_28 $0
 	script_04 $32
 	script_01 $14, $7f
 	script_load_battle $56, $12, $1
-	script_playmusic MUSIC_34
+	script_playmusic MUSIC_TITLE_SCREEN
 	script_04 $32
 	script_28 $0
 	script_04 $32
@@ -7102,18 +7624,20 @@ Data_153d86:
 	script_playsfx SFX_70
 	script_25 $1
 	script_04 $32
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_04 $32
 	script_01 $14, $84
-	script_13 EVENT_144
-	script_13 EVENT_145
+	script_13 $144
+	script_13 $145
 	script_14
 	script_end
+
+Script_153e6d:
 	script_28 $1
 	script_04 $32
 	script_01 $14, $85
 	script_load_battle $57, $a, $1
-	script_playmusic MUSIC_34
+	script_playmusic MUSIC_TITLE_SCREEN
 	script_04 $32
 	script_28 $1
 	script_04 $32
@@ -7140,13 +7664,14 @@ Data_153d86:
 	script_playsfx SFX_70
 	script_25 $0
 	script_04 $32
-	script_playmusic MUSIC_09
+	script_playmusic MUSIC_CAVES
 	script_04 $32
 	script_01 $14, $8a
 	script_14
 	script_end
 
-Data_153ec2:
+
+Script_153ec2:
 	script_04 $14
 	script_0d $3
 	script_playsfx SFX_47
@@ -7154,20 +7679,23 @@ Data_153ec2:
 	script_04 $1e
 	script_04 $32
 	script_01 $14, $8b
-	script_13 EVENT_144
-	script_13 EVENT_145
+	script_13 $144
+	script_13 $145
 	script_end
 
-Data_153ed9:
+
+Script_153ed9:
 	script_04 $14
 	script_01 $14, $8c
 	script_10 $42, $32
 	script_2a
 	script_end
 
-Data_153ee3:
+
+Script_153ee3:
 	script_04 $14
 	script_01 $14, $8d
 	script_10 $52, $32
 	script_2a
 	script_end
+

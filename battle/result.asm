@@ -2259,7 +2259,7 @@ SetUpRecruitmentScreenLayout:
 	call CopyDenjuuSpeciesNameToUserNameBuffer
 	ld c, $6c
 	call StdBattleTextBox
-	ld a, MUSIC_28
+	ld a, MUSIC_GOT_PHONE_NUMBER
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, [wRecruitedDenjuuLevel]
