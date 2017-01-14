@@ -1554,7 +1554,7 @@ Data_14b032:
 	dw -1
 
 Data_14b034:
-	dw EVENT_809
+	dw EVENT_PERSON_VISIBLE_009
 	db $50, $54, $51
 	dw Data_14b03e
 	db $4a

@@ -6,9 +6,9 @@ script_00: MACRO
 .offset\@
 	ENDM
 
-	enum script_01_command
-script_01: MACRO
-	db script_01_command
+	enum script_printtext_command
+script_printtext: MACRO
+	db script_printtext_command
 .offset\@
 	db \1
 	db \2
@@ -28,9 +28,9 @@ script_03: MACRO
 .offset\@
 	ENDM
 
-	enum script_04_command
-script_04: MACRO
-	db script_04_command
+	enum script_sleep_command
+script_sleep: MACRO
+	db script_sleep_command
 .offset\@
 	db \1
 	ENDM
@@ -106,9 +106,9 @@ script_0d: MACRO
 	db \1
 	ENDM
 
-	enum script_0e_command
-script_0e: MACRO
-	db script_0e_command
+	enum script_hop_player_command
+script_hop_player: MACRO
+	db script_hop_player_command
 .offset\@
 	ENDM
 
@@ -134,23 +134,23 @@ script_11: MACRO
 	bigdw \1
 	ENDM
 
-	enum script_12_command
-script_12: MACRO
-	db script_12_command
+	enum script_unlock_event_command
+script_unlock_event: MACRO
+	db script_unlock_event_command
 .offset\@
 	bigdw \1
 	ENDM
 
-	enum script_13_command
-script_13: MACRO
-	db script_13_command
+	enum script_complete_event_command
+script_complete_event: MACRO
+	db script_complete_event_command
 .offset\@
 	bigdw \1
 	ENDM
 
-	enum script_14_command
-script_14: MACRO
-	db script_14_command
+	enum script_complete_active_event_command
+script_complete_active_event: MACRO
+	db script_complete_active_event_command
 .offset\@
 	ENDM
 
@@ -246,17 +246,17 @@ script_21: MACRO
 	db \3
 	ENDM
 
-	enum script_22_command
-script_22: MACRO
-	db script_22_command
+	enum script_apply_facing_command
+script_apply_facing: MACRO
+	db script_apply_facing_command
 .offset\@
 	db \1
 	db \2
 	ENDM
 
-	enum script_23_command
-script_23: MACRO
-	db script_23_command
+	enum script_walk_command
+script_walk: MACRO
+	db script_walk_command
 .offset\@
 	db \1
 	db \2
@@ -270,9 +270,9 @@ script_24: MACRO
 	db \1
 	ENDM
 
-	enum script_25_command
-script_25: MACRO
-	db script_25_command
+	enum script_disappear_command
+script_disappear: MACRO
+	db script_disappear_command
 .offset\@
 	db \1
 	ENDM
@@ -292,9 +292,9 @@ script_27: MACRO
 	db \1
 	ENDM
 
-	enum script_28_command
-script_28: MACRO
-	db script_28_command
+	enum script_hop_npc_command
+script_hop_npc: MACRO
+	db script_hop_npc_command
 .offset\@
 	db \1
 	ENDM
@@ -376,7 +376,7 @@ script_2f: MACRO
 script_jump: MACRO
 	db script_jump_command
 .offset\@
-	bigdw \1 - .offset\@ ; script offset
+	bigdw (\1 - .offset\@) ; script offset
 	ENDM
 
 	enum script_31_command
@@ -441,7 +441,7 @@ script_jump_if: MACRO
 	db script_jump_if_command
 .offset\@
 	bigdw \1
-	db \2 - .offset\@ ; script offset
+	db (\2 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_jump_if_not_command
@@ -449,7 +449,7 @@ script_jump_if_not: MACRO
 	db script_jump_if_not_command
 .offset\@
 	bigdw \1
-	db \2 - .offset\@ ; script offset
+	db (\2 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_give_money_command
@@ -474,9 +474,9 @@ script_3c: MACRO
 	db \2
 	ENDM
 
-	enum script_3d_command
-script_3d: MACRO
-	db script_3d_command
+	enum script_face_player_command
+script_face_player: MACRO
+	db script_face_player_command
 .offset\@
 	db \1
 	ENDM
@@ -580,7 +580,7 @@ script_4a: MACRO
 script_4b: MACRO
 	db script_4b_command
 .offset\@
-	db \1 - .offset\@ ; script offset
+	db (\1 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_4c_command
@@ -601,14 +601,14 @@ script_4d: MACRO
 script_4e: MACRO
 	db script_4e_command
 .offset\@
-	db \1 - .offset\@ ; script offset
+	db (\1 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_4f_command
 script_4f: MACRO
 	db script_4f_command
 .offset\@
-	db \1 - .offset\@ ; script offset
+	db (\1 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_50_command
@@ -642,7 +642,7 @@ script_if_equal: MACRO
 	db script_if_equal_command
 .offset\@
 	db \1
-	db \2 - .offset\@ ; script offset
+	db (\2 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_if_not_equal_command
@@ -650,7 +650,7 @@ script_if_not_equal: MACRO
 	db script_if_not_equal_command
 .offset\@
 	db \1
-	db \2 - .offset\@ ; script offset
+	db (\2 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_56_command
@@ -661,9 +661,9 @@ script_56: MACRO
 	db \2
 	ENDM
 
-	enum script_57_command
-script_57: MACRO
-	db script_57_command
+	enum script_wait_movement_command
+script_wait_movement: MACRO
+	db script_wait_movement_command
 .offset\@
 	db \1
 	ENDM
@@ -691,7 +691,7 @@ script_5a: MACRO
 .offset\@
 	db \1
 	db \2
-	db \3 - .offset\@ ; script offset
+	db (\3 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_5b_command
@@ -739,7 +739,7 @@ script_61: MACRO
 	db script_61_command
 .offset\@
 	db \1
-	db \2 - .offset\@ ; script offset
+	db (\2 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_62_command
@@ -759,9 +759,9 @@ script_63: MACRO
 	db \3
 	ENDM
 
-	enum script_64_command
-script_64: MACRO
-	db script_64_command
+	enum script_face_away_from_player_command
+script_face_away_from_player: MACRO
+	db script_face_away_from_player_command
 .offset\@
 	db \1
 	ENDM
@@ -800,7 +800,7 @@ script_if_own_denjuu: MACRO
 	db script_if_own_denjuu_command
 .offset\@
 	db \1
-	db \2 - .offset\@ ; script offset
+	db (\2 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_6a_command
@@ -827,14 +827,14 @@ script_6c: MACRO
 script_if_phone_silent: MACRO
 	db script_if_phone_silent_command
 .offset\@
-	db \1 - .offset\@ ; script offset
+	db (\1 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_if_dex_complete_command
 script_if_dex_complete: MACRO
 	db script_if_dex_complete_command
 .offset\@
-	db \1 - .offset\@ ; script offset
+	db (\1 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_6f_command

@@ -84,7 +84,7 @@ ENDM
 
 bigdw: MACRO
 REPT _NARG
-	db ((\1 >> 8) & $ff), (\1 & $ff)
+	db (\1 >> 8), (\1 & $ff)
 	shift
 ENDR
 ENDM

@@ -141,7 +141,7 @@ Func_3c050: ; 3c050 (f:4050)
 	jr nz, .force_script
 	pop bc
 	push bc
-	ld hl, EVENT_800
+	ld hl, EVENT_PERSON_VISIBLE_000
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -204,8 +204,8 @@ AdvanceScriptPointer: ; 3c112 (f:4112)
 
 ScriptCommandPointers:
 	dw Script_End ; 00
-	dw Func_3c222 ; 01
-	dw Func_3c222 ; 02
+	dw Script_PrintText ; 01
+	dw Script_PrintText ; 02
 	dw Func_3c23d ; 03
 	dw Script_Sleep ; 04
 	dw Script_WaitButton ; 05
@@ -217,15 +217,15 @@ ScriptCommandPointers:
 	dw Func_3c28f ; 0b
 	dw Func_3c314 ; 0c
 	dw Func_3c314 ; 0d
-	dw Func_3c35e ; 0e
+	dw Script_HopPlayer ; 0e
 	dw Func_3c38b ; 0f
 	dw Func_3c3c7 ; 10
-	dw Func_3c3ee ; 11
-	dw Func_3c3ee ; 12
-	dw Func_3c406 ; 13
-	dw Func_3c458 ; 14
-	dw Func_3c481 ; 15
-	dw Func_3c499 ; 16
+	dw Script_UnlockScript ; 11
+	dw Script_UnlockScript ; 12
+	dw Script_SetScriptComplete ; 13
+	dw Script_LockAndCompleteEvent ; 14
+	dw Script_LockEvent ; 15
+	dw Script_SetScriptComplete_ ; 16
 	dw Func_3c49c ; 17
 	dw Func_3c4a9 ; 18
 	dw Func_3c4b7 ; 19
@@ -239,11 +239,11 @@ ScriptCommandPointers:
 	dw Func_3c5c7 ; 21
 	dw Func_3c61b ; 22
 	dw Func_3c645 ; 23
-	dw Func_3c696 ; 24
-	dw Func_3c696 ; 25
+	dw Script_Disappear ; 24
+	dw Script_Disappear ; 25
 	dw Func_3c6aa ; 26
-	dw Func_3c6ed ; 27
-	dw Func_3c6ed ; 28
+	dw Script_HopNPC ; 27
+	dw Script_HopNPC ; 28
 	dw Func_3c73a ; 29
 	dw Func_3c977 ; 2a
 	dw Func_3c73a ; 2b
@@ -264,7 +264,7 @@ ScriptCommandPointers:
 	dw Script_GiveMoney ; 3a
 	dw Script_TakeMoney ; 3b
 	dw Func_3ca46 ; 3c
-	dw Func_3ca06 ; 3d
+	dw Script_FacePlayer ; 3d
 	dw Func_3caf0 ; 3e
 	dw Func_3cabc ; 3f
 	dw Func_3c7f0 ; 40
@@ -303,7 +303,7 @@ ScriptCommandPointers:
 	dw Func_3cf28 ; 61
 	dw Func_3c3e4 ; 62
 	dw Func_3c687 ; 63
-	dw Func_3ca32 ; 64
+	dw Script_FaceAwayFromPlayer ; 64
 	dw Func_3cf1a ; 65
 	dw Func_3cf21 ; 66
 	dw Func_3cf44 ; 67
@@ -311,7 +311,7 @@ ScriptCommandPointers:
 	dw Script_IfRecruited ; 69
 	dw Func_3cf93 ; 6a
 	dw Script_SetDShotLevel ; 6b
-	dw Func_3c42f ; 6c
+	dw Script_ResetEventState ; 6c
 	dw Script_IfPhoneSilent ; 6d
 	dw Script_IfRecruitedAllSpecies ; 6e
 	dw Func_3c972 ; 6f
@@ -325,7 +325,7 @@ ScriptCommandPointers:
 	dw Func_3c972 ; 77
 	dw Func_3c972 ; 78
 
-Func_3c222: ; 3c222 (f:4222)
+Script_PrintText: ; 3c222 (f:4222)
 	ld hl, wScriptBuffer + 1
 	ld a, [hli]
 	ld b, a
@@ -502,7 +502,7 @@ Data_3c356:
 Data_3c35a:
 	db $00, $03, $02, $01
 
-Func_3c35e: ; 3c35e (f:435e)
+Script_HopPlayer: ; 3c35e (f:435e)
 	ld hl, wPlayerObjectStruct_Duration + 2
 	ld a, $0
 	ld [hli], a
@@ -577,12 +577,12 @@ Func_3c3e4: ; 3c3e4 (f:43e4)
 	ld [wPlayerObjectStruct_Duration + 17], a
 	jr Func_3c3c7
 
-Func_3c3ee: ; 3c3ee (f:43ee)
+Script_UnlockScript: ; 3c3ee (f:43ee)
 	ld a, [wScriptBuffer + 1]
 	ld h, a
 	ld a, [wScriptBuffer + 2]
 	ld l, a
-	ld bc, EVENT_800
+	ld bc, EVENT_PERSON_VISIBLE_000
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -592,12 +592,12 @@ Func_3c3ee: ; 3c3ee (f:43ee)
 	scf
 	ret
 
-Func_3c406: ; 3c406 (f:4406)
+Script_SetScriptComplete: ; 3c406 (f:4406)
 	ld a, [wScriptBuffer + 1]
 	ld h, a
 	ld a, [wScriptBuffer + 2]
 	ld l, a
-	ld bc, EVENT_800
+	ld bc, EVENT_PERSON_VISIBLE_000
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -616,12 +616,12 @@ Func_3c406: ; 3c406 (f:4406)
 	scf
 	ret
 
-Func_3c42f: ; 3c42f (f:442f)
+Script_ResetEventState: ; 3c42f (f:442f)
 	ld a, [wScriptBuffer + 1]
 	ld h, a
 	ld a, [wScriptBuffer + 2]
 	ld l, a
-	ld bc, EVENT_800
+	ld bc, EVENT_PERSON_VISIBLE_000
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -640,12 +640,12 @@ Func_3c42f: ; 3c42f (f:442f)
 	scf
 	ret
 
-Func_3c458: ; 3c458 (f:4458)
+Script_LockAndCompleteEvent: ; 3c458 (f:4458)
 	ld a, [wScriptNumber]
 	ld l, a
 	ld a, [wScriptNumber + 1]
 	ld h, a
-	ld bc, EVENT_800
+	ld bc, EVENT_PERSON_VISIBLE_000
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -664,12 +664,12 @@ Func_3c458: ; 3c458 (f:4458)
 	scf
 	ret
 
-Func_3c481: ; 3c481 (f:4481)
+Script_LockEvent: ; 3c481 (f:4481)
 	ld a, [wScriptNumber]
 	ld l, a
 	ld a, [wScriptNumber + 1]
 	ld h, a
-	ld bc, EVENT_800
+	ld bc, EVENT_PERSON_VISIBLE_000
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -679,8 +679,8 @@ Func_3c481: ; 3c481 (f:4481)
 	scf
 	ret
 
-Func_3c499: ; 3c499 (f:4499)
-	jp Func_3c406
+Script_SetScriptComplete_: ; 3c499 (f:4499)
+	jp Script_SetScriptComplete
 
 Func_3c49c: ; 3c49c (f:449c)
 	ld a, [wScriptBuffer + 1]
@@ -983,7 +983,7 @@ Func_3c687: ; 3c687 (f:4687)
 	scf
 	ret
 
-Func_3c696: ; 3c696 (f:4696)
+Script_Disappear: ; 3c696 (f:4696)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -1038,7 +1038,7 @@ Func_3c6aa: ; 3c6aa (f:46aa)
 	ld [hl], a
 	jr .asm_3c6d7
 
-Func_3c6ed: ; 3c6ed (f:46ed)
+Script_HopNPC: ; 3c6ed (f:46ed)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -1551,7 +1551,7 @@ Func_3c9b4: ; 3c9b4 (f:49b4)
 	scf
 	ret
 
-Func_3ca06: ; 3ca06 (f:4a06)
+Script_FacePlayer: ; 3ca06 (f:4a06)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -1581,7 +1581,7 @@ asm_3ca2b
 	scf
 	ret
 
-Func_3ca32: ; 3ca32 (f:4a32)
+Script_FaceAwayFromPlayer: ; 3ca32 (f:4a32)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a

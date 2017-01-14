@@ -24513,12 +24513,7 @@ INCLUDE "data/map_data_14c668.asm"
 INCLUDE "data/map_data_14d472.asm"
 
 SECTION "bank 54", ROMX, BANK [$54]
-Pointers_150000:
-IF DEF(POWER)
-INCLUDE "data/scripts_150000.power.asm"
-ELSE
-INCLUDE "data/scripts_150000.speed.asm"
-ENDC
+Pointers_150000: INCLUDE "data/scripts_150000.asm"
 
 SECTION "bank 55", ROMX, BANK [$55]
 Pointers_154000: INCLUDE "data/scripts_154000.asm"

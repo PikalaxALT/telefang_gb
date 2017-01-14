@@ -1666,7 +1666,7 @@ Data_14cea7:
 	db $ff
 
 Data_14ceac:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $00, $44, $3d
 	dw Data_14cebe
 	db $02

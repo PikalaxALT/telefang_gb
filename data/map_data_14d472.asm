@@ -506,7 +506,7 @@ Data_14d766:
 	dw -1
 
 Data_14d768:
-	dw -EVENT_802
+	dw -EVENT_PERSON_VISIBLE_002
 	db $01, $22, $05
 	dw Data_14d772
 	db $12

@@ -1588,7 +1588,7 @@ Data_14a4e1:
 	dw -1
 
 Data_14a4e3:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $01, $22, $05
 	dw Data_14a4ed
 	db $02
@@ -1614,7 +1614,7 @@ Data_14a4fa:
 	dw -1
 
 Data_14a4fc:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $01, $34, $05
 	dw Data_14a506
 	db $02
@@ -1694,7 +1694,7 @@ Data_14a545:
 	dw -1
 
 Data_14a547:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $01, $43, $05
 	dw Data_14a551
 	db $02
@@ -1713,7 +1713,7 @@ Data_14a557:
 	dw -1
 
 Data_14a559:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $01, $32, $05
 	dw Data_14a563
 	db $02
@@ -1756,7 +1756,7 @@ Data_14a57d:
 	db $ff
 
 Data_14a584:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $01, $42, $05
 	dw Data_14a58e
 	db $02
@@ -1897,7 +1897,7 @@ Data_14a615:
 	dw -1
 
 Data_14a617:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $01, $51, $05
 	dw Data_14a621
 	db $02
@@ -2048,7 +2048,7 @@ Data_14a6b0:
 	dw -1
 
 Data_14a6b2:
-	dw EVENT_8FB
+	dw EVENT_PERSON_VISIBLE_0FB
 	db $01, $32, $05
 	dw Data_14a6bc
 	db $02
@@ -2368,7 +2368,7 @@ Data_14a7e6:
 	dw -1
 
 Data_14a7e8:
-	dw EVENT_8FF
+	dw EVENT_PERSON_VISIBLE_0FF
 	db $01, $22, $45
 	dw Data_14a7f2
 	db $02

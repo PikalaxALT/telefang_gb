@@ -31,7 +31,7 @@
 	const MUSIC_1C
 	const MUSIC_1D
 	const MUSIC_1E
-    const music_1F
+    const MUSIC_1F
 	const MUSIC_20
 	const MUSIC_21
 	const MUSIC_KAI_ENCOUNTER
@@ -47,7 +47,7 @@
 	const MUSIC_2C
 	const MUSIC_2D
 	const MUSIC_2E
-    const music_2F
+    const MUSIC_2F
 	const MUSIC_30
 	const MUSIC_31
 	const MUSIC_DSHOT_MENU
@@ -63,4 +63,4 @@
 	const MUSIC_3C
 	const MUSIC_3D
 	const MUSIC_3E
-    const music_3F
+    const MUSIC_3F
