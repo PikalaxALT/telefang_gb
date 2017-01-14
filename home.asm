@@ -2364,7 +2364,7 @@ Func_1f24: ; 1f24 (0:1f24)
 	call Func_200a
 	call Func_2021
 	call Func_1f80
-	homecall Func_3c000
+	homecall HandleRunningMapScript
 	homecall Func_2ddd9
 	ld a, [wc984]
 	inc a
@@ -2719,7 +2719,7 @@ Func_256e::
 	cp $13
 	jr nz, asm_2665
 	call Func_1fff
-	ld a, $13
+	ld a, SFX_13
 	ld [hSFX_ID], a
 	ld a, [wc9c3]
 	ld b, a
@@ -2781,7 +2781,7 @@ asm_2665
 	call Func_252a
 	ld a, $0
 	ld [wc9c1], a
-	ld a, $13
+	ld a, SFX_13
 	ld [hSFX_ID], a
 Func_2690: ; 2690 (0:2690)
 	ret
@@ -2866,7 +2866,7 @@ Func_26ff: ; 26ff (0:26ff)
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $c
 	ld [wPlayerObjectStruct_Duration + 11], a
-	ld a, $68
+	ld a, SFX_68
 	ld [hSFX_ID], a
 Func_2726::
 	ld a, [wPlayerObjectStruct_Duration + 17]
@@ -3013,9 +3013,9 @@ Func_2809: ; 2809 (0:2809)
 	ld a, BANK(Pointers_19c000)
 	rst Bankswitch
 	ld a, [wc9c3]
-	ld [wc915], a
+	ld [wPlayerXTile], a
 	ld a, [wc9c4]
-	ld [wc916], a
+	ld [wPlayerYTile], a
 	call Func_2a68
 	jp z, .quit_true
 	inc hl
@@ -3316,9 +3316,9 @@ Func_2928::
 	ld e, $a
 	call Divide_C_by_E
 	ld a, e
-	ld [wc915], a
+	ld [wPlayerXTile], a
 	ld a, c
-	ld [wc916], a
+	ld [wPlayerYTile], a
 	pop hl
 	pop af
 	rst Bankswitch
@@ -3363,7 +3363,7 @@ Func_29ed::
 	ld a, [hl]
 	ld b, a
 	and $f
-	ld [wc916], a
+	ld [wPlayerYTile], a
 	inc a
 	swap a
 	ld [wc902], a
@@ -3371,7 +3371,7 @@ Func_29ed::
 	ld a, b
 	and $f0
 	swap a
-	ld [wc915], a
+	ld [wPlayerXTile], a
 	swap a
 	add $8
 	ld [wc901], a
@@ -3385,12 +3385,12 @@ Func_29ed::
 	ld a, [wMapGroup]
 	cp $b
 	jr nz, .asm_2a44
-	ld a, $13
+	ld a, SFX_13
 	ld [hSFX_ID], a
 	jr .asm_2a48
 
 .asm_2a44
-	ld a, $d
+	ld a, SFX_0D
 	ld [hSFX_ID], a
 .asm_2a48
 	ld a, $0
@@ -3445,13 +3445,13 @@ Func_2a68: ; 2a68 (0:2a68)
 	swap a
 	and $f
 	ld c, a
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	cp c
 	jr nz, .next
 	ld a, b
 	and $f
 	ld c, a
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp c
 	jr nz, .next
 	or $1
@@ -3512,7 +3512,7 @@ Func_2b36::
 
 INCLUDE "home/multiply.asm"
 
-Func_2b72::
+LoadMapBlockdataAndScriptHeader::
 	call Func_272f
 	ld a, [wROMBank]
 	push af
@@ -3528,7 +3528,7 @@ Func_2b72::
 	jr nz, .copy
 	pop af
 	rst Bankswitch
-	call Func_32ff
+	call LoadMapScripts
 	ld a, $0
 	ld [wc953], a
 	ld [wc94c], a
@@ -4070,7 +4070,7 @@ Func_2f27::
 	homecall Func_30b4e
 	ret
 
-Func_2f34::
+GetMapObjectFlags::
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4605,7 +4605,7 @@ Func_3238: ; 3238 (0:3238)
 	ret
 
 Func_3252: ; 3252 (0:3252)
-	call Func_2b72
+	call LoadMapBlockdataAndScriptHeader
 Func_3255: ; 3255 (0:3255)
 	decoord 0, 0
 	ld hl, VBGMap
@@ -4726,19 +4726,19 @@ WrapAroundBGMapPointer: ; 32f7 (0:32f7)
 .asm_32fe
 	ret
 
-Func_32ff: ; 32ff (0:32ff)
+LoadMapScripts: ; 32ff (0:32ff)
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Data_14c000)
+	ld a, BANK(MapObjectHeaders)
 	rst Bankswitch
 	ld a, $ff
-	ld [wca68], a
+	ld [wScriptCount], a
 	ld hl, wWhichPhoneNumberSymbolCode
 	ld a, $0
 	ld [hli], a
 	ld a, $0
 	ld [hl], a
-	ld hl, Data_14c000
+	ld hl, MapObjectHeaders
 	ld bc, $148
 	ld a, [wMapGroup]
 	ld d, a
@@ -4751,7 +4751,7 @@ Func_32ff: ; 32ff (0:32ff)
 	ld a, [hli]
 	cp e
 	jr nz, .next
-	call Func_3363
+	call AppendScriptIndexToBuffer
 	jr .next
 
 .inc_next
@@ -4772,11 +4772,11 @@ Func_32ff: ; 32ff (0:32ff)
 	ld a, b
 	or c
 	jr nz, .loop
-	ld a, [wca68]
+	ld a, [wScriptCount]
 	inc a
-	ld [wca68], a
-asm_334f
-	ld de, wcd50
+	ld [wScriptCount], a
+finish_collecting_map_scripts
+	ld de, wCurMapScripts
 	add a
 	add e
 	ld e, a
@@ -4792,14 +4792,14 @@ asm_334f
 	rst Bankswitch
 	ret
 
-Func_3363: ; 3363 (0:3363)
+AppendScriptIndexToBuffer: ; 3363 (0:3363)
 	push de
-	ld a, [wca68]
+	ld a, [wScriptCount]
 	inc a
-	ld [wca68], a
-	cp $f
+	ld [wScriptCount], a
+	cp 15
 	jr nc, .break
-	ld de, wcd50
+	ld de, wCurMapScripts
 	add a
 	add e
 	ld e, a
@@ -4816,7 +4816,7 @@ Func_3363: ; 3363 (0:3363)
 
 .break
 	add sp, $4
-	jr asm_334f
+	jr finish_collecting_map_scripts
 
 Func_3388: ; 3388 (0:3388)
 	homecall Func_2e3dc
@@ -4855,12 +4855,12 @@ Func_33f0::
 	ret
 
 Func_33fd::
-	ld [wca68], a
+	ld [wScriptCount], a
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_a8c50)
 	rst Bankswitch
-	ld a, [wca68]
+	ld a, [wScriptCount]
 	call Func_a8c50
 	pop af
 	rst Bankswitch
@@ -5240,7 +5240,7 @@ Func_35e0: ; 35e0 (0:35e0)
 	ld bc, $60
 	call Copy2bpp_2
 .asm_3650
-	ld a, [wc93e]
+	ld a, [wShowClockInOverworld]
 	or a
 	jr nz, .asm_3659
 	call Func_36cf
@@ -5254,7 +5254,7 @@ Func_35e0: ; 35e0 (0:35e0)
 	rst Bankswitch
 Func_3672:
 	ld de, TileMap_e03f0
-	ld a, [wc93e]
+	ld a, [wShowClockInOverworld]
 	or a
 	jr nz, asm_367e
 Func_367b:
@@ -5320,7 +5320,7 @@ Func_36cf: ; 36cf (0:36cf)
 	ld a, BANK(GFX_e0898)
 	rst Bankswitch
 	ld de, GFX_e0898
-	ld a, [wc90a]
+	ld a, [wPhoneSilentMode]
 	swap a
 	sla a
 	sla a
@@ -6347,7 +6347,7 @@ LoadBackgroundPalette
 	ld b, $0
 	ld c, a
 	add hl, bc
-	ld a, [wcdb3]
+	ld a, [wUIColor]
 	cp $1
 	jr z, .asm_3ed7
 	cp $2

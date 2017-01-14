@@ -1169,7 +1169,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	call Func_30b4e
 	ld a, $3c
 	ld [wPlayerObjectStruct_Duration + 11], a
-	ld a, $10
+	ld a, SFX_10
 	ld [H_SFX_ID], a
 .asm_30ecd
 	ret
@@ -2694,12 +2694,12 @@ Func_31763:
 	call Func_31916
 	pop hl
 	ld [hl], $0
-	ld a, $69
+	ld a, SFX_69
 	ld [H_SFX_ID], a
 	ld a, [wMapGroup]
 	cp $a
 	jr nc, .asm_31803
-	ld a, $5e
+	ld a, SFX_5E
 	ld [H_SFX_ID], a
 .asm_31803
 	call OverworldRandom8_
@@ -2751,7 +2751,7 @@ Func_31843: ; 31843 (c:5843)
 	ld a, [wc9c1]
 	ld [hl], a
 	ld b, $1
-	ld a, $67
+	ld a, SFX_67
 	ld [H_SFX_ID], a
 	ret
 
@@ -3636,7 +3636,7 @@ Func_31db5:
 	ld l, a
 	ld a, $0
 	ld [hl], a
-	ld a, $f
+	ld a, SFX_0F
 	ld [H_SFX_ID], a
 	ret
 
@@ -3760,7 +3760,7 @@ Func_31e97: ; 31e97 (c:5e97)
 	ld l, a
 	xor a
 	ld [hli], a
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	inc a
 	sla a
 	sla a
@@ -3769,7 +3769,7 @@ Func_31e97: ; 31e97 (c:5e97)
 	inc hl
 	xor a
 	ld [hli], a
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	inc a
 	sla a
 	sla a
@@ -3934,7 +3934,7 @@ Func_31fc3:
 	ld l, a
 	ld a, $2
 	ld [hl], a
-	ld a, $6a
+	ld a, SFX_6A
 	ld [H_SFX_ID], a
 .asm_31ff0
 	ret
@@ -3995,7 +3995,7 @@ Func_3202b:
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, $a
+	ld a, SFX_0A
 	ld [H_SFX_ID], a
 	ret
 
@@ -4023,7 +4023,7 @@ Func_32079: ; 32079 (c:6079)
 	ld a, [wcd51]
 	ld [wScriptNumber + 1], a
 	ld b, a
-	ld a, [wcd50]
+	ld a, [wCurMapScripts]
 	ld [wScriptNumber], a
 	cp $ff
 	jr nz, .asm_32093
@@ -5042,7 +5042,7 @@ Func_32658: ; 32658 (c:6658)
 	ld a, [hl]
 	add $a
 	ld [hl], a
-	ld a, $6b
+	ld a, SFX_6B
 	ld [H_SFX_ID], a
 Func_326fe: ; 326fe (c:66fe)
 	ld a, [wCurObjectStruct]
@@ -5118,7 +5118,7 @@ Func_32734: ; 32734 (c:6734)
 	add $15
 	ld l, a
 	ld [hl], $0
-	ld a, $6b
+	ld a, SFX_6B
 	ld [H_SFX_ID], a
 .asm_32778
 	ret
@@ -5197,7 +5197,7 @@ Func_327af: ; 327af (c:67af)
 	add $15
 	ld l, a
 	ld [hl], $0
-	ld a, $6b
+	ld a, SFX_6B
 	ld [H_SFX_ID], a
 .asm_327f3
 	ret
@@ -5291,7 +5291,7 @@ Func_32857: ; 32857 (c:6857)
 	ld l, a
 	ld a, $ff
 	ld [hl], a
-	ld a, $b
+	ld a, SFX_0B
 	ld [H_SFX_ID], a
 	ret
 
@@ -5437,7 +5437,7 @@ Func_32942: ; 32942 (c:6942)
 	ld [hl], a
 	ld a, $50
 	call Func_33846
-	ld a, $b
+	ld a, SFX_0B
 	ld [H_SFX_ID], a
 	jp Func_3262a
 
@@ -5772,7 +5772,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	call ResetEventFlag
 	inc bc
 	call ResetEventFlag
-	ld a, $67
+	ld a, SFX_67
 	ld [H_SFX_ID], a
 	ret
 
@@ -6156,7 +6156,7 @@ Func_32e0c: ; 32e0c (c:6e0c)
 	ret
 
 Func_32e28: ; 32e28 (c:6e28)
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp $3
 	ret nz
 	ld a, [hJoyNew]
@@ -6359,7 +6359,7 @@ Func_32ec9: ; 32ec9 (c:6ec9)
 	ld l, a
 	ld a, [hl]
 	call Func_33047
-	ld a, $6
+	ld a, SFX_06
 	ld [H_SFX_ID], a
 	call Func_2cd1
 	ld a, [wCurObjectStruct + 1]
@@ -7116,7 +7116,7 @@ Func_3342c:
 	ld a, [wCurObjectStruct]
 	ld l, a
 	ld [hl], $0
-	ld a, $a
+	ld a, SFX_0A
 	ld [H_SFX_ID], a
 	ret
 
@@ -7390,7 +7390,7 @@ Func_335f4: ; 335f4 (c:75f4)
 	jp [hl]
 
 Pointers_3360d:
-	dw Func_33637
+	dw AppendScriptIndexToBuffer7
 	dw Func_33688
 
 Func_33611: ; 33611 (c:7611)
@@ -7417,7 +7417,7 @@ Func_3361c: ; 3361c (c:761c)
 asm_33636
 	ret
 
-Func_33637:
+AppendScriptIndexToBuffer7:
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, [wCurObjectStruct]
@@ -7486,7 +7486,7 @@ Func_33688:
 	ld l, a
 	ld [hl], $0
 	call Func_336e5
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	ret
 

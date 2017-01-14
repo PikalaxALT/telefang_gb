@@ -7013,13 +7013,13 @@ Data_153d7c:
 
 Data_153d86:
 	script_playmusic MUSIC_02
-	script_53 $00
+	script_setvar $00
 	script_04 $3
 	script_playsfx SFX_47
 	script_43 $0, $32
 	script_04 $1e
-	script_51
-	script_55 $3, $f7
+	script_incvar
+	script_if_not_equal $3, $f7
 	script_21 $0, $d, $41
 	script_04 $14
 	script_01 $14, $75
@@ -7027,12 +7027,12 @@ Data_153d86:
 	script_04 $32
 	script_22 $0, $1
 	script_04 $50
-	script_53 $00
+	script_setvar $00
 	script_playsfx SFX_47
 	script_43 $0, $32
 	script_04 $1e
-	script_51
-	script_55 $3, $f7
+	script_incvar
+	script_if_not_equal $3, $f7
 	script_21 $1, $d, $41
 	script_04 $14
 	script_01 $14, $76

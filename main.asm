@@ -75,7 +75,7 @@ Func_807c::
 	jp IncrementSubroutine
 
 Func_808e::
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -173,7 +173,7 @@ Func_854b::
 	jp IncrementSubroutine
 
 Func_855d::
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -1439,10 +1439,10 @@ AddVector: ; 2db1c (b:5b1c)
 .asm_2db2e
 	call Multiply_DE_by_BC
 	ld a, d
-	ld [wca68], a
+	ld [wScriptCount], a
 	pop de
 	pop bc
-	ld a, [wca68]
+	ld a, [wScriptCount]
 	add b
 	ld b, a
 	push bc
@@ -2931,7 +2931,7 @@ LoadTextBoxPaletteBG7: ; 2e48b (b:648b)
 	ld b, $7
 LoadTextBoxPalette: ; 2e48d (b:648d)
 	push bc
-	ld a, [wcdb3]
+	ld a, [wUIColor]
 	ld c, a
 	ld b, $0
 	ld hl, $328
@@ -3921,7 +3921,7 @@ Func_3939f: ; 3939f (e:539f)
 	ld a, [wc9ef]
 	cp $a
 	jr z, .asm_39446
-	ld a, $3f
+	ld a, SFX_3F
 	ld [H_SFX_ID], a
 	xor a
 	ld a, [wPlayerObjectStruct_Duration + 2]
@@ -4011,7 +4011,7 @@ Func_39497: ; 39497 (e:5497)
 	ld a, [wcd51]
 	ld [wScriptNumber + 1], a
 	ld b, a
-	ld a, [wcd50]
+	ld a, [wCurMapScripts]
 	ld [wScriptNumber], a
 	cp $ff
 	jr nz, .asm_394c0
@@ -4039,7 +4039,7 @@ Func_39497: ; 39497 (e:5497)
 	ld b, $40
 	ld c, $1
 	call Func_341d
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	ret
 
@@ -4111,12 +4111,12 @@ Func_39550: ; 39550 (e:5550)
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, [wc9df]
 	ld b, a
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	cp b
 	jp nz, Func_3966d
 	ld a, [wc9e0]
 	ld b, a
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp b
 	jp nz, Func_3966d
 	ld a, [wPlayerObjectStruct_XCoord]
@@ -4129,7 +4129,7 @@ Func_39550: ; 39550 (e:5550)
 	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, $b
 	ld [wc9f4], a
-	ld a, $11
+	ld a, SFX_11
 	ld [H_SFX_ID], a
 	ret
 
@@ -4559,8 +4559,8 @@ Func_39917: ; 39917 (e:5917)
 	pop bc
 	callba Func_2e1fd
 	ld a, $f
-	ld [wc915], a
-	ld [wc916], a
+	ld [wPlayerXTile], a
+	ld [wPlayerYTile], a
 	ld a, $0
 	ld [wc980], a
 	ld a, $1
@@ -4569,7 +4569,7 @@ Func_39917: ; 39917 (e:5917)
 	ld a, $c
 	ld hl, Func_2b98
 	call FarCall_HL
-	call Func_2b72
+	call LoadMapBlockdataAndScriptHeader
 	ld a, [wcafe]
 	or a
 	ret nz
@@ -5073,7 +5073,7 @@ Func_39ce0: ; 39ce0 (e:5ce0)
 	add $ff
 	ld b, a
 	and $f
-	ld [wc915], a
+	ld [wPlayerXTile], a
 	ld a, b
 	swap a
 	and $f
@@ -5087,7 +5087,7 @@ Func_39ce0: ; 39ce0 (e:5ce0)
 	add -6
 	ld b, a
 	and $f
-	ld [wc916], a
+	ld [wPlayerYTile], a
 	ld a, b
 	swap a
 	and $f
@@ -5149,7 +5149,7 @@ Func_39ce0: ; 39ce0 (e:5ce0)
 Func_39d64:
 	ld c, $0
 	pop hl
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp $4
 	jr c, .asm_39d88
 	cp $b
@@ -5210,7 +5210,7 @@ Func_39d64:
 	inc c
 	inc c
 .asm_39dc5
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp $3
 	jr c, .asm_39dd5
 	cp $c
@@ -5225,7 +5225,7 @@ Func_39d64:
 	ld a, c
 	cp $1
 	jr nz, .asm_39df2
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp $8
 	jr c, .asm_39dfd
 .asm_39de7
@@ -5239,7 +5239,7 @@ Func_39d64:
 .asm_39df2
 	cp $2
 	jr nz, .asm_39e06
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp $8
 	jr c, .asm_39de7
 .asm_39dfd
@@ -5257,7 +5257,7 @@ Func_39d64:
 Func_39e09:
 	ld c, $0
 	pop hl
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	cp $4
 	jr c, .asm_39e2d
 	cp $b
@@ -5318,7 +5318,7 @@ Func_39e09:
 	inc c
 	inc c
 .asm_39e6a
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	cp $3
 	jr c, .asm_39e7a
 	cp $c
@@ -5333,7 +5333,7 @@ Func_39e09:
 	ld a, c
 	cp $1
 	jr nz, .asm_39e97
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	cp $8
 	jr c, .asm_39ea2
 .asm_39e8c
@@ -5347,7 +5347,7 @@ Func_39e09:
 .asm_39e97
 	cp $2
 	jr nz, .asm_39eab
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	cp $8
 	jr c, .asm_39e8c
 .asm_39ea2
@@ -6294,7 +6294,7 @@ Func_3a7d2:
 	ld a, [hJoyNew]
 	and A_BUTTON | B_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -6665,7 +6665,7 @@ Func_3aa01:
 	ld l, a
 	ld a, $2
 	ld [hl], a
-	ld a, $10
+	ld a, SFX_10
 	ld [H_SFX_ID], a
 .asm_3aa60
 	ld a, [wCurObjectStruct + 1]
@@ -6972,7 +6972,7 @@ Func_3ac38:
 	ld a, [wcd51]
 	ld [wScriptNumber + 1], a
 	ld b, a
-	ld a, [wcd50]
+	ld a, [wCurMapScripts]
 	ld [wScriptNumber], a
 	cp $ff
 	jr nz, .asm_3ac6d
@@ -8043,7 +8043,7 @@ Func_a50be: ; a50be (29:50be)
 Func_a50cd: ; a50cd (29:50cd)
 	call Func_a51ee
 Func_a50d0: ; a50d0 (29:50d0)
-	ld a, [wc93e]
+	ld a, [wShowClockInOverworld]
 	or a
 	jr z, .asm_a5126
 	ld a, [wc9eb]
@@ -8105,7 +8105,7 @@ Func_a50d0: ; a50d0 (29:50d0)
 	jr nz, .asm_a513d
 	ld de, GFX_e2eb4
 .asm_a513d
-	ld a, [wc93e]
+	ld a, [wShowClockInOverworld]
 	or a
 	jr z, .asm_a514e
 	ld hl, VTilesShared tile $30
@@ -8145,7 +8145,7 @@ Func_a50d0: ; a50d0 (29:50d0)
 	pop af
 	ld [wc9ea], a
 	call Func_a51d6
-	ld a, [wc93e]
+	ld a, [wShowClockInOverworld]
 	or a
 	jr z, .asm_a51d5
 	ld hl, VTilesShared tile $32
@@ -8262,7 +8262,7 @@ Func_a51ee: ; a51ee (29:51ee)
 	jp Func_3672
 
 Func_a5245: ; a5245 (29:5245)
-	ld a, [wc90a]
+	ld a, [wPhoneSilentMode]
 	or a
 	ret nz
 	ld a, [wcafe]
@@ -8962,12 +8962,12 @@ Func_a56cd: ; a56cd (29:56cd)
 	cp b
 	jr z, .asm_a5707
 	jr nc, .asm_a5702
-	ld a, $4a
+	ld a, SFX_4A
 	ld [H_SFX_ID], a
 	jr .asm_a5707
 
 .asm_a5702
-	ld a, $5b
+	ld a, SFX_5B
 	ld [H_SFX_ID], a
 .asm_a5707
 	call Func_a5659
@@ -9432,7 +9432,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ld [wOAMAnimation11_Duration + 14], a
 	ld a, $4
 	call StartFade_
-	ld a, $71
+	ld a, SFX_71
 	ld [H_SFX_ID], a
 	ret
 
@@ -9599,7 +9599,7 @@ Func_a5bb5: ; a5bb5 (29:5bb5)
 	call Func_a5c0a
 	call Func_a5c2b
 	call Func_a5ca7
-	ld a, $70
+	ld a, SFX_70
 	ld [H_SFX_ID], a
 	ret
 
@@ -9641,7 +9641,7 @@ Func_a5c2b: ; a5c2b (29:5c2b)
 	ld [hl], a
 	cp $c8
 	ret nz
-	ld a, $70
+	ld a, SFX_70
 	ld [H_SFX_ID], a
 	ret
 
@@ -11614,7 +11614,7 @@ Func_a8e7e: ; a8e7e (2a:4e7e)
 	jp z, Func_a8e9d
 	ld a, $1d
 	ld [wSubroutine], a
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ret
 
@@ -11650,7 +11650,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_a8f11
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $c0
 	ld [wTextBoxStartTile], a
@@ -11672,7 +11672,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jp z, Func_a8f25
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	call Func_a91b4
 	ld a, $0
@@ -11795,7 +11795,7 @@ Func_a8fe4: ; a8fe4 (2a:4fe4)
 	ret z
 	dec a
 	ld [wOAMAnimation17_Duration + 9], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcae2]
 	push af
@@ -11831,7 +11831,7 @@ Func_a8fe4: ; a8fe4 (2a:4fe4)
 	dec a
 	ld [wOAMAnimation17_Duration + 9], a
 	call Func_a8daa
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcae6]
 	ld b, a
@@ -12018,7 +12018,7 @@ Func_a91a3: ; a91a3 (2a:51a3)
 	cp $9
 	jr nz, asm_a91db
 Func_a91b4: ; a91b4 (2a:51b4)
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $2a
 	ld [wPrevROMBank], a
@@ -12091,7 +12091,7 @@ Func_a9223: ; a9223 (2a:5223)
 	call Func_a9279
 	ld a, $1c
 	ld [wSubroutine], a
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ret
 
@@ -12110,7 +12110,7 @@ Func_a9223: ; a9223 (2a:5223)
 	ld [wOAMAnimation18_PriorityFlags], a
 	ld a, $20
 	ld [wSubroutine], a
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 .asm_a9278
 	ret
@@ -12471,7 +12471,7 @@ Func_a9551: ; a9551 (2a:5551)
 	ld [wOAMAnimation19_Duration + 11], a
 	cp $28
 	ret c
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld a, $1
 	ld [wc9d9], a
@@ -12644,7 +12644,7 @@ Func_a96b8: ; a96b8 (2a:56b8)
 	ld [wcae7], a
 	ld a, $23
 	ld [wSubroutine], a
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 .asm_a96e3
 	ret
@@ -12954,7 +12954,7 @@ Func_a98bf: ; a98bf (2a:58bf)
 	ld a, [wOAMAnimation18_Duration + 6]
 	cp $e6
 	jr nz, .asm_a9914
-	ld a, $15
+	ld a, SFX_15
 	ld [H_SFX_ID], a
 	call Func_a9942
 	ld a, [wcaee]
@@ -13106,7 +13106,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld a, $0
 	ld [wcae7], a
 	ld [wPlayerNameEntryBuffer], a
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ret
 
@@ -13124,7 +13124,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld a, [wOAMAnimation19_Duration + 21]
 	ld [wcde1], a
 	call Func_a920d
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ret
 
@@ -14246,9 +14246,9 @@ Func_c8000::
 	ld a, [wTakingAStep]
 	or a
 	jp z, Func_c81bd
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	ld b, a
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	ld c, a
 	ld a, d
 	cp $9
@@ -14274,7 +14274,7 @@ Func_c8000::
 	pop af
 	call Func_252a
 	callba Func_31a31
-	ld a, $b
+	ld a, SFX_0B
 	ld [H_SFX_ID], a
 	pop de
 	jp Func_c81bd
@@ -14307,7 +14307,7 @@ Func_c8000::
 	cp $4
 	jr nz, .asm_c80a9
 	callba Func_31d12
-	ld a, $c
+	ld a, SFX_0C
 	ld [H_SFX_ID], a
 .asm_c80a9
 	ld a, $2
@@ -14327,10 +14327,10 @@ Func_c8000::
 	jr z, .asm_c80f0
 	cp $10
 	jr z, .asm_c80f0
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	ld b, a
 	ld [wc9df], a
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	ld c, a
 	ld [wc9e0], a
 	ld a, $30
@@ -14339,14 +14339,14 @@ Func_c8000::
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $c
 	ld [wPlayerObjectStruct_Duration + 12], a
-	ld a, $5e
+	ld a, SFX_5E
 	ld [H_SFX_ID], a
 	jp Func_c81bd
 
 .asm_c80f0
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	ld [wc9df], a
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	ld [wc9e0], a
 	ld a, [wPlayerObjectStruct_XCoord]
 	ld [wPlayerObjectStruct_Duration + 2], a
@@ -14358,7 +14358,7 @@ Func_c8000::
 	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, $b
 	ld [wc9f4], a
-	ld a, $11
+	ld a, SFX_11
 	ld [H_SFX_ID], a
 	jp Func_c81bd
 
@@ -14378,7 +14378,7 @@ Func_c8000::
 .asm_c8139
 	ld a, $2
 	ld [wc900], a
-	ld a, $11
+	ld a, SFX_11
 	ld [H_SFX_ID], a
 	jp Func_29ed
 
@@ -14426,9 +14426,9 @@ Func_c8000::
 	cp $16
 	jr c, Func_c81bd
 	push de
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	ld b, a
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	ld c, a
 	ld a, $9d
 	ld [hl], a
@@ -14437,7 +14437,7 @@ Func_c8000::
 	pop de
 	call Func_c830a
 	pop de
-	ld a, $5f
+	ld a, SFX_5F
 	ld [H_SFX_ID], a
 	jr Func_c81bd
 
@@ -14453,12 +14453,12 @@ Func_c81bf: ; c81bf (32:41bf)
 	add $ff
 	swap a
 	and $f
-	ld [wc915], a
+	ld [wPlayerXTile], a
 	ld a, [wPlayerObjectStruct_YCoord]
 	add $fa
 	swap a
 	and $f
-	ld [wc916], a
+	ld [wPlayerYTile], a
 	ld hl, Data_2516
 	add a
 	add l
@@ -14471,7 +14471,7 @@ Func_c81bf: ; c81bf (32:41bf)
 	ld e, a
 	hlcoord 0, 0
 	add hl, de
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	add l
 	ld l, a
 	ld a, $0
@@ -14873,7 +14873,7 @@ Func_c8417:
 	ld l, a
 	ld a, $0
 	ld [hl], a
-	ld a, $60
+	ld a, SFX_60
 	ld [H_SFX_ID], a
 	ret
 
@@ -14963,7 +14963,7 @@ Func_c8455:
 	ld l, a
 	ld a, b
 	ld [hl], a
-	ld a, $61
+	ld a, SFX_61
 	ld [H_SFX_ID], a
 .asm_c84e6
 	ret
@@ -15417,7 +15417,7 @@ Func_c874e:
 	ld b, h
 	ld c, l
 	callba Func_31565
-	ld a, $61
+	ld a, SFX_61
 	ld [H_SFX_ID], a
 	ret
 
@@ -15682,7 +15682,7 @@ Func_c88ec:
 	ret
 
 Func_c897f: ; c897f (32:497f)
-	ld a, $62
+	ld a, SFX_62
 	ld [H_SFX_ID], a
 	ld a, [hli]
 	ld d, a
@@ -16044,7 +16044,7 @@ Func_c8f4c:
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, $6e
+	ld a, SFX_6E
 	ld [H_SFX_ID], a
 	ret
 
@@ -16102,7 +16102,7 @@ Func_c8fca:
 	ld [hl], a
 	cp $4
 	jr nc, .asm_c902e
-	ld a, $6f
+	ld a, SFX_6F
 	ld [H_SFX_ID], a
 .asm_c902e
 	ld a, d
@@ -16332,14 +16332,14 @@ Func_c90ad:
 	ld a, $36
 	ld [hl], a
 	callba AddOrSubtractMoney
-	ld a, $12
+	ld a, SFX_12
 	ld [H_SFX_ID], a
 	ret
 
 .asm_c9199
 	ld b, $14
 	callba Func_a54d8
-	ld a, $40
+	ld a, SFX_40
 	ld [H_SFX_ID], a
 	ret
 
@@ -16605,7 +16605,7 @@ Func_c9238:
 .asm_c933d
 	cp $8
 	ret nc
-	ld a, $12
+	ld a, SFX_12
 	ld [H_SFX_ID], a
 	ld a, [wCurObjectStruct]
 	add $2
@@ -17042,16 +17042,16 @@ ENDC
 	ld bc, EVENT_1DD
 	call SetEventFlag
 	ld a, $1
-	ld [wc93e], a
+	ld [wShowClockInOverworld], a
 	ld hl, wMoney
 	ld a, 500 % $100
 	ld [hli], a
 	ld a, 500 / $100
 	ld [hl], a
 	ld a, $0
-	ld [wc90a], a
+	ld [wPhoneSilentMode], a
 	ld a, $1
-	ld [wcd27], a
+	ld [wBattleAnimations], a
 	ld a, $e
 	ld [wPrevROMBank], a
 	ld a, $4
@@ -17107,7 +17107,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld a, [wCurTilesetIdx]
 	cp $0
 	jr z, .asm_c972b
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp $5
 	jr c, .asm_c972b
 	ld a, $3
@@ -17232,10 +17232,10 @@ Func_c981a: ; c981a (32:581a)
 	cp $4
 	jr nz, .asm_c9867
 .asm_c982b
-	ld a, [wc916]
+	ld a, [wPlayerYTile]
 	cp $4
 	jr nz, .asm_c9867
-	ld a, [wc915]
+	ld a, [wPlayerXTile]
 	cp $4
 	jr z, .asm_c983e
 	cp $5
@@ -20261,7 +20261,7 @@ Func_cced1: ; cced1 (33:4ed1)
 	ld c, $57
 	call Func_cc4a1
 .asm_ccf74
-	ld a, $2c
+	ld a, SFX_2C
 	ld [H_SFX_ID], a
 .asm_ccf79
 	ret
@@ -20337,7 +20337,7 @@ Func_ccfce: ; ccfce (33:4fce)
 	ld [wcac2], a
 	ld a, $0
 	ld [wd45b], a
-	ld a, $4b
+	ld a, SFX_4B
 	ld [H_SFX_ID], a
 .asm_ccff9
 	ret
@@ -20931,7 +20931,7 @@ Func_cd39f: ; cd39f (33:539f)
 	ld a, [hl]
 	cp $a
 	ret nz
-	ld a, $45
+	ld a, SFX_45
 	ld [H_SFX_ID], a
 	ret
 
@@ -23160,7 +23160,7 @@ Func_ce1e7: ; ce1e7 (33:61e7)
 	ld a, [wCurObjectStruct]
 	ld l, a
 	ld [hl], $2
-	ld a, $29
+	ld a, SFX_29
 	ld [H_SFX_ID], a
 	ret
 
@@ -23763,7 +23763,7 @@ Func_ce597: ; ce597 (33:6597)
 	call Func_cddc4
 	ld c, $3
 	call Func_cddc4
-	ld a, $61
+	ld a, SFX_61
 	ld [H_SFX_ID], a
 	ret
 
@@ -24490,7 +24490,7 @@ INCLUDE "data/map_data_14a97c.asm"
 INCLUDE "data/map_data_14b0f8.asm"
 
 SECTION "bank 53", ROMX, BANK [$53]
-Data_14c000:: INCLUDE "data/unknown_14c000.asm"
+MapObjectHeaders:: INCLUDE "data/unknown_14c000.asm"
 INCLUDE "data/map_data_14c668.asm"
 INCLUDE "data/map_data_14d472.asm"
 

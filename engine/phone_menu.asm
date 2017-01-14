@@ -166,7 +166,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld a, $c
 .asm_10152
 	ld [wSubroutine], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
@@ -188,7 +188,7 @@ Func_1013b: ; 1013b (4:413b)
 	ret
 
 .asm_1017b
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $1
 	ld [wcb3f], a
@@ -203,7 +203,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld a, $1
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld bc, $104
 	ld e, $3b
@@ -221,7 +221,7 @@ Func_1013b: ; 1013b (4:413b)
 	jr z, .asm_101d3
 	ld a, $4
 	call StartFade_
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $10
 	ld [wcf96], a
@@ -230,12 +230,12 @@ Func_1013b: ; 1013b (4:413b)
 	ret
 
 .asm_101d3
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ret
 
 Func_101d9: ; 101d9 (4:41d9)
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $f
 	ld [wSubroutine], a
@@ -337,7 +337,7 @@ Func_1028a: ; 1028a (4:428a)
 	ld de, wOAMAnimation02
 	call Func_0609
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	call Func_1189e
 	jp IncrementSubroutine
 
@@ -368,7 +368,7 @@ Func_102cd: ; 102cd (4:42cd)
 	ld a, $78
 	ld [wTextBoxStartTile], a
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld [wcb38], a
 	ld a, $1
 	ld [wcb2a], a
@@ -560,7 +560,7 @@ Func_10452: ; 10452 (4:4452)
 	ld [wTextBoxStartTile], a
 	call PaletteFade8
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld [wcb38], a
 	ld a, $ff
 	ld [wcb66], a
@@ -800,7 +800,7 @@ Func_10681: ; 10681 (4:4681)
 	ld a, $e
 .asm_106a0
 	ld [wSubroutine], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
@@ -844,7 +844,7 @@ Func_10681: ; 10681 (4:4681)
 	ld [wSubroutine2], a
 	ld e, $2d
 	call Func_13951
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ret
 
@@ -853,7 +853,7 @@ Func_10681: ; 10681 (4:4681)
 	and B_BUTTON
 	jr z, .asm_10708
 .asm_106f8
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -960,7 +960,7 @@ Func_10743: ; 10743 (4:4743)
 	add hl, de
 	xor a
 	ld [hl], a
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	jp Func_134aa
 
@@ -1166,7 +1166,7 @@ Func_10953: ; 10953 (4:4953)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -1244,7 +1244,7 @@ Func_109f3: ; 109f3 (4:49f3)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -1383,7 +1383,7 @@ Func_10afc:
 	ld [wcd24], a
 	ld a, $1
 	ld [wSubroutine2], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
@@ -1404,7 +1404,7 @@ Func_10afc:
 	ld [wcd24], a
 	ld a, $1
 	ld [wSubroutine2], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
@@ -1414,7 +1414,7 @@ Func_10afc:
 	jr z, .asm_10b70
 	ld e, $2d
 	call Func_13951
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	call Func_13fc6
 	ld a, $a
@@ -1425,7 +1425,7 @@ Func_10afc:
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_10b91
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
@@ -1591,14 +1591,14 @@ Func_10cc9:
 	ld bc, EVENT_C3E
 	call CheckEventFlag
 	jr nz, .asm_10ce7
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine2
 
 .asm_10ce7
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	call GetPartnerDenjuuMaxHP_
 	ld a, [wPartnerDenjuuHPRemaining]
@@ -1933,7 +1933,7 @@ Func_10f82:
 	ld [wcb6f], a
 	ld a, $1
 	ld [wSubroutine2], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
@@ -1950,7 +1950,7 @@ Func_10f82:
 	ld [wcb6f], a
 	ld a, $1
 	ld [wSubroutine2], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
@@ -1958,7 +1958,7 @@ Func_10f82:
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_10fe6
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
@@ -1992,7 +1992,7 @@ Func_1100c:
 	ret z
 	ld e, $2d
 	call Func_13951
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $7
 	ld [wSubroutine2], a
@@ -2057,7 +2057,7 @@ Func_1107e: ; 1107e (4:507e)
 	dw Func_1109b
 	dw Func_110bb
 	dw Func_110d6
-	dw Func_110d9
+	dw Phone_Options
 	dw Func_110e8
 	dw Func_110eb
 	dw Func_13f47
@@ -2073,7 +2073,7 @@ Func_1109b:
 	ld de, wOAMAnimation03
 	call Func_0609
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	call Func_12d63
 	jp IncrementSubroutine2
 
@@ -2086,18 +2086,18 @@ Func_110bb:
 	call DecompressGFXByIndex_
 	ld e, $17
 	call Func_13951
-	call Func_12dc7
+	call UpdateOptionsScreen
 	jp IncrementSubroutine2
 
 Func_110d6:
 	jp IncrementSubroutine2
 
-Func_110d9:
+Phone_Options:
 	ld de, wOAMAnimation02
 	call AnimateObject_
 	ld de, wOAMAnimation03
 	call AnimateObject_
-	jp Func_12e00
+	jp OptionsMenuJoyAction
 
 Func_110e8:
 	jp IncrementSubroutine2
@@ -2160,7 +2160,7 @@ Func_11159: ; 11159 (4:5159)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_11167
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	jp Func_11171
 
@@ -2168,7 +2168,7 @@ Func_11159: ; 11159 (4:5159)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 Func_11171: ; 11171 (4:5171)
 	ld a, $c
@@ -2385,7 +2385,7 @@ Func_1133b: ; 1133b (4:533b)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_11349
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	jp Func_1136a
 
@@ -2393,7 +2393,7 @@ Func_1133b: ; 1133b (4:533b)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	cp $0
@@ -2494,9 +2494,9 @@ SelectTime: ; 117ef (4:57ef)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_1181f
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $0
 	jr z, .asm_11815
 	ld bc, $104
@@ -2507,31 +2507,31 @@ SelectTime: ; 117ef (4:57ef)
 	jp IncrementSubroutine
 
 .asm_11815
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	inc a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	jp Func_11910
 
 .asm_1181f
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_11837
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $0
 	ret z
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	jp Func_11910
 
 .asm_11837
 	ld a, [wJoyNew]
 	and D_UP
 	jr z, .asm_1186a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $1
 	jr z, .asm_1185a
 	ld a, [wCurHours]
@@ -2557,9 +2557,9 @@ SelectTime: ; 117ef (4:57ef)
 	ld a, [wJoyNew]
 	and D_DOWN
 	jr z, .asm_1189d
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $1
 	jr z, .asm_1188d
 	ld a, [wCurHours]
@@ -2605,7 +2605,7 @@ TimeSet_PrintMinutes: ; 118b8 (4:58b8)
 
 Func_118c4: ; 118c4 (4:58c4)
 	ld b, $15
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $0
 	jr z, .asm_118cf
 	ld b, $2d
@@ -2626,7 +2626,7 @@ Func_118dd: ; 118dd (4:58dd)
 	ld [wcb3d], a
 	cp $1
 	jr z, .asm_118fc
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $0
 	jr nz, .asm_118f9
 	jp TimeSet_PrintHours
@@ -2636,7 +2636,7 @@ Func_118dd: ; 118dd (4:58dd)
 
 .asm_118fc
 	lb bc, 2, 13
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $0
 	jr z, .asm_11909
 	lb bc, 5, 13
@@ -2899,7 +2899,7 @@ Func_11aaf: ; 11aaf (4:5aaf)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_11af9
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	lb bc, 1, 6
 	ld e, $30
@@ -2966,7 +2966,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_11b68
-	ld a, $63
+	ld a, SFX_63
 	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $3
@@ -2997,7 +2997,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	ld a, [wJoyNew]
 	and D_LEFT
 	jr z, .asm_11b9a
-	ld a, $63
+	ld a, SFX_63
 	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $0
@@ -3028,7 +3028,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	ld a, [wJoyNew]
 	and D_UP
 	jr z, .asm_11bdb
-	ld a, $63
+	ld a, SFX_63
 	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $0
@@ -3071,7 +3071,7 @@ Func_11b37: ; 11b37 (4:5b37)
 	ld a, [wJoyNew]
 	and D_DOWN
 	jr z, .asm_11c1c
-	ld a, $63
+	ld a, SFX_63
 	ld [H_SFX_ID], a
 	ld a, [wcb65]
 	cp $0
@@ -3779,14 +3779,14 @@ Func_1208b: ; 1208b (4:608b)
 	ld a, [wcb6c]
 	dec a
 	ld [wcb6c], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_120b1
 	dec a
 	ld [wcb6d], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_11fe9
 
@@ -3804,14 +3804,14 @@ Func_1208b: ; 1208b (4:608b)
 	ld a, [wcb6c]
 	inc a
 	ld [wcb6c], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_11fe9
 
 .asm_120e3
 	inc a
 	ld [wcb6d], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_11fe9
 
@@ -3819,7 +3819,7 @@ Func_1208b: ; 1208b (4:608b)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_1211a
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
@@ -3871,7 +3871,7 @@ Func_1208b: ; 1208b (4:608b)
 	ld [wcb65], a
 	ld a, $ff
 	ld [wcb66], a
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld de, wOAMAnimation02
 	call Func_099c
@@ -3893,7 +3893,7 @@ Func_1208b: ; 1208b (4:608b)
 	jr nc, .asm_121a1
 	ld [wcb6c], a
 	call Func_1bd1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_11fe9
 
@@ -3907,7 +3907,7 @@ Func_1208b: ; 1208b (4:608b)
 	jr nz, .asm_121be
 	ld [wcb6c], a
 	call Func_1bd1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_11fe9
 
@@ -4097,7 +4097,7 @@ Phone_SaveMenu_JoypadAction: ; 122ea (4:62ea)
 	ld a, [wcb67]
 	xor $1
 	ld [wcb67], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_12352
 
@@ -4113,13 +4113,13 @@ Phone_SaveMenu_JoypadAction: ; 122ea (4:62ea)
 	jr z, .no_a_button
 	xor a
 	ld [wOAMAnimation02_PriorityFlags], a
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $0
 	jr z, .save
 .dont_save
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
@@ -4357,7 +4357,7 @@ Func_124a9: ; 124a9 (4:64a9)
 	ld a, $ff
 	ld [wcb66], a
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld hl, VTilesBG tile $78
 	ld b, $8
 	call Func_13fd2
@@ -4374,7 +4374,7 @@ Func_124a9: ; 124a9 (4:64a9)
 	ret z
 	dec a
 	ld [wcb38], a
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ret
 
@@ -4403,7 +4403,7 @@ Func_124a9: ; 124a9 (4:64a9)
 
 Func_12519: ; 12519 (4:6519)
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld a, [wcb2a]
 	inc a
 	cp $3
@@ -4421,7 +4421,7 @@ Func_12519: ; 12519 (4:6519)
 	jp Func_1265a
 
 asm_12539
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	call Func_12794
 	cp $0
@@ -4460,7 +4460,7 @@ asm_12575
 	ld a, $ff
 	ld [wcb66], a
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 Func_12581: ; 12581 (4:6581)
 	ret
 
@@ -4472,7 +4472,7 @@ Func_12582: ; 12582 (4:6582)
 	ld a, $ff
 	ld [wcb66], a
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld hl, VTilesBG tile $78
 	ld b, $6
 	call Func_13fd2
@@ -4489,7 +4489,7 @@ Func_12582: ; 12582 (4:6582)
 	ret z
 	dec a
 	ld [wcb38], a
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ret
 
@@ -4518,7 +4518,7 @@ Func_12582: ; 12582 (4:6582)
 
 Func_125f2: ; 125f2 (4:65f2)
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld a, [wcb2a]
 	inc a
 	cp $3
@@ -4536,7 +4536,7 @@ Func_125f2: ; 125f2 (4:65f2)
 	jp Func_1265a
 
 asm_12612
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	call Func_127b7
 	cp $0
@@ -4562,7 +4562,7 @@ Func_12632: ; 12632 (4:6632)
 	ld a, $ff
 	ld [wcb66], a
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ret
 
 Func_12646: ; 12646 (4:6646)
@@ -4574,7 +4574,7 @@ Func_12646: ; 12646 (4:6646)
 	ld a, $ff
 	ld [wcb66], a
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 Func_12659: ; 12659 (4:6659)
 	ret
 
@@ -4644,14 +4644,14 @@ Func_126c0: ; 126c0 (4:66c0)
 	ld a, [wcb65]
 	cp b
 	jr nz, .asm_126d7
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	inc a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	jr .asm_126e9
 
 .asm_126d7
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld a, [wcb38]
 	cp $7
 	jr z, .asm_126e9
@@ -4676,11 +4676,11 @@ Func_126c0: ; 126c0 (4:66c0)
 	ld l, a
 	ld a, [hli]
 	ld b, a
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp b
 	jr nz, .asm_12712
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 .asm_12712
 	ld e, a
 	ld d, $0
@@ -4705,14 +4705,14 @@ Func_1272a: ; 1272a (4:672a)
 	ld a, [wcb65]
 	cp b
 	jr nz, .asm_12741
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	inc a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	jr .asm_12753
 
 .asm_12741
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	ld a, [wcb38]
 	cp $5
 	jr z, .asm_12753
@@ -4736,11 +4736,11 @@ Func_1272a: ; 1272a (4:672a)
 	ld l, a
 	ld a, [hli]
 	ld b, a
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp b
 	jr nz, .asm_1277c
 	xor a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 .asm_1277c
 	ld e, a
 	ld d, $0
@@ -5450,7 +5450,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, $1
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb42]
 	dec a
@@ -5468,7 +5468,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, $1
 	call GetMusicBank
 	ld [H_MusicID], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb42]
 	inc a
@@ -5488,7 +5488,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, [wJoyNew]
 	and D_LEFT
 	jr z, .asm_12c30
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb41]
 	dec a
@@ -5503,7 +5503,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_12c4b
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb41]
 	inc a
@@ -5531,7 +5531,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, [wJoyNew]
 	and D_LEFT
 	jr z, .asm_12c7b
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb40]
 	cp $0
@@ -5546,7 +5546,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_12c97
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb40]
 	cp $73
@@ -5570,7 +5570,7 @@ Func_12bbc: ; 12bbc (4:6bbc)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_12cb0
-	ld a, $1
+	ld a, SFX_01
 	ld [H_SFX_ID], a
 .asm_12cb0
 	ret
@@ -5584,7 +5584,7 @@ Func_12cb7: ; 12cb7 (4:6cb7)
 	call GetMusicBank
 	ld [H_MusicID], a
 	call ClearObjectAnimationBuffers
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld bc, $0
 	ld e, $10
@@ -5658,7 +5658,7 @@ Func_12d63: ; 12d63 (4:6d63)
 	ld b, $48
 	ld c, $50
 	ld d, $1
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $0
 	jr z, .asm_12d9a
 	cp $1
@@ -5710,178 +5710,179 @@ Func_12d63: ; 12d63 (4:6d63)
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Func_12dc7: ; 12dc7 (4:6dc7)
+UpdateOptionsScreen: ; 12dc7 (4:6dc7)
 	ld e, $19
-	ld a, [wc90a]
+	ld a, [wPhoneSilentMode]
 	cp $0
-	jr z, .asm_12dd2
+	jr z, .silent_no
 	ld e, $18
-.asm_12dd2
+.silent_no
 	lb bc, 4, 10
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld e, $19
-	ld a, [wc93e]
+	ld a, [wShowClockInOverworld]
 	cp $0
-	jr z, .asm_12de5
+	jr z, .clock_no
 	ld e, $18
-.asm_12de5
+.clock_no
 	lb bc, 4, 12
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld e, $19
-	ld a, [wcd27]
+	ld a, [wBattleAnimations]
 	cp $0
-	jr z, .asm_12df8
+	jr z, .anims_no
 	ld e, $18
-.asm_12df8
-	ld bc, $410
+.anims_no
+	lb bc, 4, 16
 	ld a, $0
 	jp LoadStdBGMapLayout_
 
-Func_12e00: ; 12e00 (4:6e00)
+OptionsMenuJoyAction: ; 12e00 (4:6e00)
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jp nz, Func_12eee
+	jp nz, .QuitOptionsMenu
 	ld a, [wJoyNew]
 	and D_UP
-	jr z, .asm_12e23
-	ld a, $2
+	jr z, .not_up
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $0
-	jr nz, .asm_12e1c
+	jr nz, .wrap_up
 	ld a, $5
-.asm_12e1c
+.wrap_up
 	dec a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	jp Func_12d63
 
-.asm_12e23
+.not_up
 	ld a, [wJoyNew]
 	and D_DOWN
-	jr z, .asm_12e3f
-	ld a, $2
+	jr z, .not_down
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb3e]
+	ld a, [wCurOptionHover]
 	cp $4
-	jr nz, .asm_12e38
+	jr nz, .wrap_down
 	ld a, $ff
-.asm_12e38
+.wrap_down
 	inc a
-	ld [wcb3e], a
+	ld [wCurOptionHover], a
 	jp Func_12d63
 
-.asm_12e3f
-	ld a, [wcb3e]
+.not_down
+	ld a, [wCurOptionHover]
 	cp $1
-	jr z, .asm_12e73
+	jr z, .ShowClockInOverworld
 	cp $2
-	jr z, .asm_12e92
+	jr z, .ChangeColor
 	cp $3
-	jp z, Func_12ec3
+	jp z, .BattleAnimation
 	cp $4
-	jp z, Func_12ee2
+	jp z, .PressAToQuit
+	; $0
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_12e5d
-	jr .asm_12e63
+	jr z, .SilentMode_check_right
+	jr .ToggleSilentMode
 
-.asm_12e5d
+.SilentMode_check_right
 	ld a, [wJoyNew]
 	and D_RIGHT
 	ret z
-.asm_12e63
-	ld a, $2
+.ToggleSilentMode
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wc90a]
+	ld a, [wPhoneSilentMode]
 	xor $1
-	ld [wc90a], a
-	jp Func_12dc7
+	ld [wPhoneSilentMode], a
+	jp UpdateOptionsScreen
 
-.asm_12e73
+.ShowClockInOverworld
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_12e7c
-	jr .asm_12e82
+	jr z, .ShowClockInOverworld_check_right
+	jr .ToggleOverworldClock
 
-.asm_12e7c
+.ShowClockInOverworld_check_right
 	ld a, [wJoyNew]
 	and D_RIGHT
 	ret z
-.asm_12e82
-	ld a, $2
+.ToggleOverworldClock
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wc93e]
+	ld a, [wShowClockInOverworld]
 	xor $1
-	ld [wc93e], a
-	jp Func_12dc7
+	ld [wShowClockInOverworld], a
+	jp UpdateOptionsScreen
 
-.asm_12e92
+.ChangeColor
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_12eab
-	ld a, $2
+	jr z, .ChangeColor_check_right
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcdb3]
+	ld a, [wUIColor]
 	inc a
 	and $3
-	ld [wcdb3], a
-	call Func_12efe
+	ld [wUIColor], a
+	call OptionsMenu_ReloadUIColor
 	ret
 
-.asm_12eab
+.ChangeColor_check_right
 	ld a, [wJoyNew]
 	and D_RIGHT
 	ret z
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcdb3]
+	ld a, [wUIColor]
 	dec a
 	and $3
-	ld [wcdb3], a
-	call Func_12efe
+	ld [wUIColor], a
+	call OptionsMenu_ReloadUIColor
 	ret
 
-Func_12ec3: ; 12ec3 (4:6ec3)
+.BattleAnimation: ; 12ec3 (4:6ec3)
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_12ecc
-	jr .asm_12ed2
+	jr z, .BattleAnimation_check_right
+	jr .ToggleBattleAnimations
 
-.asm_12ecc
+.BattleAnimation_check_right
 	ld a, [wJoyNew]
 	and D_RIGHT
 	ret z
-.asm_12ed2
-	ld a, $2
+.ToggleBattleAnimations
+	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcd27]
+	ld a, [wBattleAnimations]
 	xor $1
-	ld [wcd27], a
-	jp Func_12dc7
+	ld [wBattleAnimations], a
+	jp UpdateOptionsScreen
 
-Func_12ee2: ; 12ee2 (4:6ee2)
+.PressAToQuit: ; 12ee2 (4:6ee2)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
-	jr asm_12ef3
+	jr .quit
 
-Func_12eee: ; 12eee (4:6eee)
-	ld a, $4
+.QuitOptionsMenu: ; 12eee (4:6eee)
+	ld a, SFX_04
 	ld [H_SFX_ID], a
-asm_12ef3
+.quit
 	call Func_13fc6
 	ld e, $2d
 	call Func_13951
 	jp IncrementSubroutine2
 
-Func_12efe: ; 12efe (4:6efe)
+OptionsMenu_ReloadUIColor: ; 12efe (4:6efe)
 	ld a, $1
 	ld [wBGPalUpdate], a
-	ld a, [wcdb3]
+	ld a, [wUIColor]
 	ld e, a
 	ld d, $0
 	ld hl, $320
@@ -5940,7 +5941,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_12f7e
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	call Func_137d9
 	xor a
@@ -5957,7 +5958,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_12f8f
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $c
 	ld [wSubroutine2], a
@@ -5970,7 +5971,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_12fb5
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
@@ -5988,7 +5989,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	ld a, [wJoyNew]
 	and D_LEFT
 	jr z, .asm_12fd7
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
@@ -6052,7 +6053,7 @@ Func_13028: ; 13028 (4:7028)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_1305e
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
@@ -6075,7 +6076,7 @@ Func_13028: ; 13028 (4:7028)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_13073
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	xor a
 	ld [wFontPaletteMode], a
@@ -6090,7 +6091,7 @@ Func_13028: ; 13028 (4:7028)
 	ld a, [wJoyNew]
 	and D_RIGHT
 	jr z, .asm_13099
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
@@ -6108,7 +6109,7 @@ Func_13028: ; 13028 (4:7028)
 	ld a, [wJoyNew]
 	and D_LEFT
 	jr z, .asm_130bb
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	dec a
@@ -6253,7 +6254,7 @@ Func_131a0: ; 131a0 (4:71a0)
 	ld a, [wJoyNew]
 	and D_UP
 	jp z, Func_131bd
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $0
@@ -6268,7 +6269,7 @@ Func_131bd: ; 131bd (4:71bd)
 	ld a, [wJoyNew]
 	and D_DOWN
 	jp z, Func_131da
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $2
@@ -6283,7 +6284,7 @@ Func_131da: ; 131da (4:71da)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jp z, Func_13209
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
@@ -6310,7 +6311,7 @@ Func_13209: ; 13209 (4:7209)
 	jp z, Func_13267
 	ld de, wOAMAnimation02
 	call Func_099c
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Func_13951
@@ -6339,7 +6340,7 @@ Func_13243: ; 13243 (4:7243)
 	ret
 
 Func_13261:
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ret
 
@@ -6350,12 +6351,12 @@ Func_13267: ; 13267 (4:7267)
 	call Func_1318a
 	cp $0
 	jr z, .asm_13274
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ret
 
 .asm_13274
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld bc, $109
 	ld e, $59
@@ -6980,7 +6981,7 @@ Func_1371c: ; 1371c (4:771c)
 	ld bc, $36
 	ld a, $1
 	call LoadNthStdBGPalette
-	ld a, [wcdb3]
+	ld a, [wUIColor]
 	ld c, a
 	ld b, $0
 	ld hl, $324
@@ -7110,7 +7111,7 @@ Func_13850: ; 13850 (4:7850)
 	and D_UP
 	jp z, Func_13870
 	call Func_1bd1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $0
@@ -7126,7 +7127,7 @@ Func_13870: ; 13870 (4:7870)
 	and D_DOWN
 	jp z, Func_13890
 	call Func_1bd1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb67]
 	cp $9
@@ -7142,7 +7143,7 @@ Func_13890: ; 13890 (4:7890)
 	and B_BUTTON
 	jp z, Func_138a5
 	call Func_1bd1
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	call Func_1236b
 	jp IncrementSubroutine2
@@ -7152,7 +7153,7 @@ Func_138a5: ; 138a5 (4:78a5)
 	and A_BUTTON
 	jp z, Func_138e1
 	call Func_1bd1
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld b, $47
 	ld a, [wcb67]
@@ -7282,7 +7283,7 @@ Func_1396d: ; 1396d (4:796d)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_139a8
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	cp $0
@@ -7307,7 +7308,7 @@ Func_1396d: ; 1396d (4:796d)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_139c4
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 .asm_139b3
 	ld de, wOAMAnimation02
@@ -7329,7 +7330,7 @@ Func_139ce: ; 139ce (4:79ce)
 	and D_DOWN
 	jp z, Func_139e6
 asm_139d6
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	xor $1
@@ -7372,7 +7373,7 @@ Func_13a1e: ; 13a1e (4:7a1e)
 	call GetCGB_BGLayout_
 	ld bc, $3
 	call GetCGB_OBLayout_
-	call Func_12efe
+	call OptionsMenu_ReloadUIColor
 	jp Func_12a08
 
 Func_13a30: ; 13a30 (4:7a30)
@@ -7762,7 +7763,7 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_13cb2
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	cp $0
@@ -7778,7 +7779,7 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_13cd1
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 .asm_13cbd
 	ld bc, $104
@@ -7801,7 +7802,7 @@ Func_13cdb: ; 13cdb (4:7cdb)
 	and D_DOWN
 	jp z, Func_13cf3
 asm_13ce3
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wcb68]
 	xor $1

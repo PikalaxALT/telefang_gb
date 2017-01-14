@@ -39,7 +39,7 @@ Func_7c028: ; 7c028 (1f:4028)
 	ld a, [wCGBPalFadeProgram]
 	or a
 	jr z, .asm_7c053
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wdc4a], a
@@ -146,7 +146,7 @@ Func_7c128: ; 7c128 (1f:4128)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $0
 	call LoadUnknGfx090
@@ -196,7 +196,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	ld a, $0
 	ld [wd40d], a
 .asm_7c194
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7e0f9
 
@@ -207,7 +207,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -226,7 +226,7 @@ Func_7c15a: ; 7c15a (1f:415a)
 	ret
 
 .asm_7c1d0
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -260,7 +260,7 @@ Func_7c1fe: ; 7c1fe (1f:41fe)
 	ret
 
 .asm_7c210
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
@@ -397,7 +397,7 @@ Func_7c2e5: ; 7c2e5 (1f:42e5)
 	ld a, $0
 	ld [wd40d], a
 .asm_7c327
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	call Func_7c41b
 	ld a, $0
@@ -412,7 +412,7 @@ Func_7c2e5: ; 7c2e5 (1f:42e5)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	inc a
@@ -698,7 +698,7 @@ Func_7c538: ; 7c538 (1f:4538)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $10
 	ld [wcf96], a
@@ -798,7 +798,7 @@ Func_7c5e1:
 Func_7c5eb:
 	xor a
 	ld [wdc20], a
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	call InitSerialData
 	ld a, $1
@@ -993,7 +993,7 @@ Func_7c71a: ; 7c71a (1f:471a)
 	ld a, [wCGBPalFadeProgram]
 	or a
 	jr z, .asm_7c73d
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wdc4a], a
@@ -1586,7 +1586,7 @@ Func_7cbe4: ; 7cbe4 (1f:4be4)
 	inc a
 	ld [wBattleMenuSelection], a
 .asm_7cc14
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $5
 	ld [wd401], a
@@ -1599,7 +1599,7 @@ Func_7cc1f: ; 7cc1f (1f:4c1f)
 	ld a, [wd4a1]
 	cp $0
 	jp z, Func_7ccb0
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd4a0]
 	cp $0
@@ -1620,7 +1620,7 @@ Func_7cc1f: ; 7cc1f (1f:4c1f)
 	ld a, [wd4a1]
 	cp $0
 	jp z, Func_7ccb0
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd4a1]
 	ld b, a
@@ -1683,7 +1683,7 @@ Func_7ccb0: ; 7ccb0 (1f:4cb0)
 	ld a, [wBattleMenuSelection]
 	ld [wd4bf], a
 .asm_7cce2
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wBattleMenuSelection]
 	cp $0
@@ -1822,7 +1822,7 @@ Func_7cdae: ; 7cdae (1f:4dae)
 	ld a, [hJoyNew]
 	and START
 	jp z, .asm_7ce19
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	jr Func_7ce34
 
@@ -1830,7 +1830,7 @@ Func_7cdae: ; 7cdae (1f:4dae)
 	ld a, [hJoyNew]
 	and SELECT
 	jp z, Func_7ce30
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -1935,7 +1935,7 @@ Func_7ceb5: ; 7ceb5 (1f:4eb5)
 	ld a, $0
 	ld [wd40d], a
 .asm_7cee9
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7e0f9
 
@@ -1955,7 +1955,7 @@ Func_7ceb5: ; 7ceb5 (1f:4eb5)
 	cp $0
 	jr z, asm_7cf4e
 Func_7cf0d: ; 7cf0d (1f:4f0d)
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	xor a
 	ld [wd42e], a
@@ -2001,7 +2001,7 @@ asm_7cf4e
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld [wPlayerDenjuu3ArrivedStatus], a
 .asm_7cf6c
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -4098,7 +4098,7 @@ Func_7dee6: ; 7dee6 (1f:5ee6)
 	ld a, [hJoyNew]
 	and A_BUTTON | B_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld c, $63
 	call StdBattleTextBox
@@ -4116,7 +4116,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_7df2d
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $0
@@ -4134,7 +4134,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	ld a, [hJoyNew]
 	and D_RIGHT
 	jr z, .asm_7df4e
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
@@ -4158,7 +4158,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
@@ -4168,7 +4168,7 @@ Func_7df06: ; 7df06 (1f:5f06)
 	jr .asm_7df8e
 
 .asm_7df6e
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $1
 	ld [wd40d], a
@@ -4242,7 +4242,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_7e01a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $0
@@ -4260,7 +4260,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	ld a, [hJoyNew]
 	and D_RIGHT
 	jr z, .asm_7e03b
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
@@ -4289,7 +4289,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -4307,7 +4307,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	ret
 
 .asm_7e079
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -4706,7 +4706,7 @@ Func_7e376: ; 7e376 (1f:6376)
 	ld a, [wCGBPalFadeProgram]
 	or a
 	jr z, .asm_7e399
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wdc4a], a
@@ -5166,7 +5166,7 @@ Func_7e708: ; 7e708 (1f:6708)
 	inc a
 	ld [wBattleMenuSelection], a
 .asm_7e738
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $3
 	ld [wd401], a
@@ -5179,7 +5179,7 @@ Func_7e743: ; 7e743 (1f:6743)
 	ld a, [wd4a1]
 	cp $0
 	jp z, Func_7e7d1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd4a0]
 	cp $0
@@ -5200,7 +5200,7 @@ Func_7e743: ; 7e743 (1f:6743)
 	ld a, [wd4a1]
 	cp $0
 	jp z, Func_7e7d1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd4a1]
 	ld b, a
@@ -5243,7 +5243,7 @@ Func_7e7d1: ; 7e7d1 (1f:67d1)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jp z, Func_7e840
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wBattleMenuSelection]
 	cp $0
@@ -5316,7 +5316,7 @@ Func_7e840: ; 7e840 (1f:6840)
 	ld a, [hJoyNew]
 	and START
 	jp z, Func_7e882
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	jr Func_7e89d
 
@@ -5324,7 +5324,7 @@ Func_7e882: ; 7e882 (1f:6882)
 	ld a, [hJoyNew]
 	and SELECT
 	jp z, Func_7e899
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -5459,7 +5459,7 @@ Func_7e95b: ; 7e95b (1f:695b)
 	ld a, $0
 	ld [wd40d], a
 .asm_7e98f
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7e0f9
 
@@ -5479,7 +5479,7 @@ Func_7e95b: ; 7e95b (1f:695b)
 	cp $0
 	jr z, asm_7e9f4
 Func_7e9b3: ; 7e9b3 (1f:69b3)
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	xor a
 	ld [wd42e], a
@@ -5508,7 +5508,7 @@ asm_7e9e8
 	cp $1
 	jr z, Func_7e9b3
 asm_7e9f4
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -6123,7 +6123,7 @@ Func_7ef04: ; 7ef04 (1f:6f04)
 	ld a, [hJoyNew]
 	and A_BUTTON | B_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld c, $64
 	call StdBattleTextBox
@@ -6181,7 +6181,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	ld a, [wd40d]
 	cp $0
 	jr z, .asm_7ef88
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wd40d], a
@@ -6195,7 +6195,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	ld a, [wd40d]
 	cp $1
 	jr z, .asm_7efa3
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $1
 	ld [wd40d], a
@@ -6206,7 +6206,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_7efbd
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -6219,7 +6219,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -6379,7 +6379,7 @@ Func_7f0e2: ; 7f0e2 (1f:70e2)
 	ld a, [wCGBPalFadeProgram]
 	or a
 	jr z, .asm_7f119
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wdc4a], a
@@ -6552,7 +6552,7 @@ Func_7f226: ; 7f226 (1f:7226)
 	ld a, $0
 	ld [wd40d], a
 .asm_7f260
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7e0f9
 
@@ -6563,7 +6563,7 @@ Func_7f226: ; 7f226 (1f:7226)
 .asm_7f26e
 	ld a, $1
 	ld [wd40d], a
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	jr .asm_7f28b
 
@@ -6574,7 +6574,7 @@ Func_7f226: ; 7f226 (1f:7226)
 	ld a, [wd40d]
 	cp $1
 	jr z, .asm_7f26e
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 .asm_7f28b
 	xor a
@@ -6778,7 +6778,7 @@ Func_7f3a1: ; 7f3a1 (1f:73a1)
 	ld [wdc34], a
 	ld c, $88
 	call Func_7f432
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wMoveAnimationTimer], a
@@ -6789,7 +6789,7 @@ Func_7f3fc: ; 7f3fc (1f:73fc)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $1
 	call StartFade_
@@ -6837,7 +6837,7 @@ Func_7f43e: ; 7f43e (1f:743e)
 	ld a, [wCGBPalFadeProgram]
 	or a
 	jr z, .asm_7f46e
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ld a, $1
 	call StartFade_
@@ -6958,7 +6958,7 @@ Func_7f559: ; 7f559 (1f:7559)
 	ld [wd40d], a
 .asm_7f58d
 	call Func_1bd1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7f757
 
@@ -6971,7 +6971,7 @@ Func_7f559: ; 7f559 (1f:7559)
 	jr z, .asm_7f5a7
 	call Func_1bd1
 .asm_7f5a7
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld c, $1e
 	call StdBattleTextBox
@@ -7016,7 +7016,7 @@ Func_7f5c3: ; 7f5c3 (1f:75c3)
 	ld a, $0
 	ld [wBattleMenuSelection], a
 .asm_7f5fd
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7f77f
 
@@ -7031,7 +7031,7 @@ Func_7f5c3: ; 7f5c3 (1f:75c3)
 	cp $0
 	jr z, asm_7f641
 Func_7f619: ; 7f619 (1f:7619)
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation02_PriorityFlags], a
@@ -7052,7 +7052,7 @@ asm_7f635
 	cp $1
 	jr z, Func_7f619
 asm_7f641
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -7159,7 +7159,7 @@ Func_7f6f7: ; 7f6f7 (1f:76f7)
 	ld a, [wdc45]
 	inc a
 	ld [wdc45], a
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld c, $85
 	call StdBattleTextBox
@@ -7170,7 +7170,7 @@ Func_7f711: ; 7f711 (1f:7711)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -7375,7 +7375,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 	ld [wd40d], a
 .asm_7f89e
 	call Func_1bd1
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7f757
 
@@ -7388,7 +7388,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 	jr z, .asm_7f8b8
 	call Func_1bd1
 .asm_7f8b8
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld c, $1e
 	call StdBattleTextBox
@@ -7433,7 +7433,7 @@ Func_7f8d4: ; 7f8d4 (1f:78d4)
 	ld a, $0
 	ld [wBattleMenuSelection], a
 .asm_7f90e
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	call Func_7f77f
 	ret
@@ -7452,7 +7452,7 @@ Func_7f8d4: ; 7f8d4 (1f:78d4)
 	cp $0
 	jr z, asm_7f955
 Func_7f92d: ; 7f92d (1f:792d)
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation02_PriorityFlags], a
@@ -7473,7 +7473,7 @@ asm_7f949
 	cp $1
 	jr z, Func_7f92d
 asm_7f955
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -7485,7 +7485,7 @@ asm_7f955
 Func_7f969: ; 7f969 (1f:7969)
 	call Func_7f9ac
 	call SaveGame_
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld c, $87
 	call StdBattleTextBox
@@ -7496,7 +7496,7 @@ Func_7f97c: ; 7f97c (1f:797c)
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_

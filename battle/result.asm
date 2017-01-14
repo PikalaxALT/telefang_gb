@@ -1124,7 +1124,7 @@ BattleResults_EarnMoneyFromVictory: ; 747e6 (1d:47e6)
 	ld a, e
 	ld c, a
 	call AddOrSubtractMoney_
-	ld a, $6
+	ld a, SFX_06
 	ld [H_SFX_ID], a
 	ld a, $12
 	ld [wd401], a
@@ -1279,7 +1279,7 @@ ResetBattleResultsLayoutForNextLevelUp: ; 74942 (1d:4942)
 	ld e, $92
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld a, $14
+	ld a, SFX_14
 	ld [H_SFX_ID], a
 	ld a, $5
 	ld [wd401], a
@@ -1968,7 +1968,7 @@ AskEvolveDenjuu: ; 74e89 (1d:4e89)
 	ld a, $1
 	ld [wd40d], a
 .move_cursor
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7546d
 
@@ -1976,7 +1976,7 @@ AskEvolveDenjuu: ; 74e89 (1d:4e89)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .check_a_button
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	jr .dont_evolve_denjuu
 
@@ -1984,7 +1984,7 @@ AskEvolveDenjuu: ; 74e89 (1d:4e89)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $0
@@ -2384,7 +2384,7 @@ Func_751dc: ; 751dc (1d:51dc)
 	ld a, [hJoyNew]
 	and A_BUTTON | B_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld c, $63
 	call StdBattleTextBox
@@ -2405,7 +2405,7 @@ Func_75202: ; 75202 (1d:5202)
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_75229
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $0
@@ -2423,7 +2423,7 @@ Func_75202: ; 75202 (1d:5202)
 	ld a, [hJoyNew]
 	and D_RIGHT
 	jr z, .asm_7524a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
@@ -2441,7 +2441,7 @@ Func_75202: ; 75202 (1d:5202)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_75257
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	jr .asm_7526c
 
@@ -2449,7 +2449,7 @@ Func_75202: ; 75202 (1d:5202)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
@@ -2533,7 +2533,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_75318
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $0
@@ -2551,7 +2551,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	ld a, [hJoyNew]
 	and D_RIGHT
 	jr z, .asm_75339
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
@@ -2574,7 +2574,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	ld [wOAMAnimation02_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	jr .asm_7537e
 
@@ -2582,7 +2582,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wOAMAnimation01_PriorityFlags], a

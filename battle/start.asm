@@ -950,7 +950,7 @@ Func_706b6:
 	call Func_70357
 	ld c, $23
 	call StdBattleTextBox
-	ld a, $52
+	ld a, SFX_52
 	ld [H_SFX_ID], a
 	jp NextBattleSubroutine
 
@@ -988,7 +988,7 @@ Func_70755:
 	ld a, [hJoyNew]
 	and D_UP
 	jr z, .asm_70784
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40e]
 	cp $0
@@ -1009,7 +1009,7 @@ Func_70755:
 	ld a, [hJoyNew]
 	and D_DOWN
 	jr z, .asm_707b2
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40e]
 	cp $1
@@ -1033,7 +1033,7 @@ Func_70755:
 	ld a, [hJoyNew]
 	and D_LEFT
 	jr z, .asm_707db
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $0
@@ -1054,7 +1054,7 @@ Func_70755:
 	ld a, [hJoyNew]
 	and D_RIGHT
 	jr z, .asm_70802
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
@@ -1074,7 +1074,7 @@ Func_70755:
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jr z, .asm_70832
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -1100,7 +1100,7 @@ Func_70755:
 	and B_BUTTON
 	jr z, .asm_70856
 .asm_70838
-	ld a, $57
+	ld a, SFX_57
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -1718,7 +1718,7 @@ Func_70d63:
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -1737,7 +1737,7 @@ Func_70d81:
 	ld a, [wd4a1]
 	cp $0
 	jp z, Func_70e18
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd4a0]
 	cp $0
@@ -1758,7 +1758,7 @@ Func_70d81:
 	ld a, [wd4a1]
 	cp $0
 	jp z, Func_70e18
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wd4a1]
 	ld b, a
@@ -1807,7 +1807,7 @@ Func_70e18: ; 70e18 (1c:4e18)
 	jr z, .asm_70e35
 	dec a
 	ld [wBattleMenuSelection], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $7
 	ld [wBattleSubroutine], a
@@ -1825,7 +1825,7 @@ Func_70e18: ; 70e18 (1c:4e18)
 	jp z, Func_70e59
 	inc a
 	ld [wBattleMenuSelection], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $7
 	ld [wBattleSubroutine], a
@@ -1835,7 +1835,7 @@ Func_70e59: ; 70e59 (1c:4e59)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jp z, Func_70f60
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wNumDenjuuInAddressBook]
 	cp $1
@@ -1956,7 +1956,7 @@ Func_70f60: ; 70f60 (1c:4f60)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .asm_70fba
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, [wd42e]
 	cp $1
@@ -1996,7 +1996,7 @@ Func_70f60: ; 70f60 (1c:4f60)
 	ld a, [hJoyNew]
 	and START
 	jp z, Func_70fc8
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	jr Func_70fe3
 
@@ -2004,7 +2004,7 @@ Func_70fc8: ; 70fc8 (1c:4fc8)
 	ld a, [hJoyNew]
 	and SELECT
 	jp z, Func_70fdf
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -2172,7 +2172,7 @@ Func_710ae:
 	ld a, $0
 	ld [wd40d], a
 .done_left_right
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_703a2
 
@@ -2192,7 +2192,7 @@ Func_710ae:
 	jp .set_summoned_denjuu
 
 .cancel
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	call Func_713de
 	ld a, $0
@@ -2220,13 +2220,13 @@ Func_710ae:
 	ld a, [hJoyNew]
 	and A_BUTTON | B_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	cp $1
 	jr z, .cancel
 .set_summoned_denjuu
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wd42e]
 	cp $1
@@ -2245,7 +2245,7 @@ Func_710ae:
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld [wPlayerDenjuu3ArrivedStatus], a
 .done
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -3204,7 +3204,7 @@ Func_7192e:
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $1
 	call StartFade_

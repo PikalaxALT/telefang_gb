@@ -406,7 +406,7 @@ TextSubroutine2: ; 2c34e (b:434e)
 	call TextWaitStat
 	ld [hl], c
 	ei
-	ld a, $8
+	ld a, SFX_08
 	ld [H_SFX_ID], a
 	ld a, [wCumulativeTextFrameCounter]
 	ld [wTextDelayTimer], a
@@ -532,7 +532,7 @@ TextSubroutine10: ; 2c445 (b:4445)
 	jr z, .asm_2c4b4
 	ld a, $1
 	ld [wc9d7], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jr .asm_2c4b4
 
@@ -545,7 +545,7 @@ TextSubroutine10: ; 2c445 (b:4445)
 	jr z, .asm_2c4b4
 	ld a, $0
 	ld [wc9d7], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 .asm_2c4b4
 	ld b, $f

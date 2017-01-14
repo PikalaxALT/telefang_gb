@@ -1148,7 +1148,7 @@ Func_1487a: ; 1487a (5:487a)
 	call LoadDenjuuBattleCatchphrase_
 	ld hl, wd4d0
 	call Func_14020
-	ld a, $5c
+	ld a, SFX_5C
 	ld [H_SFX_ID], a
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $4
@@ -1430,7 +1430,7 @@ Func_14a8c: ; 14a8c (5:4a8c)
 	call LoadDenjuuBattleCatchphrase_
 	ld hl, wd4d0
 	call Func_14020
-	ld a, $5d
+	ld a, SFX_5D
 	ld [H_SFX_ID], a
 	ld c, $4
 asm_14a9f
@@ -1610,14 +1610,14 @@ Battle_MenuSelection: ; 14bc6 (5:4bc6)
 	inc a
 	ld [wBattleMenuSelection], a
 .asm_14bf4
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	call InitBattleTopMenuCursor
 .check_a_button
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jp z, .check_b_button
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wBattleMenuSelection]
 	cp $0
@@ -1629,7 +1629,7 @@ Battle_MenuSelection: ; 14bc6 (5:4bc6)
 	ld [wOAMAnimation01_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, $57
+	ld a, SFX_57
 	ld [H_SFX_ID], a
 	ld a, $14
 	ld [wBattleSubroutine], a
@@ -1791,14 +1791,14 @@ Battle_MoveSelectionMenu: ; 14d1f (5:4d1f)
 	xor a
 	ld [wBattleMenuSelection], a
 .done_dpad
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	call InitMoveSelectionMenuCursor
 .check_b_button
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, .check_a_button
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	lb bc, $9, $9
 	ld e, $87
@@ -1847,7 +1847,7 @@ Battle_MoveSelectionMenu: ; 14d1f (5:4d1f)
 	ld a, [wBattleMenuSelection]
 	ld [wPlayerDenjuu3LastMoveSelection], a
 .done_storage
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	xor a
 	ld [wOAMAnimation01_PriorityFlags], a
@@ -2024,7 +2024,7 @@ Func_14f12: ; 14f12 (5:4f12)
 	ld a, [wBattleMenuSelection]
 	cp $3
 	jr nz, .asm_14f27
-	ld a, $58
+	ld a, SFX_58
 	ld [H_SFX_ID], a
 .asm_14f27
 	ld a, $1e
@@ -2973,7 +2973,7 @@ Func_1560c: ; 1560c (5:560c)
 	ret
 
 Func_1561e: ; 1561e (5:561e)
-	ld a, [wc90a]
+	ld a, [wPhoneSilentMode]
 	cp $1
 	jr z, .asm_1564c
 	ld hl, s2_b800
@@ -3007,7 +3007,7 @@ Func_1561e: ; 1561e (5:561e)
 
 Func_15661: ; 15661 (5:5661)
 	call BattlePrintText
-	ld a, [wc90a]
+	ld a, [wPhoneSilentMode]
 	cp $1
 	jr z, .asm_15672
 	ld a, [wcfc0]
@@ -3828,7 +3828,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	jp c, .asm_15d15
 	xor a
 	ld [wPlayerDenjuu1Field0x05], a
-	ld a, $59
+	ld a, SFX_59
 	ld [H_SFX_ID], a
 	xor a
 	ld [wd47f], a
@@ -3863,7 +3863,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	jr c, asm_15d83
 	xor a
 	ld [wPlayerDenjuu2Field0x05], a
-	ld a, $59
+	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $1
 	ld [wd47f], a
@@ -3885,7 +3885,7 @@ Func_15d52: ; 15d52 (5:5d52)
 	ld [wd430], a
 	xor a
 	ld [wPlayerDenjuu2Field0x06], a
-	ld a, $52
+	ld a, SFX_52
 	ld [H_SFX_ID], a
 	jp Func_15f20
 
@@ -3919,7 +3919,7 @@ asm_15d83
 	jr c, asm_15df1
 	xor a
 	ld [wPlayerDenjuu3Field0x05], a
-	ld a, $59
+	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $2
 	ld [wd47f], a
@@ -3941,7 +3941,7 @@ Func_15dc0: ; 15dc0 (5:5dc0)
 	ld [wd431], a
 	xor a
 	ld [wPlayerDenjuu3Field0x06], a
-	ld a, $52
+	ld a, SFX_52
 	ld [H_SFX_ID], a
 	jp Func_15f20
 
@@ -3973,7 +3973,7 @@ asm_15df1
 	jr c, .asm_15e32
 	xor a
 	ld [wEnemyDenjuu1Field0x05], a
-	ld a, $59
+	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $3
 	ld [wd47f], a
@@ -4009,7 +4009,7 @@ asm_15df1
 	jr c, asm_15ea0
 	xor a
 	ld [wEnemyDenjuu2Field0x05], a
-	ld a, $59
+	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wd47f], a
@@ -4031,7 +4031,7 @@ Func_15e6f: ; 15e6f (5:5e6f)
 	ld [wd432], a
 	xor a
 	ld [wEnemyDenjuu2Field0x06], a
-	ld a, $52
+	ld a, SFX_52
 	ld [H_SFX_ID], a
 	jp Func_15f20
 
@@ -4065,7 +4065,7 @@ asm_15ea0
 	jr c, asm_15f0e
 	xor a
 	ld [wEnemyDenjuu3Field0x05], a
-	ld a, $59
+	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $5
 	ld [wd47f], a
@@ -4087,7 +4087,7 @@ Func_15edd: ; 15edd (5:5edd)
 	ld [wd433], a
 	xor a
 	ld [wEnemyDenjuu3Field0x06], a
-	ld a, $52
+	ld a, SFX_52
 	ld [H_SFX_ID], a
 	jp Func_15f20
 
@@ -5636,7 +5636,7 @@ Func_16a4b: ; 16a4b (5:6a4b)
 Func_16a87: ; 16a87 (5:6a87)
 	ld c, $90
 	call StdBattleTextBox
-	ld a, $53
+	ld a, SFX_53
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -5645,7 +5645,7 @@ Func_16a87: ; 16a87 (5:6a87)
 	ret
 
 Func_16a9c: ; 16a9c (5:6a9c)
-	ld a, $53
+	ld a, SFX_53
 	ld [H_SFX_ID], a
 	ld a, $4
 	ld [wd401], a
@@ -6165,7 +6165,7 @@ Func_16e29: ; 16e29 (5:6e29)
 	call CopyPlayerDenjuuNameToBattleUserName
 	ld c, $7
 	call StdBattleTextBox
-	ld a, $57
+	ld a, SFX_57
 	ld [H_SFX_ID], a
 	call Func_1652b
 	ld a, [wCurBattleDenjuu]
@@ -6184,7 +6184,7 @@ Func_16e29: ; 16e29 (5:6e29)
 	ret
 
 Func_16e82: ; 16e82 (5:6e82)
-	ld a, $5a
+	ld a, SFX_5A
 	ld [H_SFX_ID], a
 	lb bc, $1, $5
 	ld e, $8b
@@ -6454,7 +6454,7 @@ Func_1706c: ; 1706c (5:706c)
 	ld [wdc34], a
 	ld c, $90
 	call StdBattleTextBox
-	ld a, $53
+	ld a, SFX_53
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -6465,7 +6465,7 @@ Func_1706c: ; 1706c (5:706c)
 .asm_170b5
 	ld a, $f0
 	ld [wdc34], a
-	ld a, $53
+	ld a, SFX_53
 	ld [H_SFX_ID], a
 	ld a, $28
 	ld [wd401], a
@@ -6797,7 +6797,7 @@ Func_172e9: ; 172e9 (5:72e9)
 	call Func_142cd
 	ld c, $7
 	call StdBattleTextBox
-	ld a, $57
+	ld a, SFX_57
 	ld [H_SFX_ID], a
 	ld a, [wNumAliveEnemyDenjuu]
 	dec a
@@ -6821,7 +6821,7 @@ Func_172e9: ; 172e9 (5:72e9)
 	ret
 
 Func_17347: ; 17347 (5:7347)
-	ld a, $5a
+	ld a, SFX_5A
 	ld [H_SFX_ID], a
 	lb bc, $1, $1
 	ld e, $8b
@@ -7147,7 +7147,7 @@ Func_17589: ; 17589 (5:7589)
 	ld c, $1b
 .asm_175a6
 	call StdBattleTextBox
-	ld a, $5b
+	ld a, SFX_5B
 	ld [H_SFX_ID], a
 	xor a
 	ld [wCurMove], a
@@ -7256,7 +7256,7 @@ Func_17612: ; 17612 (5:7612)
 	ld a, [wcb3f]
 	or a
 	jr nz, .asm_1767d
-	ld a, [wcd27]
+	ld a, [wBattleAnimations]
 	or a
 	jr z, .asm_17683
 .asm_1767d

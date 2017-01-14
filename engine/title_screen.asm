@@ -148,7 +148,7 @@ TitleScreen_AnimateObjects_WaitButton:
 	ld a, [hJoyNew]
 	and A_BUTTON | START
 	jr z, .count_down
-	ld a, $9
+	ld a, SFX_09
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_

@@ -855,7 +855,7 @@ wMapNumber:: ds 1
 wDShotReceptionLevel:: ds 1
 wc908:: ds 1
 wc909:: ds 1
-wc90a:: ds 1
+wPhoneSilentMode:: ds 1
 wc90b:: ds 1
 wc90c:: ds 1
 wc90d:: ds 1
@@ -865,8 +865,8 @@ wMoney:: dw
 wc912:: ds 1
 wMapNumber2:: ds 1
 wMapGroup2:: ds 1
-wc915:: ds 1
-wc916:: ds 1
+wPlayerXTile:: ds 1
+wPlayerYTile:: ds 1
 wc917:: ds 1
 wc918:: ds 1
 wc919:: ds 1
@@ -898,7 +898,7 @@ wRTC_Mins:: ds 1
 wRTC_Hrs:: ds 1
 wRTC_DayLo:: ds 1
 wRTC_DayHi:: ds 1
-wc93e:: ds 1
+wShowClockInOverworld:: ds 1
 wc93f:: ds 1
 wc940:: ds 1
 wc941:: ds 1
@@ -1191,7 +1191,7 @@ wca64:: ds 1
 wca65:: ds 1
 wca66:: ds 1
 wca67:: ds 1
-wca68:: ds 1
+wScriptCount:: ds 1
 wWhichPhoneNumberSymbolCode:: ds 1
 wMathBuffer3:: ds 1
 wCustomSpriteDest:: ds 2
@@ -1229,7 +1229,7 @@ wcad5:: ds 1
 wcad6:: ds 1
 wcad7:: ds 1
 wcad8:: ds 1
-wcad9:: ds 1
+wScriptVar:: ds 1
 wcada:: ds 1
 wcadb:: ds 1
 wcadc:: ds 1
@@ -1330,7 +1330,7 @@ wcb3a:: ds 1
 wcb3b:: ds 1
 wcb3c:: ds 1
 wcb3d:: ds 1
-wcb3e:: ds 1
+wCurOptionHover:: ds 1
 wcb3f:: ds 1
 wcb40:: ds 1
 wcb41:: ds 1
@@ -1812,7 +1812,7 @@ wDexCurDenjuu:: ds 1
 wcd24:: ds 1
 wcd25:: ds 1
 wcd26:: ds 1
-wcd27:: ds 1
+wBattleAnimations:: ds 1
 wcd28:: ds 1
 wIdleHUDOnBottomOfScreen:: ds 1
 wcd2a:: ds 1
@@ -1853,7 +1853,7 @@ wcd4c:: ds 1
 wcd4d:: ds 1
 wcd4e:: ds 1
 wcd4f:: ds 1
-wcd50:: ds 1
+wCurMapScripts:: ds 1
 wcd51:: ds 1
 wcd52:: ds 1
 wcd53:: ds 1
@@ -1952,7 +1952,7 @@ wcdaf:: ds 1
 wcdb0:: ds 1
 wFontPaletteMode:: ds 1
 wcdb2:: ds 1
-wcdb3:: ds 1
+wUIColor:: ds 1
 wAddressBookIndexOfPartnerDenjuu:: ds 1
 wDShotLevel:: ds 1
 wcdb6:: ds 1

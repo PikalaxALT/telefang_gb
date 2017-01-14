@@ -232,7 +232,7 @@ Func_8dbb: ; 8dbb (2:4dbb)
 	ld a, $0
 	ld [wd415], a
 .asm_8e0f
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $7
 	ld [wMoveAnimationSubroutine], a
@@ -263,7 +263,7 @@ Func_8dbb: ; 8dbb (2:4dbb)
 	dec a
 	ld [wcb30], a
 Func_8e44: ; 8e44 (2:4e44)
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $6
 	ld [wMoveAnimationSubroutine], a
@@ -287,7 +287,7 @@ Func_8e64: ; 8e64 (2:4e64)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr z, Func_8e79
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	jr asm_8e83
 
@@ -296,7 +296,7 @@ Func_8e79: ; 8e79 (2:4e79)
 	and A_BUTTON | B_BUTTON
 	ret z
 asm_8e7e
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 asm_8e83
 	ld a, $4

@@ -55,7 +55,7 @@ Func_85f7:
 	jp IncrementSubroutine
 
 Func_85ff:
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_

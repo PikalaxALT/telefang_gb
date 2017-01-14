@@ -58,7 +58,7 @@ Func_2134::
 	ld b, $3
 .loop
 	push bc
-	homecall Func_3c00c
+	homecall RunMapScript
 	call Func_236c
 	homecall Func_30000
 	pop bc
@@ -112,7 +112,7 @@ Func_21db::
 	homecall Func_30000
 	ld a, $1
 	ld [wSubroutine], a
-	homecall Func_3c00c
+	homecall RunMapScript
 	ret
 
 Func_225b: ; 225b (0:225b)
@@ -163,7 +163,7 @@ Func_2264: ; 2264 (0:2264)
 	ld b, $20
 	call Func_2f76
 Func_22d2: ; 22d2 (0:22d2)
-	call Func_32ff
+	call LoadMapScripts
 	ld a, $e3
 	ld [wLCDC], a
 	ld a, $7
@@ -188,7 +188,7 @@ Func_22d2: ; 22d2 (0:22d2)
 	ld a, [wCurTilesetIdx]
 	cp $4
 	jr nz, .asm_231a
-	ld bc, EVENT_448
+	ld bc, EVENT_COMPLETED_SCRIPT_048
 	call CheckEventFlag
 	ret z
 	ld bc, EVENT_210
@@ -347,7 +347,7 @@ Func_2465::
 	ld a, [wCustomSpriteDest]
 	cp $1
 	jr nz, .asm_2481
-	ld a, $50
+	ld a, SFX_50
 	ld [hSFX_ID], a
 .asm_2481
 	cp $ff

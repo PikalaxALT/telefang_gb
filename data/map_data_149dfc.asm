@@ -2483,7 +2483,7 @@ Data_14a858:
 	dw -1
 
 Data_14a85a:
-	dw EVENT_4FF
+	dw EVENT_COMPLETED_SCRIPT_0FF
 	db $01, $26, $47
 	dw Data_14a864
 	db $02

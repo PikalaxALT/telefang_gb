@@ -537,32 +537,32 @@ script_50: MACRO
 	bigdw \1
 	ENDM
 
-	enum script_51_command
-script_51: MACRO
-	db script_51_command
+	enum script_incvar_command
+script_incvar: MACRO
+	db script_incvar_command
 	ENDM
 
-	enum script_52_command
-script_52: MACRO
-	db script_52_command
+	enum script_decvar_command
+script_decvar: MACRO
+	db script_decvar_command
 	ENDM
 
-	enum script_53_command
-script_53: MACRO
-	db script_53_command
+	enum script_setvar_command
+script_setvar: MACRO
+	db script_setvar_command
 	db \1
 	ENDM
 
-	enum script_54_command
-script_54: MACRO
-	db script_54_command
+	enum script_if_equal_command
+script_if_equal: MACRO
+	db script_if_equal_command
 	db \1
 	db \2 ; script offset
 	ENDM
 
-	enum script_55_command
-script_55: MACRO
-	db script_55_command
+	enum script_if_not_equal_command
+script_if_not_equal: MACRO
+	db script_if_not_equal_command
 	db \1
 	db \2 ; script offset
 	ENDM
@@ -713,9 +713,9 @@ script_6c: MACRO
 	bigdw \1
 	ENDM
 
-	enum script_6d_command
-script_6d: MACRO
-	db script_6d_command
+	enum script_if_phone_silent_command
+script_if_phone_silent: MACRO
+	db script_if_phone_silent_command
 	db \1 ; script offset
 	ENDM
 

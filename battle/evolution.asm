@@ -284,7 +284,7 @@ EvolveDenjuu_DrawEvolutionCompletedUIAndPrintEvolvedText: ; 756b0 (1d:56b0)
 	dec a
 	ld de, $4000 ; overwritten
 	call CopyDenjuuSpeciesNameToUserNameBuffer
-	ld a, $15
+	ld a, SFX_15
 	ld [H_SFX_ID], a
 	ld c, $1a
 	call StdBattleTextBox

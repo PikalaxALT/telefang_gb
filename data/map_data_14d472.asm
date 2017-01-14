@@ -344,7 +344,7 @@ Data_14d6c0:
 	dw Data_14d6d2
 	db $12
 
-	dw -EVENT_402
+	dw -EVENT_COMPLETED_SCRIPT_002
 	db $01, $86, $05
 	dw Data_14d6e3
 	db $12
@@ -388,7 +388,7 @@ Data_14d6ed:
 	db $ff
 
 Data_14d6f4:
-	dw -EVENT_502
+	dw -EVENT_COMPLETED_SCRIPT_102
 	db $01, $22, $05
 	dw Data_14d6fe
 	db $12

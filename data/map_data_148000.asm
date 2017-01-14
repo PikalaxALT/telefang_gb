@@ -385,18 +385,18 @@ Data_148264:
 	dw -1
 
 Data_148266:
-	dw EVENT_509
+	dw EVENT_COMPLETED_SCRIPT_109
 	db $10, $63, $5b
 	dw 0
 	db $40
 
 IF DEF(POWER)
-	dw EVENT_509
+	dw EVENT_COMPLETED_SCRIPT_109
 	db $d1, $64, $37
 	dw 0
 	db $48
 ELSE
-	dw EVENT_509
+	dw EVENT_COMPLETED_SCRIPT_109
 	db $d1, $64, $38
 	dw 0
 	db $48
@@ -3372,7 +3372,7 @@ Data_148e2f:
 	dw -1
 
 Data_148e31:
-	dw EVENT_4FB
+	dw EVENT_COMPLETED_SCRIPT_0FB
 	db $01, $42, $07
 	dw Data_148e3b
 	db $02

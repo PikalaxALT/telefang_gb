@@ -1,7 +1,7 @@
 Divide_BC_by_DE_signed: ; 2d99b (b:599b)
 ; bc / de --> bc remainder de
 	ld a, b
-	ld [wca68], a
+	ld [wScriptCount], a
 	xor d
 	ld [wWhichPhoneNumberSymbolCode], a
 	bit 7, d
@@ -34,7 +34,7 @@ Divide_BC_by_DE_signed: ; 2d99b (b:599b)
 	sub b
 	ld b, a
 .quotient_positive
-	ld a, [wca68]
+	ld a, [wScriptCount]
 	and $80
 	ret z
 ; remainder negative

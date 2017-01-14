@@ -77,7 +77,7 @@ DexMainScreenJoypadAction: ; 1147c (4:547c)
 	ld [wDexCurDenjuu], a
 	ld a, $1
 	ld [wSubroutine2], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld hl, VTilesBG tile $40
 	ld b, $38
@@ -90,7 +90,7 @@ DexMainScreenJoypadAction: ; 1147c (4:547c)
 	jr z, .asm_114dc
 	ld e, $2d
 	call Func_13951
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	call Func_13fc6
 	ld a, $a
@@ -108,7 +108,7 @@ DexMainScreenJoypadAction: ; 1147c (4:547c)
 	call CheckSeenDenjuu
 	ret z
 .asm_114f1
-	ld a, $3
+	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -198,7 +198,7 @@ Func_115ae: ; 115ae (4:55ae)
 	ld a, [hJoyNew]
 	and A_BUTTON | B_BUTTON
 	jr z, .asm_115d1
-	ld a, $4
+	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $4
 	call StartFade_
@@ -232,7 +232,7 @@ Func_115ae: ; 115ae (4:55ae)
 	jr .asm_115de
 
 .asm_11605
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $c
 	ld [wSubroutine2], a

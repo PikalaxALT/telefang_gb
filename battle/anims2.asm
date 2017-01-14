@@ -13,7 +13,7 @@ Func_6c014: ; 6c014 (1b:4014)
 	call Func_6f13c
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $4e
+	ld a, SFX_4E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -43,7 +43,7 @@ Func_6c04a: ; 6c04a (1b:404a)
 	call Func_6f058
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $40
+	ld a, SFX_40
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -75,7 +75,7 @@ Func_6c098: ; 6c098 (1b:4098)
 	call Func_6f058
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $26
+	ld a, SFX_26
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -93,7 +93,7 @@ Func_6c0ad: ; 6c0ad (1b:40ad)
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $8
 	ld [wMoveAnimationTimer], a
-	ld a, $4a
+	ld a, SFX_4A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -151,7 +151,7 @@ Func_6c131: ; 6c131 (1b:4131)
 	call Func_6f058
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $26
+	ld a, SFX_26
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -169,7 +169,7 @@ Func_6c146: ; 6c146 (1b:4146)
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $8
 	ld [wMoveAnimationTimer], a
-	ld a, $4a
+	ld a, SFX_4A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -226,7 +226,7 @@ Func_6c1c8: ; 6c1c8 (1b:41c8)
 	call Func_6f13c
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -256,7 +256,7 @@ Func_6c1fe: ; 6c1fe (1b:41fe)
 	call Func_6f058
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $26
+	ld a, SFX_26
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -275,7 +275,7 @@ Func_6c231: ; 6c231 (1b:4231)
 	call Func_6f058
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $26
+	ld a, SFX_26
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -302,7 +302,7 @@ Func_6c264: ; 6c264 (1b:4264)
 	ld a, $6
 	ld de, wOAMAnimation02
 	call Func_6f058
-	ld a, $26
+	ld a, SFX_26
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -386,7 +386,7 @@ Func_6c28e: ; 6c28e (1b:428e)
 	call Func_6c397
 	ld a, $a
 	ld [wMoveAnimationTimer], a
-	ld a, $40
+	ld a, SFX_40
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -417,7 +417,7 @@ Func_6c34e: ; 6c34e (1b:434e)
 	ld [wOAMAnimation06_PriorityFlags], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, $40
+	ld a, SFX_40
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -538,7 +538,7 @@ Func_6c44c: ; 6c44c (1b:444c)
 	ld a, [wBattleTurn]
 	xor $1
 	ld [wBattleTurn], a
-	ld a, $30
+	ld a, SFX_30
 	ld [H_SFX_ID], a
 	ld a, $20
 	ld [wd45b], a
@@ -605,7 +605,7 @@ Func_6c4e2: ; 6c4e2 (1b:44e2)
 	ld [wMoveAnimationTimer], a
 	cp $3c
 	ret c
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -670,7 +670,7 @@ Func_6c56c: ; 6c56c (1b:456c)
 	ld a, [wBattleTurn]
 	xor $1
 	ld [wBattleTurn], a
-	ld a, $30
+	ld a, SFX_30
 	ld [H_SFX_ID], a
 	ld a, $20
 	ld [wd45b], a
@@ -737,7 +737,7 @@ Func_6c602: ; 6c602 (1b:4602)
 	ld [wMoveAnimationTimer], a
 	cp $3c
 	ret c
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -795,7 +795,7 @@ Func_6c68c: ; 6c68c (1b:468c)
 	ld a, $1
 	ld de, wOAMAnimation02
 	call Func_6f058
-	ld a, $30
+	ld a, SFX_30
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -843,7 +843,7 @@ Func_6c6ea: ; 6c6ea (1b:46ea)
 	ld a, $1
 	ld de, wOAMAnimation02
 	call Func_6f058
-	ld a, $30
+	ld a, SFX_30
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -891,7 +891,7 @@ Func_6c748: ; 6c748 (1b:4748)
 	ld a, $1
 	ld de, wOAMAnimation02
 	call Func_6f058
-	ld a, $30
+	ld a, SFX_30
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -938,7 +938,7 @@ CamouflageAnimation: ; 6c790 (1b:4790)
 Func_6c7a6: ; 6c7a6 (1b:47a6)
 	ld a, $0
 	ld [wMoveAnimationTimer], a
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1167,7 +1167,7 @@ Func_6c90b: ; 6c90b (1b:490b)
 	callba Func_ce606
 	ld a, $ff
 	ld [wcac2], a
-	ld a, $4f
+	ld a, SFX_4F
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -1241,7 +1241,7 @@ Func_6c98d: ; 6c98d (1b:498d)
 	call Func_2b01
 	ld c, $26
 	callba Func_cc3aa
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	ld a, $20
 	ld [wca60], a
@@ -1364,7 +1364,7 @@ Func_6caa0: ; 6caa0 (1b:4aa0)
 	callba Func_ce606
 	ld a, $ff
 	ld [wcac2], a
-	ld a, $4f
+	ld a, SFX_4F
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -1465,7 +1465,7 @@ Func_6cb22: ; 6cb22 (1b:4b22)
 	callba Func_cc4a1
 	ld a, $20
 	ld [wca60], a
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -1597,7 +1597,7 @@ Func_6cc82: ; 6cc82 (1b:4c82)
 	ld [wOAMAnimation03_PriorityFlags], a
 	ld [wOAMAnimation04_PriorityFlags], a
 	ld [wOAMAnimation05_PriorityFlags], a
-	ld a, $3c
+	ld a, SFX_3C
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1619,7 +1619,7 @@ Func_6cd1c: ; 6cd1c (1b:4d1c)
 	call Func_6f058
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $4b
+	ld a, SFX_4B
 	ld [H_SFX_ID], a
 	ld a, [wBattleTurn]
 	cp $0
@@ -1870,7 +1870,7 @@ Func_6cea8: ; 6cea8 (1b:4ea8)
 	ld [wOAMAnimation03_PriorityFlags], a
 	ld [wOAMAnimation04_PriorityFlags], a
 	ld [wOAMAnimation05_PriorityFlags], a
-	ld a, $27
+	ld a, SFX_27
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1886,7 +1886,7 @@ Func_6cf42: ; 6cf42 (1b:4f42)
 	ld [wMoveAnimationTimer], a
 	ld [wd45b], a
 	ld [wd45c], a
-	ld a, $24
+	ld a, SFX_24
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2117,7 +2117,7 @@ Func_6d0e7: ; 6d0e7 (1b:50e7)
 	ld hl, wOAMBufferEnd
 	ld bc, $300
 	call Func_2af4
-	ld a, $4f
+	ld a, SFX_4F
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -2219,7 +2219,7 @@ Func_6d17c: ; 6d17c (1b:517c)
 	callba Func_cc780
 	ld c, $40
 	callba Func_cc780
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	ld a, $20
 	ld [wca60], a
@@ -2238,7 +2238,7 @@ Func_6d230: ; 6d230 (1b:5230)
 	ld [wMoveAnimationTimer], a
 	cp $34
 	ret c
-	ld a, $24
+	ld a, SFX_24
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -2383,7 +2383,7 @@ Func_6d323: ; 6d323 (1b:5323)
 	callba Func_ce606
 	ld a, $ff
 	ld [wcac2], a
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -2445,7 +2445,7 @@ Func_6d39c: ; 6d39c (1b:539c)
 	ld a, $14
 	ld [hl], a
 .asm_6d3de
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -2549,7 +2549,7 @@ Func_6d476: ; 6d476 (1b:5476)
 	ld a, $ff
 	ld [wcac2], a
 	callba Func_ccb0d
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -2604,7 +2604,7 @@ Func_6d4e4: ; 6d4e4 (1b:54e4)
 	ld a, $14
 	ld [hl], a
 .asm_6d526
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -2708,7 +2708,7 @@ Func_6d5c0: ; 6d5c0 (1b:55c0)
 	callba Func_ce606
 	ld a, $ff
 	ld [wcac2], a
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -2770,7 +2770,7 @@ Func_6d639: ; 6d639 (1b:5639)
 	ld a, $14
 	ld [hl], a
 .asm_6d67b
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -2881,7 +2881,7 @@ Func_6d713: ; 6d713 (1b:5713)
 	ld [wcac2], a
 	ld a, $0
 	ld [wOAMAnimation01_PriorityFlags], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -3061,7 +3061,7 @@ Func_6d872: ; 6d872 (1b:5872)
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 	ret
 
@@ -3126,7 +3126,7 @@ Func_6d8e6: ; 6d8e6 (1b:58e6)
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 .asm_6d94d
 	ret
@@ -3218,7 +3218,7 @@ Func_6d94e: ; 6d94e (1b:594e)
 	ld a, [hl]
 	inc a
 	ld [hl], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	ret
 
@@ -3869,7 +3869,7 @@ Func_6de8c: ; 6de8c (1b:5e8c)
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 	ret
 
@@ -3934,7 +3934,7 @@ Func_6df00: ; 6df00 (1b:5f00)
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 .asm_6df67
 	ret
@@ -4026,7 +4026,7 @@ Func_6df68: ; 6df68 (1b:5f68)
 	ld a, [hl]
 	inc a
 	ld [hl], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	ret
 
@@ -4215,7 +4215,7 @@ Func_6e107: ; 6e107 (1b:6107)
 	ld a, [wBattleTurn]
 	xor $1
 	ld [wBattleTurn], a
-	ld a, $30
+	ld a, SFX_30
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -4328,7 +4328,7 @@ Func_6e19e: ; 6e19e (1b:619e)
 	ld c, $68
 	callba Func_cc4a1
 .asm_6e28a
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -4519,7 +4519,7 @@ Func_6e40d: ; 6e40d (1b:640d)
 	ld [wMoveAnimationTimer], a
 	cp $32
 	ret c
-	ld a, $30
+	ld a, SFX_30
 	ld [H_SFX_ID], a
 	ld a, $ff
 	ld [wd45d], a
@@ -4604,7 +4604,7 @@ Func_6e4b0: ; 6e4b0 (1b:64b0)
 	ld [wd45b], a
 	ld c, $77
 	callba Func_cd5ca
-	ld a, $56
+	ld a, SFX_56
 	ld [H_SFX_ID], a
 	ret
 
@@ -4648,7 +4648,7 @@ Func_6e4e9: ; 6e4e9 (1b:64e9)
 	ld a, $14
 	ld [hl], a
 .asm_6e52b
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -4775,7 +4775,7 @@ Func_6e608: ; 6e608 (1b:6608)
 	add $7b
 	ld c, a
 	callba Func_cd5ca
-	ld a, $44
+	ld a, SFX_44
 	ld [H_SFX_ID], a
 	ld a, [wcac2]
 	inc a
@@ -4827,7 +4827,7 @@ Func_6e661: ; 6e661 (1b:6661)
 	ld a, $14
 	ld [hl], a
 .asm_6e6a3
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -4957,7 +4957,7 @@ Func_6e791: ; 6e791 (1b:6791)
 	add c
 	ld c, a
 	callba Func_ce043
-	ld a, $72
+	ld a, SFX_72
 	ld [H_SFX_ID], a
 	ret
 
@@ -5001,7 +5001,7 @@ Func_6e7d2: ; 6e7d2 (1b:67d2)
 	ld a, $14
 	ld [hl], a
 .asm_6e814
-	ld a, $60
+	ld a, SFX_60
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -5089,13 +5089,13 @@ Func_6e8b1: ; 6e8b1 (1b:68b1)
 	jr z, .asm_6e8de
 	cp $40
 	ret nz
-	ld a, $56
+	ld a, SFX_56
 	ld [H_SFX_ID], a
 	callba Func_ce216
 	jr .asm_6e8e3
 
 .asm_6e8de
-	ld a, $59
+	ld a, SFX_59
 	ld [H_SFX_ID], a
 .asm_6e8e3
 	ld a, $5
@@ -5176,7 +5176,7 @@ Func_6e95e: ; 6e95e (1b:695e)
 	ld de, GFX_e3674
 	ld bc, $11 tiles
 	call FarCopy2bpp_2
-	ld a, $73
+	ld a, SFX_73
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wd45b], a
@@ -5421,7 +5421,7 @@ Func_6eae7: ; 6eae7 (1b:6ae7)
 .asm_6eb51
 	ld a, $1f
 	ld [wcac2], a
-	ld a, $36
+	ld a, SFX_36
 	ld [H_SFX_ID], a
 	ret
 
@@ -5554,7 +5554,7 @@ Func_6ec2c: ; 6ec2c (1b:6c2c)
 	ld de, GFX_e3674
 	ld bc, $11 tiles
 	call FarCopy2bpp_2
-	ld a, $73
+	ld a, SFX_73
 	ld [H_SFX_ID], a
 	ld a, $10
 	ld [wMoveAnimationTimer], a
@@ -5754,7 +5754,7 @@ Func_6ed6d: ; 6ed6d (1b:6d6d)
 	ld a, $1f
 	ld [wcac2], a
 	callba Func_ce3cf
-	ld a, $56
+	ld a, SFX_56
 	ld [H_SFX_ID], a
 	ret
 
@@ -5906,7 +5906,7 @@ IceBallAnimation: ; 6eec0 (1b:6ec0)
 	dw Func_6b761 ; wrong bank
 
 Func_6eed2: ; 6eed2 (1b:6ed2)
-	ld a, $56
+	ld a, SFX_56
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a

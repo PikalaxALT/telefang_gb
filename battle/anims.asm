@@ -12,7 +12,7 @@ Func_68016:
 	xor a
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -32,7 +32,7 @@ Func_6802d:
 	call Func_6b28c
 	ld a, $10
 	ld [wMoveAnimationTimer], a
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -46,7 +46,7 @@ RushAnimation: ; 6804c (1a:404c)
 	dw Func_6b761
 
 Func_68060:
-	ld a, $4e
+	ld a, SFX_4E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -111,7 +111,7 @@ Func_68092:
 	ld a, $2
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -146,7 +146,7 @@ Func_6811d:
 	call Func_6b4f8
 	ld a, $8
 	ld [wMoveAnimationTimer], a
-	ld a, $3f
+	ld a, SFX_3F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -161,7 +161,7 @@ Func_68131:
 	call Func_6b4f8
 	ld a, $10
 	ld [wMoveAnimationTimer], a
-	ld a, $3f
+	ld a, SFX_3F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -183,7 +183,7 @@ Func_68167:
 	call Func_6b4f8
 	ld a, $8
 	ld [wMoveAnimationTimer], a
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -198,7 +198,7 @@ Func_6817c:
 	call Func_6b4f8
 	ld a, $10
 	ld [wMoveAnimationTimer], a
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -247,7 +247,7 @@ Func_681f1:
 	call Func_6b4f8
 	ld a, $8
 	ld [wMoveAnimationTimer], a
-	ld a, $3f
+	ld a, SFX_3F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -262,7 +262,7 @@ Func_68206:
 	call Func_6b4f8
 	ld a, $10
 	ld [wMoveAnimationTimer], a
-	ld a, $3f
+	ld a, SFX_3F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -312,7 +312,7 @@ Func_68265:
 	ld a, $5
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -338,7 +338,7 @@ Func_682ae:
 	ld a, $d
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $3f
+	ld a, SFX_3F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -370,7 +370,7 @@ Func_682d4:
 	ret nz
 	ld a, $1e
 	ld [wOAMAnimation02_TemplateIdx], a
-	ld a, $47
+	ld a, SFX_47
 	ld [H_SFX_ID], a
 	ld a, $10
 	ld [wMoveAnimationTimer], a
@@ -405,7 +405,7 @@ Func_68319:
 	ret nz
 	ld a, $1e
 	ld [wOAMAnimation02_TemplateIdx], a
-	ld a, $47
+	ld a, SFX_47
 	ld [H_SFX_ID], a
 	ld a, $10
 	ld [wMoveAnimationTimer], a
@@ -440,7 +440,7 @@ Func_6835e:
 	ret nz
 	ld a, $1e
 	ld [wOAMAnimation02_TemplateIdx], a
-	ld a, $47
+	ld a, SFX_47
 	ld [H_SFX_ID], a
 	ld a, $10
 	ld [wMoveAnimationTimer], a
@@ -470,7 +470,7 @@ Func_683b2:
 	ld a, $6
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -492,7 +492,7 @@ Func_683d0:
 	ld a, $4
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -514,7 +514,7 @@ Func_68406:
 	ld a, $6
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -536,7 +536,7 @@ Func_68424:
 	ld a, $2
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -559,7 +559,7 @@ Func_68458:
 	call Func_6b4f8
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $4e
+	ld a, SFX_4E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -582,7 +582,7 @@ Func_6847e:
 	ld a, $f
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $38
+	ld a, SFX_38
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -639,7 +639,7 @@ Func_684f1:
 	ret nz
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -693,7 +693,7 @@ Func_68507:
 	lb bc, 8, 24
 	ld de, wOAMAnimation04
 	call Func_6b737
-	ld a, $38
+	ld a, SFX_38
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -721,7 +721,7 @@ Func_685ae:
 	call Func_6b4f8
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -744,7 +744,7 @@ Func_685c3:
 	ld a, $f
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -805,7 +805,7 @@ Func_685f9:
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $28
 	ld [wMoveAnimationTimer], a
-	ld a, $23
+	ld a, SFX_23
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -883,7 +883,7 @@ Func_68708:
 	call Func_6b4f8
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -906,7 +906,7 @@ Func_6871d:
 	ld a, $f
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -920,7 +920,7 @@ Func_68753:
 	call Func_6b28c
 	ld a, $28
 	ld [wMoveAnimationTimer], a
-	ld a, $4b
+	ld a, SFX_4B
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -950,7 +950,7 @@ Func_68794:
 	ld a, $0
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -972,7 +972,7 @@ Func_687b2:
 	call Func_6b28c
 	ld a, $10
 	ld [wMoveAnimationTimer], a
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -980,7 +980,7 @@ Func_687d1:
 	ld a, $8
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -998,7 +998,7 @@ Func_687f7:
 	ld a, $0
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1016,7 +1016,7 @@ Func_6880f:
 	ld a, $12
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1045,7 +1045,7 @@ Func_6883d:
 	ld [wSpriteInitXCoordBuffers], a
 	ld a, c
 	ld [wSpriteInitYCoordBuffers], a
-	ld a, $4e
+	ld a, SFX_4E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1102,7 +1102,7 @@ Func_68885:
 	ld a, $13
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2b
+	ld a, SFX_2B
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1128,7 +1128,7 @@ Func_688dd:
 	ld [wSpriteInitXCoordBuffers], a
 	ld a, c
 	ld [wSpriteInitYCoordBuffers], a
-	ld a, $4e
+	ld a, SFX_4E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1139,7 +1139,7 @@ Func_688fe:
 	ld a, $32
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2d
+	ld a, SFX_2D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1169,7 +1169,7 @@ Func_68924:
 	ld a, $14
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $3e
+	ld a, SFX_3E
 	ld [H_SFX_ID], a
 	ld a, $20
 	ld [wMoveAnimationTimer], a
@@ -1217,7 +1217,7 @@ Func_68961:
 	cp $46
 	ret nc
 .asm_689a6
-	ld a, $38
+	ld a, SFX_38
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1263,7 +1263,7 @@ Func_689ae:
 	call Func_6b28c
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $28
+	ld a, SFX_28
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1295,7 +1295,7 @@ Func_68a43:
 	call Func_6b4f8
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $38
+	ld a, SFX_38
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1372,7 +1372,7 @@ Func_68a89:
 	ld [wOAMAnimation03_PriorityFlags], a
 	ld [wOAMAnimation04_PriorityFlags], a
 	ld [wOAMAnimation05_PriorityFlags], a
-	ld a, $4c
+	ld a, SFX_4C
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1514,7 +1514,7 @@ Func_68bdd:
 	call Func_6b28c
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	ld a, [wOAMAnimation02_XCoord]
 	ld [wOAMAnimation02_Duration + 9], a
@@ -1562,7 +1562,7 @@ Func_68bfe:
 	call Func_6b737
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $32
+	ld a, SFX_32
 	ld [H_SFX_ID], a
 	ld a, [wOAMAnimation03_XCoord]
 	ld [wOAMAnimation03_Duration + 9], a
@@ -1610,7 +1610,7 @@ Func_68c70:
 	call Func_6b737
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $32
+	ld a, SFX_32
 	ld [H_SFX_ID], a
 	ld a, [wOAMAnimation04_XCoord]
 	ld [wOAMAnimation04_Duration + 9], a
@@ -1652,7 +1652,7 @@ Func_68ce2:
 	call Func_6b4f8
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $32
+	ld a, SFX_32
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1682,7 +1682,7 @@ Func_68d5d:
 	call Func_6b4f8
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1707,7 +1707,7 @@ Func_68d72:
 	call Func_6b4f8
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $32
+	ld a, SFX_32
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1722,7 +1722,7 @@ Func_68da7:
 	call Func_6b4f8
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1747,7 +1747,7 @@ Func_68dc5:
 	call Func_6b4f8
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $32
+	ld a, SFX_32
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1762,7 +1762,7 @@ Func_68dfa:
 	call Func_6b4f8
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1787,7 +1787,7 @@ Func_68e18:
 	call Func_6b4f8
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $32
+	ld a, SFX_32
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1815,7 +1815,7 @@ Func_68e6f:
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1830,7 +1830,7 @@ Func_68e84:
 	ld a, $b
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $48
+	ld a, SFX_48
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1842,7 +1842,7 @@ Func_68ea9:
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1866,7 +1866,7 @@ Func_68ed5:
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1881,7 +1881,7 @@ Func_68eea:
 	ld a, $b
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $48
+	ld a, SFX_48
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1893,7 +1893,7 @@ Func_68f0f:
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1917,7 +1917,7 @@ Func_68f3b:
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1932,7 +1932,7 @@ Func_68f50:
 	ld a, $b
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $48
+	ld a, SFX_48
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1944,7 +1944,7 @@ Func_68f75:
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1965,7 +1965,7 @@ Func_68f9f:
 	ld a, $18
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -1979,7 +1979,7 @@ Func_68fb5:
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2009,7 +2009,7 @@ Func_68ff2:
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2024,7 +2024,7 @@ Func_69007:
 	ld a, $1a
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $49
+	ld a, SFX_49
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2036,7 +2036,7 @@ Func_6902c:
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2060,7 +2060,7 @@ Func_69058:
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2075,7 +2075,7 @@ Func_6906d:
 	ld a, $1a
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $49
+	ld a, SFX_49
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2087,7 +2087,7 @@ Func_69092:
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2115,7 +2115,7 @@ Func_690c6:
 	call Func_6b28c
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $35
+	ld a, SFX_35
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2130,7 +2130,7 @@ Func_690db:
 	ld a, $b
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $49
+	ld a, SFX_49
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2138,7 +2138,7 @@ Func_690fa:
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2149,7 +2149,7 @@ Func_6910a:
 	ld bc, $f8
 	ld de, wOAMAnimation02
 	call Func_6b737
-	ld a, $49
+	ld a, SFX_49
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2157,7 +2157,7 @@ Func_69123:
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2210,7 +2210,7 @@ Func_69176: ; 69176 (1a:5176)
 	ld a, $3f
 	ld [wOAMAnimation02 + $1a], a
 	ld [wOAMAnimation03 + $1a], a
-	ld a, $3e
+	ld a, SFX_3E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2250,7 +2250,7 @@ Func_691aa: ; 691aa (1a:51aa)
 	call Func_6b737
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $28
+	ld a, SFX_28
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2312,7 +2312,7 @@ Func_69260: ; 69260 (1a:5260)
 	ld a, $3f
 	ld [wOAMAnimation02 + $1a], a
 	ld [wOAMAnimation03 + $1a], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2350,7 +2350,7 @@ Func_69289: ; 69289 (1a:5289)
 	lb bc, $10, $10
 	ld de, wOAMAnimation03
 	call Func_6b737
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2415,7 +2415,7 @@ Func_69330: ; 69330 (1a:5330)
 	ld a, $3f
 	ld [wOAMAnimation02 + $1a], a
 	ld [wOAMAnimation03 + $1a], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2453,7 +2453,7 @@ Func_6936b: ; 6936b (1a:536b)
 	lb bc, $10, $10
 	ld de, wOAMAnimation03
 	call Func_6b737
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2518,7 +2518,7 @@ Func_69412: ; 69412 (1a:5412)
 	ld a, $3f
 	ld [wOAMAnimation02 + $1a], a
 	ld [wOAMAnimation03 + $1a], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2556,7 +2556,7 @@ Func_6944d: ; 6944d (1a:544d)
 	lb bc, $10, $10
 	ld de, wOAMAnimation03
 	call Func_6b737
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2630,7 +2630,7 @@ Func_6950e: ; 6950e (1a:550e)
 	ld [wOAMAnimation03 + $1a], a
 	ld [wOAMAnimation04 + $1a], a
 	ld [wOAMAnimation05 + $1a], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2676,7 +2676,7 @@ Func_6954d: ; 6954d (1a:554d)
 	lb bc, $10, $10
 	ld de, wOAMAnimation03
 	call Func_6b737
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2750,7 +2750,7 @@ Func_69626: ; 69626 (1a:5626)
 	ld [wOAMAnimation03 + $1a], a
 	ld [wOAMAnimation04 + $1a], a
 	ld [wOAMAnimation05 + $1a], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2790,7 +2790,7 @@ Func_69665: ; 69665 (1a:5665)
 	ld a, $21
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2830,7 +2830,7 @@ Func_696ec: ; 696ec (1a:56ec)
 	ret nz
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2855,7 +2855,7 @@ Func_69716: ; 69716 (1a:5716)
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2921,7 +2921,7 @@ Func_6975c: ; 6975c (1a:575c)
 	call Func_69801
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2939,7 +2939,7 @@ Func_697de: ; 697de (1a:57de)
 	ld [wOAMAnimation04 + $19], a
 	cp $80
 	ret c
-	ld a, $38
+	ld a, SFX_38
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -2975,7 +2975,7 @@ Func_6983d: ; 6983d (1a:583d)
 	call Func_6b28c
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $4d
+	ld a, SFX_4D
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3001,7 +3001,7 @@ Func_69852: ; 69852 (1a:5852)
 	ld a, $21
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3111,7 +3111,7 @@ NoseMagnumAnimation: ; 69913 (1a:5913)
 	dw Func_6b761
 
 Func_69925: ; 69925 (1a:5925)
-	ld a, $56
+	ld a, SFX_56
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -3155,7 +3155,7 @@ Func_69975: ; 69975 (1a:5975)
 	ld a, $33
 	ld de, wOAMAnimation04
 	call Func_6b28c
-	ld a, $46
+	ld a, SFX_46
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3183,7 +3183,7 @@ Func_699a6: ; 699a6 (1a:59a6)
 	lb bc, $0, $10
 	ld de, wOAMAnimation03
 	call Func_6b737
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3212,7 +3212,7 @@ Func_699f9: ; 699f9 (1a:59f9)
 	ld a, $33
 	ld de, wOAMAnimation04
 	call Func_6b28c
-	ld a, $46
+	ld a, SFX_46
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3240,7 +3240,7 @@ Func_69a2a: ; 69a2a (1a:5a2a)
 	lb bc, $0, $10
 	ld de, wOAMAnimation03
 	call Func_6b737
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3269,7 +3269,7 @@ Func_69a7d: ; 69a7d (1a:5a7d)
 	ld a, $34
 	ld de, wOAMAnimation03
 	call Func_6b28c
-	ld a, $46
+	ld a, SFX_46
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3289,7 +3289,7 @@ Func_69aac: ; 69aac (1a:5aac)
 	lb bc, $0, $10
 	ld de, wOAMAnimation03
 	call Func_6b737
-	ld a, $41
+	ld a, SFX_41
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3359,7 +3359,7 @@ Func_69ae1: ; 69ae1 (1a:5ae1)
 	ld a, $0
 	ld [wd4c4], a
 	call Func_69efb
-	ld a, $29
+	ld a, SFX_29
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3600,7 +3600,7 @@ Func_69ce8: ; 69ce8 (1a:5ce8)
 	call Func_69efb
 	ld a, $10
 	ld [wMoveAnimationTimer], a
-	ld a, $29
+	ld a, SFX_29
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3755,7 +3755,7 @@ Func_69ec0: ; 69ec0 (1a:5ec0)
 	ld [wOAMAnimation05 + $19], a
 	cp $0
 	ret nz
-	ld a, $29
+	ld a, SFX_29
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -3878,7 +3878,7 @@ Func_69faf: ; 69faf (1a:5faf)
 	callba Func_ce606
 	ld a, $ff
 	ld [wcac2], a
-	ld a, $6c
+	ld a, SFX_6C
 	ld [H_SFX_ID], a
 	ld a, $0
 	ld [wMoveAnimationTimer], a
@@ -3910,7 +3910,7 @@ Func_6a00e: ; 6a00e (1a:600e)
 	ret
 
 .asm_6a030
-	ld a, $6d
+	ld a, SFX_6D
 	ld [H_SFX_ID], a
 	callba Func_cda6d
 	ld a, $0
@@ -3952,7 +3952,7 @@ Func_6a045: ; 6a045 (1a:6045)
 	ld a, $14
 	ld [hl], a
 .asm_6a087
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld a, $1f
 	ld [wca60], a
@@ -4131,7 +4131,7 @@ Func_6a170: ; 6a170 (1a:6170)
 	call Func_69efb
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4263,7 +4263,7 @@ Func_6a2f1: ; 6a2f1 (1a:62f1)
 	ld a, $27
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $55
+	ld a, SFX_55
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4290,7 +4290,7 @@ Func_6a370: ; 6a370 (1a:6370)
 	ld [wOAMAnimation02 + $13], a
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4335,7 +4335,7 @@ Func_6a39e: ; 6a39e (1a:639e)
 	ld a, $29
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2a
+	ld a, SFX_2A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4409,7 +4409,7 @@ Func_6a421: ; 6a421 (1a:6421)
 	call Func_6a5f1
 	ld a, $18
 	ld [wMoveAnimationTimer], a
-	ld a, $2e
+	ld a, SFX_2E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4515,7 +4515,7 @@ Func_6a558: ; 6a558 (1a:6558)
 	ld a, $3a
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $2f
+	ld a, SFX_2F
 	ld [H_SFX_ID], a
 	ld a, $c
 	ld [wMoveAnimationTimer], a
@@ -4532,7 +4532,7 @@ Func_6a5a6: ; 6a5a6 (1a:65a6)
 	call Func_6b28c
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $2f
+	ld a, SFX_2F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4547,7 +4547,7 @@ Func_6a5c5: ; 6a5c5 (1a:65c5)
 	call Func_6b28c
 	ld a, $c
 	ld [wMoveAnimationTimer], a
-	ld a, $2f
+	ld a, SFX_2F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4589,7 +4589,7 @@ BlizzardAnimation: ; 6a618 (1a:6618)
 Func_6a62e: ; 6a62e (1a:662e)
 	ld a, $40
 	ld [wMoveAnimationTimer], a
-	ld a, $2e
+	ld a, SFX_2E
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4618,7 +4618,7 @@ Func_6a668: ; 6a668 (1a:6668)
 Func_6a66b: ; 6a66b (1a:666b)
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $2f
+	ld a, SFX_2F
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4837,7 +4837,7 @@ Func_6a78c: ; 6a78c (1a:678c)
 	ld a, [wSpriteInitYCoordBuffers]
 	ld [wOAMAnimation02_YCoord], a
 	ld [wOAMAnimation02 + $13], a
-	ld a, $36
+	ld a, SFX_36
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4864,7 +4864,7 @@ Func_6a7d7: ; 6a7d7 (1a:67d7)
 	ld [wSpriteInitYCoordBuffers], a
 	ld a, $0
 	ld [wd4c2], a
-	ld a, $36
+	ld a, SFX_36
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4891,7 +4891,7 @@ Func_6a812: ; 6a812 (1a:6812)
 	ld [wSpriteInitYCoordBuffers], a
 	ld a, $0
 	ld [wd4c2], a
-	ld a, $36
+	ld a, SFX_36
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -4941,7 +4941,7 @@ Func_6a898: ; 6a898 (1a:6898)
 	ld a, $c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5119,7 +5119,7 @@ Func_6a96a: ; 6a96a (1a:696a)
 	ld a, $36
 	ld de, wOAMAnimation05
 	call Func_6b28c
-	ld a, $25
+	ld a, SFX_25
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5235,7 +5235,7 @@ Func_6aab6: ; 6aab6 (1a:6ab6)
 	ld a, $37
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $37
+	ld a, SFX_37
 	ld [H_SFX_ID], a
 	ld a, $18
 	ld [wMoveAnimationTimer], a
@@ -5266,7 +5266,7 @@ Func_6ab32: ; 6ab32 (1a:6b32)
 	ld a, $2a
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $37
+	ld a, SFX_37
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5278,7 +5278,7 @@ Func_6ab48: ; 6ab48 (1a:6b48)
 	ld a, $2b
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $37
+	ld a, SFX_37
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5341,7 +5341,7 @@ Func_6ab74: ; 6ab74 (1a:6b74)
 	ld a, $24
 	ld de, wOAMAnimation04
 	call Func_6b4f8
-	ld a, $3a
+	ld a, SFX_3A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5421,7 +5421,7 @@ Func_6ac58: ; 6ac58 (1a:6c58)
 	ld a, $2c
 	ld de, wOAMAnimation02
 	call Func_6b28c
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5481,7 +5481,7 @@ Func_6acdb: ; 6acdb (1a:6cdb)
 	ld a, $3f
 	ld [wOAMAnimation02 + $1a], a
 	ld [wOAMAnimation03 + $1a], a
-	ld a, $3a
+	ld a, SFX_3A
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5515,7 +5515,7 @@ Func_6ad16: ; 6ad16 (1a:6d16)
 	call Func_6b28c
 	ld a, $20
 	ld [wMoveAnimationTimer], a
-	ld a, $39
+	ld a, SFX_39
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -5541,7 +5541,7 @@ EarthquakeAnimation: ; 6ad72 (1a:6d72)
 Func_6ad86: ; 6ad86 (1a:6d86)
 	ld a, $0
 	ld [wOAMAnimation01_YCoord], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	ld a, $3c
 	ld [wMoveAnimationTimer], a
@@ -5707,7 +5707,7 @@ MegaQuakeAnimation: ; 6aea7 (1a:6ea7)
 Func_6aebb: ; 6aebb (1a:6ebb)
 	ld a, $0
 	ld [wOAMAnimation01_YCoord], a
-	ld a, $31
+	ld a, SFX_31
 	ld [H_SFX_ID], a
 	ld a, $3c
 	ld [wMoveAnimationTimer], a
@@ -5948,7 +5948,7 @@ Func_6aff0: ; 6aff0 (1a:6ff0)
 	ld [wOAMAnimation06_PriorityFlags], a
 	ld a, $14
 	ld [wMoveAnimationTimer], a
-	ld a, $11
+	ld a, SFX_11
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -6088,7 +6088,7 @@ Func_6b148: ; 6b148 (1a:7148)
 	add hl, de
 	ld a, $80
 	ld [hl], a
-	ld a, $43
+	ld a, SFX_43
 	ld [H_SFX_ID], a
 	ld hl, $1c
 	add hl, de
@@ -6192,7 +6192,7 @@ Func_6b1c1: ; 6b1c1 (1a:71c1)
 	ld [wOAMAnimation06_PriorityFlags], a
 	ld a, $14
 	ld [wMoveAnimationTimer], a
-	ld a, $11
+	ld a, SFX_11
 	ld [H_SFX_ID], a
 	jp NextMoveAnimationSubroutine
 
@@ -6901,7 +6901,7 @@ Func_6b898: ; 6b898 (1a:7898)
 	ld a, [wcb32]
 	dec a
 	ld [wcb32], a
-	ld a, $42
+	ld a, SFX_42
 	ld [H_SFX_ID], a
 	ret
 

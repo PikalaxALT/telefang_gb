@@ -330,7 +330,7 @@ Func_3024f: ; 3024f (c:424f)
 	ld b, a
 	ld a, [wca50]
 	cp b
-	jr z, .asm_302a2
+	jr z, .nope
 	ld [wca51], a
 	push af
 	ld a, [wc9db]
@@ -373,7 +373,7 @@ Func_3024f: ; 3024f (c:424f)
 	ld [wca64], a
 	ret
 
-.asm_302a2
+.nope
 	ld a, $0
 	ld [wca64], a
 	ret
@@ -910,7 +910,7 @@ Func_305e4: ; 305e4 (c:45e4)
 	ld [hl], a
 	cp $6
 	jr nz, .asm_30613
-	ld a, $74
+	ld a, SFX_74
 	ld [H_SFX_ID], a
 .asm_30613
 	ld hl, wPartnerDenjuuObjectStruct
@@ -1025,7 +1025,7 @@ Func_30689: ; 30689 (c:4689)
 	inc a
 	ld [hl], a
 	call Func_31576
-	ld a, $10
+	ld a, SFX_10
 	ld [H_SFX_ID], a
 	ld hl, wCurObjectStruct
 	ld a, wPartnerDenjuuObjectStruct % $100

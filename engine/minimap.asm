@@ -337,12 +337,12 @@ RunMinimap: ; a8210 (2a:4210)
 	ld c, a
 	call MiniMap_CheckRevealedMapSection
 	jr nz, .map_section_revealed
-	ld a, $5
+	ld a, SFX_05
 	ld [H_SFX_ID], a
 	jr .SkipText
 
 .map_section_revealed
-	ld a, $7
+	ld a, SFX_07
 	ld [H_SFX_ID], a
 	ld d, $2
 	ld a, [wOAMAnimation01_Duration + 4]
@@ -406,7 +406,7 @@ RunMinimap: ; a8210 (2a:4210)
 	jr nc, .dont_move_right
 	add $8
 	ld [wOAMAnimation01_Duration], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 .dont_move_right
 	ld a, [wJoyNew]
@@ -417,7 +417,7 @@ RunMinimap: ; a8210 (2a:4210)
 	jr c, .dont_move_left
 	sub $8
 	ld [wOAMAnimation01_Duration], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 .dont_move_left
 	ld a, [wJoyNew]
@@ -428,7 +428,7 @@ RunMinimap: ; a8210 (2a:4210)
 	jr c, .dont_move_up
 	sub $8
 	ld [wOAMAnimation01_Duration + 4], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 .dont_move_up
 	ld a, [wJoyNew]
@@ -439,7 +439,7 @@ RunMinimap: ; a8210 (2a:4210)
 	jr nc, .dont_move_down
 	add $8
 	ld [wOAMAnimation01_Duration + 4], a
-	ld a, $2
+	ld a, SFX_02
 	ld [H_SFX_ID], a
 .dont_move_down
 	ld a, [wOAMAnimation01_Duration]
