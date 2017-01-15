@@ -3134,8 +3134,8 @@
 	const EVENT_C3B
 	const EVENT_C3C
 	const EVENT_C3D
-	const EVENT_C3E
-	const EVENT_C3F
+	const EVENT_SAID_YES
+	const EVENT_SAID_NO
 	const EVENT_C40
 	const EVENT_C41
 	const EVENT_C42

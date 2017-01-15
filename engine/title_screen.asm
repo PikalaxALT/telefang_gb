@@ -32,7 +32,7 @@ Func_896f:
 	ld bc, $6
 	call DecompressGFXByIndex_
 	xor a
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a

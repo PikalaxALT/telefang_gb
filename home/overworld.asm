@@ -80,7 +80,7 @@ Func_21db::
 	ld [wTextSubfunction], a
 	ld [wOverworldIdleHUDPage], a
 	ld [wIdleHUDVisible], a
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $3
 	jr nz, .asm_2213
 	ld a, $0
@@ -89,7 +89,7 @@ Func_21db::
 	ld a, $10
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $1
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 .asm_2213
 	cp $8
 	jr nz, .asm_221c
@@ -325,7 +325,7 @@ Func_242b::
 	jr nz, .asm_2464
 	ld a, $4
 	ld [wSubroutine], a
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $4
 	jr nz, .asm_2464
 	ld a, $2

@@ -141,7 +141,7 @@ Func_30090:
 	ld a, [wPlayerObjectStruct_YCoord]
 	add b
 	ld [hli], a
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $2
 	jr nz, .asm_300fe
 	ld a, [wCurObjectStruct]
@@ -151,7 +151,7 @@ Func_30090:
 	ld [hl], a
 .asm_300fe
 	call Func_302a8
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $8
 	jp nz, Func_30240
 	ld a, [wCurObjectStruct + 1]
@@ -1040,7 +1040,7 @@ Func_306fe: ; 306fe (c:46fe)
 	and $fe
 	ld [wPartnerDenjuuObjectStruct_Duration + 17], a
 	ld a, $1
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, $1
 	ld [wPartnerDenjuuObjectStruct_Duration + 18], a
 	call Func_31576

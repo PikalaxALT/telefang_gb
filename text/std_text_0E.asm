@@ -1,4 +1,4 @@
-Pointers_144000:
+StdTextPointers_0E:
 	dw Text_144200
 	dw Text_14421d
 	dw Text_144228

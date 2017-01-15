@@ -6920,10 +6920,10 @@ Func_7f532: ; 7f532 (1f:7532)
 	ld a, [hJoyNew]
 	and D_RIGHT
 	jp z, Func_7f559
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	cp $0
 	jr z, .asm_7f549
-	call Func_1bd1
+	call StopRingtone
 .asm_7f549
 	ld a, [wd40d]
 	add $50
@@ -6964,7 +6964,7 @@ Func_7f559: ; 7f559 (1f:7559)
 	ld a, $0
 	ld [wd40d], a
 .asm_7f58d
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7f757
@@ -6973,10 +6973,10 @@ Func_7f559: ; 7f559 (1f:7559)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	cp $0
 	jr z, .asm_7f5a7
-	call Func_1bd1
+	call StopRingtone
 .asm_7f5a7
 	ld a, SFX_03
 	ld [H_SFX_ID], a
@@ -7337,10 +7337,10 @@ Func_7f843: ; 7f843 (1f:7843)
 	ld a, [hJoyNew]
 	and D_RIGHT
 	jp z, Func_7f86a
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	cp $0
 	jr z, .asm_7f85a
-	call Func_1bd1
+	call StopRingtone
 .asm_7f85a
 	ld a, [wd40d]
 	add $50
@@ -7381,7 +7381,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 	ld a, $0
 	ld [wd40d], a
 .asm_7f89e
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp Func_7f757
@@ -7390,10 +7390,10 @@ Func_7f86a: ; 7f86a (1f:786a)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	ret z
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	cp $0
 	jr z, .asm_7f8b8
-	call Func_1bd1
+	call StopRingtone
 .asm_7f8b8
 	ld a, SFX_03
 	ld [H_SFX_ID], a

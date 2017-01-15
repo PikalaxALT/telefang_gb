@@ -1,4 +1,4 @@
-Pointers_11c000:
+StdTextPointers_02:
 	dw Text_11c158
 	dw Text_11c182
 	dw Text_11c1a1

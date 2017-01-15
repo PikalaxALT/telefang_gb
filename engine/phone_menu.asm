@@ -107,7 +107,7 @@ Func_100bd: ; 100bd (4:40bd)
 .asm_100dd
 	xor a
 	ld [wcb3f], a
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	call Func_11927
 	jp IncrementSubroutine
 
@@ -305,7 +305,7 @@ Phone_Load: ; 10232 (4:4232)
 	ld b, $1
 	call homecall_ret_2e562
 	ld a, $1
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ret
 
 Func_10265: ; 10265 (4:4265)
@@ -1588,7 +1588,7 @@ Func_10cc9:
 	ld a, [wTextSubroutine]
 	cp $9
 	ret nz
-	ld bc, EVENT_C3E
+	ld bc, EVENT_SAID_YES
 	call CheckEventFlag
 	jr nz, .asm_10ce7
 	ld a, SFX_03
@@ -1614,7 +1614,7 @@ Func_10cc9:
 	call Func_13a30
 	ld [wc912], a
 	ld a, $8
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, $4
 	call StartFade_
 	ld a, $17
@@ -1972,7 +1972,7 @@ Func_10f82:
 	and A_BUTTON
 	ret z
 	ld a, $3
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, [wcb6f]
 	call Func_122ba
 	ld a, b
@@ -2909,7 +2909,7 @@ ComposeDMelo: ; 11aaf (4:5aaf)
 	ld e, $35
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-	call Func_1bd1
+	call StopRingtone
 	call Func_11ee9
 	ld a, $3
 	ld [wSubroutine2], a
@@ -3134,17 +3134,17 @@ DMeloUpdateNote:
 	dw .LengthUp
 
 .Test: ; 11c47 (4:5c47)
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	cp $0
-	jr nz, .number_of_notes
+	jr nz, .something_playing
 	ld a, $4f | $80
 	ld [H_Ringtone], a
 	ld a, BANK(DMeloUpdateNote)
 	ld [wMusicBank], a
 	ret
 
-.number_of_notes
-	jp Func_1bd1
+.something_playing
+	jp StopRingtone
 
 .RecessPointer: ; 11c5c (4:5c5c)
 	ld a, [wDMeloPage]
@@ -3770,7 +3770,7 @@ DMeloJoypadAction: ; 1208b (4:608b)
 	ld a, [wJoyNew]
 	and D_UP
 	jr z, .check_down
-	call Func_1bd1
+	call StopRingtone
 	ld a, [wDShotPageCursor]
 	cp $0
 	jr nz, .d_melo_menu_up
@@ -3795,7 +3795,7 @@ DMeloJoypadAction: ; 1208b (4:608b)
 	ld a, [wJoyNew]
 	and D_DOWN
 	jr z, .check_b
-	call Func_1bd1
+	call StopRingtone
 	ld a, [wDShotPageCursor]
 	cp $5
 	jr nz, .d_melo_menu_down
@@ -3827,7 +3827,7 @@ DMeloJoypadAction: ; 1208b (4:608b)
 	xor a
 	ld [wcb28], a
 	call LoadPhoneKeypad
-	call Func_1bd1
+	call StopRingtone
 	call Func_11ee9
 	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
@@ -3847,10 +3847,10 @@ DMeloJoypadAction: ; 1208b (4:608b)
 	ld [wcb20], a
 	cp $47
 	jr nc, .original
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	cp $0
 	jr z, .play_std
-	call Func_1bd1
+	call StopRingtone
 .play_std
 	ld a, [wcb20]
 	add $81
@@ -3893,7 +3893,7 @@ DMeloJoypadAction: ; 1208b (4:608b)
 	cp $47
 	jr nc, .check_left
 	ld [wDShotPageTop], a
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp DrawDMeloMenu
@@ -3907,7 +3907,7 @@ DMeloJoypadAction: ; 1208b (4:608b)
 	bit 7, a
 	jr nz, .no_joypad
 	ld [wDShotPageTop], a
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	jp DrawDMeloMenu
@@ -6976,9 +6976,9 @@ Func_136d2: ; 136d2 (4:76d2)
 
 Func_1371c: ; 1371c (4:771c)
 	push af
-	call Func_0583
+	call LoadPhoneGFX_BGTile00_
 	ld a, [wCurBackground]
-	call Func_0579
+	call LoadPhoneBackground_BGTile20_
 	pop af
 	push af
 	ld c, $0
@@ -7135,10 +7135,10 @@ Func_13816: ; 13816 (4:7816)
 	ld a, [wcb73]
 .asm_13835
 	ld [wcb20], a
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	cp $0
 	jr z, .asm_13842
-	call Func_1bd1
+	call StopRingtone
 .asm_13842
 	ld a, [wcb20]
 	add $80
@@ -7151,7 +7151,7 @@ Func_13850: ; 13850 (4:7850)
 	ld a, [wJoyNew]
 	and D_UP
 	jp z, Func_13870
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wPhoneScreenCursorPosition]
@@ -7167,7 +7167,7 @@ Func_13870: ; 13870 (4:7870)
 	ld a, [wJoyNew]
 	and D_DOWN
 	jp z, Func_13890
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wPhoneScreenCursorPosition]
@@ -7183,7 +7183,7 @@ Func_13890: ; 13890 (4:7890)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jp z, Func_138a5
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	call Func_1236b
@@ -7193,7 +7193,7 @@ Func_138a5: ; 138a5 (4:78a5)
 	ld a, [hJoyNew]
 	and A_BUTTON
 	jp z, Func_138e1
-	call Func_1bd1
+	call StopRingtone
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld b, $47

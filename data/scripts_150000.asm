@@ -349,7 +349,7 @@ Script_150297:
 Script_1502af:
 	script_56 $3, $1
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_1502c2
+	script_jump_if_not EVENT_SAID_YES, Script_1502c2
 	script_jump_if_not EVENT_C3B, Script_1502c5
 	script_printtext $3, $4
 	script_jump Script_1502c5
@@ -395,7 +395,7 @@ Script_1502ea:
 Script_150302:
 	script_56 $3, $7
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_150315
+	script_jump_if_not EVENT_SAID_YES, Script_150315
 	script_jump_if_not EVENT_C3B, Script_150318
 	script_printtext $3, $a
 	script_jump Script_150318
@@ -464,7 +464,7 @@ Script_150363:
 Script_15037b:
 	script_56 $3, $10
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_15038e
+	script_jump_if_not EVENT_SAID_YES, Script_15038e
 	script_jump_if_not EVENT_C3B, Script_150391
 	script_printtext $3, $13
 	script_jump Script_150391
@@ -533,7 +533,7 @@ Script_1503dc:
 Script_1503f4:
 	script_56 $3, $19
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_150407
+	script_jump_if_not EVENT_SAID_YES, Script_150407
 	script_jump_if_not EVENT_C3B, Script_15040a
 	script_printtext $3, $1c
 	script_jump Script_15040a
@@ -602,7 +602,7 @@ Script_150455:
 Script_15046d:
 	script_56 $3, $22
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_150480
+	script_jump_if_not EVENT_SAID_YES, Script_150480
 	script_jump_if_not EVENT_C3B, Script_150483
 	script_printtext $3, $25
 	script_jump Script_150483
@@ -671,7 +671,7 @@ Script_1504ce:
 Script_1504e6:
 	script_56 $3, $2b
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_1504f9
+	script_jump_if_not EVENT_SAID_YES, Script_1504f9
 	script_jump_if_not EVENT_C3B, Script_1504fc
 	script_printtext $3, $2e
 	script_jump Script_1504fc
@@ -740,7 +740,7 @@ Script_150547:
 Script_15055f:
 	script_56 $3, $34
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_150572
+	script_jump_if_not EVENT_SAID_YES, Script_150572
 	script_jump_if_not EVENT_C3B, Script_150575
 	script_printtext $3, $37
 	script_jump Script_150575
@@ -809,7 +809,7 @@ Script_1505c0:
 Script_1505d8:
 	script_56 $3, $3d
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_1505eb
+	script_jump_if_not EVENT_SAID_YES, Script_1505eb
 	script_jump_if_not EVENT_C3B, Script_1505ee
 	script_printtext $3, $40
 	script_jump Script_1505ee
@@ -878,7 +878,7 @@ Script_150639:
 Script_150651:
 	script_56 $3, $46
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_150664
+	script_jump_if_not EVENT_SAID_YES, Script_150664
 	script_jump_if_not EVENT_C3B, Script_150667
 	script_printtext $3, $49
 	script_jump Script_150667
@@ -947,7 +947,7 @@ Script_1506b2:
 Script_1506ca:
 	script_56 $3, $4f
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_1506dd
+	script_jump_if_not EVENT_SAID_YES, Script_1506dd
 	script_jump_if_not EVENT_C3B, Script_1506e0
 	script_printtext $3, $52
 	script_jump Script_1506e0
@@ -1016,7 +1016,7 @@ Script_15072b:
 Script_150743:
 	script_56 $3, $58
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_150756
+	script_jump_if_not EVENT_SAID_YES, Script_150756
 	script_jump_if_not EVENT_C3B, Script_150759
 	script_printtext $3, $5b
 	script_jump Script_150759
@@ -1085,7 +1085,7 @@ Script_1507a4:
 Script_1507bc:
 	script_56 $3, $61
 	script_sleep 8
-	script_jump_if_not EVENT_C3E, Script_1507cf
+	script_jump_if_not EVENT_SAID_YES, Script_1507cf
 	script_jump_if_not EVENT_C3B, Script_1507d2
 	script_printtext $3, $64
 	script_jump Script_1507d2
@@ -1414,7 +1414,7 @@ Script_150a86:
 	script_apply_facing $0, $0
 	script_sleep 20
 	script_printtext $3, $8b
-	script_jump_if_not EVENT_C3F, Script_150b07
+	script_jump_if_not EVENT_SAID_NO, Script_150b07
 	script_sleep 20
 	script_walk $1, $74, 50
 	script_wait_movement $1
@@ -1448,7 +1448,7 @@ Script_150ab8:
 	script_apply_facing $1, $1
 	script_sleep 20
 	script_printtext $3, $93
-	script_jump_if EVENT_C3F, Script_150ab8
+	script_jump_if EVENT_SAID_NO, Script_150ab8
 	script_sleep 20
 Script_150b07:
 	script_printtext $3, $94
@@ -2603,7 +2603,7 @@ Script_151461:
 	script_face_player $0
 	script_sleep 20
 	script_printtext $9, $3b
-	script_jump_if EVENT_C3F, Script_1514af
+	script_jump_if EVENT_SAID_NO, Script_1514af
 	script_face_player $0
 	script_sleep 50
 	script_hop_npc $0
@@ -3464,7 +3464,7 @@ Script_151b61:
 	script_face_player $0
 	script_sleep 20
 	script_printtext $9, $b3
-	script_jump_if EVENT_C3E, Script_151b7a
+	script_jump_if EVENT_SAID_YES, Script_151b7a
 	script_face_player $0
 	script_sleep 30
 	script_face_player $0
@@ -4914,7 +4914,7 @@ Script_15274c:
 Script_1527ba:
 	script_sleep 10
 	script_printtext $a, $9d
-	script_jump_if EVENT_C3F, Script_1527c8
+	script_jump_if EVENT_SAID_NO, Script_1527c8
 	script_0b $10, $3b, $56
 	script_end
 
@@ -6383,7 +6383,7 @@ Script_153495:
 	script_jump_if_not EVENT_20D, Script_1534a7
 	script_sleep 20
 	script_printtext $c, $a7
-	script_jump_if EVENT_C3E, Script_1534c5
+	script_jump_if EVENT_SAID_YES, Script_1534c5
 	script_jump Script_153549
 
 Script_1534a7:
@@ -6394,7 +6394,7 @@ Script_1534a7:
 	script_printtext $c, $a9
 	script_sleep 20
 	script_printtext $c, $aa
-	script_jump_if EVENT_C3F, Script_1534c0
+	script_jump_if EVENT_SAID_NO, Script_1534c0
 	script_jump Script_153549
 
 Script_1534c0:
@@ -6403,37 +6403,37 @@ Script_1534c0:
 Script_1534c5:
 	script_sleep 20
 	script_printtext $c, $ac
-	script_jump_if EVENT_C3F, Script_1534d3
+	script_jump_if EVENT_SAID_NO, Script_1534d3
 	script_sleep 20
 	script_printtext $c, $ad
 Script_1534d3:
 	script_sleep 20
 	script_printtext $c, $ae
-	script_jump_if EVENT_C3F, Script_1534e1
+	script_jump_if EVENT_SAID_NO, Script_1534e1
 	script_sleep 20
 	script_printtext $c, $af
 Script_1534e1:
 	script_sleep 20
 	script_printtext $c, $b0
-	script_jump_if EVENT_C3F, Script_1534ef
+	script_jump_if EVENT_SAID_NO, Script_1534ef
 	script_sleep 20
 	script_printtext $c, $b1
 Script_1534ef:
 	script_sleep 20
 	script_printtext $c, $b2
-	script_jump_if EVENT_C3F, Script_1534fd
+	script_jump_if EVENT_SAID_NO, Script_1534fd
 	script_sleep 20
 	script_printtext $c, $b3
 Script_1534fd:
 	script_sleep 20
 	script_printtext $c, $b4
-	script_jump_if EVENT_C3F, Script_15350b
+	script_jump_if EVENT_SAID_NO, Script_15350b
 	script_sleep 20
 	script_printtext $c, $b5
 Script_15350b:
 	script_sleep 20
 	script_printtext $c, $b6
-	script_jump_if EVENT_C3F, Script_153528
+	script_jump_if EVENT_SAID_NO, Script_153528
 	script_sleep 20
 	script_printtext $c, $b7
 	script_sleep 20
@@ -6445,13 +6445,13 @@ Script_15350b:
 Script_153528:
 	script_sleep 20
 	script_printtext $c, $bb
-	script_jump_if EVENT_C3F, Script_153536
+	script_jump_if EVENT_SAID_NO, Script_153536
 	script_sleep 20
 	script_printtext $c, $bc
 Script_153536:
 	script_sleep 20
 	script_printtext $c, $bd
-	script_jump_if EVENT_C3F, Script_153549
+	script_jump_if EVENT_SAID_NO, Script_153549
 	script_sleep 20
 	script_printtext $c, $be
 	script_sleep 20
@@ -6467,7 +6467,7 @@ Script_15354f:
 	script_hop_npc $2
 	script_sleep 20
 	script_printtext $c, $c1
-	script_jump_if EVENT_C3E, Script_153585
+	script_jump_if EVENT_SAID_YES, Script_153585
 	script_jump Script_15359d
 
 Script_153563:
@@ -6487,7 +6487,7 @@ Script_153563:
 	script_sleep 20
 	script_printtext $c, $c6
 Script_153585:
-	script_jump_if EVENT_C3F, Script_15359d
+	script_jump_if EVENT_SAID_NO, Script_15359d
 	script_sleep 20
 	script_printtext $c, $c7
 	script_sleep 20
@@ -6509,7 +6509,7 @@ Script_1535a8:
 	script_hop_npc $2
 	script_sleep 50
 	script_printtext $c, $cd
-	script_jump_if EVENT_C3E, Script_1535d5
+	script_jump_if EVENT_SAID_YES, Script_1535d5
 	script_jump Script_15360d
 
 Script_1535bc:
@@ -6526,22 +6526,22 @@ Script_1535bc:
 Script_1535d5:
 	script_sleep 20
 	script_printtext $c, $d2
-	script_jump_if EVENT_C3F, Script_15360d
+	script_jump_if EVENT_SAID_NO, Script_15360d
 	script_sleep 20
 	script_printtext $c, $d3
-	script_jump_if EVENT_C3F, Script_1535ec
+	script_jump_if EVENT_SAID_NO, Script_1535ec
 	script_sleep 20
 	script_printtext $c, $d4
 Script_1535ec:
 	script_sleep 20
 	script_printtext $c, $d5
-	script_jump_if EVENT_C3F, Script_1535fa
+	script_jump_if EVENT_SAID_NO, Script_1535fa
 	script_sleep 20
 	script_printtext $c, $d6
 Script_1535fa:
 	script_sleep 20
 	script_printtext $c, $d7
-	script_jump_if EVENT_C3F, Script_15360d
+	script_jump_if EVENT_SAID_NO, Script_15360d
 	script_sleep 20
 	script_printtext $c, $d8
 	script_sleep 20
@@ -6595,37 +6595,37 @@ Script_15365e:
 	script_printtext $c, $e2
 	script_sleep 20
 	script_printtext $c, $e3
-	script_jump_if EVENT_C3F, Script_153675
+	script_jump_if EVENT_SAID_NO, Script_153675
 	script_sleep 20
 	script_printtext $c, $e4
 Script_153675:
 	script_sleep 20
 	script_printtext $c, $e5
-	script_jump_if EVENT_C3F, Script_153683
+	script_jump_if EVENT_SAID_NO, Script_153683
 	script_sleep 20
 	script_printtext $c, $e6
 Script_153683:
 	script_sleep 20
 	script_printtext $c, $e7
-	script_jump_if EVENT_C3F, Script_153691
+	script_jump_if EVENT_SAID_NO, Script_153691
 	script_sleep 20
 	script_printtext $c, $e8
 Script_153691:
 	script_sleep 20
 	script_printtext $c, $e9
-	script_jump_if EVENT_C3F, Script_15369f
+	script_jump_if EVENT_SAID_NO, Script_15369f
 	script_sleep 20
 	script_printtext $c, $ea
 Script_15369f:
 	script_sleep 20
 	script_printtext $c, $eb
-	script_jump_if EVENT_C3F, Script_1536ad
+	script_jump_if EVENT_SAID_NO, Script_1536ad
 	script_sleep 20
 	script_printtext $c, $ec
 Script_1536ad:
 	script_sleep 20
 	script_printtext $c, $ed
-	script_jump_if EVENT_C3F, Script_1536bb
+	script_jump_if EVENT_SAID_NO, Script_1536bb
 	script_sleep 20
 	script_printtext $c, $ee
 Script_1536bb:
@@ -7345,7 +7345,7 @@ Script_153c94:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $14, $67
-	script_jump_if EVENT_C3F, Script_153cf3
+	script_jump_if EVENT_SAID_NO, Script_153cf3
 	script_hop_player
 	script_sleep 50
 	script_printtext $14, $68
@@ -7497,7 +7497,7 @@ Script_153dac:
 	script_hop_npc $1
 	script_sleep 50
 	script_printtext $14, $7e
-	script_jump_if EVENT_C3F, Script_153e6d
+	script_jump_if EVENT_SAID_NO, Script_153e6d
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $14, $7f

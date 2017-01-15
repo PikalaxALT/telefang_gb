@@ -3010,7 +3010,7 @@ Func_15661: ; 15661 (5:5661)
 	ld a, [wPhoneSilentMode]
 	cp $1
 	jr z, .asm_15672
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	ret nz
 	jr .asm_1567a
@@ -3021,7 +3021,7 @@ Func_15661: ; 15661 (5:5661)
 	ld [wMoveAnimationTimer], a
 	ret nz
 .asm_1567a
-	call Func_1bd1
+	call StopRingtone
 	ld a, $11
 	ld [wBattleSubroutine], a
 	ret

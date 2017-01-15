@@ -14,7 +14,7 @@ UpdateSound_24:
 	jr .asm_9003e
 
 .asm_90018
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr z, .asm_90022
 	xor a
@@ -253,7 +253,7 @@ Func_901ad:
 	jp Func_902fa
 
 .asm_901b6
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr nz, .asm_901bf
 	jp Func_902fa
@@ -294,7 +294,7 @@ Func_901ad:
 	cp $ff
 	jr nz, asm_90217
 	xor a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_902fa
 
 MemSRAMBank_24: ; 48206 (11:4206)
@@ -372,7 +372,7 @@ asm_90268
 	jr z, .not_ram
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_902fa
 
 .not_ram
@@ -858,7 +858,7 @@ Func_90629: ; 48629 (11:4629)
 	ld [rNR50], a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -1850,7 +1850,7 @@ PlayRingtone_24: ; 48c3a (11:4c3a)
 .not_ram
 	ld a, [H_Ringtone]
 	and $7f
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	cp $50
 	jr c, .not_sram
 	jp .GetSRamPointer

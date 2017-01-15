@@ -125,7 +125,7 @@ AnchorMapAndLoadTextPointer_::
 	ret
 
 Func_0528::
-	homecall_memret Func_2c7ed
+	homecall_memret LoadAndStartStdTextPointer
 	ret
 
 BattlePrintText::
@@ -194,8 +194,8 @@ Func_0574::
 	rst MemBankswitch
 	ret
 
-Func_0579::
-	call Func_1bb8
+LoadPhoneBackground_BGTile20_::
+	call LoadPhoneBackground_BGTile20
 	rst MemBankswitch
 	ret
 
@@ -204,8 +204,8 @@ Func_057e::
 	rst MemBankswitch
 	ret
 
-Func_0583::
-	call Func_1acb
+LoadPhoneGFX_BGTile00_::
+	call LoadPhoneGFX_BGTile00
 	rst MemBankswitch
 	ret
 

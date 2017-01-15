@@ -14,7 +14,7 @@ UpdateSound_23:
 	jr .asm_8c03e
 
 .music_already_playing
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr z, .asm_8c022
 	xor a
@@ -253,7 +253,7 @@ Func_8c1ad:
 	jp Func_8c2fa
 
 .asm_8c1b6
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr nz, .asm_8c1bf
 	jp Func_8c2fa
@@ -294,7 +294,7 @@ Func_8c1ad:
 	cp $ff
 	jr nz, asm_8c217
 	xor a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_8c2fa
 
 MemSRAMBank_23: ; 48206 (11:4206)
@@ -372,7 +372,7 @@ asm_8c268
 	jr z, .asm_8c28a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_8c2fa
 
 .asm_8c28a
@@ -858,7 +858,7 @@ PlayMusicNone_23: ; 48629 (11:4629)
 	ld [rNR50], a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -1849,7 +1849,7 @@ Func_8cc3a: ; 48c3a (11:4c3a)
 .asm_8cc5c
 	ld a, [H_Ringtone]
 	and $7f
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	cp $50
 	jr c, .asm_8cc6b
 	jp Func_8ccad

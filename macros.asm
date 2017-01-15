@@ -174,6 +174,22 @@ ELSE
 ENDC
 ENDM
 
+bgcoord_a: MACRO
+IF _NARG >= 3
+	ld [(\2 * BG_MAP_WIDTH) + \1 + \3], a
+ELSE
+	ld [(\2 * BG_MAP_WIDTH) + \1 + VBGMap], a
+ENDC
+ENDM
+
+a_bgcoord: MACRO
+IF _NARG >= 3
+	ld a, [(\2 * BG_MAP_WIDTH) + \1 + \3]
+ELSE
+	ld a, [(\2 * BG_MAP_WIDTH) + \1 + VBGMap]
+ENDC
+ENDM
+
 coord: MACRO
 	ld \1, (\3 * (SCREEN_WIDTH / 2) + \2) + wOverworldMap
 ENDM

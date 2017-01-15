@@ -14,7 +14,7 @@ UpdateSound_20:
 	jr .asm_8003e
 
 .asm_80018
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr z, .asm_80022
 	xor a
@@ -253,7 +253,7 @@ Func_801ad:
 	jp Func_802fa
 
 .asm_801b6
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr nz, .asm_801bf
 	jp Func_802fa
@@ -294,7 +294,7 @@ Func_801ad:
 	cp $ff
 	jr nz, asm_80217
 	xor a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_802fa
 
 MemSRAMBank_20: ; 48206 (11:4206)
@@ -372,7 +372,7 @@ asm_80268
 	jr z, .asm_8028a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_802fa
 
 .asm_8028a
@@ -858,7 +858,7 @@ Func_80629: ; 48629 (11:4629)
 	ld [rNR50], a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -1850,7 +1850,7 @@ Func_80c3a: ; 48c3a (11:4c3a)
 .asm_80c5c
 	ld a, [H_Ringtone]
 	and $7f
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	cp $50
 	jr c, .asm_80c6b
 	jp Func_80cad

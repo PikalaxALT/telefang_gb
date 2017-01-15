@@ -14,7 +14,7 @@ UpdateSound_22:
 	jr .asm_8803e
 
 .asm_88018
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr z, .asm_88022
 	xor a
@@ -253,7 +253,7 @@ Func_881ad:
 	jp Func_882fa
 
 .asm_881b6
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr nz, .asm_881bf
 	jp Func_882fa
@@ -294,7 +294,7 @@ Func_881ad:
 	cp $ff
 	jr nz, asm_88217
 	xor a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_882fa
 
 MemSRAMBank_22: ; 48206 (11:4206)
@@ -372,7 +372,7 @@ asm_88268
 	jr z, .asm_8828a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_882fa
 
 .asm_8828a
@@ -858,7 +858,7 @@ Func_88629: ; 48629 (11:4629)
 	ld [rNR50], a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -1850,7 +1850,7 @@ Func_88c3a: ; 48c3a (11:4c3a)
 .asm_88c5c
 	ld a, [H_Ringtone]
 	and $7f
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	cp $50
 	jr c, .asm_88c6b
 	jp Func_88cad

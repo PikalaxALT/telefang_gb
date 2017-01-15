@@ -14,7 +14,7 @@ UpdateSound_11:
 	jr .asm_4403e
 
 .asm_44018
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr z, .asm_44022
 	xor a
@@ -253,7 +253,7 @@ Func_441ad:
 	jp Func_442fa
 
 .asm_441b6
-	ld a, [wcfc0]
+	ld a, [wRingtoneID]
 	or a
 	jr nz, .asm_441bf
 	jp Func_442fa
@@ -294,7 +294,7 @@ Func_441ad:
 	cp $ff
 	jr nz, asm_44217
 	xor a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_442fa
 
 MemSRAMBank_11: ; 44206 (11:4206)
@@ -372,7 +372,7 @@ asm_44268
 	jr z, .asm_4428a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	jp Func_442fa
 
 .asm_4428a
@@ -858,7 +858,7 @@ Func_44629: ; 44629 (11:4629)
 	ld [rNR50], a
 	xor a
 	ld [H_Ringtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -1850,7 +1850,7 @@ Func_44c3a: ; 44c3a (11:4c3a)
 .asm_44c5c
 	ld a, [H_Ringtone]
 	and $7f
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	cp $50
 	jr c, .asm_44c6b
 	jp Func_44cad

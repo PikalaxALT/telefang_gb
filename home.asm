@@ -1796,7 +1796,7 @@ Func_1ac6:
 	ld de, VTilesBG + $40 tiles
 	jr asm_1ace
 
-Func_1acb:
+LoadPhoneGFX_BGTile00:
 	ld de, VTilesBG
 asm_1ace
 	push de
@@ -1964,7 +1964,7 @@ Func_1bb3:
 	ld de, VTilesShared
 	jr asm_1bbb
 
-Func_1bb8:
+LoadPhoneBackground_BGTile20:
 	ld de, VTilesBG tile $20
 asm_1bbb
 	push de
@@ -1980,10 +1980,10 @@ asm_1bbb
 	ld bc, WildBG_009 - WildBG_008
 	jp WaitStatCopy
 
-Func_1bd1:
+StopRingtone:
 	xor a
 	ld [hRingtone], a
-	ld [wcfc0], a
+	ld [wRingtoneID], a
 	ld [rNR12], a
 	ld a, $ff
 	ld [rNR13], a
@@ -2310,7 +2310,7 @@ RunOverworld: ; 1ea1 (0:1ea1)
 	ld a, [wc98e]
 	or a
 	jr nz, .skip
-	homecall OverworldGetRTCEveryFourFrames, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, Func_a5245, HealPartnerDenjuuInOverworld
+	homecall OverworldGetRTCEveryFourFrames, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, HandleOverworldRingtone, HealPartnerDenjuuInOverworld
 	callba OverworldIdleHudCheck
 	callba Func_2e4b2
 .skip
@@ -2445,7 +2445,7 @@ Func_1fff: ; 1fff (0:1fff)
 	ld a, $0
 	ld [wPhoneCallRingtoneTimer], a
 	ld [wcad0], a
-	jp Func_342a
+	jp ResumeNormalMusicIfPhoneIsRinging
 
 Func_200a: ; 200a (0:200a)
 	call CheckInOverworld
@@ -2581,7 +2581,7 @@ CheckInOverworld: ; 2107 (0:2107)
 	ld a, [wc98e]
 	or a
 	jr nz, .asm_2121
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $1
 	jr nz, .asm_2121
 .asm_2121
@@ -3373,7 +3373,7 @@ Func_29ed:
 	add $8
 	ld [wc901], a
 	ld [wc928], a
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $2
 	jr z, .asm_2a48
 	ld a, [wPlayerNameEntryBuffer]
@@ -3393,8 +3393,8 @@ Func_29ed:
 	ld a, $0
 	ld [wPhoneCallRingtoneTimer], a
 	ld [wcad0], a
-	ld [wcafe], a
-	call Func_1bd1
+	ld [wOverworldRingtoneSubroutine], a
+	call StopRingtone
 	ld a, $0
 	ld [wc947], a
 	ld a, $7
@@ -4147,10 +4147,15 @@ CopyData_Under256Bytes: ; 2f89 (0:2f89)
 	jr nz, CopyData_Under256Bytes
 	ret
 
-Func_2f90:
+GetPhoneCallData:
+; Arguments
+; hl - pointer to phone call data, in bank $29
+; Returns
+; b, c - text idxs
+; e - change in FD
 	ld a, [wROMBank]
 	push af
-	ld a, $26
+	ld a, BANK(Data_98000)
 	rst Bankswitch
 	ld a, [hli]
 	ld b, a
@@ -4839,8 +4844,8 @@ PrintMapObjectText_: ; 33c9 (0:33c9)
 	homecall PrintMapObjectText
 	ret
 
-Func_33d6:
-	homecall Func_2c7ed
+LoadAndStartStdTextPointer_:
+	homecall LoadAndStartStdTextPointer
 	ret
 
 CenterAlignDenjuuName_:
@@ -4871,12 +4876,12 @@ Func_341d:
 	homecall Func_2de18
 	ret
 
-Func_342a: ; 342a (0:342a)
-	ld a, [wcafe]
+ResumeNormalMusicIfPhoneIsRinging: ; 342a (0:342a)
+	ld a, [wOverworldRingtoneSubroutine]
 	or a
 	ret z
 	ld a, $3
-	ld [wcafe], a
+	ld [wOverworldRingtoneSubroutine], a
 	ret
 
 PlayMapMusic_: ; 3435 (0:3435)
@@ -5418,14 +5423,15 @@ homecall_ret_2e562:
 
 Func_3775:
 	ld d, a
-	call Func_37a9
+	call FillVRAMWithByte
 	ld a, d
 	ret
 
-Func_377b:
+FillAttrMapBoxWithByte:
+; Fill (bc, d) box starting at (hl) with a
 .asm_377b
 	push af
-	call Func_378c
+	call FillAttrMapWithByte
 	ld a, $20
 	add l
 	ld l, a
@@ -5437,7 +5443,7 @@ Func_377b:
 	jr nz, .asm_377b
 	ret
 
-Func_378c: ; 378c (0:378c)
+FillAttrMapWithByte: ; 378c (0:378c)
 	push af
 	check_cgb
 	jr nz, asm_37d2
@@ -5448,7 +5454,7 @@ Func_378c: ; 378c (0:378c)
 	ld d, a
 	ld a, $1
 	ld [rVBK], a
-	call Func_37a9
+	call FillVRAMWithByte
 	ld a, $0
 	ld [rVBK], a
 	pop bc
@@ -5457,7 +5463,7 @@ Func_378c: ; 378c (0:378c)
 	ld a, d
 	ret
 
-Func_37a9: ; 37a9 (0:37a9)
+FillVRAMWithByte: ; 37a9 (0:37a9)
 	bit 0, c
 	jr z, ._1bpp
 ._2bpp_loop

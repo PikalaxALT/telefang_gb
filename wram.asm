@@ -847,7 +847,7 @@ wc8fe:: ds 1
 wc8ff:: ds 1
 
 SECTION "Overworld RAM", WRAM0
-wc900:: ds 1
+wPhoneCallSubroutine:: ds 1
 wc901:: ds 1
 wc902:: ds 1
 wMapNumber3:: ds 1
@@ -1023,7 +1023,7 @@ wc9d3:: ds 1
 wc9d4:: ds 1
 wc9d5:: ds 1
 wc9d6:: ds 1
-wc9d7:: ds 1
+wTextYesNoSelection:: ds 1
 wc9d8:: ds 1
 wc9d9:: ds 1
 wCurBackground:: ds 1
@@ -1237,10 +1237,9 @@ wcaf7:: ds 1
 wcaf8:: ds 1
 wcaf9:: ds 1
 wcafa:: ds 1
-wcafb:: ds 1
-wcafc:: ds 1
-wcafd:: ds 1
-wcafe:: ds 1
+wPhoneCallPointerOrIdxs:: dw
+wCallerID:: ds 1
+wOverworldRingtoneSubroutine:: ds 1
 wcaff:: ds 1
 wcb00:: ds 1
 wcb01:: ds 1
@@ -2222,7 +2221,7 @@ wcfbe:: ds 1
 wcfbf:: ds 1
 
 SECTION "Audio RAM", WRAM0
-wcfc0:: ds 1
+wRingtoneID:: ds 1
 wRingtonePointer:: dw
 wcfc3:: ds 1
 wcfc4:: ds 1

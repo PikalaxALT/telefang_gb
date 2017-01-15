@@ -1956,7 +1956,7 @@ Func_3cc91: ; 3cc91 (f:4c91)
 	ld a, $1
 	ld [wTakingAStep], a
 	ld a, $1
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld b, $2
 	call AdvanceScriptPointer
 	scf

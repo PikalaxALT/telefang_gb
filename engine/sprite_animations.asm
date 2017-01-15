@@ -1047,7 +1047,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld a, [wScriptDelay]
 	or a
 	jp nz, Func_30ece
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $1
 	jp nz, Func_30ece
 	ld a, [wc98e]

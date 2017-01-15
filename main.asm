@@ -901,7 +901,7 @@ SaveGame: ; fb3e (3:7b3e)
 	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
-	ld hl, wc900
+	ld hl, wPhoneCallSubroutine
 	ld de, s0_a010
 	ld bc, $80
 	call CopyData
@@ -937,7 +937,7 @@ LoadGame: ; fb8d (3:7b8d)
 	xor a
 	ld [MBC3SRamBank], a
 	ld hl, s0_a010
-	ld de, wc900
+	ld de, wPhoneCallSubroutine
 	ld bc, $80
 	call CopyData
 	ld hl, s0_a110
@@ -2236,7 +2236,7 @@ Func_2dfaf:
 	ld a, $40
 	ld [wc901], a
 	ld a, $2
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, $7
 	ld [wSubroutine], a
 	ld a, $4
@@ -3153,10 +3153,10 @@ Pointers_2e5a1:
 	dba Func_a98bf
 	dba Func_a99f5
 	dba FadeOutOverworldForMinimap__
-	dba Func_a5572
-	dba Func_a56c2
-	dba Func_a56cd
-	dba Func_a572c
+	dba LoadPhoneCallLayout
+	dba FadeIntoPhoneCall
+	dba HandlePhoneCall
+	dba FadeOutFromPhoneCall
 	dba FadeOutOverworldForMinimap___
 	dba Func_a5822
 	dba Func_a593b
@@ -4844,7 +4844,7 @@ MapEncounterTableIndices:
 INCLUDE "data/wild_data_tables_by_map.asm"
 
 SECTION "bank 10", ROMX, BANK [$10]
-INCLUDE "text/std_text_40000.asm"
+INCLUDE "text/std_text_11.asm"
 
 SECTION "bank 11", ROMX, BANK [$11]
 INCLUDE "audio/engine_11.asm"
@@ -4907,7 +4907,7 @@ SECTION "bank 26", ROMX, BANK [$26]
 Data_98000:
 INCLUDE "data/unknown_98000.asm"
 
-INCLUDE "text/std_text_99068.asm"
+INCLUDE "text/std_text_10.asm"
 
 SECTION "bank 27", ROMX, BANK [$27]
 GrowthRates::
@@ -4995,315 +4995,7 @@ GFX_a3320:
 SECTION "bank 29", ROMX, BANK [$29]
 
 INCLUDE "engine/print_phone_number.asm"
-
-OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
-	ld a, [wPhoneCallRingtoneTimer]
-	or a
-	ret z
-	ld a, [wc9de]
-	or a
-	jr nz, .asm_a4bc8
-	call CheckInOverworld
-	jr nz, .asm_a4bc8
-	ld a, [wMapGroup]
-	cp $b
-	jr z, .asm_a4bc8
-	ld a, [wPlayerNameEntryBuffer]
-	or a
-	jp nz, .asm_a4bc8
-	ld a, [wDShotReceptionLevel]
-	or a
-	jr nz, .asm_a4bd8
-.asm_a4bc8
-	ld a, $0
-	ld [wPhoneCallRingtoneTimer], a
-	ld a, $0
-	ld [wcad0], a
-	ld a, $3
-	ld [wcafe], a
-	ret
-
-.asm_a4bd8
-	ld a, [wPhoneCallRingtoneTimer]
-	cp 200
-	jr c, .asm_a4be7
-	ld a, [wPhoneCallRingtoneTimer]
-	dec a
-	ld [wPhoneCallRingtoneTimer], a
-	ret
-
-.asm_a4be7
-	ld a, [wPlayerObjectStruct_Duration + 18]
-	cp $0
-	ret nz
-	ld a, [wVBlankCounter]
-	and $3
-	jr nz, .asm_a4c05
-	ld a, [wPhoneCallRingtoneTimer]
-	dec a
-	ld [wPhoneCallRingtoneTimer], a
-	jr nz, .asm_a4c05
-	ld a, $0
-	ld [wcad0], a
-	call Func_342a
-.asm_a4c05
-	ld a, [hJoyNew]
-	and A_BUTTON
-	ret z
-	ld a, $0
-	ld [wPhoneCallRingtoneTimer], a
-	call Func_342a
-	ld a, [wPhoneCallDenjuuAddressBookPointer]
-	ld e, a
-	ld a, [wPhoneCallDenjuuAddressBookPointer + 1]
-	ld d, a
-	enable_sram sAddressBook
-	ld a, $7
-	add e
-	ld e, a
-	ld a, $0
-	adc d
-	ld d, a
-	ld a, [de]
-	dec de
-	push af
-	call GetDenjuuNicknameFromAdddressBookOffset
-	enable_sram sAddressBook
-	ld a, [wPhoneCallDenjuuAddressBookPointer]
-	ld l, a
-	ld a, [wPhoneCallDenjuuAddressBookPointer + 1]
-	ld h, a
-	ld a, [hl]
-	ld b, a
-	ld [wCustomSpriteDest], a
-	callba Func_a92a2
-	disable_sram
-	call OverworldRandom8_
-	cp $b4
-	jr nc, .asm_a4c62
-	call Func_a4ca1
-	jr .asm_a4c85
-
-.asm_a4c62
-	ld a, $0
-	ld [wc942], a
-	ld a, [wc943]
-	ld c, a
-	inc a
-	cp 200
-	jr c, .asm_a4c71
-	xor a
-.asm_a4c71
-	ld [wc943], a
-	ld e, $15
-	call Multiply_C_by_E
-	ld hl, $4000
-	add hl, de
-	ld a, l
-	ld [wcafb], a
-	ld a, h
-	ld [wcafc], a
-.asm_a4c85
-	callba Func_2cea0
-	ld b, $0
-	ld c, $99
-	pop af
-	call PrintMapObjectText_
-	ld a, $4
-	ld [wc900], a
-	ret
-
-Func_a4c9b: ; a4c9b (29:4c9b)
-	ld a, [wc912]
-	ld [wCustomSpriteDest], a
-Func_a4ca1: ; a4ca1 (29:4ca1)
-	push hl
-	push de
-	call OverworldRandom8_
-	cp $99
-	jr c, .asm_a4cc5
-	ld a, $1
-	ld [wc942], a
-	call OverworldRandom8_
-	ld c, a
-	ld e, $69
-	call Multiply_C_by_E
-	ld l, d
-	ld b, $13
-	ld a, l
-	ld [wcafb], a
-	ld a, b
-	ld [wcafc], a
-	jr .asm_a4cea
-
-.asm_a4cc5
-	ld a, $1
-	ld [wc942], a
-	ld a, [wcd26]
-	ld e, a
-	ld c, $a
-	call Multiply_C_by_E
-	ld a, [wc944]
-	ld c, a
-	inc a
-	cp $a
-	jr c, .asm_a4cdd
-	xor a
-.asm_a4cdd
-	ld [wc944], a
-	add e
-	ld b, $12
-	ld [wcafb], a
-	ld a, b
-	ld [wcafc], a
-.asm_a4cea
-	callba Func_2cea0
-	ld a, [wcafc]
-	ld b, a
-	ld a, [wcafb]
-	ld c, a
-	pop de
-	pop hl
-	ret
-
-Func_a4cfd:
-	ld a, [wc942]
-	or a
-	jr z, .asm_a4d1a
-	ld a, [wc900]
-	inc a
-	ld [wc900], a
-	cp $6
-	jp z, Func_a4db0
-	ld a, [wcafb]
-	ld c, a
-	ld a, [wcafc]
-	ld b, a
-	jp Func_a4d6b
-
-.asm_a4d1a
-	ld a, [wc900]
-	cp $4
-	jr z, .asm_a4d2c
-	cp $5
-	jr z, .asm_a4d39
-	cp $6
-	jr z, .asm_a4d39
-	jp Func_a4db0
-
-.asm_a4d2c
-	ld a, [wcafb]
-	ld l, a
-	ld a, [wcafc]
-	ld h, a
-	call Func_2f90
-	jr asm_a4d59
-
-.asm_a4d39
-	ld a, [wcafb]
-	ld l, a
-	ld a, [wcafc]
-	ld h, a
-	ld bc, EVENT_C3E
-	call CheckEventFlag
-	jr nz, .asm_a4d53
-	ld bc, EVENT_C3F
-	call CheckEventFlag
-	jr nz, asm_a4d9f
-	jr Func_a4db0
-
-.asm_a4d53
-	call Func_2f90
-	inc hl
-	inc hl
-	inc hl
-asm_a4d59
-	ld a, l
-	ld [wcafb], a
-	ld a, h
-	ld [wcafc], a
-	call Func_a4dbb
-	ld a, [wc900]
-	inc a
-	ld [wc900], a
-Func_a4d6b: ; a4d6b (29:4d6b)
-	ld a, $2
-	ld [wTextSubfunction], a
-	ld a, $c0
-	ld [wTextBoxStartTile], a
-	ld a, $e0
-	ld [wTileWhere0IsLoaded], a
-	ld a, $5
-	ld [wca65], a
-	ld d, $c
-	call Func_33d6
-	ld a, $2
-	ld [wTextDelayTimerReset], a
-	ld a, $2
-	ld [wcada], a
-	callba DrawTextboxInterior
-	callba Func_a8c77
-	ret
-
-asm_a4d9f
-	inc hl
-	inc hl
-	inc hl
-	call Func_2f90
-	ld a, $6
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	jp asm_a4d59
-
-Func_a4db0: ; a4db0 (29:4db0)
-	ld a, $1
-	ld [wc900], a
-	ld a, $8
-	ld [wScriptDelay], a
-	ret
-
-Func_a4dbb: ; a4dbb (29:4dbb)
-	push bc
-	enable_sram sAddressBook
-	ld hl, sAddressBook + 2
-	ld a, [wcafd]
-	ld c, a
-	ld b, $0
-	sla c
-	rl b
-	sla c
-	rl b
-	sla c
-	rl b
-	sla c
-	rl b
-	add hl, bc
-	ld a, [hl]
-	bit 7, e
-	jr nz, .asm_a4dec
-	add e
-	jr nc, .asm_a4df0
-	ld a, $ff
-	jr .asm_a4df0
-
-.asm_a4dec
-	add e
-	jr c, .asm_a4df0
-	xor a
-.asm_a4df0
-	ld [hl], a
-	ld c, a
-	ld a, [wOAMAnimation12_Duration + 3]
-	ld b, a
-	ld a, c
-	sub b
-	ld [wOAMAnimation12_Duration + 6], a
-	disable_sram
-	pop bc
-	ret
+INCLUDE "engine/phone_call.asm"
 
 GetDenjuuNicknameC: ; a4e02 (29:4e02)
 ; Gets nickname of owned denjuu in slot C
@@ -5337,12 +5029,12 @@ get_denjuu_nickname_hl_offset
 	enable_sram sOwnedDenjuuNicknames
 	ld de, wBattlePlayerDenjuuName
 	ld c, $6
-.asm_a4e38
+.copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_a4e38
+	jr nz, .copy
 	ld a, "$"
 	ld [de], a
 	disable_sram
@@ -5396,7 +5088,7 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	call Func_a4ec2
 	jr z, .asm_a4ec1
 	ld a, b
-	ld [wcafd], a
+	ld [wCallerID], a
 	call GetAddressBookPointerB
 	ld a, l
 	ld [wPhoneCallDenjuuAddressBookPointer], a
@@ -5407,8 +5099,8 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ld a, $1
 	ld [wcad0], a
 	ld a, $1
-	ld [wcafe], a
-	ld a, [wcafd]
+	ld [wOverworldRingtoneSubroutine], a
+	ld a, [wCallerID]
 	ld c, a
 	call Func_a4f37
 .asm_a4ec1
@@ -5950,26 +5642,26 @@ Func_a51ee: ; a51ee (29:51ee)
 	call Func_a50d0
 	jp Func_3672
 
-Func_a5245: ; a5245 (29:5245)
+HandleOverworldRingtone: ; a5245 (29:5245)
 	ld a, [wPhoneSilentMode]
 	or a
 	ret nz
-	ld a, [wcafe]
+	ld a, [wOverworldRingtoneSubroutine]
 	or a
 	ret z
 	cp $1
-	jr z, .asm_a5260
+	jr z, .stop_music
 	cp $2
-	jr z, .asm_a5275
+	jr z, .play_ringtone
 	cp $3
-	jr z, .asm_a52a4
+	jr z, .stop_ringtone
 	cp $4
-	jr z, .asm_a52ab
+	jr z, .restart_map_music
 	ret
 
-.asm_a5260
+.stop_music
 	inc a
-	ld [wcafe], a
+	ld [wOverworldRingtoneSubroutine], a
 	ld a, $0
 	ld [wMapMusic], a
 	ld a, $1
@@ -5978,12 +5670,12 @@ Func_a5245: ; a5245 (29:5245)
 	ld [H_MusicID], a
 	ret
 
-.asm_a5275
+.play_ringtone
 	ld a, $0
 	ld [wMapMusic], a
 	ld a, $5
-	ld [wcafe], a
-	ld a, [wcafd]
+	ld [wOverworldRingtoneSubroutine], a
+	ld a, [wCallerID]
 	ld hl, sAddressBookRingtones
 	add l
 	ld l, a
@@ -5998,14 +5690,14 @@ Func_a5245: ; a5245 (29:5245)
 	ld [wMusicBank], a
 	ret
 
-.asm_a52a4
+.stop_ringtone
 	inc a
-	ld [wcafe], a
-	jp Func_1bd1
+	ld [wOverworldRingtoneSubroutine], a
+	jp StopRingtone
 
-.asm_a52ab
+.restart_map_music
 	xor a
-	ld [wcafe], a
+	ld [wOverworldRingtoneSubroutine], a
 	jp PlayMapMusic_
 
 Func_a52b2: ; a52b2 (29:52b2)
@@ -6460,13 +6152,13 @@ FadeOutOverworldForMinimap__: ; a5569 (29:5569)
 	callba FadeOutOverworldForMinimap
 	ret
 
-Func_a5572: ; a5572 (29:5572)
-	ld a, BANK(Func_a5572)
+LoadPhoneCallLayout: ; a5572 (29:5572)
+	ld a, BANK(LoadPhoneCallLayout)
 	ld [wPrevROMBank], a
 	call Func_20f6
 	enable_sram sAddressBook
 	ld hl, sAddressBook
-	ld a, [wcafd]
+	ld a, [wCallerID]
 	ld c, a
 	ld b, $0
 	sla c
@@ -6485,42 +6177,42 @@ Func_a5572: ; a5572 (29:5572)
 	ld [wOAMAnimation12_Duration + 3], a
 	disable_sram
 	ld a, b
-	call Func_a576c
+	call PhoneCall_LoadGFX
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 6], a
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 7], a
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 14], a
-	ld a, BANK(GFX_e0d28)
+	ld a, BANK(PhoneCallTextBoxFrame)
 	ld hl, VTilesShared tile $70
-	ld de, GFX_e0d28
+	ld de, PhoneCallTextBoxFrame
 	ld bc, $f0
 	call FarCopy2bpp_2
-	ld a, BANK(Func_a5572)
+	ld a, BANK(LoadPhoneCallLayout)
 	ld [wPrevROMBank], a
-	callba Func_a4cfd
+	callba PhoneCall_PrintText ; same bank
 	call LoadSpecialFontTiles
 	ld d, $6
 	ld bc, $14
 	hlbgcoord 0, 12
 	ld a, $5
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld d, $1
 	ld bc, $8
 	hlbgcoord 6, 11
 	ld a, $1
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld de, GFX_a5d29
 	ld hl, VTilesShared tile $20
 	ld bc, $e0
 	call Copy2bpp_2
-	call Func_a5659
-	call Func_a560a
+	call PhoneCall_PrintFDAndDeltaFD
+	call .PrintCallerID
 	jp IncrementSubroutine
 
-Func_a560a: ; a560a (29:560a)
-	ld a, [wcafd]
+.PrintCallerID: ; a560a (29:560a)
+	ld a, [wCallerID]
 	ld c, a
 	callba GetDenjuuNicknameC
 	ld hl, wBattlePlayerDenjuuName
@@ -6529,7 +6221,7 @@ Func_a560a: ; a560a (29:560a)
 	ld b, $8
 	ld c, $b0
 	hlbgcoord 6, 3
-.asm_a5626
+.loop
 	di
 	call TextWaitStat
 	ld a, c
@@ -6537,16 +6229,16 @@ Func_a560a: ; a560a (29:560a)
 	ei
 	inc c
 	dec b
-	jr nz, .asm_a5626
+	jr nz, .loop
 	ld b, $8
 	ld hl, VTilesShared tile $30
 	ld de, wOAMAnimation12_Duration + 8
-.asm_a5639
+.loop2
 	ld a, [de]
-	cp $e0
-	jr nz, .asm_a5640
+	cp "$"
+	jr nz, .good
 	ld a, $0
-.asm_a5640
+.good
 	inc de
 	push bc
 	push de
@@ -6554,37 +6246,37 @@ Func_a560a: ; a560a (29:560a)
 	pop de
 	pop bc
 	dec b
-	jr nz, .asm_a5639
+	jr nz, .loop2
 	ld d, $1
 	ld bc, $8
 	hlbgcoord 6, 3
 	ld a, $1
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ret
 
-Func_a5659: ; a5659 (29:5659)
+PhoneCall_PrintFDAndDeltaFD: ; a5659 (29:5659)
 	di
 	call TextWaitStat
 	ld a, $aa
-	ld [$9966], a
+	bgcoord_a 6, 11
 	call TextWaitStat
 	ld a, $ab
-	ld [$9967], a
+	bgcoord_a 7, 11
 	ei
 	ld a, [wOAMAnimation12_Duration + 3]
 	call Get2DigitBCD
 	hlbgcoord 8, 11
 	di
-	call Func_a5698
+	call .Print3DigitNumber
 	ei
-	ld c, $ac
+	ld c, $ac ; +
 	ld a, [wOAMAnimation12_Duration + 6]
 	bit 7, a
-	jr z, .asm_a5686
-	ld c, $ad
+	jr z, .positive
+	ld c, $ad ; -
 	cpl
 	inc a
-.asm_a5686
+.positive
 	ld b, a
 	di
 	call TextWaitStat
@@ -6594,11 +6286,11 @@ Func_a5659: ; a5659 (29:5659)
 	ld a, b
 	call Get2DigitBCD
 	di
-	call Func_a56a5
+	call .Print2DigitNumber
 	ei
 	ret
 
-Func_a5698: ; a5698 (29:5698)
+.Print3DigitNumber: ; a5698 (29:5698)
 	ld a, [wCGBPalFadeProgram]
 	and $f
 	add $a0
@@ -6606,7 +6298,7 @@ Func_a5698: ; a5698 (29:5698)
 	call TextWaitStat
 	ld a, c
 	ld [hli], a
-Func_a56a5: ; a56a5 (29:56a5)
+.Print2DigitNumber: ; a56a5 (29:56a5)
 	ld a, [wNumCGBPalettesToFade]
 	swap a
 	and $f
@@ -6624,13 +6316,13 @@ Func_a56a5: ; a56a5 (29:56a5)
 	ld [hli], a
 	ret
 
-Func_a56c2: ; a56c2 (29:56c2)
+FadeIntoPhoneCall: ; a56c2 (29:56c2)
 	ld bc, $0
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_a56cd: ; a56cd (29:56cd)
+HandlePhoneCall: ; a56cd (29:56cd)
 	ld a, $0
 	call PaletteFade_
 	or a
@@ -6638,10 +6330,10 @@ Func_a56cd: ; a56cd (29:56cd)
 	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
-	jr nz, .asm_a572b
+	jr nz, .wait_text
 	ld a, [wOAMAnimation12_Duration + 6]
 	push af
-	callba Func_a4cfd
+	callba PhoneCall_PrintText ; same bank
 	call LoadSpecialFontTiles
 	ld a, [wOAMAnimation12_Duration + 6]
 	add $40
@@ -6649,37 +6341,37 @@ Func_a56cd: ; a56cd (29:56cd)
 	pop af
 	add $40
 	cp b
-	jr z, .asm_a5707
-	jr nc, .asm_a5702
-	ld a, SFX_4A
+	jr z, .reset_and_refresh
+	jr nc, .wrong_answer
+	ld a, SFX_4A ; plus
 	ld [H_SFX_ID], a
-	jr .asm_a5707
+	jr .reset_and_refresh
 
-.asm_a5702
-	ld a, SFX_5B
+.wrong_answer
+	ld a, SFX_5B ; minus
 	ld [H_SFX_ID], a
-.asm_a5707
-	call Func_a5659
-	ld bc, EVENT_C3E
+.reset_and_refresh
+	call PhoneCall_PrintFDAndDeltaFD
+	ld bc, EVENT_SAID_YES
 	call ResetEventFlag
-	ld bc, EVENT_C3F
+	ld bc, EVENT_SAID_NO
 	call ResetEventFlag
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $1
-	jr z, .asm_a571e
+	jr z, .fade_out
 	ret
 
-.asm_a571e
+.fade_out
 	ld a, $0
 	ld [wcad0], a
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine
 
-.asm_a572b
+.wait_text
 	ret
 
-Func_a572c: ; a572c (29:572c)
+FadeOutFromPhoneCall: ; a572c (29:572c)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -6699,18 +6391,18 @@ Func_a573e:
 	ld [wca65], a
 	ld d, $c
 	ld b, $0
-	call Func_33d6
+	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
 	callba DrawTextboxInterior
 	callba Func_a8c68
 	jp PrintText_
 
-Func_a576c: ; a576c (29:576c)
+PhoneCall_LoadGFX: ; a576c (29:576c)
 	push af
-	call Func_0583
+	call LoadPhoneGFX_BGTile00_
 	ld a, [wCurBackground]
-	call Func_0579
+	call LoadPhoneBackground_BGTile20_
 	pop af
 	push af
 	ld c, $0
@@ -6744,13 +6436,13 @@ Func_a576c: ; a576c (29:576c)
 	call GetDenjuuPalette_Pal6
 	ld hl, $60
 	ld a, [wRTC_Hrs]
-	cp $14
-	jr nc, .asm_a57cc
-	cp $4
-	jr nc, .asm_a57cf
-.asm_a57cc
+	cp 20
+	jr nc, .night
+	cp 4
+	jr nc, .day
+.night
 	ld hl, $380
-.asm_a57cf
+.day
 	ld a, [wCurBackground]
 	ld e, a
 	ld d, $0
@@ -6904,12 +6596,12 @@ Func_a58c4: ; a58c4 (29:58c4)
 	ld bc, $14
 	hlbgcoord 0, 18
 	ld a, $1
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld d, $4
 	ld bc, $14
 	hlbgcoord 0, 28
 	ld a, $1
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ret
 
 Func_a591b: ; a591b (29:591b)
@@ -7178,7 +6870,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ld bc, $14
 	hlbgcoord 0, 0
 	ld a, $1
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld b, $0
 	ld c, $98
 	call Func_a5b8a
@@ -7678,7 +7370,7 @@ Func_a5f82: ; a5f82 (29:5f82)
 	jp IncrementSubroutine
 
 Func_a5f9b: ; a5f9b (29:5f9b)
-	call Func_a572c
+	call FadeOutFromPhoneCall
 	ret
 
 Data_a5f9f:
@@ -8741,9 +8433,9 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld [wcaec], a
 	ld a, $3
 	ld [wcae6], a
-	ld a, BANK(GFX_e0d28)
+	ld a, BANK(PhoneCallTextBoxFrame)
 	ld hl, VTilesShared tile $70
-	ld de, GFX_e0d28
+	ld de, PhoneCallTextBoxFrame
 	ld bc, $f0
 	call FarCopy2bpp_2
 	ld a, BANK(GFX_e11f8)
@@ -8814,7 +8506,7 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld d, $c
 	ld b, $0
 	ld c, $b9
-	call Func_33d6
+	call LoadAndStartStdTextPointer_
 	call Func_a8c9b
 	call Func_a8d82
 	ld a, $2
@@ -8829,7 +8521,7 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld d, $c
 	ld b, $0
 	ld c, $b8
-	call Func_33d6
+	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
 .asm_a8b82
@@ -8925,15 +8617,16 @@ Func_a8c30: ; a8c30 (2a:4c30)
 	ld bc, $20
 	hlbgcoord 0, 4
 	ld a, $3
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ret
 
 Func_a8c50: ; a8c50 (2a:4c50)
+.loop
 	push bc
 	push hl
 	push af
 	ld b, $0
-	call Func_378c
+	call FillAttrMapWithByte
 	ld a, BANK(Tilemap_e0cb0)
 	call FarCopy2bpp_2
 	pop af
@@ -8942,7 +8635,7 @@ Func_a8c50: ; a8c50 (2a:4c50)
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, Func_a8c50
+	jr nz, .loop
 	ret
 
 Func_a8c68: ; a8c68 (2a:4c68)
@@ -8953,7 +8646,7 @@ Func_a8c68: ; a8c68 (2a:4c68)
 	ld a, $1
 	jp Func_a8c50
 
-Func_a8c77: ; a8c77 (2a:4c77)
+DrawPhoneTextbox: ; a8c77 (2a:4c77)
 	ld de, Tilemap_e0cb0
 	hlbgcoord 0, 12
 	ld b, $6
@@ -8962,11 +8655,12 @@ Func_a8c77: ; a8c77 (2a:4c77)
 	jp Func_a8c50
 
 Func_a8c86: ; a8c86 (2a:4c86)
+.loop
 	push bc
 	push hl
 	push af
 	ld b, $0
-	ld a, BANK(Tilemap_e0cb0)
+	ld a, BANK(Tilemap_e3784)
 	call FarCopy2bpp_2
 	pop af
 	pop hl
@@ -8974,7 +8668,7 @@ Func_a8c86: ; a8c86 (2a:4c86)
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, Func_a8c86
+	jr nz, .loop
 	ret
 
 Func_a8c9b: ; a8c9b (2a:4c9b)
@@ -9046,18 +8740,18 @@ Pointers_a8d07:
 asm_a8d0f
 	ld b, $f0
 Func_a8d11:
-.asm_a8d11
+.loop
 	di
-.asm_a8d12
+.wait_stat
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_a8d12
+	jr nz, .wait_stat
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ei
 	dec b
-	jr nz, .asm_a8d11
+	jr nz, .loop
 	ret
 
 Func_a8d20: ; a8d20 (2a:4d20)
@@ -9353,7 +9047,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 	ld d, $c
 	ld b, $0
 	ld c, $b7
-	call Func_33d6
+	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
 	ld a, $1e
@@ -9655,7 +9349,7 @@ Func_a912c:
 	ld d, $0
 	ld b, $0
 	ld c, $ba
-	call Func_33d6
+	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
 	callba DrawTextboxInteriorTopRow
@@ -9774,7 +9468,7 @@ Func_a9223: ; a9223 (2a:5223)
 	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, .asm_a9278
-	ld bc, EVENT_C3E
+	ld bc, EVENT_SAID_YES
 	call CheckEventFlag
 	jr nz, .asm_a9253
 .asm_a9243
@@ -9815,14 +9509,14 @@ Func_a9279: ; a9279 (2a:5279)
 	ld [wca65], a
 	ld d, $c
 	ld b, $0
-	call Func_33d6
+	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
 	callba DrawTextboxInterior
 	call Func_a8c68
 	jp PrintText_
 
-Func_a92a2: ; a92a2 (2a:52a2)
+CopySpeciesNameBToCA53: ; a92a2 (2a:52a2)
 	ld de, wca53
 	ld a, b
 	jr asm_a92b3
@@ -9848,7 +9542,7 @@ asm_a92b3
 	ld c, BANK(DenjuuNames)
 	ld b, $8
 	call FarCopyData_Under256Bytes
-	ld a, $e0
+	ld a, "$"
 	ld [de], a
 	ret
 
@@ -10010,7 +9704,7 @@ Func_a93cf: ; a93cf (2a:53cf)
 	ld bc, $e0
 	hlbgcoord 0, 5
 	ld a, $7
-	call Func_378c
+	call FillAttrMapWithByte
 	ld bc, $0
 	ld a, $1
 	call StartFade_
@@ -10248,7 +9942,7 @@ Func_a9595: ; a9595 (2a:5595)
 	ld bc, $8
 	hlbgcoord 22, 5
 	ld a, $6
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld a, $0
 	ld [wOAMAnimation18_Duration + 7], a
 	ld a, $0
@@ -10279,7 +9973,7 @@ Func_a9595: ; a9595 (2a:5595)
 	ld bc, $20
 	hlbgcoord 0, 4
 	ld a, $6
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld bc, $a
 	call GetCGB_BGLayout_
 	ld bc, $11
@@ -10715,17 +10409,17 @@ Func_a9942: ; a9942 (2a:5942)
 	ld bc, $8
 	hlbgcoord 6, 5
 	ld a, $6
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld d, $8
 	ld bc, $6
 	hlbgcoord 0, 4
 	ld a, $5
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld d, $8
 	ld bc, $6
 	hlbgcoord 14, 4
 	ld a, $5
-	call Func_377b
+	call FillAttrMapBoxWithByte
 	ld c, $b5
 	ld a, [wcaee]
 	or a
@@ -10783,14 +10477,14 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	call PrintText_
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr nz, .asm_a9a15
+	jr nz, .pressed_b
 	ld a, [wTextSubroutine]
 	cp $9
-	jr nz, .asm_a9a56
-	ld bc, EVENT_C3E
+	jr nz, .still_printing
+	ld bc, EVENT_SAID_YES
 	call CheckEventFlag
-	jr nz, .asm_a9a2b
-.asm_a9a15
+	jr nz, .said_yes
+.pressed_b
 	ld a, $0
 	ld [wOAMAnimation17_Duration + 15], a
 	call Func_a91b4
@@ -10801,7 +10495,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld [H_SFX_ID], a
 	ret
 
-.asm_a9a2b
+.said_yes
 	call Func_a91b4
 	ld a, $19
 	ld [wSubroutine], a
@@ -10819,7 +10513,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld [H_SFX_ID], a
 	ret
 
-.asm_a9a56
+.still_printing
 	ret
 
 Func_a9a57: ; a9a57 (2a:5a57)
@@ -12434,12 +12128,12 @@ Func_c8000::
 	cp $2
 	jr nz, .asm_c8146
 	ld a, $1
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	jp Func_29ed
 
 .asm_c8139
 	ld a, $2
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, SFX_11
 	ld [H_SFX_ID], a
 	jp Func_29ed
@@ -13504,7 +13198,7 @@ Func_c87e8:
 
 Func_c8802: ; c8802 (32:4802)
 	ld a, $2
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld e, $a
 	ld a, [wc90f]
 	ld d, a
@@ -15009,7 +14703,7 @@ Data_c94f8:
 	db $d, $d, $d, $d
 
 Func_c9538: ; c9538 (32:5538)
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	or a
 	jp nz, Func_c96b3
 	ld a, [wOverworldRandomCounter]
@@ -15032,7 +14726,7 @@ Func_c9538: ; c9538 (32:5538)
 	ld b, $9
 	call CopyData_Under256Bytes
 	xor a
-	ld hl, wc900
+	ld hl, wPhoneCallSubroutine
 	ld b, $80
 	call Func_2f76
 	ld hl, wPlayerNameEntryBuffer
@@ -15057,7 +14751,7 @@ Func_c9538: ; c9538 (32:5538)
 	ld a, a
 	ld [wOverworldRandomSeed], a
 	ld a, $1
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, $40
 	ld [wc901], a
 	ld a, $40
@@ -15266,7 +14960,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld [wPlayerObjectStruct_Duration + 14], a
 	ld a, $0
 	ld [wPlayerObjectStruct_Duration + 13], a
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $2
 	jr z, .asm_c978d
 	ld a, $0
@@ -15293,7 +14987,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld [wTakingAStep], a
 	call Func_c97bf
 	ld a, $1
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ret
 
 Func_c97bf: ; c97bf (32:57bf)
@@ -22271,7 +21965,7 @@ Tilemap_e0c88:
 	dr $e0c88, $e0cb0
 
 Tilemap_e0cb0: INCBIN "gfx/misc/e0cb0.1bpp"
-GFX_e0d28: INCBIN "gfx/misc/e0d28.2bpp"
+PhoneCallTextBoxFrame: INCBIN "gfx/misc/e0d28.2bpp"
 GFX_e0e18: INCBIN "gfx/misc/e0e18.2bpp"
 GFX_e0eb8: INCBIN "gfx/misc/e0eb8.2bpp"
 GFX_e0f58: INCBIN "gfx/misc/e0f58.2bpp"
@@ -22537,53 +22231,53 @@ GFX_fc4eb:: INCBIN "gfx/misc/fc4eb.2bpp"
 GFX_fcceb:: INCBIN "gfx/misc/fcceb.2bpp"
 
 SECTION "bank 40", ROMX, BANK [$40]
-INCLUDE "text/std_text_100000.asm"
+INCLUDE "text/std_text_06.asm"
 
 SECTION "bank 45", ROMX, BANK [$45]
-INCLUDE "text/std_text_114000.asm"
-INCLUDE "text/std_text_11507b.asm"
+INCLUDE "text/std_text_00.asm"
+INCLUDE "text/std_text_0D.asm"
 
 SECTION "bank 46", ROMX, BANK [$46]
-INCLUDE "text/std_text_118000.asm"
+INCLUDE "text/std_text_01.asm"
 
 SECTION "bank 47", ROMX, BANK [$47]
-INCLUDE "text/std_text_11c000.asm"
+INCLUDE "text/std_text_02.asm"
 
 SECTION "bank 48", ROMX, BANK [$48]
-INCLUDE "text/std_text_120000.asm"
+INCLUDE "text/std_text_03.asm"
 
 SECTION "bank 49", ROMX, BANK [$49]
-INCLUDE "text/std_text_124000.asm"
+INCLUDE "text/std_text_04.asm"
 
 SECTION "bank 4A", ROMX, BANK [$4a]
-INCLUDE "text/std_text_128000.asm"
-INCLUDE "text/std_text_1281d9.asm"
+INCLUDE "text/std_text_05.asm"
+INCLUDE "text/std_text_14.asm"
 
 SECTION "bank 4B", ROMX, BANK [$4b]
-INCLUDE "text/std_text_12c000.asm"
+INCLUDE "text/std_text_09.asm"
 
 SECTION "bank 4C", ROMX, BANK [$4c]
-INCLUDE "text/std_text_130000.asm"
+INCLUDE "text/std_text_07.asm"
 
 SECTION "bank 4D", ROMX, BANK [$4d]
-INCLUDE "text/std_text_134000.asm"
+INCLUDE "text/std_text_08.asm"
 
 UnknownTZFile30:: INCBIN "gfx/tzfiles/tz_30.2bpp.tz"
 UnknownTZFile31:: INCBIN "gfx/tzfiles/tz_31.2bpp.tz"
 UnknownTZFile29:: INCBIN "gfx/tzfiles/tz_29.2bpp.tz"
 
 SECTION "bank 4E", ROMX, BANK [$4e]
-INCLUDE "text/std_text_138000.asm"
+INCLUDE "text/std_text_0A.asm"
 
 SECTION "bank 4F", ROMX, BANK [$4f]
-INCLUDE "text/std_text_13c000.asm"
+INCLUDE "text/std_text_0B.asm"
 
 SECTION "bank 50", ROMX, BANK [$50]
-INCLUDE "text/std_text_140000.asm"
+INCLUDE "text/std_text_0C.asm"
 
 SECTION "bank 51", ROMX, BANK [$51]
-INCLUDE "text/std_text_144000.asm"
-INCLUDE "text/std_text_145c9a.asm"
+INCLUDE "text/std_text_0E.asm"
+INCLUDE "text/std_text_0F.asm"
 
 SECTION "bank 52", ROMX, BANK [$52]
 INCLUDE "data/map_data_148000.asm"
@@ -22604,10 +22298,10 @@ SECTION "bank 55", ROMX, BANK [$55]
 Pointers_154000: INCLUDE "data/scripts_154000.asm"
 
 SECTION "bank 56", ROMX, BANK [$56]
-INCLUDE "text/std_text_158000.asm"
+INCLUDE "text/std_text_12.asm"
 
 SECTION "bank 57", ROMX, BANK [$57]
-INCLUDE "text/std_text_15c000.asm"
+INCLUDE "text/std_text_13.asm"
 
 SECTION "bank 59", ROMX, BANK [$59]
 UnknownTZFile32:: INCBIN "gfx/tzfiles/tz_32.2bpp.tz"

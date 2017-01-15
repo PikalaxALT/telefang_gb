@@ -483,7 +483,7 @@ TextSubroutine8: ; 2c429 (b:4429) (blink cursor)
 TextSubroutine5: ; 2c432 (b:4432)
 	call BlinkTextCursor
 	jr z, .asm_2c444
-	ld a, [wc900]
+	ld a, [wPhoneCallSubroutine]
 	cp $4
 	jr nc, .asm_2c444
 	call Func_2ccb9
@@ -493,67 +493,67 @@ TextSubroutine5: ; 2c432 (b:4432)
 	ret
 
 TextSubroutine10: ; 2c445 (b:4445)
-	call Func_2c4f0
+	call AnimateTextYesNoSelectionCursor
 	call BlinkTextCursor
-	jr z, .asm_2c484
-	ld bc, EVENT_C3E
-	ld a, [wc9d7]
+	jr z, .check_left
+	ld bc, EVENT_SAID_YES
+	ld a, [wTextYesNoSelection]
 	or a
-	jr nz, .asm_2c461
+	jr nz, .said_yes
 	call ResetEventFlag
-	ld bc, EVENT_C3F
+	ld bc, EVENT_SAID_NO
 	call SetEventFlag
-	jr .asm_2c46a
+	jr .continue
 
-.asm_2c461
+.said_yes
 	call SetEventFlag
-	ld bc, EVENT_C3F
+	ld bc, EVENT_SAID_NO
 	call ResetEventFlag
-.asm_2c46a
+.continue
 	ld a, [wSubroutine]
 	cp $5
-	jr nz, .asm_2c47e
-	ld a, [wc900]
+	jr nz, .finish_a
+	ld a, [wPhoneCallSubroutine]
 	cp $4
-	jr nc, .asm_2c47e
+	jr nc, .finish_a
 	call Func_2ccb9
 	call Func_2ba9
-.asm_2c47e
+.finish_a
 	ld a, $0
 	ld [wTextSubfunction], a
 	ret
 
-.asm_2c484
+.check_left
 	ld a, [hJoyNew]
 	and D_LEFT
-	jr z, .asm_2c49d
-	ld a, [wc9d7]
+	jr z, .check_right_or_b
+	ld a, [wTextYesNoSelection]
 	cp $1
-	jr z, .asm_2c4b4
+	jr z, .refresh_display
 	ld a, $1
-	ld [wc9d7], a
+	ld [wTextYesNoSelection], a
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	jr .asm_2c4b4
+	jr .refresh_display
 
-.asm_2c49d
+.check_right_or_b
 	ld a, [hJoyNew]
 	and D_RIGHT | B_BUTTON
-	jr z, .asm_2c4b4
-	ld a, [wc9d7]
+	jr z, .refresh_display
+	ld a, [wTextYesNoSelection]
 	cp $0
-	jr z, .asm_2c4b4
+	jr z, .refresh_display
 	ld a, $0
-	ld [wc9d7], a
+	ld [wTextYesNoSelection], a
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-.asm_2c4b4
+.refresh_display
 	ld b, $f
-	ld a, [wc9d7]
+	ld a, [wTextYesNoSelection]
 	or a
-	jr z, .asm_2c4be
+	jr z, .said_no
 	ld b, $e
-.asm_2c4be
+.said_no
 	ld c, $2
 	push bc
 	call .LoadCharacter
@@ -586,11 +586,11 @@ TextSubroutine10: ; 2c445 (b:4445)
 	ei
 	ret
 
-Func_2c4f0: ; 2c4f0 (b:44f0)
+AnimateTextYesNoSelectionCursor: ; 2c4f0 (b:44f0)
 	ld a, [wCumulativeTextFrameCounter]
 	and $3
 	ret nz
-Func_2c4f6: ; 2c4f6 (b:44f6)
+InitTextYesNoSelectionCursor: ; 2c4f6 (b:44f6)
 	ld a, [wCumulativeTextFrameCounter]
 	srl a
 	srl a
@@ -761,9 +761,9 @@ HandleTextSubfunction: ; 2c5c8 (b:45c8)
 	ld [wTextDelayTimer], a
 	ld a, $a
 	ld [wTextSubroutine], a
-	call Func_2c4f6
+	call InitTextYesNoSelectionCursor
 	ld a, $1
-	ld [wc9d7], a
+	ld [wTextYesNoSelection], a
 	ret
 
 .asm_2c630
@@ -791,7 +791,7 @@ PrintStandardText: ; 2c64e (b:464e)
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $1
-	ld [wc9d7], a
+	ld [wTextYesNoSelection], a
 	ld d, $0
 	ld e, b
 	ld hl, StdTextPointers
@@ -826,9 +826,9 @@ PrintStandardText: ; 2c64e (b:464e)
 	ld [wcad3], a
 	ld a, $2
 	ld [wcada], a
-	ld bc, EVENT_C3E
+	ld bc, EVENT_SAID_YES
 	call ResetEventFlag
-	ld bc, EVENT_C3F
+	ld bc, EVENT_SAID_NO
 	call ResetEventFlag
 	ld a, [wTextSubfunction]
 	cp $2
@@ -1008,11 +1008,11 @@ Func_2c7ce:
 	ld [wSubroutine], a
 	jp Func_2c9a2
 
-Func_2c7ed: ; 2c7ed (b:47ed)
+LoadAndStartStdTextPointer: ; 2c7ed (b:47ed)
 	ld hl, wBGMapAnchor
-	ld a, $0
+	ld a, VBGMap % $100
 	ld [hli], a
-	ld a, $98
+	ld a, VBGMap / $100
 	ld [hl], a
 	ld a, d
 	ld [wTextBGMapTop], a
@@ -1200,27 +1200,27 @@ Func_2c92e: ; 2c92e (b:492e)
 	jp Func_2ca48
 
 StdTextPointers:
-	dab Pointers_114000
-	dab Pointers_118000
-	dab Pointers_11c000
-	dab Pointers_120000
-	dab Pointers_124000
-	dab Pointers_128000
-	dab Pointers_100000
-	dab Pointers_130000
-	dab Pointers_134000
-	dab Pointers_12c000
-	dab Pointers_138000
-	dab Pointers_13c000
-	dab Pointers_140000
-	dab Pointers_11507b
-	dab Pointers_144000
-	dab Pointers_145c9a
-	dab Pointers_99068
-	dab Pointers_40000
-	dab Pointers_158000
-	dab Pointers_15c000
-	dab Pointers_1281d9
+	dab StdTextPointers_00
+	dab StdTextPointers_01
+	dab StdTextPointers_02
+	dab StdTextPointers_03
+	dab StdTextPointers_04
+	dab StdTextPointers_05
+	dab StdTextPointers_06
+	dab StdTextPointers_07
+	dab StdTextPointers_08
+	dab StdTextPointers_09
+	dab StdTextPointers_0A
+	dab StdTextPointers_0B
+	dab StdTextPointers_0C
+	dab StdTextPointers_0D
+	dab StdTextPointers_0E
+	dab StdTextPointers_0F
+	dab StdTextPointers_10
+	dab StdTextPointers_11
+	dab StdTextPointers_12
+	dab StdTextPointers_13
+	dab StdTextPointers_14
 
 Func_2c98e: ; 2c98e (b:498e)
 	call LoadTextboxFrame
@@ -2034,7 +2034,7 @@ LoadCharacter: ; 2ce29 (b:4e29)
 
 Func_2cea0:
 	ld d, $0
-	ld a, [wcafc]
+	ld a, [wPhoneCallPointerOrIdxs + 1]
 	ld e, a
 	ld hl, StdTextPointers
 	add hl, de
@@ -2045,7 +2045,7 @@ Func_2cea0:
 	ld a, [hli]
 	ld d, a
 	ld b, [hl]
-	ld a, [wcafb]
+	ld a, [wPhoneCallPointerOrIdxs]
 	ld l, a
 	ld h, $0
 	sla l
@@ -2080,9 +2080,9 @@ Func_2cea0:
 	call OverworldRandom8_
 	and $3
 	add $c0
-	ld [wcafb], a
+	ld [wPhoneCallPointerOrIdxs], a
 	ld a, $0
-	ld [wcafc], a
+	ld [wPhoneCallPointerOrIdxs + 1], a
 	ret
 
 Data_2cef4:

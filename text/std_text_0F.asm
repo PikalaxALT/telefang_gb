@@ -1,4 +1,4 @@
-Pointers_145c9a:
+StdTextPointers_0F:
 	dw Text_145e9a
 	dw Text_145ec7
 	dw Text_145ed5

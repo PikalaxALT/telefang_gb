@@ -856,7 +856,7 @@ Func_39598: ; 39598 (e:5598)
 	ld [wMapGroup], a
 .asm_39606
 	ld a, $2
-	ld [wc900], a
+	ld [wPhoneCallSubroutine], a
 	ld a, [wc9df]
 	swap a
 	and $f0
@@ -1200,7 +1200,7 @@ GetEdgeConnection: ; 39917 (e:5917)
 	ld hl, Func_2b98
 	call FarCall_HL ; Func_2b98 does not read any data
 	call LoadMapBlockdataAndScriptHeader
-	ld a, [wcafe]
+	ld a, [wOverworldRingtoneSubroutine]
 	or a
 	ret nz
 	call PlayMapMusic_
