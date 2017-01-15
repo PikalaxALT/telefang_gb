@@ -1753,10 +1753,11 @@ InitCustomDMelo: ; 1a09 (0:1a09)
 	ret
 
 .DefaultDMelo:
-	db $01, $00 ; header, tempo
-	db $01, $02 ; do (octave 1, variant 1, length 2)
-	db $21, $02 ; re (octave 1, variant 1, length 2)
-	db $41, $02 ; mi (octave 1, variant 1, length 2)
+	db $01
+	ringtempo 0
+	ringnote C_, 1, 2
+	ringnote D_, 1, 2
+	ringnote E_, 1, 2
 
 Func_1a8e:
 	sla c

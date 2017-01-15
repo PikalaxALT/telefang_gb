@@ -1,4 +1,5 @@
 	const_def
+	const __
 	const C_
 	const C#
 	const D_
@@ -186,4 +187,22 @@ music_setvar23: MACRO
 	enum music_ff_command
 music_ff: MACRO
 	db music_ff_command
+	ENDM
+
+
+ringtempo: MACRO
+	db \1
+	ENDM
+
+ringnote: MACRO
+IF \1 == __
+	dn $c, \2
+ELSE
+	dn \1 - 1, \2
+ENDC
+	db \3
+	ENDM
+
+ringend: MACRO
+	db $fe
 	ENDM

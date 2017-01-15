@@ -2220,9 +2220,10 @@ wcfbc:: ds 1
 wcfbd:: ds 1
 wcfbe:: ds 1
 wcfbf:: ds 1
+
+SECTION "Audio RAM", WRAM0
 wcfc0:: ds 1
-wcfc1:: ds 1
-wcfc2:: ds 1
+wRingtonePointer:: dw
 wcfc3:: ds 1
 wcfc4:: ds 1
 wcfc5:: ds 1

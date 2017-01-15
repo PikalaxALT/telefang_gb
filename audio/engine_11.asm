@@ -279,9 +279,9 @@ Func_441ad:
 	jp Func_442fa
 
 .asm_441e1
-	ld a, [wcfc1]
+	ld a, [wRingtonePointer]
 	ld e, a
-	ld a, [wcfc2]
+	ld a, [wRingtonePointer + 1]
 	ld d, a
 	ld a, [wcfc5]
 	cp $fe
@@ -443,9 +443,9 @@ asm_44268
 	ld a, c
 	ld [wcfc7], a
 	ld a, e
-	ld [wcfc1], a
+	ld [wRingtonePointer], a
 	ld a, d
-	ld [wcfc2], a
+	ld [wRingtonePointer + 1], a
 Func_442fa: ; 442fa (11:42fa)
 	pop hl
 	pop de
@@ -1839,7 +1839,7 @@ Func_44c3a: ; 44c3a (11:4c3a)
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
-	ld hl, Pointers_45fe2
+	ld hl, RingtonePointers_11
 	xor a
 	ld [wcfc8], a
 	ld a, [H_Ringtone]
@@ -1863,10 +1863,10 @@ Func_44c3a: ; 44c3a (11:4c3a)
 	add hl, de
 Func_44c71: ; 44c71 (11:4c71)
 	ld a, [hli]
-	ld [wcfc1], a
+	ld [wRingtonePointer], a
 	ld [wcfc3], a
 	ld a, [hl]
-	ld [wcfc2], a
+	ld [wRingtonePointer + 1], a
 	ld [wcfc4], a
 	ld a, $1
 	ld [wcfc7], a
@@ -2091,7 +2091,7 @@ Data_44ed5: db $be, $de, $96, $76, $98, $95, $12, $14, $be, $de, $96, $76, $98, 
 SFXPointers_11:
 INCLUDE "audio/unknown_sfx_44ee5.asm"
 
-Pointers_45fe2:
-INCLUDE "audio/unknown_sfx_45fe2.asm"
+RingtonePointers_11:
+INCLUDE "audio/ringtones.asm"
 
 MusicPointers_11:

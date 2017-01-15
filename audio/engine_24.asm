@@ -279,9 +279,9 @@ Func_901ad:
 	jp Func_902fa
 
 .asm_901e1
-	ld a, [wcfc1]
+	ld a, [wRingtonePointer]
 	ld e, a
-	ld a, [wcfc2]
+	ld a, [wRingtonePointer + 1]
 	ld d, a
 	ld a, [wcfc5]
 	cp $fe
@@ -366,16 +366,16 @@ asm_90268
 	inc de
 	ld a, [H_FFA8]
 	cp $fe
-	jr nz, .asm_90295
+	jr nz, .is_note
 	ld a, [wcfc8]
 	or a
-	jr z, .not_wram
+	jr z, .not_ram
 	xor a
 	ld [H_Ringtone], a
 	ld [wcfc0], a
 	jp Func_902fa
 
-.not_wram
+.not_ram
 	ld a, [wcfc3]
 	ld e, a
 	ld a, [wcfc4]
@@ -383,11 +383,11 @@ asm_90268
 	inc de
 	jr asm_90268
 
-.asm_90295
+.is_note
 	ld c, a
 	and $f0
 	cp $c0
-	jr nz, .asm_902ad
+	jr nz, .not_rest
 	ld a, $8
 	ld [rNR10], a
 	ld [rNR12], a
@@ -396,9 +396,9 @@ asm_90268
 	ld [rNR13], a
 	ld a, $80
 	ld [rNR14], a
-	jr .asm_902d0
+	jr .finish
 
-.asm_902ad
+.not_rest
 	ld a, $c0
 	ld [rNR11], a
 	ld a, $f0
@@ -421,7 +421,7 @@ asm_90268
 	ld a, [hl]
 	or $80
 	ld [rNR14], a
-.asm_902d0
+.finish
 	ld a, [wcfc5]
 	and $f
 	ld c, a
@@ -432,20 +432,20 @@ asm_90268
 	ld a, [H_FFA8]
 	inc de
 	and $f
-.asm_902e6
+.loop
 	or a
-	jr z, .asm_902ee
+	jr z, .got_length
 	dec a
 	sla c
-	jr .asm_902e6
+	jr .loop
 
-.asm_902ee
+.got_length
 	ld a, c
 	ld [wcfc7], a
 	ld a, e
-	ld [wcfc1], a
+	ld [wRingtonePointer], a
 	ld a, d
-	ld [wcfc2], a
+	ld [wRingtonePointer + 1], a
 Func_902fa: ; 482fa (11:42fa)
 	pop hl
 	pop de
@@ -1844,10 +1844,10 @@ PlayRingtone_24: ; 48c3a (11:4c3a)
 	ld [wcfc8], a
 	ld a, [H_Ringtone]
 	and $80
-	jr z, .not_wram
+	jr z, .not_ram
 	ld a, $ff
 	ld [wcfc8], a
-.not_wram
+.not_ram
 	ld a, [H_Ringtone]
 	and $7f
 	ld [wcfc0], a
@@ -1863,10 +1863,10 @@ PlayRingtone_24: ; 48c3a (11:4c3a)
 	add hl, de
 .Finish: ; 48c71 (11:4c71)
 	ld a, [hli]
-	ld [wcfc1], a
+	ld [wRingtonePointer], a
 	ld [wcfc3], a
 	ld a, [hl]
-	ld [wcfc2], a
+	ld [wRingtonePointer + 1], a
 	ld [wcfc4], a
 	ld a, $1
 	ld [wcfc7], a
@@ -2092,6 +2092,6 @@ SFXPointers_24:
 INCLUDE "audio/unknown_sfx_90ee5.asm"
 
 RingtonePointers_24:
-INCLUDE "audio/unknown_sfx_91fe2.asm"
+INCLUDE "audio/ringtones.asm"
 
 MusicPointers_24:

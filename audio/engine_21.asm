@@ -279,9 +279,9 @@ Func_841ad:
 	jp Func_842fa
 
 .asm_841e1
-	ld a, [wcfc1]
+	ld a, [wRingtonePointer]
 	ld e, a
-	ld a, [wcfc2]
+	ld a, [wRingtonePointer + 1]
 	ld d, a
 	ld a, [wcfc5]
 	cp $fe
@@ -443,9 +443,9 @@ asm_84268
 	ld a, c
 	ld [wcfc7], a
 	ld a, e
-	ld [wcfc1], a
+	ld [wRingtonePointer], a
 	ld a, d
-	ld [wcfc2], a
+	ld [wRingtonePointer + 1], a
 Func_842fa: ; 482fa (11:42fa)
 	pop hl
 	pop de
@@ -1863,10 +1863,10 @@ Func_84c3a: ; 48c3a (11:4c3a)
 	add hl, de
 Func_84c71: ; 48c71 (11:4c71)
 	ld a, [hli]
-	ld [wcfc1], a
+	ld [wRingtonePointer], a
 	ld [wcfc3], a
 	ld a, [hl]
-	ld [wcfc2], a
+	ld [wRingtonePointer + 1], a
 	ld [wcfc4], a
 	ld a, $1
 	ld [wcfc7], a
