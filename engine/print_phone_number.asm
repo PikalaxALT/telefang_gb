@@ -184,7 +184,7 @@ Func_a40ef: ; a40ef (29:40ef)
 
 Func_a4121: ; a4121 (29:4121)
 	ld a, c
-	ld hl, s2_b800
+	ld hl, sAddressBookRingtones
 	add l
 	ld l, a
 	ld a, $0

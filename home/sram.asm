@@ -143,7 +143,7 @@ ClearSRAM::
 	ret
 
 ClearSRAMBank: ; 1035 (0:1035)
-	ld hl, s1_a000
+	ld hl, sDMelo
 	ld bc, $2000 ; size of an SRAM bank
 .asm_103b
 	xor a

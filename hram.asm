@@ -23,7 +23,7 @@ hFF9E EQU $ff9e
 hFF9F EQU $ff9f
 hMusicID EQU $ffa0
 hSFX_ID EQU $ffa1
-hFFA2 EQU $ffa2
+hRingtone EQU $ffa2
 hFFA3 EQU $ffa3
 hMusicCommand EQU $ffa4
 hFFA5 EQU $ffa5

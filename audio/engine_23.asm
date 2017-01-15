@@ -29,12 +29,12 @@ UpdateSound_23:
 	jr .asm_8c03e
 
 .asm_8c031
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	or a
 	jr z, .asm_8c03e
 	call Func_8cc3a
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 .asm_8c03e
 	ld a, [wcf90]
 	or a
@@ -299,7 +299,7 @@ Func_8c1ad:
 
 MemSRAMBank_23: ; 48206 (11:4206)
 	enable_sram
-	ld a, [wcfc9]
+	ld a, [wAudioSRAMBank]
 	ld [MBC3SRamBank], a
 	ret
 
@@ -371,7 +371,7 @@ asm_8c268
 	or a
 	jr z, .asm_8c28a
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld [wcfc0], a
 	jp Func_8c2fa
 
@@ -857,7 +857,7 @@ PlayMusicNone_23: ; 48629 (11:4629)
 	ld [rNR52], a
 	ld [rNR50], a
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld [wcfc0], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
@@ -1841,13 +1841,13 @@ Func_8cc3a: ; 48c3a (11:4c3a)
 	ld hl, Pointers_8f9cd
 	xor a
 	ld [wcfc8], a
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	and $80
 	jr z, .asm_8cc5c
 	ld a, $ff
 	ld [wcfc8], a
 .asm_8cc5c
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	and $7f
 	ld [wcfc0], a
 	cp $50
@@ -1901,7 +1901,7 @@ Func_8ccad: ; 48cad (11:4cad)
 	ld h, [hl]
 	ld l, c
 	ld a, [hli]
-	ld [wcfc9], a
+	ld [wAudioSRAMBank], a
 	jp Func_8cc71
 
 Func_8ccbe:

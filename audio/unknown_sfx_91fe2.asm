@@ -725,25 +725,25 @@ Data_93cc5:
 	db $00, $40, $00, $40, $00, $c0, $02, $c0, $02, $c0, $02, $c0, $02, $c0, $02, $fe
 
 Data_93d15:
-	db $01, $01, $a0
+	dbw $01, sDMelo1 + 1
 
 Data_93d18:
-	db $01, $01, $a2
+	dbw $01, sDMelo2 + 1
 
 Data_93d1b:
-	db $01, $01, $a4
+	dbw $01, sDMelo3 + 1
 
 Data_93d1e:
-	db $01, $01, $a6
+	dbw $01, sDMelo4 + 1
 
 Data_93d21:
-	db $01, $01, $a8
+	dbw $01, sDMelo5 + 1
 
 Data_93d24:
-	db $01, $01, $aa
+	dbw $01, sDMelo6 + 1
 
 Data_93d27:
-	db $01, $01, $ac
+	dbw $01, sDMelo7 + 1
 
 Data_93d2a:
-	db $01, $01, $ae
+	dbw $01, sDMelo8 + 1

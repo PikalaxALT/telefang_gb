@@ -6,7 +6,7 @@ H_PushOAM:: ds $8
 
 H_MusicID:: ds 1
 H_SFX_ID:: ds 1
-H_FFA2:: ds 1
+H_Ringtone:: ds 1
 H_FFA3:: ds 1
 H_MusicCommand:: ds 1
 H_FFA5:: ds 1

@@ -29,12 +29,12 @@ UpdateSound_24:
 	jr .asm_9003e
 
 .asm_90031
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	or a
 	jr z, .asm_9003e
-	call Func_90c3a
+	call PlayRingtone_24
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 .asm_9003e
 	ld a, [wcf90]
 	or a
@@ -299,7 +299,7 @@ Func_901ad:
 
 MemSRAMBank_24: ; 48206 (11:4206)
 	enable_sram
-	ld a, [wcfc9]
+	ld a, [wAudioSRAMBank]
 	ld [MBC3SRamBank], a
 	ret
 
@@ -369,13 +369,13 @@ asm_90268
 	jr nz, .asm_90295
 	ld a, [wcfc8]
 	or a
-	jr z, .asm_9028a
+	jr z, .not_wram
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld [wcfc0], a
 	jp Func_902fa
 
-.asm_9028a
+.not_wram
 	ld a, [wcfc3]
 	ld e, a
 	ld a, [wcfc4]
@@ -857,7 +857,7 @@ Func_90629: ; 48629 (11:4629)
 	ld [rNR52], a
 	ld [rNR50], a
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld [wcfc0], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
@@ -1831,7 +1831,7 @@ PlaySFX_24: ; 48c22 (11:4c22)
 	ld a, [H_SFX_ID]
 	jp Func_90cdd
 
-Func_90c3a: ; 48c3a (11:4c3a)
+PlayRingtone_24: ; 48c3a (11:4c3a)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
@@ -1839,29 +1839,29 @@ Func_90c3a: ; 48c3a (11:4c3a)
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
-	ld hl, Pointers_91fe2
+	ld hl, RingtonePointers_24
 	xor a
 	ld [wcfc8], a
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	and $80
-	jr z, .asm_90c5c
+	jr z, .not_wram
 	ld a, $ff
 	ld [wcfc8], a
-.asm_90c5c
-	ld a, [H_FFA2]
+.not_wram
+	ld a, [H_Ringtone]
 	and $7f
 	ld [wcfc0], a
 	cp $50
-	jr c, .asm_90c6b
-	jp Func_90cad
+	jr c, .not_sram
+	jp .GetSRamPointer
 
-.asm_90c6b
+.not_sram
 	dec a
 	ld e, a
 	ld d, $0
 	add hl, de
 	add hl, de
-Func_90c71: ; 48c71 (11:4c71)
+.Finish: ; 48c71 (11:4c71)
 	ld a, [hli]
 	ld [wcfc1], a
 	ld [wcfc3], a
@@ -1891,7 +1891,7 @@ Func_90c71: ; 48c71 (11:4c71)
 	ld [wChannel5], a
 	ret
 
-Func_90cad: ; 48cad (11:4cad)
+.GetSRamPointer: ; 48cad (11:4cad)
 	dec a
 	ld e, a
 	ld d, $0
@@ -1902,8 +1902,8 @@ Func_90cad: ; 48cad (11:4cad)
 	ld h, [hl]
 	ld l, c
 	ld a, [hli]
-	ld [wcfc9], a
-	jp Func_90c71
+	ld [wAudioSRAMBank], a
+	jp .Finish
 
 Func_90cbe:
 	enable_sram
@@ -2091,7 +2091,7 @@ Data_90ed5: db $be, $de, $96, $76, $98, $95, $12, $14, $be, $de, $96, $76, $98, 
 SFXPointers_24:
 INCLUDE "audio/unknown_sfx_90ee5.asm"
 
-Pointers_91fe2:
+RingtonePointers_24:
 INCLUDE "audio/unknown_sfx_91fe2.asm"
 
 MusicPointers_24:

@@ -1705,62 +1705,58 @@ PlayMoveAnimation_grp2: ; 1939 (0:1939)
 	dw ParameterDownAnimation ; PARAMETER_DOWN
 	dw ParameterDownAnimation ; STATUS_RESET
 
-Func_1a09: ; 1a09 (0:1a09)
-	enable_sram s1_a000
-	ld hl, s1_a000
-	ld bc, s1_b000 - s1_a000
-.asm_1a19
+InitCustomDMelo: ; 1a09 (0:1a09)
+	enable_sram sDMelo
+	ld hl, sDMelo
+	ld bc, s1_b000 - sDMelo
+.loop
 	ld a, $fe
 	ld [hli], a
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_1a19
-	ld de, s1_a000
-	ld hl, Data_1a86
+	jr nz, .loop
+	ld de, sDMelo1
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
-	ld de, s1_a200
-	ld hl, Data_1a86
+	ld de, sDMelo2
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
-	ld de, s1_a400
-	ld hl, Data_1a86
+	ld de, sDMelo3
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
-	ld de, s1_a600
-	ld hl, Data_1a86
+	ld de, sDMelo4
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
-	ld de, s1_a800
-	ld hl, Data_1a86
+	ld de, sDMelo5
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
-	ld de, s1_aa00
-	ld hl, Data_1a86
+	ld de, sDMelo6
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
-	ld de, s1_ac00
-	ld hl, Data_1a86
+	ld de, sDMelo7
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
-	ld de, s1_ae00
-	ld hl, Data_1a86
+	ld de, sDMelo8
+	ld hl, .DefaultDMelo
 	ld bc, $8
 	call CopyData
 	xor a
 	ld [MBC3SRamEnable], a
 	ret
 
-Data_1a86:
-	db $01
-	db $00
-	db $01
-	db $02
-	db $21
-	db $02
-	db $41
-	db $02
+.DefaultDMelo:
+	db $01, $00 ; header, tempo
+	db $01, $02 ; do (octave 1, variant 1, length 2)
+	db $21, $02 ; re (octave 1, variant 1, length 2)
+	db $41, $02 ; mi (octave 1, variant 1, length 2)
 
 Func_1a8e:
 	sla c
@@ -1985,7 +1981,7 @@ asm_1bbb
 
 Func_1bd1:
 	xor a
-	ld [hFFA2], a
+	ld [hRingtone], a
 	ld [wcfc0], a
 	ld [rNR12], a
 	ld a, $ff

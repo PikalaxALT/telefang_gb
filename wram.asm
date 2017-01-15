@@ -1343,15 +1343,15 @@ wcb61:: ds 1
 wcb62:: ds 1
 wcb63:: ds 1
 wcb64:: ds 1
-wcb65:: ds 1
+wPhoneKeypadCursorPosition:: ds 1
 wcb66:: ds 1
-wcb67:: ds 1
-wcb68:: ds 1
-wcb69:: ds 1
+wPhoneScreenCursorPosition:: ds 1
+wNumNotesInCurDMelo:: ds 1
+wDMeloPage:: ds 1
 wcb6a:: ds 1
 wcb6b:: ds 1
-wcb6c:: ds 1
-wcb6d:: ds 1
+wDShotPageTop:: ds 1
+wDShotPageCursor:: ds 1
 wcb6e:: ds 1
 wcb6f:: ds 1
 wcb70:: ds 1
@@ -2229,7 +2229,7 @@ wcfc5:: ds 1
 wcfc6:: ds 1
 wcfc7:: ds 1
 wcfc8:: ds 1
-wcfc9:: ds 1
+wAudioSRAMBank:: ds 1
 wcfca:: ds 1
 wcfcb:: ds 1
 wcfcc:: ds 1
@@ -2286,6 +2286,8 @@ wcffe:: ds 1
 wcfff:: ds 1
 
 SECTION "WRAM 1", WRAMX, BANK [1]
+wDMeloBuffer::
+
 wd000:: ds 1
 wd001:: ds 1
 wd002:: ds 1
@@ -2798,6 +2800,8 @@ wd1fc:: ds 1
 wd1fd:: ds 1
 wd1fe:: ds 1
 wd1ff:: ds 1
+
+wDMeloBufferBackup::
 wd200:: ds 1
 wd201:: ds 1
 wd202:: ds 1

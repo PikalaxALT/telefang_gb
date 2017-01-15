@@ -1,5 +1,5 @@
 DenjuuDex:
-	call Func_116e7
+	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
 	dw Func_1143e
@@ -89,7 +89,7 @@ DexMainScreenJoypadAction: ; 1147c (4:547c)
 	and B_BUTTON
 	jr z, .asm_114dc
 	ld e, $2d
-	call Func_13951
+	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	call Func_13fc6
@@ -287,7 +287,7 @@ Func_11644: ; 11644 (4:5644)
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld bc, $0
 	ld e, $11
-	call Func_13963
+	call Phone_LoadStdBGWindowTileAndAttrLayout
 	call Func_13a1e
 	call Func_13e58
 	xor a
@@ -338,7 +338,7 @@ Func_1169d: ; 1169d (4:569d)
 	ld [wSubroutine2], a
 	ret
 
-Func_116e7: ; 116e7 (4:56e7)
+UpdatePhoneClockDisplay: ; 116e7 (4:56e7)
 	ld a, [wcb2b]
 	cp $0
 	ret nz

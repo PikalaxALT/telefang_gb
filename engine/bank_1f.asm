@@ -6928,7 +6928,7 @@ Func_7f532: ; 7f532 (1f:7532)
 	ld a, [wd40d]
 	add $50
 	add $80
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld a, $4
 	ld [wMusicBank], a
 	ret
@@ -7345,7 +7345,7 @@ Func_7f843: ; 7f843 (1f:7843)
 	ld a, [wd40d]
 	add $50
 	add $80
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld a, $4
 	ld [wMusicBank], a
 	ret

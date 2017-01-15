@@ -361,7 +361,7 @@ Func_872e: ; 872e (2:472e)
 Func_8732: ; 8732 (2:4732)
 	push bc
 	push bc
-	ld a, [wcb69]
+	ld a, [wDMeloPage]
 	swap a
 	and $f0
 	add b
@@ -5984,15 +5984,15 @@ Func_a5245: ; a5245 (29:5245)
 	ld a, $5
 	ld [wcafe], a
 	ld a, [wcafd]
-	ld hl, s2_b800
+	ld hl, sAddressBookRingtones
 	add l
 	ld l, a
 	ld a, $0
 	adc h
 	ld h, a
-	enable_sram s2_b800
+	enable_sram sAddressBookRingtones
 	ld a, [hl]
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	disable_sram
 	ld a, $4
 	ld [wMusicBank], a

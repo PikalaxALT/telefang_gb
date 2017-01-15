@@ -2976,19 +2976,19 @@ Func_1561e: ; 1561e (5:561e)
 	ld a, [wPhoneSilentMode]
 	cp $1
 	jr z, .asm_1564c
-	ld hl, s2_b800
+	ld hl, sAddressBookRingtones
 	ld d, $0
 	ld a, [wd43c]
 	ld e, a
 	add hl, de
-	enable_sram s2_b800
+	enable_sram sAddressBookRingtones
 	ld a, [hl]
 	push af
 	xor a
 	ld [MBC3SRamEnable], a
 	pop af
 	set 7, a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld a, $4
 	ld [wMusicBank], a
 	jr .asm_15651

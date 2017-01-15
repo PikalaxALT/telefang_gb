@@ -29,12 +29,12 @@ UpdateSound_11:
 	jr .asm_4403e
 
 .asm_44031
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	or a
 	jr z, .asm_4403e
 	call Func_44c3a
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 .asm_4403e
 	ld a, [wcf90]
 	or a
@@ -299,7 +299,7 @@ Func_441ad:
 
 MemSRAMBank_11: ; 44206 (11:4206)
 	enable_sram
-	ld a, [wcfc9]
+	ld a, [wAudioSRAMBank]
 	ld [MBC3SRamBank], a
 	ret
 
@@ -371,7 +371,7 @@ asm_44268
 	or a
 	jr z, .asm_4428a
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld [wcfc0], a
 	jp Func_442fa
 
@@ -857,7 +857,7 @@ Func_44629: ; 44629 (11:4629)
 	ld [rNR52], a
 	ld [rNR50], a
 	xor a
-	ld [H_FFA2], a
+	ld [H_Ringtone], a
 	ld [wcfc0], a
 	ld [H_MusicID], a
 	ld [wChannel1], a
@@ -1842,13 +1842,13 @@ Func_44c3a: ; 44c3a (11:4c3a)
 	ld hl, Pointers_45fe2
 	xor a
 	ld [wcfc8], a
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	and $80
 	jr z, .asm_44c5c
 	ld a, $ff
 	ld [wcfc8], a
 .asm_44c5c
-	ld a, [H_FFA2]
+	ld a, [H_Ringtone]
 	and $7f
 	ld [wcfc0], a
 	cp $50
@@ -1902,7 +1902,7 @@ Func_44cad: ; 44cad (11:4cad)
 	ld h, [hl]
 	ld l, c
 	ld a, [hli]
-	ld [wcfc9], a
+	ld [wAudioSRAMBank], a
 	jp Func_44c71
 
 Func_44cbe:
