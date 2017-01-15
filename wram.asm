@@ -845,6 +845,8 @@ wc8fc:: ds 1
 wc8fd:: ds 1
 wc8fe:: ds 1
 wc8ff:: ds 1
+
+SECTION "Overworld RAM", WRAM0
 wc900:: ds 1
 wc901:: ds 1
 wc902:: ds 1
@@ -970,8 +972,8 @@ wc981:: ds 1
 wc982:: ds 1
 wc983:: ds 1
 wc984:: ds 1
-wc985:: ds 1
-wc986:: ds 1
+wCurXPixel:: ds 1
+wCurYPixel:: ds 1
 wc987:: ds 1
 wc988:: ds 1
 wc989:: ds 1
@@ -980,38 +982,8 @@ wc98c:: ds 1
 wc98d:: ds 1
 wc98e:: ds 1
 wTakingAStep:: ds 1
-wc990:: ds 1
-wc991:: ds 1
-wc992:: ds 1
-wc993:: ds 1
-wc994:: ds 1
-wc995:: ds 1
-wc996:: ds 1
-wc997:: ds 1
-wc998:: ds 1
-wc999:: ds 1
-wc99a:: ds 1
-wc99b:: ds 1
-wc99c:: ds 1
-wc99d:: ds 1
-wc99e:: ds 1
-wc99f:: ds 1
-wc9a0:: ds 1
-wc9a1:: ds 1
-wc9a2:: ds 1
-wc9a3:: ds 1
-wc9a4:: ds 1
-wc9a5:: ds 1
-wc9a6:: ds 1
-wc9a7:: ds 1
-wc9a8:: ds 1
-wc9a9:: ds 1
-wc9aa:: ds 1
-wc9ab:: ds 1
-wc9ac:: ds 1
-wc9ad:: ds 1
-wc9ae:: ds 1
-wc9af:: ds 1
+wPartnerDenjuuXCoordBuffer:: ds $10
+wPartnerDenjuuYCoordBuffer:: ds $10
 wc9b0:: ds 1
 wc9b1:: ds 1
 wc9b2:: ds 1
@@ -1045,7 +1017,7 @@ wTextDelayTimer:: ds 1
 wTextDelayTimerReset:: ds 1
 wTextLine:: ds 1
 wTextSubfunction:: ds 1
-wc9d0:: ds 1
+	ds 1
 wBackupTextPointer:: dw
 wc9d3:: ds 1
 wc9d4:: ds 1
@@ -1071,15 +1043,15 @@ wc9e8:: ds 1
 wc9e9:: ds 1
 wc9ea:: ds 1
 wc9eb:: ds 1
-wc9ec:: ds 1
+wBlockDataBank:: ds 1
 wc9ed:: ds 1
 wCurTilesetBank:: ds 1
-wc9ef:: ds 1
+wCurStandingTile:: ds 1
 wc9f0:: ds 1
 wc9f1:: ds 1
 wc9f2:: ds 1
 wc9f3:: ds 1
-wc9f4:: ds 1
+wCurPlayerFacing:: ds 1
 wc9f5:: ds 1
 wCurTilesetMetatilesPointer:: dw
 wCurTilesetMetaattrsPointer:: dw
@@ -1204,7 +1176,7 @@ wOverworldMap:: ; ca70
 	ds (SCREEN_WIDTH / 2) * ((SCREEN_HEIGHT +- 2) / 2)
 wOverworldMapEnd:: ; cac0
 
-wcac0:: ds 1
+wPlayerIsRunning:: ds 1
 wcac1:: ds 1
 wcac2:: ds 1
 wcac3:: ds 1
@@ -1239,6 +1211,7 @@ wcadf:: ds 1
 wcae0:: ds 1
 wcae1:: ds 1
 wcae2:: ds 1
+
 wcae3:: ds 1
 wcae4:: ds 1
 wcae5:: ds 1
@@ -1259,6 +1232,7 @@ wcaf3:: ds 1
 wcaf4:: ds 1
 wcaf5:: ds 1
 wcaf6:: ds 1
+
 wcaf7:: ds 1
 wcaf8:: ds 1
 wcaf9:: ds 1
@@ -1806,7 +1780,7 @@ wcd1d:: ds 1
 wcd1e:: ds 1
 wcd1f:: ds 1
 wcd20:: ds 1
-wcd21:: ds 1
+wIdleHUDVisible:: ds 1
 wcd22:: ds 1
 wDexCurDenjuu:: ds 1
 wcd24:: ds 1
@@ -3558,8 +3532,8 @@ wd4e4:: ds 1
 wd4e5:: ds 1
 wNumAlivePlayerDenjuu:: ds 1
 wNumAliveEnemyDenjuu:: ds 1
-wd4e8:: ds 1
-wd4e9:: ds 1
+wCurPlayerHPorDP:: ds 1
+wCurEnemyHPorDP:: ds 1
 wd4ea:: ds 1
 wd4eb:: ds 1
 wd4ec:: ds 1

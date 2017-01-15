@@ -24,7 +24,7 @@ Func_2134::
 	ld a, $0
 	ld [wNumIdleFrames], a
 	ld a, $0
-	ld [wcd21], a
+	ld [wIdleHUDVisible], a
 	ld a, [wc92a]
 	ld b, a
 	ld a, [wc92b]
@@ -79,7 +79,7 @@ Func_21db::
 	ld a, $0
 	ld [wTextSubfunction], a
 	ld [wOverworldIdleHUDPage], a
-	ld [wcd21], a
+	ld [wIdleHUDVisible], a
 	ld a, [wc900]
 	cp $3
 	jr nz, .asm_2213

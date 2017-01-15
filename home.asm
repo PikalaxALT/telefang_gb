@@ -8,7 +8,7 @@ SECTION "Header", HOME [$0104]
 SECTION "Start", HOME [$0150]
 INCLUDE "home/init.asm"
 
-PushGFXRegisters::
+PushGFXRegisters:
 	ld a, [wc46c]
 	or a
 	jr nz, .go
@@ -137,7 +137,7 @@ LoadPushOAM: ; 79a (0:079a)
 	jr nz, .load
 	ret
 
-PushOAM::
+PushOAM:
 	ld a, wOAMBuffer / $100
 	ld [rDMA], a
 	; Wait until DMA is finished doing its thing (1 cycle per byte)
@@ -146,9 +146,9 @@ PushOAM::
 	dec a
 	jr nz, .wait_dma
 	ret
-PushOAMEnd::
+PushOAMEnd:
 
-Func_07b2::
+Func_07b2:
 	ld a, [hBGMapYPixel]
 	sub $10
 	srl a
@@ -191,13 +191,13 @@ DisableLCD: ; 7df (0:07df)
 	ld [rIE], a
 	ret
 
-EnableLCD::
+EnableLCD:
 	ld a, [rLCDC]
 	or $80
 	ld [rLCDC], a
 	ret
 
-ClearMemory2::
+ClearMemory2:
 .loop
 	ld a, $0
 	ld [hli], a
@@ -219,7 +219,7 @@ ClearVBGMap: ; 807 (0:0807)
 	jr nz, .asm_080d
 	ret
 
-Func_0816::
+Func_0816:
 .asm_0816
 	ld a, [hli]
 	di
@@ -255,7 +255,7 @@ ClearWRAM: ; 97c (0:097c)
 	ld hl, wOAMAnimations
 	jp ClearMemory3
 
-ClearObjectAnimationBuffers::
+ClearObjectAnimationBuffers:
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld bc, wOAMAnimationsEnd - wOAMAnimations
@@ -265,7 +265,7 @@ ClearObjectAnimationBuffers::
 	ld hl, wPlayerObjectStruct
 	jp ClearMemory3
 
-Func_099c::
+Func_099c:
 	ld b, $20
 	xor a
 .asm_099f
@@ -298,7 +298,7 @@ WaitStatAndLoad: ; 9b3 (0:09b3)
 	ei
 	ret
 
-ClearBGMapAndAttrs::
+ClearBGMapAndAttrs:
 	ld bc, $400
 	ld hl, VBGMap
 .asm_09c5
@@ -323,7 +323,7 @@ ClearBGMapAndAttrs::
 	ld [rVBK], a
 	ret
 
-ClearBGWindowAndAttrs::
+ClearBGWindowAndAttrs:
 	ld bc, $400
 	ld hl, VWindow
 .asm_09eb
@@ -348,7 +348,7 @@ ClearBGWindowAndAttrs::
 	ld [rVBK], a
 	ret
 
-Func_0a0b::
+Func_0a0b:
 	xor a
 	ld [wSCX], a
 	ld [wSCY], a
@@ -602,7 +602,7 @@ Func_0d97: ; d97 (0:0d97)
 
 INCLUDE "home/objects.asm"
 
-GetWordFromTable::
+GetWordFromTable:
 	ld b, $0
 	ld c, a
 	sla c
@@ -613,13 +613,13 @@ GetWordFromTable::
 	ld l, a
 	ret
 
-IncrementSubroutine::
+IncrementSubroutine:
 	ld a, [wSubroutine]
 	inc a
 	ld [wSubroutine], a
 	ret
 
-IncrementSubroutine2::
+IncrementSubroutine2:
 	ld a, [wSubroutine2]
 	inc a
 	ld [wSubroutine2], a
@@ -663,7 +663,7 @@ ENDR
 	pop af
 	ret
 
-Func_0eee::
+Func_0eee:
 	push af
 	push bc
 	push de
@@ -826,7 +826,7 @@ Func_1338: ; 1338 (0:1338)
 	ld [wNumCGBPalettesToFade], a
 	jr .asm_1346
 
-PrintDenjuuStat::
+PrintDenjuuStat:
 	push hl
 	push de
 	push bc
@@ -890,7 +890,7 @@ PrintDenjuuStat::
 	pop hl
 	ret
 
-Func_13d7::
+Func_13d7:
 	push hl
 	push de
 	push bc
@@ -951,7 +951,7 @@ Func_13d7::
 	pop hl
 	ret
 
-Print2DigitBCD_2::
+Print2DigitBCD_2:
 	push hl
 	push de
 	push bc
@@ -1018,7 +1018,7 @@ Print2DigitBCD_2::
 	pop hl
 	ret
 
-Func_1499::
+Func_1499:
 	push hl
 	push de
 	push bc
@@ -1036,7 +1036,7 @@ Func_1499::
 	pop hl
 	ret
 
-Func_14b1::
+Func_14b1:
 	push hl
 	push de
 	push bc
@@ -1179,7 +1179,7 @@ ClearMemory3: ; 159f (0:159f)
 	jr nz, ClearMemory3
 	ret
 
-FillMemoryWithFF::
+FillMemoryWithFF:
 .asm_15a7
 	ld a, $ff
 	ld [hli], a
@@ -1189,7 +1189,7 @@ FillMemoryWithFF::
 	jr nz, .asm_15a7
 	ret
 
-Func_15b0::
+Func_15b0:
 	ld a, d
 	or a
 	jr z, .asm_15bd
@@ -1207,7 +1207,7 @@ Func_15b0::
 	ld hl, 0
 	ret
 
-CopyData::
+CopyData:
 .asm_15c1
 	ld a, [hli]
 	ld [de], a
@@ -1218,7 +1218,7 @@ CopyData::
 	jr nz, .asm_15c1
 	ret
 
-FillBoxAttr::
+FillBoxAttr:
 ; hl: start
 ; b: x dim
 ; c: y dim
@@ -1248,7 +1248,7 @@ FillBoxAttr::
 	ld [rVBK], a
 	ret
 
-GetMusicBank::
+GetMusicBank:
 	cp $10
 	jr nc, .asm_15fe
 	push af
@@ -1288,11 +1288,11 @@ GetTFangerPalette: ; 1756 (0:1756)
 	ld hl, (TFangerPalettes - Palettes_34000) >> 3
 	jp Func_176a
 
-GetDenjuuPalette_Pal6::
+GetDenjuuPalette_Pal6:
 	ld b, $6
 	jp GetDenjuuPalette_BG
 
-GetDenjuuPalette_Pal7::
+GetDenjuuPalette_Pal7:
 	ld b, $7
 GetDenjuuPalette_BG: ; 1766 (0:1766)
 	push bc
@@ -1307,7 +1307,7 @@ Func_176a: ; 176a (0:176a)
 	ld c, l
 	jp LoadNthStdBGPalette
 
-GetDenjuuPalette_OB::
+GetDenjuuPalette_OB:
 	push bc
 	ld hl, (DenjuuPalettes - Palettes_34000) >> 3
 	ld d, $0
@@ -1335,7 +1335,7 @@ InvertBits: ; 1784 (0:1784)
 	pop de
 	ret
 
-AnimateStatUpArrows::
+AnimateStatUpArrows:
 	push hl
 	pop de
 	di
@@ -1373,7 +1373,7 @@ AnimateStatUpArrows::
 	ei
 	ret
 
-Func_17cf::
+Func_17cf:
 	ld b, $10
 .asm_17d1
 	di
@@ -1387,7 +1387,7 @@ Func_17cf::
 	jr nz, .asm_17d1
 	ret
 
-Func_17df::
+Func_17df:
 	ld b, $10
 .asm_17e1
 	di
@@ -1401,7 +1401,7 @@ Func_17df::
 	jr nz, .asm_17e1
 	ret
 
-Func_17ef::
+Func_17ef:
 	push hl
 	ld de, wcb80
 	ld bc, $40
@@ -1471,7 +1471,7 @@ Func_1841: ; 1841 (0:1841)
 	call WaitStatCopy
 	ret
 
-Func_1877::
+Func_1877:
 	ld b, $8
 .asm_1879
 	di
@@ -1661,7 +1661,7 @@ PlayMoveAnimation_grp1: ; 1939 (0:1939)
 	dw RockAnimation ; ROCK
 	dw MegaRockAnimation ; MEGA_ROCK
 
-EndMoveAnimation::
+EndMoveAnimation:
 	ld a, $17
 	ld [wd401], a
 	ret
@@ -1752,7 +1752,7 @@ Func_1a09: ; 1a09 (0:1a09)
 	ld [MBC3SRamEnable], a
 	ret
 
-Data_1a86::
+Data_1a86:
 	db $01
 	db $00
 	db $01
@@ -1762,7 +1762,7 @@ Data_1a86::
 	db $41
 	db $02
 
-Func_1a8e::
+Func_1a8e:
 	sla c
 	rl b
 	sla c
@@ -1795,11 +1795,11 @@ Func_1a8e::
 	ld hl, VTilesBG + $40 tiles
 	jp PlaceString_
 
-Func_1ac6::
+Func_1ac6:
 	ld de, VTilesBG + $40 tiles
 	jr asm_1ace
 
-Func_1acb::
+Func_1acb:
 	ld de, VTilesBG
 asm_1ace
 	push de
@@ -1819,7 +1819,7 @@ asm_1ace
 	ld bc, $20 tiles
 	jp WaitStatCopy
 
-Pointers_1aea::
+Pointers_1aea:
 	dw Phone1GFX
 	dw Phone1GFX
 	dw Phone1GFX
@@ -1830,7 +1830,7 @@ Pointers_1aea::
 	dw Phone3GFX
 	dw Phone3GFX
 
-Func_1afc::
+Func_1afc:
 	ld c, a
 	ld hl, wcd70
 	ld b, $8
@@ -1938,11 +1938,11 @@ IsSpecialPhoneNumber: ; 1b4d (0:1b4d)
 	ld a, $1
 	ret
 
-Func_1b8f::
+Func_1b8f:
 	ld a, $1
 	jr asm_1b95
 
-Func_1b93::
+Func_1b93:
 	ld a, $0
 asm_1b95
 	ld [rSB], a
@@ -1963,11 +1963,11 @@ LoadWildBattleBackgroundGFX_: ; 1b9c (0:1b9c)
 	ld bc, WildBG_002 - WildBG_001
 	jp WaitStatCopy
 
-Func_1bb3::
+Func_1bb3:
 	ld de, VTilesShared
 	jr asm_1bbb
 
-Func_1bb8::
+Func_1bb8:
 	ld de, VTilesBG tile $20
 asm_1bbb
 	push de
@@ -1983,7 +1983,7 @@ asm_1bbb
 	ld bc, WildBG_009 - WildBG_008
 	jp WaitStatCopy
 
-Func_1bd1::
+Func_1bd1:
 	xor a
 	ld [hFFA2], a
 	ld [wcfc0], a
@@ -2088,7 +2088,7 @@ InitSerialData: ; 1d23 (0:1d23)
 	ld [rSC], a
 	ret
 
-Func_1d38::
+Func_1d38:
 	ld a, $1
 	ld [wdc01], a
 	ld a, $fd
@@ -2108,7 +2108,7 @@ Func_1d46: ; 1d46 (0:1d46)
 	ld [rSC], a
 	ret
 
-Func_1d57::
+Func_1d57:
 .asm_1d57
 	dec bc
 	ld a, b
@@ -2139,7 +2139,7 @@ Func_1d66: ; 1d66 (0:1d66)
 	ei
 	ret
 
-Func_1d84::
+Func_1d84:
 	ld a, [wdc3e]
 	and a
 	jr z, .asm_1da0
@@ -2162,7 +2162,7 @@ Func_1d84::
 	ld [wdc27], a
 	ret
 
-Func_1da5::
+Func_1da5:
 	ld a, $1
 	ld [wdc43], a
 	ld a, [wdc3f]
@@ -2313,7 +2313,7 @@ RunOverworld: ; 1ea1 (0:1ea1)
 	ld a, [wc98e]
 	or a
 	jr nz, .skip
-	homecall OverworldGetRTCEveryFourFrames, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, Func_a5245, Func_a54a2
+	homecall OverworldGetRTCEveryFourFrames, Func_a50be, OverworldSamplePhonecall, OverworldPhonecallCheck, Func_a5245, HealPartnerDenjuuInOverworld
 	callba OverworldIdleHudCheck
 	callba Func_2e4b2
 .skip
@@ -2381,7 +2381,7 @@ Func_1f6a: ; 1f6a (0:1f6a)
 	ld l, e
 	jp [hl]
 
-TextWaitStat::
+TextWaitStat:
 .asm_1f79
 	ld a, [rSTAT]
 	and $2
@@ -2389,7 +2389,7 @@ TextWaitStat::
 	ret
 
 Func_1f80: ; 1f80 (0:1f80)
-	call Func_2107
+	call CheckInOverworld
 	ret nz
 	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
@@ -2451,7 +2451,7 @@ Func_1fff: ; 1fff (0:1fff)
 	jp Func_342a
 
 Func_200a: ; 200a (0:200a)
-	call Func_2107
+	call CheckInOverworld
 	ret nz
 	ld a, [wcdb6]
 	or a
@@ -2486,7 +2486,7 @@ Func_2021: ; 2021 (0:2021)
 	ld a, [wPhoneCallRingtoneTimer]
 	or a
 	ret nz
-	call Func_2107
+	call CheckInOverworld
 	ret nz
 	ld a, [wPlayerObjectStruct_Duration + 18]
 	or a
@@ -2574,7 +2574,7 @@ Func_20f6: ; 20f6 (0:20f6)
 	rst Bankswitch
 	ret
 
-Func_2107: ; 2107 (0:2107)
+CheckInOverworld: ; 2107 (0:2107)
 	ld a, [wPlayerNameEntryBuffer]
 	or a
 	jr nz, .asm_2121
@@ -2596,16 +2596,16 @@ Func_24f6: ; 24f6 (0:24f6)
 	homecall Func_c9538
 	ret
 
-Func_2503::
+Func_2503:
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Func_2509::
+Func_2509:
 	homecall Func_c8000
 	ret
 
-Data_2516::
+Data_2516:
 x = 0
 REPT 10
 	dw x
@@ -2646,14 +2646,14 @@ Func_252a: ; 252a (0:252a)
 	call LoadMetatile
 	ret
 
-Data_255a::
+Data_255a:
 x = 0
 REPT 10
 	dw x
 x = x + $20
 ENDR
 
-Func_256e::
+Func_256e:
 	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $0
 	jp nz, Func_2690
@@ -2699,7 +2699,7 @@ Func_256e::
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wc9f4], a
+	ld [wCurPlayerFacing], a
 	call OverworldRandom8_
 	cp $40
 	jr nc, .asm_25fe
@@ -2791,7 +2791,7 @@ Func_2691: ; 2691 (0:2691)
 	ld c, $9b
 	jp PrintMapObjectText_
 
-Data_2698::
+Data_2698:
 	db $2c
 	db $29
 	db $2c
@@ -2801,7 +2801,7 @@ Data_2698::
 	db $c9
 	db $47
 
-Func_26a0::
+Func_26a0:
 	ld a, [wc9c4]
 	ld c, a
 	ld a, [wc9c0]
@@ -2861,21 +2861,21 @@ Func_26ff: ; 26ff (0:26ff)
 	ld a, [hl]
 	sub $2
 	ld a, a
-	ld [wc9f4], a
+	ld [wCurPlayerFacing], a
 	ld a, $11
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $c
 	ld [wPlayerObjectStruct_Duration + 11], a
 	ld a, SFX_68
 	ld [hSFX_ID], a
-Func_2726::
+Func_2726:
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	res 2, a
 	ld [wPlayerObjectStruct_Duration + 17], a
 asm_272e
 	ret
 
-Func_272f::
+GetBlockdataPointer:
 	ld a, [wCurTilesetIdx]
 	ld hl, Data_2760
 	ld b, a
@@ -2887,7 +2887,7 @@ Func_272f::
 	adc h
 	ld h, a
 	ld a, [hli]
-	ld [wc9ec], a
+	ld [wBlockDataBank], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2909,7 +2909,7 @@ Func_272f::
 	rst Bankswitch
 	ret
 
-Data_2760::
+Data_2760:
 	dba Data_1a0000
 	dba Data_1a4000
 	dba Data_1a0000
@@ -3208,7 +3208,7 @@ Func_28ee: ; 28ee (0:28ee)
 	or $1
 	ret
 
-Func_2928::
+Func_2928:
 	ld a, [wROMBank]
 	push af
 	ld a, [wCurTilesetBank]
@@ -3347,7 +3347,7 @@ Func_2928::
 	rst Bankswitch
 	jp .next
 
-Func_29ed::
+Func_29ed:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Pointers_19c000)
@@ -3464,59 +3464,59 @@ Func_2a68: ; 2a68 (0:2a68)
 .done
 	ret
 
-Func_2ab3::
-	homecall Func_2dd28
+ApplyXStepVector_:
+	homecall ApplyXStepVector
 	ret
 
-Func_2ac0::
-	homecall Func_2dd41
+ApplyYStepVector_:
+	homecall ApplyYStepVector
 	ret
 
-Func_2acd::
+Func_2acd:
 	homecall Func_2dd5a
 	ret
 
-Func_2ada::
+Func_2ada:
 	homecall Func_2dd89
 	ret
 
-Func_2ae7::
+Func_2ae7:
 	homecall Func_2dd9d
 	ret
 
-Func_2af4::
+Func_2af4:
 	homecall Func_2ddb1
 	ret
 
-Func_2b01::
+Func_2b01:
 	homecall Func_2ddc5
 	ret
 
-Func_2b0e::
+Func_2b0e:
 	homecall Func_c8243
 	ret
 
-Func_2b1b::
+Func_2b1b:
 	homecall Func_c8268
 	ret
 
-Func_2b28::
+Func_2b28:
 	ld e, a
 	homecall Func_c8293
 	ret
 
-Func_2b36::
+Func_2b36:
 	ld e, a
 	homecall Func_c82df
 	ret
 
 INCLUDE "home/multiply.asm"
 
-LoadMapBlockdataAndScriptHeader::
-	call Func_272f
+LoadMapBlockdataAndScriptHeader:
+	call GetBlockdataPointer
 	ld a, [wROMBank]
 	push af
-	ld a, [wc9ec]
+	ld a, [wBlockDataBank]
 	rst Bankswitch
 	decoord 0, 0
 	ld b, $50
@@ -3534,19 +3534,19 @@ LoadMapBlockdataAndScriptHeader::
 	ld [wc94c], a
 	jp Func_2928
 
-Func_2b98::
+Func_2b98:
 	ld b, $c
 	ld hl, wOAMAnimation01
 	ld de, $20
 	xor a
-.asm_2ba1
+.clear
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_2ba1
+	jr nz, .clear
 	jp Func_2726
 
-Func_2ba9::
+Func_2ba9:
 	ld a, [wTextBGMapTop]
 	srl a
 	ld c, a
@@ -3566,12 +3566,12 @@ Func_2ba9::
 	ld b, a
 	jp Func_2bdc
 
-Func_2bcd::
+Func_2bcd:
 	ld bc, $0000
 	decoord 0, 0
 	jp Func_2bdc
 
-Func_2bd6::
+Func_2bd6:
 	ld bc, $0100
 	decoord 0, 4
 Func_2bdc: ; 2bdc (0:2bdc)
@@ -3595,7 +3595,7 @@ Func_2bdc: ; 2bdc (0:2bdc)
 	jr nz, .asm_2bea
 	ret
 
-Func_2c05::
+Func_2c05:
 	ld a, [wROMBank]
 	ld [wca52], a
 	ld a, [wCurTilesetBank]
@@ -3617,7 +3617,7 @@ asm_2c22
 	pop af
 	ret
 
-Func_2c29::
+Func_2c29:
 	ld a, [wROMBank]
 	ld [wca52], a
 	ld a, [wCurTilesetBank]
@@ -3661,7 +3661,7 @@ asm_2c5e
 	pop bc
 	ret
 
-ToggleEventFlag::
+ToggleEventFlag:
 	push bc
 	push hl
 	call GetEventFlagAddressAndBit
@@ -3669,7 +3669,7 @@ ToggleEventFlag::
 	xor c
 	jr asm_2c5e
 
-ResetEventFlag::
+ResetEventFlag:
 	push bc
 	push hl
 	call GetEventFlagAddressAndBit
@@ -3702,7 +3702,7 @@ GetEventFlagAddressAndBit: ; 2c77 (0:2c77)
 .asm_2c93
 	ret
 
-Func_2c94::
+Func_2c94:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_302a8)
@@ -3717,33 +3717,33 @@ Func_2c94::
 	rst Bankswitch
 	ret
 
-Func_2caa::
+Func_2caa:
 	homecall Func_3024f
 	ret
 
-Func_2cb7::
+Func_2cb7:
 	homecall Func_3102a
 	ret
 
-PrintText_::
+PrintText_:
 	homecall PrintText
 	ret
 
-Func_2cd1::
-	homecall Func_2c831
+PrintMoneyInShop_:
+	homecall PrintMoneyInShop
 	ret
 
-OverworldIdleHUD_::
+OverworldIdleHUD_:
 	homecall OverworldIdleHUD
 	ret
 
 INCLUDE "home/text.asm"
 
-Func_2d4c::
+Func_2d4c:
 	homecall Func_33a62
 	ret
 
-GetMapHeaderAddress::
+GetMapHeaderAddress:
 	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
@@ -3857,7 +3857,7 @@ GetMapHeaderBank: ; 2ddb (0:2ddb)
 	ld b, BANK(Pointers_18ba1) ; $6
 	ret
 
-Data_2e09::
+Data_2e09:
 	dw Pointers_148000 ; bank 6 if EVENT_20B else bank 52
 	dw Pointers_148000 ; bank 6 if EVENT_20B else bank 52
 	dw Pointers_148000 ; bank 6 if EVENT_20B else bank 52
@@ -3876,7 +3876,7 @@ Data_2e09::
 	dw Pointers_14c668
 	dw Pointers_14d472 ; bank 53
 
-CopyMapHeader::
+CopyMapHeader:
 	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
@@ -3894,7 +3894,7 @@ CopyMapHeader::
 	rst Bankswitch
 	ret
 
-Func_2e42::
+Func_2e42:
 	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
@@ -3922,7 +3922,7 @@ Func_2e42::
 	rst Bankswitch
 	ret
 
-Func_2e67::
+Func_2e67:
 	ld c, a
 	ld a, [wROMBank]
 	push af
@@ -3934,7 +3934,7 @@ Func_2e67::
 	rst Bankswitch
 	ret
 
-Func_2e76::
+Func_2e76:
 	ld c, a
 	ld a, [wROMBank]
 	push af
@@ -3946,11 +3946,11 @@ Func_2e76::
 	rst Bankswitch
 	ret
 
-Func_2e85::
+Func_2e85:
 	homecall Func_3226b
 	ret
 
-GetMapByte::
+GetMapByte:
 	call GetMapHeaderBank
 	ld a, [wROMBank]
 	push af
@@ -3962,7 +3962,7 @@ GetMapByte::
 	rst Bankswitch
 	ret
 
-LoadMapObjectTextIdxs::
+LoadMapObjectTextIdxs:
 	push hl
 	call GetMapHeaderBank
 	ld a, [wROMBank]
@@ -4040,7 +4040,7 @@ LoadMapObjectTextIdxs::
 	pop hl
 	ret
 
-Func_2f0a::
+Func_2f0a:
 	push hl
 	call GetMapHeaderBank
 	ld a, [wROMBank]
@@ -4066,11 +4066,11 @@ Func_2f0a::
 	pop hl
 	ret
 
-Func_2f27::
+Func_2f27:
 	homecall Func_30b4e
 	ret
 
-GetMapObjectFlags::
+GetMapObjectFlags:
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4085,7 +4085,7 @@ GetMapObjectFlags::
 	rst Bankswitch
 	ret
 
-CopyScriptToBuffer::
+CopyScriptToBuffer:
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4111,7 +4111,7 @@ CopyScriptToBuffer::
 	rst Bankswitch
 	ret
 
-GetFarWord::
+GetFarWord:
 	ld a, [wROMBank]
 	push af
 	ld a, b
@@ -4150,7 +4150,7 @@ CopyData_Under256Bytes: ; 2f89 (0:2f89)
 	jr nz, CopyData_Under256Bytes
 	ret
 
-Func_2f90::
+Func_2f90:
 	ld a, [wROMBank]
 	push af
 	ld a, $26
@@ -4165,7 +4165,7 @@ Func_2f90::
 	rst Bankswitch
 	ret
 
-Func_2fa0::
+Func_2fa0:
 	push af
 	push hl
 	ld hl, wcdbc
@@ -4183,7 +4183,7 @@ Func_2fa0::
 	pop af
 	ret
 
-Func_2fb4::
+Func_2fb4:
 	push af
 	push hl
 	ld hl, wcdbc
@@ -4201,7 +4201,7 @@ Func_2fb4::
 	pop af
 	ret
 
-LoadCharacter_::
+LoadCharacter_:
 	push af
 	ld a, [wROMBank]
 	ld [wca52], a
@@ -4213,7 +4213,7 @@ LoadCharacter_::
 	rst Bankswitch
 	ret
 
-GetFarByte::
+GetFarByte:
 ; get byte at b:hl
 	ld a, [wROMBank]
 	push af
@@ -4224,7 +4224,7 @@ GetFarByte::
 	rst Bankswitch
 	ret
 
-Func_2fe4::
+Func_2fe4:
 	ld a, [wROMBank]
 	push af
 	ld a, $29
@@ -4240,30 +4240,30 @@ Func_2fe4::
 	rst Bankswitch
 	ret
 
-Func_2ff5::
+Func_2ff5:
 	homecall Func_2da7e
 	ret
 
-Data_3002::
+Data_3002:
 	db $20, $20, $28, $20
 
-Func_3006::
+Func_3006:
 	homecall Func_2d92b
 	ret
 
-Func_3013::
+Func_3013:
 	homecall Func_2d95f
 	ret
 
-AddVector_::
+AddVector_:
 	homecall AddVector
 	ret
 
-Func_302d::
+Func_302d:
 	homecall Func_2db55
 	ret
 
-Func_303a::
+Func_303a:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_2db90)
@@ -4275,7 +4275,7 @@ Func_303a::
 	ld a, d
 	ret
 
-Func_3049::
+Func_3049:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Func_2dc6d)
@@ -4287,7 +4287,7 @@ Func_3049::
 	ld a, d
 	ret
 
-Sine8_::
+Sine8_:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Sine8)
@@ -4300,7 +4300,7 @@ Sine8_::
 	ld a, d
 	ret
 
-Cosine8_::
+Cosine8_:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Cosine8)
@@ -4313,7 +4313,7 @@ Cosine8_::
 	ld a, d
 	ret
 
-Sine16_::
+Sine16_:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Sine16)
@@ -4324,7 +4324,7 @@ Sine16_::
 	rst Bankswitch
 	ret
 
-Cosine16_::
+Cosine16_:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(Cosine16)
@@ -4335,7 +4335,7 @@ Cosine16_::
 	rst Bankswitch
 	ret
 
-CalcL1Distance_::
+CalcL1Distance_:
 ; a = abs(b - d) + abs(c - e)
 ; also stores to wMathBuffer3
 	ld a, [wROMBank]
@@ -4362,12 +4362,12 @@ OverworldRandom8_: ; 30a7 (0:30a7)
 	ld a, d
 	ret
 
-OverworldRandom16_::
+OverworldRandom16_:
 ; Same as OverworldRandom8_, but result is returned as signed short to bc
 	homecall OverworldRandom16
 	ret
 
-GetOverworldSprite_SizeHL::
+GetOverworldSprite_SizeHL:
 	push af
 	ld a, $1
 	ld [wSpriteDestIsCustom], a
@@ -4378,7 +4378,7 @@ GetOverworldSprite_SizeHL::
 	ld b, $0
 	jr asm_30db
 
-GetOverworldSprite::
+GetOverworldSprite:
 	push af
 	ld a, $0
 	ld [wSpriteDestIsCustom], a
@@ -4500,7 +4500,7 @@ ServeSpecialGFXRequest: ; 3171 (0:3171)
 	jr z, .asm_3197
 	call Func_3238
 .asm_3197
-	ld a, [wc9f4]
+	ld a, [wCurPlayerFacing]
 	ld b, a
 	ld a, [wc9f5]
 	cp b
@@ -4526,7 +4526,7 @@ asm_31c2
 	jp Func_320b
 
 Func_31c5: ; 31c5 (0:31c5)
-	ld a, [wc9f4]
+	ld a, [wCurPlayerFacing]
 	ld b, a
 	ld a, [wc9f5]
 	cp b
@@ -4715,7 +4715,7 @@ ENDR
 	ld [hl], a
 	ret
 
-Func_32f6::
+Func_32f6:
 	ret
 
 WrapAroundBGMapPointer: ; 32f7 (0:32f7)
@@ -4830,11 +4830,11 @@ Func_33a2: ; 33a2 (0:33a2)
 	homecall Func_2e466
 	ret
 
-LoadTextBoxPalette_::
+LoadTextBoxPalette_:
 	homecall LoadTextBoxPalette
 	ret
 
-Func_33bc::
+Func_33bc:
 	homecall Func_2c6e2
 	ret
 
@@ -4842,19 +4842,19 @@ PrintMapObjectText_: ; 33c9 (0:33c9)
 	homecall PrintMapObjectText
 	ret
 
-Func_33d6::
+Func_33d6:
 	homecall Func_2c7ed
 	ret
 
-CenterAlignDenjuuName_::
+CenterAlignDenjuuName_:
 	homecall CenterAlignDenjuuName
 	ret
 
-Func_33f0::
+Func_33f0:
 	homecall Func_33a90
 	ret
 
-Func_33fd::
+Func_33fd:
 	ld [wScriptCount], a
 	ld a, [wROMBank]
 	push af
@@ -4866,11 +4866,11 @@ Func_33fd::
 	rst Bankswitch
 	ret
 
-Func_3410::
+Func_3410:
 	homecall Func_a8c86
 	ret
 
-Func_341d::
+Func_341d:
 	homecall Func_2de18
 	ret
 
@@ -5042,7 +5042,7 @@ Func_34dc: ; 34dc (0:34dc)
 	rst Bankswitch
 	ret
 
-Func_3514::
+Func_3514:
 	call CheckEventFlag
 	ld b, $f0
 	jr z, .asm_351c
@@ -5063,7 +5063,7 @@ Func_3514::
 	ld [rVBK], a
 	ret
 
-Func_3533::
+Func_3533:
 	push bc
 	ld a, b
 	call Func_353b
@@ -5147,7 +5147,7 @@ asm_3578
 	rst Bankswitch
 	ret
 
-Func_35a3::
+Func_35a3:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(GFX_e0bb8)
@@ -5159,7 +5159,7 @@ asm_35ac
 	ld b, $80
 	jp asm_3578
 
-Func_35b7::
+Func_35b7:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(GFX_e0bb8)
@@ -5363,7 +5363,7 @@ Func_36f3:
 	rst Bankswitch
 	ret
 
-CompressPhoneNumber_::
+CompressPhoneNumber_:
 	homecall CompressPhoneNumber
 	ret
 
@@ -5378,7 +5378,7 @@ FarCopy2bpp_2: ; 372d (0:372d)
 	rst Bankswitch
 	ret
 
-Func_373e::
+Func_373e:
 	ld a, [wROMBank]
 	push af
 	ld a, BANK(DenjuuPalettes)
@@ -5415,17 +5415,17 @@ Func_373e::
 	rst Bankswitch
 	ret
 
-homecall_ret_2e562::
+homecall_ret_2e562:
 	homecall ret_2e562
 	ret
 
-Func_3775::
+Func_3775:
 	ld d, a
 	call Func_37a9
 	ld a, d
 	ret
 
-Func_377b::
+Func_377b:
 .asm_377b
 	push af
 	call Func_378c
@@ -5564,14 +5564,14 @@ Copy2bpp_2: ; 3801 (0:3801)
 	jr nz, .loop2
 	ret
 
-PushOBPal::
+PushOBPal:
 	push af
 	ld de, rOBPI
 	call SetPalCtrlRegister
 	ld de, rOBPD
 	jr asm_3844
 
-PushBGPal::
+PushBGPal:
 	push af
 	ld de, rBGPI
 	call SetPalCtrlRegister
@@ -5617,7 +5617,7 @@ Func_3869: ; 3869 (0:3869)
 Func_3880: ; 3880 (0:3880)
 	ret
 
-Func_3881::
+Func_3881:
 	ret
 
 INCLUDE "home/pcm.asm"
@@ -5758,14 +5758,14 @@ PlaceString: ; 3a91 (0:3a91)
 	pop bc
 	ret
 
-Func_3abb::
+Func_3abb:
 	di
 	call WaitStat
 	ld [hl], c
 	ei
 	ret
 
-Data_3ac2::
+Data_3ac2:
 	db $0
 
 GetAndPrintName75LeftAlign: ; 3ac3 (0:3ac3)
@@ -5783,7 +5783,7 @@ GetAndPrintName75LeftAlign: ; 3ac3 (0:3ac3)
 	ld b, $8
 	jp PlaceString_
 
-GetAndPrintName75CenterAlign::
+GetAndPrintName75CenterAlign:
 	ld [wNamedObjectIndexBuffer], a
 	push bc
 	push de
@@ -5866,7 +5866,7 @@ GetExpToNextLevel_: ; 3b4e (0:3b4e)
 	ld b, a
 	ret
 
-Data_3b6b::
+Data_3b6b:
 	db 0, 2, 4
 	db 0, 2, 4
 	db 0, 2, 4
@@ -5928,7 +5928,7 @@ Func_3bc1: ; 3bc1 (0:3bc1)
 	ld [wd495], a
 	ret
 
-PrintNumHL::
+PrintNumHL:
 ; Print a 16-bit number in hl to [wBattleTargetName]
 get_digit: MACRO
 IF \1 == 1
@@ -6026,7 +6026,7 @@ ENDR
 	ld [wTempWildDenjuuSpecies], a
 	ret
 
-Func_3cb5::
+Func_3cb5:
 	push af
 	call InitBattleMenuCursor
 	ld hl, wOAMAnimations
@@ -6045,7 +6045,7 @@ Func_3cb5::
 	pop af
 	jp Func_0609
 
-Func_3cd0::
+Func_3cd0:
 	ld hl, wOAMAnimations
 	ld de, $20
 	ld a, [wWhichBattleMenuCursor]
@@ -6071,7 +6071,7 @@ Func_3cd0::
 	ret nz
 	jp NextMoveAnimationSubroutine
 
-NextBattleSubroutine::
+NextBattleSubroutine:
 	ld hl, wBattleSubroutine
 	inc [hl]
 	ret
@@ -6081,14 +6081,14 @@ NextMoveAnimationSubroutine: ; 3cfd (0:3cfd)
 	inc [hl]
 	ret
 
-StdBattleTextBox::
+StdBattleTextBox:
 	ld b, $0
 	ld d, $c
 	ld a, $60
 	ld [wTextBoxStartTile], a
 	jp AnchorMapAndLoadTextPointer_
 
-GetNthAddressBookAttributeAddr::
+GetNthAddressBookAttributeAddr:
 	push hl
 	ld c, a
 	ld e, $10
@@ -6144,19 +6144,19 @@ ClearString: ; 3d5c (0:3d5c)
 	jr nz, ClearString
 	ret
 
-OpenSRAMBank2::
+OpenSRAMBank2:
 	push af
 	enable_sram sAddressBook
 	pop af
 	ret
 
-CloseSRAM::
+CloseSRAM:
 	push af
 	disable_sram
 	pop af
 	ret
 
-CopyPlayerDenjuuNameToBattleUserName::
+CopyPlayerDenjuuNameToBattleUserName:
 	ld hl, wBattleUserName
 	ld a, $9
 	push hl
@@ -6170,7 +6170,7 @@ CopyPlayerDenjuuNameToBattleUserName::
 	ld hl, wBattlePlayerDenjuuName
 	jp CopyData
 
-GetCurDenjuuKanjiDescription::
+GetCurDenjuuKanjiDescription:
 	cp ANGIOS
 	jr c, .asm_3dcb
 	cp FIREKOKKO
@@ -6265,7 +6265,7 @@ Func_3e00: ; 3e00 (0:3e00)
 	ld [wd43d], a
 	ret
 
-PrintStringWithPlayerDenjuuAsBattleUser::
+PrintStringWithPlayerDenjuuAsBattleUser:
 	push hl
 	push af
 	call OpenSRAMBank2
@@ -6386,7 +6386,7 @@ LoadBackgroundPalette
 .asm_3eed
 	ret
 
-Func_3eee::
+Func_3eee:
 	ld hl, wdb00
 	ld d, $0
 	ld a, [wdc45]
@@ -6395,31 +6395,31 @@ Func_3eee::
 	ld a, [hl]
 	ret
 
-Func_3efa::
+Func_3efa:
 	homecall_memret Func_7122c
 	ret
 
-Func_3f02::
+Func_3f02:
 	homecall_memret Func_703c4
 	ret
 
-Func_3f0a::
+Func_3f0a:
 	homecall_memret Func_70a99
 	ret
 
-Func_3f12::
+Func_3f12:
 	homecall_memret Func_7d2c3
 	ret
 
-IsLegendaryInParty_::
+IsLegendaryInParty_:
 	homecall_memret IsLegendaryInParty
 	ret
 
-Func_3f22::
+Func_3f22:
 	homecall_memret Func_7048c
 	ret
 
-Func_3f2a::
+Func_3f2a:
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
 	jr z, .asm_3f4a
@@ -6444,7 +6444,7 @@ Func_3f2a::
 	ld a, $0
 	ret
 
-Func_3f4d::
+Func_3f4d:
 	ld [wFontSourceBank], sp
 	ld a, [wcae8]
 	ld [MBC3RomBank], a
@@ -6491,7 +6491,7 @@ ENDR
 	ld sp, hl
 	ret
 
-Func_3fbe::
+Func_3fbe:
 	ld d, a
 	ld a, [wROMBank]
 	push af
@@ -6516,7 +6516,7 @@ Func_3fbe::
 	rst Bankswitch
 	ret
 
-Func_3fdb::
+Func_3fdb:
 	ld [wFontSourceBank], a
 	ld a, [wROMBank]
 	push af

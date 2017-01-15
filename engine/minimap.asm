@@ -21,7 +21,7 @@ FadeOutOverworldForMinimap:
 	call ClearObjectAnimationBuffers
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wc9f4]
+	ld a, [wCurPlayerFacing]
 	ld [wc9f5], a
 	ld a, [wca51]
 	ld [wca50], a

@@ -114,7 +114,7 @@ Func_30090:
 	ld l, a
 	ld a, $14
 	ld [hl], a
-	ld a, [wc9f4]
+	ld a, [wCurPlayerFacing]
 	ld [wca50], a
 	cp $9
 	jr c, .asm_300cf
@@ -401,7 +401,7 @@ Func_302a8: ; 302a8 (c:42a8)
 	ld c, a
 	ld a, [wPlayerObjectStruct_XCoord]
 	ld e, a
-	ld hl, wc990
+	ld hl, wPartnerDenjuuXCoordBuffer
 	call Func_30326
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
@@ -422,7 +422,7 @@ Func_302a8: ; 302a8 (c:42a8)
 	ld c, a
 	ld a, [wPlayerObjectStruct_YCoord]
 	ld e, a
-	ld hl, wc9a0
+	ld hl, wPartnerDenjuuYCoordBuffer
 	call Func_30326
 	ld a, [wc947]
 	or a
@@ -486,10 +486,10 @@ Func_3033a: ; 3033a (c:433a)
 	ld a, [wTakingAStep]
 	or a
 	jp z, Func_303e8
-	ld hl, wc990
+	ld hl, wPartnerDenjuuXCoordBuffer
 	ld a, [hl]
 	push af
-	ld de, wc991
+	ld de, wPartnerDenjuuXCoordBuffer + 1
 	ld b, $f
 .asm_3036c
 	ld a, [de]
@@ -499,10 +499,10 @@ Func_3033a: ; 3033a (c:433a)
 	jr nz, .asm_3036c
 	ld a, [wPlayerObjectStruct_XCoord]
 	ld [hl], a
-	ld hl, wc9a0
+	ld hl, wPartnerDenjuuYCoordBuffer
 	ld a, [hl]
 	push af
-	ld de, wc9a1
+	ld de, wPartnerDenjuuYCoordBuffer + 1
 	ld b, $f
 .asm_30380
 	ld a, [de]
@@ -525,7 +525,7 @@ Func_3033a: ; 3033a (c:433a)
 	jr nz, .asm_30394
 	ld a, [hJoyLast]
 	ld b, a
-	ld a, [wOverworldMapEnd]
+	ld a, [wPlayerIsRunning]
 	or a
 	jr nz, .asm_303a7
 	ld a, b
@@ -601,7 +601,7 @@ Func_303e8: ; 303e8 (c:43e8)
 	ld a, [wCurObjectStruct]
 	add $11
 	ld l, a
-	ld a, [wc9ef]
+	ld a, [wCurStandingTile]
 	ld [hl], a
 	ret
 
@@ -690,7 +690,7 @@ Data_30493:
 	db $00, $01, $00, $02
 
 Func_30497:
-	ld hl, wc990
+	ld hl, wPartnerDenjuuXCoordBuffer
 	ld b, $10
 .asm_3049c
 	ld a, [hl]
@@ -709,7 +709,7 @@ Func_30497:
 	ret
 
 Func_304b0:
-	ld hl, wc9a0
+	ld hl, wPartnerDenjuuYCoordBuffer
 	ld b, $10
 .asm_304b5
 	ld a, [hl]
@@ -919,7 +919,7 @@ Func_305e4: ; 305e4 (c:45e4)
 	ld [wPartnerDenjuuObjectStruct_Duration + 17], a
 	ld bc, hFFF8
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	call Func_308b0
 	ld a, [wPartnerDenjuuObjectStruct_YCoord]
 	cp $e0
@@ -988,7 +988,7 @@ Func_30689: ; 30689 (c:4689)
 	ld bc, $8
 	ld hl, wPartnerDenjuuObjectStruct
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	call Func_308b0
 	ld hl, wPartnerDenjuuObjectStruct
 	ld a, [wCurObjectStruct]

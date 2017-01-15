@@ -16,11 +16,11 @@ battle_struct: MACRO
 \1CurHP:: ds 1
 \1MaxHP:: ds 1
 \1Speed:: ds 1
-\1Field0x05:: ds 1
+\1CurDP:: ds 1
 \1Field0x06:: ds 1
 \1ArrivedStatus:: ds 1
 \1Field0x08:: ds 1
-\1Field0x09:: ds 1
+\1CurMaxDP:: ds 1
 \1FD:: ds 1
 \1MoveTarget:: ds 1
 \1Field0x0c:: ds 1

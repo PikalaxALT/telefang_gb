@@ -1046,13 +1046,13 @@ Func_2c7ed: ; 2c7ed (b:47ed)
 	ld [wTextSubroutine], a
 	ret
 
-Func_2c831: ; 2c831 (b:4831)
+PrintMoneyInShop: ; 2c831 (b:4831)
 	ld a, [wMoney]
 	ld l, a
 	ld a, [wMoney + 1]
 	ld h, a
 	ld d, $0
-	call Func_2c883
+	call PrintDecimalConvertedFiveDigitNumberRightAligned
 	call DrawHeight1Textbox
 	call PrintText
 	call PrintText
@@ -1069,32 +1069,32 @@ OverworldIdleHUD: ; 2c84d (b:484d)
 	cp $48 ; halfway up/down the screen
 	jr nc, .on_top
 	ld d, $e
-	call Func_2c883
-	call Func_2c9fb
+	call PrintDecimalConvertedFiveDigitNumberRightAligned
+	call LoadAndDrawOverworldIdleHUD
 	ld a, $1
 	ld [wIdleHUDOnBottomOfScreen], a
 	jr .done
 
 .on_top
 	ld d, $0
-	call Func_2c883
-	call Func_2c9fb
+	call PrintDecimalConvertedFiveDigitNumberRightAligned
+	call LoadAndDrawOverworldIdleHUD
 	ld a, $0
 	ld [wIdleHUDOnBottomOfScreen], a
 .done
 	ld a, $1
-	ld [wcd21], a
+	ld [wIdleHUDVisible], a
 	ld a, $0
 	ld [wTextSubfunction], a
 	ret
 
-Func_2c883: ; 2c883 (b:4883)
+PrintDecimalConvertedFiveDigitNumberRightAligned: ; 2c883 (b:4883)
 	push de
 	ld a, $c0
 	ld [wTextBoxStartTile], a
-	ld a, "$"
+	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
-	call Func_2d03
+	call DecimalConvertAndRightAlignTwoByteFiveDigitNumber_
 	ld b, $0
 	ld c, $9d
 	pop de
@@ -1103,7 +1103,7 @@ Func_2c883: ; 2c883 (b:4883)
 	ld [wca65], a
 	ret
 
-Func_2c89f: ; 2c89f (b:489f)
+EndOverworldIdleState: ; 2c89f (b:489f)
 	ld a, [wNumIdleFrames]
 	cp $5a
 	jr c, .skip
@@ -1111,13 +1111,13 @@ Func_2c89f: ; 2c89f (b:489f)
 .skip
 	xor a
 	ld [wNumIdleFrames], a
-	ld [wcd21], a
+	ld [wIdleHUDVisible], a
 	ret
 
 CloseIdleOverworldHUD: ; 2c8b1 (b:48b1)
 	ld a, [wIdleHUDOnBottomOfScreen]
 	or a
-	jr nz, .asm_2c8c6
+	jr nz, .bottom
 	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	ld a, [wBGMapAnchor]
@@ -1126,7 +1126,7 @@ CloseIdleOverworldHUD: ; 2c8b1 (b:48b1)
 	call .ReloadMetatilesOverIdleHUD
 	ret
 
-.asm_2c8c6
+.bottom
 	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	ld a, [wBGMapAnchor]
@@ -1159,7 +1159,7 @@ CloseIdleOverworldHUD: ; 2c8b1 (b:48b1)
 	jp GetBGMapColumn
 
 OverworldIdleHudCheck: ; 2c904 (b:4904)
-	call Func_2107
+	call CheckInOverworld
 	jr nz, .finish
 	ld a, [wMapGroup]
 	cp $b
@@ -1177,10 +1177,10 @@ OverworldIdleHudCheck: ; 2c904 (b:4904)
 	ld a, [wOverworldIdleHUDPage]
 	xor $1
 	ld [wOverworldIdleHUDPage], a
-	jp Func_2c9fe
+	jp DrawOverworldIdleHUD
 
 .finish
-	jp Func_2c89f
+	jp EndOverworldIdleState
 
 Func_2c92e: ; 2c92e (b:492e)
 	ld a, $c0
@@ -1189,7 +1189,7 @@ Func_2c92e: ; 2c92e (b:492e)
 	ld [wTileWhere0IsLoaded], a
 	push bc
 	push de
-	call Func_2d03
+	call DecimalConvertAndRightAlignTwoByteFiveDigitNumber_
 	pop de
 	pop bc
 	ld a, $e6
@@ -1279,10 +1279,10 @@ DrawHeight1Textbox: ; 2c9e6 (b:49e6)
 Func_2c9fa:
 	ret
 
-Func_2c9fb: ; 2c9fb (b:49fb)
+LoadAndDrawOverworldIdleHUD: ; 2c9fb (b:49fb)
 	call LoadIdleHUDFrameGFX
-Func_2c9fe: ; 2c9fe (b:49fe)
-	call Func_2cd63
+DrawOverworldIdleHUD: ; 2c9fe (b:49fe)
+	call DrawOverworldIdleHUDInBuffer
 	ld de, wca08
 	ld b, $2
 	ld a, [wTextBGMapTop]
@@ -1831,21 +1831,21 @@ Func_2cd3b: ; 2cd3b (b:4d3b)
 	jr nz, .loop3
 	ret
 
-Func_2cd63: ; 2cd63 (b:4d63)
+DrawOverworldIdleHUDInBuffer: ; 2cd63 (b:4d63)
 	ld hl, wca08
 	ld de, Data_2d1c5
 	ld a, [wOverworldIdleHUDPage]
 	or a
-	jr z, .asm_2cd72
+	jr z, .okay
 	ld de, Data_2d1ed
-.asm_2cd72
-	ld b, $28
-.asm_2cd74
+.okay
+	ld b, 2 * SCREEN_WIDTH
+.copy
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec b
-	jr nz, .asm_2cd74
+	jr nz, .copy
 	ld hl, wca09
 	ld c, $0
 	call Func_2cd87
@@ -2202,16 +2202,12 @@ Data_2d1b1:
 	db $f4, $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $f6
 
 Data_2d1c5:
-	db $c0, $e0, $e0, $e0, $e0, $e0, $d8, $da, $c2, $c0
-	db $de, $e2, $c4, $c4, $c4, $dc, $c4, $c4, $c4, $c2
-	db $c1, $e1, $e1, $e1, $e1, $e1, $d9, $db, $c3, $c1
-	db $df, $e3, $c5, $c5, $c5, $dd, $c5, $c5, $c5, $c3
+	db $c0, $e0, $e0, $e0, $e0, $e0, $d8, $da, $c2,  $c0, $de, $e2, $c4, $c4, $c4, $dc, $c4, $c4, $c4, $c2
+	db $c1, $e1, $e1, $e1, $e1, $e1, $d9, $db, $c3,  $c1, $df, $e3, $c5, $c5, $c5, $dd, $c5, $c5, $c5, $c3
 
 Data_2d1ed:
-	db $c0, $e0, $e0, $e0, $e0, $e0, $d8, $da, $c2, $c0
-	db $e4, $e6, $c4, $c4, $e8, $ea, $c4, $c4, $c4, $c2
-	db $c1, $e1, $e1, $e1, $e1, $e1, $d9, $db, $c3, $c1
-	db $e5, $e7, $c5, $c5, $e9, $eb, $c5, $c5, $c5, $c3
+	db $c0, $e0, $e0, $e0, $e0, $e0, $d8, $da, $c2,  $c0, $e4, $e6, $c4, $c4, $e8, $ea, $c4, $c4, $c4, $c2
+	db $c1, $e1, $e1, $e1, $e1, $e1, $d9, $db, $c3,  $c1, $e5, $e7, $c5, $c5, $e9, $eb, $c5, $c5, $c5, $c3
 
 Data_2d215:
 	db $c0, $de, $c4, $c4, $c4, $dc, $c4, $c4, $c4, $c2

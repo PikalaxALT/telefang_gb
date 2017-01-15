@@ -1,4 +1,9 @@
 DrawHPBar::
+; unsigned char a = HP bar length in pixels (max 48)
+; unsigned char c = Which way to draw the HP bar
+;     0 - left to right
+;     1 - right to left
+; VRamAddress hl = Where to draw the HP bar
 	ld b, $6
 	ld [wcb20], a
 .full_loop

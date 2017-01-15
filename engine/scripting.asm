@@ -8,7 +8,7 @@ HandleRunningMapScript: ; 3c000 (f:4000)
 RunMapScript: ; 3c00c (f:400c)
 	ld a, [wPlayerNameEntryBuffer]
 	or a
-	jp z, Func_3c050
+	jp z, CheckActivatedScript
 script_command_loop
 	ld a, [wScriptDelay]
 	or a
@@ -55,7 +55,7 @@ ExecuteScriptCommand: ; 3c041 (f:4041)
 	ld l, a
 	jp [hl]
 
-Func_3c050: ; 3c050 (f:4050)
+CheckActivatedScript: ; 3c050 (f:4050)
 	ld a, [wc98e]
 	or a
 	ret nz
@@ -165,7 +165,7 @@ Func_3c050: ; 3c050 (f:4050)
 	ld a, $0
 	ld [hl], a
 	add sp, $2
-	callba Func_3982c
+	callba StopPlayerWalkingAnimation
 	ret
 
 .next
@@ -474,13 +474,13 @@ Func_3c314: ; 3c314 (f:4314)
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wc9f4], a
+	ld [wCurPlayerFacing], a
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp z, .skip2
-	ld a, [wc9f4]
+	ld a, [wCurPlayerFacing]
 	add $2d
-	ld [wc9f4], a
+	ld [wCurPlayerFacing], a
 .skip2
 	ld a, b
 	ld hl, Data_3c35a
@@ -523,7 +523,7 @@ asm_3c375
 	ld a, $14
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $0
-	ld [wc9ef], a
+	ld [wCurStandingTile], a
 	scf
 	ret
 
@@ -1293,100 +1293,102 @@ Func_3c85a: ; 3c85a (f:485a)
 	ld l, a
 	ld a, [wcadd]
 	ld h, a
-	call Func_3c899
+	call DecimalConvertTwoByteFiveDigitNumber
 	ld b, $3
 	call AdvanceScriptPointer
 	scf
 	ret
 
-Func_3c899: ; 3c899 (f:4899)
+DecimalConvertTwoByteFiveDigitNumber: ; 3c899 (f:4899)
+; unsigned short hl
+; return to wMapHeader (6-byte buffer)
 	ld de, wMapHeader
 	ld b, $0
 	push de
 	ld c, $0
-	ld de, wd8f0
-.asm_3c8a4
+	ld de, -10000
+.ten_thousand
 	inc c
 	add hl, de
-	jr c, .asm_3c8a4
+	jr c, .ten_thousand
 	ld de, 10000
 	add hl, de
 	pop de
 	ld a, c
 	dec a
 	or a
-	jr z, .asm_3c8b8
+	jr z, .less_than_10000
 	add "0"
 	ld [de], a
 	inc de
 	ld b, $1
-.asm_3c8b8
+.less_than_10000
 	push de
 	ld c, $0
 	ld de, -1000
-.asm_3c8be
+.thousand
 	inc c
 	add hl, de
-	jr c, .asm_3c8be
+	jr c, .thousand
 	ld de, 1000
 	add hl, de
 	pop de
 	ld a, c
 	dec a
 	bit 0, b
-	jr nz, .asm_3c8d0
+	jr nz, .force_thousands
 	or a
-	jr z, .asm_3c8d6
-.asm_3c8d0
+	jr z, .less_than_1000
+.force_thousands
 	add "0"
 	ld [de], a
 	inc de
 	ld b, $1
-.asm_3c8d6
+.less_than_1000
 	push de
 	ld c, $0
 	ld de, -100
-.asm_3c8dc
+.hundreds
 	inc c
 	add hl, de
-	jr c, .asm_3c8dc
+	jr c, .hundreds
 	ld de, 100
 	add hl, de
 	pop de
 	ld a, c
 	dec a
 	bit 0, b
-	jr nz, .asm_3c8ee
+	jr nz, .force_hundreds
 	or a
-	jr z, .asm_3c8f4
-.asm_3c8ee
+	jr z, .less_than_100
+.force_hundreds
 	add "0"
 	ld [de], a
 	inc de
 	ld b, $1
-.asm_3c8f4
+.less_than_100
 	push de
 	ld c, $0
 	ld de, -10
-.asm_3c8fa
+.tens
 	inc c
 	add hl, de
-	jr c, .asm_3c8fa
+	jr c, .tens
 	ld de, 10
 	add hl, de
 	pop de
 	ld a, c
 	dec a
 	bit 0, b
-	jr nz, .asm_3c90c
+	jr nz, .force_tens
 	or a
-	jr z, .asm_3c912
-.asm_3c90c
+	jr z, .less_than_10
+.force_tens
 	add "0"
 	ld [de], a
 	inc de
 	ld b, $1
-.asm_3c912
+.less_than_10
 	ld a, l
 	add "0"
 	ld [de], a
@@ -1395,34 +1397,34 @@ Func_3c899: ; 3c899 (f:4899)
 	ld [de], a
 	ret
 
-Func_3c91b: ; 3c91b (f:491b)
-	call Func_3c899
+DecimalConvertAndRightAlignTwoByteFiveDigitNumber: ; 3c91b (f:491b)
+	call DecimalConvertTwoByteFiveDigitNumber
 	ld hl, wMapHeader
 	ld b, $6
 	ld c, $0
-.asm_3c925
+.find_terminator
 	ld a, [hli]
 	inc c
 	dec b
 	cp "$"
-	jr nz, .asm_3c925
+	jr nz, .find_terminator
 	ld a, b
 	or a
 	ret z
 	dec hl
-	ld de, wca05
-.asm_3c933
+	ld de, wMapHeader + 5
+.right_align_loop
 	ld a, [hld]
 	ld [de], a
 	dec de
 	dec c
-	jr nz, .asm_3c933
+	jr nz, .right_align_loop
 	ld hl, wMapHeader
 	ld a, $0
-.asm_3c93e
+.clear_beginning
 	ld [hli], a
 	dec b
-	jr nz, .asm_3c93e
+	jr nz, .clear_beginning
 	ret
 
 Func_3c943: ; 3c943 (f:4943)
@@ -1930,7 +1932,7 @@ Func_3cc91: ; 3cc91 (f:4c91)
 	ld a, $16
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $9
-	ld [wc9f4], a
+	ld [wCurPlayerFacing], a
 	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, $0
 	ld [hli], a

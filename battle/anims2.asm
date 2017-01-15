@@ -3096,7 +3096,7 @@ Func_6d8e6: ; 6d8e6 (1b:58e6)
 	ld a, [wCurObjectStruct]
 	ld l, a
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	callba Func_cc095
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
@@ -3229,7 +3229,7 @@ Func_6d9e8: ; 6d9e8 (1b:59e8)
 	ld l, a
 	ld bc, hFFF8
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	callba Func_cc095
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
@@ -3904,7 +3904,7 @@ Func_6df00: ; 6df00 (1b:5f00)
 	ld a, [wCurObjectStruct]
 	ld l, a
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	callba Func_cc095
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
@@ -4037,7 +4037,7 @@ Func_6e002: ; 6e002 (1b:6002)
 	ld l, a
 	ld bc, hFFF8
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	callba Func_cc095
 	ld a, [wCurObjectStruct + 1]
 	ld h, a

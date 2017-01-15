@@ -55,7 +55,7 @@ UpdatePlayerHUD:
 	call GetNthPlayerDenjuu
 	call DrawPlayerDenjuuHPBar
 	ld a, [wCurBattleDenjuu]
-	call DrawPlayerDenjuuPicFacingRight
+	call DrawPlayerDPBar
 	ld a, [wCurDenjuuBufferAddressBookLocation]
 	ld hl, VTilesBG tile $20
 	jp PlacePlayerDenjuuNickname
@@ -65,7 +65,7 @@ UpdateEnemyHUD:
 	call GetNthEnemyDenjuu
 	call DrawEnemyDenjuuHPBar
 	ld a, [wCurEnemyDenjuu]
-	call DrawEnemyDenjuuPicFacingLeft
+	call DrawEnemyDPBar
 	ld a, [wCurDenjuuBufferSpecies]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $28
@@ -76,19 +76,19 @@ DrawPlayerDenjuuHPBar: ; 1407d (5:407d)
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
 	call CalcHPBarLength
-	ld [wd4e8], a
+	ld [wCurPlayerHPorDP], a
 	or a
 	jr nz, .asm_14098
 	ld a, [wCurDenjuuBufferCurHP]
 	or a
 	jr z, .asm_14098
 	ld a, $1
-	ld [wd4e8], a
+	ld [wCurPlayerHPorDP], a
 .asm_14098
 	ld d, $1
-	ld a, [wd4e8]
+	ld a, [wCurPlayerHPorDP]
 	call SetHPBarPalette
-	ld a, [wd4e8]
+	ld a, [wCurPlayerHPorDP]
 	ld c, $0
 	hlbgcoord 3, 2
 	jp DrawHPBar
@@ -98,59 +98,59 @@ DrawEnemyDenjuuHPBar: ; 140ab (5:40ab)
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
 	call CalcHPBarLength
-	ld [wd4e9], a
+	ld [wCurEnemyHPorDP], a
 	or a
 	jr nz, .asm_140c6
 	ld a, [wCurDenjuuBufferCurHP]
 	or a
 	jr z, .asm_140c6
 	ld a, $1
-	ld [wd4e9], a
+	ld [wCurEnemyHPorDP], a
 .asm_140c6
 	ld d, $2
-	ld a, [wd4e9]
+	ld a, [wCurEnemyHPorDP]
 	call SetHPBarPalette
-	ld a, [wd4e9]
+	ld a, [wCurEnemyHPorDP]
 	ld c, $1
 	hlbgcoord 6, 10, VWindow
 	jp DrawHPBar
 
-DrawPlayerDenjuuPicFacingRight: ; 140d9 (5:40d9)
+DrawPlayerDPBar: ; 140d9 (5:40d9)
 	call GetNthPlayerDenjuu
-	ld a, [wCurDenjuuBufferField0x09]
+	ld a, [wCurDenjuuBufferCurMaxDP]
 	ld e, a
-	ld a, [wCurDenjuuBufferField0x05]
+	ld a, [wCurDenjuuBufferCurDP]
 	call CalcHPBarLength
-	ld [wd4e8], a
+	ld [wCurPlayerHPorDP], a
 	or a
 	jr nz, .asm_140f7
-	ld a, [wCurDenjuuBufferField0x05]
+	ld a, [wCurDenjuuBufferCurDP]
 	or a
 	jr z, .asm_140f7
 	ld a, $1
-	ld [wd4e8], a
+	ld [wCurPlayerHPorDP], a
 .asm_140f7
-	ld a, [wd4e8]
+	ld a, [wCurPlayerHPorDP]
 	ld c, $0
 	hlbgcoord 3, 3
 	jp DrawHPBar
 
-DrawEnemyDenjuuPicFacingLeft: ; 14102 (5:4102)
+DrawEnemyDPBar: ; 14102 (5:4102)
 	call GetNthEnemyDenjuu
-	ld a, [wCurDenjuuBufferField0x09]
+	ld a, [wCurDenjuuBufferCurMaxDP]
 	ld e, a
-	ld a, [wCurDenjuuBufferField0x05]
+	ld a, [wCurDenjuuBufferCurDP]
 	call CalcHPBarLength
-	ld [wd4e9], a
+	ld [wCurEnemyHPorDP], a
 	or a
 	jr nz, .asm_14120
-	ld a, [wCurDenjuuBufferField0x05]
+	ld a, [wCurDenjuuBufferCurDP]
 	or a
 	jr z, .asm_14120
 	ld a, $1
-	ld [wd4e9], a
+	ld [wCurEnemyHPorDP], a
 .asm_14120
-	ld a, [wd4e9]
+	ld a, [wCurEnemyHPorDP]
 	ld c, $1
 	hlbgcoord 6, 11, VWindow
 	jp DrawHPBar
@@ -276,16 +276,16 @@ AnimateCurrentSupportDenjuuHPBarFrame:
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
 	call CalcHPBarLength
-	ld [wd4e8], a
+	ld [wCurPlayerHPorDP], a
 	cp $0
 	jr nz, .player_hp_bar_empty
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
 	jr z, .player_hp_bar_empty
 	ld a, $1
-	ld [wd4e8], a
+	ld [wCurPlayerHPorDP], a
 .player_hp_bar_empty
-	ld a, [wd4e8]
+	ld a, [wCurPlayerHPorDP]
 	ld c, $0
 	pop hl
 	jp DrawHPBar
@@ -305,16 +305,16 @@ AnimateCurrentSupportDenjuuHPBarFrame:
 	ld e, a
 	ld a, [wCurDenjuuBufferCurHP]
 	call CalcHPBarLength
-	ld [wd4e9], a
+	ld [wCurEnemyHPorDP], a
 	cp $0
 	jr nz, .enemy_hp_bar_empty
 	ld a, [wCurDenjuuBufferCurHP]
 	cp $0
 	jr z, .enemy_hp_bar_empty
 	ld a, $1
-	ld [wd4e9], a
+	ld [wCurEnemyHPorDP], a
 .enemy_hp_bar_empty
-	ld a, [wd4e9]
+	ld a, [wCurEnemyHPorDP]
 	ld c, $0
 	pop hl
 	jp DrawHPBar
@@ -3433,9 +3433,9 @@ Func_159bc: ; 159bc (5:59bc)
 	ld [wd4ad], a
 .asm_159d3
 	ld a, [wCurBattleDenjuu]
-	call DrawPlayerDenjuuPicFacingRight
+	call DrawPlayerDPBar
 	ld a, [wCurEnemyDenjuu]
-	call DrawEnemyDenjuuPicFacingLeft
+	call DrawEnemyDPBar
 	ld a, [wPlayerDenjuu1ArrivedStatus]
 	cp $0
 	jr z, .asm_15a26
@@ -3458,18 +3458,18 @@ Func_159bc: ; 159bc (5:59bc)
 	jr .asm_15a26
 
 .asm_15a0b
-	ld a, [wPlayerDenjuu1Field0x05]
+	ld a, [wPlayerDenjuu1CurDP]
 	inc a
-	ld [wPlayerDenjuu1Field0x05], a
+	ld [wPlayerDenjuu1CurDP], a
 	ld a, [wd4ad]
 	or a
 	jr z, .asm_15a26
-	ld a, [wPlayerDenjuu1Field0x05]
+	ld a, [wPlayerDenjuu1CurDP]
 	inc a
-	ld [wPlayerDenjuu1Field0x05], a
-	ld a, [wPlayerDenjuu1Field0x05]
+	ld [wPlayerDenjuu1CurDP], a
+	ld a, [wPlayerDenjuu1CurDP]
 	inc a
-	ld [wPlayerDenjuu1Field0x05], a
+	ld [wPlayerDenjuu1CurDP], a
 .asm_15a26
 	ld a, [wPlayerDenjuu2ArrivedStatus]
 	cp $0
@@ -3495,18 +3495,18 @@ Func_159bc: ; 159bc (5:59bc)
 	jr .asm_15a71
 
 .asm_15a56
-	ld a, [wPlayerDenjuu2Field0x05]
+	ld a, [wPlayerDenjuu2CurDP]
 	inc a
-	ld [wPlayerDenjuu2Field0x05], a
+	ld [wPlayerDenjuu2CurDP], a
 	ld a, [wd4ad]
 	or a
 	jr z, .asm_15a71
-	ld a, [wPlayerDenjuu2Field0x05]
+	ld a, [wPlayerDenjuu2CurDP]
 	inc a
-	ld [wPlayerDenjuu2Field0x05], a
-	ld a, [wPlayerDenjuu2Field0x05]
+	ld [wPlayerDenjuu2CurDP], a
+	ld a, [wPlayerDenjuu2CurDP]
 	inc a
-	ld [wPlayerDenjuu2Field0x05], a
+	ld [wPlayerDenjuu2CurDP], a
 .asm_15a71
 	ld a, [wPlayerDenjuu3ArrivedStatus]
 	cp $0
@@ -3532,18 +3532,18 @@ Func_159bc: ; 159bc (5:59bc)
 	jr .asm_15abc
 
 .asm_15aa1
-	ld a, [wPlayerDenjuu3Field0x05]
+	ld a, [wPlayerDenjuu3CurDP]
 	inc a
-	ld [wPlayerDenjuu3Field0x05], a
+	ld [wPlayerDenjuu3CurDP], a
 	ld a, [wd4ad]
 	or a
 	jr z, .asm_15abc
-	ld a, [wPlayerDenjuu3Field0x05]
+	ld a, [wPlayerDenjuu3CurDP]
 	inc a
-	ld [wPlayerDenjuu3Field0x05], a
-	ld a, [wPlayerDenjuu3Field0x05]
+	ld [wPlayerDenjuu3CurDP], a
+	ld a, [wPlayerDenjuu3CurDP]
 	inc a
-	ld [wPlayerDenjuu3Field0x05], a
+	ld [wPlayerDenjuu3CurDP], a
 .asm_15abc
 	ld a, [wEnemyDenjuu1ArrivedStatus]
 	cp $0
@@ -3567,18 +3567,18 @@ Func_159bc: ; 159bc (5:59bc)
 	jr .asm_15b03
 
 .asm_15ae8
-	ld a, [wEnemyDenjuu1Field0x05]
+	ld a, [wEnemyDenjuu1CurDP]
 	inc a
-	ld [wEnemyDenjuu1Field0x05], a
+	ld [wEnemyDenjuu1CurDP], a
 	ld a, [wd4ad]
 	or a
 	jr z, .asm_15b03
-	ld a, [wEnemyDenjuu1Field0x05]
+	ld a, [wEnemyDenjuu1CurDP]
 	inc a
-	ld [wEnemyDenjuu1Field0x05], a
-	ld a, [wEnemyDenjuu1Field0x05]
+	ld [wEnemyDenjuu1CurDP], a
+	ld a, [wEnemyDenjuu1CurDP]
 	inc a
-	ld [wEnemyDenjuu1Field0x05], a
+	ld [wEnemyDenjuu1CurDP], a
 .asm_15b03
 	ld a, [wEnemyDenjuu2ArrivedStatus]
 	cp $0
@@ -3604,18 +3604,18 @@ Func_159bc: ; 159bc (5:59bc)
 	jr .asm_15b4e
 
 .asm_15b33
-	ld a, [wEnemyDenjuu2Field0x05]
+	ld a, [wEnemyDenjuu2CurDP]
 	inc a
-	ld [wEnemyDenjuu2Field0x05], a
+	ld [wEnemyDenjuu2CurDP], a
 	ld a, [wd4ad]
 	or a
 	jr z, .asm_15b4e
-	ld a, [wEnemyDenjuu2Field0x05]
+	ld a, [wEnemyDenjuu2CurDP]
 	inc a
-	ld [wEnemyDenjuu2Field0x05], a
-	ld a, [wEnemyDenjuu2Field0x05]
+	ld [wEnemyDenjuu2CurDP], a
+	ld a, [wEnemyDenjuu2CurDP]
 	inc a
-	ld [wEnemyDenjuu2Field0x05], a
+	ld [wEnemyDenjuu2CurDP], a
 .asm_15b4e
 	ld a, [wEnemyDenjuu3ArrivedStatus]
 	cp $0
@@ -3641,18 +3641,18 @@ Func_159bc: ; 159bc (5:59bc)
 	jr .asm_15b99
 
 .asm_15b7e
-	ld a, [wEnemyDenjuu3Field0x05]
+	ld a, [wEnemyDenjuu3CurDP]
 	inc a
-	ld [wEnemyDenjuu3Field0x05], a
+	ld [wEnemyDenjuu3CurDP], a
 	ld a, [wd4ad]
 	or a
 	jr z, .asm_15b99
-	ld a, [wEnemyDenjuu3Field0x05]
+	ld a, [wEnemyDenjuu3CurDP]
 	inc a
-	ld [wEnemyDenjuu3Field0x05], a
-	ld a, [wEnemyDenjuu3Field0x05]
+	ld [wEnemyDenjuu3CurDP], a
+	ld a, [wEnemyDenjuu3CurDP]
 	inc a
-	ld [wEnemyDenjuu3Field0x05], a
+	ld [wEnemyDenjuu3CurDP], a
 .asm_15b99
 	ld a, [wCurBattleDenjuu2]
 	call GetNthPlayerDenjuu
@@ -3821,13 +3821,13 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	jr z, .asm_15cfc
 	cp $5
 	jr nz, .asm_15d15
-	ld a, [wPlayerDenjuu1Field0x09]
+	ld a, [wPlayerDenjuu1CurMaxDP]
 	ld b, a
-	ld a, [wPlayerDenjuu1Field0x05]
+	ld a, [wPlayerDenjuu1CurDP]
 	cp b
 	jp c, .asm_15d15
 	xor a
-	ld [wPlayerDenjuu1Field0x05], a
+	ld [wPlayerDenjuu1CurDP], a
 	ld a, SFX_59
 	ld [H_SFX_ID], a
 	xor a
@@ -3856,13 +3856,13 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	jr z, .asm_15d3f
 	cp $5
 	jr nz, asm_15d83
-	ld a, [wPlayerDenjuu2Field0x09]
+	ld a, [wPlayerDenjuu2CurMaxDP]
 	ld b, a
-	ld a, [wPlayerDenjuu2Field0x05]
+	ld a, [wPlayerDenjuu2CurDP]
 	cp b
 	jr c, asm_15d83
 	xor a
-	ld [wPlayerDenjuu2Field0x05], a
+	ld [wPlayerDenjuu2CurDP], a
 	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $1
@@ -3912,13 +3912,13 @@ asm_15d83
 	jr z, .asm_15dad
 	cp $5
 	jr nz, asm_15df1
-	ld a, [wPlayerDenjuu3Field0x09]
+	ld a, [wPlayerDenjuu3CurMaxDP]
 	ld b, a
-	ld a, [wPlayerDenjuu3Field0x05]
+	ld a, [wPlayerDenjuu3CurDP]
 	cp b
 	jr c, asm_15df1
 	xor a
-	ld [wPlayerDenjuu3Field0x05], a
+	ld [wPlayerDenjuu3CurDP], a
 	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $2
@@ -3966,13 +3966,13 @@ asm_15df1
 	jr z, .asm_15e17
 	cp $5
 	jr nz, .asm_15e32
-	ld a, [wEnemyDenjuu1Field0x09]
+	ld a, [wEnemyDenjuu1CurMaxDP]
 	ld b, a
-	ld a, [wEnemyDenjuu1Field0x05]
+	ld a, [wEnemyDenjuu1CurDP]
 	cp b
 	jr c, .asm_15e32
 	xor a
-	ld [wEnemyDenjuu1Field0x05], a
+	ld [wEnemyDenjuu1CurDP], a
 	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $3
@@ -4002,13 +4002,13 @@ asm_15df1
 	jr z, .asm_15e5c
 	cp $5
 	jr nz, asm_15ea0
-	ld a, [wEnemyDenjuu2Field0x09]
+	ld a, [wEnemyDenjuu2CurMaxDP]
 	ld b, a
-	ld a, [wEnemyDenjuu2Field0x05]
+	ld a, [wEnemyDenjuu2CurDP]
 	cp b
 	jr c, asm_15ea0
 	xor a
-	ld [wEnemyDenjuu2Field0x05], a
+	ld [wEnemyDenjuu2CurDP], a
 	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $4
@@ -4058,13 +4058,13 @@ asm_15ea0
 	jr z, .asm_15eca
 	cp $5
 	jr nz, asm_15f0e
-	ld a, [wEnemyDenjuu3Field0x09]
+	ld a, [wEnemyDenjuu3CurMaxDP]
 	ld b, a
-	ld a, [wEnemyDenjuu3Field0x05]
+	ld a, [wEnemyDenjuu3CurDP]
 	cp b
 	jr c, asm_15f0e
 	xor a
-	ld [wEnemyDenjuu3Field0x05], a
+	ld [wEnemyDenjuu3CurDP], a
 	ld a, SFX_59
 	ld [H_SFX_ID], a
 	ld a, $5
@@ -4363,7 +4363,7 @@ Func_160cb: ; 160cb (5:60cb)
 	ld [wCurDenjuuBufferMaxHP], a
 	call DrawPlayerDenjuuHPBar
 	ld a, $1
-	call DrawPlayerDenjuuPicFacingRight
+	call DrawPlayerDPBar
 	ld a, $3
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	jp Func_161f5
@@ -4399,7 +4399,7 @@ Func_16108: ; 16108 (5:6108)
 	ld [wCurDenjuuBufferMaxHP], a
 	call DrawPlayerDenjuuHPBar
 	ld a, $2
-	call DrawPlayerDenjuuPicFacingRight
+	call DrawPlayerDPBar
 	ld a, $3
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	jp Func_161f5
@@ -4423,7 +4423,7 @@ Func_1615f: ; 1615f (5:615f)
 	ld [wCurDenjuuBufferMaxHP], a
 	call DrawEnemyDenjuuHPBar
 	ld a, $1
-	call DrawEnemyDenjuuPicFacingLeft
+	call DrawEnemyDPBar
 	ld a, $3
 	ld [wEnemyDenjuu2ArrivedStatus], a
 	jr Func_161f5
@@ -4460,7 +4460,7 @@ Func_1619e: ; 1619e (5:619e)
 	ld [wCurDenjuuBufferMaxHP], a
 	call DrawEnemyDenjuuHPBar
 	ld a, $2
-	call DrawEnemyDenjuuPicFacingLeft
+	call DrawEnemyDPBar
 	ld a, $3
 	ld [wEnemyDenjuu3ArrivedStatus], a
 Func_161f5: ; 161f5 (5:61f5)
@@ -5825,7 +5825,7 @@ Func_16bd3: ; 16bd3 (5:6bd3)
 	ld a, $3
 	ld [wEnemyDenjuu1ArrivedStatus], a
 	ld a, $0
-	ld [wEnemyDenjuu1Field0x05], a
+	ld [wEnemyDenjuu1CurDP], a
 	ret
 
 .asm_16bef
@@ -5835,7 +5835,7 @@ Func_16bd3: ; 16bd3 (5:6bd3)
 	ld a, $3
 	ld [wEnemyDenjuu2ArrivedStatus], a
 	ld a, $0
-	ld [wEnemyDenjuu2Field0x05], a
+	ld [wEnemyDenjuu2CurDP], a
 	ret
 
 .asm_16c00
@@ -5845,7 +5845,7 @@ Func_16bd3: ; 16bd3 (5:6bd3)
 	ld a, $3
 	ld [wEnemyDenjuu3ArrivedStatus], a
 	ld a, $0
-	ld [wEnemyDenjuu3Field0x05], a
+	ld [wEnemyDenjuu3CurDP], a
 	ret
 
 Func_16c11: ; 16c11 (5:6c11)
@@ -6501,7 +6501,7 @@ Func_170e4: ; 170e4 (5:70e4)
 	ld a, $3
 	ld [wPlayerDenjuu1ArrivedStatus], a
 	ld a, $0
-	ld [wPlayerDenjuu1Field0x05], a
+	ld [wPlayerDenjuu1CurDP], a
 	ret
 
 .asm_17100
@@ -6511,7 +6511,7 @@ Func_170e4: ; 170e4 (5:70e4)
 	ld a, $3
 	ld [wPlayerDenjuu2ArrivedStatus], a
 	ld a, $0
-	ld [wPlayerDenjuu2Field0x05], a
+	ld [wPlayerDenjuu2CurDP], a
 	ret
 
 .asm_17111
@@ -6521,7 +6521,7 @@ Func_170e4: ; 170e4 (5:70e4)
 	ld a, $3
 	ld [wPlayerDenjuu3ArrivedStatus], a
 	ld a, $0
-	ld [wPlayerDenjuu3Field0x05], a
+	ld [wPlayerDenjuu3CurDP], a
 	ret
 
 Func_17122: ; 17122 (5:7122)

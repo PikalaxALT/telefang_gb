@@ -633,7 +633,7 @@ Func_30b23:
 	ld a, $1
 	ld [hl], a
 	call Func_30b7f
-	callba Func_2c89f
+	callba EndOverworldIdleState
 .asm_30b4d
 	ret
 
@@ -1111,7 +1111,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	jr nz, Func_30ece
 .asm_30e52
 	call Func_1fff
-	callba Func_3982c
+	callba StopPlayerWalkingAnimation
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, $b
@@ -1348,7 +1348,7 @@ Func_30f90:
 	ld l, a
 	ld bc, $8
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	ld a, [wCurObjectStruct]
 	add $b
 	ld l, a
@@ -2489,7 +2489,7 @@ Func_3162e: ; 3162e (c:562e)
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jr z, .asm_316c3
-	ld a, [wc9f4]
+	ld a, [wCurPlayerFacing]
 	cp $2d
 	jr z, .asm_316b8
 	cp $30
@@ -3214,7 +3214,7 @@ Func_31b19:
 	call Func_31c6d
 	ld a, $2
 	ld [wca5e], a
-	ld a, [wc9ef]
+	ld a, [wCurStandingTile]
 	cp $4
 	jr z, .asm_31b52
 	cp $9
@@ -4253,7 +4253,7 @@ Func_321e2:
 	ld l, a
 	ld bc, $1
 	call Func_2ae7
-	call Func_2ac0
+	call ApplyYStepVector_
 	ld a, [wCurObjectStruct]
 	add $15
 	ld l, a
@@ -5414,7 +5414,7 @@ Func_3291b: ; 3291b (c:691b)
 .asm_3293a
 	ld a, [wCurObjectStruct]
 	ld l, a
-	call Func_2ac0
+	call ApplyYStepVector_
 	ret
 
 Func_32942: ; 32942 (c:6942)
@@ -5446,7 +5446,7 @@ Func_32942: ; 32942 (c:6942)
 	ld l, a
 	ld bc, $a
 	call Func_2ae7
-	jp Func_2ac0
+	jp ApplyYStepVector_
 
 Func_32979: ; 32979 (c:6979)
 	ret
@@ -5750,7 +5750,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wc9f4], a
+	ld [wCurPlayerFacing], a
 	ld a, $1
 	ld [wcadb], a
 	ld bc, EVENT_C39
@@ -5914,7 +5914,7 @@ Func_32bf4: ; 32bf4 (c:6bf4)
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jr z, .asm_32cb0
-	ld a, [wc9f4]
+	ld a, [wCurPlayerFacing]
 	cp $2d
 	jr z, .asm_32ca5
 	cp $30
@@ -6005,7 +6005,7 @@ Func_32d1b: ; 32d1b (c:6d1b)
 	jr nz, .asm_32d3c
 	ld a, [wCurObjectStruct]
 	ld l, a
-	call Func_2ac0
+	call ApplyYStepVector_
 	ret
 
 .asm_32d3c
@@ -6361,7 +6361,7 @@ Func_32ec9: ; 32ec9 (c:6ec9)
 	call Func_33047
 	ld a, SFX_06
 	ld [H_SFX_ID], a
-	call Func_2cd1
+	call PrintMoneyInShop_
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, [wCurObjectStruct]
@@ -7502,7 +7502,7 @@ Func_336bd: ; 336bd (c:76bd)
 	ld a, [wPlayerObjectStruct_YCoord]
 	cp $48
 	jr nc, .asm_336d7
-	ld a, [wcd21]
+	ld a, [wIdleHUDVisible]
 	or a
 	jr z, .asm_336d7
 	ld a, [hl]
@@ -7671,7 +7671,7 @@ Func_337c2:
 	pop hl
 	and $10
 	jr nz, .asm_337f1
-.asm_337e4
+.default
 	pop de
 	ld a, [wCurObjectStruct]
 	add $3
@@ -7684,7 +7684,7 @@ Func_337c2:
 
 .asm_337f1
 	ld a, [hl]
-	add $e0
+	add -$20
 	ld [hl], a
 	push hl
 	call Func_304c9
@@ -7707,7 +7707,7 @@ Func_337c2:
 	ld [hl], a
 	inc hl
 	ld a, [hl]
-	add $f0
+	add -$10
 	ld [hl], a
 	push hl
 	call Func_304c9
@@ -7744,7 +7744,7 @@ Func_337c2:
 	ret
 
 .asm_33844
-	jr .asm_337e4
+	jr .default
 
 Func_33846: ; 33846 (c:7846)
 	ld c, a

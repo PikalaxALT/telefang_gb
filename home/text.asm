@@ -4,8 +4,8 @@ Func_2ceb::
 	ld [wTextSubfunction], a
 	ret
 
-Func_2d03::
-	homecall Func_3c91b
+DecimalConvertAndRightAlignTwoByteFiveDigitNumber_::
+	homecall DecimalConvertAndRightAlignTwoByteFiveDigitNumber
 	ret
 
 Func_2d10::
