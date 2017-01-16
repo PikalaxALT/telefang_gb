@@ -725,7 +725,7 @@ Func_1454a: ; 1454a (5:454a)
 	call InitSerialData
 	call BattleResults_ResetLCDCFlags_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	call StartFade_
 	jp NextBattleSubroutine
@@ -1581,7 +1581,7 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	call Func_142ba
 	call InitBattleTopMenuCursor
 	xor a
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	jp NextBattleSubroutine
 
@@ -1744,7 +1744,7 @@ Battle_DrawMoveSelectionMenu: ; 14c34 (5:4c34)
 .set_cursor_position
 	call InitMoveSelectionMenuCursor
 	xor a
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	jp NextBattleSubroutine
 
@@ -1924,7 +1924,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	ld c, $8b
 	call StdBattleTextBox
 	ld a, $1
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_165fe
 	call Func_3cb5
 	jr .asm_14e87
@@ -1958,7 +1958,7 @@ Func_14e9d: ; 14e9d (5:4e9d)
 	ld c, $95
 	call StdBattleTextBox
 	ld a, $1
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_165e8
 	call Func_3cb5
 	jr .asm_14ec3
@@ -3270,7 +3270,7 @@ Func_15810: ; 15810 (5:5810)
 	ld a, BANK(Func_15810)
 	ld [wPrevROMBank], a
 	ld a, $d0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 .asm_1587f
 	ld a, [wCurBattleDenjuu3]
@@ -3299,7 +3299,7 @@ Func_15810: ; 15810 (5:5810)
 	ld a, BANK(Func_15810)
 	ld [wPrevROMBank], a
 	ld a, $d1
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 .asm_158c2
 	ld a, [wCurEnemyDenjuu2]
@@ -3328,7 +3328,7 @@ Func_15810: ; 15810 (5:5810)
 	ld a, BANK(Func_15810)
 	ld [wPrevROMBank], a
 	ld a, $d2
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 .asm_15905
 	ld a, [wCurEnemyDenjuu3]
@@ -3357,7 +3357,7 @@ Func_15810: ; 15810 (5:5810)
 	ld a, BANK(Func_15810)
 	ld [wPrevROMBank], a
 	ld a, $d3
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 .asm_15948
 	call Func_1643a
@@ -4730,7 +4730,7 @@ Battle_RunAwayScrollScreen: ; 163fe (5:63fe)
 .asm_1640b
 	call Func_14005
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp NextBattleSubroutine
 
 Battle_FinishRunAway: ; 16416 (5:6416)

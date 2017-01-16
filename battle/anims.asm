@@ -6248,9 +6248,9 @@ Func_6b28c: ; 6b28c (1a:728c)
 	ld [de], a
 	ld a, [hli]
 	pop de
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 .asm_6b2cb
-	jp Func_0609
+	jp StartObjectAnimation_
 
 Pointers_6b2cf:
 	dw Data_6b2d3

@@ -1279,7 +1279,7 @@ Script_048: ; Intro script
 Script_049:
 	script_4d $64
 	script_21 $0, $59, $55
-	script_playmusic MUSIC_29
+	script_playmusic MUSIC_WELCOME_TO_DENJUU_WORLD
 	script_dshot_signal_strength $4
 	script_4c $1
 	script_set_event EVENT_1C3
@@ -1414,14 +1414,14 @@ Script_04a:
 	script_apply_facing $0, $0
 	script_sleep 20
 	script_printtext $3, $8b
-	script_jump_if_not EVENT_SAID_NO, Script_150b07
+	script_jump_if_not EVENT_SAID_NO, .skip_explanation
 	script_sleep 20
 	script_walk_npc $1, $74, 50
 	script_wait_movement $1
 	script_printtext $3, $8c
 	script_sleep 20
 	script_apply_facing $1, $1
-Script_150ab8:
+.loop
 	script_sleep 20
 	script_printtext $3, $8d
 	script_apply_facing $1, $2
@@ -1448,9 +1448,9 @@ Script_150ab8:
 	script_apply_facing $1, $1
 	script_sleep 20
 	script_printtext $3, $93
-	script_jump_if EVENT_SAID_NO, Script_150ab8
+	script_jump_if EVENT_SAID_NO, .loop
 	script_sleep 20
-Script_150b07:
+.skip_explanation
 	script_printtext $3, $94
 	script_sleep 20
 	script_printtext $3, $95
@@ -1481,7 +1481,7 @@ ELSE
 ENDC
 	script_sleep 10
 	script_4d $96
-	script_60 $59
+	script_60 $59 ; palette override
 	script_66 $2a
 	script_sleep 10
 IF DEF(POWER)
@@ -1951,7 +1951,7 @@ Script_150efe:
 	script_playmusic MUSIC_02
 	script_sleep 3
 	script_set_event EVENT_210
-	script_playmusic MUSIC_29
+	script_playmusic MUSIC_WELCOME_TO_DENJUU_WORLD
 	script_4d $3
 	script_warp $8, $c, $5, $6
 	script_21 $0, $59, $35
@@ -5956,7 +5956,7 @@ Script_106:
 	script_end
 
 Script_108:
-	script_playmusic MUSIC_29
+	script_playmusic MUSIC_WELCOME_TO_DENJUU_WORLD
 	script_sleep 20
 	script_printtext $c, $5e
 	script_sleep 20

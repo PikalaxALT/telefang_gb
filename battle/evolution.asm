@@ -360,7 +360,7 @@ EvolveDenjuu_StartFadeOut: ; 75770 (1d:5770)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, [wd401]
 	inc a
 	ld [wd401], a

@@ -80,7 +80,7 @@ Func_808e::
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp IncrementSubroutine
 
 Func_80a0::
@@ -178,7 +178,7 @@ Func_855d::
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp IncrementSubroutine
 
 Func_856f::
@@ -259,23 +259,23 @@ Func_8648: ; 8648 (2:4648)
 	ret nz
 	ld a, [hJoyNew]
 	and ($FF ^ (START | SELECT))
-	jr z, .asm_86a7
+	jr z, .load_gray_hue
 	xor a
 	ld [wcb74], a
 	ld a, [wcb75]
 	or a
 	ret z
-	ld hl, s3_b000
+	ld hl, sBGPalsBackup
 	ld de, wCGB_BGPalsBuffer
-	ld bc, $40
-	call Func_86f9
+	ld bc, sBGPalsBackupEnd - sBGPalsBackup
+	call CopyBGPalBufferToOrFromBackup
 	ld a, $1
 	ld [wBGPalUpdate], a
 	xor a
 	ld [wcb75], a
 	ret
 
-.asm_86a7
+.load_gray_hue
 	ld a, [wcb75]
 	or a
 	ret nz
@@ -288,10 +288,10 @@ Func_8648: ; 8648 (2:4648)
 	cp $c8
 	ret nz
 	ld hl, wCGB_BGPalsBuffer
-	ld de, s3_b000
-	ld bc, s3_b040 - s3_b000
-	call Func_86f9
-	call Func_8710
+	ld de, sBGPalsBackup
+	ld bc, sBGPalsBackupEnd - sBGPalsBackup
+	call CopyBGPalBufferToOrFromBackup
+	call LoadGrayHue
 	ld bc, $348
 	ld a, $7
 	call LoadNthStdBGPalette
@@ -303,8 +303,8 @@ Func_8648: ; 8648 (2:4648)
 	ld [wcb74], a
 	ret
 
-Func_86e2::
-	enable_sram s3_b000
+Dummy_CopyBGPalBufferToOrFromBackup:
+	enable_sram sBGPalsBackup
 .asm_86ec
 	ld a, [hli]
 	ld [de], a
@@ -317,8 +317,8 @@ Func_86e2::
 	ld [MBC3SRamEnable], a
 	ret
 
-Func_86f9: ; 86f9 (2:46f9)
-	enable_sram s3_b000
+CopyBGPalBufferToOrFromBackup: ; 86f9 (2:46f9)
+	enable_sram sBGPalsBackup
 .asm_8703
 	ld a, [hli]
 	ld [de], a
@@ -331,7 +331,7 @@ Func_86f9: ; 86f9 (2:46f9)
 	ld [MBC3SRamEnable], a
 	ret
 
-Func_8710: ; 8710 (2:4710)
+LoadGrayHue: ; 8710 (2:4710)
 	ld hl, wCGB_BGPalsBuffer + 1 palettes + 4
 	ld b, $6
 .loop
@@ -901,13 +901,13 @@ SaveGame: ; fb3e (3:7b3e)
 	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
-	ld hl, wPhoneCallSubroutine
-	ld de, s0_a010
-	ld bc, $80
+	ld hl, wOverworldData
+	ld de, sOverworldData
+	ld bc, wOverworldDataEnd - wOverworldData
 	call CopyData
-	ld hl, wcd00
-	ld de, s0_a110
-	ld bc, $100
+	ld hl, wScriptData
+	ld de, sScriptData
+	ld bc, wScriptDataEnd - wScriptData
 	call CopyData
 	ld hl, wEventFlags
 	ld de, sEventFlags
@@ -927,7 +927,7 @@ ENDC
 	call SaveAndLoadGame_FarCopySRAMDouble
 	call CalculateChecksum
 	ld a, $1
-	ld [s0_bffd], a
+	ld [sSaveFileExists], a
 	xor a
 	ld [MBC3SRamEnable], a
 	ret
@@ -936,11 +936,11 @@ LoadGame: ; fb8d (3:7b8d)
 	enable_sram
 	xor a
 	ld [MBC3SRamBank], a
-	ld hl, s0_a010
+	ld hl, sOverworldData
 	ld de, wPhoneCallSubroutine
 	ld bc, $80
 	call CopyData
-	ld hl, s0_a110
+	ld hl, sScriptData
 	ld de, wcd00
 	ld bc, $100
 	call CopyData
@@ -2099,7 +2099,7 @@ Func_2df11:
 	jr AddOrSubtractMoney
 
 Func_2df1e: ; 2df1e (b:5f1e)
-	enable_sram s3_a000
+	enable_sram sOAMAnimationsBackup
 	ld hl, wPlayerObjectStruct
 	ld de, wOAMAnimation15
 	ld b, $20
@@ -2108,33 +2108,33 @@ Func_2df1e: ; 2df1e (b:5f1e)
 	ld de, wOAMAnimation16
 	ld b, $20
 	call CopyData_Under256Bytes
-	ld de, wOAMBufferEnd
-	ld hl, s3_a000
-	ld bc, $300
-.asm_2df47
+	ld de, wOAMAnimations
+	ld hl, sOAMAnimationsBackup
+	ld bc, wOAMAnimationsEnd - wOAMAnimations
+.copy
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_2df47
+	jr nz, .copy
 	disable_sram
 	ret
 
 Func_2df55: ; 2df55 (b:5f55)
-	enable_sram s3_a000
+	enable_sram sOAMAnimationsBackup
 	ld de, wOAMAnimations
-	ld hl, s3_a000
-	ld bc, $300
-.asm_2df68
+	ld hl, sOAMAnimationsBackup
+	ld bc, wOAMAnimationsEnd - wOAMAnimations
+.copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_2df68
+	jr nz, .copy
 	disable_sram
 	ld hl, wOAMAnimation15
 	ld de, wPlayerObjectStruct
@@ -3465,7 +3465,7 @@ Func_3a1bc: ; 3a1bc (e:61bc)
 	or a
 	jr z, .asm_3a1e8
 	ld a, $40
-	ld [wcf96], a
+	ld [wMusicFade], a
 .asm_3a1e8
 	ret
 
@@ -5119,13 +5119,13 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ld e, a
 	call Multiply_C_by_E
 	ld a, d
-	ld hl, s3_a300
+	ld hl, sIdxsOfDenjuuWhoCanCallPlayer
 	add l
 	ld l, a
 	ld a, $0
 	adc h
 	ld h, a
-	enable_sram s3_a300
+	enable_sram sIdxsOfDenjuuWhoCanCallPlayer
 	ld a, [hl]
 	ld b, a
 	disable_sram
@@ -5134,7 +5134,7 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 
 .CountDenjuuAvailableForCall: ; a4ef3 (29:4ef3)
 	enable_sram
-	ld de, s3_a300
+	ld de, sIdxsOfDenjuuWhoCanCallPlayer
 	ld hl, sAddressBook + 1
 	ld b, $0
 	ld a, [wAddressBookIndexOfPartnerDenjuu]
@@ -5150,7 +5150,7 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ld a, [hl]
 	or a
 	jr z, .next
-	ld a, BANK(s3_a300)
+	ld a, BANK(sIdxsOfDenjuuWhoCanCallPlayer)
 	ld [MBC3SRamBank], a
 	ld a, b
 	ld [de], a
@@ -7647,8 +7647,8 @@ Func_a847a: ; a847a (2a:447a)
 	rl d
 	hlbgcoord 1, 0
 	add hl, de
-	ld de, s3_a300
-	enable_sram s3_a300
+	ld de, sIdxsOfDenjuuWhoCanCallPlayer
+	enable_sram sIdxsOfDenjuuWhoCanCallPlayer
 	ret
 
 Func_a84a3: ; a84a3 (2a:44a3)
@@ -15334,9 +15334,9 @@ Func_c99ac: ; c99ac (32:59ac)
 	jr .asm_c99ea
 
 .asm_c99ea
-	enable_sram s3_a000
+	enable_sram sOAMAnimationsBackup
 	ld de, wOAMAnimation01
-	ld hl, s3_a000
+	ld hl, sOAMAnimationsBackup
 	ld bc, $140
 .asm_c99fd
 	ld a, [de]
@@ -15468,9 +15468,9 @@ Func_c9ad5:
 	ld [wc46c], a
 	ld a, $40
 	ld [rSTAT], a
-	enable_sram s3_a000
+	enable_sram sOAMAnimationsBackup
 	ld de, wOAMAnimations
-	ld hl, s3_a000
+	ld hl, sOAMAnimationsBackup
 	ld bc, $140
 .asm_c9af1
 	ld a, [hli]

@@ -5,43 +5,43 @@ UpdateSound_24:
 	push hl
 	ld a, [H_MusicID]
 	cp $1
-	jp z, Func_90629
+	jp z, MusicNone_24
 	or a
-	jr z, .asm_90018
+	jr z, .no_new_music
 	call PlayMusic_24
 	xor a
 	ld [H_MusicID], a
-	jr .asm_9003e
+	jr .finished_starting_audio
 
-.asm_90018
+.no_new_music
 	ld a, [wRingtoneID]
 	or a
-	jr z, .asm_90022
+	jr z, .no_ringtone
 	xor a
 	ld [H_SFX_ID], a
-.asm_90022
+.no_ringtone
 	ld a, [H_SFX_ID]
 	or a
-	jr z, .asm_90031
+	jr z, .no_sfx
 	call PlaySFX_24
 	xor a
 	ld [H_SFX_ID], a
-	jr .asm_9003e
+	jr .finished_starting_audio
 
-.asm_90031
+.no_sfx
 	ld a, [H_Ringtone]
 	or a
-	jr z, .asm_9003e
+	jr z, .finished_starting_audio
 	call PlayRingtone_24
 	xor a
 	ld [H_Ringtone], a
-.asm_9003e
-	ld a, [wcf90]
+.finished_starting_audio
+	ld a, [wSoundUpdatesDisabled]
 	or a
 	jr z, .asm_90064
 	ld a, [wcf91]
 	or a
-	jp nz, Func_90173
+	jp nz, .check_channel5
 	ld a, $ff
 	ld [wcf91], a
 	ld a, $8
@@ -53,12 +53,12 @@ UpdateSound_24:
 	ld [rNR24], a
 	ld [rNR44], a
 	ld [rNR34], a
-	jp Func_90173
+	jp .check_channel5
 
 .asm_90064
 	ld a, [wcf91]
 	or a
-	jr z, .asm_90081
+	jr z, .check_fade
 	xor a
 	ld [wcf91], a
 	ld a, $8f
@@ -70,32 +70,32 @@ UpdateSound_24:
 	ld [rNR14], a
 	xor a
 	ld [wChannel5], a
-.asm_90081
-	ld a, [wcf96]
+.check_fade
+	ld a, [wMusicFade]
 	or a
-	jr z, .asm_900e9
-	ld a, [wcf97]
+	jr z, .update_tracks
+	ld a, [wCurMusicFade]
 	or a
-	jr z, .asm_90093
+	jr z, .fade_iteration
 	dec a
-	ld [wcf97], a
-	jr .asm_900e9
+	ld [wCurMusicFade], a
+	jr .update_tracks
 
-.asm_90093
-	ld a, [wcf98]
+.fade_iteration
+	ld a, [wVolume]
 	sub $22
-	jr c, .asm_900a7
-	ld [wcf98], a
+	jr c, .reset_all
+	ld [wVolume], a
 	ld [rNR50], a
-	ld a, [wcf96]
-	ld [wcf97], a
-	jr .asm_900e9
+	ld a, [wMusicFade]
+	ld [wCurMusicFade], a
+	jr .update_tracks
 
-.asm_900a7
+.reset_all
 	xor a
 	ld [rNR50], a
-	ld [wcf96], a
-	ld [wcf97], a
+	ld [wMusicFade], a
+	ld [wCurMusicFade], a
 	ld [rNR51], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -125,24 +125,24 @@ UpdateSound_24:
 	pop af
 	ret
 
-.asm_900e9
+.update_tracks
 	ld de, wChannel1
 	ld a, [de]
 	or a
-	jr z, .asm_90125
+	jr z, .check_channel2
 	xor a
 	ld [H_FFA3], a
 	call Func_902ff
-	jr z, .asm_900ff
+	jr z, .special_check_channel1
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_90125
+	jr .check_channel2
 
-.asm_900ff
+.special_check_channel1
 	ld a, [wcf94]
 	or a
-	jr z, .asm_90122
+	jr z, .update_channel1
 	xor a
 	ld [wcf94], a
 	ld hl, $5
@@ -161,113 +161,113 @@ UpdateSound_24:
 	ld a, [hl]
 	or $80
 	ld [rNR14], a
-.asm_90122
+.update_channel1
 	call UpdateChannel_24
-.asm_90125
+.check_channel2
 	ld de, wChannel2
 	ld a, [de]
 	or a
-	jr z, .asm_9013f
+	jr z, .check_channel3
 	ld a, $1
 	ld [H_FFA3], a
 	call Func_902ff
-	jr z, .asm_9013c
+	jr z, .update_channel2
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_9013f
+	jr .check_channel3
 
-.asm_9013c
+.update_channel2
 	call UpdateChannel_24
-.asm_9013f
+.check_channel3
 	ld de, wChannel3
 	ld a, [de]
 	or a
-	jr z, .asm_90159
+	jr z, .check_channel4
 	ld a, $2
 	ld [H_FFA3], a
 	call Func_902ff
-	jr z, .asm_90156
+	jr z, .update_channel3
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_90159
+	jr .check_channel4
 
-.asm_90156
+.update_channel3
 	call UpdateChannel_24
-.asm_90159
+.check_channel4
 	ld de, wChannel4
 	ld a, [de]
 	or a
-	jr z, Func_90173
+	jr z, .check_channel5
 	ld a, $3
 	ld [H_FFA3], a
 	call Func_902ff
-	jr z, .asm_90170
+	jr z, .update_channel4
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr Func_90173
+	jr .check_channel5
 
-.asm_90170
+.update_channel4
 	call UpdateChannel_24
-Func_90173: ; 48173 (11:4173)
+.check_channel5
 	ld de, wChannel5
 	ld a, [de]
 	or a
-	jr z, .asm_9018d
+	jr z, .check_channel6
 	ld a, $4
 	ld [H_FFA3], a
 	call Func_902ff
-	jr z, .asm_9018a
+	jr z, .update_channel5
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_9018d
+	jr .check_channel6
 
-.asm_9018a
+.update_channel5
 	call UpdateChannel_24
-.asm_9018d
-	ld a, [wcf90]
+.check_channel6
+	ld a, [wSoundUpdatesDisabled]
 	or a
-	jr nz, Func_901ad
+	jr nz, UpdateRingtone_24
 	ld de, wChannel6
 	ld a, [de]
 	or a
-	jr z, Func_901ad
+	jr z, UpdateRingtone_24
 	ld a, $5
 	ld [H_FFA3], a
 	call Func_902ff
-	jr z, .asm_901aa
+	jr z, .update_channel6
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr Func_901ad
+	jr UpdateRingtone_24
 
-.asm_901aa
+.update_channel6
 	call UpdateChannel_24
-Func_901ad:
-	ld a, [wcf90]
+UpdateRingtone_24:
+	ld a, [wSoundUpdatesDisabled]
 	or a
-	jr z, .asm_901b6
-	jp Func_902fa
+	jr z, .check_ringtone_playing
+	jp FinishSoundUpdate_24
 
-.asm_901b6
+.check_ringtone_playing
 	ld a, [wRingtoneID]
 	or a
-	jr nz, .asm_901bf
-	jp Func_902fa
+	jr nz, .countdown_wcfc7
+	jp FinishSoundUpdate_24
 
-.asm_901bf
+.countdown_wcfc7
 	ld a, [wcfc7]
 	dec a
 	ld [wcfc7], a
-	jr z, .asm_901e1
+	jr z, .play_ringtone
 	cp $1
-	jr z, .asm_901cf
-	jp Func_902fa
+	jr z, .break_note
+	jp FinishSoundUpdate_24
 
-.asm_901cf
+.break_note
 	ld a, $8
 	ld [rNR10], a
 	ld [rNR12], a
@@ -276,9 +276,9 @@ Func_901ad:
 	ld [rNR13], a
 	ld a, $80
 	ld [rNR14], a
-	jp Func_902fa
+	jp FinishSoundUpdate_24
 
-.asm_901e1
+.play_ringtone
 	ld a, [wRingtonePointer]
 	ld e, a
 	ld a, [wRingtonePointer + 1]
@@ -295,7 +295,7 @@ Func_901ad:
 	jr nz, asm_90217
 	xor a
 	ld [wRingtoneID], a
-	jp Func_902fa
+	jp FinishSoundUpdate_24
 
 MemSRAMBank_24: ; 48206 (11:4206)
 	enable_sram
@@ -373,7 +373,7 @@ asm_90268
 	xor a
 	ld [H_Ringtone], a
 	ld [wRingtoneID], a
-	jp Func_902fa
+	jp FinishSoundUpdate_24
 
 .not_ram
 	ld a, [wcfc3]
@@ -446,7 +446,7 @@ asm_90268
 	ld [wRingtonePointer], a
 	ld a, d
 	ld [wRingtonePointer + 1], a
-Func_902fa: ; 482fa (11:42fa)
+FinishSoundUpdate_24: ; 482fa (11:42fa)
 	pop hl
 	pop de
 	pop bc
@@ -482,7 +482,7 @@ UpdateChannel_24: ; 48307 (11:4307)
 	add hl, de
 	ld a, [hl]
 	and $40
-	call nz, Func_909e3
+	call nz, ExecuteTrackFunction_24
 	call Func_90ad1
 	jp Func_90651
 
@@ -526,7 +526,7 @@ asm_9034e
 
 .asm_90371
 	cp $d0
-	jr nz, asm_9039f
+	jr nz, .note
 	ld a, [H_MusicCommand]
 	and $f
 	ld hl, $9
@@ -534,7 +534,7 @@ asm_9034e
 	ld [hl], a
 	jr asm_90341
 
-asm_90381
+.rest
 	ld hl, $8
 	add hl, de
 	xor a
@@ -542,7 +542,7 @@ asm_90381
 	call Func_90b39
 	ld hl, $c
 	add hl, de
-	ld bc, Func_9039e
+	ld bc, .Null
 	ld [hl], c
 	inc hl
 	ld [hl], b
@@ -551,10 +551,10 @@ asm_90381
 	ld a, $8f
 	jp Func_90b76
 
-Func_9039e:
+.Null:
 	ret
 
-asm_9039f
+.note
 	call Func_90561
 	ld hl, $3
 	add hl, de
@@ -563,10 +563,10 @@ asm_9039f
 	ld b, a
 	inc b
 	xor a
-.asm_903ae
+.loop_duration
 	add [hl]
 	dec b
-	jr nz, .asm_903ae
+	jr nz, .loop_duration
 	inc hl
 	ld [hl], a
 	ld a, [H_FFA3]
@@ -580,7 +580,7 @@ asm_9039f
 	ld a, [H_MusicCommand]
 	and $f0
 	cp $c0
-	jr z, asm_90381
+	jr z, .rest ; rest
 	ld a, [H_FFA3]
 	cp $2
 	jr nz, .asm_903f5
@@ -852,7 +852,7 @@ Data_90569:
 	dw  $7ba,  $774,  $6e9,  $5d2,  $39d, -1, -1, -1
 	dw  $7be,  $77b,  $6f9,  $5ed,  $3dc, -1, -1, -1
 
-Func_90629: ; 48629 (11:4629)
+MusicNone_24: ; 48629 (11:4629)
 	xor a
 	ld [rNR52], a
 	ld [rNR50], a
@@ -868,7 +868,7 @@ Func_90629: ; 48629 (11:4629)
 	ld [wChannel6], a
 	ld a, $77
 	ld [rNR50], a
-	jp Func_901ad
+	jp UpdateRingtone_24
 
 Func_90651: ; 48651 (11:4651)
 	ld a, [H_FFA3]
@@ -1470,7 +1470,7 @@ Data_909d3:
 Data_909e2:
 	db $ff
 
-Func_909e3: ; 489e3 (11:49e3)
+ExecuteTrackFunction_24: ; 489e3 (11:49e3)
 	ld hl, $c
 	add hl, de
 	ld a, [hli]
@@ -1579,7 +1579,7 @@ Func_90a64:
 	ld [hl], $0
 	call Func_90b39
 	push bc
-	ld bc, Func_90aa8
+	ld bc, .Null
 	ld hl, $c
 	add hl, de
 	ld [hl], c
@@ -1592,7 +1592,7 @@ Func_90a64:
 	ld a, $80
 	jp Func_90b76
 
-Func_90aa8:
+.Null:
 	ret
 
 Func_90aa9: ; 48aa9 (11:4aa9)
@@ -1801,8 +1801,8 @@ Data_90bec:
 
 PlayMusic_24: ; 48bf4 (11:4bf4)
 	xor a
-	ld [wcf96], a
-	ld [wcf97], a
+	ld [wMusicFade], a
+	ld [wCurMusicFade], a
 	ld [wcf9b], a
 	ld [wcfb0], a
 	ld [wcfb1], a
@@ -1811,7 +1811,7 @@ PlayMusic_24: ; 48bf4 (11:4bf4)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
@@ -1823,7 +1823,7 @@ PlaySFX_24: ; 48c22 (11:4c22)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
@@ -1835,7 +1835,7 @@ PlayRingtone_24: ; 48c3a (11:4c3a)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a

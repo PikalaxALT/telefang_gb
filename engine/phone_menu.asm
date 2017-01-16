@@ -1,14 +1,14 @@
 TopPhoneMenu:
 	ld a, [wSubroutine]
 	jump_table
-	dw Func_10054 ; 00
-	dw Func_1006e ; 01
-	dw Func_10089 ; 02
-	dw Func_100bd ; 03
-	dw Func_100ea ; 04
-	dw Func_100fa ; 05
-	dw Func_10108 ; 06
-	dw Func_10113 ; 07
+	dw TopPhone_LoadPalettes ; 00
+	dw TopPhone_LoadGFX ; 01
+	dw TopPhone_LoadLayouts ; 02
+	dw TopPhone_InitBuffers ; 03
+	dw TopPhone_SetUpSlideIn ; 04
+	dw TopPhone_UpdatePals ; 05
+	dw TopPhone_PlayMusic ; 06
+	dw TopPhone_SlideIn ; 07
 	dw TopPhone_JoypadAction ; 08
 	dw TopPhone_ScrollDown1 ; 09
 	dw TopPhone_ScrollDown2 ; 0a
@@ -27,19 +27,19 @@ TopPhoneMenu:
 	dw TopPhone_InitGameState ; 17
 	dw TopPhone_LoadSoundTest ; 18
 	dw TopPhone_SoundTestJoypadAction ; 19
-	dw Func_103b4 ; 1a
-	dw Func_103e2 ; 1b
-	dw Func_10400 ; 1c
-	dw Func_1040e ; 1d
-	dw Func_10424 ; 1e
-	dw Func_1006e ; 1f
-	dw Func_10452 ; 20
-	dw Func_10546 ; 21
-	dw Func_10558 ; 22
-	dw Func_1056a ; 23
-	dw Phone_Save ; 24
+	dw TopPhone_ReturnFromSoundTest ; 1a
+	dw TopPhone_SetUpDeleteSaveWarning ; 1b
+	dw TopPhone_DeleteSaveWarning ; 1c
+	dw TopPhone_DeleteSaveWarning_GoToNewGameInit ; 1d
+	dw TopPhone_DontDeleteSave_ReturnToMenu ; 1e
+	dw TopPhone_LoadGFX ; 1f
+	dw TopPhone_SetUpNicknameScreen ; 20
+	dw TopPhone_SetUpNicknameScreen_StartMusic ; 21
+	dw TopPhone_NicknameScreenJoypadAction ; 22
+	dw TopPhone_FadeOutFromNickname ; 23
+	dw TopPhone_SaveGame ; 24
 
-Func_10054: ; 10054 (4:4054)
+TopPhone_LoadPalettes: ; 10054 (4:4054)
 	ld bc, $0
 	call GetCGB_BGLayout_
 	ld a, $1
@@ -55,7 +55,7 @@ ENDC
 	ld [wDShotLevel], a
 	jp IncrementSubroutine
 
-Func_1006e: ; 1006e (4:406e)
+TopPhone_LoadGFX: ; 1006e (4:406e)
 	call ClearBGMapAndAttrs
 	call ClearBGWindowAndAttrs
 	call ClearObjectAnimationBuffers
@@ -66,18 +66,18 @@ Func_1006e: ; 1006e (4:406e)
 	call LoadPhoneKeypad
 	jp IncrementSubroutine
 
-Func_10089: ; 10089 (4:4089)
+TopPhone_LoadLayouts: ; 10089 (4:4089)
 	ld a, $1
 	ld [wdd06], a
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $10
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld e, $12
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
-	ld bc, $30f
+	lb bc, $3, $f
 	ld e, $20
 	call Phone_LoadStdBGMapTileAndAttrLayout
-	ld bc, $0
+	lb bc, $0, $0
 	ld e, $11
 	call Phone_LoadStdBGWindowTileAndAttrLayout
 	xor a
@@ -88,7 +88,7 @@ Func_10089: ; 10089 (4:4089)
 	ld [wcb3a], a
 	jp IncrementSubroutine
 
-Func_100bd: ; 100bd (4:40bd)
+TopPhone_InitBuffers: ; 100bd (4:40bd)
 	ld a, $10
 	ld [wDShotDialBufferSize], a
 	ld b, $0
@@ -111,7 +111,7 @@ Func_100bd: ; 100bd (4:40bd)
 	call Func_11927
 	jp IncrementSubroutine
 
-Func_100ea: ; 100ea (4:40ea)
+TopPhone_SetUpSlideIn: ; 100ea (4:40ea)
 	call Func_13a1e
 	ld a, $a7
 	ld [wWX], a
@@ -119,20 +119,20 @@ Func_100ea: ; 100ea (4:40ea)
 	ld [wSCX], a
 	jp IncrementSubroutine
 
-Func_100fa: ; 100fa (4:40fa)
+TopPhone_UpdatePals: ; 100fa (4:40fa)
 	call NormalDMGPals
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
 	jp IncrementSubroutine
 
-Func_10108: ; 10108 (4:4108)
+TopPhone_PlayMusic: ; 10108 (4:4108)
 	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
 	jp IncrementSubroutine
 
-Func_10113: ; 10113 (4:4113)
+TopPhone_SlideIn: ; 10113 (4:4113)
 	ld a, $e3
 	ld [wLCDC], a
 	xor a
@@ -224,7 +224,7 @@ TopPhone_JoypadAction: ; 1013b (4:413b)
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $e
 	ld [wSubroutine], a
 	ret
@@ -333,9 +333,9 @@ TopPhone_LoadTimeSetLayout: ; 1028a (4:428a)
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	call Func_12a4e
 	ld a, $5
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	xor a
 	ld [wCurOptionHover], a
 	call Func_1189e
@@ -376,9 +376,9 @@ TopPhone_LoadNameEntryLayout: ; 102cd (4:42cd)
 	ld [wcb66], a
 	call Func_128ff
 	ld a, $2
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $2
 	ld [wcb28], a
 	call LoadPhoneKeypad
@@ -412,7 +412,7 @@ TopPhone_FadeToGame: ; 10339 (4:4339)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp IncrementSubroutine
 
 TopPhone_InitGameState: ; 10346 (4:4346)
@@ -442,13 +442,13 @@ TopPhone_InitGameState: ; 10346 (4:4346)
 
 TopPhone_LoadSoundTest: ; 1037f (4:437f)
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $3
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	xor a
 	ld [wSoundTestMusicID], a
 	ld [wSoundTestSFXID], a
@@ -463,7 +463,7 @@ TopPhone_SoundTestJoypadAction: ; 103a5 (4:43a5)
 	call AnimateObject_
 	jp SoundTestJoypadAction
 
-Func_103b4: ; 103b4 (4:43b4)
+TopPhone_ReturnFromSoundTest: ; 103b4 (4:43b4)
 	ld bc, $1b
 	check_cgb
 	jr z, .asm_103c1
@@ -483,27 +483,27 @@ Func_103b4: ; 103b4 (4:43b4)
 	ld [wSubroutine], a
 	ret
 
-Func_103e2: ; 103e2 (4:43e2)
-	ld bc, $104
+TopPhone_SetUpDeleteSaveWarning: ; 103e2 (4:43e2)
+	lb bc, $1, $4
 	ld e, $5a
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $1
 	ld [wNumNotesInCurDMelo], a
-	call Func_13cf4
+	call UpdateDeleteSaveWarningCursorPosition
 	jp IncrementSubroutine
 
-Func_10400: ; 10400 (4:4400)
+TopPhone_DeleteSaveWarning: ; 10400 (4:4400)
 	ld de, wOAMAnimation02
 	call AnimateObject_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	jp Func_13c8f
+	jp DeleteSaveWarning_JoypadAction
 
-Func_1040e: ; 1040e (4:440e)
+TopPhone_DeleteSaveWarning_GoToNewGameInit: ; 1040e (4:440e)
 	ld bc, $1b
 	check_cgb
 	jr z, .asm_1041b
@@ -514,7 +514,7 @@ Func_1040e: ; 1040e (4:440e)
 	ld [wSubroutine], a
 	ret
 
-Func_10424: ; 10424 (4:4424)
+TopPhone_DontDeleteSave_ReturnToMenu: ; 10424 (4:4424)
 	ld bc, $1b
 	check_cgb
 	jr z, .asm_10431
@@ -534,7 +534,7 @@ Func_10424: ; 10424 (4:4424)
 	ld [wSubroutine], a
 	ret
 
-Func_10452: ; 10452 (4:4452)
+TopPhone_SetUpNicknameScreen: ; 10452 (4:4452)
 	ld bc, $17
 	check_cgb
 	jr z, .asm_1045f
@@ -566,9 +566,9 @@ Func_10452: ; 10452 (4:4452)
 	ld [wcb66], a
 	call Func_128ff
 	ld a, $2
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $2
 	ld [wcb28], a
 	call LoadPhoneKeypad
@@ -605,9 +605,9 @@ Func_10452: ; 10452 (4:4452)
 	ld a, [wRecruitedDenjuuSpecies]
 	call Func_13d46
 	ld a, $c
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation05
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $28
 	ld [wOAMAnimation05_XCoord], a
 	ld a, $40
@@ -629,7 +629,7 @@ Func_10452: ; 10452 (4:4452)
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_10546: ; 10546 (4:4546)
+TopPhone_SetUpNicknameScreen_StartMusic: ; 10546 (4:4546)
 	ld a, $0
 	call PaletteFade_
 	or a
@@ -639,24 +639,24 @@ Func_10546: ; 10546 (4:4546)
 	ld [H_MusicID], a
 	jp IncrementSubroutine
 
-Func_10558: ; 10558 (4:4558)
+TopPhone_NicknameScreenJoypadAction: ; 10558 (4:4558)
 	ld de, wOAMAnimation02
 	call AnimateObject_
 	ld de, wOAMAnimation05
 	call AnimateObject_
 	call Func_12921
-	jp Func_12582
+	jp NicknameScreenJoypadAction
 
-Func_1056a: ; 1056a (4:456a)
+TopPhone_FadeOutFromNickname: ; 1056a (4:456a)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, [wFirstEmptySlotInAddressBook]
 	call Func_13dca
 	jp IncrementSubroutine
 
-Phone_Save: ; 1057d (4:457d)
+TopPhone_SaveGame: ; 1057d (4:457d)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -1347,13 +1347,13 @@ AddressBook_LoadTileLayouts:
 	ld e, $2e
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $b
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	call Func_13124
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -1448,9 +1448,9 @@ Func_10b92:
 	ld e, $3e
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	call Func_1329a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -1689,13 +1689,13 @@ Func_10d86:
 	ld a, $0
 	ld [wOAMAnimation03_TemplateBank], a
 	ld a, $d
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	xor a
 	ld [wPhoneScreenCursorPosition], a
 	call Func_138e2
@@ -1822,9 +1822,9 @@ InGamePhone_DMelo: ; 10e5b (4:4e5b)
 	ld [wcb66], a
 	ld [wcb6e], a
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	call DrawDMeloMenu
 	jp IncrementSubroutine2
 
@@ -1904,13 +1904,13 @@ Func_10f4d:
 	call LoadStdBGMapLayout_
 	call Func_127da
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $b
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	jp IncrementSubroutine2
 
 Func_10f82:
@@ -2018,9 +2018,9 @@ InGamePhone_Save: ; 11023 (4:5023)
 	ld e, $32
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	xor a
 	ld [wPhoneScreenCursorPosition], a
 	call Func_12352
@@ -2064,13 +2064,13 @@ InGamePhone_Options: ; 1107e (4:507e)
 
 Func_1109b:
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $3
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	xor a
 	ld [wCurOptionHover], a
 	call OptionsMenu_UpdateCursorObjects
@@ -2190,13 +2190,13 @@ Func_11177: ; 11177 (4:5177)
 	ld a, [wPhoneScreenCursorPosition]
 	call PrintRecentCall
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $b
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $40
 	ld [wOAMAnimation02_XCoord], a
 	ld a, $8
@@ -2425,13 +2425,13 @@ Func_11370: ; 11370 (4:5370)
 	ld a, [wPhoneScreenCursorPosition]
 	call PrintMailMessageHeader
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $b
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $40
 	ld [wOAMAnimation02_XCoord], a
 	ld a, $8
@@ -2915,9 +2915,9 @@ ComposeDMelo: ; 11aaf (4:5aaf)
 	ld a, $ff
 	ld [wcb6e], a
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	call DrawDMeloMenu
 	xor a
 	ld [wcb28], a
@@ -4464,7 +4464,7 @@ PlayerName_JoypadAction: ; 124a9 (4:64a9)
 .no_button: ; 12581 (4:6581)
 	ret
 
-Func_12582: ; 12582 (4:6582)
+NicknameScreenJoypadAction: ; 12582 (4:6582)
 	call NavigatePhoneKeypad
 	ld a, [hJoyNew]
 	and B_BUTTON
@@ -5675,7 +5675,7 @@ Data_12d3b:
 	db MUSIC_26
 	db MUSIC_27
 	db MUSIC_GOT_PHONE_NUMBER
-	db MUSIC_29
+	db MUSIC_WELCOME_TO_DENJUU_WORLD
 	db MUSIC_2A
 	db MUSIC_EVOLUTION
 	db MUSIC_2C
@@ -6401,9 +6401,9 @@ Func_13267: ; 13267 (4:7267)
 	ld e, $59
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $1
 	ld [wNumNotesInCurDMelo], a
 	call Func_139e7
@@ -7803,30 +7803,30 @@ Func_13c7e: ; 13c7e (4:7c7e)
 	ld a, [hli]
 	ret
 
-Func_13c8f: ; 13c8f (4:7c8f)
+DeleteSaveWarning_JoypadAction: ; 13c8f (4:7c8f)
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_13cb2
+	jr z, .check_b
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, [wNumNotesInCurDMelo]
 	cp $0
-	jr nz, .asm_13cbd
+	jr nz, .dont_delete_save
 	ld de, wOAMAnimation02
 	call DeleteOAMAnimationStruct
-	ld bc, $104
+	lb bc, $1, $4
 	ld e, $5b
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	jp IncrementSubroutine
 
-.asm_13cb2
+.check_b
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_13cd1
+	jr z, .check_up
 	ld a, SFX_04
 	ld [H_SFX_ID], a
-.asm_13cbd
-	ld bc, $104
+.dont_delete_save
+	lb bc, $1, $4
 	ld e, $5b
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld de, wOAMAnimation02
@@ -7835,28 +7835,28 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	ld [wSubroutine], a
 	ret
 
-.asm_13cd1
+.check_up
 	ld a, [wJoyNew]
 	and D_UP
-	jp z, Func_13cdb
-	jr asm_13ce3
+	jp z, .check_down
+	jr .toggle
 
-Func_13cdb: ; 13cdb (4:7cdb)
+.check_down
 	ld a, [wJoyNew]
 	and D_DOWN
-	jp z, Func_13cf3
-asm_13ce3
+	jp z, .quit
+.toggle
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, [wNumNotesInCurDMelo]
 	xor $1
 	ld [wNumNotesInCurDMelo], a
-	jp Func_13cf4
+	jp UpdateDeleteSaveWarningCursorPosition
 
-Func_13cf3: ; 13cf3 (4:7cf3)
+.quit
 	ret
 
-Func_13cf4: ; 13cf4 (4:7cf4)
+UpdateDeleteSaveWarningCursorPosition: ; 13cf4 (4:7cf4)
 	ld b, $10
 	ld a, [wNumNotesInCurDMelo]
 	sla a
@@ -8238,13 +8238,13 @@ Func_13f8c: ; 13f8c (4:7f8c)
 	ld e, $5c
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $b
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	call Func_13312
 	call Func_13139
 	ld a, $1

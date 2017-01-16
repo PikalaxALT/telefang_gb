@@ -10,46 +10,46 @@ PlayIntroMovie: ; 80bf (2:40bf)
 .asm_80d1
 	ld a, [wSubroutine]
 	jump_table
-	dw Func_8124
-	dw Func_8191
-	dw Func_819b
-	dw Func_81bf
-	dw Func_81ef
-	dw Func_8201
-	dw Func_820b
-	dw Func_8191
-	dw Func_8264
-	dw Func_8201
-	dw Func_827e
-	dw Func_8191
-	dw Func_82cd
-	dw Func_8303
-	dw Func_8318
-	dw Func_832f
-	dw Func_834b
-	dw Func_835d
-	dw Func_8191
-	dw Func_83b6
-	dw Func_8201
-	dw Func_83ce
-	dw Func_8191
-	dw Func_8403
-	dw Func_8201
-	dw Func_8423
-	dw Func_8191
-	dw Func_845c
-	dw Func_8474
-	dw Func_8201
-	dw Func_848b
-	dw Func_8491
-	dw Func_84b9
-	dw Func_8201
-	dw Func_8491
+	dw IntroMovie_LoadGFXForScene1
+	dw IntroMovie_FadeIn
+	dw IntroMovie_Scene1ScrollScreen
+	dw IntroMovie_Scene1AppearEnemyDenjuu
+	dw IntroMovie_Scene1WaitStartFadeOut
+	dw IntroMovie_FadeOut
+	dw IntroMovie_LoadGFXForScene2
+	dw IntroMovie_FadeIn
+	dw IntroMovie_AnimateShigekiTalking
+	dw IntroMovie_FadeOut
+	dw IntroMovie_LoadGFXForScene3
+	dw IntroMovie_FadeIn
+	dw IntroMovie_Scene3ScrollScreen1
+	dw IntroMovie_Scene3AnimateFriendlyDenjuu
+	dw IntroMovie_Scene3ExitFriendlyDenjuu
+	dw IntroMovie_Scene3ScrollScreen2
+	dw IntroMovie_Scene3ScrollScreenAndFadeOut
+	dw IntroMovie_LoadGFXForScene4
+	dw IntroMovie_FadeIn
+	dw IntroMovie_AnimateScene4
+	dw IntroMovie_FadeOut
+	dw IntroMovie_LoadGFXForScene5
+	dw IntroMovie_FadeIn
+	dw IntroMovie_AnimateScene5
+	dw IntroMovie_FadeOut
+	dw IntroMovie_LoadGFXForScene6
+	dw IntroMovie_FadeIn
+	dw IntroMovie_ScrollScene6
+	dw IntroMovie_WaitScene6
+	dw IntroMovie_FadeOut
+	dw IntroMovie_Dummy
+	dw IntroMovie_ReturnToTitleScreen
+	dw IntroMovie_FadeOutInterrupt
+	dw IntroMovie_FadeOut
+	dw IntroMovie_ReturnToTitleScreen
 
 Func_8121::
 	jp IncrementSubroutine
 
-Func_8124: ; 8124 (2:4124)
+IntroMovie_LoadGFXForScene1: ; 8124 (2:4124)
 	call ClearBGMapAndAttrs
 	call ClearBGWindowAndAttrs
 	call ClearObjectAnimationBuffers
@@ -79,7 +79,7 @@ Func_8124: ; 8124 (2:4124)
 	ld a, $40
 	ld [wOAMAnimation02_TemplateIdx], a
 	ld de, wOAMAnimation02
-	ld bc, $b068
+	lb bc, $b0, $68
 	call Func_8638
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -92,14 +92,14 @@ Func_8124: ; 8124 (2:4124)
 	call homecall_ret_2e562
 	jp IncrementSubroutine
 
-Func_8191: ; 8191 (2:4191)
+IntroMovie_FadeIn: ; 8191 (2:4191)
 	ld a, $2
 	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
 
-Func_819b: ; 819b (2:419b)
+IntroMovie_Scene1ScrollScreen: ; 819b (2:419b)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wVBlankCounter]
@@ -113,14 +113,14 @@ Func_819b: ; 819b (2:419b)
 	ld [wSCX], a
 	cp $40
 	ret nz
-	ld a, $40
-	ld [wcb2c], a
+	ld a, 64
+	ld [wIntroMovieSceneTimer], a
 	jp IncrementSubroutine
 
-Func_81bf: ; 81bf (2:41bf)
-	ld a, [wcb2c]
+IntroMovie_Scene1AppearEnemyDenjuu: ; 81bf (2:41bf)
+	ld a, [wIntroMovieSceneTimer]
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	cp $0
 	ret nz
 	lb bc, $0, $0
@@ -131,32 +131,32 @@ Func_81bf: ; 81bf (2:41bf)
 	ld e, $9
 	ld a, $1
 	call LoadStdBGMapAttrLayout_
-	ld a, $80
-	ld [wcb2c], a
+	ld a, 128
+	ld [wIntroMovieSceneTimer], a
 	ld a, $41
 	ld [wOAMAnimation02_TemplateIdx], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
-Func_81ef: ; 81ef (2:41ef)
-	ld a, [wcb2c]
+IntroMovie_Scene1WaitStartFadeOut: ; 81ef (2:41ef)
+	ld a, [wIntroMovieSceneTimer]
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	cp $0
 	ret nz
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_8201: ; 8201 (2:4201)
+IntroMovie_FadeOut: ; 8201 (2:4201)
 	ld a, $1
 	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
 
-Func_820b: ; 820b (2:420b)
+IntroMovie_LoadGFXForScene2: ; 820b (2:420b)
 	call ClearObjectAnimationBuffers
 	ld bc, $32
 	call DecompressGFXByIndex_
@@ -178,27 +178,27 @@ Func_820b: ; 820b (2:420b)
 	call StartFade_
 	xor a
 	ld [wSCX], a
-	ld a, $c0
-	ld [wcb2c], a
+	ld a, 192
+	ld [wIntroMovieSceneTimer], a
 	ld de, wOAMAnimation02
-	ld bc, $5848
+	lb bc, $58, $48
 	call Func_8638
 	ld a, $6
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
-Func_8264: ; 8264 (2:4264)
+IntroMovie_AnimateShigekiTalking: ; 8264 (2:4264)
 	ld de, wOAMAnimation02
 	call AnimateObject_
-	ld a, [wcb2c]
+	ld a, [wIntroMovieSceneTimer]
 	cp $0
 	jr z, .asm_8276
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	ret
 
 .asm_8276
@@ -206,7 +206,7 @@ Func_8264: ; 8264 (2:4264)
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_827e: ; 827e (2:427e)
+IntroMovie_LoadGFXForScene3: ; 827e (2:427e)
 	call ClearObjectAnimationBuffers
 	ld bc, $33
 	call DecompressGFXByIndex_
@@ -229,22 +229,22 @@ Func_827e: ; 827e (2:427e)
 	ld a, $44
 	ld [wOAMAnimation02_TemplateIdx], a
 	ld de, wOAMAnimation02
-	ld bc, $c068
+	lb bc, $c0, $68
 	call Func_8638
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, $a0
-	ld [wcb2c], a
+	ld a, 160
+	ld [wIntroMovieSceneTimer], a
 	jp IncrementSubroutine
 
-Func_82cd: ; 82cd (2:42cd)
+IntroMovie_Scene3ScrollScreen1: ; 82cd (2:42cd)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wcb2c]
+	ld a, [wIntroMovieSceneTimer]
 	cp $0
 	jr z, .asm_82e6
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	ld a, [wSCX]
 	add $4
 	ld [wSCX], a
@@ -257,27 +257,27 @@ Func_82cd: ; 82cd (2:42cd)
 	cp $84
 	ret nc
 	ld a, $8
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
-	ld a, $a0
-	ld [wcb2c], a
+	call StartObjectAnimation_
+	ld a, 160
+	ld [wIntroMovieSceneTimer], a
 	jp IncrementSubroutine
 
-Func_8303: ; 8303 (2:4303)
+IntroMovie_Scene3AnimateFriendlyDenjuu: ; 8303 (2:4303)
 	ld de, wOAMAnimation02
 	call AnimateObject_
-	ld a, [wcb2c]
+	ld a, [wIntroMovieSceneTimer]
 	cp $0
 	jr z, .asm_8315
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	ret
 
 .asm_8315
 	jp IncrementSubroutine
 
-Func_8318: ; 8318 (2:4318)
+IntroMovie_Scene3ExitFriendlyDenjuu: ; 8318 (2:4318)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wOAMAnimation02 + 3]
@@ -286,16 +286,16 @@ Func_8320:
 	ld [wOAMAnimation02 + 3], a
 	cp $c0
 	ret c
-	ld a, $80
-	ld [wcb2c], a
+	ld a, 128
+	ld [wIntroMovieSceneTimer], a
 	jp IncrementSubroutine
 
-Func_832f: ; 832f (2:432f)
-	ld a, [wcb2c]
+IntroMovie_Scene3ScrollScreen2: ; 832f (2:432f)
+	ld a, [wIntroMovieSceneTimer]
 	cp $0
 	jr z, .asm_8343
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	ld a, [wSCX]
 	sub $4
 	ld [wSCX], a
@@ -306,7 +306,7 @@ Func_832f: ; 832f (2:432f)
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_834b: ; 834b (2:434b)
+IntroMovie_Scene3ScrollScreenAndFadeOut: ; 834b (2:434b)
 	ld a, [wSCX]
 	sub $4
 	ld [wSCX], a
@@ -316,7 +316,7 @@ Func_834b: ; 834b (2:434b)
 	ret z
 	jp IncrementSubroutine
 
-Func_835d: ; 835d (2:435d)
+IntroMovie_LoadGFXForScene4: ; 835d (2:435d)
 	call ClearObjectAnimationBuffers
 	ld bc, $34
 	call IntroMovie_DoubleDecompressGFX
@@ -336,34 +336,34 @@ Func_835d: ; 835d (2:435d)
 	call GetCGB_OBLayout_
 	ld a, $4
 	call StartFade_
-	ld a, $c0
-	ld [wcb2c], a
+	ld a, 192
+	ld [wIntroMovieSceneTimer], a
 	xor a
 	ld [wSCX], a
 	ld de, wOAMAnimation02
-	ld bc, $8068
+	lb bc, $80, $68
 	call Func_8638
 	ld a, $7
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
-Func_83b6: ; 83b6 (2:43b6)
+IntroMovie_AnimateScene4: ; 83b6 (2:43b6)
 	ld de, wOAMAnimation02
 	call AnimateObject_
-	ld a, [wcb2c]
+	ld a, [wIntroMovieSceneTimer]
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	cp $0
 	ret nz
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_83ce: ; 83ce (2:43ce)
+IntroMovie_LoadGFXForScene5: ; 83ce (2:43ce)
 	call ClearObjectAnimationBuffers
 	ld bc, $36
 	call IntroMovie_DoubleDecompressGFX
@@ -379,13 +379,13 @@ Func_83ce: ; 83ce (2:43ce)
 	call GetCGB_BGLayout_
 	ld a, $4
 	call StartFade_
-	ld a, $ff
-	ld [wcb2c], a
+	ld a, 255
+	ld [wIntroMovieSceneTimer], a
 	ld a, $8
 	ld [wc463], a
 	jp IncrementSubroutine
 
-Func_8403: ; 8403 (2:4403)
+IntroMovie_AnimateScene5: ; 8403 (2:4403)
 	ld a, [wVBlankCounter]
 	and $7
 	jr nz, .asm_8411
@@ -393,16 +393,16 @@ Func_8403: ; 8403 (2:4403)
 	dec a
 	ld [wc463], a
 .asm_8411
-	ld a, [wcb2c]
+	ld a, [wIntroMovieSceneTimer]
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	cp $0
 	ret nz
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_8423: ; 8423 (2:4423)
+IntroMovie_LoadGFXForScene6: ; 8423 (2:4423)
 	call ClearObjectAnimationBuffers
 	ld bc, $38
 	call IntroMovie_DoubleDecompressGFX
@@ -418,15 +418,15 @@ Func_8423: ; 8423 (2:4423)
 	call GetCGB_BGLayout_
 	ld a, $4
 	call StartFade_
-	ld a, $a0
-	ld [wcb2c], a
+	ld a, 160
+	ld [wIntroMovieSceneTimer], a
 	xor a
 	ld [wc463], a
 	ld a, $40
 	ld [wSCX], a
 	jp IncrementSubroutine
 
-Func_845c: ; 845c (2:445c)
+IntroMovie_ScrollScene6: ; 845c (2:445c)
 	ld a, [wVBlankCounter]
 	and $3
 	ret nz
@@ -435,28 +435,28 @@ Func_845c: ; 845c (2:445c)
 	ld [wSCX], a
 	cp $0
 	ret nz
-	ld a, $40
-	ld [wcb2c], a
+	ld a, 64
+	ld [wIntroMovieSceneTimer], a
 	jp IncrementSubroutine
 
-Func_8474: ; 8474 (2:4474)
-	ld a, [wcb2c]
+IntroMovie_WaitScene6: ; 8474 (2:4474)
+	ld a, [wIntroMovieSceneTimer]
 	dec a
-	ld [wcb2c], a
+	ld [wIntroMovieSceneTimer], a
 	cp $0
 	ret nz
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp IncrementSubroutine
 
-Func_848b: ; 848b (2:448b)
+IntroMovie_Dummy: ; 848b (2:448b)
 	ld a, $1f
 	ld [wSubroutine], a
 	ret
 
-Func_8491: ; 8491 (2:4491)
+IntroMovie_ReturnToTitleScreen: ; 8491 (2:4491)
 	call ClearObjectAnimationBuffers
 	ld bc, $0
 	call GetCGB_BGLayout_
@@ -473,11 +473,11 @@ Func_8491: ; 8491 (2:4491)
 	ld b, $0
 	jp homecall_ret_2e562
 
-Func_84b9: ; 84b9 (2:44b9)
+IntroMovie_FadeOutInterrupt: ; 84b9 (2:44b9)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp IncrementSubroutine
 
 IntroMovie_DoubleDecompressGFX: ; 84c6 (2:44c6)

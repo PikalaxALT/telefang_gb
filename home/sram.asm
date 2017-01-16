@@ -124,7 +124,7 @@ DeleteSaveFile::
 	or b
 	jr nz, .asm_1005
 	xor a
-	ld [s0_bffd], a
+	ld [sSaveFileExists], a
 	jp CopyROMName
 
 ClearSRAM::

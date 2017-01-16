@@ -280,7 +280,7 @@ ScriptCommandPointers:
 	dw ScriptCommand_4a ; 4a
 	dw Script_IfWonBattle ; 4b
 	dw ScriptCommand_4c ; 4c
-	dw ScriptCommand_4d ; 4d
+	dw Script_Special ; 4d
 	dw Script_IfWonBattle ; 4e
 	dw Script_IfWonBattle ; 4f
 	dw ScriptCommand_56 ; 50
@@ -1753,7 +1753,7 @@ ScriptCommand_4c: ; 3cb2a (f:4b2a)
 	scf
 	ret
 
-ScriptCommand_4d: ; 3cb46 (f:4b46)
+Script_Special: ; 3cb46 (f:4b46)
 	ld a, [wScriptBuffer + 1]
 	cp $14
 	jr c, .asm_3cb58
@@ -1878,9 +1878,9 @@ Func_3cc10: ; 3cc10 (f:4c10)
 Func_3cc2f: ; 3cc2f (f:4c2f)
 	call Func_2411
 IF DEF(POWER)
-	ld a, $4
+	ld a, CRYPTO
 ELSE
-	ld a, $6
+	ld a, FUNGUS
 ENDC
 	ld [wRecruitedDenjuuSpecies], a
 	ld a, $5

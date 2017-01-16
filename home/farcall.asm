@@ -318,11 +318,11 @@ ChooseWildDenjuuEncounter_::
 	rst MemBankswitch
 	ret
 
-Func_0609::
+StartObjectAnimation_::
 	ld a, [wROMBank]
 	push af
-	ld a, [wd411]
-	call Func_0d97
+	ld a, [wStartObjectAnimationIDX]
+	call StartObjectAnimation
 	pop af
 	rst Bankswitch
 	ret

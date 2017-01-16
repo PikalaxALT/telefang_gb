@@ -70,13 +70,13 @@ ENDC
 	lb bc, $78, $0c
 	call Func_8638
 	ld a, $9
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $a
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation04
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $1d
 	ld [wOAMAnimation06_TemplateIdx], a
 	ld de, wOAMAnimation06
@@ -153,7 +153,7 @@ TitleScreen_AnimateObjects_WaitButton:
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp IncrementSubroutine
 
 .count_down
@@ -171,7 +171,7 @@ TitleScreen_AnimateObjects_WaitButton:
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $11
 	ld [wSubroutine], a
 	ret

@@ -36,7 +36,7 @@ UpdateSound_22:
 	xor a
 	ld [H_Ringtone], a
 .asm_8803e
-	ld a, [wcf90]
+	ld a, [wSoundUpdatesDisabled]
 	or a
 	jr z, .asm_88064
 	ld a, [wcf91]
@@ -71,31 +71,31 @@ UpdateSound_22:
 	xor a
 	ld [wChannel5], a
 .asm_88081
-	ld a, [wcf96]
+	ld a, [wMusicFade]
 	or a
 	jr z, .asm_880e9
-	ld a, [wcf97]
+	ld a, [wCurMusicFade]
 	or a
 	jr z, .asm_88093
 	dec a
-	ld [wcf97], a
+	ld [wCurMusicFade], a
 	jr .asm_880e9
 
 .asm_88093
-	ld a, [wcf98]
+	ld a, [wVolume]
 	sub $22
 	jr c, .asm_880a7
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
-	ld a, [wcf96]
-	ld [wcf97], a
+	ld a, [wMusicFade]
+	ld [wCurMusicFade], a
 	jr .asm_880e9
 
 .asm_880a7
 	xor a
 	ld [rNR50], a
-	ld [wcf96], a
-	ld [wcf97], a
+	ld [wMusicFade], a
+	ld [wCurMusicFade], a
 	ld [rNR51], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -228,7 +228,7 @@ Func_88173: ; 48173 (11:4173)
 .asm_8818a
 	call UpdateChannel_22
 .asm_8818d
-	ld a, [wcf90]
+	ld a, [wSoundUpdatesDisabled]
 	or a
 	jr nz, Func_881ad
 	ld de, wChannel6
@@ -247,7 +247,7 @@ Func_88173: ; 48173 (11:4173)
 .asm_881aa
 	call UpdateChannel_22
 Func_881ad:
-	ld a, [wcf90]
+	ld a, [wSoundUpdatesDisabled]
 	or a
 	jr z, .asm_881b6
 	jp Func_882fa
@@ -1801,8 +1801,8 @@ Data_88bec:
 
 PlayMusic_22: ; 48bf4 (11:4bf4)
 	xor a
-	ld [wcf96], a
-	ld [wcf97], a
+	ld [wMusicFade], a
+	ld [wCurMusicFade], a
 	ld [wcf9b], a
 	ld [wcfb0], a
 	ld [wcfb1], a
@@ -1811,7 +1811,7 @@ PlayMusic_22: ; 48bf4 (11:4bf4)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
@@ -1823,7 +1823,7 @@ PlaySFX_22: ; 48c22 (11:4c22)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
@@ -1835,7 +1835,7 @@ Func_88c3a: ; 48c3a (11:4c3a)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a

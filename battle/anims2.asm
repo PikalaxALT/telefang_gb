@@ -6155,8 +6155,8 @@ Func_6f058: ; 6f058 (1b:7058)
 	ld [de], a
 	ld a, [hli]
 	pop de
-	ld [wd411], a
-	jp Func_0609
+	ld [wStartObjectAnimationIDX], a
+	jp StartObjectAnimation_
 
 Pointers_6f09b:
 	dw Data_6f09f

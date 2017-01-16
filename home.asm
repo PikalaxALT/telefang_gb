@@ -542,64 +542,6 @@ DecompressGFXByIndex: ; c36 (0:0c36)
 	ret
 
 INCLUDE "home/random.asm"
-
-Func_0d97: ; d97 (0:0d97)
-	ld hl, $6
-	add hl, de
-	ld [hl], $1
-	ld hl, $7
-	add hl, de
-	ld [hl], a
-	ld hl, $8
-	add hl, de
-	ld [hl], $0
-	ld hl, $9
-	add hl, de
-	ld [hl], $0
-	ld hl, $a
-	add hl, de
-	ld [hl], $0
-	ld hl, $1
-	add hl, de
-	ld a, [hl]
-	and $f
-	push af
-	ld hl, Data_0dee
-	ld b, $0
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	rst Bankswitch
-	pop af
-	ld hl, Data_0df1
-	ld b, $0
-	ld c, a
-	sla c
-	rl b
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	push hl
-	ld hl, $7
-	add hl, de
-	ld a, [hl]
-	pop hl
-	ld b, $0
-	ld c, a
-	sla c
-	rl b
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	inc hl
-	ld a, [hl]
-	ld hl, $2
-	add hl, de
-	ld [hl], a
-	ret
-
 INCLUDE "home/objects.asm"
 
 GetWordFromTable:
@@ -6046,7 +5988,7 @@ Func_3cb5:
 	push hl
 	pop de
 	pop af
-	jp Func_0609
+	jp StartObjectAnimation_
 
 Func_3cd0:
 	ld hl, wOAMAnimations

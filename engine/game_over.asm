@@ -60,7 +60,7 @@ Func_85ff:
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp IncrementSubroutine
 
 Func_8611:

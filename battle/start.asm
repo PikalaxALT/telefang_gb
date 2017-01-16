@@ -292,7 +292,7 @@ Func_70016: ; 70016 (1c:4016)
 	ld [wBattleSubroutine], a
 	ld [wd43a], a
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	call CloseSRAM
 	jp IncrementSubroutine
 
@@ -978,7 +978,7 @@ Func_70730:
 	ld [wOBPalUpdate], a
 	call Func_70aca
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	jp NextBattleSubroutine
 
@@ -1198,7 +1198,7 @@ Func_708c2:
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $d
 	ld [wBattleSubroutine], a
 	ret
@@ -1704,7 +1704,7 @@ Func_70d39:
 	jp z, .asm_70d60
 	call Func_713de
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $6
 	ld [wBattleSubroutine], a
@@ -1723,7 +1723,7 @@ Func_70d63:
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $c
 	ld [wBattleSubroutine], a
 	ret
@@ -1846,7 +1846,7 @@ Func_70e59: ; 70e59 (1c:4e59)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	ld [wBattleSubroutine], a
 	ret
@@ -1984,7 +1984,7 @@ Func_70f60: ; 70f60 (1c:4f60)
 	cp $1
 	jr z, .asm_70fb9
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, [wd429]
 	inc a
@@ -2023,7 +2023,7 @@ Func_70fe3: ; 70fe3 (1c:4fe3)
 	ld [wd40d], a
 	call Func_703a2
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $a
 	ld [wBattleSubroutine], a
@@ -2256,7 +2256,7 @@ Func_710ae:
 	ld [wSpriteUpdatesEnabled], a
 	call Func_71467
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $c
 	ld [wBattleSubroutine], a
 	ret

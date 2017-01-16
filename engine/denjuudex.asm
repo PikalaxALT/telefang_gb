@@ -168,13 +168,13 @@ Func_114ff: ; 114ff (4:54ff)
 	ld [wTextBoxStartTile], a
 	call Func_13f70
 	ld a, $4
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation02
-	call Func_0609
+	call StartObjectAnimation_
 	ld a, $b
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	ld de, wOAMAnimation03
-	call Func_0609
+	call StartObjectAnimation_
 	call Func_13340
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a

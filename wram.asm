@@ -850,6 +850,7 @@ wc8fe:: ds 1
 wc8ff:: ds 1
 
 SECTION "Overworld RAM", WRAM0
+wOverworldData::
 wPhoneCallSubroutine:: ds 1
 wc901:: ds 1
 wc902:: ds 1
@@ -969,7 +970,9 @@ wc97d:: ds 1
 wc97e:: ds 1
 wc97f:: ds 1
 wMiniMapClearedSectionsEnd::
+wOverworldDataEnd::
 
+SECTION "Overworld temp", WRAM0
 wc980:: ds 1
 wc981:: ds 1
 wc982:: ds 1
@@ -1288,6 +1291,7 @@ wcb28:: ds 1
 wEnteredAtLeastOneDigit:: ds 1
 wPlayerNameEntryKeypadLayout:: ds 1
 wcb2b:: ds 1
+wIntroMovieSceneTimer::
 wcb2c:: ds 1
 wTFangerPicIndexOffset:: ds 1
 wTFangerPicBank:: ds 1
@@ -1758,6 +1762,9 @@ wccfc:: ds 1
 wccfd:: ds 1
 wccfe:: ds 1
 wccff:: ds 1
+
+SECTION "Script RAM", WRAM0
+wScriptData::
 wcd00:: ds 1
 wScriptBank:: ds 1
 wScriptNumber:: dw
@@ -1978,6 +1985,7 @@ wcdfc:: ds 1
 wcdfd:: ds 1
 wcdfe:: ds 1
 wcdff:: ds 1
+wScriptDataEnd::
 
 SECTION "Sound Engine", WRAM0
 wChannel1:: ds $28
@@ -2147,15 +2155,17 @@ wcf8c:: ds 1
 wcf8d:: ds 1
 wcf8e:: ds 1
 wcf8f:: ds 1
-wcf90:: ds 1
+
+SECTION "Audio RAM", WRAM0
+wSoundUpdatesDisabled:: ds 1
 wcf91:: ds 1
 wcf92:: ds 1
 wcf93:: ds 1
 wcf94:: ds 1
 wcf95:: ds 1
-wcf96:: ds 1
-wcf97:: ds 1
-wcf98:: ds 1
+wMusicFade:: ds 1
+wCurMusicFade:: ds 1
+wVolume:: ds 1
 wcf99:: ds 1
 wcf9a:: ds 1
 wcf9b:: ds 1
@@ -2195,8 +2205,6 @@ wcfbc:: ds 1
 wcfbd:: ds 1
 wcfbe:: ds 1
 wcfbf:: ds 1
-
-SECTION "Audio RAM", WRAM0
 wRingtoneID:: ds 1
 wRingtonePointer:: dw
 wcfc3:: ds 1
@@ -3311,7 +3319,7 @@ wd40d:: ds 1
 wd40e:: ds 1
 wd40f:: ds 1
 wd410:: ds 1
-wd411:: ds 1
+wStartObjectAnimationIDX:: ds 1
 wBattleEnded:: ds 1
 wd413:: ds 1
 wBattleMenuSelection:: ds 1

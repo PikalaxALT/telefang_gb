@@ -1938,7 +1938,7 @@ HandleDenjuuEvolution: ; 74e64 (1d:4e64)
 	ld [wd40d], a
 	call Func_7546d
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, [wd401]
 	inc a
@@ -2111,7 +2111,7 @@ LostBattle_StartFadeOut: ; 74fc2 (1d:4fc2)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -2392,7 +2392,7 @@ Func_751dc: ; 751dc (1d:51dc)
 	ld [wd40d], a
 	call Func_7546d
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, [wd401]
 	inc a
@@ -2492,7 +2492,7 @@ Func_75297: ; 75297 (1d:5297)
 	ld [wd40d], a
 	call Func_7546d
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $b
 	ld [wd401], a
@@ -2502,7 +2502,7 @@ Func_75297: ; 75297 (1d:5297)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -2603,7 +2603,7 @@ Func_752f1: ; 752f1 (1d:52f1)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $7
 	ld [wd401], a
 	ret
@@ -2883,7 +2883,7 @@ Func_758cd: ; 758cd (1d:58cd)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, [wd401]
 	inc a
 	ld [wd401], a

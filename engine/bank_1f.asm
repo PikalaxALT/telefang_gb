@@ -157,7 +157,7 @@ Func_7c128: ; 7c128 (1f:4128)
 	ld [wd40d], a
 	call Func_7e0f9
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld c, $92
 	call StdBattleTextBox
@@ -339,7 +339,7 @@ ENDC
 	ld a, $0
 	ld [wWhichBattleMenuCursor], a
 	ld a, $c
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $1
 	ld [wWhichBattleMenuCursor], a
@@ -701,7 +701,7 @@ Func_7c538: ; 7c538 (1f:4538)
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $1
 	call StartFade_
 	jp NextBattleSubroutine
@@ -946,7 +946,7 @@ Func_7c6c6: ; 7c6c6 (1f:46c6)
 Func_7c6e0: ; 7c6e0 (1f:46e0)
 	call Func_7c608
 	ld a, $1
-	ld [wcf96], a
+	ld [wMusicFade], a
 	xor a
 	ld [wdc22], a
 	ld a, $1
@@ -1519,7 +1519,7 @@ Func_7cb81: ; 7cb81 (1f:4b81)
 .asm_7cb92
 	call Func_7d8ce
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $0
 	ld bc, $4
@@ -1807,7 +1807,7 @@ Func_7cdae: ; 7cdae (1f:4dae)
 	cp $1
 	jr z, .asm_7ce03
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, [wd429]
 	inc a
@@ -1849,7 +1849,7 @@ Func_7ce34: ; 7ce34 (1f:4e34)
 	ld [wd40d], a
 	call Func_7e0f9
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $7
 	ld [wd401], a
@@ -2050,7 +2050,7 @@ Func_7cfbd: ; 7cfbd (1f:4fbd)
 	ret nz
 	call InitSerialData
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	call StartFade_
 	ld a, $b
@@ -2241,7 +2241,7 @@ Func_7d085: ; 7d085 (1f:5085)
 
 Func_7d12f: ; 7d12f (1f:512f)
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	call StartFade_
 	jp Func_7dc41
@@ -3708,7 +3708,7 @@ Func_7dbbe: ; 7dbbe (1f:5bbe)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	ld [wd401], a
 	ret
@@ -4106,7 +4106,7 @@ Func_7dee6: ; 7dee6 (1f:5ee6)
 	ld [wd40d], a
 	call Func_7e0f9
 	xor a
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	jp Func_7dc41
 
@@ -4206,7 +4206,7 @@ Func_7dfa0: ; 7dfa0 (1f:5fa0)
 	ld [wd40d], a
 	call Func_7e0f9
 	xor a
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $d
 	ld [wd401], a
@@ -4216,7 +4216,7 @@ Func_7dfa0: ; 7dfa0 (1f:5fa0)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp Func_7dc41
 
 Func_7dfd6: ; 7dfd6 (1f:5fd6)
@@ -4312,7 +4312,7 @@ Func_7dff3: ; 7dff3 (1f:5ff3)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $7
 	ld [wd401], a
 	ret
@@ -4656,7 +4656,7 @@ Func_7e319: ; 7e319 (1f:6319)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp Func_7dc41
 
 Func_7e33e: ; 7e33e (1f:633e)
@@ -5132,7 +5132,7 @@ Func_7e6dc: ; 7e6dc (1f:66dc)
 .asm_7e6ed
 	call Func_7d8ce
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $0
 	ld bc, $4
@@ -5308,7 +5308,7 @@ Func_7e840: ; 7e840 (1f:6840)
 	ld c, $75
 	call StdBattleTextBox
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ret
 
@@ -5347,7 +5347,7 @@ Func_7e89d: ; 7e89d (1f:689d)
 	ld [wd40d], a
 	call Func_7e0f9
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $7
 	ld [wd401], a
@@ -5398,7 +5398,7 @@ Func_7e914: ; 7e914 (1f:6914)
 	ret nz
 	call InitSerialData
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	call StartFade_
 	jp Func_7dc41
@@ -5689,7 +5689,7 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	call SaveGame_
 	call CloseSRAM
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	call StartFade_
 	jp Func_7dc41
@@ -6143,7 +6143,7 @@ Func_7ef16: ; 7ef16 (1f:6f16)
 	ld [wd40d], a
 	call Func_7e0f9
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $8
 	ld [wd401], a
@@ -6153,7 +6153,7 @@ Func_7ef16: ; 7ef16 (1f:6f16)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	jp Func_7dc41
 
 Func_7ef4d: ; 7ef4d (1f:6f4d)
@@ -6240,7 +6240,7 @@ Func_7ef67: ; 7ef67 (1f:6f67)
 	ld a, $4
 	call StartFade_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $6
 	ld [wd401], a
 	ret
@@ -6513,7 +6513,7 @@ Func_7f204: ; 7f204 (1f:7204)
 	ld [wd40d], a
 	call Func_7e0f9
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld a, $d
 	ld [wd401], a
@@ -6890,7 +6890,7 @@ Func_7f4d2: ; 7f4d2 (1f:74d2)
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld c, $7f
 	call StdBattleTextBox
 	ld a, $4
@@ -6910,7 +6910,7 @@ Func_7f50f: ; 7f50f (1f:750f)
 	ld [wd40d], a
 	call Func_7f757
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	jp Func_7dc41
 
@@ -6986,7 +6986,7 @@ Func_7f559: ; 7f559 (1f:7559)
 	ld [wBattleMenuSelection], a
 	call Func_7f77f
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	jp Func_7dc41
 
@@ -7314,12 +7314,12 @@ Func_7f7e8: ; 7f7e8 (1f:77e8)
 	ld [wd40d], a
 	call Func_7f757
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	ld c, $86
 	call StdBattleTextBox
 	ld a, $10
-	ld [wcf96], a
+	ld [wMusicFade], a
 	ld a, $4
 	call StartFade_
 	jp Func_7dc41
@@ -7403,7 +7403,7 @@ Func_7f86a: ; 7f86a (1f:786a)
 	ld [wBattleMenuSelection], a
 	call Func_7f77f
 	ld a, $0
-	ld [wd411], a
+	ld [wStartObjectAnimationIDX], a
 	call Func_3cb5
 	jp Func_7dc41
 

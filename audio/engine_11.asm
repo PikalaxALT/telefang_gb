@@ -36,7 +36,7 @@ UpdateSound_11:
 	xor a
 	ld [H_Ringtone], a
 .asm_4403e
-	ld a, [wcf90]
+	ld a, [wSoundUpdatesDisabled]
 	or a
 	jr z, .asm_44064
 	ld a, [wcf91]
@@ -71,31 +71,31 @@ UpdateSound_11:
 	xor a
 	ld [wChannel5], a
 .asm_44081
-	ld a, [wcf96]
+	ld a, [wMusicFade]
 	or a
 	jr z, .asm_440e9
-	ld a, [wcf97]
+	ld a, [wCurMusicFade]
 	or a
 	jr z, .asm_44093
 	dec a
-	ld [wcf97], a
+	ld [wCurMusicFade], a
 	jr .asm_440e9
 
 .asm_44093
-	ld a, [wcf98]
+	ld a, [wVolume]
 	sub $22
 	jr c, .asm_440a7
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
-	ld a, [wcf96]
-	ld [wcf97], a
+	ld a, [wMusicFade]
+	ld [wCurMusicFade], a
 	jr .asm_440e9
 
 .asm_440a7
 	xor a
 	ld [rNR50], a
-	ld [wcf96], a
-	ld [wcf97], a
+	ld [wMusicFade], a
+	ld [wCurMusicFade], a
 	ld [rNR51], a
 	ld [wChannel1], a
 	ld [wChannel2], a
@@ -228,7 +228,7 @@ Func_44173: ; 44173 (11:4173)
 .asm_4418a
 	call UpdateChannel_11
 .asm_4418d
-	ld a, [wcf90]
+	ld a, [wSoundUpdatesDisabled]
 	or a
 	jr nz, Func_441ad
 	ld de, wChannel6
@@ -247,7 +247,7 @@ Func_44173: ; 44173 (11:4173)
 .asm_441aa
 	call UpdateChannel_11
 Func_441ad:
-	ld a, [wcf90]
+	ld a, [wSoundUpdatesDisabled]
 	or a
 	jr z, .asm_441b6
 	jp Func_442fa
@@ -1801,8 +1801,8 @@ Data_44bec:
 
 PlayMusic_11: ; 44bf4 (11:4bf4)
 	xor a
-	ld [wcf96], a
-	ld [wcf97], a
+	ld [wMusicFade], a
+	ld [wCurMusicFade], a
 	ld [wcf9b], a
 	ld [wcfb0], a
 	ld [wcfb1], a
@@ -1811,7 +1811,7 @@ PlayMusic_11: ; 44bf4 (11:4bf4)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
@@ -1823,7 +1823,7 @@ PlaySFX_11: ; 44c22 (11:4c22)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
@@ -1835,7 +1835,7 @@ Func_44c3a: ; 44c3a (11:4c3a)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
-	ld [wcf98], a
+	ld [wVolume], a
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a

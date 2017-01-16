@@ -13,9 +13,13 @@
 	const A#
 	const B_
 
+note: MACRO
+	dn \1, \2 - 1
+	ENDM
+
 octave_command EQU $d0
 octave: MACRO
-	db octave_command | \1
+	db octave_command | 8 - \1
 	ENDM
 
 	enum_start $e0
