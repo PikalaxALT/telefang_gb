@@ -32,7 +32,7 @@ wOAMAnimation23:: oam_animation_struct wOAMAnimation23 ; c360
 wOAMAnimation24:: oam_animation_struct wOAMAnimation24 ; c380
 wOAMAnimationsEnd:: ; c3a0
 
-wc3a0:: ds 1
+wPlayerNameEntryBuffer2:: ds 1
 wc3a1:: ds 1
 wc3a2:: ds 1
 wc3a3:: ds 1
@@ -41,7 +41,8 @@ wc3a5:: ds 1
 wc3a6:: ds 1
 wc3a7:: ds 1
 wc3a8:: ds 1
-wc3a9:: ds 1
+
+wPlayerNameEntryBuffer:: ds 1
 wc3aa:: ds 1
 wc3ab:: ds 1
 wc3ac:: ds 1
@@ -50,6 +51,7 @@ wc3ae:: ds 1
 wc3af:: ds 1
 wc3b0:: ds 1
 wc3b1:: ds 1
+
 wc3b2:: ds 1
 wc3b3:: ds 1
 wc3b4:: ds 1
@@ -179,7 +181,7 @@ wSpriteUpdatesEnabled:: ds 1
 wc431:: ds 1
 wc432:: ds 1
 wc433:: ds 1
-wc434:: ds 1
+wSaveFileExists:: ds 1
 wc435:: ds 1
 wc436:: ds 1
 wOAMUpdate:: ds 1
@@ -1284,7 +1286,7 @@ wStdLayoutIndexBuffer:: ds 1
 wCurFadeProgram:: ds 1
 wcb28:: ds 1
 wEnteredAtLeastOneDigit:: ds 1
-wcb2a:: ds 1
+wPlayerNameEntryKeypadLayout:: ds 1
 wcb2b:: ds 1
 wcb2c:: ds 1
 wTFangerPicIndexOffset:: ds 1
@@ -1298,7 +1300,7 @@ wcb34:: ds 1
 wcb35:: ds 1
 wcb36:: ds 1
 wcb37:: ds 1
-wcb38:: ds 1
+wCurrentPlayerOrDenjuuNameBufferLength:: ds 1
 wDShotDialBufferSize:: ds 1
 wcb3a:: ds 1
 wcb3b:: ds 1
@@ -1306,9 +1308,9 @@ wcb3c:: ds 1
 wcb3d:: ds 1
 wCurOptionHover:: ds 1
 wcb3f:: ds 1
-wcb40:: ds 1
-wcb41:: ds 1
-wcb42:: ds 1
+wSoundTestSFXID:: ds 1
+wSoundTestMusicID:: ds 1
+wSoundTestMenuCursor:: ds 1
 wcb43:: ds 1
 wcb44:: ds 1
 wcb45:: ds 1
@@ -1756,7 +1758,7 @@ wccfc:: ds 1
 wccfd:: ds 1
 wccfe:: ds 1
 wccff:: ds 1
-wPlayerNameEntryBuffer:: ds 1
+wcd00:: ds 1
 wScriptBank:: ds 1
 wScriptNumber:: dw
 wcd04:: ds 1

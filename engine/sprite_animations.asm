@@ -1041,7 +1041,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld a, [hl]
 	and $80
 	jp z, Func_30ece
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jp nz, Func_30ece
 	ld a, [wScriptDelay]
@@ -4032,7 +4032,7 @@ Func_32079: ; 32079 (c:6079)
 	jr z, .asm_320ab
 .asm_32093
 	ld a, $1
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ld a, $0
 	ld [wScriptDelay], a
 	ld a, $0

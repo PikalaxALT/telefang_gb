@@ -905,7 +905,7 @@ SaveGame: ; fb3e (3:7b3e)
 	ld de, s0_a010
 	ld bc, $80
 	call CopyData
-	ld hl, wPlayerNameEntryBuffer
+	ld hl, wcd00
 	ld de, s0_a110
 	ld bc, $100
 	call CopyData
@@ -941,7 +941,7 @@ LoadGame: ; fb8d (3:7b8d)
 	ld bc, $80
 	call CopyData
 	ld hl, s0_a110
-	ld de, wPlayerNameEntryBuffer
+	ld de, wcd00
 	ld bc, $100
 	call CopyData
 	ld hl, sEventFlags
@@ -2352,7 +2352,7 @@ SetVisitedMapSectionFlag: ; 2e0d2 (b:60d2)
 	ld a, [wScriptBank]
 	cp $1
 	jr z, .script_mode_okay
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	ret nz
 .script_mode_okay
@@ -2821,7 +2821,7 @@ Data_2e3c8:
 	db MUSIC_BURION_RUINS
 	db MUSIC_HOUSE
 	db MUSIC_HOUSE
-	db MUSIC_23
+	db MUSIC_MIYO
 	db MUSIC_CRAFT_RESEARCH_CENTER
 	db MUSIC_CRAFT_RESEARCH_CENTER
 	db MUSIC_ION_ISLAND
@@ -4672,7 +4672,7 @@ Func_3ac38:
 	jr z, .asm_3ac85
 .asm_3ac6d
 	ld a, $1
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ld a, $0
 	ld [wScriptDelay], a
 	ld a, $0
@@ -10379,7 +10379,7 @@ Func_a98bf: ; a98bf (2a:58bf)
 	call Func_a91b4
 	ld a, $0
 	ld [wcae7], a
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	call Func_a97c0
 .asm_a9941
 	ret
@@ -10495,7 +10495,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	call Func_a91b4
 	ld a, $0
 	ld [wcae7], a
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ret
@@ -10506,7 +10506,7 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld [wSubroutine], a
 	ld a, $0
 	ld [wcae7], a
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ld a, [wc908]
 	ld [wcdec], a
 	ld a, [wOAMAnimation18_Duration + 21]
@@ -14727,21 +14727,21 @@ Func_c9538: ; c9538 (32:5538)
 	call Func_2f76
 	call Func_2f76
 	ld hl, wPlayerName
-	ld de, wPlayerNameEntryBuffer
+	ld de, wcd00
 	ld b, $9
 	call CopyData_Under256Bytes
 	xor a
 	ld hl, wPhoneCallSubroutine
 	ld b, $80
 	call Func_2f76
-	ld hl, wPlayerNameEntryBuffer
+	ld hl, wcd00
 	ld de, wPlayerName
 	ld b, $9
 	call CopyData_Under256Bytes
 	ld a, [wDShotLevel]
 	push af
 	xor a
-	ld hl, wPlayerNameEntryBuffer
+	ld hl, wcd00
 	ld b, $0
 	call Func_2f76
 	pop af
@@ -15041,7 +15041,7 @@ Func_c97d2: ; c97d2 (32:57d2)
 	ret
 
 Func_c981a: ; c981a (32:581a)
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jr nz, .asm_c9867
 	ld a, [wCurTilesetIdx]
@@ -15072,7 +15072,7 @@ Func_c981a: ; c981a (32:581a)
 	ld a, $0
 	ld [wScriptNumber + 1], a
 	ld a, $1
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ld a, $0
 	ld [wScriptDelay], a
 	ld a, $1

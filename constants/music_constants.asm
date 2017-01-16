@@ -35,7 +35,7 @@
 	const MUSIC_20
 	const MUSIC_21
 	const MUSIC_KAI_ENCOUNTER
-	const MUSIC_23
+	const MUSIC_MIYO
 	const MUSIC_SHOP
 	const MUSIC_25
 	const MUSIC_26

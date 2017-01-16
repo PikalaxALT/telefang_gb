@@ -27,7 +27,7 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	dw InGamePhoneMenu_ ; 0c
 	dw Func_1c80        ; 0d
 	dw GameOverScreen_  ; 0e
-	dw BattleCore1F_    ; 0f
+	dw LinkMode_        ; 0f
 
 OpeningLogos_:
 	ld a, BANK(OpeningLogos)
@@ -113,8 +113,8 @@ GameOverScreen_:
 	rst Bankswitch
 	jp GameOverScreen
 
-BattleCore1F_:
-	ld a, BANK(BattleCore1F)
+LinkMode_:
+	ld a, BANK(LinkMode)
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	jp BattleCore1F
+	jp LinkMode

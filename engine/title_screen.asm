@@ -186,7 +186,7 @@ Func_8ac3:
 Func_8acd:
 	call ClearObjectAnimationBuffers
 	call ValidateSave
-	ld [wc434], a
+	ld [wSaveFileExists], a
 	cp $0
 	jr z, .asm_8ae1
 	cp $1
@@ -198,7 +198,7 @@ Func_8acd:
 	or a
 	jr nz, .asm_8aec
 	ld a, $1
-	ld [wc434], a
+	ld [wSaveFileExists], a
 .asm_8aec
 	ld a, $3
 	ld [wGameRoutine], a
@@ -252,7 +252,7 @@ Func_8b44:
 	call ClearSRAM
 	call DeleteSaveFile
 	ld a, $1
-	ld [wc434], a
+	ld [wSaveFileExists], a
 	ld a, $3
 	ld [wGameRoutine], a
 	xor a

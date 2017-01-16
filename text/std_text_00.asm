@@ -472,7 +472,7 @@ StdText_00_2f:
 
 StdText_00_30:
 	TX_SPEED 0
-	TX_CALL wc3a0
+	TX_CALL wPlayerNameEntryBuffer2
 	txfn 4
 
 StdText_00_31:

@@ -53,7 +53,7 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $14
 	jr nc, .check_b_button
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	ret nz
 .check_b_button
@@ -683,7 +683,7 @@ Func_39497: ; 39497 (e:5497)
 	jr z, .asm_394d8
 .asm_394c0
 	ld a, $1
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ld a, $0
 	ld [wScriptDelay], a
 	ld a, $0

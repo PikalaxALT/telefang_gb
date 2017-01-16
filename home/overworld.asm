@@ -156,10 +156,10 @@ Func_2264: ; 2264 (0:2264)
 	ld a, $c
 	ld [wPrevROMBank], a
 	rst Bankswitch
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jp nz, Func_22d2
-	ld hl, wPlayerNameEntryBuffer
+	ld hl, wcd00
 	ld b, $20
 	call Func_2f76
 Func_22d2: ; 22d2 (0:22d2)

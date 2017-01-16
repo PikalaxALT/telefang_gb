@@ -72,7 +72,7 @@ ValidateSave::
 	jr nz, .check_title
 	xor a
 	ld [wc433], a
-	ld [wc434], a
+	ld [wSaveFileExists], a
 	ld hl, $0
 	ld de, sSaveFile
 	ld bc, sSaveFileEnd - sSaveFile

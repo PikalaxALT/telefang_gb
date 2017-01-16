@@ -430,13 +430,13 @@ Func_11799: ; 11799 (4:5799)
 	jr nz, .asm_117b4
 	lb bc, 3, 6
 	call Func_11939
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $3
 	jr nz, .asm_117af
 	ld a, $ff
 .asm_117af
 	inc a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ret
 
 .asm_117b4
@@ -454,13 +454,13 @@ Func_117c4: ; 117c4 (4:57c4)
 	jr nz, .asm_117df
 	lb bc, 3, 8
 	call Func_11939
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $0
 	jr nz, .asm_117da
 	ld a, $4
 .asm_117da
 	dec a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ret
 
 .asm_117df

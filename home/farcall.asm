@@ -124,7 +124,7 @@ AnchorMapAndLoadTextPointer_::
 	homecall_memret AnchorMapAndLoadTextPointer
 	ret
 
-Func_0528::
+LoadAndStartStdTextPointer__::
 	homecall_memret LoadAndStartStdTextPointer
 	ret
 

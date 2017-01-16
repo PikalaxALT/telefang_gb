@@ -808,7 +808,7 @@ StartBattleMusic: ; 145f5 (5:45f5)
 	ld [wWX], a
 	call Func_142af
 	call Func_14005
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	cp $1
 	jr z, .asm_14627
 	ld a, [wBattleMode]

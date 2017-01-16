@@ -127,7 +127,7 @@ Func_70016: ; 70016 (1c:4016)
 	sla a
 	ld a, a
 	ld [wEnemyDenjuu3Field0x08], a
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	cp $1
 	jp z, .skip_field_c_enemy_3
 	call Func_702a1
@@ -157,7 +157,7 @@ Func_70016: ; 70016 (1c:4016)
 	sla a
 	ld a, a
 	ld [wEnemyDenjuu2Field0x08], a
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	cp $1
 	jp z, .skip_field_c_enemy_2
 	call Func_702a1
@@ -172,7 +172,7 @@ Func_70016: ; 70016 (1c:4016)
 	ld c, l
 	call SetEventFlag
 .enemy_has_only_one
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	cp $1
 	jp z, .skip_field_c_enemy_1
 	call Func_702a1
@@ -3144,7 +3144,7 @@ Func_71831:
 .asm_718cb
 	ld a, $1
 	call StartFade_
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	cp $1
 	jr z, .asm_718e6
 	ld a, [wBattleMode]

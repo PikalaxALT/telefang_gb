@@ -6,7 +6,7 @@ HandleRunningMapScript: ; 3c000 (f:4000)
 	or a
 	jr nz, handle_script_delay
 RunMapScript: ; 3c00c (f:400c)
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jp z, CheckActivatedScript
 script_command_loop
@@ -154,7 +154,7 @@ CheckActivatedScript: ; 3c050 (f:4050)
 	ld a, c
 	ld [wScriptNumber], a
 	ld a, $1
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ld a, $0
 	ld [wScriptDelay], a
 	ld a, $0
@@ -206,124 +206,124 @@ ScriptCommandPointers:
 	dw Script_End ; 00
 	dw Script_PrintText ; 01
 	dw Script_PrintText ; 02
-	dw Func_3c23d ; 03
+	dw ScriptCommand_03 ; 03
 	dw Script_Sleep ; 04
 	dw Script_WaitButton ; 05
 	dw Script_End ; 06
-	dw Func_3c28f ; 07
-	dw Func_3c28f ; 08
-	dw Func_3c28f ; 09
-	dw Func_3c28f ; 0a
-	dw Func_3c28f ; 0b
-	dw Func_3c314 ; 0c
-	dw Func_3c314 ; 0d
+	dw ScriptCommand_0b ; 07
+	dw ScriptCommand_0b ; 08
+	dw ScriptCommand_0b ; 09
+	dw ScriptCommand_0b ; 0a
+	dw ScriptCommand_0b ; 0b
+	dw ScriptCommand_0d ; 0c
+	dw ScriptCommand_0d ; 0d
 	dw Script_HopPlayer ; 0e
-	dw Func_3c38b ; 0f
-	dw Func_3c3c7 ; 10
+	dw ScriptCommand_0f ; 0f
+	dw Script_WalkPlayer ; 10
 	dw Script_UnlockScript ; 11
 	dw Script_UnlockScript ; 12
 	dw Script_SetScriptComplete ; 13
 	dw Script_LockAndCompleteEvent ; 14
 	dw Script_LockEvent ; 15
 	dw Script_SetScriptComplete_ ; 16
-	dw Func_3c49c ; 17
-	dw Func_3c4a9 ; 18
-	dw Func_3c4b7 ; 19
-	dw Func_3c4d4 ; 1a
-	dw Func_3c4d4 ; 1b
-	dw Func_3c50a ; 1c
-	dw Func_3c536 ; 1d
-	dw Func_3c596 ; 1e
-	dw Func_3c5c7 ; 1f
-	dw Func_3c5c7 ; 20
-	dw Func_3c5c7 ; 21
-	dw Func_3c61b ; 22
-	dw Func_3c645 ; 23
+	dw ScriptCommand_17 ; 17
+	dw ScriptCommand_18 ; 18
+	dw ScriptCommand_19 ; 19
+	dw ScriptCommand_1b ; 1a
+	dw ScriptCommand_1b ; 1b
+	dw ScriptCommand_1c ; 1c
+	dw ScriptCommand_1d ; 1d
+	dw ScriptCommand_1e ; 1e
+	dw ScriptCommand_21 ; 1f
+	dw ScriptCommand_21 ; 20
+	dw ScriptCommand_21 ; 21
+	dw ScriptCommand_22 ; 22
+	dw Script_WalkNPC ; 23
 	dw Script_Disappear ; 24
 	dw Script_Disappear ; 25
-	dw Func_3c6aa ; 26
+	dw ScriptCommand_26 ; 26
 	dw Script_HopNPC ; 27
 	dw Script_HopNPC ; 28
-	dw Func_3c73a ; 29
-	dw Func_3c977 ; 2a
-	dw Func_3c73a ; 2b
-	dw Func_3c987 ; 2c
-	dw Func_3c73a ; 2d
-	dw Func_3c9b4 ; 2e
-	dw Func_3c73a ; 2f
+	dw ScriptCommand_2f ; 29
+	dw ScriptCommand_2a ; 2a
+	dw ScriptCommand_2f ; 2b
+	dw ScriptCommand_2c ; 2c
+	dw ScriptCommand_2f ; 2d
+	dw Script_HopAndDisplaceNPC ; 2e
+	dw ScriptCommand_2f ; 2f
 	dw Script_Jump ; 30
 	dw Script_StartBattle ; 31
 	dw Script_StartBattle ; 32
 	dw Script_StartBattle ; 33
 	dw Script_SetEvent ; 34
 	dw Script_ResetEvent ; 35
-	dw Func_3c78b ; 36
-	dw Func_3c7a5 ; 37
+	dw ScriptCommand_36 ; 36
+	dw ScriptCommand_37 ; 37
 	dw Script_IfEvent ; 38
 	dw Script_IfNotEvent ; 39
 	dw Script_GiveMoney ; 3a
 	dw Script_TakeMoney ; 3b
-	dw Func_3ca46 ; 3c
+	dw ScriptCommand_3c ; 3c
 	dw Script_FacePlayer ; 3d
-	dw Func_3caf0 ; 3e
-	dw Func_3cabc ; 3f
+	dw ScriptCommand_3e ; 3e
+	dw ScriptCommand_3f ; 3f
 	dw Script_ShakeScreen ; 40
 	dw Script_ShakeScreen ; 41
 	dw Script_ShakeScreen ; 42
 	dw Script_ShakeScreen ; 43
 	dw Script_PlaySFX ; 44
 	dw Script_PlayMusic ; 45
-	dw Func_3c822 ; 46
-	dw Func_3c822 ; 47
-	dw Func_3c822 ; 48
-	dw Func_3c822 ; 49
-	dw Func_3c822 ; 4a
+	dw ScriptCommand_4a ; 46
+	dw ScriptCommand_4a ; 47
+	dw ScriptCommand_4a ; 48
+	dw ScriptCommand_4a ; 49
+	dw ScriptCommand_4a ; 4a
 	dw Script_IfWonBattle ; 4b
-	dw Func_3cb2a ; 4c
-	dw Func_3cb46 ; 4d
+	dw ScriptCommand_4c ; 4c
+	dw ScriptCommand_4d ; 4d
 	dw Script_IfWonBattle ; 4e
 	dw Script_IfWonBattle ; 4f
-	dw Func_3c85a ; 50
+	dw ScriptCommand_56 ; 50
 	dw Script_IncVar ; 51
 	dw Script_DecVar ; 52
 	dw Script_SetVar ; 53
 	dw Script_IfEqual ; 54
 	dw Script_IfNotEqual ; 55
-	dw Func_3c85a ; 56
-	dw Func_3c943 ; 57
-	dw Func_3c962 ; 58
+	dw ScriptCommand_56 ; 56
+	dw ScriptCommand_57 ; 57
+	dw ScriptCommand_58 ; 58
 	dw Script_GiveDenjuu ; 59
-	dw Func_3ce0f ; 5a
-	dw Func_3ce34 ; 5b
-	dw Func_3ce70 ; 5c
-	dw Func_3ce97 ; 5d
+	dw ScriptCommand_5a ; 5a
+	dw ScriptCommand_5b ; 5b
+	dw ScriptCommand_5c ; 5c
+	dw ScriptCommand_5d ; 5d
 	dw Script_SetDShotSignalStrength ; 5e
-	dw Func_3cecd ; 5f
-	dw Func_3cf13 ; 60
-	dw Func_3cf28 ; 61
-	dw Func_3c3e4 ; 62
-	dw Func_3c687 ; 63
+	dw ScriptCommand_5f ; 5f
+	dw ScriptCommand_60 ; 60
+	dw ScriptCommand_61 ; 61
+	dw ScriptCommand_62 ; 62
+	dw ScriptCommand_63 ; 63
 	dw Script_FaceAwayFromPlayer ; 64
-	dw Func_3cf1a ; 65
-	dw Func_3cf21 ; 66
-	dw Func_3cf44 ; 67
-	dw Func_3c2d9 ; 68
+	dw ScriptCommand_65 ; 65
+	dw ScriptCommand_66 ; 66
+	dw ScriptCommand_67 ; 67
+	dw ScriptCommand_68 ; 68
 	dw Script_IfRecruited ; 69
-	dw Func_3cf93 ; 6a
+	dw ScriptCommand_6a ; 6a
 	dw Script_SetDShotLevel ; 6b
 	dw Script_ResetEventState ; 6c
 	dw Script_IfPhoneSilent ; 6d
 	dw Script_IfRecruitedAllSpecies ; 6e
-	dw Func_3c972 ; 6f
-	dw Func_3c972 ; 70
-	dw Func_3c972 ; 71
-	dw Func_3c972 ; 72
-	dw Func_3c972 ; 73
-	dw Func_3c972 ; 74
-	dw Func_3c972 ; 75
-	dw Func_3c972 ; 76
-	dw Func_3c972 ; 77
-	dw Func_3c972 ; 78
+	dw ScriptCommand_78 ; 6f
+	dw ScriptCommand_78 ; 70
+	dw ScriptCommand_78 ; 71
+	dw ScriptCommand_78 ; 72
+	dw ScriptCommand_78 ; 73
+	dw ScriptCommand_78 ; 74
+	dw ScriptCommand_78 ; 75
+	dw ScriptCommand_78 ; 76
+	dw ScriptCommand_78 ; 77
+	dw ScriptCommand_78 ; 78
 
 Script_PrintText: ; 3c222 (f:4222)
 	ld hl, wScriptBuffer + 1
@@ -342,7 +342,7 @@ Script_PrintText: ; 3c222 (f:4222)
 	xor a
 	ret
 
-Func_3c23d: ; 3c23d (f:423d)
+ScriptCommand_03: ; 3c23d (f:423d)
 	call Func_2ba9
 	ld b, $1
 	call AdvanceScriptPointer
@@ -389,10 +389,10 @@ Script_End: ; 3c263 (f:4263)
 	and $fd
 	ld [wPlayerObjectStruct_Duration + 17], a
 	xor a
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ret
 
-Func_3c28f: ; 3c28f (f:428f)
+ScriptCommand_0b: ; 3c28f (f:428f)
 	ld a, [wScriptBuffer + 1]
 	ld [wMapGroup], a
 	ld a, [wScriptBuffer + 2]
@@ -410,10 +410,10 @@ Func_3c28f: ; 3c28f (f:428f)
 	ld [wc902], a
 	ld a, [wSubroutine]
 	cp $1
-	jr z, .asm_3c2cd
+	jr z, .set_subroutine_zero
 	ld a, $7
 	ld [wSubroutine], a
-	ld a, $f
+	ld a, BANK(ScriptCommand_0b)
 	ld [wPrevROMBank], a
 	ld a, $4
 	call StartFade_
@@ -422,7 +422,7 @@ Func_3c28f: ; 3c28f (f:428f)
 	xor a
 	ret
 
-.asm_3c2cd
+.set_subroutine_zero
 	ld a, $0
 	ld [wSubroutine], a
 	ld b, $4
@@ -430,7 +430,7 @@ Func_3c28f: ; 3c28f (f:428f)
 	xor a
 	ret
 
-Func_3c2d9: ; 3c2d9 (f:42d9)
+ScriptCommand_68: ; 3c2d9 (f:42d9)
 	ld a, [wMapGroup]
 	ld [wWhichPhoneNumberSymbolCode], a
 	ld a, $0
@@ -456,7 +456,7 @@ Func_3c2d9: ; 3c2d9 (f:42d9)
 	xor a
 	ret
 
-Func_3c314: ; 3c314 (f:4314)
+ScriptCommand_0d: ; 3c314 (f:4314)
 	ld d, $0
 	ld a, [wScriptBuffer + 1]
 	ld b, a
@@ -527,7 +527,7 @@ asm_3c375
 	scf
 	ret
 
-Func_3c38b: ; 3c38b (f:438b)
+ScriptCommand_0f: ; 3c38b (f:438b)
 	ld hl, Data_3c3b7
 	ld a, [wScriptBuffer + 1]
 	sla a
@@ -557,7 +557,7 @@ Data_3c3b7
 	db $c0, $ff, $00, $00
 	db $00, $00, $c0, $ff
 
-Func_3c3c7: ; 3c3c7 (f:43c7)
+Script_WalkPlayer: ; 3c3c7 (f:43c7)
 	ld a, [wScriptBuffer + 1]
 	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, [wScriptBuffer + 2]
@@ -571,11 +571,11 @@ Func_3c3c7: ; 3c3c7 (f:43c7)
 	scf
 	ret
 
-Func_3c3e4: ; 3c3e4 (f:43e4)
+ScriptCommand_62: ; 3c3e4 (f:43e4)
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	or $20
 	ld [wPlayerObjectStruct_Duration + 17], a
-	jr Func_3c3c7
+	jr Script_WalkPlayer
 
 Script_UnlockScript: ; 3c3ee (f:43ee)
 	ld a, [wScriptBuffer + 1]
@@ -682,7 +682,7 @@ Script_LockEvent: ; 3c481 (f:4481)
 Script_SetScriptComplete_: ; 3c499 (f:4499)
 	jp Script_SetScriptComplete
 
-Func_3c49c: ; 3c49c (f:449c)
+ScriptCommand_17: ; 3c49c (f:449c)
 	ld a, [wScriptBuffer + 1]
 	ld [wcd26], a
 	ld b, $2
@@ -690,7 +690,7 @@ Func_3c49c: ; 3c49c (f:449c)
 	scf
 	ret
 
-Func_3c4a9: ; 3c4a9 (f:44a9)
+ScriptCommand_18: ; 3c4a9 (f:44a9)
 	ld a, [wcd26]
 	inc a
 	ld [wcd26], a
@@ -699,7 +699,7 @@ Func_3c4a9: ; 3c4a9 (f:44a9)
 	scf
 	ret
 
-Func_3c4b7: ; 3c4b7 (f:44b7)
+ScriptCommand_19: ; 3c4b7 (f:44b7)
 	ld a, $0
 	ld [wScriptOffset + 1], a
 	ld a, $0
@@ -713,7 +713,7 @@ Func_3c4b7: ; 3c4b7 (f:44b7)
 	scf
 	ret
 
-Func_3c4d4: ; 3c4d4 (f:44d4)
+ScriptCommand_1b: ; 3c4d4 (f:44d4)
 	ld hl, wCurObjectStruct
 	ld a, wPartnerDenjuuObjectStruct % $100
 	ld [hli], a
@@ -743,7 +743,7 @@ Func_3c4d4: ; 3c4d4 (f:44d4)
 	scf
 	ret
 
-Func_3c50a: ; 3c50a (f:450a)
+ScriptCommand_1c: ; 3c50a (f:450a)
 	ld d, $2
 	ld a, [wScriptBuffer + 1]
 	ld b, a
@@ -770,7 +770,7 @@ Func_3c50a: ; 3c50a (f:450a)
 	scf
 	ret
 
-Func_3c536: ; 3c536 (f:4536)
+ScriptCommand_1d: ; 3c536 (f:4536)
 	ld hl, wPartnerDenjuuObjectStruct_Duration + 2
 	ld a, $0
 	ld [hli], a
@@ -823,7 +823,7 @@ Func_3c552: ; 3c552 (f:4552)
 	scf
 	ret
 
-Func_3c596: ; 3c596 (f:4596)
+ScriptCommand_1e: ; 3c596 (f:4596)
 	ld a, [wScriptBuffer + 1]
 	or a
 	jr z, .asm_3c5b3
@@ -849,12 +849,12 @@ Func_3c596: ; 3c596 (f:4596)
 	scf
 	ret
 
-Func_3c5c7: ; 3c5c7 (f:45c7)
+ScriptCommand_21: ; 3c5c7 (f:45c7)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
 	call ScriptEngine_GetObjectStruct
-	jr nz, .asm_3c5e8
+	jr nz, .skip
 	ld a, c
 	ld hl, wMapHeader
 	ld [hli], a
@@ -867,7 +867,7 @@ Func_3c5c7: ; 3c5c7 (f:45c7)
 	ld [hl], a
 	call Func_33f0
 	call Func_2e85
-.asm_3c5e8
+.skip
 	ld b, $4
 	call AdvanceScriptPointer
 	scf
@@ -907,7 +907,7 @@ ScriptEngine_GetObjectStruct: ; 3c5ef (f:45ef)
 	or $1
 	ret
 
-Func_3c61b: ; 3c61b (f:461b)
+ScriptCommand_22: ; 3c61b (f:461b)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -934,7 +934,7 @@ Func_3c61b: ; 3c61b (f:461b)
 Data_3c641:
 	db 9, 0, 6, 3
 
-Func_3c645: ; 3c645 (f:4645)
+Script_WalkNPC: ; 3c645 (f:4645)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -972,8 +972,8 @@ Func_3c645: ; 3c645 (f:4645)
 	scf
 	ret
 
-Func_3c687: ; 3c687 (f:4687)
-	call Func_3c645
+ScriptCommand_63: ; 3c687 (f:4687)
+	call Script_WalkNPC
 	ld a, [wCurObjectStruct]
 	add $19
 	ld l, a
@@ -997,7 +997,7 @@ Script_Disappear: ; 3c696 (f:4696)
 	scf
 	ret
 
-Func_3c6aa: ; 3c6aa (f:46aa)
+ScriptCommand_26: ; 3c6aa (f:46aa)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -1062,7 +1062,7 @@ Script_HopNPC: ; 3c6ed (f:46ed)
 	ld [hl], a
 	ld b, $2
 	call AdvanceScriptPointer
-Func_3c71a: ; 3c71a (f:471a)
+Script_HopNPC_Finish: ; 3c71a (f:471a)
 	ld a, [wCurObjectStruct]
 	add $16
 	ld l, a
@@ -1084,7 +1084,7 @@ asm_3c72e
 	scf
 	ret
 
-Func_3c73a: ; 3c73a (f:473a)
+ScriptCommand_2f: ; 3c73a (f:473a)
 	ld a, [wcd26]
 	ld hl, wScriptBuffer + 1
 	add l
@@ -1132,7 +1132,7 @@ Script_StartBattle: ; 3c76a (f:476a)
 	xor a
 	ret
 
-Func_3c78b: ; 3c78b (f:478b)
+ScriptCommand_36: ; 3c78b (f:478b)
 	ld a, [wScriptBuffer + 1]
 	ld hl, wcdbc
 	add l
@@ -1150,7 +1150,7 @@ Func_3c78b: ; 3c78b (f:478b)
 	scf
 	ret
 
-Func_3c7a5: ; 3c7a5 (f:47a5)
+ScriptCommand_37: ; 3c7a5 (f:47a5)
 	ld a, [wScriptBuffer + 1]
 	ld hl, wcdbc
 	add l
@@ -1222,7 +1222,7 @@ Script_PlayMusic: ; 3c80f (f:480f)
 	scf
 	ret
 
-Func_3c822: ; 3c822 (f:4822)
+ScriptCommand_4a: ; 3c822 (f:4822)
 	ld a, [wScriptBuffer + 1]
 	ld b, a
 	ld a, [wPlayerObjectStruct_Duration + 15]
@@ -1262,7 +1262,7 @@ Script_IfWonBattle: ; 3c843 (f:4843)
 	scf
 	ret
 
-Func_3c85a: ; 3c85a (f:485a)
+ScriptCommand_56: ; 3c85a (f:485a)
 	ld hl, wScriptBuffer + 1
 	ld a, [hli]
 	ld b, a
@@ -1427,7 +1427,7 @@ DecimalConvertAndRightAlignTwoByteFiveDigitNumber: ; 3c91b (f:491b)
 	jr nz, .clear_beginning
 	ret
 
-Func_3c943: ; 3c943 (f:4943)
+ScriptCommand_57: ; 3c943 (f:4943)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -1448,7 +1448,7 @@ Func_3c943: ; 3c943 (f:4943)
 	scf
 	ret
 
-Func_3c962: ; 3c962 (f:4962)
+ScriptCommand_58: ; 3c962 (f:4962)
 	ld a, [wPartnerDenjuuObjectStruct_Duration + 12]
 	cp $ff
 	jr z, .asm_3c96b
@@ -1461,12 +1461,12 @@ Func_3c962: ; 3c962 (f:4962)
 	scf
 	ret
 
-Func_3c972: ; 3c972 (f:4972)
+ScriptCommand_78: ; 3c972 (f:4972)
 	xor a
-	ld [wPlayerNameEntryBuffer], a
+	ld [wcd00], a
 	ret
 
-Func_3c977: ; 3c977 (f:4977)
+ScriptCommand_2a: ; 3c977 (f:4977)
 	ld a, [wPlayerObjectStruct_Duration + 12]
 	cp $ff
 	jr z, .asm_3c980
@@ -1479,7 +1479,7 @@ Func_3c977: ; 3c977 (f:4977)
 	scf
 	ret
 
-Func_3c987: ; 3c987 (f:4987)
+ScriptCommand_2c: ; 3c987 (f:4987)
 	ld hl, Data_3c3b7
 	ld a, [wScriptBuffer + 1]
 	sla a
@@ -1503,12 +1503,12 @@ Func_3c987: ; 3c987 (f:4987)
 	call AdvanceScriptPointer
 	jp Func_3c552
 
-Func_3c9b4: ; 3c9b4 (f:49b4)
+Script_HopAndDisplaceNPC: ; 3c9b4 (f:49b4)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
 	call ScriptEngine_GetObjectStruct
-	jr z, .asm_3c9ff
+	jr z, .skip
 	ld a, SFX_10
 	ld [H_SFX_ID], a
 	ld de, Data_3c3b7
@@ -1545,9 +1545,9 @@ Func_3c9b4: ; 3c9b4 (f:49b4)
 	ld [hl], a
 	ld b, $3
 	call AdvanceScriptPointer
-	jp Func_3c71a
+	jp Script_HopNPC_Finish
 
-.asm_3c9ff
+.skip
 	ld b, $3
 	call AdvanceScriptPointer
 	scf
@@ -1595,7 +1595,7 @@ Script_FaceAwayFromPlayer: ; 3ca32 (f:4a32)
 	ld b, a
 	jr asm_3ca14
 
-Func_3ca46: ; 3ca46 (f:4a46)
+ScriptCommand_3c: ; 3ca46 (f:4a46)
 	call Func_3c552
 	ld a, [wScriptBuffer + 1]
 	ld [wPartnerDenjuuObjectStruct_Duration + 12], a
@@ -1664,7 +1664,7 @@ Script_IfNotEvent: ; 3caa8 (f:4aa8)
 	scf
 	ret
 
-Func_3cabc: ; 3cabc (f:4abc)
+ScriptCommand_3f: ; 3cabc (f:4abc)
 	ld hl, wCurObjectStruct
 	ld a, wPartnerDenjuuObjectStruct % $100
 	ld [hli], a
@@ -1697,7 +1697,7 @@ Func_3cabc: ; 3cabc (f:4abc)
 	scf
 	ret
 
-Func_3caf0: ; 3caf0 (f:4af0)
+ScriptCommand_3e: ; 3caf0 (f:4af0)
 	ld hl, wCurObjectStruct
 	ld a, wPlayerObjectStruct % $100
 	ld [hli], a
@@ -1732,7 +1732,7 @@ Func_3caf0: ; 3caf0 (f:4af0)
 	scf
 	ret
 
-Func_3cb2a: ; 3cb2a (f:4b2a)
+ScriptCommand_4c: ; 3cb2a (f:4b2a)
 	ld a, [wScriptBuffer + 1]
 	cp $2
 	jr c, .asm_3cb35
@@ -1753,7 +1753,7 @@ Func_3cb2a: ; 3cb2a (f:4b2a)
 	scf
 	ret
 
-Func_3cb46: ; 3cb46 (f:4b46)
+ScriptCommand_4d: ; 3cb46 (f:4b46)
 	ld a, [wScriptBuffer + 1]
 	cp $14
 	jr c, .asm_3cb58
@@ -2135,7 +2135,7 @@ Script_GiveDenjuu: ; 3cd38 (f:4d38)
 	xor a
 	ret
 
-Func_3ce0f: ; 3ce0f (f:4e0f)
+ScriptCommand_5a: ; 3ce0f (f:4e0f)
 	ld a, [wScriptBuffer + 1]
 	ld hl, wcdbc
 	add l
@@ -2161,7 +2161,7 @@ Func_3ce0f: ; 3ce0f (f:4e0f)
 	scf
 	ret
 
-Func_3ce34: ; 3ce34 (f:4e34)
+ScriptCommand_5b: ; 3ce34 (f:4e34)
 	callba GetCurrentLandmark
 	callba GetLandmarkName
 	ld b, $0
@@ -2184,7 +2184,7 @@ Func_3ce34: ; 3ce34 (f:4e34)
 	xor a
 	ret
 
-Func_3ce70: ; 3ce70 (f:4e70)
+ScriptCommand_5c: ; 3ce70 (f:4e70)
 	ld a, [wPhoneSilentMode]
 	or a
 	jr nz, .skip_music_and_sfx
@@ -2204,7 +2204,7 @@ Func_3ce70: ; 3ce70 (f:4e70)
 	scf
 	ret
 
-Func_3ce97: ; 3ce97 (f:4e97)
+ScriptCommand_5d: ; 3ce97 (f:4e97)
 	ld a, [wPhoneSilentMode]
 	or a
 	jr nz, .skip_music_and_sfx
@@ -2231,7 +2231,7 @@ Script_SetDShotSignalStrength: ; 3ceb6 (f:4eb6)
 	scf
 	ret
 
-Func_3cecd: ; 3cecd (f:4ecd)
+ScriptCommand_5f: ; 3cecd (f:4ecd)
 	ld hl, $100
 	ld d, $3
 asm_3ced2
@@ -2244,7 +2244,7 @@ asm_3ced2
 	ld [wcdba], a
 	ld a, h
 	ld [wcdbb], a
-	ld a, BANK(Func_3cecd)
+	ld a, BANK(ScriptCommand_5f)
 	ld [wPrevROMBank], a
 	ld c, l
 	ld b, h
@@ -2253,43 +2253,43 @@ asm_3ced2
 	call LoadNthStdOBPalette
 	ld a, [wcd20]
 	or a
-	jr z, .asm_3cef9
+	jr z, .okay
 	ld a, $1
 	ld [wOBPalUpdate], a
-.asm_3cef9
+.okay
 	ld a, $10
 	ld c, a
 	call ScriptEngine_GetObjectStruct
-	jr z, .asm_3cf0c
+	jr z, .finish
 	ld a, [wCurObjectStruct]
 	add $5
 	ld l, a
 	ld a, $3
 	ld [hl], a
-	jr .asm_3cf0c
+	jr .finish
 
-.asm_3cf0c
+.finish
 	ld b, $2
 	call AdvanceScriptPointer
 	scf
 	ret
 
-Func_3cf13: ; 3cf13 (f:4f13)
+ScriptCommand_60: ; 3cf13 (f:4f13)
 	ld hl, $28c
 	ld d, $3
 	jr asm_3ced2
 
-Func_3cf1a: ; 3cf1a (f:4f1a)
+ScriptCommand_65: ; 3cf1a (f:4f1a)
 	ld hl, $28c
 	ld d, $2
 	jr asm_3ced2
 
-Func_3cf21: ; 3cf21 (f:4f21)
+ScriptCommand_66: ; 3cf21 (f:4f21)
 	ld hl, $28c
 	ld d, $1
 	jr asm_3ced2
 
-Func_3cf28: ; 3cf28 (f:4f28)
+ScriptCommand_61: ; 3cf28 (f:4f28)
 	ld a, [wScriptBuffer + 1]
 	ld b, a
 	ld a, [wc912]
@@ -2309,7 +2309,7 @@ Func_3cf28: ; 3cf28 (f:4f28)
 	scf
 	ret
 
-Func_3cf44: ; 3cf44 (f:4f44)
+ScriptCommand_67: ; 3cf44 (f:4f44)
 	call Func_2928
 	ld a, [hJoyNew]
 	and ($FF ^ A_BUTTON)
@@ -2355,7 +2355,7 @@ Script_IfRecruited: ; 3cf54 (f:4f54)
 	scf
 	ret
 
-Func_3cf93: ; 3cf93 (f:4f93)
+ScriptCommand_6a: ; 3cf93 (f:4f93)
 	call Func_2411
 	ld a, $30
 	ld [wSubroutine], a

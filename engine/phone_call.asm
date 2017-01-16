@@ -10,7 +10,7 @@ OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
 	ld a, [wMapGroup]
 	cp $b
 	jr z, .stop_ringing
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jp nz, .stop_ringing
 	ld a, [wDShotReceptionLevel]

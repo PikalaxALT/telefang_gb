@@ -53,7 +53,7 @@ script_07: MACRO
 .offset\@
 	db \1
 	db \2
-	db \3
+	dn \3, \4
 	ENDM
 
 	enum script_08_command
@@ -62,7 +62,7 @@ script_08: MACRO
 .offset\@
 	db \1
 	db \2
-	db \3
+	dn \3, \4
 	ENDM
 
 	enum script_09_command
@@ -71,7 +71,7 @@ script_09: MACRO
 .offset\@
 	db \1
 	db \2
-	db \3
+	dn \3, \4
 	ENDM
 
 	enum script_0a_command
@@ -80,16 +80,16 @@ script_0a: MACRO
 .offset\@
 	db \1
 	db \2
-	db \3
+	dn \3, \4
 	ENDM
 
-	enum script_0b_command
-script_0b: MACRO
-	db script_0b_command
+	enum script_warp_command
+script_warp: MACRO
+	db script_warp_command
 .offset\@
-	db \1
-	db \2
-	db \3
+	db \1 ; map group
+	db \2 ; map number
+	dn \3, \4 ; y, x
 	ENDM
 
 	enum script_0c_command
@@ -119,9 +119,9 @@ script_0f: MACRO
 	db \1
 	ENDM
 
-	enum script_10_command
-script_10: MACRO
-	db script_10_command
+	enum script_walk_player_command
+script_walk_player: MACRO
+	db script_walk_player_command
 .offset\@
 	db \1
 	db \2
@@ -254,9 +254,9 @@ script_apply_facing: MACRO
 	db \2
 	ENDM
 
-	enum script_walk_command
-script_walk: MACRO
-	db script_walk_command
+	enum script_walk_npc_command
+script_walk_npc: MACRO
+	db script_walk_npc_command
 .offset\@
 	db \1
 	db \2
@@ -351,9 +351,9 @@ script_2d: MACRO
 	db \7
 	ENDM
 
-	enum script_2e_command
-script_2e: MACRO
-	db script_2e_command
+	enum script_hop_and_displace_npc_command
+script_hop_and_displace_npc: MACRO
+	db script_hop_and_displace_npc_command
 .offset\@
 	db \1
 	db \2
@@ -485,14 +485,14 @@ script_face_player: MACRO
 script_3e: MACRO
 	db script_3e_command
 .offset\@
-	db \1
+	dn \1, \2
 	ENDM
 
 	enum script_3f_command
 script_3f: MACRO
 	db script_3f_command
 .offset\@
-	db \1
+	dn \1, \2
 	ENDM
 
 	enum script_40_command

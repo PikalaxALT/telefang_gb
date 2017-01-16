@@ -9,24 +9,24 @@ TopPhoneMenu:
 	dw Func_100fa ; 05
 	dw Func_10108 ; 06
 	dw Func_10113 ; 07
-	dw Func_1013b ; 08
-	dw Func_101ec ; 09
-	dw Func_101f7 ; 0a
-	dw Func_10205 ; 0b
-	dw Func_10216 ; 0c
-	dw Func_10221 ; 0d
-	dw Phone_Load ; 0e
-	dw Func_10265 ; 0f
-	dw Func_1028a ; 10
-	dw Func_102aa ; 11
-	dw Func_102b3 ; 12
-	dw Func_102cd ; 13
-	dw Func_1031c ; 14
-	dw Func_10328 ; 15
-	dw Func_10339 ; 16
-	dw Func_10346 ; 17
-	dw Func_1037f ; 18
-	dw Func_103a5 ; 19
+	dw TopPhone_JoypadAction ; 08
+	dw TopPhone_ScrollDown1 ; 09
+	dw TopPhone_ScrollDown2 ; 0a
+	dw TopPhone_Scroll3 ; 0b
+	dw TopPhone_ScrollUp1 ; 0c
+	dw TopPhone_ScrollUp2 ; 0d
+	dw TopPhone_Continue ; 0e
+	dw TopPhone_NewGame ; 0f
+	dw TopPhone_LoadTimeSetLayout ; 10
+	dw TopPhone_SetTime ; 11
+	dw TopPhone_BlankScreenAfterTimeSet ; 12
+	dw TopPhone_LoadNameEntryLayout ; 13
+	dw TopPhone_EnterPlayerName ; 14
+	dw TopPhone_StorePlayerName ; 15
+	dw TopPhone_FadeToGame ; 16
+	dw TopPhone_InitGameState ; 17
+	dw TopPhone_LoadSoundTest ; 18
+	dw TopPhone_SoundTestJoypadAction ; 19
 	dw Func_103b4 ; 1a
 	dw Func_103e2 ; 1b
 	dw Func_10400 ; 1c
@@ -46,7 +46,7 @@ Func_10054: ; 10054 (4:4054)
 	ld [wBGPalUpdate], a
 	xor a
 	ld [wcb28], a
-	ld [wcb2a], a
+	ld [wPlayerNameEntryKeypadLayout], a
 IF DEF(POWER)
 	ld a, $0
 ELSE
@@ -81,7 +81,7 @@ Func_10089: ; 10089 (4:4089)
 	ld e, $11
 	call Phone_LoadStdBGWindowTileAndAttrLayout
 	xor a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld [wDShotDialBufferSize], a
 	ld [wcb3c], a
 	ld a, $3
@@ -92,18 +92,18 @@ Func_100bd: ; 100bd (4:40bd)
 	ld a, $10
 	ld [wDShotDialBufferSize], a
 	ld b, $0
-	ld a, [wc434]
+	ld a, [wSaveFileExists]
 	cp $0
 	jr z, .asm_100cd
 	ld b, $3
 .asm_100cd
 	ld a, b
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, [wcb3f]
 	cp $0
 	jr z, .asm_100dd
 	ld a, $2
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 .asm_100dd
 	xor a
 	ld [wcb3f], a
@@ -151,43 +151,43 @@ Func_10113: ; 10113 (4:4113)
 	ld [wSCX], a
 	jp IncrementSubroutine
 
-Func_1013b: ; 1013b (4:413b)
+TopPhone_JoypadAction: ; 1013b (4:413b)
 	call Func_11913
 	ld a, [wJoyNew]
 	and D_DOWN
-	jr z, .asm_10149
+	jr z, .check_up
 	ld a, $9
-	jr .asm_10152
+	jr .scroll_sound
 
-.asm_10149
+.check_up
 	ld a, [wJoyNew]
 	and D_UP
-	jr z, .asm_1015b
+	jr z, .check_a
 	ld a, $c
-.asm_10152
+.scroll_sound
 	ld [wSubroutine], a
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
-.asm_1015b
+.check_a
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jp z, Func_101eb
+	jp z, .no_action
 	xor a
 	ld [wcb3f], a
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $0
-	jr z, .asm_101b7
+	jr z, .continue
 	cp $3
-	jp z, Func_101d9
+	jp z, .new_game
 	cp $1
-	jr z, .asm_10192
+	jr z, .sound
 	cp $2
-	jr z, .asm_1017b
+	jr z, .link
 	ret
 
-.asm_1017b
+.link
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $1
@@ -199,7 +199,7 @@ Func_1013b: ; 1013b (4:413b)
 	ld [wGameRoutine], a
 	ret
 
-.asm_10192
+.sound
 	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -213,12 +213,12 @@ Func_1013b: ; 1013b (4:413b)
 	call LoadSpecialFontTiles
 	ld a, $18
 	ld [wSubroutine], a
-	jp Func_12cd3
+	jp SoundTest_UpdateMenuCursorPosition
 
-.asm_101b7
-	ld a, [wc434]
+.continue
+	ld a, [wSaveFileExists]
 	cp $1
-	jr z, .asm_101d3
+	jr z, .no_game_to_load
 	ld a, $4
 	call StartFade_
 	ld a, SFX_03
@@ -229,12 +229,12 @@ Func_1013b: ; 1013b (4:413b)
 	ld [wSubroutine], a
 	ret
 
-.asm_101d3
+.no_game_to_load
 	ld a, SFX_05
 	ld [H_SFX_ID], a
 	ret
 
-Func_101d9: ; 101d9 (4:41d9)
+.new_game
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $f
@@ -244,23 +244,23 @@ Func_101d9: ; 101d9 (4:41d9)
 	ld [wcb3a], a
 	ret
 
-Func_101eb: ; 101eb (4:41eb)
+.no_action: ; 101eb (4:41eb)
 	ret
 
-Func_101ec: ; 101ec (4:41ec)
+TopPhone_ScrollDown1: ; 101ec (4:41ec)
 	ld e, $1e
 	call Func_13f3f
 	call Func_11799
 	jp IncrementSubroutine
 
-Func_101f7: ; 101f7 (4:41f7)
+TopPhone_ScrollDown2: ; 101f7 (4:41f7)
 	ld e, $1f
 	call Func_13f3f
 	lb bc, 3, 7
 	call Func_11939
 	jp IncrementSubroutine
 
-Func_10205: ; 10205 (4:4205)
+TopPhone_Scroll3: ; 10205 (4:4205)
 	ld e, $12
 	call Func_13f3f
 	lb bc, 3, 7
@@ -269,13 +269,13 @@ Func_10205: ; 10205 (4:4205)
 	ld [wSubroutine], a
 	ret
 
-Func_10216: ; 10216 (4:4216)
+TopPhone_ScrollUp1: ; 10216 (4:4216)
 	ld e, $1f
 	call Func_13f3f
 	call Func_117c4
 	jp IncrementSubroutine
 
-Func_10221: ; 10221 (4:4221)
+TopPhone_ScrollUp2: ; 10221 (4:4221)
 	ld e, $1e
 	call Func_13f3f
 	lb bc, 3, 6
@@ -284,7 +284,7 @@ Func_10221: ; 10221 (4:4221)
 	ld [wSubroutine], a
 	ret
 
-Phone_Load: ; 10232 (4:4232)
+TopPhone_Continue: ; 10232 (4:4232)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -296,7 +296,7 @@ Phone_Load: ; 10232 (4:4232)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	ld [wcb2a], a
+	ld [wPlayerNameEntryKeypadLayout], a
 	ld a, $5
 	ld [wGameRoutine], a
 	xor a
@@ -308,26 +308,26 @@ Phone_Load: ; 10232 (4:4232)
 	ld [wPhoneCallSubroutine], a
 	ret
 
-Func_10265: ; 10265 (4:4265)
+TopPhone_NewGame: ; 10265 (4:4265)
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
-	ld a, [wc434]
+	ld a, [wSaveFileExists]
 	cp $0
-	jr nz, .asm_10287
+	jr nz, .wont_delete_old_game
 	ld bc, $d
 	check_cgb
-	jr z, .asm_1027e
+	jr z, .okay
 	ld bc, $56
-.asm_1027e
+.okay
 	call DecompressGFXByIndex_
 	ld a, $1b
 	ld [wSubroutine], a
 	ret
 
-.asm_10287
+.wont_delete_old_game
 	jp IncrementSubroutine
 
-Func_1028a: ; 1028a (4:428a)
+TopPhone_LoadTimeSetLayout: ; 1028a (4:428a)
 	ld bc, $104
 	ld e, $14
 	call Phone_LoadStdBGMapTileAndAttrLayout
@@ -341,12 +341,12 @@ Func_1028a: ; 1028a (4:428a)
 	call Func_1189e
 	jp IncrementSubroutine
 
-Func_102aa: ; 102aa (4:42aa)
+TopPhone_SetTime: ; 102aa (4:42aa)
 	ld de, wOAMAnimation02
 	call AnimateObject_
 	jp SelectTime
 
-Func_102b3: ; 102b3 (4:42b3)
+TopPhone_BlankScreenAfterTimeSet: ; 102b3 (4:42b3)
 	ld a, $7
 	ld [wOAMAnimation01_TemplateIdx], a
 	ld b, $50
@@ -358,10 +358,10 @@ Func_102b3: ; 102b3 (4:42b3)
 	call PhoneKeypadCursorPositionUpdate
 	jp IncrementSubroutine
 
-Func_102cd: ; 102cd (4:42cd)
+TopPhone_LoadNameEntryLayout: ; 102cd (4:42cd)
 	ld hl, VTilesBG tile $78
 	ld b, $8
-	call Func_13fd2
+	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
 	xor a
 	ld [wca65], a
 	call Func_13fdf
@@ -369,9 +369,9 @@ Func_102cd: ; 102cd (4:42cd)
 	ld [wTextBoxStartTile], a
 	xor a
 	ld [wCurOptionHover], a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, $1
-	ld [wcb2a], a
+	ld [wPlayerNameEntryKeypadLayout], a
 	ld a, $ff
 	ld [wcb66], a
 	call Func_128ff
@@ -382,23 +382,23 @@ Func_102cd: ; 102cd (4:42cd)
 	ld a, $2
 	ld [wcb28], a
 	call LoadPhoneKeypad
-	call PaletteFade8
-	call Func_1249a
+	call InitPlayerNameEntryBuffers
+	call RefreshPlayerNameBuffer
 	ld bc, $104
 	ld e, $35
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	call Func_1265a
 	jp IncrementSubroutine
 
-Func_1031c: ; 1031c (4:431c)
+TopPhone_EnterPlayerName: ; 1031c (4:431c)
 	ld de, wOAMAnimation02
 	call AnimateObject_
 	call Func_128ff
-	jp Func_124a9
+	jp PlayerName_JoypadAction
 
-Func_10328: ; 10328 (4:4328)
+TopPhone_StorePlayerName: ; 10328 (4:4328)
 	ld b, $9
-	ld hl, wc3a0
+	ld hl, wPlayerNameEntryBuffer2
 	ld de, wPlayerName
 .asm_10330
 	ld a, [hli]
@@ -408,14 +408,14 @@ Func_10328: ; 10328 (4:4328)
 	jr nz, .asm_10330
 	jp IncrementSubroutine
 
-Func_10339: ; 10339 (4:4339)
+TopPhone_FadeToGame: ; 10339 (4:4339)
 	ld a, $4
 	call StartFade_
 	ld a, $10
 	ld [wcf96], a
 	jp IncrementSubroutine
 
-Func_10346: ; 10346 (4:4346)
+TopPhone_InitGameState: ; 10346 (4:4346)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -427,7 +427,7 @@ Func_10346: ; 10346 (4:4346)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	ld [wcb2a], a
+	ld [wPlayerNameEntryKeypadLayout], a
 	ld [wFontPaletteMode], a
 	ld a, $5
 	ld [wGameRoutine], a
@@ -440,7 +440,7 @@ Func_10346: ; 10346 (4:4346)
 	call InitCustomDMelo
 	jp SetRTC
 
-Func_1037f: ; 1037f (4:437f)
+TopPhone_LoadSoundTest: ; 1037f (4:437f)
 	ld a, $4
 	ld [wd411], a
 	ld de, wOAMAnimation02
@@ -450,18 +450,18 @@ Func_1037f: ; 1037f (4:437f)
 	ld de, wOAMAnimation03
 	call Func_0609
 	xor a
-	ld [wcb41], a
-	ld [wcb40], a
-	ld [wcb42], a
-	call Func_12cd3
+	ld [wSoundTestMusicID], a
+	ld [wSoundTestSFXID], a
+	ld [wSoundTestMenuCursor], a
+	call SoundTest_UpdateMenuCursorPosition
 	jp IncrementSubroutine
 
-Func_103a5: ; 103a5 (4:43a5)
+TopPhone_SoundTestJoypadAction: ; 103a5 (4:43a5)
 	ld de, wOAMAnimation02
 	call AnimateObject_
 	ld de, wOAMAnimation03
 	call AnimateObject_
-	jp Func_12bbc
+	jp SoundTestJoypadAction
 
 Func_103b4: ; 103b4 (4:43b4)
 	ld bc, $1b
@@ -558,10 +558,10 @@ Func_10452: ; 10452 (4:4452)
 	call Func_13fdf
 	ld a, $78
 	ld [wTextBoxStartTile], a
-	call PaletteFade8
+	call InitPlayerNameEntryBuffers
 	xor a
 	ld [wCurOptionHover], a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, $ff
 	ld [wcb66], a
 	call Func_128ff
@@ -573,7 +573,7 @@ Func_10452: ; 10452 (4:4452)
 	ld [wcb28], a
 	call LoadPhoneKeypad
 	ld a, $1
-	ld [wcb2a], a
+	ld [wPlayerNameEntryKeypadLayout], a
 	call Func_13a1e
 	xor a
 	ld [wBGPalUpdate], a
@@ -586,14 +586,14 @@ Func_10452: ; 10452 (4:4452)
 	xor a
 	ld [wSCX], a
 	ld [wSCY], a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, $4
 	ld [wPhoneKeypadCursorPosition], a
 	call Func_12921
 	call PhoneKeypadCursorPositionUpdate
 	ld hl, VTilesBG tile $70
 	ld b, $10
-	call Func_13fd2
+	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
 	ld a, $70
 	ld [wTextBoxStartTile], a
 	ld a, [wRecruitedDenjuuSpecies]
@@ -618,12 +618,12 @@ Func_10452: ; 10452 (4:4452)
 	ld [wOAMAnimation05_TemplateBank], a
 	ld a, $78
 	ld [wTextBoxStartTile], a
-	call PaletteFade8
+	call InitPlayerNameEntryBuffers
 	ld a, [wFirstEmptySlotInAddressBook]
 	call Func_13d8c
 	call Func_127b7
 	ld d, $c
-	call Func_1249a
+	call RefreshPlayerNameBuffer
 	call Func_1265a
 	ld a, $4
 	call StartFade_
@@ -668,7 +668,7 @@ Phone_Save: ; 1057d (4:457d)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	ld [wcb2a], a
+	ld [wPlayerNameEntryKeypadLayout], a
 	ld [wFontPaletteMode], a
 	ld a, [wcb3f]
 	cp $0
@@ -1878,14 +1878,14 @@ Func_10f06:
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	xor a
 	hlbgcoord 6, 16
-	call Func_127e3
+	call Phone_Print2DigitBCD
 	ld a, $4
 	ld [wSubroutine2], a
 	ret
 
 Func_10f3a:
 	ld a, [wcb6f]
-	call Func_122ba
+	call GetS1B100PlusA
 	ld c, b
 	ld hl, VTilesBG tile $40
 	call Func_0630
@@ -1894,7 +1894,7 @@ Func_10f3a:
 
 Func_10f4d:
 	ld a, [wcb6f]
-	call Func_122ba
+	call GetS1B100PlusA
 	ld a, b
 	call Func_11a59
 	ld e, $31
@@ -1974,7 +1974,7 @@ Func_10f82:
 	ld a, $3
 	ld [wPhoneCallSubroutine], a
 	ld a, [wcb6f]
-	call Func_122ba
+	call GetS1B100PlusA
 	ld a, b
 	ld [wc90d], a
 	ld a, $4
@@ -2323,7 +2323,7 @@ Func_11276: ; 11276 (4:5276)
 	ld [wcb2b], a
 	ld hl, VTilesBG tile $40
 	ld b, $38
-	call Func_11a1c
+	call PhoneMenu_FillTilesWithHue01
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, $1
@@ -2402,7 +2402,7 @@ Func_1133b: ; 1133b (4:533b)
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld hl, VTilesBG tile $40
 	ld b, $6
-	call Func_13fd2
+	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
 	jp IncrementSubroutine2
 
 Func_1136a: ; 1136a (4:536a)
@@ -2476,7 +2476,7 @@ Func_113f4: ; 113f4 (4:53f4)
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld hl, VTilesBG tile $40
 	ld b, $6
-	call Func_11a1c
+	call PhoneMenu_FillTilesWithHue01
 	ld a, $3
 	ld [wSubroutine2], a
 	ret
@@ -2671,10 +2671,10 @@ asm_11932
 Func_11936: ; 11936 (4:5936)
 	lb bc, 3, 7
 Func_11939: ; 11939 (4:5939)
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	add $36
 	call Func_119ac
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	inc a
 	cp $4
 	jr c, .asm_1194b
@@ -2682,7 +2682,7 @@ Func_11939: ; 11939 (4:5939)
 .asm_1194b
 	add $36
 	call Func_119ac
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	inc a
 	inc a
 	cp $4
@@ -2805,12 +2805,12 @@ ClearTiles: ; 11a06 (4:5a06)
 	jr nz, ClearTiles
 	ret
 
-Func_11a16:
+PhoneMenu_FillTilesWithHue02:
 	ld d, $ff
 	ld e, $0
 	jr asm_11a20
 
-Func_11a1c: ; 11a1c (4:5a1c)
+PhoneMenu_FillTilesWithHue01: ; 11a1c (4:5a1c)
 	ld d, $0
 	ld e, $ff
 asm_11a20
@@ -2865,18 +2865,18 @@ Func_11a59: ; 11a59 (4:5a59)
 
 Func_11a80: ; 11a80 (4:5a80)
 	push de
-	ld hl, wc3a0
+	ld hl, wPlayerNameEntryBuffer2
 	ld b, $9
 .asm_11a86
-	ld a, $e0
+	ld a, "$"
 	ld [hli], a
 	dec b
 	jr nz, .asm_11a86
 	ld hl, wStringBuffer
-	ld de, wc3a0
+	ld de, wPlayerNameEntryBuffer2
 	call CenterAlignDenjuuName_
 	pop de
-	jp Func_1249a
+	jp RefreshPlayerNameBuffer
 
 DMelo_LoadBlankRingtone:
 	xor a
@@ -4056,7 +4056,7 @@ Func_12279: ; 12279 (4:6279)
 	jr nz, .loop
 	jp Rom4_CloseSRAM
 
-Func_122ba: ; 122ba (4:62ba)
+GetS1B100PlusA: ; 122ba (4:62ba)
 	push af
 	ld b, BANK(s1_b000)
 	call Rom4_GetSRAMBankB
@@ -4073,7 +4073,7 @@ Func_122ba: ; 122ba (4:62ba)
 
 Func_122d0: ; 122d0 (4:62d0)
 	ld a, [wcb6f]
-	call Func_122ba
+	call GetS1B100PlusA
 Func_122d6: ; 122d6 (4:62d6)
 	ld e, b
 	ld d, $0
@@ -4328,141 +4328,141 @@ Func_1247c:
 	call ClearMemory3
 	jp Rom4_CloseSRAM
 
-PaletteFade8: ; 12488 (4:6488)
-	ld hl, wc3a9
-	ld de, wc3a0
+InitPlayerNameEntryBuffers: ; 12488 (4:6488)
+	ld hl, wPlayerNameEntryBuffer
+	ld de, wPlayerNameEntryBuffer2
 	ld b, $9
-.asm_12490
-	ld a, $e0
+.loop
+	ld a, "$"
 	ld [de], a
 	inc de
 	xor a
 	ld [hli], a
 	dec b
-	jr nz, .asm_12490
+	jr nz, .loop
 	ret
 
-Func_1249a: ; 1249a (4:649a)
+RefreshPlayerNameBuffer: ; 1249a (4:649a)
 	ld b, $0
 	ld c, $30
 	ld d, $c
-	call Func_0528
+	call LoadAndStartStdTextPointer__
 	call BattlePrintText
 	jp BattlePrintText
 
-Func_124a9: ; 124a9 (4:64a9)
+PlayerName_JoypadAction: ; 124a9 (4:64a9)
 	call NavigatePhoneKeypad
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_124e5
+	jr z, .check_start_or_a
 	ld a, $ff
 	ld [wcb66], a
 	xor a
 	ld [wCurOptionHover], a
 	ld hl, VTilesBG tile $78
 	ld b, $8
-	call Func_13fd2
-	ld hl, wc3a9
-	ld a, [wcb38]
+	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
+	ld hl, wPlayerNameEntryBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld [hl], $0
-	call Func_12794
-	call Func_1249a
-	ld a, [wcb38]
+	call CountEnteredCharactersAndCopyNameEntryBuffer
+	call RefreshPlayerNameBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $0
 	ret z
 	dec a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ret
 
-.asm_124e5
+.check_start_or_a
 	ld a, [hJoyNew]
 	and START
-	jr nz, asm_12539
+	jr nz, .submit_name
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jp z, Func_12581
+	jp z, .no_button
 	call PlayPhoneKeypadCursorSFX
 	ld a, [wPhoneKeypadCursorPosition]
 	cp $0
-	jp z, Func_12519
+	jp z, .note_button
 	cp $1
-	jp z, Func_12565
+	jp z, .move_cursor_left
 	cp $2
-	jp z, Func_1256e
+	jp z, .move_cursor_right
 	cp $3
-	jp z, asm_12539
+	jp z, .submit_name
 	cp $d
-	jp z, Func_12562
+	jp z, .asterisk_or_pound
 	cp $f
-	jp z, Func_12562
-	jp Func_126c0
+	jp z, .asterisk_or_pound
+	jp UpdateCurrentCharacterInPlayerName
 
-Func_12519: ; 12519 (4:6519)
+.note_button: ; 12519 (4:6519)
 	xor a
 	ld [wCurOptionHover], a
-	ld a, [wcb2a]
+	ld a, [wPlayerNameEntryKeypadLayout]
 	inc a
 	cp $3
-	jr nz, .asm_12526
+	jr nz, .wrap_around
 	xor a
-.asm_12526
-	ld [wcb2a], a
+.wrap_around
+	ld [wPlayerNameEntryKeypadLayout], a
 	add $1
 	cp $3
-	jr nz, .asm_12530
+	jr nz, .load_keypad
 	xor a
-.asm_12530
+.load_keypad
 	ld [wcb28], a
 	call LoadPhoneKeypad
 	jp Func_1265a
 
-asm_12539
+.submit_name
 	ld a, SFX_03
 	ld [H_SFX_ID], a
-	call Func_12794
+	call CountEnteredCharactersAndCopyNameEntryBuffer
 	cp $0
-	jr nz, .asm_1255f
-	ld a, $c
-	ld [wc3a9], a
-	ld a, $70
-	ld [wc3aa], a
-	ld a, $7
-	ld [wc3ab], a
+	jr nz, .store_name
+	ld a, "シ"
+	ld [wPlayerNameEntryBuffer + 0], a
+	ld a, "ゲ"
+	ld [wPlayerNameEntryBuffer + 1], a
+	ld a, "キ"
+	ld [wPlayerNameEntryBuffer + 2], a
 	ld a, $3
-	ld [wcb38], a
-	call Func_12794
-	jp Func_1249a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
+	call CountEnteredCharactersAndCopyNameEntryBuffer
+	jp RefreshPlayerNameBuffer
 
-.asm_1255f
+.store_name
 	jp IncrementSubroutine
 
-Func_12562: ; 12562 (4:6562)
-	jp Func_12673
+.asterisk_or_pound: ; 12562 (4:6562)
+	jp ModifyCurrentCharacterInPlayerNameEntryBuffer
 
-Func_12565: ; 12565 (4:6565)
-	ld a, [wcb38]
+.move_cursor_left: ; 12565 (4:6565)
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $0
 	ret z
 	dec a
-	jr asm_12575
+	jr .finish_move_cursor
 
-Func_1256e: ; 1256e (4:656e)
-	ld a, [wcb38]
+.move_cursor_right: ; 1256e (4:656e)
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $7
 	ret z
 	inc a
-asm_12575
-	ld [wcb38], a
+.finish_move_cursor
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, $ff
 	ld [wcb66], a
 	xor a
 	ld [wCurOptionHover], a
-Func_12581: ; 12581 (4:6581)
+.no_button: ; 12581 (4:6581)
 	ret
 
 Func_12582: ; 12582 (4:6582)
@@ -4476,20 +4476,20 @@ Func_12582: ; 12582 (4:6582)
 	ld [wCurOptionHover], a
 	ld hl, VTilesBG tile $78
 	ld b, $6
-	call Func_13fd2
-	ld hl, wc3a9
-	ld a, [wcb38]
+	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
+	ld hl, wPlayerNameEntryBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld [hl], $0
 	call Func_127b7
-	call Func_1249a
-	ld a, [wcb38]
+	call RefreshPlayerNameBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $0
 	ret z
 	dec a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ret
@@ -4520,13 +4520,13 @@ Func_12582: ; 12582 (4:6582)
 Func_125f2: ; 125f2 (4:65f2)
 	xor a
 	ld [wCurOptionHover], a
-	ld a, [wcb2a]
+	ld a, [wPlayerNameEntryKeypadLayout]
 	inc a
 	cp $3
 	jr nz, .asm_125ff
 	xor a
 .asm_125ff
-	ld [wcb2a], a
+	ld [wPlayerNameEntryKeypadLayout], a
 	add $1
 	cp $3
 	jr nz, .asm_12609
@@ -4544,9 +4544,9 @@ asm_12612
 	jr nz, .asm_1262c
 	ld a, [wFirstEmptySlotInAddressBook]
 	call Func_13d8c
-	call Func_12794
+	call CountEnteredCharactersAndCopyNameEntryBuffer
 	ld d, $c
-	jp Func_1249a
+	jp RefreshPlayerNameBuffer
 
 .asm_1262c
 	jp IncrementSubroutine
@@ -4555,11 +4555,11 @@ Func_1262f: ; 1262f (4:662f)
 	jp Func_1268a
 
 Func_12632: ; 12632 (4:6632)
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $0
 	ret z
 	dec a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, $ff
 	ld [wcb66], a
 	xor a
@@ -4567,11 +4567,11 @@ Func_12632: ; 12632 (4:6632)
 	ret
 
 Func_12646: ; 12646 (4:6646)
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $5
 	ret z
 	inc a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ld a, $ff
 	ld [wcb66], a
 	xor a
@@ -4581,7 +4581,7 @@ Func_12659: ; 12659 (4:6659)
 
 Func_1265a: ; 1265a (4:665a)
 	ld e, $15
-	ld a, [wcb2a]
+	ld a, [wPlayerNameEntryKeypadLayout]
 	cp $0
 	jr z, .asm_1266b
 	ld e, $16
@@ -4593,33 +4593,33 @@ Func_1265a: ; 1265a (4:665a)
 	ld a, $0
 	jp LoadStdBGMapLayout_
 
-Func_12673: ; 12673 (4:6673)
-	ld hl, wc3a9
-	ld a, [wcb38]
+ModifyCurrentCharacterInPlayerNameEntryBuffer: ; 12673 (4:6673)
+	ld hl, wPlayerNameEntryBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld a, [hl]
 	push hl
-	call Func_133ab
+	call CycleDakuten
 	pop hl
 	ld [hl], a
-	call Func_12794
-	jp Func_1249a
+	call CountEnteredCharactersAndCopyNameEntryBuffer
+	jp RefreshPlayerNameBuffer
 
 Func_1268a: ; 1268a (4:668a)
-	ld hl, wc3a9
-	ld a, [wcb38]
+	ld hl, wPlayerNameEntryBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld a, [hl]
 	push hl
-	call Func_133ab
+	call CycleDakuten
 	pop hl
 	ld [hl], a
 	call Func_127b7
-	jp Func_1249a
+	jp RefreshPlayerNameBuffer
 
 PlayPhoneKeypadCursorSFX: ; 126a1 (4:66a1)
 	ld a, [wPhoneKeypadCursorPosition]
@@ -4638,33 +4638,32 @@ Data_126b0:
 	db    SFX_1C, SFX_1D, SFX_1E
 	db    SFX_1F, SFX_20, SFX_21
 
-Func_126c0: ; 126c0 (4:66c0)
+UpdateCurrentCharacterInPlayerName: ; 126c0 (4:66c0)
 	ld a, [wcb66]
 	cp $ff
-	jr z, .asm_126e9
+	jr z, .skip
 	ld b, a
 	ld a, [wPhoneKeypadCursorPosition]
 	cp b
-	jr nz, .asm_126d7
+	jr nz, .not_the_same_character
 	ld a, [wCurOptionHover]
 	inc a
 	ld [wCurOptionHover], a
-	jr .asm_126e9
+	jr .skip
 
-.asm_126d7
+.not_the_same_character
 	xor a
 	ld [wCurOptionHover], a
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $7
-	jr z, .asm_126e9
-.asm_126e1
-	ld a, [wcb38]
+	jr z, .skip
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	inc a
-	ld [wcb38], a
-.asm_126e9
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
+.skip
 	ld a, [wPhoneKeypadCursorPosition]
 	ld [wcb66], a
-	ld a, [wcb2a]
+	ld a, [wPlayerNameEntryKeypadLayout]
 	ld hl, Pointers_1280d
 	call Rom4_PointToWordInTable
 	ld a, [hli]
@@ -4680,24 +4679,24 @@ Func_126c0: ; 126c0 (4:66c0)
 	ld b, a
 	ld a, [wCurOptionHover]
 	cp b
-	jr nz, .asm_12712
+	jr nz, .wrap_around
 	xor a
 	ld [wCurOptionHover], a
-.asm_12712
+.wrap_around
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld a, [hl]
 	push af
-	ld hl, wc3a9
-	ld a, [wcb38]
+	ld hl, wPlayerNameEntryBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	ld e, a
 	ld d, $0
 	add hl, de
 	pop af
 	ld [hl], a
-	call Func_12794
-	jp Func_1249a
+	call CountEnteredCharactersAndCopyNameEntryBuffer
+	jp RefreshPlayerNameBuffer
 
 Func_1272a: ; 1272a (4:672a)
 	ld a, [wcb66]
@@ -4715,16 +4714,16 @@ Func_1272a: ; 1272a (4:672a)
 .asm_12741
 	xor a
 	ld [wCurOptionHover], a
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $5
 	jr z, .asm_12753
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	inc a
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 .asm_12753
 	ld a, [wPhoneKeypadCursorPosition]
 	ld [wcb66], a
-	ld a, [wcb2a]
+	ld a, [wPlayerNameEntryKeypadLayout]
 	ld hl, Pointers_1280d
 	call Rom4_PointToWordInTable
 	ld a, [hli]
@@ -4749,41 +4748,41 @@ Func_1272a: ; 1272a (4:672a)
 	add hl, de
 	ld a, [hl]
 	push af
-	ld hl, wc3a9
-	ld a, [wcb38]
+	ld hl, wPlayerNameEntryBuffer
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	ld e, a
 	ld d, $0
 	add hl, de
 	pop af
 	ld [hl], a
 	call Func_127b7
-	jp Func_1249a
+	jp RefreshPlayerNameBuffer
 
-Func_12794: ; 12794 (4:6794)
+CountEnteredCharactersAndCopyNameEntryBuffer: ; 12794 (4:6794)
 	ld hl, wc3a7
 	ld de, wc3b0
 	ld b, $8
 	ld c, $0
-.asm_1279e
+.loop
 	ld a, c
 	cp $0
-	jr nz, .asm_127af
+	jr nz, .copy
 	ld a, [de]
 	cp $0
-	jr nz, .asm_127ad
-	ld a, $e0
+	jr nz, .at_least_one
+	ld a, "$"
 	ld [hld], a
-	jr .asm_127b1
+	jr .next
 
-.asm_127ad
+.at_least_one
 	ld c, $1
-.asm_127af
+.copy
 	ld a, [de]
 	ld [hld], a
-.asm_127b1
+.next
 	dec de
 	dec b
-	jr nz, .asm_1279e
+	jr nz, .loop
 	ld a, c
 	ret
 
@@ -4817,9 +4816,9 @@ Func_127b7: ; 127b7 (4:67b7)
 
 Func_127da: ; 127da (4:67da)
 	ld a, [wcb6f]
-	call Func_122ba
+	call GetS1B100PlusA
 	hlbgcoord 6, 16
-Func_127e3: ; 127e3 (4:67e3)
+Phone_Print2DigitBCD: ; 127e3 (4:67e3)
 	push hl
 	call Get2DigitBCD
 	pop hl
@@ -4867,46 +4866,46 @@ Pointers_12813:
 
 Data_1282b:
 	db 10
-	db $38, $39, $3a, $3b, $3c, $64, $65, $66, $67, $68
+	db "あ", "い", "う", "え", "お", "ぁ", "ぃ", "ぅ", "ぇ", "ぉ"
 
 Data_12836:
 	db 5
-	db $3d, $3e, $3f, $40, $41
+	db "か", "き", "く", "け", "こ"
 
 Data_1283c:
 	db 5
-	db $42, $43, $44, $45, $46
+	db "さ", "し", "す", "せ", "そ"
 
 Data_12842:
 	db 6
-	db $47, $48, $49, $4a, $4b, $69
+	db "た", "ち", "つ", "て", "と", "っ"
 
 Data_12849:
 	db 5
-	db $4c, $4d, $4e, $4f, $50
+	db "な", "に", "ぬ", "ね", "の"
 
 Data_1284f:
 	db 5
-	db $51, $52, $53, $1d, $54
+	db "は", "ひ", "ふ", "へ", "ほ"
 
 Data_12855:
 	db 5
-	db $55, $56, $57, $58, $59
+	db "ま", "み", "む", "め", "も"
 
 Data_1285b:
 	db 6
-	db $5a, $5b, $5c, $6a, $6b, $6c
+	db "や", "ゆ", "よ", "ゃ", "ゅ", "ょ"
 
 Data_12862:
 	db 5
-	db $5d, $28, $5e, $5f, $60
+	db "ら", "リ", "る", "れ", "ろ"
 
 Data_12868:
 	db $ff
 
 Data_12869:
 	db 7
-	db $61, $62, $63, $cd, $c8, $b9, $b8
+	db "わ", "を", "ん", "ー", ".", "!", "?"
 
 Data_12871:
 	db $ff
@@ -4927,46 +4926,46 @@ Pointers_12872:
 
 Data_1288a:
 	db 10
-	db $01, $02, $03, $04, $05, $2f, $30, $31, $32, $33
+	db "ア", "イ", "ウ", "エ", "オ", "ァ", "ィ", "ゥ", "ェ", "ォ"
 
 Data_12895:
 	db 5
-	db $06, $07, $08, $09, $0a
+	db "カ", "キ", "ク", "ケ", "コ"
 
 Data_1289b:
 	db 5
-	db $0b, $0c, $0d, $0e, $0f
+	db "サ", "シ", "ス", "セ", "ソ"
 
 Data_128a1:
 	db 6
-	db $10, $11, $12, $13, $14, $34
+	db "タ", "チ", "ツ", "テ", "ト", "ッ"
 
 Data_128a8:
 	db 5
-	db $15, $16, $17, $18, $19
+	db "ナ", "ニ", "ヌ", "ネ", "ノ"
 
 Data_128ae:
 	db 5
-	db $1a, $1b, $1c, $1d, $1e
+	db "ハ", "ヒ", "フ", "へ", "ホ"
 
 Data_128b4:
 	db 5
-	db $1f, $20, $21, $22, $23
+	db "マ", "ミ", "ム", "メ", "モ"
 
 Data_128ba:
 	db 6
-	db $24, $25, $26, $35, $36, $37
+	db "ヤ", "ユ", "ヨ", "ャ", "ュ", "ョ"
 
 Data_128c1:
 	db 5
-	db $27, $28, $29, $2a, $2b
+	db "ラ", "リ", "ル", "レ", "ロ"
 
 Data_128c7:
 	db $ff
 
 Data_128c8:
 	db 7
-	db $2c, $2d, $2e, $cd, $c8, $b9, $b8
+	db "ワ", "ヲ", "ン", "ー", ".", "!", "?"
 
 Data_128d0:
 	db $ff
@@ -4987,52 +4986,52 @@ Pointers_128d1:
 
 Data_128e9:
 	db 1
-	db $bc
+	db "1"
 
 Data_128eb:
 	db 1
-	db $bd
+	db "2"
 
 Data_128ed:
 	db 1
-	db $be
+	db "3"
 
 Data_128ef:
 	db 1
-	db $bf
+	db "4"
 
 Data_128f1:
 	db 1
-	db $c0
+	db "5"
 
 Data_128f3:
 	db 1
-	db $c1
+	db "6"
 
 Data_128f5:
 	db 1
-	db $c2
+	db "7"
 
 Data_128f7:
 	db 1
-	db $c3
+	db "8"
 
 Data_128f9:
 	db 1
-	db $c4
+	db "9"
 
 Data_128fb:
 	db $ff
 
 Data_128fc:
 	db 1
-	db $bb
+	db "0"
 
 Data_128fe:
 	db $ff
 
 Func_128ff: ; 128ff (4:68ff)
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	ld e, a
 	ld d, $0
 	ld hl, Data_12919
@@ -5054,7 +5053,7 @@ x = x + 8
 ENDR
 
 Func_12921: ; 12921 (4:6921)
-	ld a, [wcb38]
+	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	sla a
 	sla a
 	sla a
@@ -5439,149 +5438,149 @@ Func_12baa: ; 12baa (4:6baa)
 	add $2f
 	ld [wOAMAnimation16_TemplateIdx], a
 	ld de, wOAMAnimation16
-	ld bc, $1028
+	lb bc, $10, $28
 	jp Func_11789
 
-Func_12bbc: ; 12bbc (4:6bbc)
+SoundTestJoypadAction: ; 12bbc (4:6bbc)
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jp nz, Func_12cb7
+	jp nz, .Quit
 	ld a, [hJoyNew]
 	and D_UP
-	jr z, .asm_12be6
+	jr z, .check_down
 	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb42]
+	ld a, [wSoundTestMenuCursor]
 	dec a
 	cp $ff
-	jr nz, .asm_12be0
+	jr nz, .top
 	ld a, $2
-.asm_12be0
-	ld [wcb42], a
-	jp Func_12cd3
+.top
+	ld [wSoundTestMenuCursor], a
+	jp SoundTest_UpdateMenuCursorPosition
 
-.asm_12be6
+.check_down
 	ld a, [hJoyNew]
 	and D_DOWN
-	jr z, .asm_12c08
+	jr z, .check_left_right_a
 	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb42]
+	ld a, [wSoundTestMenuCursor]
 	inc a
 	cp $3
-	jr nz, .asm_12c02
+	jr nz, .bottom
 	xor a
-.asm_12c02
-	ld [wcb42], a
-	jp Func_12cd3
+.bottom
+	ld [wSoundTestMenuCursor], a
+	jp SoundTest_UpdateMenuCursorPosition
 
-.asm_12c08
-	ld a, [wcb42]
+.check_left_right_a
+	ld a, [wSoundTestMenuCursor]
 	cp $1
-	jr z, .asm_12c5f
+	jr z, .sfx_menu
 	cp $2
-	jp z, Func_12cb1
+	jp z, .QuitIfA
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_12c30
+	jr z, .check_right_music
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb41]
+	ld a, [wSoundTestMusicID]
 	dec a
 	cp $ff
-	jr nz, .asm_12c2a
+	jr nz, .min_music
 	ld a, $27
-.asm_12c2a
-	ld [wcb41], a
-	jp Func_12cd3
+.min_music
+	ld [wSoundTestMusicID], a
+	jp SoundTest_UpdateMenuCursorPosition
 
-.asm_12c30
+.check_right_music
 	ld a, [wJoyNew]
 	and D_RIGHT
-	jr z, .asm_12c4b
+	jr z, .check_a_music
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb41]
+	ld a, [wSoundTestMusicID]
 	inc a
 	cp $28
-	jr c, .asm_12c45
+	jr c, .max_music
 	xor a
-.asm_12c45
-	ld [wcb41], a
-	jp Func_12cd3
+.max_music
+	ld [wSoundTestMusicID], a
+	jp SoundTest_UpdateMenuCursorPosition
 
-.asm_12c4b
+.check_a_music
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_12c5e
-	ld a, [wcb41]
-	call Func_12d32
+	jr z, .no_action1
+	ld a, [wSoundTestMusicID]
+	call SoundTest_LoadSelectedMusicID
 	call GetMusicBank
 	ld [H_MusicID], a
 	ret
 
-.asm_12c5e
+.no_action1
 	ret
 
-.asm_12c5f
+.sfx_menu
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_12c7b
+	jr z, .check_right_sfx
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb40]
+	ld a, [wSoundTestSFXID]
 	cp $0
-	jr nz, .asm_12c74
+	jr nz, .min_sfx
 	ld a, $74
-.asm_12c74
+.min_sfx
 	dec a
-	ld [wcb40], a
-	jp Func_12cd3
+	ld [wSoundTestSFXID], a
+	jp SoundTest_UpdateMenuCursorPosition
 
-.asm_12c7b
+.check_right_sfx
 	ld a, [wJoyNew]
 	and D_RIGHT
-	jr z, .asm_12c97
+	jr z, .check_a_sfx
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wcb40]
+	ld a, [wSoundTestSFXID]
 	cp $73
-	jr c, .asm_12c90
+	jr c, .max_sfx
 	ld a, $ff
-.asm_12c90
+.max_sfx
 	inc a
-	ld [wcb40], a
-	jp Func_12cd3
+	ld [wSoundTestSFXID], a
+	jp SoundTest_UpdateMenuCursorPosition
 
-.asm_12c97
+.check_a_sfx
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_12ca5
-	ld a, [wcb40]
+	jr z, .check_b_sfx
+	ld a, [wSoundTestSFXID]
 	inc a
 	ld [H_SFX_ID], a
 	ret
 
-.asm_12ca5
+.check_b_sfx
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_12cb0
+	jr z, .no_action2
 	ld a, SFX_01
 	ld [H_SFX_ID], a
-.asm_12cb0
+.no_action2
 	ret
 
-Func_12cb1: ; 12cb1 (4:6cb1)
+.QuitIfA: ; 12cb1 (4:6cb1)
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, asm_12cd2
-Func_12cb7: ; 12cb7 (4:6cb7)
+	jr z, .no_action3
+.Quit: ; 12cb7 (4:6cb7)
 	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -5593,28 +5592,28 @@ Func_12cb7: ; 12cb7 (4:6cb7)
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	jp IncrementSubroutine
 
-asm_12cd2
+.no_action3
 	ret
 
-Func_12cd3: ; 12cd3 (4:6cd3)
+SoundTest_UpdateMenuCursorPosition: ; 12cd3 (4:6cd3)
 	ld b, $48
 	ld c, $50
 	ld d, $1
-	ld a, [wcb42]
+	ld a, [wSoundTestMenuCursor]
 	cp $0
-	jr z, .asm_12cf2
+	jr z, .got_coords
 	cp $1
-	jr z, .asm_12cec
+	jr z, .hovering_over_sfx
 	ld b, $78
 	ld c, $80
 	ld d, $0
-	jr .asm_12cf2
+	jr .got_coords
 
-.asm_12cec
+.hovering_over_sfx
 	ld b, $60
 	ld c, $68
 	ld d, $1
-.asm_12cf2
+.got_coords
 	ld a, $10
 	ld [wOAMAnimation02_XCoord], a
 	ld a, b
@@ -5635,14 +5634,14 @@ Func_12cd3: ; 12cd3 (4:6cd3)
 	ld [wOAMAnimation03_TemplateBank], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wcb41]
+	ld a, [wSoundTestMusicID]
 	hlbgcoord 5, 10
-	call Func_127e3
-	ld a, [wcb40]
+	call Phone_Print2DigitBCD
+	ld a, [wSoundTestSFXID]
 	hlbgcoord 4, 13
 	jp Dex_Print3DigitBCD
 
-Func_12d32: ; 12d32 (4:6d32)
+SoundTest_LoadSelectedMusicID: ; 12d32 (4:6d32)
 	ld e, a
 	ld hl, Data_12d3b
 	ld d, $0
@@ -5671,7 +5670,7 @@ Data_12d3b:
 	db MUSIC_LEVEL_UP
 	db MUSIC_GAME_OVER
 	db MUSIC_KAI_ENCOUNTER
-	db MUSIC_23
+	db MUSIC_MIYO
 	db MUSIC_SHOP
 	db MUSIC_25
 	db MUSIC_26
@@ -6101,7 +6100,7 @@ Func_13028: ; 13028 (4:7028)
 	call Func_13fc6
 	ld hl, VTilesBG tile $40
 	ld b, $20
-	call Func_13fd2
+	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	call LoadSpecialFontTiles
@@ -6545,64 +6544,64 @@ Func_1336e: ; 1336e (4:736e)
 	ld de, wOAMAnimation03
 	jp AnimateObject_
 
-Func_133ab: ; 133ab (4:73ab)
-	ld hl, Data_133c0
-	ld de, Data_1341a
+CycleDakuten: ; 133ab (4:73ab)
+	ld hl, .keys
+	ld de, .values
 	ld c, $5a
 	ld b, a
-.asm_133b4
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_133be
+	jr z, .found
 	inc de
 	dec c
-	jr nz, .asm_133b4
+	jr nz, .loop
 	ld a, b
 	ret
 
-.asm_133be
+.found
 	ld a, [de]
 	ret
 
-Data_133c0:
-	db $3d, $3e, $3f, $40, $41
-	db $42, $43, $44, $45, $46
-	db $47, $48, $49, $4a, $4b
-	db $51, $52, $53, $1d, $54
-	db $96, $97, $98, $7f, $99
-	db $06, $07, $08, $09, $0a
-	db $0b, $0c, $0d, $0e, $0f
-	db $10, $11, $12, $13, $14
-	db $1a, $1b, $1c, $1d, $1e
-	db $7c, $7d, $7e, $7f, $80
-	db $87, $88, $89, $8a, $8b
-	db $8c, $8d, $8e, $8f, $90
-	db $91, $92, $93, $94, $95
-	db $9a, $9b, $9c, $84, $9d
-	db $6d, $6e, $6f, $70, $71
-	db $72, $73, $74, $75, $76
-	db $77, $78, $79, $7a, $7b
-	db $81, $82, $83, $84, $85
+.keys:
+	db "か", "き", "く", "け", "こ"
+	db "さ", "し", "す", "せ", "そ"
+	db "た", "ち", "つ", "て", "と"
+	db "は", "ひ", "ふ", "へ", "ほ"
+	db "ば", "び", "ぶ", "ベ", "ぼ"
+	db "カ", "キ", "ク", "ケ", "コ"
+	db "サ", "シ", "ス", "セ", "ソ"
+	db "タ", "チ", "ツ", "テ", "ト"
+	db "ハ", "ヒ", "フ", "へ", "ホ"
+	db "バ", "ビ", "ブ", "ベ", "ボ"
+	db "が", "ぎ", "ぐ", "げ", "ご"
+	db "ざ", "じ", "ず", "ぜ", "ぞ"
+	db "だ", "ぢ", "づ", "で", "ど"
+	db "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"
+	db "ガ", "ギ", "グ", "ゲ", "ゴ"
+	db "ザ", "ジ", "ズ", "ゼ", "ゾ"
+	db "ダ", "ヂ", "ヅ", "デ", "ド"
+	db "パ", "ピ", "プ", "ぺ", "ポ"
 
-Data_1341a:
-	db $87, $88, $89, $8a, $8b
-	db $8c, $8d, $8e, $8f, $90
-	db $91, $92, $93, $94, $95
-	db $96, $97, $98, $7f, $99
-	db $9a, $9b, $9c, $84, $9d
-	db $6d, $6e, $6f, $70, $71
-	db $72, $73, $74, $75, $76
-	db $77, $78, $79, $7a, $7b
-	db $7c, $7d, $7e, $7f, $80
-	db $81, $82, $83, $84, $85
-	db $3d, $3e, $3f, $40, $41
-	db $42, $43, $44, $45, $46
-	db $47, $48, $49, $4a, $4b
-	db $51, $52, $53, $1d, $54
-	db $06, $07, $08, $09, $0a
-	db $0b, $0c, $0d, $0e, $0f
-	db $10, $11, $12, $13, $14
-	db $1a, $1b, $1c, $1d, $1e
+.values:
+	db "が", "ぎ", "ぐ", "げ", "ご"
+	db "ざ", "じ", "ず", "ぜ", "ぞ"
+	db "だ", "ぢ", "づ", "で", "ど"
+	db "ば", "び", "ぶ", "ベ", "ぼ"
+	db "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"
+	db "ガ", "ギ", "グ", "ゲ", "ゴ"
+	db "ザ", "ジ", "ズ", "ゼ", "ゾ"
+	db "ダ", "ヂ", "ヅ", "デ", "ド"
+	db "バ", "ビ", "ブ", "ベ", "ボ"
+	db "パ", "ピ", "プ", "ぺ", "ポ"
+	db "か", "き", "く", "け", "こ"
+	db "さ", "し", "す", "せ", "そ"
+	db "た", "ち", "つ", "て", "と"
+	db "は", "ひ", "ふ", "へ", "ほ"
+	db "カ", "キ", "ク", "ケ", "コ"
+	db "サ", "シ", "ス", "セ", "ソ"
+	db "タ", "チ", "ツ", "テ", "ト"
+	db "ハ", "ヒ", "フ", "へ", "ホ"
 
 AppendDigitToPhoneNumber: ; 13474 (4:7474)
 	ld a, [wDShotDialBufferSize]
@@ -7074,7 +7073,7 @@ Func_137af: ; 137af (4:77af)
 	ld c, a
 	ld b, $1
 	ld d, $c
-	call Func_0528
+	call LoadAndStartStdTextPointer__
 	call BattlePrintText
 	jp BattlePrintText
 
@@ -7969,11 +7968,11 @@ Func_13d8c: ; 13d8c (4:7d8c)
 	add hl, de
 	ld b, BANK(sOwnedDenjuuNicknames)
 	call Rom4_GetSRAMBankB
-	ld de, wc3a9
+	ld de, wPlayerNameEntryBuffer
 	ld bc, $6
 	call CopyData
 	call Rom4_CloseSRAM
-	ld hl, wc3a9
+	ld hl, wPlayerNameEntryBuffer
 	ld b, $0
 	ld c, $6
 .asm_13db1
@@ -7995,7 +7994,7 @@ Func_13d8c: ; 13d8c (4:7d8c)
 	jr c, .asm_13dc6
 	ld a, $5
 .asm_13dc6
-	ld [wcb38], a
+	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 	ret
 
 Func_13dca: ; 13dca (4:7dca)
@@ -8009,7 +8008,7 @@ Func_13dca: ; 13dca (4:7dca)
 	pop de
 	ld b, BANK(sOwnedDenjuuNicknames)
 	call Rom4_GetSRAMBankB
-	ld hl, wc3a0
+	ld hl, wPlayerNameEntryBuffer2
 	ld bc, $6
 	call CopyData
 	jp Rom4_CloseSRAM
@@ -8024,7 +8023,7 @@ Func_13dea: ; 13dea (4:7dea)
 	sub $13
 	ld [wcb73], a
 	hlbgcoord 7, 8
-	call Func_127e3
+	call Phone_Print2DigitBCD
 	jp Rom4_CloseSRAM
 
 Func_13e08: ; 13e08 (4:7e08)
@@ -8160,11 +8159,11 @@ Rom4_CloseSRAM: ; 13ef1 (4:7ef1)
 PrintNameOfCallerOrSender: ; 13ef6 (4:7ef6)
 	call GetDenjuuNicknameC_
 	ld hl, wBattlePlayerDenjuuName
-	ld de, wc3a0
+	ld de, wPlayerNameEntryBuffer2
 	call CenterAlignDenjuuName_
 	ld hl, VTilesBG tile $40
 	ld b, $6
-	call Func_13fd2
+	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
 	ld de, wc3a1
 	ld b, $6
 	ld hl, VTilesBG tile $40
@@ -8176,7 +8175,7 @@ Func_13f18: ; 13f18 (4:7f18)
 	ld c, a
 	call GetDenjuuNicknameC_
 	ld hl, wBattlePlayerDenjuuName
-	ld de, wc3a0
+	ld de, wPlayerNameEntryBuffer2
 	call CenterAlignDenjuuName_
 	ld hl, VTilesBG tile $78
 	ld b, $6
@@ -8232,7 +8231,7 @@ Func_13f70: ; 13f70 (4:7f70)
 .asm_13f7f
 	ld b, $11
 	ld d, $a
-	call Func_0528
+	call LoadAndStartStdTextPointer__
 	call BattlePrintText
 	jp BattlePrintText
 
@@ -8271,13 +8270,13 @@ Func_13fc6: ; 13fc6 (4:7fc6)
 	ld de, wOAMAnimation03
 	jp DeleteOAMAnimationStruct
 
-Func_13fd2: ; 13fd2 (4:7fd2)
+PhoneMenu_FillTilesWithHue01IfCGBElseHue02: ; 13fd2 (4:7fd2)
 	check_cgb
 	jr nz, .asm_13fdc
-	jp Func_11a1c
+	jp PhoneMenu_FillTilesWithHue01
 
 .asm_13fdc
-	jp Func_11a16
+	jp PhoneMenu_FillTilesWithHue02
 
 Func_13fdf: ; 13fdf (4:7fdf)
 	check_cgb

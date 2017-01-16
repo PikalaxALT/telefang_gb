@@ -2572,7 +2572,7 @@ Func_20f6: ; 20f6 (0:20f6)
 	ret
 
 CheckInOverworld: ; 2107 (0:2107)
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jr nz, .asm_2121
 	ld a, [wSubroutine]
@@ -2749,7 +2749,7 @@ Func_264f:
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $b8
 	ld [wPlayerObjectStruct_Duration + 11], a
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jr z, .asm_2664
 	ld a, $8
@@ -3376,7 +3376,7 @@ Func_29ed:
 	ld a, [wPhoneCallSubroutine]
 	cp $2
 	jr z, .asm_2a48
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jr nz, .asm_2a48
 	ld a, [wMapGroup]
@@ -5790,7 +5790,7 @@ GetAndPrintName75CenterAlign:
 	ld [wNamedObjectIndexBuffer], a
 	push bc
 	push de
-	ld hl, wc3a0
+	ld hl, wPlayerNameEntryBuffer2
 	ld b, $9
 .asm_3ae6
 	ld a, $e0
@@ -5804,9 +5804,9 @@ GetAndPrintName75CenterAlign:
 	ld a, $8
 	call ClearString
 	ld hl, wStringBuffer
-	ld de, wc3a0
+	ld de, wPlayerNameEntryBuffer2
 	call CenterAlignDenjuuName_
-	ld de, wc3a0
+	ld de, wPlayerNameEntryBuffer2
 	pop hl
 	ld b, $8
 	jp PlaceString_
@@ -6282,9 +6282,9 @@ PrintStringWithPlayerDenjuuAsBattleUser:
 	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
 	ld hl, wBattleUserName
-	ld de, wc3a0
+	ld de, wPlayerNameEntryBuffer2
 	call CenterAlignDenjuuName_
-	ld de, wc3a0
+	ld de, wPlayerNameEntryBuffer2
 	ld b, $8
 	pop hl
 	jp PlaceString_

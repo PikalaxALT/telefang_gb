@@ -1,4 +1,4 @@
-BattleCore1F:
+LinkMode:
 	ld a, $f0
 	ld [wTileWhere0IsLoaded], a
 	ld a, [wSubroutine]
@@ -1083,7 +1083,7 @@ Func_7c7bc: ; 7c7bc (1f:47bc)
 	ret
 
 Func_7c7e4: ; 7c7e4 (1f:47e4)
-	ld a, [wc434]
+	ld a, [wSaveFileExists]
 	or a
 	jr nz, .asm_7c827
 	xor a
@@ -4795,7 +4795,7 @@ Func_7e412: ; 7e412 (1f:6412)
 	ret
 
 Func_7e43a: ; 7e43a (1f:643a)
-	ld a, [wc434]
+	ld a, [wSaveFileExists]
 	or a
 	jr nz, .asm_7e481
 	xor a
@@ -6469,7 +6469,7 @@ Func_7f1a3: ; 7f1a3 (1f:71a3)
 	ret
 
 .asm_7f1c5
-	ld a, [wc434]
+	ld a, [wSaveFileExists]
 	or a
 	jr z, .asm_7f1db
 	ld a, $7

@@ -193,7 +193,7 @@ CheckDenjuuWantsToJoinTeam: ; 74145 (1d:4145)
 	ld a, [wBattleMode]
 	cp $2
 	jp z, .skip_recruiting_denjuu
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jp nz, .skip_recruiting_denjuu
 	ld a, [wCurEnemyDenjuu]
@@ -278,7 +278,7 @@ Func_741e7: ; 741e7 (1d:41e7)
 	ld bc, EVENT_1F1
 	call CheckEventFlag
 	jr nz, .asm_74210
-	ld a, [wPlayerNameEntryBuffer]
+	ld a, [wcd00]
 	or a
 	jr nz, .asm_7420a
 	ld a, [wBattleMode]
