@@ -82,7 +82,7 @@ Func_10089: ; 10089 (4:4089)
 	call Phone_LoadStdBGWindowTileAndAttrLayout
 	xor a
 	ld [wcb38], a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	ld [wcb3c], a
 	ld a, $3
 	ld [wcb3a], a
@@ -90,7 +90,7 @@ Func_10089: ; 10089 (4:4089)
 
 Func_100bd: ; 100bd (4:40bd)
 	ld a, $10
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	ld b, $0
 	ld a, [wc434]
 	cp $0
@@ -240,7 +240,7 @@ Func_101d9: ; 101d9 (4:41d9)
 	ld a, $f
 	ld [wSubroutine], a
 	xor a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	ld [wcb3a], a
 	ret
 
@@ -692,36 +692,36 @@ Phone_Save: ; 1057d (4:457d)
 InGamePhoneMenu: ; 105c0 (4:45c0)
 	ld a, [wSubroutine]
 	jump_table
-	dw Func_10612
-	dw Func_10621
-	dw Func_10627
-	dw Func_10642
-	dw Func_10658
-	dw Func_10681
-	dw Func_10743
-	dw Func_107d9
-	dw Func_107ee
-	dw Func_10807
-	dw Func_1082e
-	dw Func_1084e
-	dw Func_10866
-	dw Func_10872
-	dw Func_10883
-	dw Func_1089c
-	dw Func_10a49
+	dw InGamePhone_ClearInit
+	dw InGamePhone_InitLayout
+	dw InGamePhone_SetUpSwipeIn
+	dw InGamePhone_PlayMusicAndUpdatePals
+	dw InGamePhone_SwipeInDisplay
+	dw InGamePhone_JoypadAction
+	dw InGamePhone_Keypad
+	dw InGamePhone_DelayBeforePlacingPhoneCall
+	dw InGamePhone_DialManualNumber
+	dw InGamePhone_WaitManualNumberDialSFX
+	dw InGamePhone_ReturnToMainMenuAfterInvalidPhoneNumber
+	dw InGamePhone_ScrollDown1
+	dw InGamePhone_ScrollDown2
+	dw InGamePhone_ScrollFinish
+	dw InGamePhone_ScrollUp1
+	dw InGamePhone_ScrollUp2
+	dw InGamePhone_AddressBook
 	dw InGamePhone_DMelo
-	dw Func_10ee7
-	dw Func_112e3
+	dw InGamePhone_Item
+	dw InGamePhone_Mail
 	dw InGamePhone_Save
-	dw Func_1107e
-	dw Func_110ee
-	dw Func_108ab
-	dw DenjuuDex
-	dw Func_108cb
-	dw Func_10907
-	dw Func_10936
-	dw Func_10953
-	dw Func_10969
+	dw InGamePhone_Options
+	dw InGamePhone_RecentCalls
+	dw InGamePhone_Quit
+	dw InGamePhone_Zukan
+	dw InGamePhone_FadeOutKeypadToPhoneCall
+	dw InGamePhone_LoadPhoneCallGFXAndFade
+	dw InGamePhone_StartPhoneCallText
+	dw InGamePhone_WaitPhoneCallText
+	dw InGamePhone_FadeFromPhoneCallBackToMainMenu
 	dw Func_109a8
 	dw Func_109a9
 	dw Func_109aa
@@ -729,18 +729,18 @@ InGamePhoneMenu: ; 105c0 (4:45c0)
 	dw Func_109f3
 	dw Func_10a09
 
-Func_10612: ; 10612 (4:4612)
+InGamePhone_ClearInit: ; 10612 (4:4612)
 	call ClearBGMapAndAttrs
 	call ClearBGWindowAndAttrs
 	call ClearObjectAnimationBuffers
 	call Func_13a0b
 	jp IncrementSubroutine
 
-Func_10621: ; 10621 (4:4621)
+InGamePhone_InitLayout: ; 10621 (4:4621)
 	call Func_13e27
 	jp IncrementSubroutine
 
-Func_10627: ; 10627 (4:4627)
+InGamePhone_SetUpSwipeIn: ; 10627 (4:4627)
 	call Func_13a1e
 	ld a, $a7
 	ld [wWX], a
@@ -753,7 +753,7 @@ Func_10627: ; 10627 (4:4627)
 	call Func_119cd
 	jp IncrementSubroutine
 
-Func_10642: ; 10642 (4:4642)
+InGamePhone_PlayMusicAndUpdatePals: ; 10642 (4:4642)
 	call NormalDMGPals
 	ld a, $1
 	ld [wBGPalUpdate], a
@@ -763,7 +763,7 @@ Func_10642: ; 10642 (4:4642)
 	ld [H_MusicID], a
 	jp IncrementSubroutine
 
-Func_10658: ; 10658 (4:4658)
+InGamePhone_SwipeInDisplay: ; 10658 (4:4658)
 	ld a, $e3
 	ld [wLCDC], a
 	xor a
@@ -782,63 +782,63 @@ Func_10658: ; 10658 (4:4658)
 	ld [wSCX], a
 	jp IncrementSubroutine
 
-Func_10681: ; 10681 (4:4681)
+InGamePhone_JoypadAction: ; 10681 (4:4681)
 	call Func_119b9
 	call UpdatePhoneClockDisplay
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wJoyNew]
 	and D_DOWN
-	jr z, .asm_10697
+	jr z, .check_up
 	ld a, $b
-	jr .asm_106a0
+	jr .scroll_action
 
-.asm_10697
+.check_up
 	ld a, [wJoyNew]
 	and D_UP
-	jr z, .asm_106a9
+	jr z, .check_a
 	ld a, $e
-.asm_106a0
+.scroll_action
 	ld [wSubroutine], a
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ret
 
-.asm_106a9
+.check_a
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_106f2
-	ld a, [wcd22]
+	jr z, .check_b
+	ld a, [wCurInGamePhoneMenuSelection]
 	cp $0
-	jr z, .asm_106de
+	jr z, .address_book
 	cp $1
-	jr z, .asm_106d6
+	jr z, .redial
 	cp $2
-	jr z, .asm_106da
+	jr z, .other
 	cp $3
-	jr z, .asm_106da
+	jr z, .other
 	cp $4
-	jr z, .asm_106da
+	jr z, .other
 	cp $5
-	jr z, .asm_106da
+	jr z, .other
 	cp $6
-	jr z, .asm_106da
+	jr z, .other
 	cp $7
-	jr z, .asm_106f8
+	jr z, .quit
 	ld a, $18
-	jr .asm_106e0
+	jr .launch
 
-.asm_106d6
+.redial
 	ld a, $16
-	jr .asm_106e0
+	jr .launch
 
-.asm_106da
+.other
 	add $f
-	jr .asm_106e0
+	jr .launch
 
-.asm_106de
+.address_book
 	ld a, $10
-.asm_106e0
+.launch
 	ld [wSubroutine], a
 	xor a
 	ld [wSubroutine2], a
@@ -848,11 +848,11 @@ Func_10681: ; 10681 (4:4681)
 	ld [H_SFX_ID], a
 	ret
 
-.asm_106f2
+.check_b
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_10708
-.asm_106f8
+	jr z, .check_select
+.quit
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $4
@@ -861,10 +861,10 @@ Func_10681: ; 10681 (4:4681)
 	ld [wSubroutine], a
 	ret
 
-.asm_10708
+.check_select
 	ld a, [hJoyNew]
 	and SELECT
-	jr z, .asm_10742
+	jr z, .no_action
 	ld a, $4
 	ld [wPhoneKeypadCursorPosition], a
 	ld a, $ff
@@ -880,30 +880,30 @@ Func_10681: ; 10681 (4:4681)
 	ld hl, wDMeloBufferBackup
 	call ClearMemory3
 	xor a
-	ld [wcb29], a
+	ld [wEnteredAtLeastOneDigit], a
 	ld [wcb43], a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	jp IncrementSubroutine
 
-.asm_10742
+.no_action
 	ret
 
-Func_10743: ; 10743 (4:4743)
-	ld a, [wcb29]
+InGamePhone_Keypad: ; 10743 (4:4743)
+	ld a, [wEnteredAtLeastOneDigit]
 	cp $0
 	call z, UpdatePhoneClockDisplay
 	ld a, [hJoyNew]
 	and SELECT
-	jr z, .asm_10778
-	ld a, [wcb29]
+	jr z, .check_dpad
+	ld a, [wEnteredAtLeastOneDigit]
 	cp $0
-	jr z, .asm_10764
-.asm_10758
+	jr z, .skip
+.exit_keypad
 	call Func_13e37
 	lb bc, 3, 7
 	call Func_119df
 	call Func_135ef
-.asm_10764
+.skip
 	ld de, wOAMAnimation01
 	call DeleteOAMAnimationStruct
 	ld a, MUSIC_DSHOT_MENU
@@ -913,11 +913,11 @@ Func_10743: ; 10743 (4:4743)
 	ld [wSubroutine], a
 	ret
 
-.asm_10778
+.check_dpad
 	call NavigatePhoneKeypad
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_107b6
+	jr z, .check_b
 	call PlayPhoneKeypadCursorSFX
 	ld a, [wPhoneKeypadCursorPosition]
 	cp $0
@@ -927,33 +927,33 @@ Func_10743: ; 10743 (4:4743)
 	cp $2
 	ret z
 	cp $3
-	jr nz, .asm_1079f
-	call Func_1360a
+	jr nz, .number_button
+	call TryPlacePhoneCall
 	ld a, $10
 	ld [wcb2c], a
 	jp IncrementSubroutine
 
-.asm_1079f
-	ld a, [wcb29]
+.number_button
+	ld a, [wEnteredAtLeastOneDigit]
 	cp $0
-	jr nz, .asm_107b3
+	jr nz, .inject_number
 	ld a, $1
-	ld [wcb29], a
+	ld [wEnteredAtLeastOneDigit], a
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
-	call Func_1175d
-.asm_107b3
-	jp Func_13474
+	call InGamePhone_HideClockDisplay
+.inject_number
+	jp AppendDigitToPhoneNumber
 
-.asm_107b6
+.check_b
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_107d8
-	ld a, [wcb39]
+	jr z, .no_action
+	ld a, [wDShotDialBufferSize]
 	cp $0
-	jr z, .asm_10758
+	jr z, .exit_keypad
 	dec a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	ld e, a
 	ld d, $0
 	ld hl, wDMeloBuffer
@@ -962,12 +962,12 @@ Func_10743: ; 10743 (4:4743)
 	ld [hl], a
 	ld a, SFX_04
 	ld [H_SFX_ID], a
-	jp Func_134aa
+	jp RefreshDialBufferDisplay
 
-.asm_107d8
+.no_action
 	ret
 
-Func_107d9: ; 107d9 (4:47d9)
+InGamePhone_DelayBeforePlacingPhoneCall: ; 107d9 (4:47d9)
 	ld a, [wcb2c]
 	dec a
 	ld [wcb2c], a
@@ -978,7 +978,7 @@ Func_107d9: ; 107d9 (4:47d9)
 	ld [H_MusicID], a
 	jp IncrementSubroutine
 
-Func_107ee: ; 107ee (4:47ee)
+InGamePhone_DialManualNumber: ; 107ee (4:47ee)
 	ld a, $65 ; no call
 	ld [H_SFX_ID], a
 	ld a, [wcb43]
@@ -991,7 +991,7 @@ Func_107ee: ; 107ee (4:47ee)
 	ld [wcb2c], a
 	jp IncrementSubroutine
 
-Func_10807: ; 10807 (4:4807)
+InGamePhone_WaitManualNumberDialSFX: ; 10807 (4:4807)
 	ld a, [wcb2c]
 	dec a
 	ld [wcb2c], a
@@ -1002,17 +1002,17 @@ Func_10807: ; 10807 (4:4807)
 	ld [H_MusicID], a
 	ld a, [wcb43]
 	cp $0
-	jr z, .asm_1082b
+	jr z, .invalid
 	ld a, $4
 	call StartFade_
 	ld a, $19
 	ld [wSubroutine], a
 	ret
 
-.asm_1082b
+.invalid
 	jp IncrementSubroutine
 
-Func_1082e: ; 1082e (4:482e)
+InGamePhone_ReturnToMainMenuAfterInvalidPhoneNumber: ; 1082e (4:482e)
 	call Func_13e37
 	lb bc, 3, 7
 	call Func_119df
@@ -1026,26 +1026,26 @@ Func_1082e: ; 1082e (4:482e)
 	ld [wSubroutine], a
 	ret
 
-Func_1084e: ; 1084e (4:484e)
+InGamePhone_ScrollDown1: ; 1084e (4:484e)
 	call Func_13f38
 	lb bc, 3, 6
 	call Func_119df
-	ld a, [wcd22]
+	ld a, [wCurInGamePhoneMenuSelection]
 	inc a
 	cp $9
 	jr nz, .asm_10860
 	xor a
 .asm_10860
-	ld [wcd22], a
+	ld [wCurInGamePhoneMenuSelection], a
 	jp IncrementSubroutine
 
-Func_10866: ; 10866 (4:4866)
+InGamePhone_ScrollDown2: ; 10866 (4:4866)
 	call Func_13f3d
 	lb bc, 3, 8
 	call Func_119df
 	jp IncrementSubroutine
 
-Func_10872: ; 10872 (4:4872)
+InGamePhone_ScrollFinish: ; 10872 (4:4872)
 	ld e, $12
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	lb bc, 3, 7
@@ -1054,20 +1054,20 @@ Func_10872: ; 10872 (4:4872)
 	ld [wSubroutine], a
 	ret
 
-Func_10883: ; 10883 (4:4883)
+InGamePhone_ScrollUp1: ; 10883 (4:4883)
 	call Func_13f3d
 	lb bc, 3, 8
 	call Func_119df
-	ld a, [wcd22]
+	ld a, [wCurInGamePhoneMenuSelection]
 	dec a
 	cp $ff
 	jr nz, .asm_10896
 	ld a, $8
 .asm_10896
-	ld [wcd22], a
+	ld [wCurInGamePhoneMenuSelection], a
 	jp IncrementSubroutine
 
-Func_1089c: ; 1089c (4:489c)
+InGamePhone_ScrollUp2: ; 1089c (4:489c)
 	call Func_13f38
 	lb bc, 3, 6
 	call Func_119df
@@ -1075,7 +1075,7 @@ Func_1089c: ; 1089c (4:489c)
 	ld [wSubroutine], a
 	ret
 
-Func_108ab: ; 108ab (4:48ab)
+InGamePhone_Quit: ; 108ab (4:48ab)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -1092,7 +1092,7 @@ Func_108ab: ; 108ab (4:48ab)
 	ld [wFontPaletteMode], a
 	ret
 
-Func_108cb: ; 108cb (4:48cb)
+InGamePhone_FadeOutKeypadToPhoneCall: ; 108cb (4:48cb)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -1125,7 +1125,7 @@ Func_108cb: ; 108cb (4:48cb)
 .asm_10904
 	jp IncrementSubroutine
 
-Func_10907: ; 10907 (4:4907)
+InGamePhone_LoadPhoneCallGFXAndFade: ; 10907 (4:4907)
 	call ClearObjectAnimationBuffers
 	ld a, [wcb01]
 	call Func_1371c
@@ -1145,7 +1145,7 @@ Func_10907: ; 10907 (4:4907)
 	ld [wPhoneIsRinging], a
 	jp IncrementSubroutine
 
-Func_10936: ; 10936 (4:4936)
+InGamePhone_StartPhoneCallText: ; 10936 (4:4936)
 	ld a, $0
 	call PaletteFade_
 	or a
@@ -1161,7 +1161,7 @@ Func_10936: ; 10936 (4:4936)
 	call AnchorMapAndLoadTextPointer_
 	jp IncrementSubroutine
 
-Func_10953: ; 10953 (4:4953)
+InGamePhone_WaitPhoneCallText: ; 10953 (4:4953)
 	call BattlePrintText
 	ld a, [wTextSubroutine]
 	cp $9
@@ -1172,7 +1172,7 @@ Func_10953: ; 10953 (4:4953)
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_10969: ; 10969 (4:4969)
+InGamePhone_FadeFromPhoneCallBackToMainMenu: ; 10969 (4:4969)
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -1278,7 +1278,7 @@ Func_10a09: ; 10a09 (4:4a09)
 	call Func_13b79
 	ret
 
-Func_10a49: ; 10a49 (4:4a49)
+InGamePhone_AddressBook: ; 10a49 (4:4a49)
 	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
@@ -1843,7 +1843,7 @@ InGamePhone_DMelo: ; 10e5b (4:4e5b)
 	ld [wSubroutine2], a
 	ret
 
-Func_10ee7: ; 10ee7 (4:4ee7)
+InGamePhone_Item: ; 10ee7 (4:4ee7)
 	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
@@ -2050,7 +2050,7 @@ InGamePhone_Save: ; 11023 (4:5023)
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	jp IncrementSubroutine2
 
-Func_1107e: ; 1107e (4:507e)
+InGamePhone_Options: ; 1107e (4:507e)
 	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
@@ -2105,7 +2105,7 @@ Func_110e8:
 Func_110eb:
 	jp IncrementSubroutine2
 
-Func_110ee:
+InGamePhone_RecentCalls:
 	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
@@ -2341,7 +2341,7 @@ Func_112d8: ; 112d8 (4:52d8)
 	call Func_13fc6
 	jp IncrementSubroutine2
 
-Func_112e3:
+InGamePhone_Mail:
 	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
@@ -2652,11 +2652,11 @@ Func_11913: ; 11913 (4:5913)
 	ld a, [wJoyNew]
 	and D_UP | D_DOWN
 	jr nz, asm_11932
-	ld a, [wcb39]
+	ld a, [wDShotDialBufferSize]
 	cp $10
 	ret z
 	inc a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	cp $10
 	ret nz
 Func_11927: ; 11927 (4:5927)
@@ -2667,7 +2667,7 @@ Func_11927: ; 11927 (4:5927)
 
 asm_11932
 	xor a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 Func_11936: ; 11936 (4:5936)
 	lb bc, 3, 7
 Func_11939: ; 11939 (4:5939)
@@ -2696,11 +2696,11 @@ Func_11960:
 	ld a, [hJoyNew]
 	and D_UP | D_DOWN
 	jr nz, .asm_1197e
-	ld a, [wcb39]
+	ld a, [wDShotDialBufferSize]
 	cp $10
 	ret z
 	inc a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	cp $10
 	ret nz
 	lb bc, 1, 9
@@ -2710,7 +2710,7 @@ Func_11960:
 
 .asm_1197e
 	xor a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 Func_11982: ; 11982 (4:5982)
 	lb bc, 3, 7
 Func_11985: ; 11985 (4:5985)
@@ -2750,11 +2750,11 @@ Func_119b9: ; 119b9 (4:59b9)
 	ld a, [wJoyNew]
 	and D_UP | D_DOWN
 	jr nz, asm_119d8
-	ld a, [wcb39]
+	ld a, [wDShotDialBufferSize]
 	cp $10
 	ret z
 	inc a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 	cp $10
 	ret nz
 Func_119cd: ; 119cd (4:59cd)
@@ -2765,14 +2765,14 @@ Func_119cd: ; 119cd (4:59cd)
 
 asm_119d8
 	xor a
-	ld [wcb39], a
+	ld [wDShotDialBufferSize], a
 Func_119dc: ; 119dc (4:59dc)
 	lb bc, 3, 7
 Func_119df: ; 119df (4:59df)
-	ld a, [wcd22]
+	ld a, [wCurInGamePhoneMenuSelection]
 	add $24
 	call Func_119ac
-	ld a, [wcd22]
+	ld a, [wCurInGamePhoneMenuSelection]
 	inc a
 	cp $9
 	jr c, .asm_119f1
@@ -2780,7 +2780,7 @@ Func_119df: ; 119df (4:59df)
 .asm_119f1
 	add $24
 	call Func_119ac
-	ld a, [wcd22]
+	ld a, [wCurInGamePhoneMenuSelection]
 	inc a
 	inc a
 	cp $9
@@ -6604,8 +6604,8 @@ Data_1341a:
 	db $10, $11, $12, $13, $14
 	db $1a, $1b, $1c, $1d, $1e
 
-Func_13474: ; 13474 (4:7474)
-	ld a, [wcb39]
+AppendDigitToPhoneNumber: ; 13474 (4:7474)
+	ld a, [wDShotDialBufferSize]
 	cp $d
 	ret z
 	ld a, [wPhoneKeypadCursorPosition]
@@ -6614,15 +6614,15 @@ Func_13474: ; 13474 (4:7474)
 	sub $4
 	ld e, a
 	ld d, $0
-	ld hl, Data_13584
+	ld hl, InGamePhone_Digit2Tile
 	add hl, de
 	ld a, [hl]
 	ld b, a
-	ld hl, Data_13590
+	ld hl, InGamePhone_Digit2OAM
 	add hl, de
 	ld a, [hl]
 	ld c, a
-	ld a, [wcb39]
+	ld a, [wDShotDialBufferSize]
 	ld e, a
 	ld d, $0
 	ld hl, wDMeloBuffer
@@ -6633,17 +6633,17 @@ Func_13474: ; 13474 (4:7474)
 	add hl, de
 	ld a, c
 	ld [hl], a
-	ld a, [wcb39]
+	ld a, [wDShotDialBufferSize]
 	inc a
-	ld [wcb39], a
-Func_134aa: ; 134aa (4:74aa)
+	ld [wDShotDialBufferSize], a
+RefreshDialBufferDisplay: ; 134aa (4:74aa)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	xor a
 	ld b, $c
 	ld hl, wOAMAnimation02
-	call Func_13798
-	ld a, [wcb39]
+	call ClearCurOAMAnimationStruct
+	ld a, [wDShotDialBufferSize]
 	cp $0
 	ret z
 	dec a
@@ -6656,11 +6656,11 @@ Func_134aa: ; 134aa (4:74aa)
 	call Multiply_DE_by_BC
 	ld hl, wOAMAnimation01
 	add hl, de
-	ld a, [wcb39]
+	ld a, [wDShotDialBufferSize]
 	ld b, a
 	xor a
 	ld [wcb22], a
-.asm_134d8
+.loop
 	push bc
 	push hl
 	push hl
@@ -6688,7 +6688,7 @@ Func_134aa: ; 134aa (4:74aa)
 	ld [wcb22], a
 	pop bc
 	dec b
-	jr nz, .asm_134d8
+	jr nz, .loop
 	ld a, $50
 	ld [wOAMAnimation02_YCoord], a
 	ld [wOAMAnimation03_YCoord], a
@@ -6726,59 +6726,61 @@ Func_134aa: ; 134aa (4:74aa)
 	ld a, $0
 	ld b, $c
 	ld hl, wOAMAnimation02_TemplateBank
-	call Func_13798
+	call ClearCurOAMAnimationStruct
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wcb39]
+	ld a, [wDShotDialBufferSize]
 	cp $c
-	jp z, Func_13579
+	jp z, .try_dial
 	ret
 
-Func_13579: ; 13579 (4:7579)
-	call Func_1360a
+.try_dial
+	call TryPlacePhoneCall
 	ld a, $10
 	ld [wcb2c], a
 	jp IncrementSubroutine
 
-Data_13584:
-	db $62, $64, $66, $68
-	db $6a, $6c, $6e, $70
-	db $72, $7c, $60, $78
+InGamePhone_Digit2Tile:
+	db $62, $64, $66
+	db $68, $6a, $6c
+	db $6e, $70, $72
+	db $7c, $60, $78
 
-Data_13590:
-	db $21, $22, $23, $24
-	db $25, $26, $27, $28
-	db $29, $2e, $20, $2c
+InGamePhone_Digit2OAM:
+	db $21, $22, $23
+	db $24, $25, $26
+	db $27, $28, $29
+	db $2e, $20, $2c
 
-Func_1359c: ; 1359c (4:759c)
+InsertDashesIntoUserEnteredPhoneNumber: ; 1359c (4:759c)
 	ld a, [wDMeloBuffer]
 	ld [wDMeloBufferBackup], a
 	ld a, [wDMeloBuffer + $1]
-	ld [wd201], a
+	ld [wDMeloBufferBackup + $1], a
 	ld a, [wDMeloBuffer + $2]
-	ld [wd202], a
+	ld [wDMeloBufferBackup + $2], a
 	ld a, $7a
-	ld [wd203], a
+	ld [wDMeloBufferBackup + $3], a
 	ld a, [wDMeloBuffer + $3]
-	ld [wd204], a
+	ld [wDMeloBufferBackup + $4], a
 	ld a, [wDMeloBuffer + $4]
-	ld [wd205], a
+	ld [wDMeloBufferBackup + $5], a
 	ld a, [wDMeloBuffer + $5]
-	ld [wd206], a
+	ld [wDMeloBufferBackup + $6], a
 	ld a, [wDMeloBuffer + $6]
-	ld [wd207], a
+	ld [wDMeloBufferBackup + $7], a
 	ld a, $7a
-	ld [wd208], a
+	ld [wDMeloBufferBackup + $8], a
 	ld a, [wDMeloBuffer + $7]
-	ld [wd209], a
+	ld [wDMeloBufferBackup + $9], a
 	ld a, [wDMeloBuffer + $8]
-	ld [wd20a], a
+	ld [wDMeloBufferBackup + $a], a
 	ld a, [wDMeloBuffer + $9]
-	ld [wd20b], a
+	ld [wDMeloBufferBackup + $b], a
 	ld a, [wDMeloBuffer + $a]
-	ld [wd20c], a
+	ld [wDMeloBufferBackup + $c], a
 	ld a, [wDMeloBuffer + $b]
-	ld [wd20d], a
+	ld [wDMeloBufferBackup + $d], a
 	ret
 
 Func_135ef: ; 135ef (4:75ef)
@@ -6800,12 +6802,15 @@ Func_135ef: ; 135ef (4:75ef)
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Func_1360a: ; 1360a (4:760a)
+TryPlacePhoneCall: ; 1360a (4:760a)
+; Make sure the number compresses to a valid combination. If not, bail.
+; Make sure the number is in your address book. If so, place the call.
+; If number is not in your address book, look it up in the Special table.
 	xor a
 	ld [wcb43], a
 	ld [wcb03], a
 	ld [wcb22], a
-	call Func_1359c
+	call InsertDashesIntoUserEnteredPhoneNumber
 	ld hl, wDMeloBufferBackup
 	call CompressPhoneNumber_
 	ld a, e
@@ -7033,12 +7038,12 @@ Func_1371c: ; 1371c (4:771c)
 	call LoadNthStdBGPalette
 	jp Func_12a08
 
-Func_13798: ; 13798 (4:7798)
+ClearCurOAMAnimationStruct: ; 13798 (4:7798)
 	ld [hl], a
 	ld de, $20
 	add hl, de
 	dec b
-	jr nz, Func_13798
+	jr nz, ClearCurOAMAnimationStruct
 	ret
 
 Func_137a1: ; 137a1 (4:77a1)

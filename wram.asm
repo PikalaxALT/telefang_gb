@@ -1283,7 +1283,7 @@ wcb25:: ds 1
 wStdLayoutIndexBuffer:: ds 1
 wCurFadeProgram:: ds 1
 wcb28:: ds 1
-wcb29:: ds 1
+wEnteredAtLeastOneDigit:: ds 1
 wcb2a:: ds 1
 wcb2b:: ds 1
 wcb2c:: ds 1
@@ -1299,7 +1299,7 @@ wcb35:: ds 1
 wcb36:: ds 1
 wcb37:: ds 1
 wcb38:: ds 1
-wcb39:: ds 1
+wDShotDialBufferSize:: ds 1
 wcb3a:: ds 1
 wcb3b:: ds 1
 wcb3c:: ds 1
@@ -1783,7 +1783,7 @@ wcd1e:: ds 1
 wcd1f:: ds 1
 wcd20:: ds 1
 wIdleHUDVisible:: ds 1
-wcd22:: ds 1
+wCurInGamePhoneMenuSelection:: ds 1
 wDexCurDenjuu:: ds 1
 wcd24:: ds 1
 wcd25:: ds 1

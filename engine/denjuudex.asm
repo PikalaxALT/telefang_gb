@@ -1,4 +1,4 @@
-DenjuuDex:
+InGamePhone_Zukan:
 	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
@@ -384,7 +384,7 @@ UpdatePhoneClockDisplay: ; 116e7 (4:56e7)
 	ld [wSpriteUpdatesEnabled], a
 	jp Func_12baa
 
-Func_1175d: ; 1175d (4:575d)
+InGamePhone_HideClockDisplay: ; 1175d (4:575d)
 	xor a
 	ld [wOAMAnimation17_PriorityFlags], a
 	ld [wOAMAnimation18_PriorityFlags], a
