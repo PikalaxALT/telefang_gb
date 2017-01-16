@@ -1648,7 +1648,7 @@ Script_150c7b:
 	script_sleep 50
 	script_walk $0, $41, 120
 	script_wait_movement $0
-	script_43 $0, $3c
+	script_shake_screen $0, $3c
 	script_2e $0, $1
 	script_playsfx SFX_5E
 	script_sleep 120
@@ -1771,11 +1771,10 @@ Script_150d99:
 	script_end
 
 Script_150d9f:
-	script_4a $2
-	script_0c $4a
-	script_03
-	script_0d $10
-	script_42 $32, $2a
+	script_4a $2, Script_150dac
+	script_4a $3, Script_150db0
+	script_10 $42, $32
+	script_2a
 	script_jump Script_150db0
 
 Script_150dac:
@@ -2814,22 +2813,22 @@ ELSE
 	script_21 $1, $38, $57
 	script_66 $38
 	script_apply_facing $1, $3
-	script_43 $0, $1e
+	script_shake_screen $0, $1e
 	script_playsfx SFX_47
 	script_sleep 50
 	script_walk $1, $56, 50
 	script_wait_movement $1
-	script_43 $0, $1e
+	script_shake_screen $0, $1e
 	script_playsfx SFX_47
 	script_sleep 50
 	script_walk $1, $55, 50
 	script_wait_movement $1
-	script_43 $0, $1e
+	script_shake_screen $0, $1e
 	script_playsfx SFX_47
 	script_sleep 50
 	script_walk $1, $54, 50
 	script_wait_movement $1
-	script_43 $0, $1e
+	script_shake_screen $0, $1e
 	script_playsfx SFX_47
 	script_sleep 50
 	script_face_player $1
@@ -7442,7 +7441,7 @@ Script_153d86:
 	script_sleep 3
 Script_153d8c:
 	script_playsfx SFX_47
-	script_43 $0, $32
+	script_shake_screen $0, $32
 	script_sleep 30
 	script_incvar
 	script_if_not_equal $3, Script_153d8c
@@ -7456,7 +7455,7 @@ Script_153d8c:
 	script_setvar $0
 Script_153dac:
 	script_playsfx SFX_47
-	script_43 $0, $32
+	script_shake_screen $0, $32
 	script_sleep 30
 	script_incvar
 	script_if_not_equal $3, Script_153dac
@@ -7579,7 +7578,7 @@ Script_153ec2:
 	script_sleep 20
 	script_0d $3
 	script_playsfx SFX_47
-	script_43 $0, $32
+	script_shake_screen $0, $32
 	script_sleep 30
 	script_sleep 50
 	script_printtext $14, $8b

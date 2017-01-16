@@ -382,13 +382,13 @@ RunMinimap: ; a8210 (2a:4210)
 .SkipText: ; a82b7 (2a:42b7)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	srl a
 	and $7
 	add $38
 	ld [wOAMAnimation01_TemplateIdx], a
 	ld b, $3
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $8
 	jr z, .asm_a82d3
 	ld b, $2

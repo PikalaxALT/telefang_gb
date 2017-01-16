@@ -2362,14 +2362,14 @@ Func_1f24: ; 1f24 (0:1f24)
 	call Func_2021
 	call Func_1f80
 	homecall HandleRunningMapScript
-	homecall Func_2ddd9
-	ld a, [wc984]
+	homecall HandleScreenShake
+	ld a, [wOverworldFrameCounter]
 	inc a
-	ld [wc984], a
+	ld [wOverworldFrameCounter], a
 	jr nz, Func_1f6a
-	ld a, [wca6f]
+	ld a, [wOverworldFrameCounterHi]
 	inc a
-	ld [wca6f], a
+	ld [wOverworldFrameCounterHi], a
 Func_1f6a: ; 1f6a (0:1f6a)
 	callba Func_2e589
 	ld a, [wPrevROMBank]
@@ -4872,8 +4872,8 @@ Func_3410:
 	homecall Func_a8c86
 	ret
 
-Func_341d:
-	homecall Func_2de18
+SetUpScreenShake_:
+	homecall SetUpScreenShake
 	ret
 
 ResumeNormalMusicIfPhoneIsRinging: ; 342a (0:342a)
@@ -5018,7 +5018,7 @@ Func_34dc: ; 34dc (0:34dc)
 	ld a, [wc945]
 	or a
 	ret z
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	sub $1
 	ld b, a
 	and $3

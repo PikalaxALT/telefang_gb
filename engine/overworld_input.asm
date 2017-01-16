@@ -701,7 +701,7 @@ Func_39497: ; 39497 (e:5497)
 	jr nz, .asm_394d8
 	ld b, $40
 	ld c, $1
-	call Func_341d
+	call SetUpScreenShake_
 	ld a, SFX_41
 	ld [H_SFX_ID], a
 	ret
@@ -832,7 +832,7 @@ Func_39598: ; 39598 (e:5598)
 	ld a, l
 	ld [wPlayerObjectStruct_YCoord], a
 	call Func_39bd5
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $3
 	ret nz
 	ld a, [wCurPlayerFacing]

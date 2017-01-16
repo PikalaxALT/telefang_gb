@@ -267,10 +267,10 @@ ScriptCommandPointers:
 	dw Script_FacePlayer ; 3d
 	dw Func_3caf0 ; 3e
 	dw Func_3cabc ; 3f
-	dw Func_3c7f0 ; 40
-	dw Func_3c7f0 ; 41
-	dw Func_3c7f0 ; 42
-	dw Func_3c7f0 ; 43
+	dw Script_ShakeScreen ; 40
+	dw Script_ShakeScreen ; 41
+	dw Script_ShakeScreen ; 42
+	dw Script_ShakeScreen ; 43
 	dw Script_PlaySFX ; 44
 	dw Script_PlayMusic ; 45
 	dw Func_3c822 ; 46
@@ -278,11 +278,11 @@ ScriptCommandPointers:
 	dw Func_3c822 ; 48
 	dw Func_3c822 ; 49
 	dw Func_3c822 ; 4a
-	dw Func_3c843 ; 4b
+	dw Script_IfWonBattle ; 4b
 	dw Func_3cb2a ; 4c
 	dw Func_3cb46 ; 4d
-	dw Func_3c843 ; 4e
-	dw Func_3c843 ; 4f
+	dw Script_IfWonBattle ; 4e
+	dw Script_IfWonBattle ; 4f
 	dw Func_3c85a ; 50
 	dw Script_IncVar ; 51
 	dw Script_DecVar ; 52
@@ -1193,12 +1193,12 @@ Script_TakeMoney: ; 3c7d6 (f:47d6)
 	scf
 	ret
 
-Func_3c7f0: ; 3c7f0 (f:47f0)
+Script_ShakeScreen: ; 3c7f0 (f:47f0)
 	ld a, [wScriptBuffer + 1]
 	ld c, a
 	ld a, [wScriptBuffer + 2]
 	ld b, a
-	call Func_341d
+	call SetUpScreenShake_
 	ld b, $3
 	call AdvanceScriptPointer
 	scf
@@ -1227,17 +1227,17 @@ Func_3c822: ; 3c822 (f:4822)
 	ld b, a
 	ld a, [wPlayerObjectStruct_Duration + 15]
 	bit 0, a
-	jr z, .asm_3c82f
+	jr z, .no_xor
 	xor $2
-.asm_3c82f
+.no_xor
 	cp b
-	jr z, .asm_3c839
+	jr z, .jump
 	ld b, $3
 	call AdvanceScriptPointer
 	scf
 	ret
 
-.asm_3c839
+.jump
 	ld a, [wScriptBuffer + 2]
 	inc a
 	ld b, a
@@ -1245,16 +1245,16 @@ Func_3c822: ; 3c822 (f:4822)
 	scf
 	ret
 
-Func_3c843: ; 3c843 (f:4843)
+Script_IfWonBattle: ; 3c843 (f:4843)
 	ld a, [wBattleResult]
 	or a
-	jr nz, .asm_3c850
+	jr nz, .jump
 	ld b, $2
 	call AdvanceScriptPointer
 	scf
 	ret
 
-.asm_3c850
+.jump
 	ld a, [wScriptBuffer + 1]
 	inc a
 	ld b, a

@@ -1905,26 +1905,26 @@ Func_2ddc5: ; 2ddc5 (b:5dc5)
 	pop hl
 	ret
 
-Func_2ddd9: ; 2ddd9 (b:5dd9)
-	ld a, [wcad4]
+HandleScreenShake: ; 2ddd9 (b:5dd9)
+	ld a, [wScreenShakeMagnitude]
 	or a
 	ret z
 	sub $3
-	jr nc, .asm_2dde3
+	jr nc, .no_carry
 	xor a
-.asm_2dde3
-	ld [wcad4], a
+.no_carry
+	ld [wScreenShakeMagnitude], a
 	ld c, a
-	ld a, [wcad5]
+	ld a, [wScreenShakePhase]
 	add $18
-	ld [wcad5], a
+	ld [wScreenShakePhase], a
 	call Sine8
 	ld e, a
 	call Multiply_C_by_E_signed
-	ld a, [wcad6]
+	ld a, [wScreenShakeDirection]
 	or a
-	jr nz, .asm_2de0a
-	ld a, [wcad8]
+	jr nz, .x
+	ld a, [wScreenShakeYOffset]
 	sra d
 	sra d
 	sra d
@@ -1932,8 +1932,8 @@ Func_2ddd9: ; 2ddd9 (b:5dd9)
 	ld [wSCY], a
 	ret
 
-.asm_2de0a
-	ld a, [wcad7]
+.x
+	ld a, [wScreenShakeXOffset]
 	sra d
 	sra d
 	sra d
@@ -1941,23 +1941,25 @@ Func_2ddd9: ; 2ddd9 (b:5dd9)
 	ld [wSCX], a
 	ret
 
-Func_2de18: ; 2de18 (b:5e18)
-	ld a, [wcad4]
+SetUpScreenShake: ; 2de18 (b:5e18)
+; b = magnitude
+; c = 1 if x, 0 if y
+	ld a, [wScreenShakeMagnitude]
 	or a
-	jr z, .asm_2de2a
-	ld a, [wcad7]
+	jr z, .no_copy
+	ld a, [wScreenShakeXOffset]
 	ld [wSCX], a
-	ld a, [wcad8]
+	ld a, [wScreenShakeYOffset]
 	ld [wSCY], a
-.asm_2de2a
+.no_copy
 	ld a, b
-	ld [wcad4], a
+	ld [wScreenShakeMagnitude], a
 	ld a, [wSCX]
-	ld [wcad7], a
+	ld [wScreenShakeXOffset], a
 	ld a, [wSCY]
-	ld [wcad8], a
+	ld [wScreenShakeYOffset], a
 	ld a, c
-	ld [wcad6], a
+	ld [wScreenShakeDirection], a
 	ret
 
 Func_2de3f:
@@ -2982,7 +2984,7 @@ Func_2e4b2: ; 2e4b2 (b:64b2)
 	ret
 
 .asm_2e4d3
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $3
 	jr nz, .asm_2e4ec
 	ld a, [wc91a]
@@ -6044,7 +6046,7 @@ HealPartnerDenjuuInOverworld: ; a54a2 (29:54a2)
 	ld a, [hJoyNew]
 	and B_BUTTON
 	jr nz, .pressing_b
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $1f
 	ret nz
 .pressing_b
@@ -8324,7 +8326,7 @@ Func_a8991: ; a8991 (2a:4991)
 	ret z
 	call PrintText_
 	ld b, $3
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $8
 	jr z, .asm_a89ab
 	ld b, $2
@@ -9767,7 +9769,7 @@ Func_a946f: ; a946f (2a:546f)
 	ld a, [wOAMAnimation19_Duration + 11]
 	or a
 	jp nz, Func_a9551
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $7
 	jr nz, .asm_a94b5
 	callba Func_3311f
@@ -10363,7 +10365,7 @@ Func_a98bf: ; a98bf (2a:58bf)
 	ret
 
 .asm_a9915
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $3
 	jr nz, .asm_a9924
 	callba Func_33303
@@ -10529,7 +10531,7 @@ Func_a9a57: ; a9a57 (2a:5a57)
 	dec a
 .asm_a9a66
 	ld [wcae7], a
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	ld d, a
 	sla d
 	sla d

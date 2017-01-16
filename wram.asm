@@ -972,7 +972,7 @@ wc980:: ds 1
 wc981:: ds 1
 wc982:: ds 1
 wc983:: ds 1
-wc984:: ds 1
+wOverworldFrameCounter:: ds 1
 wCurXPixel:: ds 1
 wCurYPixel:: ds 1
 wc987:: ds 1
@@ -1170,7 +1170,7 @@ wMathBuffer3:: ds 1
 wCustomSpriteDest:: ds 2
 wSpriteDestIsCustom:: ds 1
 wca6e:: ds 1
-wca6f:: ds 1
+wOverworldFrameCounterHi:: ds 1
 
 SECTION "Overworld Map", WRAM0
 wOverworldMap:: ; ca70
@@ -1197,11 +1197,11 @@ wPhoneIsRinging:: ds 1
 wcad1:: ds 1
 wcad2:: ds 1
 wcad3:: ds 1
-wcad4:: ds 1
-wcad5:: ds 1
-wcad6:: ds 1
-wcad7:: ds 1
-wcad8:: ds 1
+wScreenShakeMagnitude:: ds 1
+wScreenShakePhase:: ds 1
+wScreenShakeDirection:: ds 1
+wScreenShakeXOffset:: ds 1
+wScreenShakeYOffset:: ds 1
 wScriptVar:: ds 1
 wcada:: ds 1
 wcadb:: ds 1

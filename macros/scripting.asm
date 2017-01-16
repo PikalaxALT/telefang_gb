@@ -519,9 +519,9 @@ script_42: MACRO
 	db \2
 	ENDM
 
-	enum script_43_command
-script_43: MACRO
-	db script_43_command
+	enum script_shake_screen_command
+script_shake_screen: MACRO
+	db script_shake_screen_command
 .offset\@
 	db \1
 	db \2
@@ -574,6 +574,7 @@ script_4a: MACRO
 	db script_4a_command
 .offset\@
 	db \1
+	db (\2 - .offset\@) & $ff ; script offset
 	ENDM
 
 	enum script_4b_command

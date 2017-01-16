@@ -1273,7 +1273,7 @@ Func_30f4a:
 	ld h, a
 	ld a, l
 	ld b, a
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	add b
 	and $60
 	jr nz, .asm_30f6f
@@ -1282,14 +1282,14 @@ Func_30f4a:
 	srl a
 	srl a
 	ld b, a
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	add b
 	and $7
 	jr nz, .asm_30f6f
 	call Func_3154b
 .asm_30f6f
 	ld de, Data_30f8c
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	srl a
 	srl a
 	and $3
@@ -3404,7 +3404,7 @@ Func_31bde:
 
 Func_31c6d: ; 31c6d (c:5c6d)
 	ld b, $33
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	srl a
 	srl a
 	and $1
@@ -3966,7 +3966,7 @@ Func_31ff1:
 	ret
 
 .asm_3201e
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $7
 	ret nz
 	ld a, [wCurObjectStruct]
@@ -4010,7 +4010,7 @@ Func_3202b:
 	call Func_2fa0
 	call Func_33bc
 .asm_3206c
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $7
 	ret nz
 	ld a, [wCurObjectStruct]
@@ -7121,7 +7121,7 @@ Func_3342c:
 	ret
 
 .asm_3346b
-	ld a, [wc984]
+	ld a, [wOverworldFrameCounter]
 	and $7
 	ret nz
 	ld a, [wCurObjectStruct]
@@ -7527,7 +7527,7 @@ Func_336e5: ; 336e5 (c:76e5)
 	ld [wPlayerObjectStruct_Duration + 11], a
 	ld b, $40
 	ld c, $0
-	call Func_341d
+	call SetUpScreenShake_
 	ld b, $c
 .asm_336f8
 	push bc
