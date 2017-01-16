@@ -5071,22 +5071,22 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ret z
 	ld a, $0
 	ld [wc93f], a
-	ld a, [wcad0]
+	ld a, [wPhoneIsRinging]
 	cp $1
 	ret z
-	ld a, [wc940]
+	ld a, [wOverworldPhoneCallCooldown]
 	or a
 	jr z, .asm_a4e8d
 	dec a
-	ld [wc940], a
+	ld [wOverworldPhoneCallCooldown], a
 	ret nz
 .asm_a4e8d
 	call OverworldRandom8_
 	and $1
 	add $4
-	ld [wc940], a
-	call Func_a4ec2
-	jr z, .asm_a4ec1
+	ld [wOverworldPhoneCallCooldown], a
+	call .SampleRandomDenjuuToCall
+	jr z, .no_denjuu_to_call
 	ld a, b
 	ld [wCallerID], a
 	call GetAddressBookPointerB
@@ -5097,17 +5097,17 @@ OverworldSamplePhonecall: ; a4e47 (29:4e47)
 	ld a, 240
 	ld [wPhoneCallRingtoneTimer], a
 	ld a, $1
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, $1
 	ld [wOverworldRingtoneSubroutine], a
 	ld a, [wCallerID]
 	ld c, a
-	call Func_a4f37
-.asm_a4ec1
+	call AddDenjuuToRecentCalls
+.no_denjuu_to_call
 	ret
 
-Func_a4ec2: ; a4ec2 (29:4ec2)
-	call Func_a4ef3
+.SampleRandomDenjuuToCall: ; a4ec2 (29:4ec2)
+	call .CountDenjuuAvailableForCall
 	ld a, [wCGBPalFadeProgram]
 	or a
 	ret z
@@ -5130,7 +5130,7 @@ Func_a4ec2: ; a4ec2 (29:4ec2)
 	or $1
 	ret
 
-Func_a4ef3: ; a4ef3 (29:4ef3)
+.CountDenjuuAvailableForCall: ; a4ef3 (29:4ef3)
 	enable_sram
 	ld de, s3_a300
 	ld hl, sAddressBook + 1
@@ -5168,14 +5168,17 @@ Func_a4ef3: ; a4ef3 (29:4ef3)
 	disable_sram
 	ret
 
-Func_a4f37: ; a4f37 (29:4f37)
+AddDenjuuToRecentCalls: ; a4f37 (29:4f37)
+; c = Address book index of the Denjuu who's calling
+; Append the time they called
+; 4 bytes allocated per entry, 3 bytes used; 8 entries total
 	ld d, $8
-	ld hl, wcd70
-.asm_a4f3c
+	ld hl, wRecentCalls
+.loop
 	ld a, [hl]
 	or a
-	jr nz, .asm_a4f4c
-.asm_a4f40
+	jr nz, .next
+.finish
 	inc c
 	ld a, c
 	ld [hli], a
@@ -5185,7 +5188,7 @@ Func_a4f37: ; a4f37 (29:4f37)
 	ld [hl], a
 	ret
 
-.asm_a4f4c
+.next
 	ld a, $4
 	add l
 	ld l, a
@@ -5193,22 +5196,22 @@ Func_a4f37: ; a4f37 (29:4f37)
 	adc h
 	ld h, a
 	dec d
-	jr nz, .asm_a4f3c
+	jr nz, .loop
 	push bc
-	ld hl, wcd70
-	ld de, wcd74
+	ld hl, wRecentCalls
+	ld de, wRecentCalls + 4 * 1
 	ld bc, $1c
-.asm_a4f61
+.copy
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_a4f61
+	jr nz, .copy
 	pop bc
-	ld hl, wcd8c
-	jr .asm_a4f40
+	ld hl, wRecentCalls + 4 * 7
+	jr .finish
 
 Func_a4f6f: ; a4f6f (29:4f6f)
 	di
@@ -5282,11 +5285,11 @@ Data_a4fcb:
 	db 0, 0
 
 Func_a4fcd: ; a4fcd (29:4fcd)
-	ld a, [wcad0]
+	ld a, [wPhoneIsRinging]
 	or a
 	ret nz
 	ld a, $ff
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, [wc936]
 	or a
 	ret z
@@ -5300,7 +5303,7 @@ Func_a4fe5: ; a4fe5 (29:4fe5)
 	ld a, [wc936]
 	or a
 	ret z
-	ld a, [wcad0]
+	ld a, [wPhoneIsRinging]
 	or a
 	ret z
 	cp $ff
@@ -5598,7 +5601,7 @@ Func_a51e1:
 Func_a51ee: ; a51ee (29:51ee)
 	ld a, [wcad1]
 	ld b, a
-	ld a, [wcad0]
+	ld a, [wPhoneIsRinging]
 	cp b
 	jr nz, .asm_a5224
 	cp $1
@@ -5703,11 +5706,11 @@ HandleOverworldRingtone: ; a5245 (29:5245)
 Func_a52b2: ; a52b2 (29:52b2)
 	ld a, $0
 	ld [wcdb6], a
-	call Func_a53ae
+	call ComputeHowManyUnreadMailMessagesToGenerate
 	or a
 	ret z
 	ld [wCustomSpriteDest], a
-	call Func_a535e
+	call CountDenjuuWhoCouldHaveSentAMailMessage
 	ld a, [wOAMAnimation01_PriorityFlags]
 	or a
 	ret z
@@ -5740,7 +5743,7 @@ Func_a52b2: ; a52b2 (29:52b2)
 	ld [wOAMAnimation01_XCoord], a
 	ld a, [hli]
 	ld b, a
-	call Func_a5315
+	call InsertMailMessageIntoQueue
 	ld a, [wcdb6]
 	inc a
 	ld [wcdb6], a
@@ -5751,14 +5754,14 @@ Func_a52b2: ; a52b2 (29:52b2)
 	jr nz, .loop
 	ret
 
-Func_a5315: ; a5315 (29:5315)
-	ld hl, wcd90
+InsertMailMessageIntoQueue: ; a5315 (29:5315)
+	ld hl, wMailMessages
 	ld e, $8
-.asm_a531a
+.loop
 	ld a, [hl]
 	or a
-	jr nz, .asm_a533b
-.asm_a531e
+	jr nz, .next
+.finish
 	inc b
 	ld a, b
 	ld [hli], a
@@ -5780,7 +5783,7 @@ Func_a5315: ; a5315 (29:5315)
 	ld [hl], a
 	ret
 
-.asm_a533b
+.next
 	ld a, $4
 	add l
 	ld l, a
@@ -5788,24 +5791,24 @@ Func_a5315: ; a5315 (29:5315)
 	adc h
 	ld h, a
 	dec e
-	jr nz, .asm_a531a
+	jr nz, .loop
 	push bc
-	ld hl, wcd90
+	ld hl, wMailMessages
 	ld de, wcd94
 	ld bc, $1c
-.asm_a5350
+.copy
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_a5350
+	jr nz, .copy
 	pop bc
 	ld hl, wcdac
-	jr .asm_a531e
+	jr .finish
 
-Func_a535e: ; a535e (29:535e)
+CountDenjuuWhoCouldHaveSentAMailMessage: ; a535e (29:535e)
 	enable_sram sAddressBook
 	ld de, wOAMAnimation01_YCoord
 	ld hl, sAddressBook + 1
@@ -5853,7 +5856,7 @@ Func_a535e: ; a535e (29:535e)
 	pop af
 	ret
 
-Func_a53ae: ; a53ae (29:53ae)
+ComputeHowManyUnreadMailMessagesToGenerate: ; a53ae (29:53ae)
 	ld a, [wRTC_DayHi]
 	ld b, a
 	ld a, [wRTC_DayLo]
@@ -5888,7 +5891,7 @@ Func_a53ae: ; a53ae (29:53ae)
 	ld b, h
 	ld c, l
 	ld de, 6
-	ld a, BANK(Func_a53ae)
+	ld a, BANK(ComputeHowManyUnreadMailMessagesToGenerate)
 	ld [wPrevROMBank], a
 	call Divide_BC_by_DE_signed_
 	ld a, b
@@ -5922,14 +5925,14 @@ Func_a53ae: ; a53ae (29:53ae)
 Func_a5418: ; a5418 (29:5418)
 	inc c
 	push bc
-	call Func_a5421
+	call .DeleteAllRecentCallsFromDenjuu
 	pop bc
 	jp Func_a5461
 
-Func_a5421: ; a5421 (29:5421)
+.DeleteAllRecentCallsFromDenjuu: ; a5421 (29:5421)
 .outer_loop
 	ld d, $8
-	ld hl, wcd70
+	ld hl, wRecentCalls
 	ld b, $0
 .loop
 	ld a, [hl]
@@ -5959,7 +5962,7 @@ Func_a5421: ; a5421 (29:5421)
 	inc de
 	dec c
 	jr nz, .copy
-	ld hl, wcd8c
+	ld hl, wRecentCalls + 4 * 7
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -5981,14 +5984,14 @@ Func_a5421: ; a5421 (29:5421)
 	ret
 
 Func_a5461: ; a5461 (29:5461)
-.outer_loop
+.outer_loop2
 	ld d, $8
-	ld hl, wcd90
+	ld hl, wMailMessages
 	ld b, $0
-.loop
+.loop2
 	ld a, [hl]
 	cp c
-	jr nz, .next
+	jr nz, .next2
 	ld [hl], $0
 	ld a, b
 	cp $7
@@ -6007,12 +6010,12 @@ Func_a5461: ; a5461 (29:5461)
 	ld a, $0
 	adc h
 	ld h, a
-.copy
+.copy2
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .copy
+	jr nz, .copy2
 	ld hl, wcdac
 	xor a
 	ld [hli], a
@@ -6020,9 +6023,9 @@ Func_a5461: ; a5461 (29:5461)
 	ld [hli], a
 	ld [hl], a
 	pop bc
-	jr .outer_loop
+	jr .outer_loop2
 
-.next
+.next2
 	ld a, $4
 	add l
 	ld l, a
@@ -6031,7 +6034,7 @@ Func_a5461: ; a5461 (29:5461)
 	ld h, a
 	inc b
 	dec d
-	jr nz, .loop
+	jr nz, .loop2
 	ret
 
 Func_a54a1:
@@ -6363,7 +6366,7 @@ HandlePhoneCall: ; a56cd (29:56cd)
 
 .fade_out
 	ld a, $0
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine
@@ -14868,7 +14871,7 @@ ENDC
 	ld a, $e
 	ld [wPrevROMBank], a
 	ld a, $4
-	ld [wc940], a
+	ld [wOverworldPhoneCallCooldown], a
 	call OverworldRandom8_
 	ld e, a
 	ld c, 199

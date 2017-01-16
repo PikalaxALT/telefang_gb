@@ -3170,7 +3170,7 @@ Func_71831:
 	call GetMusicBank
 	ld [H_MusicID], a
 	ld a, $2
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, [wd401]
 	inc a
 	ld [wd401], a
@@ -3305,7 +3305,7 @@ Func_719e0:
 
 Func_71a11:
 	xor a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, $1
 	call StartFade_
 	ld a, $0

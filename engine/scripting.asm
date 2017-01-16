@@ -379,11 +379,11 @@ Script_End: ; 3c263 (f:4263)
 	call Func_225b
 	ld a, $8
 	ld [wScriptDelay], a
-	ld a, [wc940]
+	ld a, [wOverworldPhoneCallCooldown]
 	or a
 	jr nz, .asm_3c282
 	inc a
-	ld [wc940], a
+	ld [wOverworldPhoneCallCooldown], a
 .asm_3c282
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	and $fd
@@ -2196,9 +2196,9 @@ Func_3ce70: ; 3ce70 (f:4e70)
 	ld [H_SFX_ID], a
 .skip_music_and_sfx
 	ld a, $4
-	ld [wc940], a
+	ld [wOverworldPhoneCallCooldown], a
 	ld a, $1
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld b, $2
 	call AdvanceScriptPointer
 	scf
@@ -2215,7 +2215,7 @@ Func_3ce97: ; 3ce97 (f:4e97)
 	call PlayMapMusic_
 .skip_music_and_sfx
 	ld a, $0
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld b, $1
 	call AdvanceScriptPointer
 	scf

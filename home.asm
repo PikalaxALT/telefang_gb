@@ -261,18 +261,18 @@ ClearObjectAnimationBuffers:
 	ld bc, wOAMAnimationsEnd - wOAMAnimations
 	ld hl, wOAMAnimations
 	call ClearMemory3
-	ld bc, wc4c0 - wPlayerObjectStruct
+	ld bc, wPlayerAndDenjuuObjectStructsEnd - wPlayerObjectStruct
 	ld hl, wPlayerObjectStruct
 	jp ClearMemory3
 
-Func_099c:
+DeleteOAMAnimationStruct:
 	ld b, $20
 	xor a
-.asm_099f
+.loop
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_099f
+	jr nz, .loop
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -1829,7 +1829,7 @@ Pointers_1aea:
 
 Func_1afc:
 	ld c, a
-	ld hl, wcd70
+	ld hl, wRecentCalls
 	ld b, $8
 .asm_1b02
 	ld a, [hl]
@@ -1856,7 +1856,7 @@ Func_1afc:
 	pop de
 	call CopyData
 .asm_1b25
-	ld hl, wcd90
+	ld hl, wMailMessages
 	ld b, $8
 .asm_1b2a
 	ld a, [hl]
@@ -2444,7 +2444,7 @@ Func_1f80: ; 1f80 (0:1f80)
 Func_1fff: ; 1fff (0:1fff)
 	ld a, $0
 	ld [wPhoneCallRingtoneTimer], a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	jp ResumeNormalMusicIfPhoneIsRinging
 
 Func_200a: ; 200a (0:200a)
@@ -3392,7 +3392,7 @@ Func_29ed:
 .asm_2a48
 	ld a, $0
 	ld [wPhoneCallRingtoneTimer], a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld [wOverworldRingtoneSubroutine], a
 	call StopRingtone
 	ld a, $0
@@ -6282,9 +6282,9 @@ PrintStringWithPlayerDenjuuAsBattleUser:
 	call CopyPlayerDenjuuNameToBattleUserName
 	call CloseSRAM
 	ld hl, wBattleUserName
-	ld de, wOAMAnimationsEnd
+	ld de, wc3a0
 	call CenterAlignDenjuuName_
-	ld de, wOAMAnimationsEnd
+	ld de, wc3a0
 	ld b, $8
 	pop hl
 	jp PlaceString_

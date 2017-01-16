@@ -398,7 +398,7 @@ Func_1031c: ; 1031c (4:431c)
 
 Func_10328: ; 10328 (4:4328)
 	ld b, $9
-	ld hl, wOAMAnimationsEnd
+	ld hl, wc3a0
 	ld de, wPlayerName
 .asm_10330
 	ld a, [hli]
@@ -905,7 +905,7 @@ Func_10743: ; 10743 (4:4743)
 	call Func_135ef
 .asm_10764
 	ld de, wOAMAnimation01
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -1018,7 +1018,7 @@ Func_1082e: ; 1082e (4:482e)
 	call Func_119df
 	call Func_135ef
 	ld de, wOAMAnimation01
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld a, MUSIC_DSHOT_MENU
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -1081,7 +1081,7 @@ Func_108ab: ; 108ab (4:48ab)
 	or a
 	ret z
 	xor a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, $5
 	ld [wGameRoutine], a
 	ld a, $a
@@ -1142,7 +1142,7 @@ Func_10907: ; 10907 (4:4907)
 	ld a, $a0
 	ld [wTextBoxStartTile], a
 	ld a, $2
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	jp IncrementSubroutine
 
 Func_10936: ; 10936 (4:4936)
@@ -1178,7 +1178,7 @@ Func_10969: ; 10969 (4:4969)
 	or a
 	ret z
 	xor a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	call Func_13a0b
 	call Func_13e27
 	call Func_13a1e
@@ -1223,7 +1223,7 @@ Func_109aa: ; 109aa (4:49aa)
 	ld a, $a0
 	ld [wTextBoxStartTile], a
 	ld a, $2
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	jp IncrementSubroutine
 
 Func_109dc: ; 109dc (4:49dc)
@@ -1256,7 +1256,7 @@ Func_10a09: ; 10a09 (4:4a09)
 	or a
 	ret z
 	xor a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	call Func_13a0b
 	call Func_13e27
 	call Func_13a1e
@@ -1550,7 +1550,7 @@ Func_10c4a:
 	ld a, $4
 	call StartFade_
 	ld a, $2
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, [wcb04]
 	call Func_13fb5
 	jp IncrementSubroutine2
@@ -1643,7 +1643,7 @@ Func_10d30:
 	or a
 	ret z
 	xor a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	call ClearObjectAnimationBuffers
 	call Func_13a0b
 	ld bc, $12
@@ -2189,7 +2189,7 @@ Func_11177: ; 11177 (4:5177)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, [wPhoneScreenCursorPosition]
-	call Func_12fd8
+	call PrintRecentCall
 	ld a, $4
 	ld [wd411], a
 	ld de, wOAMAnimation02
@@ -2263,7 +2263,7 @@ Func_1120c: ; 1120c (4:520c)
 	ld a, $4
 	call StartFade_
 	ld a, $2
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	jp IncrementSubroutine2
 
 Func_11241: ; 11241 (4:5241)
@@ -2298,7 +2298,7 @@ Func_11276: ; 11276 (4:5276)
 	or a
 	ret z
 	xor a
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	call ClearObjectAnimationBuffers
 	call Func_13a0b
 	ld a, $f0
@@ -2424,7 +2424,7 @@ Func_11370: ; 11370 (4:5370)
 	ld a, $0
 	call LoadStdBGMapLayout_
 	ld a, [wPhoneScreenCursorPosition]
-	call Func_130bc
+	call PrintMailMessageHeader
 	ld a, $4
 	ld [wd411], a
 	ld de, wOAMAnimation02
@@ -2503,7 +2503,7 @@ SelectTime: ; 117ef (4:57ef)
 	ld e, $5b
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	jp IncrementSubroutine
 
 .asm_11815
@@ -2873,7 +2873,7 @@ Func_11a80: ; 11a80 (4:5a80)
 	dec b
 	jr nz, .asm_11a86
 	ld hl, wStringBuffer
-	ld de, wOAMAnimationsEnd
+	ld de, wc3a0
 	call CenterAlignDenjuuName_
 	pop de
 	jp Func_1249a
@@ -2936,7 +2936,7 @@ ComposeDMelo: ; 11aaf (4:5aaf)
 .no_a_button
 	ld a, [hJoyNew]
 	and SELECT
-	jr z, .no_button
+	jr z, .no_joypad
 	ld b, $0
 	ld a, [wcb28]
 	cp $0
@@ -2946,7 +2946,7 @@ ComposeDMelo: ; 11aaf (4:5aaf)
 	ld a, b
 	ld [wcb28], a
 	call LoadPhoneKeypad
-.no_button
+.no_joypad
 	ret
 
 Func_11b21:
@@ -3513,9 +3513,9 @@ Func_11ee9: ; 11ee9 (4:5ee9)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld de, wOAMAnimation01
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld de, wOAMAnimation02
-	jp Func_099c
+	jp DeleteOAMAnimationStruct
 
 Func_11efa: ; 11efa (4:5efa)
 	call DMelo_GetCurrentNoteAddr
@@ -3875,7 +3875,7 @@ DMeloJoypadAction: ; 1208b (4:608b)
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	call DMelo_LoadRingtone
 	call Func_072f
 	call PhoneKeypadCursorPositionUpdate
@@ -4125,7 +4125,7 @@ Phone_SaveMenu_JoypadAction: ; 122ea (4:62ea)
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld a, $4
 	ld [wSubroutine2], a
 	ret
@@ -4330,7 +4330,7 @@ Func_1247c:
 
 PaletteFade8: ; 12488 (4:6488)
 	ld hl, wc3a9
-	ld de, wOAMAnimationsEnd
+	ld de, wc3a0
 	ld b, $9
 .asm_12490
 	ld a, $e0
@@ -5935,53 +5935,53 @@ OptionsMenu_ReloadUIColor: ; 12efe (4:6efe)
 
 Func_12f14: ; 12f14 (4:6f14)
 	xor a
-	ld [wNumNotesInCurDMelo], a
-	ld hl, wcd70
+	ld [wNumRecentCalls], a
+	ld hl, wRecentCalls
 	ld de, $4
 	ld b, $8
-.asm_12f20
+.loop
 	ld a, [hl]
 	cp $0
-	jr z, .asm_12f2c
-	ld a, [wNumNotesInCurDMelo]
+	jr z, .next
+	ld a, [wNumRecentCalls]
 	inc a
-	ld [wNumNotesInCurDMelo], a
-.asm_12f2c
+	ld [wNumRecentCalls], a
+.next
 	add hl, de
 	dec b
-	jr nz, .asm_12f20
+	jr nz, .loop
 	ret
 
 Func_12f31: ; 12f31 (4:6f31)
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumMailMessages]
 	hlbgcoord 2, 10
 	jp Func_127eb
 
 Func_12f3a: ; 12f3a (4:6f3a)
 	xor a
-	ld [wNumNotesInCurDMelo], a
-	ld hl, wcd90
+	ld [wNumMailMessages], a
+	ld hl, wMailMessages
 	ld de, $4
 	ld b, $8
-.asm_12f46
+.loop
 	push hl
 	ld a, [hli]
 	cp $0
-	jr z, .asm_12f53
-	ld a, [wNumNotesInCurDMelo]
+	jr z, .next
+	ld a, [wNumMailMessages]
 	inc a
-	ld [wNumNotesInCurDMelo], a
-.asm_12f53
+	ld [wNumMailMessages], a
+.next
 	pop hl
 	add hl, de
 	dec b
-	jr nz, .asm_12f46
+	jr nz, .loop
 	ret
 
 Func_12f59: ; 12f59 (4:6f59)
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_12f7e
+	jr z, .check_b
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	call Func_137d9
@@ -5995,61 +5995,61 @@ Func_12f59: ; 12f59 (4:6f59)
 	call Func_13fc6
 	jp IncrementSubroutine2
 
-.asm_12f7e
+.check_b
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_12f8f
+	jr z, .check_right
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	ld a, $c
 	ld [wSubroutine2], a
 	ret
 
-.asm_12f8f
-	ld a, [wNumNotesInCurDMelo]
+.check_right
+	ld a, [wNumRecentCalls]
 	cp $1
 	ret z
 	ld a, [wJoyNew]
 	and D_RIGHT
-	jr z, .asm_12fb5
+	jr z, .check_left
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumRecentCalls]
 	dec a
 	ld b, a
 	ld a, [wPhoneScreenCursorPosition]
 	cp b
-	jr nz, .asm_12fae
+	jr nz, .wrap_right
 	ld a, $ff
-.asm_12fae
+.wrap_right
 	inc a
 	ld [wPhoneScreenCursorPosition], a
-	jp Func_12fd8
+	jp PrintRecentCall
 
-.asm_12fb5
+.check_left
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_12fd7
+	jr z, .no_joypad
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumRecentCalls]
 	dec a
 	ld b, a
 	ld a, [wPhoneScreenCursorPosition]
 	cp $0
-	jr nz, .asm_12fd0
-	ld a, [wNumNotesInCurDMelo]
-.asm_12fd0
+	jr nz, .wrap_left
+	ld a, [wNumRecentCalls]
+.wrap_left
 	dec a
 	ld [wPhoneScreenCursorPosition], a
-	jp Func_12fd8
+	jp PrintRecentCall
 
-.asm_12fd7
+.no_joypad
 	ret
 
-Func_12fd8: ; 12fd8 (4:6fd8)
+PrintRecentCall: ; 12fd8 (4:6fd8)
 	ld b, a
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumRecentCalls]
 	dec a
 	sub b
 	ld e, a
@@ -6058,7 +6058,7 @@ Func_12fd8: ; 12fd8 (4:6fd8)
 	rl d
 	sla e
 	rl d
-	ld hl, wcd70
+	ld hl, wRecentCalls
 	add hl, de
 	ld a, [hli]
 	dec a
@@ -6068,7 +6068,7 @@ Func_12fd8: ; 12fd8 (4:6fd8)
 	ld a, [hli]
 	ld e, a
 	push de
-	call Func_13ef6
+	call PrintNameOfCallerOrSender
 	pop de
 	push de
 	ld a, d
@@ -6085,7 +6085,7 @@ Func_12fd8: ; 12fd8 (4:6fd8)
 	call Get2DigitBCD
 	hlbgcoord 2, 15
 	call Print2DigitBCD
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumRecentCalls]
 	call Get2DigitBCD
 	hlbgcoord 5, 15
 	jp Print2DigitBCD
@@ -6093,7 +6093,7 @@ Func_12fd8: ; 12fd8 (4:6fd8)
 Func_13028: ; 13028 (4:7028)
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_1305e
+	jr z, .check_b
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld e, $2d
@@ -6113,10 +6113,10 @@ Func_13028: ; 13028 (4:7028)
 	call Func_137af
 	jp IncrementSubroutine2
 
-.asm_1305e
+.check_b
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_13073
+	jr z, .check_right
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 	xor a
@@ -6125,51 +6125,51 @@ Func_13028: ; 13028 (4:7028)
 	ld [wSubroutine2], a
 	ret
 
-.asm_13073
-	ld a, [wNumNotesInCurDMelo]
+.check_right
+	ld a, [wNumMailMessages]
 	cp $1
 	ret z
 	ld a, [wJoyNew]
 	and D_RIGHT
-	jr z, .asm_13099
+	jr z, .check_left
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumMailMessages]
 	dec a
 	ld b, a
 	ld a, [wPhoneScreenCursorPosition]
 	cp b
-	jr nz, .asm_13092
+	jr nz, .wrap_right
 	ld a, $ff
-.asm_13092
+.wrap_right
 	inc a
 	ld [wPhoneScreenCursorPosition], a
-	jp Func_130bc
+	jp PrintMailMessageHeader
 
-.asm_13099
+.check_left
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_130bb
+	jr z, .no_joypad
 	ld a, SFX_02
 	ld [H_SFX_ID], a
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumMailMessages]
 	dec a
 	ld b, a
 	ld a, [wPhoneScreenCursorPosition]
 	cp $0
-	jr nz, .asm_130b4
-	ld a, [wNumNotesInCurDMelo]
-.asm_130b4
+	jr nz, .wrap_left
+	ld a, [wNumMailMessages]
+.wrap_left
 	dec a
 	ld [wPhoneScreenCursorPosition], a
-	jp Func_130bc
+	jp PrintMailMessageHeader
 
-.asm_130bb
+.no_joypad
 	ret
 
-Func_130bc: ; 130bc (4:70bc)
+PrintMailMessageHeader: ; 130bc (4:70bc)
 	ld b, a
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumMailMessages]
 	dec a
 	sub b
 	ld e, a
@@ -6178,7 +6178,7 @@ Func_130bc: ; 130bc (4:70bc)
 	rl d
 	sla e
 	rl d
-	ld hl, wcd90
+	ld hl, wMailMessages
 	add hl, de
 	ld a, [hli]
 	dec a
@@ -6188,7 +6188,7 @@ Func_130bc: ; 130bc (4:70bc)
 	ld a, [hli]
 	ld e, a
 	push de
-	call Func_13ef6
+	call PrintNameOfCallerOrSender
 	pop de
 	push de
 	ld a, d
@@ -6205,7 +6205,7 @@ Func_130bc: ; 130bc (4:70bc)
 	call Get2DigitBCD
 	hlbgcoord 2, 15
 	call Print2DigitBCD
-	ld a, [wNumNotesInCurDMelo]
+	ld a, [wNumMailMessages]
 	call Get2DigitBCD
 	hlbgcoord 5, 15
 	jp Print2DigitBCD
@@ -6336,7 +6336,7 @@ Func_131da: ; 131da (4:71da)
 .asm_131f8
 	call DecompressGFXByIndex_
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld a, $1
 	ld [wSubroutine2], a
 	jp Func_1236b
@@ -6351,7 +6351,7 @@ Func_13209: ; 13209 (4:7209)
 	cp $1
 	jp z, Func_13267
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld e, $2d
@@ -6787,7 +6787,7 @@ Func_135ef: ; 135ef (4:75ef)
 .asm_135f4
 	push bc
 	push de
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	pop de
 	ld hl, $20
 	add hl, de
@@ -7060,7 +7060,7 @@ Func_137af: ; 137af (4:77af)
 	rl d
 	sla e
 	rl d
-	ld hl, wcd90
+	ld hl, wMailMessages
 	add hl, de
 	inc hl
 	inc hl
@@ -7089,7 +7089,7 @@ Func_137df: ; 137df (4:77df)
 	rl d
 	sla e
 	rl d
-	ld hl, wcd70
+	ld hl, wRecentCalls
 	add hl, de
 	ld a, [hli]
 	dec a
@@ -7343,7 +7343,7 @@ Func_1396d: ; 1396d (4:796d)
 .asm_1399f
 	call DecompressGFXByIndex_
 	ld de, wOAMAnimation02
-	jp Func_099c
+	jp DeleteOAMAnimationStruct
 
 .asm_139a8
 	ld a, [hJoyNew]
@@ -7353,7 +7353,7 @@ Func_1396d: ; 1396d (4:796d)
 	ld [H_SFX_ID], a
 .asm_139b3
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $4
@@ -7810,7 +7810,7 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	cp $0
 	jr nz, .asm_13cbd
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld bc, $104
 	ld e, $5b
 	call Phone_LoadStdBGMapTileAndAttrLayout
@@ -7827,7 +7827,7 @@ Func_13c8f: ; 13c8f (4:7c8f)
 	ld e, $5b
 	call Phone_LoadStdBGMapTileAndAttrLayout
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld a, $1e
 	ld [wSubroutine], a
 	ret
@@ -8004,7 +8004,7 @@ Func_13dca: ; 13dca (4:7dca)
 	pop de
 	ld b, BANK(sOwnedDenjuuNicknames)
 	call Rom4_GetSRAMBankB
-	ld hl, wOAMAnimationsEnd
+	ld hl, wc3a0
 	ld bc, $6
 	call CopyData
 	jp Rom4_CloseSRAM
@@ -8152,10 +8152,10 @@ Rom4_CloseSRAM: ; 13ef1 (4:7ef1)
 	ld [MBC3SRamEnable], a
 	ret
 
-Func_13ef6: ; 13ef6 (4:7ef6)
+PrintNameOfCallerOrSender: ; 13ef6 (4:7ef6)
 	call GetDenjuuNicknameC_
 	ld hl, wBattlePlayerDenjuuName
-	ld de, wOAMAnimationsEnd
+	ld de, wc3a0
 	call CenterAlignDenjuuName_
 	ld hl, VTilesBG tile $40
 	ld b, $6
@@ -8262,9 +8262,9 @@ Func_13fb5: ; 13fb5 (4:7fb5)
 
 Func_13fc6: ; 13fc6 (4:7fc6)
 	ld de, wOAMAnimation02
-	call Func_099c
+	call DeleteOAMAnimationStruct
 	ld de, wOAMAnimation03
-	jp Func_099c
+	jp DeleteOAMAnimationStruct
 
 Func_13fd2: ; 13fd2 (4:7fd2)
 	check_cgb

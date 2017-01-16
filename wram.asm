@@ -263,6 +263,7 @@ wc47f:: ds 1
 
 wPlayerObjectStruct:: oam_animation_struct wPlayerObjectStruct
 wPartnerDenjuuObjectStruct:: oam_animation_struct wPartnerDenjuuObjectStruct
+wPlayerAndDenjuuObjectStructsEnd::
 
 wc4c0:: ds 1
 wc4c1:: ds 1
@@ -902,7 +903,7 @@ wRTC_DayLo:: ds 1
 wRTC_DayHi:: ds 1
 wShowClockInOverworld:: ds 1
 wc93f:: ds 1
-wc940:: ds 1
+wOverworldPhoneCallCooldown:: ds 1
 wc941:: ds 1
 wc942:: ds 1
 wc943:: ds 1
@@ -1192,7 +1193,7 @@ wcacc:: ds 1
 wcacd:: ds 1
 wcace:: ds 1
 wcacf:: ds 1
-wcad0:: ds 1
+wPhoneIsRinging:: ds 1
 wcad1:: ds 1
 wcad2:: ds 1
 wcad3:: ds 1
@@ -1345,6 +1346,8 @@ wcb64:: ds 1
 wPhoneKeypadCursorPosition:: ds 1
 wcb66:: ds 1
 wPhoneScreenCursorPosition:: ds 1
+wNumMailMessages::
+wNumRecentCalls::
 wNumNotesInCurDMelo:: ds 1
 wDMeloPage:: ds 1
 wcb6a:: ds 1
@@ -1858,39 +1861,10 @@ wcd6c:: ds 1
 wcd6d:: ds 1
 wcd6e:: ds 1
 wcd6f:: ds 1
-wcd70:: ds 1
-wcd71:: ds 1
-wcd72:: ds 1
-wcd73:: ds 1
-wcd74:: ds 1
-wcd75:: ds 1
-wcd76:: ds 1
-wcd77:: ds 1
-wcd78:: ds 1
-wcd79:: ds 1
-wcd7a:: ds 1
-wcd7b:: ds 1
-wcd7c:: ds 1
-wcd7d:: ds 1
-wcd7e:: ds 1
-wcd7f:: ds 1
-wcd80:: ds 1
-wcd81:: ds 1
-wcd82:: ds 1
-wcd83:: ds 1
-wcd84:: ds 1
-wcd85:: ds 1
-wcd86:: ds 1
-wcd87:: ds 1
-wcd88:: ds 1
-wcd89:: ds 1
-wcd8a:: ds 1
-wcd8b:: ds 1
-wcd8c:: ds 1
-wcd8d:: ds 1
-wcd8e:: ds 1
-wcd8f:: ds 1
-wcd90:: ds 1
+
+wRecentCalls:: ds 4 * 8
+
+wMailMessages:: ds 1
 wcd91:: ds 1
 wcd92:: ds 1
 wcd93:: ds 1

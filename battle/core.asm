@@ -2998,7 +2998,7 @@ Func_1561e: ; 1561e (5:561e)
 	ld [wMoveAnimationTimer], a
 .asm_15651
 	ld a, $1
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld c, $6d
 	call StdBattleTextBox
 	ld a, $34

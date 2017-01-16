@@ -152,7 +152,7 @@ Func_2264: ; 2264 (0:2264)
 	call Func_35e0
 	homecall Func_a4f6f, Func_a502a
 	ld a, $0
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, $c
 	ld [wPrevROMBank], a
 	rst Bankswitch
@@ -329,7 +329,7 @@ Func_242b::
 	cp $4
 	jr nz, .asm_2464
 	ld a, $2
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	callba Func_2ccb9
 	call Func_2411
 	ld a, $24

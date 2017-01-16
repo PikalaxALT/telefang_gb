@@ -20,7 +20,7 @@ OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
 	ld a, $0
 	ld [wPhoneCallRingtoneTimer], a
 	ld a, $0
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	ld a, $3
 	ld [wOverworldRingtoneSubroutine], a
 	ret
@@ -46,7 +46,7 @@ OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
 	ld [wPhoneCallRingtoneTimer], a
 	jr nz, .check_picked_up
 	ld a, $0
-	ld [wcad0], a
+	ld [wPhoneIsRinging], a
 	call ResumeNormalMusicIfPhoneIsRinging
 .check_picked_up
 	ld a, [hJoyNew]
