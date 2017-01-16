@@ -115,7 +115,7 @@ OverworldPhonecallCheck: ; a4ba4 (29:4ba4)
 	ld [wPhoneCallSubroutine], a
 	ret
 
-Func_a4c9b: ; a4c9b (29:4c9b)
+CallContact: ; a4c9b (29:4c9b)
 	ld a, [wc912]
 	ld [wCustomSpriteDest], a
 SamplePhoneCallFromStdTextPool: ; a4ca1 (29:4ca1)

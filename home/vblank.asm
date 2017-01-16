@@ -21,7 +21,7 @@ VBlank: ; 2e7 (0:02e7)
 	ei
 	call UpdateSound
 	call HandleOverworldGFX
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr nz, .asm_031c
 	call Func_1f08

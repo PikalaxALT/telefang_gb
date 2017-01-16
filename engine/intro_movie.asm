@@ -54,7 +54,7 @@ Func_8124: ; 8124 (2:4124)
 	call ClearBGWindowAndAttrs
 	call ClearObjectAnimationBuffers
 	ld bc, $30
-	call Func_84c6
+	call IntroMovie_DoubleDecompressGFX
 	ld bc, $3a
 	call DecompressGFXByIndex_
 	xor a
@@ -319,7 +319,7 @@ Func_834b: ; 834b (2:434b)
 Func_835d: ; 835d (2:435d)
 	call ClearObjectAnimationBuffers
 	ld bc, $34
-	call Func_84c6
+	call IntroMovie_DoubleDecompressGFX
 	ld bc, $3e
 	call DecompressGFXByIndex_
 	lb bc, $0, $0
@@ -366,7 +366,7 @@ Func_83b6: ; 83b6 (2:43b6)
 Func_83ce: ; 83ce (2:43ce)
 	call ClearObjectAnimationBuffers
 	ld bc, $36
-	call Func_84c6
+	call IntroMovie_DoubleDecompressGFX
 	lb bc, $0, $0
 	ld e, $d
 	ld a, $1
@@ -405,7 +405,7 @@ Func_8403: ; 8403 (2:4403)
 Func_8423: ; 8423 (2:4423)
 	call ClearObjectAnimationBuffers
 	ld bc, $38
-	call Func_84c6
+	call IntroMovie_DoubleDecompressGFX
 	lb bc, $0, $0
 	ld e, $e
 	ld a, $1
@@ -480,7 +480,7 @@ Func_84b9: ; 84b9 (2:44b9)
 	ld [wcf96], a
 	jp IncrementSubroutine
 
-Func_84c6: ; 84c6 (2:44c6)
+IntroMovie_DoubleDecompressGFX: ; 84c6 (2:44c6)
 	push bc
 	call DecompressGFXByIndex_
 	pop bc

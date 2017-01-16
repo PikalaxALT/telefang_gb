@@ -480,12 +480,12 @@ Func_0704::
 	homecall_memret CheckIfDenjuuSpeciesInAddressBook
 	ret
 
-Func_070c::
+CallContact_::
 	ld a, [wROMBank]
 	push af
-	ld a, BANK(Func_a4c9b)
+	ld a, BANK(CallContact)
 	rst Bankswitch
-	call Func_a4c9b
+	call CallContact
 	pop af
 	ld [wPrevROMBank], a
 	rst Bankswitch

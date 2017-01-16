@@ -1175,7 +1175,7 @@ Func_708c2:
 	jp BattlePrintText
 
 .asm_708d9
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_70915
 	ld a, [wBattleMode]

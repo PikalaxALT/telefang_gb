@@ -1,12 +1,12 @@
 StatsScreen: ; 8b8b (2:4b8b)
 	ld a, [wMoveAnimationSubroutine]
 	jump_table
-	dw Func_8c81
-	dw Func_8cde
-	dw Func_8cf5
-	dw Func_8d7a
-	dw Func_8dbb
-	dw Func_8f2d
+	dw StatsScreen_LoadGFX
+	dw StatsScreen_LoadLayout
+	dw StatsScreen_LoadCurDenjuuDescription
+	dw StatsScreen_InitCursor
+	dw StatsScreen_JoypadAction
+	dw StatsScreen_WaitFadeOut
 	dw LoadStatsScreen
 	dw Func_8e98
 	dw Func_8f1d
@@ -41,7 +41,7 @@ LandmarkNames:
 	db "ぺぺリやま ふもと$" ; Peperi Mountain Foothills
 	db "カクトスいせき$" ; Cactos Ruins
 
-Func_8c81: ; 8c81 (2:4c81)
+StatsScreen_LoadGFX: ; 8c81 (2:4c81)
 	ld bc, $e
 	call DecompressGFXByIndex_
 	ld a, $f0
@@ -87,7 +87,7 @@ asm_8cc7
 	ld [wcb30], a
 	jp NextMoveAnimationSubroutine
 
-Func_8cde: ; 8cde (2:4cde)
+StatsScreen_LoadLayout: ; 8cde (2:4cde)
 	lb bc, $0, $0
 	ld e, $1
 	ld a, $0
@@ -98,7 +98,7 @@ Func_8cde: ; 8cde (2:4cde)
 	call LoadStdBGMapAttrLayout_
 	jp NextMoveAnimationSubroutine
 
-Func_8cf5: ; 8cf5 (2:4cf5)
+StatsScreen_LoadCurDenjuuDescription: ; 8cf5 (2:4cf5)
 	ld a, [wCurDenjuu]
 	ld de, VTilesBG tile $20
 	call GetCurDenjuuKanjiDescription
@@ -111,22 +111,22 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	call ClearString
 	ld a, [wd456]
 	cp $1
-	jr z, .asm_8d20
+	jr z, .battle
 	ld a, [wSubroutine]
 	cp $1
-	jr z, .asm_8d2b
-.asm_8d20
+	jr z, .not_battle
+.battle
 	ld a, [wd496]
 	ld hl, VTilesBG tile $30
 	call PrintStringWithPlayerDenjuuAsBattleUser
-	jr .asm_8d37
+	jr .got_name
 
-.asm_8d2b
+.not_battle
 	ld a, [wCurDenjuu]
 	ld de, DenjuuNames
 	ld bc, VTilesBG tile $30
 	call GetAndPrintName75CenterAlign
-.asm_8d37
+.got_name
 	ld a, [wd499]
 	ld bc, VTilesShared tile $58
 	ld de, Data_1d7928
@@ -139,11 +139,11 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	call PlaceString_
 	ld a, [wcb30]
 	cp $0
-	jr nz, .asm_8d64
+	jr nz, .skip
 	call LoadStatsScreenBGLayout
 	call DrawStatsScreen_Page1
 	call Func_904a
-.asm_8d64
+.skip
 	ld a, [wcb30]
 	add $2
 	ld e, a
@@ -154,18 +154,17 @@ Func_8cf5: ; 8cf5 (2:4cf5)
 	call StartFade_
 	jp NextMoveAnimationSubroutine
 
-Func_8d7a: ; 8d7a (2:4d7a)
+StatsScreen_InitCursor: ; 8d7a (2:4d7a)
 	ld a, $0
 	call PaletteFade_
 	or a
 	ret z
 	ld a, [wd456]
 	cp $1
-	jr z, .asm_8d88
-.asm_8d88
+	jr z, @ + 2
 	ld a, [wd4b0]
 	cp $1
-	jr z, .asm_8db8
+	jr z, .skip
 	ld a, $20
 	ld [wd4ee], a
 	ld a, $d7
@@ -182,10 +181,10 @@ Func_8d7a: ; 8d7a (2:4d7a)
 	call LoadNthStdOBPalette
 	ld a, $1
 	ld [wOBPalUpdate], a
-.asm_8db8
+.skip
 	jp NextMoveAnimationSubroutine
 
-Func_8dbb: ; 8dbb (2:4dbb)
+StatsScreen_JoypadAction: ; 8dbb (2:4dbb)
 	ld a, [wVBlankCounter]
 	and $3
 	jr nz, .asm_8dc8
@@ -194,119 +193,118 @@ Func_8dbb: ; 8dbb (2:4dbb)
 .asm_8dc8
 	ld a, [wd456]
 	cp $1
-	jr z, .asm_8dcf
-.asm_8dcf
+	jr z, @ + 2
 	ld a, [wd4b0]
 	cp $1
-	jr z, .asm_8e1a
+	jr z, .check_right
 	ld a, [wJoyNew]
 	and D_UP
-	jr z, .asm_8df3
+	jr z, .check_down
 	ld a, [wd415]
 	cp $0
-	jr z, .asm_8dea
+	jr z, .wrap_up
 	dec a
 	ld [wd415], a
-	jr .asm_8e0f
+	jr .play_up_down_sfx
 
-.asm_8dea
+.wrap_up
 	ld a, [wd4b0]
 	dec a
 	ld [wd415], a
-	jr .asm_8e0f
+	jr .play_up_down_sfx
 
-.asm_8df3
+.check_down
 	ld a, [wJoyNew]
 	and D_DOWN
-	jr z, .asm_8e1a
+	jr z, .check_right
 	ld a, [wd4b0]
 	ld b, a
 	ld a, [wd415]
 	inc a
 	cp b
-	jr z, .asm_8e0a
+	jr z, .wrap_down
 	ld [wd415], a
-	jr .asm_8e0f
+	jr .play_up_down_sfx
 
-.asm_8e0a
+.wrap_down
 	ld a, $0
 	ld [wd415], a
-.asm_8e0f
+.play_up_down_sfx
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $7
 	ld [wMoveAnimationSubroutine], a
 	ret
 
-.asm_8e1a
+.check_right
 	ld a, [wJoyNew]
 	and D_RIGHT
-	jr z, .asm_8e30
+	jr z, .check_left
 	ld a, [wcb30]
 	inc a
 	cp $3
-	jr nz, .asm_8e2a
+	jr nz, .wrap_right
 	xor a
-.asm_8e2a
+.wrap_right
 	ld [wcb30], a
-	jp Func_8e44
+	jp .play_left_right_sfx
 
-.asm_8e30
+.check_left
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, asm_8e4f
+	jr z, .check_a
 	ld a, [wcb30]
 	cp $0
-	jr nz, .asm_8e40
+	jr nz, .wrap_left
 	ld a, $3
-.asm_8e40
+.wrap_left
 	dec a
 	ld [wcb30], a
-Func_8e44: ; 8e44 (2:4e44)
+.play_left_right_sfx
 	ld a, SFX_02
 	ld [H_SFX_ID], a
 	ld a, $6
 	ld [wMoveAnimationSubroutine], a
 	ret
 
-asm_8e4f
+.check_a
 	ld a, [wcb2b]
 	cp $0
-	jp z, Func_8e64
+	jp z, .check_b
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, Func_8e64
+	jr z, .check_b
 	ld a, $2
 	ld [wcb2b], a
-	jr asm_8e7e
+	jr .play_a_b_sfx
 
-Func_8e64: ; 8e64 (2:4e64)
+.check_b
 	ld a, [wcb2b]
 	cp $0
-	jp z, Func_8e79
+	jp z, .check_a_or_b
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, Func_8e79
+	jr z, .check_a_or_b
 	ld a, SFX_04
 	ld [H_SFX_ID], a
-	jr asm_8e83
+	jr .fade_out
 
-Func_8e79: ; 8e79 (2:4e79)
+.check_a_or_b
 	ld a, [hJoyNew]
 	and A_BUTTON | B_BUTTON
 	ret z
-asm_8e7e
+.play_a_b_sfx
 	ld a, SFX_03
 	ld [H_SFX_ID], a
-asm_8e83
+.fade_out
 	ld a, $4
 	call StartFade_
 	ld a, [wcb2b]
 	cp $0
-	jp nz, Func_8e95
+	jp nz, .wait_fade
 	ld a, $1
 	ld [wd43a], a
-Func_8e95: ; 8e95 (2:4e95)
+.wait_fade
 	jp NextMoveAnimationSubroutine
 
 Func_8e98: ; 8e98 (2:4e98)
@@ -314,7 +312,7 @@ Func_8e98: ; 8e98 (2:4e98)
 	ld e, $8b
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_8eb5
 	ld a, [wSubroutine]
@@ -376,22 +374,22 @@ Func_8f1d: ; 8f1d (2:4f1d)
 	ld [wMoveAnimationSubroutine], a
 	ret
 
-Func_8f2d: ; 8f2d (2:4f2d)
+StatsScreen_WaitFadeOut: ; 8f2d (2:4f2d)
 	ld a, [wcb2b]
 	cp $0
-	jr nz, .asm_8f42
+	jr nz, .wait_fade
 	ld a, [wSubroutine]
 	cp $1
-	jr nz, .asm_8f49
-	ld a, [wcb3f]
+	jr nz, .check_where_to_return
+	ld a, [wLinkMode]
 	cp $1
-	jr z, .asm_8f49
-.asm_8f42
+	jr z, .check_where_to_return
+.wait_fade
 	ld a, $1
 	call PaletteFade_
 	or a
 	ret z
-.asm_8f49
+.check_where_to_return
 	xor a
 	ld [wMoveAnimationSubroutine], a
 	xor a
@@ -400,35 +398,35 @@ Func_8f2d: ; 8f2d (2:4f2d)
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wcb2b]
 	cp $0
-	jr z, .asm_8f6a
+	jr z, .return_check_2
 	ld a, [wSubroutine2]
 	inc a
 	ld [wSubroutine2], a
-	ld a, $c
+	ld a, $c ; InGamePhoneMenu
 	ld [wGameRoutine], a
 	ret
 
-.asm_8f6a
-	ld a, [wcb3f]
+.return_check_2
+	ld a, [wLinkMode]
 	cp $1
-	jr z, .asm_8f80
+	jr z, .link_mode_1
 	cp $2
-	jr z, .asm_8f8b
-	ld a, $6
+	jr z, .link_mode_2
+	ld a, $6 ; StartBattle
 	ld [wGameRoutine], a
 	ld a, $0
 	ld [wBattleSubroutine], a
 	ret
 
-.asm_8f80
-	ld a, $f
+.link_mode_1
+	ld a, $f ; LinkMode
 	ld [wGameRoutine], a
 	ld a, $0
 	ld [wd401], a
 	ret
 
-.asm_8f8b
-	ld a, $f
+.link_mode_2
+	ld a, $f ; LinkMode
 	ld [wGameRoutine], a
 	ld a, $0
 	ld [wd401], a

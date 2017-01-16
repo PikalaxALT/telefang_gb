@@ -2669,7 +2669,7 @@ CheckIfDenjuuSpeciesInAddressBook: ; 753f8 (1d:53f8)
 	ld a, $0
 	ld [wd4b0], a
 .loop
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jr z, .go
 	ld a, [wFirstEmptySlotInAddressBook]

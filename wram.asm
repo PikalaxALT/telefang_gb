@@ -1307,7 +1307,7 @@ wcb3b:: ds 1
 wcb3c:: ds 1
 wcb3d:: ds 1
 wCurOptionHover:: ds 1
-wcb3f:: ds 1
+wLinkMode:: ds 1
 wSoundTestSFXID:: ds 1
 wSoundTestMusicID:: ds 1
 wSoundTestMenuCursor:: ds 1

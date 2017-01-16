@@ -1,27 +1,27 @@
 TitleScreen: ; 893f (2:493f)
 	ld a, [wSubroutine]
 	jump_table
-	dw Func_896f
-	dw Func_899e
-	dw Func_8a1a
-	dw Func_8a2e
-	dw Func_8a36
+	dw TitleScreen_LoadGraphics
+	dw TitleScreen_LoadLayout
+	dw TitleScreen_LoadPalettes
+	dw TitleScreen_FadeIn
+	dw TitleScreen_WaitFadeIn
 	dw TitleScreen_PlayPCM_StartMusic_StartTimer
 	dw TitleScreen_AnimateObjects_WaitButton
-	dw Func_8ac3
-	dw Func_8acd
-	dw Func_8b03
-	dw Func_8b11
-	dw Func_8b1a
-	dw Func_8a2e
-	dw Func_8a36
-	dw Func_8b37
-	dw Func_8ac3
-	dw Func_8b44
-	dw Func_8ac3
-	dw Func_8b59
+	dw TitleScreen_WaitFadeOut
+	dw TitleScreen_GetSaveFileDataAndGoToTopPhoneMenu
+	dw TitleScreen_SaveFileCorrupted
+	dw TitleScreen_SaveFileCorrupted2
+	dw TitleScreen_SaveFileCorrupted3
+	dw TitleScreen_FadeIn
+	dw TitleScreen_WaitFadeIn
+	dw TitleScreen_InvalidSave_WaitButtonThenFadeOut
+	dw TitleScreen_WaitFadeOut
+	dw TitleScreen_InvalidSave_DeleteSaveAndGoToTopPhoneMenu
+	dw TitleScreen_WaitFadeOut
+	dw TitleScreen_StartIntroMovie
 
-Func_896f:
+TitleScreen_LoadGraphics:
 	call ClearBGMapAndAttrs
 	call ClearBGWindowAndAttrs
 	call ClearObjectAnimationBuffers
@@ -40,7 +40,7 @@ Func_896f:
 	call homecall_ret_2e562
 	jp IncrementSubroutine
 
-Func_899e:
+TitleScreen_LoadLayout:
 	lb bc, $0, $0
 	ld e, $c
 	ld a, $0
@@ -51,7 +51,7 @@ Func_899e:
 	call LoadStdBGMapAttrLayout_
 	ld a, $6
 	ld [wOAMAnimation02_TemplateIdx], a
-	ld bc, $4c60
+	lb bc, $4c, $60
 	ld de, wOAMAnimation02
 	call Func_8630
 IF DEF(POWER)
@@ -60,14 +60,14 @@ ELSE
 	ld a, $1c
 ENDC
 	ld [wOAMAnimation05_TemplateIdx], a
-	ld bc, $4840
+	lb bc, $48, $40
 	ld de, wOAMAnimation05
 	call Func_8638
 	ld de, wOAMAnimation03
-	ld bc, $280c
+	lb bc, $28, $0c
 	call Func_8638
 	ld de, wOAMAnimation04
-	ld bc, $780c
+	lb bc, $78, $0c
 	call Func_8638
 	ld a, $9
 	ld [wd411], a
@@ -80,18 +80,18 @@ ENDC
 	ld a, $1d
 	ld [wOAMAnimation06_TemplateIdx], a
 	ld de, wOAMAnimation06
-	ld bc, $2038
+	lb bc, $20, $38
 	call Func_8638
 	ld a, $1e
 	ld [wOAMAnimation07_TemplateIdx], a
 	ld de, wOAMAnimation07
-	ld bc, $8838
+	lb bc, $88, $38
 	call Func_8638
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine
 
-Func_8a1a:
+TitleScreen_LoadPalettes:
 	ld bc, $13
 	call GetCGB_BGLayout_
 	ld bc, $a
@@ -100,12 +100,12 @@ Func_8a1a:
 	ld [wcb2c], a
 	jp IncrementSubroutine
 
-Func_8a2e:
+TitleScreen_FadeIn:
 	ld a, $4
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_8a36:
+TitleScreen_WaitFadeIn:
 	ld a, $2
 	call PaletteFade_
 	or a
@@ -176,37 +176,37 @@ TitleScreen_AnimateObjects_WaitButton:
 	ld [wSubroutine], a
 	ret
 
-Func_8ac3:
+TitleScreen_WaitFadeOut:
 	ld a, $1
 	call PaletteFade_
 	or a
 	ret z
 	jp IncrementSubroutine
 
-Func_8acd:
+TitleScreen_GetSaveFileDataAndGoToTopPhoneMenu:
 	call ClearObjectAnimationBuffers
 	call ValidateSave
 	ld [wSaveFileExists], a
 	cp $0
-	jr z, .asm_8ae1
+	jr z, .save_file_valid
 	cp $1
-	jr z, .asm_8af6
+	jr z, .save_file_invalid
 	jp IncrementSubroutine
 
-.asm_8ae1
+.save_file_valid
 	ld a, [$bffd]
 	or a
-	jr nz, .asm_8aec
+	jr nz, .next_routine
 	ld a, $1
 	ld [wSaveFileExists], a
-.asm_8aec
+.next_routine
 	ld a, $3
 	ld [wGameRoutine], a
 	xor a
 	ld [wSubroutine], a
 	ret
 
-.asm_8af6
+.save_file_invalid
 	call DeleteSaveFile
 	ld a, $3
 	ld [wGameRoutine], a
@@ -214,19 +214,19 @@ Func_8acd:
 	ld [wSubroutine], a
 	ret
 
-Func_8b03:
+TitleScreen_SaveFileCorrupted:
 	ld bc, $0
 	call GetCGB_BGLayout_
 	ld a, $1
 	ld [wBGPalUpdate], a
 	jp IncrementSubroutine
 
-Func_8b11:
+TitleScreen_SaveFileCorrupted2:
 	ld bc, $c
 	call DecompressGFXByIndex_
 	jp IncrementSubroutine
 
-Func_8b1a:
+TitleScreen_SaveFileCorrupted3:
 	lb bc, $0, $0
 	ld e, $5
 	ld a, $0
@@ -240,7 +240,7 @@ Func_8b24: ; 8b24 (2:4b24)
 	call GetCGB_BGLayout_
 	jp IncrementSubroutine
 
-Func_8b37:
+TitleScreen_InvalidSave_WaitButtonThenFadeOut:
 	ld a, [hJoyNew]
 	and A_BUTTON | START
 	ret z
@@ -248,7 +248,7 @@ Func_8b37:
 	call StartFade_
 	jp IncrementSubroutine
 
-Func_8b44:
+TitleScreen_InvalidSave_DeleteSaveAndGoToTopPhoneMenu:
 	call ClearSRAM
 	call DeleteSaveFile
 	ld a, $1
@@ -259,7 +259,7 @@ Func_8b44:
 	ld [wSubroutine], a
 	ret
 
-Func_8b59:
+TitleScreen_StartIntroMovie:
 	ld a, $4
 	ld [wGameRoutine], a
 	xor a

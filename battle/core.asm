@@ -607,7 +607,7 @@ Func_1444c: ; 1444c (5:444c)
 	ret
 
 Func_14460: ; 14460 (5:4460)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr z, .asm_14483
 	ld a, [wBattleSubroutine]
@@ -1029,7 +1029,7 @@ Func_14721: ; 14721 (5:4721)
 
 .asm_14791
 	call CopyPlayerDenjuuNameToBattleUserName
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jp z, Func_147bb
 	ld a, [wd458]
@@ -1311,7 +1311,7 @@ Func_1492f: ; 1492f (5:492f)
 .asm_1499f
 	ld a, [wCurDenjuuBuffer]
 	call Func_142cd
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jp z, Func_149cd
 	ld a, [wd458]
@@ -1443,7 +1443,7 @@ asm_14a9f
 
 Func_14aad: ; 14aad (5:4aad)
 	call BattlePrintText
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr z, .asm_14abf
 	ld a, [wMoveAnimationTimer]
@@ -1491,7 +1491,7 @@ Func_14af8: ; 14af8 (5:4af8)
 	ret
 
 Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .check_2
 	ld a, [wCurDenjuuBufferField0x0c]
@@ -1587,7 +1587,7 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 
 Battle_MenuSelection: ; 14bc6 (5:4bc6)
 	call Func_3cd0
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .check_a_button
 	ld a, [hJoyNew]
@@ -1636,7 +1636,7 @@ Battle_MenuSelection: ; 14bc6 (5:4bc6)
 	ret
 
 .check_b_button
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	ret z
 	ld a, [hJoyNew]
@@ -2287,7 +2287,7 @@ Func_150f5: ; 150f5 (5:50f5)
 	ret
 
 Func_1510a: ; 1510a (5:510a)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jr z, .asm_15149
 	call Func_3eee
@@ -2500,7 +2500,7 @@ Func_1528c: ; 1528c (5:528c)
 	ret
 
 Func_15292: ; 15292 (5:5292)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr z, .asm_152c0
 	call Func_3eee
@@ -2786,7 +2786,7 @@ Func_1545f: ; 1545f (5:545f)
 	ret
 
 Func_15489: ; 15489 (5:5489)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jp z, Func_15606
 	ld a, [BattleResults_CurBattleDenjuu]
@@ -3027,10 +3027,10 @@ Func_15661: ; 15661 (5:5661)
 	ret
 
 Func_15683: ; 15683 (5:5683)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jp z, Func_157ef
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr z, .asm_156ae
 	call BattlePrintText
@@ -3220,7 +3220,7 @@ Func_157fb: ; 157fb (5:57fb)
 
 Func_15810: ; 15810 (5:5810)
 	call Func_142c1
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr z, .asm_1583e
 	call Func_3eee
@@ -3418,7 +3418,7 @@ Func_15810: ; 15810 (5:5810)
 	ret
 
 Func_159bc: ; 159bc (5:59bc)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr nz, .asm_159cf
 	ld a, [hJoyLast]
@@ -3750,7 +3750,7 @@ Func_15c56: ; 15c56 (5:5c56)
 	ld [wWhichBattleMenuCursor], a
 	call Func_3cd0
 asm_15c5e
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jp z, Func_15cd6
 	ld a, [wd458]
@@ -4630,7 +4630,7 @@ Func_16318: ; 16318 (5:6318)
 Func_16348: ; 16348 (5:6348)
 	xor a
 	ld [wBattleSubroutine], a
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_16356
 	jp IncrementSubroutine
@@ -4643,7 +4643,7 @@ Func_16348: ; 16348 (5:6348)
 	ret
 
 Battle_TryToRun: ; 16360 (5:6360)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jp z, Func_163d0
 	ld a, [wBattleMode]
@@ -5320,7 +5320,7 @@ Func_16801: ; 16801 (5:6801)
 	jp Func_168d0
 
 .asm_1680c
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jr z, .asm_1682b
 	call Func_3eee
@@ -5429,7 +5429,7 @@ Func_168d0: ; 168d0 (5:68d0)
 	ret
 
 Func_168d6: ; 168d6 (5:68d6)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jp z, Func_168ed
 	ld hl, wdb00
@@ -5445,7 +5445,7 @@ Func_168ed: ; 168ed (5:68ed)
 	call Func_14340
 	cp $0
 	ret nz
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jp z, Func_1697c
 	call Func_3eee
@@ -6583,7 +6583,7 @@ Func_1717f: ; 1717f (5:717f)
 	ret
 
 Func_17190: ; 17190 (5:7190)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr z, asm_171c6
 	call BattlePrintText
@@ -6964,7 +6964,7 @@ Func_1745b: ; 1745b (5:745b)
 	ret
 
 asm_17466
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, Func_17478
 	ld c, $72
@@ -7253,7 +7253,7 @@ Func_17612: ; 17612 (5:7612)
 	call Func_053e
 	ld a, $1
 	ld [wOBPalUpdate], a
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr nz, .asm_1767d
 	ld a, [wBattleAnimations]
@@ -7300,7 +7300,7 @@ Func_17689: ; 17689 (5:7689)
 	ret
 
 Func_176b9: ; 176b9 (5:76b9)
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jp z, Func_17705
 	ld a, [wd458]

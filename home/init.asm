@@ -54,7 +54,7 @@ Start::
 	ld a, $0b
 	ld [rIE], a
 	xor a
-	ld [wcb3f], a
+	ld [wLinkMode], a
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a
@@ -81,7 +81,7 @@ Start::
 	inc a
 	ld [wVBlankCounter], a
 	call SoftResetCheck
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	or a
 	jr z, .skip2
 	call Func_1dbc

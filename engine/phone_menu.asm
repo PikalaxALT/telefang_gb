@@ -99,14 +99,14 @@ Func_100bd: ; 100bd (4:40bd)
 .asm_100cd
 	ld a, b
 	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jr z, .asm_100dd
 	ld a, $2
 	ld [wCurrentPlayerOrDenjuuNameBufferLength], a
 .asm_100dd
 	xor a
-	ld [wcb3f], a
+	ld [wLinkMode], a
 	ld [wPhoneCallSubroutine], a
 	call Func_11927
 	jp IncrementSubroutine
@@ -175,7 +175,7 @@ TopPhone_JoypadAction: ; 1013b (4:413b)
 	and A_BUTTON
 	jp z, .no_action
 	xor a
-	ld [wcb3f], a
+	ld [wLinkMode], a
 	ld a, [wCurrentPlayerOrDenjuuNameBufferLength]
 	cp $0
 	jr z, .continue
@@ -191,7 +191,7 @@ TopPhone_JoypadAction: ; 1013b (4:413b)
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld a, $1
-	ld [wcb3f], a
+	ld [wLinkMode], a
 	xor a
 	ld [wSubroutine], a
 	ld [wBattleSubroutine], a
@@ -601,7 +601,7 @@ Func_10452: ; 10452 (4:4452)
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld d, $c
-	call Func_11a80
+	call PhoneMenu_LoadCurName
 	ld a, [wRecruitedDenjuuSpecies]
 	call Func_13d46
 	ld a, $c
@@ -670,7 +670,7 @@ Phone_Save: ; 1057d (4:457d)
 	ld [wWY], a
 	ld [wPlayerNameEntryKeypadLayout], a
 	ld [wFontPaletteMode], a
-	ld a, [wcb3f]
+	ld a, [wLinkMode]
 	cp $0
 	jr z, .asm_105b0
 	ld b, $0
@@ -1282,20 +1282,20 @@ InGamePhone_AddressBook: ; 10a49 (4:4a49)
 	call UpdatePhoneClockDisplay
 	ld a, [wSubroutine2]
 	jump_table
-	dw Func_10a86
-	dw Func_10a9c
-	dw Func_10ad6
-	dw Func_10afc
+	dw AddressBook_LoadGFX
+	dw AddressBook_LoadLastDenjuuPic
+	dw AddressBook_LoadTileLayouts
+	dw AddressBook_JoypadAction
 	dw Func_10b92
 	dw Func_10bbd
 	dw Func_10bc0
-	dw Func_10bce
+	dw AddressBook_LoadCurrentEntry
 	dw Func_10bf3
 	dw Func_10c47
 	dw Func_13f47
 	dw Func_13f4e
 	dw Func_10c4a
-	dw Func_10c90
+	dw AddressBook_CallContact
 	dw Func_10cb4
 	dw Func_10cc9
 	dw Func_10d30
@@ -1307,44 +1307,43 @@ InGamePhone_AddressBook: ; 10a49 (4:4a49)
 	dw Func_10e59
 	dw Func_10e5a
 
-Func_10a86:
+AddressBook_LoadGFX:
 	call Func_1236b
 	ld bc, $12
 	check_cgb
-	jr z, .asm_10a96
+	jr z, .load_layout
 	ld bc, $57
-.asm_10a96
+.load_layout
 	call DecompressGFXByIndex_
 	jp IncrementSubroutine2
 
-Func_10a9c:
+AddressBook_LoadLastDenjuuPic:
 	ld a, [wcd24]
 	ld b, a
 	ld a, [wLastDenjuuSeenOrCaught]
 	dec a
 	cp b
-	jr nc, .asm_10aae
+	jr nc, .skip_dec
 	ld a, [wcd24]
 	dec a
 	ld [wcd24], a
-.asm_10aae
+.skip_dec
 	ld a, [wcd24]
-	call Func_12473
+	call GetSpeciesFromAddressBookWRAMBuffer
 	ld c, $0
 	ld de, VTilesBG tile $40
 	call LoadDenjuuPic_
 	ld a, [wcd24]
-	call Func_12473
+	call GetSpeciesFromAddressBookWRAMBuffer
 	call GetDenjuuPalette_Pal7
-.asm_10ac5
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld a, [wcd24]
-	call Func_12473
-	call Func_11a35
+	call GetSpeciesFromAddressBookWRAMBuffer
+	call PhoneMenu_LoadCurSpeciesName
 	jp IncrementSubroutine2
 
-Func_10ad6:
+AddressBook_LoadTileLayouts:
 	ld e, $2e
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, $4
@@ -1360,25 +1359,25 @@ Func_10ad6:
 	ld [wSpriteUpdatesEnabled], a
 	jp IncrementSubroutine2
 
-Func_10afc:
-	call Func_132d9
+AddressBook_JoypadAction:
+	call UpdateAddressBookCursors
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wLastDenjuuSeenOrCaught]
 	dec a
 	cp $0
-	jr z, .asm_10b2f
+	jr z, .check_left
 	ld a, [wJoyNew]
 	and D_RIGHT
-	jr z, .asm_10b2f
+	jr z, .check_left
 	ld a, [wLastDenjuuSeenOrCaught]
 	dec a
 	ld b, a
 	ld a, [wcd24]
 	cp b
-	jr nz, .asm_10b20
+	jr nz, .wrap_right
 	ld a, $ff
-.asm_10b20
+.wrap_right
 	inc a
 	ld [wcd24], a
 	ld a, $1
@@ -1387,19 +1386,19 @@ Func_10afc:
 	ld [H_SFX_ID], a
 	ret
 
-.asm_10b2f
+.check_left
 	ld a, [wLastDenjuuSeenOrCaught]
 	dec a
 	cp $0
-	jr z, .asm_10b57
+	jr z, .check_b
 	ld a, [wJoyNew]
 	and D_LEFT
-	jr z, .asm_10b57
+	jr z, .check_b
 	ld a, [wcd24]
 	cp $0
-	jr nz, .asm_10b48
+	jr nz, .wrap_left
 	ld a, [wLastDenjuuSeenOrCaught]
-.asm_10b48
+.wrap_left
 	dec a
 	ld [wcd24], a
 	ld a, $1
@@ -1408,35 +1407,35 @@ Func_10afc:
 	ld [H_SFX_ID], a
 	ret
 
-.asm_10b57
+.check_b
 	ld a, [hJoyNew]
 	and B_BUTTON
-	jr z, .asm_10b70
+	jr z, .check_a
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, SFX_04
 	ld [H_SFX_ID], a
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld a, $a
 	ld [wSubroutine2], a
 	ret
 
-.asm_10b70
+.check_a
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_10b91
+	jr z, .no_action
 	ld a, SFX_03
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	xor a
 	ld [wPhoneScreenCursorPosition], a
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld a, $4
 	call StartFade_
 	ld a, $7
 	ld [wSubroutine2], a
-.asm_10b91
+.no_action
 	ret
 
 Func_10b92:
@@ -1467,7 +1466,7 @@ Func_10bc0:
 	ld [wSpriteUpdatesEnabled], a
 	jp Func_131a0
 
-Func_10bce:
+AddressBook_LoadCurrentEntry:
 	ld a, $1
 	call PaletteFade_
 	or a
@@ -1555,7 +1554,7 @@ Func_10c4a:
 	call Func_13fb5
 	jp IncrementSubroutine2
 
-Func_10c90:
+AddressBook_CallContact:
 	ld a, $0
 	call PaletteFade_
 	or a
@@ -1567,7 +1566,7 @@ Func_10c90:
 	ld [wca65], a
 	ld a, $a0
 	ld [wTextBoxStartTile], a
-	call Func_070c
+	call CallContact_
 	ld d, $c
 	call AnchorMapAndLoadTextPointer_
 	jp IncrementSubroutine2
@@ -1748,7 +1747,7 @@ Func_10dec:
 	ret
 
 .asm_10e2e
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -1896,7 +1895,7 @@ Func_10f4d:
 	ld a, [wcb6f]
 	call GetS1B100PlusA
 	ld a, b
-	call Func_11a59
+	call PhoneMenu_LoadCurItemName
 	ld e, $31
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	lb bc, 1, 13
@@ -1962,7 +1961,7 @@ Func_10f82:
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld a, $7
 	ld [wSubroutine2], a
 	ret
@@ -1979,7 +1978,7 @@ Func_10f82:
 	ld [wc90d], a
 	ld a, $4
 	call StartFade_
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld a, $17
 	ld [wSubroutine], a
 	xor a
@@ -2278,7 +2277,7 @@ Func_11241: ; 11241 (4:5241)
 	ld [wca65], a
 	ld a, $a0
 	ld [wTextBoxStartTile], a
-	call Func_070c
+	call CallContact_
 	ld d, $c
 	call AnchorMapAndLoadTextPointer_
 	jp IncrementSubroutine2
@@ -2338,7 +2337,7 @@ Func_112d7: ; 112d7 (4:52d7)
 Func_112d8: ; 112d8 (4:52d8)
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	jp IncrementSubroutine2
 
 InGamePhone_Mail:
@@ -2484,7 +2483,7 @@ Func_113f4: ; 113f4 (4:53f4)
 Func_1140c: ; 1140c (4:540c)
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	jp IncrementSubroutine2
 
 INCLUDE "engine/denjuudex.asm"
@@ -2830,7 +2829,7 @@ asm_11a20
 	jr nz, asm_11a20
 	ret
 
-Func_11a35: ; 11a35 (4:5a35)
+PhoneMenu_LoadCurSpeciesName: ; 11a35 (4:5a35)
 	ld [wNamedObjectIndexBuffer], a
 	ld hl, VTilesBG tile $78
 	ld b, $8
@@ -2844,9 +2843,9 @@ Func_11a35: ; 11a35 (4:5a35)
 	ld hl, DenjuuNames
 	call Get8CharName75
 	ld d, $c
-	jp Func_11a80
+	jp PhoneMenu_LoadCurName
 
-Func_11a59: ; 11a59 (4:5a59)
+PhoneMenu_LoadCurItemName: ; 11a59 (4:5a59)
 	ld [wNamedObjectIndexBuffer], a
 	ld hl, VTilesBG tile $78
 	ld b, $8
@@ -2861,17 +2860,17 @@ Func_11a59: ; 11a59 (4:5a59)
 	ld hl, ItemNames
 	call Get8CharName0B
 	ld d, $b
-	jp Func_11a80
+	jp PhoneMenu_LoadCurName
 
-Func_11a80: ; 11a80 (4:5a80)
+PhoneMenu_LoadCurName: ; 11a80 (4:5a80)
 	push de
 	ld hl, wPlayerNameEntryBuffer2
 	ld b, $9
-.asm_11a86
+.empty
 	ld a, "$"
 	ld [hli], a
 	dec b
-	jr nz, .asm_11a86
+	jr nz, .empty
 	ld hl, wStringBuffer
 	ld de, wPlayerNameEntryBuffer2
 	call CenterAlignDenjuuName_
@@ -4314,7 +4313,7 @@ Func_12426: ; 12426 (4:6426)
 	jr nz, .loop
 	jp Rom4_CloseSRAM
 
-Func_12473: ; 12473 (4:6473)
+GetSpeciesFromAddressBookWRAMBuffer: ; 12473 (4:6473)
 	ld e, a
 	ld d, $0
 	ld hl, wDMeloBuffer
@@ -5383,7 +5382,7 @@ Func_12b2b: ; 12b2b (4:6b2b)
 	ld d, $0
 	add hl, de
 	ld a, [hl]
-	add $16
+	add SFX_16
 	ld [H_SFX_ID], a
 	ld a, [wPhoneScreenCursorPosition]
 	inc a
@@ -5914,7 +5913,7 @@ OptionsMenuJoyAction: ; 12e00 (4:6e00)
 	ld a, SFX_04
 	ld [H_SFX_ID], a
 .quit
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	jp IncrementSubroutine2
@@ -5991,7 +5990,7 @@ Func_12f59: ; 12f59 (4:6f59)
 	ld a, MUSIC_NONE
 	call GetMusicBank
 	ld [H_MusicID], a
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	jp IncrementSubroutine2
 
 .check_b
@@ -6097,7 +6096,7 @@ Func_13028: ; 13028 (4:7028)
 	ld [H_SFX_ID], a
 	ld e, $2d
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld hl, VTilesBG tile $40
 	ld b, $20
 	call PhoneMenu_FillTilesWithHue01IfCGBElseHue02
@@ -6453,7 +6452,7 @@ Func_132b0:
 	call GetPhoneNumber_
 	jp Func_12aef
 
-Func_132d9: ; 132d9 (4:72d9)
+UpdateAddressBookCursors: ; 132d9 (4:72d9)
 	ld a, $40
 	ld [wOAMAnimation02_XCoord], a
 	ld a, $8
@@ -7783,7 +7782,7 @@ Func_13c53: ; 13c53 (4:7c53)
 	ld [wcb22], a
 	dec c
 	jr nz, .asm_13c60
-	jp Func_070c
+	jp CallContact_
 
 .asm_13c75
 	ld a, [wcb22]
@@ -8133,7 +8132,7 @@ Func_13eb5: ; 13eb5 (4:7eb5)
 	ld a, [wDexCurDenjuu]
 	call GetDenjuuPalette_Pal7
 	ld a, [wDexCurDenjuu]
-	jp Func_11a35
+	jp PhoneMenu_LoadCurSpeciesName
 
 .asm_13ed3
 	ld a, $ae
@@ -8143,7 +8142,7 @@ Func_13eb5: ; 13eb5 (4:7eb5)
 	ld a, $ae
 	call GetDenjuuPalette_Pal7
 	ld a, $ae
-	jp Func_11a35
+	jp PhoneMenu_LoadCurSpeciesName
 
 Rom4_GetSRAMBankB: ; 13ee7 (4:7ee7)
 	enable_sram
@@ -8264,7 +8263,7 @@ Func_13fb5: ; 13fb5 (4:7fb5)
 .asm_13fc3
 	jp Rom4_CloseSRAM
 
-Func_13fc6: ; 13fc6 (4:7fc6)
+PhoneMenu_DeleteCursorObjects2and3: ; 13fc6 (4:7fc6)
 	ld de, wOAMAnimation02
 	call DeleteOAMAnimationStruct
 	ld de, wOAMAnimation03

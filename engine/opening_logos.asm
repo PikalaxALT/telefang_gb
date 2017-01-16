@@ -323,7 +323,7 @@ SoftReset: ; 9573 (2:5573)
 	ld [wSCY], a
 	ld [wWX], a
 	ld [wWY], a
-	ld [wcb3f], a
+	ld [wLinkMode], a
 	xor a
 	ld [rVBK], a
 	ld [rSVBK], a
@@ -342,7 +342,7 @@ SoftReset: ; 9573 (2:5573)
 	ld a, $b
 	ld [rIE], a
 	xor a
-	ld [wcb3f], a
+	ld [wLinkMode], a
 	ld a, $1
 	ld [wBGPalUpdate], a
 	ld [wOBPalUpdate], a

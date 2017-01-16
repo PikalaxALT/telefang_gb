@@ -92,7 +92,7 @@ DexMainScreenJoypadAction: ; 1147c (4:547c)
 	call Phone_LoadPhoneScreenBGMapTileAndAttrLayout
 	ld a, SFX_04
 	ld [H_SFX_ID], a
-	call Func_13fc6
+	call PhoneMenu_DeleteCursorObjects2and3
 	ld a, $a
 	ld [wSubroutine2], a
 	ret
