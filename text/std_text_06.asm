@@ -1,101 +1,101 @@
 StdTextPointers_06:
-	dw Text_1000b0
-	dw Text_1000d5
-	dw Text_100120
-	dw Text_100158
-	dw Text_100196
-	dw Text_1001b7
-	dw Text_1001ed
-	dw Text_100210
-	dw Text_10023d
-	dw Text_100258
-	dw Text_100283
-	dw Text_1002b0
-	dw Text_1002e5
-	dw Text_100317
-	dw Text_100341
-	dw Text_10036a
-	dw Text_100389
-	dw Text_1003a0
-	dw Text_1003d2
-	dw Text_1003f6
-	dw Text_100420
-	dw Text_100444
-	dw Text_100468
-	dw Text_10047b
-	dw Text_100498
-	dw Text_1004bb
-	dw Text_1004e3
-	dw Text_1004fd
-	dw Text_10050b
-	dw Text_100526
-	dw Text_100549
-	dw Text_100570
-	dw Text_100589
-	dw Text_1005b5
-	dw Text_1005e8
-	dw Text_100613
-	dw Text_100644
-	dw Text_100691
-	dw Text_1006a1
-	dw Text_1006c5
-	dw Text_1006df
-	dw Text_1006f9
-	dw Text_100724
-	dw Text_100752
-	dw Text_100777
-	dw Text_10079e
-	dw Text_1007c0
-	dw Text_100803
-	dw Text_100829
-	dw Text_10084f
-	dw Text_100875
-	dw Text_1008a9
-	dw Text_1008d3
-	dw Text_10090b
-	dw Text_100931
-	dw Text_10096a
-	dw Text_10097e
-	dw Text_1009ae
-	dw Text_1009cf
-	dw Text_1009e4
-	dw Text_100a0c
-	dw Text_100a28
-	dw Text_100a54
-	dw Text_100a83
-	dw Text_100aa5
-	dw Text_100ad8
-	dw Text_100b08
-	dw Text_100b2c
-	dw Text_100b4b
-	dw Text_100b73
-	dw Text_100b9b
-	dw Text_100bcf
-	dw Text_100bef
-	dw Text_100c28
-	dw Text_100c4d
-	dw Text_100c79
-	dw Text_100c9d
-	dw Text_100ccf
-	dw Text_100cf0
-	dw Text_100d18
-	dw Text_100d3e
-	dw Text_100d71
-	dw Text_100da3
-	dw Text_100dbc
-	dw Text_100dee
-	dw Text_100e1a
-	dw Text_100e44
-	dw Text_100e70
+	dw StdText_06_00
+	dw StdText_06_01
+	dw StdText_06_02
+	dw StdText_06_03
+	dw StdText_06_04
+	dw StdText_06_05
+	dw StdText_06_06
+	dw StdText_06_07
+	dw StdText_06_08
+	dw StdText_06_09
+	dw StdText_06_0a
+	dw StdText_06_0b
+	dw StdText_06_0c
+	dw StdText_06_0d
+	dw StdText_06_0e
+	dw StdText_06_0f
+	dw StdText_06_10
+	dw StdText_06_11
+	dw StdText_06_12
+	dw StdText_06_13
+	dw StdText_06_14
+	dw StdText_06_15
+	dw StdText_06_16
+	dw StdText_06_17
+	dw StdText_06_18
+	dw StdText_06_19
+	dw StdText_06_1a
+	dw StdText_06_1b
+	dw StdText_06_1c
+	dw StdText_06_1d
+	dw StdText_06_1e
+	dw StdText_06_1f
+	dw StdText_06_20
+	dw StdText_06_21
+	dw StdText_06_22
+	dw StdText_06_23
+	dw StdText_06_24
+	dw StdText_06_25
+	dw StdText_06_26
+	dw StdText_06_27
+	dw StdText_06_28
+	dw StdText_06_29
+	dw StdText_06_2a
+	dw StdText_06_2b
+	dw StdText_06_2c
+	dw StdText_06_2d
+	dw StdText_06_2e
+	dw StdText_06_2f
+	dw StdText_06_30
+	dw StdText_06_31
+	dw StdText_06_32
+	dw StdText_06_33
+	dw StdText_06_34
+	dw StdText_06_35
+	dw StdText_06_36
+	dw StdText_06_37
+	dw StdText_06_38
+	dw StdText_06_39
+	dw StdText_06_3a
+	dw StdText_06_3b
+	dw StdText_06_3c
+	dw StdText_06_3d
+	dw StdText_06_3e
+	dw StdText_06_3f
+	dw StdText_06_40
+	dw StdText_06_41
+	dw StdText_06_42
+	dw StdText_06_43
+	dw StdText_06_44
+	dw StdText_06_45
+	dw StdText_06_46
+	dw StdText_06_47
+	dw StdText_06_48
+	dw StdText_06_49
+	dw StdText_06_4a
+	dw StdText_06_4b
+	dw StdText_06_4c
+	dw StdText_06_4d
+	dw StdText_06_4e
+	dw StdText_06_4f
+	dw StdText_06_50
+	dw StdText_06_51
+	dw StdText_06_52
+	dw StdText_06_53
+	dw StdText_06_54
+	dw StdText_06_55
+	dw StdText_06_56
+	dw StdText_06_57
 
-Text_1000b0:
+StdText_06_00:
 	db "あそこのやしき どうやら"
 	line "へイサされたらしいダ"
 	line "もうはいれないんダね"
 	line ""
 	txfn 0
 
-Text_1000d5:
+StdText_06_01:
 	db "パパルナこの さわぎの"
 	line "しんそうをきいたよ"
 	line "あるオトコのコが"
@@ -104,14 +104,14 @@ Text_1000d5:
 	line "どんなオトコのコなんだろうね"
 	txfn 0
 
-Text_100120:
+StdText_06_02:
 	db "デンジュウカイのサワギが"
 	line "おさまったら パパルナこに"
 	line "ヒトがこなくなってしまったダー"
 	line "ちょっと さびしいダね"
 	txfn 0
 
-Text_100158:
+StdText_06_03:
 	db "むらの いろんなところに"
 	line "いろんなアイテムが"
 	line "おいてあるんだ"
@@ -120,47 +120,47 @@ Text_100158:
 	line ""
 	txfn 0
 
-Text_100196:
+StdText_06_04:
 	db "どうだい?"
 	line "デンジュウたちの せいかくは"
 	line "もうつかんだかい?"
 	line ""
 	txfn 0
 
-Text_1001b7:
+StdText_06_05:
 	db "このデンジュウカイには"
 	line "こたいすうが すくない"
 	line "デンジュウも いるんだよ"
 	line "このちかくにも いたリして.."
 	txfn 0
 
-Text_1001ed:
+StdText_06_06:
 	db "デンジュウカイも やっと"
 	line "おちつきを とリもどしたね"
 	line "よかったよ"
 	line ""
 	txfn 0
 
-Text_100210:
+StdText_06_07:
 	db "くろいかげのような ジケンが"
 	line "ないと こんなへんきょうには"
 	line "だれもこないダねぇ..."
 	line ""
 	txfn 0
 
-Text_10023d:
+StdText_06_08:
 	db "パパルナこは やっぱリ"
 	line "しずかなところダねぇ..."
 	txfn 0
 
-Text_100258:
+StdText_06_09:
 	db "このデンジュウカイをすくった"
 	line "キミこそが ほんとうの"
 	line "『Tファンガー』だよ!!!"
 	line ""
 	txfn 0
 
-Text_100283:
+StdText_06_0a:
 	db "あーっ!"
 	line "サイキョウTファンガーの"
 	line "『"
@@ -169,7 +169,7 @@ Text_100283:
 	line "サインちょうだい サイン!!"
 	txfn 0
 
-Text_1002b0:
+StdText_06_0b:
 	db "『ぺぺリやま』で"
 	line "はっくつさぎょうが"
 	line "おこなえるようになったよ"
@@ -178,7 +178,7 @@ Text_1002b0:
 	line ""
 	txfn 0
 
-Text_1002e5:
+StdText_06_0c:
 	db "あー キミは"
 	line "アンテナのきを もとに"
 	line "もどしてくれた ニンゲンじゃ"
@@ -187,153 +187,153 @@ Text_1002e5:
 	line ""
 	txfn 0
 
-Text_100317:
+StdText_06_0d:
 	db "デンジュウカイが やっと"
 	line "もとにもどったよ"
 	line "これからも なかよくやって"
 	line "いこうね"
 	txfn 0
 
-Text_100341:
+StdText_06_0e:
 	db "トロンコむらだけじゃなくて"
 	line "デンジュウカイをすくって"
 	line "くれたんだね"
 	line "あリがとう"
 	txfn 0
 
-Text_10036a:
+StdText_06_0f:
 	db "デンジュウカイさいきょうの"
 	line "『Tファンガー』ってキミだろ?"
 	txfn 0
 
-Text_100389:
+StdText_06_10:
 	db "ネジロとネタロは ゲンキに"
 	line "やってるかな?"
 	txfn 0
 
-Text_1003a0:
+StdText_06_11:
 	db "まちがいデンワも"
 	line "かかってこなくなったし"
 	line "アクマデンジュウはしずかに"
 	line "なったし いうことはないね"
 	txfn 0
 
-Text_1003d2:
+StdText_06_12:
 	db "やっぱリ ケイタイがないと"
 	line "せいかつできないよねー"
 	line "もしもーし!?"
 	line ""
 	txfn 0
 
-Text_1003f6:
+StdText_06_13:
 	db "ケイタイのしゅるいって"
 	line "けっこうあるらしいんだよ"
 	line "どんなモノなのか みたいよね"
 	line ""
 	txfn 0
 
-Text_100420:
+StdText_06_14:
 	db "へビぐみのデンジュウって"
 	line "いがいに いいヤツだったリ"
 	line "するんだよー"
 	line ""
 	txfn 0
 
-Text_100444:
+StdText_06_15:
 	db "アンテナのきは すごく"
 	line "ちょうしがいいよ"
 	line "これも キミのおかげだね"
 	line ""
 	txfn 0
 
-Text_100468:
+StdText_06_16:
 	db "あー "
 	TX_CALL wPlayerName
 	db "くん"
 	line "きてくれたんだー"
 	txfn 0
 
-Text_10047b:
+StdText_06_17:
 	db "ボクと おなじデンジュウは"
 	line "もうトモダチにしてるかい?"
 	txfn 0
 
-Text_100498:
+StdText_06_18:
 	db "バーランは へビぐみと"
 	line "トリぐみが なかよく"
 	line "くらすところなのさ"
 	line ""
 	txfn 0
 
-Text_1004bb:
+StdText_06_19:
 	db "なかなおリして すぐは"
 	line "ギクシャクしてたけど"
 	line "いまじゃ すっかリなかよしさ"
 	line ""
 	txfn 0
 
-Text_1004e3:
+StdText_06_1a:
 	db "さばくのデンジュウは"
 	line "すベてトモダチにしたかい?"
 	txfn 0
 
-Text_1004fd:
+StdText_06_1b:
 	db "わきミズは おいしいよね"
 	txfn 0
 
-Text_10050b:
+StdText_06_1c:
 	db "トロンコむらのデンジュウは"
 	line "すベてトモダチにした?"
 	txfn 0
 
-Text_100526:
+StdText_06_1d:
 	db "トリぐみ へビぐみの"
 	line "なかのよさは"
 	line "デンジュウカイでもユウメイさ"
 	line ""
 	txfn 0
 
-Text_100549:
+StdText_06_1e:
 	db "トリぐみのヤツって"
 	line "いいヤツが おおいんだよ"
 	line "なかなおリできて よかった"
 	line ""
 	txfn 0
 
-Text_100570:
+StdText_06_1f:
 	db "へビぐみとは ミズを"
 	line "わけあって くらしてるよ"
 	txfn 0
 
-Text_100589:
+StdText_06_20:
 	db "トリぐみと へビぐみが"
 	line "なかよくなっても"
 	line "オレは ここにたって"
 	line "みんなを みてるのさ"
 	txfn 0
 
-Text_1005b5:
+StdText_06_21:
 	db "デンジュウカイは やっぱリ"
 	line "あんしんして あるけないとね"
 	line "これから ボクもトモダチを"
 	line "ふやすぞー!"
 	txfn 0
 
-Text_1005e8:
+StdText_06_22:
 	db "うみのデンジュウって"
 	line "おおきいけど そんなにこわく"
 	line "ないんだってね"
 	line "ゴカイしてたよ"
 	txfn 0
 
-Text_100613:
+StdText_06_23:
 	db "デンジュウは うまく"
 	line "つかいこなせてるかい?"
 	line "あいしょうも かんがえて"
 	line "テレファングしないとね"
 	txfn 0
 
-Text_100644:
+StdText_06_24:
 	db "いろんなところにすんでる"
 	line "デンジュウをトモダチにして"
 	line "どんなジョウキョウにも"
@@ -342,63 +342,63 @@ Text_100644:
 	line "よベないかもね"
 	txfn 0
 
-Text_100691:
+StdText_06_25:
 	db "ここは『トロンコむら』だプニ"
 	txfn 0
 
-Text_1006a1:
+StdText_06_26:
 	db "トリぐみのおさも"
 	line "へビぐみのおさも すごいよ"
 	line "もちろん キミもね!"
 	line ""
 	txfn 0
 
-Text_1006c5:
+StdText_06_27:
 	db "イーリスにいるデンジュウは"
 	line "トモダチにしたかい?"
 	txfn 0
 
-Text_1006df:
+StdText_06_28:
 	db "イーリスへようこそ!"
 	line "ここのうみはキレイですよ!"
 	txfn 0
 
-Text_1006f9:
+StdText_06_29:
 	db "キミのウワサは きいてるよ"
 	line "すごいTファンガーなんだってね"
 	line "ボクのもくひょうだよ"
 	line ""
 	txfn 0
 
-Text_100724:
+StdText_06_2a:
 	db "デンジュウカイのサワギが"
 	line "おさまったから"
 	line "いろんなところへ いけるように"
 	line "なったダスよー"
 	txfn 0
 
-Text_100752:
+StdText_06_2b:
 	db "アナタが サイキョウの"
 	line "Tファンガーだなんて"
 	line "なんだか ウソくさーい"
 	line ""
 	txfn 0
 
-Text_100777:
+StdText_06_2c:
 	db "クリノンむらにいる"
 	line "デンジュウたちとは もう"
 	line "トモダチに なったダスか?"
 	line ""
 	txfn 0
 
-Text_10079e:
+StdText_06_2d:
 	db "ニンゲンとデンジュウ"
 	line "これからも なかよく"
 	line "やっていくダスよー"
 	line ""
 	txfn 0
 
-Text_1007c0:
+StdText_06_2e:
 	db "キミが デンジュウカイの"
 	line "すくった ヒトなんだね!"
 	line "Tファンガーたいかいで"
@@ -407,56 +407,56 @@ Text_1007c0:
 	line ""
 	txfn 0
 
-Text_100803:
+StdText_06_2f:
 	db "ここをとおると"
 	line "へビぐみと トリぐみが"
 	line "くらすまち バーランに"
 	line "いけます"
 	txfn 0
 
-Text_100829:
+StdText_06_30:
 	db "ここをとおると"
 	line "へビぐみと トリぐみが"
 	line "くらすまち バーランに"
 	line "いけます"
 	txfn 0
 
-Text_10084f:
+StdText_06_31:
 	db "うみのデンジュウのトモダチが"
 	line "だいぶふえたよ"
 	line "ガンバってそだてるぞー!"
 	line ""
 	txfn 0
 
-Text_100875:
+StdText_06_32:
 	db "ボクも どんどん"
 	line "テレファングしてつよくなるんだ"
 	line "デンジュウカイに イへンが"
 	line "おきたときのためにね!"
 	txfn 0
 
-Text_1008a9:
+StdText_06_33:
 	db "きみ...ずいぶんまえに"
 	line "ガケの したにいなかった??"
 	line "きのせいかな....."
 	line ""
 	txfn 0
 
-Text_1008d3:
+StdText_06_34:
 	db "キミが Tファンガーたいかいで"
 	line "ゆうしょうできたリゆうが"
 	line "なんとなくわかるよ"
 	line "やっぱリ すごいヒトだったんだ"
 	txfn 0
 
-Text_10090b:
+StdText_06_35:
 	db "フリジアに すんでいる"
 	line "デンジュウたちは もう"
 	line "トモダチにしたのかな?"
 	line ""
 	txfn 0
 
-Text_100931:
+StdText_06_36:
 	db "あー...もう1かい"
 	line "Tファンガーたいかいを"
 	line "やらないのかなー..."
@@ -465,116 +465,116 @@ Text_100931:
 	line ""
 	txfn 0
 
-Text_10096a:
+StdText_06_37:
 	db "リリオぺは ゲンキで"
 	line "やってるかい?"
 	txfn 0
 
-Text_10097e:
+StdText_06_38:
 	db "アンテナのきも ぶじ!"
 	line "デンジュウカイも ぶじ!"
 	line "ニンゲンカイも ぶじ!"
 	line "いうことはないね!"
 	txfn 0
 
-Text_1009ae:
+StdText_06_39:
 	db "パームかいにいる デンジュウは"
 	line "みんな トモダチにしたのかな?"
 	txfn 0
 
-Text_1009cf:
+StdText_06_3a:
 	db "このしまに"
 	line "しゅぎょうしにきたのかい?"
 	txfn 0
 
-Text_1009e4:
+StdText_06_3b:
 	db "つぎに なにかおきたときは"
 	line "ボクもやくにたてるように"
 	line "しゅぎょうしておくよ"
 	line ""
 	txfn 0
 
-Text_100a0c:
+StdText_06_3c:
 	db "イオンとうにいる デンジュウは"
 	line "トモダチにしたかい?"
 	txfn 0
 
-Text_100a28:
+StdText_06_3d:
 	db "デンジュウカイをすくうなんて"
 	line "すごい!すごすぎるよ!"
 	line "サインもらっておかなくちゃ!"
 	line ""
 	txfn 0
 
-Text_100a54:
+StdText_06_3e:
 	db "アンテナのきは みんなにとって"
 	line "だいじなものだからね"
 	line "これからも みんなで"
 	line "まもっていくよ"
 	txfn 0
 
-Text_100a83:
+StdText_06_3f:
 	db "こんどイーリスにいる"
 	line "トモダチのところへ あそびに"
 	line "いくんだ!"
 	line ""
 	txfn 0
 
-Text_100aa5:
+StdText_06_40:
 	db "アクマデンジュウが"
 	line "おとなしくなったよ"
 	line "いねむリでもしてるのかな?"
 	line "やっぱリ へいわがいちばんだね"
 	txfn 0
 
-Text_100ad8:
+StdText_06_41:
 	db "アクマデンジュウも"
 	line "おとなしくなったし"
 	line "デンジュウカイも へいわに"
 	line "なったし モンクなしだね"
 	txfn 0
 
-Text_100b08:
+StdText_06_42:
 	db "ケイタイって いっかい"
 	line "つかうようになっちゃうと"
 	line "てばなせないよね"
 	line ""
 	txfn 0
 
-Text_100b2c:
+StdText_06_43:
 	db "うーん...."
 	line "やっぱリ じぶんのいえが"
 	line "おちつくよねー"
 	line ""
 	txfn 0
 
-Text_100b4b:
+StdText_06_44:
 	db "いまの デンジュウカイなら"
 	line "ぺぺリやまに いっても"
 	line "だいじょうぶかも..."
 	line ""
 	txfn 0
 
-Text_100b73:
+StdText_06_45:
 	db "『かいぞう』や『じっけん』を"
 	line "して デンジュウを"
 	line "シンカさせているダスか?"
 	line ""
 	txfn 0
 
-Text_100b9b:
+StdText_06_46:
 	db "デンジュウのなかには"
 	line "『かいぞう』や『じっけん』"
 	line "でしか みることが"
 	line "できないデンジュウもいるダスよ"
 	txfn 0
 
-Text_100bcf:
+StdText_06_47:
 	db "このまえは おせわになったダス"
 	line "トモダチは ふえてるダスか?"
 	txfn 0
 
-Text_100bef:
+StdText_06_48:
 	db "キミのトモダチぐらい"
 	line "つよくなるには どのくらい"
 	line "しゅぎょうしなくちゃ"
@@ -583,28 +583,28 @@ Text_100bef:
 	line ""
 	txfn 0
 
-Text_100c28:
+StdText_06_49:
 	db "もうダイジョウブだよね"
 	line "しゅぎょうして もっともっと"
 	line "つよくなるんだ"
 	line ""
 	txfn 0
 
-Text_100c4d:
+StdText_06_4a:
 	db "さすがに これいじょうは"
 	line "なにも おきないよね"
 	line "さー がんばって"
 	line "しゅぎょうするぞ!"
 	txfn 0
 
-Text_100c79:
+StdText_06_4b:
 	db "いろんなデンジュウと"
 	line "テレファングして どんどん"
 	line "つよくなるんだ!"
 	line ""
 	txfn 0
 
-Text_100c9d:
+StdText_06_4c:
 	db "やぁ "
 	TX_CALL wPlayerName
 	db "くん"
@@ -615,75 +615,75 @@ Text_100c9d:
 	line ""
 	txfn 0
 
-Text_100ccf:
+StdText_06_4d:
 	db "ここのアンテナのきは"
 	line "かなリ ふるいものなんだよ"
 	line "しってた?"
 	line ""
 	txfn 0
 
-Text_100cf0:
+StdText_06_4e:
 	db "デンジュウカイにすんでいる"
 	line "ぜんいんが キミに"
 	line "カンシャしてるよ"
 	line "あリがとう"
 	txfn 0
 
-Text_100d18:
+StdText_06_4f:
 	db "デンジュウカイを もとの"
 	line "へいわなセカイにもどしてくれて"
 	line "あリがとう!"
 	line ""
 	txfn 0
 
-Text_100d3e:
+StdText_06_50:
 	db "このまえ へビぐみのおさが"
 	line "あそびにきたのじゃ"
 	line "こんどは ワシが むこうに"
 	line "あそびに いこうかのー"
 	txfn 0
 
-Text_100d71:
+StdText_06_51:
 	db "Tファンガーたいかいの"
 	line "ゆうしょうしゃが なにか"
 	line "すごいことを したんだってね"
 	line "だれなんだろう?"
 	txfn 0
 
-Text_100da3:
+StdText_06_52:
 	db "あー..そろそろ"
 	line "あたらいケイタイがほしいなー"
 	txfn 0
 
-Text_100dbc:
+StdText_06_53:
 	db "このまちには いろいろな"
 	line "アイテムを うっているから"
 	line "トモダチを どんどん"
 	line "シンカさせたらいいよ"
 	txfn 0
 
-Text_100dee:
+StdText_06_54:
 	db "イーリスにはショップがないんだ"
 	line "アイテムが ほしいなら"
 	line "ほかのまちに いかないとね"
 	line ""
 	txfn 0
 
-Text_100e1a:
+StdText_06_55:
 	db "キミに ふしぎいしを"
 	line "あげよう!"
 	line ".......てもとに"
 	line "なかった...ごめんね"
 	txfn 0
 
-Text_100e44:
+StdText_06_56:
 	db "イーリスには ふるくから"
 	line "『うみのドウクツ』とよばれる"
 	line "いせきがあるとされています"
 	line ""
 	txfn 0
 
-Text_100e70:
+StdText_06_57:
 	db "このまえ トリぐみのおさの"
 	line "いえに あそびにいったのじゃ"
 	line "こんどは トリぐみのおさを"

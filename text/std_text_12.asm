@@ -1,156 +1,156 @@
 StdTextPointers_12:
-	dw Text_15812c
-	dw Text_158182
-	dw Text_1581e0
-	dw Text_15822c
-	dw Text_158284
-	dw Text_1582c1
-	dw Text_158313
-	dw Text_15834f
-	dw Text_158388
-	dw Text_1583d9
-	dw Text_15841d
-	dw Text_158473
-	dw Text_1584bb
-	dw Text_1584f9
-	dw Text_15852e
-	dw Text_15856f
-	dw Text_1585c2
-	dw Text_158601
-	dw Text_158650
-	dw Text_158699
-	dw Text_1586fe
-	dw Text_158747
-	dw Text_15879b
-	dw Text_1587f0
-	dw Text_158854
-	dw Text_1588b9
-	dw Text_15892a
-	dw Text_15896f
-	dw Text_1589e0
-	dw Text_158a3e
-	dw Text_158a93
-	dw Text_158ae9
-	dw Text_158b4e
-	dw Text_158ba1
-	dw Text_158c10
-	dw Text_158ca3
-	dw Text_158d0e
-	dw Text_158d77
-	dw Text_158dcc
-	dw Text_158e43
-	dw Text_158e9e
-	dw Text_158efb
-	dw Text_158f69
-	dw Text_158fd5
-	dw Text_159035
-	dw Text_159099
-	dw Text_1590f3
-	dw Text_159140
-	dw Text_15919d
-	dw Text_1591df
-	dw Text_159220
-	dw Text_15927c
-	dw Text_1592d2
-	dw Text_159353
-	dw Text_1593b2
-	dw Text_159433
-	dw Text_1594d6
-	dw Text_159561
-	dw Text_1595d1
-	dw Text_159622
-	dw Text_159686
-	dw Text_1596fd
-	dw Text_159762
-	dw Text_1597d1
-	dw Text_15984f
-	dw Text_1598c9
-	dw Text_15991c
-	dw Text_159987
-	dw Text_1599fe
-	dw Text_159a41
-	dw Text_159a9a
-	dw Text_159afc
-	dw Text_159b5d
-	dw Text_159bbc
-	dw Text_159c1e
-	dw Text_159c92
-	dw Text_159cdf
-	dw Text_159d39
-	dw Text_159d8a
-	dw Text_159dda
-	dw Text_159e33
-	dw Text_159e89
-	dw Text_159f05
-	dw Text_159f72
-	dw Text_159fdc
-	dw Text_15a04f
-	dw Text_15a09c
-	dw Text_15a10c
-	dw Text_15a163
-	dw Text_15a1b8
-	dw Text_15a202
-	dw Text_15a28e
-	dw Text_15a2e5
-	dw Text_15a34e
-	dw Text_15a3bf
-	dw Text_15a420
-	dw Text_15a489
-	dw Text_15a4e6
-	dw Text_15a539
-	dw Text_15a592
-	dw Text_15a5f4
-	dw Text_15a655
-	dw Text_15a6e2
-	dw Text_15a756
-	dw Text_15a7ac
-	dw Text_15a806
-	dw Text_15a851
-	dw Text_15a898
-	dw Text_15a8f6
-	dw Text_15a949
-	dw Text_15a9a2
-	dw Text_15aa37
-	dw Text_15aab5
-	dw Text_15ab1d
-	dw Text_15ab7d
-	dw Text_15abbd
-	dw Text_15ac01
-	dw Text_15ac3f
-	dw Text_15ac83
-	dw Text_15acda
-	dw Text_15ad17
-	dw Text_15ad6b
-	dw Text_15adc7
-	dw Text_15ae38
-	dw Text_15aea5
-	dw Text_15af1a
-	dw Text_15af98
-	dw Text_15b011
-	dw Text_15b09e
-	dw Text_15b119
-	dw Text_15b1a3
-	dw Text_15b1fa
-	dw Text_15b258
-	dw Text_15b2c8
-	dw Text_15b33c
-	dw Text_15b3a7
-	dw Text_15b430
-	dw Text_15b49f
-	dw Text_15b50a
-	dw Text_15b586
-	dw Text_15b608
-	dw Text_15b63e
-	dw Text_15b66f
-	dw Text_15b68f
-	dw Text_15b6be
-	dw Text_15b6e0
-	dw Text_15b70e
-	dw Text_15b744
-	dw Text_15b781
-	dw Text_15b7b4
+	dw StdText_12_00
+	dw StdText_12_01
+	dw StdText_12_02
+	dw StdText_12_03
+	dw StdText_12_04
+	dw StdText_12_05
+	dw StdText_12_06
+	dw StdText_12_07
+	dw StdText_12_08
+	dw StdText_12_09
+	dw StdText_12_0a
+	dw StdText_12_0b
+	dw StdText_12_0c
+	dw StdText_12_0d
+	dw StdText_12_0e
+	dw StdText_12_0f
+	dw StdText_12_10
+	dw StdText_12_11
+	dw StdText_12_12
+	dw StdText_12_13
+	dw StdText_12_14
+	dw StdText_12_15
+	dw StdText_12_16
+	dw StdText_12_17
+	dw StdText_12_18
+	dw StdText_12_19
+	dw StdText_12_1a
+	dw StdText_12_1b
+	dw StdText_12_1c
+	dw StdText_12_1d
+	dw StdText_12_1e
+	dw StdText_12_1f
+	dw StdText_12_20
+	dw StdText_12_21
+	dw StdText_12_22
+	dw StdText_12_23
+	dw StdText_12_24
+	dw StdText_12_25
+	dw StdText_12_26
+	dw StdText_12_27
+	dw StdText_12_28
+	dw StdText_12_29
+	dw StdText_12_2a
+	dw StdText_12_2b
+	dw StdText_12_2c
+	dw StdText_12_2d
+	dw StdText_12_2e
+	dw StdText_12_2f
+	dw StdText_12_30
+	dw StdText_12_31
+	dw StdText_12_32
+	dw StdText_12_33
+	dw StdText_12_34
+	dw StdText_12_35
+	dw StdText_12_36
+	dw StdText_12_37
+	dw StdText_12_38
+	dw StdText_12_39
+	dw StdText_12_3a
+	dw StdText_12_3b
+	dw StdText_12_3c
+	dw StdText_12_3d
+	dw StdText_12_3e
+	dw StdText_12_3f
+	dw StdText_12_40
+	dw StdText_12_41
+	dw StdText_12_42
+	dw StdText_12_43
+	dw StdText_12_44
+	dw StdText_12_45
+	dw StdText_12_46
+	dw StdText_12_47
+	dw StdText_12_48
+	dw StdText_12_49
+	dw StdText_12_4a
+	dw StdText_12_4b
+	dw StdText_12_4c
+	dw StdText_12_4d
+	dw StdText_12_4e
+	dw StdText_12_4f
+	dw StdText_12_50
+	dw StdText_12_51
+	dw StdText_12_52
+	dw StdText_12_53
+	dw StdText_12_54
+	dw StdText_12_55
+	dw StdText_12_56
+	dw StdText_12_57
+	dw StdText_12_58
+	dw StdText_12_59
+	dw StdText_12_5a
+	dw StdText_12_5b
+	dw StdText_12_5c
+	dw StdText_12_5d
+	dw StdText_12_5e
+	dw StdText_12_5f
+	dw StdText_12_60
+	dw StdText_12_61
+	dw StdText_12_62
+	dw StdText_12_63
+	dw StdText_12_64
+	dw StdText_12_65
+	dw StdText_12_66
+	dw StdText_12_67
+	dw StdText_12_68
+	dw StdText_12_69
+	dw StdText_12_6a
+	dw StdText_12_6b
+	dw StdText_12_6c
+	dw StdText_12_6d
+	dw StdText_12_6e
+	dw StdText_12_6f
+	dw StdText_12_70
+	dw StdText_12_71
+	dw StdText_12_72
+	dw StdText_12_73
+	dw StdText_12_74
+	dw StdText_12_75
+	dw StdText_12_76
+	dw StdText_12_77
+	dw StdText_12_78
+	dw StdText_12_79
+	dw StdText_12_7a
+	dw StdText_12_7b
+	dw StdText_12_7c
+	dw StdText_12_7d
+	dw StdText_12_7e
+	dw StdText_12_7f
+	dw StdText_12_80
+	dw StdText_12_81
+	dw StdText_12_82
+	dw StdText_12_83
+	dw StdText_12_84
+	dw StdText_12_85
+	dw StdText_12_86
+	dw StdText_12_87
+	dw StdText_12_88
+	dw StdText_12_89
+	dw StdText_12_8a
+	dw StdText_12_8b
+	dw StdText_12_8c
+	dw StdText_12_8d
+	dw StdText_12_8e
+	dw StdText_12_8f
+	dw StdText_12_90
+	dw StdText_12_91
+	dw StdText_12_92
+	dw StdText_12_93
+	dw StdText_12_94
+	dw StdText_12_95
 
-Text_15812c:
+StdText_12_00:
 	db "おっす "
 	TX_CALL wPlayerName
 	line "オレだけど..."
@@ -162,7 +162,7 @@ Text_15812c:
 	line "ぜんぜんわかんないよ"
 	txfn 2
 
-Text_158182:
+StdText_12_01:
 	db "もしもし"
 	line "オマエ カレーってたベたこと"
 	line "あるか?"
@@ -173,7 +173,7 @@ Text_158182:
 	line "こんど たベさせてくれよなー"
 	txfn 2
 
-Text_1581e0:
+StdText_12_02:
 	db "おーい もしもしー"
 	line "『カクザとう』とかいうヤツが"
 	line "トロンコむらの すいげんで"
@@ -182,7 +182,7 @@ Text_1581e0:
 	line "いいんじゃないか?"
 	txfn 2
 
-Text_15822c:
+StdText_12_03:
 	db $e9
 	db "ェなぁ "
 	TX_CALL wPlayerName
@@ -195,7 +195,7 @@ Text_15822c:
 	line "たのもしいんだけどね"
 	txfn 2
 
-Text_158284:
+StdText_12_04:
 	db $e9
 	db "ェネジロはネタロを まもる"
 	line "ために なにかを"
@@ -205,7 +205,7 @@ Text_158284:
 	line ""
 	txfn 2
 
-Text_1582c1:
+StdText_12_05:
 	db $e9
 	db "ェネジロは テレファングの"
 	line "ときに そらに"
@@ -217,7 +217,7 @@ Text_1582c1:
 	line ""
 	txfn 2
 
-Text_158313:
+StdText_12_06:
 	db $e9
 	db "ゥネタロってねー ほんとうに"
 	line "のんびリしてるんだー"
@@ -227,7 +227,7 @@ Text_158313:
 	line ""
 	txfn 2
 
-Text_15834f:
+StdText_12_07:
 	db $e9
 	db "ゥネタロって いっかいねちゃうと"
 	line "ほんとうに おきないんだ"
@@ -235,7 +235,7 @@ Text_15834f:
 	line "みはってるんだけどねー"
 	txfn 2
 
-Text_158388:
+StdText_12_08:
 	db $e9
 	db "ィムサさまって あたまは"
 	line "よさそうだけど テレファング"
@@ -245,7 +245,7 @@ Text_158388:
 	line "もらえないからなー"
 	txfn 2
 
-Text_1583d9:
+StdText_12_09:
 	db $e9
 	db "ィムサさまは"
 	line "デンジュウカイを まとめる"
@@ -255,7 +255,7 @@ Text_1583d9:
 	line ""
 	txfn 2
 
-Text_15841d:
+StdText_12_0a:
 	db "『カクザとう』って"
 	line "デンジュウカイの "
 	line "だいとうリょうになって"
@@ -266,7 +266,7 @@ Text_15841d:
 	line ""
 	txfn 2
 
-Text_158473:
+StdText_12_0b:
 	db "オレがおもうには"
 	line "アンテナのきのカギを"
 	line "かくしたのは『カクザとう』"
@@ -275,7 +275,7 @@ Text_158473:
 	line "きがするんだよ!"
 	txfn 2
 
-Text_1584bb:
+StdText_12_0c:
 	db "オレさー『カクザとう』"
 	line "って ヤツらに ちょっと"
 	line "きょうみあるんだー"
@@ -284,7 +284,7 @@ Text_1584bb:
 	line ""
 	txfn 2
 
-Text_1584f9:
+StdText_12_0d:
 	db "ネリカラと タバスコって"
 	line "なかがいいのかな"
 	line "わるいのかな"
@@ -293,7 +293,7 @@ Text_1584f9:
 	line ""
 	txfn 2
 
-Text_15852e:
+StdText_12_0e:
 	db "アンテナのきのカギを"
 	line "とったのって だれなんだろ?"
 	line "はんにんは デンジュウじゃ"
@@ -302,7 +302,7 @@ Text_15852e:
 	line ""
 	txfn 2
 
-Text_15856f:
+StdText_12_0f:
 	db "『カクザとう』っていうヤツらが"
 	line "なんだか アルバイトを"
 	line "いっぱい やとってる"
@@ -311,7 +311,7 @@ Text_15856f:
 	line "しれないから きをつけてね"
 	txfn 2
 
-Text_1585c2:
+StdText_12_10:
 	db "はしのうえにいる デンジュウは"
 	line "クリノンむらの あたリには"
 	line "いないデンジュウなんだ!"
@@ -321,7 +321,7 @@ Text_1585c2:
 	line ""
 	txfn 2
 
-Text_158601:
+StdText_12_11:
 	db "クリノンむらのヤツらって"
 	line "みんなダスダスいってるだろ!"
 	line "なんかいいとおもわない?"
@@ -330,7 +330,7 @@ Text_158601:
 	line "そうなんダス!とかいいよなー"
 	txfn 2
 
-Text_158650:
+StdText_12_12:
 	db "きいたぞ "
 	TX_CALL wPlayerName
 	line "オマエ デンジュウカイで"
@@ -340,7 +340,7 @@ Text_158650:
 	line "こんど おしえてくれよー"
 	txfn 2
 
-Text_158699:
+StdText_12_13:
 	db "ミヨっておんなのこと"
 	line "トモダチのデンジュウを"
 	line "オレ しってるんだー"
@@ -351,7 +351,7 @@ Text_158699:
 	line "こんど きいておいてくれよな"
 	txfn 2
 
-Text_1586fe:
+StdText_12_14:
 	TX_CALL wPlayerName
 	line "オレのトモダチで うみに"
 	line "すんでる デンジュウが"
@@ -362,7 +362,7 @@ Text_1586fe:
 	line ""
 	txfn 2
 
-Text_158747:
+StdText_12_15:
 	db "うえーん"
 	line "うみにすんでる トモダチに"
 	line "デンワをしたら いきなリ"
@@ -374,7 +374,7 @@ Text_158747:
 	line "みてきてよー おねがいだよー"
 	txfn 2
 
-Text_15879b:
+StdText_12_16:
 	db "うみのデンジュウに"
 	line "デンワしたら いきなリ"
 	line "おこられたんだよ"
@@ -385,7 +385,7 @@ Text_15879b:
 	line "いったい?"
 	txfn 2
 
-Text_1587f0:
+StdText_12_17:
 	db "うみのデンジュウに"
 	line "きいたんだけど"
 	line "パームかいに はえてる"
@@ -399,7 +399,7 @@ Text_1587f0:
 	line "たのんだぜ!"
 	txfn 2
 
-Text_158854:
+StdText_12_18:
 	db "うみのデンジュウが"
 	line "おこってる リゆうって"
 	line "ひょっとして アンテナのきが"
@@ -410,7 +410,7 @@ Text_158854:
 	line "さがしだして きいてみろよ"
 	txfn 2
 
-Text_1588b9:
+StdText_12_19:
 	db "うみのデンジュウたちが"
 	line "パームかいの アンテナのきを"
 	line "つかえなくしてるんだって!"
@@ -423,7 +423,7 @@ Text_1588b9:
 	line ""
 	txfn 2
 
-Text_15892a:
+StdText_12_1a:
 	db "パームかいのどこかに"
 	line "『うみのしんでん』ってのが"
 	line "あるんだって?"
@@ -432,7 +432,7 @@ Text_15892a:
 	line "きいてみたら??"
 	txfn 2
 
-Text_15896f:
+StdText_12_1b:
 	db $e9
 	db "ヌイーリスのトモダチから"
 	line "きいたんだけど かいがんに"
@@ -446,7 +446,7 @@ Text_15896f:
 	line ""
 	txfn 2
 
-Text_1589e0:
+StdText_12_1c:
 	db "オレさー トロンコむらに"
 	line "うってる『ゲームマシン』が"
 	line "ほしいんだけど"
@@ -460,7 +460,7 @@ Text_1589e0:
 	line ""
 	txfn 2
 
-Text_158a3e:
+StdText_12_1d:
 	db "イーリスのむらに なんか"
 	line "へんなヤツがいるんだって"
 	line "なにしたいんだか"
@@ -471,7 +471,7 @@ Text_158a3e:
 	line ""
 	txfn 2
 
-Text_158a93:
+StdText_12_1e:
 	db "なぁ いま フリジアで"
 	line "『Tファンガーたいかい』を"
 	line "やってるんだって??"
@@ -482,7 +482,7 @@ Text_158a93:
 	line ""
 	txfn 2
 
-Text_158ae9:
+StdText_12_1f:
 	db "なぁ "
 	TX_CALL wPlayerName
 	db "!"
@@ -497,7 +497,7 @@ Text_158ae9:
 	line ""
 	txfn 2
 
-Text_158b4e:
+StdText_12_20:
 	db "フリジアでやってる"
 	line "たいかいで なんか"
 	line "いいしょうひんが"
@@ -508,7 +508,7 @@ Text_158b4e:
 	line "みせてくれよなー"
 	txfn 2
 
-Text_158ba1:
+StdText_12_21:
 	db "フリジアで"
 	line "『Tファンガーたいかい』っての"
 	line "やってるみたいだけど"
@@ -521,7 +521,7 @@ Text_158ba1:
 	line ""
 	txfn 2
 
-Text_158c10:
+StdText_12_22:
 	db "このまえさー トロンコむらの"
 	line "トモダチから へんなヤツらの"
 	line "うわさを きいたんだけど"
@@ -536,7 +536,7 @@ Text_158c10:
 	line ""
 	txfn 2
 
-Text_158ca3:
+StdText_12_23:
 	db "よう "
 	TX_CALL wPlayerName
 	line "いま フリジアにいるんだって?"
@@ -550,7 +550,7 @@ Text_158ca3:
 	line ""
 	txfn 2
 
-Text_158d0e:
+StdText_12_24:
 	db "なぁ "
 	TX_CALL wPlayerName
 	line "いま オマエがいる"
@@ -564,7 +564,7 @@ Text_158d0e:
 	line ""
 	txfn 2
 
-Text_158d77:
+StdText_12_25:
 	db "ねーねー"
 	line "『フリジア』ってとこは"
 	line "デンジュウカイで イチバン"
@@ -575,7 +575,7 @@ Text_158d77:
 	line "おねがいだよー"
 	txfn 2
 
-Text_158dcc:
+StdText_12_26:
 	db "なぁなぁ "
 	TX_CALL wPlayerName
 	line "あたらしいケイタイの"
@@ -591,7 +591,7 @@ Text_158dcc:
 	line ""
 	txfn 2
 
-Text_158e43:
+StdText_12_27:
 	db "もしもし "
 	TX_CALL wPlayerName
 	db "?"
@@ -604,7 +604,7 @@ Text_158e43:
 	line "おねがいだよ"
 	txfn 2
 
-Text_158e9e:
+StdText_12_28:
 	TX_CALL wPlayerName
 	line "いまどこいるんだ??"
 	line "え?バーラン?"
@@ -617,7 +617,7 @@ Text_158e9e:
 	line ""
 	txfn 2
 
-Text_158efb:
+StdText_12_29:
 	db "もしもしー"
 	line "いま バーランにいるらしいな"
 	line "トモダチから きいたよ"
@@ -630,7 +630,7 @@ Text_158efb:
 	line "それじゃね"
 	txfn 2
 
-Text_158f69:
+StdText_12_2a:
 	db "おい "
 	TX_CALL wPlayerName
 	line "ゲンキでやってるかー?"
@@ -644,7 +644,7 @@ Text_158f69:
 	line ""
 	txfn 2
 
-Text_158fd5:
+StdText_12_2b:
 	db "なぁ "
 	TX_CALL wPlayerName
 	line "バーランにいる へビぐみの"
@@ -658,7 +658,7 @@ Text_158fd5:
 	line ""
 	txfn 2
 
-Text_159035:
+StdText_12_2c:
 	db "なあ "
 	TX_CALL wPlayerName
 	line "バーランにすんでる"
@@ -672,7 +672,7 @@ Text_159035:
 	line ""
 	txfn 2
 
-Text_159099:
+StdText_12_2d:
 	db "へビぐみのおさって"
 	line "なにかを あつめるのが"
 	line "すきなんだってさ!"
@@ -683,7 +683,7 @@ Text_159099:
 	line "おしえておくよ"
 	txfn 2
 
-Text_1590f3:
+StdText_12_2e:
 	db "あのさー バーランに"
 	line "いくことがあったらさ"
 	line "ガンバンオーってヤツを"
@@ -694,7 +694,7 @@ Text_1590f3:
 	line ""
 	txfn 2
 
-Text_159140:
+StdText_12_2f:
 	db "バーランのいリぐちのてまえに"
 	line "みぎがわにいけるみちが"
 	line "あるの しってるか?"
@@ -705,7 +705,7 @@ Text_159140:
 	line "いるってはなしだぜ!"
 	txfn 2
 
-Text_15919d:
+StdText_12_30:
 	db "そっちょくにきくけどさ"
 	line "オマエはトリぐみは?"
 	line "それともへビぐみは?"
@@ -714,7 +714,7 @@ Text_15919d:
 	line "だってカワイイじゃん!"
 	txfn 2
 
-Text_1591df:
+StdText_12_31:
 	db "へんなこときくけどさ"
 	line "オマエはトリぐみとへビぐみ"
 	line "どっちがすきなんだ?"
@@ -723,7 +723,7 @@ Text_1591df:
 	line ""
 	txfn 2
 
-Text_159220:
+StdText_12_32:
 	db "おっす "
 	TX_CALL wPlayerName
 	line "イオンとうに いるんだって?"
@@ -735,7 +735,7 @@ Text_159220:
 	line "テレファングしてくれよなー"
 	txfn 2
 
-Text_15927c:
+StdText_12_33:
 	db "ねー そこで なんか"
 	line "ケンカがおきてるってうわさ"
 	line "ほんとなのー?"
@@ -746,7 +746,7 @@ Text_15927c:
 	line "それじゃーねー"
 	txfn 2
 
-Text_1592d2:
+StdText_12_34:
 	db "もしもし?"
 	line "デンジュウたちが"
 	line "テレファングのしゅぎょうを"
@@ -761,7 +761,7 @@ Text_1592d2:
 	line "たのむぜ!"
 	txfn 2
 
-Text_159353:
+StdText_12_35:
 	db "よう "
 	TX_CALL wPlayerName
 	line "オレさー さいきん"
@@ -775,7 +775,7 @@ Text_159353:
 	line ""
 	txfn 2
 
-Text_1593b2:
+StdText_12_36:
 	db $e9
 	db "をこのまえ ノイジーって"
 	line "ヤツと いっしょにいたんだけど"
@@ -789,7 +789,7 @@ Text_1593b2:
 	line "それじゃあな"
 	txfn 2
 
-Text_159433:
+StdText_12_37:
 	db $e9
 	db "をこのまえ イーリスで"
 	line "へんなデンジュウを みかけたよ"
@@ -807,7 +807,7 @@ Text_159433:
 	line "それじゃあな"
 	txfn 2
 
-Text_1594d6:
+StdText_12_38:
 	db "もリのなかで しゅぎょうしてる"
 	line "デンジュウたちって"
 	line "けっこう くせのあるヤツが"
@@ -822,7 +822,7 @@ Text_1594d6:
 	line "じゃあな"
 	txfn 2
 
-Text_159561:
+StdText_12_39:
 	db "オレも イオンとうで"
 	line "しゅぎょうしてたときが"
 	line "すこしあったんだけど"
@@ -835,7 +835,7 @@ Text_159561:
 	line ""
 	txfn 2
 
-Text_1595d1:
+StdText_12_3a:
 	db "もリのなかで しゅぎょうしてる"
 	line "デンジュウのなかに いっぴき"
 	line "そそっかしいヤツがいるから"
@@ -846,7 +846,7 @@ Text_1595d1:
 	line ""
 	txfn 2
 
-Text_159622:
+StdText_12_3b:
 	db "うわさで きいたんだけど"
 	line "イオンとうには ヌシって"
 	line "ヤツが いるらしいな"
@@ -857,7 +857,7 @@ Text_159622:
 	line "トモダチになリたいよなー"
 	txfn 2
 
-Text_159686:
+StdText_12_3c:
 	db "よう "
 	TX_CALL wPlayerName
 	line "オマエが パパルナこに"
@@ -873,7 +873,7 @@ Text_159686:
 	line ""
 	txfn 2
 
-Text_1596fd:
+StdText_12_3d:
 	db "そこにある やしきに"
 	line "こっそリ はいったヤツから"
 	line "はなしを きいたんだけどさ"
@@ -884,7 +884,7 @@ Text_1596fd:
 	line "すぐでてきたらしいんだけどな"
 	txfn 2
 
-Text_159762:
+StdText_12_3e:
 	db "パパルナこの そばにある"
 	line "やしきには へんな"
 	line "じいさんが すんでるんだって"
@@ -897,7 +897,7 @@ Text_159762:
 	line "こわいよなー"
 	txfn 2
 
-Text_1597d1:
+StdText_12_3f:
 	db "そこにいる じいさんって"
 	line "なにかの けんきゅうを"
 	line "してたんだって オレの"
@@ -912,7 +912,7 @@ Text_1597d1:
 	line ""
 	txfn 2
 
-Text_15984f:
+StdText_12_40:
 	db "なー"
 	TX_CALL wPlayerName
 	line "オマエ サナエバグループって"
@@ -926,7 +926,7 @@ Text_15984f:
 	line "デンワしたんだー"
 	txfn 2
 
-Text_1598c9:
+StdText_12_41:
 	db "オレのトモダチがさー"
 	line "サナエバグループのヤツと"
 	line "デンワバンゴウを こうかん"
@@ -937,7 +937,7 @@ Text_1598c9:
 	line ""
 	txfn 2
 
-Text_15991c:
+StdText_12_42:
 	db "このさいきん パパルナこで"
 	line "へんな くろいかげをみたって"
 	line "トモダチから デンワが"
@@ -949,7 +949,7 @@ Text_15991c:
 	line "おしえてくれよなー"
 	txfn 2
 
-Text_159987:
+StdText_12_43:
 	db "そこの やしきにすんでる"
 	line "じいさんが まんなかの"
 	line "しまにいるときに"
@@ -964,7 +964,7 @@ Text_159987:
 	line ""
 	txfn 2
 
-Text_1599fe:
+StdText_12_44:
 	db "むかしはさー"
 	line "よくパパルナこに"
 	line "つリにいったんだよ"
@@ -973,7 +973,7 @@ Text_1599fe:
 	line "もどらないかなー"
 	txfn 2
 
-Text_159a41:
+StdText_12_45:
 	db "もしかして オマエってさ"
 	line "つぼとか きのはことか"
 	line "うごかせちゃったリする?"
@@ -984,7 +984,7 @@ Text_159a41:
 	line ""
 	txfn 2
 
-Text_159a9a:
+StdText_12_46:
 	db "おい "
 	TX_CALL wPlayerName
 	line "パンセスむらにいる"
@@ -998,7 +998,7 @@ Text_159a9a:
 	line "たのんだよ!"
 	txfn 2
 
-Text_159afc:
+StdText_12_47:
 	db "おーい "
 	TX_CALL wPlayerName
 	line "パンセスむらで なにか"
@@ -1010,7 +1010,7 @@ Text_159afc:
 	line "おねがいだから..."
 	txfn 2
 
-Text_159b5d:
+StdText_12_48:
 	db "オレの トモダチから"
 	line "きいたんだけどー"
 	line "いじげんに ワープできたリ"
@@ -1021,7 +1021,7 @@ Text_159b5d:
 	line "いろいろなヤツが いるぜ"
 	txfn 2
 
-Text_159bbc:
+StdText_12_49:
 	db "キミさー いじげんを"
 	line "いったリきたリできるって"
 	line "はなしを きいたことある?"
@@ -1032,7 +1032,7 @@ Text_159bbc:
 	line "みたら??"
 	txfn 2
 
-Text_159c1e:
+StdText_12_4a:
 	TX_CALL wPlayerName
 	line "サナエバグループっていう"
 	line "ヤツらが デンジュウカイの"
@@ -1045,7 +1045,7 @@ Text_159c1e:
 	line "するんだけど..."
 	txfn 2
 
-Text_159c92:
+StdText_12_4b:
 	db "なんだか『サナエバグループ』"
 	line "っていうところのれんちゅうが"
 	line "デンジュウカイで"
@@ -1054,7 +1054,7 @@ Text_159c92:
 	line "なにしてるんだろーねー?"
 	txfn 2
 
-Text_159cdf:
+StdText_12_4c:
 	db "このまえさー"
 	line "『カクザとう デラックス』"
 	line "っていう おベんとうを"
@@ -1065,7 +1065,7 @@ Text_159cdf:
 	line "いっかいたベてみたらー?"
 	txfn 2
 
-Text_159d39:
+StdText_12_4d:
 	db "パンセスむらに"
 	line "『かくざアベニュー』っていう"
 	line "おベんとうやが"
@@ -1076,7 +1076,7 @@ Text_159d39:
 	line ""
 	txfn 2
 
-Text_159d8a:
+StdText_12_4e:
 	db "じつはさー"
 	line "パンセスむらに いじげんに"
 	line "つながるやしきがあるって"
@@ -1087,7 +1087,7 @@ Text_159d8a:
 	line ""
 	txfn 2
 
-Text_159dda:
+StdText_12_4f:
 	db "オマエもしかして"
 	line "いまパンセスむらにいるのか?"
 	line "そのむらで なんかじけんが"
@@ -1098,7 +1098,7 @@ Text_159dda:
 	line ""
 	txfn 2
 
-Text_159e33:
+StdText_12_50:
 	db "トリパむらの はなしは"
 	line "きいたよー"
 	line "わるいニンゲンも"
@@ -1109,7 +1109,7 @@ Text_159e33:
 	line "から シンパイするなよ!"
 	txfn 2
 
-Text_159e89:
+StdText_12_51:
 	db "おう "
 	TX_CALL wPlayerName
 	line "なんで アンテナのきを"
@@ -1123,7 +1123,7 @@ Text_159e89:
 	line "やばいことになってるのか?"
 	txfn 2
 
-Text_159f05:
+StdText_12_52:
 	db "なんだかさー このさいきん"
 	line "いろんなトモダチから"
 	line "『サナエバグループ』の"
@@ -1136,7 +1136,7 @@ Text_159f05:
 	line ""
 	txfn 2
 
-Text_159f72:
+StdText_12_53:
 	db "よーう "
 	TX_CALL wPlayerName
 	line "『サナエバグループ』って"
@@ -1150,7 +1150,7 @@ Text_159f72:
 	line "デンワしたんだー"
 	txfn 2
 
-Text_159fdc:
+StdText_12_54:
 	db "もしもし "
 	TX_CALL wPlayerName
 	db "か?"
@@ -1165,7 +1165,7 @@ Text_159fdc:
 	line "いいんだけどさー"
 	txfn 2
 
-Text_15a04f:
+StdText_12_55:
 	TX_CALL wPlayerName
 	db "ー"
 	line "ケイタイが なんだか"
@@ -1177,7 +1177,7 @@ Text_15a04f:
 	line "おねがいだよー"
 	txfn 2
 
-Text_15a09c:
+StdText_12_56:
 	TX_CALL wPlayerName
 	line "このあいだ しらないヒトから"
 	line "キカイを もらったんだけど"
@@ -1190,7 +1190,7 @@ Text_15a09c:
 	line ""
 	txfn 2
 
-Text_15a10c:
+StdText_12_57:
 	db "やっぱさー すベての"
 	line "ニンゲンを しんようするって"
 	line "やばいよなー"
@@ -1201,7 +1201,7 @@ Text_15a10c:
 	line "あんしんしな"
 	txfn 2
 
-Text_15a163:
+StdText_12_58:
 	db "トリパむらのアンテナのきが"
 	line "きょだいかしたって"
 	line "ほんとうか?"
@@ -1212,7 +1212,7 @@ Text_15a163:
 	line ""
 	txfn 2
 
-Text_15a1b8:
+StdText_12_59:
 	db "さいきん いろんなところで"
 	line "じけんが おこってるけど"
 	line "いったいだれが なんのために"
@@ -1221,7 +1221,7 @@ Text_15a1b8:
 	line ""
 	txfn 2
 
-Text_15a202:
+StdText_12_5a:
 	db "フラウラむらの デンジュウは"
 	line "いせきを はっくつして"
 	line "くらしてる むらなんだ"
@@ -1236,7 +1236,7 @@ Text_15a202:
 	line "それじゃ!"
 	txfn 2
 
-Text_15a28e:
+StdText_12_5b:
 	db "フラウラむらの"
 	line "いえのなかには はっくつした"
 	line "あなを つかって つくった"
@@ -1247,7 +1247,7 @@ Text_15a28e:
 	line "ないか!"
 	txfn 2
 
-Text_15a2e5:
+StdText_12_5c:
 	db "デンジュウカイにも"
 	line "けっこうスゴイれきしが"
 	line "あったリするんだぜー"
@@ -1258,7 +1258,7 @@ Text_15a2e5:
 	line "ボクは ごめんだけどさー"
 	txfn 2
 
-Text_15a34e:
+StdText_12_5d:
 	db "この デンジュウカイの"
 	line "どこかに アクマが"
 	line "ふういんされてる ばしょが"
@@ -1272,7 +1272,7 @@ Text_15a34e:
 	TX_CALL wPlayerName
 	txfn 2
 
-Text_15a3bf:
+StdText_12_5e:
 	db "フラウラにはさー"
 	line "めずらしい アイテムが"
 	line "いっぱあるらしいんだよー"
@@ -1286,7 +1286,7 @@ Text_15a3bf:
 	line ""
 	txfn 2
 
-Text_15a420:
+StdText_12_5f:
 	db "なぁ "
 	TX_CALL wPlayerName
 	line "オレのために フラウラの"
@@ -1302,7 +1302,7 @@ Text_15a420:
 	line "たのしみに してるぜ!"
 	txfn 2
 
-Text_15a489:
+StdText_12_60:
 	db "デンジュウカイは もともと"
 	line "オレたち デンジュウの"
 	line "すんでるせかいだよなー"
@@ -1313,7 +1313,7 @@ Text_15a489:
 	line "いってやろうか!"
 	txfn 2
 
-Text_15a4e6:
+StdText_12_61:
 	db "サナエバグループのヒトと"
 	line "なかのいい デンジュウって"
 	line "さいきん いそがしくて"
@@ -1324,7 +1324,7 @@ Text_15a4e6:
 	line ""
 	txfn 2
 
-Text_15a539:
+StdText_12_62:
 	db "トモダチがさ"
 	line "ぺぺリやまがどうの"
 	line "アクマデンジュウがどうのって"
@@ -1335,7 +1335,7 @@ Text_15a539:
 	line ""
 	txfn 2
 
-Text_15a592:
+StdText_12_63:
 	db "さいきん フラウラにいる"
 	line "トモダチにデンワをかけても"
 	line "ぜんぜん つながらないんだよ!"
@@ -1346,7 +1346,7 @@ Text_15a592:
 	line ""
 	txfn 2
 
-Text_15a5f4:
+StdText_12_64:
 	db "おっ..おい!"
 	line "アクマデンジュウが"
 	line "ふっかつ するってはなしは"
@@ -1361,7 +1361,7 @@ Text_15a5f4:
 	line ""
 	txfn 2
 
-Text_15a655:
+StdText_12_65:
 	TX_CALL wPlayerName
 	db "!"
 	line "いまどこ? やまの なか??"
@@ -1377,7 +1377,7 @@ Text_15a655:
 	line "デンワしてくれよ!"
 	txfn 2
 
-Text_15a6e2:
+StdText_12_66:
 	TX_CALL wPlayerName
 	db "!"
 	line "ついに サナエバグループが"
@@ -1391,7 +1391,7 @@ Text_15a6e2:
 	line "きをつけていけよな!"
 	txfn 2
 
-Text_15a756:
+StdText_12_67:
 	TX_CALL wPlayerName
 	line "オレ ニンゲンフシンに"
 	line "なっちゃいそうだよ"
@@ -1402,7 +1402,7 @@ Text_15a756:
 	line "しないよな?な?な?"
 	txfn 2
 
-Text_15a7ac:
+StdText_12_68:
 	db "ぺぺリやまって いったか?"
 	line "そのやまには かなリつよい"
 	line "デンジュウたちが いるって"
@@ -1413,7 +1413,7 @@ Text_15a7ac:
 	line ""
 	txfn 2
 
-Text_15a806:
+StdText_12_69:
 	db "まえにいちどだけ"
 	line "ぺぺリやまのちょうじょうまで"
 	line "いったことがあるんだ!"
@@ -1422,7 +1422,7 @@ Text_15a806:
 	line "こんなうそついて.."
 	txfn 2
 
-Text_15a851:
+StdText_12_6a:
 	db "オレはいったことないんだけど"
 	line "ぺぺリやまには いろんな"
 	line "しかけがあるらしいんだ!"
@@ -1431,7 +1431,7 @@ Text_15a851:
 	line ""
 	txfn 2
 
-Text_15a898:
+StdText_12_6b:
 	db "ねーねー もしもだよ!"
 	line "もしも アクマデンジュウが"
 	line "ふっかつしたら どうなるの?"
@@ -1442,7 +1442,7 @@ Text_15a898:
 	line ""
 	txfn 2
 
-Text_15a8f6:
+StdText_12_6c:
 	db "ぺぺリやまには"
 	line "アクマデンジュウがふっかつ"
 	line "しないように みはってる"
@@ -1453,7 +1453,7 @@ Text_15a8f6:
 	line ""
 	txfn 2
 
-Text_15a949:
+StdText_12_6d:
 	db "フラウラむらよリもさきは"
 	line "オレたちでさえ なかなか"
 	line "いかないばしょなんだぜ!"
@@ -1464,7 +1464,7 @@ Text_15a949:
 	line ""
 	txfn 2
 
-Text_15a9a2:
+StdText_12_6e:
 	db "なぁ "
 	TX_CALL wPlayerName
 	line "オレのトモダチが どこに"
@@ -1482,7 +1482,7 @@ Text_15a9a2:
 	line ""
 	txfn 2
 
-Text_15aa37:
+StdText_12_6f:
 	db "『サナエバグループ』の"
 	line "ヤツら デンジュウを"
 	line "たくさんあつめてるらしいぜ"
@@ -1495,7 +1495,7 @@ Text_15aa37:
 	line "なんだか シンパイだよー"
 	txfn 2
 
-Text_15aab5:
+StdText_12_70:
 	db "なぁ イオンとうにある"
 	line "ほこらのはなし きいたか?"
 	line "イオンとうの ちかに"
@@ -1508,7 +1508,7 @@ Text_15aab5:
 	line ""
 	txfn 2
 
-Text_15ab1d:
+StdText_12_71:
 	db "『サナエバグループ』の"
 	line "ニンゲンと トモダチのヤツに"
 	line "きいたんだけど"
@@ -1519,7 +1519,7 @@ Text_15ab1d:
 	line "かくしてるんだろなー"
 	txfn 2
 
-Text_15ab7d:
+StdText_12_72:
 	db "イオンとうのほこらは"
 	line "もともとは オレたちの"
 	line "モノだったっていうのに"
@@ -1528,7 +1528,7 @@ Text_15ab7d:
 	line ""
 	txfn 2
 
-Text_15abbd:
+StdText_12_73:
 	db "まったく イオンとうは"
 	line "ひさんだよな!"
 	line "デンワガイシャのあらそいが"
@@ -1537,7 +1537,7 @@ Text_15abbd:
 	line "いやになってくるよ"
 	txfn 2
 
-Text_15ac01:
+StdText_12_74:
 	db "ほこらのなかには"
 	line "サナエバのてしたたちが"
 	line "うようよいるってはなしだけど"
@@ -1546,7 +1546,7 @@ Text_15ac01:
 	line ""
 	txfn 2
 
-Text_15ac3f:
+StdText_12_75:
 	db "サナエバのてしたたちは"
 	line "かなリのきょうてきだって"
 	line "はなしを きいたんだけどー"
@@ -1555,7 +1555,7 @@ Text_15ac3f:
 	line "どうなんだろうなー?"
 	txfn 2
 
-Text_15ac83:
+StdText_12_76:
 	db "テレファングで"
 	line "いちばんたいせつなことは"
 	line "あきらめちゃいけないってこと"
@@ -1566,7 +1566,7 @@ Text_15ac83:
 	line ""
 	txfn 2
 
-Text_15acda:
+StdText_12_77:
 	db "テレファングのときに"
 	line "やくわリをぶんたんするのも"
 	line "ひとつのてだよな!"
@@ -1575,7 +1575,7 @@ Text_15acda:
 	line ""
 	txfn 2
 
-Text_15ad17:
+StdText_12_78:
 	db "『カクトスいせき』って"
 	line "はなしは きいたことが"
 	line "あるんだけど どんなところか"
@@ -1586,7 +1586,7 @@ Text_15ad17:
 	line ""
 	txfn 2
 
-Text_15ad6b:
+StdText_12_79:
 	db "『カクトスいせき』のなかでは"
 	line "すっげー デンジュウが"
 	line "ねむってるらしいなー"
@@ -1597,7 +1597,7 @@ Text_15ad6b:
 	line ""
 	txfn 2
 
-Text_15adc7:
+StdText_12_7a:
 	TX_CALL wPlayerName
 	line "いまどこにいるんだ??"
 	line "まよいのもリにいるんだとしたら"
@@ -1610,7 +1610,7 @@ Text_15adc7:
 	line "それじゃ がんばれよー"
 	txfn 2
 
-Text_15ae38:
+StdText_12_7b:
 	db "まよいのもリに たくさんの"
 	line "Tファンガーが いるらしいぜ"
 	line "きっと サナエバのれんちゅうが"
@@ -1624,7 +1624,7 @@ Text_15ae38:
 	line ""
 	txfn 2
 
-Text_15aea5:
+StdText_12_7c:
 	db "よう "
 	TX_CALL wPlayerName
 	line "サナエバってヤツ あいつも"
@@ -1638,7 +1638,7 @@ Text_15aea5:
 	line "しっかリ きたえておけよ!"
 	txfn 2
 
-Text_15af1a:
+StdText_12_7d:
 	db "サナエバのそばに"
 	line "いるデンジュウさー"
 	line "みたこともなければ"
@@ -1653,7 +1653,7 @@ Text_15af1a:
 	line ""
 	txfn 2
 
-Text_15af98:
+StdText_12_7e:
 	db "デンジュウカイには まだ"
 	line "だれも いったことがない"
 	line "いせきが あるらしいんだ"
@@ -1666,7 +1666,7 @@ Text_15af98:
 	line ""
 	txfn 2
 
-Text_15b011:
+StdText_12_7f:
 	db "おーい "
 	TX_CALL wPlayerName
 	line "いいこときいたから"
@@ -1682,7 +1682,7 @@ Text_15b011:
 	line "それじゃ がんばってくれよー"
 	txfn 2
 
-Text_15b09e:
+StdText_12_80:
 	TX_CALL wPlayerName
 	line "ヒトをさがしをしてる"
 	line "さいちゅうなんだって?"
@@ -1697,7 +1697,7 @@ Text_15b09e:
 	line ""
 	txfn 2
 
-Text_15b119:
+StdText_12_81:
 	db "あの カイっていう"
 	line "ニンゲンいるじゃないか"
 	line "あいつも サナエバなみに"
@@ -1712,7 +1712,7 @@ Text_15b119:
 	line ""
 	txfn 2
 
-Text_15b1a3:
+StdText_12_82:
 	db "ブリオンいせきのまえに"
 	line "ミケスこっていうのが"
 	line "あるらしいんだけどさ"
@@ -1723,7 +1723,7 @@ Text_15b1a3:
 	line ""
 	txfn 2
 
-Text_15b1fa:
+StdText_12_83:
 	db "サナエバは あヤツられてたって"
 	line "ほんとうなのか?"
 	line "みんなにせめられたくなくて"
@@ -1734,7 +1734,7 @@ Text_15b1fa:
 	line ""
 	txfn 2
 
-Text_15b258:
+StdText_12_84:
 	db "ブリオンいせきに"
 	line "はいったヤツは にどと"
 	line "でてこられないって"
@@ -1747,7 +1747,7 @@ Text_15b258:
 	line "オマエだいじょうぶなのか?"
 	txfn 2
 
-Text_15b2c8:
+StdText_12_85:
 	db "オマエ まいごになってたリ"
 	line "しないだろうなー"
 	line "もし まいごになったときは"
@@ -1760,7 +1760,7 @@ Text_15b2c8:
 	line ""
 	txfn 2
 
-Text_15b33c:
+StdText_12_86:
 	db "いのちのきって"
 	line "どんなきなんだろう?"
 	line "デンジュウはみんな"
@@ -1773,7 +1773,7 @@ Text_15b33c:
 	line ""
 	txfn 2
 
-Text_15b3a7:
+StdText_12_87:
 	db "サナエバをあやつっていた"
 	line "デンジュウは いのちのきを"
 	line "つかって なにかをしようと"
@@ -1788,7 +1788,7 @@ Text_15b3a7:
 	line ""
 	txfn 2
 
-Text_15b430:
+StdText_12_88:
 	db "オマエもずいぶんながいこと"
 	line "デンジュウカイを"
 	line "たびしてきたんだよな.."
@@ -1801,7 +1801,7 @@ Text_15b430:
 	line ""
 	txfn 2
 
-Text_15b49f:
+StdText_12_89:
 	db "まさかとはおもうけど"
 	line "トモダチが ぜんぜん"
 	line "ふえてないってことは"
@@ -1814,7 +1814,7 @@ Text_15b49f:
 	line ""
 	txfn 2
 
-Text_15b50a:
+StdText_12_8a:
 	TX_CALL wPlayerName
 	line "オマエって やっぱリ"
 	line "すごいヤツだったんだな!"
@@ -1829,7 +1829,7 @@ Text_15b50a:
 	line ""
 	txfn 2
 
-Text_15b586:
+StdText_12_8b:
 	db "いま "
 	TX_CALL wPlayerName
 	db "は"
@@ -1847,53 +1847,53 @@ Text_15b586:
 	line ""
 	txfn 2
 
-Text_15b608:
+StdText_12_8c:
 	db "オレのトモダチが サイキョウの"
 	line "『Tファンガー』だなんてな"
 	line "トモダチのデンジュウに"
 	line "じまんしちゃおーっと"
 	txfn 2
 
-Text_15b63e:
+StdText_12_8d:
 	db "デンジュウカイにいる"
 	line "デンジュウぜんぶに あおうと"
 	line "おもったら ひとリじゃ"
 	line "ムリなんだってさー"
 	txfn 2
 
-Text_15b66f:
+StdText_12_8e:
 	db "『ずかん』はもううまったかい?"
 	line "がんばって うめてくれよな!"
 	txfn 2
 
-Text_15b68f:
+StdText_12_8f:
 	db "『いのちの き』って けっきょくどこにあるんだろうな?"
 	line "もう わすれちゃって"
 	line "いいのかな?"
 	txfn 2
 
-Text_15b6be:
+StdText_12_90:
 	db "やっぱリ へいわがいちばんだな"
 	line "オマエのおかげだよ"
 	line "あリがとう"
 	line ""
 	txfn 2
 
-Text_15b6e0:
+StdText_12_91:
 	db "サイキョウのTファンガーか.."
 	line "いいひびきだなー"
 	line "いまのオマエ ちょっと"
 	line "カッコいいぜ!"
 	txfn 2
 
-Text_15b70e:
+StdText_12_92:
 	db "ブリオンで たたかった"
 	line "デンジュウって トモダチは"
 	line "いなかったのかなー?"
 	line "さびしいヤツだったんだろうなー"
 	txfn 2
 
-Text_15b744:
+StdText_12_93:
 	db "このせかいには いろんな"
 	line "ヤツがいるんだ"
 	line "サイキョウのTファンガーなら"
@@ -1902,13 +1902,13 @@ Text_15b744:
 	line ""
 	txfn 2
 
-Text_15b781:
+StdText_12_94:
 	db "ちょくせつ デンワバンゴウを"
 	line "いれないと トモダチに"
 	line "なってくれない デンジュウも"
 	line "いるんだってさ"
 	txfn 2
 
-Text_15b7b4:
+StdText_12_95:
 	db "あーカラダがいたい!"
 	txfn 2

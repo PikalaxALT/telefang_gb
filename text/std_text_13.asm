@@ -1,112 +1,112 @@
 StdTextPointers_13:
-	dw Text_15c0d4
-	dw Text_15c101
-	dw Text_15c131
-	dw Text_15c170
-	dw Text_15c1b9
-	dw Text_15c1e2
-	dw Text_15c234
-	dw Text_15c262
-	dw Text_15c29c
-	dw Text_15c2bb
-	dw Text_15c2ed
-	dw Text_15c346
-	dw Text_15c388
-	dw Text_15c3d7
-	dw Text_15c421
-	dw Text_15c46b
-	dw Text_15c4be
-	dw Text_15c510
-	dw Text_15c549
-	dw Text_15c5b1
-	dw Text_15c603
-	dw Text_15c678
-	dw Text_15c6de
-	dw Text_15c752
-	dw Text_15c7b4
-	dw Text_15c7f8
-	dw Text_15c851
-	dw Text_15c8a4
-	dw Text_15c910
-	dw Text_15c94b
-	dw Text_15c992
-	dw Text_15c9cf
-	dw Text_15ca03
-	dw Text_15ca67
-	dw Text_15cab6
-	dw Text_15cb02
-	dw Text_15cb47
-	dw Text_15cb93
-	dw Text_15cbd9
-	dw Text_15cc54
-	dw Text_15cca6
-	dw Text_15cce8
-	dw Text_15cd37
-	dw Text_15cd78
-	dw Text_15cdb3
-	dw Text_15cdf8
-	dw Text_15ce3c
-	dw Text_15cea0
-	dw Text_15cee2
-	dw Text_15cf25
-	dw Text_15cf73
-	dw Text_15cfc4
-	dw Text_15d010
-	dw Text_15d070
-	dw Text_15d0b9
-	dw Text_15d102
-	dw Text_15d156
-	dw Text_15d1a9
-	dw Text_15d216
-	dw Text_15d25e
-	dw Text_15d292
-	dw Text_15d2e4
-	dw Text_15d324
-	dw Text_15d380
-	dw Text_15d3c3
-	dw Text_15d409
-	dw Text_15d44a
-	dw Text_15d48a
-	dw Text_15d4e5
-	dw Text_15d545
-	dw Text_15d59c
-	dw Text_15d5ea
-	dw Text_15d64e
-	dw Text_15d69a
-	dw Text_15d6f7
-	dw Text_15d75f
-	dw Text_15d7c0
-	dw Text_15d7fe
-	dw Text_15d857
-	dw Text_15d8b3
-	dw Text_15d8fa
-	dw Text_15d975
-	dw Text_15d9e8
-	dw Text_15da29
-	dw Text_15da7d
-	dw Text_15dab3
-	dw Text_15dafa
-	dw Text_15db40
-	dw Text_15dbba
-	dw Text_15dc04
-	dw Text_15dc62
-	dw Text_15dcc9
-	dw Text_15dd1d
-	dw Text_15dd81
-	dw Text_15ddce
-	dw Text_15de05
-	dw Text_15de65
-	dw Text_15dec6
-	dw Text_15df00
-	dw Text_15df6f
-	dw Text_15dfe4
-	dw Text_15e027
-	dw Text_15e077
-	dw Text_15e0b3
-	dw Text_15e103
-	dw Text_15e148
+	dw StdText_13_00
+	dw StdText_13_01
+	dw StdText_13_02
+	dw StdText_13_03
+	dw StdText_13_04
+	dw StdText_13_05
+	dw StdText_13_06
+	dw StdText_13_07
+	dw StdText_13_08
+	dw StdText_13_09
+	dw StdText_13_0a
+	dw StdText_13_0b
+	dw StdText_13_0c
+	dw StdText_13_0d
+	dw StdText_13_0e
+	dw StdText_13_0f
+	dw StdText_13_10
+	dw StdText_13_11
+	dw StdText_13_12
+	dw StdText_13_13
+	dw StdText_13_14
+	dw StdText_13_15
+	dw StdText_13_16
+	dw StdText_13_17
+	dw StdText_13_18
+	dw StdText_13_19
+	dw StdText_13_1a
+	dw StdText_13_1b
+	dw StdText_13_1c
+	dw StdText_13_1d
+	dw StdText_13_1e
+	dw StdText_13_1f
+	dw StdText_13_20
+	dw StdText_13_21
+	dw StdText_13_22
+	dw StdText_13_23
+	dw StdText_13_24
+	dw StdText_13_25
+	dw StdText_13_26
+	dw StdText_13_27
+	dw StdText_13_28
+	dw StdText_13_29
+	dw StdText_13_2a
+	dw StdText_13_2b
+	dw StdText_13_2c
+	dw StdText_13_2d
+	dw StdText_13_2e
+	dw StdText_13_2f
+	dw StdText_13_30
+	dw StdText_13_31
+	dw StdText_13_32
+	dw StdText_13_33
+	dw StdText_13_34
+	dw StdText_13_35
+	dw StdText_13_36
+	dw StdText_13_37
+	dw StdText_13_38
+	dw StdText_13_39
+	dw StdText_13_3a
+	dw StdText_13_3b
+	dw StdText_13_3c
+	dw StdText_13_3d
+	dw StdText_13_3e
+	dw StdText_13_3f
+	dw StdText_13_40
+	dw StdText_13_41
+	dw StdText_13_42
+	dw StdText_13_43
+	dw StdText_13_44
+	dw StdText_13_45
+	dw StdText_13_46
+	dw StdText_13_47
+	dw StdText_13_48
+	dw StdText_13_49
+	dw StdText_13_4a
+	dw StdText_13_4b
+	dw StdText_13_4c
+	dw StdText_13_4d
+	dw StdText_13_4e
+	dw StdText_13_4f
+	dw StdText_13_50
+	dw StdText_13_51
+	dw StdText_13_52
+	dw StdText_13_53
+	dw StdText_13_54
+	dw StdText_13_55
+	dw StdText_13_56
+	dw StdText_13_57
+	dw StdText_13_58
+	dw StdText_13_59
+	dw StdText_13_5a
+	dw StdText_13_5b
+	dw StdText_13_5c
+	dw StdText_13_5d
+	dw StdText_13_5e
+	dw StdText_13_5f
+	dw StdText_13_60
+	dw StdText_13_61
+	dw StdText_13_62
+	dw StdText_13_63
+	dw StdText_13_64
+	dw StdText_13_65
+	dw StdText_13_66
+	dw StdText_13_67
+	dw StdText_13_68
+	dw StdText_13_69
 
-Text_15c0d4:
+StdText_13_00:
 	TX_DENJUU KOCHIA
 	db "なぁなぁしってるか?"
 	line "ツノナスに『でんち』を"
@@ -114,7 +114,7 @@ Text_15c0d4:
 	line "あるんだぜ!"
 	txfn 2
 
-Text_15c101:
+StdText_13_01:
 	TX_DENJUU OSHE
 	db "もしもし?"
 	line "あのねー コキアに"
@@ -122,7 +122,7 @@ Text_15c101:
 	line "ちょこっと つよくなるんだぜ"
 	txfn 2
 
-Text_15c131:
+StdText_13_02:
 	TX_DENJUU KESHI
 	db "ねぇねぇ"
 	line "これきいたことある?"
@@ -132,7 +132,7 @@ Text_15c131:
 	line ""
 	txfn 2
 
-Text_15c170:
+StdText_13_03:
 	TX_DENJUU CRYPTO
 	db "ケシってさー"
 	line "『レンジ』をくっつけると"
@@ -141,7 +141,7 @@ Text_15c170:
 	line "おこられるかな?"
 	txfn 2
 
-Text_15c1b9:
+StdText_13_04:
 	TX_DENJUU MONSTERA
 	db "クリプトって『ガン』が"
 	line "すきなんだよ"
@@ -149,7 +149,7 @@ Text_15c1b9:
 	line "なるぜ!"
 	txfn 2
 
-Text_15c1e2:
+StdText_13_05:
 	TX_DENJUU FUNGUS
 	db "へっへー いいこときいたよ"
 	line "キミにも おしえてあげる"
@@ -161,7 +161,7 @@ Text_15c1e2:
 	line ""
 	txfn 2
 
-Text_15c234:
+StdText_13_06:
 	TX_DENJUU HIOUGI
 	db "ファンガスに『アンテナ』って"
 	line "なんかキーワードらしいよ"
@@ -169,7 +169,7 @@ Text_15c234:
 	line ""
 	txfn 2
 
-Text_15c262:
+StdText_13_07:
 	TX_DENJUU PUNICA
 	db "もしもーし"
 	line ""
@@ -181,7 +181,7 @@ Text_15c262:
 	line "らしいよ"
 	txfn 2
 
-Text_15c29c:
+StdText_13_08:
 	TX_DENJUU GUMI
 	db "ねーねー"
 	line "『バケツ』はプニカって"
@@ -189,7 +189,7 @@ Text_15c29c:
 	line ""
 	txfn 2
 
-Text_15c2bb:
+StdText_13_09:
 	TX_DENJUU SUGURI
 	db "やぁ "
 	TX_CALL wPlayerName
@@ -200,7 +200,7 @@ Text_15c2bb:
 	line ""
 	txfn 2
 
-Text_15c2ed:
+StdText_13_0a:
 	TX_DENJUU GANRAIKOU
 	db "おーう "
 	TX_CALL wPlayerName
@@ -213,7 +213,7 @@ Text_15c2ed:
 	line "やっぱ ネコににてるからかな?"
 	txfn 2
 
-Text_15c346:
+StdText_13_0b:
 	TX_DENJUU BYAKUBU
 	db "ガンライコウって"
 	line "『フライパン』をくっつけて"
@@ -223,7 +223,7 @@ Text_15c346:
 	line "するよねー"
 	txfn 2
 
-Text_15c388:
+StdText_13_0c:
 	TX_DENJUU TELOPEA
 	db "ビャクブってトモダチにいるー?"
 	line "いるんだったら"
@@ -233,7 +233,7 @@ Text_15c388:
 	line "キバをもってるんだよねー"
 	txfn 2
 
-Text_15c3d7:
+StdText_13_0d:
 	TX_DENJUU MANTEA
 	db "タマゴをせなかにしょった"
 	line "デンジュウのテロぺアって"
@@ -243,7 +243,7 @@ Text_15c3d7:
 	line "なるんだってさ"
 	txfn 2
 
-Text_15c421:
+StdText_13_0e:
 	TX_DENJUU IXORA
 	db "ねー"
 	TX_CALL wPlayerName
@@ -256,7 +256,7 @@ Text_15c421:
 	line ""
 	txfn 2
 
-Text_15c46b:
+StdText_13_0f:
 	TX_DENJUU MYRTUS
 	TX_CALL wPlayerName
 	db "の"
@@ -267,7 +267,7 @@ Text_15c46b:
 	line "ホントかウソか しらないけどさ"
 	txfn 2
 
-Text_15c4be:
+StdText_13_10:
 	TX_DENJUU LYCHNIS
 	db "ミルツスがさー"
 	line "『プロぺラエンジン』を"
@@ -279,7 +279,7 @@ Text_15c4be:
 	line ""
 	txfn 2
 
-Text_15c510:
+StdText_13_11:
 	TX_DENJUU LAPEIROUSIA
 	db "リクニスって"
 	line "『ドリル』だいすきデンジュウ"
@@ -289,7 +289,7 @@ Text_15c510:
 	line ""
 	txfn 2
 
-Text_15c549:
+StdText_13_12:
 	TX_DENJUU BUBARIA
 	TX_CALL wPlayerName
 	db "ってさ"
@@ -302,7 +302,7 @@ Text_15c549:
 	line "あったら つけてみなよー"
 	txfn 2
 
-Text_15c5b1:
+StdText_13_13:
 	TX_DENJUU ANGIOS
 	db "ブバリアってデンジュウ"
 	line "『バズーカ』を つけると"
@@ -314,7 +314,7 @@ Text_15c5b1:
 	line ""
 	txfn 2
 
-Text_15c603:
+StdText_13_14:
 	TX_DENJUU GYMNOS
 	db "アンジオスってデンジュウが"
 	line "いるじゃない?"
@@ -328,7 +328,7 @@ Text_15c603:
 	line ""
 	txfn 2
 
-Text_15c678:
+StdText_13_15:
 	TX_DENJUU LIRIOPE
 	db "よう "
 	TX_CALL wPlayerName
@@ -343,7 +343,7 @@ Text_15c678:
 	line ""
 	txfn 2
 
-Text_15c6de:
+StdText_13_16:
 	TX_DENJUU WARATAH
 	db "あの かわいいデンジュウ"
 	line "リリオぺっているじゃん"
@@ -357,7 +357,7 @@ Text_15c6de:
 	line ""
 	txfn 2
 
-Text_15c752:
+StdText_13_17:
 	TX_DENJUU SORGHUM
 	db "イオンとうに ワラタって"
 	line "デンジュウが いるんだけどさ"
@@ -369,7 +369,7 @@ Text_15c752:
 	line "つよくなるかもよ?"
 	txfn 2
 
-Text_15c7b4:
+StdText_13_18:
 	TX_DENJUU ERYNGO
 	db "ソルガムってへビみたいな"
 	line "デンジュウしってる??"
@@ -379,7 +379,7 @@ Text_15c7b4:
 	line ""
 	txfn 2
 
-Text_15c7f8:
+StdText_13_19:
 	TX_DENJUU NORIUTSUGI
 	db "おーっす "
 	TX_CALL wPlayerName
@@ -392,7 +392,7 @@ Text_15c7f8:
 	line "いがいだよなー"
 	txfn 2
 
-Text_15c851:
+StdText_13_1a:
 	TX_DENJUU PAMPAS
 	db "ここで もんだいです"
 	line "『ボム』をつけると いいという"
@@ -402,7 +402,7 @@ Text_15c851:
 	line "おぼえておきなよー"
 	txfn 2
 
-Text_15c8a4:
+StdText_13_1b:
 	TX_DENJUU RHODANTHE
 	db "うみのデンジュウ パンパスって"
 	line "ごぞんじですか??"
@@ -414,14 +414,14 @@ Text_15c8a4:
 	line "つけたがるんでしょう...."
 	txfn 2
 
-Text_15c910:
+StdText_13_1c:
 	TX_DENJUU LICORICE
 	db "ローダンセってデンジュウさー"
 	line "『ミキサー』が すきなんだって"
 	line "なんだか うごきがにてるもんなーわかるきがするよ"
 	txfn 2
 
-Text_15c94b:
+StdText_13_1d:
 	TX_DENJUU VIBURNUM
 	db "リコリスって『コンピュータ』を"
 	line "つけると いいんだろ?"
@@ -431,7 +431,7 @@ Text_15c94b:
 	line ""
 	txfn 2
 
-Text_15c992:
+StdText_13_1e:
 	TX_DENJUU FUNNEL
 	db "おーう "
 	TX_CALL wPlayerName
@@ -442,7 +442,7 @@ Text_15c992:
 	line ""
 	txfn 2
 
-Text_15c9cf:
+StdText_13_1f:
 	TX_DENJUU VANDA
 	db "ファンネルってデンジュウさぁ"
 	line "『ノコギリ』さがしてるんだって"
@@ -450,7 +450,7 @@ Text_15c9cf:
 	line "よろこぶよ"
 	txfn 2
 
-Text_15ca03:
+StdText_13_20:
 	TX_DENJUU UIKYOU
 	db "バンダってうでのながい"
 	line "デンジュウを しってるかな?"
@@ -462,7 +462,7 @@ Text_15ca03:
 	line ""
 	txfn 2
 
-Text_15ca67:
+StdText_13_21:
 	TX_DENJUU OBANA
 	db "『アーチェリー』を"
 	line "ほしがってるデンジュウを"
@@ -476,7 +476,7 @@ Text_15ca67:
 	line ""
 	txfn 2
 
-Text_15cab6:
+StdText_13_22:
 	TX_DENJUU FIREKOKKO
 	db "オバナってさー"
 	line "『そうじき』がいいんだって"
@@ -486,7 +486,7 @@ Text_15cab6:
 	line "どっちにしても いがいだよなー"
 	txfn 2
 
-Text_15cb02:
+StdText_13_23:
 	TX_DENJUU RAYGOTEN
 	db "ファイアーコッコって"
 	line "『ボンベ』がけいけんちアップの"
@@ -496,7 +496,7 @@ Text_15cb02:
 	line ""
 	txfn 2
 
-Text_15cb47:
+StdText_13_24:
 	TX_DENJUU DRILARMOR
 	db "レイゴーテンってデンジュウを"
 	line "みたことある??"
@@ -506,7 +506,7 @@ Text_15cb47:
 	line "くっつけてあげたら?"
 	txfn 2
 
-Text_15cb93:
+StdText_13_25:
 	TX_DENJUU CHAMELAN
 	db "ドリアーマって"
 	line "『リボルバーガン』をあげると"
@@ -516,7 +516,7 @@ Text_15cb93:
 	line "ものたリないのかな??"
 	txfn 2
 
-Text_15cbd9:
+StdText_13_26:
 	TX_DENJUU CRYPTOARM
 	db "よう "
 	TX_CALL wPlayerName
@@ -531,7 +531,7 @@ Text_15cbd9:
 	line "しんぱいだなー...."
 	txfn 2
 
-Text_15cc54:
+StdText_13_27:
 	TX_DENJUU SHELLSTERA
 	TX_CALL wPlayerName
 	db "?"
@@ -544,7 +544,7 @@ Text_15cc54:
 	line ""
 	txfn 2
 
-Text_15cca6:
+StdText_13_28:
 	TX_DENJUU FUNGEIST
 	db "シェルステラって"
 	line "『ジェットエンジン』で"
@@ -554,7 +554,7 @@ Text_15cca6:
 	line ""
 	txfn 2
 
-Text_15cce8:
+StdText_13_29:
 	TX_DENJUU BALLTAMUS
 	db "ファンガイストって"
 	line "『ガトリング』がいいんだぜー"
@@ -564,14 +564,14 @@ Text_15cce8:
 	line "トモダチにして よかったろ?"
 	txfn 2
 
-Text_15cd37:
+StdText_13_2a:
 	TX_DENJUU BURENICA
 	db "ボルタマスってデンジュウなー"
 	line "『ミサイル』つけたいんだってさあんなこわいモノ つけるなって"
 	line "おもうのは オレだけなのかなー"
 	txfn 2
 
-Text_15cd78:
+StdText_13_2b:
 	TX_DENJUU GERON
 	db "ブレニカって カワイイかおして"
 	line "『ランス』をつけると ちょっと"
@@ -579,7 +579,7 @@ Text_15cd78:
 	line "わかんないもんだよねー"
 	txfn 2
 
-Text_15cdb3:
+StdText_13_2c:
 	TX_DENJUU BERZELIA
 	db "『シュリケン』をくっつけたがる"
 	line "ゲーロンって"
@@ -588,7 +588,7 @@ Text_15cdb3:
 	line ""
 	txfn 2
 
-Text_15cdf8:
+StdText_13_2d:
 	TX_DENJUU NIGELLA
 	db "『ガン』をバーゼリアに"
 	line "つけるといいっていう"
@@ -598,7 +598,7 @@ Text_15cdf8:
 	line "どうなんだろうなー?"
 	txfn 2
 
-Text_15ce3c:
+StdText_13_2e:
 	TX_DENJUU MUSA
 	db "なぁなぁー"
 	line "ニゲラってデンジュウ みたことある??"
@@ -609,7 +609,7 @@ Text_15ce3c:
 	line "とばすの すきそうだもんなー"
 	txfn 2
 
-Text_15cea0:
+StdText_13_2f:
 	TX_DENJUU NETARO
 	db "ちょうろうの ムサさまが"
 	line "いるじゃん"
@@ -619,7 +619,7 @@ Text_15cea0:
 	line "きいたよ"
 	txfn 2
 
-Text_15cee2:
+StdText_13_30:
 	TX_DENJUU NEJIRO
 	db "ネタロってさー"
 	line "『サーベル』がいいんだぜー"
@@ -629,7 +629,7 @@ Text_15cee2:
 	line ""
 	txfn 2
 
-Text_15cf25:
+StdText_13_31:
 	TX_DENJUU GODETIA
 	db "やっほー "
 	TX_CALL wPlayerName
@@ -642,7 +642,7 @@ Text_15cf25:
 	line ""
 	txfn 2
 
-Text_15cf73:
+StdText_13_32:
 	TX_DENJUU CURCUMA
 	db "デンジュウカイにね"
 	line "ゴデチアっていうデンジュウが"
@@ -654,7 +654,7 @@ Text_15cf73:
 	line ""
 	txfn 2
 
-Text_15cfc4:
+StdText_13_33:
 	TX_DENJUU TESSEN
 	db "オレが しってるデンジュウで"
 	line "クルクマってデンジュウが"
@@ -663,7 +663,7 @@ Text_15cfc4:
 	line "いいらしいんだよ"
 	txfn 2
 
-Text_15d010:
+StdText_13_34:
 	TX_DENJUU HELIOPSIS
 	db "テッセンっていうかっこいい"
 	line "デンジュウがいるんだけど"
@@ -675,7 +675,7 @@ Text_15d010:
 	line "ちがうよなー"
 	txfn 2
 
-Text_15d070:
+StdText_13_35:
 	TX_DENJUU HAGUMANOKI
 	db "『プロぺラエンジン』が"
 	line "すきなデンジュウで"
@@ -684,7 +684,7 @@ Text_15d070:
 	line "ほんとだって!"
 	txfn 2
 
-Text_15d0b9:
+StdText_13_36:
 	TX_DENJUU GILERTH
 	db "ハグマノキってデンジュウは"
 	line "『ビームガン』を"
@@ -694,7 +694,7 @@ Text_15d0b9:
 	line "オレは みたことないんだけどさ"
 	txfn 2
 
-Text_15d102:
+StdText_13_37:
 	TX_DENJUU RAYGIRTH
 	db "『アーミーナイフ』なんて"
 	line "ごっついモノ ほしがる"
@@ -706,7 +706,7 @@ Text_15d102:
 	line ""
 	txfn 2
 
-Text_15d156:
+StdText_13_38:
 	TX_DENJUU ARMARU
 	db "レイガースってヤツ"
 	line "『コンピュータ』を くっつけて"
@@ -716,7 +716,7 @@ Text_15d156:
 	line "ぜったいそうだよなー"
 	txfn 2
 
-Text_15d1a9:
+StdText_13_39:
 	TX_DENJUU CHAMERAID
 	db "もしもーし"
 	line ""
@@ -732,7 +732,7 @@ Text_15d1a9:
 	line "しれないけどさー"
 	txfn 2
 
-Text_15d216:
+StdText_13_3a:
 	TX_DENJUU CRYPTORIDE
 	db "カメレイドってデンジュウがさ"
 	line "『マシンガン』をブッぱなすのがすきだって いってたんだ"
@@ -741,7 +741,7 @@ Text_15d216:
 	line ""
 	txfn 2
 
-Text_15d25e:
+StdText_13_3b:
 	TX_DENJUU WORMITERALA
 	db "クリプトライドってねー"
 	line "『モバイル』がおきにいリだって"
@@ -749,7 +749,7 @@ Text_15d25e:
 	line "デンジュウだよねー"
 	txfn 2
 
-Text_15d292:
+StdText_13_3c:
 	TX_DENJUU FUNGBLADE
 	db "『じゃぐち』がけいけんちアップのアイテムだっていうマニアックな"
 	line "デンジュウが ワーミテララって"
@@ -758,7 +758,7 @@ Text_15d292:
 	line "いるのかなー?"
 	txfn 2
 
-Text_15d2e4:
+StdText_13_3d:
 	TX_DENJUU BULLTAMUS
 	db "ファンブレードってさー"
 	line "『アーミーナイフ』が"
@@ -768,7 +768,7 @@ Text_15d2e4:
 	line ""
 	txfn 2
 
-Text_15d324:
+StdText_13_3e:
 	TX_DENJUU PUNEEDLE
 	db "もしもーし"
 	line "ブルタマスって『ドライバー』が"
@@ -780,7 +780,7 @@ Text_15d324:
 	line ""
 	txfn 2
 
-Text_15d380:
+StdText_13_3f:
 	TX_DENJUU KERORIN
 	db "プニードルが『ネジ』を"
 	line "さがしてるっていう"
@@ -790,7 +790,7 @@ Text_15d380:
 	line "ダイジョウブかなー"
 	txfn 2
 
-Text_15d3c3:
+StdText_13_40:
 	TX_DENJUU SUGULAI
 	db "ケロリンって『コンピュータ』で"
 	line "つよくなるデンジュウなんだってはなしを きいたよ"
@@ -799,7 +799,7 @@ Text_15d3c3:
 	line ""
 	txfn 2
 
-Text_15d409:
+StdText_13_41:
 	TX_DENJUU CORTOS
 	db "スグライってデンジュウは"
 	line "『チェーンソー』なんて"
@@ -809,7 +809,7 @@ Text_15d409:
 	line ""
 	txfn 2
 
-Text_15d44a:
+StdText_13_42:
 	TX_DENJUU GAIURUS
 	db "『アイロン』って"
 	line "コートスってデンジュウが"
@@ -821,7 +821,7 @@ Text_15d44a:
 	line ""
 	txfn 2
 
-Text_15d48a:
+StdText_13_43:
 	TX_DENJUU MIDOTOR
 	db "あの ガイウルスってデンジュウ"
 	line "『カメラ』がけいけんちアップの"
@@ -833,7 +833,7 @@ Text_15d48a:
 	line ""
 	txfn 2
 
-Text_15d4e5:
+StdText_13_44:
 	TX_DENJUU OCTOR
 	db "ミドートルって"
 	line "『そうじき』が あいしょうの"
@@ -845,7 +845,7 @@ Text_15d4e5:
 	line "なにか ちょうだいねー"
 	txfn 2
 
-Text_15d545:
+StdText_13_45:
 	TX_DENJUU HITODEIGHT
 	db "オクトルの けいけんちが"
 	line "あがるアイテムって『クレーン』なんだろ?"
@@ -856,7 +856,7 @@ Text_15d545:
 	line ""
 	txfn 2
 
-Text_15d59c:
+StdText_13_46:
 	TX_DENJUU GHOSBOAR
 	db "『ゼンマイ』を くっつけると"
 	line "つよくなる ヒトデーイトって"
@@ -866,7 +866,7 @@ Text_15d59c:
 	line "きっとそうだって!"
 	txfn 2
 
-Text_15d5ea:
+StdText_13_47:
 	TX_DENJUU RASENMAI
 	db "ゴースボアっていう ちょっと"
 	line "みためが ごっついデンジュウが"
@@ -878,7 +878,7 @@ Text_15d5ea:
 	line "あるんだろうねー"
 	txfn 2
 
-Text_15d64e:
+StdText_13_48:
 	TX_DENJUU SCORPIL
 	db "ラセンマイってデンジュウねー"
 	line "『ネジ』をみるのが"
@@ -887,7 +887,7 @@ Text_15d64e:
 	line "よくしらないんだけどさー"
 	txfn 2
 
-Text_15d69a:
+StdText_13_49:
 	TX_DENJUU ARMCRAB
 	db "スコーピルっていう"
 	line "デンジュウがねー"
@@ -899,7 +899,7 @@ Text_15d69a:
 	line ""
 	txfn 2
 
-Text_15d6f7:
+StdText_13_4a:
 	TX_DENJUU ANGIORN
 	db "アームクラブってデンジュウが"
 	line "『マウス』を つけたいって"
@@ -911,7 +911,7 @@ Text_15d6f7:
 	line "へっへー オレってものしリ!"
 	txfn 2
 
-Text_15d75f:
+StdText_13_4b:
 	TX_DENJUU GYMRACE
 	db "アンジオーンって『アイロン』に"
 	line "きょうみしんしんって ほんと?"
@@ -923,13 +923,13 @@ Text_15d75f:
 	line ""
 	txfn 2
 
-Text_15d7c0:
+StdText_13_4c:
 	TX_DENJUU LIRIONPU
 	db "『アンテナ』がけいけんちアップのデンジュウって けっこう"
 	line "いるんだけど ヂムレースっていうデンジュウも そうなんだー"
 	txfn 2
 
-Text_15d7fe:
+StdText_13_4d:
 	TX_DENJUU WHITAH
 	db "リリオンプってデンジュウは"
 	line "『ドライバー』をくっつけて"
@@ -941,7 +941,7 @@ Text_15d7fe:
 	line ""
 	txfn 2
 
-Text_15d857:
+StdText_13_4e:
 	TX_DENJUU POTZAL
 	db "ねぇ "
 	TX_CALL wPlayerName
@@ -954,7 +954,7 @@ Text_15d857:
 	line ""
 	txfn 2
 
-Text_15d8b3:
+StdText_13_4f:
 	TX_DENJUU ARANEIDA
 	db "ポッツァルってデンジュウが"
 	line "イチバンつよくなるアイテムは"
@@ -963,7 +963,7 @@ Text_15d8b3:
 	line ""
 	txfn 2
 
-Text_15d8fa:
+StdText_13_50:
 	TX_DENJUU GADHORO
 	db "ボク アラニーダが"
 	line "『ゼンマイ』をくっつけると"
@@ -977,7 +977,7 @@ Text_15d8fa:
 	line "かんがえすぎかな?"
 	txfn 2
 
-Text_15d975:
+StdText_13_51:
 	TX_DENJUU CLIOGERA
 	db "『ビームガン』なんて"
 	line "あぶなっかしいモノを"
@@ -991,7 +991,7 @@ Text_15d975:
 	line ""
 	txfn 2
 
-Text_15d9e8:
+StdText_13_52:
 	TX_DENJUU GUST
 	db "クリオゲラってデンジュウさー"
 	line "『アーチェリー』なんてモノ"
@@ -1001,7 +1001,7 @@ Text_15d9e8:
 	line ""
 	txfn 2
 
-Text_15da29:
+StdText_13_53:
 	TX_DENJUU REIGE
 	db "ガストってデンジュウがね"
 	line "『ドリル』をプレゼントして"
@@ -1011,7 +1011,7 @@ Text_15da29:
 	line "きょうみあるんだろうね"
 	txfn 2
 
-Text_15da7d:
+StdText_13_54:
 	TX_DENJUU TOGERUKA
 	db "ちょっとロンゲのデンジュウ"
 	line "レイゲの イチバンほしいモノは"
@@ -1019,7 +1019,7 @@ Text_15da7d:
 	line "らしいんだ"
 	txfn 2
 
-Text_15dab3:
+StdText_13_55:
 	TX_DENJUU RAIGALEON
 	db "トゲールカが『ノコギリ』を"
 	line "ほしがってるっていうはなしを"
@@ -1029,7 +1029,7 @@ Text_15dab3:
 	line "ひつようなのかもねー"
 	txfn 2
 
-Text_15dafa:
+StdText_13_56:
 	TX_DENJUU GADORKUMA
 	db "ライガリオンってデンジュウさー"
 	line "なんとなく てさきが"
@@ -1039,7 +1039,7 @@ Text_15dafa:
 	line ""
 	txfn 2
 
-Text_15db40:
+StdText_13_57:
 	TX_DENJUU ABIRAS
 	db "ガドルクマって はんぶん"
 	line "キカイみたいなデンジュウが"
@@ -1053,7 +1053,7 @@ Text_15db40:
 	line ""
 	txfn 2
 
-Text_15dbba:
+StdText_13_58:
 	TX_DENJUU ALPHAGOS
 	db "『ネジ』ずきのデンジュウで"
 	line "ゆうめいなヤツといえば"
@@ -1063,7 +1063,7 @@ Text_15dbba:
 	line ""
 	txfn 2
 
-Text_15dc04:
+StdText_13_59:
 	TX_DENJUU KIYORUKA
 	db "ちょっと こわめのデンジュウで"
 	line "アルファゴスっていう"
@@ -1075,7 +1075,7 @@ Text_15dc04:
 	line ""
 	txfn 2
 
-Text_15dc62:
+StdText_13_5a:
 	TX_DENJUU GYMGARTH
 	db "『でんち』ってニンゲンの"
 	line "せいかつでは けっこう"
@@ -1087,7 +1087,7 @@ Text_15dc62:
 	line "だいじなモノなのかなー?"
 	txfn 2
 
-Text_15dcc9:
+StdText_13_5b:
 	TX_DENJUU BAIONPU
 	db "ヂムガースってみためが"
 	line "ごっついんだけど"
@@ -1096,7 +1096,7 @@ Text_15dcc9:
 	line "デンジュウにプレゼントするときはみためで えらぶといいかもね!"
 	txfn 2
 
-Text_15dd1d:
+StdText_13_5c:
 	TX_DENJUU WARUTAH
 	db "バイオンプっていう"
 	line "みずベのデンジュウが"
@@ -1110,7 +1110,7 @@ Text_15dd1d:
 	line ""
 	txfn 2
 
-Text_15dd81:
+StdText_13_5d:
 	TX_DENJUU GUNTZATL
 	db "ワルタってデンジュウ"
 	line "なんだか いろんなこと"
@@ -1119,14 +1119,14 @@ Text_15dd81:
 	line "『モバイル』だからさ!"
 	txfn 2
 
-Text_15ddce:
+StdText_13_5e:
 	TX_DENJUU ARAKUIDA
 	db "『アンテナ』ずきなデンジュウってかわったヤツがおおいんだよ"
 	line "ガンツァトルもかわったヤツ"
 	line "なんだけどねー"
 	txfn 2
 
-Text_15de05:
+StdText_13_5f:
 	TX_DENJUU BADHORO
 	db "アラクイダって『カマ』が"
 	line "すきなんだぜ"
@@ -1138,7 +1138,7 @@ Text_15de05:
 	line "あーこわい こわい"
 	txfn 2
 
-Text_15de65:
+StdText_13_60:
 	TX_DENJUU LAMPGERA
 	db "バッドホロウって デンジュウは"
 	line "きけんなんだ!"
@@ -1150,7 +1150,7 @@ Text_15de65:
 	line "ヤツなんだって!"
 	txfn 2
 
-Text_15dec6:
+StdText_13_61:
 	TX_DENJUU TEMPEST
 	db "ランプゲラって『レンジ』が"
 	line "パワーアップのアイテム"
@@ -1160,7 +1160,7 @@ Text_15dec6:
 	line ""
 	txfn 2
 
-Text_15df00:
+StdText_13_62:
 	TX_DENJUU ZUDOON
 	db "『コンピュータ』って"
 	line "ニンゲンカイでも たかい"
@@ -1174,7 +1174,7 @@ Text_15df00:
 	line ""
 	txfn 2
 
-Text_15df6f:
+StdText_13_63:
 	TX_DENJUU HIYU
 	db "ズドーンってデンジュウ"
 	line "しってる??"
@@ -1188,7 +1188,7 @@ Text_15df6f:
 	line ""
 	txfn 2
 
-Text_15dfe4:
+StdText_13_64:
 	TX_DENJUU GAMAZUMI
 	db "ヒユっていう そのスジでは"
 	line "ゆうめいな デンジュウが"
@@ -1198,7 +1198,7 @@ Text_15dfe4:
 	line ""
 	txfn 2
 
-Text_15e027:
+StdText_13_65:
 	TX_DENJUU PAPAVER
 	db "ビブルナムってデンジュウは"
 	line "『ビデオ』がすきなんだって"
@@ -1207,7 +1207,7 @@ Text_15e027:
 	line ""
 	txfn 2
 
-Text_15e077:
+StdText_13_66:
 	TX_DENJUU GAMURU
 	db "パパウェルってデンジュウ"
 	line "『タイヤ』がすきなんだぜ"
@@ -1217,7 +1217,7 @@ Text_15e077:
 	line ""
 	txfn 2
 
-Text_15e0b3:
+StdText_13_67:
 	TX_DENJUU BOUVARDI
 	db "ニンゲンカイにあるモノって"
 	line "おもしろいよなー"
@@ -1227,7 +1227,7 @@ Text_15e0b3:
 	line "おなじようなこといってたなー"
 	txfn 2
 
-Text_15e103:
+StdText_13_68:
 	TX_DENJUU GAULTHERIA
 	db "ブバルディーってデンジュウ"
 	line "『ボンベ』がだいすきなんだけど"
@@ -1237,7 +1237,7 @@ Text_15e103:
 	line ""
 	txfn 2
 
-Text_15e148:
+StdText_13_69:
 	TX_DENJUU EASYDOG
 	db "アンヂィオンって"
 	line "かっこいいデンジュウなんだよー"

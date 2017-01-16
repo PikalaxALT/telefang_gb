@@ -1,1072 +1,1072 @@
 StdTextPointers_0E:
-	dw Text_144200
-	dw Text_14421d
-	dw Text_144228
-	dw Text_144250
-	dw Text_144276
-	dw Text_144292
-	dw Text_1442a0
-	dw Text_1442b0
-	dw Text_1442bf
-	dw Text_1442d2
-	dw Text_1442f4
-	dw Text_14430e
-	dw Text_144329
-	dw Text_14433e
-	dw Text_14434f
-	dw Text_144366
-	dw Text_144381
-	dw Text_1443a8
-	dw Text_1443bd
-	dw Text_1443d4
-	dw Text_1443f0
-	dw Text_144400
-	dw Text_144411
-	dw Text_14441a
-	dw Text_144440
-	dw Text_144469
-	dw Text_144484
-	dw Text_144494
-	dw Text_1444ac
-	dw Text_1444bd
-	dw Text_1444d8
-	dw Text_144500
-	dw Text_144518
-	dw Text_144538
-	dw Text_144552
-	dw Text_144563
-	dw Text_14457d
-	dw Text_144599
-	dw Text_1445c5
-	dw Text_1445f2
-	dw Text_14461d
-	dw Text_14462c
-	dw Text_144645
-	dw Text_144652
-	dw Text_14466f
-	dw Text_144698
-	dw Text_1446b3
-	dw Text_1446c8
-	dw Text_1446df
-	dw Text_1446f0
-	dw Text_144701
-	dw Text_14471b
-	dw Text_144732
-	dw Text_14474c
-	dw Text_144762
-	dw Text_14477e
-	dw Text_14478d
-	dw Text_14479d
-	dw Text_1447ae
-	dw Text_1447cd
-	dw Text_1447ec
-	dw Text_14480b
-	dw Text_144824
-	dw Text_144833
-	dw Text_14484e
-	dw Text_14485d
-	dw Text_144884
-	dw Text_1448a0
-	dw Text_1448b8
-	dw Text_1448c7
-	dw Text_1448d1
-	dw Text_1448e1
-	dw Text_144900
-	dw Text_144921
-	dw Text_144941
-	dw Text_144968
-	dw Text_144979
-	dw Text_144985
-	dw Text_14498f
-	dw Text_1449a0
-	dw Text_1449c4
-	dw Text_1449e2
-	dw Text_144a05
-	dw Text_144a16
-	dw Text_144a26
-	dw Text_144a30
-	dw Text_144a40
-	dw Text_144a65
-	dw Text_144a7c
-	dw Text_144a97
-	dw Text_144ab0
-	dw Text_144abe
-	dw Text_144ace
-	dw Text_144ada
-	dw Text_144b03
-	dw Text_144b1f
-	dw Text_144b3d
-	dw Text_144b4d
-	dw Text_144b67
-	dw Text_144b7e
-	dw Text_144b8f
-	dw Text_144bc0
-	dw Text_144be9
-	dw Text_144c08
-	dw Text_144c28
-	dw Text_144c40
-	dw Text_144c5a
-	dw Text_144c78
-	dw Text_144c94
-	dw Text_144cb1
-	dw Text_144ccc
-	dw Text_144cea
-	dw Text_144cfa
-	dw Text_144d13
-	dw Text_144d22
-	dw Text_144d3a
-	dw Text_144d63
-	dw Text_144d83
-	dw Text_144d9c
-	dw Text_144dad
-	dw Text_144dbc
-	dw Text_144dc8
-	dw Text_144de8
-	dw Text_144e06
-	dw Text_144e1c
-	dw Text_144e3a
-	dw Text_144e58
-	dw Text_144e68
-	dw Text_144e83
-	dw Text_144ea2
-	dw Text_144ec2
-	dw Text_144edc
-	dw Text_144ef8
-	dw Text_144f08
-	dw Text_144f23
-	dw Text_144f40
-	dw Text_144f6e
-	dw Text_144f98
-	dw Text_144fc2
-	dw Text_144fe0
-	dw Text_144ffa
-	dw Text_14500b
-	dw Text_145017
-	dw Text_145042
-	dw Text_14506a
-	dw Text_145091
-	dw Text_1450a0
-	dw Text_1450b0
-	dw Text_1450c1
-	dw Text_1450dd
-	dw Text_145104
-	dw Text_145125
-	dw Text_14514f
-	dw Text_145169
-	dw Text_145188
-	dw Text_145197
-	dw Text_1451b0
-	dw Text_1451e0
-	dw Text_1451f9
-	dw Text_14521d
-	dw Text_14522d
-	dw Text_145245
-	dw Text_14525f
-	dw Text_145274
-	dw Text_145292
-	dw Text_1452c2
-	dw Text_1452eb
-	dw Text_1452fc
-	dw Text_145315
-	dw Text_145324
-	dw Text_14533c
-	dw Text_145361
-	dw Text_145380
-	dw Text_1453a0
-	dw Text_1453bd
-	dw Text_1453d7
-	dw Text_1453e7
-	dw Text_1453ff
-	dw Text_145427
-	dw Text_145445
-	dw Text_14545a
-	dw Text_145474
-	dw Text_14548f
-	dw Text_1454a5
-	dw Text_1454c6
-	dw Text_1454ee
-	dw Text_14550c
-	dw Text_145528
-	dw Text_145539
-	dw Text_145551
-	dw Text_14556c
-	dw Text_14558c
-	dw Text_1455a9
-	dw Text_1455ca
-	dw Text_1455fa
-	dw Text_14560a
-	dw Text_145629
-	dw Text_145647
-	dw Text_145662
-	dw Text_145688
-	dw Text_1456a3
-	dw Text_1456c3
-	dw Text_1456dc
-	dw Text_1456fa
-	dw Text_14570a
-	dw Text_145723
-	dw Text_14573d
-	dw Text_14575e
-	dw Text_145777
-	dw Text_145792
-	dw Text_14579e
-	dw Text_1457ae
-	dw Text_1457cc
-	dw Text_1457ed
-	dw Text_145812
-	dw Text_14583b
-	dw Text_145848
-	dw Text_145861
-	dw Text_14587e
-	dw Text_14589c
-	dw Text_1458c3
-	dw Text_1458ed
-	dw Text_145908
-	dw Text_145925
-	dw Text_145941
-	dw Text_14595c
-	dw Text_145977
-	dw Text_1459a2
-	dw Text_1459bf
-	dw Text_1459e8
-	dw Text_145a05
-	dw Text_145a1e
-	dw Text_145a3b
-	dw Text_145a54
-	dw Text_145a75
-	dw Text_145a8f
-	dw Text_145aa9
-	dw Text_145ab8
-	dw Text_145ac8
-	dw Text_145ad1
-	dw Text_145ae7
-	dw Text_145b03
-	dw Text_145b1c
-	dw Text_145b3a
-	dw Text_145b46
-	dw Text_145b5e
-	dw Text_145b6f
-	dw Text_145b98
-	dw Text_145bb1
-	dw Text_145bd4
-	dw Text_145bf7
-	dw Text_145c10
-	dw Text_145c2e
-	dw Text_145c3e
-	dw Text_145c4f
-	dw Text_145c70
+	dw StdText_0e_00
+	dw StdText_0e_01
+	dw StdText_0e_02
+	dw StdText_0e_03
+	dw StdText_0e_04
+	dw StdText_0e_05
+	dw StdText_0e_06
+	dw StdText_0e_07
+	dw StdText_0e_08
+	dw StdText_0e_09
+	dw StdText_0e_0a
+	dw StdText_0e_0b
+	dw StdText_0e_0c
+	dw StdText_0e_0d
+	dw StdText_0e_0e
+	dw StdText_0e_0f
+	dw StdText_0e_10
+	dw StdText_0e_11
+	dw StdText_0e_12
+	dw StdText_0e_13
+	dw StdText_0e_14
+	dw StdText_0e_15
+	dw StdText_0e_16
+	dw StdText_0e_17
+	dw StdText_0e_18
+	dw StdText_0e_19
+	dw StdText_0e_1a
+	dw StdText_0e_1b
+	dw StdText_0e_1c
+	dw StdText_0e_1d
+	dw StdText_0e_1e
+	dw StdText_0e_1f
+	dw StdText_0e_20
+	dw StdText_0e_21
+	dw StdText_0e_22
+	dw StdText_0e_23
+	dw StdText_0e_24
+	dw StdText_0e_25
+	dw StdText_0e_26
+	dw StdText_0e_27
+	dw StdText_0e_28
+	dw StdText_0e_29
+	dw StdText_0e_2a
+	dw StdText_0e_2b
+	dw StdText_0e_2c
+	dw StdText_0e_2d
+	dw StdText_0e_2e
+	dw StdText_0e_2f
+	dw StdText_0e_30
+	dw StdText_0e_31
+	dw StdText_0e_32
+	dw StdText_0e_33
+	dw StdText_0e_34
+	dw StdText_0e_35
+	dw StdText_0e_36
+	dw StdText_0e_37
+	dw StdText_0e_38
+	dw StdText_0e_39
+	dw StdText_0e_3a
+	dw StdText_0e_3b
+	dw StdText_0e_3c
+	dw StdText_0e_3d
+	dw StdText_0e_3e
+	dw StdText_0e_3f
+	dw StdText_0e_40
+	dw StdText_0e_41
+	dw StdText_0e_42
+	dw StdText_0e_43
+	dw StdText_0e_44
+	dw StdText_0e_45
+	dw StdText_0e_46
+	dw StdText_0e_47
+	dw StdText_0e_48
+	dw StdText_0e_49
+	dw StdText_0e_4a
+	dw StdText_0e_4b
+	dw StdText_0e_4c
+	dw StdText_0e_4d
+	dw StdText_0e_4e
+	dw StdText_0e_4f
+	dw StdText_0e_50
+	dw StdText_0e_51
+	dw StdText_0e_52
+	dw StdText_0e_53
+	dw StdText_0e_54
+	dw StdText_0e_55
+	dw StdText_0e_56
+	dw StdText_0e_57
+	dw StdText_0e_58
+	dw StdText_0e_59
+	dw StdText_0e_5a
+	dw StdText_0e_5b
+	dw StdText_0e_5c
+	dw StdText_0e_5d
+	dw StdText_0e_5e
+	dw StdText_0e_5f
+	dw StdText_0e_60
+	dw StdText_0e_61
+	dw StdText_0e_62
+	dw StdText_0e_63
+	dw StdText_0e_64
+	dw StdText_0e_65
+	dw StdText_0e_66
+	dw StdText_0e_67
+	dw StdText_0e_68
+	dw StdText_0e_69
+	dw StdText_0e_6a
+	dw StdText_0e_6b
+	dw StdText_0e_6c
+	dw StdText_0e_6d
+	dw StdText_0e_6e
+	dw StdText_0e_6f
+	dw StdText_0e_70
+	dw StdText_0e_71
+	dw StdText_0e_72
+	dw StdText_0e_73
+	dw StdText_0e_74
+	dw StdText_0e_75
+	dw StdText_0e_76
+	dw StdText_0e_77
+	dw StdText_0e_78
+	dw StdText_0e_79
+	dw StdText_0e_7a
+	dw StdText_0e_7b
+	dw StdText_0e_7c
+	dw StdText_0e_7d
+	dw StdText_0e_7e
+	dw StdText_0e_7f
+	dw StdText_0e_80
+	dw StdText_0e_81
+	dw StdText_0e_82
+	dw StdText_0e_83
+	dw StdText_0e_84
+	dw StdText_0e_85
+	dw StdText_0e_86
+	dw StdText_0e_87
+	dw StdText_0e_88
+	dw StdText_0e_89
+	dw StdText_0e_8a
+	dw StdText_0e_8b
+	dw StdText_0e_8c
+	dw StdText_0e_8d
+	dw StdText_0e_8e
+	dw StdText_0e_8f
+	dw StdText_0e_90
+	dw StdText_0e_91
+	dw StdText_0e_92
+	dw StdText_0e_93
+	dw StdText_0e_94
+	dw StdText_0e_95
+	dw StdText_0e_96
+	dw StdText_0e_97
+	dw StdText_0e_98
+	dw StdText_0e_99
+	dw StdText_0e_9a
+	dw StdText_0e_9b
+	dw StdText_0e_9c
+	dw StdText_0e_9d
+	dw StdText_0e_9e
+	dw StdText_0e_9f
+	dw StdText_0e_a0
+	dw StdText_0e_a1
+	dw StdText_0e_a2
+	dw StdText_0e_a3
+	dw StdText_0e_a4
+	dw StdText_0e_a5
+	dw StdText_0e_a6
+	dw StdText_0e_a7
+	dw StdText_0e_a8
+	dw StdText_0e_a9
+	dw StdText_0e_aa
+	dw StdText_0e_ab
+	dw StdText_0e_ac
+	dw StdText_0e_ad
+	dw StdText_0e_ae
+	dw StdText_0e_af
+	dw StdText_0e_b0
+	dw StdText_0e_b1
+	dw StdText_0e_b2
+	dw StdText_0e_b3
+	dw StdText_0e_b4
+	dw StdText_0e_b5
+	dw StdText_0e_b6
+	dw StdText_0e_b7
+	dw StdText_0e_b8
+	dw StdText_0e_b9
+	dw StdText_0e_ba
+	dw StdText_0e_bb
+	dw StdText_0e_bc
+	dw StdText_0e_bd
+	dw StdText_0e_be
+	dw StdText_0e_bf
+	dw StdText_0e_c0
+	dw StdText_0e_c1
+	dw StdText_0e_c2
+	dw StdText_0e_c3
+	dw StdText_0e_c4
+	dw StdText_0e_c5
+	dw StdText_0e_c6
+	dw StdText_0e_c7
+	dw StdText_0e_c8
+	dw StdText_0e_c9
+	dw StdText_0e_ca
+	dw StdText_0e_cb
+	dw StdText_0e_cc
+	dw StdText_0e_cd
+	dw StdText_0e_ce
+	dw StdText_0e_cf
+	dw StdText_0e_d0
+	dw StdText_0e_d1
+	dw StdText_0e_d2
+	dw StdText_0e_d3
+	dw StdText_0e_d4
+	dw StdText_0e_d5
+	dw StdText_0e_d6
+	dw StdText_0e_d7
+	dw StdText_0e_d8
+	dw StdText_0e_d9
+	dw StdText_0e_da
+	dw StdText_0e_db
+	dw StdText_0e_dc
+	dw StdText_0e_dd
+	dw StdText_0e_de
+	dw StdText_0e_df
+	dw StdText_0e_e0
+	dw StdText_0e_e1
+	dw StdText_0e_e2
+	dw StdText_0e_e3
+	dw StdText_0e_e4
+	dw StdText_0e_e5
+	dw StdText_0e_e6
+	dw StdText_0e_e7
+	dw StdText_0e_e8
+	dw StdText_0e_e9
+	dw StdText_0e_ea
+	dw StdText_0e_eb
+	dw StdText_0e_ec
+	dw StdText_0e_ed
+	dw StdText_0e_ee
+	dw StdText_0e_ef
+	dw StdText_0e_f0
+	dw StdText_0e_f1
+	dw StdText_0e_f2
+	dw StdText_0e_f3
+	dw StdText_0e_f4
+	dw StdText_0e_f5
+	dw StdText_0e_f6
+	dw StdText_0e_f7
+	dw StdText_0e_f8
+	dw StdText_0e_f9
+	dw StdText_0e_fa
+	dw StdText_0e_fb
+	dw StdText_0e_fc
+	dw StdText_0e_fd
+	dw StdText_0e_fe
+	dw StdText_0e_ff
 
-Text_144200:
+StdText_0e_00:
 	db "そんなことナイとおもうんだけど"
 	line "なぁ やっぱムリかなぁ"
 	txfn 2
 
-Text_14421d:
+StdText_0e_01:
 	db "じゃあやめるよ!!"
 	txfn 2
 
-Text_144228:
+StdText_0e_02:
 	db "オレのケイタイ ピンクいろに"
 	line "かえたんだぜ!!"
 	line " かわいいね えぇーピンク?"
 	txfn 10
 
-Text_144250:
+StdText_0e_03:
 	db "だろ?だろ?やっぱリ いまは"
 	line "ピンクだよなぁ"
 	line " チョーほしい そうかなぁ"
 	txfn 10
 
-Text_144276:
+StdText_0e_04:
 	TX_CALL wPlayerName
 	db "ピンクはキライ? キライだね キミにはにあうよ"
 	txfn 10
 
-Text_144292:
+StdText_0e_05:
 	db "ほしい?でもあげなーい!"
 	txfn 2
 
-Text_1442a0:
+StdText_0e_06:
 	db "いまのハヤリはピンクだろ!!"
 	txfn 2
 
-Text_1442b0:
+StdText_0e_07:
 	db "なにぃー!ピンクはいいぞ!"
 	txfn 2
 
-Text_1442bf:
+StdText_0e_08:
 	db "そう?にあう?エへへへへ"
 	line "アリガト"
 	txfn 2
 
-Text_1442d2:
+StdText_0e_09:
 	db "トロンコむらにチョウロウが"
 	line "いたよねぇ??"
 	line " いたよ いたっけ?"
 	txfn 10
 
-Text_1442f4:
+StdText_0e_0a:
 	db "なんてなまえだったっけ?"
 	line " ムサだよ モサでしょ"
 	txfn 10
 
-Text_14430e:
+StdText_0e_0b:
 	db "いたじゃん!わすれたの?"
 	line " しらないよ あぁいたね"
 	txfn 10
 
-Text_144329:
+StdText_0e_0c:
 	db "そうそう おもいだした"
 	line "サンキュー!!"
 	txfn 2
 
-Text_14433e:
+StdText_0e_0d:
 	db "アレ?そうだったっけ?むむぅ?"
 	txfn 2
 
-Text_14434f:
+StdText_0e_0e:
 	db "しらないって "
 	TX_CALL wPlayerName
 	line "あったんじゃないの?"
 	txfn 2
 
-Text_144366:
+StdText_0e_0f:
 	db "おもいだした?でも なまえは"
 	line "おぼえてないんだねぇ"
 	txfn 2
 
-Text_144381:
+StdText_0e_10:
 	db "チョウロウのいえにいる"
 	line "おとこのこはキミのトモダチ?"
 	line " そうだよ しリあい"
 	txfn 10
 
-Text_1443a8:
+StdText_0e_11:
 	db "なかよしなの?"
 	line " シンユウさ! まあね"
 	txfn 10
 
-Text_1443bd:
+StdText_0e_12:
 	db "なかよしじゃないの?"
 	line " ベつに フツウだよ"
 	txfn 10
 
-Text_1443d4:
+StdText_0e_13:
 	db "へえいいなぁ オレたちも"
 	line "シンユウになれるといいなぁ"
 	txfn 2
 
-Text_1443f0:
+StdText_0e_14:
 	db "オレのほうがなかよしだよな?"
 	txfn 2
 
-Text_144400:
+StdText_0e_15:
 	db "じゃあなんでいっしょにいるの?"
 	txfn 2
 
-Text_144411:
+StdText_0e_16:
 	db "ふーん あっそ"
 	txfn 2
 
-Text_14441a:
+StdText_0e_17:
 	db "このまえ"
 	TX_CALL wPlayerName
 	db "みたよ!ゲンキそうだったねぇ"
 	line " よんでよ! ゲンキじゃない"
 	txfn 10
 
-Text_144440:
+StdText_0e_18:
 	db "こえかけたよ!そっちがムシ"
 	line "したんじゃないか!"
 	line " ゴメンゴメン きづかなかった"
 	txfn 10
 
-Text_144469:
+StdText_0e_19:
 	db "なんで?なにかあったの?"
 	line " ベつに おなかこわした"
 	txfn 10
 
-Text_144484:
+StdText_0e_1a:
 	db "さてはわざとムシしたなぁ!!"
 	txfn 2
 
-Text_144494:
+StdText_0e_1b:
 	db "はなれてたからしょうがないよ"
 	line "またこんどね!"
 	txfn 2
 
-Text_1444ac:
+StdText_0e_1c:
 	db "せっかくシンパイしてるのにー!"
 	txfn 2
 
-Text_1444bd:
+StdText_0e_1d:
 	db "もう!そのへんにはえてるもの"
 	line "たベちゃダメだよ!!"
 	txfn 2
 
-Text_1444d8:
+StdText_0e_1e:
 	db "そとをのんびリあるいてたら "
 	line "ひにやけちゃった"
 	line " ガングロ? そのままがいい"
 	txfn 10
 
-Text_144500:
+StdText_0e_1f:
 	db "そこまでヒドくはないよ!"
 	line " なんだ よかった"
 	txfn 10
 
-Text_144518:
+StdText_0e_20:
 	db "オレくろいのにあわないかな?"
 	line " そんなことないよ にあわない"
 	txfn 10
 
-Text_144538:
+StdText_0e_21:
 	db "あっ!へンないろのオレをみて"
 	line "わらいたいんだろ?"
 	txfn 2
 
-Text_144552:
+StdText_0e_22:
 	db "そうかな?フツウのいろがいい?"
 	txfn 2
 
-Text_144563:
+StdText_0e_23:
 	db "ほんとに?ほんとはそんなこと"
 	line "おもってないだろ?"
 	txfn 2
 
-Text_14457d:
+StdText_0e_24:
 	db "そうハッキリいってくれるのは"
 	line "キミだけだよ アリガト"
 	txfn 2
 
-Text_144599:
+StdText_0e_25:
 	db "デンジュウカイにもウミやカワが"
 	line "あるんだ キミはおよげる?"
 	line " およげるよ およげない"
 	txfn 10
 
-Text_1445c5:
+StdText_0e_26:
 	db "じゃあウミのデンジュウとたくさんトモダチになれるかなぁ?"
 	line " たのしみ こわくてヤダよー"
 	txfn 10
 
-Text_1445f2:
+StdText_0e_27:
 	db "そんなんじゃデンジュウカイで"
 	line "いきていけないぞ!!"
 	line " レンシュウだ なんとかなるよ"
 	txfn 10
 
-Text_14461d:
+StdText_0e_28:
 	db "そうだなー たのしみだなー"
 	txfn 2
 
-Text_14462c:
+StdText_0e_29:
 	db "こわくなんかないぞ!"
 	line "イイヤツいっぱいいるぞ!"
 	txfn 2
 
-Text_144645:
+StdText_0e_2a:
 	db "そうだ!がんばれよ!!"
 	txfn 2
 
-Text_144652:
+StdText_0e_2b:
 	db "レンシュウしないと ダメ!!"
 	line "おぼれてもしらないよ!!"
 	txfn 2
 
-Text_14466f:
+StdText_0e_2c:
 	db "トモダチとケンカしちゃったんだ"
 	line "どうしたらいいかなぁ"
 	line " あやまリなよ ムシだ!"
 	txfn 10
 
-Text_144698:
+StdText_0e_2d:
 	db "でもゆるしてくれるかなぁ"
 	line " ダイジョウブ たぶんね"
 	txfn 10
 
-Text_1446b3:
+StdText_0e_2e:
 	db "そうか ムシか!"
 	line " そうだ! なんてね"
 	txfn 10
 
-Text_1446c8:
+StdText_0e_2f:
 	db "そうだね あやまってみるよ"
 	line "あリがとう!!"
 	txfn 2
 
-Text_1446df:
+StdText_0e_30:
 	db "たぶん?ムセキニンなヤツだな!"
 	txfn 2
 
-Text_1446f0:
+StdText_0e_31:
 	db "よし もうあんなヤツしらない!"
 	txfn 2
 
-Text_144701:
+StdText_0e_32:
 	db "なんだよ!マジメにそうだんして"
 	line "るのに!!もう!"
 	txfn 2
 
-Text_14471b:
+StdText_0e_33:
 	db "クルマってのったことある?"
 	line " あるよ ない"
 	txfn 10
 
-Text_144732:
+StdText_0e_34:
 	db "どんなの?オレよリはやい?"
 	line " はやいよ おそいよ"
 	txfn 10
 
-Text_14474c:
+StdText_0e_35:
 	db "のってみたいよな?"
 	line " うん やだよコワイ"
 	txfn 10
 
-Text_144762:
+StdText_0e_36:
 	db "そんなにはやいのか こんど"
 	line "キョウソウしてみたいなぁ"
 	txfn 2
 
-Text_14477e:
+StdText_0e_37:
 	db "オレサマのテキじゃないね!"
 	txfn 2
 
-Text_14478d:
+StdText_0e_38:
 	db "どんなだろう?ドキドキするな"
 	txfn 2
 
-Text_14479d:
+StdText_0e_39:
 	db "オレがついてる!ダイジョウブ!"
 	txfn 2
 
-Text_1447ae:
+StdText_0e_3a:
 	TX_CALL wPlayerName
 	db "!なんでデンワ"
 	line "くれないんだよ!"
 	line " してるよ ダレ?"
 	txfn 10
 
-Text_1447cd:
+StdText_0e_3b:
 	db "ほんとに?ごめんなぁー!!"
 	line " こんどはでてよ ひどいな!!"
 	txfn 10
 
-Text_1447ec:
+StdText_0e_3c:
 	db "ヒドイ!ホントにわすれたの??"
 	line " ゴメンナサイ うっそー!"
 	txfn 10
 
-Text_14480b:
+StdText_0e_3d:
 	db "うん こんどはちゃんとでるよ!"
 	line "ホントゴメン!"
 	txfn 2
 
-Text_144824:
+StdText_0e_3e:
 	db "ゴメーン!!ゆるしてー!!"
 	txfn 2
 
-Text_144833:
+StdText_0e_3f:
 	db "えーん!ヒドイよー!!えーん!"
 	line "もうしらないよ!!"
 	txfn 2
 
-Text_14484e:
+StdText_0e_40:
 	db "もぉ!おどかさないでよ!!"
 	txfn 2
 
-Text_14485d:
+StdText_0e_41:
 	db "オレ ニンゲンカイにいきたい"
 	line "つれてってくれよ!"
 	line " おいでよ やめときなよ"
 	txfn 10
 
-Text_144884:
+StdText_0e_42:
 	db "ニンゲンカイってたのしいの?"
 	line " たのしいよ ぜんぜん"
 	txfn 10
 
-Text_1448a0:
+StdText_0e_43:
 	db "なんでだよ!!"
 	line " コワイところだから ヒミツ"
 	txfn 10
 
-Text_1448b8:
+StdText_0e_44:
 	db "いいなぁーいってみたいなー"
 	txfn 2
 
-Text_1448c7:
+StdText_0e_45:
 	db "なんだ がっかリ"
 	txfn 2
 
-Text_1448d1:
+StdText_0e_46:
 	db "えぇー!コワイの?ヤダー!!"
 	txfn 2
 
-Text_1448e1:
+StdText_0e_47:
 	db "なになに?なにがあるの??"
 	line "おしえてー!!きになるよー!!"
 	txfn 2
 
-Text_144900:
+StdText_0e_48:
 	db "ゴホゴホ カゼひいちゃったよ!"
 	line " ダイジョウブ? オオゲサだな"
 	txfn 10
 
-Text_144921:
+StdText_0e_49:
 	db "シンパイしてくれるの?ウレシー"
 	line " おだいじに クスリのんだ?"
 	txfn 10
 
-Text_144941:
+StdText_0e_4a:
 	db "そんなことないよ ホントに"
 	line "ぐあいがわるいんだから"
 	line " ゴメンゴメン ふーん"
 	txfn 10
 
-Text_144968:
+StdText_0e_4b:
 	db "アリガトウ もうねるねオヤスミ"
 	txfn 2
 
-Text_144979:
+StdText_0e_4c:
 	db "だってニガイんだもん"
 	txfn 2
 
-Text_144985:
+StdText_0e_4d:
 	db "まぁ いいけどさ"
 	txfn 2
 
-Text_14498f:
+StdText_0e_4e:
 	db "あぁ ねつがでてきたもうきるよ"
 	txfn 2
 
-Text_1449a0:
+StdText_0e_4f:
 	db "もリをあるいていたらなんか"
 	line "いろいろおちてたよ"
 	line " ホントに? いいな"
 	txfn 10
 
-Text_1449c4:
+StdText_0e_50:
 	db "ホントホント!キミはみなかった? みないよ あぁアレかな"
 	txfn 10
 
-Text_1449e2:
+StdText_0e_51:
 	db "いいでしょ?キミももリで"
 	line "なにかみつけておいで"
 	line " うん あるかな?"
 	txfn 10
 
-Text_144a05:
+StdText_0e_52:
 	db "そぉ?おちてるとおもうけどなぁ"
 	txfn 2
 
-Text_144a16:
+StdText_0e_53:
 	db "きっとそれだよ!オシかったね"
 	txfn 2
 
-Text_144a26:
+StdText_0e_54:
 	db "いってらっしゃい"
 	txfn 2
 
-Text_144a30:
+StdText_0e_55:
 	db "あるある さがしてごらんよ!"
 	txfn 2
 
-Text_144a40:
+StdText_0e_56:
 	TX_CALL wPlayerName
 	db "ってアマイの"
 	line "とカライのどっちがスキなの?"
 	line " アマイの カライの"
 	txfn 10
 
-Text_144a65:
+StdText_0e_57:
 	db "アマイのはうまいよな!"
 	line " うん チョーすき"
 	txfn 10
 
-Text_144a7c:
+StdText_0e_58:
 	db "オレはカライのダメだなぁ"
 	line " なんで? コドモだなぁ"
 	txfn 10
 
-Text_144a97:
+StdText_0e_59:
 	db "ニンゲンカイのアマイおかしも"
 	line "たベてみたいなあ"
 	txfn 2
 
-Text_144ab0:
+StdText_0e_5a:
 	db "たベすぎてるとふとるぞ!"
 	txfn 2
 
-Text_144abe:
+StdText_0e_5b:
 	db "だってベロがピリピリするもん"
 	txfn 2
 
-Text_144ace:
+StdText_0e_5c:
 	db "だってコドモだもん!"
 	txfn 2
 
-Text_144ada:
+StdText_0e_5d:
 	db "こっちはアツくってクーラーが"
 	line "ほしいよそっちはどう?"
 	line " アツイよー すずしいよ"
 	txfn 10
 
-Text_144b03:
+StdText_0e_5e:
 	db "やっぱそっちもアツいんだ"
 	line " ちょっとね ちょーアツイ"
 	txfn 10
 
-Text_144b1f:
+StdText_0e_5f:
 	db "いいなーそっちはすずしいんだ"
 	line " サムすぎ ちょうどいいよ"
 	txfn 10
 
-Text_144b3d:
+StdText_0e_60:
 	db "チョットくらいガマンしようよ"
 	txfn 2
 
-Text_144b4d:
+StdText_0e_61:
 	db "こっちも ちょーアツイよー!"
 	line "クーラーほしー!!"
 	txfn 2
 
-Text_144b67:
+StdText_0e_62:
 	db "サムすぎるのもツライね "
 	line "カゼひくなよ!!"
 	txfn 2
 
-Text_144b7e:
+StdText_0e_63:
 	db "いいなぁオレもそっちいきたいよ"
 	txfn 2
 
-Text_144b8f:
+StdText_0e_64:
 	db "ケイタイのきのうっていろいろあるよね ぜんぶつかいこなせてる?"
 	line " カンぺキ! だいたいつかえる"
 	txfn 10
 
-Text_144bc0:
+StdText_0e_65:
 	db "へーすごいなあ おれはまだまだ"
 	line "なんだけどなぁ"
 	line " だめだねぇ そのうちなれるよ"
 	txfn 10
 
-Text_144be9:
+StdText_0e_66:
 	db "だいたいつかえればいいよな?"
 	line " そうそう そんなことない!"
 	txfn 10
 
-Text_144c08:
+StdText_0e_67:
 	db "む?なんだと!みてろよぜったい"
 	line "オマエよリカンぺキになるぞ!"
 	txfn 2
 
-Text_144c28:
+StdText_0e_68:
 	db "そうかな?そういってもらえると"
 	line "ウレシイなぁ"
 	txfn 2
 
-Text_144c40:
+StdText_0e_69:
 	db "そう!ひつようなものがわかれば"
 	line "いいんだよね!!"
 	txfn 2
 
-Text_144c5a:
+StdText_0e_6a:
 	db "えっ?そうかなぁ?ベんきょう"
 	line "ねっしんだなぁ カンシンだ"
 	txfn 2
 
-Text_144c78:
+StdText_0e_6b:
 	db "アイテムはあつまった?"
 	line " たくさん まだチョットだけ"
 	txfn 10
 
-Text_144c94:
+StdText_0e_6c:
 	db "そんなにたくさんあつまったの?"
 	line " スゴイよ けっこうね"
 	txfn 10
 
-Text_144cb1:
+StdText_0e_6d:
 	db "これからドンドンあつめよう!"
 	line " もうムリ そうだね"
 	txfn 10
 
-Text_144ccc:
+StdText_0e_6e:
 	db "それじゃあもちきれないんじゃ"
 	line "ないの??ダイジョウブ??"
 	txfn 2
 
-Text_144cea:
+StdText_0e_6f:
 	db "もっとあつめられるといいな!"
 	txfn 2
 
-Text_144cfa:
+StdText_0e_70:
 	db "なにいってんだよぉ!もっと"
 	line "キアイをいれろ!!"
 	txfn 2
 
-Text_144d13:
+StdText_0e_71:
 	db "がんばってあつめような!!"
 	txfn 2
 
-Text_144d22:
+StdText_0e_72:
 	db "ねぇ コーヒーのめる?"
 	line " のめるよ のめない"
 	txfn 10
 
-Text_144d3a:
+StdText_0e_73:
 	db "オレのめない だってニガイし"
 	line "くろいんだもん!"
 	line " すききらいすんな そうかもね"
 	txfn 10
 
-Text_144d63:
+StdText_0e_74:
 	db "オレものめない マズイよな?"
 	line " おとなはのむよ カオリいいよ"
 	txfn 10
 
-Text_144d83:
+StdText_0e_75:
 	db "なんで?のめなくたっていきて"
 	line "いけるもんね!!"
 	txfn 2
 
-Text_144d9c:
+StdText_0e_76:
 	db "そうだよ!よるねれなくなるぞ!"
 	txfn 2
 
-Text_144dad:
+StdText_0e_77:
 	db "オレはおとなじゃないからな"
 	txfn 2
 
-Text_144dbc:
+StdText_0e_78:
 	db "うん ニオイはいいな"
 	txfn 2
 
-Text_144dc8:
+StdText_0e_79:
 	db "ねえオレのオトウトみなかった?"
 	line " みないよ オトウトいたの?"
 	txfn 10
 
-Text_144de8:
+StdText_0e_7a:
 	db "そうかどこいったんだろ?"
 	line " すぐかえってくるよ いえで?"
 	txfn 10
 
-Text_144e06:
+StdText_0e_7b:
 	db "あれ?"
 	TX_CALL wPlayerName
 	db "しらない? うん どんなコ?"
 	txfn 10
 
-Text_144e1c:
+StdText_0e_7c:
 	db "そうかなー でもシンパイだから"
 	line "もうすこしさがしてみよう"
 	txfn 2
 
-Text_144e3a:
+StdText_0e_7d:
 	db "えー!もしかしてカテイにフマン"
 	line "があったのでは ガーン!"
 	txfn 2
 
-Text_144e58:
+StdText_0e_7e:
 	db "じゃあこんどショウカイするね"
 	txfn 2
 
-Text_144e68:
+StdText_0e_7f:
 	db "そリゃオレににてチョーカワイイ"
 	line "にきまってんじゃん"
 	txfn 2
 
-Text_144e83:
+StdText_0e_80:
 	db "オ オレのサイフがないー!!"
 	line " おとしたの? とられたの?"
 	txfn 10
 
-Text_144ea2:
+StdText_0e_81:
 	db "わかんないよー!うぇーん!!"
 	line " まわリさがした? あきらめな"
 	txfn 10
 
-Text_144ec2:
+StdText_0e_82:
 	db "だれがとったのー??"
 	line " ケイサツは? もうだめだ"
 	txfn 10
 
-Text_144edc:
+StdText_0e_83:
 	db "えっ?まわリ?あっ!あった!"
 	line "おちてたよ!!ゴメンネ"
 	txfn 2
 
-Text_144ef8:
+StdText_0e_84:
 	db "やだ!ぜったいあきらめない!"
 	txfn 2
 
-Text_144f08:
+StdText_0e_85:
 	db "デンジュウカイにケイサツは"
 	line "ないよー!うぇーん!!"
 	txfn 2
 
-Text_144f23:
+StdText_0e_86:
 	db "なんでそんなことゆうの?"
 	line "もうオマエにはたのまない!!"
 	txfn 2
 
-Text_144f40:
+StdText_0e_87:
 	db "ニンゲンのトモダチにスカーフを"
 	line "もらったぞ!オシャレだろ?"
 	line " どんなの? オシャレかぁ?"
 	txfn 10
 
-Text_144f6e:
+StdText_0e_88:
 	db "えーと くろくて ツルツルして"
 	line "ウミのカオリがするぞ!"
 	line " それワカメだよ いいね"
 	txfn 10
 
-Text_144f98:
+StdText_0e_89:
 	db "オシャレさ!デンジュウカイイチ"
 	line "のオシャレになるんだ!!"
 	line " あぁそう がんばれよ"
 	txfn 10
 
-Text_144fc2:
+StdText_0e_8a:
 	db "なにぃ!!オレだまされた?"
 	line "チクショー!!アイツめー!!"
 	txfn 2
 
-Text_144fe0:
+StdText_0e_8b:
 	db "だよな?これイケてるよな?"
 	line "このカオリがいいな!"
 	txfn 2
 
-Text_144ffa:
+StdText_0e_8c:
 	db "なんだそのいいかた!イジワル!"
 	txfn 2
 
-Text_14500b:
+StdText_0e_8d:
 	db "おう!がんばるさ!!"
 	txfn 2
 
-Text_145017:
+StdText_0e_8e:
 	db "せをのばそうとおもって"
 	line "まいにちギュウニュウのんでるの"
 	line " なんで? おなかこわすよ"
 	txfn 10
 
-Text_145042:
+StdText_0e_8f:
 	db "なんでって せがたかいほうが"
 	line "カッコイイじゃん!!"
 	line " そお? まあたしかにね"
 	txfn 10
 
-Text_14506a:
+StdText_0e_90:
 	db "そうなんだよな さいきん"
 	line "おなかがグルグルして"
 	line " もうやめなよ ほかには?"
 	txfn 10
 
-Text_145091:
+StdText_0e_91:
 	db "そうだよ!あたリまえじゃん"
 	txfn 2
 
-Text_1450a0:
+StdText_0e_92:
 	db "でしょ?オレがんばるからな!"
 	txfn 2
 
-Text_1450b0:
+StdText_0e_93:
 	db "ゼッタイやめない!つづけるもん"
 	txfn 2
 
-Text_1450c1:
+StdText_0e_94:
 	db "えっ?ほかにもなにかしないと"
 	line "いけないの?えぇー!!"
 	txfn 2
 
-Text_1450dd:
+StdText_0e_95:
 	db "オレたちトモダチになって"
 	line "どのくらいたつっけ?"
 	line " けっこうたつね 3にちめ"
 	txfn 10
 
-Text_145104:
+StdText_0e_96:
 	db "そんなにたつ?あれから"
 	line "トモダチふえた?"
 	line " いっぱい あんまリ"
 	txfn 10
 
-Text_145125:
+StdText_0e_97:
 	db "アレ?なんだかすごいまえから"
 	line "しリあいだったきがするよ"
 	line " そうだね きのせいだよ"
 	txfn 10
 
-Text_14514f:
+StdText_0e_98:
 	db "よかったなー でもオレのことを"
 	line "わすれんなよ!!"
 	txfn 2
 
-Text_145169:
+StdText_0e_99:
 	db "もっとトモダチふやそうよ!"
 	line "イッパイいたほうがたのしいぞ!"
 	txfn 2
 
-Text_145188:
+StdText_0e_9a:
 	db "うんきっときがあうんだな!"
 	txfn 2
 
-Text_145197:
+StdText_0e_9b:
 	db "あっ!じつはオレのこときらって"
 	line "たリすんの??"
 	txfn 2
 
-Text_1451b0:
+StdText_0e_9c:
 	db "キミデンジュウカイにきたとき"
 	line "アタマうったでしょ?へイキ??"
 	line " へッチャラ じつはまだイタイ"
 	txfn 10
 
-Text_1451e0:
+StdText_0e_9d:
 	db "キミはホントじょうぶだね"
 	line " まぁね そうかな?"
 	txfn 10
 
-Text_1451f9:
+StdText_0e_9e:
 	db "イタイんだったらイシャにみせな"
 	line "くっちゃダメだぞ!!"
 	line " いやだ うん"
 	txfn 10
 
-Text_14521d:
+StdText_0e_9f:
 	db "ケンコウなことはイイことだ!"
 	txfn 2
 
-Text_14522d:
+StdText_0e_a0:
 	db "そうだよ!オレもよくころぶけど"
 	line "ケガするもん"
 	txfn 2
 
-Text_145245:
+StdText_0e_a1:
 	db "あぁっ! もしかして"
 	line "イシャがコワイんだろー??"
 	txfn 2
 
-Text_14525f:
+StdText_0e_a2:
 	db "しっかリなおさないとね"
 	line "おだいじに!!"
 	txfn 2
 
-Text_145274:
+StdText_0e_a3:
 	db "あーモシモシプニカー?オレオレ"
 	line " ダレ? まちがってるよ"
 	txfn 10
 
-Text_145292:
+StdText_0e_a4:
 	db "ダレってはくじょうなやつだなぁ"
 	line "あれ?オマエかぜひいたのか?"
 	line " プニカじゃないもん そうプニ"
 	txfn 10
 
-Text_1452c2:
+StdText_0e_a5:
 	db "あーゴメン"
 	TX_CALL wPlayerName
 	db "か"
@@ -1074,163 +1074,163 @@ Text_1452c2:
 	line " ゆるさん! よくあることだよ"
 	txfn 10
 
-Text_1452eb:
+StdText_0e_a6:
 	db "スミマセン!まちがえましたー!"
 	txfn 2
 
-Text_1452fc:
+StdText_0e_a7:
 	db "ん?おまえプニカじゃないな?"
 	line "だましたなー!!"
 	txfn 2
 
-Text_145315:
+StdText_0e_a8:
 	db "ひぇー!ごめんなさーい!!"
 	txfn 2
 
-Text_145324:
+StdText_0e_a9:
 	db "アリガト こんどはちゃんと"
 	line "れんらくするから"
 	txfn 2
 
-Text_14533c:
+StdText_0e_aa:
 	db "ごめーん!やくそのジカン"
 	line "におくれそう"
 	line " やくそくしてないよ あぁそう"
 	txfn 10
 
-Text_145361:
+StdText_0e_ab:
 	db "じゃあダレとやくそくしたの?"
 	line " オレにきくなよ ニンゲン?"
 	txfn 10
 
-Text_145380:
+StdText_0e_ac:
 	db "『あぁそう』っておこってないの? なんで? なんのやくそく?"
 	txfn 10
 
-Text_1453a0:
+StdText_0e_ad:
 	db "ゴメンゴメン!おこんないでよ"
 	line "またかけるから じゃあね"
 	txfn 2
 
-Text_1453bd:
+StdText_0e_ae:
 	db "ちがうよニンゲンのトモダチは"
 	line ""
 	TX_CALL wPlayerName
 	db "だけだもん!"
 	txfn 2
 
-Text_1453d7:
+StdText_0e_af:
 	db "『なんで?』ってなんで?え?"
 	txfn 2
 
-Text_1453e7:
+StdText_0e_b0:
 	db "それはモチロン!アレ?アレ?"
 	line "なんだっけ??"
 	txfn 2
 
-Text_1453ff:
+StdText_0e_b1:
 	db "ねぇ いつもニンゲンカイにい"
 	line "いるときはなにしてんの?"
 	line " ベんきょう あそび"
 	txfn 10
 
-Text_145427:
+StdText_0e_b2:
 	db "ベんきょうしてんだ たのしいの? オモシロイよ ぜんぜん"
 	txfn 10
 
-Text_145445:
+StdText_0e_b3:
 	db "なにしてあそぶの?"
 	line " ゲーム サッカー"
 	txfn 10
 
-Text_14545a:
+StdText_0e_b4:
 	db "オレはベんきょうオモシロイとは"
 	line "おもえないなぁー"
 	txfn 2
 
-Text_145474:
+StdText_0e_b5:
 	db "だよねー!ベんきょうなんて"
 	line "たのしくないよねー!!"
 	txfn 2
 
-Text_14548f:
+StdText_0e_b6:
 	db "ゲームかいいなぁ おれもやリ"
 	line "たいなあー"
 	txfn 2
 
-Text_1454a5:
+StdText_0e_b7:
 	db "しってるぞ!ボールをつかってやるんだよな!それしかしらないけど"
 	txfn 2
 
-Text_1454c6:
+StdText_0e_b8:
 	db "オレめがわるいんだよねメガネでもかけよっかなぁ"
 	line " オマエが? いいんじゃない"
 	txfn 10
 
-Text_1454ee:
+StdText_0e_b9:
 	db "なんだよわるいかよぉ!!"
 	line " ベつに そんなことはないけど"
 	txfn 10
 
-Text_14550c:
+StdText_0e_ba:
 	db "そうかなぁ?にあうかなぁ?"
 	line " にあうよ! フフフフッ"
 	txfn 10
 
-Text_145528:
+StdText_0e_bb:
 	db "やっぱオレにはにあわないんだ!"
 	txfn 2
 
-Text_145539:
+StdText_0e_bc:
 	db "そんなことない?ホント?だったらかけちゃうよ"
 	txfn 2
 
-Text_145551:
+StdText_0e_bd:
 	db "よーし!キミがそこまでゆうの"
 	line "ならかけちゃおう!!"
 	txfn 2
 
-Text_14556c:
+StdText_0e_be:
 	db "なっ なんだ?そのワライは??"
 	line "ホントはバカにしてんだろ??"
 	txfn 2
 
-Text_14558c:
+StdText_0e_bf:
 	db "ねぇー!ここはどこ??"
 	line " こっちがききたい まよった?"
 	txfn 10
 
-Text_1455a9:
+StdText_0e_c0:
 	db "ホントにわかんないんだもん!!"
 	line " いばるなよ めじるしないの?"
 	txfn 10
 
-Text_1455ca:
+StdText_0e_c1:
 	db "そうなのーさっきまでウチのそば"
 	line "にいたのにー!!おかしいなぁ"
 	line " だれかいない? まってたら?"
 	txfn 10
 
-Text_1455fa:
+StdText_0e_c2:
 	db "アハハそうだね ゴメンゴメン"
 	txfn 2
 
-Text_14560a:
+StdText_0e_c3:
 	db "うーん あっ!あっちにウチの"
 	line "エントツみえる!よかったー!"
 	txfn 2
 
-Text_145629:
+StdText_0e_c4:
 	db "あっ!しってるひとがいたから"
 	line "いっしょにかえろ!じゃあね"
 	txfn 2
 
-Text_145647:
+StdText_0e_c5:
 	db "うん むかえがくるまでここで"
 	line "おとなしくまってるよ"
 	txfn 2
 
-Text_145662:
+StdText_0e_c6:
 	db "オレも"
 	TX_CALL wPlayerName
 	db "みたく"
@@ -1238,284 +1238,284 @@ Text_145662:
 	line " きてみたら? ベつに"
 	txfn 10
 
-Text_145688:
+StdText_0e_c7:
 	db "オレにはどんなのがにあうかな?"
 	line " なんでも うーん"
 	txfn 10
 
-Text_1456a3:
+StdText_0e_c8:
 	db "いいじゃんオレだってきたいんだ! わかったよ にあわないって"
 	txfn 10
 
-Text_1456c3:
+StdText_0e_c9:
 	db "そう?なんでもにあう??"
 	line "じゃあムラサキだ!!"
 	txfn 2
 
-Text_1456dc:
+StdText_0e_ca:
 	db "なにかんがえこんでるの?"
 	line "ホントはへンっておもってんだろ"
 	txfn 2
 
-Text_1456fa:
+StdText_0e_cb:
 	db "へへへ こんどみせてやるよ!"
 	txfn 2
 
-Text_14570a:
+StdText_0e_cc:
 	db "そんなのきてみなきゃだれにも"
 	line "わかんないよ!!"
 	txfn 2
 
-Text_145723:
+StdText_0e_cd:
 	db "ゆうえんちにいったことある?"
 	line " あるよ ないなぁ"
 	txfn 10
 
-Text_14573d:
+StdText_0e_ce:
 	db "どんなタベモノある?オイシイ?"
 	line " あそぶところ いろいろあるよ"
 	txfn 10
 
-Text_14575e:
+StdText_0e_cf:
 	db "こんどいっしょにいこうぜ!"
 	line " いいよ いやだよ"
 	txfn 10
 
-Text_145777:
+StdText_0e_d0:
 	db "えー!『ゆうえんち』ってあそぶ"
 	line "とこだったのか!!"
 	txfn 2
 
-Text_145792:
+StdText_0e_d1:
 	db "いろいろか いいなぁ"
 	txfn 2
 
-Text_14579e:
+StdText_0e_d2:
 	db "よし!はやおきしていくぞー!"
 	txfn 2
 
-Text_1457ae:
+StdText_0e_d3:
 	db "それはゆうえんちがイヤなの?"
 	line "それともオレがイヤなの??"
 	txfn 2
 
-Text_1457cc:
+StdText_0e_d4:
 	db "わー!ネボウしちゃったよー!!"
 	line " よふかししたの? ダメだなあ"
 	txfn 10
 
-Text_1457ed:
+StdText_0e_d5:
 	db "うん きのうずーっとゲーム"
 	line "してたから"
 	line " ほどほどにね ベんきょうしろ"
 	txfn 10
 
-Text_145812:
+StdText_0e_d6:
 	db "なんだと?ふだんはベンキョウ"
 	line "もしてんだぞ!!"
 	line " ホントに? それはエライね!"
 	txfn 10
 
-Text_14583b:
+StdText_0e_d7:
 	db "そうだね きをつけるよ"
 	txfn 2
 
-Text_145848:
+StdText_0e_d8:
 	db "してるさ!イキヌキにゲームを"
 	line "してたんだい!!"
 	txfn 2
 
-Text_145861:
+StdText_0e_d9:
 	db "しつれいだぞ!キミ!ボクは"
 	line "ベんきょうがスキなんだ!!"
 	txfn 2
 
-Text_14587e:
+StdText_0e_da:
 	db "アリガトウ わからないコトが"
 	line "あったらおしえてあげるよ!"
 	txfn 2
 
-Text_14589c:
+StdText_0e_db:
 	db "いま『うらない』にハマってんの"
 	line "うらなってあげる!"
 	line " わーい しってんの?"
 	txfn 10
 
-Text_1458c3:
+StdText_0e_dc:
 	db "じゃあセイザをおしえてよ!"
 	line "うーん キミはツノザっぽいな"
 	line " なにそれ? ちがうよ"
 	txfn 10
 
-Text_1458ed:
+StdText_0e_dd:
 	db "しってるさ!よくアタルんだよ!"
 	line " へー うっそー?"
 	txfn 10
 
-Text_145908:
+StdText_0e_de:
 	db "えっつ?あそっか ニンゲンカイ"
 	line "のセイザとはちがうんだ"
 	txfn 2
 
-Text_145925:
+StdText_0e_df:
 	db "ちがうの?あれ?おっかしいなー"
 	line "じゃあキバザかなぁ?"
 	txfn 2
 
-Text_145941:
+StdText_0e_e0:
 	db "きょうのラッキーカラーは"
 	line "『アオムラサキ』です!!"
 	txfn 2
 
-Text_14595c:
+StdText_0e_e1:
 	db "ほんとだ!オレのショクギョウは"
 	line "まほうつかいだ!!"
 	txfn 2
 
-Text_145977:
+StdText_0e_e2:
 	db "たいへんだー!デンジュウカイ"
 	line "がバクハツするかも!"
 	line " なにいってんの? うっそー!"
 	txfn 10
 
-Text_1459a2:
+StdText_0e_e3:
 	db "オレのトモダチがいってたぞ"
 	line " だまされてんじゃん へぇ"
 	txfn 10
 
-Text_1459bf:
+StdText_0e_e4:
 	db "ほんとだよ!オレのうらないで"
 	line "そうでたんだ!!"
 	line " アテになんない たいへーん!"
 	txfn 10
 
-Text_1459e8:
+StdText_0e_e5:
 	db "あー そういえばまえにもおなじ"
 	line "ことが アイツめー!!"
 	txfn 2
 
-Text_145a05:
+StdText_0e_e6:
 	db "『へえ』ってへいきなの?"
 	line "オレはコワイよー!!"
 	txfn 2
 
-Text_145a1e:
+StdText_0e_e7:
 	db "オレのうらないはハズレたことが"
 	line "いちどもないんだぞ!!"
 	txfn 2
 
-Text_145a3b:
+StdText_0e_e8:
 	db "そう!たいへんなの!オレは"
 	line "にげるよ じゃあね"
 	txfn 2
 
-Text_145a54:
+StdText_0e_e9:
 	db "きょうオレのたんじょうびなんだ"
 	line " オメデト このまえもいってた"
 	txfn 10
 
-Text_145a75:
+StdText_0e_ea:
 	db "あリがとう いくつにみえる?"
 	line " 3さい 45さい"
 	txfn 10
 
-Text_145a8f:
+StdText_0e_eb:
 	db "あれ?そうだっけ?"
 	line " トボケるな! ちがうっけ?"
 	txfn 10
 
-Text_145aa9:
+StdText_0e_ec:
 	db "そんなコドモじゃないよー!"
 	txfn 2
 
-Text_145ab8:
+StdText_0e_ed:
 	db "ヒドイ!オレまだコドモだぜ!"
 	txfn 2
 
-Text_145ac8:
+StdText_0e_ee:
 	db "アハハごめん "
 	txfn 2
 
-Text_145ad1:
+StdText_0e_ef:
 	db "きのせいだよ!"
 	line "プレゼントちょうだい!!"
 	txfn 2
 
-Text_145ae7:
+StdText_0e_f0:
 	db "さいきんカラテをならってんだ"
 	line " すごいね いつから?"
 	txfn 10
 
-Text_145b03:
+StdText_0e_f1:
 	db "でしょ?かっこいいぜ!"
 	line " カラテが? キミが?"
 	txfn 10
 
-Text_145b1c:
+StdText_0e_f2:
 	db "さいきんっていったじゃん!"
 	line " あっそっか きいてなかった"
 	txfn 10
 
-Text_145b3a:
+StdText_0e_f3:
 	db "ちがう!オレがだよ!"
 	txfn 2
 
-Text_145b46:
+StdText_0e_f4:
 	db "そうさ!テレファングには"
 	line "よんでくれよな!!"
 	txfn 2
 
-Text_145b5e:
+StdText_0e_f5:
 	db "もうボケちゃったの?しっかリ!"
 	txfn 2
 
-Text_145b6f:
+StdText_0e_f6:
 	db "もう!いつもそうなんだから!"
 	line "コンジョウきたえるために"
 	line "オマエもカラテやれ!!"
 	txfn 2
 
-Text_145b98:
+StdText_0e_f7:
 	db "オレもシンカしたいなぁ"
 	line " どうして? オレも!"
 	txfn 10
 
-Text_145bb1:
+StdText_0e_f8:
 	db "きっとシンカしたらやせると"
 	line "おもわない?"
 	line " それはない やせたい?"
 	txfn 10
 
-Text_145bd4:
+StdText_0e_f9:
 	TX_CALL wPlayerName
 	db "はシンカしたら"
 	line "なんになるんだろうな?"
 	line " オトナ スゴくなる"
 	txfn 10
 
-Text_145bf7:
+StdText_0e_fa:
 	db "えー!そうなの?じゃあ"
 	line "うんどうでもしようかな"
 	txfn 2
 
-Text_145c10:
+StdText_0e_fb:
 	db "やせたいよ!さいきんおなかが"
 	line "ブヨーンとしててさぁ ハァ"
 	txfn 2
 
-Text_145c2e:
+StdText_0e_fc:
 	db "おぉー!オトナかすごいなぁ!"
 	txfn 2
 
-Text_145c3e:
+StdText_0e_fd:
 	db "えっ?なになに?どうスゴイの?"
 	txfn 2
 
-Text_145c4f:
+StdText_0e_fe:
 	db "いまじぶんでゴハンつくってんだ! エライ! なにつくってんの?"
 	txfn 10
 
-Text_145c70:
+StdText_0e_ff:
 	db "えへへ リょうリくらい"
 	line "できないとモテないからね"
 	line " それがネライ? そうかなあ?"
