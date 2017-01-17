@@ -16,19 +16,39 @@ INCLUDE "audio/engine.asm"
 	const B_
 
 channel_struct: MACRO
-\1_Active:: ds 1      ; 00
-\1_Pointer:: dw       ; 01
-\1_Tempo:: ds 1       ; 03
-\1_Duration:: ds 1    ; 04
-\1_ENT:: ds 1         ; 05
-\1_LEN:: ds 1         ; 06
-\1_ENVReset:: ds 1    ; 07
-\1_ENV:: ds 1         ; 08
-\1_Sound0x09:: ds 1   ; 09
-\1_FRQ:: ds 1         ; 0a
-\1_KIK:: ds 1         ; 0b
-\1_Subfunction:: dw   ; 0c
-	ds $1a
+\1_Active:: ds 1           ; 00
+\1_Pointer:: dw            ; 01
+\1_Tempo:: ds 1            ; 03
+\1_Duration:: ds 1         ; 04
+\1_ENT:: ds 1              ; 05
+\1_LEN:: ds 1              ; 06
+\1_ENVReset:: ds 1         ; 07
+\1_ENV:: ds 1              ; 08
+\1_Sound0x09:: ds 1        ; 09
+\1_FRQ:: ds 1              ; 0a
+\1_KIK:: ds 1              ; 0b
+\1_Subfunction:: dw        ; 0c
+\1_SubfunctionTimer:: ds 1 ; 0e
+\1_ENVMod:: ds 1           ; 0f
+\1_Sound0x10:: ds 1        ; 10
+\1_Sound0x11:: ds 1        ; 11
+\1_DurationCompare:: ds 1  ; 12
+\1_Sound0x13:: ds 1        ; 13
+\1_Sound0x14:: ds 1        ; 14
+\1_Sound0x15:: ds 1        ; 15
+\1_Sound0x16:: ds 1        ; 16
+\1_Sound0x17:: ds 1        ; 17
+\1_Sound0x18:: ds 1        ; 18
+\1_Sound0x19:: ds 1        ; 19
+\1_RepeatCount1:: ds 1     ; 1a
+\1_RepeatLoopStart1:: dw   ; 1b
+\1_RepeatCount2:: ds 1     ; 1d
+\1_RepeatLoopStart2:: dw   ; 1e
+\1_CallReturnPointer:: dw  ; 20
+\1_Flags0x22:: ds 1        ; 22
+\1_ChannelType:: ds 1      ; 23
+\1_Sound0x24:: ds 1        ; 24
+	ds $3
 	ENDM
 
 channel: MACRO
@@ -38,6 +58,13 @@ channel: MACRO
 
 note: MACRO
 	dn \1, \2 - 1
+	ENDM
+
+noise: MACRO
+	dn \1, \2
+IF _NARG > 2
+	db \3
+ENDC
 	ENDM
 
 octave_command EQU $d0
@@ -50,6 +77,9 @@ octave: MACRO
 	enum music_e0_command
 music_e0: MACRO
 	db music_e0_command
+IF _NARG > 0
+	db \1
+ENDC
 	ENDM
 
 	enum music_tempo_command

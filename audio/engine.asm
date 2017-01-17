@@ -507,25 +507,25 @@ asm_434e_\1
 	ld [H_MusicCommand], a
 	inc bc
 	cp $ef
-	jr nz, .asm_435d
+	jr nz, .check_f0
 	ld hl, wcf9b
 	inc [hl]
 	jr asm_434e_\1
 
-.asm_435d
+.check_f0
 	and $f0
 	cp $f0
-	jr nz, .asm_4368
+	jr nz, .check_e0
 	call DoAudioFunction_f0_ff_\1
 	jr asm_4341_\1
 
-.asm_4368
+.check_e0
 	cp $e0
-	jr nz, .asm_4371
+	jr nz, .check_octave
 	call DoAudioFunction_e0_ef_\1
 	jr asm_4341_\1
 
-.asm_4371
+.check_octave
 	cp $d0
 	jr nz, .note
 	ld a, [H_MusicCommand]
@@ -556,7 +556,7 @@ asm_434e_\1
 	ret
 
 .note
-	call AudioEngineFunc_4561_\1
+	call StoreAudioPointer_\1
 	ld hl, $3
 	add hl, de
 	ld a, [H_MusicCommand]
@@ -744,10 +744,10 @@ UpdateSFXChannel_\1: ; 484cd (11:44cd)
 	ld hl, $4
 	add hl, de
 	dec [hl]
-	jr z, .asm_44d5
+	jr z, .next_note
 	ret
 
-.asm_44d5
+.next_note
 	ld hl, $1
 	add hl, de
 	ld c, [hl]
@@ -767,27 +767,27 @@ AudioEngineFunc_44e8_\1: ; 484e8 (11:44e8)
 	inc bc
 	ld [H_MusicCommand], a
 	cp $e0
-	jp z, AudioEngineFunc_4549_\1
+	jp z, .NoiseCommandE0
 	and $f0
 	cp $f0
-	jr nz, .asm_44fd
+	jr nz, .check_e0
 	call DoAudioFunction_f0_ff_\1
 	jr asm_44dc_\1
 
-.asm_44fd
+.check_e0
 	cp $e0
-	jr nz, .asm_4506
+	jr nz, .noise
 	call DoAudioFunction_e0_ef_\1
 	jr asm_44dc_\1
 
-.asm_4506
+.noise
 	ld hl, $3
 	add hl, de
 	ld a, [hli]
 	ld [hl], a
 	ld a, [H_MusicCommand]
 	and $f0
-	jr z, .asm_4533
+	jr z, .no_first_nybble
 	add $20
 	call AudioEngineFunc_4ba0_\1
 	ld hl, $8
@@ -803,10 +803,10 @@ AudioEngineFunc_44e8_\1: ; 484e8 (11:44e8)
 	ld [hl], a
 	or $80
 	call SetCurChannelKik_\1
-	jr AudioEngineFunc_4561_\1
+	jr StoreAudioPointer_\1
 
-.asm_4533
-	call AudioEngineFunc_4561_\1
+.no_first_nybble
+	call StoreAudioPointer_\1
 	ld a, [H_MusicCommand]
 	and $f
 	swap a
@@ -817,13 +817,13 @@ AudioEngineFunc_44e8_\1: ; 484e8 (11:44e8)
 	ld [rNR44], a
 	ret
 
-AudioEngineFunc_4549_\1: ; 48549 (11:4549)
+.NoiseCommandE0
 	ld a, [bc]
 	inc bc
 	ld hl, $4
 	add hl, de
 	ld [hl], a
-	call AudioEngineFunc_4561_\1
+	call StoreAudioPointer_\1
 	xor a
 	call SetCurChannelEnv_\1
 	ld a, $ff
@@ -831,7 +831,7 @@ AudioEngineFunc_4549_\1: ; 48549 (11:4549)
 	ld a, $8f
 	jp SetCurChannelKik_\1
 
-AudioEngineFunc_4561_\1: ; 48561 (11:4561)
+StoreAudioPointer_\1: ; 48561 (11:4561)
 	ld hl, $1
 	add hl, de
 	ld [hl], c
@@ -840,18 +840,18 @@ AudioEngineFunc_4561_\1: ; 48561 (11:4561)
 	ret
 
 AudioEngineData_4569_\1:
-	dw  $783,  $706,  $60b,  $413,  $02e, -1, -1, -1
-	dw  $78a,  $714,  $627,  $450,  $0a2, -1, -1, -1
-	dw  $791,  $721,  $642,  $485,  $108, -1, -1, -1
-	dw  $797,  $72d,  $65b,  $4b7,  $16d, -1, -1, -1
-	dw  $79d,  $739,  $672,  $4e6,  $1cb, -1, -1, -1
-	dw  $7a2,  $744,  $689,  $516,  $225, -1, -1, -1
-	dw  $7a8,  $74f,  $69e,  $53c,  $27a, -1, -1, -1
-	dw  $7ad,  $759,  $6b2,  $564,  $2c7, -1, -1, -1
-	dw  $7b1,  $762,  $6c4,  $589,  $314, -1, -1, -1
-	dw  $7b6,  $76b,  $6d6,  $5ad,  $35a, -1, -1, -1
-	dw  $7ba,  $774,  $6e9,  $5d2,  $39d, -1, -1, -1
-	dw  $7be,  $77b,  $6f9,  $5ed,  $3dc, -1, -1, -1
+	db $83, 7,  $06, 7,  $0b, 6,  $13, 4,  $2e, 0,  $ff, -1,  $ff, -1,  $ff, -1
+	db $8a, 7,  $14, 7,  $27, 6,  $50, 4,  $a2, 0,  $ff, -1,  $ff, -1,  $ff, -1
+	db $91, 7,  $21, 7,  $42, 6,  $85, 4,  $08, 1,  $ff, -1,  $ff, -1,  $ff, -1
+	db $97, 7,  $2d, 7,  $5b, 6,  $b7, 4,  $6d, 1,  $ff, -1,  $ff, -1,  $ff, -1
+	db $9d, 7,  $39, 7,  $72, 6,  $e6, 4,  $cb, 1,  $ff, -1,  $ff, -1,  $ff, -1
+	db $a2, 7,  $44, 7,  $89, 6,  $16, 5,  $25, 2,  $ff, -1,  $ff, -1,  $ff, -1
+	db $a8, 7,  $4f, 7,  $9e, 6,  $3c, 5,  $7a, 2,  $ff, -1,  $ff, -1,  $ff, -1
+	db $ad, 7,  $59, 7,  $b2, 6,  $64, 5,  $c7, 2,  $ff, -1,  $ff, -1,  $ff, -1
+	db $b1, 7,  $62, 7,  $c4, 6,  $89, 5,  $14, 3,  $ff, -1,  $ff, -1,  $ff, -1
+	db $b6, 7,  $6b, 7,  $d6, 6,  $ad, 5,  $5a, 3,  $ff, -1,  $ff, -1,  $ff, -1
+	db $ba, 7,  $74, 7,  $e9, 6,  $d2, 5,  $9d, 3,  $ff, -1,  $ff, -1,  $ff, -1
+	db $be, 7,  $7b, 7,  $f9, 6,  $ed, 5,  $dc, 3,  $ff, -1,  $ff, -1,  $ff, -1
 
 MusicNone_\1: ; 48629 (11:4629)
 	xor a
@@ -988,7 +988,7 @@ AudioCommands1_\1:
 AudioCommands2_\1:
 	dw AudioCommand_f0_\1
 	dw AudioCommand_f1_\1
-	dw AudioCommand_f2_\1
+	dw AudioCommand_JumpChannel_\1
 	dw AudioCommand_f3_\1
 	dw AudioCommand_f4_\1
 	dw AudioCommand_call_channel_\1
@@ -1033,7 +1033,7 @@ AudioCommand_f1_\1: ; 4873d (11:473d)
 	ld hl, $1a
 	jr asm_4757_\1
 
-AudioCommand_f2_\1: ; 48742 (11:4742)
+AudioCommand_JumpChannel_\1: ; 48742 (11:4742)
 	ld a, [bc]
 	ld l, a
 	inc bc
@@ -1176,7 +1176,7 @@ AudioCommand_ff_\1: ; 487de (11:47de)
 	ld [hl], a
 	ld a, [H_CurChannel]
 	cp $5
-	jr nz, .asm_47f4
+	jr nz, .check_ch5
 	ld a, [wChannel4]
 	or a
 	ret nz
@@ -1184,43 +1184,43 @@ AudioCommand_ff_\1: ; 487de (11:47de)
 	ld [rNR42], a
 	ret
 
-.asm_47f4
+.check_ch5
 	cp $4
-	jr nz, .asm_47fd
+	jr nz, .music_ch
 	ld a, $ff
 	ld [wcf94], a
-.asm_47fd
+.music_ch
 	ld hl, AudioEngineData_4d95_\1
 	ld a, [H_CurChannel]
 	or a
-	jr z, .asm_482a
+	jr z, .ch1
 	push bc
 	ld b, $0
 	cp $1
-	jr nz, .asm_4811
-	ld c, $5
-	jr .asm_4828
+	jr nz, .check_ch3
+	ld c, 5
+	jr .offset
 
-.asm_4811
+.check_ch3
 	cp $2
-	jr nz, .asm_4819
-	ld c, $a
-	jr .asm_4828
+	jr nz, .check_ch4
+	ld c, 10
+	jr .offset
 
-.asm_4819
+.check_ch4
 	cp $3
-	jr nz, .asm_4826
-	ld c, $f
+	jr nz, .ch5
+	ld c, 15
 	ld a, $ff
 	ld [wcf9a], a
-	jr .asm_4828
+	jr .offset
 
-.asm_4826
-	ld c, $14
-.asm_4828
+.ch5
+	ld c, 20
+.offset
 	add hl, bc
 	pop bc
-.asm_482a
+.ch1
 	ld a, [hli]
 	cp $ee
 	call nz, SetCurChannelEnt_\1
@@ -1692,21 +1692,21 @@ AudioEngineFunc_4ad1_\1: ; 48ad1 (11:4ad1)
 	jr .asm_4b06
 
 SetCurChannelEnt_\1: ; 48b25 (11:4b25)
-	call AudioEngineFunc_4b90_\1
+	call IsSFXChannel_\1
 	ret nz
 	push hl
 	ld hl, EntPointers_\1
 	jr SetCurChannelAudioRegister_Continue_\1
 
 SetCurChannelLen_\1: ; 48b2f (11:4b2f)
-	call AudioEngineFunc_4b90_\1
+	call IsSFXChannel_\1
 	ret nz
 	push hl
 	ld hl, LenPointers_\1
 	jr SetCurChannelAudioRegister_Continue_\1
 
 SetCurChannelEnv_\1: ; 48b39 (11:4b39)
-	call AudioEngineFunc_4b90_\1
+	call IsSFXChannel_\1
 	ret nz
 	push hl
 	ld a, [H_CurChannel]
@@ -1735,14 +1735,14 @@ SetCurChannelEnv_\1: ; 48b39 (11:4b39)
 	jr SetCurChannelAudioRegister_Continue_\1
 
 SetCurChannelFrq_\1: ; 48b6c (11:4b6c)
-	call AudioEngineFunc_4b90_\1
+	call IsSFXChannel_\1
 	ret nz
 	push hl
 	ld hl, FrqPointers_\1
 	jr SetCurChannelAudioRegister_Continue_\1
 
 SetCurChannelKik_\1: ; 48b76 (11:4b76)
-	call AudioEngineFunc_4b90_\1
+	call IsSFXChannel_\1
 	ret nz
 	push hl
 	ld hl, KikPointers_\1
@@ -1762,7 +1762,7 @@ SetCurChannelAudioRegister_Continue_\1
 	pop hl
 	ret
 
-AudioEngineFunc_4b90_\1: ; 48b90 (11:4b90)
+IsSFXChannel_\1: ; 48b90 (11:4b90)
 	ld [H_MusicEngineBuffer], a
 	ld a, [H_CurChannel]
 	or a
@@ -1991,30 +1991,30 @@ asm_4cf7_\1
 	ld hl, AudioEngineData_4d95_\1
 	ld a, [H_CurChannel]
 	or a
-	jr z, .asm_4d66
+	jr z, .set
 	ld b, $0
 	cp $1
-	jr nz, .asm_4d53
+	jr nz, .check_ch3
 	ld c, $5
-	jr .asm_4d65
+	jr .offset
 
-.asm_4d53
+.check_ch3
 	cp $2
-	jr nz, .asm_4d5b
+	jr nz, .check_ch4
 	ld c, $a
-	jr .asm_4d65
+	jr .offset
 
-.asm_4d5b
+.check_ch4
 	cp $3
-	jr nz, .asm_4d63
+	jr nz, .ch5
 	ld c, $f
-	jr .asm_4d65
+	jr .offset
 
-.asm_4d63
+.ch5
 	ld c, $14
-.asm_4d65
+.offset
 	add hl, bc
-.asm_4d66
+.set
 	pop bc
 	ld a, [hli]
 	cp $ee
