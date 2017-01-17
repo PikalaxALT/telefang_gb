@@ -1,7 +1,6 @@
 INCLUDE "audio/engine.asm"
 
 	const_def
-	const __
 	const C_
 	const C#
 	const D_
@@ -14,6 +13,7 @@ INCLUDE "audio/engine.asm"
 	const A_
 	const A#
 	const B_
+	const __
 
 channel_struct: MACRO
 \1_Active:: ds 1           ; 00
@@ -61,7 +61,7 @@ note: MACRO
 	ENDM
 
 noise: MACRO
-	dn \1, \2
+	dn \1, \2 - 1
 IF _NARG > 2
 	db \3
 ENDC
@@ -119,6 +119,17 @@ music_e6: MACRO
 music_noise_sample: MACRO
 	db music_noise_sample_command
 	db \1
+	ENDM
+
+	enum music_e8_command
+music_e8: MACRO
+	db music_e8_command
+	db \1
+	ENDM
+
+	enum music_e9_command
+music_e9: MACRO
+	db music_e9_command
 	ENDM
 
 	enum music_reset_var22_flag6_and_setenvreset_command
@@ -179,7 +190,6 @@ music_setrepeat1d: MACRO
 	enum music_dorepeat1d_command
 music_dorepeat1d: MACRO
 	db music_dorepeat1d_command
-	db \1
 	ENDM
 
 	enum call_channel_command
@@ -215,7 +225,7 @@ music_f9: MACRO
 	enum music_fa_command
 music_fa: MACRO
 	db music_fa_command
-	db (\1 << 6) | (\2 >> 4)
+	db \1
 	ENDM
 
 	enum music_fb_command
@@ -252,11 +262,7 @@ ringtempo: MACRO
 	ENDM
 
 ringnote: MACRO
-IF \1 == __
-	dn $c, \2
-ELSE
-	dn \1 - 1, \2
-ENDC
+	dn \1, \2
 	db \3
 	ENDM
 

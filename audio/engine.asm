@@ -1907,6 +1907,7 @@ PlayRingtone_\1: ; 48c3a (11:4c3a)
 	jp .Finish
 
 AudioEngineFunc_4cbe_\1:
+; ????
 	enable_sram
 	ld a, c
 	ld [MBC3SRamBank], a
@@ -1918,10 +1919,10 @@ asm_4cc9_\1
 	inc a
 	ld [H_CurChannel], a
 	cp $6
-	jr nz, .asm_4cd5
+	jr nz, .next_channel
 	ret
 
-.asm_4cd5
+.next_channel
 	ld hl, $28
 	add hl, de
 	ld e, l
@@ -1938,22 +1939,22 @@ PlayAudioPointer_\1: ; 48cdd (11:4cdd)
 	inc hl
 	ld b, [hl]
 	ld a, [bc]
-	ld [wcf92], a
+	ld [wChannelFlagsBuffer], a
 	inc bc
 	ld a, [bc]
-	ld [wcf93], a
+	ld [wCurChannelFlags], a
 	inc bc
 	ld de, wChannel1
 	xor a
 	ld [H_CurChannel], a
 asm_4cf7_\1
-	ld a, [wcf92]
+	ld a, [wChannelFlagsBuffer]
 	add a
-	ld [wcf92], a
+	ld [wChannelFlagsBuffer], a
 	jr nc, asm_4cc9_\1
 	ld hl, $0
 	add hl, de
-	ld a, [wcf93]
+	ld a, [wCurChannelFlags]
 	cp [hl]
 	jr c, asm_4cc7_\1
 	push de
@@ -1971,22 +1972,22 @@ asm_4cf7_\1
 	ld hl, $b
 	add hl, de
 	ld [hl], $ff
-	call AudioCommand_e6_\1
+	call AudioCommand_e6_\1 ; ret
 	ld a, [H_CurChannel]
 	cp $5
-	jr nz, .asm_4d3f
+	jr nz, .not_ch6
 	ld a, [wChannel4]
 	or a
-	jp nz, AudioEngineFunc_4d7d_\1
+	jp nz, .skip_init_registers
 	xor a
 	ld [rNR41], a
 	ld [rNR42], a
 	ld [rNR43], a
 	ld a, $80
 	ld [rNR44], a
-	jp AudioEngineFunc_4d7d_\1
+	jp .skip_init_registers
 
-.asm_4d3f
+.not_ch6
 	push bc
 	ld hl, AudioEngineData_4d95_\1
 	ld a, [H_CurChannel]
@@ -1995,23 +1996,23 @@ asm_4cf7_\1
 	ld b, $0
 	cp $1
 	jr nz, .check_ch3
-	ld c, $5
+	ld c, 5
 	jr .offset
 
 .check_ch3
 	cp $2
 	jr nz, .check_ch4
-	ld c, $a
+	ld c, 10
 	jr .offset
 
 .check_ch4
 	cp $3
 	jr nz, .ch5
-	ld c, $f
+	ld c, 15
 	jr .offset
 
 .ch5
-	ld c, $14
+	ld c, 20
 .offset
 	add hl, bc
 .set
@@ -2027,10 +2028,10 @@ asm_4cf7_\1
 	call SetCurChannelFrq_\1
 	ld a, [hl]
 	call SetCurChannelKik_\1
-AudioEngineFunc_4d7d_\1: ; 48d7d (11:4d7d)
+.skip_init_registers
 	ld hl, $0
 	add hl, de
-	ld a, [wcf93]
+	ld a, [wCurChannelFlags]
 	ld [hli], a
 	ld a, [bc]
 	inc bc

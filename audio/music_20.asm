@@ -1,673 +1,6557 @@
-	dw Data_82000
-	dw Data_8200e
-	dw Data_82018
-	dw Data_82022
-	dw Data_8202c
-	dw Data_82036
-	dw Data_82040
-	dw Data_8204a
-	dw Data_82054
-	dw Data_8205e
-	dw Data_82068
-	dw Data_82072
-	dw Data_82072
-	dw Data_82072
-	dw Data_82072
+	dw MusicHeader_82000
+	dw MusicHeader_8200e
+	dw MusicHeader_82018
+	dw MusicHeader_82022
+	dw MusicHeader_8202c
+	dw MusicHeader_82036
+	dw MusicHeader_82040
+	dw MusicHeader_8204a
+	dw MusicHeader_82054
+	dw MusicHeader_8205e
+	dw MusicHeader_82068
+	dw MusicHeader_82072
+	dw MusicHeader_82072
+	dw MusicHeader_82072
+	dw MusicHeader_82072
 
-Data_82000:
-	db $fc, $f0
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
+MusicHeader_82000: ; 82000
+	channel %111111, $f0
+	dw MusicHeader_82000_Ch1
+	dw MusicHeader_82000_Ch2
+	dw MusicHeader_82000_Ch3
+	dw MusicHeader_82000_Ch4
+	dw MusicHeader_82000_Ch5
+	dw MusicHeader_82000_Ch6
 
-Data_8200e:
-	db $e4, $f0
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
+MusicHeader_8200e: ; 8200e
+	channel %111001, $f0
+	dw MusicHeader_8200e_Ch1
+	dw MusicHeader_8200e_Ch2
+	dw MusicHeader_8200e_Ch3
+	dw MusicHeader_8200e_Ch6
 
-Data_82018:
-	db $e4, $c0
-	dw Data_8207c
-	dw Data_82183
-	dw Data_822e7
-	dw Data_8243e
+MusicHeader_82018: ; 82018
+	channel %111001, $c0
+	dw MusicHeader_82018_Ch1
+	dw MusicHeader_82018_Ch2
+	dw MusicHeader_82018_Ch3
+	dw MusicHeader_82018_Ch6
 
-Data_82022:
-	db $e4, $c0
-	dw Data_824df
-	dw Data_82584
-	dw Data_82646
-	dw Data_82761
+MusicHeader_82022: ; 82022
+	channel %111001, $c0
+	dw MusicHeader_82022_Ch1
+	dw MusicHeader_82022_Ch2
+	dw MusicHeader_82022_Ch3
+	dw MusicHeader_82022_Ch6
 
-Data_8202c:
-	db $e4, $c0
-	dw Data_8278c
-	dw Data_828af
-	dw Data_829cf
-	dw Data_82a68
+MusicHeader_8202c: ; 8202c
+	channel %111001, $c0
+	dw MusicHeader_8202c_Ch1
+	dw MusicHeader_8202c_Ch2
+	dw MusicHeader_8202c_Ch3
+	dw MusicHeader_8202c_Ch6
 
-Data_82036:
-	db $e4, $c0
-	dw Data_82aac
-	dw Data_82b63
-	dw Data_82c74
-	dw Data_82d43
+MusicHeader_82036: ; 82036
+	channel %111001, $c0
+	dw MusicHeader_82036_Ch1
+	dw MusicHeader_82036_Ch2
+	dw MusicHeader_82036_Ch3
+	dw MusicHeader_82036_Ch6
 
-Data_82040:
-	db $e4, $c0
-	dw Data_82d8f
-	dw Data_82e8f
-	dw Data_82fb6
-	dw Data_83084
+MusicHeader_82040: ; 82040
+	channel %111001, $c0
+	dw MusicHeader_82040_Ch1
+	dw MusicHeader_82040_Ch2
+	dw MusicHeader_82040_Ch3
+	dw MusicHeader_82040_Ch6
 
-Data_8204a:
-	db $e4, $c0
-	dw Data_8309a
-	dw Data_8313e
-	dw Data_831e1
-	dw Data_8335c
+MusicHeader_8204a: ; 8204a
+	channel %111001, $c0
+	dw MusicHeader_8204a_Ch1
+	dw MusicHeader_8204a_Ch2
+	dw MusicHeader_8204a_Ch3
+	dw MusicHeader_8204a_Ch6
 
-Data_82054:
-	db $e4, $c0
-	dw Data_833a1
-	dw Data_83540
-	dw Data_836b3
-	dw Data_83818
+MusicHeader_82054: ; 82054
+	channel %111001, $c0
+	dw MusicHeader_82054_Ch1
+	dw MusicHeader_82054_Ch2
+	dw MusicHeader_82054_Ch3
+	dw MusicHeader_82054_Ch6
 
-Data_8205e:
-	db $e4, $c0
-	dw Data_83881
-	dw Data_8392b
-	dw Data_83a0e
-	dw Data_83ae1
+MusicHeader_8205e: ; 8205e
+	channel %111001, $c0
+	dw MusicHeader_8205e_Ch1
+	dw MusicHeader_8205e_Ch2
+	dw MusicHeader_8205e_Ch3
+	dw MusicHeader_8205e_Ch6
 
-Data_82068:
-	db $e4, $c0
-	dw Data_83b14
-	dw Data_83c42
-	dw Data_83d97
-	dw Data_83e48
+MusicHeader_82068: ; 82068
+	channel %111001, $c0
+	dw MusicHeader_82068_Ch1
+	dw MusicHeader_82068_Ch2
+	dw MusicHeader_82068_Ch3
+	dw MusicHeader_82068_Ch6
 
-Data_82072:
-	db $e4, $c0
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
-	dw Data_83e66
+MusicHeader_82072: ; 82072
+	channel %111001, $c0
+	dw MusicHeader_82072_Ch1
+	dw MusicHeader_82072_Ch2
+	dw MusicHeader_82072_Ch3
+	dw MusicHeader_82072_Ch6
 
-Data_8207c:
-	db $fd, $06, $fb, $11, $14, $03, $12, $e8, $05, $f5, $09, $64, $91, $a1, $c1, $fa
-	db $36, $20, $c0, $f5, $09, $64, $81, $a1, $c1, $fa, $36, $20, $c0, $f5, $09, $64
-	db $91, $a1, $c1, $fa, $36, $20, $c0, $20, $c0, $fa, $39, $d2, $01, $eb, $07, $01
-	db $eb, $05, $01, $eb, $09, $01, $01, $c1, $91, $d3, $90, $d2, $00, $50, $90, $d1
-	db $03, $c1, $d2, $01, $30, $c0, $70, $c0, $f3, $02, $eb, $09, $d2, $a3, $21, $c0
-	db $20, $cb, $21, $c0, $20, $c5, $55, $c1, $d1, $05, $c1, $d2, $a5, $93, $c1, $50
-	db $c0, $50, $c0, $50, $40, $33, $71, $a1, $c1, $d1, $35, $c1, $d2, $50, $50, $71
-	db $51, $c1, $a0, $c0, $51, $21, $c1, $f0, $02, $90, $c0, $71, $81, $f1, $91, $c1
-	db $90, $c0, $90, $c0, $90, $c0, $eb, $05, $90, $c0, $d3, $01, $41, $51, $f4, $fa
-	db $39, $d2, $73, $d3, $71, $a1, $c1, $d2, $71, $31, $d3, $a1, $d2, $03, $c1, $55
-	db $33, $23, $d3, $93, $53, $23, $d1, $01, $c1, $d2, $a1, $c1, $d3, $71, $a0, $c0
-	db $d2, $20, $c0, $71, $c1, $71, $c3, $71, $c3, $91, $c1, $91, $c3, $91, $c3, $03
-	db $c1, $00, $c0, $53, $c1, $50, $c0, $33, $40, $c0, $53, $c1, $eb, $06, $d3, $01
-	db $50, $c0, $fa, $79, $d3, $a3, $d2, $00, $c0, $11, $2b, $c1, $51, $c1, $31, $21
-	db $c1, $59, $c1, $51, $c1, $33, $20, $c0, $07, $c1, $13, $30, $c0, $41, $5b, $c1
-	db $81, $c1, $61, $51, $c1, $89, $c1, $81, $c1, $63, $50, $c0, $31, $d3, $83, $b0
-	db $c0, $d2, $01, $31, $f2, $85, $60
+MusicHeader_82018_Ch1: ; 8207c
+	music_tempo_2 $6
+	music_fb $11, $14, $3, $12
+	music_e8 $5
 
-Data_82183:
-	db $fd, $06, $fb, $11, $14, $03, $12, $e8, $05, $fa, $76, $f0, $03, $d3, $50, $c0
-	db $50, $c0, $e8, $11, $fa, $79, $d2, $20, $c2, $fa, $76, $d3, $50, $c0, $fa, $79
-	db $d2, $20, $c2, $f9, $0c, $54, $d2, $33, $30, $c0, $21, $c1, $01, $21, $c1, $fa
-	db $76, $d3, $50, $c0, $f1, $50, $c0, $fa, $79, $d2, $51, $71, $51, $91, $51, $a1
-	db $d1, $03, $00, $c0, $53, $c1, $d2, $51, $70, $c0, $a0, $c0, $fa, $79, $f3, $02
-	db $d1, $fd, $03, $ea, $06, $10, $fd, $2d, $eb, $09, $20, $fd, $06, $c1, $01, $20
-	db $c0, $fd, $03, $ea, $06, $20, $fd, $21, $eb, $09, $30, $fd, $06, $21, $c1, $01
-	db $d2, $a1, $c1, $95, $c1, $fd, $03, $ea, $06, $d1, $40, $fd, $69, $eb, $09, $50
-	db $d2, $fd, $06, $c1, $90, $c0, $90, $c0, $90, $80, $73, $fd, $03, $ea, $06, $90
-	db $fd, $09, $eb, $09, $a0, $fd, $06, $d1, $31, $c1, $75, $51, $21, $01, $d2, $a7
-	db $c1, $d1, $01, $c1, $21, $c1, $31, $c1, $40, $c0, $fd, $03, $ea, $05, $40, $fd
-	db $15, $eb, $09, $50, $fd, $06, $50, $c0, $50, $c0, $50, $c0, $eb, $05, $50, $c0
-	db $d3, $51, $71, $91, $f4, $fd, $03, $ea, $05, $d1, $20, $fd, $2d, $eb, $09, $30
-	db $fd, $06, $c1, $20, $c0, $00, $c0, $d2, $a0, $c0, $93, $c1, $d1, $03, $c1, $fd
-	db $03, $ea, $05, $60, $fd, $15, $eb, $09, $70, $fd, $06, $57, $c1, $23, $51, $91
-	db $c1, $75, $c1, $d2, $70, $c0, $d1, $53, $50, $c0, $31, $c1, $51, $31, $c1, $23
-	db $20, $c0, $01, $c1, $21, $01, $c1, $d2, $a3, $90, $c0, $a0, $c0, $90, $c0, $a1
-	db $91, $c1, $a3, $b0, $c0, $d1, $03, $c1, $eb, $06, $d3, $51, $90, $c0, $fa, $b7
-	db $d1, $a5, $c1, $55, $c1, $25, $c1, $d2, $a5, $c1, $fa, $b9, $ea, $05, $fd, $03
-	db $b0, $fd, $39, $d1, $eb, $09, $00, $fd, $06, $c1, $20, $c0, $30, $c0, $5d, $c1
-	db $fa, $b7, $d0, $15, $c1, $d1, $85, $c1, $55, $c1, $15, $c1, $fd, $03, $ea, $05
-	db $20, $fd, $39, $eb, $09, $30, $fd, $06, $c1, $11, $c1, $d2, $b1, $c1, $a1, $89
-	db $c1, $f2, $8c, $61
+Music_82085: ; 82085
+	call_channel Music_82409
+	note A_, 2
+	note A#, 2
+	note __, 2
+	music_fa $36
+	note D_, 1
+	note __, 1
+	call_channel Music_82409
+	note G#, 2
+	note A#, 2
+	note __, 2
+	music_fa $36
+	note D_, 1
+	note __, 1
+	call_channel Music_82409
+	note A_, 2
+	note A#, 2
+	note __, 2
+	music_fa $36
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	music_fa $39
+	octave 6
+	note C_, 2
+	music_set_var22_flag6_and_setenvreset $7
+	note C_, 2
+	music_set_var22_flag6_and_setenvreset $5
+	note C_, 2
+	music_set_var22_flag6_and_setenvreset $9
+	note C_, 2
+	note C_, 2
+	note __, 2
+	note A_, 2
+	octave 5
+	note A_, 1
+	octave 6
+	note C_, 1
+	note F_, 1
+	note A_, 1
+	octave 7
+	note C_, 4
+	note __, 2
+	octave 6
+	note C_, 2
+	note D#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	music_setrepeat1d $2
+	music_set_var22_flag6_and_setenvreset $9
+	octave 6
+	note A#, 4
+	note D_, 2
+	note __, 1
+	note D_, 1
+	note __, 12
+	note D_, 2
+	note __, 1
+	note D_, 1
+	note __, 6
+	note F_, 6
+	note __, 2
+	octave 7
+	note C_, 6
+	note __, 2
+	octave 6
+	note A#, 6
+	note A_, 4
+	note __, 2
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note E_, 1
+	note D#, 4
+	note G_, 2
+	note A#, 2
+	note __, 2
+	octave 7
+	note D#, 6
+	note __, 2
+	octave 6
+	note F_, 1
+	note F_, 1
+	note G_, 2
+	note F_, 2
+	note __, 2
+	note A#, 1
+	note __, 1
+	note F_, 2
+	note D_, 2
+	note __, 2
+	music_setrepeat1a $2
+	note A_, 1
+	note __, 1
+	note G_, 2
+	note G#, 2
+	music_dorepeat1a
+	note A_, 2
+	note __, 2
+	note A_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	music_set_var22_flag6_and_setenvreset $5
+	note A_, 1
+	note __, 1
+	octave 5
+	note C_, 2
+	note E_, 2
+	note F_, 2
+	music_dorepeat1d
+	music_fa $39
+	octave 6
+	note G_, 4
+	octave 5
+	note G_, 2
+	note A#, 2
+	note __, 2
+	octave 6
+	note G_, 2
+	note D#, 2
+	octave 5
+	note A#, 2
+	octave 6
+	note C_, 4
+	note __, 2
+	note F_, 6
+	note D#, 4
+	note D_, 4
+	octave 5
+	note A_, 4
+	note F_, 4
+	note D_, 4
+	octave 7
+	note C_, 2
+	note __, 2
+	octave 6
+	note A#, 2
+	note __, 2
+	octave 5
+	note G_, 2
+	note A#, 1
+	note __, 1
+	octave 6
+	note D_, 1
+	note __, 1
+	note G_, 2
+	note __, 2
+	note G_, 2
+	note __, 4
+	note G_, 2
+	note __, 4
+	note A_, 2
+	note __, 2
+	note A_, 2
+	note __, 4
+	note A_, 2
+	note __, 4
+	note C_, 4
+	note __, 2
+	note C_, 1
+	note __, 1
+	note F_, 4
+	note __, 2
+	note F_, 1
+	note __, 1
+	note D#, 4
+	note E_, 1
+	note __, 1
+	note F_, 4
+	note __, 2
+	music_set_var22_flag6_and_setenvreset $6
+	octave 5
+	note C_, 2
+	note F_, 1
+	note __, 1
+	music_fa $79
+	octave 5
+	note A#, 4
+	octave 6
+	note C_, 1
+	note __, 1
+	note C#, 2
+	note D_, 12
+	note __, 2
+	note F_, 2
+	note __, 2
+	note D#, 2
+	note D_, 2
+	note __, 2
+	note F_, 10
+	note __, 2
+	note F_, 2
+	note __, 2
+	note D#, 4
+	note D_, 1
+	note __, 1
+	note C_, 8
+	note __, 2
+	note C#, 4
+	note D#, 1
+	note __, 1
+	note E_, 2
+	note F_, 12
+	note __, 2
+	note G#, 2
+	note __, 2
+	note F#, 2
+	note F_, 2
+	note __, 2
+	note G#, 10
+	note __, 2
+	note G#, 2
+	note __, 2
+	note F#, 4
+	note F_, 1
+	note __, 1
+	note D#, 2
+	octave 5
+	note G#, 4
+	note B_, 1
+	note __, 1
+	octave 6
+	note C_, 2
+	note D#, 2
+	jump_channel Music_82085
 
-Data_822e7:
-	db $fd, $06, $fa, $03, $e7, $0f, $fb, $00, $00, $06, $14, $d4, $f0, $03, $a1, $a1
-	db $d3, $51, $d4, $a1, $f1, $a1, $a1, $d3, $51, $d4, $83, $81, $d3, $51, $d4, $81
-	db $f0, $02, $81, $81, $d3, $51, $d4, $81, $f1, $81, $81, $d3, $51, $d4, $73, $71
-	db $d3, $21, $d4, $71, $f0, $02, $71, $71, $d3, $21, $d4, $71, $f1, $71, $71, $d3
-	db $21, $d4, $53, $51, $d3, $01, $d4, $51, $51, $51, $d3, $01, $53, $d4, $51, $51
-	db $c9, $f5, $c5, $63, $51, $51, $51, $f5, $c5, $63, $51, $51, $41, $d4, $32, $30
-	db $a1, $31, $c1, $d3, $31, $d4, $a1, $71, $52, $50, $91, $d3, $01, $c1, $51, $01
-	db $d4, $51, $d3, $22, $20, $d4, $91, $d3, $21, $c1, $d4, $91, $d3, $21, $51, $72
-	db $70, $21, $71, $c1, $71, $21, $33, $31, $d4, $71, $a1, $d3, $31, $d4, $71, $c1
-	db $d3, $53, $51, $d4, $91, $d3, $01, $91, $d4, $51, $c1, $53, $51, $71, $51, $91
-	db $51, $a1, $d3, $03, $d4, $91, $51, $c3, $51, $71, $f0, $02, $a3, $a1, $d3, $11
-	db $21, $d4, $a1, $51, $71, $f1, $f0, $02, $83, $81, $b1, $d3, $01, $d4, $81, $31
-	db $51, $f1, $f0, $02, $d3, $13, $11, $41, $51, $11, $d4, $81, $a1, $f1, $f0, $02
-	db $b3, $b1, $d3, $21, $31, $d4, $b1, $61, $81, $f1, $c1, $f2, $f3, $62, $f0, $02
-	db $d4, $a1, $c0, $a0, $d3, $a1, $c0, $a1, $c0, $d4, $a1, $71, $51, $f1, $d4, $f0
-	db $02, $92, $90, $d3, $01, $d4, $51, $c1, $51, $71, $51, $f1, $32, $30, $71, $31
-	db $c1, $d3, $31, $21, $01, $d4, $a2, $a0, $d3, $51, $d4, $51, $c1, $a1, $d3, $21
-	db $d4, $a1, $d3, $02, $00, $d4, $71, $31, $c1, $71, $d3, $01, $d4, $53, $51, $52
-	db $c2, $f6, $fa, $36, $d3, $20, $c0, $20, $c0, $e8, $11, $fa, $39, $a0, $c2, $fa
-	db $36, $a0, $c0, $fa, $39, $a0, $c2, $f9, $0c, $55, $d2, $03, $00, $c0, $d3, $a1
-	db $c1, $f6, $01, $20, $00, $81, $01, $21, $01, $81, $01, $f6, $f0, $03, $03, $01
-	db $81, $21, $01, $01, $81, $f1, $f6
+MusicHeader_82018_Ch2: ; 82183
+	music_tempo_2 $6
+	music_fb $11, $14, $3, $12
+	music_e8 $5
 
-Data_8243e:
-	db $fd, $06, $01, $21, $81, $21, $01, $21, $81, $03, $01, $81, $21, $01, $91, $91
-	db $f0, $02, $03, $01, $81, $21, $01, $21, $81, $21, $01, $21, $81, $21, $01, $91
-	db $91, $f1, $03, $01, $81, $21, $01, $21, $81, $83, $01, $83, $81, $81, $00, $80
-	db $80, $80, $f3, $02, $f0, $03, $f5, $29, $64, $f1, $01, $20, $00, $81, $01, $21
-	db $01, $80, $80, $01, $f0, $02, $f5, $29, $64, $f1, $01, $20, $00, $81, $01, $21
-	db $01, $81, $81, $21, $81, $81, $21, $80, $81, $80, $20, $80, $80, $80, $f4, $f0
-	db $03, $f5, $29, $64, $f1, $01, $20, $00, $81, $01, $01, $91, $91, $03, $01, $81
-	db $01, $01, $01, $81, $03, $01, $81, $01, $01, $01, $81, $83, $f0, $05, $01, $81
-	db $f1, $41, $80, $81, $80, $20, $80, $f5, $33, $64, $03, $01, $81, $21, $01, $91
-	db $91, $f5, $33, $64, $03, $01, $81, $01, $80, $80, $00, $81, $80, $81, $f2, $40
-	db $64
+Music_8218c: ; 8218c
+	music_fa $76
+	music_setrepeat1a $3
+	octave 5
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	music_e8 $11
+	music_fa $79
+	octave 6
+	note D_, 1
+	note __, 3
+	music_fa $76
+	octave 5
+	note F_, 1
+	note __, 1
+	music_fa $79
+	octave 6
+	note D_, 1
+	note __, 3
+	music_f9 $c, 5, 4
+	octave 6
+	note D#, 4
+	note D#, 1
+	note __, 1
+	note D_, 2
+	note __, 2
+	note C_, 2
+	note D_, 2
+	note __, 2
+	music_fa $76
+	octave 5
+	note F_, 1
+	note __, 1
+	music_dorepeat1a
+	note F_, 1
+	note __, 1
+	music_fa $79
+	octave 6
+	note F_, 2
+	note G_, 2
+	note F_, 2
+	note A_, 2
+	note F_, 2
+	note A#, 2
+	octave 7
+	note C_, 4
+	note C_, 1
+	note __, 1
+	note F_, 4
+	note __, 2
+	octave 6
+	note F_, 2
+	note G_, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	music_fa $79
+	music_setrepeat1d $2
+	octave 7
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $6
+	note C#, 1
+	music_tempo_2 $2d
+	music_set_var22_flag6_and_setenvreset $9
+	note D_, 1
+	music_tempo_2 $6
+	note __, 2
+	note C_, 2
+	note D_, 1
+	note __, 1
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $6
+	note D_, 1
+	music_tempo_2 $21
+	music_set_var22_flag6_and_setenvreset $9
+	note D#, 1
+	music_tempo_2 $6
+	note D_, 2
+	note __, 2
+	note C_, 2
+	octave 6
+	note A#, 2
+	note __, 2
+	note A_, 6
+	note __, 2
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $6
+	octave 7
+	note E_, 1
+	music_tempo_2 $69
+	music_set_var22_flag6_and_setenvreset $9
+	note F_, 1
+	octave 6
+	music_tempo_2 $6
+	note __, 2
+	note A_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note A_, 1
+	note G#, 1
+	note G_, 4
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $6
+	note A_, 1
+	music_tempo_2 $9
+	music_set_var22_flag6_and_setenvreset $9
+	note A#, 1
+	music_tempo_2 $6
+	octave 7
+	note D#, 2
+	note __, 2
+	note G_, 6
+	note F_, 2
+	note D_, 2
+	note C_, 2
+	octave 6
+	note A#, 8
+	note __, 2
+	octave 7
+	note C_, 2
+	note __, 2
+	note D_, 2
+	note __, 2
+	note D#, 2
+	note __, 2
+	note E_, 1
+	note __, 1
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $5
+	note E_, 1
+	music_tempo_2 $15
+	music_set_var22_flag6_and_setenvreset $9
+	note F_, 1
+	music_tempo_2 $6
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	music_set_var22_flag6_and_setenvreset $5
+	note F_, 1
+	note __, 1
+	octave 5
+	note F_, 2
+	note G_, 2
+	note A_, 2
+	music_dorepeat1d
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $5
+	octave 7
+	note D_, 1
+	music_tempo_2 $2d
+	music_set_var22_flag6_and_setenvreset $9
+	note D#, 1
+	music_tempo_2 $6
+	note __, 2
+	note D_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 6
+	note A#, 1
+	note __, 1
+	note A_, 4
+	note __, 2
+	octave 7
+	note C_, 4
+	note __, 2
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $5
+	note F#, 1
+	music_tempo_2 $15
+	music_set_var22_flag6_and_setenvreset $9
+	note G_, 1
+	music_tempo_2 $6
+	note F_, 8
+	note __, 2
+	note D_, 4
+	note F_, 2
+	note A_, 2
+	note __, 2
+	note G_, 6
+	note __, 2
+	octave 6
+	note G_, 1
+	note __, 1
+	octave 7
+	note F_, 4
+	note F_, 1
+	note __, 1
+	note D#, 2
+	note __, 2
+	note F_, 2
+	note D#, 2
+	note __, 2
+	note D_, 4
+	note D_, 1
+	note __, 1
+	note C_, 2
+	note __, 2
+	note D_, 2
+	note C_, 2
+	note __, 2
+	octave 6
+	note A#, 4
+	note A_, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note A#, 2
+	note A_, 2
+	note __, 2
+	note A#, 4
+	note B_, 1
+	note __, 1
+	octave 7
+	note C_, 4
+	note __, 2
+	music_set_var22_flag6_and_setenvreset $6
+	octave 5
+	note F_, 2
+	note A_, 1
+	note __, 1
+	music_fa $b7
+	octave 7
+	note A#, 6
+	note __, 2
+	note F_, 6
+	note __, 2
+	note D_, 6
+	note __, 2
+	octave 6
+	note A#, 6
+	note __, 2
+	music_fa $b9
+	music_reset_var22_flag6_and_setenvreset $5
+	music_tempo_2 $3
+	note B_, 1
+	music_tempo_2 $39
+	octave 7
+	music_set_var22_flag6_and_setenvreset $9
+	note C_, 1
+	music_tempo_2 $6
+	note __, 2
+	note D_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F_, 14
+	note __, 2
+	music_fa $b7
+	octave 8
+	note C#, 6
+	note __, 2
+	octave 7
+	note G#, 6
+	note __, 2
+	note F_, 6
+	note __, 2
+	note C#, 6
+	note __, 2
+	music_tempo_2 $3
+	music_reset_var22_flag6_and_setenvreset $5
+	note D_, 1
+	music_tempo_2 $39
+	music_set_var22_flag6_and_setenvreset $9
+	note D#, 1
+	music_tempo_2 $6
+	note __, 2
+	note C#, 2
+	note __, 2
+	octave 6
+	note B_, 2
+	note __, 2
+	note A#, 2
+	note G#, 10
+	note __, 2
+	jump_channel Music_8218c
 
-Data_824df:
-	db $fd, $0a, $fa, $b7, $fb, $01, $12, $02, $11, $e8, $1e, $f9, $15, $43, $f3, $02
-	db $f5, $f6, $66, $f0, $02, $d2, $70, $c0, $a0, $c0, $d1, $10, $c0, $70, $c0, $f1
-	db $f5, $f6, $66, $f0, $02, $d2, $90, $c0, $d1, $00, $c0, $30, $c0, $90, $c0, $f1
-	db $f4, $fb, $01, $12, $05, $11, $f3, $03, $f0, $08, $d3, $70, $a0, $f1, $f0, $08
-	db $d3, $80, $b0, $f1, $f4, $f0, $08, $d3, $90, $d2, $00, $f1, $f0, $08, $d3, $a0
-	db $d2, $10, $f1, $f5, $04, $67, $d2, $51, $51, $c1, $fa, $b5, $51, $c1, $fa, $b3
-	db $51, $c1, $fa, $b1, $51, $f5, $24, $67, $d3, $b5, $d2, $26, $56, $25, $56, $b6
-	db $fa, $b3, $55, $b6, $d1, $26, $d2, $b5, $d1, $26, $f5, $04, $67, $d2, $61, $61
-	db $c1, $fa, $b5, $61, $c1, $fa, $b3, $61, $c1, $fa, $b1, $61, $f5, $24, $67, $d2
-	db $05, $36, $66, $35, $66, $d1, $06, $fa, $b3, $d2, $65, $d1, $06, $36, $05, $36
-	db $f8, $00, $f2, $df, $64
+MusicHeader_82018_Ch3: ; 822e7
+	music_tempo_2 $6
+	music_fa $3
+	music_noise_sample $f
+	music_fb $0, $0, $6, $14
+	octave 4
 
-Data_82584:
-	db $fd, $0a, $fa, $7a, $fb, $01, $13, $07, $31, $e8, $14, $f9, $15, $44, $d3, $87
-	db $c1, $a1, $b1, $d2, $11, $d3, $a9, $c1, $d2, $33, $21, $31, $5b, $65, $50, $40
-	db $37, $c3, $d3, $83, $65, $51, $49, $c1, $41, $31, $23, $a7, $c1, $a0, $b0, $d2
-	db $05, $d3, $b0, $a0, $95, $c1, $f9, $15, $43, $fa, $ba, $f5, $e2, $66, $44, $c0
-	db $50, $40, $35, $c1, $23, $d2, $b3, $82, $fd, $05, $fa, $b8, $70, $60, $fd, $0a
-	db $fa, $ba, $53, $f5, $e2, $66, $81, $91, $d0, $03, $c1, $d1, $b1, $a1, $91, $a2
-	db $c0, $42, $c0, $12, $c0, $d2, $a2, $c0, $f5, $1a, $67, $d2, $b0, $b0, $c0, $fa
-	db $b6, $b0, $c0, $fa, $b4, $b0, $c0, $fa, $b1, $b0, $f5, $10, $67, $d3, $b5, $d2
-	db $26, $56, $fa, $b4, $25, $56, $b6, $fa, $b5, $55, $b6, $d1, $26, $fa, $b6, $d2
-	db $b5, $d1, $26, $56, $f5, $1a, $67, $d1, $00, $00, $c0, $fa, $b6, $00, $c0, $fa
-	db $b4, $00, $c0, $fa, $b1, $00, $f5, $10, $67, $d2, $05, $36, $66, $fa, $b4, $35
-	db $66, $d1, $06, $fa, $b5, $d2, $65, $d1, $06, $36, $fa, $b6, $05, $36, $66, $f2
-	db $84, $65
+Music_822f3: ; 822f3
+	music_setrepeat1a $3
+	note A#, 2
+	note A#, 2
+	octave 5
+	note F_, 2
+	octave 4
+	note A#, 2
+	music_dorepeat1a
+	note A#, 2
+	note A#, 2
+	octave 5
+	note F_, 2
+	octave 4
+	note G#, 4
+	note G#, 2
+	octave 5
+	note F_, 2
+	octave 4
+	note G#, 2
+	music_setrepeat1a $2
+	note G#, 2
+	note G#, 2
+	octave 5
+	note F_, 2
+	octave 4
+	note G#, 2
+	music_dorepeat1a
+	note G#, 2
+	note G#, 2
+	octave 5
+	note F_, 2
+	octave 4
+	note G_, 4
+	note G_, 2
+	octave 5
+	note D_, 2
+	octave 4
+	note G_, 2
+	music_setrepeat1a $2
+	note G_, 2
+	note G_, 2
+	octave 5
+	note D_, 2
+	octave 4
+	note G_, 2
+	music_dorepeat1a
+	note G_, 2
+	note G_, 2
+	octave 5
+	note D_, 2
+	octave 4
+	note F_, 4
+	note F_, 2
+	octave 5
+	note C_, 2
+	octave 4
+	note F_, 2
+	note F_, 2
+	note F_, 2
+	octave 5
+	note C_, 2
+	note F_, 4
+	octave 4
+	note F_, 2
+	note F_, 2
+	note __, 10
+	call_channel Music_823c5
+	note F_, 2
+	note F_, 2
+	note F_, 2
+	call_channel Music_823c5
+	note F_, 2
+	note F_, 2
+	note E_, 2
+	octave 4
+	note D#, 3
+	note D#, 1
+	note A#, 2
+	note D#, 2
+	note __, 2
+	octave 5
+	note D#, 2
+	octave 4
+	note A#, 2
+	note G_, 2
+	note F_, 3
+	note F_, 1
+	note A_, 2
+	octave 5
+	note C_, 2
+	note __, 2
+	note F_, 2
+	note C_, 2
+	octave 4
+	note F_, 2
+	octave 5
+	note D_, 3
+	note D_, 1
+	octave 4
+	note A_, 2
+	octave 5
+	note D_, 2
+	note __, 2
+	octave 4
+	note A_, 2
+	octave 5
+	note D_, 2
+	note F_, 2
+	note G_, 3
+	note G_, 1
+	note D_, 2
+	note G_, 2
+	note __, 2
+	note G_, 2
+	note D_, 2
+	note D#, 4
+	note D#, 2
+	octave 4
+	note G_, 2
+	note A#, 2
+	octave 5
+	note D#, 2
+	octave 4
+	note G_, 2
+	note __, 2
+	octave 5
+	note F_, 4
+	note F_, 2
+	octave 4
+	note A_, 2
+	octave 5
+	note C_, 2
+	note A_, 2
+	octave 4
+	note F_, 2
+	note __, 2
+	note F_, 4
+	note F_, 2
+	note G_, 2
+	note F_, 2
+	note A_, 2
+	note F_, 2
+	note A#, 2
+	octave 5
+	note C_, 4
+	octave 4
+	note A_, 2
+	note F_, 2
+	note __, 4
+	note F_, 2
+	note G_, 2
+	music_setrepeat1a $2
+	note A#, 4
+	note A#, 2
+	octave 5
+	note C#, 2
+	note D_, 2
+	octave 4
+	note A#, 2
+	note F_, 2
+	note G_, 2
+	music_dorepeat1a
+	music_setrepeat1a $2
+	note G#, 4
+	note G#, 2
+	note B_, 2
+	octave 5
+	note C_, 2
+	octave 4
+	note G#, 2
+	note D#, 2
+	note F_, 2
+	music_dorepeat1a
+	music_setrepeat1a $2
+	octave 5
+	note C#, 4
+	note C#, 2
+	note E_, 2
+	note F_, 2
+	note C#, 2
+	octave 4
+	note G#, 2
+	note A#, 2
+	music_dorepeat1a
+	music_setrepeat1a $2
+	note B_, 4
+	note B_, 2
+	octave 5
+	note D_, 2
+	note D#, 2
+	octave 4
+	note B_, 2
+	note F#, 2
+	note G#, 2
+	music_dorepeat1a
+	note __, 2
+	jump_channel Music_822f3
 
-Data_82646:
-	db $fd, $0a, $fa, $02, $fb, $00, $00, $06, $00, $e7, $0f, $f9, $15, $45, $d3, $c1
-	db $89, $a1, $b1, $d2, $11, $d3, $ab, $d2, $33, $21, $31, $5b, $65, $50, $40, $3b
-	db $d3, $83, $65, $51, $4b, $41, $31, $23, $a9, $a0, $b0, $d2, $05, $d3, $b0, $a0
-	db $95, $f9, $00, $00, $fb, $00, $00, $06, $00, $f5, $3c, $67, $f5, $31, $67, $f5
-	db $50, $67, $d4, $71, $71, $fa, $02, $e7, $0f, $d1, $45, $50, $40, $31, $f5, $31
-	db $67, $fa, $02, $e7, $0f, $d1, $23, $d2, $b3, $81, $fa, $03, $e7, $0c, $d3, $20
-	db $80, $f5, $3c, $67, $f5, $31, $67, $f5, $50, $67, $d4, $91, $91, $fa, $02, $e7
-	db $0f, $d1, $81, $91, $d0, $05, $fa, $03, $e7, $0c, $d3, $30, $90, $d4, $a1, $a1
-	db $fa, $02, $e7, $0f, $d1, $a3, $43, $11, $fa, $03, $e7, $0c, $d3, $40, $a0, $d4
-	db $b1, $b1, $c9, $d3, $50, $b0, $01, $01, $cb, $f2, $48, $66, $d2, $70, $90, $a0
-	db $d1, $50, $4d, $c3, $50, $70, $81, $71, $fd, $02, $58, $60, $fd, $0a, $71, $f6
-	db $f0, $02, $d2, $80, $c0, $b0, $c0, $d1, $20, $c0, $80, $c0, $f1, $f6, $fd, $05
-	db $fb, $01, $12, $02, $11, $fa, $b8, $f8, $00, $f6, $fd, $01, $fb, $01, $00, $02
-	db $11, $fa, $b3, $f6, $fd, $0a, $fb, $01, $12, $02, $11, $fa, $ba, $f6, $fd, $01
-	db $fb, $01, $00, $02, $11, $f8, $01, $fa, $b2, $c6, $f6, $fa, $03, $e7, $0c, $d3
-	db $20, $70, $d4, $81, $81, $f6, $fa, $03, $e7, $0c, $d4, $71, $71, $fa, $02, $e7
-	db $0f, $c1, $d2, $70, $90, $a0, $d1, $50, $43, $f6, $c5, $fa, $02, $e7, $0f, $d1
-	db $50, $70, $81, $fa, $03, $e7, $0c, $d3, $20, $80, $f6
+Music_823c5: ; 823c5
+	music_setrepeat1a $2
+	octave 4
+	note A#, 2
+	note __, 1
+	note A#, 1
+	octave 5
+	note A#, 2
+	note __, 1
+	note A#, 2
+	note __, 1
+	octave 4
+	note A#, 2
+	note G_, 2
+	note F_, 2
+	music_dorepeat1a
+	octave 4
+	music_setrepeat1a $2
+	note A_, 3
+	note A_, 1
+	octave 5
+	note C_, 2
+	octave 4
+	note F_, 2
+	note __, 2
+	note F_, 2
+	note G_, 2
+	note F_, 2
+	music_dorepeat1a
+	note D#, 3
+	note D#, 1
+	note G_, 2
+	note D#, 2
+	note __, 2
+	octave 5
+	note D#, 2
+	note D_, 2
+	note C_, 2
+	octave 4
+	note A#, 3
+	note A#, 1
+	octave 5
+	note F_, 2
+	octave 4
+	note F_, 2
+	note __, 2
+	note A#, 2
+	octave 5
+	note D_, 2
+	octave 4
+	note A#, 2
+	octave 5
+	note C_, 3
+	note C_, 1
+	octave 4
+	note G_, 2
+	note D#, 2
+	note __, 2
+	note G_, 2
+	octave 5
+	note C_, 2
+	octave 4
+	note F_, 4
+	note F_, 2
+	note F_, 3
+	note __, 3
+	ret_channel
 
-Data_82761:
-	db $fd, $0a, $f0, $07, $21, $11, $41, $13, $10, $10, $43, $f1, $21, $11, $41, $13
-	db $10, $10, $fd, $01, $f0, $08, $52, $f1, $f0, $04, $83, $f1, $fd, $0a, $f0, $0a
-	db $20, $10, $43, $20, $10, $41, $25, $f1, $f2, $63, $67
+Music_82409: ; 82409
+	music_fa $36
+	octave 5
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	music_e8 $11
+	music_fa $39
+	note A#, 1
+	note __, 3
+	music_fa $36
+	note A#, 1
+	note __, 1
+	music_fa $39
+	note A#, 1
+	note __, 3
+	music_f9 $c, 5, 5
+	octave 6
+	note C_, 4
+	note C_, 1
+	note __, 1
+	octave 5
+	note A#, 2
+	note __, 2
+	ret_channel
 
-Data_8278c:
-	db $fd, $07, $fa, $73, $fb, $11, $00, $03, $21, $f8, $01, $c0, $e8, $15, $f9, $15
-	db $43, $d3, $f5, $1d, $6a, $c0, $f5, $1d, $6a, $fa, $b8, $fb, $11, $12, $03, $11
-	db $d3, $b0, $b0, $c0, $b0, $b0, $c0, $a0, $a0, $c0, $a0, $a0, $c0, $b0, $c0, $d2
-	db $30, $c0, $d3, $80, $c0, $80, $c0, $61, $c0, $80, $c0, $80, $c0, $80, $60, $c0
-	db $60, $c0, $d2, $20, $20, $c0, $20, $20, $c0, $10, $10, $c0, $10, $10, $c0, $20
-	db $c0, $60, $c0, $d3, $b0, $c0, $b0, $c0, $91, $c0, $b0, $c0, $b0, $c0, $b0, $90
-	db $c0, $90, $c0, $d3, $80, $b0, $d2, $30, $c0, $60, $80, $c0, $32, $10, $c0, $f5
-	db $3f, $6a, $fa, $b8, $d2, $80, $c0, $80, $c0, $61, $c0, $30, $10, $c0, $30, $c0
-	db $60, $10, $c0, $30, $c1, $fd, $01, $10, $25, $fd, $07, $c0, $d3, $b0, $d2, $20
-	db $c0, $41, $60, $d3, $b0, $c4, $60, $c0, $90, $c0, $b0, $c0, $f0, $02, $60, $90
-	db $c0, $b0, $c0, $f1, $d1, $1b, $c1, $d2, $80, $d1, $10, $d2, $8b, $c1, $80, $d1
-	db $10, $d2, $6b, $c1, $60, $d1, $10, $d2, $6b, $c3, $60, $10, $d3, $a0, $d2, $80
-	db $c0, $80, $a0, $c0, $a0, $b0, $c0, $a0, $c0, $b0, $c0, $a0, $60, $c0, $10, $d3
-	db $b0, $a0, $c0, $d2, $b0, $c0, $a0, $60, $c0, $b0, $c0, $a0, $60, $c0, $f0, $02
-	db $d1, $12, $d2, $b0, $c1, $f1, $a3, $c1, $60, $c2, $43, $60, $c0, $13, $80, $30
-	db $00, $a0, $c0, $a0, $d1, $00, $c0, $00, $10, $c0, $00, $c0, $10, $c0, $00, $d2
-	db $80, $c0, $30, $10, $00, $c0, $f0, $02, $d1, $10, $c0, $00, $d2, $80, $c0, $f1
-	db $d1, $32, $10, $c1, $32, $10, $c1, $03, $c1, $d2, $80, $c2, $63, $80, $c0, $33
-	db $f2, $8e, $67
+Music_82429: ; 82429
+	note C_, 2
+	note D_, 1
+	note C_, 1
+	note G#, 2
+	note C_, 2
+	note D_, 2
+	note C_, 2
+	note G#, 2
+	note C_, 2
+	ret_channel
 
-Data_828af:
-	db $fd, $07, $fa, $79, $fb, $11, $12, $03, $21, $e8, $15, $f9, $15, $43, $d3, $f3
-	db $02, $f5, $1d, $6a, $c0, $f4, $f5, $2b, $6a, $d2, $30, $30, $c0, $30, $30, $c0
-	db $10, $10, $c0, $10, $10, $c0, $30, $c0, $60, $c0, $f5, $35, $6a, $f0, $04, $83
-	db $b4, $f1, $fa, $b8, $f0, $02, $84, $b4, $f1, $fa, $b9, $f0, $04, $33, $64, $f1
-	db $fa, $b5, $f0, $02, $34, $64, $f1, $f5, $2b, $6a, $60, $60, $c0, $60, $60, $c0
-	db $40, $40, $c0, $40, $40, $c0, $60, $c0, $90, $c0, $f5, $35, $6a, $f0, $04, $d2
-	db $b3, $d1, $24, $f1, $fa, $b8, $f0, $02, $d2, $b4, $d1, $24, $f1, $fa, $b9, $d2
-	db $f0, $04, $63, $94, $f1, $fa, $b5, $f0, $02, $64, $94, $f1, $f5, $2b, $6a, $c1
-	db $80, $c0, $b0, $d1, $10, $c0, $d2, $82, $60, $c2, $30, $60, $d1, $10, $c0, $10
-	db $c0, $d2, $b1, $c0, $80, $c3, $f5, $3f, $6a, $fa, $b9, $c1, $fd, $01, $d2, $80
-	db $95, $fd, $07, $c0, $60, $90, $c0, $b1, $d1, $10, $d2, $60, $c2, $60, $90, $82
-	db $c0, $42, $c0, $d1, $21, $c0, $fd, $01, $30, $fd, $0a, $41, $fd, $07, $d2, $b1
-	db $c1, $fa, $b6, $d1, $80, $d0, $10, $d1, $8b, $c3, $b3, $a3, $63, $c1, $10, $80
-	db $15, $c1, $d2, $b0, $d1, $10, $40, $60, $14, $c0, $d2, $b0, $90, $83, $fa, $b9
-	db $10, $80, $d1, $10, $d2, $b0, $a2, $b0, $c1, $d1, $1d, $c1, $10, $c0, $10, $10
-	db $c0, $10, $c0, $10, $60, $c0, $42, $30, $c1, $42, $30, $c1, $1b, $c1, $d2, $b0
-	db $c0, $a3, $d1, $02, $10, $c1, $3d, $c1, $30, $c0, $30, $30, $c0, $30, $c0, $30
-	db $80, $c0, $62, $50, $c1, $62, $50, $c1, $3b, $c1, $10, $c0, $03, $f2, $b1, $68
+Music_82433: ; 82433
+	music_setrepeat1a $3
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note C_, 2
+	note G#, 2
+	music_dorepeat1a
+	ret_channel
 
-Data_829cf:
-	db $fd, $07, $fa, $03, $fb, $00, $00, $04, $00, $e7, $0f, $f0, $04, $f5, $48, $6a
-	db $f1, $f3, $03, $f0, $04, $f5, $48, $6a, $f1, $f0, $04, $d4, $b1, $c0, $d3, $22
-	db $41, $f1, $f4, $f0, $04, $d3, $61, $c0, $60, $10, $d4, $60, $b1, $c0, $b0, $d3
-	db $10, $d4, $60, $b1, $d3, $11, $f1, $f0, $04, $d3, $81, $c0, $80, $30, $d4, $80
-	db $d3, $11, $c0, $10, $30, $d4, $80, $d3, $11, $31, $f1, $f2, $da, $69, $f0, $02
-	db $30, $60, $c0, $80, $c0, $f1, $30, $c0, $60, $c0, $80, $f6, $fd, $07, $fa, $b9
-	db $fb, $11, $12, $03, $11, $f6, $fd, $01, $fa, $b6, $fb, $11, $00, $03, $11, $f6
-	db $fa, $b6, $d0, $80, $80, $d1, $80, $c0, $f6, $d4, $81, $c0, $b2, $d3, $11, $f6
-	db $01, $20, $00, $80, $31, $20, $f6, $00, $21, $30, $81, $31, $f6, $01, $31, $80
-	db $31, $20, $00, $21, $30, $80, $80, $31, $f6
+MusicHeader_82018_Ch6: ; 8243e
+	music_tempo_2 $6
 
-Data_82a68:
-	db $fd, $07, $f5, $4f, $6a, $f5, $56, $6a, $01, $01, $80, $21, $20, $fd, $01, $88
-	db $89, $88, $89, $88, $88, $fd, $07, $f0, $05, $f5, $4f, $6a, $f5, $56, $6a, $f5
-	db $5c, $6a, $f1, $f5, $4f, $6a, $f5, $56, $6a, $01, $31, $80, $31, $20, $00, $21
-	db $30, $80, $80, $80, $80, $f0, $04, $f5, $4f, $6a, $f5, $56, $6a, $f5, $5c, $6a
-	db $f1, $f2, $6a, $6a
+Music_82440: ; 82440
+	note C_, 2
+	note D_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note D_, 2
+	note G#, 2
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note A_, 2
+	note A_, 2
+	music_setrepeat1a $2
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note D_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note D_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note A_, 2
+	note A_, 2
+	music_dorepeat1a
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note D_, 2
+	note G#, 2
+	note G#, 4
+	note C_, 2
+	note G#, 4
+	note G#, 2
+	note G#, 2
+	note C_, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	music_setrepeat1d $2
+	music_setrepeat1a $3
+	call_channel Music_82429
+	music_dorepeat1a
+	note C_, 2
+	note D_, 1
+	note C_, 1
+	note G#, 2
+	note C_, 2
+	note D_, 2
+	note C_, 2
+	note G#, 1
+	note G#, 1
+	note C_, 2
+	music_setrepeat1a $2
+	call_channel Music_82429
+	music_dorepeat1a
+	note C_, 2
+	note D_, 1
+	note C_, 1
+	note G#, 2
+	note C_, 2
+	note D_, 2
+	note C_, 2
+	note G#, 2
+	note G#, 2
+	note D_, 2
+	note G#, 2
+	note G#, 2
+	note D_, 2
+	note G#, 1
+	note G#, 2
+	note G#, 1
+	note D_, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	music_dorepeat1d
+	music_setrepeat1a $3
+	call_channel Music_82429
+	music_dorepeat1a
+	note C_, 2
+	note D_, 1
+	note C_, 1
+	note G#, 2
+	note C_, 2
+	note C_, 2
+	note A_, 2
+	note A_, 2
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note C_, 2
+	note C_, 2
+	note C_, 2
+	note G#, 2
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note C_, 2
+	note C_, 2
+	note C_, 2
+	note G#, 2
+	note G#, 4
+	music_setrepeat1a $5
+	note C_, 2
+	note G#, 2
+	music_dorepeat1a
+	note E_, 2
+	note G#, 1
+	note G#, 2
+	note G#, 1
+	note D_, 1
+	note G#, 1
+	call_channel Music_82433
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note A_, 2
+	note A_, 2
+	call_channel Music_82433
+	note C_, 4
+	note C_, 2
+	note G#, 2
+	note C_, 2
+	note G#, 1
+	note G#, 1
+	note C_, 1
+	note G#, 2
+	note G#, 1
+	note G#, 2
+	jump_channel Music_82440
 
-Data_82aac:
-	db $fd, $06, $fa, $b7, $fb, $11, $12, $06, $11, $e8, $12, $f9, $15, $44, $d2, $91
-	db $c1, $c3, $d0, $21, $91, $d2, $81, $c1, $c3, $d0, $21, $91, $d2, $51, $c1, $c3
-	db $d0, $21, $91, $d2, $41, $c1, $c3, $d0, $21, $91, $fa, $b7, $d2, $f0, $08, $21
-	db $51, $81, $91, $81, $51, $f1, $fb, $11, $12, $03, $31, $01, $fd, $04, $d3, $b0
-	db $d2, $00, $d3, $b0, $fd, $06, $81, $51, $81, $b1, $d2, $09, $c1, $d3, $81, $fd
-	db $04, $70, $80, $70, $fd, $06, $41, $11, $41, $71, $89, $c1, $fb, $11, $12, $06
-	db $11, $f0, $04, $d2, $51, $71, $81, $b1, $d1, $01, $41, $51, $41, $01, $d2, $b1
-	db $81, $51, $f1, $d3, $f0, $03, $51, $81, $f1, $f0, $03, $71, $a1, $f1, $81, $b1
-	db $81, $b1, $81, $d2, $31, $f0, $03, $d3, $a1, $d2, $21, $f1, $f0, $03, $11, $41
-	db $f1, $f0, $03, $31, $61, $f1, $f0, $02, $d3, $b1, $d2, $21, $f1, $d3, $b1, $d2
-	db $61, $f0, $10, $11, $51, $f1, $fa, $b5, $f0, $02, $11, $51, $f1, $fa, $b3, $f0
-	db $03, $11, $51, $f1, $f2, $d6, $6a
+MusicHeader_82022_Ch1: ; 824df
+	music_tempo_2 $a
+	music_fa $b7
+	music_fb $1, $12, $2, $11
+	music_e8 $1e
+	music_f9 $15, 4, 3
+	music_setrepeat1d $2
+	call_channel Music_826f6
+	music_setrepeat1a $2
+	octave 6
+	note G_, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	octave 7
+	note C#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	music_dorepeat1a
+	call_channel Music_826f6
+	music_setrepeat1a $2
+	octave 6
+	note A_, 1
+	note __, 1
+	octave 7
+	note C_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	music_dorepeat1a
+	music_dorepeat1d
+	music_fb $1, $12, $5, $11
+	music_setrepeat1d $3
+	music_setrepeat1a $8
+	octave 5
+	note G_, 1
+	note A#, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	octave 5
+	note G#, 1
+	note B_, 1
+	music_dorepeat1a
+	music_dorepeat1d
+	music_setrepeat1a $8
+	octave 5
+	note A_, 1
+	octave 6
+	note C_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	octave 5
+	note A#, 1
+	octave 6
+	note C#, 1
+	music_dorepeat1a
+	call_channel Music_82704
+	octave 6
+	note F_, 2
+	note F_, 2
+	note __, 2
+	music_fa $b5
+	note F_, 2
+	note __, 2
+	music_fa $b3
+	note F_, 2
+	note __, 2
+	music_fa $b1
+	note F_, 2
+	call_channel Music_82724
+	octave 5
+	note B_, 6
+	octave 6
+	note D_, 7
+	note F_, 7
+	note D_, 6
+	note F_, 7
+	note B_, 7
+	music_fa $b3
+	note F_, 6
+	note B_, 7
+	octave 7
+	note D_, 7
+	octave 6
+	note B_, 6
+	octave 7
+	note D_, 7
+	call_channel Music_82704
+	octave 6
+	note F#, 2
+	note F#, 2
+	note __, 2
+	music_fa $b5
+	note F#, 2
+	note __, 2
+	music_fa $b3
+	note F#, 2
+	note __, 2
+	music_fa $b1
+	note F#, 2
+	call_channel Music_82724
+	octave 6
+	note C_, 6
+	note D#, 7
+	note F#, 7
+	note D#, 6
+	note F#, 7
+	octave 7
+	note C_, 7
+	music_fa $b3
+	octave 6
+	note F#, 6
+	octave 7
+	note C_, 7
+	note D#, 7
+	note C_, 6
+	note D#, 7
+	music_setfreqoffset $0
+	jump_channel MusicHeader_82022_Ch1
 
-Data_82b63:
-	db $fd, $06, $fb, $11, $12, $06, $11, $e8, $12, $f9, $15, $45, $f3, $02, $fa, $b9
-	db $f0, $02, $d1, $21, $51, $81, $91, $fa, $b6, $f1, $fa, $b4, $21, $51, $81, $91
-	db $f4, $f5, $f6, $6c, $fd, $03, $d1, $b0, $d0, $00, $d1, $bf, $c5, $90, $b0, $9f
-	db $c3, $80, $90, $fb, $11, $12, $06, $11, $f0, $02, $83, $43, $53, $fa, $b6, $f1
-	db $fa, $b4, $f0, $02, $83, $43, $53, $fa, $b2, $f1, $f5, $f6, $6c, $23, $43, $53
-	db $92, $80, $90, $fd, $06, $8a, $fd, $03, $c4, $fd, $06, $91, $fb, $11, $12, $06
-	db $11, $f0, $02, $51, $81, $91, $fa, $b6, $f1, $fa, $b4, $f0, $02, $51, $81, $91
-	db $fa, $b2, $f1, $f5, $f6, $6c, $f0, $02, $d1, $50, $c0, $d2, $50, $c0, $50, $c0
-	db $f1, $d1, $81, $fd, $04, $50, $80, $50, $fd, $06, $41, $01, $d2, $b1, $fd, $04
-	db $80, $b0, $80, $fd, $06, $f0, $02, $d1, $10, $c0, $d2, $10, $c0, $10, $c0, $f1
-	db $d1, $41, $fd, $04, $10, $40, $10, $fd, $06, $01, $d2, $81, $71, $fd, $04, $40
-	db $70, $40, $fd, $06, $f5, $0c, $6d, $0b, $d2, $15, $c1, $51, $81, $fd, $03, $70
-	db $80, $fd, $06, $72, $40, $c2, $00, $c2, $61, $51, $61, $91, $a1, $d1, $31, $21
-	db $d2, $b1, $a1, $91, $a0, $c2, $95, $c1, $d1, $11, $41, $fd, $03, $30, $40, $fd
-	db $06, $32, $00, $c2, $d2, $80, $c2, $fd, $03, $d0, $00, $16, $fd, $06, $d1, $b1
-	db $d0, $11, $d1, $81, $61, $51, $21, $11, $01, $10, $c2, $fb, $11, $12, $06, $11
-	db $d1, $f5, $fe, $6c, $d0, $f5, $fe, $6c, $e8, $00, $cb, $cb, $e8, $12, $f2, $84
-	db $6b
+MusicHeader_82022_Ch2: ; 82584
+	music_tempo_2 $a
+	music_fa $7a
+	music_fb $1, $13, $7, $31
+	music_e8 $14
+	music_f9 $15, 4, 4
+	octave 5
+	note G#, 8
+	note __, 2
+	note A#, 2
+	note B_, 2
+	octave 6
+	note C#, 2
+	octave 5
+	note A#, 10
+	note __, 2
+	octave 6
+	note D#, 4
+	note D_, 2
+	note D#, 2
+	note F_, 12
+	note F#, 6
+	note F_, 1
+	note E_, 1
+	note D#, 8
+	note __, 4
+	octave 5
+	note G#, 4
+	note F#, 6
+	note F_, 2
+	note E_, 10
+	note __, 2
+	note E_, 2
+	note D#, 2
+	note D_, 4
+	note A#, 8
+	note __, 2
+	note A#, 1
+	note B_, 1
+	octave 6
+	note C_, 6
+	octave 5
+	note B_, 1
+	note A#, 1
+	note A_, 6
+	note __, 2
+	music_f9 $15, 4, 3
+	music_fa $ba
+	call_channel Music_826e2
+	note E_, 5
+	note __, 1
+	note F_, 1
+	note E_, 1
+	note D#, 6
+	note __, 2
+	note D_, 4
+	octave 6
+	note B_, 4
+	note G#, 3
+	music_tempo_2 $5
+	music_fa $b8
+	note G_, 1
+	note F#, 1
+	music_tempo_2 $a
+	music_fa $ba
+	note F_, 4
+	call_channel Music_826e2
+	note G#, 2
+	note A_, 2
+	octave 8
+	note C_, 4
+	note __, 2
+	octave 7
+	note B_, 2
+	note A#, 2
+	note A_, 2
+	note A#, 3
+	note __, 1
+	note E_, 3
+	note __, 1
+	note C#, 3
+	note __, 1
+	octave 6
+	note A#, 3
+	note __, 1
+	call_channel Music_8271a
+	octave 6
+	note B_, 1
+	note B_, 1
+	note __, 1
+	music_fa $b6
+	note B_, 1
+	note __, 1
+	music_fa $b4
+	note B_, 1
+	note __, 1
+	music_fa $b1
+	note B_, 1
+	call_channel Music_82710
+	octave 5
+	note B_, 6
+	octave 6
+	note D_, 7
+	note F_, 7
+	music_fa $b4
+	note D_, 6
+	note F_, 7
+	note B_, 7
+	music_fa $b5
+	note F_, 6
+	note B_, 7
+	octave 7
+	note D_, 7
+	music_fa $b6
+	octave 6
+	note B_, 6
+	octave 7
+	note D_, 7
+	note F_, 7
+	call_channel Music_8271a
+	octave 7
+	note C_, 1
+	note C_, 1
+	note __, 1
+	music_fa $b6
+	note C_, 1
+	note __, 1
+	music_fa $b4
+	note C_, 1
+	note __, 1
+	music_fa $b1
+	note C_, 1
+	call_channel Music_82710
+	octave 6
+	note C_, 6
+	note D#, 7
+	note F#, 7
+	music_fa $b4
+	note D#, 6
+	note F#, 7
+	octave 7
+	note C_, 7
+	music_fa $b5
+	octave 6
+	note F#, 6
+	octave 7
+	note C_, 7
+	note D#, 7
+	music_fa $b6
+	note C_, 6
+	note D#, 7
+	note F#, 7
+	jump_channel MusicHeader_82022_Ch2
 
-Data_82c74:
-	db $fd, $06, $f5, $2b, $6d, $f0, $04, $cb, $f1, $d4, $f0, $04, $21, $21, $cf, $81
-	db $91, $f1, $f0, $02, $d4, $51, $d3, $01, $01, $f1, $d4, $0b, $f0, $02, $11, $81
-	db $81, $f1, $8b, $f8, $01, $c1, $fa, $01, $fb, $00, $00, $02, $00, $e7, $0f, $f5
-	db $0c, $6d, $09, $f8, $00, $f5, $2b, $6d, $d4, $51, $c1, $51, $81, $d3, $11, $d4
-	db $51, $71, $a1, $d3, $41, $c3, $d4, $71, $83, $b3, $d3, $31, $d4, $81, $a1, $d3
-	db $21, $51, $c3, $d4, $a1, $d3, $11, $c1, $11, $41, $91, $11, $31, $61, $d2, $01
-	db $c3, $d3, $31, $d4, $b3, $d3, $23, $61, $d4, $b1, $d3, $11, $51, $81, $c3, $11
-	db $f0, $02, $d3, $17, $c1, $d4, $81, $d3, $12, $c0, $11, $c5, $f1, $cb, $cb, $f2
-	db $7d, $6c, $fa, $b9, $fb, $11, $12, $03, $31, $f6, $fa, $b9, $f0, $02, $51, $21
-	db $11, $01, $11, $c1, $fa, $b6, $f1, $f6, $d3, $5b, $77, $81, $b1, $d2, $01, $fd
-	db $04, $d3, $b0, $d2, $00, $d3, $b0, $fd, $06, $81, $71, $5f, $70, $80, $b0, $80
-	db $7b, $c3, $53, $49, $50, $40, $f6, $fa, $03, $fb, $00, $00, $06, $00, $e7, $0c
-	db $f6, $21, $11, $41, $15, $23, $45, $11, $21, $11, $45, $11, $23, $43, $f6
+MusicHeader_82022_Ch3: ; 82646
+	music_tempo_2 $a
 
-Data_82d43:
-	db $fd, $06, $f5, $35, $6d, $23, $f5, $35, $6d, $23, $f5, $35, $6d, $23, $f0, $02
-	db $83, $01, $83, $01, $83, $21, $11, $41, $11, $f1, $f5, $35, $6d, $23, $f5, $35
-	db $6d, $fd, $02, $20, $20, $20, $30, $30, $30, $40, $40, $40, $50, $50, $50, $fd
-	db $06, $f0, $04, $01, $11, $21, $81, $21, $01, $01, $11, $83, $21, $01, $f1, $f0
-	db $03, $43, $21, $13, $11, $43, $23, $23, $f1, $f2, $49, $6d
+Music_82648: ; 82648
+	music_fa $2
+	music_fb $0, $0, $6, $0
+	music_noise_sample $f
+	music_f9 $15, 4, 5
+	octave 5
+	note __, 2
+	note G#, 10
+	note A#, 2
+	note B_, 2
+	octave 6
+	note C#, 2
+	octave 5
+	note A#, 12
+	octave 6
+	note D#, 4
+	note D_, 2
+	note D#, 2
+	note F_, 12
+	note F#, 6
+	note F_, 1
+	note E_, 1
+	note D#, 12
+	octave 5
+	note G#, 4
+	note F#, 6
+	note F_, 2
+	note E_, 12
+	note E_, 2
+	note D#, 2
+	note D_, 4
+	note A#, 10
+	note A#, 1
+	note B_, 1
+	octave 6
+	note C_, 6
+	octave 5
+	note B_, 1
+	note A#, 1
+	note A_, 6
+	music_f9 $0, 0, 0
+	music_fb $0, $0, $6, $0
+	call_channel Music_8273c
+	call_channel Music_82731
+	call_channel Music_82750
+	octave 4
+	note G_, 2
+	note G_, 2
+	music_fa $2
+	music_noise_sample $f
+	octave 7
+	note E_, 6
+	note F_, 1
+	note E_, 1
+	note D#, 2
+	call_channel Music_82731
+	music_fa $2
+	music_noise_sample $f
+	octave 7
+	note D_, 4
+	octave 6
+	note B_, 4
+	note G#, 2
+	music_fa $3
+	music_noise_sample $c
+	octave 5
+	note D_, 1
+	note G#, 1
+	call_channel Music_8273c
+	call_channel Music_82731
+	call_channel Music_82750
+	octave 4
+	note A_, 2
+	note A_, 2
+	music_fa $2
+	music_noise_sample $f
+	octave 7
+	note G#, 2
+	note A_, 2
+	octave 8
+	note C_, 6
+	music_fa $3
+	music_noise_sample $c
+	octave 5
+	note D#, 1
+	note A_, 1
+	octave 4
+	note A#, 2
+	note A#, 2
+	music_fa $2
+	music_noise_sample $f
+	octave 7
+	note A#, 4
+	note E_, 4
+	note C#, 2
+	music_fa $3
+	music_noise_sample $c
+	octave 5
+	note E_, 1
+	note A#, 1
+	octave 4
+	note B_, 2
+	note B_, 2
+	note __, 10
+	octave 5
+	note F_, 1
+	note B_, 1
+	note C_, 2
+	note C_, 2
+	note __, 12
+	jump_channel Music_82648
 
-Data_82d8f:
-	db $fd, $09, $e8, $12, $f9, $15, $43, $fa, $b4, $fb, $21, $11, $02, $11, $d3, $f0
-	db $08, $90, $50, $f1, $f0, $08, $70, $30, $f1, $f0, $08, $90, $50, $f1, $f0, $08
-	db $30, $70, $f1, $f0, $08, $10, $40, $f1, $f0, $08, $20, $60, $f1, $f0, $08, $60
-	db $a0, $f1, $f0, $06, $70, $a0, $f1, $fa, $b3, $70, $a0, $fa, $b1, $70, $a0, $fa
-	db $b5, $d3, $f0, $08, $b0, $70, $f1, $f0, $08, $90, $50, $f1, $d2, $f0, $08, $40
-	db $00, $f1, $f5, $74, $70, $f0, $08, $d2, $00, $d3, $90, $f1, $f5, $74, $70, $f0
-	db $02, $d2, $20, $d3, $90, $70, $90, $20, $90, $70, $90, $f1, $f0, $02, $d2, $20
-	db $d3, $a0, $70, $a0, $50, $a0, $70, $a0, $f1, $d3, $40, $50, $70, $90, $a0, $d2
-	db $00, $20, $40, $20, $00, $d3, $a0, $90, $70, $50, $40, $50, $90, $70, $90, $b0
-	db $d2, $10, $20, $40, $50, $40, $20, $10, $d3, $b0, $90, $b0, $d2, $10, $40, $51
-	db $40, $20, $00, $d3, $20, $a0, $70, $20, $50, $20, $f5, $7c, $70, $d2, $40, $90
-	db $d1, $20, $40, $50, $70, $c0, $c0, $fa, $b5, $fb, $21, $11, $02, $11, $d3, $40
-	db $50, $70, $90, $a0, $d2, $20, $d3, $a0, $90, $f5, $7c, $70, $d1, $50, $40, $00
-	db $d2, $90, $40, $fa, $b5, $fb, $11, $12, $03, $31, $d3, $74, $c0, $fb, $11, $12
-	db $04, $11, $70, $70, $fb, $11, $12, $03, $31, $42, $c0, $93, $fb, $21, $11, $02
-	db $11, $f0, $07, $d2, $10, $d3, $b0, $f1, $fa, $b3, $d2, $10, $40, $f2, $96, $6d
+Music_826e2: ; 826e2
+	octave 6
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 7
+	note F_, 1
+	note E_, 14
+	note __, 4
+	note F_, 1
+	note G_, 1
+	note G#, 2
+	note G_, 2
+	music_tempo_2 $2
+	note F_, 9
+	note F#, 1
+	music_tempo_2 $a
+	note G_, 2
+	ret_channel
 
-Data_82e8f:
-	db $fd, $09, $e8, $12, $f9, $15, $43, $fa, $b6, $fb, $21, $11, $02, $11, $d2, $f0
-	db $08, $00, $40, $f1, $f0, $08, $d3, $a0, $d2, $20, $f1, $f0, $08, $00, $40, $f1
-	db $f0, $08, $d2, $20, $d3, $a0, $f1, $d3, $f0, $08, $b0, $80, $f1, $f0, $08, $d2
-	db $10, $d3, $90, $f1, $d2, $f0, $08, $30, $10, $f1, $f0, $06, $50, $20, $f1, $fa
-	db $b5, $50, $20, $fa, $b3, $50, $20, $fd, $09, $fa, $b9, $fb, $11, $12, $03, $31
-	db $c1, $73, $fd, $01, $c3, $94, $b3, $d1, $04, $fd, $09, $23, $61, $41, $22, $c0
-	db $d2, $f0, $04, $00, $40, $f1, $50, $70, $b0, $d1, $00, $d2, $b2, $c0, $d1, $22
-	db $c0, $d2, $92, $c0, $d1, $02, $c0, $d2, $b1, $fd, $01, $c3, $94, $b3, $94, $fd
-	db $09, $73, $c1, $d1, $70, $60, $20, $d2, $b0, $d1, $20, $40, $d2, $93, $c1, $d1
-	db $03, $c1, $22, $fd, $01, $13, $04, $fd, $09, $d2, $b5, $c1, $fb, $11, $12, $04
-	db $11, $50, $70, $90, $b0, $d1, $00, $20, $70, $20, $fb, $11, $12, $03, $31, $73
-	db $c1, $53, $c1, $41, $51, $43, $c1, $03, $c1, $d2, $91, $a1, $d1, $03, $c1, $d2
-	db $73, $c1, $a1, $c1, $93, $c1, $d1, $11, $c1, $d2, $91, $b1, $d1, $11, $21, $00
-	db $d2, $a0, $91, $70, $50, $41, $20, $00, $d3, $a3, $a0, $d2, $00, $d3, $a0, $d2
-	db $00, $20, $40, $50, $70, $a0, $70, $50, $40, $20, $00, $d3, $a0, $d2, $00, $24
-	db $c0, $fb, $11, $12, $04, $11, $20, $20, $fb, $11, $12, $03, $31, $02, $c0, $42
-	db $fd, $01, $53, $74, $fd, $09, $fb, $11, $12, $04, $11, $90, $d1, $90, $70, $60
-	db $40, $70, $60, $40, $20, $10, $d2, $b0, $90, $fb, $11, $12, $03, $31, $70, $40
-	db $fa, $b6, $70, $b0, $f2, $96, $6e
+Music_826f6: ; 826f6
+	music_setrepeat1a $2
+	octave 6
+	note G#, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	octave 7
+	note D_, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	music_dorepeat1a
+	ret_channel
 
-Data_82fb6:
-	db $f9, $15, $45, $f5, $6a, $70, $e7, $0c, $f8, $01, $d3, $95, $51, $01, $21, $41
-	db $51, $76, $f5, $62, $70, $93, $a4, $f5, $6a, $70, $d2, $05, $d3, $a1, $95, $d2
-	db $71, $51, $41, $01, $d3, $91, $d2, $09, $21, $01, $d3, $a1, $92, $f5, $62, $70
-	db $83, $74, $f5, $6a, $70, $63, $81, $91, $b1, $81, $91, $b1, $d2, $15, $d3, $b1
-	db $91, $b1, $d2, $01, $11, $51, $35, $11, $31, $09, $fd, $09, $fb, $00, $00, $04
-	db $00, $f8, $00, $e7, $0f, $d3, $01, $d4, $a1, $91, $f0, $05, $77, $c1, $20, $c0
-	db $53, $f1, $77, $c1, $20, $c0, $51, $71, $a9, $50, $c0, $93, $79, $70, $c0, $d3
-	db $23, $09, $d4, $70, $c0, $d3, $03, $d4, $99, $90, $c0, $d3, $41, $d4, $91, $a9
-	db $a0, $c0, $d3, $51, $d4, $91, $77, $d3, $a0, $d2, $20, $d3, $a0, $70, $d4, $a0
-	db $d3, $40, $20, $00, $d4, $95, $c1, $91, $91, $c1, $91, $d3, $f0, $05, $40, $70
-	db $f1, $40, $10, $20, $40, $fa, $02, $50, $70, $f2, $b9, $6f, $fd, $01, $fb, $00
-	db $00, $01, $00, $f6, $fd, $09, $fa, $03, $fb, $00, $00, $06, $00, $f6, $f0, $08
-	db $d2, $20, $d3, $b0, $f1, $f6, $fa, $b7, $fb, $11, $12, $04, $11, $f6
+Music_82704: ; 82704
+	music_tempo_2 $5
+	music_fb $1, $12, $2, $11
+	music_fa $b8
+	music_setfreqoffset $0
+	ret_channel
 
-Data_83084:
-	db $fd, $09, $f0, $15, $01, $11, $41, $01, $01, $11, $31, $41, $f1, $03, $23, $11
-	db $01, $41, $41, $f2, $86, $70
+Music_82710: ; 82710
+	music_tempo_2 $1
+	music_fb $1, $0, $2, $11
+	music_fa $b3
+	ret_channel
 
-Data_8309a:
-	db $fd, $06, $fa, $b8, $f9, $15, $44, $f5, $be, $72, $f5, $de, $72, $f5, $be, $72
-	db $fb, $11, $12, $04, $11, $f5, $1d, $73, $20, $d2, $a0, $50, $20, $a0, $50, $20
-	db $d3, $a0, $d2, $50, $20, $d3, $a0, $50, $d2, $20, $50, $a0, $d1, $20, $f5, $1d
-	db $73, $f5, $1d, $73, $fb, $11, $12, $04, $41, $f5, $de, $72, $83, $c1, $30, $80
-	db $d2, $03, $c1, $d3, $80, $d2, $00, $33, $c1, $00, $30, $83, $c1, $30, $80, $50
-	db $a0, $50, $a0, $59, $c1, $f0, $02, $d2, $a0, $d1, $50, $f1, $d2, $a7, $d1, $50
-	db $20, $d2, $a0, $50, $d3, $43, $c1, $d4, $b0, $d3, $40, $83, $c1, $40, $80, $b3
-	db $c1, $80, $b0, $d2, $43, $c1, $d3, $b0, $d2, $40, $10, $60, $10, $60, $19, $c1
-	db $f0, $02, $d2, $60, $d1, $10, $f1, $d2, $67, $d1, $10, $d2, $a0, $60, $10, $60
-	db $30, $d3, $b0, $d2, $81, $50, $10, $d3, $80, $d2, $a1, $d1, $10, $c0, $01, $d2
-	db $81, $f2, $a1, $70
+Music_8271a: ; 8271a
+	music_tempo_2 $a
+	music_fb $1, $12, $2, $11
+	music_fa $ba
+	ret_channel
 
-Data_8313e:
-	db $fd, $06, $f9, $15, $44, $fa, $79, $f5, $9a, $72, $f5, $8a, $72, $a1, $d1, $11
-	db $f5, $8a, $72, $61, $51, $f5, $9a, $72, $47, $c1, $11, $21, $41, $53, $c1, $a3
-	db $fd, $03, $c2, $d0, $10, $fd, $06, $23, $11, $d1, $91, $c1, $47, $c1, $fb, $11
-	db $12, $04, $11, $40, $10, $d2, $90, $40, $d1, $10, $d2, $90, $40, $10, $90, $40
-	db $90, $d1, $10, $40, $10, $40, $90, $fb, $11, $12, $04, $41, $f5, $8a, $72, $a1
-	db $d1, $11, $f5, $8a, $72, $61, $51, $30, $00, $30, $80, $a3, $83, $d1, $33, $83
-	db $73, $33, $71, $c1, $51, $c1, $c1, $a7, $c1, $50, $a0, $50, $a0, $57, $a0, $50
-	db $20, $d2, $a0, $d3, $b0, $80, $b0, $d2, $40, $63, $43, $b3, $d1, $43, $33, $d2
-	db $b3, $d1, $31, $c1, $11, $c1, $c1, $67, $c1, $10, $60, $10, $60, $17, $60, $10
-	db $d2, $a0, $60, $fa, $b9, $b0, $60, $30, $d1, $11, $d2, $80, $50, $10, $d1, $37
-	db $f2, $43, $71
+Music_82724: ; 82724
+	music_tempo_2 $1
+	music_fb $1, $0, $2, $11
+	music_setfreqoffset $1
+	music_fa $b2
+	note __, 7
+	ret_channel
 
-Data_831e1:
-	db $fd, $06, $fa, $03, $fb, $00, $00, $03, $00, $e7, $0c, $f3, $04, $f5, $35, $73
-	db $f4, $f0, $04, $93, $10, $c0, $43, $90, $c2, $20, $40, $f1, $f3, $02, $f5, $35
-	db $73, $f4, $81, $c0, $80, $d3, $30, $c0, $d4, $85, $c1, $d3, $30, $80, $d4, $81
-	db $c0, $80, $d3, $30, $c0, $d4, $81, $c1, $81, $d3, $31, $d4, $80, $d3, $80, $d4
-	db $a1, $c0, $a0, $d3, $50, $c0, $d4, $a1, $c1, $a3, $d3, $50, $a0, $d4, $a1, $c0
-	db $a0, $d3, $50, $c0, $d4, $a1, $c0, $a0, $d3, $50, $c0, $d4, $a1, $d3, $a1, $d4
-	db $41, $c0, $40, $b0, $c0, $45, $c1, $b0, $d3, $40, $d4, $41, $c0, $40, $b0, $c0
-	db $41, $c1, $41, $b1, $40, $d3, $40, $d4, $61, $c0, $60, $d3, $10, $c0, $d4, $61
-	db $c1, $63, $d3, $10, $60, $d4, $61, $c0, $60, $d3, $10, $c0, $d4, $61, $c0, $60
-	db $d3, $10, $c0, $d4, $61, $d3, $61, $d4, $b1, $c0, $d3, $12, $d4, $80, $c0, $d3
-	db $31, $d4, $30, $c0, $80, $a2, $f2, $ec, $71, $30, $a0, $30, $a0, $3f, $c3, $d2
-	db $a1, $fd, $04, $80, $a0, $80, $fd, $06, $f6, $fb, $11, $12, $07, $11, $c1, $e8
-	db $12, $d3, $11, $31, $81, $a1, $d2, $11, $31, $d3, $81, $a1, $d2, $31, $81, $a1
-	db $d1, $11, $d2, $81, $a1, $d1, $31, $fb, $11, $12, $04, $41, $f6, $fb, $11, $12
-	db $07, $11, $c1, $e8, $12, $d4, $81, $a1, $d3, $11, $31, $81, $a1, $11, $31, $a1
-	db $d2, $11, $31, $61, $31, $61, $a1, $fb, $11, $12, $04, $41, $f6, $f0, $02, $d2
-	db $a0, $d1, $30, $f1, $d2, $a1, $fa, $b5, $d1, $30, $a0, $30, $a0, $33, $c1, $fa
-	db $b8, $d2, $31, $fd, $04, $10, $30, $10, $fd, $06, $d3, $a7, $c3, $f0, $02, $d2
-	db $a0, $d1, $30, $f1, $d2, $a3, $d3, $80, $a0, $c0, $a0, $d2, $10, $d3, $a2, $d2
-	db $31, $fd, $04, $10, $30, $10, $fd, $06, $d3, $a7, $c3, $f6, $d1, $10, $d2, $90
-	db $40, $10, $90, $40, $10, $d3, $90, $d2, $10, $d3, $90, $d2, $10, $40, $90, $40
-	db $90, $d1, $10, $f6, $d4, $12, $30, $c1, $f0, $02, $30, $d3, $30, $d4, $f1, $31
-	db $c1, $30, $c0, $62, $30, $c1, $31, $a0, $c0, $30, $c0, $a1, $11, $f6, $01, $11
-	db $81, $11, $01, $01, $81, $11, $01, $11, $81, $11, $f6
+Music_82731: ; 82731
+	music_fa $3
+	music_noise_sample $c
+	octave 5
+	note D_, 1
+	note G_, 1
+	octave 4
+	note G#, 2
+	note G#, 2
+	ret_channel
 
-Data_8335c:
-	db $fd, $06, $f5, $4f, $73, $80, $81, $00, $80, $80, $81, $f5, $4f, $73, $01, $81
-	db $81, $01, $f5, $4f, $73, $80, $81, $00, $80, $80, $81, $f0, $03, $f5, $4f, $73
-	db $01, $81, $81, $01, $f1, $f0, $03, $f5, $4f, $73, $80, $81, $00, $80, $80, $81
-	db $f5, $4f, $73, $01, $81, $81, $01, $f1, $01, $11, $81, $11, $80, $81, $00, $80
-	db $80, $81, $f2, $5e, $73
+Music_8273c: ; 8273c
+	music_fa $3
+	music_noise_sample $c
+	octave 4
+	note G_, 2
+	note G_, 2
+	music_fa $2
+	music_noise_sample $f
+	note __, 2
+	octave 6
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 7
+	note F_, 1
+	note E_, 4
+	ret_channel
 
-Data_833a1:
-	db $fd, $08, $e8, $18, $f8, $01, $f9, $15, $44, $c0, $f5, $d0, $77, $d3, $90, $a0
-	db $90, $a0, $fa, $72, $90, $a0, $90, $a0, $c0, $f5, $d8, $77, $d3, $20, $70, $50
-	db $90, $70, $a0, $90, $50, $70, $20, $50, $00, $20, $70, $f5, $e0, $77, $c0, $fa
-	db $b4, $d3, $70, $f0, $02, $d2, $20, $60, $a0, $90, $d1, $10, $60, $fa, $b2, $f1
-	db $c1, $fd, $08, $c0, $f5, $d0, $77, $d2, $00, $20, $00, $20, $fa, $72, $00, $20
-	db $00, $20, $c0, $f5, $d8, $77, $d3, $70, $a0, $90, $d2, $00, $d3, $a0, $d2, $20
-	db $50, $00, $20, $d3, $a0, $d2, $00, $d3, $70, $90, $50, $20, $f5, $e0, $77, $fa
-	db $b4, $f0, $02, $d1, $60, $d2, $70, $d3, $80, $d4, $90, $d3, $a0, $d2, $b0, $d1
-	db $30, $fa, $b2, $f1, $c0, $fd, $08, $fa, $b3, $fb, $11, $12, $03, $11, $d3, $a0
-	db $a1, $d2, $00, $01, $20, $21, $30, $31, $50, $70, $90, $a0, $d1, $00, $d2, $a0
-	db $90, $70, $25, $c1, $c0, $d3, $70, $90, $a0, $d2, $20, $d3, $a1, $d2, $00, $01
-	db $20, $21, $30, $31, $50, $70, $90, $a0, $d1, $00, $d2, $97, $fd, $04, $c0, $fd
-	db $08, $fa, $78, $fb, $11, $13, $04, $11, $d2, $20, $00, $d3, $a0, $90, $70, $a0
-	db $f0, $03, $90, $a0, $f1, $d2, $00, $20, $40, $50, $70, $90, $a8, $90, $70, $50
-	db $30, $20, $00, $d3, $a0, $90, $70, $90, $a0, $d2, $01, $20, $30, $d3, $70, $c0
-	db $d2, $00, $c0, $d3, $a1, $90, $70, $60, $c0, $70, $c0, $fa, $76, $f0, $04, $90
-	db $a0, $f1, $fa, $78, $d2, $00, $20, $30, $50, $30, $20, $00, $d3, $a0, $90, $c0
-	db $70, $c0, $60, $c0, $d2, $10, $c0, $d3, $90, $c1, $20, $70, $c0, $40, $c0, $43
-	db $c0, $c1, $fd, $04, $30, $50, $fd, $08, $63, $c0, $c1, $fd, $04, $70, $60, $fd
-	db $08, $fb, $11, $13, $03, $11, $52, $70, $50, $70, $50, $70, $fd, $04, $c0, $fd
-	db $08, $fb, $11, $11, $02, $11, $fa, $73, $f0, $02, $b0, $a0, $80, $70, $f1, $f5
-	db $e8, $77, $fa, $74, $d2, $70, $90, $a0, $d1, $00, $d2, $a0, $90, $70, $60, $f5
-	db $e8, $77, $fa, $74, $d2, $80, $a0, $d1, $00, $10, $00, $d2, $a0, $80, $70, $f5
-	db $f2, $77, $d2, $30, $c0, $20, $c0, $10, $c0, $00, $c0, $fd, $04, $c0, $fd, $08
-	db $f5, $f2, $77, $d2, $40, $c0, $30, $c0, $d3, $90, $c0, $d2, $10, $c0, $d3, $b0
-	db $a0, $b0, $a0, $90, $80, $90, $80, $f0, $04, $70, $60, $f1, $f2, $aa, $73
+Music_82750: ; 82750
+	note __, 6
+	music_fa $2
+	music_noise_sample $f
+	octave 7
+	note F_, 1
+	note G_, 1
+	note G#, 2
+	music_fa $3
+	music_noise_sample $c
+	octave 5
+	note D_, 1
+	note G#, 1
+	ret_channel
 
-Data_83540:
-	db $fd, $08, $e8, $18, $f9, $15, $45, $f5, $ad, $77, $d3, $90, $a0, $90, $a0, $fa
-	db $77, $90, $a0, $fa, $75, $90, $a0, $f5, $b5, $77, $d1, $22, $c0, $12, $c0, $02
-	db $c0, $d2, $a2, $c0, $fd, $04, $fb, $11, $11, $02, $11, $f0, $02, $d3, $20, $60
-	db $a0, $90, $d1, $10, $60, $fa, $73, $f1, $fd, $08, $c1, $f5, $ad, $77, $d2, $00
-	db $20, $00, $20, $fa, $77, $00, $20, $fa, $75, $00, $20, $f5, $b5, $77, $d1, $52
-	db $c0, $42, $c0, $32, $c0, $22, $c0, $fd, $04, $fb, $11, $11, $02, $11, $f0, $02
-	db $d1, $60, $d2, $70, $d3, $80, $c0, $a0, $d2, $b0, $d1, $30, $fa, $73, $f1, $fd
-	db $08, $c0, $f5, $b5, $77, $f5, $9a, $77, $d2, $a0, $90, $70, $24, $c1, $c1, $d3
-	db $70, $90, $a0, $d2, $20, $f5, $9a, $77, $d2, $99, $c1, $c3, $a0, $90, $70, $2c
-	db $00, $d3, $a0, $90, $70, $60, $70, $90, $a0, $d2, $00, $20, $30, $50, $70, $d1
-	db $00, $d2, $a0, $90, $d1, $20, $00, $20, $00, $d2, $a0, $90, $a0, $90, $70, $50
-	db $70, $50, $30, $20, $fa, $77, $30, $20, $f0, $04, $00, $20, $f1, $fa, $79, $30
-	db $50, $70, $90, $70, $50, $30, $20, $10, $c0, $d3, $90, $c0, $d2, $20, $c0, $90
-	db $c0, $fd, $01, $fa, $78, $21, $61, $91, $fa, $79, $d1, $29, $fd, $08, $c0, $d3
-	db $50, $fd, $01, $fa, $78, $d2, $01, $41, $71, $fa, $79, $a9, $fd, $08, $d3, $a0
-	db $d2, $00, $10, $00, $d3, $a0, $70, $60, $70, $c0, $d2, $40, $50, $40, $20, $10
-	db $d3, $90, $d2, $20, $c0, $70, $fb, $11, $13, $03, $11, $80, $70, $50, $40, $fa
-	db $74, $80, $70, $50, $40, $fa, $79, $b0, $a0, $80, $70, $fa, $74, $b0, $a0, $80
-	db $70, $f5, $bd, $77, $fa, $79, $d2, $70, $90, $a0, $d1, $00, $d2, $a0, $90, $70
-	db $60, $f5, $bd, $77, $fa, $79, $d2, $80, $a0, $d1, $00, $10, $00, $d2, $a0, $80
-	db $70, $f5, $bd, $77, $fa, $79, $d2, $70, $c0, $60, $c0, $50, $c0, $40, $c0, $f5
-	db $bd, $77, $fa, $79, $d2, $80, $c0, $70, $c0, $10, $c0, $50, $c0, $40, $c0, $30
-	db $c0, $80, $c0, $10, $c0, $10, $20, $10, $20, $10, $00, $fa, $77, $d3, $b0, $a0
-	db $f2, $47, $75
+MusicHeader_82022_Ch6: ; 82761
+	music_tempo_2 $a
 
-Data_836b3:
-	db $fd, $08, $fa, $03, $e7, $0f, $fb, $00, $00, $07, $00, $d4, $71, $71, $a1, $c9
-	db $c9, $d3, $21, $d4, $53, $d4, $71, $71, $a1, $c9, $c9, $71, $d3, $23, $01, $01
-	db $d4, $73, $c1, $71, $a0, $d3, $02, $d4, $71, $71, $23, $c1, $71, $d3, $00, $22
-	db $d4, $91, $91, $33, $c1, $91, $90, $d3, $32, $21, $21, $d4, $93, $c1, $91, $d3
-	db $20, $d4, $92, $fb, $00, $00, $04, $00, $79, $90, $a0, $d3, $00, $20, $40, $50
-	db $71, $c0, $d4, $70, $d3, $70, $c0, $d4, $70, $c0, $d3, $71, $51, $31, $21, $08
-	db $d4, $a0, $90, $70, $90, $a0, $d3, $00, $20, $39, $21, $01, $d4, $a1, $91, $b0
-	db $d3, $10, $21, $d4, $91, $d3, $21, $d4, $c0, $70, $d3, $01, $d4, $71, $fb, $00
-	db $00, $01, $00, $95, $fd, $04, $c0, $70, $50, $40, $fd, $08, $25, $fd, $04, $c0
-	db $40, $50, $60, $fd, $08, $fb, $00, $00, $04, $00, $77, $f0, $06, $d3, $00, $00
-	db $c0, $d4, $70, $f1, $f0, $04, $d3, $10, $10, $c0, $d4, $80, $f1, $d3, $00, $00
-	db $c0, $d4, $70, $d3, $00, $20, $30, $50, $30, $20, $00, $d4, $a0, $d3, $00, $c0
-	db $71, $10, $10, $c0, $d4, $80, $d3, $10, $30, $50, $70, $80, $70, $80, $70, $50
-	db $40, $50, $40, $10, $00, $10, $00, $d4, $b0, $a0, $b0, $a0, $90, $80, $90, $80
-	db $90, $a0, $90, $80, $f2, $b9, $76, $d2, $00, $00, $c0, $20, $20, $c0, $30, $30
-	db $c0, $50, $50, $c0, $70, $90, $a0, $d1, $00, $f6, $fa, $79, $fb, $11, $11, $03
-	db $11, $f6, $fa, $79, $fb, $11, $13, $04, $11, $f6, $fa, $79, $f0, $02, $d3, $a0
-	db $d2, $00, $f1, $fa, $74, $f0, $02, $d3, $a0, $d2, $00, $f1, $f6, $fa, $73, $fb
-	db $11, $11, $03, $11, $f6, $fa, $b8, $fb, $11, $13, $04, $11, $f6, $fd, $04, $fb
-	db $11, $00, $01, $11, $f6, $fa, $73, $f0, $04, $d3, $a0, $d2, $00, $f1, $f6, $fb
-	db $11, $00, $02, $11, $fa, $73, $f0, $03, $d3, $a0, $d2, $00, $f1, $d3, $a0, $fd
-	db $04, $d2, $00, $fd, $08, $fa, $78, $fb, $11, $13, $04, $11, $f6, $81, $41, $21
-	db $31, $80, $80, $31, $f6
+Music_82763: ; 82763
+	music_setrepeat1a $7
+	note D_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 4
+	note C#, 1
+	note C#, 1
+	note E_, 4
+	music_dorepeat1a
+	note D_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 4
+	note C#, 1
+	note C#, 1
+	music_tempo_2 $1
+	music_setrepeat1a $8
+	note F_, 3
+	music_dorepeat1a
+	music_setrepeat1a $4
+	note G#, 4
+	music_dorepeat1a
+	music_tempo_2 $a
+	music_setrepeat1a $a
+	note D_, 1
+	note C#, 1
+	note E_, 4
+	note D_, 1
+	note C#, 1
+	note E_, 2
+	note D_, 6
+	music_dorepeat1a
+	jump_channel Music_82763
 
-Data_83818:
-	db $fd, $08, $f3, $02, $01, $01, $41, $f0, $06, $20, $10, $31, $f1, $80, $80, $f4
-	db $f0, $04, $01, $01, $41, $20, $10, $31, $31, $20, $10, $41, $f1, $03, $f5, $10
-	db $78, $02, $00, $f5, $10, $78, $f0, $02, $03, $81, $41, $21, $31, $81, $31, $f1
-	db $21, $81, $41, $01, $30, $81, $00, $31, $81, $01, $f0, $03, $21, $81, $f1, $21
-	db $01, $21, $81, $20, $80, $f0, $0d, $00, $81, $30, $f1, $00, $80, $30, $80, $f0
-	db $03, $00, $81, $30, $f1, $00, $80, $30, $80, $00, $81, $30, $00, $80, $30, $80
-	db $01, $41, $30, $30, $30, $30, $f2, $1a, $78
+MusicHeader_8202c_Ch1: ; 8278c
+	music_tempo_2 $7
 
-Data_83881:
-	db $fd, $09, $e8, $1b, $f8, $01, $fb, $11, $11, $07, $12, $f0, $03, $f5, $8c, $7a
-	db $f5, $b6, $7a, $f1, $f5, $8c, $7a, $fd, $06, $fa, $b4, $fb, $11, $11, $02, $11
-	db $d3, $f5, $c3, $7a, $d0, $10, $fd, $09, $fa, $78, $fb, $11, $11, $07, $12, $f0
-	db $04, $d3, $a0, $d2, $10, $f1, $f0, $04, $d3, $a0, $d2, $00, $f1, $f0, $04, $00
-	db $30, $f1, $f0, $04, $00, $20, $f1, $f0, $04, $d3, $a0, $d2, $50, $f1, $f0, $04
-	db $d3, $a0, $d2, $40, $f1, $f0, $04, $d2, $50, $90, $f1, $f0, $04, $50, $80, $f1
-	db $f3, $02, $f0, $04, $d2, $50, $d1, $00, $f1, $d2, $f0, $04, $50, $b0, $f1, $f4
-	db $d2, $f0, $10, $30, $60, $f1, $fd, $01, $c8, $c4, $fd, $09, $fb, $11, $11, $03
-	db $11, $fa, $b3, $f5, $7e, $7a, $f5, $7e, $7a, $fa, $b2, $f5, $7e, $7a, $f5, $7e
-	db $7a, $fa, $b3, $f5, $85, $7a, $f5, $85, $7a, $fa, $b2, $f5, $85, $7a, $d0, $00
-	db $d1, $80, $fd, $01, $63, $fd, $09, $f2, $87, $78
+Music_8278e: ; 8278e
+	music_fa $73
+	music_fb $11, $0, $3, $21
+	music_setfreqoffset $1
+	note __, 1
+	music_e8 $15
+	music_f9 $15, 4, 3
+	octave 5
+	call_channel Music_82a1d
+	note __, 1
+	call_channel Music_82a1d
+	music_fa $b8
+	music_fb $11, $12, $3, $11
+	octave 5
+	note B_, 1
+	note B_, 1
+	note __, 1
+	note B_, 1
+	note B_, 1
+	note __, 1
+	note A#, 1
+	note A#, 1
+	note __, 1
+	note A#, 1
+	note A#, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	octave 6
+	note D#, 1
+	note __, 1
+	octave 5
+	note G#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note F#, 2
+	note __, 1
+	note G#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note G#, 1
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	octave 6
+	note D_, 1
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note D_, 1
+	note __, 1
+	note C#, 1
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note C#, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	octave 5
+	note B_, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	note A_, 2
+	note __, 1
+	note B_, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	note B_, 1
+	note A_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	octave 5
+	note G#, 1
+	note B_, 1
+	octave 6
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note G#, 1
+	note __, 1
+	note D#, 3
+	note C#, 1
+	note __, 1
+	call_channel Music_82a3f
+	music_fa $b8
+	octave 6
+	note G#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note F#, 2
+	note __, 1
+	note D#, 1
+	note C#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note C#, 1
+	note __, 1
+	note D#, 1
+	note __, 2
+	music_tempo_2 $1
+	note C#, 1
+	note D_, 6
+	music_tempo_2 $7
+	note __, 1
+	octave 5
+	note B_, 1
+	octave 6
+	note D_, 1
+	note __, 1
+	note E_, 2
+	note F#, 1
+	octave 5
+	note B_, 1
+	note __, 5
+	note F#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	music_setrepeat1a $2
+	note F#, 1
+	note A_, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	music_dorepeat1a
+	octave 7
+	note C#, 12
+	note __, 2
+	octave 6
+	note G#, 1
+	octave 7
+	note C#, 1
+	octave 6
+	note G#, 12
+	note __, 2
+	note G#, 1
+	octave 7
+	note C#, 1
+	octave 6
+	note F#, 12
+	note __, 2
+	note F#, 1
+	octave 7
+	note C#, 1
+	octave 6
+	note F#, 12
+	note __, 4
+	note F#, 1
+	note C#, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note G#, 1
+	note __, 1
+	note G#, 1
+	note A#, 1
+	note __, 1
+	note A#, 1
+	note B_, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	note A#, 1
+	note F#, 1
+	note __, 1
+	note C#, 1
+	octave 5
+	note B_, 1
+	note A#, 1
+	note __, 1
+	octave 6
+	note B_, 1
+	note __, 1
+	note A#, 1
+	note F#, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	note A#, 1
+	note F#, 1
+	note __, 1
+	music_setrepeat1a $2
+	octave 7
+	note C#, 3
+	octave 6
+	note B_, 1
+	note __, 2
+	music_dorepeat1a
+	note A#, 4
+	note __, 2
+	note F#, 1
+	note __, 3
+	note E_, 4
+	note F#, 1
+	note __, 1
+	note C#, 4
+	note G#, 1
+	note D#, 1
+	note C_, 1
+	note A#, 1
+	note __, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note C#, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note C_, 1
+	octave 6
+	note G#, 1
+	note __, 1
+	note D#, 1
+	note C#, 1
+	note C_, 1
+	note __, 1
+	music_setrepeat1a $2
+	octave 7
+	note C#, 1
+	note __, 1
+	note C_, 1
+	octave 6
+	note G#, 1
+	note __, 1
+	music_dorepeat1a
+	octave 7
+	note D#, 3
+	note C#, 1
+	note __, 2
+	note D#, 3
+	note C#, 1
+	note __, 2
+	note C_, 4
+	note __, 2
+	octave 6
+	note G#, 1
+	note __, 3
+	note F#, 4
+	note G#, 1
+	note __, 1
+	note D#, 4
+	jump_channel Music_8278e
 
-Data_8392b:
-	db $fd, $09, $f9, $15, $45, $e8, $00, $fa, $b9, $fb, $11, $11, $05, $51, $cb, $e8
-	db $12, $d3, $62, $fd, $01, $53, $44, $fd, $09, $36, $c0, $86, $c0, $a6, $c0, $d2
-	db $1b, $c1, $01, $11, $fd, $06, $00, $10, $00, $fd, $09, $d3, $a1, $81, $c7, $31
-	db $51, $61, $d2, $10, $fd, $01, $03, $14, $fd, $09, $09, $c1, $11, $31, $d3, $af
-	db $c7, $fd, $06, $fa, $b4, $fb, $11, $11, $02, $11, $d3, $10, $f5, $c3, $7a, $fd
-	db $09, $fa, $b9, $fb, $11, $11, $05, $51, $d1, $11, $d2, $71, $81, $a1, $d1, $04
-	db $c0, $00, $20, $34, $c0, $fd, $01, $5d, $33, $53, $fd, $04, $37, $fd, $09, $22
-	db $c0, $51, $d2, $91, $a1, $d1, $51, $61, $d2, $a1, $b1, $d1, $61, $94, $c0, $a0
-	db $90, $80, $c0, $fa, $b5, $a0, $90, $80, $c0, $fa, $b3, $a0, $90, $fa, $b9, $d0
-	db $05, $e8, $1b, $d1, $b0, $c0, $a0, $c0, $90, $c0, $80, $c0, $70, $c0, $f5, $75
-	db $7a, $fa, $b5, $f5, $75, $7a, $fa, $b9, $e8, $12, $d3, $37, $63, $a3, $93, $53
-	db $03, $d2, $03, $fb, $11, $11, $03, $11, $e8, $1b, $f5, $7e, $7a, $fa, $b7, $f5
-	db $7e, $7a, $fa, $b5, $f5, $7e, $7a, $fa, $b3, $f5, $7e, $7a, $fa, $b9, $f5, $85
-	db $7a, $fa, $b7, $f5, $85, $7a, $fa, $b5, $f5, $85, $7a, $fa, $b3, $f5, $85, $7a
-	db $f2, $30, $79
+MusicHeader_8202c_Ch2: ; 828af
+	music_tempo_2 $7
 
-Data_83a0e:
-	db $fd, $09, $fa, $03, $fb, $00, $00, $06, $00, $e7, $0c, $f0, $04, $d4, $31, $31
-	db $cb, $41, $41, $c9, $80, $d3, $30, $f1, $d4, $41, $41, $c7, $a1, $41, $61, $61
-	db $c3, $63, $d3, $23, $d4, $7b, $d3, $21, $d4, $71, $b1, $b1, $c3, $d3, $53, $d4
-	db $b3, $d3, $29, $c3, $20, $d4, $80, $d3, $21, $21, $cb, $c1, $fa, $02, $fb, $00
-	db $00, $03, $00, $e7, $0f, $f8, $01, $d3, $37, $63, $a3, $93, $53, $03, $d2, $01
-	db $f8, $00, $fa, $03, $fb, $00, $00, $06, $00, $e7, $0c, $d4, $31, $31, $c9, $31
-	db $21, $21, $c9, $21, $f2, $19, $7a, $20, $c0, $10, $c0, $50, $c0, $40, $c0, $f6
-	db $d1, $10, $d2, $90, $70, $30, $f6, $d0, $00, $d1, $80, $60, $20, $f6, $fa, $78
-	db $d2, $a0, $d1, $30, $d2, $80, $a0, $30, $80, $fa, $76, $a0, $d1, $30, $d2, $80
-	db $a0, $30, $80, $fa, $75, $a0, $d1, $30, $d2, $80, $a0, $30, $80, $fa, $74, $a0
-	db $d1, $30, $d2, $80, $a0, $30, $80, $f6, $a0, $d1, $30, $d2, $80, $a0, $fa, $73
-	db $30, $80, $80, $c0, $f6, $40, $80, $fa, $b5, $a0, $d2, $10, $40, $fa, $b6, $80
-	db $a0, $d1, $10, $fa, $b7, $40, $80, $a0, $f6, $20, $10, $21, $41, $11, $21, $13
-	db $20, $10, $f6
+Music_828b1: ; 828b1
+	music_fa $79
+	music_fb $11, $12, $3, $21
+	music_e8 $15
+	music_f9 $15, 4, 3
+	octave 5
+	music_setrepeat1d $2
+	call_channel Music_82a1d
+	note __, 1
+	music_dorepeat1d
+	call_channel Music_82a2b
+	octave 6
+	note D#, 1
+	note D#, 1
+	note __, 1
+	note D#, 1
+	note D#, 1
+	note __, 1
+	note C#, 1
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note C#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	call_channel Music_82a35
+	music_setrepeat1a $4
+	note G#, 4
+	note B_, 5
+	music_dorepeat1a
+	music_fa $b8
+	music_setrepeat1a $2
+	note G#, 5
+	note B_, 5
+	music_dorepeat1a
+	music_fa $b9
+	music_setrepeat1a $4
+	note D#, 4
+	note F#, 5
+	music_dorepeat1a
+	music_fa $b5
+	music_setrepeat1a $2
+	note D#, 5
+	note F#, 5
+	music_dorepeat1a
+	call_channel Music_82a2b
+	note F#, 1
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note F#, 1
+	note __, 1
+	note E_, 1
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note E_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	call_channel Music_82a35
+	music_setrepeat1a $4
+	octave 6
+	note B_, 4
+	octave 7
+	note D_, 5
+	music_dorepeat1a
+	music_fa $b8
+	music_setrepeat1a $2
+	octave 6
+	note B_, 5
+	octave 7
+	note D_, 5
+	music_dorepeat1a
+	music_fa $b9
+	octave 6
+	music_setrepeat1a $4
+	note F#, 4
+	note A_, 5
+	music_dorepeat1a
+	music_fa $b5
+	music_setrepeat1a $2
+	note F#, 5
+	note A_, 5
+	music_dorepeat1a
+	call_channel Music_82a2b
+	note __, 2
+	note G#, 1
+	note __, 1
+	note B_, 1
+	octave 7
+	note C#, 1
+	note __, 1
+	octave 6
+	note G#, 3
+	note F#, 1
+	note __, 3
+	note D#, 1
+	note F#, 1
+	octave 7
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 6
+	note B_, 2
+	note __, 1
+	note G#, 1
+	note __, 4
+	call_channel Music_82a3f
+	music_fa $b9
+	note __, 2
+	music_tempo_2 $1
+	octave 6
+	note G#, 1
+	note A_, 6
+	music_tempo_2 $7
+	note __, 1
+	note F#, 1
+	note A_, 1
+	note __, 1
+	note B_, 2
+	octave 7
+	note C#, 1
+	octave 6
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note A_, 1
+	note G#, 3
+	note __, 1
+	note E_, 3
+	note __, 1
+	octave 7
+	note D_, 2
+	note __, 1
+	music_tempo_2 $1
+	note D#, 1
+	music_tempo_2 $a
+	note E_, 2
+	music_tempo_2 $7
+	octave 6
+	note B_, 2
+	note __, 2
+	music_fa $b6
+	octave 7
+	note G#, 1
+	octave 8
+	note C#, 1
+	octave 7
+	note G#, 12
+	note __, 4
+	note B_, 4
+	note A#, 4
+	note F#, 4
+	note __, 2
+	note C#, 1
+	note G#, 1
+	note C#, 6
+	note __, 2
+	octave 6
+	note B_, 1
+	octave 7
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note C#, 5
+	note __, 1
+	octave 6
+	note B_, 1
+	note A_, 1
+	note G#, 4
+	music_fa $b9
+	note C#, 1
+	note G#, 1
+	octave 7
+	note C#, 1
+	octave 6
+	note B_, 1
+	note A#, 3
+	note B_, 1
+	note __, 2
+	octave 7
+	note C#, 14
+	note __, 2
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note F#, 1
+	note __, 1
+	note E_, 3
+	note D#, 1
+	note __, 2
+	note E_, 3
+	note D#, 1
+	note __, 2
+	note C#, 12
+	note __, 2
+	octave 6
+	note B_, 1
+	note __, 1
+	note A#, 4
+	octave 7
+	note C_, 3
+	note C#, 1
+	note __, 2
+	note D#, 14
+	note __, 2
+	note D#, 1
+	note __, 1
+	note D#, 1
+	note D#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note D#, 1
+	note G#, 1
+	note __, 1
+	note F#, 3
+	note F_, 1
+	note __, 2
+	note F#, 3
+	note F_, 1
+	note __, 2
+	note D#, 12
+	note __, 2
+	note C#, 1
+	note __, 1
+	note C_, 4
+	jump_channel Music_828b1
 
-Data_83ae1:
-	db $fd, $09, $f0, $08, $23, $41, $19, $f1, $f0, $02, $f5, $d7, $7a, $41, $23, $20
-	db $10, $41, $11, $41, $11, $f1, $f5, $d7, $7a, $45, $20, $10, $41, $11, $41, $11
-	db $f0, $03, $21, $11, $41, $11, $21, $15, $f1, $21, $11, $41, $11, $21, $13, $41
-	db $f2, $e3, $7a
+MusicHeader_8202c_Ch3: ; 829cf
+	music_tempo_2 $7
+	music_fa $3
+	music_fb $0, $0, $4, $0
+	music_noise_sample $f
 
-Data_83b14:
-	db $fd, $06, $e8, $12, $f9, $13, $44, $fa, $78, $fb, $11, $12, $04, $21, $d2, $90
-	db $90, $fb, $11, $13, $07, $11, $21, $71, $31, $a1, $71, $d1, $31, $d2, $a1, $91
-	db $d1, $01, $d2, $a1, $71, $51, $91, $11, $01, $d3, $a1, $d2, $01, $31, $01, $fb
-	db $11, $12, $04, $21, $d3, $70, $c0, $d2, $70, $c2, $73, $fd, $03, $60, $50, $40
-	db $30, $fa, $75, $20, $10, $00, $d3, $b0, $fd, $06, $fa, $78, $c1, $d2, $30, $30
-	db $c0, $30, $70, $70, $c0, $70, $d1, $00, $00, $fb, $11, $13, $07, $11, $d2, $71
-	db $01, $81, $31, $01, $d3, $81, $d2, $31, $21, $51, $31, $01, $d3, $a1, $d2, $21
-	db $d3, $61, $51, $d2, $31, $51, $81, $51, $fb, $11, $12, $04, $21, $01, $d1, $00
-	db $c2, $03, $fd, $03, $d2, $b0, $a0, $90, $80, $fa, $74, $70, $60, $50, $40, $fa
-	db $78, $c3, $50, $c0, $50, $c0, $30, $c0, $50, $c0, $80, $c0, $a0, $c0, $80, $c0
-	db $30, $c0, $fd, $06, $fa, $b8, $d3, $88, $c0, $70, $80, $73, $51, $71, $81, $b1
-	db $a1, $83, $71, $83, $d2, $01, $31, $21, $11, $d3, $71, $8d, $c1, $fb, $11, $12
-	db $04, $11, $83, $80, $c0, $50, $30, $50, $80, $a0, $80, $a0, $d2, $00, $30, $50
-	db $d3, $53, $80, $c0, $30, $10, $30, $50, $80, $50, $80, $a0, $d2, $00, $d3, $a0
-	db $a3, $d2, $10, $c0, $10, $00, $10, $d3, $80, $60, $80, $80, $50, $80, $d2, $10
-	db $13, $00, $c0, $d3, $80, $c0, $d2, $80, $60, $30, $10, $00, $d3, $80, $60, $80
-	db $60, $50, $f5, $1c, $7e, $f0, $04, $80, $80, $10, $10, $f1, $f0, $04, $70, $70
-	db $10, $10, $f1, $f5, $1c, $7e, $f0, $02, $50, $50, $10, $10, $f1, $f0, $02, $80
-	db $80, $10, $10, $f1, $f0, $04, $70, $70, $10, $10, $f1, $f2, $1b, $7b
+Music_829da: ; 829da
+	music_setrepeat1a $4
+	call_channel Music_82a48
+	music_dorepeat1a
+	music_setrepeat1d $3
+	music_setrepeat1a $4
+	call_channel Music_82a48
+	music_dorepeat1a
+	music_setrepeat1a $4
+	octave 4
+	note B_, 2
+	note __, 1
+	octave 5
+	note D_, 3
+	note E_, 2
+	music_dorepeat1a
+	music_dorepeat1d
+	music_setrepeat1a $4
+	octave 5
+	note F#, 2
+	note __, 1
+	note F#, 1
+	note C#, 1
+	octave 4
+	note F#, 1
+	note B_, 2
+	note __, 1
+	note B_, 1
+	octave 5
+	note C#, 1
+	octave 4
+	note F#, 1
+	note B_, 2
+	octave 5
+	note C#, 2
+	music_dorepeat1a
+	music_setrepeat1a $4
+	octave 5
+	note G#, 2
+	note __, 1
+	note G#, 1
+	note D#, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C#, 2
+	note __, 1
+	note C#, 1
+	note D#, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C#, 2
+	note D#, 2
+	music_dorepeat1a
+	jump_channel Music_829da
 
-Data_83c42:
-	db $fd, $06, $e8, $12, $f9, $13, $44, $fa, $79, $fb, $11, $12, $04, $21, $d1, $20
-	db $20, $c0, $20, $c0, $20, $d2, $91, $d1, $21, $61, $91, $81, $73, $f0, $02, $90
-	db $c0, $20, $c0, $f1, $fa, $75, $d2, $50, $90, $fa, $79, $d1, $20, $c0, $03, $d2
-	db $a3, $70, $c0, $d1, $20, $c2, $23, $fd, $03, $10, $00, $d2, $b0, $a0, $fa, $75
-	db $90, $80, $70, $60, $fd, $06, $fa, $79, $c1, $a0, $a0, $c0, $a0, $d1, $20, $20
-	db $c0, $20, $70, $70, $c0, $70, $c0, $70, $c0, $80, $21, $01, $d2, $71, $d1, $21
-	db $01, $d2, $a1, $71, $c1, $a0, $c0, $d1, $00, $c0, $20, $c0, $53, $fd, $03, $40
-	db $52, $fd, $06, $31, $01, $31, $50, $c2, $53, $fd, $03, $40, $30, $20, $10, $fa
-	db $75, $00, $d2, $b0, $a0, $90, $fa, $79, $c3, $d1, $00, $c0, $00, $c0, $d2, $a0
-	db $c0, $d1, $00, $c0, $30, $c0, $50, $c0, $30, $c0, $d2, $a0, $c0, $fd, $06, $fa
-	db $b9, $fb, $11, $12, $04, $41, $d2, $58, $c0, $40, $50, $43, $01, $41, $51, $83
-	db $71, $81, $a1, $d1, $03, $d2, $a1, $81, $73, $01, $5d, $c1, $fb, $11, $12, $04
-	db $11, $33, $50, $c0, $00, $d3, $a0, $d2, $00, $30, $50, $30, $50, $80, $a0, $d1
-	db $00, $d2, $03, $30, $c0, $d3, $a0, $80, $a0, $d2, $00, $30, $00, $30, $50, $80
-	db $30, $33, $80, $c0, $a0, $80, $a0, $50, $30, $50, $10, $00, $10, $50, $83, $a0
-	db $c2, $d1, $50, $30, $00, $d2, $a0, $80, $50, $30, $00, $d3, $a0, $80, $fb, $11
-	db $12, $04, $21, $a3, $d2, $01, $11, $c1, $01, $11, $31, $11, $01, $d3, $a1, $81
-	db $a1, $d2, $01, $c1, $10, $30, $54, $c0, $30, $50, $34, $c0, $50, $80, $a4, $c0
-	db $d1, $00, $10, $32, $c0, $52, $c0, $58, $c0, $31, $51, $81, $51, $31, $01, $d2
-	db $a1, $81, $50, $c1, $d1, $00, $10, $30, $d2, $84, $c0, $a1, $d1, $01, $11, $01
-	db $d2, $81, $a6, $c0, $fb, $11, $12, $04, $11, $f0, $02, $d1, $00, $00, $d2, $50
-	db $50, $f1, $f2, $49, $7c
+Music_82a1d: ; 82a1d
+	music_setrepeat1a $2
+	note D#, 1
+	note F#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	music_dorepeat1a
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note G#, 1
+	ret_channel
 
-Data_83d97:
-	db $fd, $06, $fa, $03, $e7, $0f, $fb, $00, $00, $04, $00, $f5, $2d, $7e, $f0, $02
-	db $d4, $a1, $d3, $51, $31, $a1, $51, $31, $c1, $d4, $a1, $c1, $a1, $d3, $a1, $41
-	db $31, $11, $d4, $a1, $81, $f1, $f5, $2d, $7e, $c1, $51, $f0, $02, $51, $d3, $01
-	db $d4, $f1, $51, $13, $61, $fd, $03, $a2, $82, $31, $fd, $06, $52, $31, $50, $b3
-	db $a1, $a1, $51, $a1, $51, $a1, $83, $81, $81, $d3, $51, $fb, $00, $00, $06, $00
-	db $d4, $81, $a1, $d3, $01, $11, $f0, $08, $fb, $00, $00, $07, $00, $d4, $a1, $a1
-	db $a1, $fb, $00, $00, $02, $00, $81, $fb, $00, $00, $07, $00, $a1, $a1, $a1, $fb
-	db $00, $00, $02, $00, $d3, $51, $f1, $f2, $9d, $7d, $03, $93, $11, $01, $93, $11
-	db $01, $93, $11, $01, $f6, $f0, $04, $d1, $00, $00, $d2, $50, $50, $f1, $f0, $04
-	db $a0, $a0, $30, $30, $f1, $f6, $f0, $02, $d4, $51, $d3, $01, $d4, $a1, $d3, $51
-	db $01, $d4, $a1, $c1, $51, $c1, $51, $d3, $51, $d4, $b1, $a1, $81, $51, $31, $f1
-	db $f6
+Music_82a2b: ; 82a2b
+	music_tempo_2 $7
+	music_fa $b9
+	music_fb $11, $12, $3, $11
+	ret_channel
 
-Data_83e48:
-	db $fd, $06, $f0, $07, $f5, $11, $7e, $91, $11, $f1, $f5, $11, $7e, $91, $91, $f0
-	db $0f, $01, $11, $91, $11, $f1, $01, $11, $91, $90, $90, $f2, $4a, $7e
+Music_82a35: ; 82a35
+	music_tempo_2 $1
+	music_fa $b6
+	music_fb $11, $0, $3, $11
+	ret_channel
 
-Data_83e66:
+Music_82a3f: ; 82a3f
+	music_fa $b6
+	octave 8
+	note G#, 1
+	note G#, 1
+	octave 7
+	note G#, 1
+	note __, 1
+	ret_channel
+
+Music_82a48: ; 82a48
+	octave 4
+	note G#, 2
+	note __, 1
+	note B_, 3
+	octave 5
+	note C#, 2
+	ret_channel
+
+Music_82a4f: ; 82a4f
+	note C_, 2
+	note D_, 1
+	note C_, 1
+	note G#, 1
+	note D#, 2
+	note D_, 1
+	ret_channel
+
+Music_82a56: ; 82a56
+	note C_, 1
+	note D_, 2
+	note D#, 1
+	note G#, 2
+	note D#, 2
+	ret_channel
+
+Music_82a5c: ; 82a5c
+	note C_, 2
+	note D#, 2
+	note G#, 1
+	note D#, 2
+	note D_, 1
+	note C_, 1
+	note D_, 2
+	note D#, 1
+	note G#, 1
+	note G#, 1
+	note D#, 2
+	ret_channel
+
+MusicHeader_8202c_Ch6: ; 82a68
+	music_tempo_2 $7
+
+Music_82a6a: ; 82a6a
+	call_channel Music_82a4f
+	call_channel Music_82a56
+	note C_, 2
+	note C_, 2
+	note G#, 1
+	note D_, 2
+	note D_, 1
+	music_tempo_2 $1
+	note G#, 9
+	note G#, 10
+	note G#, 9
+	note G#, 10
+	note G#, 9
+	note G#, 9
+	music_tempo_2 $7
+	music_setrepeat1a $5
+	call_channel Music_82a4f
+	call_channel Music_82a56
+	call_channel Music_82a5c
+	music_dorepeat1a
+	call_channel Music_82a4f
+	call_channel Music_82a56
+	note C_, 2
+	note D#, 2
+	note G#, 1
+	note D#, 2
+	note D_, 1
+	note C_, 1
+	note D_, 2
+	note D#, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	music_setrepeat1a $4
+	call_channel Music_82a4f
+	call_channel Music_82a56
+	call_channel Music_82a5c
+	music_dorepeat1a
+	jump_channel Music_82a6a
+
+MusicHeader_82036_Ch1: ; 82aac
+	music_tempo_2 $6
+	music_fa $b7
+	music_fb $11, $12, $6, $11
+	music_e8 $12
+	music_f9 $15, 4, 4
+	octave 6
+	note A_, 2
+	note __, 2
+	note __, 4
+	octave 8
+	note D_, 2
+	note A_, 2
+	octave 6
+	note G#, 2
+	note __, 2
+	note __, 4
+	octave 8
+	note D_, 2
+	note A_, 2
+	octave 6
+	note F_, 2
+	note __, 2
+	note __, 4
+	octave 8
+	note D_, 2
+	note A_, 2
+	octave 6
+	note E_, 2
+	note __, 2
+	note __, 4
+	octave 8
+	note D_, 2
+	note A_, 2
+
+Music_82ad6: ; 82ad6
+	music_fa $b7
+	octave 6
+	music_setrepeat1a $8
+	note D_, 2
+	note F_, 2
+	note G#, 2
+	note A_, 2
+	note G#, 2
+	note F_, 2
+	music_dorepeat1a
+	music_fb $11, $12, $3, $31
+	note C_, 2
+	music_tempo_2 $4
+	octave 5
+	note B_, 1
+	octave 6
+	note C_, 1
+	octave 5
+	note B_, 1
+	music_tempo_2 $6
+	note G#, 2
+	note F_, 2
+	note G#, 2
+	note B_, 2
+	octave 6
+	note C_, 10
+	note __, 2
+	octave 5
+	note G#, 2
+	music_tempo_2 $4
+	note G_, 1
+	note G#, 1
+	note G_, 1
+	music_tempo_2 $6
+	note E_, 2
+	note C#, 2
+	note E_, 2
+	note G_, 2
+	note G#, 10
+	note __, 2
+	music_fb $11, $12, $6, $11
+	music_setrepeat1a $4
+	octave 6
+	note F_, 2
+	note G_, 2
+	note G#, 2
+	note B_, 2
+	octave 7
+	note C_, 2
+	note E_, 2
+	note F_, 2
+	note E_, 2
+	note C_, 2
+	octave 6
+	note B_, 2
+	note G#, 2
+	note F_, 2
+	music_dorepeat1a
+	octave 5
+	music_setrepeat1a $3
+	note F_, 2
+	note G#, 2
+	music_dorepeat1a
+	music_setrepeat1a $3
+	note G_, 2
+	note A#, 2
+	music_dorepeat1a
+	note G#, 2
+	note B_, 2
+	note G#, 2
+	note B_, 2
+	note G#, 2
+	octave 6
+	note D#, 2
+	music_setrepeat1a $3
+	octave 5
+	note A#, 2
+	octave 6
+	note D_, 2
+	music_dorepeat1a
+	music_setrepeat1a $3
+	note C#, 2
+	note E_, 2
+	music_dorepeat1a
+	music_setrepeat1a $3
+	note D#, 2
+	note F#, 2
+	music_dorepeat1a
+	music_setrepeat1a $2
+	octave 5
+	note B_, 2
+	octave 6
+	note D_, 2
+	music_dorepeat1a
+	octave 5
+	note B_, 2
+	octave 6
+	note F#, 2
+	music_setrepeat1a $10
+	note C#, 2
+	note F_, 2
+	music_dorepeat1a
+	music_fa $b5
+	music_setrepeat1a $2
+	note C#, 2
+	note F_, 2
+	music_dorepeat1a
+	music_fa $b3
+	music_setrepeat1a $3
+	note C#, 2
+	note F_, 2
+	music_dorepeat1a
+	jump_channel Music_82ad6
+
+MusicHeader_82036_Ch2: ; 82b63
+	music_tempo_2 $6
+	music_fb $11, $12, $6, $11
+	music_e8 $12
+	music_f9 $15, 4, 5
+	music_setrepeat1d $2
+	music_fa $b9
+	music_setrepeat1a $2
+	octave 7
+	note D_, 2
+	note F_, 2
+	note G#, 2
+	note A_, 2
+	music_fa $b6
+	music_dorepeat1a
+	music_fa $b4
+	note D_, 2
+	note F_, 2
+	note G#, 2
+	note A_, 2
+	music_dorepeat1d
+
+Music_82b84: ; 82b84
+	call_channel Music_82cf6
+	music_tempo_2 $3
+	octave 7
+	note B_, 1
+	octave 8
+	note C_, 1
+	octave 7
+	note B_, 16
+	note __, 6
+	note A_, 1
+	note B_, 1
+	note A_, 16
+	note __, 4
+	note G#, 1
+	note A_, 1
+	music_fb $11, $12, $6, $11
+	music_setrepeat1a $2
+	note G#, 4
+	note E_, 4
+	note F_, 4
+	music_fa $b6
+	music_dorepeat1a
+	music_fa $b4
+	music_setrepeat1a $2
+	note G#, 4
+	note E_, 4
+	note F_, 4
+	music_fa $b2
+	music_dorepeat1a
+	call_channel Music_82cf6
+	note D_, 4
+	note E_, 4
+	note F_, 4
+	note A_, 3
+	note G#, 1
+	note A_, 1
+	music_tempo_2 $6
+	note G#, 11
+	music_tempo_2 $3
+	note __, 5
+	music_tempo_2 $6
+	note A_, 2
+	music_fb $11, $12, $6, $11
+	music_setrepeat1a $2
+	note F_, 2
+	note G#, 2
+	note A_, 2
+	music_fa $b6
+	music_dorepeat1a
+	music_fa $b4
+	music_setrepeat1a $2
+	note F_, 2
+	note G#, 2
+	note A_, 2
+	music_fa $b2
+	music_dorepeat1a
+	call_channel Music_82cf6
+	music_setrepeat1a $2
+	octave 7
+	note F_, 1
+	note __, 1
+	octave 6
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	music_dorepeat1a
+	octave 7
+	note G#, 2
+	music_tempo_2 $4
+	note F_, 1
+	note G#, 1
+	note F_, 1
+	music_tempo_2 $6
+	note E_, 2
+	note C_, 2
+	octave 6
+	note B_, 2
+	music_tempo_2 $4
+	note G#, 1
+	note B_, 1
+	note G#, 1
+	music_tempo_2 $6
+	music_setrepeat1a $2
+	octave 7
+	note C#, 1
+	note __, 1
+	octave 6
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	music_dorepeat1a
+	octave 7
+	note E_, 2
+	music_tempo_2 $4
+	note C#, 1
+	note E_, 1
+	note C#, 1
+	music_tempo_2 $6
+	note C_, 2
+	octave 6
+	note G#, 2
+	note G_, 2
+	music_tempo_2 $4
+	note E_, 1
+	note G_, 1
+	note E_, 1
+	music_tempo_2 $6
+	call_channel Music_82d0c
+	note C_, 12
+	octave 6
+	note C#, 6
+	note __, 2
+	note F_, 2
+	note G#, 2
+	music_tempo_2 $3
+	note G_, 1
+	note G#, 1
+	music_tempo_2 $6
+	note G_, 3
+	note E_, 1
+	note __, 3
+	note C_, 1
+	note __, 3
+	note F#, 2
+	note F_, 2
+	note F#, 2
+	note A_, 2
+	note A#, 2
+	octave 7
+	note D#, 2
+	note D_, 2
+	octave 6
+	note B_, 2
+	note A#, 2
+	note A_, 2
+	note A#, 1
+	note __, 3
+	note A_, 6
+	note __, 2
+	octave 7
+	note C#, 2
+	note E_, 2
+	music_tempo_2 $3
+	note D#, 1
+	note E_, 1
+	music_tempo_2 $6
+	note D#, 3
+	note C_, 1
+	note __, 3
+	octave 6
+	note G#, 1
+	note __, 3
+	music_tempo_2 $3
+	octave 8
+	note C_, 1
+	note C#, 7
+	music_tempo_2 $6
+	octave 7
+	note B_, 2
+	octave 8
+	note C#, 2
+	octave 7
+	note G#, 2
+	note F#, 2
+	note F_, 2
+	note D_, 2
+	note C#, 2
+	note C_, 2
+	note C#, 1
+	note __, 3
+	music_fb $11, $12, $6, $11
+	octave 7
+	call_channel Music_82cfe
+	octave 8
+	call_channel Music_82cfe
+	music_e8 $0
+	note __, 12
+	note __, 12
+	music_e8 $12
+	jump_channel Music_82b84
+
+MusicHeader_82036_Ch3: ; 82c74
+	music_tempo_2 $6
+	call_channel Music_82d2b
+	music_setrepeat1a $4
+	note __, 12
+	music_dorepeat1a
+
+Music_82c7d: ; 82c7d
+	octave 4
+	music_setrepeat1a $4
+	note D_, 2
+	note D_, 2
+	note __, 16
+	note G#, 2
+	note A_, 2
+	music_dorepeat1a
+	music_setrepeat1a $2
+	octave 4
+	note F_, 2
+	octave 5
+	note C_, 2
+	note C_, 2
+	music_dorepeat1a
+	octave 4
+	note C_, 12
+	music_setrepeat1a $2
+	note C#, 2
+	note G#, 2
+	note G#, 2
+	music_dorepeat1a
+	note G#, 12
+	music_setfreqoffset $1
+	note __, 2
+	music_fa $1
+	music_fb $0, $0, $2, $0
+	music_noise_sample $f
+	call_channel Music_82d0c
+	note C_, 10
+	music_setfreqoffset $0
+	call_channel Music_82d2b
+	octave 4
+	note F_, 2
+	note __, 2
+	note F_, 2
+	note G#, 2
+	octave 5
+	note C#, 2
+	octave 4
+	note F_, 2
+	note G_, 2
+	note A#, 2
+	octave 5
+	note E_, 2
+	note __, 4
+	octave 4
+	note G_, 2
+	note G#, 4
+	note B_, 4
+	octave 5
+	note D#, 2
+	octave 4
+	note G#, 2
+	note A#, 2
+	octave 5
+	note D_, 2
+	note F_, 2
+	note __, 4
+	octave 4
+	note A#, 2
+	octave 5
+	note C#, 2
+	note __, 2
+	note C#, 2
+	note E_, 2
+	note A_, 2
+	note C#, 2
+	note D#, 2
+	note F#, 2
+	octave 6
+	note C_, 2
+	note __, 4
+	octave 5
+	note D#, 2
+	octave 4
+	note B_, 4
+	octave 5
+	note D_, 4
+	note F#, 2
+	octave 4
+	note B_, 2
+	octave 5
+	note C#, 2
+	note F_, 2
+	note G#, 2
+	note __, 4
+	note C#, 2
+	music_setrepeat1a $2
+	octave 5
+	note C#, 8
+	note __, 2
+	octave 4
+	note G#, 2
+	octave 5
+	note C#, 3
+	note __, 1
+	note C#, 2
+	note __, 6
+	music_dorepeat1a
+	note __, 12
+	note __, 12
+	jump_channel Music_82c7d
+
+Music_82cf6: ; 82cf6
+	music_fa $b9
+	music_fb $11, $12, $3, $31
+	ret_channel
+
+Music_82cfe: ; 82cfe
+	music_fa $b9
+	music_setrepeat1a $2
+	note F_, 2
+	note D_, 2
+	note C#, 2
+	note C_, 2
+	note C#, 2
+	note __, 2
+	music_fa $b6
+	music_dorepeat1a
+	ret_channel
+
+Music_82d0c: ; 82d0c
+	octave 5
+	note F_, 12
+	note G_, 8
+	note G#, 2
+	note B_, 2
+	octave 6
+	note C_, 2
+	music_tempo_2 $4
+	octave 5
+	note B_, 1
+	octave 6
+	note C_, 1
+	octave 5
+	note B_, 1
+	music_tempo_2 $6
+	note G#, 2
+	note G_, 2
+	note F_, 16
+	note G_, 1
+	note G#, 1
+	note B_, 1
+	note G#, 1
+	note G_, 12
+	note __, 4
+	note F_, 4
+	note E_, 10
+	note F_, 1
+	note E_, 1
+	ret_channel
+
+Music_82d2b: ; 82d2b
+	music_fa $3
+	music_fb $0, $0, $6, $0
+	music_noise_sample $c
+	ret_channel
+
+Music_82d35: ; 82d35
+	note D_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 6
+	note D_, 4
+	note E_, 6
+	note C#, 2
+	note D_, 2
+	note C#, 2
+	note E_, 6
+	note C#, 2
+	note D_, 4
+	note E_, 4
+	ret_channel
+
+MusicHeader_82036_Ch6: ; 82d43
+	music_tempo_2 $6
+	call_channel Music_82d35
+	note D_, 4
+
+Music_82d49: ; 82d49
+	call_channel Music_82d35
+	note D_, 4
+	call_channel Music_82d35
+	note D_, 4
+	music_setrepeat1a $2
+	note G#, 4
+	note C_, 2
+	note G#, 4
+	note C_, 2
+	note G#, 4
+	note D_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 2
+	music_dorepeat1a
+	call_channel Music_82d35
+	note D_, 4
+	call_channel Music_82d35
+	music_tempo_2 $2
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note E_, 1
+	note E_, 1
+	note E_, 1
+	note F_, 1
+	note F_, 1
+	note F_, 1
+	music_tempo_2 $6
+	music_setrepeat1a $4
+	note C_, 2
+	note C#, 2
+	note D_, 2
+	note G#, 2
+	note D_, 2
+	note C_, 2
+	note C_, 2
+	note C#, 2
+	note G#, 4
+	note D_, 2
+	note C_, 2
+	music_dorepeat1a
+	music_setrepeat1a $3
+	note E_, 4
+	note D_, 2
+	note C#, 4
+	note C#, 2
+	note E_, 4
+	note D_, 4
+	note D_, 4
+	music_dorepeat1a
+	jump_channel Music_82d49
+
+MusicHeader_82040_Ch1: ; 82d8f
+	music_tempo_2 $9
+	music_e8 $12
+	music_f9 $15, 4, 3
+
+Music_82d96: ; 82d96
+	music_fa $b4
+	music_fb $21, $11, $2, $11
+	octave 5
+	music_setrepeat1a $8
+	note A_, 1
+	note F_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note G_, 1
+	note D#, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note A_, 1
+	note F_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note D#, 1
+	note G_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note C#, 1
+	note E_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note D_, 1
+	note F#, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note F#, 1
+	note A#, 1
+	music_dorepeat1a
+	music_setrepeat1a $6
+	note G_, 1
+	note A#, 1
+	music_dorepeat1a
+	music_fa $b3
+	note G_, 1
+	note A#, 1
+	music_fa $b1
+	note G_, 1
+	note A#, 1
+	music_fa $b5
+	octave 5
+	music_setrepeat1a $8
+	note B_, 1
+	note G_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note A_, 1
+	note F_, 1
+	music_dorepeat1a
+	octave 6
+	music_setrepeat1a $8
+	note E_, 1
+	note C_, 1
+	music_dorepeat1a
+	call_channel Music_83074
+	music_setrepeat1a $8
+	octave 6
+	note C_, 1
+	octave 5
+	note A_, 1
+	music_dorepeat1a
+	call_channel Music_83074
+	music_setrepeat1a $2
+	octave 6
+	note D_, 1
+	octave 5
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note D_, 1
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	music_dorepeat1a
+	music_setrepeat1a $2
+	octave 6
+	note D_, 1
+	octave 5
+	note A#, 1
+	note G_, 1
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	note G_, 1
+	note A#, 1
+	music_dorepeat1a
+	octave 5
+	note E_, 1
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 6
+	note C_, 1
+	note D_, 1
+	note E_, 1
+	note D_, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note F_, 1
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C#, 1
+	note D_, 1
+	note E_, 1
+	note F_, 1
+	note E_, 1
+	note D_, 1
+	note C#, 1
+	octave 5
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C#, 1
+	note E_, 1
+	note F_, 2
+	note E_, 1
+	note D_, 1
+	note C_, 1
+	octave 5
+	note D_, 1
+	note A#, 1
+	note G_, 1
+	note D_, 1
+	note F_, 1
+	note D_, 1
+	call_channel Music_8307c
+	octave 6
+	note E_, 1
+	note A_, 1
+	octave 7
+	note D_, 1
+	note E_, 1
+	note F_, 1
+	note G_, 1
+	note __, 1
+	note __, 1
+	music_fa $b5
+	music_fb $21, $11, $2, $11
+	octave 5
+	note E_, 1
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 6
+	note D_, 1
+	octave 5
+	note A#, 1
+	note A_, 1
+	call_channel Music_8307c
+	octave 7
+	note F_, 1
+	note E_, 1
+	note C_, 1
+	octave 6
+	note A_, 1
+	note E_, 1
+	music_fa $b5
+	music_fb $11, $12, $3, $31
+	octave 5
+	note G_, 5
+	note __, 1
+	music_fb $11, $12, $4, $11
+	note G_, 1
+	note G_, 1
+	music_fb $11, $12, $3, $31
+	note E_, 3
+	note __, 1
+	note A_, 4
+	music_fb $21, $11, $2, $11
+	music_setrepeat1a $7
+	octave 6
+	note C#, 1
+	octave 5
+	note B_, 1
+	music_dorepeat1a
+	music_fa $b3
+	octave 6
+	note C#, 1
+	note E_, 1
+	jump_channel Music_82d96
+
+MusicHeader_82040_Ch2: ; 82e8f
+	music_tempo_2 $9
+	music_e8 $12
+	music_f9 $15, 4, 3
+
+Music_82e96: ; 82e96
+	music_fa $b6
+	music_fb $21, $11, $2, $11
+	octave 6
+	music_setrepeat1a $8
+	note C_, 1
+	note E_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	octave 5
+	note A#, 1
+	octave 6
+	note D_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	note C_, 1
+	note E_, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	octave 6
+	note D_, 1
+	octave 5
+	note A#, 1
+	music_dorepeat1a
+	octave 5
+	music_setrepeat1a $8
+	note B_, 1
+	note G#, 1
+	music_dorepeat1a
+	music_setrepeat1a $8
+	octave 6
+	note C#, 1
+	octave 5
+	note A_, 1
+	music_dorepeat1a
+	octave 6
+	music_setrepeat1a $8
+	note D#, 1
+	note C#, 1
+	music_dorepeat1a
+	music_setrepeat1a $6
+	note F_, 1
+	note D_, 1
+	music_dorepeat1a
+	music_fa $b5
+	note F_, 1
+	note D_, 1
+	music_fa $b3
+	note F_, 1
+	note D_, 1
+	music_tempo_2 $9
+	music_fa $b9
+	music_fb $11, $12, $3, $31
+	note __, 2
+	note G_, 4
+	music_tempo_2 $1
+	note __, 4
+	note A_, 5
+	note B_, 4
+	octave 7
+	note C_, 5
+	music_tempo_2 $9
+	note D_, 4
+	note F#, 2
+	note E_, 2
+	note D_, 3
+	note __, 1
+	octave 6
+	music_setrepeat1a $4
+	note C_, 1
+	note E_, 1
+	music_dorepeat1a
+	note F_, 1
+	note G_, 1
+	note B_, 1
+	octave 7
+	note C_, 1
+	octave 6
+	note B_, 3
+	note __, 1
+	octave 7
+	note D_, 3
+	note __, 1
+	octave 6
+	note A_, 3
+	note __, 1
+	octave 7
+	note C_, 3
+	note __, 1
+	octave 6
+	note B_, 2
+	music_tempo_2 $1
+	note __, 4
+	note A_, 5
+	note B_, 4
+	note A_, 5
+	music_tempo_2 $9
+	note G_, 4
+	note __, 2
+	octave 7
+	note G_, 1
+	note F#, 1
+	note D_, 1
+	octave 6
+	note B_, 1
+	octave 7
+	note D_, 1
+	note E_, 1
+	octave 6
+	note A_, 4
+	note __, 2
+	octave 7
+	note C_, 4
+	note __, 2
+	note D_, 3
+	music_tempo_2 $1
+	note C#, 4
+	note C_, 5
+	music_tempo_2 $9
+	octave 6
+	note B_, 6
+	note __, 2
+	music_fb $11, $12, $4, $11
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 7
+	note C_, 1
+	note D_, 1
+	note G_, 1
+	note D_, 1
+	music_fb $11, $12, $3, $31
+	note G_, 4
+	note __, 2
+	note F_, 4
+	note __, 2
+	note E_, 2
+	note F_, 2
+	note E_, 4
+	note __, 2
+	note C_, 4
+	note __, 2
+	octave 6
+	note A_, 2
+	note A#, 2
+	octave 7
+	note C_, 4
+	note __, 2
+	octave 6
+	note G_, 4
+	note __, 2
+	note A#, 2
+	note __, 2
+	note A_, 4
+	note __, 2
+	octave 7
+	note C#, 2
+	note __, 2
+	octave 6
+	note A_, 2
+	note B_, 2
+	octave 7
+	note C#, 2
+	note D_, 2
+	note C_, 1
+	octave 6
+	note A#, 1
+	note A_, 2
+	note G_, 1
+	note F_, 1
+	note E_, 2
+	note D_, 1
+	note C_, 1
+	octave 5
+	note A#, 4
+	note A#, 1
+	octave 6
+	note C_, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	note D_, 1
+	note E_, 1
+	note F_, 1
+	note G_, 1
+	note A#, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note D_, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	note D_, 5
+	note __, 1
+	music_fb $11, $12, $4, $11
+	note D_, 1
+	note D_, 1
+	music_fb $11, $12, $3, $31
+	note C_, 3
+	note __, 1
+	note E_, 3
+	music_tempo_2 $1
+	note F_, 4
+	note G_, 5
+	music_tempo_2 $9
+	music_fb $11, $12, $4, $11
+	note A_, 1
+	octave 7
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	note E_, 1
+	note G_, 1
+	note F#, 1
+	note E_, 1
+	note D_, 1
+	note C#, 1
+	octave 6
+	note B_, 1
+	note A_, 1
+	music_fb $11, $12, $3, $31
+	note G_, 1
+	note E_, 1
+	music_fa $b6
+	note G_, 1
+	note B_, 1
+	jump_channel Music_82e96
+
+MusicHeader_82040_Ch3: ; 82fb6
+	music_f9 $15, 4, 5
+
+Music_82fb9: ; 82fb9
+	call_channel Music_8306a
+	music_noise_sample $c
+	music_setfreqoffset $1
+	octave 5
+	note A_, 6
+	note F_, 2
+	note C_, 2
+	note D_, 2
+	note E_, 2
+	note F_, 2
+	note G_, 7
+	call_channel Music_83062
+	note A_, 4
+	note A#, 5
+	call_channel Music_8306a
+	octave 6
+	note C_, 6
+	octave 5
+	note A#, 2
+	note A_, 6
+	octave 6
+	note G_, 2
+	note F_, 2
+	note E_, 2
+	note C_, 2
+	octave 5
+	note A_, 2
+	octave 6
+	note C_, 10
+	note D_, 2
+	note C_, 2
+	octave 5
+	note A#, 2
+	note A_, 3
+	call_channel Music_83062
+	note G#, 4
+	note G_, 5
+	call_channel Music_8306a
+	note F#, 4
+	note G#, 2
+	note A_, 2
+	note B_, 2
+	note G#, 2
+	note A_, 2
+	note B_, 2
+	octave 6
+	note C#, 6
+	octave 5
+	note B_, 2
+	note A_, 2
+	note B_, 2
+	octave 6
+	note C_, 2
+	note C#, 2
+	note F_, 2
+	note D#, 6
+	note C#, 2
+	note D#, 2
+	note C_, 10
+	music_tempo_2 $9
+	music_fb $0, $0, $4, $0
+	music_setfreqoffset $0
+	music_noise_sample $f
+	octave 5
+	note C_, 2
+	octave 4
+	note A#, 2
+	note A_, 2
+	music_setrepeat1a $5
+	note G_, 8
+	note __, 2
+	note D_, 1
+	note __, 1
+	note F_, 4
+	music_dorepeat1a
+	note G_, 8
+	note __, 2
+	note D_, 1
+	note __, 1
+	note F_, 2
+	note G_, 2
+	note A#, 10
+	note F_, 1
+	note __, 1
+	note A_, 4
+	note G_, 10
+	note G_, 1
+	note __, 1
+	octave 5
+	note D_, 4
+	note C_, 10
+	octave 4
+	note G_, 1
+	note __, 1
+	octave 5
+	note C_, 4
+	octave 4
+	note A_, 10
+	note A_, 1
+	note __, 1
+	octave 5
+	note E_, 2
+	octave 4
+	note A_, 2
+	note A#, 10
+	note A#, 1
+	note __, 1
+	octave 5
+	note F_, 2
+	octave 4
+	note A_, 2
+	note G_, 8
+	octave 5
+	note A#, 1
+	octave 6
+	note D_, 1
+	octave 5
+	note A#, 1
+	note G_, 1
+	octave 4
+	note A#, 1
+	octave 5
+	note E_, 1
+	note D_, 1
+	note C_, 1
+	octave 4
+	note A_, 6
+	note __, 2
+	note A_, 2
+	note A_, 2
+	note __, 2
+	note A_, 2
+	octave 5
+	music_setrepeat1a $5
+	note E_, 1
+	note G_, 1
+	music_dorepeat1a
+	note E_, 1
+	note C#, 1
+	note D_, 1
+	note E_, 1
+	music_fa $2
+	note F_, 1
+	note G_, 1
+	jump_channel Music_82fb9
+
+Music_83062: ; 83062
+	music_tempo_2 $1
+	music_fb $0, $0, $1, $0
+	ret_channel
+
+Music_8306a: ; 8306a
+	music_tempo_2 $9
+	music_fa $3
+	music_fb $0, $0, $6, $0
+	ret_channel
+
+Music_83074: ; 83074
+	music_setrepeat1a $8
+	octave 6
+	note D_, 1
+	octave 5
+	note B_, 1
+	music_dorepeat1a
+	ret_channel
+
+Music_8307c: ; 8307c
+	music_fa $b7
+	music_fb $11, $12, $4, $11
+	ret_channel
+
+MusicHeader_82040_Ch6: ; 83084
+	music_tempo_2 $9
+
+Music_83086: ; 83086
+	music_setrepeat1a $15
+	note C_, 2
+	note C#, 2
+	note E_, 2
+	note C_, 2
+	note C_, 2
+	note C#, 2
+	note D#, 2
+	note E_, 2
+	music_dorepeat1a
+	note C_, 4
+	note D_, 4
+	note C#, 2
+	note C_, 2
+	note E_, 2
+	note E_, 2
+	jump_channel Music_83086
+
+MusicHeader_8204a_Ch1: ; 8309a
+	music_tempo_2 $6
+	music_fa $b8
+	music_f9 $15, 4, 4
+
+Music_830a1: ; 830a1
+	call_channel Music_832be
+	call_channel Music_832de
+	call_channel Music_832be
+	music_fb $11, $12, $4, $11
+	call_channel Music_8331d
+	note D_, 1
+	octave 6
+	note A#, 1
+	note F_, 1
+	note D_, 1
+	note A#, 1
+	note F_, 1
+	note D_, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note F_, 1
+	note D_, 1
+	octave 5
+	note A#, 1
+	note F_, 1
+	octave 6
+	note D_, 1
+	note F_, 1
+	note A#, 1
+	octave 7
+	note D_, 1
+	call_channel Music_8331d
+	call_channel Music_8331d
+	music_fb $11, $12, $4, $41
+	call_channel Music_832de
+	note G#, 4
+	note __, 2
+	note D#, 1
+	note G#, 1
+	octave 6
+	note C_, 4
+	note __, 2
+	octave 5
+	note G#, 1
+	octave 6
+	note C_, 1
+	note D#, 4
+	note __, 2
+	note C_, 1
+	note D#, 1
+	note G#, 4
+	note __, 2
+	note D#, 1
+	note G#, 1
+	note F_, 1
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	note F_, 10
+	note __, 2
+	music_setrepeat1a $2
+	octave 6
+	note A#, 1
+	octave 7
+	note F_, 1
+	music_dorepeat1a
+	octave 6
+	note A#, 8
+	octave 7
+	note F_, 1
+	note D_, 1
+	octave 6
+	note A#, 1
+	note F_, 1
+	octave 5
+	note E_, 4
+	note __, 2
+	octave 4
+	note B_, 1
+	octave 5
+	note E_, 1
+	note G#, 4
+	note __, 2
+	note E_, 1
+	note G#, 1
+	note B_, 4
+	note __, 2
+	note G#, 1
+	note B_, 1
+	octave 6
+	note E_, 4
+	note __, 2
+	octave 5
+	note B_, 1
+	octave 6
+	note E_, 1
+	note C#, 1
+	note F#, 1
+	note C#, 1
+	note F#, 1
+	note C#, 10
+	note __, 2
+	music_setrepeat1a $2
+	octave 6
+	note F#, 1
+	octave 7
+	note C#, 1
+	music_dorepeat1a
+	octave 6
+	note F#, 8
+	octave 7
+	note C#, 1
+	octave 6
+	note A#, 1
+	note F#, 1
+	note C#, 1
+	note F#, 1
+	note D#, 1
+	octave 5
+	note B_, 1
+	octave 6
+	note G#, 2
+	note F_, 1
+	note C#, 1
+	octave 5
+	note G#, 1
+	octave 6
+	note A#, 2
+	octave 7
+	note C#, 1
+	note __, 1
+	note C_, 2
+	octave 6
+	note G#, 2
+	jump_channel Music_830a1
+
+MusicHeader_8204a_Ch2: ; 8313e
+	music_tempo_2 $6
+	music_f9 $15, 4, 4
+
+Music_83143: ; 83143
+	music_fa $79
+	call_channel Music_8329a
+	call_channel Music_8328a
+	note A#, 2
+	octave 7
+	note C#, 2
+	call_channel Music_8328a
+	note F#, 2
+	note F_, 2
+	call_channel Music_8329a
+	note E_, 8
+	note __, 2
+	note C#, 2
+	note D_, 2
+	note E_, 2
+	note F_, 4
+	note __, 2
+	note A#, 4
+	music_tempo_2 $3
+	note __, 3
+	octave 8
+	note C#, 1
+	music_tempo_2 $6
+	note D_, 4
+	note C#, 2
+	octave 7
+	note A_, 2
+	note __, 2
+	note E_, 8
+	note __, 2
+	music_fb $11, $12, $4, $11
+	note E_, 1
+	note C#, 1
+	octave 6
+	note A_, 1
+	note E_, 1
+	octave 7
+	note C#, 1
+	octave 6
+	note A_, 1
+	note E_, 1
+	note C#, 1
+	note A_, 1
+	note E_, 1
+	note A_, 1
+	octave 7
+	note C#, 1
+	note E_, 1
+	note C#, 1
+	note E_, 1
+	note A_, 1
+	music_fb $11, $12, $4, $41
+	call_channel Music_8328a
+	note A#, 2
+	octave 7
+	note C#, 2
+	call_channel Music_8328a
+	note F#, 2
+	note F_, 2
+	note D#, 1
+	note C_, 1
+	note D#, 1
+	note G#, 1
+	note A#, 4
+	note G#, 4
+	octave 7
+	note D#, 4
+	note G#, 4
+	note G_, 4
+	note D#, 4
+	note G_, 2
+	note __, 2
+	note F_, 2
+	note __, 2
+	note __, 2
+	note A#, 8
+	note __, 2
+	note F_, 1
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	note F_, 8
+	note A#, 1
+	note F_, 1
+	note D_, 1
+	octave 6
+	note A#, 1
+	octave 5
+	note B_, 1
+	note G#, 1
+	note B_, 1
+	octave 6
+	note E_, 1
+	note F#, 4
+	note E_, 4
+	note B_, 4
+	octave 7
+	note E_, 4
+	note D#, 4
+	octave 6
+	note B_, 4
+	octave 7
+	note D#, 2
+	note __, 2
+	note C#, 2
+	note __, 2
+	note __, 2
+	note F#, 8
+	note __, 2
+	note C#, 1
+	note F#, 1
+	note C#, 1
+	note F#, 1
+	note C#, 8
+	note F#, 1
+	note C#, 1
+	octave 6
+	note A#, 1
+	note F#, 1
+	music_fa $b9
+	note B_, 1
+	note F#, 1
+	note D#, 1
+	octave 7
+	note C#, 2
+	octave 6
+	note G#, 1
+	note F_, 1
+	note C#, 1
+	octave 7
+	note D#, 8
+	jump_channel Music_83143
+
+MusicHeader_8204a_Ch3: ; 831e1
+	music_tempo_2 $6
+	music_fa $3
+	music_fb $0, $0, $3, $0
+	music_noise_sample $c
+
+Music_831ec: ; 831ec
+	music_setrepeat1d $4
+	call_channel Music_83335
+	music_dorepeat1d
+	music_setrepeat1a $4
+	note A_, 4
+	note C#, 1
+	note __, 1
+	note E_, 4
+	note A_, 1
+	note __, 3
+	note D_, 1
+	note E_, 1
+	music_dorepeat1a
+	music_setrepeat1d $2
+	call_channel Music_83335
+	music_dorepeat1d
+	note G#, 2
+	note __, 1
+	note G#, 1
+	octave 5
+	note D#, 1
+	note __, 1
+	octave 4
+	note G#, 6
+	note __, 2
+	octave 5
+	note D#, 1
+	note G#, 1
+	octave 4
+	note G#, 2
+	note __, 1
+	note G#, 1
+	octave 5
+	note D#, 1
+	note __, 1
+	octave 4
+	note G#, 2
+	note __, 2
+	note G#, 2
+	octave 5
+	note D#, 2
+	octave 4
+	note G#, 1
+	octave 5
+	note G#, 1
+	octave 4
+	note A#, 2
+	note __, 1
+	note A#, 1
+	octave 5
+	note F_, 1
+	note __, 1
+	octave 4
+	note A#, 2
+	note __, 2
+	note A#, 4
+	octave 5
+	note F_, 1
+	note A#, 1
+	octave 4
+	note A#, 2
+	note __, 1
+	note A#, 1
+	octave 5
+	note F_, 1
+	note __, 1
+	octave 4
+	note A#, 2
+	note __, 1
+	note A#, 1
+	octave 5
+	note F_, 1
+	note __, 1
+	octave 4
+	note A#, 2
+	octave 5
+	note A#, 2
+	octave 4
+	note E_, 2
+	note __, 1
+	note E_, 1
+	note B_, 1
+	note __, 1
+	note E_, 6
+	note __, 2
+	note B_, 1
+	octave 5
+	note E_, 1
+	octave 4
+	note E_, 2
+	note __, 1
+	note E_, 1
+	note B_, 1
+	note __, 1
+	note E_, 2
+	note __, 2
+	note E_, 2
+	note B_, 2
+	note E_, 1
+	octave 5
+	note E_, 1
+	octave 4
+	note F#, 2
+	note __, 1
+	note F#, 1
+	octave 5
+	note C#, 1
+	note __, 1
+	octave 4
+	note F#, 2
+	note __, 2
+	note F#, 4
+	octave 5
+	note C#, 1
+	note F#, 1
+	octave 4
+	note F#, 2
+	note __, 1
+	note F#, 1
+	octave 5
+	note C#, 1
+	note __, 1
+	octave 4
+	note F#, 2
+	note __, 1
+	note F#, 1
+	octave 5
+	note C#, 1
+	note __, 1
+	octave 4
+	note F#, 2
+	octave 5
+	note F#, 2
+	octave 4
+	note B_, 2
+	note __, 1
+	octave 5
+	note C#, 3
+	octave 4
+	note G#, 1
+	note __, 1
+	octave 5
+	note D#, 2
+	octave 4
+	note D#, 1
+	note __, 1
+	note G#, 1
+	note A#, 3
+	jump_channel Music_831ec
+
+Music_8328a: ; 8328a
+	note D#, 1
+	note A#, 1
+	note D#, 1
+	note A#, 1
+	note D#, 16
+	note __, 4
+	octave 6
+	note A#, 2
+	music_tempo_2 $4
+	note G#, 1
+	note A#, 1
+	note G#, 1
+	music_tempo_2 $6
+	ret_channel
+
+Music_8329a: ; 8329a
+	music_fb $11, $12, $7, $11
+	note __, 2
+	music_e8 $12
+	octave 5
+	note C#, 2
+	note D#, 2
+	note G#, 2
+	note A#, 2
+	octave 6
+	note C#, 2
+	note D#, 2
+	octave 5
+	note G#, 2
+	note A#, 2
+	octave 6
+	note D#, 2
+	note G#, 2
+	note A#, 2
+	octave 7
+	note C#, 2
+	octave 6
+	note G#, 2
+	note A#, 2
+	octave 7
+	note D#, 2
+	music_fb $11, $12, $4, $41
+	ret_channel
+
+Music_832be: ; 832be
+	music_fb $11, $12, $7, $11
+	note __, 2
+	music_e8 $12
+	octave 4
+	note G#, 2
+	note A#, 2
+	octave 5
+	note C#, 2
+	note D#, 2
+	note G#, 2
+	note A#, 2
+	note C#, 2
+	note D#, 2
+	note A#, 2
+	octave 6
+	note C#, 2
+	note D#, 2
+	note F#, 2
+	note D#, 2
+	note F#, 2
+	note A#, 2
+	music_fb $11, $12, $4, $41
+	ret_channel
+
+Music_832de: ; 832de
+	music_setrepeat1a $2
+	octave 6
+	note A#, 1
+	octave 7
+	note D#, 1
+	music_dorepeat1a
+	octave 6
+	note A#, 2
+	music_fa $b5
+	octave 7
+	note D#, 1
+	note A#, 1
+	note D#, 1
+	note A#, 1
+	note D#, 4
+	note __, 2
+	music_fa $b8
+	octave 6
+	note D#, 2
+	music_tempo_2 $4
+	note C#, 1
+	note D#, 1
+	note C#, 1
+	music_tempo_2 $6
+	octave 5
+	note A#, 8
+	note __, 4
+	music_setrepeat1a $2
+	octave 6
+	note A#, 1
+	octave 7
+	note D#, 1
+	music_dorepeat1a
+	octave 6
+	note A#, 4
+	octave 5
+	note G#, 1
+	note A#, 1
+	note __, 1
+	note A#, 1
+	octave 6
+	note C#, 1
+	octave 5
+	note A#, 3
+	octave 6
+	note D#, 2
+	music_tempo_2 $4
+	note C#, 1
+	note D#, 1
+	note C#, 1
+	music_tempo_2 $6
+	octave 5
+	note A#, 8
+	note __, 4
+	ret_channel
+
+Music_8331d: ; 8331d
+	octave 7
+	note C#, 1
+	octave 6
+	note A_, 1
+	note E_, 1
+	note C#, 1
+	note A_, 1
+	note E_, 1
+	note C#, 1
+	octave 5
+	note A_, 1
+	octave 6
+	note C#, 1
+	octave 5
+	note A_, 1
+	octave 6
+	note C#, 1
+	note E_, 1
+	note A_, 1
+	note E_, 1
+	note A_, 1
+	octave 7
+	note C#, 1
+	ret_channel
+
+Music_83335: ; 83335
+	octave 4
+	note C#, 3
+	note D#, 1
+	note __, 2
+	music_setrepeat1a $2
+	note D#, 1
+	octave 5
+	note D#, 1
+	octave 4
+	music_dorepeat1a
+	note D#, 2
+	note __, 2
+	note D#, 1
+	note __, 1
+	note F#, 3
+	note D#, 1
+	note __, 2
+	note D#, 2
+	note A#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note A#, 2
+	note C#, 2
+	ret_channel
+
+Music_8334f: ; 8334f
+	note C_, 2
+	note C#, 2
+	note G#, 2
+	note C#, 2
+	note C_, 2
+	note C_, 2
+	note G#, 2
+	note C#, 2
+	note C_, 2
+	note C#, 2
+	note G#, 2
+	note C#, 2
+	ret_channel
+
+MusicHeader_8204a_Ch6: ; 8335c
+	music_tempo_2 $6
+
+Music_8335e: ; 8335e
+	call_channel Music_8334f
+	note G#, 1
+	note G#, 2
+	note C_, 1
+	note G#, 1
+	note G#, 1
+	note G#, 2
+	call_channel Music_8334f
+	note C_, 2
+	note G#, 2
+	note G#, 2
+	note C_, 2
+	call_channel Music_8334f
+	note G#, 1
+	note G#, 2
+	note C_, 1
+	note G#, 1
+	note G#, 1
+	note G#, 2
+	music_setrepeat1a $3
+	call_channel Music_8334f
+	note C_, 2
+	note G#, 2
+	note G#, 2
+	note C_, 2
+	music_dorepeat1a
+	music_setrepeat1a $3
+	call_channel Music_8334f
+	note G#, 1
+	note G#, 2
+	note C_, 1
+	note G#, 1
+	note G#, 1
+	note G#, 2
+	call_channel Music_8334f
+	note C_, 2
+	note G#, 2
+	note G#, 2
+	note C_, 2
+	music_dorepeat1a
+	note C_, 2
+	note C#, 2
+	note G#, 2
+	note C#, 2
+	note G#, 1
+	note G#, 2
+	note C_, 1
+	note G#, 1
+	note G#, 1
+	note G#, 2
+	jump_channel Music_8335e
+
+MusicHeader_82054_Ch1: ; 833a1
+	music_tempo_2 $8
+	music_e8 $18
+	music_setfreqoffset $1
+	music_f9 $15, 4, 4
+
+Music_833aa: ; 833aa
+	note __, 1
+	call_channel Music_837d0
+	octave 5
+	note A_, 1
+	note A#, 1
+	note A_, 1
+	note A#, 1
+	music_fa $72
+	note A_, 1
+	note A#, 1
+	note A_, 1
+	note A#, 1
+	note __, 1
+	call_channel Music_837d8
+	octave 5
+	note D_, 1
+	note G_, 1
+	note F_, 1
+	note A_, 1
+	note G_, 1
+	note A#, 1
+	note A_, 1
+	note F_, 1
+	note G_, 1
+	note D_, 1
+	note F_, 1
+	note C_, 1
+	note D_, 1
+	note G_, 1
+	call_channel Music_837e0
+	note __, 1
+	music_fa $b4
+	octave 5
+	note G_, 1
+	music_setrepeat1a $2
+	octave 6
+	note D_, 1
+	note F#, 1
+	note A#, 1
+	note A_, 1
+	octave 7
+	note C#, 1
+	note F#, 1
+	music_fa $b2
+	music_dorepeat1a
+	note __, 2
+	music_tempo_2 $8
+	note __, 1
+	call_channel Music_837d0
+	octave 6
+	note C_, 1
+	note D_, 1
+	note C_, 1
+	note D_, 1
+	music_fa $72
+	note C_, 1
+	note D_, 1
+	note C_, 1
+	note D_, 1
+	note __, 1
+	call_channel Music_837d8
+	octave 5
+	note G_, 1
+	note A#, 1
+	note A_, 1
+	octave 6
+	note C_, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note D_, 1
+	note F_, 1
+	note C_, 1
+	note D_, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	octave 5
+	note G_, 1
+	note A_, 1
+	note F_, 1
+	note D_, 1
+	call_channel Music_837e0
+	music_fa $b4
+	music_setrepeat1a $2
+	octave 7
+	note F#, 1
+	octave 6
+	note G_, 1
+	octave 5
+	note G#, 1
+	octave 4
+	note A_, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note B_, 1
+	octave 7
+	note D#, 1
+	music_fa $b2
+	music_dorepeat1a
+	note __, 1
+	music_tempo_2 $8
+	music_fa $b3
+	music_fb $11, $12, $3, $11
+	octave 5
+	note A#, 1
+	note A#, 2
+	octave 6
+	note C_, 1
+	note C_, 2
+	note D_, 1
+	note D_, 2
+	note D#, 1
+	note D#, 2
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	octave 6
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note D_, 6
+	note __, 2
+	note __, 1
+	octave 5
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 6
+	note D_, 1
+	octave 5
+	note A#, 2
+	octave 6
+	note C_, 1
+	note C_, 2
+	note D_, 1
+	note D_, 2
+	note D#, 1
+	note D#, 2
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	octave 6
+	note A_, 8
+	music_tempo_2 $4
+	note __, 1
+	music_tempo_2 $8
+	music_fa $78
+	music_fb $11, $13, $4, $11
+	octave 6
+	note D_, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note A#, 1
+	music_setrepeat1a $3
+	note A_, 1
+	note A#, 1
+	music_dorepeat1a
+	octave 6
+	note C_, 1
+	note D_, 1
+	note E_, 1
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 9
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note D#, 1
+	note D_, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 6
+	note C_, 2
+	note D_, 1
+	note D#, 1
+	octave 5
+	note G_, 1
+	note __, 1
+	octave 6
+	note C_, 1
+	note __, 1
+	octave 5
+	note A#, 2
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	music_fa $76
+	music_setrepeat1a $4
+	note A_, 1
+	note A#, 1
+	music_dorepeat1a
+	music_fa $78
+	octave 6
+	note C_, 1
+	note D_, 1
+	note D#, 1
+	note F_, 1
+	note D#, 1
+	note D_, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	note A_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	octave 6
+	note C#, 1
+	note __, 1
+	octave 5
+	note A_, 1
+	note __, 2
+	note D_, 1
+	note G_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note E_, 4
+	note __, 1
+	note __, 2
+	music_tempo_2 $4
+	note D#, 1
+	note F_, 1
+	music_tempo_2 $8
+	note F#, 4
+	note __, 1
+	note __, 2
+	music_tempo_2 $4
+	note G_, 1
+	note F#, 1
+	music_tempo_2 $8
+	music_fb $11, $13, $3, $11
+	note F_, 3
+	note G_, 1
+	note F_, 1
+	note G_, 1
+	note F_, 1
+	note G_, 1
+	music_tempo_2 $4
+	note __, 1
+	music_tempo_2 $8
+	music_fb $11, $11, $2, $11
+	music_fa $73
+	music_setrepeat1a $2
+	note B_, 1
+	note A#, 1
+	note G#, 1
+	note G_, 1
+	music_dorepeat1a
+	call_channel Music_837e8
+	music_fa $74
+	octave 6
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	octave 6
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	call_channel Music_837e8
+	music_fa $74
+	octave 6
+	note G#, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	note C#, 1
+	note C_, 1
+	octave 6
+	note A#, 1
+	note G#, 1
+	note G_, 1
+	call_channel Music_837f2
+	octave 6
+	note D#, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	music_tempo_2 $4
+	note __, 1
+	music_tempo_2 $8
+	call_channel Music_837f2
+	octave 6
+	note E_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	octave 5
+	note A_, 1
+	note __, 1
+	octave 6
+	note C#, 1
+	note __, 1
+	octave 5
+	note B_, 1
+	note A#, 1
+	note B_, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note G#, 1
+	music_setrepeat1a $4
+	note G_, 1
+	note F#, 1
+	music_dorepeat1a
+	jump_channel Music_833aa
+
+MusicHeader_82054_Ch2: ; 83540
+	music_tempo_2 $8
+	music_e8 $18
+	music_f9 $15, 4, 5
+
+Music_83547: ; 83547
+	call_channel Music_837ad
+	octave 5
+	note A_, 1
+	note A#, 1
+	note A_, 1
+	note A#, 1
+	music_fa $77
+	note A_, 1
+	note A#, 1
+	music_fa $75
+	note A_, 1
+	note A#, 1
+	call_channel Music_837b5
+	octave 7
+	note D_, 3
+	note __, 1
+	note C#, 3
+	note __, 1
+	note C_, 3
+	note __, 1
+	octave 6
+	note A#, 3
+	note __, 1
+	music_tempo_2 $4
+	music_fb $11, $11, $2, $11
+	music_setrepeat1a $2
+	octave 5
+	note D_, 1
+	note F#, 1
+	note A#, 1
+	note A_, 1
+	octave 7
+	note C#, 1
+	note F#, 1
+	music_fa $73
+	music_dorepeat1a
+	music_tempo_2 $8
+	note __, 2
+	call_channel Music_837ad
+	octave 6
+	note C_, 1
+	note D_, 1
+	note C_, 1
+	note D_, 1
+	music_fa $77
+	note C_, 1
+	note D_, 1
+	music_fa $75
+	note C_, 1
+	note D_, 1
+	call_channel Music_837b5
+	octave 7
+	note F_, 3
+	note __, 1
+	note E_, 3
+	note __, 1
+	note D#, 3
+	note __, 1
+	note D_, 3
+	note __, 1
+	music_tempo_2 $4
+	music_fb $11, $11, $2, $11
+	music_setrepeat1a $2
+	octave 7
+	note F#, 1
+	octave 6
+	note G_, 1
+	octave 5
+	note G#, 1
+	note __, 1
+	note A#, 1
+	octave 6
+	note B_, 1
+	octave 7
+	note D#, 1
+	music_fa $73
+	music_dorepeat1a
+	music_tempo_2 $8
+	note __, 1
+	call_channel Music_837b5
+	call_channel Music_8379a
+	octave 6
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note D_, 5
+	note __, 2
+	note __, 2
+	octave 5
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 6
+	note D_, 1
+	call_channel Music_8379a
+	octave 6
+	note A_, 10
+	note __, 2
+	note __, 4
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note D_, 13
+	note C_, 1
+	octave 5
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 6
+	note C_, 1
+	note D_, 1
+	note D#, 1
+	note F_, 1
+	note G_, 1
+	octave 7
+	note C_, 1
+	octave 6
+	note A#, 1
+	note A_, 1
+	octave 7
+	note D_, 1
+	note C_, 1
+	note D_, 1
+	note C_, 1
+	octave 6
+	note A#, 1
+	note A_, 1
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note G_, 1
+	note F_, 1
+	note D#, 1
+	note D_, 1
+	music_fa $77
+	note D#, 1
+	note D_, 1
+	music_setrepeat1a $4
+	note C_, 1
+	note D_, 1
+	music_dorepeat1a
+	music_fa $79
+	note D#, 1
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note D#, 1
+	note D_, 1
+	note C#, 1
+	note __, 1
+	octave 5
+	note A_, 1
+	note __, 1
+	octave 6
+	note D_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	music_tempo_2 $1
+	music_fa $78
+	note D_, 2
+	note F#, 2
+	note A_, 2
+	music_fa $79
+	octave 7
+	note D_, 10
+	music_tempo_2 $8
+	note __, 1
+	octave 5
+	note F_, 1
+	music_tempo_2 $1
+	music_fa $78
+	octave 6
+	note C_, 2
+	note E_, 2
+	note G_, 2
+	music_fa $79
+	note A#, 10
+	music_tempo_2 $8
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	note C#, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	note G_, 1
+	note F#, 1
+	note G_, 1
+	note __, 1
+	octave 6
+	note E_, 1
+	note F_, 1
+	note E_, 1
+	note D_, 1
+	note C#, 1
+	octave 5
+	note A_, 1
+	octave 6
+	note D_, 1
+	note __, 1
+	note G_, 1
+	music_fb $11, $13, $3, $11
+	note G#, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	music_fa $74
+	note G#, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	music_fa $79
+	note B_, 1
+	note A#, 1
+	note G#, 1
+	note G_, 1
+	music_fa $74
+	note B_, 1
+	note A#, 1
+	note G#, 1
+	note G_, 1
+	call_channel Music_837bd
+	music_fa $79
+	octave 6
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	octave 6
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	call_channel Music_837bd
+	music_fa $79
+	octave 6
+	note G#, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	note C#, 1
+	note C_, 1
+	octave 6
+	note A#, 1
+	note G#, 1
+	note G_, 1
+	call_channel Music_837bd
+	music_fa $79
+	octave 6
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	call_channel Music_837bd
+	music_fa $79
+	octave 6
+	note G#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note D_, 1
+	note C#, 1
+	note D_, 1
+	note C#, 1
+	note C_, 1
+	music_fa $77
+	octave 5
+	note B_, 1
+	note A#, 1
+	jump_channel Music_83547
+
+MusicHeader_82054_Ch3: ; 836b3
+	music_tempo_2 $8
+	music_fa $3
+	music_noise_sample $f
+
+Music_836b9: ; 836b9
+	music_fb $0, $0, $7, $0
+	octave 4
+	note G_, 2
+	note G_, 2
+	note A#, 2
+	note __, 10
+	note __, 10
+	octave 5
+	note D_, 2
+	octave 4
+	note F_, 4
+	octave 4
+	note G_, 2
+	note G_, 2
+	note A#, 2
+	note __, 10
+	note __, 10
+	note G_, 2
+	octave 5
+	note D_, 4
+	note C_, 2
+	note C_, 2
+	octave 4
+	note G_, 4
+	note __, 2
+	note G_, 2
+	note A#, 1
+	octave 5
+	note C_, 3
+	octave 4
+	note G_, 2
+	note G_, 2
+	note D_, 4
+	note __, 2
+	note G_, 2
+	octave 5
+	note C_, 1
+	note D_, 3
+	octave 4
+	note A_, 2
+	note A_, 2
+	note D#, 4
+	note __, 2
+	note A_, 2
+	note A_, 1
+	octave 5
+	note D#, 3
+	note D_, 2
+	note D_, 2
+	octave 4
+	note A_, 4
+	note __, 2
+	note A_, 2
+	octave 5
+	note D_, 1
+	octave 4
+	note A_, 3
+	music_fb $0, $0, $4, $0
+	note G_, 10
+	note A_, 1
+	note A#, 1
+	octave 5
+	note C_, 1
+	note D_, 1
+	note E_, 1
+	note F_, 1
+	note G_, 2
+	note __, 1
+	octave 4
+	note G_, 1
+	octave 5
+	note G_, 1
+	note __, 1
+	octave 4
+	note G_, 1
+	note __, 1
+	octave 5
+	note G_, 2
+	note F_, 2
+	note D#, 2
+	note D_, 2
+	note C_, 9
+	octave 4
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 5
+	note C_, 1
+	note D_, 1
+	note D#, 10
+	note D_, 2
+	note C_, 2
+	octave 4
+	note A#, 2
+	note A_, 2
+	note B_, 1
+	octave 5
+	note C#, 1
+	note D_, 2
+	octave 4
+	note A_, 2
+	octave 5
+	note D_, 2
+	octave 4
+	note __, 1
+	note G_, 1
+	octave 5
+	note C_, 2
+	octave 4
+	note G_, 2
+	music_fb $0, $0, $1, $0
+	note A_, 6
+	music_tempo_2 $4
+	note __, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	music_tempo_2 $8
+	note D_, 6
+	music_tempo_2 $4
+	note __, 1
+	note E_, 1
+	note F_, 1
+	note F#, 1
+	music_tempo_2 $8
+	music_fb $0, $0, $4, $0
+	note G_, 8
+	music_setrepeat1a $6
+	octave 5
+	note C_, 1
+	note C_, 1
+	note __, 1
+	octave 4
+	note G_, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	octave 5
+	note C#, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note G#, 1
+	music_dorepeat1a
+	octave 5
+	note C_, 1
+	note C_, 1
+	note __, 1
+	octave 4
+	note G_, 1
+	octave 5
+	note C_, 1
+	note D_, 1
+	note D#, 1
+	note F_, 1
+	note D#, 1
+	note D_, 1
+	note C_, 1
+	octave 4
+	note A#, 1
+	octave 5
+	note C_, 1
+	note __, 1
+	note G_, 2
+	note C#, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C#, 1
+	note D#, 1
+	note F_, 1
+	note G_, 1
+	note G#, 1
+	note G_, 1
+	note G#, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note F_, 1
+	note E_, 1
+	note C#, 1
+	note C_, 1
+	note C#, 1
+	note C_, 1
+	octave 4
+	note B_, 1
+	note A#, 1
+	note B_, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	jump_channel Music_836b9
+
+Music_8379a: ; 8379a
+	octave 6
+	note C_, 1
+	note C_, 1
+	note __, 1
+	note D_, 1
+	note D_, 1
+	note __, 1
+	note D#, 1
+	note D#, 1
+	note __, 1
+	note F_, 1
+	note F_, 1
+	note __, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	ret_channel
+
+Music_837ad: ; 837ad
+	music_fa $79
+	music_fb $11, $11, $3, $11
+	ret_channel
+
+Music_837b5: ; 837b5
+	music_fa $79
+	music_fb $11, $13, $4, $11
+	ret_channel
+
+Music_837bd: ; 837bd
+	music_fa $79
+	music_setrepeat1a $2
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	music_dorepeat1a
+	music_fa $74
+	music_setrepeat1a $2
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	music_dorepeat1a
+	ret_channel
+
+Music_837d0: ; 837d0
+	music_fa $73
+	music_fb $11, $11, $3, $11
+	ret_channel
+
+Music_837d8: ; 837d8
+	music_fa $b8
+	music_fb $11, $13, $4, $11
+	ret_channel
+
+Music_837e0: ; 837e0
+	music_tempo_2 $4
+	music_fb $11, $0, $1, $11
+	ret_channel
+
+Music_837e8: ; 837e8
+	music_fa $73
+	music_setrepeat1a $4
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	music_dorepeat1a
+	ret_channel
+
+Music_837f2: ; 837f2
+	music_fb $11, $0, $2, $11
+	music_fa $73
+	music_setrepeat1a $3
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	music_dorepeat1a
+	octave 5
+	note A#, 1
+	music_tempo_2 $4
+	octave 6
+	note C_, 1
+	music_tempo_2 $8
+	music_fa $78
+	music_fb $11, $13, $4, $11
+	ret_channel
+
+Music_83810: ; 83810
+	note G#, 2
+	note E_, 2
+	note D_, 2
+	note D#, 2
+	note G#, 1
+	note G#, 1
+	note D#, 2
+	ret_channel
+
+MusicHeader_82054_Ch6: ; 83818
+	music_tempo_2 $8
+
+Music_8381a: ; 8381a
+	music_setrepeat1d $2
+	note C_, 2
+	note C_, 2
+	note E_, 2
+	music_setrepeat1a $6
+	note D_, 1
+	note C#, 1
+	note D#, 2
+	music_dorepeat1a
+	note G#, 1
+	note G#, 1
+	music_dorepeat1d
+	music_setrepeat1a $4
+	note C_, 2
+	note C_, 2
+	note E_, 2
+	note D_, 1
+	note C#, 1
+	note D#, 2
+	note D#, 2
+	note D_, 1
+	note C#, 1
+	note E_, 2
+	music_dorepeat1a
+	note C_, 4
+	call_channel Music_83810
+	note C_, 3
+	note C_, 1
+	call_channel Music_83810
+	music_setrepeat1a $2
+	note C_, 4
+	note G#, 2
+	note E_, 2
+	note D_, 2
+	note D#, 2
+	note G#, 2
+	note D#, 2
+	music_dorepeat1a
+	note D_, 2
+	note G#, 2
+	note E_, 2
+	note C_, 2
+	note D#, 1
+	note G#, 2
+	note C_, 1
+	note D#, 2
+	note G#, 2
+	note C_, 2
+	music_setrepeat1a $3
+	note D_, 2
+	note G#, 2
+	music_dorepeat1a
+	note D_, 2
+	note C_, 2
+	note D_, 2
+	note G#, 2
+	note D_, 1
+	note G#, 1
+	music_setrepeat1a $d
+	note C_, 1
+	note G#, 2
+	note D#, 1
+	music_dorepeat1a
+	note C_, 1
+	note G#, 1
+	note D#, 1
+	note G#, 1
+	music_setrepeat1a $3
+	note C_, 1
+	note G#, 2
+	note D#, 1
+	music_dorepeat1a
+	note C_, 1
+	note G#, 1
+	note D#, 1
+	note G#, 1
+	note C_, 1
+	note G#, 2
+	note D#, 1
+	note C_, 1
+	note G#, 1
+	note D#, 1
+	note G#, 1
+	note C_, 2
+	note E_, 2
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	jump_channel Music_8381a
+
+MusicHeader_8205e_Ch1: ; 83881
+	music_tempo_2 $9
+	music_e8 $1b
+	music_setfreqoffset $1
+
+Music_83887: ; 83887
+	music_fb $11, $11, $7, $12
+	music_setrepeat1a $3
+	call_channel Music_83a8c
+	call_channel Music_83ab6
+	music_dorepeat1a
+	call_channel Music_83a8c
+	music_tempo_2 $6
+	music_fa $b4
+	music_fb $11, $11, $2, $11
+	octave 5
+	call_channel Music_83ac3
+	octave 8
+	note C#, 1
+	music_tempo_2 $9
+	music_fa $78
+	music_fb $11, $11, $7, $12
+	music_setrepeat1a $4
+	octave 5
+	note A#, 1
+	octave 6
+	note C#, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	note C_, 1
+	note D#, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	note C_, 1
+	note D_, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	octave 5
+	note A#, 1
+	octave 6
+	note F_, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	octave 5
+	note A#, 1
+	octave 6
+	note E_, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	octave 6
+	note F_, 1
+	note A_, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	note F_, 1
+	note G#, 1
+	music_dorepeat1a
+	music_setrepeat1d $2
+	music_setrepeat1a $4
+	octave 6
+	note F_, 1
+	octave 7
+	note C_, 1
+	music_dorepeat1a
+	octave 6
+	music_setrepeat1a $4
+	note F_, 1
+	note B_, 1
+	music_dorepeat1a
+	music_dorepeat1d
+	octave 6
+	music_setrepeat1a $10
+	note D#, 1
+	note F#, 1
+	music_dorepeat1a
+	music_tempo_2 $1
+	note __, 9
+	note __, 5
+	music_tempo_2 $9
+	music_fb $11, $11, $3, $11
+	music_fa $b3
+	call_channel Music_83a7e
+	call_channel Music_83a7e
+	music_fa $b2
+	call_channel Music_83a7e
+	call_channel Music_83a7e
+	music_fa $b3
+	call_channel Music_83a85
+	call_channel Music_83a85
+	music_fa $b2
+	call_channel Music_83a85
+	octave 8
+	note C_, 1
+	octave 7
+	note G#, 1
+	music_tempo_2 $1
+	note F#, 4
+	music_tempo_2 $9
+	jump_channel Music_83887
+
+MusicHeader_8205e_Ch2: ; 8392b
+	music_tempo_2 $9
+	music_f9 $15, 4, 5
+
+Music_83930: ; 83930
+	music_e8 $0
+	music_fa $b9
+	music_fb $11, $11, $5, $51
+	note __, 12
+	music_e8 $12
+	octave 5
+	note F#, 3
+	music_tempo_2 $1
+	note F_, 4
+	note E_, 5
+	music_tempo_2 $9
+	note D#, 7
+	note __, 1
+	note G#, 7
+	note __, 1
+	note A#, 7
+	note __, 1
+	octave 6
+	note C#, 12
+	note __, 2
+	note C_, 2
+	note C#, 2
+	music_tempo_2 $6
+	note C_, 1
+	note C#, 1
+	note C_, 1
+	music_tempo_2 $9
+	octave 5
+	note A#, 2
+	note G#, 2
+	note __, 8
+	note D#, 2
+	note F_, 2
+	note F#, 2
+	octave 6
+	note C#, 1
+	music_tempo_2 $1
+	note C_, 4
+	note C#, 5
+	music_tempo_2 $9
+	note C_, 10
+	note __, 2
+	note C#, 2
+	note D#, 2
+	octave 5
+	note A#, 16
+	note __, 8
+	music_tempo_2 $6
+	music_fa $b4
+	music_fb $11, $11, $2, $11
+	octave 5
+	note C#, 1
+	call_channel Music_83ac3
+	music_tempo_2 $9
+	music_fa $b9
+	music_fb $11, $11, $5, $51
+	octave 7
+	note C#, 2
+	octave 6
+	note G_, 2
+	note G#, 2
+	note A#, 2
+	octave 7
+	note C_, 5
+	note __, 1
+	note C_, 1
+	note D_, 1
+	note D#, 5
+	note __, 1
+	music_tempo_2 $1
+	note F_, 14
+	note D#, 4
+	note F_, 4
+	music_tempo_2 $4
+	note D#, 8
+	music_tempo_2 $9
+	note D_, 3
+	note __, 1
+	note F_, 2
+	octave 6
+	note A_, 2
+	note A#, 2
+	octave 7
+	note F_, 2
+	note F#, 2
+	octave 6
+	note A#, 2
+	note B_, 2
+	octave 7
+	note F#, 2
+	note A_, 5
+	note __, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	note __, 1
+	music_fa $b5
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	note __, 1
+	music_fa $b3
+	note A#, 1
+	note A_, 1
+	music_fa $b9
+	octave 8
+	note C_, 6
+	music_e8 $1b
+	octave 7
+	note B_, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	call_channel Music_83a75
+	music_fa $b5
+	call_channel Music_83a75
+	music_fa $b9
+	music_e8 $12
+	octave 5
+	note D#, 8
+	note F#, 4
+	note A#, 4
+	note A_, 4
+	note F_, 4
+	note C_, 4
+	octave 6
+	note C_, 4
+	music_fb $11, $11, $3, $11
+	music_e8 $1b
+	call_channel Music_83a7e
+	music_fa $b7
+	call_channel Music_83a7e
+	music_fa $b5
+	call_channel Music_83a7e
+	music_fa $b3
+	call_channel Music_83a7e
+	music_fa $b9
+	call_channel Music_83a85
+	music_fa $b7
+	call_channel Music_83a85
+	music_fa $b5
+	call_channel Music_83a85
+	music_fa $b3
+	call_channel Music_83a85
+	jump_channel Music_83930
+
+MusicHeader_8205e_Ch3: ; 83a0e
+	music_tempo_2 $9
+	music_fa $3
+	music_fb $0, $0, $6, $0
+	music_noise_sample $c
+
+Music_83a19: ; 83a19
+	music_setrepeat1a $4
+	octave 4
+	note D#, 2
+	note D#, 2
+	note __, 12
+	note E_, 2
+	note E_, 2
+	note __, 10
+	note G#, 1
+	octave 5
+	note D#, 1
+	music_dorepeat1a
+	octave 4
+	note E_, 2
+	note E_, 2
+	note __, 8
+	note A#, 2
+	note E_, 2
+	note F#, 2
+	note F#, 2
+	note __, 4
+	note F#, 4
+	octave 5
+	note D_, 4
+	octave 4
+	note G_, 12
+	octave 5
+	note D_, 2
+	octave 4
+	note G_, 2
+	note B_, 2
+	note B_, 2
+	note __, 4
+	octave 5
+	note F_, 4
+	octave 4
+	note B_, 4
+	octave 5
+	note D_, 10
+	note __, 4
+	note D_, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note D_, 2
+	note D_, 2
+	note __, 12
+	note __, 2
+	music_fa $2
+	music_fb $0, $0, $3, $0
+	music_noise_sample $f
+	music_setfreqoffset $1
+	octave 5
+	note D#, 8
+	note F#, 4
+	note A#, 4
+	note A_, 4
+	note F_, 4
+	note C_, 4
+	octave 6
+	note C_, 2
+	music_setfreqoffset $0
+	music_fa $3
+	music_fb $0, $0, $6, $0
+	music_noise_sample $c
+	octave 4
+	note D#, 2
+	note D#, 2
+	note __, 10
+	note D#, 2
+	note D_, 2
+	note D_, 2
+	note __, 10
+	note D_, 2
+	jump_channel Music_83a19
+
+Music_83a75: ; 83a75
+	note D_, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	ret_channel
+
+Music_83a7e: ; 83a7e
+	octave 7
+	note C#, 1
+	octave 6
+	note A_, 1
+	note G_, 1
+	note D#, 1
+	ret_channel
+
+Music_83a85: ; 83a85
+	octave 8
+	note C_, 1
+	octave 7
+	note G#, 1
+	note F#, 1
+	note D_, 1
+	ret_channel
+
+Music_83a8c: ; 83a8c
+	music_fa $78
+	octave 6
+	note A#, 1
+	octave 7
+	note D#, 1
+	octave 6
+	note G#, 1
+	note A#, 1
+	note D#, 1
+	note G#, 1
+	music_fa $76
+	note A#, 1
+	octave 7
+	note D#, 1
+	octave 6
+	note G#, 1
+	note A#, 1
+	note D#, 1
+	note G#, 1
+	music_fa $75
+	note A#, 1
+	octave 7
+	note D#, 1
+	octave 6
+	note G#, 1
+	note A#, 1
+	note D#, 1
+	note G#, 1
+	music_fa $74
+	note A#, 1
+	octave 7
+	note D#, 1
+	octave 6
+	note G#, 1
+	note A#, 1
+	note D#, 1
+	note G#, 1
+	ret_channel
+
+Music_83ab6: ; 83ab6
+	note A#, 1
+	octave 7
+	note D#, 1
+	octave 6
+	note G#, 1
+	note A#, 1
+	music_fa $73
+	note D#, 1
+	note G#, 1
+	note G#, 1
+	note __, 1
+	ret_channel
+
+Music_83ac3: ; 83ac3
+	note E_, 1
+	note G#, 1
+	music_fa $b5
+	note A#, 1
+	octave 6
+	note C#, 1
+	note E_, 1
+	music_fa $b6
+	note G#, 1
+	note A#, 1
+	octave 7
+	note C#, 1
+	music_fa $b7
+	note E_, 1
+	note G#, 1
+	note A#, 1
+	ret_channel
+
+Music_83ad7: ; 83ad7
+	note D_, 1
+	note C#, 1
+	note D_, 2
+	note E_, 2
+	note C#, 2
+	note D_, 2
+	note C#, 4
+	note D_, 1
+	note C#, 1
+	ret_channel
+
+MusicHeader_8205e_Ch6: ; 83ae1
+	music_tempo_2 $9
+
+Music_83ae3: ; 83ae3
+	music_setrepeat1a $8
+	note D_, 4
+	note E_, 2
+	note C#, 10
+	music_dorepeat1a
+	music_setrepeat1a $2
+	call_channel Music_83ad7
+	note E_, 2
+	note D_, 4
+	note D_, 1
+	note C#, 1
+	note E_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 2
+	music_dorepeat1a
+	call_channel Music_83ad7
+	note E_, 6
+	note D_, 1
+	note C#, 1
+	note E_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 2
+	music_setrepeat1a $3
+	note D_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 2
+	note D_, 2
+	note C#, 6
+	music_dorepeat1a
+	note D_, 2
+	note C#, 2
+	note E_, 2
+	note C#, 2
+	note D_, 2
+	note C#, 4
+	note E_, 2
+	jump_channel Music_83ae3
+
+MusicHeader_82068_Ch1: ; 83b14
+	music_tempo_2 $6
+	music_e8 $12
+	music_f9 $13, 4, 4
+
+Music_83b1b: ; 83b1b
+	music_fa $78
+	music_fb $11, $12, $4, $21
+	octave 6
+	note A_, 1
+	note A_, 1
+	music_fb $11, $13, $7, $11
+	note D_, 2
+	note G_, 2
+	note D#, 2
+	note A#, 2
+	note G_, 2
+	octave 7
+	note D#, 2
+	octave 6
+	note A#, 2
+	note A_, 2
+	octave 7
+	note C_, 2
+	octave 6
+	note A#, 2
+	note G_, 2
+	note F_, 2
+	note A_, 2
+	note C#, 2
+	note C_, 2
+	octave 5
+	note A#, 2
+	octave 6
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	music_fb $11, $12, $4, $21
+	octave 5
+	note G_, 1
+	note __, 1
+	octave 6
+	note G_, 1
+	note __, 3
+	note G_, 4
+	music_tempo_2 $3
+	note F#, 1
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	music_fa $75
+	note D_, 1
+	note C#, 1
+	note C_, 1
+	octave 5
+	note B_, 1
+	music_tempo_2 $6
+	music_fa $78
+	note __, 2
+	octave 6
+	note D#, 1
+	note D#, 1
+	note __, 1
+	note D#, 1
+	note G_, 1
+	note G_, 1
+	note __, 1
+	note G_, 1
+	octave 7
+	note C_, 1
+	note C_, 1
+	music_fb $11, $13, $7, $11
+	octave 6
+	note G_, 2
+	note C_, 2
+	note G#, 2
+	note D#, 2
+	note C_, 2
+	octave 5
+	note G#, 2
+	octave 6
+	note D#, 2
+	note D_, 2
+	note F_, 2
+	note D#, 2
+	note C_, 2
+	octave 5
+	note A#, 2
+	octave 6
+	note D_, 2
+	octave 5
+	note F#, 2
+	note F_, 2
+	octave 6
+	note D#, 2
+	note F_, 2
+	note G#, 2
+	note F_, 2
+	music_fb $11, $12, $4, $21
+	note C_, 2
+	octave 7
+	note C_, 1
+	note __, 3
+	note C_, 4
+	music_tempo_2 $3
+	octave 6
+	note B_, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	music_fa $74
+	note G_, 1
+	note F#, 1
+	note F_, 1
+	note E_, 1
+	music_fa $78
+	note __, 4
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	music_tempo_2 $6
+	music_fa $b8
+	octave 5
+	note G#, 9
+	note __, 1
+	note G_, 1
+	note G#, 1
+	note G_, 4
+	note F_, 2
+	note G_, 2
+	note G#, 2
+	note B_, 2
+	note A#, 2
+	note G#, 4
+	note G_, 2
+	note G#, 4
+	octave 6
+	note C_, 2
+	note D#, 2
+	note D_, 2
+	note C#, 2
+	octave 5
+	note G_, 2
+	note G#, 14
+	note __, 2
+	music_fb $11, $12, $4, $11
+	note G#, 4
+	note G#, 1
+	note __, 1
+	note F_, 1
+	note D#, 1
+	note F_, 1
+	note G#, 1
+	note A#, 1
+	note G#, 1
+	note A#, 1
+	octave 6
+	note C_, 1
+	note D#, 1
+	note F_, 1
+	octave 5
+	note F_, 4
+	note G#, 1
+	note __, 1
+	note D#, 1
+	note C#, 1
+	note D#, 1
+	note F_, 1
+	note G#, 1
+	note F_, 1
+	note G#, 1
+	note A#, 1
+	octave 6
+	note C_, 1
+	octave 5
+	note A#, 1
+	note A#, 4
+	octave 6
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note C_, 1
+	note C#, 1
+	octave 5
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note G#, 1
+	note F_, 1
+	note G#, 1
+	octave 6
+	note C#, 1
+	note C#, 4
+	note C_, 1
+	note __, 1
+	octave 5
+	note G#, 1
+	note __, 1
+	octave 6
+	note G#, 1
+	note F#, 1
+	note D#, 1
+	note C#, 1
+	note C_, 1
+	octave 5
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note F_, 1
+	call_channel Music_83e1c
+	music_setrepeat1a $4
+	note G#, 1
+	note G#, 1
+	note C#, 1
+	note C#, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	note G_, 1
+	note G_, 1
+	note C#, 1
+	note C#, 1
+	music_dorepeat1a
+	call_channel Music_83e1c
+	music_setrepeat1a $2
+	note F_, 1
+	note F_, 1
+	note C#, 1
+	note C#, 1
+	music_dorepeat1a
+	music_setrepeat1a $2
+	note G#, 1
+	note G#, 1
+	note C#, 1
+	note C#, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	note G_, 1
+	note G_, 1
+	note C#, 1
+	note C#, 1
+	music_dorepeat1a
+	jump_channel Music_83b1b
+
+MusicHeader_82068_Ch2: ; 83c42
+	music_tempo_2 $6
+	music_e8 $12
+	music_f9 $13, 4, 4
+
+Music_83c49: ; 83c49
+	music_fa $79
+	music_fb $11, $12, $4, $21
+	octave 7
+	note D_, 1
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	note D_, 1
+	octave 6
+	note A_, 2
+	octave 7
+	note D_, 2
+	note F#, 2
+	note A_, 2
+	note G#, 2
+	note G_, 4
+	music_setrepeat1a $2
+	note A_, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	music_dorepeat1a
+	music_fa $75
+	octave 6
+	note F_, 1
+	note A_, 1
+	music_fa $79
+	octave 7
+	note D_, 1
+	note __, 1
+	note C_, 4
+	octave 6
+	note A#, 4
+	note G_, 1
+	note __, 1
+	octave 7
+	note D_, 1
+	note __, 3
+	note D_, 4
+	music_tempo_2 $3
+	note C#, 1
+	note C_, 1
+	octave 6
+	note B_, 1
+	note A#, 1
+	music_fa $75
+	note A_, 1
+	note G#, 1
+	note G_, 1
+	note F#, 1
+	music_tempo_2 $6
+	music_fa $79
+	note __, 2
+	note A#, 1
+	note A#, 1
+	note __, 1
+	note A#, 1
+	octave 7
+	note D_, 1
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note G#, 1
+	note D_, 2
+	note C_, 2
+	octave 6
+	note G_, 2
+	octave 7
+	note D_, 2
+	note C_, 2
+	octave 6
+	note A#, 2
+	note G_, 2
+	note __, 2
+	note A#, 1
+	note __, 1
+	octave 7
+	note C_, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	note F_, 4
+	music_tempo_2 $3
+	note E_, 1
+	note F_, 3
+	music_tempo_2 $6
+	note D#, 2
+	note C_, 2
+	note D#, 2
+	note F_, 1
+	note __, 3
+	note F_, 4
+	music_tempo_2 $3
+	note E_, 1
+	note D#, 1
+	note D_, 1
+	note C#, 1
+	music_fa $75
+	note C_, 1
+	octave 6
+	note B_, 1
+	note A#, 1
+	note A_, 1
+	music_fa $79
+	note __, 4
+	octave 7
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 6
+	note A#, 1
+	note __, 1
+	octave 7
+	note C_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	octave 6
+	note A#, 1
+	note __, 1
+	music_tempo_2 $6
+	music_fa $b9
+	music_fb $11, $12, $4, $41
+	octave 6
+	note F_, 9
+	note __, 1
+	note E_, 1
+	note F_, 1
+	note E_, 4
+	note C_, 2
+	note E_, 2
+	note F_, 2
+	note G#, 4
+	note G_, 2
+	note G#, 2
+	note A#, 2
+	octave 7
+	note C_, 4
+	octave 6
+	note A#, 2
+	note G#, 2
+	note G_, 4
+	note C_, 2
+	note F_, 14
+	note __, 2
+	music_fb $11, $12, $4, $11
+	note D#, 4
+	note F_, 1
+	note __, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	octave 6
+	note C_, 1
+	note D#, 1
+	note F_, 1
+	note D#, 1
+	note F_, 1
+	note G#, 1
+	note A#, 1
+	octave 7
+	note C_, 1
+	octave 6
+	note C_, 4
+	note D#, 1
+	note __, 1
+	octave 5
+	note A#, 1
+	note G#, 1
+	note A#, 1
+	octave 6
+	note C_, 1
+	note D#, 1
+	note C_, 1
+	note D#, 1
+	note F_, 1
+	note G#, 1
+	note D#, 1
+	note D#, 4
+	note G#, 1
+	note __, 1
+	note A#, 1
+	note G#, 1
+	note A#, 1
+	note F_, 1
+	note D#, 1
+	note F_, 1
+	note C#, 1
+	note C_, 1
+	note C#, 1
+	note F_, 1
+	note G#, 4
+	note A#, 1
+	note __, 3
+	octave 7
+	note F_, 1
+	note D#, 1
+	note C_, 1
+	octave 6
+	note A#, 1
+	note G#, 1
+	note F_, 1
+	note D#, 1
+	note C_, 1
+	octave 5
+	note A#, 1
+	note G#, 1
+	music_fb $11, $12, $4, $21
+	note A#, 4
+	octave 6
+	note C_, 2
+	note C#, 2
+	note __, 2
+	note C_, 2
+	note C#, 2
+	note D#, 2
+	note C#, 2
+	note C_, 2
+	octave 5
+	note A#, 2
+	note G#, 2
+	note A#, 2
+	octave 6
+	note C_, 2
+	note __, 2
+	note C#, 1
+	note D#, 1
+	note F_, 5
+	note __, 1
+	note D#, 1
+	note F_, 1
+	note D#, 5
+	note __, 1
+	note F_, 1
+	note G#, 1
+	note A#, 5
+	note __, 1
+	octave 7
+	note C_, 1
+	note C#, 1
+	note D#, 3
+	note __, 1
+	note F_, 3
+	note __, 1
+	note F_, 9
+	note __, 1
+	note D#, 2
+	note F_, 2
+	note G#, 2
+	note F_, 2
+	note D#, 2
+	note C_, 2
+	octave 6
+	note A#, 2
+	note G#, 2
+	note F_, 1
+	note __, 2
+	octave 7
+	note C_, 1
+	note C#, 1
+	note D#, 1
+	octave 6
+	note G#, 5
+	note __, 1
+	note A#, 2
+	octave 7
+	note C_, 2
+	note C#, 2
+	note C_, 2
+	octave 6
+	note G#, 2
+	note A#, 7
+	note __, 1
+	music_fb $11, $12, $4, $11
+	music_setrepeat1a $2
+	octave 7
+	note C_, 1
+	note C_, 1
+	octave 6
+	note F_, 1
+	note F_, 1
+	music_dorepeat1a
+	jump_channel Music_83c49
+
+MusicHeader_82068_Ch3: ; 83d97
+	music_tempo_2 $6
+	music_fa $3
+	music_noise_sample $f
+
+Music_83d9d: ; 83d9d
+	music_fb $0, $0, $4, $0
+	call_channel Music_83e2d
+	music_setrepeat1a $2
+	octave 4
+	note A#, 2
+	octave 5
+	note F_, 2
+	note D#, 2
+	note A#, 2
+	note F_, 2
+	note D#, 2
+	note __, 2
+	octave 4
+	note A#, 2
+	note __, 2
+	note A#, 2
+	octave 5
+	note A#, 2
+	note E_, 2
+	note D#, 2
+	note C#, 2
+	octave 4
+	note A#, 2
+	note G#, 2
+	music_dorepeat1a
+	call_channel Music_83e2d
+	note __, 2
+	note F_, 2
+	music_setrepeat1a $2
+	note F_, 2
+	octave 5
+	note C_, 2
+	octave 4
+	music_dorepeat1a
+	note F_, 2
+	note C#, 4
+	note F#, 2
+	music_tempo_2 $3
+	note A#, 3
+	note G#, 3
+	note D#, 2
+	music_tempo_2 $6
+	note F_, 3
+	note D#, 2
+	note F_, 1
+	note B_, 4
+	note A#, 2
+	note A#, 2
+	note F_, 2
+	note A#, 2
+	note F_, 2
+	note A#, 2
+	note G#, 4
+	note G#, 2
+	note G#, 2
+	octave 5
+	note F_, 2
+	music_fb $0, $0, $6, $0
+	octave 4
+	note G#, 2
+	note A#, 2
+	octave 5
+	note C_, 2
+	note C#, 2
+	music_setrepeat1a $8
+	music_fb $0, $0, $7, $0
+	octave 4
+	note A#, 2
+	note A#, 2
+	note A#, 2
+	music_fb $0, $0, $2, $0
+	note G#, 2
+	music_fb $0, $0, $7, $0
+	note A#, 2
+	note A#, 2
+	note A#, 2
+	music_fb $0, $0, $2, $0
+	octave 5
+	note F_, 2
+	music_dorepeat1a
+	jump_channel Music_83d9d
+
+Music_83e11: ; 83e11
+	note C_, 4
+	note A_, 4
+	note C#, 2
+	note C_, 2
+	note A_, 4
+	note C#, 2
+	note C_, 2
+	note A_, 4
+	note C#, 2
+	note C_, 2
+	ret_channel
+
+Music_83e1c: ; 83e1c
+	music_setrepeat1a $4
+	octave 7
+	note C_, 1
+	note C_, 1
+	octave 6
+	note F_, 1
+	note F_, 1
+	music_dorepeat1a
+	music_setrepeat1a $4
+	note A#, 1
+	note A#, 1
+	note D#, 1
+	note D#, 1
+	music_dorepeat1a
+	ret_channel
+
+Music_83e2d: ; 83e2d
+	music_setrepeat1a $2
+	octave 4
+	note F_, 2
+	octave 5
+	note C_, 2
+	octave 4
+	note A#, 2
+	octave 5
+	note F_, 2
+	note C_, 2
+	octave 4
+	note A#, 2
+	note __, 2
+	note F_, 2
+	note __, 2
+	note F_, 2
+	octave 5
+	note F_, 2
+	octave 4
+	note B_, 2
+	note A#, 2
+	note G#, 2
+	note F_, 2
+	note D#, 2
+	music_dorepeat1a
+	ret_channel
+
+MusicHeader_82068_Ch6: ; 83e48
+	music_tempo_2 $6
+
+Music_83e4a: ; 83e4a
+	music_setrepeat1a $7
+	call_channel Music_83e11
+	note A_, 2
+	note C#, 2
+	music_dorepeat1a
+	call_channel Music_83e11
+	note A_, 2
+	note A_, 2
+	music_setrepeat1a $f
+	note C_, 2
+	note C#, 2
+	note A_, 2
+	note C#, 2
+	music_dorepeat1a
+	note C_, 2
+	note C#, 2
+	note A_, 2
+	note A_, 1
+	note A_, 1
+	jump_channel Music_83e4a
+
+MusicHeader_82000_Ch1:
+MusicHeader_82000_Ch2:
+MusicHeader_82000_Ch3:
+MusicHeader_82000_Ch4:
+MusicHeader_82000_Ch5:
+MusicHeader_82000_Ch6:
+MusicHeader_8200e_Ch1:
+MusicHeader_8200e_Ch2:
+MusicHeader_8200e_Ch3:
+MusicHeader_8200e_Ch6:
+MusicHeader_82072_Ch1:
+MusicHeader_82072_Ch2:
+MusicHeader_82072_Ch3:
+MusicHeader_82072_Ch6:

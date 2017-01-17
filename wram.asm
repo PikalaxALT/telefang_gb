@@ -2019,8 +2019,8 @@ wcf8f:: ds 1
 SECTION "Audio RAM", WRAM0
 wSoundUpdatesDisabled:: ds 1
 wcf91:: ds 1
-wcf92:: ds 1
-wcf93:: ds 1
+wChannelFlagsBuffer:: ds 1
+wCurChannelFlags:: ds 1
 wcf94:: ds 1
 wcf95:: ds 1
 wMusicFade:: ds 1
