@@ -41,103 +41,463 @@ Pointers_ca3ce:
 	dw 0
 
 Data_ca412:
-	dr $ca412, $ca41b
+	db $00, $00
+	db $13, $00
+	db $00, $11
+	db $13, $11
+	db $ff
 
 Data_ca41b:
-	dr $ca41b, $ca41c
+	db $ff
 
 Data_ca41c:
-	dr $ca41c, $ca425
+	db $00, $01
+	db $13, $01
+	db $00, $10
+	db $13, $10
+	db $ff
 
 Data_ca425:
-	dr $ca425, $ca42e
+	db $01, $00
+	db $12, $00
+	db $01, $11
+	db $12, $11
+	db $ff
 
 Data_ca42e:
-	dr $ca42e, $ca447
+	db $02, $00
+	db $11, $00
+	db $01, $01
+	db $12, $01
+	db $00, $02
+	db $13, $02
+	db $00, $0f
+	db $13, $0f
+	db $01, $10
+	db $12, $10
+	db $02, $11
+	db $11, $11
+	db $ff
 
 Data_ca447:
-	dr $ca447, $ca450
+	db $00, $03
+	db $13, $03
+	db $00, $0e
+	db $13, $0e
+	db $ff
 
 Data_ca450:
-	dr $ca450, $ca471
+	db $03, $00
+	db $10, $00
+	db $02, $01
+	db $11, $01
+	db $01, $02
+	db $12, $02
+	db $00, $04
+	db $13, $04
+	db $00, $0d
+	db $13, $0d
+	db $01, $0f
+	db $12, $0f
+	db $02, $10
+	db $11, $10
+	db $03, $11
+	db $10, $11
+	db $ff
 
 Data_ca471:
-	dr $ca471, $ca48a
+	db $04, $00
+	db $0f, $00
+	db $01, $03
+	db $12, $03
+	db $00, $05
+	db $13, $05
+	db $00, $0c
+	db $13, $0c
+	db $01, $0e
+	db $12, $0e
+	db $04, $11
+	db $0f, $11
+	db $ff
 
 Data_ca48a:
-	dr $ca48a, $ca4ab
+	db $03, $01
+	db $10, $01
+	db $02, $02
+	db $11, $02
+	db $00, $06
+	db $13, $06
+	db $00, $07
+	db $13, $07
+	db $00, $0a
+	db $13, $0a
+	db $00, $0b
+	db $13, $0b
+	db $02, $0f
+	db $11, $0f
+	db $03, $10
+	db $10, $10
+	db $ff
 
 Data_ca4ab:
-	dr $ca4ab, $ca4d4
+	db $05, $00
+	db $0e, $00
+	db $04, $01
+	db $0f, $01
+	db $02, $03
+	db $11, $03
+	db $01, $04
+	db $12, $04
+	db $00, $08
+	db $13, $08
+	db $00, $09
+	db $13, $09
+	db $01, $0d
+	db $12, $0d
+	db $02, $0e
+	db $11, $0e
+	db $04, $10
+	db $0f, $10
+	db $05, $11
+	db $0e, $11
+	db $ff
 
 Data_ca4d4:
-	dr $ca4d4, $ca4ed
+	db $06, $00
+	db $0d, $00
+	db $03, $02
+	db $10, $02
+	db $01, $05
+	db $12, $05
+	db $01, $0c
+	db $12, $0c
+	db $03, $0f
+	db $10, $0f
+	db $06, $11
+	db $0d, $11
+	db $ff
 
 Data_ca4ed:
-	dr $ca4ed, $ca52e
+	db $07, $00
+	db $08, $00
+	db $09, $00
+	db $0a, $00
+	db $0b, $00
+	db $0c, $00
+	db $05, $01
+	db $0e, $01
+	db $02, $04
+	db $11, $04
+	db $01, $06
+	db $12, $06
+	db $01, $07
+	db $12, $07
+	db $01, $08
+	db $12, $08
+	db $01, $09
+	db $12, $09
+	db $01, $0a
+	db $12, $0a
+	db $01, $0b
+	db $12, $0b
+	db $02, $0d
+	db $11, $0d
+	db $05, $10
+	db $0e, $10
+	db $07, $11
+	db $08, $11
+	db $09, $11
+	db $0a, $11
+	db $0b, $11
+	db $0c, $11
+	db $ff
 
 Data_ca52e:
-	dr $ca52e, $ca54f
+	db $06, $01
+	db $0d, $01
+	db $04, $02
+	db $0f, $02
+	db $03, $03
+	db $10, $03
+	db $02, $05
+	db $11, $05
+	db $02, $0c
+	db $11, $0c
+	db $03, $0e
+	db $10, $0e
+	db $04, $0f
+	db $0f, $0f
+	db $06, $10
+	db $0d, $10
+	db $ff
 
 Data_ca54f:
-	dr $ca54f, $ca570
+	db $07, $01
+	db $0c, $01
+	db $05, $02
+	db $0e, $02
+	db $03, $04
+	db $10, $04
+	db $02, $06
+	db $11, $06
+	db $02, $0b
+	db $11, $0b
+	db $03, $0d
+	db $10, $0d
+	db $05, $0f
+	db $0e, $0f
+	db $07, $10
+	db $0c, $10
+	db $ff
 
 Data_ca570:
-	dr $ca570, $ca599
+	db $08, $01
+	db $09, $01
+	db $0a, $01
+	db $0b, $01
+	db $04, $03
+	db $0f, $03
+	db $02, $07
+	db $11, $07
+	db $02, $08
+	db $11, $08
+	db $02, $09
+	db $11, $09
+	db $02, $0a
+	db $11, $0a
+	db $04, $0e
+	db $0f, $0e
+	db $08, $10
+	db $09, $10
+	db $0a, $10
+	db $0b, $10
+	db $ff
 
 Data_ca599:
-	dr $ca599, $ca5ba
+	db $06, $02
+	db $0d, $02
+	db $05, $03
+	db $0e, $03
+	db $04, $04
+	db $0f, $04
+	db $03, $05
+	db $10, $05
+	db $03, $0c
+	db $10, $0c
+	db $04, $0d
+	db $0f, $0d
+	db $05, $0e
+	db $0e, $0e
+	db $06, $0f
+	db $0d, $0f
+	db $ff
 
 Data_ca5ba:
-	dr $ca5ba, $ca5db
+	db $07, $02
+	db $08, $02
+	db $0b, $02
+	db $0c, $02
+	db $03, $06
+	db $10, $06
+	db $03, $07
+	db $10, $07
+	db $03, $0a
+	db $10, $0a
+	db $03, $0b
+	db $10, $0b
+	db $07, $0f
+	db $08, $0f
+	db $0b, $0f
+	db $0c, $0f
+	db $ff
 
 Data_ca5db:
-	dr $ca5db, $ca5fc
+	db $09, $02
+	db $0a, $02
+	db $06, $03
+	db $0d, $03
+	db $04, $05
+	db $0f, $05
+	db $03, $08
+	db $10, $08
+	db $03, $09
+	db $10, $09
+	db $04, $0c
+	db $0f, $0c
+	db $06, $0e
+	db $0d, $0e
+	db $09, $0f
+	db $0a, $0f
+	db $ff
 
 Data_ca5fc:
-	dr $ca5fc, $ca615
+	db $07, $03
+	db $0c, $03
+	db $05, $04
+	db $0e, $04
+	db $04, $06
+	db $0f, $06
+	db $04, $0b
+	db $0f, $0b
+	db $05, $0d
+	db $0e, $0d
+	db $07, $0e
+	db $0c, $0e
+	db $ff
 
 Data_ca615:
-	dr $ca615, $ca646
+	db $08, $03
+	db $09, $03
+	db $0a, $03
+	db $0b, $03
+	db $06, $04
+	db $0d, $04
+	db $05, $05
+	db $0e, $05
+	db $04, $07
+	db $0f, $07
+	db $04, $08
+	db $0f, $08
+	db $04, $09
+	db $0f, $09
+	db $04, $0a
+	db $0f, $0a
+	db $05, $0c
+	db $0e, $0c
+	db $06, $0d
+	db $0d, $0d
+	db $08, $0e
+	db $09, $0e
+	db $0a, $0e
+	db $0b, $0e
+	db $ff
 
 Data_ca646:
-	dr $ca646, $ca647
+	db $ff
 
 Data_ca647:
-	dr $ca647, $ca660
+	db $07, $04
+	db $0c, $04
+	db $06, $05
+	db $0d, $05
+	db $05, $06
+	db $0e, $06
+	db $05, $0b
+	db $0e, $0b
+	db $06, $0c
+	db $0d, $0c
+	db $07, $0d
+	db $0c, $0d
+	db $ff
 
 Data_ca660:
-	dr $ca660, $ca681
+	db $08, $04
+	db $09, $04
+	db $0a, $04
+	db $0b, $04
+	db $05, $07
+	db $0e, $07
+	db $05, $08
+	db $0e, $08
+	db $05, $09
+	db $0e, $09
+	db $05, $0a
+	db $0e, $0a
+	db $08, $0d
+	db $09, $0d
+	db $0a, $0d
+	db $0b, $0d
+	db $ff
 
 Data_ca681:
-	dr $ca681, $ca692
+	db $07, $05
+	db $0c, $05
+	db $06, $06
+	db $0d, $06
+	db $06, $0b
+	db $0d, $0b
+	db $07, $0c
+	db $0c, $0c
+	db $ff
 
 Data_ca692:
-	dr $ca692, $ca6a3
+	db $08, $05
+	db $0b, $05
+	db $06, $07
+	db $0d, $07
+	db $06, $0a
+	db $0d, $0a
+	db $08, $0c
+	db $0b, $0c
+	db $ff
 
 Data_ca6a3:
-	dr $ca6a3, $ca6bc
+	db $09, $05
+	db $0a, $05
+	db $07, $06
+	db $0c, $06
+	db $06, $08
+	db $0d, $08
+	db $06, $09
+	db $0d, $09
+	db $07, $0b
+	db $0c, $0b
+	db $09, $0c
+	db $0a, $0c
+	db $ff
 
 Data_ca6bc:
-	dr $ca6bc, $ca6bd
+	db $ff
 
 Data_ca6bd:
-	dr $ca6bd, $ca6de
+	db $08, $06
+	db $09, $06
+	db $0a, $06
+	db $0b, $06
+	db $07, $07
+	db $0c, $07
+	db $07, $08
+	db $0c, $08
+	db $07, $09
+	db $0c, $09
+	db $07, $0a
+	db $0c, $0a
+	db $08, $0b
+	db $09, $0b
+	db $0a, $0b
+	db $0b, $0b
+	db $ff
 
 Data_ca6de:
-	dr $ca6de, $ca6df
+	db $ff
 
 Data_ca6df:
-	dr $ca6df, $ca6e8
+	db $08, $07
+	db $0b, $07
+	db $08, $0a
+	db $0b, $0a
+	db $ff
 
 Data_ca6e8:
-	dr $ca6e8, $ca6f9
+	db $09, $07
+	db $0a, $07
+	db $08, $08
+	db $0b, $08
+	db $08, $09
+	db $0b, $09
+	db $09, $0a
+	db $0a, $0a
+	db $ff
 
 Data_ca6f9:
-	dr $ca6f9, $ca6fa
+	db $ff
 
 Data_ca6fa:
-	dr $ca6fa, $ca703
+	db $09, $08
+	db $0a, $08
+	db $09, $09
+	db $0a, $09
+	db $ff
 
 Pointers_ca703:
 	dw Data_ca747
@@ -176,103 +536,463 @@ Pointers_ca703:
 	dw 0
 
 Data_ca747:
-	dr $ca747, $ca750
+	db $00, $00
+	db $13, $00
+	db $00, $11
+	db $13, $11
+	db $ff
 
 Data_ca750:
-	dr $ca750, $ca751
+	db $ff
 
 Data_ca751:
-	dr $ca751, $ca762
+	db $01, $00
+	db $12, $00
+	db $00, $01
+	db $13, $01
+	db $00, $10
+	db $13, $10
+	db $01, $11
+	db $12, $11
+	db $ff
 
 Data_ca762:
-	dr $ca762, $ca76b
+	db $01, $01
+	db $12, $01
+	db $01, $10
+	db $12, $10
+	db $ff
 
 Data_ca76b:
-	dr $ca76b, $ca76c
+	db $ff
 
 Data_ca76c:
-	dr $ca76c, $ca78d
+	db $02, $00
+	db $11, $00
+	db $02, $01
+	db $11, $01
+	db $00, $02
+	db $01, $02
+	db $12, $02
+	db $13, $02
+	db $00, $0f
+	db $01, $0f
+	db $12, $0f
+	db $13, $0f
+	db $02, $10
+	db $11, $10
+	db $02, $11
+	db $11, $11
+	db $ff
 
 Data_ca78d:
-	dr $ca78d, $ca78e
+	db $ff
 
 Data_ca78e:
-	dr $ca78e, $ca7a7
+	db $03, $00
+	db $10, $00
+	db $02, $02
+	db $11, $02
+	db $00, $03
+	db $13, $03
+	db $00, $0e
+	db $13, $0e
+	db $02, $0f
+	db $11, $0f
+	db $03, $11
+	db $10, $11
+	db $ff
 
 Data_ca7a7:
-	dr $ca7a7, $ca7b8
+	db $03, $01
+	db $10, $01
+	db $01, $03
+	db $12, $03
+	db $01, $0e
+	db $12, $0e
+	db $03, $10
+	db $10, $10
+	db $ff
 
 Data_ca7b8:
-	dr $ca7b8, $ca7c9
+	db $03, $02
+	db $10, $02
+	db $02, $03
+	db $11, $03
+	db $02, $0e
+	db $11, $0e
+	db $03, $0f
+	db $10, $0f
+	db $ff
 
 Data_ca7c9:
-	dr $ca7c9, $ca7ea
+	db $04, $00
+	db $0f, $00
+	db $04, $01
+	db $0f, $01
+	db $00, $04
+	db $01, $04
+	db $12, $04
+	db $13, $04
+	db $00, $0d
+	db $01, $0d
+	db $12, $0d
+	db $13, $0d
+	db $04, $10
+	db $0f, $10
+	db $04, $11
+	db $0f, $11
+	db $ff
 
 Data_ca7ea:
-	dr $ca7ea, $ca803
+	db $04, $02
+	db $0f, $02
+	db $03, $03
+	db $10, $03
+	db $02, $04
+	db $11, $04
+	db $02, $0d
+	db $11, $0d
+	db $03, $0e
+	db $10, $0e
+	db $04, $0f
+	db $0f, $0f
+	db $ff
 
 Data_ca803:
-	dr $ca803, $ca804
+	db $ff
 
 Data_ca804:
-	dr $ca804, $ca835
+	db $05, $00
+	db $0e, $00
+	db $05, $01
+	db $0e, $01
+	db $04, $03
+	db $0f, $03
+	db $03, $04
+	db $10, $04
+	db $00, $05
+	db $01, $05
+	db $12, $05
+	db $13, $05
+	db $00, $0c
+	db $01, $0c
+	db $12, $0c
+	db $13, $0c
+	db $03, $0d
+	db $10, $0d
+	db $04, $0e
+	db $0f, $0e
+	db $05, $10
+	db $0e, $10
+	db $05, $11
+	db $0e, $11
+	db $ff
 
 Data_ca835:
-	dr $ca835, $ca84e
+	db $05, $02
+	db $0e, $02
+	db $04, $04
+	db $0f, $04
+	db $02, $05
+	db $11, $05
+	db $02, $0c
+	db $11, $0c
+	db $04, $0d
+	db $0f, $0d
+	db $05, $0f
+	db $0e, $0f
+	db $ff
 
 Data_ca84e:
-	dr $ca84e, $ca86f
+	db $06, $00
+	db $0d, $00
+	db $05, $03
+	db $0e, $03
+	db $03, $05
+	db $10, $05
+	db $00, $06
+	db $13, $06
+	db $00, $0b
+	db $13, $0b
+	db $03, $0c
+	db $10, $0c
+	db $05, $0e
+	db $0e, $0e
+	db $06, $11
+	db $0d, $11
+	db $ff
 
 Data_ca86f:
-	dr $ca86f, $ca890
+	db $06, $01
+	db $0d, $01
+	db $06, $02
+	db $0d, $02
+	db $01, $06
+	db $02, $06
+	db $11, $06
+	db $12, $06
+	db $01, $0b
+	db $02, $0b
+	db $11, $0b
+	db $12, $0b
+	db $06, $0f
+	db $0d, $0f
+	db $06, $10
+	db $0d, $10
+	db $ff
 
 Data_ca890:
-	dr $ca890, $ca8b1
+	db $06, $03
+	db $0d, $03
+	db $05, $04
+	db $0e, $04
+	db $04, $05
+	db $0f, $05
+	db $03, $06
+	db $10, $06
+	db $03, $0b
+	db $10, $0b
+	db $04, $0c
+	db $0f, $0c
+	db $05, $0d
+	db $0e, $0d
+	db $06, $0e
+	db $0d, $0e
+	db $ff
 
 Data_ca8b1:
-	dr $ca8b1, $ca8da
+	db $07, $00
+	db $0c, $00
+	db $07, $01
+	db $0c, $01
+	db $05, $05
+	db $0e, $05
+	db $00, $07
+	db $01, $07
+	db $12, $07
+	db $13, $07
+	db $00, $0a
+	db $01, $0a
+	db $12, $0a
+	db $13, $0a
+	db $05, $0c
+	db $0e, $0c
+	db $07, $10
+	db $0c, $10
+	db $07, $11
+	db $0c, $11
+	db $ff
 
 Data_ca8da:
-	dr $ca8da, $ca8fb
+	db $07, $02
+	db $0c, $02
+	db $06, $04
+	db $0d, $04
+	db $04, $06
+	db $0f, $06
+	db $02, $07
+	db $11, $07
+	db $02, $0a
+	db $11, $0a
+	db $04, $0b
+	db $0f, $0b
+	db $06, $0d
+	db $0d, $0d
+	db $07, $0f
+	db $0c, $0f
+	db $ff
 
 Data_ca8fb:
-	dr $ca8fb, $ca91c
+	db $07, $03
+	db $0c, $03
+	db $06, $05
+	db $0d, $05
+	db $05, $06
+	db $0e, $06
+	db $03, $07
+	db $10, $07
+	db $03, $0a
+	db $10, $0a
+	db $05, $0b
+	db $0e, $0b
+	db $06, $0c
+	db $0d, $0c
+	db $07, $0e
+	db $0c, $0e
+	db $ff
 
 Data_ca91c:
-	dr $ca91c, $ca95d
+	db $08, $00
+	db $0b, $00
+	db $08, $01
+	db $0b, $01
+	db $08, $02
+	db $0b, $02
+	db $07, $04
+	db $0c, $04
+	db $04, $07
+	db $0f, $07
+	db $00, $08
+	db $01, $08
+	db $02, $08
+	db $11, $08
+	db $12, $08
+	db $13, $08
+	db $00, $09
+	db $01, $09
+	db $02, $09
+	db $11, $09
+	db $12, $09
+	db $13, $09
+	db $04, $0a
+	db $0f, $0a
+	db $07, $0d
+	db $0c, $0d
+	db $08, $0f
+	db $0b, $0f
+	db $08, $10
+	db $0b, $10
+	db $08, $11
+	db $0b, $11
+	db $ff
 
 Data_ca95d:
-	dr $ca95d, $ca976
+	db $08, $03
+	db $0b, $03
+	db $06, $06
+	db $0d, $06
+	db $03, $08
+	db $10, $08
+	db $03, $09
+	db $10, $09
+	db $06, $0b
+	db $0d, $0b
+	db $08, $0e
+	db $0b, $0e
+	db $ff
 
 Data_ca976:
-	dr $ca976, $ca99f
+	db $09, $00
+	db $0a, $00
+	db $08, $04
+	db $0b, $04
+	db $07, $05
+	db $0c, $05
+	db $05, $07
+	db $0e, $07
+	db $04, $08
+	db $0f, $08
+	db $04, $09
+	db $0f, $09
+	db $05, $0a
+	db $0e, $0a
+	db $07, $0c
+	db $0c, $0c
+	db $08, $0d
+	db $0b, $0d
+	db $09, $11
+	db $0a, $11
+	db $ff
 
 Data_ca99f:
-	dr $ca99f, $ca9c0
+	db $09, $01
+	db $0a, $01
+	db $09, $02
+	db $0a, $02
+	db $07, $06
+	db $0c, $06
+	db $06, $07
+	db $0d, $07
+	db $06, $0a
+	db $0d, $0a
+	db $07, $0b
+	db $0c, $0b
+	db $09, $0f
+	db $0a, $0f
+	db $09, $10
+	db $0a, $10
+	db $ff
 
 Data_ca9c0:
-	dr $ca9c0, $ca9d9
+	db $09, $03
+	db $0a, $03
+	db $08, $05
+	db $0b, $05
+	db $05, $08
+	db $0e, $08
+	db $05, $09
+	db $0e, $09
+	db $08, $0c
+	db $0b, $0c
+	db $09, $0e
+	db $0a, $0e
+	db $ff
 
 Data_ca9d9:
-	dr $ca9d9, $ca9fa
+	db $09, $04
+	db $0a, $04
+	db $08, $06
+	db $0b, $06
+	db $07, $07
+	db $0c, $07
+	db $06, $08
+	db $0d, $08
+	db $06, $09
+	db $0d, $09
+	db $07, $0a
+	db $0c, $0a
+	db $08, $0b
+	db $0b, $0b
+	db $09, $0d
+	db $0a, $0d
+	db $ff
 
 Data_ca9fa:
-	dr $ca9fa, $caa03
+	db $09, $05
+	db $0a, $05
+	db $09, $0c
+	db $0a, $0c
+	db $ff
 
 Data_caa03:
-	dr $caa03, $caa1c
+	db $09, $06
+	db $0a, $06
+	db $08, $07
+	db $0b, $07
+	db $07, $08
+	db $0c, $08
+	db $07, $09
+	db $0c, $09
+	db $08, $0a
+	db $0b, $0a
+	db $09, $0b
+	db $0a, $0b
+	db $ff
 
 Data_caa1c:
-	dr $caa1c, $caa25
+	db $08, $08
+	db $0b, $08
+	db $08, $09
+	db $0b, $09
+	db $ff
 
 Data_caa25:
-	dr $caa25, $caa2e
+	db $09, $07
+	db $0a, $07
+	db $09, $0a
+	db $0a, $0a
+	db $ff
 
 Data_caa2e:
-	dr $caa2e, $caa2f
+	db $ff
 
 Data_caa2f:
-	dr $caa2f, $caa38
+	db $09, $08
+	db $0a, $08
+	db $09, $09
+	db $0a, $09
+	db $ff
 
 Pointers_caa38:
 	dw Data_caa7e
@@ -312,106 +1032,466 @@ Pointers_caa38:
 	dw 0
 
 Data_caa7e:
-	dr $caa7e, $caa87
+	db $00, $08
+	db $13, $08
+	db $00, $09
+	db $13, $09
+	db $ff
 
 Data_caa87:
-	dr $caa87, $caa98
+	db $00, $07
+	db $13, $07
+	db $01, $08
+	db $12, $08
+	db $01, $09
+	db $12, $09
+	db $00, $0a
+	db $13, $0a
+	db $ff
 
 Data_caa98:
-	dr $caa98, $caab1
+	db $00, $06
+	db $13, $06
+	db $01, $07
+	db $12, $07
+	db $02, $08
+	db $11, $08
+	db $02, $09
+	db $11, $09
+	db $01, $0a
+	db $12, $0a
+	db $00, $0b
+	db $13, $0b
+	db $ff
 
 Data_caab1:
-	dr $caab1, $caad2
+	db $00, $05
+	db $13, $05
+	db $01, $06
+	db $12, $06
+	db $02, $07
+	db $11, $07
+	db $03, $08
+	db $10, $08
+	db $03, $09
+	db $10, $09
+	db $02, $0a
+	db $11, $0a
+	db $01, $0b
+	db $12, $0b
+	db $00, $0c
+	db $13, $0c
+	db $ff
 
 Data_caad2:
-	dr $caad2, $caafb
+	db $00, $04
+	db $13, $04
+	db $01, $05
+	db $12, $05
+	db $02, $06
+	db $11, $06
+	db $03, $07
+	db $10, $07
+	db $04, $08
+	db $0f, $08
+	db $04, $09
+	db $0f, $09
+	db $03, $0a
+	db $10, $0a
+	db $02, $0b
+	db $11, $0b
+	db $01, $0c
+	db $12, $0c
+	db $00, $0d
+	db $13, $0d
+	db $ff
 
 Data_caafb:
-	dr $caafb, $cab2c
+	db $00, $03
+	db $13, $03
+	db $01, $04
+	db $12, $04
+	db $02, $05
+	db $11, $05
+	db $03, $06
+	db $10, $06
+	db $04, $07
+	db $0f, $07
+	db $05, $08
+	db $0e, $08
+	db $05, $09
+	db $0e, $09
+	db $04, $0a
+	db $0f, $0a
+	db $03, $0b
+	db $10, $0b
+	db $02, $0c
+	db $11, $0c
+	db $01, $0d
+	db $12, $0d
+	db $00, $0e
+	db $13, $0e
+	db $ff
 
 Data_cab2c:
-	dr $cab2c, $cab65
+	db $00, $02
+	db $13, $02
+	db $01, $03
+	db $12, $03
+	db $02, $04
+	db $11, $04
+	db $03, $05
+	db $10, $05
+	db $04, $06
+	db $0f, $06
+	db $05, $07
+	db $0e, $07
+	db $06, $08
+	db $0d, $08
+	db $06, $09
+	db $0d, $09
+	db $05, $0a
+	db $0e, $0a
+	db $04, $0b
+	db $0f, $0b
+	db $03, $0c
+	db $10, $0c
+	db $02, $0d
+	db $11, $0d
+	db $01, $0e
+	db $12, $0e
+	db $00, $0f
+	db $13, $0f
+	db $ff
 
 Data_cab65:
-	dr $cab65, $caba6
+	db $00, $01
+	db $13, $01
+	db $01, $02
+	db $12, $02
+	db $02, $03
+	db $11, $03
+	db $03, $04
+	db $10, $04
+	db $04, $05
+	db $0f, $05
+	db $05, $06
+	db $0e, $06
+	db $06, $07
+	db $0d, $07
+	db $07, $08
+	db $0c, $08
+	db $07, $09
+	db $0c, $09
+	db $06, $0a
+	db $0d, $0a
+	db $05, $0b
+	db $0e, $0b
+	db $04, $0c
+	db $0f, $0c
+	db $03, $0d
+	db $10, $0d
+	db $02, $0e
+	db $11, $0e
+	db $01, $0f
+	db $12, $0f
+	db $00, $10
+	db $13, $10
+	db $ff
 
 Data_caba6:
-	dr $caba6, $cabef
+	db $00, $00
+	db $13, $00
+	db $01, $01
+	db $12, $01
+	db $02, $02
+	db $11, $02
+	db $03, $03
+	db $10, $03
+	db $04, $04
+	db $0f, $04
+	db $05, $05
+	db $0e, $05
+	db $06, $06
+	db $0d, $06
+	db $07, $07
+	db $0c, $07
+	db $08, $08
+	db $0b, $08
+	db $08, $09
+	db $0b, $09
+	db $07, $0a
+	db $0c, $0a
+	db $06, $0b
+	db $0d, $0b
+	db $05, $0c
+	db $0e, $0c
+	db $04, $0d
+	db $0f, $0d
+	db $03, $0e
+	db $10, $0e
+	db $02, $0f
+	db $11, $0f
+	db $01, $10
+	db $12, $10
+	db $00, $11
+	db $13, $11
+	db $ff
 
 Data_cabef:
-	dr $cabef, $cac38
+	db $01, $00
+	db $12, $00
+	db $02, $01
+	db $11, $01
+	db $03, $02
+	db $10, $02
+	db $04, $03
+	db $0f, $03
+	db $05, $04
+	db $0e, $04
+	db $06, $05
+	db $0d, $05
+	db $07, $06
+	db $0c, $06
+	db $08, $07
+	db $0b, $07
+	db $09, $08
+	db $0a, $08
+	db $09, $09
+	db $0a, $09
+	db $08, $0a
+	db $0b, $0a
+	db $07, $0b
+	db $0c, $0b
+	db $06, $0c
+	db $0d, $0c
+	db $05, $0d
+	db $0e, $0d
+	db $04, $0e
+	db $0f, $0e
+	db $03, $0f
+	db $10, $0f
+	db $02, $10
+	db $11, $10
+	db $01, $11
+	db $12, $11
+	db $ff
 
 Data_cac38:
-	dr $cac38, $cac39
+	db $ff
 
 Data_cac39:
-	dr $cac39, $cac3a
+	db $ff
 
 Data_cac3a:
-	dr $cac3a, $cac3b
+	db $ff
 
 Data_cac3b:
-	dr $cac3b, $cac3c
+	db $ff
 
 Data_cac3c:
-	dr $cac3c, $cac3d
+	db $ff
 
 Data_cac3d:
-	dr $cac3d, $cac3e
+	db $ff
 
 Data_cac3e:
-	dr $cac3e, $cac3f
+	db $ff
 
 Data_cac3f:
-	dr $cac3f, $cac40
+	db $ff
 
 Data_cac40:
-	dr $cac40, $cac41
+	db $ff
 
 Data_cac41:
-	dr $cac41, $cac42
+	db $ff
 
 Data_cac42:
-	dr $cac42, $cac43
+	db $ff
 
 Data_cac43:
-	dr $cac43, $cac44
+	db $ff
 
 Data_cac44:
-	dr $cac44, $cac45
+	db $ff
 
 Data_cac45:
-	dr $cac45, $cac46
+	db $ff
 
 Data_cac46:
-	dr $cac46, $cac47
+	db $ff
 
 Data_cac47:
-	dr $cac47, $cac48
+	db $ff
 
 Data_cac48:
-	dr $cac48, $cac51
+	db $09, $00
+	db $0a, $00
+	db $09, $11
+	db $0a, $11
+	db $ff
 
 Data_cac51:
-	dr $cac51, $cac62
+	db $08, $00
+	db $0b, $00
+	db $09, $01
+	db $0a, $01
+	db $09, $10
+	db $0a, $10
+	db $08, $11
+	db $0b, $11
+	db $ff
 
 Data_cac62:
-	dr $cac62, $cac7b
+	db $07, $00
+	db $0c, $00
+	db $08, $01
+	db $0b, $01
+	db $09, $02
+	db $0a, $02
+	db $09, $0f
+	db $0a, $0f
+	db $08, $10
+	db $0b, $10
+	db $07, $11
+	db $0c, $11
+	db $ff
 
 Data_cac7b:
-	dr $cac7b, $cac9c
+	db $06, $00
+	db $0d, $00
+	db $07, $01
+	db $0c, $01
+	db $08, $02
+	db $0b, $02
+	db $09, $03
+	db $0a, $03
+	db $09, $0e
+	db $0a, $0e
+	db $08, $0f
+	db $0b, $0f
+	db $07, $10
+	db $0c, $10
+	db $06, $11
+	db $0d, $11
+	db $ff
 
 Data_cac9c:
-	dr $cac9c, $cacc5
+	db $05, $00
+	db $0e, $00
+	db $06, $01
+	db $0d, $01
+	db $07, $02
+	db $0c, $02
+	db $08, $03
+	db $0b, $03
+	db $09, $04
+	db $0a, $04
+	db $09, $0d
+	db $0a, $0d
+	db $08, $0e
+	db $0b, $0e
+	db $07, $0f
+	db $0c, $0f
+	db $06, $10
+	db $0d, $10
+	db $05, $11
+	db $0e, $11
+	db $ff
 
 Data_cacc5:
-	dr $cacc5, $cacf6
+	db $04, $00
+	db $0f, $00
+	db $05, $01
+	db $0e, $01
+	db $06, $02
+	db $0d, $02
+	db $07, $03
+	db $0c, $03
+	db $08, $04
+	db $0b, $04
+	db $09, $05
+	db $0a, $05
+	db $09, $0c
+	db $0a, $0c
+	db $08, $0d
+	db $0b, $0d
+	db $07, $0e
+	db $0c, $0e
+	db $06, $0f
+	db $0d, $0f
+	db $05, $10
+	db $0e, $10
+	db $04, $11
+	db $0f, $11
+	db $ff
 
 Data_cacf6:
-	dr $cacf6, $cad2f
+	db $03, $00
+	db $10, $00
+	db $04, $01
+	db $0f, $01
+	db $05, $02
+	db $0e, $02
+	db $06, $03
+	db $0d, $03
+	db $07, $04
+	db $0c, $04
+	db $08, $05
+	db $0b, $05
+	db $09, $06
+	db $0a, $06
+	db $09, $0b
+	db $0a, $0b
+	db $08, $0c
+	db $0b, $0c
+	db $07, $0d
+	db $0c, $0d
+	db $06, $0e
+	db $0d, $0e
+	db $05, $0f
+	db $0e, $0f
+	db $04, $10
+	db $0f, $10
+	db $03, $11
+	db $10, $11
+	db $ff
 
 Data_cad2f:
-	dr $cad2f, $cad70
+	db $02, $00
+	db $11, $00
+	db $03, $01
+	db $10, $01
+	db $04, $02
+	db $0f, $02
+	db $05, $03
+	db $0e, $03
+	db $06, $04
+	db $0d, $04
+	db $07, $05
+	db $0c, $05
+	db $08, $06
+	db $0b, $06
+	db $09, $07
+	db $0a, $07
+	db $09, $0a
+	db $0a, $0a
+	db $08, $0b
+	db $0b, $0b
+	db $07, $0c
+	db $0c, $0c
+	db $06, $0d
+	db $0d, $0d
+	db $05, $0e
+	db $0e, $0e
+	db $04, $0f
+	db $0f, $0f
+	db $03, $10
+	db $10, $10
+	db $02, $11
+	db $11, $11
+	db $ff
 
 Pointers_cad70:
 	dw Data_cadcc
@@ -462,136 +1542,496 @@ Pointers_cad70:
 	dw 0
 
 Data_cadcc:
-	dr $cadcc, $caddd
+	db $01, $04
+	db $04, $05
+	db $07, $05
+	db $04, $07
+	db $0f, $08
+	db $11, $08
+	db $0f, $0b
+	db $03, $11
+	db $ff
 
 Data_caddd:
-	dr $caddd, $cadee
+	db $0e, $00
+	db $0e, $01
+	db $07, $03
+	db $0b, $03
+	db $08, $09
+	db $13, $0c
+	db $0e, $0d
+	db $00, $10
+	db $ff
 
 Data_cadee:
-	dr $cadee, $cadff
+	db $01, $01
+	db $13, $03
+	db $13, $04
+	db $0d, $09
+	db $08, $0a
+	db $0c, $0c
+	db $09, $10
+	db $0d, $10
+	db $ff
 
 Data_cadff:
-	dr $cadff, $cae10
+	db $06, $06
+	db $08, $08
+	db $03, $0a
+	db $06, $0a
+	db $12, $0a
+	db $08, $0b
+	db $0f, $0f
+	db $0f, $10
+	db $ff
 
 Data_cae10:
-	dr $cae10, $cae21
+	db $05, $01
+	db $0b, $02
+	db $04, $03
+	db $04, $04
+	db $0f, $04
+	db $13, $06
+	db $12, $0b
+	db $0b, $0e
+	db $ff
 
 Data_cae21:
-	dr $cae21, $cae32
+	db $0d, $02
+	db $11, $02
+	db $13, $05
+	db $06, $07
+	db $0d, $0c
+	db $10, $0e
+	db $06, $10
+	db $05, $11
+	db $ff
 
 Data_cae32:
-	dr $cae32, $cae43
+	db $05, $05
+	db $0b, $07
+	db $0f, $07
+	db $01, $08
+	db $08, $0d
+	db $0b, $0d
+	db $0d, $0d
+	db $01, $0f
+	db $ff
 
 Data_cae43:
-	dr $cae43, $cae54
+	db $0c, $01
+	db $13, $01
+	db $00, $02
+	db $0a, $02
+	db $10, $03
+	db $02, $04
+	db $11, $09
+	db $13, $11
+	db $ff
 
 Data_cae54:
-	dr $cae54, $cae65
+	db $02, $09
+	db $13, $0a
+	db $0a, $0b
+	db $04, $0c
+	db $07, $0f
+	db $0c, $0f
+	db $10, $0f
+	db $02, $11
+	db $ff
 
 Data_cae65:
-	dr $cae65, $cae76
+	db $10, $00
+	db $03, $01
+	db $04, $01
+	db $08, $04
+	db $10, $07
+	db $07, $0a
+	db $07, $0e
+	db $0e, $0f
+	db $ff
 
 Data_cae76:
-	dr $cae76, $cae87
+	db $07, $02
+	db $01, $03
+	db $0b, $05
+	db $0f, $06
+	db $0d, $07
+	db $03, $08
+	db $04, $0e
+	db $03, $10
+	db $ff
 
 Data_cae87:
-	dr $cae87, $cae98
+	db $0c, $07
+	db $04, $08
+	db $09, $08
+	db $10, $09
+	db $0b, $0b
+	db $10, $0b
+	db $10, $0c
+	db $09, $0f
+	db $ff
 
 Data_cae98:
-	dr $cae98, $caea9
+	db $10, $01
+	db $08, $05
+	db $0f, $05
+	db $0f, $09
+	db $0e, $0c
+	db $11, $0d
+	db $05, $0e
+	db $09, $11
+	db $ff
 
 Data_caea9:
-	dr $caea9, $caeba
+	db $03, $02
+	db $10, $02
+	db $03, $05
+	db $03, $07
+	db $07, $07
+	db $01, $0a
+	db $09, $0b
+	db $08, $11
+	db $ff
 
 Data_caeba:
-	dr $caeba, $caecb
+	db $09, $00
+	db $11, $00
+	db $04, $02
+	db $0e, $02
+	db $0e, $05
+	db $01, $07
+	db $05, $0f
+	db $0b, $11
+	db $ff
 
 Data_caecb:
-	dr $caecb, $caedc
+	db $0d, $01
+	db $0e, $04
+	db $0a, $09
+	db $0a, $0a
+	db $0d, $0a
+	db $0c, $0b
+	db $0a, $11
+	db $10, $11
+	db $ff
 
 Data_caedc:
-	dr $caedc, $caeed
+	db $01, $00
+	db $05, $02
+	db $0d, $04
+	db $12, $04
+	db $09, $0a
+	db $02, $0c
+	db $01, $0d
+	db $0a, $0d
+	db $ff
 
 Data_caeed:
-	dr $caeed, $caefe
+	db $06, $05
+	db $11, $05
+	db $13, $07
+	db $03, $0d
+	db $0f, $0d
+	db $06, $0f
+	db $11, $0f
+	db $06, $11
+	db $ff
 
 Data_caefe:
-	dr $caefe, $caf0f
+	db $05, $00
+	db $13, $00
+	db $0a, $01
+	db $00, $03
+	db $05, $0b
+	db $03, $0c
+	db $04, $10
+	db $0b, $10
+	db $ff
 
 Data_caf0f:
-	dr $caf0f, $caf20
+	db $0a, $00
+	db $0f, $02
+	db $0a, $04
+	db $0a, $07
+	db $09, $0d
+	db $08, $0e
+	db $0f, $0e
+	db $08, $0f
+	db $ff
 
 Data_caf20:
-	dr $caf20, $caf31
+	db $0c, $03
+	db $0f, $03
+	db $07, $04
+	db $10, $04
+	db $02, $05
+	db $03, $06
+	db $02, $08
+	db $0c, $08
+	db $ff
 
 Data_caf31:
-	dr $caf31, $caf42
+	db $06, $00
+	db $10, $05
+	db $00, $07
+	db $11, $07
+	db $05, $09
+	db $0b, $09
+	db $07, $0b
+	db $09, $0e
+	db $ff
 
 Data_caf42:
-	dr $caf42, $caf53
+	db $02, $00
+	db $0c, $00
+	db $12, $01
+	db $00, $04
+	db $07, $08
+	db $0e, $09
+	db $02, $0b
+	db $02, $0f
+	db $ff
 
 Data_caf53:
-	dr $caf53, $caf64
+	db $0a, $03
+	db $12, $03
+	db $0d, $05
+	db $12, $08
+	db $07, $09
+	db $04, $0a
+	db $0f, $0a
+	db $13, $0e
+	db $ff
 
 Data_caf64:
-	dr $caf64, $caf75
+	db $04, $06
+	db $11, $06
+	db $0a, $08
+	db $0d, $08
+	db $0b, $0a
+	db $00, $0c
+	db $0b, $0c
+	db $12, $0f
+	db $ff
 
 Data_caf75:
-	dr $caf75, $caf86
+	db $07, $00
+	db $0f, $00
+	db $0e, $03
+	db $09, $04
+	db $06, $0c
+	db $00, $0e
+	db $07, $10
+	db $11, $11
+	db $ff
 
 Data_caf86:
-	dr $caf86, $caf97
+	db $11, $04
+	db $01, $05
+	db $08, $06
+	db $09, $06
+	db $0b, $06
+	db $10, $08
+	db $12, $09
+	db $0e, $10
+	db $ff
 
 Data_caf97:
-	dr $caf97, $cafa8
+	db $05, $03
+	db $0a, $05
+	db $07, $06
+	db $0c, $06
+	db $0e, $08
+	db $12, $0d
+	db $04, $0f
+	db $0c, $11
+	db $ff
 
 Data_cafa8:
-	dr $cafa8, $cafb9
+	db $06, $02
+	db $09, $05
+	db $10, $06
+	db $05, $08
+	db $0c, $09
+	db $0e, $0b
+	db $0e, $0e
+	db $0e, $11
+	db $ff
 
 Data_cafb9:
-	dr $cafb9, $cafca
+	db $12, $00
+	db $09, $02
+	db $02, $03
+	db $03, $09
+	db $08, $0c
+	db $04, $0d
+	db $06, $0d
+	db $0d, $0e
+	db $ff
 
 Data_cafca:
-	dr $cafca, $cafdb
+	db $0b, $00
+	db $01, $06
+	db $00, $0a
+	db $03, $0b
+	db $04, $0b
+	db $05, $0c
+	db $0a, $0c
+	db $13, $0d
+	db $ff
 
 Data_cafdb:
-	dr $cafdb, $cafec
+	db $03, $00
+	db $03, $03
+	db $08, $07
+	db $0c, $0d
+	db $12, $0e
+	db $00, $0f
+	db $08, $10
+	db $01, $11
+	db $ff
 
 Data_cafec:
-	dr $cafec, $caffd
+	db $06, $03
+	db $05, $04
+	db $0b, $04
+	db $13, $08
+	db $10, $0d
+	db $0c, $0e
+	db $02, $10
+	db $0d, $11
+	db $ff
 
 Data_caffd:
-	dr $caffd, $cb00e
+	db $03, $04
+	db $06, $04
+	db $06, $08
+	db $01, $09
+	db $0e, $0a
+	db $10, $0a
+	db $01, $0b
+	db $12, $10
+	db $ff
 
 Data_cb00e:
-	dr $cb00e, $cb01f
+	db $08, $02
+	db $0c, $02
+	db $13, $02
+	db $08, $03
+	db $06, $0b
+	db $0f, $0c
+	db $13, $10
+	db $04, $11
+	db $ff
 
 Data_cb01f:
-	dr $cb01f, $cb030
+	db $12, $02
+	db $00, $05
+	db $00, $09
+	db $09, $09
+	db $0d, $0b
+	db $11, $0b
+	db $11, $0e
+	db $12, $11
+	db $ff
 
 Data_cb030:
-	dr $cb030, $cb041
+	db $00, $06
+	db $04, $09
+	db $05, $0a
+	db $11, $0a
+	db $11, $0c
+	db $12, $0c
+	db $03, $0e
+	db $0a, $0f
+	db $ff
 
 Data_cb041:
-	dr $cb041, $cb052
+	db $12, $07
+	db $0b, $08
+	db $00, $0b
+	db $00, $0d
+	db $05, $0d
+	db $03, $0f
+	db $05, $10
+	db $10, $10
+	db $ff
 
 Data_cb052:
-	dr $cb052, $cb063
+	db $0d, $06
+	db $12, $06
+	db $00, $08
+	db $01, $0e
+	db $02, $0e
+	db $0a, $0e
+	db $07, $11
+	db $0f, $11
+	db $ff
 
 Data_cb063:
-	dr $cb063, $cb074
+	db $00, $00
+	db $04, $00
+	db $08, $00
+	db $0b, $01
+	db $0f, $01
+	db $09, $07
+	db $13, $0b
+	db $01, $10
+	db $ff
 
 Data_cb074:
-	dr $cb074, $cb085
+	db $02, $02
+	db $0d, $03
+	db $0c, $04
+	db $0c, $05
+	db $01, $0c
+	db $09, $0c
+	db $0b, $0f
+	db $00, $11
+	db $ff
 
 Data_cb085:
-	dr $cb085, $cb096
+	db $07, $01
+	db $08, $01
+	db $09, $03
+	db $11, $03
+	db $12, $05
+	db $0e, $07
+	db $07, $0c
+	db $0d, $0f
+	db $ff
 
 Data_cb096:
-	dr $cb096, $cb0a7
+	db $01, $02
+	db $02, $06
+	db $05, $07
+	db $06, $09
+	db $02, $0d
+	db $06, $0e
+	db $0a, $10
+	db $0c, $10
+	db $ff
 
 Data_cb0a7:
-	dr $cb0a7, $cb0b8
+	db $0d, $00
+	db $00, $01
+	db $11, $01
+	db $0a, $06
+	db $0e, $06
+	db $02, $0a
+	db $0c, $0a
+	db $11, $10
+	db $ff
 
 Data_cb0b8:
-	dr $cb0b8, $cb0c9
+	db $02, $01
+	db $06, $01
+	db $09, $01
+	db $05, $06
+	db $02, $07
+	db $13, $09
+	db $07, $0d
+	db $13, $0f
+	db $ff

@@ -41,14 +41,6 @@ ENDM
 
 percent EQUS "* $ff / 100"
 
-dr: MACRO
-IF DEF(POWER)
-INCBIN "baserom-power.gbc", \1, \2 - \1
-ELSE
-INCBIN "baserom-speed.gbc", \1, \2 - \1
-ENDC
-ENDM
-
 ddb: MACRO
 rept _NARG
 	db \1, \1

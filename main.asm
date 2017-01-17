@@ -15135,19 +15135,19 @@ Func_c9875: ; c9875 (32:5875)
 	ld h, [hl]
 	ld l, a
 	or h
-	jr nz, .asm_c989e
+	jr nz, .go
 	ld a, $ff
 	ld [wCustomSpriteDest], a
 	ret
 
-.asm_c989e
-	call Func_c98a9
+.go
+	call .PlaceBGTiles
 	ld a, [wCustomSpriteDest]
 	inc a
 	ld [wCustomSpriteDest], a
 	ret
 
-Func_c98a9: ; c98a9 (32:58a9)
+.PlaceBGTiles: ; c98a9 (32:58a9)
 	ld a, [wBGMapAnchor]
 	and $1f
 	ld [wSpriteDestIsCustom], a
@@ -15166,30 +15166,30 @@ Func_c98a9: ; c98a9 (32:58a9)
 	rr a
 	and $1f
 	ld [wMathBuffer3], a
-.asm_c98d1
+.loop
 	ld a, [hli]
 	ld b, a
 	cp $ff
 	ret z
 	ld a, [hli]
 	ld c, a
-	call Func_c9956
-	call Func_c9903
+	call .HideObjects
+	call .GetBGMapAddress
 	di
-.asm_c98df
+.wait_stat1
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_c98df
+	jr nz, .wait_stat1
 	ld a, $90
 	ld [de], a
 	ei
 	check_cgb
-	jr nz, .asm_c98d1
+	jr nz, .loop
 	di
-.asm_c98f1
+.wait_stat2
 	ld a, [rSTAT]
 	and $2
-	jr nz, .asm_c98f1
+	jr nz, .wait_stat2
 	ld a, $1
 	ld [rVBK], a
 	xor a
@@ -15197,13 +15197,13 @@ Func_c98a9: ; c98a9 (32:58a9)
 	ld a, a
 	ld [rVBK], a
 	ei
-	jr .asm_c98d1
+	jr .loop
 
-Func_c9903: ; c9903 (32:5903)
+.GetBGMapAddress: ; c9903 (32:5903)
 	ld d, $98
 	ld a, c
 	cp $10
-	jr nc, .asm_c9932
+	jr nc, .window
 	ld a, [wMathBuffer3]
 	add c
 	and $1f
@@ -15228,7 +15228,7 @@ Func_c9903: ; c9903 (32:5903)
 	ld e, a
 	ret
 
-.asm_c9932
+.window
 	ld a, c
 	sub $10
 	and $1f
@@ -15252,7 +15252,7 @@ Func_c9903: ; c9903 (32:5903)
 	ld e, a
 	ret
 
-Func_c9956: ; c9956 (32:5956)
+.HideObjects
 	push hl
 	push bc
 	inc c
@@ -15264,20 +15264,20 @@ Func_c9956: ; c9956 (32:5956)
 	sla c
 	ld hl, wOAMAnimation01
 	ld e, $18
-.asm_c996a
+.hide_loop
 	ld a, [hli]
 	or a
-	jr z, .asm_c999e
+	jr z, .next
 	inc hl
 	inc hl
 	ld a, [hli]
 	and $f8
 	cp b
-	jr nz, .asm_c9990
+	jr nz, .next2
 	ld a, [hl]
 	and $f8
 	cp c
-	jr nz, .asm_c9990
+	jr nz, .next2
 	ld a, l
 	and $e0
 	ld l, a
@@ -15290,12 +15290,12 @@ Func_c9956: ; c9956 (32:5956)
 	adc h
 	ld h, a
 	dec e
-	jr nz, .asm_c996a
+	jr nz, .hide_loop
 	pop bc
 	pop hl
 	ret
 
-.asm_c9990
+.next2
 	ld a, $1c
 	add l
 	ld l, a
@@ -15303,12 +15303,12 @@ Func_c9956: ; c9956 (32:5956)
 	adc h
 	ld h, a
 	dec e
-	jr nz, .asm_c996a
+	jr nz, .hide_loop
 	pop bc
 	pop hl
 	ret
 
-.asm_c999e
+.next
 	ld a, $1f
 	add l
 	ld l, a
@@ -15316,7 +15316,7 @@ Func_c9956: ; c9956 (32:5956)
 	adc h
 	ld h, a
 	dec e
-	jr nz, .asm_c996a
+	jr nz, .hide_loop
 	pop bc
 	pop hl
 	ret
