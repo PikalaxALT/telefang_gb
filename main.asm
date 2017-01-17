@@ -4857,14 +4857,14 @@ INCLUDE "text/std_text_11.asm"
 
 SECTION "bank 11", ROMX, BANK [$11]
 	music_engine 11
-SFXPointers_11: INCLUDE "audio/unknown_sfx_44ee5.asm"
+SFXPointers_11: INCLUDE "audio/sfx_11.asm"
 RingtonePointers_11: INCLUDE "audio/ringtones.asm"
 MusicPointers_11:
 
 SECTION "bank 12", ROMX, BANK [$12]
 	music_engine 12
-SFXPointers_12: INCLUDE "audio/unknown_sfx_48ee5.asm"
-MusicPointers_12: INCLUDE "audio/unknown_sfx_49fe2.asm"
+SFXPointers_12: INCLUDE "audio/sfx_12.asm"
+MusicPointers_12: INCLUDE "audio/music_12.asm"
 RingtonePointers_12: db $ff
 
 SECTION "bank 13", ROMX, BANK [$13]
@@ -4905,31 +4905,31 @@ INCLUDE "engine/bank_1f.asm"
 
 SECTION "bank 20", ROMX, BANK [MUSIC_BANK_00]
 	music_engine 20
-SFXPointers_20: INCLUDE "audio/unknown_sfx_80ee5.asm"
-MusicPointers_20: INCLUDE "audio/unknown_sfx_81fe2.asm"
+SFXPointers_20: INCLUDE "audio/sfx_20.asm"
+MusicPointers_20: INCLUDE "audio/music_20.asm"
 RingtonePointers_20: db $ff
 
 SECTION "bank 21", ROMX, BANK [MUSIC_BANK_01]
 	music_engine 21
-SFXPointers_21: INCLUDE "audio/unknown_sfx_84ee5.asm"
-MusicPointers_21: INCLUDE "audio/unknown_sfx_85fe2.asm"
+SFXPointers_21: INCLUDE "audio/sfx_21.asm"
+MusicPointers_21: INCLUDE "audio/music_21.asm"
 RingtonePointers_21: db $ff
 
 SECTION "bank 22", ROMX, BANK [MUSIC_BANK_02]
 	music_engine 22
-SFXPointers_22: INCLUDE "audio/unknown_sfx_88ee5.asm"
-MusicPointers_22: INCLUDE "audio/unknown_sfx_89fe2.asm"
+SFXPointers_22: INCLUDE "audio/sfx_22.asm"
+MusicPointers_22: INCLUDE "audio/music_22.asm"
 RingtonePointers_22: db $ff
 
 SECTION "bank 23", ROMX, BANK [MUSIC_BANK_03]
 	music_engine 23
-SFXPointers_23: INCLUDE "audio/unknown_sfx_8cee5.asm"
-MusicPointers_23: INCLUDE "audio/unknown_sfx_8dfe2.asm"
+SFXPointers_23: INCLUDE "audio/sfx_23.asm"
+MusicPointers_23: INCLUDE "audio/music_23.asm"
 RingtonePointers_23: db $ff
 
 SECTION "bank 24", ROMX, BANK [$24]
 	music_engine 24
-SFXPointers_24: INCLUDE "audio/unknown_sfx_90ee5.asm"
+SFXPointers_24: INCLUDE "audio/sfx_24.asm"
 RingtonePointers_24: INCLUDE "audio/ringtones.asm"
 MusicPointers_24: 
 

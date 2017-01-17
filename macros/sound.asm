@@ -15,6 +15,27 @@ INCLUDE "audio/engine.asm"
 	const A#
 	const B_
 
+channel_struct: MACRO
+\1_Active:: ds 1      ; 00
+\1_Pointer:: dw       ; 01
+\1_Tempo:: ds 1       ; 03
+\1_Duration:: ds 1    ; 04
+\1_ENT:: ds 1         ; 05
+\1_LEN:: ds 1         ; 06
+\1_ENVReset:: ds 1    ; 07
+\1_ENV:: ds 1         ; 08
+\1_Sound0x09:: ds 1   ; 09
+\1_FRQ:: ds 1         ; 0a
+\1_KIK:: ds 1         ; 0b
+\1_Subfunction:: dw   ; 0c
+	ds $1a
+	ENDM
+
+channel: MACRO
+	db (\1 << 2)
+	db \2
+	ENDM
+
 note: MACRO
 	dn \1, \2 - 1
 	ENDM
@@ -31,21 +52,21 @@ music_e0: MACRO
 	db music_e0_command
 	ENDM
 
-	enum music_setvar3_command
-music_setvar3: MACRO
-	db music_setvar3_command
+	enum music_tempo_command
+music_tempo: MACRO
+	db music_tempo_command
 	db \1
 	ENDM
 
-	enum music_setvara_command
-music_setvara: MACRO
-	db music_setvara_command
+	enum music_setfrq_command
+music_setfrq: MACRO
+	db music_setfrq_command
 	db \1
 	ENDM
 
-	enum music_setvar6_command
-music_setvar6: MACRO
-	db music_setvar6_command
+	enum music_setlen_command
+music_setlen: MACRO
+	db music_setlen_command
 	db \1
 	ENDM
 
@@ -64,21 +85,21 @@ music_e6: MACRO
 	db music_e6_command
 	ENDM
 
-	enum music_set_cf99_command
-music_set_cf99: MACRO
-	db music_set_cf99_command
+	enum music_noise_sample_command
+music_noise_sample: MACRO
+	db music_noise_sample_command
 	db \1
 	ENDM
 
-	enum music_reset_var22_flag6_and_setvar7_command
-music_reset_var22_flag6_and_setvar7: MACRO
-	db music_reset_var22_flag6_and_setvar7_command
+	enum music_reset_var22_flag6_and_setenvreset_command
+music_reset_var22_flag6_and_setenvreset: MACRO
+	db music_reset_var22_flag6_and_setenvreset_command
 	db \1
 	ENDM
 
-	enum music_set_var22_flag6_and_setvar7_command
-music_set_var22_flag6_and_setvar7: MACRO
-	db music_set_var22_flag6_and_setvar7_command
+	enum music_set_var22_flag6_and_setenvreset_command
+music_set_var22_flag6_and_setenvreset: MACRO
+	db music_set_var22_flag6_and_setenvreset_command
 	db \1
 	ENDM
 
@@ -142,15 +163,15 @@ ret_channel: MACRO
 	db ret_channel_command
 	ENDM
 
-	enum music_setvar5_command
-music_setvar5: MACRO
-	db music_setvar5_command
+	enum music_setent_command
+music_setent: MACRO
+	db music_setent_command
 	db \1
 	ENDM
 
-	enum music_setvar24_command
-music_setvar24: MACRO
-	db music_setvar24_command
+	enum music_setfreqoffset_command
+music_setfreqoffset: MACRO
+	db music_setfreqoffset_command
 	db \1
 	ENDM
 
@@ -178,15 +199,15 @@ music_reset_var22_flag6: MACRO
 	db music_reset_var22_flag6_command
 	ENDM
 
-	enum music_setvar3_2_command
-music_setvar3_2: MACRO
-	db music_setvar3_2_command
+	enum music_tempo_2_command
+music_tempo_2: MACRO
+	db music_tempo_2_command
 	db \1
 	ENDM
 
-	enum music_setvar23_command
-music_setvar23: MACRO
-	db music_setvar23_command
+	enum music_channeltype_command
+music_channeltype: MACRO
+	db music_channeltype_command
 	db \1
 	ENDM
 
