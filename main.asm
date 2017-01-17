@@ -9375,9 +9375,9 @@ Func_a912c:
 	ld a, $2
 	ld [wcada], a
 	callba DrawTextboxInteriorTopRow
-	ld a, BANK(GFX_e0c4e)
+	ld a, BANK(Tilemap_e0c38)
 	hlbgcoord 2, 1
-	ld de, GFX_e0c4e
+	ld de, Tilemap_e0c38 + $16
 	ld bc, $8
 	call FarCopy2bpp_2
 	call PrintText_
@@ -21977,16 +21977,11 @@ GFX_e09d8:: INCBIN "gfx/misc/e09d8.2bpp"
 GFX_e0b08:: INCBIN "gfx/misc/cursor.2bpp"
 GFX_e0b38:: INCBIN "gfx/misc/e0b38.1bpp"
 GFX_e0bb8:: INCBIN "gfx/misc/e0bb8.1bpp"
-Tilemap_e0c38:
-	dr $e0c38, $e0c4e
 
-GFX_e0c4e: INCBIN "gfx/misc/e0c4e.1bpp"
-	dr $e0c56, $e0c88
+Tilemap_e0c38: INCBIN "gfx/misc/e0c38.tilemap"
+Tilemap_e0c88: INCBIN "gfx/misc/e0c88.tilemap"
+Tilemap_e0cb0: INCBIN "gfx/misc/e0cb0.tilemap"
 
-Tilemap_e0c88:
-	dr $e0c88, $e0cb0
-
-Tilemap_e0cb0: INCBIN "gfx/misc/e0cb0.1bpp"
 PhoneCallTextBoxFrame: INCBIN "gfx/misc/e0d28.2bpp"
 GFX_e0e18: INCBIN "gfx/misc/e0e18.2bpp"
 GFX_e0eb8: INCBIN "gfx/misc/e0eb8.2bpp"
@@ -22000,8 +21995,7 @@ GFX_e1308: INCBIN "gfx/misc/e1308.2bpp"
 GFX_e1348: INCBIN "gfx/misc/e1348.2bpp"
 GFX_e1448: INCBIN "gfx/misc/e1448.2bpp"
 
-Tilemap_e1548:
-	dr $e1548, $e1560
+Tilemap_e1548: INCBIN "gfx/misc/e1548.tilemap"
 
 GFX_e1560: INCBIN "gfx/misc/e1560.2bpp"
 GFX_e1650: INCBIN "gfx/misc/e1650.2bpp"
@@ -22173,30 +22167,40 @@ GFX_e2564: INCBIN "gfx/misc/e2564.2bpp"
 GFX_e27c4: INCBIN "gfx/misc/e27c4.w64.t7.2bpp"
 
 Data_e2c54::
-	dr $e2c54, $e2d14
+	db $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
+	db $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c, $2d, $2e, $2f
+	db $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $3a, $3b, $3c, $3d, $3e, $3f
+	db $40, $41, $42, $43, $44, $45, $46, $47, $48, $49, $4a, $4b, $4c, $4d, $4e, $4f
+	db $50, $51, $52, $53, $54, $55, $56, $57, $58, $59, $5a, $5b, $5c, $5d, $5e, $5f
+	db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6a, $6b, $6c, $6d, $6e, $6f
+	db $70, $71, $72, $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c, $7d, $7e, $7f
+	db $80, $81, $82, $83, $84, $85, $86, $87, $90, $91, $92, $93, $94, $95, $96, $97
+	db $a0, $a1, $a2, $a3, $a4, $a5, $a6, $a7, $b0, $b1, $b2, $b3, $b4, $b5, $b6, $b7
+	db $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7
+	db $e0, $e1, $e2, $e3, $e4, $e5, $e6, $e7, $f0, $f1, $f2, $f3, $f4, $f5, $f6, $f7
 
 Data_e2d14::
-	dr $e2d14, $e2d54
+	db $88, $89, $8a, $8b, $8c, $8d, $8e, $8f, $98, $99, $9a, $9b, $9c, $9d, $9e, $9f
+	db $a8, $a9, $aa, $ab, $ac, $ad, $ae, $af, $b8, $b9, $ba, $bb, $bc, $bd, $be, $bf
+	db $c8, $c9, $ca, $cb, $cc, $cd, $ce, $cf, $d8, $d9, $da, $db, $dc, $dd, $de, $df
+	db $e8, $e9, $ea, $eb, $ec, $ed, $ee, $ef, $f8, $f9, $fa, $fb, $fc, $fd, $fe, $ff
 
 GFX_e2d54: INCBIN "gfx/misc/e2d54.w40.interleave.2bpp"
 GFX_e2e94: INCBIN "gfx/misc/e2e94.2bpp"
 GFX_e2eb4: INCBIN "gfx/misc/e2eb4.2bpp"
 GFX_e2ed4: INCBIN "gfx/misc/e2ed4.w16.2bpp"
-	dr $e2f94, $e2fa4
-Tilemap_e2fa4:
-	dr $e2fa4, $e318c
-
+GFX_e2f94: INCBIN "gfx/misc/e2f94.2bpp"
+Tilemap_e2fa4: INCBIN "gfx/misc/e2fa4.tilemap"
+GFX_e310c: INCBIN "gfx/misc/e310c.2bpp"
 GFX_e318c: INCBIN "gfx/misc/e318c.2bpp"
 IdleHUDFrameGFX: INCBIN "gfx/misc/e319c.2bpp"
-	dr $e345c, $e3494
-
+Tilemap_e345c: INCBIN "gfx/misc/e345c.tilemap"
 GFX_e3494: INCBIN "gfx/misc/e3494.2bpp"
 GFX_e3514: INCBIN "gfx/misc/e3514.t2.2bpp"
 GFX_e3674: INCBIN "gfx/misc/e3674.2bpp"
-Tilemap_e3784:
-	dr $e3784, $e38ec
-Tilemap_e38ec:
-	dr $e38ec, $e3a54
+Tilemap_e3784: INCBIN "gfx/misc/e3784.tilemap"
+Tilemap_e38ec: INCBIN "gfx/misc/e38ec.tilemap"
 
 SECTION "bank 39", ROMX, BANK [$39]
 IF DEF(POWER)
@@ -22352,9 +22356,9 @@ Tilemap_17c708: INCBIN "gfx/misc/17c708.tilemap"
 INCLUDE "data/palettes_17c870.asm"
 
 SECTION "bank 60", ROMX, BANK [$60]
-GFX_180000: INCBIN "gfx/misc/180000.2bpp"
-GFX_181540: INCBIN "gfx/misc/181540.2bpp"
-GFX_182a80: INCBIN "gfx/misc/182a80.2bpp"
+GFX_180000: INCBIN "gfx/misc/180000.w160.2bpp"
+GFX_181540: INCBIN "gfx/misc/181540.w160.2bpp"
+GFX_182a80: INCBIN "gfx/misc/182a80.w160.2bpp"
 
 SECTION "bank 63", ROMX, BANK [$63]
 Data_18c000:
