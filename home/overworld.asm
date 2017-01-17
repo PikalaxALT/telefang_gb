@@ -75,7 +75,7 @@ Func_21db::
 	ld [wNumIdleFrames], a
 	call Func_2264
 	call Func_3255
-	call Func_241e
+	call RestoreMapAnimationsAfterSpecial_
 	ld a, $0
 	ld [wTextSubfunction], a
 	ld [wOverworldIdleHUDPage], a
@@ -280,7 +280,7 @@ Func_23c3::
 	ret
 
 Func_23d1::
-	call Func_2411
+	call BackupMapObjects_
 	call Func_23e2
 	ld a, $c
 	ld [wGameRoutine], a
@@ -310,12 +310,12 @@ Func_23e2: ; 23e2 (0:23e2)
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Func_2411: ; 2411 (0:2411)
-	homecall Func_2df1e
+BackupMapObjects_: ; 2411 (0:2411)
+	homecall BackupMapObjects
 	ret
 
-Func_241e: ; 241e (0:241e)
-	homecall Func_2df55
+RestoreMapAnimationsAfterSpecial_: ; 241e (0:241e)
+	homecall RestoreMapAnimationsAfterSpecial
 	ret
 
 Func_242b::
@@ -331,7 +331,7 @@ Func_242b::
 	ld a, $2
 	ld [wPhoneIsRinging], a
 	callba Func_2ccb9
-	call Func_2411
+	call BackupMapObjects_
 	ld a, $24
 	ld [wSubroutine], a
 	ld a, $4

@@ -1756,39 +1756,39 @@ ScriptCommand_4c: ; 3cb2a (f:4b2a)
 Script_Special: ; 3cb46 (f:4b46)
 	ld a, [wScriptBuffer + 1]
 	cp $14
-	jr c, .asm_3cb58
+	jr c, .okay
 	cp $32
-	jr nc, .asm_3cb58
+	jr nc, .okay
 	ld b, $2
 	call AdvanceScriptPointer
 	scf
 	ret
 
-.asm_3cb58
+.okay
 	ld a, [wScriptBuffer + 1]
 	cp $0
-	jp z, Func_3cc5e
+	jp z, .special_0
 	cp $1
-	jp z, Func_3cc6d
+	jp z, .special_1
 	cp $2
-	jr z, .asm_3cba7
+	jr z, .baseball
 	cp $64
-	jp z, Func_3cc91
+	jp z, .special_64
 	cp $65
-	jr z, .asm_3cbb8
+	jr z, .special_65
 	cp $66
-	jr z, .asm_3cbc9
+	jr z, .special_66
 	cp $67
-	jp z, Func_3cc10
+	jp z, .special_67
 	cp $68
-	jr z, .asm_3cb8e
+	jr z, .special_3_68
 	cp $96
-	jp z, Func_3cc2f
+	jp z, .special_96
 	cp $9
-	jp z, Func_3cc7f
+	jp z, .special_9
 	cp $3
-	jp nc, Func_3cc47
-.asm_3cb8e
+	jp nc, .special_default
+.special_3_68
 	ld a, [wPartnerDenjuuObjectStruct_XCoord]
 	ld d, a
 	ld a, [wPartnerDenjuuObjectStruct_YCoord]
@@ -1800,7 +1800,7 @@ Script_Special: ; 3cb46 (f:4b46)
 	scf
 	ret
 
-.asm_3cba7
+.baseball
 	ld b, $1d
 	callba Func_33886
 	ld b, $2
@@ -1808,7 +1808,7 @@ Script_Special: ; 3cb46 (f:4b46)
 	scf
 	ret
 
-.asm_3cbb8
+.special_65
 	ld b, $1e
 	callba Func_33886
 	ld b, $2
@@ -1816,7 +1816,7 @@ Script_Special: ; 3cb46 (f:4b46)
 	scf
 	ret
 
-.asm_3cbc9
+.special_66
 	ld c, $10
 	call ScriptEngine_GetObjectStruct
 	jr z, .asm_3cbe9
@@ -1856,7 +1856,7 @@ Script_Special: ; 3cb46 (f:4b46)
 	scf
 	ret
 
-Func_3cc10: ; 3cc10 (f:4c10)
+.special_67: ; 3cc10 (f:4c10)
 	ld c, $11
 	call ScriptEngine_GetObjectStruct
 	jr z, .asm_3cc28
@@ -1875,8 +1875,8 @@ Func_3cc10: ; 3cc10 (f:4c10)
 	scf
 	ret
 
-Func_3cc2f: ; 3cc2f (f:4c2f)
-	call Func_2411
+.special_96: ; 3cc2f (f:4c2f)
+	call BackupMapObjects_
 IF DEF(POWER)
 	ld a, CRYPTO
 ELSE
@@ -1891,10 +1891,10 @@ ENDC
 	call AdvanceScriptPointer
 	ret
 
-Func_3cc47: ; 3cc47 (f:4c47)
+.special_default: ; 3cc47 (f:4c47)
 	sub $3
-	ld [wca66], a
-	call Func_2411
+	ld [wSpecialID], a
+	call BackupMapObjects_
 	ld a, $29
 	ld [wSubroutine], a
 	ld a, $4
@@ -1902,7 +1902,7 @@ Func_3cc47: ; 3cc47 (f:4c47)
 	ld b, $2
 	jp AdvanceScriptPointer
 
-Func_3cc5e: ; 3cc5e (f:4c5e)
+.special_0: ; 3cc5e (f:4c5e)
 	ld a, $18
 	ld [wSubroutine], a
 	ld a, $4
@@ -1910,8 +1910,8 @@ Func_3cc5e: ; 3cc5e (f:4c5e)
 	ld b, $2
 	jp AdvanceScriptPointer
 
-Func_3cc6d: ; 3cc6d (f:4c6d)
-	call Func_2411
+.special_1: ; 3cc6d (f:4c6d)
+	call BackupMapObjects_
 	ld a, $19
 	ld [wSubroutine], a
 	ld a, $4
@@ -1919,8 +1919,8 @@ Func_3cc6d: ; 3cc6d (f:4c6d)
 	ld b, $2
 	jp AdvanceScriptPointer
 
-Func_3cc7f: ; 3cc7f (f:4c7f)
-	call Func_2411
+.special_9: ; 3cc7f (f:4c7f)
+	call BackupMapObjects_
 	ld a, $36
 	ld [wSubroutine], a
 	ld a, $4
@@ -1928,7 +1928,7 @@ Func_3cc7f: ; 3cc7f (f:4c7f)
 	ld b, $2
 	jp AdvanceScriptPointer
 
-Func_3cc91: ; 3cc91 (f:4c91)
+.special_64: ; 3cc91 (f:4c91)
 	ld a, $16
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $9
@@ -2121,7 +2121,7 @@ Script_GiveDenjuu: ; 3cd38 (f:4d38)
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	call Func_2411
+	call BackupMapObjects_
 	ld a, [wScriptBuffer + 2]
 	ld [wRecruitedDenjuuSpecies], a
 	ld a, [wScriptBuffer + 3]
@@ -2356,7 +2356,7 @@ Script_IfRecruited: ; 3cf54 (f:4f54)
 	ret
 
 ScriptCommand_6a: ; 3cf93 (f:4f93)
-	call Func_2411
+	call BackupMapObjects_
 	ld a, $30
 	ld [wSubroutine], a
 	ld a, $4

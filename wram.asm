@@ -1167,7 +1167,7 @@ wca62:: ds 1
 wca63:: ds 1
 wca64:: ds 1
 wca65:: ds 1
-wca66:: ds 1
+wSpecialID:: ds 1
 wca67:: ds 1
 wScriptCount:: ds 1
 wWhichPhoneNumberSymbolCode:: ds 1
@@ -1213,17 +1213,18 @@ wcadb:: ds 1
 wcadc:: ds 1
 wcadd:: ds 1
 wcade:: ds 1
+
 wcadf:: ds 1
 wcae0:: ds 1
 wcae1:: ds 1
 wcae2:: ds 1
-
 wcae3:: ds 1
 wcae4:: ds 1
 wcae5:: ds 1
 wcae6:: ds 1
 wcae7:: ds 1
 wcae8:: ds 1
+
 wcae9:: ds 1
 wcaea:: ds 1
 wcaeb:: ds 1

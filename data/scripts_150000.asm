@@ -431,7 +431,7 @@ Script_15033f:
 	script_sleep 8
 	script_reset_event EVENT_089
 	script_jump_if_not EVENT_08A, Script_150358
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_150354:
@@ -500,7 +500,7 @@ Script_1503b8:
 	script_sleep 8
 	script_set_event EVENT_089
 	script_jump_if_not EVENT_08B, Script_1503d1
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_1503cd:
@@ -569,7 +569,7 @@ Script_150431:
 	script_sleep 8
 	script_set_event EVENT_089
 	script_jump_if_not EVENT_08B, Script_15044a
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_150446:
@@ -638,7 +638,7 @@ Script_1504aa:
 	script_sleep 8
 	script_reset_event EVENT_089
 	script_jump_if_not EVENT_08A, Script_1504c3
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_1504bf:
@@ -707,7 +707,7 @@ Script_150523:
 	script_sleep 8
 	script_set_event EVENT_089
 	script_jump_if_not EVENT_08B, Script_15053c
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_150538:
@@ -776,7 +776,7 @@ Script_15059c:
 	script_sleep 8
 	script_reset_event EVENT_089
 	script_jump_if_not EVENT_08A, Script_1505b5
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_1505b1:
@@ -845,7 +845,7 @@ Script_150615:
 	script_sleep 8
 	script_reset_event EVENT_089
 	script_jump_if_not EVENT_08A, Script_15062e
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_15062a:
@@ -914,7 +914,7 @@ Script_15068e:
 	script_sleep 8
 	script_reset_event EVENT_089
 	script_jump_if_not EVENT_08A, Script_1506a7
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_1506a3:
@@ -983,7 +983,7 @@ Script_150707:
 	script_sleep 8
 	script_set_event EVENT_089
 	script_jump_if_not EVENT_08B, Script_150720
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_15071c:
@@ -1052,7 +1052,7 @@ Script_150780:
 	script_sleep 8
 	script_reset_event EVENT_089
 	script_jump_if_not EVENT_08A, Script_150799
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_150795:
@@ -1121,7 +1121,7 @@ Script_1507f9:
 	script_sleep 8
 	script_reset_event EVENT_089
 	script_jump_if_not EVENT_08A, Script_150812
-	script_4d $1
+	script_special $1
 	script_end
 
 Script_15080e:
@@ -1157,7 +1157,7 @@ Script_048: ; Intro script
 	script_sleep 60
 	script_printtext $3, $69
 	script_sleep 120
-	script_4d $2
+	script_special SPECIAL_BASEBALL
 	script_sleep 10
 	script_apply_facing $0, $2
 	script_sleep 30
@@ -1271,13 +1271,13 @@ Script_048: ; Intro script
 	script_printtext $3, $7d
 	script_sleep 80
 	script_set_event EVENT_210
-	script_4d $a
+	script_special SPECIAL_WARP_TO_DENJUU_WORLD
 	script_warp $4, $14, $4, $5
 	script_complete_active_event
 	script_end
 
 Script_049:
-	script_4d $64
+	script_special $64
 	script_21 $0, $59, $55
 	script_playmusic MUSIC_WELCOME_TO_DENJUU_WORLD
 	script_dshot_signal_strength $4
@@ -1480,7 +1480,7 @@ ELSE
 	script_printtext $3, $98
 ENDC
 	script_sleep 10
-	script_4d $96
+	script_special $96
 	script_60 $59 ; palette override
 	script_66 $2a
 	script_sleep 10
@@ -1952,7 +1952,7 @@ Script_150efe:
 	script_sleep 3
 	script_set_event EVENT_210
 	script_playmusic MUSIC_WELCOME_TO_DENJUU_WORLD
-	script_4d $3
+	script_special $3
 	script_warp $8, $c, $5, $6
 	script_21 $0, $59, $35
 	script_60 $59
@@ -2406,7 +2406,7 @@ Script_068:
 	script_wait_movement $0
 	script_apply_facing $0, $3
 	script_sleep 50
-	script_4d $65
+	script_special $65
 	script_walk_npc $0, $40, 100
 	script_wait_movement $0
 	script_disappear $0
@@ -2765,7 +2765,7 @@ ENDC
 	script_sleep 50
 	script_printtext $9, $51
 IF DEF(POWER)
-	script_4d $66
+	script_special $66
 	script_wait_movement $0
 ELSE
 	script_21 $0, $5b, $57
@@ -2807,7 +2807,7 @@ ENDC
 	script_sleep 50
 	script_printtext $9, $56
 IF DEF(POWER)
-	script_4d $67
+	script_special $67
 	script_wait_movement $1
 ELSE
 	script_21 $1, $38, $57
@@ -2837,7 +2837,7 @@ ENDC
 	script_face_player $1
 	script_face_player $1
 	script_sleep 50
-	script_4d $4
+	script_special $4
 	script_load_battle $b, $25, $1
 	script_playmusic MUSIC_KAI_ENCOUNTER
 	script_60 $5b
@@ -3741,7 +3741,7 @@ Script_151d94:
 	script_3f $4, $5
 	script_1c $1
 	script_sleep 80
-	script_4d $68
+	script_special $68
 	script_playsfx SFX_58
 	script_sleep 60
 	script_playsfx SFX_58
@@ -5072,7 +5072,7 @@ Script_0f3:
 	script_unlock_event $124
 	script_unlock_event $125
 	script_unlock_event $126
-	script_4d $3
+	script_special $3
 	script_warp $3, $3e, $4, $2
 	script_0d $3
 	script_1c $3
@@ -5414,7 +5414,7 @@ Script_0fe:
 	script_26 $1, $2
 	script_sleep 80
 	script_26 $1, $ff
-	script_4d $14
+	script_special $14
 	script_66 $58
 	script_sleep 20
 	script_printtext $a, $f3
@@ -6730,7 +6730,7 @@ Script_153776:
 Script_15377c:
 	script_sleep 20
 	script_printtext $14, $3
-	script_4d $9
+	script_special $9
 	script_60 $59
 	script_66 $2a
 	script_sleep 10

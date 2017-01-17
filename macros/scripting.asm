@@ -591,9 +591,9 @@ script_4c: MACRO
 	db \1
 	ENDM
 
-	enum script_4d_command
-script_4d: MACRO
-	db script_4d_command
+	enum script_special_command
+script_special: MACRO
+	db script_special_command
 .offset\@
 	db \1
 	ENDM

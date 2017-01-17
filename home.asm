@@ -2248,7 +2248,7 @@ RunOverworld: ; 1ea1 (0:1ea1)
 	cp $a
 	jr z, .skip
 	cp $2e
-	jp z, Func_1f6a
+	jp z, OverworldSubroutine_
 	ld a, [wc98e]
 	or a
 	jr nz, .skip
@@ -2308,12 +2308,12 @@ Func_1f24: ; 1f24 (0:1f24)
 	ld a, [wOverworldFrameCounter]
 	inc a
 	ld [wOverworldFrameCounter], a
-	jr nz, Func_1f6a
+	jr nz, OverworldSubroutine_
 	ld a, [wOverworldFrameCounterHi]
 	inc a
 	ld [wOverworldFrameCounterHi], a
-Func_1f6a: ; 1f6a (0:1f6a)
-	callba Func_2e589
+OverworldSubroutine_: ; 1f6a (0:1f6a)
+	callba OverworldSubroutine
 	ld a, [wPrevROMBank]
 	rst Bankswitch
 	ld h, d
@@ -2343,7 +2343,7 @@ Func_1f80: ; 1f80 (0:1f80)
 	jr nz, .check_select
 	xor a
 	ld [wNumIdleFrames], a
-	call Func_2411
+	call BackupMapObjects_
 	ld b, $c
 	ld a, [wMapGroup]
 	cp $a
@@ -2496,7 +2496,7 @@ Func_20b1: ; 20b1 (0:20b1)
 	ld a, $0
 	ld [wEncounterStepCounter], a
 	ld [wEncounterStepCounter + 1], a
-	call Func_2411
+	call BackupMapObjects_
 	add sp, $2
 asm_20f5
 	ret
@@ -5363,7 +5363,7 @@ homecall_ret_2e562:
 	homecall ret_2e562
 	ret
 
-Func_3775:
+FillVRAMWithByte_:
 	ld d, a
 	call FillVRAMWithByte
 	ld a, d
@@ -6389,7 +6389,7 @@ Func_3f2a:
 	ld a, $0
 	ret
 
-Func_3f4d:
+FlickeringGFX_PushPalettes:
 	ld [wFontSourceBank], sp
 	ld a, [wcae8]
 	ld [MBC3RomBank], a
@@ -6407,15 +6407,15 @@ Func_3f4d:
 	ld [hl], a
 	ld hl, rLY
 	ld a, $6
-.asm_3f70
+.wait_ly
 	cp [hl]
-	jr nz, .asm_3f70
-.asm_3f73
+	jr nz, .wait_ly
+.copy
 	pop de
 	ld l, rSTAT & $ff
-.asm_3f76
+.wait_stat
 	bit 1, [hl]
-	jr nz, .asm_3f76
+	jr nz, .wait_stat
 	ld l, rBGPD & $ff
 REPT 15
 	ld [hl], e
@@ -6426,8 +6426,8 @@ ENDR
 	ld [hl], d
 	ld a, [rLY]
 	cp $88
-	jr nz, .asm_3f73
-	ld a, $29
+	jr nz, .copy
+	ld a, BANK(LoadFlickeringGFX)
 	ld [MBC3RomBank], a
 	ld hl, wFontSourceBank
 	ld a, [hli]
@@ -6436,45 +6436,45 @@ ENDR
 	ld sp, hl
 	ret
 
-Func_3fbe:
+Special_LoadTilemap_NoWaitStat:
 	ld d, a
 	ld a, [wROMBank]
 	push af
 	ld a, d
 	rst Bankswitch
-	ld a, $12
-.asm_3fc7
-	ld e, $14
+	ld a, SCREEN_HEIGHT
+.loop
+	ld e, SCREEN_WIDTH
 	push af
-.asm_3fca
+.inner
 	ld a, [bc]
 	inc bc
 	ld [hli], a
 	dec e
-	jr nz, .asm_3fca
+	jr nz, .inner
 	ld de, $c
 	add hl, de
 	pop af
 	dec a
-	jr nz, .asm_3fc7
+	jr nz, .loop
 	pop af
 	rst Bankswitch
 	ret
 
-Func_3fdb:
+Special_LoadGFX_NoWaitStat:
 	ld [wFontSourceBank], a
 	ld a, [wROMBank]
 	push af
 	ld a, [wFontSourceBank]
 	rst Bankswitch
-.asm_3fe6
+.copy
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_3fe6
+	jr nz, .copy
 	pop af
 	rst Bankswitch
 	ret

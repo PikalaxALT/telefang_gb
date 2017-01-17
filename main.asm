@@ -2098,7 +2098,7 @@ Func_2df11:
 	inc bc
 	jr AddOrSubtractMoney
 
-Func_2df1e: ; 2df1e (b:5f1e)
+BackupMapObjects: ; 2df1e (b:5f1e)
 	enable_sram sOAMAnimationsBackup
 	ld hl, wPlayerObjectStruct
 	ld de, wOAMAnimation15
@@ -2122,7 +2122,7 @@ Func_2df1e: ; 2df1e (b:5f1e)
 	disable_sram
 	ret
 
-Func_2df55: ; 2df55 (b:5f55)
+RestoreMapAnimationsAfterSpecial: ; 2df55 (b:5f55)
 	enable_sram sOAMAnimationsBackup
 	ld de, wOAMAnimations
 	ld hl, sOAMAnimationsBackup
@@ -3098,7 +3098,7 @@ Func_2e563:
 	pop hl
 	ret
 
-Func_2e589: ; 2e589 (b:6589)
+OverworldSubroutine: ; 2e589 (b:6589)
 	ld a, [wSubroutine]
 	ld b, a
 	ld hl, Pointers_2e5a1
@@ -3118,65 +3118,72 @@ Func_2e589: ; 2e589 (b:6589)
 	ret
 
 Pointers_2e5a1:
-	dbw $0e, Func_2134
-	dbw $0e, Func_231e
-	dbw $0e, Func_2329
-	dbw $0e, Func_2353
-	dbw $0e, Func_236c
-	dbw $0e, Func_242b
-	dbw $0e, Func_2465
-	dbw $0e, Func_24ad
-	dba Func_2dfaf
-	dbw $0e, Func_2503
-	dbw $0e, Func_21db
-	dbw $0e, Func_2122
-	dba FadeOutOverworldForMinimap
-	dba LoadMinimapGFX
-	dba FadeToMinimap
-	dba RunMinimap
-	dba RunMinimap
-	dba FadeOutMinimapForOverworld
-	dba FadeOutOverworldForMinimap_____
-	dba Func_a87e7
-	dba Func_a8981
-	dba Func_a8991
-	dba Func_a89cb
-	dbw $0e, Func_24c9
-	dbw $0e, Func_24d8
-	dba FadeOutOverworldForMinimap______
-	dba Func_a89e5
-	dba Func_a8e7e
-	dba Func_a8ea3
-	dba Func_a91a3
-	dba Func_a9223
-	dba Func_a91dc
-	dba Func_a9377
-	dba Func_a93cf
-	dba Func_a98bf
-	dba Func_a99f5
-	dba FadeOutOverworldForMinimap__
-	dba LoadPhoneCallLayout
-	dba FadeIntoPhoneCall
-	dba HandlePhoneCall
-	dba FadeOutFromPhoneCall
-	dba FadeOutOverworldForMinimap___
-	dba Func_a5822
-	dba Func_a593b
-	dba Func_a594b
-	dba Func_a5d17
-	dba Func_c9b17
-	dba Func_c9b01
-	dba FadeOutOverworldForMinimap_
-	dba Func_3a0fd
-	dba Func_3a175
-	dba Func_3a1bc
-	dba Func_3a696
-	dba Func_a837a
-	dba FadeOutOverworldForMinimap____
-	dba Func_a5f06
-	dba Func_a5f78
-	dba Func_a5f82
-	dba Func_a5f9b
+	dbw $0e, Func_2134                       ; 00
+	dbw $0e, Func_231e                       ; 01
+	dbw $0e, Func_2329                       ; 02
+	dbw $0e, Func_2353                       ; 03
+	dbw $0e, Func_236c                       ; 04
+	dbw $0e, Func_242b                       ; 05
+	dbw $0e, Func_2465                       ; 06
+	dbw $0e, Func_24ad                       ; 07
+	dba Func_2dfaf                           ; 08
+	dbw $0e, Func_2503                       ; 09
+	dbw $0e, Func_21db                       ; 0a
+	dbw $0e, Func_2122                       ; 0b
+
+	dba FadeOutOverworldForMinimap           ; 0c
+	dba LoadMinimapGFX                       ; 0d
+	dba FadeToMinimap                        ; 0e
+	dba RunMinimap                           ; 0f
+	dba RunMinimap                           ; 10
+	dba FadeOutMinimapForOverworld           ; 11
+
+	dba FadeOutOverworldForMinimap_____      ; 12
+	dba Func_a87e7                           ; 13
+	dba Func_a8981                           ; 14
+	dba Func_a8991                           ; 15
+	dba Func_a89cb                           ; 16
+	dbw $0e, Func_24c9                       ; 17
+	dbw $0e, Func_24d8                       ; 18
+
+	dba FadeOutOverworldForMinimap______     ; 19
+	dba Func_a89e5                           ; 1a
+	dba Func_a8e7e                           ; 1b
+	dba Func_a8ea3                           ; 1c
+	dba Func_a91a3                           ; 1d
+	dba Func_a9223                           ; 1e
+	dba Func_a91dc                           ; 1f
+	dba Func_a9377                           ; 20
+	dba Func_a93cf                           ; 21
+	dba Func_a98bf                           ; 22
+	dba Func_a99f5                           ; 23
+
+	dba FadeOutOverworldForMinimap__         ; 24
+	dba LoadPhoneCallLayout                  ; 25
+	dba FadeIntoPhoneCall                    ; 26
+	dba HandlePhoneCall                      ; 27
+	dba FadeOutFromPhoneCall                 ; 28
+
+	dba FadeOutOverworldForMinimap___        ; 29
+	dba LoadSpecialGFX                       ; 2a
+	dba StartFadeInToSpecial                           ; 2b
+	dba DoFadeInToSpecial                           ; 2c
+	dba Func_a5d17                           ; 2d
+	dba Func_c9b17                           ; 2e
+	dba Func_c9b01                           ; 2f
+
+	dba FadeOutOverworldForMinimap_          ; 30
+	dba Func_3a0fd                           ; 31
+	dba Func_3a175                           ; 32
+	dba Func_3a1bc                           ; 33
+	dba Func_3a696                           ; 34
+	dba Func_a837a                           ; 35
+
+	dba FadeOutOverworldForMinimap____       ; 36
+	dba Func_a5f06                           ; 37
+	dba Func_a5f78                           ; 38
+	dba Func_a5f82                           ; 39
+	dba Func_a5f9b                           ; 3a
 
 ItemNames:
 	db "ファイアーガン$"
@@ -6490,66 +6497,66 @@ FadeOutOverworldForMinimap___: ; a5814 (29:5814)
 	ld [wOAMAnimation11_Duration + 14], a
 	ret
 
-Func_a5822: ; a5822 (29:5822)
-	ld a, [wca66]
+LoadSpecialGFX: ; a5822 (29:5822)
+	ld a, [wSpecialID]
 	add $3
 	cp $14
-	jr c, .asm_a5834
+	jr c, .load_gfx
 	cp $32
-	jr nc, .asm_a5834
+	jr nc, .load_gfx
 	sub $14
-	jp Func_a591b
+	jp .WaitGFX_Between14and32
 
-.asm_a5834
-	ld a, BANK(Func_a5822)
+.load_gfx
+	ld a, BANK(LoadSpecialGFX)
 	ld [wPrevROMBank], a
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 2], a
-	ld a, [wca66]
+	ld a, [wSpecialID]
 	cp $7
-	jr nz, .asm_a584a
-	call Func_a58c4
-	jr .asm_a587d
+	jr nz, .other_gfx
+	call .SummonedIntoDenjuuWorld
+	jr .finish_special_loading
 
-.asm_a584a
+.other_gfx
 	ld c, $30
 	add c
 	ld c, a
 	ld b, $0
 	call GetCGB_BGLayout_
-	ld a, [wca66]
+	ld a, [wSpecialID]
 	ld c, $50
 	add c
 	ld c, a
 	ld b, $0
 	call DecompressGFXByIndex_
-	ld a, [wca66]
+	ld a, [wSpecialID]
 	ld e, $c0
 	add e
 	ld e, a
 	ld bc, $0
 	ld a, $0
 	call LoadStdBGMapLayout_
-	ld a, [wca66]
+	ld a, [wSpecialID]
 	ld e, $c0
 	add e
 	ld e, a
 	ld bc, $0
 	ld a, $0
 	call LoadStdBGMapAttrLayout_
-.asm_a587d
+.finish_special_loading
 	ld a, $0
 	ld [wTextSubroutine], a
-	ld a, [wca66]
+	ld a, [wSpecialID]
 	cp $0
-	jr z, .asm_a5893
+	jr z, .special0
 	cp $1
-	jr z, .asm_a58aa
+	jr z, .special1
 	cp $2
-	jr z, .asm_a58bc
-	jr .asm_a58bc
+	jr z, .special2
+	jr .special2
 
-.asm_a5893
+.special0
 	ld a, $40
 	ld [wSCY], a
 	ld a, $0
@@ -6560,7 +6567,7 @@ Func_a5822: ; a5822 (29:5822)
 	ld [wSpriteDestIsCustom], a
 	jp IncrementSubroutine
 
-.asm_a58aa
+.special1
 	ld a, $0
 	ld [wCustomSpriteDest], a
 	ld a, $14
@@ -6569,12 +6576,12 @@ Func_a5822: ; a5822 (29:5822)
 	ld [wSpriteDestIsCustom], a
 	jp IncrementSubroutine
 
-.asm_a58bc
+.special2
 	ld a, $0
 	ld [wCustomSpriteDest], a
 	jp IncrementSubroutine
 
-Func_a58c4: ; a58c4 (29:58c4)
+.SummonedIntoDenjuuWorld: ; a58c4 (29:58c4)
 	ld bc, $7
 	call DecompressGFXByIndex_
 	ld bc, $8
@@ -6592,11 +6599,11 @@ Func_a58c4: ; a58c4 (29:58c4)
 	hlbgcoord 0, 18
 	ld a, $1
 	ld bc, $80
-	call Func_3775
+	call FillVRAMWithByte_
 	hlbgcoord 0, 28
 	ld a, $1
 	ld bc, $80
-	call Func_3775
+	call FillVRAMWithByte_
 	ld d, $4
 	ld bc, $14
 	hlbgcoord 0, 18
@@ -6609,26 +6616,26 @@ Func_a58c4: ; a58c4 (29:58c4)
 	call FillAttrMapBoxWithByte
 	ret
 
-Func_a591b: ; a591b (29:591b)
+.WaitGFX_Between14and32: ; a591b (29:591b)
 	ld b, a
 	ld a, [wOAMAnimation11_Duration + 14]
 	cp $2
-	jr c, .asm_a5931
-	call Func_a5e27
+	jr c, .update_oam
+	call LoadFlickeringGFX
 	ld a, $0
 	ld [wTextSubfunction], a
 	ld a, $a
 	ld [wSubroutine], a
 	ret
 
-.asm_a5931
+.update_oam
 	inc a
 	ld [wOAMAnimation11_Duration + 14], a
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Func_a593b: ; a593b (29:593b)
+StartFadeInToSpecial: ; a593b (29:593b)
 	ld bc, $0
 	ld a, $4
 	call StartFade_
@@ -6636,65 +6643,65 @@ Func_a593b: ; a593b (29:593b)
 	ld [wOAMAnimation11_Duration + 14], a
 	jp IncrementSubroutine
 
-Func_a594b: ; a594b (29:594b)
-	ld a, [wca66]
+DoFadeInToSpecial: ; a594b (29:594b)
+	ld a, [wSpecialID]
 	cp $7
-	jp z, Func_a5a07
+	jp z, .summoned_into_denjuu_world
 	ld a, $0
 	call PaletteFade_
 	or a
 	ret z
 	ld a, [wSpriteDestIsCustom]
 	or a
-	jr z, .asm_a5965
+	jr z, .get_text_id
 	dec a
 	ld [wSpriteDestIsCustom], a
 	ret
 
-.asm_a5965
-	ld a, [wca66]
+.get_text_id
+	ld a, [wSpecialID]
 	cp $0
-	jr z, .asm_a5975
+	jr z, .zero_default
 	cp $1
-	jr z, .asm_a59aa
+	jr z, .one
 	cp $2
-	jp z, Func_a5a0a
-.asm_a5975
+	jp z, .two
+.zero_default
 	ld a, [wSCY]
 	cp $20
-	jr c, .asm_a5986
+	jr c, .less_than_20
 	ld a, [wCustomSpriteDest + 1]
 	add $1
 	ld [wCustomSpriteDest + 1], a
-	jr .asm_a598e
+	jr .okay
 
-.asm_a5986
+.less_than_20
 	ld a, [wCustomSpriteDest + 1]
 	sub $1
 	ld [wCustomSpriteDest + 1], a
-.asm_a598e
+.okay
 	ld b, a
 	ld a, [wCustomSpriteDest]
 	add b
 	ld [wCustomSpriteDest], a
-	jr nc, .asm_a59a2
+	jr nc, .no_carry
 	ld a, [wSCY]
 	or a
-	jr z, .asm_a59a2
+	jr z, .no_carry
 	dec a
 	ld [wSCY], a
-.asm_a59a2
+.no_carry
 	ld a, [wSCY]
 	or a
 	ret nz
 	jp Func_a5a31
 
-.asm_a59aa
+.one
 	ld a, [wCustomSpriteDest + 1]
 	or a
-	jr z, .asm_a59b1
+	jr z, .dont_decrease
 	dec a
-.asm_a59b1
+.dont_decrease
 	ld [wCustomSpriteDest + 1], a
 	ld b, a
 	ld a, [wCustomSpriteDest]
@@ -6704,7 +6711,7 @@ Func_a594b: ; a594b (29:594b)
 	ld [wSCX], a
 	ld a, [wCustomSpriteDest + 1]
 	or a
-	jr nz, asm_a59f9
+	jr nz, .wait_text
 	ld b, $0
 	ld c, $a1
 	ld hl, wBGMapAnchor
@@ -6714,7 +6721,7 @@ Func_a594b: ; a594b (29:594b)
 	ld [hl], a
 	ld a, [wTextSubroutine]
 	or a
-	jr nz, asm_a59f6
+	jr nz, .print
 	ld a, $2
 	ld [wFontPaletteMode], a
 	ld a, $d0
@@ -6724,9 +6731,9 @@ Func_a594b: ; a594b (29:594b)
 	call LoadSpecialFontTiles
 	ld d, $d
 	callba LoadTextPointer
-asm_a59f6
+.print
 	call PrintText_
-asm_a59f9
+.wait_text
 	ld a, [wTextSubroutine]
 	cp $9
 	jr nz, asm_a5a4a
@@ -6734,13 +6741,13 @@ asm_a59f9
 	ld [wFontPaletteMode], a
 	jr Func_a5a31
 
-Func_a5a07: ; a5a07 (29:5a07)
-	jp Func_a5a4b
+.summoned_into_denjuu_world
+	jp AnimateSummonsIntoDenjuuWorld
 
-Func_a5a0a: ; a5a0a (29:5a0a)
+.two
 	ld a, [wTextSubroutine]
 	or a
-	jr nz, asm_a59f6
+	jr nz, .print
 	ld b, $0
 	ld c, $a1
 	ld a, $2
@@ -6771,19 +6778,19 @@ Func_a5a31: ; a5a31 (29:5a31)
 asm_a5a4a
 	ret
 
-Func_a5a4b: ; a5a4b (29:5a4b)
+AnimateSummonsIntoDenjuuWorld: ; a5a4b (29:5a4b)
 	ld a, [wOAMAnimation11_Duration + 14]
 	cp $0
-	jr z, .asm_a5a64
+	jr z, .fade_in
 	cp $1
-	jr z, .asm_a5a7f
+	jr z, .wait_text
 	cp $2
-	jr z, .asm_a5aab
+	jr z, .player_fall
 	cp $3
-	jp z, Func_a5b3f
+	jp z, .friend_fall
 	cp $4
-	jp z, Func_a5b77
-.asm_a5a64
+	jp z, .fade_out
+.fade_in
 	ld a, $0
 	call PaletteFade_
 	or a
@@ -6798,7 +6805,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ld [wOAMAnimation11_Duration + 14], a
 	ret
 
-.asm_a5a7f
+.wait_text
 	call PrintText_
 	ld a, [wTextSubroutine]
 	cp $9
@@ -6807,10 +6814,10 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	inc a
 	ld [wOAMAnimation12_Duration + 2], a
 	cp $3c
-	jr nc, .asm_a5a94
+	jr nc, .waited_60_frames
 	ret
 
-.asm_a5a94
+.waited_60_frames
 	ld a, $0
 	ld [wOAMAnimation12_Duration + 2], a
 	ld a, [wOAMAnimation11_Duration + 14]
@@ -6822,28 +6829,28 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	ld [H_SFX_ID], a
 	ret
 
-.asm_a5aab
+.player_fall
 	ld a, [wOAMAnimation12_Duration + 2]
 	inc a
 	ld [wOAMAnimation12_Duration + 2], a
 	push af
 	cp $78
-	jr c, .asm_a5abf
+	jr c, .skip_fade_check
 	ld a, $3
 	call PaletteFade_
 	or a
-	jr nz, .asm_a5aee
-.asm_a5abf
+	jr nz, .load_palettes
+.skip_fade_check
 	pop af
 	and $1
-	jr z, .asm_a5aed
+	jr z, .quit
 	ld a, [wOAMAnimation12_Duration + 2]
 	and $1
-	jr z, .asm_a5ad2
+	jr z, .skip_inc
 	ld a, [wOAMAnimation11_Duration + 13]
 	inc a
 	ld [wOAMAnimation11_Duration + 13], a
-.asm_a5ad2
+.skip_inc
 	ld a, [wOAMAnimation11_Duration + 13]
 	ld b, a
 	ld a, [wOAMAnimation11_Duration + 12]
@@ -6857,10 +6864,10 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	sra d
 	ld a, d
 	ld [wSCY], a
-.asm_a5aed
+.quit
 	ret
 
-.asm_a5aee
+.load_palettes
 	add sp, $2
 	ld a, $0
 	ld [wSCY], a
@@ -6870,7 +6877,7 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	hlbgcoord 0, 0
 	ld a, $1
 	ld bc, $240
-	call Func_3775
+	call FillVRAMWithByte_
 	ld d, $12
 	ld bc, $14
 	hlbgcoord 0, 0
@@ -6894,12 +6901,12 @@ Func_a5a4b: ; a5a4b (29:5a4b)
 	call Func_a5bb5
 	ret
 
-Func_a5b3f: ; a5b3f (29:5b3f)
+.friend_fall: ; a5b3f (29:5b3f)
 	call Func_a5c2b
 	call Func_a5ca7
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, $29
+	ld a, BANK(AnimateSummonsIntoDenjuuWorld)
 	ld [wPrevROMBank], a
 	ld a, $2
 	call PaletteFade_
@@ -6921,7 +6928,7 @@ Func_a5b3f: ; a5b3f (29:5b3f)
 	ld [wOAMAnimation01_PriorityFlags], a
 	ret
 
-Func_a5b77: ; a5b77 (29:5b77)
+.fade_out: ; a5b77 (29:5b77)
 	ld a, [wOAMAnimation12_Duration + 2]
 	inc a
 	ld [wOAMAnimation12_Duration + 2], a
@@ -7169,11 +7176,20 @@ Func_a5d17: ; a5d17 (29:5d17)
 GFX_a5d29: INCBIN "gfx/misc/a5d29.2bpp"
 
 Data_a5e09:
-	db $00, $40, $00, $40, $38, $44, $70, $48, $60, $5f
-	db $40, $55, $68, $41, $a0, $45, $71, $5a, $60, $5f
-	db $80, $6a, $d0, $42, $08, $47, $72, $6c, $60, $5f
+macro_a5e09: MACRO
+	dw \1
+	dw \2
+	dw \3
+	dw \4
+	db BANK(\1)
+	db BANK(\2)
+	ENDM
 
-Func_a5e27: ; a5e27 (29:5e27)
+	macro_a5e09 GFX_180000, Tilemap_17c000, Tilemap_17c438, Palettes_17c870
+	macro_a5e09 GFX_181540, Tilemap_17c168, Tilemap_17c5a0, Palettes_17da71
+	macro_a5e09 GFX_182a80, Tilemap_17c2d0, Tilemap_17c708, Palettes_17ec72
+
+LoadFlickeringGFX: ; a5e27 (29:5e27)
 	ld a, b
 	sla a
 	ld b, a
@@ -7188,28 +7204,29 @@ Func_a5e27: ; a5e27 (29:5e27)
 	ld h, a
 	ld de, wcadf
 	ld b, $a
-.asm_a5e3e
+.copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_a5e3e
+	jr nz, .copy
 	ld a, $0
 	ld [wLCDC], a
 	ld [rLCDC], a
-	call Func_a5ee2
-	call Func_a5e95
+	call FillBottomRowOfBGMapForSpecialFlickeringGFX
+	call LoadGFXForSpecialFlickeringGFX
 	ld a, $c3
 	ld [wLCDC], a
 	ld [rLCDC], a
+
 	di
-.asm_a5e59
-	call Func_3f4d
+.loop
+	call FlickeringGFX_PushPalettes
 	call UpdateSound
 	call ReadJoypad
 	ld a, [hJoyNew]
 	and A_BUTTON
-	jr z, .asm_a5e59
+	jr z, .loop
 	xor a
 	ld [rVBK], a
 	ld a, $80
@@ -7217,13 +7234,13 @@ Func_a5e27: ; a5e27 (29:5e27)
 	ld [hl], a
 	ld hl, rLY
 	xor a
-.asm_a5e75
+.wait_ly
 	cp [hl]
-	jr nz, .asm_a5e75
+	jr nz, .wait_ly
 	ld l, $69
 	ld a, $ff
 	ld b, $4
-.asm_a5e7e
+.white_palettes
 	ld [hl], a
 	ld [hl], a
 	ld [hl], a
@@ -7241,13 +7258,13 @@ Func_a5e27: ; a5e27 (29:5e27)
 	ld [hl], a
 	ld [hl], a
 	dec b
-	jr nz, .asm_a5e7e
+	jr nz, .white_palettes
 	di
 	ei
 	nop
 	ret
 
-Func_a5e95: ; a5e95 (29:5e95)
+LoadGFXForSpecialFlickeringGFX: ; a5e95 (29:5e95)
 	xor a
 	ld [rVBK], a
 	ld hl, VTilesShared tile $00
@@ -7257,20 +7274,20 @@ Func_a5e95: ; a5e95 (29:5e95)
 	ld a, [wcae0]
 	ld d, a
 	ld a, [wcae7]
-	call Func_3fdb
+	call Special_LoadGFX_NoWaitStat
 	ld a, $1
 	ld [rVBK], a
 	ld hl, VTilesShared tile $00
 	ld bc, $540
 	ld a, [wcae7]
-	call Func_3fdb
+	call Special_LoadGFX_NoWaitStat
 	hlbgcoord 0, 0
 	ld a, [wcae1]
 	ld c, a
 	ld a, [wcae2]
 	ld b, a
 	ld a, [wcae8]
-	call Func_3fbe
+	call Special_LoadTilemap_NoWaitStat
 	xor a
 	ld [rVBK], a
 	hlbgcoord 0, 0
@@ -7279,26 +7296,26 @@ Func_a5e95: ; a5e95 (29:5e95)
 	ld a, [wcae4]
 	ld b, a
 	ld a, [wcae8]
-	call Func_3fbe
+	call Special_LoadTilemap_NoWaitStat
 	ret
 
-Func_a5ee2: ; a5ee2 (29:5ee2)
+FillBottomRowOfBGMapForSpecialFlickeringGFX: ; a5ee2 (29:5ee2)
 	ld a, $1
 	ld [rVBK], a
 	ld d, $7
-	call Func_a5ef1
+	call .LoadToBGMap
 	ld d, $ff
 	ld a, $0
 	ld [rVBK], a
-Func_a5ef1: ; a5ef1 (29:5ef1)
+.LoadToBGMap
 	hlbgcoord 0, 31
 	ld e, $a
-.asm_a5ef6
+.load
 	ld a, d
 	ld [hli], a
 	ld [hli], a
 	dec e
-	jr nz, .asm_a5ef6
+	jr nz, .load
 	ret
 
 FadeOutOverworldForMinimap____: ; a5efd (29:5efd)
@@ -7306,7 +7323,7 @@ FadeOutOverworldForMinimap____: ; a5efd (29:5efd)
 	ret
 
 Func_a5f06: ; a5f06 (29:5f06)
-	ld a, $2b
+	ld a, MUSIC_EVOLUTION
 	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -8587,7 +8604,7 @@ Func_a8bed:
 	hlbgcoord 0, 4
 	ld a, $0
 	ld bc, $100
-	call Func_3775
+	call FillVRAMWithByte_
 	ld b, $0
 	ld a, $0
 	ld c, a
@@ -9967,7 +9984,7 @@ Func_a9595: ; a9595 (2a:5595)
 	hlbgcoord 0, 4
 	ld a, $40
 	ld bc, $100
-	call Func_3775
+	call FillVRAMWithByte_
 	ld de, Tilemap_e1548
 	hlbgcoord 7, 7
 	ld b, $4
@@ -22325,215 +22342,19 @@ SECTION "bank 5E", ROMX, BANK [$5e]
 INCLUDE "tilesets/data.asm"
 
 SECTION "bank 5F", ROMX, BANK [$5f]
-Data_17c000:
-	dr $17c000, $17fe73
+Tilemap_17c000: INCBIN "gfx/misc/17c000.tilemap"
+Tilemap_17c168: INCBIN "gfx/misc/17c168.tilemap"
+Tilemap_17c2d0: INCBIN "gfx/misc/17c2d0.tilemap"
+Tilemap_17c438: INCBIN "gfx/misc/17c438.tilemap"
+Tilemap_17c5a0: INCBIN "gfx/misc/17c5a0.tilemap"
+Tilemap_17c708: INCBIN "gfx/misc/17c708.tilemap"
+
+INCLUDE "data/palettes_17c870.asm"
 
 SECTION "bank 60", ROMX, BANK [$60]
-Data_180000:
-INCBIN "maps/180000.blk"
-INCBIN "maps/180050.blk"
-INCBIN "maps/1800a0.blk"
-INCBIN "maps/1800f0.blk"
-INCBIN "maps/180140.blk"
-INCBIN "maps/180190.blk"
-INCBIN "maps/1801e0.blk"
-INCBIN "maps/180230.blk"
-INCBIN "maps/180280.blk"
-INCBIN "maps/1802d0.blk"
-INCBIN "maps/180320.blk"
-INCBIN "maps/180370.blk"
-INCBIN "maps/1803c0.blk"
-INCBIN "maps/180410.blk"
-INCBIN "maps/180460.blk"
-INCBIN "maps/1804b0.blk"
-INCBIN "maps/180500.blk"
-INCBIN "maps/180550.blk"
-INCBIN "maps/1805a0.blk"
-INCBIN "maps/1805f0.blk"
-INCBIN "maps/180640.blk"
-INCBIN "maps/180690.blk"
-INCBIN "maps/1806e0.blk"
-INCBIN "maps/180730.blk"
-INCBIN "maps/180780.blk"
-INCBIN "maps/1807d0.blk"
-INCBIN "maps/180820.blk"
-INCBIN "maps/180870.blk"
-INCBIN "maps/1808c0.blk"
-INCBIN "maps/180910.blk"
-INCBIN "maps/180960.blk"
-INCBIN "maps/1809b0.blk"
-INCBIN "maps/180a00.blk"
-INCBIN "maps/180a50.blk"
-INCBIN "maps/180aa0.blk"
-INCBIN "maps/180af0.blk"
-INCBIN "maps/180b40.blk"
-INCBIN "maps/180b90.blk"
-INCBIN "maps/180be0.blk"
-INCBIN "maps/180c30.blk"
-INCBIN "maps/180c80.blk"
-INCBIN "maps/180cd0.blk"
-INCBIN "maps/180d20.blk"
-INCBIN "maps/180d70.blk"
-INCBIN "maps/180dc0.blk"
-INCBIN "maps/180e10.blk"
-INCBIN "maps/180e60.blk"
-INCBIN "maps/180eb0.blk"
-INCBIN "maps/180f00.blk"
-INCBIN "maps/180f50.blk"
-INCBIN "maps/180fa0.blk"
-INCBIN "maps/180ff0.blk"
-INCBIN "maps/181040.blk"
-INCBIN "maps/181090.blk"
-INCBIN "maps/1810e0.blk"
-INCBIN "maps/181130.blk"
-INCBIN "maps/181180.blk"
-INCBIN "maps/1811d0.blk"
-INCBIN "maps/181220.blk"
-INCBIN "maps/181270.blk"
-INCBIN "maps/1812c0.blk"
-INCBIN "maps/181310.blk"
-INCBIN "maps/181360.blk"
-INCBIN "maps/1813b0.blk"
-INCBIN "maps/181400.blk"
-INCBIN "maps/181450.blk"
-INCBIN "maps/1814a0.blk"
-INCBIN "maps/1814f0.blk"
-INCBIN "maps/181540.blk"
-INCBIN "maps/181590.blk"
-INCBIN "maps/1815e0.blk"
-INCBIN "maps/181630.blk"
-INCBIN "maps/181680.blk"
-INCBIN "maps/1816d0.blk"
-INCBIN "maps/181720.blk"
-INCBIN "maps/181770.blk"
-INCBIN "maps/1817c0.blk"
-INCBIN "maps/181810.blk"
-INCBIN "maps/181860.blk"
-INCBIN "maps/1818b0.blk"
-INCBIN "maps/181900.blk"
-INCBIN "maps/181950.blk"
-INCBIN "maps/1819a0.blk"
-INCBIN "maps/1819f0.blk"
-INCBIN "maps/181a40.blk"
-INCBIN "maps/181a90.blk"
-INCBIN "maps/181ae0.blk"
-INCBIN "maps/181b30.blk"
-INCBIN "maps/181b80.blk"
-INCBIN "maps/181bd0.blk"
-INCBIN "maps/181c20.blk"
-INCBIN "maps/181c70.blk"
-INCBIN "maps/181cc0.blk"
-INCBIN "maps/181d10.blk"
-INCBIN "maps/181d60.blk"
-INCBIN "maps/181db0.blk"
-INCBIN "maps/181e00.blk"
-INCBIN "maps/181e50.blk"
-INCBIN "maps/181ea0.blk"
-INCBIN "maps/181ef0.blk"
-INCBIN "maps/181f40.blk"
-INCBIN "maps/181f90.blk"
-INCBIN "maps/181fe0.blk"
-INCBIN "maps/182030.blk"
-INCBIN "maps/182080.blk"
-INCBIN "maps/1820d0.blk"
-INCBIN "maps/182120.blk"
-INCBIN "maps/182170.blk"
-INCBIN "maps/1821c0.blk"
-INCBIN "maps/182210.blk"
-INCBIN "maps/182260.blk"
-INCBIN "maps/1822b0.blk"
-INCBIN "maps/182300.blk"
-INCBIN "maps/182350.blk"
-INCBIN "maps/1823a0.blk"
-INCBIN "maps/1823f0.blk"
-INCBIN "maps/182440.blk"
-INCBIN "maps/182490.blk"
-INCBIN "maps/1824e0.blk"
-INCBIN "maps/182530.blk"
-INCBIN "maps/182580.blk"
-INCBIN "maps/1825d0.blk"
-INCBIN "maps/182620.blk"
-INCBIN "maps/182670.blk"
-INCBIN "maps/1826c0.blk"
-INCBIN "maps/182710.blk"
-INCBIN "maps/182760.blk"
-INCBIN "maps/1827b0.blk"
-INCBIN "maps/182800.blk"
-INCBIN "maps/182850.blk"
-INCBIN "maps/1828a0.blk"
-INCBIN "maps/1828f0.blk"
-INCBIN "maps/182940.blk"
-INCBIN "maps/182990.blk"
-INCBIN "maps/1829e0.blk"
-INCBIN "maps/182a30.blk"
-INCBIN "maps/182a80.blk"
-INCBIN "maps/182ad0.blk"
-INCBIN "maps/182b20.blk"
-INCBIN "maps/182b70.blk"
-INCBIN "maps/182bc0.blk"
-INCBIN "maps/182c10.blk"
-INCBIN "maps/182c60.blk"
-INCBIN "maps/182cb0.blk"
-INCBIN "maps/182d00.blk"
-INCBIN "maps/182d50.blk"
-INCBIN "maps/182da0.blk"
-INCBIN "maps/182df0.blk"
-INCBIN "maps/182e40.blk"
-INCBIN "maps/182e90.blk"
-INCBIN "maps/182ee0.blk"
-INCBIN "maps/182f30.blk"
-INCBIN "maps/182f80.blk"
-INCBIN "maps/182fd0.blk"
-INCBIN "maps/183020.blk"
-INCBIN "maps/183070.blk"
-INCBIN "maps/1830c0.blk"
-INCBIN "maps/183110.blk"
-INCBIN "maps/183160.blk"
-INCBIN "maps/1831b0.blk"
-INCBIN "maps/183200.blk"
-INCBIN "maps/183250.blk"
-INCBIN "maps/1832a0.blk"
-INCBIN "maps/1832f0.blk"
-INCBIN "maps/183340.blk"
-INCBIN "maps/183390.blk"
-INCBIN "maps/1833e0.blk"
-INCBIN "maps/183430.blk"
-INCBIN "maps/183480.blk"
-INCBIN "maps/1834d0.blk"
-INCBIN "maps/183520.blk"
-INCBIN "maps/183570.blk"
-INCBIN "maps/1835c0.blk"
-INCBIN "maps/183610.blk"
-INCBIN "maps/183660.blk"
-INCBIN "maps/1836b0.blk"
-INCBIN "maps/183700.blk"
-INCBIN "maps/183750.blk"
-INCBIN "maps/1837a0.blk"
-INCBIN "maps/1837f0.blk"
-INCBIN "maps/183840.blk"
-INCBIN "maps/183890.blk"
-INCBIN "maps/1838e0.blk"
-INCBIN "maps/183930.blk"
-INCBIN "maps/183980.blk"
-INCBIN "maps/1839d0.blk"
-INCBIN "maps/183a20.blk"
-INCBIN "maps/183a70.blk"
-INCBIN "maps/183ac0.blk"
-INCBIN "maps/183b10.blk"
-INCBIN "maps/183b60.blk"
-INCBIN "maps/183bb0.blk"
-INCBIN "maps/183c00.blk"
-INCBIN "maps/183c50.blk"
-INCBIN "maps/183ca0.blk"
-INCBIN "maps/183cf0.blk"
-INCBIN "maps/183d40.blk"
-INCBIN "maps/183d90.blk"
-INCBIN "maps/183de0.blk"
-INCBIN "maps/183e30.blk"
-INCBIN "maps/183e80.blk"
-INCBIN "maps/183ed0.blk"
-INCBIN "maps/183f20.blk"
-INCBIN "maps/183f70.blk"
+GFX_180000: INCBIN "gfx/misc/180000.2bpp"
+GFX_181540: INCBIN "gfx/misc/181540.2bpp"
+GFX_182a80: INCBIN "gfx/misc/182a80.2bpp"
 
 SECTION "bank 63", ROMX, BANK [$63]
 Data_18c000:
