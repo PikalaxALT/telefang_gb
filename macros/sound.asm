@@ -1,3 +1,5 @@
+INCLUDE "audio/engine.asm"
+
 	const_def
 	const __
 	const C_

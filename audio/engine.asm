@@ -1,47 +1,48 @@
-UpdateSound_11:
+music_engine: MACRO
+UpdateSound_\1:
 	push af
 	push bc
 	push de
 	push hl
 	ld a, [H_MusicID]
 	cp $1
-	jp z, Func_44629
+	jp z, MusicNone_\1
 	or a
-	jr z, .asm_44018
-	call PlayMusic_11
+	jr z, .no_new_music
+	call PlayMusic_\1
 	xor a
 	ld [H_MusicID], a
-	jr .asm_4403e
+	jr .finished_starting_audio
 
-.asm_44018
+.no_new_music
 	ld a, [wRingtoneID]
 	or a
-	jr z, .asm_44022
+	jr z, .no_ringtone
 	xor a
 	ld [H_SFX_ID], a
-.asm_44022
+.no_ringtone
 	ld a, [H_SFX_ID]
 	or a
-	jr z, .asm_44031
-	call PlaySFX_11
+	jr z, .no_sfx
+	call PlaySFX_\1
 	xor a
 	ld [H_SFX_ID], a
-	jr .asm_4403e
+	jr .finished_starting_audio
 
-.asm_44031
+.no_sfx
 	ld a, [H_Ringtone]
 	or a
-	jr z, .asm_4403e
-	call Func_44c3a
+	jr z, .finished_starting_audio
+	call PlayRingtone_\1
 	xor a
 	ld [H_Ringtone], a
-.asm_4403e
+.finished_starting_audio
 	ld a, [wSoundUpdatesDisabled]
 	or a
-	jr z, .asm_44064
+	jr z, .sound_updates_disabled
 	ld a, [wcf91]
 	or a
-	jp nz, Func_44173
+	jp nz, .check_channel5
 	ld a, $ff
 	ld [wcf91], a
 	ld a, $8
@@ -53,12 +54,12 @@ UpdateSound_11:
 	ld [rNR24], a
 	ld [rNR44], a
 	ld [rNR34], a
-	jp Func_44173
+	jp .check_channel5
 
-.asm_44064
+.sound_updates_disabled
 	ld a, [wcf91]
 	or a
-	jr z, .asm_44081
+	jr z, .check_fade
 	xor a
 	ld [wcf91], a
 	ld a, $8f
@@ -70,28 +71,28 @@ UpdateSound_11:
 	ld [rNR14], a
 	xor a
 	ld [wChannel5], a
-.asm_44081
+.check_fade
 	ld a, [wMusicFade]
 	or a
-	jr z, .asm_440e9
+	jr z, .update_tracks
 	ld a, [wCurMusicFade]
 	or a
-	jr z, .asm_44093
+	jr z, .fade_iteration
 	dec a
 	ld [wCurMusicFade], a
-	jr .asm_440e9
+	jr .update_tracks
 
-.asm_44093
+.fade_iteration
 	ld a, [wVolume]
 	sub $22
-	jr c, .asm_440a7
+	jr c, .reset_all
 	ld [wVolume], a
 	ld [rNR50], a
 	ld a, [wMusicFade]
 	ld [wCurMusicFade], a
-	jr .asm_440e9
+	jr .update_tracks
 
-.asm_440a7
+.reset_all
 	xor a
 	ld [rNR50], a
 	ld [wMusicFade], a
@@ -125,24 +126,24 @@ UpdateSound_11:
 	pop af
 	ret
 
-.asm_440e9
+.update_tracks
 	ld de, wChannel1
 	ld a, [de]
 	or a
-	jr z, .asm_44125
+	jr z, .check_channel2
 	xor a
 	ld [H_FFA3], a
-	call Func_442ff
-	jr z, .asm_440ff
+	call AudioEngineFunc_42ff_\1
+	jr z, .special_check_channel1
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_44125
+	jr .check_channel2
 
-.asm_440ff
+.special_check_channel1
 	ld a, [wcf94]
 	or a
-	jr z, .asm_44122
+	jr z, .update_channel1
 	xor a
 	ld [wcf94], a
 	ld hl, $5
@@ -161,113 +162,113 @@ UpdateSound_11:
 	ld a, [hl]
 	or $80
 	ld [rNR14], a
-.asm_44122
-	call UpdateChannel_11
-.asm_44125
+.update_channel1
+	call UpdateChannel_\1
+.check_channel2
 	ld de, wChannel2
 	ld a, [de]
 	or a
-	jr z, .asm_4413f
+	jr z, .check_channel3
 	ld a, $1
 	ld [H_FFA3], a
-	call Func_442ff
-	jr z, .asm_4413c
+	call AudioEngineFunc_42ff_\1
+	jr z, .update_channel2
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_4413f
+	jr .check_channel3
 
-.asm_4413c
-	call UpdateChannel_11
-.asm_4413f
+.update_channel2
+	call UpdateChannel_\1
+.check_channel3
 	ld de, wChannel3
 	ld a, [de]
 	or a
-	jr z, .asm_44159
+	jr z, .check_channel4
 	ld a, $2
 	ld [H_FFA3], a
-	call Func_442ff
-	jr z, .asm_44156
+	call AudioEngineFunc_42ff_\1
+	jr z, .update_channel3
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_44159
+	jr .check_channel4
 
-.asm_44156
-	call UpdateChannel_11
-.asm_44159
+.update_channel3
+	call UpdateChannel_\1
+.check_channel4
 	ld de, wChannel4
 	ld a, [de]
 	or a
-	jr z, Func_44173
+	jr z, .check_channel5
 	ld a, $3
 	ld [H_FFA3], a
-	call Func_442ff
-	jr z, .asm_44170
+	call AudioEngineFunc_42ff_\1
+	jr z, .update_channel4
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr Func_44173
+	jr .check_channel5
 
-.asm_44170
-	call UpdateChannel_11
-Func_44173: ; 44173 (11:4173)
+.update_channel4
+	call UpdateChannel_\1
+.check_channel5
 	ld de, wChannel5
 	ld a, [de]
 	or a
-	jr z, .asm_4418d
+	jr z, .check_channel6
 	ld a, $4
 	ld [H_FFA3], a
-	call Func_442ff
-	jr z, .asm_4418a
+	call AudioEngineFunc_42ff_\1
+	jr z, .update_channel5
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr .asm_4418d
+	jr .check_channel6
 
-.asm_4418a
-	call UpdateChannel_11
-.asm_4418d
+.update_channel5
+	call UpdateChannel_\1
+.check_channel6
 	ld a, [wSoundUpdatesDisabled]
 	or a
-	jr nz, Func_441ad
+	jr nz, UpdateRingtone_\1
 	ld de, wChannel6
 	ld a, [de]
 	or a
-	jr z, Func_441ad
+	jr z, UpdateRingtone_\1
 	ld a, $5
 	ld [H_FFA3], a
-	call Func_442ff
-	jr z, .asm_441aa
+	call AudioEngineFunc_42ff_\1
+	jr z, .update_channel6
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	jr Func_441ad
+	jr UpdateRingtone_\1
 
-.asm_441aa
-	call UpdateChannel_11
-Func_441ad:
+.update_channel6
+	call UpdateChannel_\1
+UpdateRingtone_\1:
 	ld a, [wSoundUpdatesDisabled]
 	or a
-	jr z, .asm_441b6
-	jp Func_442fa
+	jr z, .check_ringtone_playing
+	jp FinishSoundUpdate_\1
 
-.asm_441b6
+.check_ringtone_playing
 	ld a, [wRingtoneID]
 	or a
-	jr nz, .asm_441bf
-	jp Func_442fa
+	jr nz, .countdown_wcfc7
+	jp FinishSoundUpdate_\1
 
-.asm_441bf
+.countdown_wcfc7
 	ld a, [wcfc7]
 	dec a
 	ld [wcfc7], a
-	jr z, .asm_441e1
+	jr z, .play_ringtone
 	cp $1
-	jr z, .asm_441cf
-	jp Func_442fa
+	jr z, .break_note
+	jp FinishSoundUpdate_\1
 
-.asm_441cf
+.break_note
 	ld a, $8
 	ld [rNR10], a
 	ld [rNR12], a
@@ -276,80 +277,80 @@ Func_441ad:
 	ld [rNR13], a
 	ld a, $80
 	ld [rNR14], a
-	jp Func_442fa
+	jp FinishSoundUpdate_\1
 
-.asm_441e1
+.play_ringtone
 	ld a, [wRingtonePointer]
 	ld e, a
 	ld a, [wRingtonePointer + 1]
 	ld d, a
 	ld a, [wcfc5]
 	cp $fe
-	jr nz, asm_44268
-	call MemSRAMBank_11
+	jr nz, asm_4268_\1
+	call MemSRAMBank_\1
 	ld a, [de]
 	ld [H_FFA8], a
-	call CloseSRAM_11
+	call CloseSRAM_\1
 	inc de
 	cp $ff
-	jr nz, asm_44217
+	jr nz, asm_4217_\1
 	xor a
 	ld [wRingtoneID], a
-	jp Func_442fa
+	jp FinishSoundUpdate_\1
 
-MemSRAMBank_11: ; 44206 (11:4206)
+MemSRAMBank_\1: ; 48206 (11:4206)
 	enable_sram
 	ld a, [wAudioSRAMBank]
 	ld [MBC3SRamBank], a
 	ret
 
-CloseSRAM_11: ; 44212 (11:4212)
+CloseSRAM_\1: ; 48212 (11:4212)
 	xor a
 	ld [MBC3SRamEnable], a
 	ret
 
-asm_44217
+asm_4217_\1
 	ld a, [H_FFA8]
 	ld c, a
 	and $f
 	cp $0
-	jr nz, .asm_4422d
+	jr nz, .asm_422d_\1
 	ld a, $7
 	ld [wcfc5], a
 	ld a, $2
 	ld [wcfc6], a
-	jr asm_44268
+	jr asm_4268_\1
 
-.asm_4422d
+.asm_422d_\1
 	cp $1
-	jr nz, .asm_4423d
+	jr nz, .asm_423d_\1
 	ld a, $6
 	ld [wcfc5], a
 	ld a, $2
 	ld [wcfc6], a
-	jr asm_44268
+	jr asm_4268_\1
 
-.asm_4423d
+.asm_423d_\1
 	cp $2
-	jr nz, .asm_44245
+	jr nz, .asm_4245_\1
 	ld a, $5
-	jr .asm_44257
+	jr .asm_4257_\1
 
-.asm_44245
+.asm_4245_\1
 	cp $3
-	jr nz, .asm_4424d
+	jr nz, .asm_424d_\1
 	ld a, $4
-	jr .asm_44257
+	jr .asm_4257_\1
 
-.asm_4424d
+.asm_424d_\1
 	cp $4
-	jr nz, .asm_44255
+	jr nz, .asm_4255_\1
 	ld a, $3
-	jr .asm_44257
+	jr .asm_4257_\1
 
-.asm_44255
+.asm_4255_\1
 	ld a, $2
-.asm_44257
+.asm_4257_\1
 	ld [wcfc5], a
 	ld a, c
 	and $f0
@@ -358,36 +359,36 @@ asm_44217
 	srl a
 	srl a
 	ld [wcfc6], a
-asm_44268
-	call MemSRAMBank_11
+asm_4268_\1
+	call MemSRAMBank_\1
 	ld a, [de]
 	ld [H_FFA8], a
-	call CloseSRAM_11
+	call CloseSRAM_\1
 	inc de
 	ld a, [H_FFA8]
 	cp $fe
-	jr nz, .asm_44295
+	jr nz, .is_note
 	ld a, [wcfc8]
 	or a
-	jr z, .asm_4428a
+	jr z, .not_ram
 	xor a
 	ld [H_Ringtone], a
 	ld [wRingtoneID], a
-	jp Func_442fa
+	jp FinishSoundUpdate_\1
 
-.asm_4428a
+.not_ram
 	ld a, [wcfc3]
 	ld e, a
 	ld a, [wcfc4]
 	ld d, a
 	inc de
-	jr asm_44268
+	jr asm_4268_\1
 
-.asm_44295
+.is_note
 	ld c, a
 	and $f0
 	cp $c0
-	jr nz, .asm_442ad
+	jr nz, .not_rest
 	ld a, $8
 	ld [rNR10], a
 	ld [rNR12], a
@@ -396,9 +397,9 @@ asm_44268
 	ld [rNR13], a
 	ld a, $80
 	ld [rNR14], a
-	jr .asm_442d0
+	jr .finish
 
-.asm_442ad
+.not_rest
 	ld a, $c0
 	ld [rNR11], a
 	ld a, $f0
@@ -411,7 +412,7 @@ asm_44268
 	ld a, c
 	and $f0
 	or b
-	ld hl, Data_44569
+	ld hl, AudioEngineData_4569_\1
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -421,78 +422,78 @@ asm_44268
 	ld a, [hl]
 	or $80
 	ld [rNR14], a
-.asm_442d0
+.finish
 	ld a, [wcfc5]
 	and $f
 	ld c, a
-	call MemSRAMBank_11
+	call MemSRAMBank_\1
 	ld a, [de]
 	ld [H_FFA8], a
-	call CloseSRAM_11
+	call CloseSRAM_\1
 	ld a, [H_FFA8]
 	inc de
 	and $f
-.asm_442e6
+.loop
 	or a
-	jr z, .asm_442ee
+	jr z, .got_length
 	dec a
 	sla c
-	jr .asm_442e6
+	jr .loop
 
-.asm_442ee
+.got_length
 	ld a, c
 	ld [wcfc7], a
 	ld a, e
 	ld [wRingtonePointer], a
 	ld a, d
 	ld [wRingtonePointer + 1], a
-Func_442fa: ; 442fa (11:42fa)
+FinishSoundUpdate_\1: ; 482fa (11:42fa)
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_442ff: ; 442ff (11:42ff)
+AudioEngineFunc_42ff_\1: ; 482ff (11:42ff)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
 	and $80
 	ret
 
-UpdateChannel_11: ; 44307 (11:4307)
+UpdateChannel_\1: ; 48307 (11:4307)
 	ld hl, $23
 	add hl, de
 	ld a, [hl]
 	cp $2
-	jp z, Func_444cd
+	jp z, AudioEngineFunc_44cd_\1
 	ld hl, $4
 	add hl, de
 	dec [hl]
-	jr z, .asm_4433a
+	jr z, .asm_433a_\1
 	ld a, [H_FFA3]
 	cp $5
-	jp z, Func_448cb
+	jp z, AudioEngineFunc_48cb_\1
 	ld hl, $23
 	add hl, de
 	ld a, [hl]
 	cp $1
-	jp z, Func_448cb
+	jp z, AudioEngineFunc_48cb_\1
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
 	and $40
-	call nz, Func_449e3
-	call Func_44ad1
-	jp Func_44651
+	call nz, ExecuteTrackFunction_\1
+	call AudioEngineFunc_4ad1_\1
+	jp AudioEngineFunc_4651_\1
 
-.asm_4433a
+.asm_433a_\1
 	ld hl, $1
 	add hl, de
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-asm_44341
+asm_4341_\1
 	ld a, [de]
 	or a
 	ret z
@@ -500,62 +501,62 @@ asm_44341
 	add hl, de
 	ld a, [hl]
 	cp $2
-	jp z, Func_444e8
-asm_4434e
+	jp z, AudioEngineFunc_44e8_\1
+asm_434e_\1
 	ld a, [bc]
 	ld [H_MusicCommand], a
 	inc bc
 	cp $ef
-	jr nz, .asm_4435d
+	jr nz, .asm_435d_\1
 	ld hl, wcf9b
 	inc [hl]
-	jr asm_4434e
+	jr asm_434e_\1
 
-.asm_4435d
+.asm_435d_\1
 	and $f0
 	cp $f0
-	jr nz, .asm_44368
-	call Func_4471d
-	jr asm_44341
+	jr nz, .asm_4368_\1
+	call AudioEngineFunc_471d_\1
+	jr asm_4341_\1
 
-.asm_44368
+.asm_4368_\1
 	cp $e0
-	jr nz, .asm_44371
-	call Func_44723
-	jr asm_44341
+	jr nz, .asm_4371_\1
+	call AudioEngineFunc_4723_\1
+	jr asm_4341_\1
 
-.asm_44371
+.asm_4371_\1
 	cp $d0
-	jr nz, asm_4439f
+	jr nz, .note
 	ld a, [H_MusicCommand]
 	and $f
 	ld hl, $9
 	add hl, de
 	ld [hl], a
-	jr asm_44341
+	jr asm_4341_\1
 
-asm_44381
+.rest
 	ld hl, $8
 	add hl, de
 	xor a
 	ld [hl], a
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld hl, $c
 	add hl, de
-	ld bc, Func_4439e
+	ld bc, .Null
 	ld [hl], c
 	inc hl
 	ld [hl], b
 	ld a, $ff
-	call Func_44b6c
+	call AudioEngineFunc_4b6c_\1
 	ld a, $8f
-	jp Func_44b76
+	jp AudioEngineFunc_4b76_\1
 
-Func_4439e:
+.Null:
 	ret
 
-asm_4439f
-	call Func_44561
+.note
+	call AudioEngineFunc_4561_\1
 	ld hl, $3
 	add hl, de
 	ld a, [H_MusicCommand]
@@ -563,32 +564,32 @@ asm_4439f
 	ld b, a
 	inc b
 	xor a
-.asm_443ae
+.loop_duration
 	add [hl]
 	dec b
-	jr nz, .asm_443ae
+	jr nz, .loop_duration
 	inc hl
 	ld [hl], a
 	ld a, [H_FFA3]
 	cp $5
-	jp z, Func_4489a
+	jp z, AudioEngineFunc_489a_\1
 	ld hl, $23
 	add hl, de
 	ld a, [hl]
 	cp $1
-	jp z, Func_4489a
+	jp z, AudioEngineFunc_489a_\1
 	ld a, [H_MusicCommand]
 	and $f0
 	cp $c0
-	jr z, asm_44381
+	jr z, .rest ; rest
 	ld a, [H_FFA3]
 	cp $2
-	jr nz, .asm_443f5
+	jr nz, .asm_43f5_\1
 	xor a
 	ld [rNR30], a
 	ld a, [wcf99]
 	add a
-	ld hl, Pointers_44db3
+	ld hl, AudioEnginePointers_4db3_\1
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -597,28 +598,28 @@ asm_4439f
 	ld l, a
 	ld b, $10
 	ld c, $30
-.asm_443eb
+.asm_43eb_\1
 	ld a, [hli]
 	ld [$ff00+c], a
 	inc c
 	dec b
-	jr nz, .asm_443eb
+	jr nz, .asm_43eb_\1
 	ld a, $80
 	ld [rNR30], a
-.asm_443f5
+.asm_43f5_\1
 	ld hl, $7
 	add hl, de
 	ld a, [hli]
 	ld [hl], a
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
 	and $40
-	call nz, Func_4441e
-	jr asm_44455
+	call nz, AudioEngineFunc_441e_\1
+	jr asm_4455_\1
 
-Func_4440a: ; 4440a (11:440a)
+AudioEngineFunc_440a_\1: ; 4840a (11:440a)
 	swap a
 	ld hl, $e
 	add hl, de
@@ -631,49 +632,49 @@ Func_4440a: ; 4440a (11:440a)
 	add hl, de
 	ret
 
-Func_4441e: ; 4441e (11:441e)
+AudioEngineFunc_441e_\1: ; 4841e (11:441e)
 	ld hl, $10
 	add hl, de
 	ld a, [hl]
 	ld [H_FFA8], a
 	and $f0
-	jr z, Func_44434
-	call Func_4440a
-	ld bc, Func_449eb
+	jr z, AudioEngineFunc_4434_\1
+	call AudioEngineFunc_440a_\1
+	ld bc, AudioEngineFunc_49eb_\1
 	ld [hl], c
 	inc hl
 	ld [hl], b
 	ret
 
-Func_44434:
+AudioEngineFunc_4434_\1:
 	ld hl, $11
 	add hl, de
 	ld a, [hl]
 	ld [H_FFA8], a
 	and $f0
-	jr z, Func_4444a
-	call Func_4440a
-	ld bc, Func_44a1a
+	jr z, AudioEngineFunc_444a_\1
+	call AudioEngineFunc_440a_\1
+	ld bc, AudioEngineFunc_4a1a_\1
 	ld [hl], c
 	inc hl
 	ld [hl], b
 	ret
 
-Func_4444a:
+AudioEngineFunc_444a_\1:
 	ld hl, $c
 	add hl, de
-	ld bc, Func_44a49
+	ld bc, AudioEngineFunc_4a49_\1
 	ld [hl], c
 	inc hl
 	ld [hl], b
 	ret
 
-asm_44455
+asm_4455_\1
 	ld hl, $15
 	add hl, de
 	ld a, [hld]
 	or a
-	jr z, .asm_44466
+	jr z, .asm_4466_\1
 	ld b, a
 	ld a, [hli]
 	inc hl
@@ -682,7 +683,7 @@ asm_44455
 	ld [hl], b
 	inc hl
 	ld [hl], $0
-.asm_44466
+.asm_4466_\1
 	ld a, [H_MusicCommand]
 	ld hl, $9
 	add hl, de
@@ -693,22 +694,22 @@ asm_44455
 	ld [H_FFA8], a
 	ld a, [H_FFA3]
 	or a
-	jr z, .asm_4448b
+	jr z, .asm_448b_\1
 	cp $1
 	ld a, [H_FFA8]
-	jr nz, Func_44495
-	call Func_4469d
+	jr nz, AudioEngineFunc_4495_\1
+	call AudioEngineFunc_469d_\1
 	ld hl, wcfb5
-	jr .asm_44494
+	jr .asm_4494_\1
 
-.asm_4448b
+.asm_448b_\1
 	ld a, [H_FFA8]
-	call Func_44698
+	call AudioEngineFunc_4698_\1
 	ld hl, wcfb4
-.asm_44494
+.asm_4494_\1
 	ld [hl], a
-Func_44495:
-	ld hl, Data_44569
+AudioEngineFunc_4495_\1:
+	ld hl, AudioEngineData_4569_\1
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -732,27 +733,27 @@ Func_44495:
 	add hl, de
 	ld a, [H_FFA6]
 	ld [hli], a
-	call Func_44b6c
+	call AudioEngineFunc_4b6c_\1
 	ld a, [H_FFA7]
 	and $f
 	ld [hl], a
 	or $80
-	jp Func_44b76
+	jp AudioEngineFunc_4b76_\1
 
-Func_444cd: ; 444cd (11:44cd)
+AudioEngineFunc_44cd_\1: ; 484cd (11:44cd)
 	ld hl, $4
 	add hl, de
 	dec [hl]
-	jr z, .asm_444d5
+	jr z, .asm_44d5_\1
 	ret
 
-.asm_444d5
+.asm_44d5_\1
 	ld hl, $1
 	add hl, de
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-asm_444dc
+asm_44dc_\1
 	ld a, [de]
 	or a
 	ret z
@@ -760,77 +761,77 @@ asm_444dc
 	add hl, de
 	ld a, [hl]
 	or a
-	jp z, asm_4434e
-Func_444e8: ; 444e8 (11:44e8)
+	jp z, asm_434e_\1
+AudioEngineFunc_44e8_\1: ; 484e8 (11:44e8)
 	ld a, [bc]
 	inc bc
 	ld [H_MusicCommand], a
 	cp $e0
-	jp z, Func_44549
+	jp z, AudioEngineFunc_4549_\1
 	and $f0
 	cp $f0
-	jr nz, .asm_444fd
-	call Func_4471d
-	jr asm_444dc
+	jr nz, .asm_44fd_\1
+	call AudioEngineFunc_471d_\1
+	jr asm_44dc_\1
 
-.asm_444fd
+.asm_44fd_\1
 	cp $e0
-	jr nz, .asm_44506
-	call Func_44723
-	jr asm_444dc
+	jr nz, .asm_4506_\1
+	call AudioEngineFunc_4723_\1
+	jr asm_44dc_\1
 
-.asm_44506
+.asm_4506_\1
 	ld hl, $3
 	add hl, de
 	ld a, [hli]
 	ld [hl], a
 	ld a, [H_MusicCommand]
 	and $f0
-	jr z, .asm_44533
+	jr z, .asm_4533_\1
 	add $20
-	call Func_44ba0
+	call AudioEngineFunc_4ba0_\1
 	ld hl, $8
 	add hl, de
 	ld [hli], a
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld a, [bc]
 	inc bc
 	ld [hli], a
-	call Func_44b6c
+	call AudioEngineFunc_4b6c_\1
 	ld a, [H_MusicCommand]
 	and $f
 	ld [hl], a
 	or $80
-	call Func_44b76
-	jr Func_44561
+	call AudioEngineFunc_4b76_\1
+	jr AudioEngineFunc_4561_\1
 
-.asm_44533
-	call Func_44561
+.asm_4533_\1
+	call AudioEngineFunc_4561_\1
 	ld a, [H_MusicCommand]
 	and $f
 	swap a
-	call Func_44ba0
+	call AudioEngineFunc_4ba0_\1
 	or $8
 	ld [rNR42], a
 	ld a, $80
 	ld [rNR44], a
 	ret
 
-Func_44549: ; 44549 (11:4549)
+AudioEngineFunc_4549_\1: ; 48549 (11:4549)
 	ld a, [bc]
 	inc bc
 	ld hl, $4
 	add hl, de
 	ld [hl], a
-	call Func_44561
+	call AudioEngineFunc_4561_\1
 	xor a
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld a, $ff
-	call Func_44b6c
+	call AudioEngineFunc_4b6c_\1
 	ld a, $8f
-	jp Func_44b76
+	jp AudioEngineFunc_4b76_\1
 
-Func_44561: ; 44561 (11:4561)
+AudioEngineFunc_4561_\1: ; 48561 (11:4561)
 	ld hl, $1
 	add hl, de
 	ld [hl], c
@@ -838,7 +839,7 @@ Func_44561: ; 44561 (11:4561)
 	ld [hl], b
 	ret
 
-Data_44569:
+AudioEngineData_4569_\1:
 	dw  $783,  $706,  $60b,  $413,  $02e, -1, -1, -1
 	dw  $78a,  $714,  $627,  $450,  $0a2, -1, -1, -1
 	dw  $791,  $721,  $642,  $485,  $108, -1, -1, -1
@@ -852,7 +853,7 @@ Data_44569:
 	dw  $7ba,  $774,  $6e9,  $5d2,  $39d, -1, -1, -1
 	dw  $7be,  $77b,  $6f9,  $5ed,  $3dc, -1, -1, -1
 
-Func_44629: ; 44629 (11:4629)
+MusicNone_\1: ; 48629 (11:4629)
 	xor a
 	ld [rNR52], a
 	ld [rNR50], a
@@ -868,16 +869,16 @@ Func_44629: ; 44629 (11:4629)
 	ld [wChannel6], a
 	ld a, $77
 	ld [rNR50], a
-	jp Func_441ad
+	jp UpdateRingtone_\1
 
-Func_44651: ; 44651 (11:4651)
+AudioEngineFunc_4651_\1: ; 48651 (11:4651)
 	ld a, [H_FFA3]
 	or a
-	jr z, .asm_44679
+	jr z, .asm_4679_\1
 	cp $1
 	ret nz
 	ld a, [wcfb5]
-	call Func_4469d
+	call AudioEngineFunc_469d_\1
 	ld a, [wcfb1]
 	or a
 	ret z
@@ -888,14 +889,14 @@ Func_44651: ; 44651 (11:4651)
 	ret nz
 	ld a, $20
 	ld [hl], a
-	call Func_44b39
-	call Func_446b4
+	call AudioEngineFunc_4b39_\1
+	call AudioEngineFunc_46b4_\1
 	ld a, [hl]
-	jp Func_44495
+	jp AudioEngineFunc_4495_\1
 
-.asm_44679
+.asm_4679_\1
 	ld a, [wcfb4]
-	call Func_44698
+	call AudioEngineFunc_4698_\1
 	ld a, [wcfb0]
 	or a
 	ret z
@@ -906,47 +907,47 @@ Func_44651: ; 44651 (11:4651)
 	ret nz
 	ld a, $20
 	ld [hl], a
-	call Func_44b39
-	call Func_446ac
+	call AudioEngineFunc_4b39_\1
+	call AudioEngineFunc_46ac_\1
 	ld a, [hl]
-	jp Func_44495
+	jp AudioEngineFunc_4495_\1
 
-Func_44698: ; 44698 (11:4698)
+AudioEngineFunc_4698_\1: ; 48698 (11:4698)
 	ld hl, wcfb2
-	jr asm_446a0
+	jr asm_46a0_\1
 
-Func_4469d: ; 4469d (11:469d)
+AudioEngineFunc_469d_\1: ; 4869d (11:469d)
 	ld hl, wcfb3
-asm_446a0
+asm_46a0_\1
 	push af
 	ld a, [hl]
 	inc a
 	and $3f
 	ld [hl], a
-	call Func_446c2
+	call AudioEngineFunc_46c2_\1
 	pop af
 	ld [hl], a
 	ret
 
-Func_446ac: ; 446ac (11:46ac)
+AudioEngineFunc_46ac_\1: ; 486ac (11:46ac)
 	ld hl, wcfb0
 	ld a, [wcfb2]
-	jr asm_446ba
+	jr asm_46ba_\1
 
-Func_446b4: ; 446b4 (11:46b4)
+AudioEngineFunc_46b4_\1: ; 486b4 (11:46b4)
 	ld hl, wcfb1
 	ld a, [wcfb3]
-asm_446ba
+asm_46ba_\1
 	sub [hl]
 	and $3f
-	call Func_446c2
+	call AudioEngineFunc_46c2_\1
 	ld a, [hl]
 	ret
 
-Func_446c2: ; 446c2 (11:46c2)
+AudioEngineFunc_46c2_\1: ; 486c2 (11:46c2)
 	push bc
 	push af
-	ld hl, Pointers_446d9
+	ld hl, AudioEnginePointers_46d9_\1
 	ld a, [H_FFA3]
 	add a
 	ld c, a
@@ -962,77 +963,77 @@ Func_446c2: ; 446c2 (11:46c2)
 	pop bc
 	ret
 
-Pointers_446d9:
+AudioEnginePointers_46d9_\1:
 	dw wcf00
 	dw wcf40
 
-Pointers_446dd:
-	dw Func_44894
-	dw Func_44840
-	dw Func_44846
-	dw Func_4484f
-	dw Func_44864
-	dw Func_44865
-	dw Func_44866
-	dw Func_44867
-	dw Func_44858
-	dw Func_44894
-	dw Func_4486d
-	dw Func_44877
-	dw Func_4488b
-	dw Func_44894
-	dw Func_44894
-	dw Func_44894
+AudioEnginePointers_46dd_\1:
+	dw AudioEngineFunc_4894_\1
+	dw AudioEngineFunc_4840_\1
+	dw AudioEngineFunc_4846_\1
+	dw AudioEngineFunc_484f_\1
+	dw AudioEngineFunc_4864_\1
+	dw AudioEngineFunc_4865_\1
+	dw AudioEngineFunc_4866_\1
+	dw AudioEngineFunc_4867_\1
+	dw AudioEngineFunc_4858_\1
+	dw AudioEngineFunc_4894_\1
+	dw AudioEngineFunc_486d_\1
+	dw AudioEngineFunc_4877_\1
+	dw AudioEngineFunc_488b_\1
+	dw AudioEngineFunc_4894_\1
+	dw AudioEngineFunc_4894_\1
+	dw AudioEngineFunc_4894_\1
 
-Pointers_446fd:
-	dw Func_44738
-	dw Func_4473d
-	dw Func_44742
-	dw Func_44749
-	dw Func_44754
-	dw Func_4475f
-	dw Func_4476f
-	dw Func_44777
-	dw Func_44780
-	dw Func_44786
-	dw Func_44799
-	dw Func_447b6
-	dw Func_447c9
-	dw Func_447d2
-	dw Func_447d8
-	dw Func_447de
+AudioEnginePointers_46fd_\1:
+	dw AudioEngineFunc_4738_\1
+	dw AudioEngineFunc_473d_\1
+	dw AudioEngineFunc_4742_\1
+	dw AudioEngineFunc_4749_\1
+	dw AudioEngineFunc_4754_\1
+	dw AudioEngineFunc_475f_\1
+	dw AudioEngineFunc_476f_\1
+	dw AudioEngineFunc_4777_\1
+	dw AudioEngineFunc_4780_\1
+	dw AudioEngineFunc_4786_\1
+	dw AudioEngineFunc_4799_\1
+	dw AudioEngineFunc_47b6_\1
+	dw AudioEngineFunc_47c9_\1
+	dw AudioEngineFunc_47d2_\1
+	dw AudioEngineFunc_47d8_\1
+	dw AudioEngineFunc_47de_\1
 
-Func_4471d: ; 4471d (11:471d)
-	ld hl, Pointers_446fd
-	jp Func_44729
+AudioEngineFunc_471d_\1: ; 4871d (11:471d)
+	ld hl, AudioEnginePointers_46fd_\1
+	jp AudioEngineFunc_4729_\1
 
-Func_44723: ; 44723 (11:4723)
-	ld hl, Pointers_446dd
-	jp Func_44729
+AudioEngineFunc_4723_\1: ; 48723 (11:4723)
+	ld hl, AudioEnginePointers_46dd_\1
+	jp AudioEngineFunc_4729_\1
 
-Func_44729: ; 44729 (11:4729)
+AudioEngineFunc_4729_\1: ; 48729 (11:4729)
 	ld a, [H_MusicCommand]
 	and $f
 	add a
 	add l
 	ld l, a
-	jr nc, .asm_44734
+	jr nc, .asm_4734_\1
 	inc h
-.asm_44734
+.asm_4734_\1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
-Func_44738: ; 44738 (11:4738)
+AudioEngineFunc_4738_\1: ; 48738 (11:4738)
 	ld hl, $1a
-	jr asm_4474c
+	jr asm_474c_\1
 
-Func_4473d: ; 4473d (11:473d)
+AudioEngineFunc_473d_\1: ; 4873d (11:473d)
 	ld hl, $1a
-	jr asm_44757
+	jr asm_4757_\1
 
-Func_44742: ; 44742 (11:4742)
+AudioEngineFunc_4742_\1: ; 48742 (11:4742)
 	ld a, [bc]
 	ld l, a
 	inc bc
@@ -1041,9 +1042,9 @@ Func_44742: ; 44742 (11:4742)
 	ld c, l
 	ret
 
-Func_44749: ; 44749 (11:4749)
+AudioEngineFunc_4749_\1: ; 48749 (11:4749)
 	ld hl, $1d
-asm_4474c
+asm_474c_\1
 	ld a, [bc]
 	inc bc
 	add hl, de
@@ -1053,9 +1054,9 @@ asm_4474c
 	ld [hl], b
 	ret
 
-Func_44754: ; 44754 (11:4754)
+AudioEngineFunc_4754_\1: ; 48754 (11:4754)
 	ld hl, $1d
-asm_44757
+asm_4757_\1
 	add hl, de
 	dec [hl]
 	ret z
@@ -1065,7 +1066,7 @@ asm_44757
 	ld b, [hl]
 	ret
 
-Func_4475f: ; 4475f (11:475f)
+AudioEngineFunc_475f_\1: ; 4875f (11:475f)
 	ld a, [bc]
 	inc bc
 	push af
@@ -1081,7 +1082,7 @@ Func_4475f: ; 4475f (11:475f)
 	ld c, a
 	ret
 
-Func_4476f: ; 4476f (11:476f)
+AudioEngineFunc_476f_\1: ; 4876f (11:476f)
 	ld hl, $20
 	add hl, de
 	ld c, [hl]
@@ -1089,16 +1090,16 @@ Func_4476f: ; 4476f (11:476f)
 	ld b, [hl]
 	ret
 
-Func_44777: ; 44777 (11:4777)
+AudioEngineFunc_4777_\1: ; 48777 (11:4777)
 	ld hl, $5
-	call Func_44895
-	jp Func_44b25
+	call AudioEngineFunc_4895_\1
+	jp AudioEngineFunc_4b25_\1
 
-Func_44780: ; 44780 (11:4780)
+AudioEngineFunc_4780_\1: ; 48780 (11:4780)
 	ld hl, $24
-	jp Func_44895
+	jp AudioEngineFunc_4895_\1
 
-Func_44786: ; 44786 (11:4786)
+AudioEngineFunc_4786_\1: ; 48786 (11:4786)
 	ld a, [bc]
 	inc bc
 	ld hl, $14
@@ -1114,7 +1115,7 @@ Func_44786: ; 44786 (11:4786)
 	ld [hl], a
 	ret
 
-Func_44799: ; 44799 (11:4799)
+AudioEngineFunc_4799_\1: ; 48799 (11:4799)
 	ld a, [bc]
 	inc bc
 	push af
@@ -1124,10 +1125,10 @@ Func_44799: ; 44799 (11:4799)
 	ld [hl], a
 	ld a, [H_FFA3]
 	cp $2
-	jr z, .asm_447ae
+	jr z, .asm_47ae_\1
 	ld a, [hl]
-	call Func_44b2f
-.asm_447ae
+	call AudioEngineFunc_4b2f_\1
+.asm_47ae_\1
 	inc hl
 	pop af
 	and $f
@@ -1135,7 +1136,7 @@ Func_44799: ; 44799 (11:4799)
 	ld [hl], a
 	ret
 
-Func_447b6: ; 447b6 (11:47b6)
+AudioEngineFunc_47b6_\1: ; 487b6 (11:47b6)
 	ld hl, $10
 	add hl, de
 	ld a, [bc]
@@ -1150,9 +1151,9 @@ Func_447b6: ; 447b6 (11:47b6)
 	ld a, [bc]
 	inc bc
 	ld [hl], a
-	jp Func_4488b
+	jp AudioEngineFunc_488b_\1
 
-Func_447c9: ; 447c9 (11:47c9)
+AudioEngineFunc_47c9_\1: ; 487c9 (11:47c9)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
@@ -1160,22 +1161,22 @@ Func_447c9: ; 447c9 (11:47c9)
 	ld [hl], a
 	ret
 
-Func_447d2: ; 447d2 (11:47d2)
+AudioEngineFunc_47d2_\1: ; 487d2 (11:47d2)
 	ld hl, $3
-	jp Func_44895
+	jp AudioEngineFunc_4895_\1
 
-Func_447d8: ; 447d8 (11:47d8)
+AudioEngineFunc_47d8_\1: ; 487d8 (11:47d8)
 	ld hl, $23
-	jp Func_44895
+	jp AudioEngineFunc_4895_\1
 
-Func_447de: ; 447de (11:47de)
+AudioEngineFunc_47de_\1: ; 487de (11:47de)
 	ld hl, $0
 	add hl, de
 	xor a
 	ld [hl], a
 	ld a, [H_FFA3]
 	cp $5
-	jr nz, .asm_447f4
+	jr nz, .asm_47f4_\1
 	ld a, [wChannel4]
 	or a
 	ret nz
@@ -1183,71 +1184,71 @@ Func_447de: ; 447de (11:47de)
 	ld [rNR42], a
 	ret
 
-.asm_447f4
+.asm_47f4_\1
 	cp $4
-	jr nz, .asm_447fd
+	jr nz, .asm_47fd_\1
 	ld a, $ff
 	ld [wcf94], a
-.asm_447fd
-	ld hl, Data_44d95
+.asm_47fd_\1
+	ld hl, AudioEngineData_4d95_\1
 	ld a, [H_FFA3]
 	or a
-	jr z, .asm_4482a
+	jr z, .asm_482a_\1
 	push bc
 	ld b, $0
 	cp $1
-	jr nz, .asm_44811
+	jr nz, .asm_4811_\1
 	ld c, $5
-	jr .asm_44828
+	jr .asm_4828_\1
 
-.asm_44811
+.asm_4811_\1
 	cp $2
-	jr nz, .asm_44819
+	jr nz, .asm_4819_\1
 	ld c, $a
-	jr .asm_44828
+	jr .asm_4828_\1
 
-.asm_44819
+.asm_4819_\1
 	cp $3
-	jr nz, .asm_44826
+	jr nz, .asm_4826_\1
 	ld c, $f
 	ld a, $ff
 	ld [wcf9a], a
-	jr .asm_44828
+	jr .asm_4828_\1
 
-.asm_44826
+.asm_4826_\1
 	ld c, $14
-.asm_44828
+.asm_4828_\1
 	add hl, bc
 	pop bc
-.asm_4482a
+.asm_482a_\1
 	ld a, [hli]
 	cp $ee
-	call nz, Func_44b25
+	call nz, AudioEngineFunc_4b25_\1
 	ld a, [hli]
-	call Func_44b2f
+	call AudioEngineFunc_4b2f_\1
 	ld a, [hli]
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld a, [hli]
-	call Func_44b6c
+	call AudioEngineFunc_4b6c_\1
 	ld a, [hl]
-	jp Func_44b76
+	jp AudioEngineFunc_4b76_\1
 
-Func_44840: ; 44840 (11:4840)
+AudioEngineFunc_4840_\1: ; 48840 (11:4840)
 	ld hl, $3
-	jp Func_44895
+	jp AudioEngineFunc_4895_\1
 
-Func_44846: ; 44846 (11:4846)
+AudioEngineFunc_4846_\1: ; 48846 (11:4846)
 	ld hl, $a
-	call Func_44895
+	call AudioEngineFunc_4895_\1
 	ld [rNR43], a
 	ret
 
-Func_4484f: ; 4484f (11:484f)
+AudioEngineFunc_484f_\1: ; 4884f (11:484f)
 	ld hl, $6
-	call Func_44895
-	jp Func_44b2f
+	call AudioEngineFunc_4895_\1
+	jp AudioEngineFunc_4b2f_\1
 
-Func_44858: ; 44858 (11:4858)
+AudioEngineFunc_4858_\1: ; 48858 (11:4858)
 	ld hl, wcfb0
 	ld a, [H_FFA3]
 	add l
@@ -1257,36 +1258,36 @@ Func_44858: ; 44858 (11:4858)
 	ld [hl], a
 	ret
 
-Func_44864: ; 44864 (11:4864)
+AudioEngineFunc_4864_\1: ; 48864 (11:4864)
 	ret
 
-Func_44865: ; 44865 (11:4865)
+AudioEngineFunc_4865_\1: ; 48865 (11:4865)
 	ret
 
-Func_44866: ; 44866 (11:4866)
+AudioEngineFunc_4866_\1: ; 48866 (11:4866)
 	ret
 
-Func_44867: ; 44867 (11:4867)
+AudioEngineFunc_4867_\1: ; 48867 (11:4867)
 	ld a, [bc]
 	inc bc
 	ld [wcf99], a
 	ret
 
-Func_4486d: ; 4486d (11:486d)
+AudioEngineFunc_486d_\1: ; 4886d (11:486d)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
 	and $bf
 	ld [hl], a
-	jr asm_4487f
+	jr asm_487f_\1
 
-Func_44877: ; 44877 (11:4877)
+AudioEngineFunc_4877_\1: ; 48877 (11:4877)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
 	or $40
 	ld [hl], a
-asm_4487f
+asm_487f_\1
 	ld hl, $7
 	add hl, de
 	ld a, [bc]
@@ -1296,7 +1297,7 @@ asm_4487f
 	ld [hl], a
 	ret
 
-Func_4488b: ; 4488b (11:488b)
+AudioEngineFunc_488b_\1: ; 4888b (11:488b)
 	ld hl, $22
 	add hl, de
 	ld a, [hl]
@@ -1304,23 +1305,23 @@ Func_4488b: ; 4488b (11:488b)
 	ld [hl], a
 	ret
 
-Func_44894: ; 44894 (11:4894)
+AudioEngineFunc_4894_\1: ; 48894 (11:4894)
 	ret
 
-Func_44895: ; 44895 (11:4895)
+AudioEngineFunc_4895_\1: ; 48895 (11:4895)
 	ld a, [bc]
 	inc bc
 	add hl, de
 	ld [hl], a
 	ret
 
-Func_4489a: ; 4489a (11:489a)
+AudioEngineFunc_489a_\1: ; 4889a (11:489a)
 	ld a, [wChannel4]
 	or a
 	ret nz
 	ld a, [wcf9a]
 	or a
-	jr z, .asm_448b5
+	jr z, .asm_48b5_\1
 	xor a
 	ld [wcf9a], a
 	ld a, [wcf95]
@@ -1328,23 +1329,23 @@ Func_4489a: ; 4489a (11:489a)
 	or $88
 	ld [rNR51], a
 	ld [wcf95], a
-.asm_448b5
+.asm_48b5_\1
 	ld a, [H_MusicCommand]
 	and $f0
 	swap a
 	add a
-	ld hl, Pointers_44937
+	ld hl, AudioEnginePointers_4937_\1
 	add l
 	ld l, a
-	jr nc, .asm_448c5
+	jr nc, .asm_48c5_\1
 	inc h
-.asm_448c5
+.asm_48c5_\1
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
-	jp Func_448e0
+	jp AudioEngineFunc_48e0_\1
 
-Func_448cb: ; 448cb (11:48cb)
+AudioEngineFunc_48cb_\1: ; 488cb (11:48cb)
 	ld a, [wChannel4]
 	or a
 	ret nz
@@ -1360,12 +1361,12 @@ Func_448cb: ; 448cb (11:48cb)
 	ld c, a
 	inc hl
 	ld b, [hl]
-Func_448e0: ; 448e0 (11:48e0)
+AudioEngineFunc_48e0_\1: ; 488e0 (11:48e0)
 	ld a, [bc]
 	inc bc
 	ld [H_FFA5], a
 	cp $ff
-	jr nz, .asm_448f7
+	jr nz, .asm_48f7_\1
 	xor a
 	ld [rNR41], a
 	ld [rNR42], a
@@ -1376,10 +1377,10 @@ Func_448e0: ; 448e0 (11:48e0)
 	ld [hl], a
 	ret
 
-.asm_448f7
+.asm_48f7_\1
 	ld a, [H_FFA5]
 	and $f0
-	jr nz, .asm_4491a
+	jr nz, .asm_491a_\1
 	ld hl, $10
 	add hl, de
 	ld a, [hli]
@@ -1387,7 +1388,7 @@ Func_448e0: ; 448e0 (11:48e0)
 	ld a, [H_FFA5]
 	swap a
 	ld [rNR42], a
-	call Func_44ba0
+	call AudioEngineFunc_4ba0_\1
 	ld a, $80
 	ld [rNR44], a
 	ld hl, $c
@@ -1397,80 +1398,80 @@ Func_448e0: ; 448e0 (11:48e0)
 	ld [hl], b
 	ret
 
-.asm_4491a
+.asm_491a_\1
 	cp $e0
-	jr nz, .asm_4492b
+	jr nz, .asm_492b_\1
 	ld a, [H_FFA5]
 	and $f
 	ld hl, $10
 	add hl, de
 	ld [hl], a
-	jp Func_448e0
+	jp AudioEngineFunc_48e0_\1
 
-.asm_4492b
+.asm_492b_\1
 	ld a, [bc]
 	inc bc
 	ld hl, $a
 	add hl, de
 	ld [hl], a
 	ld [rNR43], a
-	jp Func_448e0
+	jp AudioEngineFunc_48e0_\1
 
-Pointers_44937:
-	dw Data_44951
-	dw Data_4495d
-	dw Data_44965
-	dw Data_4496d
-	dw Data_44978
-	dw Data_44985
-	dw Data_44991
-	dw Data_4499d
-	dw Data_449aa
-	dw Data_449b7
-	dw Data_449c7
-	dw Data_449d3
-	dw Data_449e2
+AudioEnginePointers_4937_\1:
+	dw AudioEngineData_4951_\1
+	dw AudioEngineData_495d_\1
+	dw AudioEngineData_4965_\1
+	dw AudioEngineData_496d_\1
+	dw AudioEngineData_4978_\1
+	dw AudioEngineData_4985_\1
+	dw AudioEngineData_4991_\1
+	dw AudioEngineData_499d_\1
+	dw AudioEngineData_49aa_\1
+	dw AudioEngineData_49b7_\1
+	dw AudioEngineData_49c7_\1
+	dw AudioEngineData_49d3_\1
+	dw AudioEngineData_49e2_\1
 
-Data_44951:
+AudioEngineData_4951_\1:
 	db $e1, $d0, $36, $0f, $d0, $37, $0f, $d0, $35, $03, $02, $ff
 
-Data_4495d:
+AudioEngineData_495d_\1:
 	db $e1, $d0, $01, $09, $d0, $00, $04, $ff
 
-Data_44965:
+AudioEngineData_4965_\1:
 	db $e1, $d0, $01, $0c, $d0, $00, $06, $ff
 
-Data_4496d:
+AudioEngineData_496d_\1:
 	db $e1, $d0, $01, $0b, $e6, $05, $04, $03, $02, $01, $ff
 
-Data_44978:
+AudioEngineData_4978_\1:
 	db $e1, $d0, $01, $0e, $e6, $07, $06, $05, $04, $03, $02, $01, $ff
 
-Data_44985:
+AudioEngineData_4985_\1:
 	db $e1, $d0, $15, $0b, $d0, $16, $e3, $05, $04, $03, $02, $ff
 
-Data_44991:
+AudioEngineData_4991_\1:
 	db $e1, $d0, $15, $0c, $d0, $16, $e3, $05, $04, $03, $02, $ff
 
-Data_4499d:
+AudioEngineData_499d_\1:
 	db $e1, $d0, $15, $0d, $d0, $16, $e3, $05, $04, $03, $02, $01, $ff
 
-Data_449aa:
+AudioEngineData_49aa_\1:
 	db $e1, $d0, $15, $0e, $d0, $07, $e3, $05, $04, $03, $02, $01, $ff
 
-Data_449b7:
+AudioEngineData_49b7_\1:
 	db $e1, $d0, $4f, $0f, $d0, $3f, $0e, $d0, $3d, $e4, $05, $04, $03, $02, $01, $ff
 
-Data_449c7:
+AudioEngineData_49c7_\1:
 	db $e1, $d0, $2c, $0c, $e6, $d0, $11, $0d, $0a, $06, $02, $ff
 
-Data_449d3:
+AudioEngineData_49d3_\1:
 	db $e1, $d0, $3c, $0b, $d0, $4c, $0b, $d0, $5c, $0b, $07, $e3, $04, $02, $ff
 
-Data_449e2:
+AudioEngineData_49e2_\1:
 	db $ff
 
-Func_449e3: ; 449e3 (11:49e3)
+ExecuteTrackFunction_\1: ; 489e3 (11:49e3)
 	ld hl, $c
 	add hl, de
 	ld a, [hli]
@@ -1478,78 +1479,78 @@ Func_449e3: ; 449e3 (11:49e3)
 	ld l, a
 	jp [hl]
 
-Func_449eb: ; 449eb (11:49eb)
-	call Func_44aa9
-	jp nc, Func_44a4d
+AudioEngineFunc_49eb_\1: ; 489eb (11:49eb)
+	call AudioEngineFunc_4aa9_\1
+	jp nc, AudioEngineFunc_4a4d_\1
 	ld hl, $8
 	add hl, de
 	ld a, [hl]
 	ld hl, $f
 	add hl, de
 	add [hl]
-	jr nc, .asm_449ff
+	jr nc, .asm_49ff_\1
 	ld a, $f0
-.asm_449ff
+.asm_49ff_\1
 	ld hl, $8
 	add hl, de
 	ld [hl], a
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld hl, $b
 	add hl, de
 	ld a, [hl]
 	or $80
-	call Func_44b76
+	call AudioEngineFunc_4b76_\1
 	ld hl, $e
 	add hl, de
 	dec [hl]
-	jp z, Func_44434
+	jp z, AudioEngineFunc_4434_\1
 	ret
 
-Func_44a1a: ; 44a1a (11:4a1a)
-	call Func_44aa9
-	jp nc, Func_44a4d
+AudioEngineFunc_4a1a_\1: ; 48a1a (11:4a1a)
+	call AudioEngineFunc_4aa9_\1
+	jp nc, AudioEngineFunc_4a4d_\1
 	ld hl, $8
 	add hl, de
 	ld a, [hl]
 	ld hl, $f
 	add hl, de
 	sub [hl]
-	jr nc, .asm_44a2e
+	jr nc, .asm_4a2e_\1
 	ld a, $10
-.asm_44a2e
+.asm_4a2e_\1
 	ld hl, $8
 	add hl, de
 	ld [hl], a
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld hl, $b
 	add hl, de
 	ld a, [hl]
 	or $80
-	call Func_44b76
+	call AudioEngineFunc_4b76_\1
 	ld hl, $e
 	add hl, de
 	dec [hl]
-	jp z, Func_4444a
+	jp z, AudioEngineFunc_444a_\1
 	ret
 
-Func_44a49: ; 44a49 (11:4a49)
-	call Func_44aa9
+AudioEngineFunc_4a49_\1: ; 48a49 (11:4a49)
+	call AudioEngineFunc_4aa9_\1
 	ret c
-Func_44a4d: ; 44a4d (11:4a4d)
-	call Func_44ab4
+AudioEngineFunc_4a4d_\1: ; 48a4d (11:4a4d)
+	call AudioEngineFunc_4ab4_\1
 	ld hl, $13
 	add hl, de
 	ld a, [hl]
 	ld [H_FFA8], a
 	and $f0
-	call Func_4440a
-	ld bc, Func_44a64
+	call AudioEngineFunc_440a_\1
+	ld bc, AudioEngineFunc_4a64_\1
 	ld [hl], c
 	inc hl
 	ld [hl], b
 	ret
 
-Func_44a64:
+AudioEngineFunc_4a64_\1:
 	ld hl, $f
 	add hl, de
 	ld a, [hl]
@@ -1560,9 +1561,9 @@ Func_44a64:
 	add hl, de
 	ld a, [hl]
 	dec a
-	jr z, .asm_44a88
+	jr z, .asm_4a88_\1
 	ld [hl], a
-	call Func_44ab4
+	call AudioEngineFunc_4ab4_\1
 	ld hl, $13
 	add hl, de
 	ld a, [hl]
@@ -1573,13 +1574,13 @@ Func_44a64:
 	ld [hl], a
 	ret
 
-.asm_44a88
+.asm_4a88_\1
 	ld hl, $8
 	add hl, de
 	ld [hl], $0
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	push bc
-	ld bc, Func_44aa8
+	ld bc, .Null
 	ld hl, $c
 	add hl, de
 	ld [hl], c
@@ -1590,12 +1591,12 @@ Func_44a64:
 	cp $2
 	ret z
 	ld a, $80
-	jp Func_44b76
+	jp AudioEngineFunc_4b76_\1
 
-Func_44aa8:
+.Null:
 	ret
 
-Func_44aa9: ; 44aa9 (11:4aa9)
+AudioEngineFunc_4aa9_\1: ; 48aa9 (11:4aa9)
 	ld hl, $12
 	add hl, de
 	ld a, [hl]
@@ -1604,25 +1605,25 @@ Func_44aa9: ; 44aa9 (11:4aa9)
 	cp [hl]
 	ret
 
-Func_44ab4: ; 44ab4 (11:4ab4)
+AudioEngineFunc_4ab4_\1: ; 48ab4 (11:4ab4)
 	ld hl, $8
 	add hl, de
 	ld a, [hl]
 	or a
-	jp z, Func_44ac3
+	jp z, AudioEngineFunc_4ac3_\1
 	sub $10
-	jr nz, Func_44ac3
+	jr nz, AudioEngineFunc_4ac3_\1
 	ld a, $10
-Func_44ac3: ; 44ac3 (11:4ac3)
+AudioEngineFunc_4ac3_\1: ; 48ac3 (11:4ac3)
 	ld [hl], a
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld hl, $b
 	add hl, de
 	ld a, [hl]
 	or $80
-	jp Func_44b76
+	jp AudioEngineFunc_4b76_\1
 
-Func_44ad1: ; 44ad1 (11:4ad1)
+AudioEngineFunc_4ad1_\1: ; 48ad1 (11:4ad1)
 	ld hl, $16
 	add hl, de
 	ld a, [hli]
@@ -1630,17 +1631,17 @@ Func_44ad1: ; 44ad1 (11:4ad1)
 	ret z
 	ld a, [hl]
 	or a
-	jr z, .asm_44ade
+	jr z, .asm_4ade_\1
 	dec [hl]
 	ret
 
-.asm_44ade
+.asm_4ade_\1
 	inc hl
 	dec [hl]
-	jr z, .asm_44ae3
+	jr z, .asm_4ae3_\1
 	ret
 
-.asm_44ae3
+.asm_4ae3_\1
 	ld hl, $15
 	add hl, de
 	ld a, [hli]
@@ -1655,7 +1656,7 @@ Func_44ad1: ; 44ad1 (11:4ad1)
 	ld hl, $16
 	add hl, de
 	ld a, [hl]
-	jr z, .asm_44b18
+	jr z, .asm_4b18_\1
 	ld hl, $a
 	add hl, de
 	ld c, [hl]
@@ -1663,96 +1664,96 @@ Func_44ad1: ; 44ad1 (11:4ad1)
 	ld b, [hl]
 	add c
 	ld c, a
-	jr nc, .asm_44b06
+	jr nc, .asm_4b06_\1
 	inc b
-.asm_44b06
+.asm_4b06_\1
 	ld hl, $a
 	add hl, de
 	ld a, c
 	ld [hli], a
-	call Func_44b6c
+	call AudioEngineFunc_4b6c_\1
 	ld a, b
 	cp [hl]
 	ret z
 	ld [hl], a
 	and $f
-	jp Func_44b76
+	jp AudioEngineFunc_4b76_\1
 
-.asm_44b18
+.asm_4b18_\1
 	ld hl, $a
 	add hl, de
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-.asm_44b1f
+.asm_4b1f_\1
 	dec bc
 	dec a
-	jr nz, .asm_44b1f
-	jr .asm_44b06
+	jr nz, .asm_4b1f_\1
+	jr .asm_4b06_\1
 
-Func_44b25: ; 44b25 (11:4b25)
-	call Func_44b90
+AudioEngineFunc_4b25_\1: ; 48b25 (11:4b25)
+	call AudioEngineFunc_4b90_\1
 	ret nz
 	push hl
-	ld hl, Pointers_44bb0
-	jr asm_44b7e
+	ld hl, AudioEnginePointers_4bb0_\1
+	jr asm_4b7e_\1
 
-Func_44b2f: ; 44b2f (11:4b2f)
-	call Func_44b90
+AudioEngineFunc_4b2f_\1: ; 48b2f (11:4b2f)
+	call AudioEngineFunc_4b90_\1
 	ret nz
 	push hl
-	ld hl, Pointers_44bbc
-	jr asm_44b7e
+	ld hl, AudioEnginePointers_4bbc_\1
+	jr asm_4b7e_\1
 
-Func_44b39: ; 44b39 (11:4b39)
-	call Func_44b90
+AudioEngineFunc_4b39_\1: ; 48b39 (11:4b39)
+	call AudioEngineFunc_4b90_\1
 	ret nz
 	push hl
 	ld a, [H_FFA3]
 	cp $2
-	jr nz, .asm_44b5d
+	jr nz, .asm_4b5d_\1
 	ld a, [H_FFA8]
 	swap a
 	and $f
-	ld hl, Data_44bec
+	ld hl, AudioEngineData_4bec_\1
 	add l
 	ld l, a
-	jr nc, .asm_44b54
+	jr nc, .asm_4b54_\1
 	inc h
-.asm_44b54
+.asm_4b54_\1
 	ld a, [hl]
 	ld [H_FFA8], a
-	ld hl, Pointers_44bc8
-	jr asm_44b7e
+	ld hl, AudioEnginePointers_4bc8_\1
+	jr asm_4b7e_\1
 
-.asm_44b5d
+.asm_4b5d_\1
 	ld a, [H_FFA8]
 	and $f0
 	or $8
 	ld [H_FFA8], a
-	ld hl, Pointers_44bc8
-	jr asm_44b7e
+	ld hl, AudioEnginePointers_4bc8_\1
+	jr asm_4b7e_\1
 
-Func_44b6c: ; 44b6c (11:4b6c)
-	call Func_44b90
+AudioEngineFunc_4b6c_\1: ; 48b6c (11:4b6c)
+	call AudioEngineFunc_4b90_\1
 	ret nz
 	push hl
-	ld hl, Pointers_44bd4
-	jr asm_44b7e
+	ld hl, AudioEnginePointers_4bd4_\1
+	jr asm_4b7e_\1
 
-Func_44b76: ; 44b76 (11:4b76)
-	call Func_44b90
+AudioEngineFunc_4b76_\1: ; 48b76 (11:4b76)
+	call AudioEngineFunc_4b90_\1
 	ret nz
 	push hl
-	ld hl, Pointers_44be0
-asm_44b7e
+	ld hl, AudioEnginePointers_4be0_\1
+asm_4b7e_\1
 	ld a, [H_FFA3]
 	add a
 	add l
 	ld l, a
-	jr nc, .asm_44b87
+	jr nc, .asm_4b87_\1
 	inc h
-.asm_44b87
+.asm_4b87_\1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1761,45 +1762,45 @@ asm_44b7e
 	pop hl
 	ret
 
-Func_44b90: ; 44b90 (11:4b90)
+AudioEngineFunc_4b90_\1: ; 48b90 (11:4b90)
 	ld [H_FFA8], a
 	ld a, [H_FFA3]
 	or a
-	jr nz, .asm_44b9e
+	jr nz, .asm_4b9e_\1
 	ld a, [wChannel5]
 	or a
 	ret
 
-.asm_44b9e
+.asm_4b9e_\1
 	xor a
 	ret
 
-Func_44ba0: ; 44ba0 (11:4ba0)
+AudioEngineFunc_4ba0_\1: ; 48ba0 (11:4ba0)
 	ld [H_FFA8], a
 	ld a, [H_FFA3]
-	add wcff0 % $100
+	add $f0
 	ld l, a
-	ld h, wcff0 / $100
+	ld h, $cf
 	ld a, [H_FFA8]
 	ld [hl], a
 	ret
 
-Pointers_44bb0:
+AudioEnginePointers_4bb0_\1:
 	dw rNR10, rNR20, rNR30, rNR40, rNR10, rNR40
-Pointers_44bbc:
+AudioEnginePointers_4bbc_\1:
 	dw rNR11, rNR21, rNR31, rNR41, rNR11, rNR41
-Pointers_44bc8:
+AudioEnginePointers_4bc8_\1:
 	dw rNR12, rNR22, rNR32, rNR42, rNR12, rNR42
-Pointers_44bd4:
+AudioEnginePointers_4bd4_\1:
 	dw rNR13, rNR23, rNR33, rNR43, rNR13, rNR43
-Pointers_44be0:
+AudioEnginePointers_4be0_\1:
 	dw rNR14, rNR24, rNR34, rNR44, rNR14, rNR44
 
-Data_44bec:
+AudioEngineData_4bec_\1:
 	db $00, $60, $40, $20
 	db $00, $00, $00, $00
 
-PlayMusic_11: ; 44bf4 (11:4bf4)
+PlayMusic_\1: ; 48bf4 (11:4bf4)
 	xor a
 	ld [wMusicFade], a
 	ld [wCurMusicFade], a
@@ -1815,11 +1816,11 @@ PlayMusic_11: ; 44bf4 (11:4bf4)
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
-	ld hl, MusicPointers_11
+	ld hl, MusicPointers_\1
 	ld a, [H_MusicID]
-	jp Func_44cdd
+	jp AudioEngineFunc_4cdd_\1
 
-PlaySFX_11: ; 44c22 (11:4c22)
+PlaySFX_\1: ; 48c22 (11:4c22)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
@@ -1827,11 +1828,11 @@ PlaySFX_11: ; 44c22 (11:4c22)
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
-	ld hl, SFXPointers_11
+	ld hl, SFXPointers_\1
 	ld a, [H_SFX_ID]
-	jp Func_44cdd
+	jp AudioEngineFunc_4cdd_\1
 
-Func_44c3a: ; 44c3a (11:4c3a)
+PlayRingtone_\1: ; 48c3a (11:4c3a)
 	ld a, $80
 	ld [rNR52], a
 	ld a, $77
@@ -1839,29 +1840,29 @@ Func_44c3a: ; 44c3a (11:4c3a)
 	ld [rNR50], a
 	ld a, $ff
 	ld [rNR51], a
-	ld hl, RingtonePointers_11
+	ld hl, RingtonePointers_\1
 	xor a
 	ld [wcfc8], a
 	ld a, [H_Ringtone]
 	and $80
-	jr z, .asm_44c5c
+	jr z, .not_ram
 	ld a, $ff
 	ld [wcfc8], a
-.asm_44c5c
+.not_ram
 	ld a, [H_Ringtone]
 	and $7f
 	ld [wRingtoneID], a
 	cp $50
-	jr c, .asm_44c6b
-	jp Func_44cad
+	jr c, .not_sram
+	jp .GetSRamPointer
 
-.asm_44c6b
+.not_sram
 	dec a
 	ld e, a
 	ld d, $0
 	add hl, de
 	add hl, de
-Func_44c71: ; 44c71 (11:4c71)
+.Finish: ; 48c71 (11:4c71)
 	ld a, [hli]
 	ld [wRingtonePointer], a
 	ld [wcfc3], a
@@ -1891,7 +1892,7 @@ Func_44c71: ; 44c71 (11:4c71)
 	ld [wChannel5], a
 	ret
 
-Func_44cad: ; 44cad (11:4cad)
+.GetSRamPointer: ; 48cad (11:4cad)
 	dec a
 	ld e, a
 	ld d, $0
@@ -1903,31 +1904,31 @@ Func_44cad: ; 44cad (11:4cad)
 	ld l, c
 	ld a, [hli]
 	ld [wAudioSRAMBank], a
-	jp Func_44c71
+	jp .Finish
 
-Func_44cbe:
+AudioEngineFunc_4cbe_\1:
 	enable_sram
 	ld a, c
 	ld [MBC3SRamBank], a
-asm_44cc7
+asm_4cc7_\1
 	inc bc
 	inc bc
-asm_44cc9
+asm_4cc9_\1
 	ld a, [H_FFA3]
 	inc a
 	ld [H_FFA3], a
 	cp $6
-	jr nz, .asm_44cd5
+	jr nz, .asm_4cd5_\1
 	ret
 
-.asm_44cd5
+.asm_4cd5_\1
 	ld hl, $28
 	add hl, de
 	ld e, l
 	ld d, h
-	jr asm_44cf7
+	jr asm_4cf7_\1
 
-Func_44cdd: ; 44cdd (11:4cdd)
+AudioEngineFunc_4cdd_\1: ; 48cdd (11:4cdd)
 	dec a
 	ld e, a
 	ld d, $0
@@ -1945,24 +1946,24 @@ Func_44cdd: ; 44cdd (11:4cdd)
 	ld de, wChannel1
 	xor a
 	ld [H_FFA3], a
-asm_44cf7
+asm_4cf7_\1
 	ld a, [wcf92]
 	add a
 	ld [wcf92], a
-	jr nc, asm_44cc9
+	jr nc, asm_4cc9_\1
 	ld hl, $0
 	add hl, de
 	ld a, [wcf93]
 	cp [hl]
-	jr c, asm_44cc7
+	jr c, asm_4cc7_\1
 	push de
 	ld l, wChannel2 - wChannel1
 	xor a
-.asm_44d0e
+.asm_4d0e_\1
 	ld [de], a
 	inc de
 	dec l
-	jr nz, .asm_44d0e
+	jr nz, .asm_4d0e_\1
 	pop de
 	ld hl, $4
 	add hl, de
@@ -1970,63 +1971,63 @@ asm_44cf7
 	ld hl, $b
 	add hl, de
 	ld [hl], $ff
-	call Func_44866
+	call AudioEngineFunc_4866_\1
 	ld a, [H_FFA3]
 	cp $5
-	jr nz, .asm_44d3f
+	jr nz, .asm_4d3f_\1
 	ld a, [wChannel4]
 	or a
-	jp nz, Func_44d7d
+	jp nz, AudioEngineFunc_4d7d_\1
 	xor a
 	ld [rNR41], a
 	ld [rNR42], a
 	ld [rNR43], a
 	ld a, $80
 	ld [rNR44], a
-	jp Func_44d7d
+	jp AudioEngineFunc_4d7d_\1
 
-.asm_44d3f
+.asm_4d3f_\1
 	push bc
-	ld hl, Data_44d95
+	ld hl, AudioEngineData_4d95_\1
 	ld a, [H_FFA3]
 	or a
-	jr z, .asm_44d66
+	jr z, .asm_4d66_\1
 	ld b, $0
 	cp $1
-	jr nz, .asm_44d53
+	jr nz, .asm_4d53_\1
 	ld c, $5
-	jr .asm_44d65
+	jr .asm_4d65_\1
 
-.asm_44d53
+.asm_4d53_\1
 	cp $2
-	jr nz, .asm_44d5b
+	jr nz, .asm_4d5b_\1
 	ld c, $a
-	jr .asm_44d65
+	jr .asm_4d65_\1
 
-.asm_44d5b
+.asm_4d5b_\1
 	cp $3
-	jr nz, .asm_44d63
+	jr nz, .asm_4d63_\1
 	ld c, $f
-	jr .asm_44d65
+	jr .asm_4d65_\1
 
-.asm_44d63
+.asm_4d63_\1
 	ld c, $14
-.asm_44d65
+.asm_4d65_\1
 	add hl, bc
-.asm_44d66
+.asm_4d66_\1
 	pop bc
 	ld a, [hli]
 	cp $ee
-	call nz, Func_44b25
+	call nz, AudioEngineFunc_4b25_\1
 	ld a, [hli]
-	call Func_44b2f
+	call AudioEngineFunc_4b2f_\1
 	ld a, [hli]
-	call Func_44b39
+	call AudioEngineFunc_4b39_\1
 	ld a, [hli]
-	call Func_44b6c
+	call AudioEngineFunc_4b6c_\1
 	ld a, [hl]
-	call Func_44b76
-Func_44d7d: ; 44d7d (11:4d7d)
+	call AudioEngineFunc_4b76_\1
+AudioEngineFunc_4d7d_\1: ; 48d7d (11:4d7d)
 	ld hl, $0
 	add hl, de
 	ld a, [wcf93]
@@ -2041,9 +2042,9 @@ Func_44d7d: ; 44d7d (11:4d7d)
 	add hl, de
 	ld a, $80
 	ld [hl], a
-	jp asm_44cc9
+	jp asm_4cc9_\1
 
-Data_44d95:
+AudioEngineData_4d95_\1:
 	db $08, $00, $08, $00, $80
 	db $ee, $00, $08, $00, $80
 	db $00, $00, $00, $00, $80
@@ -2051,47 +2052,40 @@ Data_44d95:
 	db $08, $00, $08, $00, $80
 	db $ee, $00, $08, $00, $80
 
-Pointers_44db3:
-	dw Data_44dd5
-	dw Data_44de5
-	dw Data_44df5
-	dw Data_44e05
-	dw Data_44e15
-	dw Data_44e25
-	dw Data_44e35
-	dw Data_44e45
-	dw Data_44e55
-	dw Data_44e65
-	dw Data_44e75
-	dw Data_44e85
-	dw Data_44e95
-	dw Data_44ea5
-	dw Data_44eb5
-	dw Data_44ec5
-	dw Data_44ed5
+AudioEnginePointers_4db3_\1:
+	dw AudioEngineData_4dd5_\1
+	dw AudioEngineData_4de5_\1
+	dw AudioEngineData_4df5_\1
+	dw AudioEngineData_4e05_\1
+	dw AudioEngineData_4e15_\1
+	dw AudioEngineData_4e25_\1
+	dw AudioEngineData_4e35_\1
+	dw AudioEngineData_4e45_\1
+	dw AudioEngineData_4e55_\1
+	dw AudioEngineData_4e65_\1
+	dw AudioEngineData_4e75_\1
+	dw AudioEngineData_4e85_\1
+	dw AudioEngineData_4e95_\1
+	dw AudioEngineData_4ea5_\1
+	dw AudioEngineData_4eb5_\1
+	dw AudioEngineData_4ec5_\1
+	dw AudioEngineData_4ed5_\1
 
-Data_44dd5: db $00, $00, $00, $00, $00, $00, $00, $00, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
-Data_44de5: db $00, $11, $23, $46, $8c, $de, $ef, $ff, $ff, $ee, $dc, $b9, $73, $21, $10, $00
-Data_44df5: db $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8
-Data_44e05: db $02, $8d, $fd, $8d, $02, $8d, $fd, $8d, $02, $8d, $fd, $8d, $02, $8d, $fd, $8d
-Data_44e15: db $01, $24, $8b, $de, $fe, $eb, $84, $21, $01, $24, $8b, $de, $fe, $eb, $84, $21
-Data_44e25: db $9b, $ce, $fd, $cb, $ba, $aa, $99, $88, $77, $66, $55, $54, $43, $20, $13, $46
-Data_44e35: db $bf, $ff, $da, $88, $76, $31, $01, $37, $bc, $ef, $ec, $98, $77, $52, $00, $04
-Data_44e45: db $b9, $53, $02, $44, $56, $8b, $cb, $ac, $df, $ec, $d6, $74, $33, $24, $35, $20
-Data_44e55: db $fc, $d5, $63, $43, $64, $46, $86, $47, $66, $06, $ce, $96, $49, $64, $64, $34
-Data_44e65: db $f8, $0c, $5a, $87, $a7, $89, $87, $98, $79, $87, $98, $7a, $79, $a5, $c0, $7f
-Data_44e75: db $8f, $0c, $49, $67, $89, $6b, $3f, $07, $8f, $0c, $49, $67, $89, $6b, $3f, $07
-Data_44e85: db $f0, $a5, $97, $87, $87, $86, $a5, $f0, $f0, $a5, $97, $87, $87, $86, $a5, $f0
-Data_44e95: db $fc, $ba, $a9, $98, $76, $65, $54, $30, $fc, $ba, $a9, $98, $76, $65, $54, $30
-Data_44ea5: db $8f, $6c, $28, $5f, $0a, $6d, $39, $07, $8f, $6c, $28, $5f, $0a, $6d, $39, $07
-Data_44eb5: db $fa, $b7, $97, $84, $b7, $86, $84, $50, $fa, $b7, $97, $84, $b7, $86, $84, $50
-Data_44ec5: db $bf, $dc, $dc, $b9, $64, $32, $32, $04, $bf, $dc, $dc, $b9, $64, $32, $32, $04
-Data_44ed5: db $be, $de, $96, $76, $98, $95, $12, $14, $be, $de, $96, $76, $98, $95, $12, $14
-
-SFXPointers_11:
-INCLUDE "audio/unknown_sfx_44ee5.asm"
-
-RingtonePointers_11:
-INCLUDE "audio/ringtones.asm"
-
-MusicPointers_11:
+AudioEngineData_4dd5_\1: db $00, $00, $00, $00, $00, $00, $00, $00, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+AudioEngineData_4de5_\1: db $00, $11, $23, $46, $8c, $de, $ef, $ff, $ff, $ee, $dc, $b9, $73, $21, $10, $00
+AudioEngineData_4df5_\1: db $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8, $08, $f8
+AudioEngineData_4e05_\1: db $02, $8d, $fd, $8d, $02, $8d, $fd, $8d, $02, $8d, $fd, $8d, $02, $8d, $fd, $8d
+AudioEngineData_4e15_\1: db $01, $24, $8b, $de, $fe, $eb, $84, $21, $01, $24, $8b, $de, $fe, $eb, $84, $21
+AudioEngineData_4e25_\1: db $9b, $ce, $fd, $cb, $ba, $aa, $99, $88, $77, $66, $55, $54, $43, $20, $13, $46
+AudioEngineData_4e35_\1: db $bf, $ff, $da, $88, $76, $31, $01, $37, $bc, $ef, $ec, $98, $77, $52, $00, $04
+AudioEngineData_4e45_\1: db $b9, $53, $02, $44, $56, $8b, $cb, $ac, $df, $ec, $d6, $74, $33, $24, $35, $20
+AudioEngineData_4e55_\1: db $fc, $d5, $63, $43, $64, $46, $86, $47, $66, $06, $ce, $96, $49, $64, $64, $34
+AudioEngineData_4e65_\1: db $f8, $0c, $5a, $87, $a7, $89, $87, $98, $79, $87, $98, $7a, $79, $a5, $c0, $7f
+AudioEngineData_4e75_\1: db $8f, $0c, $49, $67, $89, $6b, $3f, $07, $8f, $0c, $49, $67, $89, $6b, $3f, $07
+AudioEngineData_4e85_\1: db $f0, $a5, $97, $87, $87, $86, $a5, $f0, $f0, $a5, $97, $87, $87, $86, $a5, $f0
+AudioEngineData_4e95_\1: db $fc, $ba, $a9, $98, $76, $65, $54, $30, $fc, $ba, $a9, $98, $76, $65, $54, $30
+AudioEngineData_4ea5_\1: db $8f, $6c, $28, $5f, $0a, $6d, $39, $07, $8f, $6c, $28, $5f, $0a, $6d, $39, $07
+AudioEngineData_4eb5_\1: db $fa, $b7, $97, $84, $b7, $86, $84, $50, $fa, $b7, $97, $84, $b7, $86, $84, $50
+AudioEngineData_4ec5_\1: db $bf, $dc, $dc, $b9, $64, $32, $32, $04, $bf, $dc, $dc, $b9, $64, $32, $32, $04
+AudioEngineData_4ed5_\1: db $be, $de, $96, $76, $98, $95, $12, $14, $be, $de, $96, $76, $98, $95, $12, $14
+ENDM

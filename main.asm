@@ -4856,10 +4856,16 @@ SECTION "bank 10", ROMX, BANK [$10]
 INCLUDE "text/std_text_11.asm"
 
 SECTION "bank 11", ROMX, BANK [$11]
-INCLUDE "audio/engine_11.asm"
+	music_engine 11
+SFXPointers_11: INCLUDE "audio/unknown_sfx_44ee5.asm"
+RingtonePointers_11: INCLUDE "audio/ringtones.asm"
+MusicPointers_11:
 
 SECTION "bank 12", ROMX, BANK [$12]
-INCLUDE "audio/engine_12.asm"
+	music_engine 12
+SFXPointers_12: INCLUDE "audio/unknown_sfx_48ee5.asm"
+MusicPointers_12: INCLUDE "audio/unknown_sfx_49fe2.asm"
+RingtonePointers_12: db $ff
 
 SECTION "bank 13", ROMX, BANK [$13]
 INCLUDE "data/oam_templates_2.asm"
@@ -4898,19 +4904,34 @@ SECTION "bank 1F", ROMX, BANK [$1f]
 INCLUDE "engine/bank_1f.asm"
 
 SECTION "bank 20", ROMX, BANK [MUSIC_BANK_00]
-INCLUDE "audio/engine_20.asm"
+	music_engine 20
+SFXPointers_20: INCLUDE "audio/unknown_sfx_80ee5.asm"
+MusicPointers_20: INCLUDE "audio/unknown_sfx_81fe2.asm"
+RingtonePointers_20: db $ff
 
 SECTION "bank 21", ROMX, BANK [MUSIC_BANK_01]
-INCLUDE "audio/engine_21.asm"
+	music_engine 21
+SFXPointers_21: INCLUDE "audio/unknown_sfx_84ee5.asm"
+MusicPointers_21: INCLUDE "audio/unknown_sfx_85fe2.asm"
+RingtonePointers_21: db $ff
 
 SECTION "bank 22", ROMX, BANK [MUSIC_BANK_02]
-INCLUDE "audio/engine_22.asm"
+	music_engine 22
+SFXPointers_22: INCLUDE "audio/unknown_sfx_88ee5.asm"
+MusicPointers_22: INCLUDE "audio/unknown_sfx_89fe2.asm"
+RingtonePointers_22: db $ff
 
 SECTION "bank 23", ROMX, BANK [MUSIC_BANK_03]
-INCLUDE "audio/engine_23.asm"
+	music_engine 23
+SFXPointers_23: INCLUDE "audio/unknown_sfx_8cee5.asm"
+MusicPointers_23: INCLUDE "audio/unknown_sfx_8dfe2.asm"
+RingtonePointers_23: db $ff
 
 SECTION "bank 24", ROMX, BANK [$24]
-INCLUDE "audio/engine_24.asm"
+	music_engine 24
+SFXPointers_24: INCLUDE "audio/unknown_sfx_90ee5.asm"
+RingtonePointers_24: INCLUDE "audio/ringtones.asm"
+MusicPointers_24: 
 
 SECTION "bank 26", ROMX, BANK [$26]
 Data_98000:
