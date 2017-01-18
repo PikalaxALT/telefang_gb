@@ -101,7 +101,7 @@ Func_93bd: ; 93bd (2:53bd)
 	ld bc, $11
 	call GetCGB_BGLayout_
 	ld a, $1
-	ld [wdd06], a
+	ld [wLoadStdAttrMap], a
 	lb bc, SCREEN_WIDTH, SCREEN_HEIGHT
 	ld a, $0
 	hlbgcoord 0, 0
@@ -248,7 +248,7 @@ Func_94ee: ; 94ee (2:54ee)
 
 Func_9503: ; 9503 (2:5503)
 	ld a, $1
-	ld [wdd06], a
+	ld [wLoadStdAttrMap], a
 	ld bc, $0
 	ld e, $aa
 	ld a, $0

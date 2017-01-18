@@ -8,14 +8,14 @@ LoadStdBGMapLayout: ; a2a (0:0a2a)
 	push af
 	ld hl, VBGMap
 	xor a
-	ld [wc41e], a
+	ld [wLoadingStdAttrLayoutToVWindow], a
 	jr ContinueLoadStdTileLayout
 
 LoadStdWindowLayout: ; a34 (0:0a34)
 	push af
 	ld hl, VWindow
 	ld a, $1
-	ld [wc41e], a
+	ld [wLoadingStdAttrLayoutToVWindow], a
 ContinueLoadStdTileLayout:
 	pop af
 
@@ -79,7 +79,7 @@ ENDR
 	cp $fe
 	jr z, .next_row
 	call WaitStatAndLoad
-	ld a, [wc41e]
+	ld a, [wLoadingStdAttrLayoutToVWindow]
 	call WrapAroundBGMapOrWindowHorizontal
 	jr .nonrle_loop
 
@@ -89,7 +89,7 @@ ENDR
 	ld h, b
 	ld l, c
 	add hl, de
-	ld a, [wc41e]
+	ld a, [wLoadingStdAttrLayoutToVWindow]
 	call WrapAroundBGMapOrWindowVertical
 	ld b, h
 	ld c, l
@@ -176,26 +176,26 @@ ENDR
 
 LoadStdBGMapAttrLayout: ; b1a (0:0b1a)
 	push af
-	ld a, [wdd06]
+	ld a, [wLoadStdAttrMap]
 	or a
 	jp z, DontLoadStdAttrMap
 	check_cgb
 	jp nz, DontLoadStdAttrMap
 	ld hl, VBGMap
 	xor a
-	ld [wc41e], a
+	ld [wLoadingStdAttrLayoutToVWindow], a
 	jr ContinueLoadStdAttrLayout
 
 LoadStdWindowAttrLayout: ; b33 (0:0b33)
 	push af
-	ld a, [wdd06]
+	ld a, [wLoadStdAttrMap]
 	or a
 	jp z, DontLoadStdAttrMap
 	check_cgb
 	jp nz, DontLoadStdAttrMap
 	ld hl, VWindow
 	ld a, $1
-	ld [wc41e], a
+	ld [wLoadingStdAttrLayoutToVWindow], a
 ContinueLoadStdAttrLayout
 	ld a, $1
 	ld [rVBK], a
@@ -266,7 +266,7 @@ LiteralAttrLayout: ; ba0 (0:0ba0)
 	cp $fe
 	jr z, .line
 	call WaitStatAndLoad
-	ld a, [wc41e]
+	ld a, [wLoadingStdAttrLayoutToVWindow]
 	call WrapAroundBGMapOrWindowHorizontal
 	jr .loop_regular
 
@@ -276,7 +276,7 @@ LiteralAttrLayout: ; ba0 (0:0ba0)
 	ld h, b
 	ld l, c
 	add hl, de
-	ld a, [wc41e]
+	ld a, [wLoadingStdAttrLayoutToVWindow]
 	call WrapAroundBGMapOrWindowVertical
 	ld b, h
 	ld c, l

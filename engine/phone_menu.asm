@@ -68,7 +68,7 @@ TopPhone_LoadGFX: ; 1006e (4:406e)
 
 TopPhone_LoadLayouts: ; 10089 (4:4089)
 	ld a, $1
-	ld [wdd06], a
+	ld [wLoadStdAttrMap], a
 	lb bc, $0, $0
 	ld e, $10
 	call Phone_LoadStdBGMapTileAndAttrLayout
@@ -3519,10 +3519,10 @@ Func_11ee9: ; 11ee9 (4:5ee9)
 Func_11efa: ; 11efa (4:5efa)
 	call DMelo_GetCurrentNoteAddr
 	ld a, l
-	cp wd1e0 % $100
+	cp (wDMeloBufferEnd - 2) % $100
 	jr nz, .buffer_not_full
 	ld a, h
-	cp wd1e0 / $100
+	cp (wDMeloBufferEnd - 2) / $100
 	jr nz, .buffer_not_full
 	ld a, $fe
 	ld [hli], a
@@ -3553,20 +3553,20 @@ Func_11efa: ; 11efa (4:5efa)
 	ld [hli], a
 	inc de
 	ld a, l
-	cp wd1e2 % $100
+	cp wDMeloBufferEnd % $100
 	jr nz, .loop
 	ld a, h
-	cp wd1e2 / $100
+	cp wDMeloBufferEnd / $100
 	jr nz, .loop
 	ret
 
 DeleteNoteAndShiftRemainderBack: ; 11f37 (4:5f37)
 	call DMelo_GetCurrentNoteAddr
 	ld a, l
-	cp wd1e0 % $100
+	cp (wDMeloBufferEnd - 2) % $100
 	jr nz, .delete
 	ld a, h
-	cp wd1e0 / $100
+	cp (wDMeloBufferEnd - 2) / $100
 	jr nz, .delete
 	ld a, $fe
 	ld [hli], a
@@ -3596,10 +3596,10 @@ DeleteNoteAndShiftRemainderBack: ; 11f37 (4:5f37)
 	ld [hli], a
 	inc de
 	ld a, l
-	cp wd1e0 % $100
+	cp (wDMeloBufferEnd - 2) % $100
 	jr nz, .loop
 	ld a, h
-	cp wd1e0 / $100
+	cp (wDMeloBufferEnd - 2) / $100
 	jr nz, .loop
 	ld a, $fe
 	ld [hli], a

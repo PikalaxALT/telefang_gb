@@ -416,7 +416,7 @@ Func_7c2e5: ; 7c2e5 (1f:42e5)
 	ld [H_SFX_ID], a
 	ld a, [wd40d]
 	inc a
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $1
 	ld [wd458], a
 	ld a, $1
@@ -806,7 +806,7 @@ Func_7c5eb:
 	ret
 
 Func_7c5fd: ; 7c5fd (1f:45fd)
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld a, [wdc45]
 	ld c, a
 	ld b, $0
@@ -834,7 +834,7 @@ Func_7c61b: ; 7c61b (1f:461b)
 	ld a, [wdc01]
 	or a
 	jr z, .asm_7c638
-	ld a, [wdc2e]
+	ld a, [wSerialReceive]
 	cp $ff
 	jr nz, .asm_7c638
 	ld a, [wdc59]
@@ -876,7 +876,7 @@ Func_7c656: ; 7c656 (1f:4656)
 
 Func_7c670: ; 7c670 (1f:4670)
 	ld a, $11
-	ld [wdc34], a
+	ld [wSerialSend], a
 	jp Func_7c6f2
 
 Func_7c678: ; 7c678 (1f:4678)
@@ -923,7 +923,7 @@ Func_7c6b0: ; 7c6b0 (1f:46b0)
 Func_7c6bb: ; 7c6bb (1f:46bb)
 	ld a, [wdc01]
 	or $80
-	ld [wdc34], a
+	ld [wSerialSend], a
 	jp Func_7c6f2
 
 Func_7c6c6: ; 7c6c6 (1f:46c6)
@@ -1118,12 +1118,12 @@ Func_7c7e4: ; 7c7e4 (1f:47e4)
 	cp $2
 	jr c, .asm_7c827
 	ld a, $f0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	jp Func_7dc41
 
 .asm_7c827
 	ld a, $f9
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $1
 	ld [wdc4a], a
 	ld a, $9
@@ -1159,12 +1159,12 @@ Func_7c858: ; 7c858 (1f:4858)
 	cp b
 	jr nc, .asm_7c876
 	ld a, $e0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	jp Func_7dc41
 
 .asm_7c876
 	ld a, $ee
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $2
 	ld [wdc4a], a
 	ld a, $9
@@ -2013,7 +2013,7 @@ asm_7cf4e
 	xor a
 	ld [wd45b], a
 	ld a, [wd42e]
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld c, $72
 	call StdBattleTextBox
 	ld a, $11
@@ -2021,7 +2021,7 @@ asm_7cf4e
 	ret
 
 Func_7cf96: ; 7cf96 (1f:4f96)
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld a, [wdc45]
 	ld c, a
 	ld b, $0
@@ -2131,7 +2131,7 @@ Func_7d066: ; 7d066 (1f:5066)
 	add hl, de
 	ld a, [hl]
 	inc a
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -2142,7 +2142,7 @@ Func_7d066: ; 7d066 (1f:5066)
 	ret
 
 Func_7d085: ; 7d085 (1f:5085)
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld a, [wdc45]
 	add $f
 	ld c, a
@@ -2160,7 +2160,7 @@ Func_7d085: ; 7d085 (1f:5085)
 	ld a, [wdc45]
 	ld c, a
 .asm_7d0a3
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld b, $0
 	add hl, bc
 	push de
@@ -3847,7 +3847,7 @@ Func_7dcd4: ; 7dcd4 (1f:5cd4)
 	ret
 
 Func_7dcdf: ; 7dcdf (1f:5cdf)
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld a, [wdc45]
 	add $16
 	ld c, a
@@ -3865,7 +3865,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	ld a, [wdc45]
 	ld c, a
 .asm_7dcff
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld b, $0
 	add hl, bc
 	push de
@@ -3946,7 +3946,7 @@ Func_7dcdf: ; 7dcdf (1f:5cdf)
 	call SetEventFlag
 	call CloseSRAM
 	ld a, $ee
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $4
 	call StartFade_
 	ld a, $10
@@ -4604,7 +4604,7 @@ Func_7e2c2: ; 7e2c2 (1f:62c2)
 	jr z, .asm_7e2d6
 	inc a
 .asm_7e2d6
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -4620,7 +4620,7 @@ Func_7e2e9: ; 7e2e9 (1f:62e9)
 	or a
 	ret z
 	ld a, $ee
-	ld [wdc34], a
+	ld [wSerialSend], a
 	xor a
 	ld [wd4ac], a
 	jp Func_7dc41
@@ -4830,12 +4830,12 @@ Func_7e43a: ; 7e43a (1f:643a)
 	cp $1
 	jr c, .asm_7e481
 	ld a, $f0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	jp Func_7dc41
 
 .asm_7e481
 	ld a, $ff
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $5
 	ld [wdc4a], a
 	ld a, $8
@@ -4875,12 +4875,12 @@ Func_7e4b4:
 	jr nc, asm_7e4d2
 asm_7e4ca
 	ld a, $e0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	jp Func_7dc41
 
 asm_7e4d2
 	ld a, $ee
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $2
 	ld [wdc4a], a
 	ld a, $8
@@ -5594,7 +5594,7 @@ Func_7eaa5: ; 7eaa5 (1f:6aa5)
 	jr z, .asm_7eab9
 	inc a
 .asm_7eab9
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -5604,7 +5604,7 @@ Func_7eaa5: ; 7eaa5 (1f:6aa5)
 
 Func_7eac9: ; 7eac9 (1f:6ac9)
 	call BattlePrintText
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld a, [wdc45]
 	add $16
 	dec a
@@ -5620,7 +5620,7 @@ Func_7eac9: ; 7eac9 (1f:6ac9)
 	ld a, [wdc45]
 	ld c, a
 .asm_7eae9
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld b, $0
 	add hl, bc
 	push de
@@ -6475,14 +6475,14 @@ Func_7f1a3: ; 7f1a3 (1f:71a3)
 	ld a, $7
 	ld [wdc4a], a
 	ld a, $ff
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $a
 	ld [wd401], a
 	ret
 
 .asm_7f1db
 	ld a, $f0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $1
 	ld [wd401], a
 	ret
@@ -6583,7 +6583,7 @@ Func_7f226: ; 7f226 (1f:7226)
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd40d]
 	inc a
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld c, $72
 	call Func_7f432
 	jp Func_7dc41
@@ -6731,7 +6731,7 @@ Func_7f350: ; 7f350 (1f:7350)
 	ld [wd45b], a
 	jr nz, .asm_7f389
 	ld a, $ff
-	ld [wdc34], a
+	ld [wSerialSend], a
 	jp Func_7dc41
 
 Func_7f3a1: ; 7f3a1 (1f:73a1)
@@ -6775,7 +6775,7 @@ Func_7f3a1: ; 7f3a1 (1f:73a1)
 	ld [wd45b], a
 	jr nz, .asm_7f3d6
 	ld a, $ff
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld c, $88
 	call Func_7f432
 	ld a, SFX_03
@@ -7101,7 +7101,7 @@ Func_7f655: ; 7f655 (1f:7655)
 	xor a
 	ld [wMoveAnimationTimer], a
 	ld a, $f0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld c, $84
 	call StdBattleTextBox
 	jp Func_7dc41
@@ -7114,7 +7114,7 @@ Func_7f699: ; 7f699 (1f:7699)
 	ld e, a
 	add hl, de
 	ld a, [hl]
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wMoveAnimationTimer]
 	cp $ff
 	jr z, .asm_7f6b9
@@ -7145,7 +7145,7 @@ Func_7f6d0: ; 7f6d0 (1f:76d0)
 	ld e, a
 	add hl, de
 	ld a, [hl]
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wMoveAnimationTimer]
 	cp $e2
 	jr z, .asm_7f6f0

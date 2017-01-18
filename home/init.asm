@@ -61,15 +61,15 @@ Start::
 	xor a
 	call GetCGB_BGLayout ; 109d
 	call GetCGB_OBLayout ; 1145
-	ld a, BANK(Func_c1af)
+	ld a, BANK(InitialSGBRequest)
 	rst Bankswitch
 	xor a
-	ld [wc40a], a
-	call Func_c1af
+	ld [wSGB], a
+	call InitialSGBRequest
 	jp nc, .skip
 	ld a, $1
-	ld [wc40a], a
-	call Func_c000
+	ld [wSGB], a
+	call PushSGBBorder
 .skip
 	xor a
 	ld [wGameRoutine], a
@@ -84,35 +84,35 @@ Start::
 	ld a, [wLinkMode]
 	or a
 	jr z, .skip2
-	call Func_1dbc
-	call Func_1d66
+	call GetNthByteReceivedFromSerial
+	call StageNthByteForSerialSend
 	call Func_1d46
 .skip2
-	call Func_0234
+	call .SerialCheck
 	call UpdatePalsCGB
 	call Func_3869
 	call ReadJoypad
 	call RunGameRoutine
 	call UpdateSprites
 	ld a, 1
-	ld [wc3c1], a
+	ld [wFinishedCurrentFrame], a
 .wait
 	ld a, [hVBlankOccurred]
 	and a
 	jr z, .wait
 	xor a
 	ld [hVBlankOccurred], a
-	ld [wc3c1], a
+	ld [wFinishedCurrentFrame], a
 	jp .loop
 
-Func_0234: ; 234 (0:0234)
+.SerialCheck:
 	ld a, [wdc05]
 	or a
 	ret z
 	ld a, [wdc01]
 	or a
 	jr z, .asm_252
-	ld a, [wdc2e]
+	ld a, [wSerialReceive]
 	cp $ff
 	jr nz, .asm_252
 	ld a, [wdc59]

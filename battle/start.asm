@@ -744,7 +744,7 @@ Func_70500: ; 70500 (1c:4500)
 	ld a, $4
 	call LoadNthStdBGPalette
 	ld a, $1
-	ld [wdd06], a
+	ld [wLoadStdAttrMap], a
 	ret
 
 Func_70541:
@@ -3351,7 +3351,7 @@ Func_71a2f: ; 71a2f (1c:5a2f)
 	ld a, $4
 	call LoadNthStdBGPalette
 	ld a, $1
-	ld [wdd06], a
+	ld [wLoadStdAttrMap], a
 	ret
 
 Func_71a70: ; 71a70 (1c:5a70)

@@ -6421,7 +6421,7 @@ PhoneCall_LoadGFX: ; a576c (29:576c)
 	xor a
 	call LoadNthStdBGPalette
 	ld a, $1
-	ld [wdd06], a
+	ld [wLoadStdAttrMap], a
 	ld b, $5
 	call LoadTextBoxPalette_
 	ret
@@ -11876,17 +11876,17 @@ Func_c8000::
 	call Func_c81bf
 	ld a, [wCurStandingTile]
 	cp $4
-	jr z, .asm_c8018
+	jr z, .tile_okay
 	cp $9
 	jr nz, .asm_c806b
-.asm_c8018
+.tile_okay
 	ld d, a
 	ld a, [wPlayerIsRunning]
 	or a
-	jp z, Func_c81bd
+	jp z, .load_bail
 	ld a, [wTakingAStep]
 	or a
-	jp z, Func_c81bd
+	jp z, .load_bail
 	ld a, [wPlayerXTile]
 	ld b, a
 	ld a, [wPlayerYTile]
@@ -11918,21 +11918,21 @@ Func_c8000::
 	ld a, SFX_0B
 	ld [H_SFX_ID], a
 	pop de
-	jp Func_c81bd
+	jp .load_bail
 
 .asm_c806b
 	cp $5
 	jr nz, .asm_c8077
 	ld a, $fe
 	ld [wPlayerObjectStruct_Duration + 20], a
-	jp Func_c81bd
+	jp .load_bail
 
 .asm_c8077
 	cp $6
 	jr nz, .asm_c8083
 	ld a, $fc
 	ld [wPlayerObjectStruct_Duration + 20], a
-	jp Func_c81bd
+	jp .load_bail
 
 .asm_c8083
 	cp $3
@@ -11953,7 +11953,7 @@ Func_c8000::
 .asm_c80a9
 	ld a, $2
 	ld [wPlayerObjectStruct_Duration + 20], a
-	jp Func_c81bd
+	jp .load_bail
 
 .asm_c80b1
 	cp $a
@@ -11982,7 +11982,7 @@ Func_c8000::
 	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, SFX_5E
 	ld [H_SFX_ID], a
-	jp Func_c81bd
+	jp .load_bail
 
 .asm_c80f0
 	ld a, [wPlayerXTile]
@@ -12001,7 +12001,7 @@ Func_c8000::
 	ld [wCurPlayerFacing], a
 	ld a, SFX_11
 	ld [H_SFX_ID], a
-	jp Func_c81bd
+	jp .load_bail
 
 .asm_c811f
 	ld a, [wPlayerObjectStruct_Duration + 17]
@@ -12036,7 +12036,7 @@ Func_c8000::
 	cp $f
 	jr z, .asm_c815f
 	cp $e
-	jr nz, Func_c81bd
+	jr nz, .load_bail
 .asm_c815f
 	ld [wPlayerObjectStruct_Duration + 12], a
 	ld a, $f
@@ -12046,7 +12046,7 @@ Func_c8000::
 .asm_c816c
 	ld a, [wCurStandingTile]
 	cp $b
-	jr nz, Func_c81bd
+	jr nz, .load_bail
 	ld a, $fd
 	ld [wPlayerObjectStruct_Duration + 20], a
 	ld a, [wPlayerObjectStruct_Duration + 17]
@@ -12054,18 +12054,18 @@ Func_c8000::
 	jr nz, .asm_c81b9
 	ld a, [wMapGroup]
 	cp $e
-	jr z, Func_c81bd
+	jr z, .load_bail
 	cp $31
 	jr nz, .asm_c8192
 	ld bc, EVENT_20C
 	call CheckEventFlag
-	jr nz, Func_c81bd
+	jr nz, .load_bail
 .asm_c8192
 	ld a, [wc9ff]
 	inc a
 	ld [wc9ff], a
 	cp $16
-	jr c, Func_c81bd
+	jr c, .load_bail
 	push de
 	ld a, [wPlayerXTile]
 	ld b, a
@@ -12080,12 +12080,12 @@ Func_c8000::
 	pop de
 	ld a, SFX_5F
 	ld [H_SFX_ID], a
-	jr Func_c81bd
+	jr .load_bail
 
 .asm_c81b9
 	xor a
 	ld [wc9ff], a
-Func_c81bd: ; c81bd (32:41bd)
+.load_bail: ; c81bd (32:41bd)
 	ld a, [de]
 	ret
 

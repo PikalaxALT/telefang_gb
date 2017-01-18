@@ -1,4 +1,4 @@
-Func_c000:
+PushSGBBorder:
 	ld bc, $20
 	call Wait17500TimesBCCycles
 	ld hl, Data_c290
@@ -208,7 +208,7 @@ CopyToVRAMAndSendToSGB: ; c169 (3:4169)
 	jr nz, .CopyData
 	ret
 
-Func_c1af: ; c1af (3:41af)
+InitialSGBRequest: ; c1af (3:41af)
 	ld hl, Data_c214
 	call SendViaJoypadRegister
 	call Wait70000Cycles
@@ -368,7 +368,7 @@ Data_c310:
 
 Func_c320: ; c320 (3:4320)
 	push af
-	ld a, [wc40a]
+	ld a, [wSGB]
 	or a
 	jp nz, Func_c32a
 	pop af

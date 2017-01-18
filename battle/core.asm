@@ -1103,7 +1103,7 @@ Func_147ef: ; 147ef (5:47ef)
 	cp $0
 	jp z, Func_14831
 	ld a, $ee
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_14831: ; 14831 (5:4831)
 	ld a, [wCurDenjuuBufferField0x12]
 	cp $5
@@ -1130,7 +1130,7 @@ Func_14855: ; 14855 (5:4855)
 	cp $0
 	jp z, Func_14862
 	ld a, $e0
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_14862: ; 14862 (5:4862)
 	call Func_3f22
 	ld a, [wCurDenjuuBufferField0x12]
@@ -1142,7 +1142,7 @@ Func_1486d: ; 1486d (5:486d)
 	cp $0
 	jp z, Func_1487a
 	ld a, $e8
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_1487a: ; 1487a (5:487a)
 	ld hl, DenjuuBattleMessages
 	call LoadDenjuuBattleCatchphrase_
@@ -1385,7 +1385,7 @@ Func_14a01: ; 14a01 (5:4a01)
 	cp $0
 	jp z, Func_14a43
 	ld a, $ee
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_14a43: ; 14a43 (5:4a43)
 	ld a, [wCurDenjuuBufferField0x12]
 	cp $5
@@ -1412,7 +1412,7 @@ Func_14a67: ; 14a67 (5:4a67)
 	cp $0
 	jp z, Func_14a74
 	ld a, $e0
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_14a74: ; 14a74 (5:4a74)
 	call Func_3f22
 	ld a, [wCurDenjuuBufferField0x12]
@@ -1424,7 +1424,7 @@ Func_14a7f: ; 14a7f (5:4a7f)
 	cp $0
 	jp z, Func_14a8c
 	ld a, $e8
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_14a8c: ; 14a8c (5:4a8c)
 	ld hl, DenjuuBattleMessages
 	call LoadDenjuuBattleCatchphrase_
@@ -2733,7 +2733,7 @@ Func_15428: ; 15428 (5:5428)
 	jr nz, .asm_1543d
 	ld a, [wBattleMenuSelection]
 	inc a
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wMoveAnimationTimer]
 	inc a
 	ld [wMoveAnimationTimer], a
@@ -2742,7 +2742,7 @@ Func_15428: ; 15428 (5:5428)
 .asm_1543d
 	ld a, [wd415]
 	inc a
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wBattleMenuSelection]
 	cp $3
 	jr z, .asm_15451
@@ -2824,7 +2824,7 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wPlayerDenjuu2Field0x0c]
 	ld [wd46a], a
 	ld a, $f2
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $1
 	ld [wd450], a
 	jp Func_15556
@@ -2867,7 +2867,7 @@ Func_15489: ; 15489 (5:5489)
 	ld a, [wPlayerDenjuu3Field0x0c]
 	ld [wd46b], a
 	ld a, $f3
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $1
 	ld [wd451], a
 	jp Func_15556
@@ -2951,12 +2951,12 @@ Func_155ed: ; 155ed (5:55ed)
 	inc a
 	ld [BattleResults_CurBattleDenjuu], a
 	ld a, $1
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ret
 
 .asm_15601
 	ld a, $1
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_15606: ; 15606 (5:5606)
 	ld a, $e
 	ld [wBattleSubroutine], a
@@ -3209,7 +3209,7 @@ asm_157f5
 
 Func_157fb: ; 157fb (5:57fb)
 	ld a, $aa
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $1e
 	ld [wMoveAnimationTimer], a
 	ld c, $72
@@ -3877,7 +3877,7 @@ Func_15cd6: ; 15cd6 (5:5cd6)
 	cp $30
 	jr c, asm_15d83
 	ld a, $a
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_15d52: ; 15d52 (5:5d52)
 	ld a, $2
 	ld [wPlayerDenjuu2ArrivedStatus], a
@@ -3933,7 +3933,7 @@ asm_15d83
 	cp $30
 	jr c, asm_15df1
 	ld a, $b
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_15dc0: ; 15dc0 (5:5dc0)
 	ld a, $2
 	ld [wPlayerDenjuu3ArrivedStatus], a
@@ -4023,7 +4023,7 @@ asm_15df1
 	cp $30
 	jr c, asm_15ea0
 	ld a, $14
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_15e6f: ; 15e6f (5:5e6f)
 	ld a, $2
 	ld [wEnemyDenjuu2ArrivedStatus], a
@@ -4079,7 +4079,7 @@ asm_15ea0
 	cp $30
 	jr c, asm_15f0e
 	ld a, $15
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_15edd: ; 15edd (5:5edd)
 	ld a, $2
 	ld [wEnemyDenjuu3ArrivedStatus], a
@@ -4112,7 +4112,7 @@ asm_15f0e
 Func_15f0f: ; 15f0f (5:5f0f)
 	ld a, [wd47f]
 	inc a
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_15f16: ; 15f16 (5:5f16)
 	xor a
 	ld [wMoveAnimationTimer], a
@@ -5244,7 +5244,7 @@ Func_16724: ; 16724 (5:6724)
 	ld c, $a
 	call StdBattleTextBox
 	ld a, $f4
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $25
 	ld [wd401], a
 	ret
@@ -5284,14 +5284,14 @@ asm_167c7
 	ld [wMoveAnimationTimer], a
 	call Func_170e4
 	ld a, $f4
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $12
 	ld [wd401], a
 	ret
 
 .asm_167de
 	ld a, $1
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $14
 	ld [wd401], a
 	ret
@@ -5432,7 +5432,7 @@ Func_168d6: ; 168d6 (5:68d6)
 	ld a, [wLinkMode]
 	cp $0
 	jp z, Func_168ed
-	ld hl, wdb00
+	ld hl, wSerialReceiveQueue
 	ld a, [wdc45]
 	inc a
 	ld c, a
@@ -5967,7 +5967,7 @@ Func_16cda: ; 16cda (5:6cda)
 	cp $0
 	jr nz, .asm_16cf2
 	ld a, $f4
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $6
 	ld [wd401], a
 	ret
@@ -6021,7 +6021,7 @@ Func_16cda: ; 16cda (5:6cda)
 	ld [wPlayerDenjuu3ArrivedStatus], a
 .asm_16d4c
 	ld a, $f2
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld c, $6
 	call StdBattleTextBox
 	ld a, $19
@@ -6030,7 +6030,7 @@ Func_16cda: ; 16cda (5:6cda)
 
 Func_16d5c: ; 16d5c (5:6d5c)
 	ld a, $f0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, [wCurBattleDenjuu]
 	cp $0
 	jr z, .asm_16d73
@@ -6451,7 +6451,7 @@ Func_1706c: ; 1706c (5:706c)
 .asm_17098
 	ld [wd4ef], a
 	ld a, $1
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld c, $90
 	call StdBattleTextBox
 	ld a, SFX_53
@@ -6464,7 +6464,7 @@ Func_1706c: ; 1706c (5:706c)
 
 .asm_170b5
 	ld a, $f0
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, SFX_53
 	ld [H_SFX_ID], a
 	ld a, $28
@@ -6484,7 +6484,7 @@ Func_170c5: ; 170c5 (5:70c5)
 
 Func_170d8: ; 170d8 (5:70d8)
 	ld a, [wd434]
-	ld [wdc34], a
+	ld [wSerialSend], a
 	ld a, $a
 	ld [wd401], a
 	ret
@@ -7656,7 +7656,7 @@ Func_1797c: ; 1797c (5:797c)
 	cp $0
 	jp z, Func_17989
 	ld a, $1
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_17989: ; 17989 (5:7989)
 	ld a, $25
 	ld [wd401], a
@@ -7667,7 +7667,7 @@ Func_1798f: ; 1798f (5:798f)
 	cp $0
 	jp z, Func_1799c
 	ld a, $f4
-	ld [wdc34], a
+	ld [wSerialSend], a
 Func_1799c: ; 1799c (5:799c)
 	ld a, $13
 	ld [wd401], a
