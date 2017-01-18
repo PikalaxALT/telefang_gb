@@ -2665,7 +2665,7 @@ CopyRecruitedDenjuuToAddressBook: ; 753ad (1d:53ad)
 
 CheckIfDenjuuSpeciesInAddressBook: ; 753f8 (1d:53f8)
 	ld b, $0
-	ld hl, wd000
+	ld hl, wBattleRecruitRateBuffer
 	ld a, $0
 	ld [wd4b0], a
 .loop
@@ -2699,7 +2699,7 @@ CheckIfDenjuuSpeciesInAddressBook: ; 753f8 (1d:53f8)
 	ld a, ADDRESS_BOOK_SIZE
 	cp b
 	jr nz, .loop
-	ld hl, wd000
+	ld hl, wBattleRecruitRateBuffer
 	ld a, [wRecruitedDenjuuSpecies]
 	ld b, a
 	ld a, [wd4b0]
@@ -2795,7 +2795,7 @@ Func_757d9: ; 757d9 (1d:57d9)
 	ld a, [wNumDenjuuInAddressBook]
 	cp $1
 	jr z, .asm_75824
-	call Func_758f8
+	call GetAddressBookDenjuuWithHighestFD
 	jr .asm_7582a
 
 .asm_75824
@@ -2906,20 +2906,20 @@ Func_758ee: ; 758ee (1d:58ee)
 	ld [wBattleSubroutine], a
 	ret
 
-Func_758f8: ; 758f8 (1d:58f8)
-	ld b, $fe
-	ld hl, wd000
-.asm_758fd
+GetAddressBookDenjuuWithHighestFD: ; 758f8 (1d:58f8)
+	ld b, ADDRESS_BOOK_SIZE
+	ld hl, wBattleRecruitRateBuffer
+.clear
 	ld a, $0
 	ld [hli], a
 	dec b
-	jr nz, .asm_758fd
+	jr nz, .clear
 	ld b, $0
-	ld hl, wd000
-.asm_75908
+	ld hl, wBattleRecruitRateBuffer
+.loop
 	ld a, [wAddressBookIndexOfPartnerDenjuu]
 	cp b
-	jr z, .asm_75923
+	jr z, .next
 	push hl
 	push bc
 	call OpenSRAMBank2
@@ -2930,25 +2930,25 @@ Func_758f8: ; 758f8 (1d:58f8)
 	pop bc
 	pop hl
 	cp $0
-	jr z, .asm_75923
+	jr z, .next
 	ld a, b
 	ld [hli], a
-.asm_75923
+.next
 	inc b
-	ld a, $fe
+	ld a, ADDRESS_BOOK_SIZE
 	cp b
-	jr nz, .asm_75908
+	jr nz, .loop
 	ld c, $0
 	ld a, $0
 	ld [wd4eb], a
 	ld a, [wNumDenjuuInAddressBook]
 	cp $2
-	jp z, Func_7597b
+	jp z, .grab
 	dec a
 	ld [BattleResults_CurBattleDenjuu], a
-.asm_7593c
+.loop2
 	push bc
-	ld hl, wd000
+	ld hl, wBattleRecruitRateBuffer
 	ld d, $0
 	ld a, [wd4eb]
 	ld e, a
@@ -2961,11 +2961,11 @@ Func_758f8: ; 758f8 (1d:58f8)
 	pop bc
 	push bc
 	ld a, c
-	ld hl, wd000
-.asm_75958
+	ld hl, wBattleRecruitRateBuffer
+.slow_add_hl_a
 	inc hl
 	dec a
-	jr nz, .asm_75958
+	jr nz, .slow_add_hl_a
 	ld a, [hl]
 	ld hl, sAddressBook + $2
 	call GetNthAddressBookAttributeAddr
@@ -2974,21 +2974,21 @@ Func_758f8: ; 758f8 (1d:58f8)
 	ld b, a
 	ld a, [hl]
 	cp b
-	jr c, .asm_7596e
-	jr .asm_75972
+	jr c, .new_max
+	jr .next_max
 
-.asm_7596e
+.new_max
 	ld a, c
 	ld [wd4eb], a
-.asm_75972
+.next_max
 	inc c
 	ld a, [BattleResults_CurBattleDenjuu]
 	ld b, a
 	ld a, c
 	cp b
-	jr nz, .asm_7593c
-Func_7597b: ; 7597b (1d:597b)
-	ld hl, wd000
+	jr nz, .loop2
+.grab
+	ld hl, wBattleRecruitRateBuffer
 	ld d, $0
 	ld a, [wd4eb]
 	ld e, a

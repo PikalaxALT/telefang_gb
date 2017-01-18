@@ -4020,7 +4020,7 @@ Func_3202b:
 Func_32079: ; 32079 (c:6079)
 	cp $ff
 	jr nz, .not_null
-	ld a, [wcd51]
+	ld a, [wCurMapScripts + 1]
 	ld [wScriptNumber + 1], a
 	ld b, a
 	ld a, [wCurMapScripts]

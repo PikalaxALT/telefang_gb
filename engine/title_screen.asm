@@ -194,7 +194,7 @@ TitleScreen_GetSaveFileDataAndGoToTopPhoneMenu:
 	jp IncrementSubroutine
 
 .save_file_valid
-	ld a, [$bffd]
+	ld a, [sSaveFileExists]
 	or a
 	jr nz, .next_routine
 	ld a, $1

@@ -1349,17 +1349,17 @@ Func_17ef:
 	ld bc, $40
 	call WaitStatCopy2
 	ld de, wcb80
-	ld hl, wcb90
+	ld hl, wcb80 + $10
 	ld b, $2
-Func_1801: ; 1801 (0:1801)
+.outer_loop
 	push bc
 	push hl
 	push de
 	ld b, $10
-Func_1806: ; 1806 (0:1806)
+.inner_loop
 	call Func_18d3
 	dec b
-	jp nz, Func_1806
+	jp nz, .inner_loop
 	ld bc, $20
 	pop hl
 	add hl, bc
@@ -1369,43 +1369,43 @@ Func_1806: ; 1806 (0:1806)
 	add hl, bc
 	pop bc
 	dec b
-	jp nz, Func_1801
+	jp nz, .outer_loop
 	ld de, wcb80
 	ld hl, wcbc0
 	call Func_18cc
-	ld de, wcb90
+	ld de, wcb80 + $10
 	call Func_18cc
-	ld de, wcba0
+	ld de, wcb80 + $20
 	call Func_18cc
-	ld de, wcbb0
+	ld de, wcb80 + $30
 	call Func_18cc
-	ld hl, wcb82
+	ld hl, wcb80 + $2
 	ld de, wcb80
 	ld b, $4
-Func_183e: ; 183e (0:183e)
+.outer_loop2
 	push bc
 	ld b, $e
-Func_1841: ; 1841 (0:1841)
+.inner_loop2
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jp nz, Func_1841
+	jp nz, .inner_loop2
 	inc hl
 	inc hl
 	inc de
 	inc de
 	pop bc
 	dec b
-	jp nz, Func_183e
+	jp nz, .outer_loop2
 	ld de, wcbc0
-	ld hl, wcbae
+	ld hl, wcb80 + $2e
 	call Func_18cc
-	ld hl, wcbbe
+	ld hl, wcb80 + $3e
 	call Func_18cc
-	ld hl, wcb8e
+	ld hl, wcb80 + $0e
 	call Func_18cc
-	ld hl, wcb9e
+	ld hl, wcb80 + $1e
 	call Func_18cc
 	pop de
 	ld hl, wcb80
@@ -1415,7 +1415,7 @@ Func_1841: ; 1841 (0:1841)
 
 Func_1877:
 	ld b, $8
-.asm_1879
+.wait_stat_rlchl
 	di
 	call WaitStat
 	ld a, [hl]
@@ -1424,7 +1424,7 @@ Func_1877:
 	ei
 	inc hl
 	dec b
-	jr nz, .asm_1879
+	jr nz, .wait_stat_rlchl
 	ret
 
 Func_1887: ; 1887 (0:1887)

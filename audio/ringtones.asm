@@ -77,7 +77,7 @@
 	dw .Ringtone_92090
 	dw .Ringtone_92090
 
-	dw wd001
+	dw wDMeloBuffer + 1
 	dw .Ringtone_93d15
 	dw .Ringtone_93d18
 	dw .Ringtone_93d1b

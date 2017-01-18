@@ -436,8 +436,8 @@ BattleResults_ResetLCDCFlags_::
 	homecall_memret BattleResults_ResetLCDCFlags
 	ret
 
-Func_06c4::
-	homecall_memret Func_758f8
+GetAddressBookDenjuuWithHighestFD_::
+	homecall_memret GetAddressBookDenjuuWithHighestFD
 	ret
 
 Func_06cc::

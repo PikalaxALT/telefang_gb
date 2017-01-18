@@ -671,7 +671,7 @@ Func_39497: ; 39497 (e:5497)
 	jr nz, .asm_394d9
 	ld a, $0
 	ld [wPlayerObjectStruct_Duration + 18], a
-	ld a, [wcd51]
+	ld a, [wCurMapScripts + 1]
 	ld [wScriptNumber + 1], a
 	ld b, a
 	ld a, [wCurMapScripts]

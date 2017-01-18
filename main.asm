@@ -365,7 +365,7 @@ Func_8732: ; 8732 (2:4732)
 	swap a
 	and $f0
 	add b
-	ld hl, wd002
+	ld hl, wDMeloBuffer + 2
 	call Func_881b
 	ld a, [hli]
 	cp $fe
@@ -4667,7 +4667,7 @@ Func_3ac38:
 	ld l, a
 	ld a, $10
 	ld [hl], a
-	ld a, [wcd51]
+	ld a, [wCurMapScripts + 1]
 	ld [wScriptNumber + 1], a
 	ld b, a
 	ld a, [wCurMapScripts]
@@ -4855,18 +4855,6 @@ INCLUDE "data/wild_data_tables_by_map.asm"
 SECTION "bank 10", ROMX, BANK [$10]
 INCLUDE "text/std_text_11.asm"
 
-SECTION "bank 11", ROMX, BANK [$11]
-	music_engine 11
-SFXPointers_11: INCLUDE "audio/sfx.asm"
-RingtonePointers_11: INCLUDE "audio/ringtones.asm"
-MusicPointers_11:
-
-SECTION "bank 12", ROMX, BANK [$12]
-	music_engine 12
-SFXPointers_12: INCLUDE "audio/sfx.asm"
-MusicPointers_12: INCLUDE "audio/music_12.asm"
-RingtonePointers_12: db $ff
-
 SECTION "bank 13", ROMX, BANK [$13]
 INCLUDE "data/oam_templates_2.asm"
 
@@ -4902,36 +4890,6 @@ INCLUDE "battle/result.asm"
 
 SECTION "bank 1F", ROMX, BANK [$1f]
 INCLUDE "engine/bank_1f.asm"
-
-SECTION "bank 20", ROMX, BANK [MUSIC_BANK_00]
-	music_engine 20
-SFXPointers_20: INCLUDE "audio/sfx.asm"
-MusicPointers_20: INCLUDE "audio/music_20.asm"
-RingtonePointers_20: db $ff
-
-SECTION "bank 21", ROMX, BANK [MUSIC_BANK_01]
-	music_engine 21
-SFXPointers_21: INCLUDE "audio/sfx.asm"
-MusicPointers_21: INCLUDE "audio/music_21.asm"
-RingtonePointers_21: db $ff
-
-SECTION "bank 22", ROMX, BANK [MUSIC_BANK_02]
-	music_engine 22
-SFXPointers_22: INCLUDE "audio/sfx.asm"
-MusicPointers_22: INCLUDE "audio/music_22.asm"
-RingtonePointers_22: db $ff
-
-SECTION "bank 23", ROMX, BANK [MUSIC_BANK_03]
-	music_engine 23
-SFXPointers_23: INCLUDE "audio/sfx.asm"
-MusicPointers_23: INCLUDE "audio/music_23.asm"
-RingtonePointers_23: db $ff
-
-SECTION "bank 24", ROMX, BANK [$24]
-	music_engine 24
-SFXPointers_24: INCLUDE "audio/sfx.asm"
-RingtonePointers_24: INCLUDE "audio/ringtones.asm"
-MusicPointers_24: 
 
 SECTION "bank 26", ROMX, BANK [$26]
 Data_98000:
@@ -4977,50 +4935,6 @@ INCLUDE "data/scripted_denjuu.asm"
 
 EnemyTFangerParties::
 INCLUDE "data/tfanger_parties.asm"
-
-SECTION "bank 28", ROMX, BANK [$28]
-GFX_a0000:
-IF DEF(POWER)
-INCBIN "gfx/maptiles/a0000.power.2bpp"
-ELSE
-INCBIN "gfx/maptiles/a0000.speed.2bpp"
-ENDC
-GFX_a0100: INCBIN "gfx/maptiles/a0100.2bpp"
-GFX_a0130: INCBIN "gfx/maptiles/a0130.2bpp"
-GFX_a0250: INCBIN "gfx/maptiles/a0250.2bpp"
-GFX_a02d0: INCBIN "gfx/maptiles/a02d0.2bpp"
-GFX_a0480: INCBIN "gfx/maptiles/a0480.2bpp"
-GFX_a0600: INCBIN "gfx/maptiles/a0600.2bpp"
-GFX_a0760: INCBIN "gfx/maptiles/a0760.2bpp"
-GFX_a08d0: INCBIN "gfx/maptiles/a08d0.2bpp"
-GFX_a0a00: INCBIN "gfx/maptiles/a0a00.2bpp"
-GFX_a0b60: INCBIN "gfx/maptiles/a0b60.2bpp"
-GFX_a0bf0: INCBIN "gfx/maptiles/a0bf0.2bpp"
-GFX_a0dd0: INCBIN "gfx/maptiles/a0dd0.2bpp"
-GFX_a0f70: INCBIN "gfx/maptiles/a0f70.2bpp"
-GFX_a11b0: INCBIN "gfx/maptiles/a11b0.2bpp"
-GFX_a12f0: INCBIN "gfx/maptiles/a12f0.2bpp"
-GFX_a1330: INCBIN "gfx/maptiles/a1330.2bpp"
-GFX_a13e0: INCBIN "gfx/maptiles/a13e0.2bpp"
-GFX_a14f0: INCBIN "gfx/maptiles/a14f0.2bpp"
-GFX_a15e0: INCBIN "gfx/maptiles/a15e0.2bpp"
-GFX_a16a0: INCBIN "gfx/maptiles/a16a0.2bpp"
-GFX_a17e0: INCBIN "gfx/maptiles/a17e0.2bpp"
-GFX_a18f0: INCBIN "gfx/maptiles/a18f0.2bpp"
-GFX_a19d0: INCBIN "gfx/maptiles/a19d0.2bpp"
-GFX_a1ad0: INCBIN "gfx/maptiles/a1ad0.2bpp"
-GFX_a1b10: INCBIN "gfx/maptiles/a1b10.2bpp"
-GFX_a1c50: INCBIN "gfx/maptiles/a1c50.2bpp"
-GFX_a1e70: INCBIN "gfx/maptiles/a1e70.2bpp"
-GFX_a2180: INCBIN "gfx/maptiles/a2180.2bpp"
-GFX_a2300: INCBIN "gfx/maptiles/a2300.2bpp"
-GFX_a23b0: INCBIN "gfx/maptiles/a23b0.2bpp"
-GFX_a24e0: INCBIN "gfx/maptiles/a24e0.2bpp"
-GFX_a2590: INCBIN "gfx/maptiles/a2590.2bpp"
-GFX_a2760: INCBIN "gfx/maptiles/a2760.2bpp"
-GFX_a2900: INCBIN "gfx/maptiles/a2900.2bpp"
-GFX_a2ac0: INCBIN "gfx/maptiles/a2ac0.2bpp"
-GFX_a3320:
 
 SECTION "bank 29", ROMX, BANK [$29]
 
@@ -5824,7 +5738,7 @@ InsertMailMessageIntoQueue: ; a5315 (29:5315)
 	jr nz, .loop
 	push bc
 	ld hl, wMailMessages
-	ld de, wcd94
+	ld de, wMailMessages + $4
 	ld bc, $1c
 .copy
 	ld a, [de]
@@ -5835,7 +5749,7 @@ InsertMailMessageIntoQueue: ; a5315 (29:5315)
 	or c
 	jr nz, .copy
 	pop bc
-	ld hl, wcdac
+	ld hl, wMailMessages + $1c
 	jr .finish
 
 CountDenjuuWhoCouldHaveSentAMailMessage: ; a535e (29:535e)
@@ -6046,7 +5960,7 @@ Func_a5461: ; a5461 (29:5461)
 	inc de
 	dec c
 	jr nz, .copy2
-	ld hl, wcdac
+	ld hl, wMailMessages + $1c
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -9203,7 +9117,7 @@ Func_a8fca: ; a8fca (2a:4fca)
 	di
 	call TextWaitStat
 	ld a, c
-	ld [$9a11], a
+	bgcoord_a 17, 16
 	ei
 	ret
 
@@ -11951,78 +11865,6 @@ INCBIN "gfx/sprites/items/063.w16.2bpp"
 INCBIN "gfx/sprites/items/064.w16.2bpp"
 INCBIN "gfx/sprites/items/065.w16.2bpp"
 INCBIN "gfx/sprites/items/066.w16.2bpp"
-
-SECTION "bank 2B", ROMX, BANK [$2b]
-GFX_ac000: INCBIN "gfx/pics/items/ac000.w48.2bpp"
-GFX_ac1e0: INCBIN "gfx/pics/items/ac1e0.w48.2bpp"
-GFX_ac3c0: INCBIN "gfx/pics/items/ac3c0.w48.2bpp"
-GFX_ac5a0: INCBIN "gfx/pics/items/ac5a0.w48.2bpp"
-GFX_ac780: INCBIN "gfx/pics/items/ac780.w48.2bpp"
-GFX_ac960: INCBIN "gfx/pics/items/ac960.w48.2bpp"
-GFX_acb40: INCBIN "gfx/pics/items/acb40.w48.2bpp"
-GFX_acd20: INCBIN "gfx/pics/items/acd20.w48.2bpp"
-GFX_acf00: INCBIN "gfx/pics/items/acf00.w48.2bpp"
-GFX_ad0e0: INCBIN "gfx/pics/items/ad0e0.w48.2bpp"
-GFX_ad2c0: INCBIN "gfx/pics/items/ad2c0.w48.2bpp"
-GFX_ad4a0: INCBIN "gfx/pics/items/ad4a0.w48.2bpp"
-GFX_ad680: INCBIN "gfx/pics/items/ad680.w48.2bpp"
-GFX_ad860: INCBIN "gfx/pics/items/ad860.w48.2bpp"
-GFX_ada40: INCBIN "gfx/pics/items/ada40.w48.2bpp"
-GFX_adc20: INCBIN "gfx/pics/items/adc20.w48.2bpp"
-GFX_ade00: INCBIN "gfx/pics/items/ade00.w48.2bpp"
-GFX_adfe0: INCBIN "gfx/pics/items/adfe0.w48.2bpp"
-GFX_ae1c0: INCBIN "gfx/pics/items/ae1c0.w48.2bpp"
-GFX_ae3a0: INCBIN "gfx/pics/items/ae3a0.w48.2bpp"
-GFX_ae580: INCBIN "gfx/pics/items/ae580.w48.2bpp"
-GFX_ae760: INCBIN "gfx/pics/items/ae760.w48.2bpp"
-GFX_ae940: INCBIN "gfx/pics/items/ae940.w48.2bpp"
-GFX_aeb20: INCBIN "gfx/pics/items/aeb20.w48.2bpp"
-GFX_aed00: INCBIN "gfx/pics/items/aed00.w48.2bpp"
-GFX_aeee0: INCBIN "gfx/pics/items/aeee0.w48.2bpp"
-GFX_af0c0: INCBIN "gfx/pics/items/af0c0.w48.2bpp"
-GFX_af2a0: INCBIN "gfx/pics/items/af2a0.w48.2bpp"
-GFX_af480: INCBIN "gfx/pics/items/af480.w48.2bpp"
-GFX_af660: INCBIN "gfx/pics/items/af660.w48.2bpp"
-GFX_af840: INCBIN "gfx/pics/items/af840.w48.2bpp"
-GFX_afa20: INCBIN "gfx/pics/items/afa20.w48.2bpp"
-GFX_afc00: INCBIN "gfx/pics/items/afc00.w48.2bpp"
-GFX_afde0: INCBIN "gfx/pics/items/afde0.w48.2bpp"
-
-SECTION "bank 2C", ROMX, BANK [$2c]
-GFX_b0000: INCBIN "gfx/pics/items/b0000.w48.2bpp"
-GFX_b01e0: INCBIN "gfx/pics/items/b01e0.w48.2bpp"
-GFX_b03c0: INCBIN "gfx/pics/items/b03c0.w48.2bpp"
-GFX_b05a0: INCBIN "gfx/pics/items/b05a0.w48.2bpp"
-GFX_b0780: INCBIN "gfx/pics/items/b0780.w48.2bpp"
-GFX_b0960: INCBIN "gfx/pics/items/b0960.w48.2bpp"
-GFX_b0b40: INCBIN "gfx/pics/items/b0b40.w48.2bpp"
-GFX_b0d20: INCBIN "gfx/pics/items/b0d20.w48.2bpp"
-GFX_b0f00: INCBIN "gfx/pics/items/b0f00.w48.2bpp"
-GFX_b10e0: INCBIN "gfx/pics/items/b10e0.w48.2bpp"
-GFX_b12c0: INCBIN "gfx/pics/items/b12c0.w48.2bpp"
-GFX_b14a0: INCBIN "gfx/pics/items/b14a0.w48.2bpp"
-GFX_b1680: INCBIN "gfx/pics/items/b1680.w48.2bpp"
-GFX_b1860: INCBIN "gfx/pics/items/b1860.w48.2bpp"
-GFX_b1a40: INCBIN "gfx/pics/items/b1a40.w48.2bpp"
-GFX_b1c20: INCBIN "gfx/pics/items/b1c20.w48.2bpp"
-GFX_b1e00: INCBIN "gfx/pics/items/b1e00.w48.2bpp"
-GFX_b1fe0: INCBIN "gfx/pics/items/b1fe0.w48.2bpp"
-GFX_b21c0: INCBIN "gfx/pics/items/b21c0.w48.2bpp"
-GFX_b23a0: INCBIN "gfx/pics/items/b23a0.w48.2bpp"
-GFX_b2580: INCBIN "gfx/pics/items/b2580.w48.2bpp"
-GFX_b2760: INCBIN "gfx/pics/items/b2760.w48.2bpp"
-GFX_b2940: INCBIN "gfx/pics/items/b2940.w48.2bpp"
-GFX_b2b20: INCBIN "gfx/pics/items/b2b20.w48.2bpp"
-GFX_b2d00: INCBIN "gfx/pics/items/b2d00.w48.2bpp"
-GFX_b2ee0: INCBIN "gfx/pics/items/b2ee0.w48.2bpp"
-GFX_b30c0: INCBIN "gfx/pics/items/b30c0.w48.2bpp"
-GFX_b32a0: INCBIN "gfx/pics/items/b32a0.w48.2bpp"
-GFX_b3480: INCBIN "gfx/pics/items/b3480.w48.2bpp"
-GFX_b3660: INCBIN "gfx/pics/items/b3660.w48.2bpp"
-GFX_b3840: INCBIN "gfx/pics/items/b3840.w48.2bpp"
-GFX_b3a20: INCBIN "gfx/pics/items/b3a20.w48.2bpp"
-GFX_b3c00: INCBIN "gfx/pics/items/b3c00.w48.2bpp"
-GFX_b3de0: INCBIN "gfx/pics/items/b3de0.w48.2bpp"
 
 SECTION "bank 32", ROMX, BANK [$32]
 Func_c8000::
@@ -22050,54 +21892,54 @@ Pointers_e1690:
 Data_e16c0:
 	db 8
 	db $0f, 0
-	dw GFX_e17bc, $91b0
+	dw GFX_e17bc, VTilesBG tile $1b
 
 	db $0f, 0
-	dw GFX_e17fc, $91e0
+	dw GFX_e17fc, VTilesBG tile $1e
 
 	db $0f, 1
-	dw GFX_e183c, $9240
+	dw GFX_e183c, VTilesBG tile $24
 
 	db $0f, 1
-	dw GFX_e187c, $9440
+	dw GFX_e187c, VTilesBG tile $44
 
 	db $1f, 2
-	dw GFX_e18bc, $9400
+	dw GFX_e18bc, VTilesBG tile $40
 
 	db $1f, 2
-	dw GFX_e191c, $96a0
+	dw GFX_e191c, VTilesBG tile $6a
 
 	db $1f, 2
-	dw GFX_e18dc, $91a0
+	dw GFX_e18dc, VTilesBG tile $1a
 
 	db $1f, 2
-	dw GFX_e193c, $96b0
+	dw GFX_e193c, VTilesBG tile $6b
 
 Data_e16f1:
 	db 8
 	db $0f, 0
-	dw GFX_e17bc, $9160
+	dw GFX_e17bc, VTilesBG tile $16
 
 	db $0f, 0
-	dw GFX_e17fc, $9190
+	dw GFX_e17fc, VTilesBG tile $19
 
 	db $0f, 1
-	dw GFX_e183c, $9170
+	dw GFX_e183c, VTilesBG tile $17
 
 	db $0f, 1
-	dw GFX_e187c, $91a0
+	dw GFX_e187c, VTilesBG tile $1a
 
 	db $1f, 2
-	dw GFX_e18bc, $91b0
+	dw GFX_e18bc, VTilesBG tile $1b
 
 	db $1f, 2
-	dw GFX_e191c, $91d0
+	dw GFX_e191c, VTilesBG tile $1d
 
 	db $1f, 2
-	dw GFX_e18dc, $91c0
+	dw GFX_e18dc, VTilesBG tile $1c
 
 	db $1f, 2
-	dw GFX_e193c, $91e0
+	dw GFX_e193c, VTilesBG tile $1e
 
 Data_e1722:
 	db 0
@@ -22105,7 +21947,7 @@ Data_e1722:
 Data_e1723:
 	db 1
 	db $1f, 0
-	dw GFX_e177c, $9270
+	dw GFX_e177c, VTilesBG tile $27
 
 Data_e172a:
 	db 0
@@ -24010,7 +23852,3 @@ GFX_1ee000: INCBIN "gfx/phone_keypads/1ee000.t2.2bpp"
 GFX_1ee400: INCBIN "gfx/phone_keypads/1ee400.t2.2bpp"
 GFX_1ee800: INCBIN "gfx/phone_keypads/1ee800.t2.2bpp"
 GFX_1eec00: INCBIN "gfx/phone_keypads/1eec00.t2.2bpp"
-
-SECTION "bank 7C", ROMX, BANK [$7c]
-TitleScreenPCM:: INCBIN "audio/pcm/title.pcm"
-TitleScreenPCMEnd::

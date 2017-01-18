@@ -18,6 +18,7 @@ hramsec.o \
 wram.o \
 sram.o \
 gfx.o \
+audio.o \
 main.o
 
 telepower_obj := $(telefang_obj:.o=_power.o)
