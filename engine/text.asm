@@ -4,17 +4,17 @@ PrintText: ; 2c100 (b:4100)
 	ld [wCumulativeTextFrameCounter], a
 	ld a, [wTextSubroutine]
 	cp $0
-	jp z, TextSubroutine0
+	jp z, TextSubroutine_OpenTextbox
 	cp $1
-	jr z, TextSubroutine1
+	jr z, TextSubroutine_PrintCharacterLoop
 	cp $2
-	jp z, TextSubroutine2
+	jp z, TextSubroutine_WaitButtonMidStream
 	cp $3
-	jp z, TextSubroutine3
+	jp z, TextSubroutine_ScrollText1
 	cp $4
-	jp z, TextSubroutine4
+	jp z, TextSubroutine_ScrollText2
 	cp $5
-	jp z, TextSubroutine5
+	jp z, TextSubroutine_BlinkButtonShapeCursor
 	cp $6
 	jp z, TextSubroutine6
 	cp $7
@@ -22,10 +22,10 @@ PrintText: ; 2c100 (b:4100)
 	cp $8
 	jp z, TextSubroutine8
 	cp $a
-	jp z, TextSubroutine10
+	jp z, TextSubroutine_YesNoBox
 	ret
 
-TextSubroutine1:
+TextSubroutine_PrintCharacterLoop:
 	ld a, [wTextPointer]
 	ld l, a
 	ld a, [wTextPointer + 1]
@@ -350,7 +350,7 @@ LoadTextDelayTimer: ; 2c34a (b:434a)
 	ld [wTextDelayTimer], a
 	ret
 
-TextSubroutine2: ; 2c34e (b:434e)
+TextSubroutine_WaitButtonMidStream: ; 2c34e (b:434e)
 	ld a, [wTextBGMapTop]
 	add $4
 	call GetBGMapRow
@@ -363,11 +363,11 @@ TextSubroutine2: ; 2c34e (b:434e)
 	inc a
 	ld [wTextDelayTimer], a
 	bit 4, a
-	jr nz, .asm_2c372
+	jr nz, .skip_blink_cursor
 	ld a, [wTileWhere0IsLoaded]
 	add $e
 	ld c, a
-.asm_2c372
+.skip_blink_cursor
 	di
 	call TextWaitStat
 	ld [hl], c
@@ -376,24 +376,24 @@ TextSubroutine2: ; 2c34e (b:434e)
 	ld [wTextJoyNew], a
 	ld a, [hJoyLast]
 	and A_BUTTON
-	jr z, .asm_2c39a
-	ld a, [wcdb8]
+	jr z, .no_a_button
+	ld a, [wNumFramesHoldingADuringText]
 	cp 20
-	jr c, .asm_2c391
+	jr c, .increment_counter
 	ld a, A_BUTTON
 	ld [wTextJoyNew], a
-	jr .asm_2c39f
+	jr .check_advanced_text
 
-.asm_2c391
-	ld a, [wcdb8]
+.increment_counter
+	ld a, [wNumFramesHoldingADuringText]
 	inc a
-	ld [wcdb8], a
-	jr .asm_2c39f
+	ld [wNumFramesHoldingADuringText], a
+	jr .check_advanced_text
 
-.asm_2c39a
+.no_a_button
 	ld a, $0
-	ld [wcdb8], a
-.asm_2c39f
+	ld [wNumFramesHoldingADuringText], a
+.check_advanced_text
 	ld a, [wTextJoyNew]
 	and A_BUTTON
 	ret z
@@ -414,55 +414,54 @@ TextSubroutine2: ; 2c34e (b:434e)
 	ld [wTextSubroutine], a
 	ret
 
-TextSubroutine3: ; 2c3c7 (b:43c7)
-TextSubroutine4: ; 2c3c7 (b:43c7)
+TextSubroutine_ScrollText1: ; 2c3c7 (b:43c7)
+TextSubroutine_ScrollText2: ; 2c3c7 (b:43c7)
 	ld a, [hJoyLast]
 	and B_BUTTON
-	jr nz, .asm_2c3d8
+	jr nz, .instant_load
 	ld a, [wTextDelayTimer]
 	ld b, a
 	ld a, [wCumulativeTextFrameCounter]
 	sub b
 	and $3
 	ret nz
-.asm_2c3d8
-	call Func_2cb3d
+.instant_load
+	call ScrollTextUp_
 	ld a, [wTextSubroutine]
 	cp $3
-	jr z, .asm_2c3f2
+	jr z, .skip
 	ld a, [wTextLine]
 	and $1
-	jr z, .asm_2c3ef
+	jr z, .top
 	call DrawTextboxInteriorBottomRow
-	jp .asm_2c3f2
+	jp .skip
 
-.asm_2c3ef
+.top
 	call DrawTextboxInteriorTopRow
-.asm_2c3f2
-	call Func_2cbd0
+.skip
+	call LoadNextLineOfText
 	ld a, [wTextSubroutine]
 	cp $3
-	jr z, .asm_2c407
+	jr z, .next_frame
 	ld a, $1
 	ld [wTextSubroutine], a
 	ld a, $2
 	ld [wTextDelayTimer], a
 	ret
 
-.asm_2c407
+.next_frame
 	ld a, $4
 	ld [wTextSubroutine], a
 	ret
 
 TextSubroutine6: ; 2c40d (b:440d)
 	call BlinkTextCursor
-	jr z, .asm_2c412
-.asm_2c412
+	jr z, @ + 2
 	ret
 
 TextSubroutine7: ; 2c413 (b:4413)
 	call BlinkTextCursor
-	jr z, .asm_2c428
+	jr z, .waiting
 	call DrawTextboxInterior
 	ld a, [wTextBGMapTop]
 	ld de, Data_2d00f
@@ -470,29 +469,29 @@ TextSubroutine7: ; 2c413 (b:4413)
 	ld c, $1
 	jp CopyTextboxTilemapAndHideSpritesBehind
 
-.asm_2c428
+.waiting
 	ret
 
 TextSubroutine8: ; 2c429 (b:4429) (blink cursor)
 	call BlinkTextCursor
 	jr z, .skip
-	call Func_2c9d1
+	call DrawMemTextbox
 .skip
 	ret
 
-TextSubroutine5: ; 2c432 (b:4432)
+TextSubroutine_BlinkButtonShapeCursor: ; 2c432 (b:4432)
 	call BlinkTextCursor
-	jr z, .asm_2c444
+	jr z, .waiting
 	ld a, [wPhoneCallSubroutine]
 	cp $4
-	jr nc, .asm_2c444
-	call Func_2ccb9
+	jr nc, .waiting
+	call Text_RestoreMapObjects
 	jp Func_2ba9
 
-.asm_2c444
+.waiting
 	ret
 
-TextSubroutine10: ; 2c445 (b:4445)
+TextSubroutine_YesNoBox: ; 2c445 (b:4445)
 	call AnimateTextYesNoSelectionCursor
 	call BlinkTextCursor
 	jr z, .check_left
@@ -516,7 +515,7 @@ TextSubroutine10: ; 2c445 (b:4445)
 	ld a, [wPhoneCallSubroutine]
 	cp $4
 	jr nc, .finish_a
-	call Func_2ccb9
+	call Text_RestoreMapObjects
 	call Func_2ba9
 .finish_a
 	ld a, $0
@@ -669,18 +668,18 @@ BlinkTextCursor: ; 2c533 (b:4533)
 	xor a
 	ret
 
-TextSubroutine0: ; 2c57d (b:457d)
+TextSubroutine_OpenTextbox: ; 2c57d (b:457d)
 	ld a, [wTextDelayTimer]
 	dec a
 	ld [wTextDelayTimer], a
-	jr nz, .asm_2c5c7
+	jr nz, .waiting
 	ld a, $4
 	ld [wTextDelayTimer], a
 	ld a, [wTextLine]
 	inc a
 	ld [wTextLine], a
 	cp $1
-	jr nz, .asm_2c5a7
+	jr nz, .full_size
 	ld a, [wTextBGMapTop]
 	dec a
 	ld [wTextBGMapTop], a
@@ -689,7 +688,7 @@ TextSubroutine0: ; 2c57d (b:457d)
 	ld c, $1
 	jp CopyTextboxTilemapAndHideSpritesBehind
 
-.asm_2c5a7
+.full_size
 	ld a, $1
 	ld [wTextSubroutine], a
 	ld a, $0
@@ -704,50 +703,55 @@ TextSubroutine0: ; 2c57d (b:457d)
 	ld c, $1
 	jp CopyTextboxTilemapAndHideSpritesBehind
 
-.asm_2c5c7
+.waiting
 	ret
 
 HandleTextSubfunction: ; 2c5c8 (b:45c8)
 	call GetTextByte
 	ld [wTextSubfunction], a
 	cp $0
-	jr nz, .asm_2c5dd
+	jr nz, .check_sr1
+	; wait button, delete box
 	ld a, $0
 	ld [wTextDelayTimer], a
 	ld a, $5
 	ld [wTextSubroutine], a
 	ret
 
-.asm_2c5dd
+.check_sr1
 	cp $1
-	jr nz, .asm_2c5ec
+	jr nz, .check_sr2
+	; auto end, delete box
 	ld a, 60
 	ld [wTextDelayTimer], a
 	ld a, $5
 	ld [wTextSubroutine], a
 	ret
 
-.asm_2c5ec
+.check_sr2
 	cp $2
-	jr nz, .asm_2c5fb
+	jr nz, .check_sr3
+	; wait button, keep text
 	ld a, $0
 	ld [wTextDelayTimer], a
 	ld a, $6
 	ld [wTextSubroutine], a
 	ret
 
-.asm_2c5fb
+.check_sr3
 	cp $3
-	jr nz, .asm_2c60a
+	jr nz, .check_sr4
+	; wait button, keep box
 	ld a, $0
 	ld [wTextDelayTimer], a
 	ld a, $7
 	ld [wTextSubroutine], a
 	ret
 
-.asm_2c60a
+.check_sr4
 	cp $4
 	jr nz, .asm_2c619
+	; instant end, keep text
 	ld a, $1
 	ld [wTextDelayTimer], a
 	ld a, $6
@@ -756,7 +760,8 @@ HandleTextSubfunction: ; 2c5c8 (b:45c8)
 
 .asm_2c619
 	cp $a
-	jr nz, .asm_2c630
+	jr nz, .other
+	; yes no prompt
 	ld a, $0
 	ld [wTextDelayTimer], a
 	ld a, $a
@@ -766,7 +771,7 @@ HandleTextSubfunction: ; 2c5c8 (b:45c8)
 	ld [wTextYesNoSelection], a
 	ret
 
-.asm_2c630
+.other
 	ld a, $0
 	ld [wTextDelayTimer], a
 	ld a, $8
@@ -844,8 +849,8 @@ PrintStandardText: ; 2c64e (b:464e)
 	ld a, [wTextBGMapTop]
 	add $2
 	ld [wTextBGMapTop], a
-	call DrawTextbox
-	call Func_2cc4e
+	call StartProcessOfOpeningTextbox
+	call Text_BackUpMapObjects
 .asm_2c6d1
 	ret
 
@@ -873,7 +878,7 @@ Func_2c6e2: ; 2c6e2 (b:46e2)
 	rl b
 	add hl, bc
 	ld b, $8
-	ld de, wca53
+	ld de, wSpeciesNameBuffer
 .asm_2c6fd
 	ld a, [hli]
 	ld [de], a
@@ -922,7 +927,7 @@ GetItemName: ; 2c73e (b:473e)
 	rl b
 	add hl, bc
 	ld b, $8
-	ld de, wca53
+	ld de, wSpeciesNameBuffer
 .copy
 	ld a, [hli]
 	ld [de], a
@@ -935,11 +940,11 @@ GetItemName: ; 2c73e (b:473e)
 
 LoadTextPointer:
 	call LoadTextPointer__
-	jp Func_2c9d1
+	jp DrawMemTextbox
 
 AnchorMapAndLoadTextPointer: ; 2c766 (b:4766)
 	call AnchorMapAndLoadTextPointer__
-	jp Func_2c9d1
+	jp DrawMemTextbox
 
 AnchorMapAndLoadTextPointer__: ; 2c76c (b:476c)
 	ld hl, wBGMapAnchor
@@ -1245,7 +1250,7 @@ Func_2c9a2: ; 2c9a2 (b:49a2)
 	ld [wTextBGMapTop], a
 	ret
 
-DrawTextbox: ; 2c9bd (b:49bd)
+StartProcessOfOpeningTextbox: ; 2c9bd (b:49bd)
 	call LoadTextboxFrame
 	call DrawTextboxInterior
 	ld de, Data_2d0c3
@@ -1255,7 +1260,7 @@ DrawTextbox: ; 2c9bd (b:49bd)
 	call CopyTextboxTilemapAndHideSpritesBehind
 	ret
 
-Func_2c9d1: ; 2c9d1 (b:49d1)
+DrawMemTextbox: ; 2c9d1 (b:49d1)
 	call DrawTextboxInterior
 	call Func_2cd3b
 	ld de, wMapHeader
@@ -1379,32 +1384,32 @@ LoadTextbox_Tilemap: ; 2caa5 (b:4aa5)
 	ld [wSpriteDestIsCustom], a
 	ld c, 18
 	cp $1
-	jr z, .asm_2cacb
+	jr z, .got_size
 	ld c, 10
 	cp $0
 	jr nz, .asm_2cac0
 	ld a, [wMapGroup]
 	cp $b
-	jr z, .asm_2cacb
+	jr z, .got_size
 	ld c, 20
-	jr .asm_2cacb
+	jr .got_size
 
 .asm_2cac0
 	ld a, [wSpriteDestIsCustom]
 	ld c, 8
 	cp $c
-	jr z, .asm_2cacb
+	jr z, .got_size
 	ld c, 16
-.asm_2cacb
+.got_size
 	ld a, c
-	ld [wc987], a
-Func_2cacf:
+	ld [wLoadTextGFX_TileCounter], a
+ContinueLoadingLineOfText:
 	ld a, l
-	and "$"
+	and $e0
 	ld b, a
 	ld c, l
 	ld a, h
-	ld [wc988], a
+	ld [wLoadTextGFX_StartAddressHi], a
 .loop_bg
 	di
 .wait_stat_bg
@@ -1415,7 +1420,7 @@ Func_2cacf:
 	ld [hli], a
 	inc de
 	ei
-	ld a, [wc988]
+	ld a, [wLoadTextGFX_StartAddressHi]
 	ld h, a
 	ld a, $1
 	add c
@@ -1423,9 +1428,9 @@ Func_2cacf:
 	and $1f
 	or b
 	ld l, a
-	ld a, [wc987]
+	ld a, [wLoadTextGFX_TileCounter]
 	dec a
-	ld [wc987], a
+	ld [wLoadTextGFX_TileCounter], a
 	jr nz, .loop_bg
 	ret
 
@@ -1479,7 +1484,7 @@ LoadTextbox_Attr: ; 2caf9 (b:4af9)
 	pop de
 	ret
 
-Func_2cb3d: ; 2cb3d (b:4b3d)
+ScrollTextUp_: ; 2cb3d (b:4b3d)
 	ld a, [wTextBGMapTop]
 	inc a
 	call GetBGMapRow
@@ -1494,7 +1499,7 @@ Func_2cb3d: ; 2cb3d (b:4b3d)
 .loop
 	push bc
 	push hl
-	call Func_2cb8c
+	call ScrollTextUp
 	pop de
 	ld h, d
 	ld l, e
@@ -1521,15 +1526,15 @@ ENDR
 	call WrapAroundBGMapPointer
 	ret
 
-Func_2cb8c: ; 2cb8c (b:4b8c)
+ScrollTextUp: ; 2cb8c (b:4b8c)
 	ld a, $8
-	ld [wc987], a
+	ld [wLoadTextGFX_TileCounter], a
 	ld a, l
-	and "$"
+	and $e0
 	ld b, a
 	ld c, l
 	ld a, h
-	ld [wc988], a
+	ld [wLoadTextGFX_StartAddressHi], a
 .loop
 	di
 .wait_stat
@@ -1542,7 +1547,7 @@ Func_2cb8c: ; 2cb8c (b:4b8c)
 	ld a, [hli]
 	ld [de], a
 	ei
-	ld a, [wc988]
+	ld a, [wLoadTextGFX_StartAddressHi]
 	ld h, a
 	ld a, $2
 	add c
@@ -1557,9 +1562,9 @@ Func_2cb8c: ; 2cb8c (b:4b8c)
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wc987]
+	ld a, [wLoadTextGFX_TileCounter]
 	dec a
-	ld [wc987], a
+	ld [wLoadTextGFX_TileCounter], a
 	jr nz, .loop
 	ret
 
@@ -1571,7 +1576,7 @@ Func_2cbc8: ; 2cbc8 (b:4bc8)
 .asm_2cbcf
 	ret
 
-Func_2cbd0: ; 2cbd0 (b:4bd0)
+LoadNextLineOfText: ; 2cbd0 (b:4bd0)
 	ld a, [wTextBGMapTop]
 	add $4
 	ld b, $0
@@ -1588,26 +1593,26 @@ Func_2cbd0: ; 2cbd0 (b:4bd0)
 	ld c, a
 	ld a, [wTextBoxStartTile]
 	cp $c0
-	jr nz, .asm_2cbf8
+	jr nz, .use_wram
 	ld hl, Data_2d0e7
-	jr .asm_2cbfb
+	jr .got_data
 
-.asm_2cbf8
+.use_wram
 	ld hl, wMapHeader
-.asm_2cbfb
+.got_data
 	ld a, [wTextLine]
 	and $1
 	ld de, $0
-	jr z, .asm_2cc08
+	jr z, .got_offset_1
 	ld de, $20
-.asm_2cc08
+.got_offset_1
 	add hl, de
 	ld de, $0
 	ld a, [wTextSubroutine]
 	cp $3
-	jr z, .asm_2cc16
+	jr z, .got_offset_2
 	ld de, $10
-.asm_2cc16
+.got_offset_2
 	add hl, de
 	ld d, h
 	ld e, l
@@ -1620,8 +1625,8 @@ Func_2cbd0: ; 2cbd0 (b:4bd0)
 	ld c, $2
 	call GetBGMapColumn
 	ld a, $10
-	ld [wc987], a
-	jp Func_2cacf
+	ld [wLoadTextGFX_TileCounter], a
+	jp ContinueLoadingLineOfText
 
 GetBGMapColumn: ; 2cc32 (b:4c32)
 	ld a, l
@@ -1649,7 +1654,7 @@ GetBGMapColumn: ; 2cc32 (b:4c32)
 	ld l, a
 	ret
 
-Func_2cc4e: ; 2cc4e (b:4c4e)
+Text_BackUpMapObjects: ; 2cc4e (b:4c4e)
 	ld hl, wPlayerObjectStruct
 	ld de, wOAMAnimation15
 	ld b, $8
@@ -1658,7 +1663,7 @@ Func_2cc4e: ; 2cc4e (b:4c4e)
 	ld de, wOAMAnimation16
 	ld b, $8
 	call CopyData_Under256Bytes
-	ld de, wcadf
+	ld de, wBackupObjectVisibilityFlags
 	ld hl, wOAMAnimation01
 	ld b, $18
 	ld a, [wTextBGMapTop]
@@ -1666,7 +1671,7 @@ Func_2cc4e: ; 2cc4e (b:4c4e)
 	swap a
 	srl a
 	ld c, a
-.asm_2cc75
+.loop
 	push hl
 	ld a, [hl]
 	ld [de], a
@@ -1681,16 +1686,16 @@ Func_2cc4e: ; 2cc4e (b:4c4e)
 	pop hl
 	add $6
 	cp c
-	jr c, .asm_2cc92
-	sub $3c
-	jr nc, .asm_2cc8d
+	jr c, .next
+	sub 3 * SCREEN_WIDTH
+	jr nc, .subbed_60
 	xor a
-.asm_2cc8d
+.subbed_60
 	cp c
-	jr nc, .asm_2cc92
+	jr nc, .next
 	xor a
 	ld [hl], a
-.asm_2cc92
+.next
 	ld a, $20
 	add l
 	ld l, a
@@ -1698,7 +1703,7 @@ Func_2cc4e: ; 2cc4e (b:4c4e)
 	adc h
 	ld h, a
 	dec b
-	jr nz, .asm_2cc75
+	jr nz, .loop
 	ld hl, wOAMAnimation15
 	ld de, wPlayerObjectStruct
 	ld b, $8
@@ -1711,11 +1716,11 @@ Func_2cc4e: ; 2cc4e (b:4c4e)
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Func_2ccb9: ; 2ccb9 (b:4cb9)
-	ld hl, wcadf
+Text_RestoreMapObjects: ; 2ccb9 (b:4cb9)
+	ld hl, wBackupObjectVisibilityFlags
 	ld de, wOAMAnimation01
 	ld b, $18
-.asm_2ccc1
+.loop
 	ld a, [hli]
 	ld [de], a
 	ld a, $20
@@ -1725,7 +1730,7 @@ Func_2ccb9: ; 2ccb9 (b:4cb9)
 	adc d
 	ld d, a
 	dec b
-	jr nz, .asm_2ccc1
+	jr nz, .loop
 	ld hl, wOAMAnimation15
 	ld de, wPlayerObjectStruct
 	ld b, $1
@@ -2169,11 +2174,10 @@ Data_2d0c3:
 	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
 	db $f7, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f8, $f9
 
+; Speech textbox
 Data_2d0e7:
 	db $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef
 	db $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $ca, $cb, $cc, $cd, $ce, $cf
-
-Data_2d107:
 	db $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef, $ef
 	db $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8, $d9, $da, $db, $dc, $dd, $de, $df
 
@@ -2201,6 +2205,7 @@ Data_2d1b1:
 	db $f0, $f1, $f2, $f2, $f2, $f2, $f2, $f2, $f2, $f3
 	db $f4, $c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $f6
 
+; Idle overworld HUD
 Data_2d1c5:
 	db $c0, $e0, $e0, $e0, $e0, $e0, $d8, $da, $c2,  $c0, $de, $e2, $c4, $c4, $c4, $dc, $c4, $c4, $c4, $c2
 	db $c1, $e1, $e1, $e1, $e1, $e1, $d9, $db, $c3,  $c1, $df, $e3, $c5, $c5, $c5, $dd, $c5, $c5, $c5, $c3

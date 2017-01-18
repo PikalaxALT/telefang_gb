@@ -330,7 +330,7 @@ Func_242b::
 	jr nz, .asm_2464
 	ld a, $2
 	ld [wPhoneIsRinging], a
-	callba Func_2ccb9
+	callba Text_RestoreMapObjects
 	call BackupMapObjects_
 	ld a, $24
 	ld [wSubroutine], a

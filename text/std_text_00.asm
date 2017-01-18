@@ -1118,7 +1118,7 @@ StdText_00_a6:
 	txfn 0
 
 StdText_00_a7:
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	db " の "
 	TX_CALL wBattlePlayerDenjuuName
 	line "から デンワが かかってきた!"
@@ -1138,7 +1138,7 @@ StdText_00_a9:
 	txfn 0
 
 StdText_00_aa:
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	db " を"
 	line ""
 	TX_CALL wBattlePlayerDenjuuName
@@ -1152,7 +1152,7 @@ StdText_00_ab:
 	txfn 0
 
 StdText_00_ac:
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	db "で DNAを"
 	line "さいしゅ しようとした...。"
 	txfn 0
@@ -1166,7 +1166,7 @@ StdText_00_ad:
 	txfn 0
 
 StdText_00_ae:
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	db " をてにいれた。"
 	txfn 0
 
@@ -1204,7 +1204,7 @@ StdText_00_b4:
 	txfn 4
 
 StdText_00_b5:
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	db " は"
 	line "かいぞうしんか した!!"
 	line ""
@@ -1213,7 +1213,7 @@ StdText_00_b5:
 	txfn 2
 
 StdText_00_b6:
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	db " は"
 	line "じっけんしんか した!!"
 	line ""
@@ -1239,7 +1239,7 @@ StdText_00_b9:
 
 StdText_00_ba:
 	TX_SPEED 0
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	txfn 4
 
 StdText_00_bb:
@@ -1267,7 +1267,7 @@ StdText_00_bf:
 	db " "
 	TX_SPEED 1
 	db "『"
-	TX_CALL wca53
+	TX_CALL wSpeciesNameBuffer
 	db "』を"
 	line ""
 	TX_SPEED 0

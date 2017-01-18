@@ -7137,7 +7137,7 @@ LoadFlickeringGFX: ; a5e27 (29:5e27)
 	ld a, $0
 	adc h
 	ld h, a
-	ld de, wcadf
+	ld de, wBackupObjectVisibilityFlags
 	ld b, $a
 .copy
 	ld a, [hli]
@@ -7204,7 +7204,7 @@ LoadGFXForSpecialFlickeringGFX: ; a5e95 (29:5e95)
 	ld [rVBK], a
 	ld hl, VTilesShared tile $00
 	ld bc, $1000
-	ld a, [wcadf]
+	ld a, [wBackupObjectVisibilityFlags]
 	ld e, a
 	ld a, [wcae0]
 	ld d, a
@@ -8778,7 +8778,7 @@ Func_a8d6d:
 Func_a8d82: ; a8d82 (2a:4d82)
 	call Func_a8daa
 	ld b, $0
-	ld a, [wcadf]
+	ld a, [wBackupObjectVisibilityFlags]
 	ld c, a
 	call Func_a8cc6
 	ld b, $1
@@ -8797,7 +8797,7 @@ Func_a8d82: ; a8d82 (2a:4d82)
 
 Func_a8daa: ; a8daa (2a:4daa)
 	ld a, $0
-	ld [wcadf], a
+	ld [wBackupObjectVisibilityFlags], a
 	ld [wcae0], a
 	ld [wcae1], a
 	ld [wcae2], a
@@ -8826,7 +8826,7 @@ Func_a8daa: ; a8daa (2a:4daa)
 
 .asm_a8dd7
 	ld a, b
-	ld [wcadf], a
+	ld [wBackupObjectVisibilityFlags], a
 .asm_a8ddb
 	ld a, [wOAMAnimation17_Duration + 7]
 	ld h, a
@@ -9025,7 +9025,7 @@ Func_a8f25: ; a8f25 (2a:4f25)
 Func_a8f26: ; a8f26 (2a:4f26)
 	ld b, $1
 	ld c, $1
-	ld a, [wcadf]
+	ld a, [wBackupObjectVisibilityFlags]
 	or a
 	jr nz, .asm_a8f32
 	ld b, $0
@@ -9167,7 +9167,7 @@ Func_a8fe4: ; a8fe4 (2a:4fe4)
 	or b
 	and $20
 	jr z, .asm_a9074
-	ld a, [wcadf]
+	ld a, [wBackupObjectVisibilityFlags]
 	or a
 	ret z
 	dec a
@@ -9177,7 +9177,7 @@ Func_a8fe4: ; a8fe4 (2a:4fe4)
 	ld [H_SFX_ID], a
 	ld a, [wcae6]
 	ld b, a
-	ld a, [wcadf]
+	ld a, [wBackupObjectVisibilityFlags]
 	ld c, a
 	call Func_a8cc6
 	ld a, $0
@@ -9474,7 +9474,7 @@ Func_a9279: ; a9279 (2a:5279)
 	jp PrintText_
 
 CopySpeciesNameBToCA53: ; a92a2 (2a:52a2)
-	ld de, wca53
+	ld de, wSpeciesNameBuffer
 	ld a, b
 	jr asm_a92b3
 
@@ -9483,7 +9483,7 @@ Func_a92a8:
 	jr asm_a92b3
 
 Func_a92ad:
-	ld de, wca53
+	ld de, wSpeciesNameBuffer
 	ld a, [wcaed]
 asm_a92b3
 	ld hl, DenjuuNames
@@ -15187,7 +15187,7 @@ Func_c9875: ; c9875 (32:5875)
 Func_c99ac: ; c99ac (32:59ac)
 	ld a, $2e
 	ld [wSubroutine], a
-	ld hl, wcadf
+	ld hl, wBackupObjectVisibilityFlags
 	ld a, $0
 	ld [hli], a
 	ld a, $0
@@ -15420,18 +15420,18 @@ Func_c9b17: ; c9b17 (32:5b17)
 	dec a
 	ld [wcae2], a
 .asm_c9b6e
-	ld a, [wcadf]
+	ld a, [wBackupObjectVisibilityFlags]
 	ld l, a
 	ld a, [wcae0]
 	ld h, a
 	ld bc, $8
 	add hl, bc
 	ld a, l
-	ld [wcadf], a
+	ld [wBackupObjectVisibilityFlags], a
 	ld a, h
 	ld [wcae0], a
 Func_c9b82: ; c9b82 (32:5b82)
-	ld a, [wcadf]
+	ld a, [wBackupObjectVisibilityFlags]
 	ld l, a
 	ld a, [wcae0]
 	ld h, a
