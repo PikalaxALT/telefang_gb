@@ -243,7 +243,7 @@ PhoneCall_PrintText:
 	ld [wTextDelayTimerReset], a
 	ld a, $2
 	ld [wcada], a
-	callba DrawTextboxInterior
+	callba ClearTextboxInterior
 	callba DrawPhoneTextbox
 	ret
 

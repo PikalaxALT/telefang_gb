@@ -433,11 +433,11 @@ TextSubroutine_ScrollText2: ; 2c3c7 (b:43c7)
 	ld a, [wTextLine]
 	and $1
 	jr z, .top
-	call DrawTextboxInteriorBottomRow
+	call ClearTextboxInteriorBottomRow
 	jp .skip
 
 .top
-	call DrawTextboxInteriorTopRow
+	call ClearTextboxInteriorTopRow
 .skip
 	call LoadNextLineOfText
 	ld a, [wTextSubroutine]
@@ -462,7 +462,7 @@ TextSubroutine6: ; 2c40d (b:440d)
 TextSubroutine7: ; 2c413 (b:4413)
 	call BlinkTextCursor
 	jr z, .waiting
-	call DrawTextboxInterior
+	call ClearTextboxInterior
 	ld a, [wTextBGMapTop]
 	ld de, Data_2d00f
 	ld b, $6
@@ -879,12 +879,12 @@ Func_2c6e2: ; 2c6e2 (b:46e2)
 	add hl, bc
 	ld b, $8
 	ld de, wSpeciesNameBuffer
-.asm_2c6fd
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_2c6fd
+	jr nz, .loop
 	ld a, "$"
 	ld [de], a
 	xor a
@@ -893,7 +893,7 @@ Func_2c6e2: ; 2c6e2 (b:46e2)
 	ld c, $bf
 	jp PrintStandardText
 
-PrintItemNameAndPrice: ; 2c711 (b:4711)
+LoadItemNameAndQuantityTextbox: ; 2c711 (b:4711)
 	push bc
 	call GetItemName
 	xor a
@@ -912,7 +912,7 @@ PrintItemNameAndPrice: ; 2c711 (b:4711)
 	ld [wca65], a
 	call DrawHeight1Textbox
 	pop bc
-	call PrintItemPrice
+	call PrintItemQuantity
 	ret
 
 GetItemName: ; 2c73e (b:473e)
@@ -1187,7 +1187,7 @@ OverworldIdleHudCheck: ; 2c904 (b:4904)
 .finish
 	jp EndOverworldIdleState
 
-Func_2c92e: ; 2c92e (b:492e)
+LoadItemPriceTextbox: ; 2c92e (b:492e)
 	ld a, $c0
 	ld [wTextBoxStartTile], a
 	ld a, "$"
@@ -1202,7 +1202,7 @@ Func_2c92e: ; 2c92e (b:492e)
 	call AnchorMapAndLoadTextPointer__
 	ld a, $7
 	ld [wca65], a
-	jp Func_2ca48
+	jp FinishLoadingItemPriceTextbox
 
 StdTextPointers:
 	dab StdTextPointers_00
@@ -1229,7 +1229,7 @@ StdTextPointers:
 
 Func_2c98e: ; 2c98e (b:498e)
 	call LoadTextboxFrame
-	call DrawTextboxInterior
+	call ClearTextboxInterior
 	ld de, Data_2d00f
 	ld b, $6
 	ld a, [wTextBGMapTop]
@@ -1239,7 +1239,7 @@ Func_2c98e: ; 2c98e (b:498e)
 
 Func_2c9a2: ; 2c9a2 (b:49a2)
 	call LoadTextboxFrame
-	call DrawTextboxInteriorBottomRow
+	call ClearTextboxInteriorBottomRow
 	ld de, Data_2d127
 	ld b, $3
 	ld a, [wTextBGMapTop]
@@ -1252,7 +1252,7 @@ Func_2c9a2: ; 2c9a2 (b:49a2)
 
 StartProcessOfOpeningTextbox: ; 2c9bd (b:49bd)
 	call LoadTextboxFrame
-	call DrawTextboxInterior
+	call ClearTextboxInterior
 	ld de, Data_2d0c3
 	ld b, $2
 	ld a, [wTextBGMapTop]
@@ -1261,7 +1261,7 @@ StartProcessOfOpeningTextbox: ; 2c9bd (b:49bd)
 	ret
 
 DrawMemTextbox: ; 2c9d1 (b:49d1)
-	call DrawTextboxInterior
+	call ClearTextboxInterior
 	call Func_2cd3b
 	ld de, wMapHeader
 	ld b, $4
@@ -1273,7 +1273,7 @@ DrawMemTextbox: ; 2c9d1 (b:49d1)
 
 DrawHeight1Textbox: ; 2c9e6 (b:49e6)
 	call LoadTextboxFrame
-	call DrawTextboxInteriorTopRow
+	call ClearTextboxInteriorTopRow
 	ld de, Data_2d15d
 	ld b, $4
 	ld a, [wTextBGMapTop]
@@ -1295,9 +1295,9 @@ DrawOverworldIdleHUD: ; 2c9fe (b:49fe)
 	call CopyTextboxTilemapAndHideSpritesBehind
 	ret
 
-PrintItemPrice: ; 2ca0f (b:4a0f)
+PrintItemQuantity: ; 2ca0f (b:4a0f)
 	ld a, b
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0
@@ -1325,9 +1325,9 @@ PrintItemPrice: ; 2ca0f (b:4a0f)
 	call LoadCharacter
 	ret
 
-Func_2ca48: ; 2ca48 (b:4a48)
+FinishLoadingItemPriceTextbox: ; 2ca48 (b:4a48)
 	call LoadTextboxFrame
-	call DrawTextboxInteriorBottomRow
+	call ClearTextboxInteriorBottomRow
 	ld de, Data_2d185
 	ld b, $3
 	ld a, [wTextBGMapTop]
@@ -1558,7 +1558,7 @@ ScrollTextUp: ; 2cb8c (b:4b8c)
 	push hl
 	ld de, -BG_MAP_WIDTH
 	add hl, de
-	call Func_2cbc8
+	call .WrapAroundBGWindowPointer
 	ld d, h
 	ld e, l
 	pop hl
@@ -1568,12 +1568,12 @@ ScrollTextUp: ; 2cb8c (b:4b8c)
 	jr nz, .loop
 	ret
 
-Func_2cbc8: ; 2cbc8 (b:4bc8)
+.WrapAroundBGWindowPointer:
 	ld a, h
 	cp VBGMap / $100
-	jr nc, .asm_2cbcf
+	jr nc, .okay
 	ld h, VWindow / $100
-.asm_2cbcf
+.okay
 	ret
 
 LoadNextLineOfText: ; 2cbd0 (b:4bd0)
@@ -1741,21 +1741,21 @@ Text_RestoreMapObjects: ; 2ccb9 (b:4cb9)
 	call CopyData_Under256Bytes
 	ret
 
-DrawTextboxInterior: ; 2cce5 (b:4ce5)
-	call DrawTextboxInteriorTopRow
-	jp DrawTextboxInteriorBottomRow
+ClearTextboxInterior: ; 2cce5 (b:4ce5)
+	call ClearTextboxInteriorTopRow
+	jp ClearTextboxInteriorBottomRow
 
-DrawTextboxInteriorTopRow: ; 2cceb (b:4ceb)
+ClearTextboxInteriorTopRow: ; 2cceb (b:4ceb)
 	ld a, [wTextBoxStartTile]
-draw_textbox_interior
+clear_textbox_interior
 	call GetCurrentTileVRAMAddress
 	ld b, $80
 	jp FillTextboxInterior
 
-DrawTextboxInteriorBottomRow: ; 2ccf6 (b:4cf6)
+ClearTextboxInteriorBottomRow: ; 2ccf6 (b:4cf6)
 	ld a, [wTextBoxStartTile]
 	add $10
-	jr draw_textbox_interior
+	jr clear_textbox_interior
 
 FillTextboxInterior: ; 2ccfd (b:4cfd)
 	ld a, [wFontPaletteMode]

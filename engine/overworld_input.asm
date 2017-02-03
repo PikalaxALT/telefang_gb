@@ -245,7 +245,7 @@ Func_39162: ; 39162 (e:5162)
 	jr z, .asm_3917c
 	cp $25
 	jr z, .asm_3917c
-	call Func_2fb4
+	call TakeItem
 .asm_3917c
 	ld b, a
 	callba GetItemName
@@ -295,11 +295,11 @@ Func_391c1: ; 391c1 (e:51c1)
 	ld c, $ad
 	ld a, b
 	or a
-	jr z, .asm_391ee
-	call Func_2fa0
+	jr z, .got_text
+	call GiveItem
 	callba GetItemName
 	ld c, $ae
-.asm_391ee
+.got_text
 	jr .asm_3926d
 
 .asm_391f0
@@ -2059,7 +2059,7 @@ Func_39ebe: ; 39ebe (e:5ebe)
 	ld [wCurObjectStruct + 1], a
 	ld a, l
 	ld [wCurObjectStruct], a
-	call Func_2cb7
+	call GetDirectionFromObjectToPlayer_
 	ld a, b
 	or a
 	jr nz, .asm_39f16

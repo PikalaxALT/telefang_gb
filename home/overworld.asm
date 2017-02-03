@@ -101,11 +101,11 @@ Func_21db::
 	ld a, $ff
 	ld [wc9f5], a
 	call Func_31c5
-	ld a, BANK(Func_30240)
+	ld a, BANK(ForceReloadPartnerDenjuuSprite)
 	rst Bankswitch
 	ld a, $ff
-	ld [wca51], a
-	call Func_30240
+	ld [wLoadedPartnerDenjuuSprite], a
+	call ForceReloadPartnerDenjuuSprite
 	ld a, $4
 	ld [wSubroutine], a
 	call Func_236c

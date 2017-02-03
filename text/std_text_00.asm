@@ -191,22 +191,22 @@ StdTextPointers_00:
 	dw StdText_00_bd ; bd
 	dw StdText_00_be ; be
 	dw StdText_00_bf ; bf
-	dw StdText_00_c0 ; 0
-	dw StdText_00_c1 ; 1
-	dw StdText_00_c2 ; 2
-	dw StdText_00_c3 ; 3
-	dw StdText_00_c4 ; 4
-	dw StdText_00_c5 ; 5
-	dw StdText_00_c5 ; 6
-	dw StdText_00_c5 ; 7
-	dw StdText_00_c5 ; 8
-	dw StdText_00_c5 ; 9
-	dw StdText_00_c5 ; a
-	dw StdText_00_c5 ; b
-	dw StdText_00_c5 ; c
-	dw StdText_00_c5 ; d
-	dw StdText_00_c5 ; e
-	dw StdText_00_c5 ; f
+	dw StdText_00_c0 ; c0
+	dw StdText_00_c1 ; c1
+	dw StdText_00_c2 ; c2
+	dw StdText_00_c3 ; c3
+	dw StdText_00_c4 ; c4
+	dw StdText_00_c5 ; c5
+	dw StdText_00_c5 ; c6
+	dw StdText_00_c5 ; c7
+	dw StdText_00_c5 ; c8
+	dw StdText_00_c5 ; c9
+	dw StdText_00_c5 ; ca
+	dw StdText_00_c5 ; cb
+	dw StdText_00_c5 ; cc
+	dw StdText_00_c5 ; cd
+	dw StdText_00_c5 ; ce
+	dw StdText_00_c5 ; cf
 
 StdText_00_00:
 	TX_CALL wBattleStringBuffer

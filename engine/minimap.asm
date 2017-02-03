@@ -23,10 +23,10 @@ FadeOutOverworldForMinimap:
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wCurPlayerFacing]
 	ld [wc9f5], a
-	ld a, [wca51]
-	ld [wca50], a
+	ld a, [wLoadedPartnerDenjuuSprite]
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, $0
-	ld [wca64], a
+	ld [wPartnerDenjuuSpriteAddr + 1], a
 	jp IncrementSubroutine
 
 LoadMinimapGFX: ; a8046 (2a:4046)

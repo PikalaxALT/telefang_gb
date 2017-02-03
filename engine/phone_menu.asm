@@ -4026,7 +4026,7 @@ Func_12279: ; 12279 (4:6279)
 	ld [wcb37], a
 	ld [wcb21], a
 	enable_sram
-	ld hl, wcdbc
+	ld hl, wItems
 	ld b, $44
 	ld de, s1_b000
 .loop

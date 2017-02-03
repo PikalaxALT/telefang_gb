@@ -115,11 +115,11 @@ Func_30090:
 	ld a, $14
 	ld [hl], a
 	ld a, [wCurPlayerFacing]
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	cp $9
 	jr c, .asm_300cf
 	xor a
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 .asm_300cf
 	ld de, Data_301bf
 .asm_300d1
@@ -153,7 +153,7 @@ Func_30090:
 	call Func_302a8
 	ld a, [wPhoneCallSubroutine]
 	cp $8
-	jp nz, Func_30240
+	jp nz, ForceReloadPartnerDenjuuSprite
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, [wCurObjectStruct]
@@ -246,7 +246,7 @@ Func_30090:
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $a8
 	ld [wPlayerObjectStruct_Duration + 11], a
-	call Func_30240
+	call ForceReloadPartnerDenjuuSprite
 	jp Func_30741
 
 Data_301bf:
@@ -269,7 +269,7 @@ Func_301c3:
 	cp $0
 	jr z, .asm_301f1
 	ld a, $3
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, [wPlayerObjectStruct_XCoord]
 	ld [wPartnerDenjuuObjectStruct_XCoord], a
 	ld a, [wPlayerObjectStruct_YCoord]
@@ -280,7 +280,7 @@ Func_301c3:
 
 .asm_301f1
 	ld a, $0
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, [wPlayerObjectStruct_XCoord]
 	ld [wPartnerDenjuuObjectStruct_XCoord], a
 	ld a, [wPlayerObjectStruct_YCoord]
@@ -291,7 +291,7 @@ Func_301c3:
 
 .asm_30207
 	ld a, $6
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, [wPlayerObjectStruct_YCoord]
 	ld [wPartnerDenjuuObjectStruct_YCoord], a
 	ld a, [wPlayerObjectStruct_XCoord]
@@ -302,7 +302,7 @@ Func_301c3:
 
 .asm_3021d
 	ld a, $6
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, [wPlayerObjectStruct_YCoord]
 	ld [wPartnerDenjuuObjectStruct_YCoord], a
 	ld a, [wPlayerObjectStruct_XCoord]
@@ -315,23 +315,23 @@ Func_301c3:
 	xor $1
 	ld [wPartnerDenjuuObjectStruct_TemplateIdx], a
 	call Func_302a8
-	jr Func_30240
+	jr ForceReloadPartnerDenjuuSprite
 
-Func_30240: ; 30240 (c:4240)
+ForceReloadPartnerDenjuuSprite: ; 30240 (c:4240)
 	ld hl, wPartnerDenjuuObjectStruct
 	ld a, $ff
-	ld [wca51], a
-	call Func_3024f
-	call Func_320b
+	ld [wLoadedPartnerDenjuuSprite], a
+	call RequestPartnerDenjuuSprite
+	call LoadPartnerDenjuuSprite
 	ret
 
-Func_3024f: ; 3024f (c:424f)
-	ld a, [wca51]
+RequestPartnerDenjuuSprite: ; 3024f (c:424f)
+	ld a, [wLoadedPartnerDenjuuSprite]
 	ld b, a
-	ld a, [wca50]
+	ld a, [wRequestedPartnerDenjuuSprite]
 	cp b
 	jr z, .nope
-	ld [wca51], a
+	ld [wLoadedPartnerDenjuuSprite], a
 	push af
 	ld a, [wc9db]
 	ld c, $0
@@ -351,7 +351,7 @@ Func_3024f: ; 3024f (c:424f)
 	ld b, a
 	ld a, SPRITES_01
 	add c
-	ld [wca62], a
+	ld [wPartnerDenjuuSpriteBank], a
 	ld a, b
 	ld d, $0
 	ld e, a
@@ -368,14 +368,14 @@ Func_3024f: ; 3024f (c:424f)
 	rr e
 	add hl, de
 	ld a, l
-	ld [wca63], a
+	ld [wPartnerDenjuuSpriteAddr], a
 	ld a, h
-	ld [wca64], a
+	ld [wPartnerDenjuuSpriteAddr + 1], a
 	ret
 
 .nope
 	ld a, $0
-	ld [wca64], a
+	ld [wPartnerDenjuuSpriteAddr + 1], a
 	ret
 
 Func_302a8: ; 302a8 (c:42a8)
@@ -429,7 +429,7 @@ Func_302a8: ; 302a8 (c:42a8)
 	jr z, .asm_30315
 	ld a, [wc94a]
 	and $7f
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld b, $2
 	ld a, [wc94a]
 	and $80
@@ -664,7 +664,7 @@ asm_30444
 	ld a, [hl]
 	ld b, a
 	and $7f
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld c, $2
 	bit 7, b
 	jr z, .asm_30475
@@ -677,7 +677,7 @@ asm_30444
 	ld l, a
 	ld a, c
 	ld [hl], a
-	call Func_3024f
+	call RequestPartnerDenjuuSprite
 	jp Func_303d9
 
 Data_30487:
@@ -862,13 +862,13 @@ Func_3059f: ; 3059f (c:459f)
 	sub $3
 	inc b
 .asm_305b6
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, [wCurObjectStruct]
 	add $2
 	ld l, a
 	ld a, b
 	ld [hl], a
-	call Func_3024f
+	call RequestPartnerDenjuuSprite
 	ld hl, wPartnerDenjuuObjectStruct
 	call Func_304c9
 	ld d, a
@@ -968,7 +968,7 @@ Func_305e4: ; 305e4 (c:45e4)
 	call Func_30741
 	ld a, $1
 	ld [wOBPalUpdate], a
-	jp Func_30240
+	jp ForceReloadPartnerDenjuuSprite
 
 Func_30689: ; 30689 (c:4689)
 	ld a, [wCurObjectStruct]

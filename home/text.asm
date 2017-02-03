@@ -1,5 +1,17 @@
-Func_2ceb::
-	homecall PrintItemNameAndPrice, PrintText, PrintText
+PrintText_:
+	homecall PrintText
+	ret
+
+PrintMoneyInShop_:
+	homecall PrintMoneyInShop
+	ret
+
+OverworldIdleHUD_:
+	homecall OverworldIdleHUD
+	ret
+
+LoadItemNameAndQuantityTextbox_::
+	homecall LoadItemNameAndQuantityTextbox, PrintText, PrintText
 	ld a, $0
 	ld [wTextSubfunction], a
 	ret
@@ -8,8 +20,8 @@ DecimalConvertAndRightAlignTwoByteFiveDigitNumber_::
 	homecall DecimalConvertAndRightAlignTwoByteFiveDigitNumber
 	ret
 
-Func_2d10::
-	homecall Func_2c92e, PrintText, PrintText, PrintText
+LoadItemPriceTextbox_::
+	homecall LoadItemPriceTextbox, PrintText, PrintText, PrintText
 	ld a, $0
 	ld [wTextSubfunction], a
 	ret

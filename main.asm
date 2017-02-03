@@ -4404,7 +4404,7 @@ Func_3aa01:
 	ld l, a
 	ld a, $3c
 	ld [hl], a
-	call Func_2cb7
+	call GetDirectionFromObjectToPlayer_
 	ld a, b
 	ld de, Data_3aac3
 	add e
@@ -6341,7 +6341,7 @@ Func_a573e:
 	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
-	callba DrawTextboxInterior
+	callba ClearTextboxInterior
 	callba Func_a8c68
 	jp PrintText_
 
@@ -8443,14 +8443,14 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	call Func_a8c30
 	ld a, $b0
 	ld [wTextBoxStartTile], a
-	callba DrawTextboxInteriorTopRow
+	callba ClearTextboxInteriorTopRow
 	ld a, $c0
 	ld [wTextBoxStartTile], a
 	ld a, $e0
 	ld [wTileWhere0IsLoaded], a
 	ld a, $1
 	ld [wca65], a
-	callba DrawTextboxInterior
+	callba ClearTextboxInterior
 	ld a, BANK(Func_a89e5)
 	ld [wPrevROMBank], a
 	ld bc, $a
@@ -9000,7 +9000,7 @@ Func_a8ea3: ; a8ea3 (2a:4ea3)
 	ld [wTileWhere0IsLoaded], a
 	ld a, $1
 	ld [wca65], a
-	callba DrawTextboxInterior
+	callba ClearTextboxInterior
 	ld d, $c
 	ld b, $0
 	ld c, $b7
@@ -9309,7 +9309,7 @@ Func_a912c:
 	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
-	callba DrawTextboxInteriorTopRow
+	callba ClearTextboxInteriorTopRow
 	ld a, BANK(Tilemap_e0c38)
 	hlbgcoord 2, 1
 	ld de, Tilemap_e0c38 + $16
@@ -9469,7 +9469,7 @@ Func_a9279: ; a9279 (2a:5279)
 	call LoadAndStartStdTextPointer_
 	ld a, $2
 	ld [wcada], a
-	callba DrawTextboxInterior
+	callba ClearTextboxInterior
 	call Func_a8c68
 	jp PrintText_
 
@@ -9853,7 +9853,7 @@ Func_a9595: ; a9595 (2a:5595)
 	ld a, [wOAMAnimation17_Duration + 13]
 	dec a
 	add b
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0
@@ -14912,7 +14912,7 @@ Func_c97d2: ; c97d2 (32:57d2)
 	jr z, .asm_c980d
 	ld b, $0
 .asm_c980d
-	ld a, [wca50]
+	ld a, [wRequestedPartnerDenjuuSprite]
 	or b
 	ld [wc94a], a
 .asm_c9814

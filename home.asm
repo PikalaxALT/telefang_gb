@@ -3449,24 +3449,12 @@ Func_2c94:
 	rst Bankswitch
 	ret
 
-Func_2caa:
-	homecall Func_3024f
+RequestPartnerDenjuuSprite_:
+	homecall RequestPartnerDenjuuSprite
 	ret
 
-Func_2cb7:
-	homecall Func_3102a
-	ret
-
-PrintText_:
-	homecall PrintText
-	ret
-
-PrintMoneyInShop_:
-	homecall PrintMoneyInShop
-	ret
-
-OverworldIdleHUD_:
-	homecall OverworldIdleHUD
+GetDirectionFromObjectToPlayer_:
+	homecall GetDirectionFromObjectToPlayer
 	ret
 
 INCLUDE "home/text.asm"
@@ -3902,10 +3890,10 @@ GetPhoneCallData:
 	rst Bankswitch
 	ret
 
-Func_2fa0:
+GiveItem:
 	push af
 	push hl
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0
@@ -3913,17 +3901,17 @@ Func_2fa0:
 	ld h, a
 	ld a, [hl]
 	cp 100
-	jr nc, .asm_2fb1
+	jr nc, .okay
 	inc [hl]
-.asm_2fb1
+.okay
 	pop hl
 	pop af
 	ret
 
-Func_2fb4:
+TakeItem:
 	push af
 	push hl
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0
@@ -3931,9 +3919,9 @@ Func_2fb4:
 	ld h, a
 	ld a, [hl]
 	or a
-	jr z, .asm_2fc4
+	jr z, .okay
 	dec [hl]
-.asm_2fc4
+.okay
 	pop hl
 	pop af
 	ret
@@ -4260,7 +4248,7 @@ ENDR
 	pop af
 	rst Bankswitch
 asm_31c2
-	jp Func_320b
+	jp LoadPartnerDenjuuSprite
 
 Func_31c5: ; 31c5 (0:31c5)
 	ld a, [wCurPlayerFacing]
@@ -4296,16 +4284,16 @@ ENDR
 	add hl, de
 	ret
 
-Func_320b: ; 320b (0:320b)
-	ld a, [wca64]
+LoadPartnerDenjuuSprite: ; 320b (0:320b)
+	ld a, [wPartnerDenjuuSpriteAddr + 1]
 	ld h, a
 	or a
 	jr z, .asm_3237
 	ld a, [wROMBank]
 	push af
-	ld a, [wca62]
+	ld a, [wPartnerDenjuuSpriteBank]
 	rst Bankswitch
-	ld a, [wca63]
+	ld a, [wPartnerDenjuuSpriteAddr]
 	ld l, a
 	ld de, VTilesOB tile $4
 	ld bc, $20

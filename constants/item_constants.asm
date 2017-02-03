@@ -1,70 +1,70 @@
 	const_def
 
-	const ITEM_FLAMETHROWER
-	const ITEM_GUN
-	const ITEM_REVOLVER
-	const ITEM_BAZOOKA
-	const ITEM_MACHINE_GUN
-	const ITEM_MISSILE
-	const ITEM_BOMB
-	const ITEM_GATLING_GUN
-	const ITEM_SABRE
-	const ITEM_DRILL
-	const ITEM_JET_ENGINE
-	const ITEM_PROP_ENGINE
-	const ITEM_SHURIKEN
-	const ITEM_BATTERY
-	const ITEM_ARCHERY_SET
-	const ITEM_MICROWAVE
-	const ITEM_IRON
-	const ITEM_MIXER
-	const ITEM_PHONE
-	const ITEM_ANTENNA
-	const ITEM_SPANNER
-	const ITEM_SAW
-	const ITEM_CHAINSAW
-	const ITEM_RAY_GUN
-	const ITEM_AXE
-	const ITEM_SCREWDRIVER
-	const ITEM_SCREW
-	const ITEM_WINDER
-	const ITEM_GEAR
-	const ITEM_PHONE_CARD
-	const ITEM_LANCE
-	const ITEM_CRANE
-	const ITEM_ARMY_KNIFE
-	const ITEM_SICKLE
-	const ITEM_COMPUTER
-	const ITEM_MOBILE_PC
-	const ITEM_HAMMER
-	const ITEM_SYRINGE
-	const ITEM_CAMERA
-	const ITEM_VIDEO_CAMERA
-	const ITEM_FRYING_PAN
-	const ITEM_PENCIL
-	const ITEM_TIRE
-	const ITEM_GAS_TANK
-	const ITEM_FAUCET
-	const ITEM_BUCKET
-	const ITEM_VACUUM
-	const ITEM_MOUSE
-	const ITEM_KEY
-	const ITEM_GAME_MACHINE
-	const ITEM_PLUSH_TOY
-	const ITEM_BOMBOM
-	const ITEM_KICKBOARD
-	const ITEM_TITALLIUM
-	const ITEM_LUNATIUM
-	const ITEM_GAIAMOND
-	const ITEM_ROUND_METAL
-	const ITEM_TITANUUM
-	const ITEM_FUSION_PASS_1
-	const ITEM_FUSION_PASS_2
-	const ITEM_FUSION_PASS_3
-	const ITEM_LAB_PASS_1
-	const ITEM_LAB_PASS_2
-	const ITEM_LAB_PASS_3
-	const ITEM_BIOLENT_3
-	const ITEM_GRAPPLITE_9
-	const ITEM_GIGAIA_00
-	const ITEM_DEAD_ITEM
+	const ITEM_FLAMETHROWER  ; 00
+	const ITEM_GUN           ; 01
+	const ITEM_REVOLVER      ; 02
+	const ITEM_BAZOOKA       ; 03
+	const ITEM_MACHINE_GUN   ; 04
+	const ITEM_MISSILE       ; 05
+	const ITEM_BOMB          ; 06
+	const ITEM_GATLING_GUN   ; 07
+	const ITEM_SABRE         ; 08
+	const ITEM_DRILL         ; 09
+	const ITEM_JET_ENGINE    ; 0a
+	const ITEM_PROP_ENGINE   ; 0b
+	const ITEM_SHURIKEN      ; 0c
+	const ITEM_BATTERY       ; 0d
+	const ITEM_ARCHERY_SET   ; 0e
+	const ITEM_MICROWAVE     ; 0f
+	const ITEM_IRON          ; 10
+	const ITEM_MIXER         ; 11
+	const ITEM_PHONE         ; 12
+	const ITEM_ANTENNA       ; 13
+	const ITEM_SPANNER       ; 14
+	const ITEM_SAW           ; 15
+	const ITEM_CHAINSAW      ; 16
+	const ITEM_RAY_GUN       ; 17
+	const ITEM_AXE           ; 18
+	const ITEM_SCREWDRIVER   ; 19
+	const ITEM_SCREW         ; 1a
+	const ITEM_WINDER        ; 1b
+	const ITEM_GEAR          ; 1c
+	const ITEM_PHONE_CARD    ; 1d
+	const ITEM_LANCE         ; 1e
+	const ITEM_CRANE         ; 1f
+	const ITEM_ARMY_KNIFE    ; 20
+	const ITEM_SICKLE        ; 21
+	const ITEM_COMPUTER      ; 22
+	const ITEM_MOBILE_PC     ; 23
+	const ITEM_HAMMER        ; 24
+	const ITEM_SYRINGE       ; 25
+	const ITEM_CAMERA        ; 26
+	const ITEM_VIDEO_CAMERA  ; 27
+	const ITEM_FRYING_PAN    ; 28
+	const ITEM_PENCIL        ; 29
+	const ITEM_TIRE          ; 2a
+	const ITEM_GAS_TANK      ; 2b
+	const ITEM_FAUCET        ; 2c
+	const ITEM_BUCKET        ; 2d
+	const ITEM_VACUUM        ; 2e
+	const ITEM_MOUSE         ; 2f
+	const ITEM_KEY           ; 30
+	const ITEM_GAME_MACHINE  ; 31
+	const ITEM_PLUSH_TOY     ; 32
+	const ITEM_BOMBOM        ; 33
+	const ITEM_KICKBOARD     ; 34
+	const ITEM_TITALLIUM     ; 35
+	const ITEM_LUNATIUM      ; 36
+	const ITEM_GAIAMOND      ; 37
+	const ITEM_ROUND_METAL   ; 38
+	const ITEM_TITANUUM      ; 39
+	const ITEM_FUSION_PASS_1 ; 3a
+	const ITEM_FUSION_PASS_2 ; 3b
+	const ITEM_FUSION_PASS_3 ; 3c
+	const ITEM_LAB_PASS_1    ; 3d
+	const ITEM_LAB_PASS_2    ; 3e
+	const ITEM_LAB_PASS_3    ; 3f
+	const ITEM_BIOLENT_3     ; 40
+	const ITEM_GRAPPLITE_9   ; 41
+	const ITEM_GIGAIA_00     ; 42
+	const ITEM_DEAD_ITEM     ; 43

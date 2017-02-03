@@ -720,24 +720,24 @@ ScriptCommand_1b: ; 3c4d4 (f:44d4)
 	ld a, wPartnerDenjuuObjectStruct / $100
 	ld [hl], a
 	ld hl, wPartnerDenjuuObjectStruct
-	call Func_2cb7
+	call GetDirectionFromObjectToPlayer_
 	ld d, $2
 	ld a, b
-	cp $3
-	jr nz, .asm_3c4ee
+	cp $3 ; left
+	jr nz, .skip
 	ld b, $2
 	ld d, $3
-.asm_3c4ee
+.skip
 	ld a, d
 	ld [wPartnerDenjuuObjectStruct_TemplateIdx], a
 	ld hl, Data_3c356
 	ld a, b
 	add a
 	add b
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, $ff
-	ld [wca51], a
-	call Func_2caa
+	ld [wLoadedPartnerDenjuuSprite], a
+	call RequestPartnerDenjuuSprite_
 	ld b, $1
 	call AdvanceScriptPointer
 	scf
@@ -761,10 +761,10 @@ ScriptCommand_1c: ; 3c50a (f:450a)
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wca50], a
+	ld [wRequestedPartnerDenjuuSprite], a
 	ld a, $ff
-	ld [wca51], a
-	call Func_2caa
+	ld [wLoadedPartnerDenjuuSprite], a
+	call RequestPartnerDenjuuSprite_
 	ld b, $2
 	call AdvanceScriptPointer
 	scf
@@ -1134,7 +1134,7 @@ Script_StartBattle: ; 3c76a (f:476a)
 
 ScriptCommand_36: ; 3c78b (f:478b)
 	ld a, [wScriptBuffer + 1]
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0
@@ -1152,7 +1152,7 @@ ScriptCommand_36: ; 3c78b (f:478b)
 
 ScriptCommand_37: ; 3c7a5 (f:47a5)
 	ld a, [wScriptBuffer + 1]
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0
@@ -1559,7 +1559,7 @@ Script_FacePlayer: ; 3ca06 (f:4a06)
 	ld c, a
 	call ScriptEngine_GetObjectStruct
 	jr z, asm_3ca2b
-	call Func_2cb7
+	call GetDirectionFromObjectToPlayer_
 asm_3ca14
 	ld a, [wCurObjectStruct]
 	add $10
@@ -1589,7 +1589,7 @@ Script_FaceAwayFromPlayer: ; 3ca32 (f:4a32)
 	ld c, a
 	call ScriptEngine_GetObjectStruct
 	jr z, asm_3ca2b
-	call Func_2cb7
+	call GetDirectionFromObjectToPlayer_
 	ld a, b
 	xor $1
 	ld b, a
@@ -2137,7 +2137,7 @@ Script_GiveDenjuu: ; 3cd38 (f:4d38)
 
 ScriptCommand_5a: ; 3ce0f (f:4e0f)
 	ld a, [wScriptBuffer + 1]
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0

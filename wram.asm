@@ -560,8 +560,8 @@ wca4c:: ds 1
 wca4d:: ds 1
 wca4e:: ds 1
 wca4f:: ds 1
-wca50:: ds 1
-wca51:: ds 1
+wRequestedPartnerDenjuuSprite:: ds 1
+wLoadedPartnerDenjuuSprite:: ds 1
 wca52:: ds 1
 
 wSpeciesNameBuffer:: ds 10
@@ -570,9 +570,8 @@ wca5e:: ds 1
 wca5f:: ds 1
 wca60:: ds 1
 wca61:: ds 1
-wca62:: ds 1
-wca63:: ds 1
-wca64:: ds 1
+wPartnerDenjuuSpriteBank:: ds 1
+wPartnerDenjuuSpriteAddr:: dw
 wca65:: ds 1
 wSpecialID:: ds 1
 wca67:: ds 1
@@ -793,7 +792,7 @@ wNumFramesHoldingADuringText:: ds 1
 wcdb9:: ds 1
 wcdba:: ds 1
 wcdbb:: ds 1
-wcdbc:: ds 1
+wItems:: ds 1
 wcdbd:: ds 1
 wcdbe:: ds 1
 wcdbf:: ds 1

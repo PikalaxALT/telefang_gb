@@ -638,7 +638,7 @@ Func_30b23:
 	ret
 
 Func_30b4e: ; 30b4e (c:4b4e)
-	call Func_3102a
+	call GetDirectionFromObjectToPlayer
 	ld a, [wCurObjectStruct]
 	add $10
 	ld l, a
@@ -1096,7 +1096,7 @@ Func_30dbf: ; 30dbf (c:4dbf)
 	ld a, e
 	cp $28
 	jr z, .asm_30e52
-	call Func_3102a
+	call GetDirectionFromObjectToPlayer
 	ld de, Data_30efc
 	ld a, b
 	add e
@@ -1386,7 +1386,7 @@ Func_30f90:
 Func_31007:
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
-	call Func_3102a
+	call GetDirectionFromObjectToPlayer
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, [wCurObjectStruct]
@@ -1407,7 +1407,12 @@ Func_31007:
 	ld [hl], a
 	ret
 
-Func_3102a: ; 3102a (c:502a)
+GetDirectionFromObjectToPlayer: ; 3102a (c:502a)
+; Returns to b
+; 0: Face Up
+; 1: Face Down
+; 2: Face Right
+; 3: Face Left
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld de, $0
@@ -1418,11 +1423,11 @@ Func_3102a: ; 3102a (c:502a)
 	ld b, a
 	ld a, [wPlayerObjectStruct_XCoord]
 	sub b
-	jr c, .asm_31042
+	jr c, .object_to_right
 	cpl
 	inc a
 	inc d
-.asm_31042
+.object_to_right
 	ld c, a
 	ld a, [wCurObjectStruct]
 	add $4
@@ -1431,39 +1436,39 @@ Func_3102a: ; 3102a (c:502a)
 	ld b, a
 	ld a, [wPlayerObjectStruct_YCoord]
 	sub b
-	jr c, .asm_31054
+	jr c, .object_below
 	cpl
 	inc a
 	inc e
-.asm_31054
+.object_below
 	or a
-	jr z, .asm_3106a
+	jr z, .no_y_displacement
 	ld b, a
 	ld a, c
 	or a
-	jr z, .asm_31060
+	jr z, .no_x_displacement
 	ld a, b
 	cp c
-	jr nc, .asm_3106a
-.asm_31060
+	jr nc, .no_y_displacement
+.no_x_displacement
 	ld a, e
 	or a
-	jr nz, .asm_31067
+	jr nz, .return_face_down
 	ld b, $1
 	ret
 
-.asm_31067
+.return_face_down
 	ld b, $0
 	ret
 
-.asm_3106a
+.no_y_displacement
 	ld a, d
 	or a
-	jr nz, .asm_31071
+	jr nz, .return_face_left
 	ld b, $2
 	ret
 
-.asm_31071
+.return_face_left
 	ld b, $3
 	ret
 
@@ -1827,7 +1832,7 @@ Func_31241: ; 31241 (c:5241)
 	ld a, $0
 	ld [hl], a
 .asm_31299
-	call Func_3102a
+	call GetDirectionFromObjectToPlayer
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	ld a, [wCurObjectStruct]
@@ -3983,7 +3988,7 @@ Func_3202b:
 	inc a
 	ld [hl], a
 	cp $3c
-	jr c, .asm_3205a
+	jr c, .check_item
 	ld a, [wCurObjectStruct]
 	ld l, a
 	xor a
@@ -3999,17 +4004,17 @@ Func_3202b:
 	ld [H_SFX_ID], a
 	ret
 
-.asm_3205a
+.check_item
 	cp $26
-	jr nz, .asm_3206c
+	jr nz, .skip
 	ld a, [wCurObjectStruct]
 	add $12
 	ld l, a
 	ld a, [hl]
 	ld b, a
-	call Func_2fa0
+	call GiveItem
 	call Func_33bc
-.asm_3206c
+.skip
 	ld a, [wOverworldFrameCounter]
 	and $7
 	ret nz
@@ -5665,7 +5670,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	call Func_30d14
 	cp $12
 	jp nc, Func_32bb1
-	call Func_3102a
+	call GetDirectionFromObjectToPlayer
 	ld de, Data_30efc
 	ld a, b
 	add e
@@ -5695,7 +5700,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	ld l, a
 	ld a, [hl]
 	ld b, a
-	call Func_2ceb
+	call LoadItemNameAndQuantityTextbox_
 	ld a, [wCurObjectStruct + 1]
 	ld h, a
 	call Func_32bcd
@@ -5816,7 +5821,7 @@ Func_32bcd: ; 32bcd (c:6bcd)
 	ld b, $0
 	ld c, $9e
 	ld d, $0
-	call Func_2d10
+	call LoadItemPriceTextbox_
 	ld a, $0
 	ld [wTextSubfunction], a
 	ret
@@ -6468,7 +6473,7 @@ Func_33018: ; 33018 (c:7018)
 
 Func_33047: ; 33047 (c:7047)
 	push hl
-	ld hl, wcdbc
+	ld hl, wItems
 	add l
 	ld l, a
 	ld a, $0
