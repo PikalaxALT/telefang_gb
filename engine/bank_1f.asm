@@ -1087,7 +1087,7 @@ Func_7c7e4: ; 7c7e4 (1f:47e4)
 	or a
 	jr nz, .asm_7c827
 	xor a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 	ld b, $0
 	ld hl, wd000
 .asm_7c7f3
@@ -1102,9 +1102,9 @@ Func_7c7e4: ; 7c7e4 (1f:47e4)
 	pop hl
 	cp $0
 	jr z, .asm_7c80d
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .asm_7c80d
 	ld a, $fe
 	cp b
@@ -1114,7 +1114,7 @@ Func_7c7e4: ; 7c7e4 (1f:47e4)
 
 .asm_7c815
 	call CloseSRAM
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $2
 	jr c, .asm_7c827
 	ld a, $f0
@@ -1155,7 +1155,7 @@ Func_7c858: ; 7c858 (1f:4858)
 	inchlntimes
 	ld a, [hl]
 	ld b, a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp b
 	jr nc, .asm_7c876
 	ld a, $e0
@@ -1395,7 +1395,7 @@ Func_7c947: ; 7c947 (1f:4947)
 	ld a, b
 	ld [wNumDenjuuInAddressBook], a
 	call Func_7d620
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	dec a
 	ld b, $0
 	ld a, a
@@ -1701,7 +1701,7 @@ Func_7ccf9: ; 7ccf9 (1f:4cf9)
 	ld a, $0
 	call Func_7d949
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wd429]
 	dec a
 	ld [wd429], a
@@ -1720,7 +1720,7 @@ Func_7cd25: ; 7cd25 (1f:4d25)
 	ld a, $1
 	call Func_7d949
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wd429]
 	dec a
 	ld [wd429], a
@@ -1739,7 +1739,7 @@ Func_7cd51: ; 7cd51 (1f:4d51)
 	ld a, $2
 	call Func_7d949
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wd429]
 	dec a
 	ld [wd429], a
@@ -2339,7 +2339,7 @@ Func_7d1ed: ; 7d1ed (1f:51ed)
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_7d5f1
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	call OpenSRAMBank2
 	ld a, [wBattleMenuSelection]
 	ld d, a
@@ -2440,7 +2440,7 @@ Func_7d24d: ; 7d24d (1f:524d)
 
 Func_7d2c3: ; 7d2c3 (1f:52c3)
 	call OpenSRAMBank2
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld [wd5a5], a
 	ld [wd5aa], a
 	cp $1
@@ -2586,7 +2586,7 @@ Func_7d2f2: ; 7d2f2 (1f:52f2)
 
 Func_7d3ba:
 	call OpenSRAMBank2
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld [wd5a5], a
 	ld [wd5aa], a
 	cp $1
@@ -2967,7 +2967,7 @@ Func_7d602: ; 7d602 (1f:5602)
 .asm_7d610
 	ld a, [wd4a1]
 	ld b, a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 .asm_7d617
 	sub $3
 	dec b
@@ -2978,7 +2978,7 @@ Func_7d602: ; 7d602 (1f:5602)
 
 Func_7d620: ; 7d620 (1f:5620)
 	xor a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 	ld a, $fe
 	ld b, a
 	ld hl, wd000
@@ -3000,7 +3000,7 @@ Func_7d620: ; 7d620 (1f:5620)
 	ld [wd4ec], a
 	push hl
 	ld hl, wd200
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inchlntimes
 	ld a, [wd4ec]
 	ld [hl], a
@@ -3008,7 +3008,7 @@ Func_7d620: ; 7d620 (1f:5620)
 	push hl
 	ld hl, wd100
 	ld d, $0
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld e, a
 	add hl, de
 	ld a, [wCurDenjuuLevel]
@@ -3016,9 +3016,9 @@ Func_7d620: ; 7d620 (1f:5620)
 	pop hl
 	ld a, b
 	ld [hli], a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .asm_7d675
 	ld a, $0
 	cp b
@@ -4799,7 +4799,7 @@ Func_7e43a: ; 7e43a (1f:643a)
 	or a
 	jr nz, .asm_7e481
 	xor a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 	ld b, $0
 	ld hl, wd000
 .asm_7e449
@@ -4817,16 +4817,16 @@ Func_7e43a: ; 7e43a (1f:643a)
 	pop hl
 	cp $0
 	jr z, .asm_7e469
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .asm_7e469
 	inc b
 	ld a, $fe
 	cp b
 	jr nz, .asm_7e449
 	call CloseSRAM
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $1
 	jr c, .asm_7e481
 	ld a, $f0
@@ -4870,7 +4870,7 @@ Func_7e4b4:
 	inchlntimes
 	ld a, [hl]
 	ld b, a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp b
 	jr nc, asm_7e4d2
 asm_7e4ca
@@ -5021,7 +5021,7 @@ Func_7e598: ; 7e598 (1f:6598)
 	ld [wd43a], a
 	call Func_7ebe3
 	call CloseSRAM
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	dec a
 	ld b, $0
 	ld a, a
@@ -5261,7 +5261,7 @@ Func_7e7ef: ; 7e7ef (1f:67ef)
 	ld a, $0
 	call Func_7d949
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	jp Func_7e83d
 
 Func_7e80a: ; 7e80a (1f:680a)
@@ -5273,7 +5273,7 @@ Func_7e80a: ; 7e80a (1f:680a)
 	ld a, $1
 	call Func_7d949
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	jp Func_7e83d
 
 Func_7e825: ; 7e825 (1f:6825)
@@ -5285,7 +5285,7 @@ Func_7e825: ; 7e825 (1f:6825)
 	ld a, $2
 	call Func_7d949
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 Func_7e83d: ; 7e83d (1f:683d)
 	jp Func_7e89d
 
@@ -5719,7 +5719,7 @@ Func_7eb93: ; 7eb93 (1f:6b93)
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_7d5f1
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	call OpenSRAMBank2
 	ld a, [wBattleMenuSelection]
 	ld d, a
@@ -5742,7 +5742,7 @@ Func_7eb93: ; 7eb93 (1f:6b93)
 
 Func_7ebe3: ; 7ebe3 (1f:6be3)
 	xor a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 	ld b, $0
 	ld hl, wd000
 .asm_7ebec
@@ -5762,16 +5762,16 @@ Func_7ebe3: ; 7ebe3 (1f:6be3)
 	jr z, .asm_7ec0e
 	ld a, b
 	ld [hli], a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .asm_7ec0e
 	inc b
 	ld a, $fe
 	cp b
 	jr nz, .asm_7ebec
 	call OpenSRAMBank2
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld [wd5a5], a
 	ld [wd5aa], a
 	cp $1

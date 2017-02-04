@@ -2667,7 +2667,7 @@ CheckIfDenjuuSpeciesInAddressBook: ; 753f8 (1d:53f8)
 	ld b, $0
 	ld hl, wBattleRecruitRateBuffer
 	ld a, $0
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .loop
 	ld a, [wLinkMode]
 	cp $0
@@ -2691,9 +2691,9 @@ CheckIfDenjuuSpeciesInAddressBook: ; 753f8 (1d:53f8)
 	jr z, .next
 	ld a, d
 	ld [hli], a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .next
 	inc b
 	ld a, ADDRESS_BOOK_SIZE
@@ -2702,7 +2702,7 @@ CheckIfDenjuuSpeciesInAddressBook: ; 753f8 (1d:53f8)
 	ld hl, wBattleRecruitRateBuffer
 	ld a, [wRecruitedDenjuuSpecies]
 	ld b, a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld c, a
 .loop2
 	ld a, [hl]

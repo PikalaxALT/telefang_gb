@@ -35,7 +35,7 @@ sDMelo6:: ds $200
 sDMelo7:: ds $200
 sDMelo8:: ds $200
 
-s1_b000:: ds $200 * 4
+sItems:: ds $200 * 4
 
 SECTION "SRAM 2", SRAM, BANK [2]
 ; Field 00 = species (db)

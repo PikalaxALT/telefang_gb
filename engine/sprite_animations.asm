@@ -2494,7 +2494,7 @@ Func_3162e: ; 3162e (c:562e)
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jr z, .asm_316c3
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	cp $2d
 	jr z, .asm_316b8
 	cp $30
@@ -5755,7 +5755,7 @@ Func_32ac4: ; 32ac4 (c:6ac4)
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, $1
 	ld [wcadb], a
 	ld bc, EVENT_C39
@@ -5919,7 +5919,7 @@ Func_32bf4: ; 32bf4 (c:6bf4)
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jr z, .asm_32cb0
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	cp $2d
 	jr z, .asm_32ca5
 	cp $30
@@ -8007,7 +8007,7 @@ Func_339ad: ; 339ad (c:79ad)
 	ld [wCurObjectStruct + 1], a
 	xor a
 	ld b, $20
-	call Func_2f76
+	call ByteFill
 	ld a, [wCurObjectStruct]
 	ld l, a
 	ld a, [wCurObjectStruct + 1]

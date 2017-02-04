@@ -328,7 +328,7 @@
 	dw Script_147 ; 147
 
 Script_000:
-	script_0d $0
+	script_set_player_facing $0
 Script_001:
 	script_jump_if EVENT_C39, Script_150297
 	script_end
@@ -338,12 +338,12 @@ Script_150297:
 	script_printtext $3, $0
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_1502af:
@@ -374,7 +374,7 @@ Script_004:
 	script_end
 
 Script_006:
-	script_0d $0
+	script_set_player_facing $0
 Script_007:
 	script_jump_if EVENT_C39, Script_1502ea
 	script_end
@@ -384,12 +384,12 @@ Script_1502ea:
 	script_printtext $3, $6
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_150302:
@@ -443,7 +443,7 @@ Script_150358:
 	script_end
 
 Script_00c:
-	script_0d $0
+	script_set_player_facing $0
 Script_00d:
 	script_jump_if EVENT_C39, Script_150363
 	script_end
@@ -453,12 +453,12 @@ Script_150363:
 	script_printtext $3, $f
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_15037b:
@@ -512,7 +512,7 @@ Script_1503d1:
 	script_end
 
 Script_012:
-	script_0d $0
+	script_set_player_facing $0
 Script_013:
 	script_jump_if EVENT_C39, Script_1503dc
 	script_end
@@ -522,12 +522,12 @@ Script_1503dc:
 	script_printtext $3, $18
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_1503f4:
@@ -581,7 +581,7 @@ Script_15044a:
 	script_end
 
 Script_018:
-	script_0d $0
+	script_set_player_facing $0
 Script_019:
 	script_jump_if EVENT_C39, Script_150455
 	script_end
@@ -591,12 +591,12 @@ Script_150455:
 	script_printtext $3, $21
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_15046d:
@@ -650,7 +650,7 @@ Script_1504c3:
 	script_end
 
 Script_01e:
-	script_0d $0
+	script_set_player_facing $0
 Script_01f:
 	script_jump_if EVENT_C39, Script_1504ce
 	script_end
@@ -660,12 +660,12 @@ Script_1504ce:
 	script_printtext $3, $2a
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_1504e6:
@@ -719,7 +719,7 @@ Script_15053c:
 	script_end
 
 Script_024:
-	script_0d $0
+	script_set_player_facing $0
 Script_025:
 	script_jump_if EVENT_C39, Script_150547
 	script_end
@@ -729,12 +729,12 @@ Script_150547:
 	script_printtext $3, $33
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_15055f:
@@ -788,7 +788,7 @@ Script_1505b5:
 	script_end
 
 Script_02a:
-	script_0d $0
+	script_set_player_facing $0
 Script_02b:
 	script_jump_if EVENT_C39, Script_1505c0
 	script_end
@@ -798,12 +798,12 @@ Script_1505c0:
 	script_printtext $3, $3c
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_1505d8:
@@ -857,7 +857,7 @@ Script_15062e:
 	script_end
 
 Script_030:
-	script_0d $0
+	script_set_player_facing $0
 Script_031:
 	script_jump_if EVENT_C39, Script_150639
 	script_end
@@ -867,12 +867,12 @@ Script_150639:
 	script_printtext $3, $45
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_150651:
@@ -926,7 +926,7 @@ Script_1506a7:
 	script_end
 
 Script_036:
-	script_0d $0
+	script_set_player_facing $0
 Script_037:
 	script_jump_if EVENT_C39, Script_1506b2
 	script_end
@@ -936,12 +936,12 @@ Script_1506b2:
 	script_printtext $3, $4e
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_1506ca:
@@ -995,7 +995,7 @@ Script_150720:
 	script_end
 
 Script_03c:
-	script_0d $0
+	script_set_player_facing $0
 Script_03d:
 	script_jump_if EVENT_C39, Script_15072b
 	script_end
@@ -1005,12 +1005,12 @@ Script_15072b:
 	script_printtext $3, $57
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_150743:
@@ -1064,7 +1064,7 @@ Script_150799:
 	script_end
 
 Script_042:
-	script_0d $0
+	script_set_player_facing $0
 Script_043:
 	script_jump_if EVENT_C39, Script_1507a4
 	script_end
@@ -1074,12 +1074,12 @@ Script_1507a4:
 	script_printtext $3, $60
 	script_sleep 8
 	script_walk_player $44, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
 	script_walk_player $74, $40
-	script_2a
+	script_wait_player_walk
 	script_sleep 8
-	script_0d $1
+	script_set_player_facing $1
 	script_end
 
 Script_1507bc:
@@ -1134,9 +1134,9 @@ Script_150812:
 
 Script_048: ; Intro script
 	script_17 $0
-	script_3e $4, $a
-	script_3f $8, $8
-	script_21 $0, $59, $94
+	script_spawn_player $4, $a
+	script_spawn_partner $8, $8
+	script_spawn_person $0, $5, $9, $94
 	script_60 $59 ; palette override
 	script_apply_facing $0, $2
 	script_walk_npc $0, $54, 50
@@ -1146,9 +1146,9 @@ Script_048: ; Intro script
 	script_walk_npc $0, $50, 50
 	script_wait_movement $0
 	script_warp $2c, $1, $0, $4
-	script_3e $4, $a
-	script_3f $8, $8
-	script_21 $0, $59, $56
+	script_spawn_player $4, $a
+	script_spawn_partner $8, $8
+	script_spawn_person $0, $5, $9, $56
 	script_60 $59 ; palette override
 	script_apply_facing $0, $3
 	script_sleep 30
@@ -1166,15 +1166,15 @@ Script_048: ; Intro script
 	script_printtext $3, $6a
 	script_sleep 120
 	script_warp $2b, $9, $0, $4
-	script_3f $8, $8
-	script_0d $0
+	script_spawn_partner $8, $8
+	script_set_player_facing $0
 	script_sleep 10
 	script_walk_player $44, $50
-	script_2a
+	script_wait_player_walk
 	script_printtext $3, $6b
 	script_sleep 20
 	script_playmusic MUSIC_MIYO
-	script_21 $0, $5a, $94
+	script_spawn_person $0, $5, $a, $94
 	script_60 $5a ; palette override
 	script_walk_npc $0, $84, 50
 	script_wait_movement $0
@@ -1197,10 +1197,10 @@ Script_048: ; Intro script
 	script_walk_npc $0, $53, 50
 	script_wait_movement $0
 	script_walk_npc $0, $43, 50
-	script_0d $3
+	script_set_player_facing $3
 	script_wait_movement $0
 	script_walk_npc $0, $3, 50
-	script_0d $2
+	script_set_player_facing $2
 	script_wait_movement $0
 	script_disappear $0
 	script_playmusic MUSIC_HOUSE
@@ -1214,15 +1214,15 @@ Script_048: ; Intro script
 	script_sleep 30
 	script_printtext $3, $71
 	script_walk_player $40, $50
-	script_2a
+	script_wait_player_walk
 	script_warp $2c, $1, $4, $6
-	script_21 $0, $59, $55
+	script_spawn_person $0, $5, $9, $55
 	script_60 $59
 	script_apply_facing $0, $2
-	script_3f $8, $8
+	script_spawn_partner $8, $8
 	script_walk_player $45, $50
-	script_2a
-	script_0d $0
+	script_wait_player_walk
+	script_set_player_facing $0
 	script_printtext $3, $72
 	script_sleep 30
 	script_printtext $3, $73
@@ -1245,7 +1245,7 @@ Script_048: ; Intro script
 	script_playsfx SFX_54
 	script_sleep 120
 	script_playsfx SFX_01
-	script_0d $3
+	script_set_player_facing $3
 	script_apply_facing $0, $3
 	script_sleep 5
 	script_printtext $3, $79
@@ -1258,7 +1258,7 @@ Script_048: ; Intro script
 	script_printtext $3, $7a
 	script_hop_player
 	script_sleep 50
-	script_0d $0
+	script_set_player_facing $0
 	script_printtext $3, $7b
 	script_playsfx SFX_54
 	script_sleep 120
@@ -1266,7 +1266,7 @@ Script_048: ; Intro script
 	script_apply_facing $0, $2
 	script_printtext $3, $7c
 	script_sleep 20
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 20
 	script_printtext $3, $7d
 	script_sleep 80
@@ -1278,7 +1278,7 @@ Script_048: ; Intro script
 
 Script_049:
 	script_special $64
-	script_21 $0, $59, $55
+	script_spawn_person $0, $5, $9, $55
 	script_playmusic MUSIC_WELCOME_TO_DENJUU_WORLD
 	script_dshot_signal_strength $4
 	script_4c $1
@@ -1317,7 +1317,7 @@ Script_049:
 	script_hop_npc $0
 	script_sleep 20
 	script_printtext $3, $7f
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 10
 	script_hop_player
 	script_sleep 50
@@ -1333,13 +1333,13 @@ Script_049:
 	script_printtext $3, $83
 	script_sleep 120
 	script_printtext $3, $84
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 10
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 120
 	script_hop_player
 	script_sleep 50
@@ -1358,7 +1358,7 @@ Script_049:
 	script_sleep 30
 	script_sleep 50
 	script_printtext $3, $87
-	script_21 $1, $2a, $5
+	script_spawn_person $1, $2, $a, $5
 	script_66 $2a
 	script_face_player $1
 	script_walk_npc $1, $35, 32
@@ -1367,7 +1367,7 @@ Script_049:
 	script_printtext $3, $88
 	script_hop_npc $0
 	script_sleep 10
-	script_0d $2
+	script_set_player_facing $2
 	script_hop_player
 	script_sleep 10
 	script_sleep 40
@@ -1383,10 +1383,10 @@ Script_049:
 	script_playsfx SFX_13
 	script_disappear $1
 	script_walk_player $15, $20
-	script_2a
+	script_wait_player_walk
 	script_sleep 6
 	script_walk_player $14, $20
-	script_2a
+	script_wait_player_walk
 	script_sleep 6
 	script_playsfx SFX_13
 	script_set_event EVENT_1C2
@@ -1405,12 +1405,12 @@ Script_049:
 Script_04a:
 	script_reset_event EVENT_1C3
 	script_reset_event EVENT_1C2
-	script_21 $0, $59, $45
+	script_spawn_person $0, $5, $9, $45
 	script_60 $59
-	script_21 $1, $2a, $54
+	script_spawn_person $1, $2, $a, $54
 	script_66 $2a
-	script_3f $6, $5
-	script_1c $2
+	script_spawn_partner $6, $5
+	script_set_partner_facing $2
 	script_apply_facing $0, $0
 	script_sleep 20
 	script_printtext $3, $8b
@@ -1466,13 +1466,13 @@ Script_04a:
 	script_apply_facing $1, $1
 	script_sleep 20
 	script_printtext $3, $97
-	script_3c $66, $32
-	script_58
-	script_1c $2
+	script_walk_partner $66, $32
+	script_wait_partner_walk
+	script_set_partner_facing $2
 	script_sleep 20
 	script_1d
 	script_sleep 50
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 20
 IF DEF(POWER)
 	script_printtext $3, $99
@@ -1493,7 +1493,7 @@ ENDC
 	script_wait_movement $1
 	script_walk_npc $1, $55, 50
 	script_wait_movement $1
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 20
 	script_printtext $3, $9c
 	script_sleep 20
@@ -1539,7 +1539,7 @@ Script_04d:
 	script_printtext $3, $a4
 	script_sleep 50
 	script_walk_player $30, $32
-	script_2a
+	script_wait_player_walk
 	script_complete_event $4d
 	script_complete_event $4e
 	script_end
@@ -1553,7 +1553,7 @@ Script_04e:
 	script_printtext $3, $a6
 	script_sleep 50
 	script_walk_player $40, $32
-	script_2a
+	script_wait_player_walk
 	script_complete_event $4d
 	script_complete_event $4e
 	script_end
@@ -1563,20 +1563,20 @@ Script_04f:
 	script_playmusic MUSIC_26
 	script_printtext $3, $a7
 	script_sleep 20
-	script_3c $85, $32
+	script_walk_partner $85, $32
 	script_walk_player $86, $32
-	script_2a
-	script_58
-	script_3c $86, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_walk_partner $86, $32
 	script_walk_player $76, $32
-	script_2a
-	script_58
-	script_3c $46, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_walk_partner $46, $32
 	script_walk_player $36, $32
-	script_2a
-	script_58
-	script_0d $3
-	script_1c $3
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $3
+	script_set_partner_facing $3
 	script_sleep 50
 	script_printtext $3, $a8
 	script_sleep 30
@@ -1608,15 +1608,15 @@ Script_050:
 	script_sleep 4
 	script_playmusic MUSIC_26
 	script_printtext $3, $aa
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 40
 	script_printtext $3, $ab
 	script_sleep 50
@@ -1636,7 +1636,7 @@ Script_050:
 	script_end
 
 Script_051:
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 4
 	script_playmusic MUSIC_26
 	script_hop_npc $0
@@ -1662,10 +1662,10 @@ Script_051:
 	script_sleep 50
 	script_walk_npc $0, $4, 120
 	script_walk_player $13, $50
-	script_2a
+	script_wait_player_walk
 	script_wait_movement $0
 	script_disappear $0
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 80
 	script_printtext $3, $b0
 	script_playmusic MUSIC_CAVES
@@ -1700,7 +1700,7 @@ Script_150ceb:
 	script_sleep 30
 	script_load_battle $0, $0, $2
 	script_playmusic MUSIC_CAVES
-	script_3e $7, $4
+	script_spawn_player $7, $4
 	script_sleep 10
 	script_apply_facing $0, $2
 	script_sleep 20
@@ -1711,15 +1711,15 @@ Script_150ceb:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $3, $b7
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 40
 	script_printtext $3, $b8
 	script_hop_npc $0
@@ -1774,22 +1774,22 @@ Script_058:
 	script_4a $2, Script_150dac
 	script_4a $3, Script_150db0
 	script_walk_player $42, $32
-	script_2a
+	script_wait_player_walk
 	script_jump Script_150db0
 
 Script_150dac:
 	script_walk_player $62, $32
-	script_2a
+	script_wait_player_walk
 Script_150db0:
 	script_walk_player $52, $32
-	script_2a
-	script_0d $3
-	script_1c $3
+	script_wait_player_walk
+	script_set_player_facing $3
+	script_set_partner_facing $3
 	script_sleep 10
 	script_apply_facing $2, $1
-	script_3c $53, $32
-	script_58
-	script_1c $3
+	script_walk_partner $53, $32
+	script_wait_partner_walk
+	script_set_partner_facing $3
 	script_face_player $2
 	script_hop_player
 	script_sleep 50
@@ -1805,7 +1805,7 @@ Script_150db0:
 	script_printtext $3, $c4
 	script_sleep 50
 	script_playmusic MUSIC_26
-	script_21 $0, $5f, $47
+	script_spawn_person $0, $5, $f, $47
 	script_60 $5f
 	script_walk_npc $0, $41, 48
 	script_wait_movement $0
@@ -1830,7 +1830,7 @@ Script_150db0:
 	script_sleep 30
 	script_hop_npc $0
 	script_sleep 30
-	script_0d $2
+	script_set_player_facing $2
 	script_hop_player
 	script_sleep 50
 	script_printtext $3, $c8
@@ -1844,7 +1844,7 @@ Script_150db0:
 	script_sleep 50
 	script_printtext $3, $cb
 	script_sleep 30
-	script_21 $1, $60, $47
+	script_spawn_person $1, $6, $0, $47
 	script_66 $60
 	script_walk_npc $1, $42, 50
 	script_wait_movement $1
@@ -1872,7 +1872,7 @@ Script_150db0:
 	script_disappear $0
 	script_playmusic MUSIC_CAVES
 	script_sleep 30
-	script_0d $3
+	script_set_player_facing $3
 	script_hop_npc $2
 	script_sleep 50
 	script_printtext $3, $cf
@@ -1889,7 +1889,7 @@ Script_150db0:
 	script_26 $2, $2
 	script_sleep 100
 	script_disappear $2
-	script_0d $1
+	script_set_player_facing $1
 	script_hop_player
 	script_sleep 50
 	script_printtext $3, $d3
@@ -1904,9 +1904,9 @@ Script_150db0:
 
 Script_05b:
 	script_sleep 3
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_face_player $0
@@ -1931,9 +1931,9 @@ Script_05c:
 Script_150efb:
 	script_set_event EVENT_1C3
 Script_150efe:
-	script_21 $0, $59, $35
+	script_spawn_person $0, $5, $9, $35
 	script_60 $59
-	script_21 $1, $2a, $44
+	script_spawn_person $1, $2, $a, $44
 	script_face_player $0
 	script_sleep 50
 	script_printtext $3, $d7
@@ -1954,14 +1954,14 @@ Script_150efe:
 	script_playmusic MUSIC_WELCOME_TO_DENJUU_WORLD
 	script_special $3
 	script_warp $8, $c, $5, $6
-	script_21 $0, $59, $35
+	script_spawn_person $0, $5, $9, $35
 	script_60 $59
-	script_21 $1, $2a, $34
+	script_spawn_person $1, $2, $a, $34
 	script_66 $2a
 	script_face_player $0
 	script_sleep 2
-	script_0d $3
-	script_1c $3
+	script_set_player_facing $3
+	script_set_partner_facing $3
 	script_printtext $3, $dc
 	script_sleep 20
 	script_printtext $3, $dd
@@ -2017,7 +2017,7 @@ Script_150fbc:
 	script_reset_event EVENT_210
 	script_playmusic MUSIC_OVERWORLD
 	script_reset_event EVENT_1C3
-	script_3f $5, $7
+	script_spawn_partner $5, $7
 	script_set_event EVENT_1CB
 	script_set_event EVENT_1CC
 	script_17 $1
@@ -2035,7 +2035,7 @@ Script_05d:
 Script_150fee:
 	script_set_event EVENT_1C3
 Script_150ff1:
-	script_1c $3
+	script_set_partner_facing $3
 	script_face_player $1
 	script_sleep 10
 	script_printtext $3, $e6
@@ -2045,9 +2045,9 @@ Script_150ff1:
 	script_printtext $3, $e7
 	script_sleep 50
 	script_walk_player $46, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $47, $32
-	script_2a
+	script_wait_player_walk
 	script_reset_event EVENT_1C3
 	script_end
 
@@ -2091,15 +2091,15 @@ Script_151021:
 
 Script_061:
 	script_walk_player $44, $32
-	script_2a
-	script_21 $0, $5a, $94
+	script_wait_player_walk
+	script_spawn_person $0, $5, $a, $94
 	script_60 $5a
 	script_playmusic MUSIC_MIYO
 	script_apply_facing $0, $2
 	script_walk_npc $0, $84, 50
 	script_wait_movement $0
 	script_printtext $3, $ed
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 10
 	script_hop_npc $0
 	script_sleep 50
@@ -2134,13 +2134,13 @@ Script_061:
 	script_sleep 50
 	script_printtext $3, $f8
 	script_walk_player $24, $32
-	script_3c $44, $32
-	script_2a
-	script_58
-	script_3c $34, $32
-	script_58
-	script_0d $0
-	script_1c $0
+	script_walk_partner $44, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_walk_partner $34, $32
+	script_wait_partner_walk
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $3, $f9
@@ -2161,11 +2161,11 @@ Script_062:
 	script_sleep 50
 	script_printtext $3, $fa
 	script_walk_player $76, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $72, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $62, $32
-	script_2a
+	script_wait_player_walk
 	script_face_player $0
 	script_sleep 20
 	script_printtext $3, $fb
@@ -2199,13 +2199,13 @@ Script_062:
 	script_sleep 50
 	script_printtext $9, $6
 	script_walk_player $72, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $76, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $46, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $47, $32
-	script_2a
+	script_wait_player_walk
 	script_set_event EVENT_1CA
 	script_complete_active_event
 	script_end
@@ -2243,9 +2243,9 @@ Script_151178:
 
 Script_064:
 	script_sleep 4
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $b
@@ -2256,9 +2256,9 @@ Script_065:
 	script_sleep 4
 	script_playmusic MUSIC_26
 	script_walk_player $43, $32
-	script_3c $33, $32
-	script_2a
-	script_58
+	script_walk_partner $33, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_hop_npc $0
 	script_sleep 50
 	script_face_player $0
@@ -2267,30 +2267,30 @@ Script_065:
 	script_sleep 50
 	script_printtext $9, $d
 	script_walk_player $44, $32
-	script_3c $43, $32
-	script_2a
-	script_58
+	script_walk_partner $43, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $46, $32
-	script_3c $45, $32
-	script_2a
-	script_58
+	script_walk_partner $45, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $56, $32
-	script_3c $46, $32
-	script_2a
-	script_58
+	script_walk_partner $46, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $76, $32
-	script_3c $66, $32
-	script_2a
-	script_58
+	script_walk_partner $66, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $75, $32
-	script_3c $76, $32
-	script_2a
-	script_58
+	script_walk_partner $76, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $73, $32
-	script_3c $74, $32
-	script_2a
-	script_58
-	script_0d $2
+	script_walk_partner $74, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $2
 	script_face_player $0
 	script_sleep 20
 	script_hop_npc $0
@@ -2306,7 +2306,7 @@ Script_065:
 	script_sleep 20
 	script_playsfx SFX_0A
 	script_printtext $9, $11
-	script_36 $30, $1
+	script_give_item ITEM_KEY, $1
 	script_playmusic MUSIC_CAVES
 	script_set_event EVENT_1EF
 	script_unlock_event $118
@@ -2316,7 +2316,7 @@ Script_065:
 Script_066:
 	script_jump_if_not EVENT_1EF, Script_151243
 	script_printtext $9, $12
-	script_37 $30, $1
+	script_take_item ITEM_KEY, $1
 	script_set_event EVENT_1F0
 	script_67
 	script_complete_event $66
@@ -2384,10 +2384,10 @@ Script_068:
 	script_printtext $9, $18
 	script_sleep 30
 	script_load_battle $a, $28, $1
-	script_3e $5, $2
-	script_3f $6, $2
+	script_spawn_player $5, $2
+	script_spawn_partner $6, $2
 	script_apply_facing $0, $1
-	script_1c $1
+	script_set_partner_facing $1
 	script_playmusic MUSIC_26
 	script_sleep 20
 	script_printtext $9, $19
@@ -2419,10 +2419,10 @@ Script_068:
 	script_sleep 20
 	script_playsfx SFX_0A
 	script_printtext $9, $20
-	script_36 $30, $1
-	script_36 $2, $4
+	script_give_item ITEM_KEY, $1
+	script_give_item ITEM_REVOLVER, $4
 	script_playsfx SFX_12
-	script_36 $1d, $4
+	script_give_item ITEM_PHONE_CARD, $4
 	script_sleep 50
 	script_1d
 	script_sleep 50
@@ -2444,9 +2444,9 @@ Script_068:
 
 Script_06a:
 	script_sleep 4
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $22
@@ -2467,7 +2467,7 @@ Script_06b:
 	script_printtext $9, $23
 	script_set_event EVENT_1CD
 	script_set_event EVENT_1CE
-	script_37 $30, $1
+	script_take_item ITEM_KEY, $1
 	script_67
 	script_complete_event $6b
 	script_complete_event $6c
@@ -2546,7 +2546,7 @@ Script_079:
 	script_end
 
 Script_07a:
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
 	script_printtext $9, $31
 	script_sleep 10
@@ -2566,30 +2566,30 @@ Script_07b:
 	script_sleep 20
 	script_printtext $9, $34
 	script_walk_player $40, $50
-	script_3c $50, $50
-	script_2a
-	script_58
+	script_walk_partner $50, $50
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_apply_facing $0, $3
 	script_sleep 10
 	script_printtext $9, $35
-	script_0d $1
-	script_1c $1
+	script_set_player_facing $1
+	script_set_partner_facing $1
 	script_sleep 20
 	script_printtext $9, $36
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $9, $37
 	script_walk_player $43, $32
-	script_3c $53, $32
-	script_2a
-	script_58
+	script_walk_partner $53, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_printtext $9, $38
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $9, $39
 	script_set_event EVENT_1CF
 Script_15144f:
-	script_5a $31, $1, Script_151461
+	script_if_have_item ITEM_GAME_MACHINE, $1, Script_151461
 	script_face_player $0
 	script_sleep 50
 	script_hop_npc $0
@@ -2616,7 +2616,7 @@ Script_151461:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $9, $3e
-	script_37 $31, $1
+	script_take_item ITEM_GAME_MACHINE, $1
 	script_sleep 20
 	script_26 $0, $2
 	script_sleep 100
@@ -2696,7 +2696,7 @@ Script_081:
 	script_printtext $9, $4c
 	script_playmusic MUSIC_WARP
 	script_sleep 5
-	script_68 $5, $1f, $57
+	script_warp_wavy $5, $1f, 5, 7
 	script_sleep 8
 	script_end
 
@@ -2704,7 +2704,7 @@ Script_084:
 	script_sleep 10
 	script_playmusic MUSIC_WARP
 	script_sleep 5
-	script_68 $5, $26, $42
+	script_warp_wavy $5, $26, 4, 2
 	script_sleep 8
 	script_end
 
@@ -2720,9 +2720,9 @@ Script_085:
 
 Script_086:
 	script_sleep 50
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $4e
@@ -2747,17 +2747,17 @@ Script_087:
 Script_089:
 	script_sleep 4
 IF DEF(POWER)
-	script_21 $0, $5b, $aa
+	script_spawn_person $0, $5, $b, $aa
 	script_60 $5b
-	script_21 $1, $37, $aa
+	script_spawn_person $1, $3, $7, $aa
 	script_66 $37
 ENDC
 	script_walk_player $44, $30
-	script_3c $45, $30
+	script_walk_partner $45, $30
 	script_sleep 50
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $50
@@ -2768,7 +2768,7 @@ IF DEF(POWER)
 	script_special $66
 	script_wait_movement $0
 ELSE
-	script_21 $0, $5b, $57
+	script_spawn_person $0, $5, $b, $57
 	script_60 $5b
 	script_walk_npc $0, $55, 120
 	script_wait_movement $0
@@ -2777,14 +2777,14 @@ ELSE
 	script_apply_facing $0, $2
 ENDC
 	script_sleep 50
-	script_0d $0
-	script_1c $0
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_playmusic MUSIC_KAI_ENCOUNTER
 	script_sleep 6
 	script_face_player $0
 	script_sleep 20
-	script_0d $0
-	script_1c $0
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_sleep 50
 	script_printtext $9, $52
 	script_hop_player
@@ -2810,7 +2810,7 @@ IF DEF(POWER)
 	script_special $67
 	script_wait_movement $1
 ELSE
-	script_21 $1, $38, $57
+	script_spawn_person $1, $3, $8, $57
 	script_66 $38
 	script_apply_facing $1, $3
 	script_shake_screen $0, $1e
@@ -2859,9 +2859,9 @@ ENDC
 	script_wait_movement $0
 	script_disappear $0
 	script_sleep 50
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $5a
@@ -2902,8 +2902,8 @@ Script_08b:
 	script_wait_movement $1
 	script_face_player $1
 	script_walk_player $54, $32
-	script_2a
-	script_0d $0
+	script_wait_player_walk
+	script_set_player_facing $0
 	script_printtext $9, $5e
 	script_hop_player
 	script_sleep 50
@@ -2925,7 +2925,7 @@ Script_08b:
 	script_printtext $9, $63
 	script_sleep 20
 	script_printtext $9, $64
-	script_0d $1
+	script_set_player_facing $1
 	script_walk_npc $1, $68, 50
 	script_wait_movement $1
 	script_disappear $1
@@ -2940,23 +2940,23 @@ Script_08b:
 
 Script_08d:
 	script_walk_player $65, $32
-	script_3c $75, $32
-	script_2a
-	script_58
+	script_walk_partner $75, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $64, $32
 	script_walk_npc $1, $82, 50
-	script_3c $65, $32
-	script_2a
-	script_58
+	script_walk_partner $65, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_wait_movement $1
 	script_walk_player $63, $32
 	script_walk_npc $1, $83, 50
-	script_3c $64, $32
-	script_2a
-	script_58
+	script_walk_partner $64, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_wait_movement $1
-	script_0d $0
-	script_1c $0
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_apply_facing $1, $2
 	script_sleep 20
 	script_printtext $9, $66
@@ -2978,18 +2978,18 @@ Script_08d:
 Script_08e:
 	script_walk_player $64, $32
 	script_walk_npc $0, $82, 50
-	script_3c $74, $32
-	script_2a
-	script_58
+	script_walk_partner $74, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_wait_movement $0
 	script_walk_player $63, $32
 	script_walk_npc $0, $83, 50
-	script_3c $64, $32
-	script_2a
-	script_58
+	script_walk_partner $64, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_wait_movement $0
-	script_0d $0
-	script_1c $0
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_apply_facing $0, $2
 	script_sleep 20
 	script_printtext $9, $68
@@ -3009,13 +3009,13 @@ Script_08e:
 	script_end
 
 Script_08f:
-	script_3f $4, $0
+	script_spawn_partner $4, $0
 	script_walk_player $44, $32
-	script_3c $43, $32
-	script_2a
-	script_58
-	script_0d $0
-	script_1c $0
+	script_walk_partner $43, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_apply_facing $0, $2
 	script_sleep 20
 	script_printtext $9, $6a
@@ -3036,23 +3036,23 @@ Script_08f:
 
 Script_090:
 	script_walk_player $26, $32
-	script_3c $36, $32
-	script_2a
-	script_58
+	script_walk_partner $36, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $25, $32
 	script_walk_npc $0, $51, 50
-	script_3c $26, $32
-	script_2a
+	script_walk_partner $26, $32
+	script_wait_player_walk
 	script_wait_movement $0
-	script_58
+	script_wait_partner_walk
 	script_walk_player $23, $32
 	script_walk_npc $0, $53, 50
-	script_3c $24, $32
-	script_2a
-	script_58
+	script_walk_partner $24, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_wait_movement $0
-	script_0d $0
-	script_1c $0
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_apply_facing $0, $2
 	script_sleep 20
 	script_printtext $9, $6c
@@ -3152,10 +3152,10 @@ Script_096:
 	script_walk_npc $0, $57, 120
 	script_wait_movement $0
 	script_disappear $0
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 20
 	script_printtext $9, $7c
-	script_0d $3
+	script_set_player_facing $3
 	script_playmusic MUSIC_CRAFT_RESEARCH_CENTER
 	script_unlock_event $116
 	script_unlock_event $117
@@ -3167,14 +3167,14 @@ Script_096:
 
 Script_097:
 	script_printtext $9, $7d
-	script_21 $0, $1f, $40
+	script_spawn_person $0, $1, $f, $40
 	script_60 $1f
 	script_walk_npc $0, $43, 50
 	script_wait_movement $0
 	script_walk_player $3, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $33, $32
-	script_2a
+	script_wait_player_walk
 	script_face_player $0
 	script_printtext $9, $7e
 	script_hop_npc $0
@@ -3188,7 +3188,7 @@ Script_097:
 	script_wait_movement $0
 	script_walk_npc $0, $4, 50
 	script_wait_movement $0
-	script_0d $2
+	script_set_player_facing $2
 	script_face_player $0
 	script_sleep 80
 	script_printtext $9, $82
@@ -3197,7 +3197,7 @@ Script_097:
 	script_apply_facing $0, $2
 	script_sleep 20
 	script_disappear $0
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 20
 	script_printtext $9, $83
 	script_complete_event $97
@@ -3388,7 +3388,7 @@ Script_0ad:
 	script_sleep 20
 	script_playsfx SFX_0A
 	script_printtext $9, $a7
-	script_36 $32, $1
+	script_give_item ITEM_PLUSH_TOY, $1
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $9, $a8
@@ -3446,8 +3446,8 @@ Script_0b5:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $9, $b2
-	script_36 $3b, $1
-	script_36 $3e, $1
+	script_give_item ITEM_FUSION_PASS_2, $1
+	script_give_item ITEM_LAB_PASS_2, $1
 	script_warp $5, $b, $4, $3
 	script_complete_event $b5
 	script_complete_event $b6
@@ -3481,7 +3481,7 @@ Script_151b7a:
 	script_sleep 30
 	script_hop_npc $0
 	script_sleep 50
-	script_37 $32, $1
+	script_take_item ITEM_PLUSH_TOY, $1
 	script_set_event EVENT_1E4
 	script_set_event EVENT_1D9
 	script_17 $5
@@ -3500,9 +3500,9 @@ Script_151b7a:
 
 Script_0bc:
 	script_sleep 5
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $b7
@@ -3518,15 +3518,15 @@ Script_0bc:
 
 Script_0be:
 	script_walk_player $45, $32
-	script_3c $44, $32
-	script_2a
-	script_58
-	script_21 $0, $3a, $5
+	script_walk_partner $44, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_spawn_person $0, $3, $a, $5
 	script_60 $3a
 	script_apply_facing $0, $2
 	script_printtext $9, $ba
 	script_sleep 20
-	script_0d $2
+	script_set_player_facing $2
 	script_walk_npc $0, $35, 80
 	script_wait_movement $0
 	script_hop_player
@@ -3542,9 +3542,9 @@ Script_0be:
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $bf
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $9, $c0
@@ -3598,7 +3598,7 @@ Script_0c0:
 	script_sleep 50
 	script_printtext $9, $ca
 	script_walk_player $53, $32
-	script_2a
+	script_wait_player_walk
 	script_printtext $9, $cb
 	script_hop_npc $0
 	script_sleep 30
@@ -3606,7 +3606,7 @@ Script_0c0:
 	script_sleep 50
 	script_printtext $9, $cc
 	script_62 $54, $a
-	script_2a
+	script_wait_player_walk
 	script_printtext $9, $cd
 	script_sleep 20
 	script_printtext $9, $ce
@@ -3738,8 +3738,8 @@ Script_151d94:
 	script_disappear $0
 	script_4c $1
 	script_4c $1
-	script_3f $4, $5
-	script_1c $1
+	script_spawn_partner $4, $5
+	script_set_partner_facing $1
 	script_sleep 80
 	script_special $68
 	script_playsfx SFX_58
@@ -3754,7 +3754,7 @@ Script_151d94:
 	script_sleep 120
 	script_warp $4, $3e, $4, $5
 	script_reset_event EVENT_1C2
-	script_0d $2
+	script_set_player_facing $2
 	script_1b
 	script_sleep 20
 	script_printtext $9, $e8
@@ -3841,7 +3841,7 @@ Script_151ea2:
 Script_0c9:
 	script_set_event EVENT_1E0
 	script_walk_player $55, $32
-	script_2a
+	script_wait_player_walk
 	script_printtext $9, $f5
 	script_walk_npc $0, $33, 120
 	script_wait_movement $0
@@ -3911,8 +3911,8 @@ Script_151f46:
 Script_0ca:
 	script_set_event EVENT_1E1
 	script_walk_player $35, $32
-	script_2a
-	script_0d $0
+	script_wait_player_walk
+	script_set_player_facing $0
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $3
@@ -3958,8 +3958,8 @@ Script_151fad:
 Script_0cb:
 	script_set_event EVENT_1E2
 	script_walk_player $84, $32
-	script_2a
-	script_0d $2
+	script_wait_player_walk
+	script_set_player_facing $2
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $b
@@ -4080,9 +4080,9 @@ Script_0cc:
 
 Script_0ce:
 	script_sleep 4
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $28
@@ -4186,26 +4186,26 @@ Script_0d3:
 	script_sleep 4
 	script_playmusic MUSIC_25
 	script_walk_player $16, $32
-	script_3c $17, $32
-	script_2a
-	script_58
+	script_walk_partner $17, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $26, $32
-	script_3c $16, $32
-	script_2a
-	script_58
+	script_walk_partner $16, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $36, $32
-	script_3c $26, $32
-	script_2a
-	script_58
-	script_0d $3
-	script_1c $3
+	script_walk_partner $26, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $3
+	script_set_partner_facing $3
 	script_sleep 20
 	script_hop_npc $0
 	script_sleep 30
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $41
-	script_21 $1, $22, $52
+	script_spawn_person $1, $2, $2, $52
 	script_66 $22
 	script_26 $1, $2
 	script_sleep 80
@@ -4228,24 +4228,24 @@ Script_0d3:
 	script_printtext $a, $44
 	script_walk_npc $0, $14, 50
 	script_walk_player $46, $32
-	script_3c $36, $32
+	script_walk_partner $36, $32
 	script_wait_movement $0
-	script_2a
-	script_58
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_npc $0, $15, 50
 	script_walk_player $45, $32
-	script_3c $46, $32
+	script_walk_partner $46, $32
 	script_wait_movement $0
-	script_2a
-	script_58
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_npc $0, $16, 50
 	script_walk_player $44, $32
-	script_3c $45, $32
+	script_walk_partner $45, $32
 	script_wait_movement $0
-	script_2a
-	script_58
-	script_0d $2
-	script_1c $2
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $2
+	script_set_partner_facing $2
 	script_walk_npc $0, $18, 50
 	script_wait_movement $0
 	script_disappear $0
@@ -4261,34 +4261,34 @@ Script_0d4:
 
 Script_0d5:
 	script_walk_player $43, $32
-	script_3c $44, $32
-	script_2a
-	script_58
+	script_walk_partner $44, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 Script_15225f:
 	script_walk_player $53, $32
-	script_3c $43, $32
-	script_2a
-	script_58
-	script_0d $2
+	script_walk_partner $43, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $2
 	script_sleep 10
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 40
 	script_printtext $a, $46
 	script_playmusic MUSIC_25
-	script_21 $0, $5d, $56
+	script_spawn_person $0, $5, $d, $56
 	script_60 $5d
 	script_apply_facing $0, $3
-	script_1c $1
+	script_set_partner_facing $1
 	script_sleep 20
 	script_printtext $a, $47
 	script_hop_player
@@ -4300,20 +4300,20 @@ Script_15225f:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $4a
-	script_21 $1, $22, $51
+	script_spawn_person $1, $2, $2, $51
 	script_66 $22
 	script_26 $1, $2
 	script_sleep 80
 	script_26 $1, $ff
-	script_0d $3
-	script_1c $3
+	script_set_player_facing $3
+	script_set_partner_facing $3
 	script_sleep 50
 	script_printtext $a, $4b
 	script_load_battle $8, $0, $2
 	script_66 $22
 	script_60 $5d
-	script_0d $1
-	script_1c $1
+	script_set_player_facing $1
+	script_set_partner_facing $1
 	script_sleep 20
 	script_hop_npc $0
 	script_sleep 50
@@ -4332,17 +4332,17 @@ Script_15225f:
 	script_wait_movement $0
 	script_walk_npc $0, $62, 50
 	script_wait_movement $0
-	script_0d $3
-	script_1c $3
+	script_set_player_facing $3
+	script_set_partner_facing $3
 	script_sleep 20
 	script_printtext $a, $4f
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $50
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 20
 	script_printtext $a, $51
 	script_sleep 20
@@ -4350,7 +4350,7 @@ Script_15225f:
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $53
-	script_0d $3
+	script_set_player_facing $3
 	script_apply_facing $0, $1
 	script_sleep 20
 	script_printtext $a, $54
@@ -4406,7 +4406,7 @@ Script_0d6:
 	script_sleep 10
 	script_playmusic MUSIC_WARP
 	script_sleep 5
-	script_68 $7, $e, $54
+	script_warp_wavy $7, $e, 5, 4
 	script_sleep 8
 	script_end
 
@@ -4414,7 +4414,7 @@ Script_0d8:
 	script_sleep 10
 	script_playmusic MUSIC_WARP
 	script_sleep 5
-	script_68 $3, $16, $54
+	script_warp_wavy $3, $16, 5, 4
 	script_sleep 8
 	script_end
 
@@ -4459,7 +4459,7 @@ Script_0da:
 Script_0dc:
 	script_sleep 4
 	script_playmusic MUSIC_25
-	script_21 $0, $39, $53
+	script_spawn_person $0, $3, $9, $53
 	script_60 $39
 	script_26 $0, $2
 	script_sleep 80
@@ -4667,14 +4667,14 @@ Script_1525bf:
 
 Script_0e7:
 	script_sleep 10
-	script_21 $0, $39, $53
+	script_spawn_person $0, $3, $9, $53
 	script_60 $39
 	script_26 $0, $2
 	script_sleep 80
 	script_26 $0, $ff
 	script_sleep 10
 	script_face_player $0
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 20
 IF DEF(POWER)
 	script_printtext $a, $72
@@ -4688,18 +4688,18 @@ ENDC
 	script_end
 
 Script_0e8:
-	script_3f $4, $4
-	script_1c $3
+	script_spawn_partner $4, $4
+	script_set_partner_facing $3
 	script_playmusic MUSIC_25
 	script_sleep 10
-	script_21 $0, $39, $53
+	script_spawn_person $0, $3, $9, $53
 	script_60 $39
 	script_26 $0, $2
 	script_sleep 80
 	script_26 $0, $ff
 	script_sleep 10
 	script_face_player $0
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 20
 	script_printtext $a, $73
 	script_hop_player
@@ -4711,7 +4711,7 @@ Script_0e8:
 	script_reset_event EVENT_1EE
 	script_playmusic MUSIC_CRAFT_RESEARCH_CENTER
 	script_sleep 5
-	script_68 $f, $33, $56
+	script_warp_wavy $f, $33, 5, 6
 	script_sleep 8
 	script_set_event EVENT_078
 	script_complete_active_event
@@ -4720,19 +4720,19 @@ Script_0e8:
 Script_0e9:
 	script_sleep 4
 	script_playmusic MUSIC_25
-	script_3f $5, $7
+	script_spawn_partner $5, $7
 	script_walk_player $56, $32
-	script_2a
-	script_0d $3
+	script_wait_player_walk
+	script_set_player_facing $3
 	script_sleep 10
-	script_21 $0, $39, $54
+	script_spawn_person $0, $3, $9, $54
 	script_60 $39
 	script_26 $0, $2
 	script_sleep 80
 	script_26 $0, $ff
 	script_sleep 10
 	script_face_player $0
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 20
 	script_printtext $a, $76
 	script_hop_player
@@ -4788,7 +4788,7 @@ Script_0e9:
 	script_printtext $a, $84
 	script_playmusic MUSIC_WARP
 	script_sleep 5
-	script_68 $4, $31, $54
+	script_warp_wavy $4, $31, 5, 4
 	script_sleep 8
 	script_complete_event $e9
 	script_complete_event $ea
@@ -4804,9 +4804,9 @@ Script_0e9:
 
 Script_0eb:
 	script_sleep 4
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $85
@@ -4821,9 +4821,9 @@ Script_0eb:
 
 Script_0ec:
 	script_sleep 5
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $88
@@ -4840,9 +4840,9 @@ Script_0ec:
 
 Script_0ed:
 	script_sleep 5
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $8b
@@ -4898,7 +4898,7 @@ Script_0ee:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $9c
-	script_36 $25, $1
+	script_give_item ITEM_SYRINGE, $1
 	script_complete_event $ee
 	script_complete_event $ef
 	script_complete_event $f0
@@ -4919,45 +4919,45 @@ Script_0f1:
 
 Script_1527c8:
 	script_walk_player $42, $32
-	script_2a
+	script_wait_player_walk
 	script_end
 
 Script_0f3:
 	script_walk_player $46, $32
-	script_3c $47, $32
-	script_2a
-	script_58
+	script_walk_partner $47, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $36, $32
-	script_3c $46, $32
-	script_2a
-	script_58
+	script_walk_partner $46, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $26, $32
-	script_3c $36, $32
-	script_2a
-	script_58
+	script_walk_partner $36, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $25, $32
-	script_3c $26, $32
-	script_2a
-	script_58
+	script_walk_partner $26, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $23, $32
-	script_3c $24, $32
-	script_2a
-	script_58
+	script_walk_partner $24, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $33, $32
-	script_3c $23, $32
-	script_2a
-	script_58
+	script_walk_partner $23, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $53, $32
-	script_3c $43, $32
-	script_2a
-	script_58
-	script_0d $2
+	script_walk_partner $43, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $2
 	script_sleep 20
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 20
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 20
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 20
 	script_hop_player
 	script_sleep 50
@@ -4966,9 +4966,9 @@ Script_0f3:
 	script_sleep 5
 	script_playsfx SFX_0A
 	script_printtext $a, $9f
-	script_37 $25, $1
+	script_take_item ITEM_SYRINGE, $1
 	script_playmusic MUSIC_39
-	script_21 $0, $5c, $47
+	script_spawn_person $0, $5, $c, $47
 	script_60 $5c
 	script_face_player $0
 	script_sleep 20
@@ -4978,8 +4978,8 @@ Script_0f3:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $a1
-	script_0d $1
-	script_1c $1
+	script_set_player_facing $1
+	script_set_partner_facing $1
 	script_sleep 20
 	script_hop_player
 	script_sleep 50
@@ -5009,31 +5009,31 @@ Script_0f3:
 	script_sleep 50
 	script_printtext $a, $a9
 	script_walk_player $73, $32
-	script_3c $63, $32
-	script_2a
-	script_58
+	script_walk_partner $63, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $74, $32
-	script_3c $73, $32
-	script_2a
-	script_58
+	script_walk_partner $73, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $76, $32
-	script_3c $75, $32
-	script_2a
-	script_58
+	script_walk_partner $75, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $66, $32
-	script_3c $76, $32
-	script_2a
-	script_58
+	script_walk_partner $76, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $46, $32
-	script_3c $56, $32
-	script_2a
-	script_58
+	script_walk_partner $56, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_hop_player
-	script_0d $1
-	script_1c $1
+	script_set_player_facing $1
+	script_set_partner_facing $1
 	script_sleep 50
 	script_playmusic MUSIC_KAI_ENCOUNTER
-	script_21 $0, $5b, $47
+	script_spawn_person $0, $5, $b, $47
 	script_60 $5b
 	script_apply_facing $0, $3
 	script_sleep 20
@@ -5074,8 +5074,8 @@ Script_0f3:
 	script_unlock_event $126
 	script_special $3
 	script_warp $3, $3e, $4, $2
-	script_0d $3
-	script_1c $3
+	script_set_player_facing $3
+	script_set_partner_facing $3
 	script_sleep 20
 	script_printtext $a, $b3
 	script_67
@@ -5087,7 +5087,7 @@ Script_0f5:
 	script_sleep 20
 	script_printtext $a, $b4
 	script_walk_player $55, $32
-	script_2a
+	script_wait_player_walk
 	script_printtext $a, $b5
 	script_sleep 20
 	script_printtext $a, $b6
@@ -5124,13 +5124,13 @@ Script_0f5:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $c0
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 20
 	script_printtext $a, $c1
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $a, $c2
-	script_0d $3
+	script_set_player_facing $3
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $c3
@@ -5206,15 +5206,15 @@ Script_0f6:
 Script_0f8:
 	script_sleep 4
 	script_playmusic MUSIC_25
-	script_21 $0, $50, $45
+	script_spawn_person $0, $5, $0, $45
 	script_60 $50
 	script_26 $0, $4
 	script_sleep 80
 	script_26 $0, $ff
 	script_printtext $a, $d2
 	script_walk_player $46, $32
-	script_2a
-	script_0d $3
+	script_wait_player_walk
+	script_set_player_facing $3
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $d3
@@ -5251,7 +5251,7 @@ Script_0f8:
 	script_face_player $0
 	script_sleep 20
 	script_printtext $a, $db
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 20
 	script_printtext $a, $dc
 	script_face_player $0
@@ -5262,7 +5262,7 @@ Script_0f8:
 	script_walk_npc $0, $57, 80
 	script_wait_movement $0
 	script_disappear $0
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 20
 	script_printtext $a, $de
 	script_hop_player
@@ -5360,9 +5360,9 @@ Script_0fa:
 
 Script_0fc:
 	script_sleep 5
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $e7
@@ -5409,7 +5409,7 @@ Script_0fe:
 	script_hop_player
 	script_sleep 50
 	script_printtext $a, $f2
-	script_21 $1, $58, $54
+	script_spawn_person $1, $5, $8, $54
 	script_66 $58
 	script_26 $1, $2
 	script_sleep 80
@@ -5452,9 +5452,9 @@ Script_0fe:
 	script_hop_player
 	script_sleep 50
 	script_printtext $c, $0
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $c, $1
@@ -5538,9 +5538,9 @@ Script_152cfe:
 	script_warp $21, $e, $0, $0
 	script_set_event EVENT_1C2
 	script_set_event EVENT_1C3
-	script_21 $0, $2a, $54
+	script_spawn_person $0, $2, $a, $54
 	script_65 $2a
-	script_21 $1, $51, $52
+	script_spawn_person $1, $5, $1, $52
 	script_66 $51
 	script_apply_facing $1, $1
 	script_apply_facing $0, $3
@@ -5580,9 +5580,9 @@ Script_152cfe:
 	script_sleep 20
 	script_printtext $c, $1c
 	script_walk_player $46, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $47, $32
-	script_2a
+	script_wait_player_walk
 	script_reset_event EVENT_1C3
 IF DEF(POWER)
 	script_upgrade_dshot $2
@@ -5597,7 +5597,7 @@ ENDC
 
 Script_101:
 	script_sleep 4
-	script_0d $3
+	script_set_player_facing $3
 	script_playmusic MUSIC_KAI_ENCOUNTER
 	script_sleep 20
 	script_hop_player
@@ -5675,9 +5675,9 @@ Script_103:
 	script_disappear $0
 	script_sleep 20
 	script_printtext $c, $31
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $c, $32
@@ -5716,46 +5716,46 @@ Script_103:
 
 Script_105:
 	script_walk_player $31, $32
-	script_2a
-	script_3f $3, $0
+	script_wait_player_walk
+	script_spawn_partner $3, $0
 	script_walk_player $21, $32
-	script_3c $31, $32
-	script_2a
-	script_58
+	script_walk_partner $31, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $11, $32
-	script_3c $21, $32
-	script_2a
-	script_58
+	script_walk_partner $21, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $11, $32
-	script_3c $21, $32
-	script_2a
-	script_58
+	script_walk_partner $21, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $12, $32
-	script_3c $11, $32
-	script_2a
-	script_58
+	script_walk_partner $11, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $16, $32
-	script_3c $15, $32
-	script_2a
-	script_58
+	script_walk_partner $15, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $26, $32
-	script_3c $16, $32
-	script_2a
-	script_58
+	script_walk_partner $16, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $46, $32
-	script_3c $36, $32
-	script_2a
-	script_58
+	script_walk_partner $36, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $45, $32
-	script_3c $46, $32
-	script_2a
-	script_58
+	script_walk_partner $46, $32
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_walk_player $43, $32
-	script_3c $44, $32
-	script_2a
-	script_58
-	script_0d $0
-	script_1c $0
+	script_walk_partner $44, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $0
+	script_set_partner_facing $0
 	script_playmusic MUSIC_KAI_ENCOUNTER
 	script_sleep 20
 	script_printtext $c, $3e
@@ -5784,7 +5784,7 @@ Script_105:
 	script_walk_npc $1, $54, 50
 	script_wait_movement $1
 	script_printtext $c, $47
-	script_0d $1
+	script_set_player_facing $1
 	script_hop_npc $1
 	script_sleep 50
 	script_printtext $c, $48
@@ -5793,7 +5793,7 @@ Script_105:
 	script_printtext $c, $49
 	script_sleep 20
 	script_printtext $c, $4a
-	script_0d $0
+	script_set_player_facing $0
 	script_apply_facing $1, $2
 	script_hop_player
 	script_sleep 50
@@ -5802,8 +5802,8 @@ Script_105:
 	script_printtext $c, $4c
 	script_walk_npc $0, $65, 50
 	script_wait_movement $0
-	script_0d $1
-	script_1c $1
+	script_set_player_facing $1
+	script_set_partner_facing $1
 	script_apply_facing $1, $1
 	script_walk_npc $0, $45, 50
 	script_wait_movement $0
@@ -5826,7 +5826,7 @@ ELSE
 	script_give_denjuu $7, GYMNOS, $3c, $28, $a
 	script_66 $38
 ENDC
-	script_1c $3
+	script_set_partner_facing $3
 	script_apply_facing $1, $3
 	script_sleep 20
 IF DEF(POWER)
@@ -5869,7 +5869,7 @@ Script_106:
 	script_wait_movement $0
 	script_printtext $c, $53
 	script_walk_player $54, $32
-	script_2a
+	script_wait_player_walk
 	script_sleep 20
 	script_printtext $c, $54
 	script_hop_npc $0
@@ -6014,7 +6014,7 @@ Script_108:
 	script_end
 
 Script_10a:
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 4
 	script_playmusic MUSIC_39
 	script_sleep 20
@@ -6047,7 +6047,7 @@ Script_10a:
 	script_sleep 50
 	script_printtext $c, $7a
 	script_playmusic MUSIC_25
-	script_21 $1, $58, $50
+	script_spawn_person $1, $5, $8, $50
 	script_66 $58
 	script_26 $1, $2
 	script_sleep 80
@@ -6067,9 +6067,9 @@ Script_10a:
 	script_sleep 80
 	script_disappear $1
 	script_walk_player $51, $50
-	script_2a
+	script_wait_player_walk
 	script_hop_player
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 50
 	script_printtext $c, $7f
 	script_apply_facing $0, $0
@@ -6122,9 +6122,9 @@ Script_10b:
 	script_reset_event EVENT_1F7
 	script_sleep 20
 	script_printtext $c, $8a
-	script_5c $0
-	script_05
-	script_5d
+	script_startringingphone $0
+	script_wait_button
+	script_stopringingphone
 	script_hop_player
 	script_sleep 50
 	script_printtext $c, $8b
@@ -6183,14 +6183,14 @@ Script_10d:
 	script_sleep 20
 	script_printtext $c, $8e
 	script_walk_player $45, $32
-	script_2a
+	script_wait_player_walk
 	script_end
 
 Script_10e:
 	script_sleep 20
 	script_printtext $c, $8f
 	script_walk_player $55, $32
-	script_2a
+	script_wait_player_walk
 	script_end
 
 Script_10f:
@@ -6218,8 +6218,8 @@ Script_10f:
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $c, $96
-	script_36 $3a, $1
-	script_36 $3d, $1
+	script_give_item ITEM_FUSION_PASS_1, $1
+	script_give_item ITEM_LAB_PASS_1, $1
 	script_17 $2
 	script_sleep 20
 	script_warp $4, $19, $6, $6
@@ -6277,7 +6277,7 @@ Script_119:
 Script_1533b2:
 	script_set_event EVENT_1C3
 Script_1533b5:
-	script_1c $1
+	script_set_partner_facing $1
 	script_face_player $1
 	script_sleep 10
 	script_printtext $c, $9b
@@ -6285,17 +6285,17 @@ Script_1533b5:
 	script_sleep 50
 	script_printtext $c, $9c
 	script_walk_player $46, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $47, $32
-	script_2a
+	script_wait_player_walk
 	script_reset_event EVENT_1C3
 	script_end
 
 Script_11a:
 	script_4c $1
-	script_21 $0, $59, $34
-	script_21 $1, $2a, $44
-	script_21 $2, $5a, $54
+	script_spawn_person $0, $5, $9, $34
+	script_spawn_person $1, $2, $a, $44
+	script_spawn_person $2, $5, $a, $54
 	script_60 $59
 	script_65 $5a
 	script_66 $2a
@@ -6303,11 +6303,11 @@ Script_11a:
 	script_face_player $1
 	script_face_player $2
 	script_walk_player $42, $32
-	script_3c $52, $32
-	script_2a
-	script_58
-	script_0d $1
-	script_1c $1
+	script_walk_partner $52, $32
+	script_wait_player_walk
+	script_wait_partner_walk
+	script_set_player_facing $1
+	script_set_partner_facing $1
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $c, $9d
@@ -6633,7 +6633,7 @@ Script_1536bb:
 	script_end
 
 Script_12b:
-	script_1c $3
+	script_set_partner_facing $3
 	script_61 $30, Script_1536c9
 	script_jump Script_1536cc
 
@@ -6738,9 +6738,9 @@ Script_15377c:
 	script_set_event EVENT_219
 Script_15378f:
 	script_walk_player $46, $32
-	script_2a
+	script_wait_player_walk
 	script_walk_player $47, $32
-	script_2a
+	script_wait_player_walk
 	script_reset_event EVENT_1C3
 	script_end
 
@@ -6913,14 +6913,14 @@ Script_153910:
 
 Script_136:
 	script_walk_player $54, $32
-	script_3c $55, $32
+	script_walk_partner $55, $32
 	script_walk_npc $0, $44, 50
-	script_2a
-	script_58
+	script_wait_player_walk
+	script_wait_partner_walk
 	script_wait_movement $0
 	script_face_player $0
-	script_0d $2
-	script_1c $2
+	script_set_player_facing $2
+	script_set_partner_facing $2
 	script_hop_player
 	script_sleep 50
 	script_printtext $14, $f
@@ -6930,19 +6930,19 @@ Script_136:
 	script_hop_player
 	script_sleep 50
 	script_printtext $14, $11
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 80
 	script_printtext $14, $12
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $14, $13
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 20
 	script_printtext $14, $14
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $14, $15
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 20
 	script_printtext $14, $16
 	script_hop_npc $0
@@ -6983,14 +6983,14 @@ Script_136:
 	script_26 $0, $2
 	script_sleep 80
 	script_disappear $0
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 50
 	script_printtext $14, $22
 	script_complete_active_event
 	script_end
 
 Script_137:
-	script_21 $0, $50, $44
+	script_spawn_person $0, $5, $0, $44
 	script_60 $50
 	script_26 $0, $2
 	script_sleep 80
@@ -7048,7 +7048,7 @@ Script_137:
 	script_end
 
 Script_139:
-	script_21 $0, $54, $44
+	script_spawn_person $0, $5, $4, $44
 	script_5f $ae
 	script_face_player $0
 	script_sleep 4
@@ -7079,7 +7079,7 @@ Script_139:
 	script_sleep 50
 	script_printtext $14, $33
 	script_walk_player $45, $32
-	script_2a
+	script_wait_player_walk
 	script_hop_player
 	script_sleep 50
 	script_printtext $14, $34
@@ -7087,7 +7087,7 @@ Script_139:
 	script_wait_movement $0
 	script_walk_npc $0, $55, 80
 	script_wait_movement $0
-	script_0d $0
+	script_set_player_facing $0
 	script_face_player $0
 	script_hop_npc $0
 	script_sleep 50
@@ -7098,7 +7098,7 @@ Script_139:
 	script_wait_movement $0
 	script_walk_npc $0, $35, 80
 	script_wait_movement $0
-	script_0d $2
+	script_set_player_facing $2
 	script_face_player $0
 	script_hop_npc $0
 	script_sleep 50
@@ -7109,7 +7109,7 @@ Script_139:
 	script_wait_movement $0
 	script_face_player $0
 	script_hop_npc $0
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 50
 	script_printtext $14, $37
 	script_hop_player
@@ -7158,7 +7158,7 @@ Script_139:
 	script_end
 
 Script_13a:
-	script_21 $0, $54, $44
+	script_spawn_person $0, $5, $4, $44
 	script_5f $af
 	script_face_player $0
 	script_sleep 5
@@ -7172,7 +7172,7 @@ Script_13a:
 	script_sleep 50
 	script_printtext $14, $44
 	script_walk_player $44, $32
-	script_2a
+	script_wait_player_walk
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $14, $45
@@ -7182,7 +7182,7 @@ Script_13a:
 	script_sleep 50
 	script_printtext $14, $46
 	script_walk_player $43, $32
-	script_2a
+	script_wait_player_walk
 	script_sleep 20
 	script_printtext $14, $47
 	script_apply_facing $0, $3
@@ -7219,10 +7219,10 @@ Script_13a:
 	script_wait_movement $0
 	script_walk_npc $0, $53, 80
 	script_wait_movement $0
-	script_0d $0
+	script_set_player_facing $0
 	script_walk_npc $0, $55, 80
 	script_wait_movement $0
-	script_0d $1
+	script_set_player_facing $1
 	script_walk_npc $0, $57, 80
 	script_wait_movement $0
 	script_disappear $0
@@ -7361,28 +7361,28 @@ Script_140:
 
 Script_153cf3:
 	script_jump_if_not EVENT_20A, Script_153d0e
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 10
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 10
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 10
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 40
 	script_jump Script_153d22
 
 Script_153d0e:
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 10
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 10
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 40
 Script_153d22:
 	script_printtext $14, $6c
@@ -7399,10 +7399,10 @@ Script_153d35:
 	script_sleep 20
 	script_printtext $14, $6f
 	script_jump_if_not EVENT_20A, Script_153d5e
-	script_0d $3
+	script_set_player_facing $3
 	script_sleep 20
 	script_printtext $14, $70
-	script_0d $1
+	script_set_player_facing $1
 	script_sleep 20
 	script_printtext $14, $71
 	script_playmusic MUSIC_OVERWORLD
@@ -7414,10 +7414,10 @@ Script_153d35:
 	script_end
 
 Script_153d5e:
-	script_0d $2
+	script_set_player_facing $2
 	script_sleep 20
 	script_printtext $14, $72
-	script_0d $0
+	script_set_player_facing $0
 	script_sleep 20
 	script_printtext $14, $73
 	script_playmusic MUSIC_OVERWORLD
@@ -7445,7 +7445,7 @@ Script_153d8c:
 	script_sleep 30
 	script_incvar
 	script_if_not_equal $3, Script_153d8c
-	script_21 $0, $d, $41
+	script_spawn_person $0, $0, $d, $41
 	script_sleep 20
 	script_printtext $14, $75
 	script_hop_and_displace_npc $0, $2
@@ -7459,7 +7459,7 @@ Script_153dac:
 	script_sleep 30
 	script_incvar
 	script_if_not_equal $3, Script_153dac
-	script_21 $1, $d, $41
+	script_spawn_person $1, $0, $d, $41
 	script_sleep 20
 	script_printtext $14, $76
 	script_hop_and_displace_npc $1, $0
@@ -7473,7 +7473,7 @@ Script_153dac:
 	script_sleep 50
 	script_printtext $14, $77
 	script_62 $43, $a
-	script_2a
+	script_wait_player_walk
 	script_sleep 50
 	script_printtext $14, $78
 	script_hop_npc $0
@@ -7518,7 +7518,7 @@ Script_153dac:
 	script_sleep 20
 	script_playsfx SFX_0A
 	script_printtext $14, $82
-	script_36 $37, $a
+	script_give_item ITEM_GAIAMOND, $a
 	script_hop_npc $1
 	script_sleep 50
 	script_printtext $14, $83
@@ -7558,7 +7558,7 @@ Script_153e6d:
 	script_sleep 20
 	script_playsfx SFX_0A
 	script_printtext $14, $88
-	script_36 $37, $a
+	script_give_item ITEM_GAIAMOND, $a
 	script_hop_npc $0
 	script_sleep 50
 	script_printtext $14, $89
@@ -7576,7 +7576,7 @@ Script_153e6d:
 
 Script_144:
 	script_sleep 20
-	script_0d $3
+	script_set_player_facing $3
 	script_playsfx SFX_47
 	script_shake_screen $0, $32
 	script_sleep 30
@@ -7590,13 +7590,13 @@ Script_146:
 	script_sleep 20
 	script_printtext $14, $8c
 	script_walk_player $42, $32
-	script_2a
+	script_wait_player_walk
 	script_end
 
 Script_147:
 	script_sleep 20
 	script_printtext $14, $8d
 	script_walk_player $52, $32
-	script_2a
+	script_wait_player_walk
 	script_end
 

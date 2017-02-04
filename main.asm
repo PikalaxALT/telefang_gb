@@ -1968,19 +1968,19 @@ Func_2de3f:
 	call ResetEventFlag
 	ld bc, EVENT_08B
 	call ResetEventFlag
-	ld hl, wcdf6
+	ld hl, wItems + ITEM_FUSION_PASS_1
 	ld a, [wc912]
 	cp $6e
 	jr c, .asm_2de75
 	cp $9b
 	jr c, .asm_2dea0
-	ld a, [wcdf8]
+	ld a, [wItems + ITEM_FUSION_PASS_3]
 	or a
 	jr z, .asm_2de68
 	ld bc, EVENT_08A
 	call SetEventFlag
 .asm_2de68
-	ld a, [wcdfb]
+	ld a, [wItems + ITEM_LAB_PASS_3]
 	or a
 	jr z, .asm_2de74
 	ld bc, EVENT_08B
@@ -1989,22 +1989,22 @@ Func_2de3f:
 	ret
 
 .asm_2de75
-	ld a, [wcdf6]
+	ld a, [wItems + ITEM_FUSION_PASS_1]
 	ld c, a
-	ld a, [wcdf7]
+	ld a, [wItems + ITEM_FUSION_PASS_2]
 	ld b, a
-	ld a, [wcdf8]
+	ld a, [wItems + ITEM_FUSION_PASS_3]
 	or b
 	or c
 	jr z, .asm_2de8a
 	ld bc, EVENT_08A
 	call SetEventFlag
 .asm_2de8a
-	ld a, [wcdf9]
+	ld a, [wItems + ITEM_LAB_PASS_1]
 	ld c, a
-	ld a, [wcdfa]
+	ld a, [wItems + ITEM_LAB_PASS_2]
 	ld b, a
-	ld a, [wcdfb]
+	ld a, [wItems + ITEM_LAB_PASS_3]
 	or b
 	or c
 	jr z, .asm_2de9f
@@ -2014,17 +2014,17 @@ Func_2de3f:
 	ret
 
 .asm_2dea0
-	ld a, [wcdf7]
+	ld a, [wItems + ITEM_FUSION_PASS_2]
 	ld b, a
-	ld a, [wcdf8]
+	ld a, [wItems + ITEM_FUSION_PASS_3]
 	or b
 	jr z, .asm_2deb0
 	ld bc, EVENT_08A
 	call SetEventFlag
 .asm_2deb0
-	ld a, [wcdfa]
+	ld a, [wItems + ITEM_LAB_PASS_2]
 	ld b, a
-	ld a, [wcdfb]
+	ld a, [wItems + ITEM_LAB_PASS_3]
 	or b
 	jr z, .asm_2dec0
 	ld bc, EVENT_08B
@@ -2033,7 +2033,7 @@ Func_2de3f:
 	ret
 
 Func_2dec1: ; 2dec1 (b:5ec1)
-	ld hl, wcdf6
+	ld hl, wItems + ITEM_FUSION_PASS_1
 	ld b, $6
 .asm_2dec6
 	ld a, [hli]
@@ -8316,7 +8316,7 @@ FadeOutOverworldForMinimap______: ; a89dd (2a:49dd)
 	jpba FadeOutOverworldForMinimap ; same bank
 
 Func_a89e5: ; a89e5 (2a:49e5)
-	ld a, $2
+	ld a, MUSIC_02
 	ld [wMapMusic], a
 	call GetMusicBank
 	ld [H_MusicID], a
@@ -8324,18 +8324,18 @@ Func_a89e5: ; a89e5 (2a:49e5)
 	ld [wPrevROMBank], a
 	ld a, [wc912]
 	ld [wcaed], a
-	ld a, [wcdec]
+	ld a, [wItems + ITEM_KEY]
 	ld [wc908], a
 	ld a, $0
-	ld [wcdec], a
-	ld a, [wcdee]
+	ld [wItems + ITEM_KEY], a
+	ld a, [wItems + ITEM_PLUSH_TOY]
 	ld [wOAMAnimation18_Duration + 21], a
 	ld a, $0
-	ld [wcdee], a
-	ld a, [wcde1]
+	ld [wItems + ITEM_PLUSH_TOY], a
+	ld a, [wItems + ITEM_SYRINGE]
 	ld [wOAMAnimation19_Duration + 21], a
 	ld a, $0
-	ld [wcde1], a
+	ld [wItems + ITEM_SYRINGE], a
 	ld bc, EVENT_089
 	call CheckEventFlag
 	jr z, .asm_a8a31
@@ -8711,14 +8711,15 @@ Func_a8d11:
 	jr nz, .loop
 	ret
 
-Func_a8d20: ; a8d20 (2a:4d20)
+LoadItemPic: ; a8d20 (2a:4d20)
+; Load the pic for item c into VRAM at hl
 	push hl
-	ld d, $2b
+	ld d, BANK(GFX_ac000)
 	ld a, c
-	cp $22
+	cp ($4000 / $1e0)
 	jr c, .asm_a8d2b
 	inc d
-	sub $22
+	sub ($4000 / $1e0)
 .asm_a8d2b
 	ld e, a
 	ld a, d
@@ -9393,11 +9394,11 @@ Func_a91dc: ; a91dc (2a:51dc)
 	ld a, $a
 	ld [wSubroutine], a
 	ld a, [wc908]
-	ld [wcdec], a
+	ld [wItems + ITEM_KEY], a
 	ld a, [wOAMAnimation18_Duration + 21]
-	ld [wcdee], a
+	ld [wItems + ITEM_PLUSH_TOY], a
 	ld a, [wOAMAnimation19_Duration + 21]
-	ld [wcde1], a
+	ld [wItems + ITEM_SYRINGE], a
 	call Func_a920d
 	ret
 
@@ -9445,7 +9446,7 @@ Func_a9223: ; a9223 (2a:5223)
 	add c
 	ld c, a
 	ld hl, VTilesOB tile $00
-	call Func_a8d20
+	call LoadItemPic
 	ld a, $0
 	ld [wcae7], a
 	ld [wOAMAnimation17_PriorityFlags], a
@@ -10460,11 +10461,11 @@ Func_a99f5: ; a99f5 (2a:59f5)
 	ld [wcae7], a
 	ld [wcd00], a
 	ld a, [wc908]
-	ld [wcdec], a
+	ld [wItems + ITEM_KEY], a
 	ld a, [wOAMAnimation18_Duration + 21]
-	ld [wcdee], a
+	ld [wItems + ITEM_PLUSH_TOY], a
 	ld a, [wOAMAnimation19_Duration + 21]
-	ld [wcde1], a
+	ld [wItems + ITEM_SYRINGE], a
 	call Func_a920d
 	ld a, SFX_03
 	ld [H_SFX_ID], a
@@ -11998,7 +11999,7 @@ Func_c8000::
 	ld a, $0
 	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, $b
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, SFX_11
 	ld [H_SFX_ID], a
 	jp .load_bail
@@ -14604,8 +14605,8 @@ Func_c9538: ; c9538 (32:5538)
 	xor a
 	ld hl, wEventFlags
 	ld b, $0
-	call Func_2f76
-	call Func_2f76
+	call ByteFill
+	call ByteFill
 	ld hl, wPlayerName
 	ld de, wcd00
 	ld b, $9
@@ -14613,7 +14614,7 @@ Func_c9538: ; c9538 (32:5538)
 	xor a
 	ld hl, wPhoneCallSubroutine
 	ld b, $80
-	call Func_2f76
+	call ByteFill
 	ld hl, wcd00
 	ld de, wPlayerName
 	ld b, $9
@@ -14623,7 +14624,7 @@ Func_c9538: ; c9538 (32:5538)
 	xor a
 	ld hl, wcd00
 	ld b, $0
-	call Func_2f76
+	call ByteFill
 	pop af
 	ld [wDShotLevel], a
 	pop bc
@@ -14795,7 +14796,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld a, $0
 	ld [wca6e], a
 	ld a, $0
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, $ff
 	ld [wc9f5], a
 	call Func_c81bf
@@ -14809,14 +14810,14 @@ Func_c96ba: ; c96ba (32:56ba)
 	cp $5
 	jr c, .asm_c972b
 	ld a, $3
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 .asm_c972b
 	ld a, [wc947]
 	or a
 	jr z, .asm_c9745
 	ld a, [wc94b]
 	and $7f
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, [wc94b]
 	and $80
 	jr z, .asm_c9745
@@ -14856,7 +14857,7 @@ Func_c96ba: ; c96ba (32:56ba)
 	ld a, $a
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $9
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, $0
 	ld [hli], a
@@ -14899,7 +14900,7 @@ Func_c97d2: ; c97d2 (32:57d2)
 	jr z, .asm_c97ef
 	ld b, $0
 .asm_c97ef
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	or b
 	ld [wc94b], a
 	ld a, [wPartnerDenjuuObjectStruct_XCoord]
@@ -15184,7 +15185,7 @@ Func_c9875: ; c9875 (32:5875)
 	pop hl
 	ret
 
-Func_c99ac: ; c99ac (32:59ac)
+StartWavyWarpAnimation: ; c99ac (32:59ac)
 	ld a, $2e
 	ld [wSubroutine], a
 	ld hl, wBackupObjectVisibilityFlags
@@ -15255,7 +15256,7 @@ Func_c99ac: ; c99ac (32:59ac)
 	ld [wc46d], a
 	ld a, $8
 	ld [rSTAT], a
-	ld a, BANK(Func_c99ac)
+	ld a, BANK(StartWavyWarpAnimation)
 	ld [wPrevROMBank], a
 	ld a, $10
 	call StartFade

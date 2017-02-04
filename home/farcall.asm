@@ -346,8 +346,8 @@ Divide_BC_by_DE_signed_::
 	homecall_memret Divide_BC_by_DE_signed
 	ret
 
-Func_0630::
-	homecall_memret Func_a8d20
+LoadItemPic_::
+	homecall_memret LoadItemPic
 	ret
 
 PlayMoveAnimation_grp1_::

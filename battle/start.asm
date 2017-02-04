@@ -1129,7 +1129,7 @@ Func_70857:
 	ld a, [wEnemyDenjuu1Field0x0c]
 	ld [wd5b8], a
 	ld a, $1
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 	ld a, [wEnemyDenjuu2Level]
 	cp $0
 	jr z, .asm_708b5
@@ -1139,9 +1139,9 @@ Func_70857:
 	ld [wd5ba], a
 	ld a, [wEnemyDenjuu2Field0x0c]
 	ld [wd5bb], a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 	ld a, [wEnemyDenjuu3Level]
 	cp $0
 	jr z, .asm_708b5
@@ -1151,13 +1151,13 @@ Func_70857:
 	ld [wd5bd], a
 	ld a, [wEnemyDenjuu3Field0x0c]
 	ld [wd5be], a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .asm_708b5
 	xor a
 	ld [wMoveAnimationSubroutine], a
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, $9
 	ld [wGameRoutine], a
 	ret
@@ -1497,7 +1497,7 @@ Func_70b53:
 	ld [wNamedObjectIndexBuffer], a
 	ld [wMoveAnimationTimer], a
 	ld a, $1
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, $1
 	ld [wd42e], a
 	ld a, [wNumDenjuuInAddressBook]
@@ -1573,15 +1573,15 @@ Func_70bca:
 	ld a, [wd404]
 	cp $1
 	jp z, Func_70cb9
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $0
 	jp z, Func_70cb9
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld b, a
 	ld a, [wd429]
 	cp b
 	jr c, .asm_70c56
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld [wd42b], a
 	ld a, [wd42b]
 	ld [wd429], a
@@ -1610,7 +1610,7 @@ Func_70bca:
 	call LoadDenjuuPic_
 	pop af
 	call GetDenjuuPalette_Pal6
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	dec a
 	ld b, $0
 	ld a, a
@@ -1622,7 +1622,7 @@ Func_70bca:
 	ld a, c
 	ld [wd4a1], a
 	ld a, $1
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	call Func_71301
 	call Func_7131f
 	call Func_71374
@@ -1648,7 +1648,7 @@ Func_70cb9: ; 70cb9 (1c:4cb9)
 	ld a, [wd404]
 	cp $1
 	jr z, .asm_70cef
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $0
 	jr z, .asm_70cef
 .asm_70ceb
@@ -1699,7 +1699,7 @@ Func_70d39:
 	ld a, [wd404]
 	cp $1
 	jr z, .asm_70d60
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $0
 	jp z, .asm_70d60
 	call Func_713de
@@ -1876,7 +1876,7 @@ Func_70eab: ; 70eab (1c:4eab)
 	ld a, $0
 	call Func_71446
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wd429]
 	dec a
 	ld [wd429], a
@@ -1895,7 +1895,7 @@ Func_70ed7: ; 70ed7 (1c:4ed7)
 	ld a, $1
 	call Func_71446
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wd429]
 	dec a
 	ld [wd429], a
@@ -1914,7 +1914,7 @@ Func_70f03: ; 70f03 (1c:4f03)
 	ld a, $2
 	call Func_71446
 	ld a, [wcb00]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wd429]
 	dec a
 	ld [wd429], a
@@ -2068,7 +2068,7 @@ Func_71033:
 	ld a, [wd404]
 	cp $1
 	jr z, .asm_71066
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $0
 	jp z, .asm_71066
 	call Func_713de
@@ -2095,7 +2095,7 @@ Func_7106c:
 	ld a, [wBattleMenuSelection]
 	ld d, a
 	call Func_71704
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	xor a
 	ld [wMoveAnimationSubroutine], a
 	ld a, $9
@@ -2308,7 +2308,7 @@ Func_7122c: ; 7122c (1c:522c)
 	ld a, c
 	ld [wd5a8], a
 	xor a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 	ld a, $fe
 	ld b, a
 	ld hl, wd000
@@ -2346,7 +2346,7 @@ Func_7122c: ; 7122c (1c:522c)
 	push hl
 	ld hl, wd200
 	ld d, $0
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld e, a
 	add hl, de
 	ld a, [wd4ec]
@@ -2355,7 +2355,7 @@ Func_7122c: ; 7122c (1c:522c)
 	push hl
 	ld hl, wd100
 	ld d, $0
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld e, a
 	add hl, de
 	ld a, [wCurDenjuuLevel]
@@ -2363,9 +2363,9 @@ Func_7122c: ; 7122c (1c:522c)
 	pop hl
 	ld a, b
 	ld [hli], a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	inc a
-	ld [wd4b0], a
+	ld [wStatsScreen_NumDenjuu], a
 .asm_7129f
 	ld a, $0
 	cp b
@@ -2437,7 +2437,7 @@ Func_71301: ; 71301 (1c:5301)
 .asm_7130f
 	ld a, [wd4a1]
 	ld b, a
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 .asm_71316
 	sub $3
 	dec b
