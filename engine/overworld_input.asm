@@ -6,11 +6,11 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	ld [wcdb2], a
 	or a
 	jr nz, .asm_38fa6
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	cp $1b
 	jr c, .asm_38fa6
 	sub $1b
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 .asm_38fa6
 	ld a, $3
 	ld [wPlayerObjectStruct_PriorityFlags], a
@@ -145,7 +145,7 @@ Func_39075: ; 39075 (e:5075)
 	ld b, a
 	add a
 	add b
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, d
 	cp $2
 	jr nc, .asm_390ca
@@ -460,15 +460,15 @@ Func_39298: ; 39298 (e:5298)
 	inc d
 .asm_39309
 	ld a, a
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, d
 	ld [wPlayerObjectStruct_TemplateIdx], a
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp z, Func_39321
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	add $2d
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 Func_39321: ; 39321 (e:5321)
 	ret
 
@@ -550,7 +550,7 @@ Func_3939f: ; 3939f (e:539f)
 	ld a, $ff
 	ld [hl], a
 	ld a, $9
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ret
 
 .asm_393c4
@@ -603,12 +603,12 @@ Func_3939f: ; 3939f (e:539f)
 	cp b
 	jr nz, .asm_39456
 	ld a, $0
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $16
 	jr nz, .asm_39446
 	ld a, $9
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 .asm_39446
 	ld a, $b
 	ld [wPlayerObjectStruct_Duration + 18], a
@@ -630,7 +630,7 @@ Func_3939f: ; 3939f (e:539f)
 	ld [wPlayerObjectStruct_Duration + 13], a
 .asm_39466
 	ld a, $a
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, [wPlayerObjectStruct_Duration + 18]
 	cp $16
 	jr nz, .asm_39477
@@ -715,17 +715,17 @@ Func_394ea: ; 394ea (e:54ea)
 	adc h
 	ld h, a
 	ld b, [hl]
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	sub b
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, [wPlayerObjectStruct_Duration + 11]
 	inc a
 	ld [wPlayerObjectStruct_Duration + 11], a
 	cp $14
 	jr c, .asm_39516
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	add $9
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, $0
 	ld [wPlayerObjectStruct_Duration + 18], a
 .asm_39516
@@ -752,9 +752,9 @@ Func_3952b: ; 3952b (e:552b)
 	adc h
 	ld h, a
 	ld b, [hl]
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	add b
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, [wPlayerObjectStruct_Duration + 11]
 	inc a
 	ld [wPlayerObjectStruct_Duration + 11], a
@@ -791,7 +791,7 @@ Func_39550: ; 39550 (e:5550)
 	ld a, $0
 	ld [wPlayerObjectStruct_Duration + 13], a
 	ld a, $b
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, SFX_11
 	ld [H_SFX_ID], a
 	ret
@@ -835,9 +835,9 @@ Func_39598: ; 39598 (e:5598)
 	ld a, [wOverworldFrameCounter]
 	and $3
 	ret nz
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	inc a
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	cp $1a
 	ret nz
 	ld a, [wCurTilesetIdx]
@@ -1064,7 +1064,7 @@ Data_39828:
 
 StopPlayerWalkingAnimation: ; 3982c (e:582c)
 	ld c, $0
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	cp $2d
 	jr c, .no_sub_2d
 	ld c, $2d
@@ -1090,7 +1090,7 @@ StopPlayerWalkingAnimation: ; 3982c (e:582c)
 .less_3_or_less_6
 	ld a, b
 	add c
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ret
 
 Overworld_MoveUp: ; 3985b (e:585b)
@@ -1460,22 +1460,22 @@ UpdatePlayerFacing: ; 39b28 (e:5b28)
 	ld d, $1
 .not_going_right
 	and $7f
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, [wcdb2]
 	or a
 	jr z, .okay
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	add $1b
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	jr .get_step_vector
 
 .okay
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp z, .get_step_vector
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	add $2d
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 .get_step_vector
 	ld a, d
 	ld [wPlayerObjectStruct_TemplateIdx], a

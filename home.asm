@@ -1650,7 +1650,7 @@ PlayMoveAnimation_grp2: ; 1939 (0:1939)
 InitCustomDMelo: ; 1a09 (0:1a09)
 	enable_sram sDMelo
 	ld hl, sDMelo
-	ld bc, s1_b000 - sDMelo
+	ld bc, sItems - sDMelo
 .loop
 	ld a, $fe
 	ld [hli], a
@@ -2431,7 +2431,7 @@ Func_256e:
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	call OverworldRandom8_
 	cp $40
 	jr nc, .asm_25fe
@@ -2593,7 +2593,7 @@ Func_26ff: ; 26ff (0:26ff)
 	ld a, [hl]
 	sub $2
 	ld a, a
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, $11
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $c
@@ -2786,11 +2786,11 @@ Func_2809: ; 2809 (0:2809)
 	cp $34
 	jr nz, .skip_flag_check
 .check_set_flag
-	ld a, [wcdec]
+	ld a, [wItems + ITEM_KEY]
 	or a
 	jr z, .skip_flag_action
 	dec a
-	ld [wcdec], a
+	ld [wItems + ITEM_KEY], a
 	call SetEventFlag
 	ld a, [wROMBank]
 	push af
@@ -3843,7 +3843,8 @@ GetFarWord:
 	rst Bankswitch
 	ret
 
-Func_2f76: ; 2f76 (0:2f76)
+ByteFill: ; 2f76 (0:2f76)
+; fill b bytes at hl with a
 	push bc
 .asm_2f77
 	ld [hli], a
@@ -4225,7 +4226,7 @@ ServeSpecialGFXRequest: ; 3171 (0:3171)
 	jr z, .asm_3197
 	call Func_3238
 .asm_3197
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	ld b, a
 	ld a, [wc9f5]
 	cp b
@@ -4251,7 +4252,7 @@ asm_31c2
 	jp LoadPartnerDenjuuSprite
 
 Func_31c5: ; 31c5 (0:31c5)
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	ld b, a
 	ld a, [wc9f5]
 	cp b

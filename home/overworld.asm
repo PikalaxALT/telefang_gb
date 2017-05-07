@@ -161,7 +161,7 @@ Func_2264: ; 2264 (0:2264)
 	jp nz, Func_22d2
 	ld hl, wcd00
 	ld b, $20
-	call Func_2f76
+	call ByteFill
 Func_22d2: ; 22d2 (0:22d2)
 	call LoadMapScripts
 	ld a, $e3
@@ -215,7 +215,7 @@ Func_2329::
 	jr z, .asm_234b
 	ld a, [wMapGroup]
 	ld [wWhichPhoneNumberSymbolCode], a
-	callba Func_c99ac
+	callba StartWavyWarpAnimation
 	ret
 
 .asm_234b

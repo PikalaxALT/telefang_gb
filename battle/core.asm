@@ -1553,7 +1553,7 @@ Battle_DrawMenuOrAttackOnYourOwn: ; 14b07 (5:4b07)
 	ld a, [wBattleMenuSelection]
 	call UseMove
 	ld a, [wCurEnemyDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	xor a
 	ld [wMoveAnimationTimer], a
 	ld a, $2c
@@ -1931,7 +1931,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 
 .asm_14e77
 	ld a, [wCurBattleDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld [wd457], a
 	ld c, $94
 	call StdBattleTextBox
@@ -1939,7 +1939,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 
 .asm_14e87
 	ld a, [wCurBattleDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld [wd457], a
 	ld a, $3b
 	ld [wBattleSubroutine], a
@@ -1951,7 +1951,7 @@ Func_14ddd: ; 14ddd (5:4ddd)
 	jr z, .asm_14e77
 Func_14e9d: ; 14e9d (5:4e9d)
 	ld a, [wCurEnemyDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wNumAliveEnemyDenjuu]
 	cp $2
 	jr c, .asm_14ebc
@@ -1973,7 +1973,7 @@ Func_14e9d: ; 14e9d (5:4e9d)
 
 Func_14ec6: ; 14ec6 (5:4ec6)
 	ld a, [wCurEnemyDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	xor a
 	ld [wMoveAnimationTimer], a
 	ld a, $2c
@@ -2097,7 +2097,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	call LoadStdWindowLayout_
 	call Func_1658d
 	ld a, [wCurEnemyDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, $23
 	ld [wBattleSubroutine], a
 	ret
@@ -2135,7 +2135,7 @@ Func_14f81: ; 14f81 (5:4f81)
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wCurEnemyDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	xor a
 	ld [wMoveAnimationTimer], a
 	ld a, $2c
@@ -2214,7 +2214,7 @@ Func_15051: ; 15051 (5:5051)
 	call LoadStdBGMapLayout_
 	call Func_1657b
 	ld a, [wCurBattleDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, $3c
 	ld [wBattleSubroutine], a
 	ret
@@ -2328,7 +2328,7 @@ Func_1510a: ; 1510a (5:510a)
 	ld a, $0
 	ld [wBattleMenuSelection], a
 	ld a, [wCurBattleDenjuu]
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	ld a, [wCurDenjuuBuffer]
 	ld [wCurDenjuu], a
 	ld a, [wBattleMenuSelection]
@@ -2740,7 +2740,7 @@ Func_15428: ; 15428 (5:5428)
 	ret
 
 .asm_1543d
-	ld a, [wd415]
+	ld a, [wCurStatsScreenDenjuu]
 	inc a
 	ld [wSerialSend], a
 	ld a, [wBattleMenuSelection]

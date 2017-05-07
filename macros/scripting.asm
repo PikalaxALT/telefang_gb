@@ -35,9 +35,9 @@ script_sleep: MACRO
 	db \1
 	ENDM
 
-	enum script_05_command
-script_05: MACRO
-	db script_05_command
+	enum script_wait_button_command
+script_wait_button: MACRO
+	db script_wait_button_command
 .offset\@
 	ENDM
 
@@ -99,9 +99,9 @@ script_0c: MACRO
 	db \1
 	ENDM
 
-	enum script_0d_command
-script_0d: MACRO
-	db script_0d_command
+	enum script_set_player_facing_command
+script_set_player_facing: MACRO
+	db script_set_player_facing_command
 .offset\@
 	db \1
 	ENDM
@@ -199,9 +199,9 @@ script_1b: MACRO
 .offset\@
 	ENDM
 
-	enum script_1c_command
-script_1c: MACRO
-	db script_1c_command
+	enum script_set_partner_facing_command
+script_set_partner_facing: MACRO
+	db script_set_partner_facing_command
 .offset\@
 	db \1
 	ENDM
@@ -237,13 +237,13 @@ script_20: MACRO
 	db \3
 	ENDM
 
-	enum script_21_command
-script_21: MACRO
-	db script_21_command
+	enum script_spawn_person_command
+script_spawn_person: MACRO
+	db script_spawn_person_command
 .offset\@
 	db \1
-	db \2
-	db \3
+	dn \2, \3
+	db \4
 	ENDM
 
 	enum script_apply_facing_command
@@ -312,9 +312,9 @@ script_29: MACRO
 	db \7
 	ENDM
 
-	enum script_2a_command
-script_2a: MACRO
-	db script_2a_command
+	enum script_wait_player_walk_command
+script_wait_player_walk: MACRO
+	db script_wait_player_walk_command
 .offset\@
 	ENDM
 
@@ -420,20 +420,20 @@ script_reset_event: MACRO
 	bigdw \1
 	ENDM
 
-	enum script_36_command
-script_36: MACRO
-	db script_36_command
+	enum script_give_item_command
+script_give_item: MACRO
+	db script_give_item_command
 .offset\@
-	db \1
-	db \2
+	db \1 ; item
+	db \2 ; quantity
 	ENDM
 
-	enum script_37_command
-script_37: MACRO
-	db script_37_command
+	enum script_take_item_command
+script_take_item: MACRO
+	db script_take_item_command
 .offset\@
-	db \1
-	db \2
+	db \1 ; item
+	db \2 ; quantity
 	ENDM
 
 	enum script_jump_if_command
@@ -466,9 +466,9 @@ script_take_money: MACRO
 	bigdw \1
 	ENDM
 
-	enum script_3c_command
-script_3c: MACRO
-	db script_3c_command
+	enum script_walk_partner_command
+script_walk_partner: MACRO
+	db script_walk_partner_command
 .offset\@
 	db \1
 	db \2
@@ -481,16 +481,16 @@ script_face_player: MACRO
 	db \1
 	ENDM
 
-	enum script_3e_command
-script_3e: MACRO
-	db script_3e_command
+	enum script_spawn_player_command
+script_spawn_player: MACRO
+	db script_spawn_player_command
 .offset\@
 	dn \1, \2
 	ENDM
 
-	enum script_3f_command
-script_3f: MACRO
-	db script_3f_command
+	enum script_spawn_partner_command
+script_spawn_partner: MACRO
+	db script_spawn_partner_command
 .offset\@
 	dn \1, \2
 	ENDM
@@ -669,9 +669,9 @@ script_wait_movement: MACRO
 	db \1
 	ENDM
 
-	enum script_58_command
-script_58: MACRO
-	db script_58_command
+	enum script_wait_partner_walk_command
+script_wait_partner_walk: MACRO
+	db script_wait_partner_walk_command
 .offset\@
 	ENDM
 
@@ -686,31 +686,31 @@ script_give_denjuu: MACRO
 	db \5
 	ENDM
 
-	enum script_5a_command
-script_5a: MACRO
-	db script_5a_command
+	enum script_if_have_item_command
+script_if_have_item: MACRO
+	db script_if_have_item_command
 .offset\@
-	db \1
-	db \2
+	db \1 ; item
+	db \2 ; quantity
 	db (\3 - .offset\@) & $ff ; script offset
 	ENDM
 
-	enum script_5b_command
-script_5b: MACRO
-	db script_5b_command
+	enum script_antenna_tree_map_name_command
+script_antenna_tree_map_name: MACRO
+	db script_antenna_tree_map_name_command
 .offset\@
 	ENDM
 
-	enum script_5c_command
-script_5c: MACRO
-	db script_5c_command
+	enum script_startringingphone_command
+script_startringingphone: MACRO
+	db script_startringingphone_command
 .offset\@
-	db \1
+	db \1 ; dummy
 	ENDM
 
-	enum script_5d_command
-script_5d: MACRO
-	db script_5d_command
+	enum script_stopringingphone_command
+script_stopringingphone: MACRO
+	db script_stopringingphone_command
 .offset\@
 	ENDM
 
@@ -787,13 +787,13 @@ script_67: MACRO
 .offset\@
 	ENDM
 
-	enum script_68_command
-script_68: MACRO
-	db script_68_command
+	enum script_warp_wavy_command
+script_warp_wavy: MACRO
+	db script_warp_wavy_command
 .offset\@
-	db \1
-	db \2
-	db \3
+	db \1 ; map
+	db \2 ; cell
+	dn \3, \4 ; x, y
 	ENDM
 
 	enum script_if_own_denjuu_command

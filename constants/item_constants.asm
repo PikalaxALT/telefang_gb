@@ -68,3 +68,4 @@
 	const ITEM_GRAPPLITE_9   ; 41
 	const ITEM_GIGAIA_00     ; 42
 	const ITEM_DEAD_ITEM     ; 43
+NUM_ITEMS EQU const_value    ; 44

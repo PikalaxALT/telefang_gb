@@ -162,7 +162,7 @@ StatsScreen_InitCursor: ; 8d7a (2:4d7a)
 	ld a, [wd456]
 	cp $1
 	jr z, @ + 2
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $1
 	jr z, .skip
 	ld a, $20
@@ -194,41 +194,41 @@ StatsScreen_JoypadAction: ; 8dbb (2:4dbb)
 	ld a, [wd456]
 	cp $1
 	jr z, @ + 2
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	cp $1
 	jr z, .check_right
 	ld a, [wJoyNew]
 	and D_UP
 	jr z, .check_down
-	ld a, [wd415]
+	ld a, [wCurStatsScreenDenjuu]
 	cp $0
 	jr z, .wrap_up
 	dec a
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	jr .play_up_down_sfx
 
 .wrap_up
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	dec a
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	jr .play_up_down_sfx
 
 .check_down
 	ld a, [wJoyNew]
 	and D_DOWN
 	jr z, .check_right
-	ld a, [wd4b0]
+	ld a, [wStatsScreen_NumDenjuu]
 	ld b, a
-	ld a, [wd415]
+	ld a, [wCurStatsScreenDenjuu]
 	inc a
 	cp b
 	jr z, .wrap_down
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 	jr .play_up_down_sfx
 
 .wrap_down
 	ld a, $0
-	ld [wd415], a
+	ld [wCurStatsScreenDenjuu], a
 .play_up_down_sfx
 	ld a, SFX_02
 	ld [H_SFX_ID], a
@@ -457,9 +457,9 @@ LoadStatsScreen: ; 8f96 (2:4f96)
 	ret
 
 Func_8fb9:
-	enable_sram s1_b000
+	enable_sram sItems
 	ld de, wd000
-	ld hl, s1_b000
+	ld hl, sItems
 	ld a, [wcb70]
 	ld b, $0
 	ld c, a
@@ -484,7 +484,7 @@ Func_8fb9:
 Func_8fe8: ; 8fe8 (2:4fe8)
 	ld hl, wd000
 	ld d, $0
-	ld a, [wd415]
+	ld a, [wCurStatsScreenDenjuu]
 	ld e, a
 	add hl, de
 	ld a, [hl]
@@ -506,7 +506,7 @@ Func_8fe8: ; 8fe8 (2:4fe8)
 Func_9013: ; 9013 (2:5013)
 	ld hl, wd5b6
 	ld d, $0
-	ld a, [wd415]
+	ld a, [wCurStatsScreenDenjuu]
 	ld b, a
 	sla a
 	add b

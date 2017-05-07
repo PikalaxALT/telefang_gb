@@ -215,8 +215,8 @@ ScriptCommandPointers:
 	dw ScriptCommand_0b ; 09
 	dw ScriptCommand_0b ; 0a
 	dw ScriptCommand_0b ; 0b
-	dw ScriptCommand_0d ; 0c
-	dw ScriptCommand_0d ; 0d
+	dw Script_SetPlayerFacing ; 0c
+	dw Script_SetPlayerFacing ; 0d
 	dw Script_HopPlayer ; 0e
 	dw ScriptCommand_0f ; 0f
 	dw Script_WalkPlayer ; 10
@@ -231,12 +231,12 @@ ScriptCommandPointers:
 	dw ScriptCommand_19 ; 19
 	dw ScriptCommand_1b ; 1a
 	dw ScriptCommand_1b ; 1b
-	dw ScriptCommand_1c ; 1c
+	dw Script_SetPartnerFacing ; 1c
 	dw ScriptCommand_1d ; 1d
 	dw ScriptCommand_1e ; 1e
-	dw ScriptCommand_21 ; 1f
-	dw ScriptCommand_21 ; 20
-	dw ScriptCommand_21 ; 21
+	dw Script_SpawnPerson ; 1f
+	dw Script_SpawnPerson ; 20
+	dw Script_SpawnPerson ; 21
 	dw ScriptCommand_22 ; 22
 	dw Script_WalkNPC ; 23
 	dw Script_Disappear ; 24
@@ -245,7 +245,7 @@ ScriptCommandPointers:
 	dw Script_HopNPC ; 27
 	dw Script_HopNPC ; 28
 	dw ScriptCommand_2f ; 29
-	dw ScriptCommand_2a ; 2a
+	dw Script_WaitPlayerWalk ; 2a
 	dw ScriptCommand_2f ; 2b
 	dw ScriptCommand_2c ; 2c
 	dw ScriptCommand_2f ; 2d
@@ -257,16 +257,16 @@ ScriptCommandPointers:
 	dw Script_StartBattle ; 33
 	dw Script_SetEvent ; 34
 	dw Script_ResetEvent ; 35
-	dw ScriptCommand_36 ; 36
-	dw ScriptCommand_37 ; 37
+	dw Script_GiveItemQuantity ; 36
+	dw Script_TakeItemQuantity ; 37
 	dw Script_IfEvent ; 38
 	dw Script_IfNotEvent ; 39
 	dw Script_GiveMoney ; 3a
 	dw Script_TakeMoney ; 3b
-	dw ScriptCommand_3c ; 3c
+	dw Script_WalkPartner ; 3c
 	dw Script_FacePlayer ; 3d
-	dw ScriptCommand_3e ; 3e
-	dw ScriptCommand_3f ; 3f
+	dw Script_SpawnPlayer ; 3e
+	dw Script_SpawnPartner ; 3f
 	dw Script_ShakeScreen ; 40
 	dw Script_ShakeScreen ; 41
 	dw Script_ShakeScreen ; 42
@@ -291,12 +291,12 @@ ScriptCommandPointers:
 	dw Script_IfNotEqual ; 55
 	dw ScriptCommand_56 ; 56
 	dw ScriptCommand_57 ; 57
-	dw ScriptCommand_58 ; 58
+	dw Script_WaitPartnerWalk ; 58
 	dw Script_GiveDenjuu ; 59
-	dw ScriptCommand_5a ; 5a
-	dw ScriptCommand_5b ; 5b
-	dw ScriptCommand_5c ; 5c
-	dw ScriptCommand_5d ; 5d
+	dw Script_IfHaveItem ; 5a
+	dw Script_AntennaTreeMapName ; 5b
+	dw Script_StartRingingPhone ; 5c
+	dw Script_StopRingingPhone ; 5d
 	dw Script_SetDShotSignalStrength ; 5e
 	dw ScriptCommand_5f ; 5f
 	dw ScriptCommand_60 ; 60
@@ -307,7 +307,7 @@ ScriptCommandPointers:
 	dw ScriptCommand_65 ; 65
 	dw ScriptCommand_66 ; 66
 	dw ScriptCommand_67 ; 67
-	dw ScriptCommand_68 ; 68
+	dw Script_WarpWavy ; 68
 	dw Script_IfRecruited ; 69
 	dw ScriptCommand_6a ; 6a
 	dw Script_SetDShotLevel ; 6b
@@ -430,12 +430,12 @@ ScriptCommand_0b: ; 3c28f (f:428f)
 	xor a
 	ret
 
-ScriptCommand_68: ; 3c2d9 (f:42d9)
+Script_WarpWavy: ; 3c2d9 (f:42d9)
 	ld a, [wMapGroup]
 	ld [wWhichPhoneNumberSymbolCode], a
 	ld a, $0
 	ld [wc958], a
-	callba Func_c99ac
+	callba StartWavyWarpAnimation
 	ld a, [wScriptBuffer + 1]
 	ld [wMapGroup], a
 	ld a, [wScriptBuffer + 2]
@@ -456,7 +456,7 @@ ScriptCommand_68: ; 3c2d9 (f:42d9)
 	xor a
 	ret
 
-ScriptCommand_0d: ; 3c314 (f:4314)
+Script_SetPlayerFacing: ; 3c314 (f:4314)
 	ld d, $0
 	ld a, [wScriptBuffer + 1]
 	ld b, a
@@ -474,13 +474,13 @@ ScriptCommand_0d: ; 3c314 (f:4314)
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld a, [wPlayerObjectStruct_Duration + 17]
 	bit 2, a
 	jp z, .skip2
-	ld a, [wCurPlayerFacing]
-	add $2d
-	ld [wCurPlayerFacing], a
+	ld a, [wCurPlayerSpriteImage]
+	add 45 ; holding something in midair
+	ld [wCurPlayerSpriteImage], a
 .skip2
 	ld a, b
 	ld hl, Data_3c35a
@@ -743,7 +743,7 @@ ScriptCommand_1b: ; 3c4d4 (f:44d4)
 	scf
 	ret
 
-ScriptCommand_1c: ; 3c50a (f:450a)
+Script_SetPartnerFacing: ; 3c50a (f:450a)
 	ld d, $2
 	ld a, [wScriptBuffer + 1]
 	ld b, a
@@ -849,7 +849,7 @@ ScriptCommand_1e: ; 3c596 (f:4596)
 	scf
 	ret
 
-ScriptCommand_21: ; 3c5c7 (f:45c7)
+Script_SpawnPerson: ; 3c5c7 (f:45c7)
 	ld a, [wScriptBuffer + 1]
 	add $10
 	ld c, a
@@ -1132,7 +1132,7 @@ Script_StartBattle: ; 3c76a (f:476a)
 	xor a
 	ret
 
-ScriptCommand_36: ; 3c78b (f:478b)
+Script_GiveItemQuantity: ; 3c78b (f:478b)
 	ld a, [wScriptBuffer + 1]
 	ld hl, wItems
 	add l
@@ -1150,7 +1150,7 @@ ScriptCommand_36: ; 3c78b (f:478b)
 	scf
 	ret
 
-ScriptCommand_37: ; 3c7a5 (f:47a5)
+Script_TakeItemQuantity: ; 3c7a5 (f:47a5)
 	ld a, [wScriptBuffer + 1]
 	ld hl, wItems
 	add l
@@ -1448,7 +1448,7 @@ ScriptCommand_57: ; 3c943 (f:4943)
 	scf
 	ret
 
-ScriptCommand_58: ; 3c962 (f:4962)
+Script_WaitPartnerWalk: ; 3c962 (f:4962)
 	ld a, [wPartnerDenjuuObjectStruct_Duration + 12]
 	cp $ff
 	jr z, .asm_3c96b
@@ -1466,7 +1466,7 @@ ScriptCommand_78: ; 3c972 (f:4972)
 	ld [wcd00], a
 	ret
 
-ScriptCommand_2a: ; 3c977 (f:4977)
+Script_WaitPlayerWalk: ; 3c977 (f:4977)
 	ld a, [wPlayerObjectStruct_Duration + 12]
 	cp $ff
 	jr z, .asm_3c980
@@ -1595,7 +1595,7 @@ Script_FaceAwayFromPlayer: ; 3ca32 (f:4a32)
 	ld b, a
 	jr asm_3ca14
 
-ScriptCommand_3c: ; 3ca46 (f:4a46)
+Script_WalkPartner: ; 3ca46 (f:4a46)
 	call Func_3c552
 	ld a, [wScriptBuffer + 1]
 	ld [wPartnerDenjuuObjectStruct_Duration + 12], a
@@ -1664,7 +1664,7 @@ Script_IfNotEvent: ; 3caa8 (f:4aa8)
 	scf
 	ret
 
-ScriptCommand_3f: ; 3cabc (f:4abc)
+Script_SpawnPartner: ; 3cabc (f:4abc)
 	ld hl, wCurObjectStruct
 	ld a, wPartnerDenjuuObjectStruct % $100
 	ld [hli], a
@@ -1697,7 +1697,7 @@ ScriptCommand_3f: ; 3cabc (f:4abc)
 	scf
 	ret
 
-ScriptCommand_3e: ; 3caf0 (f:4af0)
+Script_SpawnPlayer: ; 3caf0 (f:4af0)
 	ld hl, wCurObjectStruct
 	ld a, wPlayerObjectStruct % $100
 	ld [hli], a
@@ -1932,7 +1932,7 @@ ENDC
 	ld a, $16
 	ld [wPlayerObjectStruct_Duration + 18], a
 	ld a, $9
-	ld [wCurPlayerFacing], a
+	ld [wCurPlayerSpriteImage], a
 	ld hl, wPlayerObjectStruct_Duration + 4
 	ld a, $0
 	ld [hli], a
@@ -2135,7 +2135,7 @@ Script_GiveDenjuu: ; 3cd38 (f:4d38)
 	xor a
 	ret
 
-ScriptCommand_5a: ; 3ce0f (f:4e0f)
+Script_IfHaveItem: ; 3ce0f (f:4e0f)
 	ld a, [wScriptBuffer + 1]
 	ld hl, wItems
 	add l
@@ -2161,7 +2161,7 @@ ScriptCommand_5a: ; 3ce0f (f:4e0f)
 	scf
 	ret
 
-ScriptCommand_5b: ; 3ce34 (f:4e34)
+Script_AntennaTreeMapName: ; 3ce34 (f:4e34)
 	callba GetCurrentLandmark
 	callba GetLandmarkName
 	ld b, $0
@@ -2184,7 +2184,7 @@ ScriptCommand_5b: ; 3ce34 (f:4e34)
 	xor a
 	ret
 
-ScriptCommand_5c: ; 3ce70 (f:4e70)
+Script_StartRingingPhone: ; 3ce70 (f:4e70)
 	ld a, [wPhoneSilentMode]
 	or a
 	jr nz, .skip_music_and_sfx
@@ -2204,7 +2204,7 @@ ScriptCommand_5c: ; 3ce70 (f:4e70)
 	scf
 	ret
 
-ScriptCommand_5d: ; 3ce97 (f:4e97)
+Script_StopRingingPhone: ; 3ce97 (f:4e97)
 	ld a, [wPhoneSilentMode]
 	or a
 	jr nz, .skip_music_and_sfx
@@ -2262,11 +2262,11 @@ asm_3ced2
 	call ScriptEngine_GetObjectStruct
 	jr z, .finish
 	ld a, [wCurObjectStruct]
-	add $5
+	add $5 ; palette
 	ld l, a
 	ld a, $3
 	ld [hl], a
-	jr .finish
+	jr .finish ; insert trihex's face here
 
 .finish
 	ld b, $2

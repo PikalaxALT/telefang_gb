@@ -114,7 +114,7 @@ Func_30090:
 	ld l, a
 	ld a, $14
 	ld [hl], a
-	ld a, [wCurPlayerFacing]
+	ld a, [wCurPlayerSpriteImage]
 	ld [wRequestedPartnerDenjuuSprite], a
 	cp $9
 	jr c, .asm_300cf
@@ -441,7 +441,7 @@ Func_302a8: ; 302a8 (c:42a8)
 .asm_30315
 	ld hl, wc9b0
 	ld a, $0
-	call Func_2f76
+	call ByteFill
 	ld hl, wPartnerDenjuuObjectStruct
 	ld a, $0
 	ld [wc947], a

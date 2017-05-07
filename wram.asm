@@ -1,6 +1,6 @@
 INCLUDE "includes.asm"
 
-SECTION "WRAM 0", WRAM0 [$c000]
+SECTION "Objects and OAM", WRAM0 [$c000]
 wOAMBuffer:: ds 4 * 40 ; c000
 wOAMBufferEnd::
 
@@ -32,40 +32,10 @@ wOAMAnimation23:: oam_animation_struct wOAMAnimation23 ; c360
 wOAMAnimation24:: oam_animation_struct wOAMAnimation24 ; c380
 wOAMAnimationsEnd:: ; c3a0
 
-wPlayerNameEntryBuffer2:: ds 1
-wc3a1:: ds 1
-wc3a2:: ds 1
-wc3a3:: ds 1
-wc3a4:: ds 1
-wc3a5:: ds 1
-wc3a6:: ds 1
-wc3a7:: ds 1
-wc3a8:: ds 1
+wPlayerNameEntryBuffer2:: ds 9
+wPlayerNameEntryBuffer:: ds 9
 
-wPlayerNameEntryBuffer:: ds 1
-wc3aa:: ds 1
-wc3ab:: ds 1
-wc3ac:: ds 1
-wc3ad:: ds 1
-wc3ae:: ds 1
-wc3af:: ds 1
-wc3b0:: ds 1
-wc3b1:: ds 1
-
-wc3b2:: ds 1
-wc3b3:: ds 1
-wc3b4:: ds 1
-wc3b5:: ds 1
-wc3b6:: ds 1
-wc3b7:: ds 1
-wc3b8:: ds 1
-wc3b9:: ds 1
-wc3ba:: ds 1
-wc3bb:: ds 1
-wc3bc:: ds 1
-wc3bd:: ds 1
-wc3be:: ds 1
-wc3bf:: ds 1
+SECTION "WRAM Bank 0", WRAM0 [$c3c0]
 wVBlankCounter:: ds 1
 wFinishedCurrentFrame:: ds 1
 wSCX:: ds 1
@@ -470,7 +440,7 @@ wc9f0:: ds 1
 wc9f1:: ds 1
 wc9f2:: ds 1
 wc9f3:: ds 1
-wCurPlayerFacing:: ds 1
+wCurPlayerSpriteImage:: ds 1
 wc9f5:: ds 1
 wCurTilesetMetatilesPointer:: dw
 wCurTilesetMetaattrsPointer:: dw
@@ -689,7 +659,7 @@ wcb33:: ds 1
 wcb34:: ds 1
 wcb35:: ds 1
 wcb36:: ds 1
-wcb37:: ds 1
+wNumUniqueItemsInBag:: ds 1
 wCurrentPlayerOrDenjuuNameBufferLength:: ds 1
 wDShotDialBufferSize:: ds 1
 wcb3a:: ds 1
@@ -716,7 +686,7 @@ wcb6b:: ds 1
 wDShotPageTop:: ds 1
 wDShotPageCursor:: ds 1
 wcb6e:: ds 1
-wcb6f:: ds 1
+wPhoneMenuCurItem:: ds 1
 wcb70:: ds 1
 wcb71:: ds 1
 wLastDenjuuSeenOrCaught:: ds 1
@@ -792,74 +762,12 @@ wNumFramesHoldingADuringText:: ds 1
 wcdb9:: ds 1
 wcdba:: ds 1
 wcdbb:: ds 1
-wItems:: ds 1
-wcdbd:: ds 1
-wcdbe:: ds 1
-wcdbf:: ds 1
-wcdc0:: ds 1
-wcdc1:: ds 1
-wcdc2:: ds 1
-wcdc3:: ds 1
-wcdc4:: ds 1
-wcdc5:: ds 1
-wcdc6:: ds 1
-wcdc7:: ds 1
-wcdc8:: ds 1
-wcdc9:: ds 1
-wcdca:: ds 1
-wcdcb:: ds 1
-wcdcc:: ds 1
-wcdcd:: ds 1
-wcdce:: ds 1
-wcdcf:: ds 1
-wcdd0:: ds 1
-wcdd1:: ds 1
-wcdd2:: ds 1
-wcdd3:: ds 1
-wcdd4:: ds 1
-wcdd5:: ds 1
-wcdd6:: ds 1
-wcdd7:: ds 1
-wcdd8:: ds 1
-wcdd9:: ds 1
-wcdda:: ds 1
-wcddb:: ds 1
-wcddc:: ds 1
-wcddd:: ds 1
-wcdde:: ds 1
-wcddf:: ds 1
-wcde0:: ds 1
-wcde1:: ds 1
-wcde2:: ds 1
-wcde3:: ds 1
-wcde4:: ds 1
-wcde5:: ds 1
-wcde6:: ds 1
-wcde7:: ds 1
-wcde8:: ds 1
-wcde9:: ds 1
-wcdea:: ds 1
-wcdeb:: ds 1
-wcdec:: ds 1
-wcded:: ds 1
-wcdee:: ds 1
-wcdef:: ds 1
-wcdf0:: ds 1
-wcdf1:: ds 1
-wcdf2:: ds 1
-wcdf3:: ds 1
-wcdf4:: ds 1
-wcdf5:: ds 1
-wcdf6:: ds 1
-wcdf7:: ds 1
-wcdf8:: ds 1
-wcdf9:: ds 1
-wcdfa:: ds 1
-wcdfb:: ds 1
-wcdfc:: ds 1
-wcdfd:: ds 1
-wcdfe:: ds 1
-wcdff:: ds 1
+
+; There are 68 items in the game.  Each item has a fixed slot
+; in your bag.  The quantity of each item in your bag is
+; stored here, in index order.
+wItems:: ds NUM_ITEMS ; cdbc
+
 wScriptDataEnd::
 
 SECTION "Sound Channels", WRAM0 [$ce00]
@@ -957,7 +865,7 @@ wStartObjectAnimationIDX:: ds 1
 wBattleEnded:: ds 1
 wd413:: ds 1
 wBattleMenuSelection:: ds 1
-wd415:: ds 1
+wCurStatsScreenDenjuu:: ds 1
 wBattleTurn:: ds 1
 wCurMoveTarget:: ds 1
 wd418:: ds 1
@@ -1098,7 +1006,7 @@ wLegendaryInParty:: ds 1
 wd4ac:: ds 1
 wd4ad:: ds 1
 wExperiencePointsAfterAward:: dw
-wd4b0:: ds 1
+wStatsScreen_NumDenjuu:: ds 1
 wBattleStringBuffer:: ds 1
 wd4b2:: ds 1
 wd4b3:: ds 1
