@@ -333,7 +333,7 @@ ApplyCGBFadeToCPals: ; f7bd (3:77bd)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Pointers:
 	dw .FromWhite, .ret
@@ -464,7 +464,7 @@ ApplyCGBFadeToEightPals: ; f873 (3:7873)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Pointers:
 	dw .FromWhite, .ret

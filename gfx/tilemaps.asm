@@ -375,7 +375,7 @@ ENDC
 .Tilemap_156: INCBIN "gfx/tilemaps/tm_156.bin.rle"
 .Tilemap_157:
 
-SECTION "Tilemaps 02", ROMX, BANK [TILEMAPS_02]
+SECTION "Tilemaps 02", ROMX [$4000], BANK [TILEMAPS_02]
 StdBGMapLayoutPointers2::
 	dw .Tilemap_158
 	dw .Tilemap_158

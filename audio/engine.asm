@@ -1023,7 +1023,7 @@ DoAudioFunction_\1: ; 48729 (11:4729)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 AudioCommand_f0_\1: ; 48738 (11:4738)
 	ld hl, $1a
@@ -1478,7 +1478,7 @@ ExecuteTrackFunction_\1: ; 489e3 (11:49e3)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 AudioEngineFunc_49eb_\1: ; 489eb (11:49eb)
 	call AudioEngineFunc_4aa9_\1

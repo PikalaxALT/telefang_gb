@@ -53,7 +53,7 @@ ExecuteScriptCommand: ; 3c041 (f:4041)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 CheckActivatedScript: ; 3c050 (f:4050)
 	ld a, [wc98e]

@@ -4030,7 +4030,7 @@ Func_3a7fd: ; 3a7fd (e:67fd)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_3a816:
 	dw Func_3a81a
@@ -4267,7 +4267,7 @@ Func_3a996: ; 3a996 (e:6996)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_3a9af:
 	dw Func_3a9b7
@@ -4709,7 +4709,7 @@ Func_3ac86: ; 3ac86 (e:6c86)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_3ac9f:
 	dw Func_3aca3
@@ -12442,7 +12442,7 @@ Func_c83bc: ; c83bc (32:43bc)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c83d5:
 	dw Func_c83dd
@@ -12818,7 +12818,7 @@ Func_c8621: ; c8621 (32:4621)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c863a:
 	dw Func_c866c
@@ -13145,7 +13145,7 @@ Func_c885f: ; c885f (32:485f)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c8878:
 	dw Func_c887e
@@ -13465,7 +13465,7 @@ Func_c8d9b: ; c8d9b (32:4d9b)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c8db4:
 	dw Func_c8dba
@@ -13672,7 +13672,7 @@ Func_c8f2d: ; c8f2d (32:4f2d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c8f46:
 	dw Func_c8f4c
@@ -13835,7 +13835,7 @@ Func_c903d: ; c903d (32:503d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c9056:
 	dw Func_c905c
@@ -14093,7 +14093,7 @@ Func_c91df: ; c91df (32:51df)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c91f8:
 	dw Func_c91fe
@@ -14346,7 +14346,7 @@ Func_c9374: ; c9374 (32:5374)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_c938d:
 	dw Func_c9391
@@ -15522,7 +15522,7 @@ Func_cc000:
 	ret
 
 Func_cc03d: ; cc03d (33:403d)
-	jp [hl]
+	jp hl
 
 Pointers_cc03e:
 	dw Func_cc151
@@ -15731,7 +15731,7 @@ Func_cc152:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc16b:
 	dw Func_cc16f
@@ -15866,7 +15866,7 @@ Func_cc22a:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc243:
 	dw Func_cc247
@@ -15996,7 +15996,7 @@ Func_cc2f9: ; cc2f9 (33:42f9)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc312:
 	dw Func_cc316
@@ -16123,7 +16123,7 @@ Func_cc3b8: ; cc3b8 (33:43b8)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc3d1: ; cc3d1 (33:43d1)
 	dw Func_cc3d5
@@ -16282,7 +16282,7 @@ Func_cc4af: ; cc4af (33:44af)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc4c8: ; cc4c8 (33:44c8)
 	dw Func_cc4cc
@@ -16403,7 +16403,7 @@ Func_cc573: ; cc573 (33:4573)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc58c: ; cc58c (33:458c)
 	dw Func_cc590
@@ -16544,7 +16544,7 @@ Func_cc642: ; cc642 (33:4642)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc65b: ; cc65b (33:465b)
 	dw Func_cc65f
@@ -16763,7 +16763,7 @@ Func_cc78e: ; cc78e (33:478e)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc7a7: ; cc7a7 (33:47a7)
 	dw Func_cc7ab
@@ -16941,7 +16941,7 @@ Func_cc8be: ; cc8be (33:48be)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc8d7: ; cc8d7 (33:48d7)
 	dw Func_cc8db
@@ -17076,7 +17076,7 @@ Func_cc9a5: ; cc9a5 (33:49a5)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cc9be: ; cc9be (33:49be)
 	dw Func_cc9c4
@@ -17309,7 +17309,7 @@ Func_ccb12: ; ccb12 (33:4b12)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_ccb2b: ; ccb2b (33:4b2b)
 	dw Func_ccb2f
@@ -17428,7 +17428,7 @@ Func_ccbd4: ; ccbd4 (33:4bd4)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_ccbed: ; ccbed (33:4bed)
 	dw Func_ccbf1
@@ -17549,7 +17549,7 @@ Func_ccc9a: ; ccc9a (33:4c9a)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cccb3: ; cccb3 (33:4cb3)
 	dw Func_cccb7
@@ -17754,7 +17754,7 @@ Func_ccdef: ; ccdef (33:4def)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cce08: ; cce08 (33:4e08)
 	dw Func_cce14
@@ -18070,7 +18070,7 @@ Func_cd008: ; cd008 (33:5008)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd021: ; cd021 (33:5021)
 	dw Func_cd025
@@ -18243,7 +18243,7 @@ Func_cd12f: ; cd12f (33:512f)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd148: ; cd148 (33:5148)
 	dw Func_cd14e
@@ -18515,7 +18515,7 @@ Func_cd2dc: ; cd2dc (33:52dc)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd2f5: ; cd2f5 (33:52f5)
 	dw Func_cd2f9
@@ -18667,7 +18667,7 @@ Func_cd3bc: ; cd3bc (33:53bc)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd3d5: ; cd3d5 (33:53d5)
 	dw Func_cd3db
@@ -18810,7 +18810,7 @@ Func_cd496: ; cd496 (33:5496)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd4af: ; cd4af (33:54af)
 	dw Func_cd4b3
@@ -19003,7 +19003,7 @@ Func_cd5d8: ; cd5d8 (33:55d8)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd5f1: ; cd5f1 (33:55f1)
 	dw Func_cd5f5
@@ -19140,7 +19140,7 @@ Func_cd6c1: ; cd6c1 (33:56c1)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd6da: ; cd6da (33:56da)
 	dw Func_cd6de
@@ -19328,7 +19328,7 @@ Func_cd7ee: ; cd7ee (33:57ee)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd807: ; cd807 (33:5807)
 	dw Func_cd80b
@@ -19538,7 +19538,7 @@ Func_cd93d: ; cd93d (33:593d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cd956: ; cd956 (33:5956)
 	dw Func_cd95a
@@ -19728,7 +19728,7 @@ Func_cda72: ; cda72 (33:5a72)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cda8b: ; cda8b (33:5a8b)
 	dw Func_cda8f
@@ -19884,7 +19884,7 @@ Func_cdb80: ; cdb80 (33:5b80)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cdb99: ; cdb99 (33:5b99)
 	dw Func_cdb9d
@@ -20022,7 +20022,7 @@ Func_cdc6d: ; cdc6d (33:5c6d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cdc86: ; cdc86 (33:5c86)
 	dw Func_cdc8a
@@ -20223,7 +20223,7 @@ Func_cddd4: ; cddd4 (33:5dd4)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cdded: ; cdded (33:5ded)
 	dw Func_cddf1
@@ -20368,7 +20368,7 @@ Func_cdebc: ; cdebc (33:5ebc)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_cded5: ; cded5 (33:5ed5)
 	dw Func_cdedb
@@ -20611,7 +20611,7 @@ Func_ce053: ; ce053 (33:6053)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_ce06c: ; ce06c (33:606c)
 	dw Func_ce070
@@ -20735,7 +20735,7 @@ Func_ce11f: ; ce11f (33:611f)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_ce138: ; ce138 (33:6138)
 	dw Func_ce13e
@@ -20892,7 +20892,7 @@ Func_ce21b: ; ce21b (33:621b)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_ce234: ; ce234 (33:6234)
 	dw Func_ce238
@@ -21049,7 +21049,7 @@ Func_ce322: ; ce322 (33:6322)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_ce33b: ; ce33b (33:633b)
 	dw Func_ce33f
@@ -21164,7 +21164,7 @@ Func_ce3d4: ; ce3d4 (33:63d4)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_ce3ed: ; ce3ed (33:63ed)
 	dw Func_ce3f3

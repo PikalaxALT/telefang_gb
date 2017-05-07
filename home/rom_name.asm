@@ -1,4 +1,4 @@
-SECTION "ROM Names", HOME [$f61]
+SECTION "ROM Names", ROM0 [$f61]
 	charmap " ", $20 ; revert to ascii
 	charmap "$", $00
 
@@ -8,4 +8,4 @@ ELSE
 	db " TELEFANG SPEED$"
 ENDC
 
-SECTION "Home part 2", HOME [$f71]
+SECTION "Home part 2", ROM0 [$f71]

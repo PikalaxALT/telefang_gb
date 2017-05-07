@@ -88,7 +88,7 @@ Func_38f8d: ; 38f8d (e:4f8d)
 	ret
 
 ._hl_
-	jp [hl]
+	jp hl
 
 Pointers_39045:
 	dw Overworld_DPadInput ; 00
@@ -968,7 +968,7 @@ asm_39674
 	ret
 
 ._hl_
-	jp [hl]
+	jp hl
 
 Pointers_396c7:
 	dw Overworld_NoMovement
@@ -1687,7 +1687,7 @@ Func_39cbe: ; 39cbe (e:5cbe)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Func_39ce0: ; 39ce0 (e:5ce0)
 	ld hl, Data_39eb6

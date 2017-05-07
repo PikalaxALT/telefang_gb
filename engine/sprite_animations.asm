@@ -68,7 +68,7 @@ Func_307a9: ; 307a9 (c:47a9)
 	ret
 
 ._hl_
-	jp [hl]
+	jp hl
 
 Pointers_307f5:
 	dw Func_30a2f
@@ -481,7 +481,7 @@ Func_30a2f: ; 30a2f (c:4a2f)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_30a48:
 	dw Func_30a54
@@ -957,7 +957,7 @@ Func_30d2f: ; 30d2f (c:4d2f)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_30d48:
 	dw Func_30d54
@@ -1209,7 +1209,7 @@ Func_30ece: ; 30ece (c:4ece)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Data_30efc:
 	db 1, 3, 0, 2
@@ -2011,7 +2011,7 @@ Func_31390: ; 31390 (c:5390)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_313a9:
 	dw Func_313b5
@@ -2108,7 +2108,7 @@ Func_31429: ; 31429 (c:5429)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Func_31442:
 	dw Func_3144e
@@ -2200,7 +2200,7 @@ Func_314b9: ; 314b9 (c:54b9)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_314d2:
 	dw Func_314d6
@@ -2380,7 +2380,7 @@ Func_315e1: ; 315e1 (c:55e1)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_315fa:
 	dw Func_31600
@@ -2781,7 +2781,7 @@ Func_31874: ; 31874 (c:5874)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_3188d:
 	dw Func_31891
@@ -2981,7 +2981,7 @@ Func_319ab: ; 319ab (c:59ab)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_319c4:
 	dw Func_319c8
@@ -3146,7 +3146,7 @@ Func_31aba: ; 31aba (c:5aba)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_31ad3:
 	dw Func_31ad7
@@ -3309,7 +3309,7 @@ Func_31bbe: ; 31bbe (c:5bbe)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_31bd7:
 	dw Func_31bdb
@@ -3450,7 +3450,7 @@ Func_31c9c: ; 31c9c (c:5c9c)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_31cb5:
 	dw Func_31cb9
@@ -3603,7 +3603,7 @@ Func_31d96: ; 31d96 (c:5d96)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_31daf:
 	dw Func_31db5
@@ -3857,7 +3857,7 @@ Func_31f44: ; 31f44 (c:5f44)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_31f5d:
 	dw Func_31f65
@@ -4188,7 +4188,7 @@ Func_3217b: ; 3217b (c:617b)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_32194:
 	dw Func_32198
@@ -4338,7 +4338,7 @@ Func_3226b: ; 3226b (c:626b)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_32284:
 	dw Func_32294
@@ -5509,7 +5509,7 @@ Func_329b6: ; 329b6 (c:69b6)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_329cf:
 	dw Func_329dd
@@ -6546,7 +6546,7 @@ Func_330a1: ; 330a1 (c:70a1)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_330ba:
 	dw Func_330be
@@ -6688,7 +6688,7 @@ Func_3317d: ; 3317d (c:717d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_33196:
 	dw Func_3319a
@@ -6817,7 +6817,7 @@ Func_33247: ; 33247 (c:7247)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_33260:
 	dw Func_33264
@@ -7018,7 +7018,7 @@ Func_33392: ; 33392 (c:7392)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_333ab:
 	dw Func_333af
@@ -7153,7 +7153,7 @@ Func_33479: ; 33479 (c:7479)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_33492:
 	dw Func_33496
@@ -7392,7 +7392,7 @@ Func_335f4: ; 335f4 (c:75f4)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_3360d:
 	dw AppendScriptIndexToBuffer7

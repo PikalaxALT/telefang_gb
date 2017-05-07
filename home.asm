@@ -1,11 +1,11 @@
-SECTION "Boot", HOME [$0100]
+SECTION "Boot", ROM0 [$0100]
 	nop
 	jp Start
 
-SECTION "Header", HOME [$0104]
+SECTION "Header", ROM0 [$0104]
 	ds $4c
 
-SECTION "Start", HOME [$0150]
+SECTION "Start", ROM0 [$0150]
 INCLUDE "home/init.asm"
 
 PushGFXRegisters:
@@ -2111,7 +2111,7 @@ OverworldSubroutine_: ; 1f6a (0:1f6a)
 	rst Bankswitch
 	ld h, d
 	ld l, e
-	jp [hl]
+	jp hl
 
 TextWaitStat:
 .asm_1f79

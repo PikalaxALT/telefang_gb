@@ -21,7 +21,7 @@ FarJump_HL::
 	ld [wROMBank], a
 	ei
 _hl_:: ; 49d (0:049d)
-	jp [hl]
+	jp hl
 
 BankSwitch::
 	di

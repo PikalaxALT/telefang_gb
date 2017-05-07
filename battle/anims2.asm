@@ -3009,7 +3009,7 @@ Func_6d846: ; 6d846 (1b:5846)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_6d866:
 	dw Func_6d872
@@ -3817,7 +3817,7 @@ Func_6de60: ; 6de60 (1b:5e60)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Pointers_6de80:
 	dw Func_6de8c

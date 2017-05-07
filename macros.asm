@@ -243,7 +243,7 @@ ELSE
 	ld hl, @ + 6
 ENDC
 	call GetWordFromTable
-	jp [hl]
+	jp hl
 ENDM
 
 overcoord: MACRO

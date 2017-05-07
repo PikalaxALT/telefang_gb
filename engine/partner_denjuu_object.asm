@@ -72,7 +72,7 @@ Func_30009: ; 30009 (c:4009)
 	ret
 
 ._hl_: ; 3007b (c:407b)
-	jp [hl]
+	jp hl
 
 Pointers_3007c:
 	dw Func_30090

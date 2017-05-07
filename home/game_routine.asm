@@ -9,7 +9,7 @@ RunGameRoutine: ; 1be2 (0:1be2)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .GameRoutines
 	dw OpeningLogos_    ; 00
