@@ -167,39 +167,24 @@ wCGBFade_PalLimit:: ds 1
 wc441:: ds 1
 wc442:: ds 1
 wc443:: ds 1
-wc444:: ds 1
-wc445:: ds 1
-wc446:: ds 1
-wc447:: ds 1
-wc448:: ds 1
-wc449:: ds 1
-wc44a:: ds 1
-wc44b:: ds 1
-wc44c:: ds 1
-wc44d:: ds 1
 
+SECTION "WRAM C44E", WRAM0 [$c44e]
+UNION
 wFontSourceBank:: ds 1 ; c44e
 wc44f:: ds 1
 wFontSourceAddr:: dw ; c450
 wc452:: ds 1
 wc453:: ds 1
-	ds wFontSourceBank - @
 
+NEXTU
 wCGBPalFadeProgram:: ds 1
 wNumCGBPalettesToFade:: ds 1
 wc450:: ds 1
 wCGBPalFadeCurPalRGBBuffer:: ds 3
 wCGBPalFadeBufferPointer:: dw
-wc456:: ds 1
-wc457:: ds 1
-wc458:: ds 1
-wc459:: ds 1
-wc45a:: ds 1
-wc45b:: ds 1
-wc45c:: ds 1
-wc45d:: ds 1
-wc45e:: ds 1
-wc45f:: ds 1
+ENDU
+
+SECTION "WRAM C460", WRAM0 [$c460]
 wc460:: ds 1
 wc461:: ds 1
 wc462:: ds 1
@@ -214,8 +199,8 @@ wc46a:: ds 1
 wc46b:: ds 1
 wc46c:: ds 1
 wc46d:: ds 1
-wc46e:: ds 1
-wc46f:: ds 1
+
+SECTION "WRAM C470", WRAM0 [$c470]
 wInLinkBattle:: ds 1
 wLinkBattleRNIdx:: ds 1
 wc472:: ds 1
