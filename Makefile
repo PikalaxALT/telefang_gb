@@ -1,6 +1,6 @@
 PYTHON := python
 PYTHON3 := python3
-MD5 := md5sum -c --quiet
+MD5 := md5sum -c
 
 .SUFFIXES:
 .PHONY: all clean power speed
@@ -37,10 +37,6 @@ compare: $(roms)
 	@$(MD5) roms.md5
 
 %.asm: ;
-
-%.o: dep = $(shell $(includes) $(@D)/$*.asm)
-%.o: %.asm $$(dep)
-	rgbasm -o $@ $<
 
 %_speed.o: dep = $(shell $(includes) $(@D)/$*.asm)
 %_speed.o: %.asm $$(dep)
