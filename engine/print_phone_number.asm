@@ -846,16 +846,16 @@ ConvertPhoneNumberToBCD: ; a43f8 (29:43f8)
 	ret
 
 .MinusTenMillion:
-	dl 4, -10000000
+	dl -10000000
 
 .MinusOneMillion:
-	dl 4, -1000000
+	dl -1000000
 
 .MinusHundredThousand:
-	dl 4, -100000
+	dl -100000
 
 .MinusTenThousand:
-	dl 4, -10000
+	dl -10000
 
 Add32: ; a44e5 (29:44e5)
 ; add hl[:4] + (bcde)

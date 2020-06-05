@@ -22177,7 +22177,7 @@ INCLUDE "data/map_data_14a97c.asm"
 INCLUDE "data/map_data_14b0f8.asm"
 
 SECTION "bank 53", ROMX, BANK [$53]
-MapObjectHeaders:: INCLUDE "data/unknown_14c000.asm"
+MapObjectHeaders:: INCLUDE "data/object_events.asm"
 INCLUDE "data/map_data_14c668.asm"
 INCLUDE "data/map_data_14d472.asm"
 

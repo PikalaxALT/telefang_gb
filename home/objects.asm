@@ -91,7 +91,7 @@ AnimateObject: ; df7 (0:0df7)
 	add hl, de
 	ld a, [hl]
 	or a
-	jp nz, @+2
+	jp nz, @+3
 	; stuff was commented out in source :/
 	ld hl, $a
 	add hl, de

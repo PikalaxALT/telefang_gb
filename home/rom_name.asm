@@ -1,5 +1,6 @@
 SECTION "ROM Names", ROM0 [$f61]
-	charmap " ", $20 ; revert to ascii
+	PUSHC
+	SETCHARMAP main
 	charmap "$", $00
 
 IF DEF(POWER)
@@ -7,5 +8,6 @@ IF DEF(POWER)
 ELSE
 	db " TELEFANG SPEED$"
 ENDC
+	POPC
 
 SECTION "Home part 2", ROM0 [$f71]

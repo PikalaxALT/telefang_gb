@@ -31,14 +31,6 @@ RGB: MACRO
 	dw ((\3) << 10) + ((\2) << 5) + (\1)
 	ENDM
 
-dl: MACRO
-x = 0
-rept \1
-	db (\2 >> (8 * x)) & $ff
-x = x + 1
-endr
-ENDM
-
 percent EQUS "* $ff / 100"
 
 ddb: MACRO
@@ -240,7 +232,7 @@ jump_table: MACRO
 IF _NARG >= 1
 	ld hl, \1
 ELSE
-	ld hl, @ + 6
+	ld hl, @ + 7
 ENDC
 	call GetWordFromTable
 	jp hl

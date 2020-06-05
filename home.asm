@@ -398,7 +398,7 @@ DecompressGFXByIndex: ; c36 (0:0c36)
 	ld l, a
 	ld a, [de]
 	inc de
-	jp @ + 2 ; basically a huge nop
+	jp @ + 3 ; basically a huge nop
 	cp $0
 	jp z, .single_blocks
 	ld a, h

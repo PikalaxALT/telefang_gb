@@ -8,7 +8,7 @@ MD5 := md5sum -c
 .PRECIOUS: %.2bpp %.1bpp %.tz %.pcm
 
 gfx       := $(PYTHON) gfx.py
-includes  := $(PYTHON) scan_includes.py
+includes  := tools/scan_includes
 tzcomp    := $(PYTHON3) tz.py
 pcm       := $(PYTHON) pcm.py pcm
 # rlecomp   := $(PYTHON) rle.py
@@ -32,6 +32,7 @@ speed: telespeed.gbc
 
 clean:
 	rm -f $(roms) $(telepower_obj) $(telespeed_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	find . \( -name "*.lz" -o -name "*.pcm" \) -exec $(RM) {} +
 
 compare: $(roms)
 	@$(MD5) roms.md5

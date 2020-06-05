@@ -1,3 +1,5 @@
+NEWCHARMAP game
+
 	char_def
 	defchar " " ; 00
 	defchar "ア"
